@@ -1,0 +1,27 @@
+@media print {
+body { background:white; color: black; margin: 0; font-size: 11pt; background: none; font-family: "Times New Roman", Times, serif; }
+
+#w-preheader, #top-level-menu, #searchform, #footer-menu, .breadcrumbs {display: none; position: absolute; left: -9999px; }	
+	
+#content, #sidebar { width: 100%; margin: 0; float: none; }
+
+a {color: #000; text-decoration: underline; }
+
+table {width: 100%; border: 1px solid #000; }
+td, th{padding: 10px; text-align: left; }
+
+h1, h2, h3, h4, h5, h6 { page-break-after:avoid; page-break-inside:avoid }
+img { page-break-inside:avoid; page-break-after:avoid; }
+blockquote, table, pre { page-break-inside:avoid }
+ul, ol, dl  { page-break-before:avoid }
+
+img.centered, img.aligncenter { display: block; margin-left: auto; margin-right: auto; }
+img.right, img.alignright { padding: 4px; margin: 0 0 2px 7px; display: inline; }
+img.left, img.alignleft { padding: 4px; margin: 0 7px 2px 0; display: inline; }
+
+.right, .alignright { float: right; }
+.left, .alignleft { float: left }
+
+.clear {clear: both; }
+	
+}
