@@ -1,3 +1,6 @@
+<?php	
+	global $pmprot_options;
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" <?php language_attributes(); ?>>
 
@@ -21,10 +24,6 @@
 </title>
 
 <meta name="generator" content="WordPress <?php bloginfo('version'); ?>" /> <!-- leave this for stats -->
-
-<link rel="stylesheet" href="<?php bloginfo('template_directory'); ?>/css/reset.css" type="text/css" media="all" />
-<link rel="stylesheet" href="<?php bloginfo('stylesheet_url'); ?>" type="text/css" media="screen" />
-<link rel="stylesheet" href="<?php bloginfo('template_directory'); ?>/css/print.css" type="text/css" media="print" />
 
 <?php /*
 <style type="text/css">
@@ -72,7 +71,7 @@
 ?>
 </head>
 <body>
-<?php include (TEMPLATEPATH . '/includes/settings.php'); ?>
+
 <div id="w-body">
 <div id="page">
 	
@@ -87,12 +86,16 @@
                   Welcome <a href="/membership-account/"><?php echo preg_replace("/\@.*/", "", $current_user->display_name)?></a>
               </div> <!-- end user-welcome -->
               <div class="user-links">
+			  	<?php wp_nav_menu(  array( 'theme_location' => 'loggedin' )); ?>
+				<?php /*
                 <a href="/support/download/" title="Download Plugin Now">Download Plugin Now</a>
 				<a href="<?php echo get_home_url(NULL,"/membership-account/"); ?>">My Account</a>
                 <?php if(current_user_can('manage_options')) { ?>
                     <a href="/wp-admin/">Site Admin</a>
                 <?php } ?>
-                <a href="<?php echo wp_logout_url( ); ?> " title="Log Out">Log Out</a>
+                
+				*/ ?>
+				<a href="<?php echo wp_logout_url( ); ?> " title="Log Out">Log Out</a>
                </div> <!-- end user-links -->
                <div class="clear"></div>
           <?php
@@ -101,8 +104,11 @@
 			  {
 			?>
 				<div class="user-links">
+					<?php wp_nav_menu(  array( 'theme_location' => 'loggedout' )); ?>
+					<?php /*
 					<a href="<?php echo pmpro_url("checkout", "?level=6", "https"); ?>" title="Download Plugin Now">Download Plugin Now</a>
 					<a href="<?php echo wp_login_url()?>" title="Log In">Log In</a>
+					*/ ?>
 				</div>
 				<div class="clear"></div>
 			<?php
@@ -110,25 +116,19 @@
           ?>
 		</div> <!-- end user-info -->
                 
-        <?php include (TEMPLATEPATH . '/searchform.php'); ?>
+        <?php dynamic_sidebar('Header Right'); ?>
         
         <div class="clear"></div>
     </div></div> <!-- end width, w-preheader -->
 
 	<div id="w-header"><div class="width"><div id="header">						
-        <h1 id="logo">
-            <a class="name" href="<?php echo get_home_url(); ?>"><?php bloginfo('name'); ?></a>                
-        </h1>
-        <div class="description"><?php bloginfo('description'); ?></div>			
-                
+        <h1 id="logo"><a title="<?php bloginfo('name'); ?>" href="<?php echo get_home_url(); ?>"><?php bloginfo('name'); ?></a></h1>
+		<?php if($pmprot_options['tagline']) { ?><div class="description"><?php bloginfo('description'); ?></div><?php } ?>
         <div class="clear"></div>
 	</div></div></div> <!-- end header, end width, end w-header -->
     
     <div id="w-menu"><div class="width"><div id="menu">						
-		<?php
-			//Top Level Menu
-			wp_nav_menu(  array( 'theme_location' => 'top-level-menu' ));
-		?>
+		<?php wp_nav_menu(  array( 'theme_location' => 'main' )); ?>
         <div class="clear"></div>	
     </div></div></div> <!-- end menu, end width, end w-menu -->
 	

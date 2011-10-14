@@ -15,6 +15,7 @@ function modify_profile_fields( $contactmethods ) {
 */
 
 require("includes/options.php");
+require("includes/settings.php");
 
 function sortByMenuOrder($a,$b)
 {
@@ -62,12 +63,30 @@ if ( function_exists( 'add_theme_support' ) ) {
 }
 
 register_sidebar(array(
+	'name'=>'Header Right',
+	'id'=>'header',
+	'description'=>'Shown at the top right of the header of all pages',  
+	'before_title'=>'', 
+	'after_title'=>'', 
+	'before_widget' => '<div class="widget h-right">',
+    'after_widget'  => '<div class="clear"></div></div>',));
+
+register_sidebar(array(
+	'name'=>'Home Widgets',
+	'id'=>'homewidgets',
+	'description'=>'Shown in the three columns grid on the homepage. Insert widgets in groups of 3 for ideal appearance',  
+	'before_title'=>'<h3>', 
+	'after_title'=>'</h3>', 
+	'before_widget' => '<div class="widget">',
+    'after_widget'  => '<div class="clear"></div></div>',));
+	
+register_sidebar(array(
 	'name'=>'Page: Left Sidebar',
 	'id'=>'leftsidebar',
 	'description'=>'Shown in the left sidebar of pages using the default template',  
 	'before_title'=>'<h3>', 
 	'after_title'=>'</h3>', 
-	'before_widget' => '<div class="pmpro-widget p-lcol">',
+	'before_widget' => '<div class="widget p-lcol">',
     'after_widget'  => '<div class="clear"></div></div>',));
 	
 register_sidebar(array(
@@ -76,7 +95,7 @@ register_sidebar(array(
 	'description'=>'Shown in the right sidebar of pages using the Page - Right Sidebar template', 
 	'before_title'=>'<h3>', 
 	'after_title'=>'</h3>', 
-	'before_widget' => '<div class="pmpro-widget p-rcol">',
+	'before_widget' => '<div class="widget p-rcol">',
     'after_widget'  => '<div class="clear"></div></div>',));
 
 register_sidebar(array(
@@ -85,7 +104,7 @@ register_sidebar(array(
 	'description'=>'Shown in the right sidebar of pages using the Page - Contact Form template', 
 	'before_title'=>'<h3>', 
 	'after_title'=>'</h3>', 
-	'before_widget' => '<div class="pmpro-widget p-lcol">',
+	'before_widget' => '<div class="widget p-lcol">',
     'after_widget'  => '<div class="clear"></div></div>',));
 
 register_sidebar(array(
@@ -94,7 +113,7 @@ register_sidebar(array(
 	'description'=>'300px wide sidebar shown at the top of the right sidebar on blog index, archive, search, single post, site map, and 404 pages', 
 	'before_title'=>'<h3>', 
 	'after_title'=>'</h3>', 
-	'before_widget' => '<div class="pmpro-widget b-colspan">',
+	'before_widget' => '<div class="widget b-colspan">',
     'after_widget'  => '<div class="clear"></div></div>',));
 	
 register_sidebar(array(
@@ -103,7 +122,7 @@ register_sidebar(array(
 	'description'=>'140px wide sidebar shown in column 1 of the right sidebar on blog index, archive, search, single post, site map, and 404 pages', 
 	'before_title'=>'<h3>', 
 	'after_title'=>'</h3>', 
-	'before_widget' => '<div class="pmpro-widget b-col1">',
+	'before_widget' => '<div class="widget b-col1">',
     'after_widget'  => '<div class="clear"></div></div>',));
 
 register_sidebar(array(
@@ -112,7 +131,7 @@ register_sidebar(array(
 	'description'=>'140px wide sidebar shown in column 2 of the right sidebar on blog index, archive, search, single post, site map, and 404 pages', 
 	'before_title'=>'<h3>', 
 	'after_title'=>'</h3>', 
-	'before_widget' => '<div class="pmpro-widget b-col2">',
+	'before_widget' => '<div class="widget b-col2">',
     'after_widget'  => '<div class="clear"></div></div>',));
 	
 register_sidebar(array(
@@ -121,7 +140,7 @@ register_sidebar(array(
 	'description'=>'Shown in column 1 of the footer on all pages', 
 	'before_title'=>'', 
 	'after_title'=>'', 
-	'before_widget' => '<div class="pmpro-widget fcol fcol1">',
+	'before_widget' => '<div class="widget fcol fcol1">',
     'after_widget'  => '<div class="clear"></div></div>',));
 	
 register_sidebar(array(
@@ -130,7 +149,7 @@ register_sidebar(array(
 	'description'=>'Shown in column 2 of the footer on all pages', 
 	'before_title'=>'', 
 	'after_title'=>'', 
-	'before_widget' => '<div class="pmpro-widget fcol fcol2">',
+	'before_widget' => '<div class="widget fcol fcol2">',
     'after_widget'  => '<div class="clear"></div></div>',));
 
 register_sidebar(array(
@@ -139,7 +158,7 @@ register_sidebar(array(
 	'description'=>'Shown in column 3 of the footer on all pages', 
 	'before_title'=>'', 
 	'after_title'=>'', 
-	'before_widget' => '<div class="pmpro-widget fcol fcol3">',
+	'before_widget' => '<div class="widget fcol fcol3">',
     'after_widget'  => '<div class="clear"></div></div>',));
 
 register_sidebar(array(
@@ -148,14 +167,17 @@ register_sidebar(array(
 	'description'=>'Shown in column 4 of the footer on all pages', 
 	'before_title'=>'', 
 	'after_title'=>'', 
-	'before_widget' => '<div class="pmpro-widget fcol fcol4">',
+	'before_widget' => '<div class="widget fcol fcol4">',
     'after_widget'  => '<div class="clear"></div></div>',));
 
 
 function register_my_menus() {
 register_nav_menus(
 array(
-'top-level-menu' => __( 'Top Level Menu' ))
+'loggedin' => __( 'Logged In User' ),
+'loggedout' => __( 'Logged Out User' ),
+'main' => __( 'Main Menu' ),
+'footer' => __( 'Footer Menu' ))
 );
 }
 
@@ -164,7 +186,7 @@ add_action( 'init', 'register_my_menus' );
 function getBreadcrumbs()
 {
 	global $breadcrumbs;
-	if($breadcrumbs)
+	if($pmprot_options['breadcrumbs'])
 	{
 	?>
 	<p class="breadcrumbs">

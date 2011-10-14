@@ -48,6 +48,7 @@
 		
 		add_settings_field('pmprot_option_color', 'Color', 'pmprot_option_color', 'pmprot_options', 'pmprot_section_general');
 		add_settings_field('pmprot_option_hide_pages', 'Hide Pages', 'pmprot_option_hide_pages', 'pmprot_options', 'pmprot_section_general');
+		add_settings_field('pmprot_option_error_page', '404 Page', 'pmprot_option_error_page', 'pmprot_options', 'pmprot_section_general');
 		
 		add_settings_field('pmprot_option_wphead', 'Header', 'pmprot_option_wphead', 'pmprot_options', 'pmprot_section_general');
 		add_settings_field('pmprot_option_wpfooter', 'Footer', 'pmprot_option_wpfooter', 'pmprot_options', 'pmprot_section_general');
@@ -127,7 +128,18 @@
 	function pmprot_option_color() 
 	{
 		$options = get_option('pmprot_options');
-		$items = array("Red", "Green", "Blue", "Orange", "White", "Violet", "Yellow");
+		
+		//get color stylesheets from theme directory
+		$cwd = getcwd();
+		$dir = get_stylesheet_directory() . "/colors/";
+		chdir($dir);
+		$stylesheets = glob("*.css");
+		chdir($cwd);
+				
+		$items = array();
+		foreach($stylesheets as $stylesheet)
+			$items[] = ucwords(str_replace(".css", "", $stylesheet));
+				
 		echo "<select id='pmprot_color' name='pmprot_options[color]'>";
 		foreach($items as $item) {
 			$selected = ($options['color']==$item) ? 'selected="selected"' : '';
@@ -140,6 +152,12 @@
 	{
 		$options = get_option('pmprot_options');
 		echo "<input id='pmprot_hide_pages' name='pmprot_options[hide_pages]' size='70' type='text' value='{$options['hide_pages']}' /><br /><small class='lite'>Enter comma-separated ids of pages you would like to hide from menus, the sitemap, and searches, etc.</small>";
+	}
+	
+	function pmprot_option_error_page() 
+	{
+		$options = get_option('pmprot_options');
+		echo "<input id='pmprot_error_page' name='pmprot_options[error_page]' size='10' type='text' value='{$options['error_page']}' /><br /><small class='lite'>Enter the id of the page to use for 404s.</small>";
 	}
 	
 	function pmprot_option_wphead() 
@@ -167,6 +185,7 @@
 		$newinput['footer_widgets'] = trim($input['footer_widgets']);
 		$newinput['color'] = trim($input['color']);
 		$newinput['hide_pages'] = trim($input['hide_pages']);
+		$newinput['error_page'] = trim($input['error_page']);
 		$newinput['wphead'] = trim($input['wphead']);
 		$newinput['wpfooter'] = trim($input['wpfooter']);		
 		return $newinput;
