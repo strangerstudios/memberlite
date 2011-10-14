@@ -1,0 +1,44 @@
+/*-- Colors ----------------------------------------*/
+.orange {color: #cc3300; }
+.red {color: #b73707; }
+.grey {color: #444; }
+.ltgrey {color: #F2F2F2; }
+/*--------------------------------------------------*/
+body {background-color: #444; }
+#w-preheader {background-color: #444; background-image: url(/wp-content/themes/memberlite/colors/default/bg_grad-black.gif); }
+#w-header {background-color: #444; background-image: url(/wp-content/themes/memberlite/colors/default/bg_grad-black-alt.gif); }
+#w-menu {background-color: #444;}
+#w-footer {background-color: #444; background-image: url(/wp-content/themes/memberlite/colors/default/bg_grad-black-alt.gif); }
+
+/*-- Defaults --------------------------------------*/
+a, a:link {color: #cc3300; }
+a:hover {color: #b73707; }
+a.trigger, a.trigger:link {color: #005D9D; }
+
+blockquote {background: #F2F2F2; border: 1px solid #D2D2D2; }
+table {background: #F2F2F2; border: 1px solid #D2D2D2; }
+table th {color: #b73707; background: #FFF url(/wp-content/themes/memberlite/colors/default/bg_grad-grey.gif) bottom left no-repeat; border-color: #CCC; }
+thead th a, thead th a:link { }
+tbody td {background: #FFF; border-color: #CCC; }
+
+
+h1, h2 {color: #cc3300; }
+h1 span, h2 span { color: #000; }
+h1 a, h1 a:visited, h2 a, h1, h2 a:visited { }
+h3 { color: #444; font-family: "Trebuchet MS", Arial, Helvetica, sans-serif; text-transform: uppercase; }
+h4, h5, h6 { color: #444; }
+
+h1#logo a, h1#logo a:link {background: #d45a31 url(/wp-content/themes/memberlite/colors/default/bg_grad-orange.gif) bottom left repeat-x; }
+h1#logo a:hover {background: #b73707; }
+#header .description {color: #FFF; }
+
+#w-preheader .user-welcome {color: #FFF; border-right-color: #444; }
+#w-preheader .user-welcome a {color: #cc3300; }
+#w-preheader .user-welcome a:hover {color: #FFF; }
+#w-preheader .user-links a {color: #FFF; }
+#w-preheader .user-links a:hover {background: #444; }
+
+#menu a {color: #FFF; }
+#menu a:hover, #menu li.hover a { background: #d45a31; }
+#menu li.current_page_item a, #menu li.current_page_parent a, #menu li.current-page-ancestor a {background: #FFF; color: #cc3300; }
+#menu .sub-menu {background: #d45a31 url(/wp-content/themes/memberlite/colors/default/bg_grad-orange.gif) bottom left repeat-x; }
