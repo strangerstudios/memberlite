@@ -74,7 +74,13 @@ if ( $paged >= 2 || $page >= 2 )
                   global $current_user;					
               ?>	
               <div class="user-welcome">
-                  Welcome <a href="/membership-account/"><?php echo preg_replace("/\@.*/", "", $current_user->display_name)?></a>
+				  Welcome
+				  <?php if(function_exists("pmpro_hasMembershipLevel") && pmpro_hasMembershipLevel()) { ?>				  
+					<a href="<?php echo pmpro_url("account"); ?>"><?php echo preg_replace("/\@.*/", "", $current_user->display_name)?></a>
+				  <?php } else { ?>
+					<a href="<?php echo home_url("/wp-admin/profile.php"); ?>"><?php echo preg_replace("/\@.*/", "", $current_user->display_name)?></a>
+				  <?php } ?>
+					
               </div> <!-- end user-welcome -->
               <div class="user-links">
 			  	<?php wp_nav_menu(  array( 'theme_location' => 'loggedin' )); ?>

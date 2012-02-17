@@ -11,7 +11,7 @@
 	?>
 	<div class="wrap">
 		<div id="icon-options-general" class="icon32"><br></div>
-		<h2>PMPro Theme Options</h2>
+		<h2>Member Lite Theme Options</h2>
 		
 		<form action="options.php" method="post">
 			
