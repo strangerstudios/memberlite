@@ -8,19 +8,41 @@
 
 			<?php while (have_posts()) : the_post(); ?>
 				
-			<div class="post" id="post-<?php the_ID(); ?>">
-			
-				<h2><a href="<?php the_permalink() ?>" rel="bookmark" title="Permanent Link to <?php the_title(); ?>"><?php the_title(); ?></a></h2>
-				<div class="p-date"><?php the_time('F j, Y') ?></div>
-				
-				<div class="posttext">
-					<?php the_content('Read the rest of this entry &raquo;'); ?>
-					<div class="clear"></div>
+			<article class="post single" id="post-<?php the_ID(); ?>">
+				<header class="entry-header">
+					<h1 class="entry-title"><a href="<?php echo get_permalink() ?>" rel="bookmark" title="Permanent Link: <?php the_title(); ?>"><?php the_title(); ?></a></h1>
+					<div class="entry-meta">
+						By <?php the_author_posts_link(); ?> on <strong><?php the_time('F j, Y') ?></strong> at <?php the_time() ?>. <?php comments_popup_link( 'No Comments', '1 Comment', '% Comments', 'comments-link', ''); ?><?php edit_post_link('Edit',' | ',''); ?>
+						<div class="clear"></div>
+					</div>
+				</header>
+		
+				<div class="entry-content">
+					<?php the_content('<p class="serif">Read the rest of this entry &raquo;</p>'); ?>
+		
+					<?php link_pages('<p><strong>Pages:</strong> ', '</p>', 'number'); ?>
 				</div> <!-- end posttext -->
 		
-				<div class="postmetadata">Posted in <?php the_category(', ') ?> <strong>|</strong> <?php edit_post_link('Edit','',' <strong>|</strong> '); ?>  <?php comments_popup_link('No Comments &#187;', '1 Comment &#187;', '% Comments &#187;'); ?></div>
-				
-			</div> <!-- end post -->
+				<footer class="entry-meta">
+					<?php
+						/* translators: used between list items, there is a space after the comma */
+						$tag_list = get_the_tag_list( '', __( ', ') );
+						if ( '' != $tag_list ) {
+							$utility_text = __( 'Posted in %1$s. Tagged %2$s');
+						} else {
+							$utility_text = __( 'Posted in %1$s');
+						}
+						printf(
+							$utility_text,
+							/* translators: used between list items, there is a space after the comma */
+							get_the_category_list( __( ', ') ),
+							$tag_list,
+							esc_url( get_permalink() ),
+							the_title_attribute( 'echo=0' )
+						);
+					?>							
+				</footer>								
+			</article> <!-- end article -->	
 	
 			<?php endwhile; ?>
 

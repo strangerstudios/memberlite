@@ -1,7 +1,7 @@
 <?php
 /*
-Template Name: Homepage
-*/
+Template Name: Page - Welcome
+*/	
 	get_header(); 
 ?>
 
@@ -10,13 +10,11 @@ Template Name: Homepage
 		<div id="content">			
 			<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 			<div class="page" id="post-<?php the_ID(); ?>">
-				<div class="pagetext">										
-					<blockquote>
-						<?php the_content('<p class="serif">Read the rest of this page &raquo;</p>'); ?>
-					</blockquote>
+				<div class="introtext">
+					<?php the_content('<p class="serif">Read the rest of this page &raquo;</p>'); ?>
+					<?php edit_post_link('Edit this entry.', '<p><small>', '</small></p>'); ?>
 					<div class="clear"></div>
-				</div> <!-- end pagetext -->
-				<?php edit_post_link('Edit this entry.', '<p>', '</p>'); ?>
+				</div>				
 			</div> <!-- end page -->
 			<?php endwhile; endif; ?>  	
 			
@@ -36,23 +34,23 @@ Template Name: Homepage
 					$count = 0;
 					// The Loop
 					if ( have_posts() ) : while ( have_posts() ) : the_post();
-						if($count == 3)
+						if($count == 2)
 							$count = 0;
 						$count++;
 						?>
-						<div id="hcol-<?=$post->ID?>" class="hcol hcol<?=$count?>">
-							<h3><?php the_title(); ?></h3>
-							<?php edit_post_link('EDIT', '<small>', '</small>'); ?>
+						<div id="hcol-<?=$post->ID?>" class="hcol hcol<?=$count?>">							
 							<?php if ( has_post_thumbnail() ) { ?>
 								<div class="feat-thumb">                            						
-									<a href="<?php the_permalink(); ?>"><?php the_post_thumbnail( 'thumbnail' ); ?></a>
+									<?php the_post_thumbnail( 'thumbnail' ); ?>
 	                            </div>
 							<?php } ?>
+							<h2><?php the_title(); ?></h2>
 							<?php the_content(); ?>
+							<?php edit_post_link('EDIT', '<small>', '</small>'); ?>
 							<div class="clear"></div>							
 						</div>
 						<?php
-							if($count == 3)
+							if($count == 2)
 								echo "<div class='clear'></div>";
 					endwhile; endif;
 									
@@ -61,11 +59,7 @@ Template Name: Homepage
 				?>				
 				<div class="clear"></div>
 			</div> <!-- end wrapper-mid -->
-			
-			<div class="wrapper-sub">
-				<?php dynamic_sidebar('Home Widgets'); ?>			
-				<div class="clear"></div>
-			</div> <!-- end wrapper-sub -->
+						
 			<div class="clear"></div>
 		</div> <!-- end content -->			
 	

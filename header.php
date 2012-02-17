@@ -1,10 +1,10 @@
 <?php	
 	global $pmprot_options;
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" <?php language_attributes(); ?>>
 
-<head profile="http://gmpg.org/xfn/11">
+<head>
 <meta http-equiv="Content-Type" content="<?php bloginfo('html_type'); ?>; charset=<?php bloginfo('charset'); ?>" />
 
 <?php
@@ -19,43 +19,34 @@
 	if(!$longtitle) $longtitle = trim(wp_title('', false));	
 ?>
 
-<title>
-	<?php echo $longtitle?>	
-</title>
+<title><?php
+/*
+ * Print the <title> tag based on what is being viewed.
+ */
+global $page, $paged;
+
+if($longtitle)
+	echo $longtitle . " | ";
+else
+	wp_title( '|', true, 'right' );
+
+// Add the blog name.
+bloginfo( 'name' );
+
+// Add the blog description for the home/front page.
+$site_description = get_bloginfo( 'description', 'display' );
+if ( $site_description && ( is_home() || is_front_page() ) )
+	echo " | $site_description";
+
+// Add a page number if necessary:
+if ( $paged >= 2 || $page >= 2 )
+	echo ' | ' . sprintf( __( 'Page %s', 'twentyeleven' ), max( $paged, $page ) );
+
+?></title>
 
 <meta name="generator" content="WordPress <?php bloginfo('version'); ?>" /> <!-- leave this for stats -->
 
-<?php /*
-<style type="text/css">
-	div, img, a { behavior: url(<?php bloginfo('template_directory'); ?>/includes/iepngfix.htc) }
-</style>
-*/ ?> 
-
-<?php
-	//do we need the ie6 stylesheet?
-	$ua = $_SERVER['HTTP_USER_AGENT'];
-	if (strpos($ua,'MSIE') != false && strpos($ua,'Opera') === false)
-	{
-		if (strpos($ua,'Windows NT 5.2') != false)
-		{
-			if(strpos($ua,'.NET CLR') === false) 
-			{
-				$skipnextcheck = true;
-			}
-		}
-	   
-		if (!$skipnextcheck && substr($ua,strpos($ua,'MSIE')+5,1) < 7)
-		{
-			/* the browser claims to be IE6 or older, and is not Opera, Safari or iCab */
-			global $isie6;
-			$isie6 = true;
-		   ?>
-			<link rel="stylesheet" href="<?php bloginfo('template_directory'); ?>/css/ie6.css" type="text/css" media="screen" />
-		   <?php
-		}
-	}
-?>
-
+<link rel="profile" href="http://gmpg.org/xfn/11" />
 <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="<?php bloginfo('rss2_url'); ?>" />
 <link rel="alternate" type="text/xml" title="RSS .92" href="<?php bloginfo('rss_url'); ?>" />
 <link rel="alternate" type="application/atom+xml" title="Atom 0.3" href="<?php bloginfo('atom_url'); ?>" />

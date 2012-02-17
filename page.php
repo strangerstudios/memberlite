@@ -10,7 +10,7 @@
 		<div id="content">			
 			<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 			<div class="page" id="post-<?php the_ID(); ?>">
-				<h1 class="ribbon"><span class="ribbon-inner">
+				<h1>
 					<?php
 						$longtitle = get_post_meta($post->ID, "longtitle", true);
 						if($longtitle)
@@ -18,12 +18,12 @@
 						else
 							the_title();
 					?>
-				</span></h1>
+				</h1>
 		
 				<div class="pagetext">					
 					
 					<?php if ( has_post_thumbnail() ) { ?>
-						<div class="img-featured img-medium">
+						<div class="feat-medium">
 							<?php the_post_thumbnail( 'medium' ); ?>
 						</div>
 					<?php } ?>
@@ -32,7 +32,7 @@
 					
 					<?php if(function_exists("after_the_content")) after_the_content(); ?>										
 		
-					<?php link_pages('<p><strong>Pages:</strong> ', '</p>', 'number'); ?>
+					<?php wp_link_pages('<p><strong>Pages:</strong> ', '</p>', 'number'); ?>
 					<div class="clear"></div>
 					
 				</div> <!-- end pagetext -->

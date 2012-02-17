@@ -1,8 +1,12 @@
-		
-        <div id="sidebar">					
-			<?php   
-				global $errorpage;
-				if (is_404() || is_home() || is_search() || is_single() || is_category() || is_author() || is_archive() || is_day() || is_month() || is_year() || is_page($errorpage) ) 
+		<?php
+			global $pmprot_sidebar_class, $pmprot_options;
+		?>
+        <div id="sidebar" class="<?php echo $pmprot_sidebar_class; ?>">					
+			<?php   				
+				if(is_bbpress())
+				{
+				}
+				elseif (is_404() || is_home() || is_search() || is_single() || is_category() || is_author() || is_archive() || is_day() || is_month() || is_year() || is_page($pmprot_options['error_page']) ) 
 				{
 					//Sidebar for Blog
 					dynamic_sidebar('Blog: Featured Sidebar'); ?>
@@ -44,18 +48,21 @@
 						}
 						else 
 						{
+							$exclude = "";
 							$children = wp_list_pages('title_li=&child_of=' . $post->ID . '&exclude=' . $exclude . '&echo=0&sort_column=menu_order');
 							$titlenamer = get_the_title($post->ID);
 							$titlelink = get_permalink($post->ID);
 						}
 						if ($children) 
 						{ ?>
-							<div class="widget widget-submenu">
+							<aside class="widget widget-submenu">
 								<h3><a href="<?php echo $titlelink?>"><?php echo $titlenamer?></a></h3>
-								<ul class="menu">				
-									<?php echo $children; ?>
-								</ul>
-							</div> <!-- end widget -->
+								<div class="widget_inner">
+									<ul class="menu">				
+										<?php echo $children; ?>
+									</ul>
+								</div>
+							</aside> <!-- end widget -->
 						<?php
 						}						
 						//Sidebar for Non-template Pages

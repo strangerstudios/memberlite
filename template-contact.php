@@ -48,34 +48,36 @@ Template Name: Page - Contact Form
 	function after_the_content()
 	{		
 		?>
-		<?php if($msg) { ?>
+		<?php 
+			global $msg;
+			if($msg) { ?>
 			<div class="message"><?php echo $msg?></div>				
 		<?php } ?>
 		<form class="general" action="<?php the_permalink(); ?>" method="post">	
 			<div class="form-row">
 				<label for="cname">Name</label>
-				<input type="text" name="cname" value="<?php echo $cname?>" size="40" /> <small class="red">* Required</small>  
+				<input type="text" id="cname" name="cname" value="<?php echo $cname?>" size="40" /> <small class="red">* Required</small>  
 			</div>
 			<div class="hidden">
 				<label for="lname">Last Name</label>
-				<input type="text" name="lname" value="<?php echo $lname?>" size="40" /> <small class="red">LEAVE THIS FIELD BLANK</small>
+				<input type="text" id="lname" name="lname" value="<?php echo $lname?>" size="40" /> <small class="red">LEAVE THIS FIELD BLANK</small>
 			</div>
 			<div class="form-row">
 				<label for="email">Email</label>
-				<input type="text" name="email" value="<?php echo $email?>" size="40" /> <small class="red">* Required</small>
+				<input type="text" id="email" name="email" value="<?php echo $email?>" size="40" /> <small class="red">* Required</small>
 			</div>					
 			<div class="form-row">
 				<label for="phone">Phone</label>
-				<input type="text" name="phone" value="<?php echo $phone?>" size="40" />  
+				<input type="text" id="phone" name="phone" value="<?php echo $phone?>" size="40" />  
 			</div>					
 			<div class="form-row">
 				<label for="message">Question or Comment</label>
-				<textarea class="textarea" name="message" rows="4" cols="55"><?php echo stripslashes($message)?></textarea>
+				<textarea class="textarea" id="message" name="message" rows="4" cols="55"><?php echo stripslashes($message)?></textarea>
 			</div>					 
 			
 			<div class="form-row">
-				<label for="submit">&nbsp;</label>
-				<input type="submit" name="sendemail" class="btn btn-grey" value="Submit" />
+				<label for="sendemail">&nbsp;</label>
+				<input type="submit" id="sendemail" name="sendemail" class="btn btn-primary" value="Submit" />
 			</div>									
 		</form>
 		<?php

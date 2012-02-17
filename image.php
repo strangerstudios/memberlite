@@ -1,40 +1,44 @@
 <?php get_header(); ?>
 
-	<div id="wrapper">
-	
-		<div id="content" class="<?php if($sidebarfloat == 'left') { ?>right<?php } else { ?>left<?php } ?>">
+<div id="wrapper" class="css">
+	<div id="content">
 	
 		<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 	
-			<?php 
-				global $breadcrumbs;
-				if($breadcrumbs && !is_front_page())
-				{
-				?>			
-				<?php getBreadcrumbs(); ?>
-				<?php
-				}
-			?>
+		<?php getBreadcrumbs(); ?>
 		
-				<div class="post single attachment" id="post-<?php the_ID(); ?>">
-					
-					<h2><a href="<?php echo get_permalink() ?>" rel="bookmark" title="Permanent Link: <?php the_title(); ?>"><?php the_title(); ?></a></h2>
-					<div class="p-date"><?php the_time('F j, Y') ?> at <?php the_time() ?></div>
-					
-					<div class="posttext">
-						<p class="attachment"><a href="<?php echo wp_get_attachment_url($post->ID); ?>"><?php echo wp_get_attachment_image( $post->ID, 'large' ); ?></a></p>
-						
-						<div class="caption"><?php if ( !empty($post->post_excerpt) ) the_excerpt(); // this is the "caption" ?></div>
-	
-						<?php the_content('<p class="serif">Read the rest of this entry &raquo;</p>'); ?>
-						
-					</div> <!-- end posttext -->
-			
-					<div class="postmetadata"><a href="<?php echo get_permalink($post->post_parent); ?>" rev="attachment">&laquo; Return to <?php echo get_the_title($post->post_parent); ?></a></div>
+		<aricle class="post single" id="post-<?php the_ID(); ?>">
+			<header class="entry-header">
+				<h1 class="entry-title"><a href="<?php echo get_permalink() ?>" rel="bookmark" title="Permanent Link: <?php the_title(); ?>"><?php the_title(); ?></a></h1>
+			</header>
 				
-				</div> <!-- end post -->
+			<div class="entry-content">
+				<div class="entry-attachment">
+					<div class="attachment">
+						<?php
+							echo wp_get_attachment_image( $post->ID, 'large');
+						?>
+
+						<?php if ( ! empty( $post->post_excerpt ) ) : ?>
+						<div class="entry-caption">
+							<?php the_excerpt(); ?>
+						</div>
+						<?php endif; ?>
+					</div><!-- end attachment -->
+				</div><!-- end entry-attachment -->
+
+				<div class="entry-description">
+					<?php the_content(); ?>
+				</div><!-- end entry-description -->
+
+			</div><!-- end entry-content -->
 			
-			<?php endwhile; endif; ?>
+			<a class="btn btn-primary" href="<?php echo get_permalink($post->post_parent); ?>" rev="attachment">&laquo; Return to <?php echo get_the_title($post->post_parent); ?></a>
+
+
+		</article><!-- end #post-<?php the_ID(); ?> -->
+
+		<?php endwhile; endif; ?>
 		
 			<div class="clear"></div>
 		</div> <!-- end content -->

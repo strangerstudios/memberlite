@@ -1,18 +1,42 @@
-General Settings:
-- Open "includes/settings.php" to edit general theme formats.
+=== Member Lite ===
+Contributors: strangerstudios
+Requires at least: 3.0
+Tested up to: 3.3.1
+Stable tag: 1
 
-Mini Navigation Bar:
-- To include menu items in the mini navigation, add a custom field to the page with the key "mainmenu". The value of this field should be 'true'.
+A customizable Membership Plugin for WordPress integrated with Authorize.net or PayPal(r) for recurring payments, flexible content control, themed registration, checkout, and more ...
 
-Top Navigation Bar:
-- To include menu items in the top navigation, add a custom field to the page with the key "mainmenu". The value of this field should be 'true'.
 
-Footer Navigation Bar:
-- To include menu items in the footer navigation, add a custom field to the page with the key "footermenu". The value of this field should be 'true'.
+== Description ==
+Paid Memberships Pro is a WordPress Plugin and support community for membership site curators. PMPro's rich feature set allows you to add a new revenue source to your new or current blog or website and is flexible enough to fit the needs of almost all online and offline businesses.
+
+== Installation ==
+
+1. Upload the `memberlite` directory to the `/wp-content/themes/` directory of your site.
+1. Activate the theme through the Appearance --> Themes menu in WordPress.
+1. Go to Appearance --> Theme Options to set the theme options.
+1. Go to Appearance --> Widgets to adjust your widgets.
+1. Go to Appearance --> Menus to adjust the Main Menu, Footer Menu, and Logged In and Logged Out versions of the User Menu.
 
 Site Map Rules:
 - To add a site map, create a page and set the template to "Site Map"
-- To exclude pages from your site map, create a custom field on the page to be excluded with the key "hide". The value of this field should be true.
+- To exclude pages from your site map, add the page/post ids to the "Hide Pages" field in the theme options.
 
 Customizing the 404 Error Page Content 
-- Set the $errorpage variable to the ID of the page that contains your 404 text. Be sure to add the custom field "hide" to the error mesage page so it doesn't show up within the site map.
+- Set the "404 page" value in the theme options to the ID of the page that contains your 404 text. Be sure to add the custom field "hide" to the error mesage page so it doesn't show up within the site map.
+
+== Frequently Asked Questions ==
+
+= I found a bug in the plugin. =
+
+Please email us as jason@strangerstudios.com or post it as an issue on GitHub: https://github.com/strangerstudios/Member-Lite-Theme/issues
+
+= I need help installing, configuring, or customizing the plugin. =
+
+Please visit our premium support site at http://www.paidmembershipspro.com for more documentation and our support forums.
+
+== Changelog ==
+
+= 1.0 =
+* This is the launch version. No changes yet.
+

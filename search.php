@@ -1,12 +1,10 @@
 <?php get_header(); ?>
-
-	<div id="wrapper">
-	
-		<div id="content" class="blogposts content-1 left">
+<div id="wrapper" class="css">
+	<div id="content" class="blogposts">
 	
 		<?php
-			global $searchpages;
-			if(!$searchpages)
+			global $pmprot_options;
+			if(!$pmprot_options['pages_in_search_results'])
 			{
 				$posts = query_posts($query_string . '&post_type=post');
 			}
@@ -15,22 +13,49 @@
 		<?php if (have_posts()) : ?>
 
 			<?php getBreadcrumbs(); ?>
-	
+			<div class="introtext">
+				<h1>Search Results For <span>'<?=stripslashes($s)?>'</span></h1>
+			</div>
+		
 			<?php while (have_posts()) : the_post(); ?>
 				
-			<div class="post" id="post-<?php the_ID(); ?>">
-			
-				<h2><a href="<?php the_permalink() ?>" rel="bookmark" title="Permanent Link to <?php the_title(); ?>"><?php the_title(); ?></a></h2>
-				<div class="p-date"><?php the_time('F j, Y') ?></div>
-				
-				<div class="posttext">
-					<?php the_excerpt(); ?>
-					<div class="clear"></div>
+			<article class="post single" id="post-<?php the_ID(); ?>">
+				<header class="entry-header">
+					<h1 class="entry-title"><a href="<?php echo get_permalink() ?>" rel="bookmark" title="Permanent Link: <?php the_title(); ?>"><?php the_title(); ?></a></h1>
+					<?php if($post->post_type == 'post') { ?>
+						<div class="entry-meta">By <?php the_author_posts_link(); ?> on <strong><?php the_time('F j, Y') ?></strong> at <?php the_time() ?><?php edit_post_link('Edit',' | ',''); ?></div>
+					<?php } ?>
+				</header>
+		
+				<div class="entry-content">
+					<?php the_excerpt('<p class="serif">Read the rest of this entry &raquo;</p>'); ?>
+		
+					<?php link_pages('<p><strong>Pages:</strong> ', '</p>', 'number'); ?>
 				</div> <!-- end posttext -->
 		
-				<div class="postmetadata">Posted in <?php the_category(', ') ?> <strong>|</strong> <?php edit_post_link('Edit','',' <strong>|</strong> '); ?>  <?php comments_popup_link('No Comments &#187;', '1 Comment &#187;', '% Comments &#187;'); ?></div>
-				
-			</div> <!-- end post -->
+				<footer class="entry-meta">
+					<?php 
+						if($post->post_type == 'post') 
+						{
+							/* translators: used between list items, there is a space after the comma */
+							$tag_list = get_the_tag_list( '', __( ', ') );
+							if ( '' != $tag_list ) {
+								$utility_text = __( 'Posted in %1$s. Tagged %2$s');
+							} else {
+								$utility_text = __( 'Posted in %1$s');
+							}
+							printf(
+								$utility_text,
+								/* translators: used between list items, there is a space after the comma */
+								get_the_category_list( __( ', ') ),
+								$tag_list,
+								esc_url( get_permalink() ),
+								the_title_attribute( 'echo=0' )
+							);
+						}
+					?>							
+				</footer>								
+			</article> <!-- end article -->	
 	
 	
 			<?php endwhile; ?>

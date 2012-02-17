@@ -63,121 +63,119 @@ if ( function_exists( 'add_theme_support' ) ) {
 }
 
 register_sidebar(array(
-	'name'=>'Header Right',
-	'id'=>'header',
-	'description'=>'Shown at the top right of the header of all pages',  
-	'before_title'=>'', 
-	'after_title'=>'', 
-	'before_widget' => '<div class="widget h-right">',
-    'after_widget'  => '<div class="clear"></div></div>',));
-
-register_sidebar(array(
-	'name'=>'Home Widgets',
-	'id'=>'homewidgets',
-	'description'=>'Shown in the three columns grid on the homepage. Insert widgets in groups of 3 for ideal appearance',  
+	'name'=>'Blog: Featured Sidebar', 
+	'id'=>'blogfeatured',
+	'description'=>'300px wide sidebar shown at the top of the right sidebar on blog index, archive, search, single post, site map, and 404 pages', 
 	'before_title'=>'<h3>', 
-	'after_title'=>'</h3>', 
-	'before_widget' => '<div class="widget">',
-    'after_widget'  => '<div class="clear"></div></div>',));
-	
+	'after_title'=>'</h3><div class="widget_inner">', 
+	'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+    'after_widget'  => '<div class="clear"></div></div></aside>',));
+
 register_sidebar(array(
 	'name'=>'Page: Left Sidebar',
 	'id'=>'leftsidebar',
 	'description'=>'Shown in the left sidebar of pages using the default template',  
 	'before_title'=>'<h3>', 
-	'after_title'=>'</h3>', 
-	'before_widget' => '<div class="widget p-lcol">',
-    'after_widget'  => '<div class="clear"></div></div>',));
+	'after_title'=>'</h3><div class="widget_inner">', 
+	'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+    'after_widget'  => '<div class="clear"></div></div></aside>',));
 	
 register_sidebar(array(
 	'name'=>'Page: Right Sidebar', 
 	'id'=>'rightsidebar',
 	'description'=>'Shown in the right sidebar of pages using the Page - Right Sidebar template', 
 	'before_title'=>'<h3>', 
-	'after_title'=>'</h3>', 
-	'before_widget' => '<div class="widget p-rcol">',
-    'after_widget'  => '<div class="clear"></div></div>',));
-
+	'after_title'=>'</h3><div class="widget_inner">', 
+	'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+    'after_widget'  => '<div class="clear"></div></div></aside>',));
+	
 register_sidebar(array(
 	'name'=>'Page: Contact Sidebar',
 	'id'=>'contactsidebar',
 	'description'=>'Shown in the right sidebar of pages using the Page - Contact Form template', 
 	'before_title'=>'<h3>', 
-	'after_title'=>'</h3>', 
-	'before_widget' => '<div class="widget p-lcol">',
-    'after_widget'  => '<div class="clear"></div></div>',));
-
-register_sidebar(array(
-	'name'=>'Blog: Featured Sidebar', 
-	'id'=>'blogfeatured',
-	'description'=>'300px wide sidebar shown at the top of the right sidebar on blog index, archive, search, single post, site map, and 404 pages', 
-	'before_title'=>'<h3>', 
-	'after_title'=>'</h3>', 
-	'before_widget' => '<div class="widget b-colspan">',
-    'after_widget'  => '<div class="clear"></div></div>',));
+	'after_title'=>'</h3><div class="widget_inner">', 
+	'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+    'after_widget'  => '<div class="clear"></div></div></aside>',));
 	
+register_sidebar(array(
+	'name'=>'Header Right',
+	'id'=>'header',
+	'description'=>'Shown at the top right of the header of all pages',  
+	'before_title'=>'', 
+	'after_title'=>'', 
+	'before_widget' => '<aside id="%1$s" class="widget %2$s h-right">',
+    'after_widget'  => '<div class="clear"></div></aside>',));	
 register_sidebar(array(
 	'name'=>'Blog: Column 1', 
 	'id'=>'blogcol1',
 	'description'=>'140px wide sidebar shown in column 1 of the right sidebar on blog index, archive, search, single post, site map, and 404 pages', 
 	'before_title'=>'<h3>', 
-	'after_title'=>'</h3>', 
-	'before_widget' => '<div class="widget b-col1">',
-    'after_widget'  => '<div class="clear"></div></div>',));
+	'after_title'=>'</h3><div class="widget_inner">', 
+	'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+    'after_widget'  => '<div class="clear"></div></div></aside>',));
 
 register_sidebar(array(
 	'name'=>'Blog: Column 2', 
 	'id'=>'blogcol2',
 	'description'=>'140px wide sidebar shown in column 2 of the right sidebar on blog index, archive, search, single post, site map, and 404 pages', 
 	'before_title'=>'<h3>', 
-	'after_title'=>'</h3>', 
-	'before_widget' => '<div class="widget b-col2">',
-    'after_widget'  => '<div class="clear"></div></div>',));
+	'after_title'=>'</h3><div class="widget_inner">', 
+	'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+    'after_widget'  => '<div class="clear"></div></div></aside>',));
 	
 register_sidebar(array(
 	'name'=>'Footer: Column 1', 
 	'id'=>'footercol1',
 	'description'=>'Shown in column 1 of the footer on all pages', 
-	'before_title'=>'', 
-	'after_title'=>'', 
-	'before_widget' => '<div class="widget fcol fcol1">',
-    'after_widget'  => '<div class="clear"></div></div>',));
+	'before_title'=>'<h3>', 
+	'after_title'=>'</h3>', 
+	'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+    'after_widget'  => '<div class="clear"></div></aside>',));
 	
 register_sidebar(array(
 	'name'=>'Footer: Column 2', 
 	'id'=>'footercol2',
 	'description'=>'Shown in column 2 of the footer on all pages', 
-	'before_title'=>'', 
-	'after_title'=>'', 
-	'before_widget' => '<div class="widget fcol fcol2">',
-    'after_widget'  => '<div class="clear"></div></div>',));
+	'before_title'=>'<h3>', 
+	'after_title'=>'</h3>', 
+	'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+    'after_widget'  => '<div class="clear"></div></aside>',));
 
 register_sidebar(array(
 	'name'=>'Footer: Column 3',
 	'id'=>'footercol3',
 	'description'=>'Shown in column 3 of the footer on all pages', 
-	'before_title'=>'', 
-	'after_title'=>'', 
-	'before_widget' => '<div class="widget fcol fcol3">',
-    'after_widget'  => '<div class="clear"></div></div>',));
+	'before_title'=>'<h3>', 
+	'after_title'=>'</h3>', 
+	'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+    'after_widget'  => '<div class="clear"></div></aside>',));
 
 register_sidebar(array(
 	'name'=>'Footer: Column 4', 
 	'id'=>'footercol4',
 	'description'=>'Shown in column 4 of the footer on all pages', 
-	'before_title'=>'', 
-	'after_title'=>'', 
-	'before_widget' => '<div class="widget fcol fcol4">',
-    'after_widget'  => '<div class="clear"></div></div>',));
+	'before_title'=>'<h3>', 
+	'after_title'=>'</h3>', 
+	'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+    'after_widget'  => '<div class="clear"></div></aside>',));
 
+register_sidebar(array(
+	'name'=>'Base: Left Column', 
+	'id'=>'baselcol',
+	'description'=>'Shown in left column of the base on all pages', 
+	'before_title'=>'<h3>', 
+	'after_title'=>'</h3>', 
+	'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+    'after_widget'  => '<div class="clear"></div></aside>',));
 
 function register_my_menus() {
 register_nav_menus(
 array(
-'loggedin' => __( 'Logged In User' ),
-'loggedout' => __( 'Logged Out User' ),
-'main' => __( 'Main Menu' ),
-'footer' => __( 'Footer Menu' ))
+'loggedin' => __( 'Logged In User', 'memberlite' ),
+'loggedout' => __( 'Logged Out User', 'memberlite' ),
+'main' => __( 'Main Menu', 'memberlite' ),
+'footer' => __( 'Footer Menu', 'memberlite' ))
 );
 }
 
@@ -185,8 +183,8 @@ add_action( 'init', 'register_my_menus' );
 
 function getBreadcrumbs()
 {
-	global $breadcrumbs;
-	if($pmprot_options['breadcrumbs'])
+	global $pmprot_options;
+	if(isset($pmprot_options['breadcrumbs']))
 	{
 	?>
 	<p class="breadcrumbs">
@@ -326,10 +324,10 @@ function SearchFilter($query){
  	if($query->is_search)
 	{ 
 		// List of pages/posts to omit when searching.  Page/post ID should be placed in the array.
-		global $exclude, $searchpages;
-		if(!$searchpages)
+		global $pmprot_options;
+		if(!$pmprot_options['pages_in_search_results'])
 			$query->set('post_type', 'post');
-		$postOmitArray = explode(",", $exclude);
+		$postOmitArray = explode(",", $pmprot_options['hide_pages']);
 	
 		// Set the pages to exclude in the WP Query
 		$query->set('post__not_in', $postOmitArray);		
@@ -337,17 +335,5 @@ function SearchFilter($query){
 	return $query;
 }
 add_filter('pre_get_posts','SearchFilter');
-
-/*
-	Change email subject
-*/
-function my_pmpro_email_subject($subject, $email)
-{	
-	if($email->template == "checkout_paid")
-		$subject = "My new subject";
-		
-	return $subject;
-}
-add_filter("pmpro_email_subject", "my_pmpro_email_subject", 10, 2);
 
 ?>

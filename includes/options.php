@@ -1,5 +1,4 @@
 <?php
-
 	// add the admin options page	
 	function pmprot_admin_add_page() 
 	{
@@ -183,6 +182,7 @@
 		$newinput['meta_menu'] = trim($input['meta_menu']);
 		$newinput['footer_menu'] = trim($input['footer_menu']);
 		$newinput['footer_widgets'] = trim($input['footer_widgets']);
+		$newinput['homepage_widgets'] = trim($input['homepage_widgets']);
 		$newinput['color'] = trim($input['color']);
 		$newinput['hide_pages'] = trim($input['hide_pages']);
 		$newinput['error_page'] = trim($input['error_page']);
