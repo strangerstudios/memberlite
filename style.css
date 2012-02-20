@@ -44,7 +44,7 @@ Body.login {text-align: left;}
 #wrapper.fw #content {float: none; width: 960px; }
 
 #w-footer {padding: 0 10px; background-position: bottom left; background-repeat: repeat-x; }
-#footer {margin: 0; padding: 2em 0; }
+#footer { }
 #w-base {padding: 2em 10px; background-position: top left; background-repeat: repeat-x; } 
 
 /*-- Colors --------------------------------------*/
@@ -148,7 +148,7 @@ form.general .form-row_lg input[type=text] {padding: 5px; font-size: 13px; }
 form.general .form-row_lg textarea {padding: 5px; font-size: 13px; }
 form.general .cancel, form.general .cancel:link {padding: 10px 0; font-size: 11px; color: #888; }
 
-#searchform {padding: 3px; height: 18px; background: #FFF; border-radius: 4px; -moz-border-radius: 4px; box-shadow: 0 0 10px #666; -moz-box-shadow: 0 0 5px #666; }
+#searchform {padding: 3px; background: #FFF; border-radius: 4px; -moz-border-radius: 4px; }
 #searchform #s {margin: 0; padding: 2px; line-height: 14px; background: #FFF; border: none; font-size: 11px; }
 #searchform #s:focus {outline: none; }
 #searchform #searchsubmit {width: 16px; height: 16px; background: #FFF url(images/icon_search.gif) 0px 1px no-repeat; border: none; text-indent: -9999px; cursor: pointer }
@@ -156,6 +156,8 @@ form.general .cancel, form.general .cancel:link {padding: 10px 0; font-size: 11p
 /*-- Buttons --------------------------------------*/
 .btn, .btn:link, #pmpro_levels_table tbody a, #pmpro_levels_table tbody a:link, .comment-reply-link, .comment-reply-link:link {display: inline-block; margin: 0; background-position: top left; background-repeat: repeat-x; cursor: pointer; border-radius: 4px; -moz-border-radius: 4px; padding: 5px 10px; text-decoration: none; text-shadow: 1px 1px 3px #000; border: none; font-family: Arial, Helvetica, sans-serif; }
 .btn:hover {background-position: bottom left; }
+
+.btn-grey, .btn-grey:link {background: #EEE url(images/bg_grad-grey.gif) 0px -5px repeat-x; border: 1px solid #CCC; text-shadow: none; }
 
 #pmpro_levels_table tbody a, #pmpro_levels_table tbody a:link {display: block; }
 .btn-inactive, #pmpro_levels_table tbody .active a,  #pmpro_levels_table tbody .active a:link,.btn-inactive:hover, #pmpro_levels_table tbody .active a:hover {color: #AAA; text-shadow: none; border: 1px solid #CCC; cursor: not-allowed; }
@@ -168,11 +170,11 @@ form.general .cancel, form.general .cancel:link {padding: 10px 0; font-size: 11p
 #w-preheader .user-links, #w-preheader .user-links div {display: inline; }
 #w-preheader .user-links ul, #w-preheader .user-links ul li {display: inline; line-height: 1.2em; }
 #w-preheader .user-links a {font-size: 10px; line-height: 1.2em; font-weight: bold; display: inline-block; padding: 5px 10px; margin: 0 3px 0 0; text-decoration: none; border-radius: 4px; -moz-border-radius: 4px; box-shadow: 0px 0px 5px #111; -moz-box-shadow: 0px 0px 5px #111; }
-#w-preheader #searchform {float: right; width: 175px; margin: 8px 0 0 0; }
+#w-preheader #searchform {float: right; width: 175px; height: 18px; margin: 8px 0 0 0; box-shadow: 0 0 10px #666; -moz-box-shadow: 0 0 5px #666; }
 #w-preheader #searchform #s {width: 150px; }
 
 /*-- Menus --------------------------------------*/
-.menu, .menu .sub-menu {list-style: none; margin: 0; padding: 0; }
+.menu, #w-menu ul, .menu .sub-menu {list-style: none; margin: 0; padding: 0; }
 .menu li {position: relative; margin: 0; padding: 0; }
 #w-menu .menu li {float: left; }
 .menu li a {display: block; text-decoration: none; }
@@ -185,11 +187,6 @@ form.general .cancel, form.general .cancel:link {padding: 10px 0; font-size: 11p
 #menu li:hover .sub-menu, #menu li.hover .sub-menu {left: 0px; }
 #menu .sub-menu li {float: none; }
 #menu .sub-menu li a, #menu .sub-menu li a:link {display: block; font-size: 12px; line-height: 16px; text-align: left; padding: 8px 15px; margin: 0; background: none; text-shadow: none; border-radius: 0px; }
-
-/* some overrides
-#top-level-menu.deselect-blog-tab ul li.current_page_item a, #top-level-menu.deselect-blog-tab ul li.current_page_parent a, #top-level-menu.deselect-blog-tab ul li.current-page-ancestor a {background: none; color: #FFF; font-weight: normal; -moz-border-radius-topleft: 0; border-top-left-radius: 0; -moz-border-radius-topright: 0; border-top-right-radius: 0; }
-#top-level-menu.select-forums-tab ul li.menu-item-369 a {background: #FFF; color: #a6671d; font-weight: bold; -moz-border-radius-topleft: 4px; border-top-left-radius: 4px; -moz-border-radius-topright: 4px; border-top-right-radius: 4px;  }
- */
  
 /*-- The Post --------------------------------------*/
 
@@ -228,7 +225,7 @@ article header h1 {font-size: 2.1em; background: url(images/bg_h1-single.gif) to
 .comment-author {float: left; width: 450px; font-size: 1.1em; margin: 0 0 .25em 0; }
 .comment-author cite {font-weight: bold; color: #2F0B3D; }
 .comment-meta {float: right; width: 100px; text-align: right; font-size: .9em; font-style: italic; line-height: 1.3em; }
-.comment-meta a {color: #999; text-decoration: none; }
+.comment-meta a, .comment-meta a:link {color: #999; text-decoration: none; }
 .commentlist p {float: left; width: 450px; }
 .commentlist .reply {clear: both; text-align: left; }
 .commentlist .reply .comment-reply-link:hover {background: #FFF; }
@@ -245,6 +242,9 @@ article header h1 {font-size: 2.1em; background: url(images/bg_h1-single.gif) to
 
 
 /*-- Posts Archives (Index, Category, Archive, Search) --------------------------------------*/
+.blogposts .introtext {padding: 1em; }
+.blogposts .introtext h1 {font-size: 1.4em; color: #666; margin: 0; }
+.blogposts .introtext p {margin: .5em 0 0 0; }
 .blogposts .post {margin: 0 0 4em 0; }
 .blogposts .post h2 {margin: 0; }
 
@@ -284,13 +284,18 @@ article header h1 {font-size: 2.1em; background: url(images/bg_h1-single.gif) to
 
 #sidebar aside {margin: 0 0 2em 0; color: #666; -moz-border-radius: 4px; border-radius: 4px; -moz-box-shadow: 0 0 5px #AAA; box-shadow: 0 0 5px #AAA; }
 #sidebar aside h3 {margin: 0; padding: 10px; border-bottom: 1px solid #D1D1D1; }
-#sidebar aside .widget_inner {padding: 10px; border-top: 1px solid #FFF; }
 #sidebar aside ul {list-style: none; margin: 0; }
 #sidebar aside ul li {margin: 0 0 1em 0; }
 #sidebar aside a {text-decoration: underline; }
 
 #sidebar .textwidget ul {list-style: disc; margin: 0 0 1.5em 20px; font-size: .9em; }
 
+#sidebar aside ul, #sidebar aside .tagcloud, #sidebar aside #calendar_wrap, #sidebar aside .textwidget {padding: 10px; border-top: 1px solid #FFF; }
+
+#sidebar #searchform {padding: 10px; border: 1px solid #EEE; }
+#sidebar #searchform #s {font-family: Georgia, "Times New Roman", Times, serif; font-style: italic;} 
+.css #sidebar #searchform #s {width: 250px; font-size: 14px; }
+.sc #sidebar #searchform #s {width: 132px; font-size: 12px; }
 
 /*-- Footer --------------------------------------*/
 #footer .fcol {width: 195px; float: left; }
@@ -298,7 +303,7 @@ article header h1 {font-size: 2.1em; background: url(images/bg_h1-single.gif) to
 #footer .fcol4 {float: right; }
 
 #footer h3 {margin: 0 0 .5em 0; text-shadow: 1px 1px 2px #000; }
-#footer .widget {margin: 0 0 1em 0; }
+#footer .widget {margin: 2em 0 3em 0; }
 #footer ul {margin: 0; list-style: none; }
 #footer ul li {background: url(images/bg_footer-li.gif) top left no-repeat; padding-left: 18px; line-height: 16px; margin: 0 0 1em 0; }
 #footer a {text-decoration: none; font-weight: bold; }

@@ -8,8 +8,10 @@
 		
 		<div class="introtext">					
 			<h1>
-			<?php
-				$post = $posts[0]; // Hack. Set $post so that the_date() works. ?>
+				<?php 
+					if(empty($post) && !empty($posts[0]))
+						$post = $posts[0]; // Hack. Set $post so that the_date() works. 
+				?>
 				<?php /* If this is a category archive */ if (is_category()) { single_cat_title(); ?>
 			
 				<?php /* If this is a daily archive */ } elseif (is_tag()) { ?><?php single_tag_title(); ?>
@@ -20,18 +22,19 @@
 				
 				<?php /* If this is a yearly archive */ } elseif (is_year()) { ?>Posted in <?php the_time('Y'); ?>
 			
-				<?php /* If this is an author archive */ } elseif (is_author()) { ?>
-			
-				<?php						
+				<?php /* If this is an author archive */ } elseif (is_author()) { ?>			
+					<?php						
 					if(get_query_var('author_name')) :
 						$curauth = get_user_by('slug', get_query_var('author_name'));
 					else :
 						$curauth = get_userdata(get_query_var('author'));
 					endif;
+										
 					?>
-					Articles by <?php echo $curauth->display_name; 
+					Articles by <?php echo $curauth->display_name; ?>
+					<?php
 				}
-			?>
+				?>
 			</h1>
 			<?php 
 				if(is_tag()) 
@@ -40,15 +43,14 @@
 					$description = 'Articles tagged \'' . $tag . '\'';
 				}
 				else
-					$description = category_description( get_category_by_slug('category-slug')->term_id ); 
+					$description = category_description(); 
 	
-				if($description)
+				if(!empty($description))
 				{
 					echo wpautop($description);
 				}
-					
-				
-				if($curauth->user_description)
+									
+				if(!empty($curauth->user_description))
 				{
 					echo wpautop($curauth->user_description);
 				}
@@ -60,13 +62,29 @@
 			<article class="post single" id="post-<?php the_ID(); ?>">
 				<header class="entry-header">
 					<h1 class="entry-title"><a href="<?php echo get_permalink() ?>" rel="bookmark" title="Permanent Link: <?php the_title(); ?>"><?php the_title(); ?></a></h1>
-					<div class="entry-meta">By <?php the_author_posts_link(); ?> on <strong><?php the_time('F j, Y') ?></strong> at <?php the_time() ?><?php edit_post_link('Edit',' | ',''); ?></div>
+					<div class="entry-meta">By <?php the_author_posts_link(); ?> on <strong><?php the_time('F j, Y') ?></strong> at <?php the_time() ?></div>
 				</header>
 		
 				<div class="entry-content">
-					<?php the_excerpt('<p class="serif">Read the rest of this entry &raquo;</p>'); ?>
-		
-					<?php link_pages('<p><strong>Pages:</strong> ', '</p>', 'number'); ?>
+					<?php if ( has_post_thumbnail() && !empty($pmprot_options['featured_images']) ) { ?>
+						<div class="feat-thumb">
+							<?php the_post_thumbnail( 'thumbnail' ); ?>
+						</div>
+					<?php } ?>
+					
+					<?php 
+						if ( !empty($pmprot_options['archive_full_content']) ) 
+						{ 
+							the_excerpt('<p class="serif">Read the rest of this entry &raquo;</p>'); 
+						}
+						else
+						{
+							the_content();
+						}
+					?>
+					
+					<?php wp_link_pages('<p><strong>Pages:</strong> ', '</p>', 'number'); ?>
+					<div class="clear"></div>
 				</div> <!-- end posttext -->
 		
 				<footer class="entry-meta">
@@ -86,11 +104,10 @@
 							esc_url( get_permalink() ),
 							the_title_attribute( 'echo=0' )
 						);
+						edit_post_link('Edit this entry','. ','.');
 					?>							
 				</footer>
-				
-				<?php edit_post_link('Edit this entry.','',''); ?>
-	
+
 			</article> <!-- end article -->	
 			
 			<?php endwhile; ?>

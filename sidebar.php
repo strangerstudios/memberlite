@@ -1,7 +1,7 @@
 <?php
-	global $pmprot_sidebar_class, $pmprot_options;
+	global $pmprot_options;
 ?>
-<div id="sidebar" class="<?php echo $pmprot_sidebar_class; ?>">					
+<div id="sidebar">					
 	<?php   				
 		if(function_exists("is_bbpress") && is_bbpress())
 		{

@@ -23,14 +23,30 @@
 				<header class="entry-header">
 					<h1 class="entry-title"><a href="<?php echo get_permalink() ?>" rel="bookmark" title="Permanent Link: <?php the_title(); ?>"><?php the_title(); ?></a></h1>
 					<?php if($post->post_type == 'post') { ?>
-						<div class="entry-meta">By <?php the_author_posts_link(); ?> on <strong><?php the_time('F j, Y') ?></strong> at <?php the_time() ?><?php edit_post_link('Edit',' | ',''); ?></div>
+						<div class="entry-meta">By <?php the_author_posts_link(); ?> on <strong><?php the_time('F j, Y') ?></strong> at <?php the_time() ?></div>
 					<?php } ?>
 				</header>
 		
 				<div class="entry-content">
-					<?php the_excerpt('<p class="serif">Read the rest of this entry &raquo;</p>'); ?>
-		
-					<?php link_pages('<p><strong>Pages:</strong> ', '</p>', 'number'); ?>
+					<?php if ( has_post_thumbnail() && !empty($pmprot_options['featured_images']) ) { ?>
+						<div class="feat-thumb">
+							<?php the_post_thumbnail( 'thumbnail' ); ?>
+						</div>
+					<?php } ?>
+					
+					<?php 
+						if ( !empty($pmprot_options['search_full_content']) ) 
+						{ 
+							the_excerpt('<p class="serif">Read the rest of this entry &raquo;</p>'); 
+						}
+						else
+						{
+							the_content();
+						}
+					?>
+					
+					<?php wp_link_pages('<p><strong>Pages:</strong> ', '</p>', 'number'); ?>
+					<div class="clear"></div>
 				</div> <!-- end posttext -->
 		
 				<footer class="entry-meta">
@@ -53,6 +69,7 @@
 								the_title_attribute( 'echo=0' )
 							);
 						}
+						edit_post_link('Edit this entry','. ','.');
 					?>							
 				</footer>								
 			</article> <!-- end article -->	

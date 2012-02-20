@@ -10,7 +10,10 @@
 <?php
 	//use this for calculations below
 	$object = $wp_query->get_queried_object();
-	$my_id = $object->ID;
+	if(!empty($object->ID))
+		$my_id = $object->ID;
+	else
+		$my_id = NULL;
 	
 	//is there a longer title?
 	global $longtitle, $pagetitle;
@@ -66,7 +69,8 @@ if ( $paged >= 2 || $page >= 2 )
 <div id="w-body">
 <div id="page">
 	
-    <div id="w-preheader"><div class="width">
+    <?php if(!empty($pmprot_options['meta_menu'])) { ?>
+	<div id="w-preheader"><div class="width">
     	<div class="user-info">
 		  <?php 
               if ($user_ID) 
@@ -83,15 +87,8 @@ if ( $paged >= 2 || $page >= 2 )
 					
               </div> <!-- end user-welcome -->
               <div class="user-links">
-			  	<?php wp_nav_menu(  array( 'theme_location' => 'loggedin' )); ?>
-				<?php /*
-                <a href="/support/download/" title="Download Plugin Now">Download Plugin Now</a>
-				<a href="<?php echo get_home_url(NULL,"/membership-account/"); ?>">My Account</a>
-                <?php if(current_user_can('manage_options')) { ?>
-                    <a href="/wp-admin/">Site Admin</a>
-                <?php } ?>
-                
-				*/ ?>
+			  	<?php wp_nav_menu(  array( 'theme_location' => 'loggedin', 'fallback_cb' => false )); ?>
+				
 				<a href="<?php echo wp_logout_url( ); ?> " title="Log Out">Log Out</a>
                </div> <!-- end user-links -->
                <div class="clear"></div>
@@ -101,11 +98,7 @@ if ( $paged >= 2 || $page >= 2 )
 			  {
 			?>
 				<div class="user-links">
-					<?php wp_nav_menu(  array( 'theme_location' => 'loggedout' )); ?>
-					<?php /*
-					<a href="<?php echo pmpro_url("checkout", "?level=6", "https"); ?>" title="Download Plugin Now">Download Plugin Now</a>
-					<a href="<?php echo wp_login_url()?>" title="Log In">Log In</a>
-					*/ ?>
+					<?php wp_nav_menu(  array( 'theme_location' => 'loggedout', 'fallback_cb' => false )); ?>				
 				</div>
 				<div class="clear"></div>
 			<?php
@@ -117,24 +110,26 @@ if ( $paged >= 2 || $page >= 2 )
         
         <div class="clear"></div>
     </div></div> <!-- end width, w-preheader -->
-
+	<?php } ?>
+	
 	<div id="w-header"><div class="width"><div id="header">						
         <h1 id="logo"><a title="<?php bloginfo('name'); ?>" href="<?php echo get_home_url(); ?>"><?php bloginfo('name'); ?></a></h1>
-		<?php if($pmprot_options['tagline']) { ?><div class="description"><?php bloginfo('description'); ?></div><?php } ?>
+		<?php if(!empty($pmprot_options['tagline'])) { ?><div class="description"><?php bloginfo('description'); ?></div><?php } ?>
         <div class="clear"></div>
 	</div></div></div> <!-- end header, end width, end w-header -->
     
+	<?php if(!empty($pmprot_options['main_menu'])) { ?>
     <div id="w-menu"><div class="width"><div id="menu">						
 		<?php wp_nav_menu(  array( 'theme_location' => 'main' )); ?>
         <div class="clear"></div>	
     </div></div></div> <!-- end menu, end width, end w-menu -->
-	
 	<script>
 		jQuery('li.menu-item').hover(
 			function() { jQuery(this).toggleClass("hover"); },
 			function() { jQuery(this).toggleClass("hover"); }
 		);
 	</script>
+	<?php } ?>		
 	
 	<div id="w-wrapper"><div class="width">
 	

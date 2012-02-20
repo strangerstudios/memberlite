@@ -26,7 +26,8 @@ Template Name: Page - Intro Block
 								the_title();
 						?>
 					</h1>
-					<?php if ( has_post_thumbnail() ) { ?>
+					
+					<?php if ( has_post_thumbnail() && !empty($pmprot_options['featured_images']) ) { ?>
 						<div class="feat-medium">                            						
 							<?php the_post_thumbnail( 'medium' ); ?>
 						</div>

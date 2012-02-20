@@ -8,7 +8,7 @@ Template Name: Page - Site Map
 		<ul>
 			<?php 
 				global $exclude;
-				wp_list_pages('title_li=&exclude=' . $exclude . '&exclude_tree=32'); 
+				wp_list_pages('title_li=&exclude=' . $exclude . ''); 
 			?>
 		</ul>
 		<?php

@@ -67,9 +67,9 @@ register_sidebar(array(
 	'id'=>'blogfeatured',
 	'description'=>'300px wide sidebar shown at the top of the right sidebar on blog index, archive, search, single post, site map, and 404 pages', 
 	'before_title'=>'<h3>', 
-	'after_title'=>'</h3><div class="widget_inner">', 
+	'after_title'=>'</h3>', 
 	'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-    'after_widget'  => '<div class="clear"></div></div></aside>',));
+    'after_widget'  => '<div class="clear"></div></aside>',));
 
 register_sidebar(array(
 	'name'=>'Page: Left Sidebar',
@@ -174,8 +174,7 @@ register_nav_menus(
 array(
 'loggedin' => __( 'Logged In User', 'memberlite' ),
 'loggedout' => __( 'Logged Out User', 'memberlite' ),
-'main' => __( 'Main Menu', 'memberlite' ),
-'footer' => __( 'Footer Menu', 'memberlite' ))
+'main' => __( 'Main Menu', 'memberlite' ))
 );
 }
 
@@ -183,13 +182,13 @@ add_action( 'init', 'register_my_menus' );
 
 function getBreadcrumbs()
 {
-	global $pmprot_options;
-	if(isset($pmprot_options['breadcrumbs']))
+	global $posts, $post, $pmprot_options;
+	if(!empty($pmprot_options['breadcrumbs']))
 	{
 	?>
 	<p class="breadcrumbs">
 		<?php
-		if(is_page())
+		if(is_page() && !is_front_page())
 		{
 		?>			
 			<a href="<?php echo home_url()?>">Home</a>
@@ -213,9 +212,19 @@ function getBreadcrumbs()
 		{
 		?>
 			<a href="<?php echo get_option('home'); ?>/">Home</a>
-			&#8734; <a href="<?php echo get_permalink(get_option('page_for_posts')); ?>"><?php echo getPostTitle(get_option('page_for_posts'),FALSE); ?></a>
+			<?php 
+				if(get_option('page_for_posts'))
+				{
+					?>
+					&#8734; <a href="<?php echo get_permalink(get_option('page_for_posts')); ?>"><?php echo getPostTitle(get_option('page_for_posts'),FALSE); ?></a>
+					<?php
+				}
+			?>
 			&#8734; <span>			
-			<?php $post = $posts[0]; // Hack. Set $post so that the_date() works. ?>
+			<?php 
+				if(empty($post) && !empty($posts[0]))
+					$post = $posts[0]; // Hack. Set $post so that the_date() works. 
+			?>
 			<?php /* If this is a category archive */ if (is_category()) { single_cat_title(); ?>
 			
 			<?php /* If this is a daily archive */ } elseif (is_day()) { the_time('F jS, Y'); ?>
@@ -244,7 +253,6 @@ function getBreadcrumbs()
 		{
 		?>
 			<a href="<?php echo get_option('home'); ?>/">Home</a>
-			&#8734; <a href="<?php echo get_permalink(get_option('page_for_posts')); ?>"><?php echo getPostTitle(get_option('page_for_posts'),FALSE); ?></a>
 			<?php
 				global $post;
 				$parent_id  = $post->post_parent;
@@ -264,11 +272,34 @@ function getBreadcrumbs()
 		{
 		?>
 			<a href="<?php echo get_option('home'); ?>/">Home</a>
-			&#8734; <a href="<?php echo get_permalink(get_option('page_for_posts')); ?>"><?php echo getPostTitle(get_option('page_for_posts'),FALSE); ?></a>
+			<?php 
+				if(get_option('page_for_posts'))
+				{
+					?>
+					&#8734; <a href="<?php echo get_permalink(get_option('page_for_posts')); ?>"><?php echo getPostTitle(get_option('page_for_posts'),FALSE); ?></a>
+					<?php
+				}
+			?>
 			&#8734; <?php the_title(); ?>
 		<?php
 		}
-		elseif(is_home())
+		elseif(is_search())
+		{
+			global $s;
+		?>
+			<a href="<?php echo get_option('home'); ?>/">Home</a>
+			<?php 
+				if(get_option('page_for_posts'))
+				{
+					?>
+					&#8734; <a href="<?php echo get_permalink(get_option('page_for_posts')); ?>"><?php echo getPostTitle(get_option('page_for_posts'),FALSE); ?></a>
+					<?php
+				}
+			?>
+			&#8734; Search Results For <span>'<?=stripslashes($s)?>'</span>
+		<?php
+		}
+		elseif(is_home() && !is_front_page() )
 		{
 		?>
 			<a href="<?php echo get_option('home'); ?>/">Home</a>
@@ -335,5 +366,12 @@ function SearchFilter($query){
 	return $query;
 }
 add_filter('pre_get_posts','SearchFilter');
+
+function new_excerpt_more($more) 
+{
+	global $post;
+	return '...<p><a class="btn btn-grey" href="'. get_permalink($post->ID) . '">Continue Reading &raquo;</a></p>';
+}
+add_filter('excerpt_more', 'new_excerpt_more');
 
 ?>

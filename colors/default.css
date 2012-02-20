@@ -57,6 +57,9 @@ form.general label, legend {font-weight: bold; color: #666; }
 #menu li.current_page_item .sub-menu li a:hover, #menu li.current_page_parent .sub-menu li a:hover, #menu li.current-page-ancestor .sub-menu li a:hover {background: #DDD; color: #cc3300; }
 
 .commentlist .reply .comment-reply-link, .commentlist .reply .comment-reply-link:link {background: #EEE url(default/bg_grad-grey.gif) 0px -5px repeat-x; border: 1px solid #CCC; text-shadow: none; }
+.commentlist .reply .comment-reply-link:hover {background: #d45a31 url(default/bg_grad-orange.gif) bottom left repeat-x; color: #FFF; }
+
+.blogposts .introtext h1 span {color: #cc3300; }
 
 #sidebar aside {background: #EEE url(default/bg_grad-grey.gif) top left repeat-x;  }
 #sidebar ul li a {color: #888; }

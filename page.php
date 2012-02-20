@@ -22,7 +22,7 @@
 		
 				<div class="pagetext">					
 					
-					<?php if ( has_post_thumbnail() ) { ?>
+					<?php if ( has_post_thumbnail() && !empty($pmprot_options['featured_images']) ) { ?>
 						<div class="feat-medium">
 							<?php the_post_thumbnail( 'medium' ); ?>
 						</div>

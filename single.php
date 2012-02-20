@@ -14,9 +14,15 @@
 			</header>
 	
 			<div class="entry-content">
+				<?php if ( has_post_thumbnail() && !empty($pmprot_options['featured_images']) ) { ?>
+					<div class="feat-medium">
+						<?php the_post_thumbnail( 'medium' ); ?>
+					</div>
+				<?php } ?>
 				<?php the_content('<p class="serif">Read the rest of this entry &raquo;</p>'); ?>
 	
-				<?php link_pages('<p><strong>Pages:</strong> ', '</p>', 'number'); ?>
+				<?php wp_link_pages('<p><strong>Pages:</strong> ', '</p>', 'number'); ?>
+				<div class="clear"></div>
 			</div> <!-- end posttext -->
 	
 			<footer class="entry-meta">
@@ -38,10 +44,9 @@
 						get_the_author(),
 						esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) )
 					);
-				?>							
-			</footer>
-			
-			<?php edit_post_link('Edit this entry.','',''); ?>
+					edit_post_link('Edit this entry',' ','.');
+				?>
+			</footer>						
 
 		</article> <!-- end article -->
 		
@@ -53,11 +58,7 @@
 	
 		</div> <!-- end content -->
 	
-		<?php 
-			global $pmprot_sidebar_class;
-			$pmprot_sidebar_class = "right sidebar-2";
-			get_sidebar(); 
-		?>
+		<?php get_sidebar(); ?>
 		
 		<div class="clear"></div>
 		
