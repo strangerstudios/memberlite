@@ -1,4 +1,6 @@
 <?php
+	define("PMPROT_VERSION", "1");
+	
 	/* Loads the Theme Options */
 	global $pmprot_options;
 	$pmprot_options = get_option('pmprot_options');	

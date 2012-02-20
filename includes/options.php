@@ -13,6 +13,16 @@
 		<div id="icon-options-general" class="icon32"><br></div>
 		<h2>Member Lite Theme Options</h2>
 		
+		<div id="pmprot_notifications">
+		</div>
+		<script>
+			jQuery(document).ready(function() {
+				jQuery.get(ajaxurl + '?action=pmprot_notifications', function(data) {
+				  jQuery('#pmprot_notifications').html(data);		 
+				});
+			});
+		</script>
+		
 		<form action="options.php" method="post">
 			
 			<?php settings_fields('pmprot_options'); ?>
@@ -190,5 +200,28 @@
 		$newinput['wpfooter'] = trim($input['wpfooter']);		
 		return $newinput;
 	}		
+	
+	/*
+	This code calls the server at www.memberlitetheme.com to see if there are any notifications to display to the user.
+	*/
+	function pmprot_notifications()
+	{
+		if(current_user_can("manage_options"))
+		{
+			$pmprot_notification = wp_remote_retrieve_body(wp_remote_get(pmpro_https_filter("http://www.memberlitetheme.com/notifications/?v=" . PMPROT_VERSION)));
+			if($pmprot_notification)
+			{
+			?>
+			<div id="pmprot_notifications">
+				<?php echo $pmprot_notification; ?>
+			</div>
+			<?php
+			}
+		}
+		
+		//exit so we just show this content
+		exit;
+	}
+	add_action('wp_ajax_pmprot_notifications', 'pmprot_notifications');	
 	
 ?>
