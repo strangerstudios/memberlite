@@ -272,7 +272,7 @@
 	{
 		if(current_user_can("manage_options"))
 		{			
-			$pmprot_notification = get_transient("pmprot_notification");
+			$pmprot_notification = get_transient("pmprot_notification_" . PMPROT_VERSION);
 			if(empty($pmprot_notification))
 			{
 				if(is_ssl())
@@ -280,7 +280,7 @@
 				else
 					$pmprot_notification = wp_remote_retrieve_body(wp_remote_get("http://www.memberlitetheme.com/notifications/?v=" . PMPROT_VERSION));
 					
-				set_transient("pmprot_notification", $pmprot_notification, 86400);
+				set_transient("pmprot_notification_" . PMPROT_VERSION, $pmprot_notification, 86400);
 			}
 			
 			if($pmprot_notification && $pmprot_notification != "NULL")
