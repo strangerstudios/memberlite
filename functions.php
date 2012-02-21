@@ -16,6 +16,7 @@ function modify_profile_fields( $contactmethods ) {
 
 require("includes/options.php");
 require("includes/settings.php");
+require("includes/update.php");
 
 function sortByMenuOrder($a,$b)
 {
