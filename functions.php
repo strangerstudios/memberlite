@@ -14,9 +14,10 @@ function modify_profile_fields( $contactmethods ) {
 }
 */
 
-require("includes/options.php");
-require("includes/settings.php");
-require("includes/update.php");
+$pathFix = dirname(__FILE__);
+require_once($pathFix . "/includes/options.php");
+require_once($pathFix . "/includes/settings.php");
+require_once($pathFix . "/includes/update.php");
 
 function sortByMenuOrder($a,$b)
 {

@@ -1,10 +1,5 @@
 <?php
 
-/*
-// TEMP: Enable update check on every request. Normally you don't need this! This is for testing only!
-*/
-set_site_transient('update_themes', null);
-
 add_filter('pre_set_site_transient_update_themes', 'pmprot_check_for_update');
 
 function pmprot_check_for_update($checked_data) {
