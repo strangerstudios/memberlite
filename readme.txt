@@ -2,7 +2,7 @@
 Contributors: strangerstudios
 Requires at least: 3.0
 Tested up to: 3.3.1
-Stable tag: 1
+Stable tag: 1.0.1
 
 A customizable Membership Plugin for WordPress integrated with Authorize.net or PayPal(r) for recurring payments, flexible content control, themed registration, checkout, and more ...
 
@@ -36,6 +36,14 @@ Please email us as jason@strangerstudios.com or post it as an issue on GitHub: h
 Please visit our premium support site at http://www.paidmembershipspro.com for more documentation and our support forums.
 
 == Changelog ==
+
+= 1.0.1 =
+* Better menu styling for sites using wp_list_pages instead of a nav menu.
+* Tweaked bread crumbs to work better if Paid Memberships Pro is installed. (But still work if it isn't.)
+* Fixed some bugs and warnings in the contact form template.
+* Added code to enable shortcodes in widgets.
+* Enqueueing jQuery which is used for hover effects in the menu.
+* Removed some images we aren't using anymore.
 
 = 1.0 =
 * This is the launch version. No changes yet.

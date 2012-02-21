@@ -21,12 +21,12 @@ blockquote, .introtext, .entry-attachment, #respond, #comments {background: #EEE
 #content table, #sidebar table {border: 1px solid #D2D2D2; }
 #content table th, #sidebar table thead th {color: #1E0741; background: #EEE url(default/bg_grad-grey.gif) top left repeat-x; border-color: #CCC; }
 #content table th a, #content table thead th a:link { }
-#content table tbody td, #sidebar table tbody td {border-color: #CCC; }
+#content table tbody td, #sidebar table tbody td {border-bottom-color: #CCC; }
 #content table tbody tr.odd td {background: #EEE; }
 #sidebar table {background: #FFF; }
 #sidebar table tfoot td {background: #FAFAFA; }
 
-h1, h2 {color: #412F5B; }
+h1, h2, .pmpro_box h3 {color: #412F5B; }
 h1 span, h2 span { color: #000; }
 h1 a, h1 a:visited, h2 a, h1, h2 a:visited { }
 h3 { color: #444; }
@@ -38,8 +38,8 @@ h1#logo a:hover {background: #1E0741; }
 
 form.general label, legend {font-weight: bold; color: #666; }
 
-.btn-primary, .btn-primary:link, #pmpro_levels_table tbody a, #pmpro_levels_table tbody a:link {background-color: #412f5b; background-image: url(purple/bg_grad-purple.gif); color: #FFF; }
-.btn-primary:hover, #pmpro_levels_table tbody a:hover {background: #1E0741; color: #FFF; }
+.btn-primary, .btn-primary:link, #pmpro_levels_table tbody a, #pmpro_levels_table tbody a:link, .pmpro_btn-submit-checkout, .yeslink, .yeslink:link {background-color: #412f5b; background-image: url(purple/bg_grad-purple.gif); color: #FFF; }
+.btn-primary:hover, #pmpro_levels_table tbody a:hover, .pmpro_btn-submit-checkout:hover, .yeslink:hover {background: #1E0741; color: #FFF; }
 
 .btn-inactive, #pmpro_levels_table tbody .active a,  #pmpro_levels_table tbody .active a:link,.btn-inactive:hover, #pmpro_levels_table tbody .active a:hover {background: #EEE url(default/bg_grad-grey.gif) 0px -5px repeat-x; }
 
@@ -52,10 +52,10 @@ form.general label, legend {font-weight: bold; color: #666; }
 #menu a {color: #FFF; }
 #menu a:hover, #menu li.hover a { background: #412f5b; }
 #menu li.current_page_item a, #menu li.current_page_parent a, #menu li.current-page-ancestor a {background: #FFF; color: #412F5B; }
-#menu .sub-menu {background: #412f5b url(purple/bg_grad-purple.gif) bottom left repeat-x; border-color: #412F5B; }
-#menu .sub-menu li a:hover {color: #DDD; text-decoration: underline; }
-#menu li.current_page_item .sub-menu, #menu li.current_page_parent .sub-menu, #menu li.current-page-ancestor .sub-menu {background: #FFF; border-color: #CCC; }
-#menu li.current_page_item .sub-menu li a:hover, #menu li.current_page_parent .sub-menu li a:hover, #menu li.current-page-ancestor .sub-menu li a:hover {background: #DDD; color: #412F5B; }
+#menu .sub-menu, #menu .children {background: #412f5b url(purple/bg_grad-purple.gif) bottom left repeat-x; border-color: #412F5B; }
+#menu .sub-menu li a:hover, #menu .children li a:hover {color: #DDD; text-decoration: underline; }
+#menu li.current_page_item .sub-menu, #menu li.current_page_parent .sub-menu, #menu li.current-page-ancestor .sub-menu, #menu li.current_page_item .children, #menu li.current_page_parent .children, #menu li.current-page-ancestor .children {background: #FFF; border-color: #CCC; }
+#menu li.current_page_item .sub-menu li a:hover, #menu li.current_page_parent .sub-menu li a:hover, #menu li.current-page-ancestor .sub-menu li a:hover, #menu li.current_page_item .children li a:hover, #menu li.current_page_parent .children li a:hover, #menu li.current-page-ancestor .children li a:hover {background: #DDD; color: #412F5B; }
 
 .commentlist .reply .comment-reply-link, .commentlist .reply .comment-reply-link:link {background: #EEE url(default/bg_grad-grey.gif) 0px -5px repeat-x; border: 1px solid #CCC; text-shadow: none; }
 .commentlist .reply .comment-reply-link:hover {background: #412f5b url(purple/bg_grad-purple.gif) bottom left repeat-x; color: #FFF; }

@@ -1,5 +1,5 @@
 <?php
-	define("PMPROT_VERSION", "1");
+	define("PMPROT_VERSION", "1.0.1");
 	
 	/* Loads the Theme Options */
 	global $pmprot_options;
@@ -18,6 +18,7 @@
 		
 		if(!is_admin() )
 		{
+			wp_enqueue_script('jquery');
 			wp_enqueue_style('pmprot_reset', get_stylesheet_directory_uri() . "/css/reset.css", NULL, NULL, "all");
 			wp_enqueue_style('pmprot_main', get_stylesheet_directory_uri() . "/style.css", NULL, NULL, "screen");
 			wp_enqueue_style('pmprot_print', get_stylesheet_directory_uri() . "/css/print.css", NULL, NULL, "print");
@@ -48,5 +49,8 @@
 			}
 		}
 	}
-	add_action("init", "pmprot_init_styles");				
+	add_action("init", "pmprot_init_styles");	
+
+	//apply shortcodes in widgets
+	add_filter('widget_text', 'do_shortcode');
 ?>

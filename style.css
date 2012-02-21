@@ -1,8 +1,8 @@
 /*
 Theme Name: Member Lite
 Theme URI: http://www.memberlitetheme.com
-Description: This is a custom theme and style sheet
-Version: Version number 1
+Description: Easily Integrated with the Paid Memberships Pro Theme
+Version: 1.0.1
 Author: Stranger Studios
 Author URI: http://www.strangerstudios.com
 
@@ -92,9 +92,9 @@ dl {margin: 0 1.5em; line-height: 1.5em; }
 dl dt {font-weight: bold; }
 
 #content table {width: 100%; padding: 5px 0; margin: 1em 0; border: 1px solid; -moz-border-radius: 4px; border-radius: 4px; -moz-box-shadow: 0 0 5px #AAA; box-shadow: 0 0 5px #AAA; }
-#content th {font-weight: bold; padding: 5px 10px; border-bottom: 1px solid; }
+#content th {font-weight: bold; padding: 5px 10px 10px 10px; border-bottom: 1px solid; }
 #content th a, #content th a:link {text-decoration: underline; } 
-#content tbody td {padding: 10px; border-bottom: 1px solid; line-height: 1.5em; }
+#content tbody td {padding: 10px; border-bottom: 1px solid; border-top: 1px solid #FFF; line-height: 1.5em; }
 #content tfoot td {text-align: center; }
 /*-- Headings --------------------------------------*/
 h1, h2, h3 {font-family: Georgia, "Times New Roman", Times, serif; }
@@ -154,13 +154,15 @@ form.general .cancel, form.general .cancel:link {padding: 10px 0; font-size: 11p
 #searchform #searchsubmit {width: 16px; height: 16px; background: #FFF url(images/icon_search.gif) 0px 1px no-repeat; border: none; text-indent: -9999px; cursor: pointer }
 
 /*-- Buttons --------------------------------------*/
-.btn, .btn:link, #pmpro_levels_table tbody a, #pmpro_levels_table tbody a:link, .comment-reply-link, .comment-reply-link:link {display: inline-block; margin: 0; background-position: top left; background-repeat: repeat-x; cursor: pointer; border-radius: 4px; -moz-border-radius: 4px; padding: 5px 10px; text-decoration: none; text-shadow: 1px 1px 3px #000; border: none; font-family: Arial, Helvetica, sans-serif; }
+.btn, .btn:link, #pmpro_levels_table tbody a, #pmpro_levels_table tbody a:link, .comment-reply-link, .comment-reply-link:link, .pmpro_btn, .yeslink, .yeslink:link, .nolink, .nolink:link {display: inline-block; margin: 0; background-position: top left; background-repeat: repeat-x; cursor: pointer; border-radius: 4px; -moz-border-radius: 4px; padding: 5px 10px; text-decoration: none; text-shadow: 1px 1px 3px #000; border: none; font-family: Arial, Helvetica, sans-serif; }
 .btn:hover {background-position: bottom left; }
 
-.btn-grey, .btn-grey:link {background: #EEE url(images/bg_grad-grey.gif) 0px -5px repeat-x; border: 1px solid #CCC; text-shadow: none; }
+.btn-grey, .btn-grey:link, .nolink, .nolink:link {background: #EEE url(images/bg_grad-grey.gif) 0px -5px repeat-x; border: 1px solid #CCC; text-shadow: none; }
 
 #pmpro_levels_table tbody a, #pmpro_levels_table tbody a:link {display: block; }
 .btn-inactive, #pmpro_levels_table tbody .active a,  #pmpro_levels_table tbody .active a:link,.btn-inactive:hover, #pmpro_levels_table tbody .active a:hover {color: #AAA; text-shadow: none; border: 1px solid #CCC; cursor: not-allowed; }
+
+.pmpro_btn {font-size: 14px; }
 
 /*-- Preheader --------------------------------------*/
 #w-preheader .user-info {float: left; width: 600px; margin: 10px 0; }
@@ -182,11 +184,10 @@ form.general .cancel, form.general .cancel:link {padding: 10px 0; font-size: 11p
 #menu a, #menu a:link { padding: 5px 15px; margin: 0 0 0 1px; text-align: center; text-decoration: none; font-weight: bold; font-size: 1em; line-height: 20px; text-shadow: 1px 1px 3px #000; } 
 #menu a:hover, #menu li.hover a { -moz-border-radius-topleft: 4px; border-top-left-radius: 4px; -moz-border-radius-topright: 4px; border-top-right-radius: 4px; } 
 #menu li.current_page_item a, #menu li.current_page_parent a, #menu li.current-page-ancestor a {background: #FFF; font-weight: bold; -moz-border-radius-topleft: 4px; border-top-left-radius: 4px; -moz-border-radius-topright: 4px; border-top-right-radius: 4px; text-shadow: none; } 
-
-#menu .sub-menu {position: absolute; top: 30px; margin: 0; left: -9999px; width: 200px; padding: 0; z-index: 10; border-style: solid; border-width: 1px; border-top: none; }
-#menu li:hover .sub-menu, #menu li.hover .sub-menu {left: 0px; }
-#menu .sub-menu li {float: none; }
-#menu .sub-menu li a, #menu .sub-menu li a:link {display: block; font-size: 12px; line-height: 16px; text-align: left; padding: 8px 15px; margin: 0; background: none; text-shadow: none; border-radius: 0px; }
+#menu .sub-menu, #menu .children {position: absolute; top: 30px; margin: 0; left: -9999px; width: 200px; padding: 0; z-index: 10; border-style: solid; border-width: 1px; border-top: none; }
+#menu li:hover .sub-menu, #menu li.hover .sub-menu, #menu li:hover .children, #menu li.hover .children {left: 0px; }
+#menu .sub-menu li, #menu .children li {float: none; }
+#menu .sub-menu li a, #menu .sub-menu li a:link, #menu .children li a, #menu .children li a:link {display: block; font-size: 12px; line-height: 16px; text-align: left; padding: 8px 15px; margin: 0; background: none; text-shadow: none; border-radius: 0px; }
  
 /*-- The Post --------------------------------------*/
 
@@ -343,6 +344,13 @@ article header h1 {font-size: 2.1em; background: url(images/bg_h1-single.gif) to
 
 .feat-medium {float: right; margin: 0 0 1em 1em; }
 .feat-medium img {background: #FFF; padding: 5px; border-radius: 4px; -moz-border-radius: 4px; -moz-box-shadow: 0 0 5px #AAA; box-shadow: 0 0 5px #AAA;}
+
+
+/*-- Paid Memberships Pro Page Styles--------------------------------------*/
+#content table.pmpro_checkout tbody tr td {border-bottom: none; }
+#content table#pmpro_levels_table tbody tr td {border-bottom: 1px solid #CCC; }
+
+.pmpro_box {border-radius: 4px; -moz-border-radius: 4px; -moz-box-shadow: 0 0 5px #CCC; box-shadow: 0 0 5px #CCC; }
 
 /*-- Miscellaneous --------------------------------------*/
 .clear {clear: both; }

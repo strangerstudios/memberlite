@@ -207,6 +207,15 @@ function getBreadcrumbs()
 						}
 					}				
 				?>
+				
+				<?php 
+					if(function_exists("pmpro_getOption") && is_page( array(pmpro_getOption('cancel_page_id'), pmpro_getOption('billing_page_id'), pmpro_getOption('confirmation_page_id'), pmpro_getOption('invoice_page_id') ) ) ) 
+					{ 
+						?>
+						&#8734; <a href="<?php get_permalink(pmpro_getOption('account_page_id')); ?>"><?php echo getPostTitle(pmpro_getOption('account_page_id'),FALSE); ?></a>				
+						<?php 
+					} 
+				?>
 				&#8734; <?php the_title(); ?>
 			<?php
 		}

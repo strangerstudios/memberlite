@@ -59,9 +59,12 @@ if ( $paged >= 2 || $page >= 2 )
 <?php wp_head(); ?>
 
 <?php
-	$headercode = get_post_meta($post->ID, "headercode", true);
-	if($headercode)
-		echo $headercode;
+	if(!empty($post->ID))
+	{
+		$headercode = get_post_meta($post->ID, "headercode", true);
+		if($headercode)
+			echo $headercode;
+	}
 ?>
 </head>
 <body>
@@ -125,6 +128,10 @@ if ( $paged >= 2 || $page >= 2 )
     </div></div></div> <!-- end menu, end width, end w-menu -->
 	<script>
 		jQuery('li.menu-item').hover(
+			function() { jQuery(this).toggleClass("hover"); },
+			function() { jQuery(this).toggleClass("hover"); }
+		);
+		jQuery('li.page_item').hover(
 			function() { jQuery(this).toggleClass("hover"); },
 			function() { jQuery(this).toggleClass("hover"); }
 		);
