@@ -88,7 +88,7 @@
 			$pmprot_options['index_full_content'] = '';
 			$pmprot_options['archive_full_content'] = '';
 			$pmprot_options['search_full_content'] = '';
-			$pmprot_options['color'] = 'Default';
+			$pmprot_options['color'] = 'Blue';
 			$pmprot_options['hide_pages'] = '';
 			$pmprot_options['error_page'] = '';
 			$pmprot_options['wphead'] = '';
