@@ -385,4 +385,15 @@ function new_excerpt_more($more)
 }
 add_filter('excerpt_more', 'new_excerpt_more');
 
+//if the bbPress Login Widget is being used, hide the title when users are logged in
+function pmprot_bbp_login_widget_title($title)
+{
+	global $current_user;
+	
+	if(!empty($current_user->ID) && ($title == "Log In" || $title == "Login"))
+		$title = "";
+		
+	return $title;
+}
+add_filter("bbp_login_widget_title", "pmprot_bbp_login_widget_title");
 ?>

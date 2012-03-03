@@ -67,7 +67,7 @@ Template Name: Page - Contact Form
 				$phone = "";
 			}
 		}
-		elseif(!is_email($email))
+		elseif(!empty($sendemail) && !is_email($email))
 			$msg = "Please enter a valid email address.";
 		elseif(!empty($lname))
 			$msg = "Are you a spammer?";
