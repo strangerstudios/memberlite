@@ -40,6 +40,7 @@ Please visit our premium support site at http://www.paidmembershipspro.com for m
 = 1.0.2 =
 * Contact form fix.
 * Small integration with the bbPress Login widget.
+* Fixed the orance theme css.
 
 = 1.0.1 =
 * Better menu styling for sites using wp_list_pages instead of a nav menu.
