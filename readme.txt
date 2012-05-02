@@ -2,7 +2,7 @@
 Contributors: strangerstudios
 Requires at least: 3.0
 Tested up to: 3.3.1
-Stable tag: 1.0.3
+Stable tag: 1.0.4
 
 A customizable Membership Plugin for WordPress integrated with Authorize.net or PayPal(r) for recurring payments, flexible content control, themed registration, checkout, and more ...
 
@@ -36,6 +36,9 @@ Please email us as jason@strangerstudios.com or post it as an issue on GitHub: h
 Please visit our premium support site at http://www.paidmembershipspro.com for more documentation and our support forums.
 
 == Changelog ==
+
+= 1.0.4 =
+* Removed the email templates which had PaidMembershipsPro.com references in them.
 
 = 1.0.3 =
 * Added missing colors/default/ images back into the theme.
