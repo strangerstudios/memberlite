@@ -2,7 +2,7 @@
 Theme Name: Member Lite
 Theme URI: http://www.memberlitetheme.com
 Description: Easily Integrated with the Paid Memberships Pro Theme
-Version: 1.0.4
+Version: 1.0.5
 Author: Stranger Studios
 Author URI: http://www.strangerstudios.com
 
@@ -118,6 +118,9 @@ h1#logo a:hover {text-decoration: none; }
 	Messages - Success, Error, Alert
 ----------------------------------------------------*/
 .message, #theme-my-login .error {background: #D5E4F7 url(images/icon_information.gif) 13px 15px no-repeat; margin: 0 0 15px 0; padding: 15px 15px 15px 35px; color: #345395; line-height: 1.3em; font-size: 1.2em; }
+
+/* undo our background on the wp-login.php page */
+#login_error, .login .message {background: lightyellow;}
 
 .success {background: #CFEECA url(images/icon_success.gif) 13px 15px no-repeat; color: #208A1B; margin: 0 0 15px 0; padding: 15px 15px 15px 35px; line-height: 1.3em; font-size: 1.2em; }
 .error, #theme-my-login .error {background: #F9D6CB url(images/icon_error.gif) 13px 15px no-repeat; color: #E36154; margin: 0 0 15px 0; padding: 15px 15px 15px 35px; line-height: 1.3em; font-size: 1.2em; }

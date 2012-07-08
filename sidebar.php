@@ -6,7 +6,7 @@
 		if(function_exists("is_bbpress") && is_bbpress())
 		{
 		}
-		elseif (is_404() || is_home() || is_search() || is_single() || is_category() || is_author() || is_archive() || is_day() || is_month() || is_year() || is_page($pmprot_options['error_page']) ) 
+		elseif (is_404() || is_home() || is_search() || is_single() || is_category() || is_author() || is_archive() || is_day() || is_month() || is_year() || (!empty($pmprot_options['error_page']) && is_page($pmprot_options['error_page'])) ) 
 		{
 			//Sidebar for Blog
 			dynamic_sidebar('Blog: Featured Sidebar'); ?>

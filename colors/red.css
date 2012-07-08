@@ -22,6 +22,7 @@ blockquote, .introtext, .entry-attachment, #respond, #comments {background: #EEE
 #content table th a, #content table thead th a:link { }
 #content table tbody td, #sidebar table tbody td {border-bottom-color: #CCC; }
 #content table tbody tr.odd td {background: #EEE; }
+#content table tbody tr.odd.active td {background: #FFC; }
 #sidebar table {background: #FFF; }
 #sidebar table tfoot td {background: #FAFAFA; }
 

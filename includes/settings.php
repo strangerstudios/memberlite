@@ -1,5 +1,5 @@
 <?php
-	define("PMPROT_VERSION", "1.0.4");
+	define("PMPROT_VERSION", "1.0.5");
 	
 	/* Loads the Theme Options */
 	global $pmprot_options;
