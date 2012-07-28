@@ -39,7 +39,7 @@
 					}
 				}
 			   
-				if (!$skipnextcheck && substr($ua,strpos($ua,'MSIE')+5,1) < 7)
+				if (empty($skipnextcheck) && substr($ua,strpos($ua,'MSIE')+5,1) < 7)
 				{
 					/* the browser claims to be IE6 or older, and is not Opera, Safari or iCab */
 					global $isie6;
