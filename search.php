@@ -1,123 +1,25 @@
-<?php get_header(); ?>
-<div id="wrapper" class="css">
-	<div id="content" class="blogposts">
-	
-		<?php
-			global $pmprot_options;
-			if(!$pmprot_options['pages_in_search_results'])
-			{
-				$posts = query_posts($query_string . '&post_type=post');
-			}
-		?>
-
-		<?php if (have_posts()) : ?>
-
-			<?php getBreadcrumbs(); ?>
-			<div class="introtext">
-				<h1>Search Results For <span>'<?=stripslashes($s)?>'</span></h1>
-			</div>
-		
-			<?php while (have_posts()) : the_post(); ?>
-				
-			<article class="post single" id="post-<?php the_ID(); ?>">
-				<header class="entry-header">
-					<h1 class="entry-title"><a href="<?php echo get_permalink() ?>" rel="bookmark" title="Permanent Link: <?php the_title(); ?>"><?php the_title(); ?></a></h1>
-					<?php if($post->post_type == 'post') { ?>
-						<div class="entry-meta">By <?php the_author_posts_link(); ?> on <strong><?php the_time('F j, Y') ?></strong> at <?php the_time() ?></div>
-					<?php } ?>
-				</header>
-		
-				<div class="entry-content">
-					<?php if ( has_post_thumbnail() && !empty($pmprot_options['featured_images']) ) { ?>
-						<div class="feat-thumb">
-							<?php the_post_thumbnail( 'thumbnail' ); ?>
-						</div>
-					<?php } ?>
-					
-					<?php 
-						if ( !empty($pmprot_options['search_full_content']) ) 
-						{ 
-							the_excerpt('<p class="serif">Read the rest of this entry &raquo;</p>'); 
-						}
-						else
-						{
-							the_content();
-						}
-					?>
-					
-					<?php wp_link_pages('<p><strong>Pages:</strong> ', '</p>', 'number'); ?>
-					<div class="clear"></div>
-				</div> <!-- end posttext -->
-		
-				<footer class="entry-meta">
-					<?php 
-						if($post->post_type == 'post') 
-						{
-							/* translators: used between list items, there is a space after the comma */
-							$tag_list = get_the_tag_list( '', __( ', ') );
-							if ( '' != $tag_list ) {
-								$utility_text = __( 'Posted in %1$s. Tagged %2$s');
-							} else {
-								$utility_text = __( 'Posted in %1$s');
-							}
-							printf(
-								$utility_text,
-								/* translators: used between list items, there is a space after the comma */
-								get_the_category_list( __( ', ') ),
-								$tag_list,
-								esc_url( get_permalink() ),
-								the_title_attribute( 'echo=0' )
-							);
-						}
-						edit_post_link('Edit this entry','. ','.');
-					?>							
-				</footer>								
-			</article> <!-- end article -->	
-	
-	
+<?php
+/**
+ * The template for displaying search results pages.
+ *
+ * @package Member Lite 2.0
+ */
+get_header(); ?>
+	<section id="primary" class="medium-8 columns content-area">
+		<?php do_action('before_main'); ?>
+		<main id="main" class="site-main" role="main">
+		<?php do_action('before_loop'); ?>
+		<?php if ( have_posts() ) : ?>
+			<?php while ( have_posts() ) : the_post(); ?>
+				<?php get_template_part( 'content', 'search' );	?>
 			<?php endwhile; ?>
-
-			<div class="navigation">
-				<div class="alignleft"><?php next_posts_link('&laquo; Previous Entries') ?></div>
-				<div class="alignright"><?php previous_posts_link('Next Entries &raquo;') ?></div>
-				<div class="clear"></div>
-			</div> <!-- end navigation -->
-		
+			<?php memberlite_paging_nav(); ?>
 		<?php else : ?>
-			
-			<?php 
-				global $breadcrumbs;
-				if($breadcrumbs)
-				{
-				?>	
-				<p class="breadcrumbs">
-					<a href="<?php echo get_option('home'); ?>/">Home</a>
-					&raquo; No Search Results Found
-				</p>
-				<?php
-				}
-			?>
-			
-			<div class="post page">
-				<h2 class="pagetitle">No Search Results Found</h2>
-				<div class="pagetext">
-					<p>Your search returned no results.</p>
-					<p>Please try another search above or <a href="<?php echo get_option('home'); ?>/">visit the homepage</a> or visit our <a href="/site-map/">site map</a>.</p>	
-				</div> <!-- end pagetext -->
-			</div> <!-- end post, page -->
-
+			<?php get_template_part( 'content', 'none' ); ?>
 		<?php endif; ?>
-		
-			<div class="clear"></div>
-	
-		</div> <!-- end content -->
-	
-		<div id="sidebar" class="right sidebar-2">
-			<?php get_sidebar(); ?>
-		</div>
-		
-		<div class="clear"></div>
-		
-	</div> <!-- end wrapper -->
-	
+		<?php do_action('after_loop'); ?>
+		</main><!-- #main -->
+		<?php do_action('after_main'); ?>
+	</section><!-- #primary -->
+<?php get_sidebar(); ?>
 <?php get_footer(); ?>

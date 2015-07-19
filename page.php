@@ -1,54 +1,32 @@
-<?php 
-	global $wrapperclass, $fullwidth;
-	get_header(); 
-?>
+<?php
+/**
+ * The template for displaying all pages.
+ *
+ * This is the template that displays all pages by default.
+ * Please note that this is the WordPress construct of pages
+ * and that other 'pages' on your WordPress site will use a
+ * different template.
+ *
+ * @package Member Lite 2.0
+ */
 
-	<div id="wrapper" class="<?php if($wrapperclass) { echo $wrapperclass; } else { ?>sc<?php } ?>">
+get_header(); ?>
 
-		<?php getBreadcrumbs(); ?>
-	
-		<div id="content">			
-			<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-			<div class="page" id="post-<?php the_ID(); ?>">
-				<h1>
-					<?php
-						$longtitle = get_post_meta($post->ID, "longtitle", true);
-						if($longtitle)
-							echo $longtitle;
-						else
-							the_title();
-					?>
-				</h1>
-		
-				<div class="pagetext">					
-					
-					<?php if ( has_post_thumbnail() && !empty($pmprot_options['featured_images']) ) { ?>
-						<div class="feat-medium">
-							<?php the_post_thumbnail( 'medium' ); ?>
-						</div>
-					<?php } ?>
-	
-					<?php the_content('<p class="serif">Read the rest of this page &raquo;</p>'); ?>
-					
-					<?php if(function_exists("after_the_content")) after_the_content(); ?>										
-		
-					<?php wp_link_pages('<p><strong>Pages:</strong> ', '</p>', 'number'); ?>
-					<div class="clear"></div>
-					
-				</div> <!-- end pagetext -->
-				<?php edit_post_link('Edit this entry.', '<p>', '</p>'); ?>
-			</div> <!-- end post -->
-			<?php endwhile; endif; ?>  	
-			<div class="clear"></div>
-		</div> <!-- end content -->
-	
-		<?php 
-			if(!$fullwidth)
-				get_sidebar(); 
-		?>
-	
-		<div class="clear"></div>
-	
-	</div> <!-- end wrapper -->
-	
+	<div id="primary" class="medium-8 columns content-area">
+		<?php do_action('before_main'); ?>
+		<main id="main" class="site-main" role="main">
+			<?php do_action('before_loop'); ?>
+
+			<?php while ( have_posts() ) : the_post(); ?>
+
+				<?php get_template_part( 'content', 'page' ); ?>
+				
+			<?php endwhile; // end of the loop. ?>
+
+			<?php do_action('after_loop'); ?>
+		</main><!-- #main -->
+		<?php do_action('after_main'); ?>
+	</div><!-- #primary -->
+
+<?php get_sidebar(); ?>
 <?php get_footer(); ?>

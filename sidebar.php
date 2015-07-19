@@ -1,74 +1,44 @@
 <?php
-	global $pmprot_options;
+/**
+ * The sidebar containing the main widget area.
+ *
+ * @package Member Lite 2.0
+ */
+
+/*
+if ( ! is_active_sidebar( 'sidebar-1' ) ) {
+	return;
+}
+*/
 ?>
-<div id="sidebar">					
-	<?php   				
-		if(function_exists("is_bbpress") && is_bbpress())
-		{
-		}
-		elseif (is_404() || is_home() || is_search() || is_single() || is_category() || is_author() || is_archive() || is_day() || is_month() || is_year() || (!empty($pmprot_options['error_page']) && is_page($pmprot_options['error_page'])) ) 
-		{
-			//Sidebar for Blog
-			dynamic_sidebar('Blog: Featured Sidebar'); ?>
-			<div class="clear"></div>
-			<div class="css-s-lcol">    
-				<?php dynamic_sidebar('Blog: Column 1'); ?>
-				<div class="clear"></div>
-			</div> <!-- end css-s-lcol -->
-			<div class="css-s-rcol">
-				<?php dynamic_sidebar('Blog: Column 2'); ?>
-				<div class="clear"></div>
-			</div> <!-- end css-s-rcol -->				  
-		<?php
-		}
-					  
-		if(is_page())
-		{			  
-			if(is_page_template('template-contact.php') )
-			{		
-				//Sidebar for Right Column
-				dynamic_sidebar('Page: Contact Sidebar');
-			}
-			
-			if(is_page_template('template-rightsidebar.php') )
-			{
-				//Sidebar for Right Column
-				dynamic_sidebar('Page: Right Sidebar');
-			}				  
-			else
-			{
-				global $post;
-				if($post->post_parent) 
-				{
-					$exclude = get_post_meta($post->ID,'exclude',true);
-					$pagemenuid = end($post->ancestors);
-					$children = wp_list_pages('title_li=&child_of=' . $pagemenuid . '&exclude=' . $exclude . '&echo=0&sort_column=menu_order');
-					$titlenamer = get_the_title($pagemenuid);
-					$titlelink = get_permalink($pagemenuid);
-				}
-				else 
-				{
-					$exclude = "";
-					$children = wp_list_pages('title_li=&child_of=' . $post->ID . '&exclude=' . $exclude . '&echo=0&sort_column=menu_order');
-					$titlenamer = get_the_title($post->ID);
-					$titlelink = get_permalink($post->ID);
-				}
-				if ($children) 
-				{ ?>
-					<aside class="widget widget-submenu">
-						<h3><a href="<?php echo $titlelink?>"><?php echo $titlenamer?></a></h3>
-						<div class="widget_inner">
-							<ul class="menu">				
-								<?php echo $children; ?>
-							</ul>
-						</div>
-					</aside> <!-- end widget -->
-				<?php
-				}						
-				//Sidebar for Non-template Pages
-				dynamic_sidebar('Page: Left Sidebar');
-			}
-		}
-	?>
-	<div class="clear"></div>
-</div> <!-- end sidebar-m -->
+<?php do_action('before_sidebar'); ?>
+<div id="secondary" class="medium-4 columns widget-area" role="complementary">
+<?php do_action('before_sidebar_widgets'); ?>
+<?php 
+	$memberlite_custom_sidebar = get_post_meta($post->ID, '_memberlite_custom_sidebar', true);
+	$memberlite_default_sidebar = get_post_meta($post->ID, '_memberlite_default_sidebar', true);
+	if(bbp_is_single_topic())
+	{
+		$memberlite_custom_sidebar = get_post_meta(bbp_get_forum_id(), '_memberlite_custom_sidebar', true);
+		$memberlite_default_sidebar = get_post_meta(bbp_get_forum_id(), '_memberlite_default_sidebar', true);
+	}
+	
+	if(empty($memberlite_default_sidebar) || $memberlite_default_sidebar == 'default_sidebar_above')
+	{
+		memberlite_getSidebar();
+	}
+
+	if(!empty($memberlite_custom_sidebar))
+	{
+		//Custom sidebar
+		dynamic_sidebar($memberlite_custom_sidebar);
+	}
+
+	if(!empty($memberlite_default_sidebar) && $memberlite_default_sidebar == 'default_sidebar_below')
+	{
+		memberlite_getSidebar();
+	}
+?>
+<?php do_action('after_sidebar_widgets'); ?>
+</div><!-- #secondary -->
+<?php do_action('after_sidebar'); ?>

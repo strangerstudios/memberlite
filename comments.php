@@ -1,99 +1,68 @@
 <?php
 /**
- * @package WordPress
- * @subpackage Default_Theme
+ * The template for displaying comments.
+ *
+ * The area of the page that contains both current comments
+ * and the comment form.
+ *
+ * @package Member Lite 2.0
  */
 
-// Do not delete these lines
-	if (!empty($_SERVER['SCRIPT_FILENAME']) && 'comments.php' == basename($_SERVER['SCRIPT_FILENAME']))
-		die ('Please do not load this page directly. Thanks!');
-
-	if ( post_password_required() ) { ?>
-		<p class="nocomments">This post is password protected. Enter the password to view comments.</p>
-	<?php
-		return;
-	}
+/*
+ * If the current post is protected by a password and
+ * the visitor has not yet entered the password we will
+ * return early without loading the comments.
+ */
+if ( post_password_required() ) {
+	return;
+}
 ?>
 
-<!-- You can start editing here. -->
+<div id="comments" class="comments-area">
 
-<?php if ( have_comments() ) : ?>
-<div id="comments">
-	<h3><span><?php comments_number('No Responses', 'One Response', '% Responses' );?></span> to &#8220;<?php the_title(); ?>&#8221;</h3>
+	<?php // You can start editing here -- including this comment! ?>
 
-	<ol class="commentlist">
-	<?php wp_list_comments(array('reply_text' => 'Reply')); ?>
-	</ol>
-</div>
+	<?php if ( have_comments() ) : ?>
+		<h2 class="comments-title">
+			<?php
+				printf( _nx( 'One thought on &ldquo;%2$s&rdquo;', '%1$s thoughts on &ldquo;%2$s&rdquo;', get_comments_number(), 'comments title', 'memberlite' ),
+					number_format_i18n( get_comments_number() ), '<span>' . get_the_title() . '</span>' );
+			?>
+		</h2>
+
+		<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // are there comments to navigate through ?>
+		<nav id="comment-nav-above" class="comment-navigation" role="navigation">
+			<h1 class="screen-reader-text"><?php _e( 'Comment navigation', 'memberlite' ); ?></h1>
+			<div class="nav-previous"><?php previous_comments_link( __( '&larr; Older Comments', 'memberlite' ) ); ?></div>
+			<div class="nav-next"><?php next_comments_link( __( 'Newer Comments &rarr;', 'memberlite' ) ); ?></div>
+		</nav><!-- #comment-nav-above -->
+		<?php endif; // check for comment navigation ?>
+
+		<?php
+			wp_list_comments( array(
+				'style'      => 'div',
+				'short_ping' => true,
+				'walker'	  => new comment_walker()
+			) );
+		?>
+
+		<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // are there comments to navigate through ?>
+		<nav id="comment-nav-below" class="comment-navigation" role="navigation">
+			<h1 class="screen-reader-text"><?php _e( 'Comment navigation', 'memberlite' ); ?></h1>
+			<div class="nav-previous"><?php previous_comments_link( __( '&larr; Older Comments', 'memberlite' ) ); ?></div>
+			<div class="nav-next"><?php next_comments_link( __( 'Newer Comments &rarr;', 'memberlite' ) ); ?></div>
+		</nav><!-- #comment-nav-below -->
+		<?php endif; // check for comment navigation ?>
+
+	<?php endif; // have_comments() ?>
+
 	<?php
-	/*
-	<div class="navigation">
-		<div class="alignleft"><?php previous_comments_link() ?></div>
-		<div class="alignright"><?php next_comments_link() ?></div>
-		<div class="clear"></div>
-	</div>
-	*/ 
+		// If comments are closed and there are comments, let's leave a little note, shall we?
+		if ( ! comments_open() && '0' != get_comments_number() && post_type_supports( get_post_type(), 'comments' ) ) :
 	?>
-	
- <?php else : // this is displayed if there are no comments so far ?>
-
-	<?php if ('open' == $post->comment_status) : ?>
-		<!-- If comments are open, but there are no comments. -->
-
-	 <?php else : // comments are closed ?>
-		<!-- If comments are closed. -->
-		<p class="nocomments">Comments are closed.</p>
-
+		<p class="no-comments"><?php _e( 'Comments are closed.', 'memberlite' ); ?></p>
 	<?php endif; ?>
 
-<?php endif; ?>
+	<?php comment_form(); ?>
 
-
-<?php if ('open' == $post->comment_status) : ?>
-
-<div id="respond">
-
-	<h3><?php comment_form_title( 'Leave a Reply', 'Leave a Reply to %s' ); ?> <small><?php cancel_comment_reply_link('cancel'); ?></small></h3>
-	<?php if ( $user_ID ) { ?>
-		<div class="right">Logged in as <a href="<?php echo get_option('siteurl'); ?>/wp-admin/profile.php"><?php echo $user_identity; ?></a>. <a href="<?php echo wp_logout_url(get_permalink()); ?>" title="Log out of this account">Log out &raquo;</a></div>
-	<?php } ?>
-	<div class="clear"></div>
-	<?php if ( get_option('comment_registration') && !$user_ID ) : ?>
-	<p>You must be <a href="<?php echo get_option('siteurl'); ?>/wp-login.php?redirect_to=<?php echo urlencode(get_permalink()); ?>">logged in</a> to post a comment.</p>
-	<?php else : ?>
-	
-	<form class="general" action="<?php echo get_option('siteurl'); ?>/wp-comments-post.php" method="post" id="commentform">
-
-	<?php if (!$user_ID ) { ?>
-		<div class="form-row">
-			<label for="author">Name</label>
-			<input class="input" type="text" name="author" id="author" value="<?php echo $comment_author; ?>" size="22" tabindex="1" /> <?php if ($req) echo "<small class='red'>* Required</small>"; ?>
-		</div>
-		<div class="form-row">
-			<label for="email">Email</label>
-			<input class="input" type="text" name="email" id="email" value="<?php echo $comment_author_email; ?>" size="22" tabindex="2" /> <?php if ($req) echo "<small class='red'>* Required, Private</small>"; ?>
-		</div>
-		<div class="form-row">
-			<label for="url">Website</label>				
-			<input class="input" type="text" name="url" id="url" value="<?php echo $comment_author_url; ?>" size="22" tabindex="3" />
-		</div>
-	<?php } ?>
-
-		<div class="form-row">
-			<label for="comment">Comment</label>
-			<textarea name="comment" id="comment" cols="40" rows="5" tabindex="4"></textarea>
-		</div>
-		<div class="form-row">
-			<label for="submit">&nbsp;</label>
-			<input class="btn btn-primary" name="submit" type="submit" id="submit" tabindex="5" value="Submit Comment" />
-		</div>
-		<?php comment_id_fields(); ?>
-
-		<?php do_action('comment_form', $post->ID); ?>
-	</form>
-	
-	<?php endif; // If registration required and not logged in ?>
-
-</div> <!-- end respond -->
-
-<?php endif; // if you delete this the sky will fall on your head ?>
+</div><!-- #comments -->

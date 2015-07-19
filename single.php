@@ -1,67 +1,27 @@
-<?php get_header(); ?>
-
-<div id="wrapper" class="css">
-	<div id="content">
-				
-	<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-	
-		<?php getBreadcrumbs(); ?>
-		
-		<article class="post single" id="post-<?php the_ID(); ?>">
-			<header class="entry-header">
-				<h1 class="entry-title"><a href="<?php echo get_permalink() ?>" rel="bookmark" title="Permanent Link: <?php the_title(); ?>"><?php the_title(); ?></a></h1>
-				<div class="entry-meta">By <?php the_author_posts_link(); ?> on <strong><?php the_time('F j, Y') ?></strong> at <?php the_time() ?></div>
-			</header>
-	
-			<div class="entry-content">
-				<?php if ( has_post_thumbnail() && !empty($pmprot_options['featured_images']) ) { ?>
-					<div class="feat-medium">
-						<?php the_post_thumbnail( 'medium' ); ?>
-					</div>
-				<?php } ?>
-				<?php the_content('<p class="serif">Read the rest of this entry &raquo;</p>'); ?>
-	
-				<?php wp_link_pages('<p><strong>Pages:</strong> ', '</p>', 'number'); ?>
-				<div class="clear"></div>
-			</div> <!-- end posttext -->
-	
-			<footer class="entry-meta">
-				<?php
-					/* translators: used between list items, there is a space after the comma */
-					$tag_list = get_the_tag_list( '', __( ', ') );
-					if ( '' != $tag_list ) {
-						$utility_text = __( 'This entry was posted in %1$s and tagged %2$s by <a href="%6$s">%5$s</a>. Bookmark the <a href="%3$s" title="Permalink to %4$s" rel="bookmark">permalink</a>.');
-					} else {
-						$utility_text = __( 'This entry was posted in %1$s by <a href="%6$s">%5$s</a>. Bookmark the <a href="%3$s" title="Permalink to %4$s" rel="bookmark">permalink</a>.');
-					}
-					printf(
-						$utility_text,
-						/* translators: used between list items, there is a space after the comma */
-						get_the_category_list( __( ', ') ),
-						$tag_list,
-						esc_url( get_permalink() ),
-						the_title_attribute( 'echo=0' ),
-						get_the_author(),
-						esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) )
-					);
-					edit_post_link('Edit this entry',' ','.');
-				?>
-			</footer>						
-
-		</article> <!-- end article -->
-		
-			<?php comments_template(); ?>
-		
-		<?php endwhile; endif; ?>
-		
-			<div class="clear"></div>
-	
-		</div> <!-- end content -->
-	
-		<?php get_sidebar(); ?>
-		
-		<div class="clear"></div>
-		
-	</div> <!-- end wrapper -->
-	
+<?php
+/**
+ * The template for displaying all single posts.
+ *
+ * @package Member Lite 2.0
+ */
+get_header(); ?>
+	<div id="primary" class="medium-8 columns content-area">
+		<?php do_action('before_main'); ?>
+		<main id="main" class="site-main" role="main">
+		<?php do_action('after_loop'); ?>
+		<?php while ( have_posts() ) : the_post(); ?>
+			<?php get_template_part( 'content', 'single' ); ?>
+			<?php memberlite_post_nav(); ?>
+			<?php
+				// If comments are open or we have at least one comment, load up the comment template
+				if ( comments_open() || '0' != get_comments_number() ) :
+					comments_template();
+				endif;
+			?>
+		<?php endwhile; // end of the loop. ?>
+		<?php do_action('after_loop'); ?>
+		</main><!-- #main -->
+		<?php do_action('after_main'); ?>
+	</div><!-- #primary -->
+<?php get_sidebar(); ?>
 <?php get_footer(); ?>

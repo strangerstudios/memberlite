@@ -1,399 +1,339 @@
 <?php
-/*
-remove_action("admin_color_scheme_picker", "admin_color_scheme_picker");
-add_filter('user_contactmethods','modify_profile_fields',10,1);
+/**
+ * Member Lite 2.0 functions and definitions
+ *
+ * @package Member Lite 2.0
+ */
 
-function modify_profile_fields( $contactmethods ) {
-    $contactmethods['twitter'] = 'Twitter';
-    $contactmethods['facebook'] = 'Facebook';
-	unset($contactmethods['aim']);
-	unset($contactmethods['jabber']);
-	unset($contactmethods['yim']);
-	unset($contactmethods['description']);	
-	return $contactmethods;
-}
-*/
-
-$pathFix = dirname(__FILE__);
-require_once($pathFix . "/includes/options.php");
-require_once($pathFix . "/includes/settings.php");
-require_once($pathFix . "/includes/update.php");
-
-function sortByMenuOrder($a,$b)
-{
-	if ($a->menu_order == $b->menu_order) {
-        return 0;
-    }
-    return ($a->menu_order < $b->menu_order) ? -1 : 1;
-}
-
-//if you have an array of arrays, this will look in the 0 index of each array for the needle
-function in_array_index($needle, $haystack, $index = 0)
-{
-	foreach($haystack as $a)
-	{
-		if($a[$index] == $needle)
-			return true;			
-	}
+//enqueue additional stylesheets and javascript
+function memberlite_init_styles()
+{	
+	//need jquery
+	wp_enqueue_script('jquery');
 	
-	return false;
-}
-
-function getPostContent($postid, $format = TRUE)
-{
-	global $wpdb;
-	$ss_post_content = $wpdb->get_var("SELECT post_content FROM $wpdb->posts WHERE ID = '$postid' LIMIT 1");
-	if($format)
-		return WPautop($ss_post_content);
-	else
-		return $ss_post_content;
-}	
-
-function getPostTitle($postid, $format = TRUE)
-{
-	global $wpdb;
-	$ss_post_title = $wpdb->get_var("SELECT post_title FROM $wpdb->posts WHERE ID = '$postid' LIMIT 1");
-		
-	if($format)
-		return WPautop($ss_post_title);
-	else
-		return $ss_post_title;
-}	
-
-if ( function_exists( 'add_theme_support' ) ) { 
-  add_theme_support( 'post-thumbnails' ); 
-}
-
-register_sidebar(array(
-	'name'=>'Blog: Featured Sidebar', 
-	'id'=>'blogfeatured',
-	'description'=>'300px wide sidebar shown at the top of the right sidebar on blog index, archive, search, single post, site map, and 404 pages', 
-	'before_title'=>'<h3>', 
-	'after_title'=>'</h3>', 
-	'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-    'after_widget'  => '<div class="clear"></div></aside>',));
-
-register_sidebar(array(
-	'name'=>'Page: Left Sidebar',
-	'id'=>'leftsidebar',
-	'description'=>'Shown in the left sidebar of pages using the default template',  
-	'before_title'=>'<h3>', 
-	'after_title'=>'</h3><div class="widget_inner">', 
-	'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-    'after_widget'  => '<div class="clear"></div></div></aside>',));
+	//framework stuff
+	wp_enqueue_style('memberlite_grid', get_template_directory_uri() . "/css/grid.css", NULL, NULL, "all");
+	wp_enqueue_style('memberlite_style', get_stylesheet_uri(), NULL, "6.7");
+	wp_enqueue_style('memberlite_fontawesome', get_template_directory_uri() . "/font-awesome/css/font-awesome.min.css", array(), "4.1.0", "all");
 	
-register_sidebar(array(
-	'name'=>'Page: Right Sidebar', 
-	'id'=>'rightsidebar',
-	'description'=>'Shown in the right sidebar of pages using the Page - Right Sidebar template', 
-	'before_title'=>'<h3>', 
-	'after_title'=>'</h3><div class="widget_inner">', 
-	'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-    'after_widget'  => '<div class="clear"></div></div></aside>',));
+	//styles
+	wp_enqueue_style('memberlite-style', get_template_directory_uri() . '/style.css');
+	wp_enqueue_script('memberlite-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20120206', true);
 	
-register_sidebar(array(
-	'name'=>'Page: Contact Sidebar',
-	'id'=>'contactsidebar',
-	'description'=>'Shown in the right sidebar of pages using the Page - Contact Form template', 
-	'before_title'=>'<h3>', 
-	'after_title'=>'</h3><div class="widget_inner">', 
-	'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-    'after_widget'  => '<div class="clear"></div></div></aside>',));
-	
-register_sidebar(array(
-	'name'=>'Header Right',
-	'id'=>'header',
-	'description'=>'Shown at the top right of the header of all pages',  
-	'before_title'=>'', 
-	'after_title'=>'', 
-	'before_widget' => '<aside id="%1$s" class="widget %2$s h-right">',
-    'after_widget'  => '<div class="clear"></div></aside>',));	
-register_sidebar(array(
-	'name'=>'Blog: Column 1', 
-	'id'=>'blogcol1',
-	'description'=>'140px wide sidebar shown in column 1 of the right sidebar on blog index, archive, search, single post, site map, and 404 pages', 
-	'before_title'=>'<h3>', 
-	'after_title'=>'</h3><div class="widget_inner">', 
-	'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-    'after_widget'  => '<div class="clear"></div></div></aside>',));
+	//script
+	wp_enqueue_script('memberlite-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20130115', true);
 
-register_sidebar(array(
-	'name'=>'Blog: Column 2', 
-	'id'=>'blogcol2',
-	'description'=>'140px wide sidebar shown in column 2 of the right sidebar on blog index, archive, search, single post, site map, and 404 pages', 
-	'before_title'=>'<h3>', 
-	'after_title'=>'</h3><div class="widget_inner">', 
-	'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-    'after_widget'  => '<div class="clear"></div></div></aside>',));
-	
-register_sidebar(array(
-	'name'=>'Footer: Column 1', 
-	'id'=>'footercol1',
-	'description'=>'Shown in column 1 of the footer on all pages', 
-	'before_title'=>'<h3>', 
-	'after_title'=>'</h3>', 
-	'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-    'after_widget'  => '<div class="clear"></div></aside>',));
-	
-register_sidebar(array(
-	'name'=>'Footer: Column 2', 
-	'id'=>'footercol2',
-	'description'=>'Shown in column 2 of the footer on all pages', 
-	'before_title'=>'<h3>', 
-	'after_title'=>'</h3>', 
-	'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-    'after_widget'  => '<div class="clear"></div></aside>',));
-
-register_sidebar(array(
-	'name'=>'Footer: Column 3',
-	'id'=>'footercol3',
-	'description'=>'Shown in column 3 of the footer on all pages', 
-	'before_title'=>'<h3>', 
-	'after_title'=>'</h3>', 
-	'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-    'after_widget'  => '<div class="clear"></div></aside>',));
-
-register_sidebar(array(
-	'name'=>'Footer: Column 4', 
-	'id'=>'footercol4',
-	'description'=>'Shown in column 4 of the footer on all pages', 
-	'before_title'=>'<h3>', 
-	'after_title'=>'</h3>', 
-	'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-    'after_widget'  => '<div class="clear"></div></aside>',));
-
-register_sidebar(array(
-	'name'=>'Base: Left Column', 
-	'id'=>'baselcol',
-	'description'=>'Shown in left column of the base on all pages', 
-	'before_title'=>'<h3>', 
-	'after_title'=>'</h3>', 
-	'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-    'after_widget'  => '<div class="clear"></div></aside>',));
-
-function register_my_menus() {
-register_nav_menus(
-array(
-'loggedin' => __( 'Logged In User', 'memberlite' ),
-'loggedout' => __( 'Logged Out User', 'memberlite' ),
-'main' => __( 'Main Menu', 'memberlite' ))
-);
-}
-
-add_action( 'init', 'register_my_menus' );
-
-function getBreadcrumbs()
-{
-	global $posts, $post, $pmprot_options;
-	if(!empty($pmprot_options['breadcrumbs']))
-	{
-	?>
-	<p class="breadcrumbs">
-		<?php
-		if(is_page() && !is_front_page())
-		{
-		?>			
-			<a href="<?php echo home_url()?>">Home</a>
-				<?php
-					$breadcrumbs = get_post_ancestors($post->ID);				
-					if($breadcrumbs)
-					{
-						$breadcrumbs = array_reverse($breadcrumbs);
-						foreach ($breadcrumbs as $crumb)
-						{
-							?>
-							&#8734; <a href="<?php echo get_permalink($crumb); ?>"><?php echo getPostTitle($crumb,FALSE); ?></a>
-							<?php
-						}
-					}				
-				?>
-				
-				<?php 
-					if(function_exists("pmpro_getOption") && is_page( array(pmpro_getOption('cancel_page_id'), pmpro_getOption('billing_page_id'), pmpro_getOption('confirmation_page_id'), pmpro_getOption('invoice_page_id') ) ) ) 
-					{ 
-						?>
-						&#8734; <a href="<?php get_permalink(pmpro_getOption('account_page_id')); ?>"><?php echo getPostTitle(pmpro_getOption('account_page_id'),FALSE); ?></a>				
-						<?php 
-					} 
-				?>
-				&#8734; <?php the_title(); ?>
-			<?php
-		}
-		elseif(is_archive())
-		{
-		?>
-			<a href="<?php echo get_option('home'); ?>/">Home</a>
-			<?php 
-				if(get_option('page_for_posts'))
-				{
-					?>
-					&#8734; <a href="<?php echo get_permalink(get_option('page_for_posts')); ?>"><?php echo getPostTitle(get_option('page_for_posts'),FALSE); ?></a>
-					<?php
-				}
-			?>
-			&#8734; <span>			
-			<?php 
-				if(empty($post) && !empty($posts[0]))
-					$post = $posts[0]; // Hack. Set $post so that the_date() works. 
-			?>
-			<?php /* If this is a category archive */ if (is_category()) { single_cat_title(); ?>
-			
-			<?php /* If this is a daily archive */ } elseif (is_day()) { the_time('F jS, Y'); ?>
-		
-			<?php /* If this is a monthly archive */ } elseif (is_month()) { the_time('F, Y'); ?>
-			
-			<?php /* If this is a yearly archive */ } elseif (is_year()) { the_time('Y'); ?>
-		
-			<?php /* If this is an author archive */ } elseif (is_author()) { ?>
-	
-			<?php						
-				if(get_query_var('author_name')) :
-					$curauth = get_user_by('slug', get_query_var('author_name'));
-				else :
-					$curauth = get_userdata(get_query_var('author'));
-				endif;
-				?>
-				Articles by <?php echo $curauth->display_name; ?>
-		
-			<?php /* If this is a paged archive */ } elseif (isset($_GET['paged']) && !empty($_GET['paged'])) { ?>Blog<?php } ?>
-	
-			</span> Archive	
-		<?php
-		}
-		elseif(is_attachment())
-		{
-		?>
-			<a href="<?php echo get_option('home'); ?>/">Home</a>
-			<?php
-				global $post;
-				$parent_id  = $post->post_parent;
-				$breadcrumbs = array();
-				while ($parent_id) {
-				  $page = get_page($parent_id);
-				  $breadcrumbs[] = '<a href="'.get_permalink($page->ID).'" title="">'.get_the_title($page->ID).'</a>';
-				  $parent_id  = $page->post_parent;
-				}
-				$breadcrumbs = array_reverse($breadcrumbs);
-				foreach ($breadcrumbs as $crumb) echo ' &#8734; '.$crumb;
-			?>
-			&#8734; <?php the_title(); ?>
-		<?php
-		}
-		elseif(is_single())
-		{
-		?>
-			<a href="<?php echo get_option('home'); ?>/">Home</a>
-			<?php 
-				if(get_option('page_for_posts'))
-				{
-					?>
-					&#8734; <a href="<?php echo get_permalink(get_option('page_for_posts')); ?>"><?php echo getPostTitle(get_option('page_for_posts'),FALSE); ?></a>
-					<?php
-				}
-			?>
-			&#8734; <?php the_title(); ?>
-		<?php
-		}
-		elseif(is_search())
-		{
-			global $s;
-		?>
-			<a href="<?php echo get_option('home'); ?>/">Home</a>
-			<?php 
-				if(get_option('page_for_posts'))
-				{
-					?>
-					&#8734; <a href="<?php echo get_permalink(get_option('page_for_posts')); ?>"><?php echo getPostTitle(get_option('page_for_posts'),FALSE); ?></a>
-					<?php
-				}
-			?>
-			&#8734; Search Results For <span>'<?=stripslashes($s)?>'</span>
-		<?php
-		}
-		elseif(is_home() && !is_front_page() )
-		{
-		?>
-			<a href="<?php echo get_option('home'); ?>/">Home</a>
-			&#8734; <?php echo getPostTitle(get_option('page_for_posts'),FALSE); ?>
-		<?php
-		}
-	?>
-	</p>
-	<?php
+	//comments JS on single pages only
+	if ( is_singular() && comments_open() && get_option('thread_comments')) {
+		wp_enqueue_script('comment-reply');
 	}
 }
+add_action("wp_enqueue_scripts", "memberlite_init_styles");	
 
-function get_the_content_after_more($content = NULL)
+/* Load fonts via good API
+ */
+function memberlite_load_fonts()
 {
-	if($content === NULL)
-		$content = get_the_content();
-	$moretag = preg_match("/\<span id=\"more-[0-9]*\"\>\<\/span\>/", $content, $matches);
-	if(!$moretag)
-		$moretag = preg_match("/(\<\!\-\-more\-\-\>)/", $content, $matches);
-	if($moretag)
-	{
-		$morespan = $matches[0];
-		$morespan_pos = strpos($content, $morespan);
-		$newcontent = substr($content, $morespan_pos + strlen($morespan), strlen($content) - strlen($morespan));
-		$newcontent = apply_filters('the_content', $newcontent);
-		return $newcontent;
-	}
-	else
-		return "";
+	global $memberlite_defaults;
+	wp_register_style('googleFonts', '//fonts.googleapis.com/css?family=' . str_replace('_','|',str_replace('-','+',get_theme_mod('memberlite_webfonts',$memberlite_defaults['memberlite_webfonts']))));
+	wp_enqueue_style('googleFonts');
+}
+add_action('wp_print_styles', 'memberlite_load_fonts');
+
+/* Set the content width based on the theme's design and stylesheet.
+ */
+if(!isset($content_width)) {
+	$content_width = 748; /* pixels */
 }
 
-function get_the_content_before_more($content = NULL)
-{
-	if($content === NULL)
-		$content = get_the_content();
-			
-	$moretag = preg_match("/\<span id=\"more-[0-9]*\"\>\<\/span\>/", $content, $matches);
-	if(!$moretag)
-		$moretag = preg_match("/(\<\!\-\-more\-\-\>)/", $content, $matches);
-	if($moretag)
-	{				
-		$morespan = $matches[0];
-		$morespan_pos = strpos($content, $morespan);
-		$newcontent = substr($content, 0, $morespan_pos);
-		$newcontent = apply_filters('the_content', $newcontent);
-		return $newcontent;
+if(!function_exists('memberlite_setup')) :
+/* Sets up theme defaults and registers support for various WordPress features.
+ *
+ * Note that this function is hooked into the after_setup_theme hook, which
+ * runs before the init hook. The init hook is too late for some features, such
+ * as indicating support for post thumbnails.
+ */
+function memberlite_setup() {
+
+	/*
+	 * Make theme available for translation.
+	 * Translations can be filed in the /languages/ directory.
+	 * If you're building a theme based on Member Lite 2.0, use a find and replace
+	 * to change 'memberlite' to the name of your theme in all the template files
+	 */
+	load_theme_textdomain('memberlite', get_template_directory() . '/languages');
+
+	// Add default posts and comments RSS feed links to head.
+	add_theme_support('automatic-feed-links');
+
+	/*
+	 * Enable support for Post Thumbnails on posts and pages.
+	 *
+	 * @link http://codex.wordpress.org/Function_Reference/add_theme_support#Post_Thumbnails
+	 */
+	add_theme_support('post-thumbnails');
+	add_image_size('mini', 80, 80, true, array('center','center'));
+	add_image_size('banner', 740, 200, true, array('center','center'));
+	add_image_size('large', 748, 9999, true, array('center','center'));
+	add_image_size('masthead', 1600, 300, true, array('center','center'));
+	
+	// This theme uses wp_nav_menu() in one location.
+	register_nav_menus( array(
+		'primary' => __('Primary Menu', 'memberlite'),
+		'member' => __('Member Menu', 'memberlite'),
+		'meta' => __('Meta Menu', 'memberlite'),
+		'footer' => __('Footer Menu', 'memberlite'),
+	));
+	
+	/*
+	 * Switch default core markup for search form, comment form, and comments
+	 * to output valid HTML5.
+	 */
+	add_theme_support('html5', array(
+		'search-form', 'comment-form', 'comment-list', 'gallery', 'caption'
+	));
+
+	/*
+	 * Enable support for Post Formats.
+	 * See http://codex.wordpress.org/Post_Formats
+	 */
+	add_theme_support('post-formats', array(
+		'aside', 'image', 'video', 'quote', 'link'
+	));
+
+	// Setup the WordPress core custom background feature.
+	add_theme_support('custom-background', apply_filters('memberlite_custom_background_args', array(
+		'default-color' => 'ffffff',
+		'default-image' => '',
+	)));
+	
+	// Declare WooCommerce theme support
+    add_theme_support('woocommerce');
+}
+endif; // memberlite_setup
+add_action('after_setup_theme', 'memberlite_setup');
+
+/* Register widget areas */
+function memberlite_widgets_init() {
+	global $memberlite_defaults;
+	register_sidebar( array(
+		'name'          => __('Pages', 'memberlite'),
+		'id'            => 'sidebar-1',
+		'description'   => '',
+		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</aside>',
+		'before_title'  => '<h3 class="widget-title">',
+		'after_title'   => '</h3>',
+	));
+	register_sidebar( array(
+		'name'          => __('Posts and Archives', 'memberlite'),
+		'id'            => 'sidebar-2',
+		'description'   => '',
+		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</aside>',
+		'before_title'  => '<h3 class="widget-title">',
+		'after_title'   => '</h3>',
+	));
+	register_sidebar( array(
+		'name'          => __('Header Right', 'memberlite'),
+		'id'            => 'sidebar-3',
+		'description'   => '',
+		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</aside>',
+		'before_title'  => '<h1 class="widget-title">',
+		'after_title'   => '</h1>',
+	));
+
+	$footer_widgets_count = get_theme_mod('memberlite_footerwidgets',$memberlite_defaults['memberlite_footerwidgets']);
+	if($footer_widgets_count == '2')
+		$footer_widgets_col_class = 'medium-6';
+	elseif($footer_widgets_count == '3')
+		$footer_widgets_col_class = 'medium-4';
+	elseif($footer_widgets_count == '6')
+		$footer_widgets_col_class = 'large-3';
+	else
+		$footer_widgets_col_class = 'medium-3';
+	register_sidebar( array(
+		'name'          => __('Footer Widgets', 'memberlite'),
+		'id'            => 'sidebar-4',
+		'description'   => 'You can set the number of widget columns in Appearance > Customize. Default: 4 columns.',
+		'before_widget' => '<aside id="%1$s" class="widget ' . $footer_widgets_col_class . ' columns %2$s">',
+		'after_widget'  => '</aside>',
+		'before_title'  => '<h3 class="widget-title">',
+		'after_title'   => '</h3>',
+	));
+	register_sidebar( array(
+		'name'          => __('Mobile Menu Widgets', 'memberlite'),
+		'id'            => 'sidebar-5',
+		'description'   => 'The slide-out mobile menu area.',
+		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</aside>',
+		'before_title'  => '<h3 class="widget-title">',
+		'after_title'   => '</h3>',
+	));
+}
+add_action('widgets_init', 'memberlite_widgets_init');
+
+/* Adds a Custom Sidebar meta box to the side column on the Post and Page edit screens. */
+function memberlite_sidebar_add_meta_box() {
+	$screens = array('post', 'page', 'forum', 'event', 'event-recurring');
+	foreach ($screens as $screen) {
+		add_meta_box(
+			'memberlite_sidebar_section',
+			__('Custom Sidebar', 'memberlite'),
+			'memberlite_sidebar_meta_box_callback',
+			$screen,
+			'side',
+			'core'
+		);
+	}
+}
+add_action('add_meta_boxes', 'memberlite_sidebar_add_meta_box');
+
+/* Meta box for custom sidebar selection */
+function memberlite_sidebar_meta_box_callback($post) {
+	global $wp_registered_sidebars;
+	wp_nonce_field('memberlite_sidebar_meta_box', 'memberlite_sidebar_meta_box_nonce');
+	$memberlite_custom_sidebar = get_post_meta($post->ID, '_memberlite_custom_sidebar', true);
+	$memberlite_default_sidebar = get_post_meta($post->ID, '_memberlite_default_sidebar', true);
+	echo '<p>' . __('Swap the default sidebar.', 'memberlite');
+	echo ' <a href="' . admin_url( 'custom-sidebars.php') . '">' . __('Manage Custom Sidebars','memberlite') . '</a></p>';
+	echo '<p><strong>' . __('Select Sidebar', 'memberlite') . '</strong></p>';
+	echo '<label class="screen-reader-text" for="memberlite_custom_sidebar">';
+	_e('Select Sidebar', 'memberlite');
+	echo '</label> ';
+	echo '<select id="memberlite_custom_sidebar" name="memberlite_custom_sidebar">';
+	foreach($wp_registered_sidebars as $wp_registered_sidebar)
+	{
+		echo '<option value="' . $wp_registered_sidebar['id'] . '"' . selected( $memberlite_custom_sidebar, $wp_registered_sidebar['id'] ) . '>' . $wp_registered_sidebar['name'] . '</option>';
+	}
+	echo '</select>';	
+	echo '<hr />';
+	echo '<p><strong>' . __('Default Sidebar Behavior', 'memberlite') . '</strong></p>';
+	echo '<label class="screen-reader-text" for="memberlite_default_sidebar">';
+	_e('Default Sidebar', 'memberlite');
+	echo '</label> ';
+	echo '<select id="memberlite_default_sidebar" name="memberlite_default_sidebar">';
+	echo '<option value="default_sidebar_above"' . selected( $memberlite_default_sidebar, 'default_sidebar_above' ) . '>' . __('Show Default Sidebar Above', 'memberlite') . '</option>';
+	echo '<option value="default_sidebar_below"' . selected( $memberlite_default_sidebar, 'default_sidebar_below' ) . '>' . __('Show Default Sidebar Below', 'memberlite') . '</option>';
+	echo '<option value="default_sidebar_hide"' . selected( $memberlite_default_sidebar, 'default_sidebar_hide' ) . '>' . __('Hide Default Sidebar', 'memberlite') . '</option>';
+	echo '</select>';
+}
+
+/* Save custom sidebar selection */
+function memberlite_sidebar_save_meta_box_data($post_id) {
+	if(!isset($_POST['memberlite_sidebar_meta_box_nonce'])) {
+		return;
+	}
+	if(!wp_verify_nonce($_POST['memberlite_sidebar_meta_box_nonce'], 'memberlite_sidebar_meta_box')) {
+		return;
+	}
+	if ( defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+		return;
+	}
+	if ( isset($_POST['post_type']) && 'page' == $_POST['post_type']) {
+		if(!current_user_can('edit_page', $post_id)) {
+			return;
+		}
+	} 
+	else
+	{
+		if(!current_user_can('edit_post', $post_id)) {
+			return;
+		}
+	}
+	
+	if(!isset($_POST['memberlite_custom_sidebar'])) {
+		return;
+	}
+	$memberlite_custom_sidebar = sanitize_text_field($_POST['memberlite_custom_sidebar']);
+	
+	if(!isset($_POST['memberlite_default_sidebar'])) {
+		return;
+	}
+	$memberlite_default_sidebar = sanitize_text_field($_POST['memberlite_default_sidebar']);
+
+	// Update the meta field in the database.
+	update_post_meta($post_id, '_memberlite_custom_sidebar', $memberlite_custom_sidebar);
+	update_post_meta($post_id, '_memberlite_default_sidebar', $memberlite_default_sidebar);
+}
+add_action('save_post', 'memberlite_sidebar_save_meta_box_data');
+
+/* Add Setting in Featured Images meta box */
+function memberlite_featured_image_meta( $content ) {
+    global $post;
+	if(in_array( get_post_type($post->ID), array('post','page')))
+	{
+		$id = 'memberlite_hide_image_banner';
+		$value = esc_attr( get_post_meta( $post->ID, $id, true ) );
+		$label = '<label for="' . $id . '" class="selectit"><input name="' . $id . '" type="checkbox" id="' . $id . '" value="' . $value . ' "'. checked( $value, 1, false) .'>' . __('Hide Image Banner on Single View', 'memberlite') . '</label>';
+		return $content .= $label;
 	}
 	else
 		return $content;
 }
+add_filter( 'admin_post_thumbnail_html', 'memberlite_featured_image_meta' );
 
-function SearchFilter($query){
- 	if($query->is_search)
-	{ 
-		// List of pages/posts to omit when searching.  Page/post ID should be placed in the array.
-		global $pmprot_options;
-		if(!$pmprot_options['pages_in_search_results'])
-			$query->set('post_type', 'post');
-		$postOmitArray = explode(",", $pmprot_options['hide_pages']);
-	
-		// Set the pages to exclude in the WP Query
-		$query->set('post__not_in', $postOmitArray);		
+/* Save Setting in Featured Images meta box */
+function memberlite_save_featured_image_meta( $post_id, $post, $update ) {  
+	$value = 0;
+	if ( isset( $_REQUEST['memberlite_hide_image_banner'] ) ) {
+		$value = 1;
 	}
-	return $query;
+	// Set meta value to either 1 or 0
+	update_post_meta( $post_id, 'memberlite_hide_image_banner', $value );
 }
-add_filter('pre_get_posts','SearchFilter');
+add_action( 'save_post', 'memberlite_save_featured_image_meta', 10, 3 );
 
-function new_excerpt_more($more) 
-{
-	global $post;
-	return '...<p><a class="btn btn-grey" href="'. get_permalink($post->ID) . '">Continue Reading &raquo;</a></p>';
+function memberlite_woocommerce_before_main_content() {
+  echo '<div id="primary" class="large-12 columns content-area">';
+  echo '<main id="main" class="site-main" role="main">';
 }
-add_filter('excerpt_more', 'new_excerpt_more');
+function memberlite_woocommerce_after_main_content() {
+  echo '</main></div>';
+}
+remove_action( 'woocommerce_before_main_content', 'woocommerce_output_content_wrapper', 10);
+remove_action( 'woocommerce_after_main_content', 'woocommerce_output_content_wrapper_end', 10);
+add_action('woocommerce_before_main_content', 'memberlite_woocommerce_before_main_content', 10);
+add_action('woocommerce_after_main_content', 'memberlite_woocommerce_after_main_content', 10);
 
-//if the bbPress Login Widget is being used, hide the title when users are logged in
-function pmprot_bbp_login_widget_title($title)
-{
-	global $current_user;
-	
-	if(!empty($current_user->ID) && ($title == "Log In" || $title == "Login"))
-		$title = "";
-		
-	return $title;
-}
-add_filter("bbp_login_widget_title", "pmprot_bbp_login_widget_title");
-?>
+/* Implement the Custom Header feature.
+ */
+require get_template_directory() . '/inc/custom-header.php';
+
+/* Custom template tags for this theme.
+ */
+require get_template_directory() . '/inc/template-tags.php';
+
+/* Custom functions that act independently of the theme templates.
+ */
+require get_template_directory() . '/inc/extras.php';
+
+/* Custom widgets that act independently of the theme templates.
+ */
+require get_template_directory() . '/inc/widgets.php';
+
+/* Customizer additions.
+ */
+require get_template_directory() . '/inc/customizer.php';
+
+/* Load Jetpack compatibility file.
+ */
+require get_template_directory() . '/inc/jetpack.php';
+
+/* Custom shortcodes that act independently of the theme templates.
+ */
+require get_template_directory() . '/inc/shortcodes.php';
+
+/* PMPro License code
+ */
+if(!defined('PMPRO_LICENSE_SERVER'))
+	require get_template_directory() . '/inc/license.php';
+
+/* Custom admin theme pages.
+ */
+require get_template_directory() . '/inc/admin.php';
+
+/* Custom sidebars pages.
+ */
+require get_template_directory() . '/inc/custom-sidebars.php';
