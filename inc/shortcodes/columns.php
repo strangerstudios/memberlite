@@ -29,18 +29,22 @@ add_shortcode('row', 'memberlite_row_shortcode');
 function memberlite_col_shortcode($atts, $content = null) {
 	// $atts    ::= array of attributes
 	// $content ::= text within enclosing form of shortcode element
-	// examples: [col large="3" medium="6"]
+	// examples: [col large="3" medium="6" large_offset="3"]
 
     extract(shortcode_atts(array(
 		'small' => '',
 		'medium' => '',
 		'large' => '',
+		'small_offset' => '',
+		'medium_offset' => '',
+		'large_offset' => '',
     ), $atts));
 
-    $arr = array('small'=>'small','medium'=>'medium','large'=>'large');
+    $arr = array('small'=>'small','medium'=>'medium','large'=>'large','small-offset' =>'small_offset','medium-offset' =>'medium_offset','large-offset' =>'large_offset');
     $classes = array();
     foreach ($arr as $k => $aa) {
-		$classes[] = $k.'-' . ${$aa};
+		if(!empty(${$aa}))
+			$classes[] = $k.'-' . ${$aa};
     }
 
     $result = '<div class="' . implode(' ', $classes) . ' columns">';
