@@ -201,7 +201,7 @@ blockquote.quote, q, .testimonials-widget blockquote {
 	padding: 0 0 0 5rem;
 	position: relative;
 }
-blockquote.quote:before, q:before, .testimonials-widget blockquote:before {
+blockquote.quote:before, q:before {
 	content: "\f10d";
 	font-family: 'FontAwesome';
 	color: #DDD;
@@ -222,6 +222,22 @@ blockquote cite, .testimonials-widget blockquote .credit {
 blockquote cite a, .testimonials-widget blockquote .credit a {
 	color: #AAA;
 	text-decoration: none;
+}
+.testimonials-widget-testimonial .open-quote:before {
+	content: "\f10d";
+	font-family: 'FontAwesome';
+	color: #DDD;
+	font-size: 30px;
+	font-size: 3rem;
+	padding-right: 1rem;
+}
+.testimonials-widget-testimonial .close-quote:after {
+	content: "\f10e";
+	font-family: 'FontAwesome';
+	color: #DDD;
+	font-size: 30px;
+	font-size: 3rem;
+	padding-left: 1rem;
 }
 .footer-widgets .testimonials-widget blockquote {
 	color: #FFF;
@@ -384,6 +400,8 @@ input[type="submit"],
 a.comment-reply-link,
 a.more-link,
 a.pmpro_btn,
+.pmpro_content_message a,
+.pmpro_content_message a:link,
 input[type="submit"].pmpro_btn,
 .woocommerce #content input.button, .woocommerce #respond input#submit, .woocommerce a.button, .woocommerce button.button, .woocommerce input.button, .woocommerce-page #content input.button, .woocommerce-page #respond input#submit, .woocommerce-page a.button, .woocommerce-page button.button, .woocommerce-page input.button,
 .woocommerce #content input.button.alt, .woocommerce #respond input#submit.alt, .woocommerce a.button.alt, .woocommerce button.button.alt, .woocommerce input.button.alt, .woocommerce-page #content input.button.alt, .woocommerce-page #respond input#submit.alt, .woocommerce-page a.button.alt, .woocommerce-page button.button.alt, .woocommerce-page input.button.alt,
@@ -396,7 +414,10 @@ input[type="submit"].pmpro_btn,
 	cursor: pointer; /* Improves usability and consistency of cursor style between image-type 'input' and others */
 	/* -webkit-appearance: button; Corrects inability to style clickable 'input' types in iOS */
 	font-family: 'Lato', sans-serif;
+	font-size: 16px;
+	font-size: 1.6rem;	
 	font-style: normal;
+	font-weight: normal;
 	display: inline-block;
 	padding: 1rem 1.5rem;
 	text-decoration: none;
@@ -544,7 +565,38 @@ textarea {
 	width: 100%;
 }
 
+/*--------------------------------------------------
+	Messages - Success, Error, Alert
+----------------------------------------------------*/
+.pmpro_message, .pmpro_content_message {
+	background-color: #d9edf7; 
+	-webkit-border-radius: 5px; 
+	-moz-border-radius: 5px; 
+	border-radius: 5px; 
+	border: 1px solid #bce8f1; 
+	color: #31708f; 
+	font-size: 16px; 
+	font-size: 1.6rem; 
+	font-weight: 400; 
+	line-height: 2.6rem;
+	margin: .5em 0; 
+	padding: 10px 15px; 
+}
+
 .pmpro_message.pmpro_default {background-color: #FAFAFA; color: #777; border-color: #DADADA; }
+.pmpro_success {background-color: #dff0d8; color: #3c763d; border-color: #d6e9c6; }
+.pmpro_error {background-color: #f2dede; color: #a94442; border-color: #ebccd1; }
+.pmpro_alert, .pmpro_content_message {background-color: #fcf8e3; color: #8a6d3b; border-color: #faebcc;}
+
+.pmpro_content_message a {margin: 5px 5px 0 0; }
+
+.pmpro_message a {color: #245269; text-decoration: underline; }
+.pmpro_success a {color: #2b542c; }
+.pmpro_error a {color: #843534; }
+.pmpro_alert a, .pmpro_content_message a {color: #66512c; }
+
+input.pmpro_error {background-image: none;}
+select.pmpro_error {background-image: none;}
 
 /*--------------------------------------------------------------
 5.0 Navigation
@@ -1637,6 +1689,28 @@ form.memberlite_signup .pmpro_btn {display: block; width: 100%; }
 /*--------------------------------------------------------------
 10.6 Third Party Plugin Integrated Styles
 --------------------------------------------------------------*/
+.testimonials-widget-testimonial span.image {
+	border-radius:50%;
+	margin: 0 2rem 0 1rem;
+}
+.testimonials-widget-testimonial span.image img {
+	background: none;
+	border-radius: 50%;
+	border: none;
+	display: inline-block;
+	padding: 0;
+	transition: transform 0.5s ease;
+	transform: scale(0.8);
+}
+#secondary .testimonials-widget-testimonial {
+	text-align: center;
+}
+#secondary .testimonials-widget-testimonial span.image, #secondary .testimonials-widget-testimonial span.image img {
+	margin: 0;
+}
+#secondary .testimonials-widget-testimonial blockquote {
+	padding: 0;
+}
 #bbpress-forums li.bbp-body div.odd, #bbpress-forums li.bbp-body ul.odd {
 	margin-bottom: 0;
 }

@@ -174,6 +174,85 @@ function memberlite_widgets_init() {
 }
 add_action('widgets_init', 'memberlite_widgets_init');
 
+/* Adds a Member Lite settings meta box to the side column on the Page edit screens. */
+function memberlite_settings_add_meta_box() {
+	$screens = array('page');
+	foreach ($screens as $screen) {
+		add_meta_box(
+			'memberlite_settings_section',
+			__('Member Lite Settings', 'memberlite'),
+			'memberlite_settings_meta_box_callback',
+			$screen,
+			'normal',
+			'high'
+		);
+	}
+}
+add_action('add_meta_boxes', 'memberlite_settings_add_meta_box');
+
+/* Meta box for Member Lite settings */
+function memberlite_settings_meta_box_callback($post) {
+	wp_nonce_field('memberlite_settings_meta_box', 'memberlite_settings_meta_box_nonce');
+	$memberlite_banner_desc = get_post_meta($post->ID, '_memberlite_banner_desc', true);
+	$memberlite_banner_right = get_post_meta($post->ID, '_memberlite_banner_right', true);
+	echo '<p><strong>' . __('Banner Description', 'memberlite') . '</strong></p>';
+	echo '<p>Shown in the masthead banner below the page title.</p>';	
+	echo '<label class="screen-reader-text" for="memberlite_banner_desc">';
+	_e('Banner Description', 'memberlite');
+	echo '</label>';
+	echo '<textarea class="large-text" rows="5" id="memberlite_banner_desc" name="memberlite_banner_desc">';
+		echo $memberlite_banner_desc;
+	echo '</textarea>';	
+	echo '<hr />';
+	echo '<p style="margin: 0;"><strong>' . __('Banner Right Column', 'memberlite') . '</strong></p>';
+	echo '<p>Right side of the masthead banner. (i.e. Video Embed, Image or Action Button)</p>';	
+	echo '<label class="screen-reader-text" for="memberlite_banner_right">';
+	_e('Banner Right Column', 'memberlite');
+	echo '</label> ';
+	echo '<textarea class="large-text" rows="5" id="memberlite_banner_right" name="memberlite_banner_right">';
+		echo $memberlite_banner_right;
+	echo '</textarea>';
+}
+
+/* Save custom sidebar selection */
+function memberlite_settings_save_meta_box_data($post_id) {
+	if(!isset($_POST['memberlite_settings_meta_box_nonce'])) {
+		return;
+	}
+	if(!wp_verify_nonce($_POST['memberlite_settings_meta_box_nonce'], 'memberlite_settings_meta_box')) {
+		return;
+	}
+	if ( defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+		return;
+	}
+	if ( isset($_POST['post_type']) && 'page' == $_POST['post_type']) {
+		if(!current_user_can('edit_page', $post_id)) {
+			return;
+		}
+	} 
+	else
+	{
+		if(!current_user_can('edit_post', $post_id)) {
+			return;
+		}
+	}
+	
+	if(!isset($_POST['memberlite_banner_desc'])) {
+		return;
+	}
+	$memberlite_banner_desc = sanitize_text_field($_POST['memberlite_banner_desc']);
+	
+	if(!isset($_POST['memberlite_banner_right'])) {
+		return;
+	}
+	$memberlite_banner_right = sanitize_text_field($_POST['memberlite_banner_right']);
+
+	// Update the meta field in the database.
+	update_post_meta($post_id, '_memberlite_banner_desc', $memberlite_banner_desc);
+	update_post_meta($post_id, '_memberlite_banner_right', $memberlite_banner_right);
+}
+add_action('save_post', 'memberlite_settings_save_meta_box_data');
+
 /* Adds a Custom Sidebar meta box to the side column on the Post and Page edit screens. */
 function memberlite_sidebar_add_meta_box() {
 	$screens = array('post', 'page', 'forum', 'event', 'event-recurring');

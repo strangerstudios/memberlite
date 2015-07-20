@@ -154,8 +154,18 @@
 							<?php } else { ?>
 								<?php memberlite_getBreadcrumbs(); ?>
 							<?php } ?>
+							<?php	
+								$memberlite_banner_right = get_post_meta($post->ID, '_memberlite_banner_right', true);
+								if(!empty($memberlite_banner_right))
+									echo '<div class="pull-right">' . apply_filters('the_content',$memberlite_banner_right) . '</div>';
+							?>
 							<?php memberlite_page_title(); ?>
-						</div>
+							<?php
+								$memberlite_banner_desc = get_post_meta($post->ID, '_memberlite_banner_desc', true);
+								if(!empty($memberlite_banner_desc))
+									echo apply_filters('the_content',$memberlite_banner_desc);
+							?>
+							</div>
 					</div><!-- .row -->
 				</header><!-- .masthead -->
 				<?php
