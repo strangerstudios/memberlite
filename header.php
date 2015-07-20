@@ -69,26 +69,17 @@
 												}
 											?>
 											</span>
-											<?php 	
-												$member_menu_defaults = array(
-													'theme_location' => 'member',
-													'container' => 'nav',
-													'container_id' => 'member-navigation',
-													'container_class' => 'member-navigation',
-													'fallback_cb' => false
-												);					
-												wp_nav_menu( $member_menu_defaults ); 
-											?>
-											<a href="<?php echo wp_logout_url( ); ?>"><?php _e( 'Log Out', 'memberlite' ); ?></a>
-											<?php 
-										} 
-										else 
-										{ 
-											?>
-											<a href="<?php echo wp_login_url(); ?>"><?php _e( 'Log In', 'memberlite' ); ?></a>
-											<a href="<?php echo wp_registration_url(); ?>"><?php _e( 'Register', 'memberlite' ); ?></a>
 											<?php
-										} 
+										}
+									
+										$member_menu_defaults = array(
+											'theme_location' => 'member',
+											'container' => 'nav',
+											'container_id' => 'member-navigation',
+											'container_class' => 'member-navigation',
+											'fallback_cb' => false
+										);					
+										wp_nav_menu( $member_menu_defaults ); 
 									?>
 									</aside>
 								</div><!-- #meta-member -->

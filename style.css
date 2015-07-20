@@ -150,7 +150,7 @@ h3, .woocommerce #main ul.products li.product h3, .widget_calendar #wp-calendar 
 	font-size: 2rem;
 	line-height: 3rem;
 }
-.entry-content h3 {
+.entry-content h3, .home h3 {
 	margin: 2.6rem 0 1rem 0;
 }
 h4 {
@@ -1147,16 +1147,31 @@ a:active {
 }
 #meta-member a {
 	display: inline-block;
-	margin: 0 .5em;
 	color: #FFF;
 	text-decoration: none;
 }
 #meta-member a:hover {
 	color: #FFF;
 }
-#meta-member span.user a {margin: 0; }
-#meta-member .member-navigation, #meta-member .member-navigation ul {display: inline-block; list-style: none; margin: 0; }
-#meta-member .member-navigation li {border-right: 1px solid #DDD; display: inline-block; position: relative; }
+#meta-member span.user a {
+	margin: 0; 
+}
+#meta-member .member-navigation, #meta-member .member-navigation ul {
+	display: inline-block; 
+	list-style: none; 
+	margin: 0; 
+}
+#meta-member .member-navigation li {
+	border-right: 1px solid #DDD; 
+	display: inline-block; 
+	position: relative; 
+}
+#meta-member .member-navigation li:last-child {
+	border: none;
+}
+#meta-member .member-navigation li a {
+	margin: 0 1rem;
+}
 /* Dropdown Menu */
 #meta-member .member-navigation ul ul {
 	display: none; 
@@ -1418,6 +1433,26 @@ a:active {
 .page-links {
 	clear: both;
 	margin: 0 0 1.5rem;
+}
+
+#banner_bottom {
+	background-color: #18BC9C;
+	color: #FFF;
+	padding: 2rem 0;
+}
+#banner_bottom p {
+	font-size: 2rem;
+	font-size: 20px;
+	line-height: 3.3rem;
+}
+#banner_bottom h1, #banner_bottom h2, #banner_bottom h3, #banner_bottom h4, #banner_bottom h5 {
+	color: #FFF;
+	margin: 0 0 1.6rem 0;
+}
+#banner_bottom h1 a, #banner_bottom h2 a, #banner_bottom h3 a, #banner_bottom h4 a, #banner_bottom h5 a {
+	color: #FFF;
+	text-decoration: none;
+	border-bottom: 1px dotted #FFF;
 }
 
 /*--------------------------------------------------------------
