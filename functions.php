@@ -40,7 +40,7 @@ add_action('wp_print_styles', 'memberlite_load_fonts');
 /* Set the content width based on the theme's design and stylesheet.
  */
 if(!isset($content_width)) {
-	$content_width = 748; /* pixels */
+	$content_width = 701; /* pixels */
 }
 
 if(!function_exists('memberlite_setup')) :
@@ -69,9 +69,10 @@ function memberlite_setup() {
 	 * @link http://codex.wordpress.org/Function_Reference/add_theme_support#Post_Thumbnails
 	 */
 	add_theme_support('post-thumbnails');
+	set_post_thumbnail_size( 150, 150, true );
 	add_image_size('mini', 80, 80, true, array('center','center'));
 	add_image_size('banner', 740, 200, true, array('center','center'));
-	add_image_size('large', 748, 9999, true, array('center','center'));
+	add_image_size('large', 701, 1200, false, array('center','center'));
 	add_image_size('masthead', 1600, 300, true, array('center','center'));
 	
 	// This theme uses wp_nav_menu() in one location.
