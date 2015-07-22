@@ -4,7 +4,7 @@
  *
  * Contains the closing of the #content div and all content after
  *
- * @package Member Lite 2.0
+ * @package Memberlite
  */
 ?>
 		<?php if(!is_front_page() && !is_page_template('templates/fluid-width.php') && !is_page_template( 'templates/interstitial.php' )) { ?></div><!-- .row --><?php } ?>

@@ -2,7 +2,7 @@
 /**
  * Custom shortcodes that act independently of the theme templates
  *
- * @package Member Lite 2.0
+ * @package Memberlite
  */
 
 $path = dirname(__FILE__);

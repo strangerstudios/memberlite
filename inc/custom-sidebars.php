@@ -2,7 +2,7 @@
 /**
  * Custom sidebar memberlite_custom_sidebars page
  *
- * @package Member Lite 2.0
+ * @package Memberlite
  */
 
 /**

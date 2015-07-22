@@ -2,7 +2,7 @@
 /**
  * The template for displaying forum pages.
  *
- * @package Member Lite 2.0
+ * @package Memberlite
  */
 get_header(); ?>
 

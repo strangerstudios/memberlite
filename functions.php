@@ -1,8 +1,8 @@
 <?php
 /**
- * Member Lite 2.0 functions and definitions
+ * Memberlite functions and definitions
  *
- * @package Member Lite 2.0
+ * @package Memberlite
  */
 
 //enqueue additional stylesheets and javascript
@@ -56,7 +56,7 @@ function memberlite_setup() {
 	/*
 	 * Make theme available for translation.
 	 * Translations can be filed in the /languages/ directory.
-	 * If you're building a theme based on Member Lite 2.0, use a find and replace
+	 * If you're building a theme based on Memberlite, use a find and replace
 	 * to change 'memberlite' to the name of your theme in all the template files
 	 */
 	load_theme_textdomain('memberlite', get_template_directory() . '/languages');
@@ -187,13 +187,13 @@ function memberlite_member_menu( $items, $args ) {
 }
 add_filter( 'wp_nav_menu_items', 'memberlite_member_menu', 10, 2 );
 
-/* Adds a Member Lite settings meta box to the side column on the Page edit screens. */
+/* Adds a Memberlite settings meta box to the side column on the Page edit screens. */
 function memberlite_settings_add_meta_box() {
 	$screens = array('page');
 	foreach ($screens as $screen) {
 		add_meta_box(
 			'memberlite_settings_section',
-			__('Member Lite Settings', 'memberlite'),
+			__('Memberlite Settings', 'memberlite'),
 			'memberlite_settings_meta_box_callback',
 			$screen,
 			'normal',
@@ -203,7 +203,7 @@ function memberlite_settings_add_meta_box() {
 }
 add_action('add_meta_boxes', 'memberlite_settings_add_meta_box');
 
-/* Meta box for Member Lite settings */
+/* Meta box for Memberlite settings */
 function memberlite_settings_meta_box_callback($post) {
 	wp_nonce_field('memberlite_settings_meta_box', 'memberlite_settings_meta_box_nonce');
 	$memberlite_banner_desc = get_post_meta($post->ID, '_memberlite_banner_desc', true);

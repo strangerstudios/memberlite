@@ -2,7 +2,7 @@
 /**
  * The sidebar containing the main widget area.
  *
- * @package Member Lite 2.0
+ * @package Memberlite
  */
 
 /*

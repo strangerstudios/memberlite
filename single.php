@@ -2,7 +2,7 @@
 /**
  * The template for displaying all single posts.
  *
- * @package Member Lite 2.0
+ * @package Memberlite
  */
 get_header(); ?>
 	<div id="primary" class="medium-8 columns content-area">

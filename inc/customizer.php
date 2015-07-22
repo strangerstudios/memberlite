@@ -1,8 +1,8 @@
 <?php
 /**
- * Member Lite 2.0 Theme Customizer
+ * Memberlite Theme Customizer
  *
- * @package Member Lite 2.0
+ * @package Memberlite
  */
 
 /**
@@ -17,7 +17,7 @@ $memberlite_defaults = array(
 	'content_archives' => 'content',
 	'memberlite_loop_images' => 'show_both',
 	'memberlite_footerwidgets' => '4',
-	'copyright_textbox' => '<a href="http://wordpress.org/" rel="license">Proudly powered by WordPress</a><span class="sep"> | </span>Theme: Member Lite by <a href="http://paidmembershipspro.com" rel="license">Kim Coleman</a>',
+	'copyright_textbox' => '<a href="http://wordpress.org/" rel="license">Proudly powered by WordPress</a><span class="sep"> | </span>Theme: Memberlite by <a href="http://paidmembershipspro.com" rel="license">Kim Coleman</a>',
 	'color_link' => '#2C3E50',
 	'color_meta_link' => '#2C3E50',
 	'color_primary' => '#2C3E50',
@@ -283,6 +283,28 @@ class memberlite_Customize {
 			)
 		);
 		$wp_customize->add_setting(
+			'memberlite_color_scheme',
+			array(
+				'default' => $memberlite_defaults['memberlite_color_scheme'],
+				'type' => 'theme_mod',
+				'capability' => 'edit_theme_options',
+				'transport' => 'refresh',
+			)
+		);
+		$wp_customize->add_control(
+			'memberlite_color_scheme',
+			array(
+				'label' => 'Color Scheme',
+				'section' => 'colors',
+				'type'       => 'select',
+				'choices'    => array(
+					'default' => 'Default',
+					'pmpro' => 'PMPro',
+				),
+				'priority' => 1
+			)
+		);
+		$wp_customize->add_setting(
 			'color_link',
 			array(
 				'default' => $memberlite_defaults['color_link'],
@@ -463,6 +485,24 @@ class memberlite_Customize {
       }
       return $return;
     }
+	
+	public static function sanitize_color_scheme($memberlite_color_scheme) {
+/*		if ( ! current_user_can('edit_theme_options') )
+			return;
+		if ( empty( $_POST ) )
+			return;
+		$this->updated = true;
+*/
+		if ( isset( $_POST['memberlite_color_scheme'] ) ) {
+			check_admin_referer( 'custom-header-options', '_wpnonce-custom-header-options' );
+			set_theme_mod( 'color_primary', '#2997c8' );
+			set_theme_mod( 'color_secondary', '#77a02e' );
+			set_theme_mod( 'color_action', '#f89406' );
+			set_theme_mod( 'color_link', '#2997c8' );
+			set_theme_mod( 'color_meta_link', '#2997c8' );
+		}
+	}
+
 }
 
 // Setup the Theme Customizer settings and controls...
