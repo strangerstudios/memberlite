@@ -7,7 +7,6 @@
 
 /* =bbPress Style
 -------------------------------------------------------------- */
-
 #bbpress-forums hr {
 	margin: 0 0 24px 0;
 }
@@ -32,7 +31,7 @@
 #bbpress-forums li.bbp-body div.odd,
 #bbpress-forums li.bbp-body ul.odd {
 	border-bottom: 1px solid #CCC;
-	margin-bottom: 1em;
+	margin-bottom: 0;
 }
 body.reply-edit .reply {
 	float: none;
@@ -100,7 +99,7 @@ body.reply-edit .reply {
 #bbpress-forums li.bbp-header,
 #bbpress-forums li.bbp-footer {
 	font-weight: bold;
-	font-family: 'Fjalla One', sans-serif;
+	font-family: 'Lato', sans-serif;
 	font-weight: 400;
 	padding: 1rem;
 	text-align: center;
@@ -638,7 +637,7 @@ td.bbp-topic-counts {
 	margin: 0 0 4rem 0;
 }
 #bbpress-forums fieldset.bbp-form legend {
-	font-family: 'Fjalla One', sans-serif;
+	font-family: 'Lato', sans-serif;
 	padding: 5px;
 }
 

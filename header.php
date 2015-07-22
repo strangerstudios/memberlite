@@ -22,16 +22,26 @@
 <?php do_action('before_page'); ?>
 <div id="page" class="hfeed site">
 	<?php do_action('before_mobile_nav'); ?>
-	<nav id="mobile-navigation" class="mobile-navigation" role="navigation">
-		<?php dynamic_sidebar('sidebar-5'); ?>	
-	</nav>
+	<?php
+		if(is_active_sidebar('sidebar-5'))
+		{
+			?>
+			<nav id="mobile-navigation" class="mobile-navigation" role="navigation">
+				<?php dynamic_sidebar('sidebar-5'); ?>	
+			</nav>
+			<?php
+		}
+	?>
 	<?php do_action('after_mobile_nav'); ?>
 	<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'memberlite' ); ?></a>
 	<?php do_action('before_site_header'); ?>
 	<header id="masthead" class="site-header" role="banner">
 		<div class="row">
 			<div class="<?php if(is_page_template( 'templates/interstitial.php' )) { echo 'large-12'; } else { echo 'medium-4'; } ?> columns site-branding">
-				<button class="menu-toggle"><i class="fa fa-bars"></i></button>
+				<?php
+					if(is_active_sidebar('sidebar-5'))
+						echo '<button class="menu-toggle"><i class="fa fa-bars"></i></button>';
+				?>
 				<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
 				<span class="site-description"><?php bloginfo( 'description' ); ?></span>
 			</div><!-- .column4 -->

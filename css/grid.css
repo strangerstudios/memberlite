@@ -1,15 +1,7 @@
-/*
-
-
-*/
-
 .row {
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 0;
-  margin-bottom: 0;
-  max-width: 73.125em; }
+  margin: 0 auto;
+  max-width: 73.125em;
+  width: 100%; }
   .row:before, .row:after {
     content: " ";
     display: table; }
@@ -23,21 +15,18 @@
     margin-left: 0;
     margin-right: 0; }
   .row .row {
-    width: auto;
-    margin-left: -1em;
-    margin-right: -1em;
-    margin-top: 0;
-    margin-bottom: 0;
-    max-width: none; }
+    margin: 0 -1em;
+    max-width: none;
+    width: auto; }
     .row .row:before, .row .row:after {
       content: " ";
       display: table; }
     .row .row:after {
       clear: both; }
     .row .row.collapse {
-      width: auto;
       margin: 0;
-      max-width: none; }
+      max-width: none;
+      width: auto; }
       .row .row.collapse:before, .row .row.collapse:after {
         content: " ";
         display: table; }
@@ -51,21 +40,28 @@
   width: 100%;
   float: left; }
 
-[class*="column"] + [class*="column"]:last-child {
+.column + .column:last-child,
+.columns + .column:last-child, .column +
+.columns:last-child,
+.columns +
+.columns:last-child {
   float: right; }
-
-[class*="column"] + [class*="column"].end {
+.column + .column.end,
+.columns + .column.end, .column +
+.columns.end,
+.columns +
+.columns.end {
   float: left; }
 
 @media only screen {
   .small-push-0 {
     position: relative;
-    left: 0%;
+    left: 0;
     right: auto; }
 
   .small-pull-0 {
     position: relative;
-    right: 0%;
+    right: 0;
     left: auto; }
 
   .small-push-1 {
@@ -222,7 +218,7 @@
     width: 100%; }
 
   .small-offset-0 {
-    margin-left: 0% !important; }
+    margin-left: 0 !important; }
 
   .small-offset-1 {
     margin-left: 8.33333% !important; }
@@ -258,11 +254,11 @@
     margin-left: 91.66667% !important; }
 
   .small-reset-order {
+    float: left;
+    left: auto;
     margin-left: 0;
     margin-right: 0;
-    left: auto;
-    right: auto;
-    float: left; }
+    right: auto; }
 
   .column.small-centered,
   .columns.small-centered {
@@ -272,9 +268,9 @@
 
   .column.small-uncentered,
   .columns.small-uncentered {
+    float: left;
     margin-left: 0;
-    margin-right: 0;
-    float: left; }
+    margin-right: 0; }
 
   .column.small-centered:last-child,
   .columns.small-centered:last-child {
@@ -286,16 +282,29 @@
 
   .column.small-uncentered.opposite,
   .columns.small-uncentered.opposite {
-    float: right; } }
-@media only screen and (min-width: 40.063em) {
+    float: right; }
+
+  .row.small-collapse > .column,
+  .row.small-collapse > .columns {
+    padding-left: 0;
+    padding-right: 0; }
+  .row.small-collapse .row {
+    margin-left: 0;
+    margin-right: 0; }
+  .row.small-uncollapse > .column,
+  .row.small-uncollapse > .columns {
+    padding-left: 1em;
+    padding-right: 1em;
+    float: left; } }
+@media only screen and (min-width: 40.0625em) {
   .medium-push-0 {
     position: relative;
-    left: 0%;
+    left: 0;
     right: auto; }
 
   .medium-pull-0 {
     position: relative;
-    right: 0%;
+    right: 0;
     left: auto; }
 
   .medium-push-1 {
@@ -452,7 +461,7 @@
     width: 100%; }
 
   .medium-offset-0 {
-    margin-left: 0% !important; }
+    margin-left: 0 !important; }
 
   .medium-offset-1 {
     margin-left: 8.33333% !important; }
@@ -488,11 +497,11 @@
     margin-left: 91.66667% !important; }
 
   .medium-reset-order {
+    float: left;
+    left: auto;
     margin-left: 0;
     margin-right: 0;
-    left: auto;
-    right: auto;
-    float: left; }
+    right: auto; }
 
   .column.medium-centered,
   .columns.medium-centered {
@@ -502,9 +511,9 @@
 
   .column.medium-uncentered,
   .columns.medium-uncentered {
+    float: left;
     margin-left: 0;
-    margin-right: 0;
-    float: left; }
+    margin-right: 0; }
 
   .column.medium-centered:last-child,
   .columns.medium-centered:last-child {
@@ -518,14 +527,27 @@
   .columns.medium-uncentered.opposite {
     float: right; }
 
+  .row.medium-collapse > .column,
+  .row.medium-collapse > .columns {
+    padding-left: 0;
+    padding-right: 0; }
+  .row.medium-collapse .row {
+    margin-left: 0;
+    margin-right: 0; }
+  .row.medium-uncollapse > .column,
+  .row.medium-uncollapse > .columns {
+    padding-left: 1em;
+    padding-right: 1em;
+    float: left; }
+
   .push-0 {
     position: relative;
-    left: 0%;
+    left: 0;
     right: auto; }
 
   .pull-0 {
     position: relative;
-    right: 0%;
+    right: 0;
     left: auto; }
 
   .push-1 {
@@ -637,15 +659,15 @@
     position: relative;
     right: 91.66667%;
     left: auto; } }
-@media only screen and (min-width: 64.063em) {
+@media only screen and (min-width: 64.0625em) {
   .large-push-0 {
     position: relative;
-    left: 0%;
+    left: 0;
     right: auto; }
 
   .large-pull-0 {
     position: relative;
-    right: 0%;
+    right: 0;
     left: auto; }
 
   .large-push-1 {
@@ -802,7 +824,7 @@
     width: 100%; }
 
   .large-offset-0 {
-    margin-left: 0% !important; }
+    margin-left: 0 !important; }
 
   .large-offset-1 {
     margin-left: 8.33333% !important; }
@@ -838,11 +860,11 @@
     margin-left: 91.66667% !important; }
 
   .large-reset-order {
+    float: left;
+    left: auto;
     margin-left: 0;
     margin-right: 0;
-    left: auto;
-    right: auto;
-    float: left; }
+    right: auto; }
 
   .column.large-centered,
   .columns.large-centered {
@@ -852,9 +874,9 @@
 
   .column.large-uncentered,
   .columns.large-uncentered {
+    float: left;
     margin-left: 0;
-    margin-right: 0;
-    float: left; }
+    margin-right: 0; }
 
   .column.large-centered:last-child,
   .columns.large-centered:last-child {
@@ -868,14 +890,27 @@
   .columns.large-uncentered.opposite {
     float: right; }
 
+  .row.large-collapse > .column,
+  .row.large-collapse > .columns {
+    padding-left: 0;
+    padding-right: 0; }
+  .row.large-collapse .row {
+    margin-left: 0;
+    margin-right: 0; }
+  .row.large-uncollapse > .column,
+  .row.large-uncollapse > .columns {
+    padding-left: 1em;
+    padding-right: 1em;
+    float: left; }
+
   .push-0 {
     position: relative;
-    left: 0%;
+    left: 0;
     right: auto; }
 
   .pull-0 {
     position: relative;
-    right: 0%;
+    right: 0;
     left: auto; }
 
   .push-1 {
