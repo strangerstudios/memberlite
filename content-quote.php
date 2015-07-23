@@ -1,6 +1,6 @@
 <?php
 /**
- * @package Member Lite 2.0
+ * @package Memberlite
  */
 ?>
 

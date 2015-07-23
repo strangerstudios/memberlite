@@ -4,10 +4,24 @@
  *
  * Contains the closing of the #content div and all content after
  *
- * @package Member Lite 2.0
+ * @package Memberlite
  */
 ?>
 		<?php if(!is_front_page() && !is_page_template('templates/fluid-width.php') && !is_page_template( 'templates/interstitial.php' )) { ?></div><!-- .row --><?php } ?>
+		<?php
+			global $post;
+			$memberlite_banner_bottom = get_post_meta($post->ID, '_memberlite_banner_bottom', true);
+			if(!empty($memberlite_banner_bottom))
+			{
+				?>
+				<div id="banner_bottom">
+					<div class="row"><div class="large-12 columns">
+						<?php echo apply_filters('the_content',$memberlite_banner_bottom); ?>
+					</div></div>
+				</div>
+				<?php
+			}
+		?>
 		<?php do_action('after_content'); ?>
 	</div><!-- #content -->
 	

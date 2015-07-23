@@ -2,7 +2,7 @@
 /**
  * The template for displaying search results pages.
  *
- * @package Member Lite 2.0
+ * @package Memberlite
  */
 get_header(); ?>
 	<section id="primary" class="medium-8 columns content-area">

@@ -4,7 +4,7 @@
  *
  * Displays all of the <head> section and everything up till <div id="content">
  *
- * @package Member Lite 2.0
+ * @package Memberlite
  */
 ?><!DOCTYPE html>
 <html <?php language_attributes(); ?>>
@@ -22,16 +22,26 @@
 <?php do_action('before_page'); ?>
 <div id="page" class="hfeed site">
 	<?php do_action('before_mobile_nav'); ?>
-	<nav id="mobile-navigation" class="mobile-navigation" role="navigation">
-		<?php dynamic_sidebar('sidebar-5'); ?>	
-	</nav>
+	<?php
+		if(is_active_sidebar('sidebar-5'))
+		{
+			?>
+			<nav id="mobile-navigation" class="mobile-navigation" role="navigation">
+				<?php dynamic_sidebar('sidebar-5'); ?>	
+			</nav>
+			<?php
+		}
+	?>
 	<?php do_action('after_mobile_nav'); ?>
 	<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'memberlite' ); ?></a>
 	<?php do_action('before_site_header'); ?>
 	<header id="masthead" class="site-header" role="banner">
 		<div class="row">
 			<div class="<?php if(is_page_template( 'templates/interstitial.php' )) { echo 'large-12'; } else { echo 'medium-4'; } ?> columns site-branding">
-				<button class="menu-toggle"><i class="fa fa-bars"></i></button>
+				<?php
+					if(is_active_sidebar('sidebar-5'))
+						echo '<button class="menu-toggle"><i class="fa fa-bars"></i></button>';
+				?>
 				<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
 				<span class="site-description"><?php bloginfo( 'description' ); ?></span>
 			</div><!-- .column4 -->
@@ -69,26 +79,17 @@
 												}
 											?>
 											</span>
-											<?php 	
-												$member_menu_defaults = array(
-													'theme_location' => 'member',
-													'container' => 'nav',
-													'container_id' => 'member-navigation',
-													'container_class' => 'member-navigation',
-													'fallback_cb' => false
-												);					
-												wp_nav_menu( $member_menu_defaults ); 
-											?>
-											<a href="<?php echo wp_logout_url( ); ?>"><?php _e( 'Log Out', 'memberlite' ); ?></a>
-											<?php 
-										} 
-										else 
-										{ 
-											?>
-											<a href="<?php echo wp_login_url(); ?>"><?php _e( 'Log In', 'memberlite' ); ?></a>
-											<a href="<?php echo wp_registration_url(); ?>"><?php _e( 'Register', 'memberlite' ); ?></a>
 											<?php
-										} 
+										}
+									
+										$member_menu_defaults = array(
+											'theme_location' => 'member',
+											'container' => 'nav',
+											'container_id' => 'member-navigation',
+											'container_class' => 'member-navigation',
+											'fallback_cb' => false
+										);					
+										wp_nav_menu( $member_menu_defaults ); 
 									?>
 									</aside>
 								</div><!-- #meta-member -->

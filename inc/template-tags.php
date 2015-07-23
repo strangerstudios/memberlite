@@ -4,7 +4,7 @@
  *
  * Eventually, some of the functionality here could be replaced by core features.
  *
- * @package Member Lite 2.0
+ * @package Memberlite
  */
 
 if ( ! function_exists( 'memberlite_paging_nav' ) ) :

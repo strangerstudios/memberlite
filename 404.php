@@ -2,7 +2,7 @@
 /**
  * The template for displaying 404 pages (not found).
  *
- * @package Member Lite 2.0
+ * @package Memberlite
  */
 get_header(); ?>
 <div id="primary" class="large-12 columns content-area">
