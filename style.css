@@ -344,7 +344,7 @@ th, .pmpro_checkout thead th {
 	font-weight: 400;
 	padding: 1rem;
 }
-thead th, #pmpro_account_loggedin {
+thead th {
 	background: #EFEFEF; 
 	border-top: 1px solid #CCC;
 	border-bottom: 1px solid #CCC;
@@ -382,7 +382,6 @@ input,
 select,
 textarea,
 a.comment-reply-link,
-a.more-link,
 a.pmpro_btn,
 .woocommerce #content input.button, .woocommerce #respond input#submit, .woocommerce a.button, .woocommerce button.button, .woocommerce input.button, .woocommerce-page #content input.button, .woocommerce-page #respond input#submit, .woocommerce-page a.button, .woocommerce-page button.button, .woocommerce-page input.button,
 .woocommerce #content input.button.alt, .woocommerce #respond input#submit.alt, .woocommerce a.button.alt, .woocommerce button.button.alt, .woocommerce input.button.alt, .woocommerce-page #content input.button.alt, .woocommerce-page #respond input#submit.alt, .woocommerce-page a.button.alt, .woocommerce-page button.button.alt, .woocommerce-page input.button.alt,
@@ -398,7 +397,6 @@ input[type="submit"],
 .btn,
 .btn:link,
 a.comment-reply-link,
-a.more-link,
 a.pmpro_btn,
 .pmpro_content_message a,
 .pmpro_content_message a:link,
@@ -472,8 +470,6 @@ input[type="submit"]:active,
 a.comment-reply-link:focus,
 a.comment-reply-link:active,
 a.comment-reply-link:hover,
-a.more-link:hover,
-a.more-link:active,
 a.pmpro_btn:active,
 .woocommerce #content input.button:hover, .woocommerce #respond input#submit:hover,
 .woocommerce a.button:hover, .woocommerce button.button:hover, .woocommerce input.button:hover,
@@ -572,7 +568,7 @@ textarea {
 /*--------------------------------------------------
 	Messages - Success, Error, Alert
 ----------------------------------------------------*/
-.pmpro_message, .pmpro_content_message {
+.pmpro_message, .pmpro_content_message, #pmpro_account_loggedin {
 	background-color: #d9edf7; 
 	-webkit-border-radius: 5px; 
 	-moz-border-radius: 5px; 
@@ -586,14 +582,12 @@ textarea {
 	margin: .5em 0; 
 	padding: 10px 15px; 
 }
-
 .pmpro_message.pmpro_default {background-color: #FAFAFA; color: #777; border-color: #DADADA; }
 .pmpro_success {background-color: #dff0d8; color: #3c763d; border-color: #d6e9c6; }
 .pmpro_error {background-color: #f2dede; color: #a94442; border-color: #ebccd1; }
-.pmpro_alert, .pmpro_content_message {background-color: #fcf8e3; color: #8a6d3b; border-color: #faebcc;}
-
+.pmpro_alert, .pmpro_content_message, #pmpro_account_loggedin {background-color: #fcf8e3; color: #8a6d3b; border-color: #faebcc;}
+.pmpro_message h2, .pmpro_message h3, .pmpro_message h4, .pmpro_message h5 {margin-top: 1rem; }
 .pmpro_content_message a {margin: 5px 5px 0 0; }
-
 .pmpro_message a {color: #245269; text-decoration: underline; }
 .pmpro_success a {color: #2b542c; }
 .pmpro_error a {color: #843534; }
@@ -608,7 +602,7 @@ select.pmpro_error {background-image: none;}
 
 
 /*--------------------------------------------------------------
-5.1 Links
+5.1 Links and Colors
 --------------------------------------------------------------*/
 a {
 	color: #2C3E50;
@@ -619,6 +613,14 @@ a:active {
 	color: #000;
 }
 
+.primary {color: #2C3E50; }
+.secondary {color: #18BC9C; }
+.action {color: #F39C12; }
+.info {color: #5bc0de; }
+.success {color: #5cb85c; }
+.error {color: #d9534f; }
+.alert {color: #f0ad4e; }
+.muted {color: #AAA; }
 /*--------------------------------------------------------------
 5.2 Menus
 --------------------------------------------------------------*/
@@ -742,6 +744,10 @@ a:active {
 .main-navigation ul li:hover > ul {
 	left: auto;
 }
+.main-navigation ul li:first-child:hover > ul {
+	left: -1.5rem;
+}
+
 .meta-navigation ul li:hover > ul, .header-right .widget_nav_menu ul li:hover > ul {
 	left: -.5rem;
 	top: 2.75rem;
@@ -749,7 +755,7 @@ a:active {
 .main-navigation ul ul li:hover > ul, .meta-navigation ul ul li:hover > ul, .header-right .widget_nav_menu  ul ul li:hover > ul {
 	left: 100%;
 }
-.main-navigation ul ul li:first-child a, .meta-navigation ul ul li:first-child a, .header-right .widget_nav_menu ul ul li:first-child a {
+.main-navigation ul ul li:first-child a, .main-navigation ul li:first-child ul li a, .meta-navigation ul ul li:first-child a, .header-right .widget_nav_menu ul ul li:first-child a {
 	padding-left: 1.5rem;
 }
 
@@ -1356,7 +1362,7 @@ a:active {
 	width: 80px; 
 	height: 80px;
 	border-radius:50%;
-	margin: -.5rem .5rem 0 -.5rem;
+	margin: -.5rem 1.5rem 0 -.5rem;
 }
 .hentry .post_author_avatar img {
 	border-radius: 50%;
@@ -1694,16 +1700,28 @@ a:active {
 	padding: .5rem;
 	margin: 0 0 1rem 0;
 }
-#pmpro_levels .medium-4 .pmpro_btn, #pmpro_levels .medium-3 .pmpro_btn, .pmpro_levels-table .pmpro_btn {
+#pmpro_levels .medium-4 .pmpro_btn, #pmpro_levels .medium-3 .pmpro_btn, .pmpro_levels-table .pmpro_btn, .pmpro_levels-compare_table .pmpro_btn {
 	display: block;
 }
-#pmpro_levels .pmpro_level-highlight, .memberlite_signup { box-shadow: 0px 5px 10px #AAA; padding: 1rem; background: #FFF; z-index: 100; border-top: .5rem solid #18BC9C; border-bottom: 1.5rem solid #18BC9C; border-left: 1px solid #CCC; border-right: 1px solid #CCC; }
+#pmpro_levels .pmpro_levels-table.pmpro_level-highlight, #pmpro_levels .pmpro_levels-2col .pmpro_level-highlight, #pmpro_levels .pmpro_levels-3col .pmpro_level-highlight, #pmpro_levels .pmpro_levels-4col .pmpro_level-highlight, .memberlite_signup { box-shadow: 0px 5px 10px #AAA; padding: 1rem; background: #FFF; z-index: 100; border-top: .5rem solid #18BC9C; border-bottom: 1.5rem solid #18BC9C; border-left: 1px solid #CCC; border-right: 1px solid #CCC; }
 #pmpro_levels.pmpro_levels-2col .pmpro_level-highlight, #pmpro_levels.pmpro_levels-3col .pmpro_level-highlight, #pmpro_levels.pmpro_levels-4col .pmpro_level-highlight {margin-top: -1.5rem; }
 
 #pmpro_levels_table td, #pmpro_levels.pmpro_levels-table td {vertical-align: middle; }
 
 #pmpro_levels.pmpro_levels-table .pmpro_level-highlight td:first-child {border-left: 15px solid #18BC9C }
 #pmpro_levels.pmpro_levels-table .pmpro_level-highlight td:last-child {border-right: 15px solid #18BC9C }
+
+#pmpro_levels.pmpro_levels-compare_table .pmpro_level-highlight {border: none;  }
+#pmpro_levels.pmpro_levels-compare_table th, #pmpro_levels.pmpro_levels-compare_table td {padding: 1rem 2rem; text-align: center; }
+#pmpro_levels.pmpro_levels-compare_table thead th {border: none; padding-top: 0; text-align: center; }
+#pmpro_levels.pmpro_levels-compare_table thead th h2 {margin-bottom: 0; }
+#pmpro_levels.pmpro_levels-compare_table thead th:first-child, #pmpro_levels.pmpro_levels-compare_table tfoot td:first-child {background: none; border: none; text-indent: -9999em; width: 20%; }
+#pmpro_levels.pmpro_levels-compare_table thead tr th:nth-child(even) {background: rgba(0,0,0,0.1); }
+#pmpro_levels.pmpro_levels-compare_table tbody td {vertical-align: middle; }
+#pmpro_levels.pmpro_levels-compare_table tbody td:first-child {text-align: right; }
+#pmpro_levels.pmpro_levels-compare_table tbody tr:first-child td {border-top: 5px solid #CCC; } 
+#pmpro_levels.pmpro_levels-compare_table tbody tr:last-child td {border-bottom: 5px solid #CCC; }
+
 
 .pmpro_levels-3col .pmpro_level-price, .pmpro_levels-4col .pmpro_level-price {font-size: 24px; font-size: 2.4rem; }
 .pmpro_levels-3col .pmpro_level-subprice, .pmpro_levels-4col .pmpro_level-subprice {display: block; font-size: 14px; font-size: 1.4rem; }
@@ -1724,6 +1742,7 @@ form.pmpro_form label {font-weight: 400; }
 form.pmpro_form thead th span.pmpro_thead-msg {font-family: 'Lato', sans-serif; font-weight: normal; }
 form.pmpro_form tbody td {padding: 1rem; }
 form.pmpro_form .pmpro_submit {padding: 0 1rem; }
+form.pmpro_form textarea {width:75%; }
 
 #pmpro_account .pmpro_box {padding: 3rem 0 0 0; margin: 0 0 3rem 0; border-bottom: none; border-top: 1px dotted #CCC; }
 #pmpro_account #pmpro_account-membership .pmpro_actionlinks {text-align: center; }

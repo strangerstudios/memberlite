@@ -137,16 +137,6 @@ function memberlite_get_link_url() {
 }
 
 /**
- * The Read More link
- *
- *
- */
-function new_excerpt_more( $more ) {
-	return '...';
-}
-add_filter( 'excerpt_more', 'new_excerpt_more' );
-
-/**
  * Some content filters for excerpts on pages - used in Theme Templates
  *
  *
@@ -330,15 +320,17 @@ function memberlite_page_title() {
 	}
 	elseif(is_page_template('templates/landing.php'))
 	{
-		global $landing_page_level, $checkout_button;
-		$level = pmpro_getLevel($landing_page_level);
+		global $memberlite_landing_page_level, $memberlite_banner_desc, $memberlite_landing_page_checkout_button;
 		the_post_thumbnail( 'medium', array( 'class' => 'alignleft' ) );
 		the_title( '<h1 class="entry-title">', '</h1>' );
-		echo '<p class="pmpro_level-price">' . memberlite_getLevelCost($level, true, true) . '</p>';
-		echo wpautop($level->description);
-		?>
-		<a class="pmpro_btn pmpro_btn-select" href="<?php echo pmpro_url("checkout", "?level=" . $level->id, "https")?>"><?php echo $checkout_button; ?></a>
-		<?php
+		if(defined('PMPRO_VERSION'))
+		{
+			$level = pmpro_getLevel($memberlite_landing_page_level);
+			echo '<p class="pmpro_level-price">' . memberlite_getLevelCost($level, true, true) . '</p>';
+			if(empty($memberlite_banner_desc))
+				echo wpautop($level->description);
+			echo '<p>' . do_shortcode('[memberlite_btn style="action" href="' . pmpro_url('checkout','?level=' . $memberlite_landing_page_level,'https') . '" text="' . $memberlite_landing_page_checkout_button . '"]') . '</p>';
+		}
 	}	
 	else
 	{

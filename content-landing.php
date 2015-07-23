@@ -11,8 +11,9 @@
 		<?php the_content(); ?>
 		
 		<?php
-			$landing_page_level = get_post_meta($post->ID,'landing_page_level',true);
-			echo do_shortcode('[pmpro_button level="' . $landing_page_level . '"]'); 
+			global $memberlite_landing_page_level, $memberlite_landing_page_checkout_button;
+			if(defined('PMPRO_VERSION'))
+				echo do_shortcode('[memberlite_btn style="action" href="' . pmpro_url('checkout','?level=' . $memberlite_landing_page_level,'https') . '" text="' . $memberlite_landing_page_checkout_button . '"]');
 		?>
 
 		<?php

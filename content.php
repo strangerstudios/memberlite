@@ -45,7 +45,7 @@ global $memberlite_defaults;
 			if($content_archives == 'excerpt')
 				the_excerpt();
 			else
-				the_content( __( 'Continue Reading', 'memberlite' ) ); 
+				the_content(); 
 		?>
 		<?php
 			wp_link_pages( array(

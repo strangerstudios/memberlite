@@ -206,35 +206,78 @@ add_action('add_meta_boxes', 'memberlite_settings_add_meta_box');
 /* Meta box for Memberlite settings */
 function memberlite_settings_meta_box_callback($post) {
 	wp_nonce_field('memberlite_settings_meta_box', 'memberlite_settings_meta_box_nonce');
+	$memberlite_page_template = get_post_meta($post->ID, '_wp_page_template', true);
 	$memberlite_banner_desc = get_post_meta($post->ID, '_memberlite_banner_desc', true);
 	$memberlite_banner_right = get_post_meta($post->ID, '_memberlite_banner_right', true);
 	$memberlite_banner_bottom = get_post_meta($post->ID, '_memberlite_banner_bottom', true);
-	echo '<p><strong>' . __('Banner Description', 'memberlite') . '</strong></p>';
-	echo '<p>Shown in the masthead banner below the page title.</p>';	
+	$memberlite_landing_page_checkout_button = get_post_meta($post->ID, '_memberlite_landing_page_checkout_button', true);
+	$memberlite_landing_page_level = get_post_meta($post->ID, '_memberlite_landing_page_level', true);
+	$memberlite_landing_page_upsell = get_post_meta($post->ID, '_memberlite_landing_page_upsell', true);
+	echo '<h2>' . __('Page Banner Settings', 'memberlite') . '</h2>';
+	echo '<p style="margin: 1rem 0 0 0;"><strong>' . __('Banner Description', 'memberlite') . '</strong> <em>Shown in the masthead banner below the page title.</em>';
+	if($memberlite_page_template == 'templates/landing.php')
+		echo ' <em>Leave blank to show landing page level description as banner description.</em>';
+	echo '</p>';
 	echo '<label class="screen-reader-text" for="memberlite_banner_desc">';
 	_e('Banner Description', 'memberlite');
 	echo '</label>';
-	echo '<textarea class="large-text" rows="5" id="memberlite_banner_desc" name="memberlite_banner_desc">';
+	echo '<textarea class="large-text" rows="3" id="memberlite_banner_desc" name="memberlite_banner_desc">';
 		echo $memberlite_banner_desc;
-	echo '</textarea>';	
-	echo '<hr />';
-	echo '<p style="margin: 0;"><strong>' . __('Banner Right Column', 'memberlite') . '</strong></p>';
-	echo '<p>Right side of the masthead banner. (i.e. Video Embed, Image or Action Button)</p>';	
+	echo '</textarea>';		
+	echo '<p style="margin: 1rem 0 0 0;"><strong>' . __('Banner Right Column', 'memberlite') . '</strong> <em>Right side of the masthead banner. (i.e. Video Embed, Image or Action Button)</em></p>';
 	echo '<label class="screen-reader-text" for="memberlite_banner_right">';
 	_e('Banner Right Column', 'memberlite');
 	echo '</label> ';
-	echo '<textarea class="large-text" rows="5" id="memberlite_banner_right" name="memberlite_banner_right">';
+	echo '<textarea class="large-text" rows="3" id="memberlite_banner_right" name="memberlite_banner_right">';
 		echo $memberlite_banner_right;
 	echo '</textarea>';
-	echo '<hr />';
-	echo '<p style="margin: 0;"><strong>' . __('Page Bottom Banner', 'memberlite') . '</strong></p>';
-	echo '<p>Banner shown above footer on pages. (i.e. call to action)</p>';	
+	echo '<p style="margin: 1rem 0 0 0;"><strong>' . __('Page Bottom Banner', 'memberlite') . '</strong> <em>Banner shown above footer on pages. (i.e. call to action)</em></p>';	
 	echo '<label class="screen-reader-text" for="memberlite_banner_bottom">';
 	_e('Page Bottom Banner', 'memberlite');
 	echo '</label> ';
-	echo '<textarea class="large-text" rows="5" id="memberlite_banner_bottom" name="memberlite_banner_bottom">';
+	echo '<textarea class="large-text" rows="3" id="memberlite_banner_bottom" name="memberlite_banner_bottom">';
 		echo $memberlite_banner_bottom;
 	echo '</textarea>';
+	if(($memberlite_page_template == 'templates/landing.php') && function_exists('pmpro_getAllLevels'))
+	{
+		echo '<hr />';
+		echo '<h2>' . __('Landing Page Settings', 'memberlite') . '</h2>';
+		$membership_levels = pmpro_getAllLevels();
+		if(empty($membership_levels))
+			echo '<div class="inline notice error"><p><a href="' . admin_url('admin.php?page=pmpro-membershiplevels') . '">Add a Membership Level to Use These Landing Page Features &raquo;</a></p>';
+		else
+		{
+			echo '<table class="form-table"><tbody>';
+			echo '<tr><th scope="row">' . __('Membership Level', 'memberlite') . '</th>';
+			echo '<td><label class="screen-reader-text" for="memberlite_landing_page_level">';
+				_e('Landing Page Membership Level', 'memberlite');
+			echo '</label> ';
+			echo '<select id="memberlite_landing_page_level" name="memberlite_landing_page_level">';
+			echo '<option value="blank" ' . selected( $memberlite_landing_page_level, "blank" ) . '>- Select -</option>';
+			foreach($membership_levels as $level)
+			{			
+				echo '<option value="' . $level->id . '"' . selected( $memberlite_landing_page_level, $level->id ) . '>' . $level->name . '</option>';
+			}
+			echo '</select></td></tr>';	
+			echo '<tr><th scope="row">' . __('Checkout Button Text', 'memberlite') . '</th>';
+			echo '<td><label class="screen-reader-text" for="memberlite_landing_page_checkout_button">';
+				_e('Checkout Button Text', 'memberlite');
+			echo '</label> ';
+			echo '<input type="text" id="memberlite_landing_page_checkout_button" name="memberlite_landing_page_checkout_button" value="' . $memberlite_landing_page_checkout_button . '"> <em>(default: "Select")</em></td></tr>';
+			echo '<tr><th scope="row">' . __('Membership Level Upsell', 'memberlite') . '</th>';
+			echo '<td><label class="screen-reader-text" for="memberlite_landing_page_upsell">';
+				_e('Landing Page Membership Level Upsell', 'memberlite');
+			echo '</label> ';
+			echo '<select id="memberlite_landing_page_upsell" name="memberlite_landing_page_upsell">';
+			echo '<option value="blank" ' . selected( $memberlite_landing_page_upsell, "blank" ) . '>- Select -</option>';
+			foreach($membership_levels as $level)
+			{			
+				echo '<option value="' . $level->id . '"' . selected( $memberlite_landing_page_upsell, $level->id ) . '>' . $level->name . '</option>';
+			}
+			echo '</select></td></tr>';
+			echo '</tbody></table>';
+		}
+	}
 }
 
 /* Save custom sidebar selection */
@@ -263,25 +306,40 @@ function memberlite_settings_save_meta_box_data($post_id) {
 	if(!isset($_POST['memberlite_banner_desc'])) {
 		return;
 	}
-	//$memberlite_banner_desc = sanitize_text_field($_POST['memberlite_banner_desc']);
 	$memberlite_banner_desc = $_POST['memberlite_banner_desc'];
 	
 	if(!isset($_POST['memberlite_banner_right'])) {
 		return;
 	}
-	//$memberlite_banner_right = sanitize_text_field($_POST['memberlite_banner_right']);
 	$memberlite_banner_right = $_POST['memberlite_banner_right'];
 
 	if(!isset($_POST['memberlite_banner_bottom'])) {
 		return;
 	}
-	//$memberlite_banner_bottom = sanitize_text_field($_POST['memberlite_banner_bottom']);
 	$memberlite_banner_bottom = $_POST['memberlite_banner_bottom'];
+
+	if(!isset($_POST['memberlite_landing_page_level'])) {
+		return;
+	}
+	$memberlite_landing_page_level = $_POST['memberlite_landing_page_level'];
+
+	if(!isset($_POST['memberlite_landing_page_checkout_button'])) {
+		return;
+	}
+	$memberlite_landing_page_checkout_button = $_POST['memberlite_landing_page_checkout_button'];
+
+	if(!isset($_POST['memberlite_landing_page_upsell'])) {
+		return;
+	}
+	$memberlite_landing_page_upsell = $_POST['memberlite_landing_page_upsell'];
 
 	// Update the meta field in the database.
 	update_post_meta($post_id, '_memberlite_banner_desc', $memberlite_banner_desc);
 	update_post_meta($post_id, '_memberlite_banner_right', $memberlite_banner_right);
 	update_post_meta($post_id, '_memberlite_banner_bottom', $memberlite_banner_bottom);
+	update_post_meta($post_id, '_memberlite_landing_page_level', $memberlite_landing_page_level);
+	update_post_meta($post_id, '_memberlite_landing_page_checkout_button', $memberlite_landing_page_checkout_button);
+	update_post_meta($post_id, '_memberlite_landing_page_upsell', $memberlite_landing_page_upsell);
 }
 add_action('save_post', 'memberlite_settings_save_meta_box_data');
 
