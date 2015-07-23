@@ -513,6 +513,9 @@ a.pmpro_btn:hover, .entry-footer a.pmpro_btn:hover, input[type="submit"].pmpro_b
 	text-shadow: none;
 }
 .btn_link:hover {text-decoration: underline; }
+.btn_primary, .btn_primary:link {background: #2C3E50; }
+.btn_secondary, .btn_secondary:link {background: #18BC9C; }
+.btn_action, .btn_action:link {background: #F39C12; }
 .btn_block, .btn_block:link {display: block; }
 .btn .fa {padding: 0 .5rem; }
 
