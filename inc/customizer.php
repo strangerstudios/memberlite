@@ -25,7 +25,7 @@ $memberlite_defaults = array(
 	'color_action' => '#F39C12',
 	'color_link_color_elements' => '#primary a',
 	'color_meta_link_color_elements' => '#meta-navigation a',
-	'color_primary_background_elements' => '#mobile-navigation, #mobile-navigation-height-col, .masthead, .footer-widgets, .btn_primary',
+	'color_primary_background_elements' => '#mobile-navigation, #mobile-navigation-height-col, .masthead, .footer-widgets, .btn_primary, .btn_primary:link',
 	'color_primary_color_elements' => '.site-header .site-title a, .main-navigation li:hover > a, #secondary .widget a:hover, .primary',
 	'color_secondary_background_elements' => '#meta-member aside, #meta-member .member-navigation ul ul, a.pmpro_btn:hover, input[type="submit"].pmpro_btn:hover, .btn_secondary, .btn_secondary:link, .btn_primary:hover, .pmpro_content_message a:hover, .woocommerce button.button.alt:hover, .woocommerce input.button.alt:hover, .woocommerce-page #content input.button.alt:hover, .woocommerce-page #respond input#submit.alt:hover, .woocommerce-page a.button.alt:hover, .woocommerce-page button.button.alt:hover, .woocommerce-page input.button.alt:hover, #banner_bottom',
 	'color_secondary_border_elements' => '#pmpro_levels .pmpro_level-highlight, .memberlite_signup',
