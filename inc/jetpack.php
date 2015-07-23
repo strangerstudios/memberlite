@@ -3,7 +3,7 @@
  * Jetpack Compatibility File
  * See: http://jetpack.me/
  *
- * @package Member Lite 2.0
+ * @package Memberlite
  */
 
 /**

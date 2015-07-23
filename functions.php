@@ -1,9 +1,11 @@
 <?php
 /**
- * Member Lite 2.0 functions and definitions
+ * Memberlite functions and definitions
  *
- * @package Member Lite 2.0
+ * @package Memberlite
  */
+
+define('MEMBERLITE_VERSION', '2.0');
 
 //enqueue additional stylesheets and javascript
 function memberlite_init_styles()
@@ -12,17 +14,12 @@ function memberlite_init_styles()
 	wp_enqueue_script('jquery');
 	
 	//framework stuff
-	wp_enqueue_style('memberlite_grid', get_template_directory_uri() . "/css/grid.css", NULL, NULL, "all");
-	wp_enqueue_style('memberlite_style', get_stylesheet_uri(), NULL, "6.7");
-	wp_enqueue_style('memberlite_fontawesome', get_template_directory_uri() . "/font-awesome/css/font-awesome.min.css", array(), "4.1.0", "all");
-	
-	//styles
-	wp_enqueue_style('memberlite-style', get_template_directory_uri() . '/style.css');
-	wp_enqueue_script('memberlite-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20120206', true);
-	
-	//script
-	wp_enqueue_script('memberlite-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20130115', true);
-
+	wp_enqueue_style('memberlite_grid', get_template_directory_uri() . "/css/grid.css", array(), MEMBERLITE_VERSION);
+	wp_enqueue_style('memberlite_style', get_stylesheet_uri(), array(), MEMBERLITE_VERSION);
+	wp_enqueue_style('memberlite_print_style', get_template_directory_uri() . "/css/print.css", array(), MEMBERLITE_VERSION, "print");
+	wp_enqueue_style('memberlite_fontawesome', get_template_directory_uri() . "/font-awesome/css/font-awesome.min.css", array(), "4.3.0");
+	wp_enqueue_script('memberlite-navigation', get_template_directory_uri() . '/js/navigation.js', array( 'jquery' ), MEMBERLITE_VERSION, true);
+	wp_enqueue_script('memberlite-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array( 'jquery' ), MEMBERLITE_VERSION, true);
 	//comments JS on single pages only
 	if ( is_singular() && comments_open() && get_option('thread_comments')) {
 		wp_enqueue_script('comment-reply');
@@ -35,7 +32,7 @@ add_action("wp_enqueue_scripts", "memberlite_init_styles");
 function memberlite_load_fonts()
 {
 	global $memberlite_defaults;
-	wp_register_style('googleFonts', '//fonts.googleapis.com/css?family=' . str_replace('_','|',str_replace('-','+',get_theme_mod('memberlite_webfonts',$memberlite_defaults['memberlite_webfonts']))));
+	wp_register_style('googleFonts', '//fonts.googleapis.com/css?family=' . str_replace('_',':400,700|',str_replace('-','+',get_theme_mod('memberlite_webfonts',$memberlite_defaults['memberlite_webfonts']))) . ':400,700');
 	wp_enqueue_style('googleFonts');
 }
 add_action('wp_print_styles', 'memberlite_load_fonts');
@@ -43,7 +40,7 @@ add_action('wp_print_styles', 'memberlite_load_fonts');
 /* Set the content width based on the theme's design and stylesheet.
  */
 if(!isset($content_width)) {
-	$content_width = 748; /* pixels */
+	$content_width = 701; /* pixels */
 }
 
 if(!function_exists('memberlite_setup')) :
@@ -58,7 +55,7 @@ function memberlite_setup() {
 	/*
 	 * Make theme available for translation.
 	 * Translations can be filed in the /languages/ directory.
-	 * If you're building a theme based on Member Lite 2.0, use a find and replace
+	 * If you're building a theme based on Memberlite, use a find and replace
 	 * to change 'memberlite' to the name of your theme in all the template files
 	 */
 	load_theme_textdomain('memberlite', get_template_directory() . '/languages');
@@ -72,9 +69,10 @@ function memberlite_setup() {
 	 * @link http://codex.wordpress.org/Function_Reference/add_theme_support#Post_Thumbnails
 	 */
 	add_theme_support('post-thumbnails');
+	set_post_thumbnail_size( 150, 150, true );
 	add_image_size('mini', 80, 80, true, array('center','center'));
 	add_image_size('banner', 740, 200, true, array('center','center'));
-	add_image_size('large', 748, 9999, true, array('center','center'));
+	add_image_size('large', 701, 1200, false, array('center','center'));
 	add_image_size('masthead', 1600, 300, true, array('center','center'));
 	
 	// This theme uses wp_nav_menu() in one location.
@@ -174,13 +172,28 @@ function memberlite_widgets_init() {
 }
 add_action('widgets_init', 'memberlite_widgets_init');
 
-/* Adds a Member Lite settings meta box to the side column on the Page edit screens. */
+/* Adds a Log Out link in member menu */
+function memberlite_member_menu( $items, $args ) {
+	if ($args->theme_location == 'member') {
+		if (is_user_logged_in())
+			$items .= '<li><a href="'. wp_logout_url() .'">' . __('Log Out','memberlite') . '</a></li>';
+		else
+		{
+			$items = '<li><a href="'. wp_login_url() .'">' . __('Log In','memberlite') . '</a></li>';	  
+			$items .= '<li><a href="'. wp_registration_url() .'">' . __('Register','memberlite') . '</a></li>';	  
+		}
+	}
+	return $items;
+}
+add_filter( 'wp_nav_menu_items', 'memberlite_member_menu', 10, 2 );
+
+/* Adds a Memberlite settings meta box to the side column on the Page edit screens. */
 function memberlite_settings_add_meta_box() {
 	$screens = array('page');
 	foreach ($screens as $screen) {
 		add_meta_box(
 			'memberlite_settings_section',
-			__('Member Lite Settings', 'memberlite'),
+			__('Memberlite Settings', 'memberlite'),
 			'memberlite_settings_meta_box_callback',
 			$screen,
 			'normal',
@@ -190,11 +203,12 @@ function memberlite_settings_add_meta_box() {
 }
 add_action('add_meta_boxes', 'memberlite_settings_add_meta_box');
 
-/* Meta box for Member Lite settings */
+/* Meta box for Memberlite settings */
 function memberlite_settings_meta_box_callback($post) {
 	wp_nonce_field('memberlite_settings_meta_box', 'memberlite_settings_meta_box_nonce');
 	$memberlite_banner_desc = get_post_meta($post->ID, '_memberlite_banner_desc', true);
 	$memberlite_banner_right = get_post_meta($post->ID, '_memberlite_banner_right', true);
+	$memberlite_banner_bottom = get_post_meta($post->ID, '_memberlite_banner_bottom', true);
 	echo '<p><strong>' . __('Banner Description', 'memberlite') . '</strong></p>';
 	echo '<p>Shown in the masthead banner below the page title.</p>';	
 	echo '<label class="screen-reader-text" for="memberlite_banner_desc">';
@@ -211,6 +225,15 @@ function memberlite_settings_meta_box_callback($post) {
 	echo '</label> ';
 	echo '<textarea class="large-text" rows="5" id="memberlite_banner_right" name="memberlite_banner_right">';
 		echo $memberlite_banner_right;
+	echo '</textarea>';
+	echo '<hr />';
+	echo '<p style="margin: 0;"><strong>' . __('Page Bottom Banner', 'memberlite') . '</strong></p>';
+	echo '<p>Banner shown above footer on pages. (i.e. call to action)</p>';	
+	echo '<label class="screen-reader-text" for="memberlite_banner_bottom">';
+	_e('Page Bottom Banner', 'memberlite');
+	echo '</label> ';
+	echo '<textarea class="large-text" rows="5" id="memberlite_banner_bottom" name="memberlite_banner_bottom">';
+		echo $memberlite_banner_bottom;
 	echo '</textarea>';
 }
 
@@ -240,16 +263,25 @@ function memberlite_settings_save_meta_box_data($post_id) {
 	if(!isset($_POST['memberlite_banner_desc'])) {
 		return;
 	}
-	$memberlite_banner_desc = sanitize_text_field($_POST['memberlite_banner_desc']);
+	//$memberlite_banner_desc = sanitize_text_field($_POST['memberlite_banner_desc']);
+	$memberlite_banner_desc = $_POST['memberlite_banner_desc'];
 	
 	if(!isset($_POST['memberlite_banner_right'])) {
 		return;
 	}
-	$memberlite_banner_right = sanitize_text_field($_POST['memberlite_banner_right']);
+	//$memberlite_banner_right = sanitize_text_field($_POST['memberlite_banner_right']);
+	$memberlite_banner_right = $_POST['memberlite_banner_right'];
+
+	if(!isset($_POST['memberlite_banner_bottom'])) {
+		return;
+	}
+	//$memberlite_banner_bottom = sanitize_text_field($_POST['memberlite_banner_bottom']);
+	$memberlite_banner_bottom = $_POST['memberlite_banner_bottom'];
 
 	// Update the meta field in the database.
 	update_post_meta($post_id, '_memberlite_banner_desc', $memberlite_banner_desc);
 	update_post_meta($post_id, '_memberlite_banner_right', $memberlite_banner_right);
+	update_post_meta($post_id, '_memberlite_banner_bottom', $memberlite_banner_bottom);
 }
 add_action('save_post', 'memberlite_settings_save_meta_box_data');
 
@@ -286,6 +318,7 @@ function memberlite_sidebar_meta_box_callback($post) {
 	{
 		echo '<option value="' . $wp_registered_sidebar['id'] . '"' . selected( $memberlite_custom_sidebar, $wp_registered_sidebar['id'] ) . '>' . $wp_registered_sidebar['name'] . '</option>';
 	}
+		echo '<option value="memberlite_sidebar_blank"' . selected( $memberlite_custom_sidebar, 'memberlite_sidebar_blank' ) . '>- Hide Sidebar -</option>';
 	echo '</select>';	
 	echo '<hr />';
 	echo '<p><strong>' . __('Default Sidebar Behavior', 'memberlite') . '</strong></p>';

@@ -12,7 +12,7 @@
 	<?php endif; // End header image check. ?>
 
  *
- * @package Member Lite 2.0
+ * @package Memberlite
  */
 
 /**

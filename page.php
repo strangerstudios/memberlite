@@ -7,7 +7,7 @@
  * and that other 'pages' on your WordPress site will use a
  * different template.
  *
- * @package Member Lite 2.0
+ * @package Memberlite
  */
 
 get_header(); ?>

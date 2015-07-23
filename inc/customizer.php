@@ -1,8 +1,8 @@
 <?php
 /**
- * Member Lite 2.0 Theme Customizer
+ * Memberlite Theme Customizer
  *
- * @package Member Lite 2.0
+ * @package Memberlite
  */
 
 /**
@@ -17,7 +17,7 @@ $memberlite_defaults = array(
 	'content_archives' => 'content',
 	'memberlite_loop_images' => 'show_both',
 	'memberlite_footerwidgets' => '4',
-	'copyright_textbox' => '<a href="http://wordpress.org/" rel="license">Proudly powered by WordPress</a><span class="sep"> | </span>Theme: Member Lite by <a href="http://paidmembershipspro.com" rel="license">Kim Coleman</a>',
+	'copyright_textbox' => '<a href="http://wordpress.org/" rel="license">Proudly powered by WordPress</a><span class="sep"> | </span>Theme: Memberlite by <a href="http://paidmembershipspro.com" rel="license">Kim Coleman</a>',
 	'color_link' => '#2C3E50',
 	'color_meta_link' => '#2C3E50',
 	'color_primary' => '#2C3E50',
@@ -25,9 +25,9 @@ $memberlite_defaults = array(
 	'color_action' => '#F39C12',
 	'color_link_color_elements' => '#primary a',
 	'color_meta_link_color_elements' => '#meta-navigation a',
-	'color_primary_background_elements' => '#mobile-navigation, .masthead, .footer-widgets, .btn_primary, .btn_secondary:hover',
+	'color_primary_background_elements' => '#mobile-navigation, #mobile-navigation-height-col, .masthead, .footer-widgets, .btn_primary, .btn_primary:link',
 	'color_primary_color_elements' => '.site-header .site-title a, .main-navigation li:hover > a, #secondary .widget a:hover, .primary',
-	'color_secondary_background_elements' => '#meta-member aside, #meta-member .member-navigation ul ul, a.pmpro_btn:hover, input[type="submit"].pmpro_btn:hover, .btn_secondary, .btn_secondary:link, .btn_primary:hover, .btn_action:hover, .pmpro_content_message a:hover, .woocommerce button.button.alt:hover, .woocommerce input.button.alt:hover, .woocommerce-page #content input.button.alt:hover, .woocommerce-page #respond input#submit.alt:hover, .woocommerce-page a.button.alt:hover, .woocommerce-page button.button.alt:hover, .woocommerce-page input.button.alt:hover',
+	'color_secondary_background_elements' => '#meta-member aside, #meta-member .member-navigation ul ul, a.pmpro_btn:hover, input[type="submit"].pmpro_btn:hover, .btn_secondary, .btn_secondary:link, .btn_primary:hover, .pmpro_content_message a:hover, .woocommerce button.button.alt:hover, .woocommerce input.button.alt:hover, .woocommerce-page #content input.button.alt:hover, .woocommerce-page #respond input#submit.alt:hover, .woocommerce-page a.button.alt:hover, .woocommerce-page button.button.alt:hover, .woocommerce-page input.button.alt:hover, #banner_bottom',
 	'color_secondary_border_elements' => '#pmpro_levels .pmpro_level-highlight, .memberlite_signup',
 	'color_secondary_color_elements' => 'a:hover, .woocommerce ul.products li.product .price, .woocommerce-page ul.products li.product .price, .woocommerce #content div.product p.price, .woocommerce #content div.product span.price, .woocommerce div.product p.price, .woocommerce div.product span.price, .woocommerce-page #content div.product p.price, .woocommerce-page #content div.product span.price, .woocommerce-page div.product p.price, .woocommerce-page div.product span.price, .secondary',
 	'color_action_background_elements' => '.btn_action, .btn_action:link, .pmpro_content_message a, .pmpro_content_message a:link, .pmpro_btn, .pmpro_btn:link, .pmpro_btn:visited, input[type=button].pmpro_btn, input[type=submit].pmpro_btn, .woocommerce #content input.button.alt, .woocommerce #respond input#submit.alt, .woocommerce a.button.alt, .woocommerce button.button.alt, .woocommerce input.button.alt, .woocommerce-page #content input.button.alt, .woocommerce-page #respond input#submit.alt, .woocommerce-page a.button.alt, .woocommerce-page button.button.alt, .woocommerce-page input.button.alt',
@@ -283,6 +283,28 @@ class memberlite_Customize {
 			)
 		);
 		$wp_customize->add_setting(
+			'memberlite_color_scheme',
+			array(
+				'default' => $memberlite_defaults['memberlite_color_scheme'],
+				'type' => 'theme_mod',
+				'capability' => 'edit_theme_options',
+				'transport' => 'refresh',
+			)
+		);
+		$wp_customize->add_control(
+			'memberlite_color_scheme',
+			array(
+				'label' => 'Color Scheme',
+				'section' => 'colors',
+				'type'       => 'select',
+				'choices'    => array(
+					'default' => 'Default',
+					'pmpro' => 'PMPro',
+				),
+				'priority' => 1
+			)
+		);
+		$wp_customize->add_setting(
 			'color_link',
 			array(
 				'default' => $memberlite_defaults['color_link'],
@@ -399,6 +421,8 @@ class memberlite_Customize {
 			<?php self::generate_css($memberlite_defaults['color_secondary_color_elements'], 'color', 'color_secondary'); ?>
 			<?php self::generate_css($memberlite_defaults['color_action_background_elements'], 'background', 'color_action'); ?>
 			<?php self::generate_css($memberlite_defaults['color_action_color_elements'], 'color', 'color_action'); ?>
+			<?php self::generate_css('.btn_secondary:hover', 'background', 'color_primary'); ?>
+			<?php self::generate_css('.btn_action:hover', 'background', 'color_secondary'); ?>
 			<?php self::generate_css('#site-title a', 'color', 'header_textcolor', '#'); ?> 
 			<?php self::generate_css('body', 'background-color', 'background_color', '#'); ?> 
 			<?php 
@@ -413,7 +437,7 @@ class memberlite_Customize {
 				$body_font = str_replace("-", " ", $fonts[1]);	
 			?>
 			<?php echo 'body, button, input[type="button"], input[type="reset"], input[type="submit"], .btn, a.comment-reply-link, a.more-link, a.pmpro_btn, input[type="submit"].pmpro_btn, .woocommerce #content input.button, .woocommerce #respond input#submit, .woocommerce a.button, .woocommerce button.button, .woocommerce input.button, .woocommerce-page #content input.button, .woocommerce-page #respond input#submit, .woocommerce-page a.button, .woocommerce-page button.button, .woocommerce-page input.button, .woocommerce #content input.button.alt, .woocommerce #respond input#submit.alt, .woocommerce a.button.alt, .woocommerce button.button.alt, .woocommerce input.button.alt, .woocommerce-page #content input.button.alt, .woocommerce-page #respond input#submit.alt, .woocommerce-page a.button.alt, .woocommerce-page button.button.alt, .woocommerce-page input.button.alt, form.pmpro_form thead th span.pmpro_thead-msg {font-family: "' . $body_font . '", sans-serif; }'; ?>
-			<?php echo 'h1, h2, h3, h4, h5, h6, label, .navigation, th, .pmpro_checkout thead th, #pmpro_account .pmpro_box h3, #meta-member .user {font-family: "' . $header_font . '", sans-serif; }'; ?>
+			<?php echo 'h1, h2, h3, h4, h5, h6, label, .navigation, th, .pmpro_checkout thead th, #pmpro_account .pmpro_box h3, #meta-member .user, #bbpress-forums li.bbp-header, #bbpress-forums li.bbp-footer, #bbpress-forums fieldset.bbp-form legend {font-family: "' . $header_font . '", sans-serif; }'; ?>
 		</style> 
 		<!--/Customizer CSS-->
 		<?php
@@ -461,6 +485,24 @@ class memberlite_Customize {
       }
       return $return;
     }
+	
+	public static function sanitize_color_scheme($memberlite_color_scheme) {
+/*		if ( ! current_user_can('edit_theme_options') )
+			return;
+		if ( empty( $_POST ) )
+			return;
+		$this->updated = true;
+*/
+		if ( isset( $_POST['memberlite_color_scheme'] ) ) {
+			check_admin_referer( 'custom-header-options', '_wpnonce-custom-header-options' );
+			set_theme_mod( 'color_primary', '#2997c8' );
+			set_theme_mod( 'color_secondary', '#77a02e' );
+			set_theme_mod( 'color_action', '#f89406' );
+			set_theme_mod( 'color_link', '#2997c8' );
+			set_theme_mod( 'color_meta_link', '#2997c8' );
+		}
+	}
+
 }
 
 // Setup the Theme Customizer settings and controls...

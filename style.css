@@ -150,7 +150,7 @@ h3, .woocommerce #main ul.products li.product h3, .widget_calendar #wp-calendar 
 	font-size: 2rem;
 	line-height: 3rem;
 }
-.entry-content h3 {
+.entry-content h3, .home h3 {
 	margin: 2.6rem 0 1rem 0;
 }
 h4 {
@@ -336,7 +336,7 @@ figure {
 	margin: 0;
 }
 table, #pmpro_account_loggedin {
-	margin: 0 0 2.5rem;
+	margin: 0 0 3.5rem;
 	width: 100%;
 }
 th, .pmpro_checkout thead th {
@@ -420,6 +420,7 @@ input[type="submit"].pmpro_btn,
 	font-weight: normal;
 	display: inline-block;
 	padding: 1rem 1.5rem;
+	text-align: center;
 	text-decoration: none;
 	text-shadow: none;
 	-webkit-transform: translateZ(0);
@@ -491,11 +492,10 @@ a.pmpro_btn:hover, .entry-footer a.pmpro_btn:hover, input[type="submit"].pmpro_b
 	text-shadow: none;
 }
 
-.btn_info {background-color: #5bc0de; }
-.btn_success {background-color: #5cb85c; }
-.btn_error {background-color: #d9534f; }
-.btn_alert {background-color: #f0ad4e; }
-
+.btn_info, .btn_info:link {background-color: #5bc0de; }
+.btn_success, .btn_success:link {background-color: #5cb85c; }
+.btn_error, .btn_error:link {background-color: #d9534f; }
+.btn_alert, .btn_alert:link {background-color: #f0ad4e; }
 .btn_info:hover {background-color: #31b0d5; }
 .btn_success:hover {background-color: #449d44; }
 .btn_error:hover {background-color: #c9302c; }
@@ -513,7 +513,11 @@ a.pmpro_btn:hover, .entry-footer a.pmpro_btn:hover, input[type="submit"].pmpro_b
 	text-shadow: none;
 }
 .btn_link:hover {text-decoration: underline; }
-.btn_block {display: block; }
+.btn_primary, .btn_primary:link {background: #2C3E50; }
+.btn_secondary, .btn_secondary:link {background: #18BC9C; }
+.btn_action, .btn_action:link {background: #F39C12; }
+.btn_block, .btn_block:link {display: block; }
+.btn .fa {padding: 0 .5rem; }
 
 input[type="checkbox"],
 input[type="radio"] {
@@ -1057,7 +1061,12 @@ a:active {
 	color: #777;
 }
 #secondary .widget select {margin: 1em 0; width: 100%; }
-
+#secondary .widget_nav_menu li.page_item_has_children .children {display: none; }
+#secondary .widget_nav_menu li.page_item_has_children.current_page_item .children,
+#secondary .widget_nav_menu li.page_item_has_children.current_page_parent .children,
+#secondary .widget_nav_menu li.page_item_has_children.current_page_ancestor .children {
+	display: block; 
+}
 #secondary .widget_categories li {
 	 border: none;
 	 padding: 0.25em 0.5em;
@@ -1075,7 +1084,7 @@ a:active {
 	width: 80px; 
 	height: 80px;
 	border-radius:50%;
-	margin: -.5em .5em 0em -.5em;
+	margin: 0 .5em 0em -.5em;
 }
 #secondary .widget_recent_entries_thumbnails .widget_post_thumbnail:hover, .memberlite_recent_posts .widget_post_thumbnail:hover, .footer-widgets .widget_post_thumbnail:hover {
 	border: none;
@@ -1098,6 +1107,10 @@ a:active {
 .widget_recent_entries_thumbnails .entry-content, .memberlite_recent_posts .entry-content {
 	clear: both;
 }
+.widget_recent_entries_thumbnails .widget_has_thumbnail .post-date {
+	display: block;
+	padding-left: 80px;
+}
 /*--------------------------------------------------------------
 10.0 Content
 --------------------------------------------------------------*/
@@ -1117,6 +1130,9 @@ a:active {
 }
 .site-header .site-title a {
 	font-size: 3.5rem;
+	border: none;
+}
+.site-branding .site-title a {
 	text-decoration: none;
 }
 .site-header .site-description {
@@ -1147,16 +1163,31 @@ a:active {
 }
 #meta-member a {
 	display: inline-block;
-	margin: 0 .5em;
 	color: #FFF;
 	text-decoration: none;
 }
 #meta-member a:hover {
 	color: #FFF;
 }
-#meta-member span.user a {margin: 0; }
-#meta-member .member-navigation, #meta-member .member-navigation ul {display: inline-block; list-style: none; margin: 0; }
-#meta-member .member-navigation li {border-right: 1px solid #DDD; display: inline-block; position: relative; }
+#meta-member span.user a {
+	margin: 0; 
+}
+#meta-member .member-navigation, #meta-member .member-navigation ul {
+	display: inline-block; 
+	list-style: none; 
+	margin: 0; 
+}
+#meta-member .member-navigation li {
+	border-right: 1px solid #DDD; 
+	display: inline-block; 
+	position: relative; 
+}
+#meta-member .member-navigation li:last-child {
+	border: none;
+}
+#meta-member .member-navigation li a {
+	margin: 0 1rem;
+}
 /* Dropdown Menu */
 #meta-member .member-navigation ul ul {
 	display: none; 
@@ -1233,7 +1264,7 @@ a:active {
 	padding-bottom: 0;
 }
 .masthead p, .masthead a.pmpro_btn {
-	margin: 1rem 0 0 0;
+	margin: 2rem 0 0 0;
 }
 .masthead .pmpro_level-price {font-size: 24px; font-size: 2.4rem; margin: .5rem 0 0 0; }
 .masthead .pmpro_level-subprice {display: block; font-size: 14px; font-size: 1.4rem; }
@@ -1418,6 +1449,26 @@ a:active {
 .page-links {
 	clear: both;
 	margin: 0 0 1.5rem;
+}
+
+#banner_bottom {
+	background-color: #18BC9C;
+	color: #FFF;
+	padding: 2rem 0;
+}
+#banner_bottom p {
+	font-size: 2rem;
+	font-size: 20px;
+	line-height: 3.3rem;
+}
+#banner_bottom h1, #banner_bottom h2, #banner_bottom h3, #banner_bottom h4, #banner_bottom h5 {
+	color: #FFF;
+	margin: 0 0 1.6rem 0;
+}
+#banner_bottom h1 a, #banner_bottom h2 a, #banner_bottom h3 a, #banner_bottom h4 a, #banner_bottom h5 a {
+	color: #FFF;
+	text-decoration: none;
+	border-bottom: 1px dotted #FFF;
 }
 
 /*--------------------------------------------------------------
@@ -1689,6 +1740,61 @@ form.memberlite_signup .pmpro_btn {display: block; width: 100%; }
 /*--------------------------------------------------------------
 10.6 Third Party Plugin Integrated Styles
 --------------------------------------------------------------*/
+
+/* Theme My Login: https://wordpress.org/plugins/theme-my-login/ */
+#your-profile label {display: inline-block; }
+#your-profile .form-table th {width: 250px; }
+#your-profile h3 {
+	background: #EFEFEF; 
+	border-top: 1px solid #CCC;
+	border-bottom: 1px solid #CCC;
+	margin: 0;
+	padding: 1rem;
+}
+#your-profile p {margin-bottom: .5rem; }
+#your-profile p.submit {text-align: center; }
+.widget_theme_my_login .login, .entry-content .login {padding: 0; }
+.widget_theme_my_login .login input {margin: 0; }
+#secondary .widget_theme_my_login .widget-title {margin-bottom: .5em; }
+#secondary .widget_theme_my_login ul li {
+	border: none;
+	padding: 0;
+}
+#secondary .widget_theme_my_login p label, #secondary .widget_theme_my_login p .input {margin: 0 .5em; }
+#secondary .widget_theme_my_login p.forgetmenot, #secondary .widget_theme_my_login p.submit {margin: .5em; }
+#secondary .widget_theme_my_login p .input {width: 95%; }
+#secondary .widget_theme_my_login p.submit input[type=submit] {width: 100%; }
+.tml-user-avatar {
+	float: left;
+	width: 80px; 
+	height: 80px;
+	border-radius:50%;
+	margin: 0 10px 0 0;
+}
+.tml-user-avatar img {
+	border-radius: 50%;
+	transition: transform 0.5s ease;
+	transform: scale(0.8);
+}
+.tml-action-links {margin: 1rem 0 0 0; padding: 1rem 0 0 0; border-top: 1px dotted #AAA; list-style: none; }
+.tml-action-links li{display:inline-block;margin-right:15px}
+
+#primary .tml-action-links {
+	padding: 1rem;
+	border-bottom: 1px dotted #CCC;
+	background: #FAFAFA;
+	font-style: italic;
+	color: #AAA;
+}
+#primary .tml-action-links a {
+	color: #777;
+	text-decoration: none;
+}
+#primary .tml-action-links a:hover {border-bottom: 1px dotted #777; }
+#secondary .tml-action-links {text-align: center; }
+ul.tml-user-links {list-style: none; margin-bottom: 0; }
+
+/* Testimonials Widget: https://wordpress.org/plugins/testimonials-widget/ */
 .testimonials-widget-testimonial span.image {
 	border-radius:50%;
 	margin: 0 2rem 0 1rem;
@@ -1702,18 +1808,11 @@ form.memberlite_signup .pmpro_btn {display: block; width: 100%; }
 	transition: transform 0.5s ease;
 	transform: scale(0.8);
 }
-#secondary .testimonials-widget-testimonial {
-	text-align: center;
-}
-#secondary .testimonials-widget-testimonial span.image, #secondary .testimonials-widget-testimonial span.image img {
-	margin: 0;
-}
-#secondary .testimonials-widget-testimonial blockquote {
-	padding: 0;
-}
-#bbpress-forums li.bbp-body div.odd, #bbpress-forums li.bbp-body ul.odd {
-	margin-bottom: 0;
-}
+#secondary .testimonials-widget-testimonial {text-align: center; }
+#secondary .testimonials-widget-testimonial span.image, #secondary .testimonials-widget-testimonial span.image img {margin: 0; }
+#secondary .testimonials-widget-testimonial blockquote {padding: 0;}
+
+/* WooCommerce: https://wordpress.org/plugins/woocommerce/ */
 .woocommerce #main ul.products li.product a img {margin-bottom: .5em; }
 .woocommerce #main ul.products li.product h3 {padding: 0; }
 .woocommerce #main ul.products li.product .button {margin: 0; }
@@ -1789,50 +1888,6 @@ form.memberlite_signup .pmpro_btn {display: block; width: 100%; }
 }
 .woocommerce table.cart td.actions #coupon_code, .woocommerce-page #content table.cart td.actions #coupon_code, .woocommerce-page table.cart td.actions #coupon_code {width: 160px; }
 .woocommerce-shipping-calculator p {margin: 0; }
-
-.widget_theme_my_login .login {padding: 0; }
-.widget_theme_my_login .login input {margin: 0; }
-
-#secondary .widget_theme_my_login .widget-title {margin-bottom: .5em; }
-#secondary .widget_theme_my_login ul li {
-	border: none;
-	padding: 0;
-}
-#secondary .widget_theme_my_login p label, #secondary .widget_theme_my_login p .input {margin: 0 .5em; }
-#secondary .widget_theme_my_login p.forgetmenot, #secondary .widget_theme_my_login p.submit {margin: .5em; }
-#secondary .widget_theme_my_login p .input {width: 95%; }
-#secondary .widget_theme_my_login p.submit input[type=submit] {width: 100%; }
-
-.tml-user-avatar {
-	float: left;
-	width: 80px; 
-	height: 80px;
-	border-radius:50%;
-	margin: 0 10px 0 0;
-}
-.tml-user-avatar img {
-	border-radius: 50%;
-	transition: transform 0.5s ease;
-	transform: scale(0.8);
-}
-.tml-action-links {margin: 1rem 0 0 0; padding: 1rem 0 0 0; border-top: 1px dotted #AAA; list-style: none; }
-#primary .tml-action-links {
-	padding: 1rem;
-	border-bottom: 1px dotted #CCC;
-	background: #FAFAFA;
-	font-style: italic;
-	color: #AAA;
-}
-#primary .tml-action-links a {
-	color: #777;
-	text-decoration: none;
-}
-#primary .tml-action-links a:hover {
-	border-bottom: 1px dotted #777;
-}
-#secondary .tml-action-links {text-align: center; }
-
-ul.tml-user-links {list-style: none; margin-bottom: 0; }
 
 /*--------------------------------------------------------------
 11.0 Infinite scroll
@@ -1950,6 +2005,7 @@ object {
 	form.pmpro_form #CVV, form.pmpro_form select#ExpirationMonth, form.pmpro_form select#ExpirationYear {width: 43%; }
 	form.pmpro_form .pmpro_submit {margin: 0; }
 	.pmpro_levels-div .entry-footer .alignright, .pmpro_levels-2col .entry-footer .alignright {float: none; margin: 0 0 1.5rem 0; display: block; }
+	.home .masthead {text-align: center; }
 }
 
 .row-demo .columns span { background: #CCC; display: block; }

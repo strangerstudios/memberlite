@@ -2,14 +2,8 @@
 /**
  * The sidebar containing the main widget area.
  *
- * @package Member Lite 2.0
+ * @package Memberlite
  */
-
-/*
-if ( ! is_active_sidebar( 'sidebar-1' ) ) {
-	return;
-}
-*/
 ?>
 <?php do_action('before_sidebar'); ?>
 <div id="secondary" class="medium-4 columns widget-area" role="complementary">
@@ -17,7 +11,7 @@ if ( ! is_active_sidebar( 'sidebar-1' ) ) {
 <?php 
 	$memberlite_custom_sidebar = get_post_meta($post->ID, '_memberlite_custom_sidebar', true);
 	$memberlite_default_sidebar = get_post_meta($post->ID, '_memberlite_default_sidebar', true);
-	if(bbp_is_single_topic())
+	if(function_exists('is_bbpress') && bbp_is_single_topic())
 	{
 		$memberlite_custom_sidebar = get_post_meta(bbp_get_forum_id(), '_memberlite_custom_sidebar', true);
 		$memberlite_default_sidebar = get_post_meta(bbp_get_forum_id(), '_memberlite_default_sidebar', true);

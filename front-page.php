@@ -2,7 +2,7 @@
 /**
  * The template for the home page.
  *
- * @package Member Lite 2.0
+ * @package Memberlite
  */
 
 get_header(); ?>

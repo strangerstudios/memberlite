@@ -76,7 +76,7 @@ class WP_Widget_Recent_Posts_Thumbnails extends WP_Widget {
 			<?php if ( $title ) echo $before_title . $title . $after_title; ?>
 			<ul>
 			<?php while ( $r->have_posts() ) : $r->the_post(); ?>
-				<li>
+				<li<?php if ( has_post_thumbnail() ) echo ' class="widget_has_thumbnail"'; ?>>
 					<?php if ( has_post_thumbnail() ) : ?>
 						<a class="widget_post_thumbnail" href="<?php the_permalink(); ?>"><?php the_post_thumbnail('mini'); ?></a>
 					<?php elseif( 'video' == get_post_format() ) : ?>
