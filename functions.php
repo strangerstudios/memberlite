@@ -318,6 +318,7 @@ function memberlite_sidebar_meta_box_callback($post) {
 	{
 		echo '<option value="' . $wp_registered_sidebar['id'] . '"' . selected( $memberlite_custom_sidebar, $wp_registered_sidebar['id'] ) . '>' . $wp_registered_sidebar['name'] . '</option>';
 	}
+		echo '<option value="memberlite_sidebar_blank"' . selected( $memberlite_custom_sidebar, 'memberlite_sidebar_blank' ) . '>- Hide Sidebar -</option>';
 	echo '</select>';	
 	echo '<hr />';
 	echo '<p><strong>' . __('Default Sidebar Behavior', 'memberlite') . '</strong></p>';

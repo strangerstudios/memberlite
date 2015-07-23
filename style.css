@@ -420,6 +420,7 @@ input[type="submit"].pmpro_btn,
 	font-weight: normal;
 	display: inline-block;
 	padding: 1rem 1.5rem;
+	text-align: center;
 	text-decoration: none;
 	text-shadow: none;
 	-webkit-transform: translateZ(0);
@@ -491,11 +492,10 @@ a.pmpro_btn:hover, .entry-footer a.pmpro_btn:hover, input[type="submit"].pmpro_b
 	text-shadow: none;
 }
 
-.btn_info {background-color: #5bc0de; }
-.btn_success {background-color: #5cb85c; }
-.btn_error {background-color: #d9534f; }
-.btn_alert {background-color: #f0ad4e; }
-
+.btn_info, .btn_info:link {background-color: #5bc0de; }
+.btn_success, .btn_success:link {background-color: #5cb85c; }
+.btn_error, .btn_error:link {background-color: #d9534f; }
+.btn_alert, .btn_alert:link {background-color: #f0ad4e; }
 .btn_info:hover {background-color: #31b0d5; }
 .btn_success:hover {background-color: #449d44; }
 .btn_error:hover {background-color: #c9302c; }
@@ -513,7 +513,8 @@ a.pmpro_btn:hover, .entry-footer a.pmpro_btn:hover, input[type="submit"].pmpro_b
 	text-shadow: none;
 }
 .btn_link:hover {text-decoration: underline; }
-.btn_block {display: block; }
+.btn_block, .btn_block:link {display: block; }
+.btn .fa {padding: 0 .5rem; }
 
 input[type="checkbox"],
 input[type="radio"] {
@@ -1057,7 +1058,12 @@ a:active {
 	color: #777;
 }
 #secondary .widget select {margin: 1em 0; width: 100%; }
-
+#secondary .widget_nav_menu li.page_item_has_children .children {display: none; }
+#secondary .widget_nav_menu li.page_item_has_children.current_page_item .children,
+#secondary .widget_nav_menu li.page_item_has_children.current_page_parent .children,
+#secondary .widget_nav_menu li.page_item_has_children.current_page_ancestor .children {
+	display: block; 
+}
 #secondary .widget_categories li {
 	 border: none;
 	 padding: 0.25em 0.5em;
@@ -1075,7 +1081,7 @@ a:active {
 	width: 80px; 
 	height: 80px;
 	border-radius:50%;
-	margin: -.5em .5em 0em -.5em;
+	margin: 0 .5em 0em -.5em;
 }
 #secondary .widget_recent_entries_thumbnails .widget_post_thumbnail:hover, .memberlite_recent_posts .widget_post_thumbnail:hover, .footer-widgets .widget_post_thumbnail:hover {
 	border: none;
@@ -1097,6 +1103,10 @@ a:active {
 }
 .widget_recent_entries_thumbnails .entry-content, .memberlite_recent_posts .entry-content {
 	clear: both;
+}
+.widget_recent_entries_thumbnails .widget_has_thumbnail .post-date {
+	display: block;
+	padding-left: 80px;
 }
 /*--------------------------------------------------------------
 10.0 Content
