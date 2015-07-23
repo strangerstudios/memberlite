@@ -80,14 +80,14 @@ function memberlite_levels_shortcode($atts, $content=null, $code="")
 				{
 					if($level->id == $level_id)
 					{
-						$pmpro_levels_filtered[] = $level;
+						$pmpro_levels_filtered[$level->id] = $level;
 						break;
 					}
 				}
 			}
 		}
-		else
-			$pmpro_levels_filtered = apply_filters("pmpro_levels_array", $pmpro_visible_levels);
+		
+		$pmpro_levels_filtered = apply_filters("pmpro_levels_array", $pmpro_visible_levels);
 		
 		$original_level = $level;
 				  
