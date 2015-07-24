@@ -18,6 +18,7 @@ $memberlite_defaults = array(
 	'memberlite_loop_images' => 'show_both',
 	'memberlite_footerwidgets' => '4',
 	'copyright_textbox' => '<a href="http://wordpress.org/" rel="license">Proudly powered by WordPress</a><span class="sep"> | </span>Theme: Memberlite by <a href="http://paidmembershipspro.com" rel="license">Kim Coleman</a>',
+	'memberlite_color_scheme' => 'Default',
 	'color_link' => '#2C3E50',
 	'color_meta_link' => '#2C3E50',
 	'color_primary' => '#2C3E50',
@@ -288,7 +289,7 @@ class memberlite_Customize {
 				'default' => $memberlite_defaults['memberlite_color_scheme'],
 				'type' => 'theme_mod',
 				'capability' => 'edit_theme_options',
-				'transport' => 'refresh',
+				'transport' => 'postMessage',
 			)
 		);
 		$wp_customize->add_control(
@@ -297,10 +298,7 @@ class memberlite_Customize {
 				'label' => 'Color Scheme',
 				'section' => 'colors',
 				'type'       => 'select',
-				'choices'    => array(
-					'default' => 'Default',
-					'pmpro' => 'PMPro',
-				),
+				'choices'    => array_merge(memberlite_Customize::get_color_scheme_choices(), array('custom'=>'Custom')),
 				'priority' => 1
 			)
 		);
@@ -453,7 +451,7 @@ class memberlite_Customize {
 			true
 		);
 		// Localize the script with new data
-		$memberlite_defaults = array(
+		$memberlite_defaults = array(			
 			'color_link_color_elements' => $memberlite_defaults['color_link_color_elements'],
 			'color_meta_link_color_elements' => $memberlite_defaults['color_meta_link_color_elements'],
 			'color_primary_background_elements' => $memberlite_defaults['color_primary_background_elements'],
@@ -484,32 +482,168 @@ class memberlite_Customize {
          }
       }
       return $return;
-    }
+    }		
 	
-	public static function sanitize_color_scheme($memberlite_color_scheme) {
-/*		if ( ! current_user_can('edit_theme_options') )
-			return;
-		if ( empty( $_POST ) )
-			return;
-		$this->updated = true;
-*/
-		if ( isset( $_POST['memberlite_color_scheme'] ) ) {
-			check_admin_referer( 'custom-header-options', '_wpnonce-custom-header-options' );
-			set_theme_mod( 'color_primary', '#2997c8' );
-			set_theme_mod( 'color_secondary', '#77a02e' );
-			set_theme_mod( 'color_action', '#f89406' );
-			set_theme_mod( 'color_link', '#2997c8' );
-			set_theme_mod( 'color_meta_link', '#2997c8' );
-		}
+	/**
+	 * Register color schemes for Memberlite.
+	 * Based on code from the Twentyfifteen theme. (https://themes.svn.wordpress.org/twentyfifteen/1.2/inc/customizer.php)
+	 *
+	 * Can be filtered with {@see 'memberlite_color_schemes'}.
+	 *
+	 * The order of colors in a colors array:
+	 * 1. Header Text Color
+	 * 2. Background Color
+	 * 3. Link Color
+	 * 4. Meta Link Color
+	 * 5. Primary Color
+	 * 6. Secondary Color
+	 * 7. Action Color
+	 *
+	 * @since Twenty Fifteen 1.0
+	 *
+	 * @return array An associative array of color scheme options.
+	 */
+	public static function get_color_schemes() {
+		return apply_filters( 'memberlite_color_schemes', array(
+			'default' => array(
+				'label'  => __( 'Default', 'memberlite' ),
+				'colors' => array(
+					'#2c3e50 ',
+					'#ffffff ',
+					'#2C3E50 ',
+					'#2C3E50 ',
+					'#2C3E50 ',
+					'#18BC9C ',
+					'#F39C12 ',
+				),
+			),
+			'dark'    => array(
+				'label'  => __( 'Dark', 'memberlite' ),
+				'colors' => array(
+					'#111111 ',
+					'#202020 ',
+					'#202020 ',
+					'#bebebe ',
+					'#bebebe ',
+					'#1b1b1b ',
+					'#1b1b1b ',
+				),
+			),
+			'slate_blue'  => array(
+				'label'  => __( 'Slate Blue', 'memberlite' ),
+				'colors' => array(
+					'#6991ac ',
+					'#f5f5f5 ',
+					'#6991ac ',
+					'#6991ac ',
+					'#67727a ',
+					'#6991ac ',
+					'#d75c37 ',
+				),
+			),
+			'raspberry_lime'    => array(
+				'label'  => __( 'Raspberry Lime', 'memberlite' ),
+				'colors' => array(
+					'#57102c ',
+					'#ffffff ',
+					'#aa2159 ',
+					'#aa2159 ',
+					'#aa2159 ',
+					'#009d97 ',
+					'#bcc747 ',
+				),
+			),
+			'modern_teal'  => array(
+				'label'  => __( 'Modern Teal', 'memberlite' ),
+				'colors' => array(
+					'#674970 ',
+					'#efefef ',
+					'#00ccd6 ',
+					'#00ccd6 ',
+					'#00ccd6 ',
+					'#424242 ',
+					'#ffd900 ',
+				),
+			),
+			'education'   => array(
+				'label'  => __( 'Education', 'memberlite' ),
+				'colors' => array(
+					'#3a9ad9 ',
+					'#e9e0d6 ',
+					'#3a9ad9 ',
+					'#3a9ad9 ',
+					'#354458 ',
+					'#eb7260 ',
+					'#29aba4 ',
+				),
+			),
+			'pop'   => array(
+				'label'  => __( 'Pop!', 'memberlite' ),
+				'colors' => array(
+					'#53bbf4 ',
+					'#FFFFFF ',
+					'#ff85cb ',
+					'#ff432e ',
+					'#53bbf4 ',
+					'#ff85cb ',
+					'#ffac00 ',
+				),
+			),
+		) );
 	}
-
+			
+	/**
+	 * Returns an array of color scheme choices registered for Memberlite.
+	 *
+	 * @since Memberlite 2.0
+	 *
+	 * @return array Array of color schemes.
+	 */
+	public static function get_color_scheme_choices() {
+		$color_schemes                = memberlite_Customize::get_color_schemes();
+		$color_scheme_control_options = array();
+		foreach ( $color_schemes as $color_scheme => $value ) {
+			$color_scheme_control_options[ $color_scheme ] = $value['label'];
+		}
+		return $color_scheme_control_options;
+	}	
+		
+	/**
+	 * Sanitization callback for color schemes.
+	 *
+	 * @since Memberlite 2.0
+	 *
+	 * @param string $value Color scheme name value.
+	 * @return string Color scheme name.
+	 */
+	public static function sanitize_color_scheme( $value ) {
+		$color_schemes = memberlite_Customize::get_color_scheme_choices();
+		if ( ! array_key_exists( $value, $color_schemes ) ) {
+			$value = 'default';
+		}
+		return $value;
+	}	
+	
+	/**
+	 * Binds JS listener to make Customizer color_scheme control.
+	 *
+	 * Passes color scheme data as colorScheme global.
+	 *
+	 * @since Twenty Fifteen 1.0
+	 */
+	public static function customizer_controls_js() {
+		wp_enqueue_script( 'memberlite_customizer-controls', get_template_directory_uri() . '/js/customizer-controls.js', array( 'customize-controls', 'iris', 'underscore', 'wp-util' ), MEMBERLITE_VERSION, true );
+		wp_localize_script( 'memberlite_customizer-controls', 'colorSchemes', memberlite_Customize::get_color_schemes() );
+	}
 }
 
 // Setup the Theme Customizer settings and controls...
 add_action( 'customize_register' , array( 'memberlite_Customize' , 'register' ) );
+add_action( 'customize_controls_enqueue_scripts', array('memberlite_Customize', 'customizer_controls_js' ));
 
 // Output custom CSS to live site
 add_action( 'wp_head' , array( 'memberlite_Customize' , 'header_output' ) );
 
 // Enqueue live preview javascript in Theme Customizer admin screen
 add_action( 'customize_preview_init' , array( 'memberlite_Customize' , 'live_preview' ) );
+
