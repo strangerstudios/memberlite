@@ -153,14 +153,22 @@
 								?>
 								<a class="btn" href="<?php echo esc_attr($referrer); ?>"><?php _e( 'No Thanks &raquo;','memberlite'); ?></a>
 							<?php } else { ?>
-								<?php memberlite_getBreadcrumbs(); ?>
+								<?php 
+									$memberlite_banner_hide_breadcrumbs = get_post_meta($post->ID, '_memberlite_banner_hide_breadcrumbs', true);
+									if(empty($memberlite_banner_hide_breadcrumbs))
+										memberlite_getBreadcrumbs(); 
+								?>
 							<?php } ?>
 							<?php	
 								$memberlite_banner_right = get_post_meta($post->ID, '_memberlite_banner_right', true);
 								if(!empty($memberlite_banner_right))
 									echo '<div class="pull-right">' . apply_filters('the_content',$memberlite_banner_right) . '</div>';
 							?>
-							<?php memberlite_page_title(); ?>
+							<?php 
+								$memberlite_banner_hide_title = get_post_meta($post->ID, '_memberlite_banner_hide_title', true);
+								if(empty($memberlite_banner_hide_title))
+									memberlite_page_title(); 
+							?>
 							<?php
 								$memberlite_banner_desc = get_post_meta($post->ID, '_memberlite_banner_desc', true);
 								if(!empty($memberlite_banner_desc))

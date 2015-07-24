@@ -20,6 +20,7 @@ function memberlite_init_styles()
 	wp_enqueue_style('memberlite_fontawesome', get_template_directory_uri() . "/font-awesome/css/font-awesome.min.css", array(), "4.3.0");
 	wp_enqueue_script('memberlite-navigation', get_template_directory_uri() . '/js/navigation.js', array( 'jquery' ), MEMBERLITE_VERSION, true);
 	wp_enqueue_script('memberlite-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array( 'jquery' ), MEMBERLITE_VERSION, true);
+	
 	//comments JS on single pages only
 	if ( is_singular() && comments_open() && get_option('thread_comments')) {
 		wp_enqueue_script('comment-reply');
@@ -27,8 +28,7 @@ function memberlite_init_styles()
 }
 add_action("wp_enqueue_scripts", "memberlite_init_styles");	
 
-/* Load fonts via good API
- */
+/* Load fonts via Google API */
 function memberlite_load_fonts()
 {
 	global $memberlite_defaults;
@@ -37,21 +37,14 @@ function memberlite_load_fonts()
 }
 add_action('wp_print_styles', 'memberlite_load_fonts');
 
-/* Set the content width based on the theme's design and stylesheet.
- */
+/* Set the content width based on the theme's design and stylesheet. */
 if(!isset($content_width)) {
 	$content_width = 701; /* pixels */
 }
 
 if(!function_exists('memberlite_setup')) :
-/* Sets up theme defaults and registers support for various WordPress features.
- *
- * Note that this function is hooked into the after_setup_theme hook, which
- * runs before the init hook. The init hook is too late for some features, such
- * as indicating support for post thumbnails.
- */
+/* Sets up theme defaults and registers support for various WordPress features. */
 function memberlite_setup() {
-
 	/*
 	 * Make theme available for translation.
 	 * Translations can be filed in the /languages/ directory.
@@ -63,11 +56,7 @@ function memberlite_setup() {
 	// Add default posts and comments RSS feed links to head.
 	add_theme_support('automatic-feed-links');
 
-	/*
-	 * Enable support for Post Thumbnails on posts and pages.
-	 *
-	 * @link http://codex.wordpress.org/Function_Reference/add_theme_support#Post_Thumbnails
-	 */
+	// Enable support for Post Thumbnails on posts and pages.
 	add_theme_support('post-thumbnails');
 	set_post_thumbnail_size( 150, 150, true );
 	add_image_size('mini', 80, 80, true, array('center','center'));
@@ -75,7 +64,7 @@ function memberlite_setup() {
 	add_image_size('large', 701, 1200, false, array('center','center'));
 	add_image_size('masthead', 1600, 300, true, array('center','center'));
 	
-	// This theme uses wp_nav_menu() in one location.
+	// This theme uses wp_nav_menu() in four locations.
 	register_nav_menus( array(
 		'primary' => __('Primary Menu', 'memberlite'),
 		'member' => __('Member Menu', 'memberlite'),
@@ -83,18 +72,12 @@ function memberlite_setup() {
 		'footer' => __('Footer Menu', 'memberlite'),
 	));
 	
-	/*
-	 * Switch default core markup for search form, comment form, and comments
-	 * to output valid HTML5.
-	 */
+	// Switch default core markup for search form, comment form, and comments to output valid HTML5.
 	add_theme_support('html5', array(
 		'search-form', 'comment-form', 'comment-list', 'gallery', 'caption'
 	));
 
-	/*
-	 * Enable support for Post Formats.
-	 * See http://codex.wordpress.org/Post_Formats
-	 */
+	// Enables support for Post Formats.
 	add_theme_support('post-formats', array(
 		'aside', 'image', 'video', 'quote', 'link'
 	));
@@ -104,9 +87,6 @@ function memberlite_setup() {
 		'default-color' => 'ffffff',
 		'default-image' => '',
 	)));
-	
-	// Declare WooCommerce theme support
-    add_theme_support('woocommerce');
 }
 endif; // memberlite_setup
 add_action('after_setup_theme', 'memberlite_setup');
@@ -187,323 +167,42 @@ function memberlite_member_menu( $items, $args ) {
 }
 add_filter( 'wp_nav_menu_items', 'memberlite_member_menu', 10, 2 );
 
-/* Adds a Memberlite settings meta box to the side column on the Page edit screens. */
-function memberlite_settings_add_meta_box() {
-	$screens = array('page');
-	foreach ($screens as $screen) {
-		add_meta_box(
-			'memberlite_settings_section',
-			__('Memberlite Settings', 'memberlite'),
-			'memberlite_settings_meta_box_callback',
-			$screen,
-			'normal',
-			'high'
-		);
-	}
-}
-add_action('add_meta_boxes', 'memberlite_settings_add_meta_box');
-
-/* Meta box for Memberlite settings */
-function memberlite_settings_meta_box_callback($post) {
-	wp_nonce_field('memberlite_settings_meta_box', 'memberlite_settings_meta_box_nonce');
-	$memberlite_page_template = get_post_meta($post->ID, '_wp_page_template', true);
-	$memberlite_banner_desc = get_post_meta($post->ID, '_memberlite_banner_desc', true);
-	$memberlite_banner_right = get_post_meta($post->ID, '_memberlite_banner_right', true);
-	$memberlite_banner_bottom = get_post_meta($post->ID, '_memberlite_banner_bottom', true);
-	$memberlite_landing_page_checkout_button = get_post_meta($post->ID, '_memberlite_landing_page_checkout_button', true);
-	$memberlite_landing_page_level = get_post_meta($post->ID, '_memberlite_landing_page_level', true);
-	$memberlite_landing_page_upsell = get_post_meta($post->ID, '_memberlite_landing_page_upsell', true);
-	echo '<h2>' . __('Page Banner Settings', 'memberlite') . '</h2>';
-	echo '<p style="margin: 1rem 0 0 0;"><strong>' . __('Banner Description', 'memberlite') . '</strong> <em>Shown in the masthead banner below the page title.</em>';
-	if($memberlite_page_template == 'templates/landing.php')
-		echo ' <em>Leave blank to show landing page level description as banner description.</em>';
-	echo '</p>';
-	echo '<label class="screen-reader-text" for="memberlite_banner_desc">';
-	_e('Banner Description', 'memberlite');
-	echo '</label>';
-	echo '<textarea class="large-text" rows="3" id="memberlite_banner_desc" name="memberlite_banner_desc">';
-		echo $memberlite_banner_desc;
-	echo '</textarea>';		
-	echo '<p style="margin: 1rem 0 0 0;"><strong>' . __('Banner Right Column', 'memberlite') . '</strong> <em>Right side of the masthead banner. (i.e. Video Embed, Image or Action Button)</em></p>';
-	echo '<label class="screen-reader-text" for="memberlite_banner_right">';
-	_e('Banner Right Column', 'memberlite');
-	echo '</label> ';
-	echo '<textarea class="large-text" rows="3" id="memberlite_banner_right" name="memberlite_banner_right">';
-		echo $memberlite_banner_right;
-	echo '</textarea>';
-	echo '<p style="margin: 1rem 0 0 0;"><strong>' . __('Page Bottom Banner', 'memberlite') . '</strong> <em>Banner shown above footer on pages. (i.e. call to action)</em></p>';	
-	echo '<label class="screen-reader-text" for="memberlite_banner_bottom">';
-	_e('Page Bottom Banner', 'memberlite');
-	echo '</label> ';
-	echo '<textarea class="large-text" rows="3" id="memberlite_banner_bottom" name="memberlite_banner_bottom">';
-		echo $memberlite_banner_bottom;
-	echo '</textarea>';
-	if(($memberlite_page_template == 'templates/landing.php') && function_exists('pmpro_getAllLevels'))
-	{
-		echo '<hr />';
-		echo '<h2>' . __('Landing Page Settings', 'memberlite') . '</h2>';
-		$membership_levels = pmpro_getAllLevels();
-		if(empty($membership_levels))
-			echo '<div class="inline notice error"><p><a href="' . admin_url('admin.php?page=pmpro-membershiplevels') . '">Add a Membership Level to Use These Landing Page Features &raquo;</a></p>';
-		else
-		{
-			echo '<table class="form-table"><tbody>';
-			echo '<tr><th scope="row">' . __('Membership Level', 'memberlite') . '</th>';
-			echo '<td><label class="screen-reader-text" for="memberlite_landing_page_level">';
-				_e('Landing Page Membership Level', 'memberlite');
-			echo '</label> ';
-			echo '<select id="memberlite_landing_page_level" name="memberlite_landing_page_level">';
-			echo '<option value="blank" ' . selected( $memberlite_landing_page_level, "blank" ) . '>- Select -</option>';
-			foreach($membership_levels as $level)
-			{			
-				echo '<option value="' . $level->id . '"' . selected( $memberlite_landing_page_level, $level->id ) . '>' . $level->name . '</option>';
-			}
-			echo '</select></td></tr>';	
-			echo '<tr><th scope="row">' . __('Checkout Button Text', 'memberlite') . '</th>';
-			echo '<td><label class="screen-reader-text" for="memberlite_landing_page_checkout_button">';
-				_e('Checkout Button Text', 'memberlite');
-			echo '</label> ';
-			echo '<input type="text" id="memberlite_landing_page_checkout_button" name="memberlite_landing_page_checkout_button" value="' . $memberlite_landing_page_checkout_button . '"> <em>(default: "Select")</em></td></tr>';
-			echo '<tr><th scope="row">' . __('Membership Level Upsell', 'memberlite') . '</th>';
-			echo '<td><label class="screen-reader-text" for="memberlite_landing_page_upsell">';
-				_e('Landing Page Membership Level Upsell', 'memberlite');
-			echo '</label> ';
-			echo '<select id="memberlite_landing_page_upsell" name="memberlite_landing_page_upsell">';
-			echo '<option value="blank" ' . selected( $memberlite_landing_page_upsell, "blank" ) . '>- Select -</option>';
-			foreach($membership_levels as $level)
-			{			
-				echo '<option value="' . $level->id . '"' . selected( $memberlite_landing_page_upsell, $level->id ) . '>' . $level->name . '</option>';
-			}
-			echo '</select></td></tr>';
-			echo '</tbody></table>';
-		}
-	}
-}
-
-/* Save custom sidebar selection */
-function memberlite_settings_save_meta_box_data($post_id) {
-	if(!isset($_POST['memberlite_settings_meta_box_nonce'])) {
-		return;
-	}
-	if(!wp_verify_nonce($_POST['memberlite_settings_meta_box_nonce'], 'memberlite_settings_meta_box')) {
-		return;
-	}
-	if ( defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
-		return;
-	}
-	if ( isset($_POST['post_type']) && 'page' == $_POST['post_type']) {
-		if(!current_user_can('edit_page', $post_id)) {
-			return;
-		}
-	} 
-	else
-	{
-		if(!current_user_can('edit_post', $post_id)) {
-			return;
-		}
-	}
-	
-	if(!isset($_POST['memberlite_banner_desc'])) {
-		return;
-	}
-	$memberlite_banner_desc = $_POST['memberlite_banner_desc'];
-	
-	if(!isset($_POST['memberlite_banner_right'])) {
-		return;
-	}
-	$memberlite_banner_right = $_POST['memberlite_banner_right'];
-
-	if(!isset($_POST['memberlite_banner_bottom'])) {
-		return;
-	}
-	$memberlite_banner_bottom = $_POST['memberlite_banner_bottom'];
-
-	if(!isset($_POST['memberlite_landing_page_level'])) {
-		return;
-	}
-	$memberlite_landing_page_level = $_POST['memberlite_landing_page_level'];
-
-	if(!isset($_POST['memberlite_landing_page_checkout_button'])) {
-		return;
-	}
-	$memberlite_landing_page_checkout_button = $_POST['memberlite_landing_page_checkout_button'];
-
-	if(!isset($_POST['memberlite_landing_page_upsell'])) {
-		return;
-	}
-	$memberlite_landing_page_upsell = $_POST['memberlite_landing_page_upsell'];
-
-	// Update the meta field in the database.
-	update_post_meta($post_id, '_memberlite_banner_desc', $memberlite_banner_desc);
-	update_post_meta($post_id, '_memberlite_banner_right', $memberlite_banner_right);
-	update_post_meta($post_id, '_memberlite_banner_bottom', $memberlite_banner_bottom);
-	update_post_meta($post_id, '_memberlite_landing_page_level', $memberlite_landing_page_level);
-	update_post_meta($post_id, '_memberlite_landing_page_checkout_button', $memberlite_landing_page_checkout_button);
-	update_post_meta($post_id, '_memberlite_landing_page_upsell', $memberlite_landing_page_upsell);
-}
-add_action('save_post', 'memberlite_settings_save_meta_box_data');
-
-/* Adds a Custom Sidebar meta box to the side column on the Post and Page edit screens. */
-function memberlite_sidebar_add_meta_box() {
-	$screens = array('post', 'page', 'forum', 'event', 'event-recurring');
-	foreach ($screens as $screen) {
-		add_meta_box(
-			'memberlite_sidebar_section',
-			__('Custom Sidebar', 'memberlite'),
-			'memberlite_sidebar_meta_box_callback',
-			$screen,
-			'side',
-			'core'
-		);
-	}
-}
-add_action('add_meta_boxes', 'memberlite_sidebar_add_meta_box');
-
-/* Meta box for custom sidebar selection */
-function memberlite_sidebar_meta_box_callback($post) {
-	global $wp_registered_sidebars;
-	wp_nonce_field('memberlite_sidebar_meta_box', 'memberlite_sidebar_meta_box_nonce');
-	$memberlite_custom_sidebar = get_post_meta($post->ID, '_memberlite_custom_sidebar', true);
-	$memberlite_default_sidebar = get_post_meta($post->ID, '_memberlite_default_sidebar', true);
-	echo '<p>' . __('Swap the default sidebar.', 'memberlite');
-	echo ' <a href="' . admin_url( 'custom-sidebars.php') . '">' . __('Manage Custom Sidebars','memberlite') . '</a></p>';
-	echo '<p><strong>' . __('Select Sidebar', 'memberlite') . '</strong></p>';
-	echo '<label class="screen-reader-text" for="memberlite_custom_sidebar">';
-	_e('Select Sidebar', 'memberlite');
-	echo '</label> ';
-	echo '<select id="memberlite_custom_sidebar" name="memberlite_custom_sidebar">';
-	foreach($wp_registered_sidebars as $wp_registered_sidebar)
-	{
-		echo '<option value="' . $wp_registered_sidebar['id'] . '"' . selected( $memberlite_custom_sidebar, $wp_registered_sidebar['id'] ) . '>' . $wp_registered_sidebar['name'] . '</option>';
-	}
-		echo '<option value="memberlite_sidebar_blank"' . selected( $memberlite_custom_sidebar, 'memberlite_sidebar_blank' ) . '>- Hide Sidebar -</option>';
-	echo '</select>';	
-	echo '<hr />';
-	echo '<p><strong>' . __('Default Sidebar Behavior', 'memberlite') . '</strong></p>';
-	echo '<label class="screen-reader-text" for="memberlite_default_sidebar">';
-	_e('Default Sidebar', 'memberlite');
-	echo '</label> ';
-	echo '<select id="memberlite_default_sidebar" name="memberlite_default_sidebar">';
-	echo '<option value="default_sidebar_above"' . selected( $memberlite_default_sidebar, 'default_sidebar_above' ) . '>' . __('Show Default Sidebar Above', 'memberlite') . '</option>';
-	echo '<option value="default_sidebar_below"' . selected( $memberlite_default_sidebar, 'default_sidebar_below' ) . '>' . __('Show Default Sidebar Below', 'memberlite') . '</option>';
-	echo '<option value="default_sidebar_hide"' . selected( $memberlite_default_sidebar, 'default_sidebar_hide' ) . '>' . __('Hide Default Sidebar', 'memberlite') . '</option>';
-	echo '</select>';
-}
-
-/* Save custom sidebar selection */
-function memberlite_sidebar_save_meta_box_data($post_id) {
-	if(!isset($_POST['memberlite_sidebar_meta_box_nonce'])) {
-		return;
-	}
-	if(!wp_verify_nonce($_POST['memberlite_sidebar_meta_box_nonce'], 'memberlite_sidebar_meta_box')) {
-		return;
-	}
-	if ( defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
-		return;
-	}
-	if ( isset($_POST['post_type']) && 'page' == $_POST['post_type']) {
-		if(!current_user_can('edit_page', $post_id)) {
-			return;
-		}
-	} 
-	else
-	{
-		if(!current_user_can('edit_post', $post_id)) {
-			return;
-		}
-	}
-	
-	if(!isset($_POST['memberlite_custom_sidebar'])) {
-		return;
-	}
-	$memberlite_custom_sidebar = sanitize_text_field($_POST['memberlite_custom_sidebar']);
-	
-	if(!isset($_POST['memberlite_default_sidebar'])) {
-		return;
-	}
-	$memberlite_default_sidebar = sanitize_text_field($_POST['memberlite_default_sidebar']);
-
-	// Update the meta field in the database.
-	update_post_meta($post_id, '_memberlite_custom_sidebar', $memberlite_custom_sidebar);
-	update_post_meta($post_id, '_memberlite_default_sidebar', $memberlite_default_sidebar);
-}
-add_action('save_post', 'memberlite_sidebar_save_meta_box_data');
-
-/* Add Setting in Featured Images meta box */
-function memberlite_featured_image_meta( $content ) {
-    global $post;
-	if(in_array( get_post_type($post->ID), array('post','page')))
-	{
-		$id = 'memberlite_hide_image_banner';
-		$value = esc_attr( get_post_meta( $post->ID, $id, true ) );
-		$label = '<label for="' . $id . '" class="selectit"><input name="' . $id . '" type="checkbox" id="' . $id . '" value="' . $value . ' "'. checked( $value, 1, false) .'>' . __('Hide Image Banner on Single View', 'memberlite') . '</label>';
-		return $content .= $label;
-	}
-	else
-		return $content;
-}
-add_filter( 'admin_post_thumbnail_html', 'memberlite_featured_image_meta' );
-
-/* Save Setting in Featured Images meta box */
-function memberlite_save_featured_image_meta( $post_id, $post, $update ) {  
-	$value = 0;
-	if ( isset( $_REQUEST['memberlite_hide_image_banner'] ) ) {
-		$value = 1;
-	}
-	// Set meta value to either 1 or 0
-	update_post_meta( $post_id, 'memberlite_hide_image_banner', $value );
-}
-add_action( 'save_post', 'memberlite_save_featured_image_meta', 10, 3 );
-
-function memberlite_woocommerce_before_main_content() {
-  echo '<div id="primary" class="large-12 columns content-area">';
-  echo '<main id="main" class="site-main" role="main">';
-}
-function memberlite_woocommerce_after_main_content() {
-  echo '</main></div>';
-}
-remove_action( 'woocommerce_before_main_content', 'woocommerce_output_content_wrapper', 10);
-remove_action( 'woocommerce_after_main_content', 'woocommerce_output_content_wrapper_end', 10);
-add_action('woocommerce_before_main_content', 'memberlite_woocommerce_before_main_content', 10);
-add_action('woocommerce_after_main_content', 'memberlite_woocommerce_after_main_content', 10);
-
-/* Implement the Custom Header feature.
- */
-require get_template_directory() . '/inc/custom-header.php';
-
-/* Custom template tags for this theme.
- */
-require get_template_directory() . '/inc/template-tags.php';
-
-/* Custom functions that act independently of the theme templates.
- */
-require get_template_directory() . '/inc/extras.php';
-
-/* Custom widgets that act independently of the theme templates.
- */
-require get_template_directory() . '/inc/widgets.php';
-
-/* Customizer additions.
- */
-require get_template_directory() . '/inc/customizer.php';
-
-/* Load Jetpack compatibility file.
- */
-require get_template_directory() . '/inc/jetpack.php';
-
-/* Custom shortcodes that act independently of the theme templates.
- */
-require get_template_directory() . '/inc/shortcodes.php';
-
-/* PMPro License code
- */
-if(!defined('PMPRO_LICENSE_SERVER'))
-	require get_template_directory() . '/inc/license.php';
-
-/* Custom admin theme pages.
- */
+/* Custom admin theme pages. */
 require get_template_directory() . '/inc/admin.php';
 
-/* Custom sidebars pages.
- */
+/* Implement the Custom Header feature. */
+require get_template_directory() . '/inc/custom-header.php';
+
+/* Custom sidebars pages. */
 require get_template_directory() . '/inc/custom-sidebars.php';
+
+/* Customizer additions. */
+require get_template_directory() . '/inc/customizer.php';
+
+/* Custom functions that act independently of the theme templates. */
+require get_template_directory() . '/inc/extras.php';
+
+/* Load Jetpack compatibility file. */
+require get_template_directory() . '/inc/jetpack.php';
+
+/* Custom template tags. */
+require get_template_directory() . '/inc/template-tags.php';
+
+/* Custom meta boxes. */
+require get_template_directory() . '/inc/metaboxes.php';
+
+/* Custom widgets that act independently of the theme templates. */
+require get_template_directory() . '/inc/widgets.php';
+
+if(function_exists('is_woocommerce'))
+{
+	/* Integration for WooCommerce. */
+	require get_template_directory() . '/inc/integrations/woocommerce.php';
+}
+
+/* Custom shortcodes that act independently of the theme templates. */
+require get_template_directory() . '/inc/shortcodes.php';
+
+/* PMPro License code */
+if(!defined('PMPRO_LICENSE_SERVER'))
+	require get_template_directory() . '/inc/license.php';

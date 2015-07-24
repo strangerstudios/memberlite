@@ -587,7 +587,7 @@ function memberlite_getBreadcrumbs()
 		if(function_exists('is_woocommerce') && is_woocommerce())
 		{
 		}
-		elseif(is_bbpress())
+		elseif(function_exists('is_bbpress') && is_bbpress())
 		{
 		?>
 		<nav class="memberlite-breadcrumb" itemprop="breadcrumb">

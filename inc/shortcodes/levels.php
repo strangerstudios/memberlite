@@ -60,7 +60,9 @@ function memberlite_levels_shortcode($atts, $content=null, $code="")
 	else
 		$show_price = true;	
 		
-	ob_start();					
+	if(function_exists('pmpro_getAllLevels'))
+	{	
+		ob_start();					
 		
 		//make sure pmpro_levels has all levels
 		if(!isset($pmpro_all_levels))
@@ -290,7 +292,7 @@ function memberlite_levels_shortcode($atts, $content=null, $code="")
 							foreach($pmpro_levels_filtered as $level)
 							{				  
 								?>
-								<th>
+								<th class="<?php if($current_level == $level) { echo 'pmpro_level-current '; } if($highlight == $level->id) { echo 'pmpro_level-highlight '; } ?>">
 								<?php if(empty($current_user->membership_level->ID)) { ?>
 									<a class="pmpro_btn pmpro_btn-select" href="<?php echo pmpro_url("checkout", "?level=" . $level->id, "https")?>"><?php echo $checkout_button; ?></a>
 								<?php } elseif ( !$current_level ) { ?>                	
@@ -634,10 +636,10 @@ function memberlite_levels_shortcode($atts, $content=null, $code="")
 				}
 			?>
 			</div> <!-- #pmpro_levels, .row -->
-		<?php
-		} //end else if no layout specified, use 'div'
-	?>
-		
+			<?php
+			} //end else if no layout specified, use 'div'
+		?>
+			
 		<?php if(!is_page_template( 'templates/interstitial.php' ) && !empty($back_link)) { ?> 
 		<nav id="nav-below" class="navigation" role="navigation">
 			<div class="nav-previous alignleft">
@@ -649,9 +651,11 @@ function memberlite_levels_shortcode($atts, $content=null, $code="")
 			</div>
 		</nav>	
 		<?php } ?>
-	<?php
-	$temp_content = ob_get_contents();
-	ob_end_clean();
-	return $temp_content;
+		
+		<?php
+		$temp_content = ob_get_contents();
+		ob_end_clean();
+		return $temp_content;
+	}
 }
 add_shortcode("memberlite_levels", "memberlite_levels_shortcode");
