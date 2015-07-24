@@ -119,6 +119,13 @@ function memberlite_getPostThumbnailWidth($post_id = NULL)
 		return false;	
 }
 
+function memberlite_excerpt_more($more) 
+{
+	global $post;
+	return ' <a href="'. get_permalink($post->ID) . '">(more...)</a></p>';
+}
+add_filter('excerpt_more', 'memberlite_excerpt_more');
+
 /**
  * Return the post URL.
  *

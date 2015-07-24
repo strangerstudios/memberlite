@@ -83,6 +83,12 @@
 				'border-bottom-color': to,
 				'border-top-color': to,
 			} );
+			$(memberlite_defaults.color_secondary_border_left_elements).css( {
+				'border-left-color': to,
+			} );
+			$(memberlite_defaults.color_secondary_border_right_elements).css( {
+				'border-right-color': to,
+			} );
 		} );
 	} );
 	wp.customize( 'color_secondary', function( value ) {

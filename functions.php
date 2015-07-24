@@ -167,6 +167,11 @@ function memberlite_member_menu( $items, $args ) {
 }
 add_filter( 'wp_nav_menu_items', 'memberlite_member_menu', 10, 2 );
 
+function memberlite_wp_nav_menu( $menu ) {
+	return do_shortcode( $menu ); 
+} 
+add_filter('wp_nav_menu', 'memberlite_wp_nav_menu'); 
+
 /* Custom admin theme pages. */
 require get_template_directory() . '/inc/admin.php';
 

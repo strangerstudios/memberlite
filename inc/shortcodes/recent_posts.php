@@ -53,7 +53,12 @@ function memberlite_recent_posts_shortcode_handler($atts, $content=null, $code="
 	if ( have_posts() ) : while ( have_posts() ) : the_post();	
 		$counter++;
 
-		$r .= '<div class="' . $colclass . ' columns">';
+		$r .= '<div class="' . $colclass . ' columns ';
+		if ( has_post_thumbnail())
+		{
+			$r .= ' widget_has_thumbnail';
+		}
+		$r .= '">';
 
 		$r .= '<article id="post-' . get_the_ID() . '" class="' . implode(" ", get_post_class()) . '">';
 
@@ -80,10 +85,6 @@ function memberlite_recent_posts_shortcode_handler($atts, $content=null, $code="
 		else
 			$r .= '';
 		$r .= '</div>';
-		$r .= '<p><a class="more-link" href="' . get_permalink() . '" rel="bookmark">';
-		$r .= __('Continue Reading','memberlite');
-		$r .= '</a></p>';
-									
 		$r .= '</article>';
 		$r .= '</div>';
 		

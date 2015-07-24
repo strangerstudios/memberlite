@@ -29,7 +29,9 @@ $memberlite_defaults = array(
 	'color_primary_background_elements' => '#mobile-navigation, #mobile-navigation-height-col, .masthead, .footer-widgets, .btn_primary, .btn_primary:link',
 	'color_primary_color_elements' => '.site-header .site-title a, .main-navigation li:hover > a, #secondary .widget a:hover, .primary',
 	'color_secondary_background_elements' => '#meta-member aside, #meta-member .member-navigation ul ul, a.pmpro_btn:hover, input[type="submit"].pmpro_btn:hover, .btn_secondary, .btn_secondary:link, .btn_primary:hover, .pmpro_content_message a:hover, .woocommerce button.button.alt:hover, .woocommerce input.button.alt:hover, .woocommerce-page #content input.button.alt:hover, .woocommerce-page #respond input#submit.alt:hover, .woocommerce-page a.button.alt:hover, .woocommerce-page button.button.alt:hover, .woocommerce-page input.button.alt:hover, #banner_bottom',
-	'color_secondary_border_elements' => '#pmpro_levels .pmpro_level-highlight, .memberlite_signup',
+	'color_secondary_border_elements' => '#pmpro_levels .pmpro_level-highlight, #pmpro_levels.pmpro_levels-compare_table thead tr:first-child th.pmpro_level-highlight, #pmpro_levels.pmpro_levels-compare_table thead tr:last-child th.pmpro_level-highlight, .memberlite_signup',
+	'color_secondary_border_left_elements' => '#pmpro_levels.pmpro_levels-compare_table thead th.pmpro_level-highlight, #pmpro_levels.pmpro_levels-compare_table tbody td.pmpro_level-highlight',
+	'color_secondary_border_right_elements' => '#pmpro_levels.pmpro_levels-compare_table thead th.pmpro_level-highlight, #pmpro_levels.pmpro_levels-compare_table tbody td.pmpro_level-highlight',
 	'color_secondary_color_elements' => 'a:hover, .woocommerce ul.products li.product .price, .woocommerce-page ul.products li.product .price, .woocommerce #content div.product p.price, .woocommerce #content div.product span.price, .woocommerce div.product p.price, .woocommerce div.product span.price, .woocommerce-page #content div.product p.price, .woocommerce-page #content div.product span.price, .woocommerce-page div.product p.price, .woocommerce-page div.product span.price, .secondary',
 	'color_action_background_elements' => '.btn_action, .btn_action:link, .pmpro_content_message a, .pmpro_content_message a:link, .pmpro_btn, .pmpro_btn:link, .pmpro_btn:visited, input[type=button].pmpro_btn, input[type=submit].pmpro_btn, .woocommerce #content input.button.alt, .woocommerce #respond input#submit.alt, .woocommerce a.button.alt, .woocommerce button.button.alt, .woocommerce input.button.alt, .woocommerce-page #content input.button.alt, .woocommerce-page #respond input#submit.alt, .woocommerce-page a.button.alt, .woocommerce-page button.button.alt, .woocommerce-page input.button.alt',
 	'color_action_color_elements' => '.action',	
@@ -416,6 +418,8 @@ class memberlite_Customize {
 			<?php self::generate_css($memberlite_defaults['color_secondary_background_elements'], 'background', 'color_secondary'); ?> 
 			<?php self::generate_css($memberlite_defaults['color_secondary_border_elements'], 'border-top-color', 'color_secondary'); ?>
 			<?php self::generate_css($memberlite_defaults['color_secondary_border_elements'], 'border-bottom-color', 'color_secondary'); ?>
+			<?php self::generate_css($memberlite_defaults['color_secondary_border_left_elements'], 'border-right-color', 'color_secondary'); ?>
+			<?php self::generate_css($memberlite_defaults['color_secondary_border_right_elements'], 'border-left-color', 'color_secondary'); ?>
 			<?php self::generate_css($memberlite_defaults['color_secondary_color_elements'], 'color', 'color_secondary'); ?>
 			<?php self::generate_css($memberlite_defaults['color_action_background_elements'], 'background', 'color_action'); ?>
 			<?php self::generate_css($memberlite_defaults['color_action_color_elements'], 'color', 'color_action'); ?>
@@ -458,6 +462,8 @@ class memberlite_Customize {
 			'color_primary_color_elements' => $memberlite_defaults['color_primary_color_elements'],
 			'color_secondary_background_elements' => $memberlite_defaults['color_secondary_background_elements'],
 			'color_secondary_border_elements' => $memberlite_defaults['color_secondary_border_elements'],
+			'color_secondary_border_right_elements' => $memberlite_defaults['color_secondary_border_right_elements'],
+			'color_secondary_border_left_elements' => $memberlite_defaults['color_secondary_border_left_elements'],
 			'color_secondary_color_elements' => $memberlite_defaults['color_secondary_color_elements'],
 			'color_action_background_elements' => $memberlite_defaults['color_action_background_elements'],
 			'color_action_color_elements' => $memberlite_defaults['color_action_color_elements'],
