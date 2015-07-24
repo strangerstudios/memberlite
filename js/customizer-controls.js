@@ -19,11 +19,14 @@
 			if(to != 'custom')
 			{			
 				//update colors											
-				var colors;
+				var colors, header_logo;
 				colors = colorSchemes[to].colors;
 				memberlite_color_controls_listener_flag = false;
-				for(i = 0; i < 7; i++) {					
-					$('#customize-control-'+memberlite_color_controls[i]).find( '.color-picker-hex' ).wpColorPicker('color', colors[i]);
+				header_logo = $('#customize-control-display_header_text').find('input:checked');
+				
+				for(i = 0; i < 7; i++) {
+					if(!header_logo || i > 2)
+						$('#customize-control-'+memberlite_color_controls[i]).find( '.color-picker-hex' ).wpColorPicker('color', colors[i]);
 				}
 				memberlite_color_controls_listener_flag = true;				
 			}			
@@ -32,7 +35,7 @@
 	
 	// Set color scheme to custom when a color is changed specifically
 	for(i = 0; i < 7; i++) {
-		wp.customize(memberlite_color_controls[i], function( value ) {
+		wp.customize(memberlite_color_controls[i].replace(/memberlite_/, ''), function( value ) {
 			value.bind( function( to ) {			
 				if(memberlite_color_controls_listener_flag)
 					$('#customize-control-memberlite_color_scheme').find('select').val('custom').change();
