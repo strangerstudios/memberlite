@@ -43,9 +43,9 @@ function memberlite_recent_posts_shortcode_handler($atts, $content=null, $code="
 	elseif($count == "2")
 		$colclass = "medium-6";
 	elseif($count == "3")
-		$colclass = "medium-4";
+		$colclass = "medium-4 small-12";
 	elseif($count == "4")
-		$colclass = "medium-3";
+		$colclass = "medium-3 small-12";
 	else
 		$colclass = "medium-6";
 	

@@ -1937,8 +1937,8 @@ object {
 @media only screen and (max-width: 767px) {
 	.header-right, #site-navigation {display: none; }
 	.site-branding {text-align: center; width: 100%; }	
-	.menu-toggle {display: block; position: absolute; top: 25px; right: 0px; }	
-	/*#mobile-navigation.toggled {left: 0px; }	*/
+	.menu-toggle {display: block; position: absolute; top: 25px; right: 0px; }
+	.testimonials-widget-testimonial span.image	{display: block; float: none; margin: 0; text-align: center; }
 	form.pmpro_form label {display: block; float: none; margin: 0; text-align: left; width: 100%; }
 	form.pmpro_form .pmpro_thead-msg {width: 45%; white-space:normal; font-size: 10px; }
 	form.pmpro_form .input, form.pmpro_form select {width: 93%; }
@@ -1946,6 +1946,8 @@ object {
 	form.pmpro_form .pmpro_submit {margin: 0; }
 	.pmpro_levels-div .entry-footer .alignright, .pmpro_levels-2col .entry-footer .alignright {float: none; margin: 0 0 1.5rem 0; display: block; }
 	.home .masthead {text-align: center; }
+	.footer-widgets .widget {padding-top: 2rem; padding-bottom: 2rem; }
+	.footer-widgets .widget:nth-child(even) {background: rgba(255,255,255,0.2); }
 }
 
 .row-demo .columns span { background: #CCC; display: block; }
