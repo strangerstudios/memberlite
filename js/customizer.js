@@ -14,9 +14,9 @@
 		value.bind( function( to ) {
 			$( '.site-description' ).text( to );
 		} );
-	} );
+	} );	
 	// Header text color.
-	wp.customize( 'header_textcolor', function( value ) {
+	wp.customize( 'header_textcolor', function( value ) {		
 		value.bind( function( to ) {
 			if ( 'blank' === to ) {
 				$( '.site-title' ).css( {
