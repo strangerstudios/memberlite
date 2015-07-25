@@ -579,7 +579,7 @@ textarea {
 .pmpro_success {background-color: #dff0d8; color: #3c763d; border-color: #d6e9c6; }
 .pmpro_error {background-color: #f2dede; color: #a94442; border-color: #ebccd1; }
 .pmpro_alert, .pmpro_content_message, #pmpro_account_loggedin {background-color: #fcf8e3; color: #8a6d3b; border-color: #faebcc;}
-.pmpro_message h2, .pmpro_message h3, .pmpro_message h4, .pmpro_message h5 {margin-top: 1rem; }
+.pmpro_message h2, .pmpro_message h3, .pmpro_message h4, .pmpro_message h5, .pmpro_content_message h2, .pmpro_content_message h3, .pmpro_content_message h4, .pmpro_content_message h5 {margin-top: 1rem; }
 .pmpro_content_message a {margin: 5px 5px 0 0; }
 .pmpro_message a {color: #245269; text-decoration: underline; }
 .pmpro_success a {color: #2b542c; }
@@ -1225,6 +1225,11 @@ a:active {
 	padding: 2rem 0;
 	margin-bottom: 4rem;
 }
+.masthead-inv {
+	background-color: #FDFDFD;
+	padding: 2rem 0;
+	margin-bottom: 4rem;
+}
 .home .masthead {
 	padding: 4rem 0;
 }
@@ -1326,6 +1331,7 @@ a:active {
 .hentry {
 	margin: 0 0 4rem;
 }
+.columns .hentry.memberlite_subpagelist_item {margin: 0; }
 .hentry .entry-banner {
 	background-position: left bottom;
 	background-repeat: no-repeat;
@@ -1402,7 +1408,13 @@ a:active {
 .page .entry-content .entry-content {
 	border-bottom: 1px dotted #CCC;
 }
-.home .home-content .entry-content {
+.memberlite_subpagelist_item {
+	padding-top: 3rem;
+}
+.memberlite_subpagelist_item .entry-content {
+	padding-bottom: 3rem;
+}
+.home .home-content .entry-content, #main .columns .hentry.memberlite_subpagelist_item .entry-content {
 	border-bottom: none;
 }
 .post .entry-footer {
@@ -1438,6 +1450,20 @@ a:active {
 .page-links {
 	clear: both;
 	margin: 0 0 1.5rem;
+}
+
+
+.banner {
+	padding: 4rem 0;
+}
+.banner_body {background-color: #FFF; }
+.banner_primary {background-color: #2C3E50; }
+.banner_secondary {background-color: #18BC9C; }
+.banner_action {background-color: #F39C12; }
+
+#main .banner_primary, #main .banner_primary h1, #main .banner_primary h2, #main .banner_primary h3, #main .banner_primary h4, #main .banner_primary h5, #main .banner_primary a, #main .banner_primary a:link,
+#main .banner_secondary, #main .banner_secondary h1, #main .banner_secondary h2, #main .banner_secondary h3, #main .banner_secondary h4, #main .banner_secondary h5, #main .banner_secondary a, #main .banner_secondary a:link {
+	color: #FFF; 
 }
 
 #banner_bottom {
@@ -1704,9 +1730,11 @@ a:active {
 #pmpro_levels.pmpro_levels-compare_table tbody td:first-child {text-align: right; }
 #pmpro_levels.pmpro_levels-compare_table tbody tr:last-child td {border-bottom: .5rem solid #CCC; }
 #pmpro_levels.pmpro_levels-compare_table thead tr:last-child th {border-bottom: .5rem solid #CCC; } 
-#pmpro_levels.pmpro_levels-compare_table thead th.pmpro_level-highlight, #pmpro_levels.pmpro_levels-compare_table tbody td.pmpro_level-highlight { border-left: 1rem solid #18BC9C; border-right: 1rem solid #18BC9C; }
+#pmpro_levels.pmpro_levels-compare_table thead th.pmpro_level-highlight, #pmpro_levels.pmpro_levels-compare_table tbody td.pmpro_level-highlight, #pmpro_levels.pmpro_levels-compare_table tfoot td.pmpro_level-highlight { border-left: 1rem solid #18BC9C; border-right: 1rem solid #18BC9C; }
 #pmpro_levels.pmpro_levels-compare_table thead tr:first-child th.pmpro_level-highlight { border-top: 1rem solid #18BC9C; }
-#pmpro_levels.pmpro_levels-compare_table thead tr:last-child th.pmpro_level-highlight { border-bottom: 1rem solid #18BC9C; }
+#pmpro_levels.pmpro_levels-compare_table thead tr:last-child th.pmpro_level-highlight, #pmpro_levels.pmpro_levels-compare_table tbody tr td.pmpro_level-highlight, #pmpro_levels.pmpro_levels-compare_table tfoot tr td.pmpro_level-highlight { border-bottom: none; }
+#pmpro_levels.pmpro_levels-compare_table tfoot tr:last-child td.pmpro_level-highlight {border-bottom: 1rem solid #18BC9C; }
+
 
 #pmpro_levels.pmpro_levels-compare_table:hover tbody tr:nth-child(even) td {background: none !important; }
 #pmpro_levels.pmpro_levels-compare_table tbody tr:hover {background-color: rgba(252,248,227,0.8); }

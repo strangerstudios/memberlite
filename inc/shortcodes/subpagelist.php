@@ -14,6 +14,7 @@ function memberlite_subpagelist_shortcode_handler($atts, $content=null, $code=""
 	
 	extract(shortcode_atts(array(
 		'exclude' => NULL,
+		'layout' => NULL,
 		'show' => 'excerpt',
 		'link' => true,
 		'orderby'	=> 'menu_order',
@@ -25,6 +26,9 @@ function memberlite_subpagelist_shortcode_handler($atts, $content=null, $code=""
 	else
 		$link = false;
 	
+	if(!is_numeric($columns))
+		$columns = false;
+
 	// prep exclude array
 	$exclude = str_replace(" ", "", $exclude);
 	$exclude = explode(",", $exclude);
@@ -40,13 +44,32 @@ function memberlite_subpagelist_shortcode_handler($atts, $content=null, $code=""
 	$oldmore = $more;
 	$more = 0;
 	$count = 0;
+
+	if(!empty($layout))
+		$r .= '<div class="row">';
   
 	// the Loop		
 	if ( have_posts() ) : while ( have_posts() ) : the_post();	
 
-		$r .= '<article id="post-' . get_the_ID() . '" class="' . implode(" ", get_post_class()) . '">';
+		if(!empty($layout))
+		{
+			$r .= '<div class="medium-';
+			
+			if($layout == '2col')
+				$r .= '6';
+			elseif($layout == '3col')
+				$r .= '4';
+			elseif($layout == '4col')
+				$r .= '3';
+			else
+				$r .= '12';
+			
+			$r .= ' columns">';
+		}
+	
+		$r .= '<article id="post-' . get_the_ID() . '" class="' . implode(" ", get_post_class()) . ' memberlite_subpagelist_item">';
 
-		if ( has_post_thumbnail()) 
+		if ( has_post_thumbnail() && empty($layout)) 
 		{					
 			if($link)
 				$r .= '<a href="' . get_permalink() . '">' . get_the_post_thumbnail($post->ID, 'thumbnail', array('class' => 'alignright')) . '</a>';
@@ -71,6 +94,14 @@ function memberlite_subpagelist_shortcode_handler($atts, $content=null, $code=""
 		$r .= '</h1>';
 		$r .= '</header>';		
 		$r .= '<div class="entry-content">';		
+
+		if ( has_post_thumbnail() && !empty($layout)) 
+		{					
+			if($link)
+				$r .= '<a href="' . get_permalink() . '">' . get_the_post_thumbnail($post->ID, 'thumbnail', array('class' => 'alignright')) . '</a>';
+			else
+				$r .= get_the_post_thumbnail($post->ID, 'thumbnail');
+		}
 									
 		if($show == "excerpt")
 			$r .= apply_filters('the_content', preg_replace("/\[memberlite_subpagelist[^\]]*\]/", "", get_the_excerpt( '' )));
@@ -81,18 +112,33 @@ function memberlite_subpagelist_shortcode_handler($atts, $content=null, $code=""
 		
 		if($link)
 		{
-			$r .= '<p><a class="more-link" href="' . get_permalink() . '" rel="bookmark">';
-			$r .= __('Continue Reading','memberlite');
-			$r .= '</a></p>';
+			$r .= '<a class="more-link" href="' . get_permalink() . '" rel="bookmark">';
+			$r .= __('(more...)','memberlite');
+			$r .= '</a>';
 		}
 								
 		$r .= '</div>';
 			
 		$r .= '</article>';
 	
-	$count++;
+		if(!empty($layout))
+		{
+			$r .= '</div>'; //end columns
+			
+			//end and begin new row
+			if($layout == '2col')
+				$r .= '</div><hr /><div class="row">';
+			elseif($layout == '3col' && $count++ % 3 == 2)
+				$r .= '</div><hr /><div class="row">';
+			elseif($layout == '4col')
+				$r .= '</div><hr /><div class="row">';
+		}
+
 	endwhile; endif;
 	
+	if(!empty($layout))
+		$r .= '</div>'; //end row
+		
 	//Reset Query
 	wp_reset_query();
 

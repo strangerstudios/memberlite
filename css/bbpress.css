@@ -755,6 +755,7 @@ p.form-allowed-tags {
 }
 
 #bbpress-forums div.bbp-the-content-wrapper input {
+	color: #555 !important;
 	font-size: 12px;
 	padding: 5px;
 	margin: 0 2px 0 0;

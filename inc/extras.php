@@ -299,7 +299,7 @@ function memberlite_page_title() {
 	elseif(is_search())
 	{
 		?>
-		<h1 class="page-title"><?php printf( __( 'Search Results for: %s', 'memberlite' ), '<span>' . get_search_query() . '</span>' ); ?></h1>
+		<h1 class="page-title"><?php printf( __( 'Search Results for: %s', 'memberlite' ), '<span>' . esc_attr(get_search_query()) . '</span>' ); ?></h1>
 		<?php
 	}
 	elseif(is_singular('post'))
