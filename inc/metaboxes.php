@@ -33,6 +33,7 @@ function memberlite_settings_meta_box_callback($post) {
 	$memberlite_landing_page_checkout_button = get_post_meta($post->ID, '_memberlite_landing_page_checkout_button', true);
 	$memberlite_landing_page_level = get_post_meta($post->ID, '_memberlite_landing_page_level', true);
 	$memberlite_landing_page_upsell = get_post_meta($post->ID, '_memberlite_landing_page_upsell', true);
+	
 	echo '<h2>' . __('Page Banner Settings', 'memberlite') . '</h2>';
 	echo '<p style="margin: 1rem 0 0 0;"><strong>' . __('Banner Description', 'memberlite') . '</strong> <em>Shown in the masthead banner below the page title.</em>';
 	if(($memberlite_page_template == 'templates/landing.php') && function_exists('pmpro_getAllLevels'))
@@ -44,8 +45,10 @@ function memberlite_settings_meta_box_callback($post) {
 	echo '<textarea class="large-text" rows="3" id="memberlite_banner_desc" name="memberlite_banner_desc">';
 		echo $memberlite_banner_desc;
 	echo '</textarea>';		
-	echo '<label for="memberlite_banner_hide_title" class="selectit"><input name="memberlite_banner_hide_title" type="checkbox" id="memberlite_banner_hide_title" value="' . $memberlite_banner_hide_title . ' "'. checked( $memberlite_banner_hide_title, 1, false) .'>' . __('Hide Page Title on Single View', 'memberlite') . '</label>';
-	echo '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label for="memberlite_banner_hide_breadcrumbs" class="selectit"><input name="memberlite_banner_hide_breadcrumbs" type="checkbox" id="memberlite_banner_hide_breadcrumbs" value="' . $memberlite_banner_hide_breadcrumbs . ' "'. checked( $memberlite_banner_hide_breadcrumbs, 1, false) .'>' . __('Hide Breadcrumbs', 'memberlite') . '</label>';
+	echo '<input type="hidden" name="memberlite_banner_hide_title_present" value="1" />';
+	echo '<label for="memberlite_banner_hide_title" class="selectit"><input name="memberlite_banner_hide_title" type="checkbox" id="memberlite_banner_hide_title" value="1" '. checked( $memberlite_banner_hide_title, 1, false) .'>' . __('Hide Page Title on Single View', 'memberlite') . '</label>';
+	echo '<input type="hidden" name="memberlite_banner_hide_breadcrumbs_present" value="1" />';
+	echo '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label for="memberlite_banner_hide_breadcrumbs" class="selectit"><input name="memberlite_banner_hide_breadcrumbs" type="checkbox" id="memberlite_banner_hide_breadcrumbs" value="1" '. checked( $memberlite_banner_hide_breadcrumbs, 1, false) .'>' . __('Hide Breadcrumbs', 'memberlite') . '</label>';
 	echo '<p style="margin: 1rem 0 0 0;"><strong>' . __('Banner Right Column', 'memberlite') . '</strong> <em>Right side of the masthead banner. (i.e. Video Embed, Image or Action Button)</em></p>';
 	echo '<label class="screen-reader-text" for="memberlite_banner_right">';
 	_e('Banner Right Column', 'memberlite');
@@ -125,55 +128,66 @@ function memberlite_settings_save_meta_box_data($post_id) {
 		}
 	}
 	
-	if(!isset($_POST['memberlite_banner_desc'])) {
-		return;
+	//banner description
+	if(isset($_POST['memberlite_banner_desc'])) {
+		$memberlite_banner_desc = $_POST['memberlite_banner_desc'];
+		update_post_meta($post_id, '_memberlite_banner_desc', $memberlite_banner_desc);
 	}
-	$memberlite_banner_desc = $_POST['memberlite_banner_desc'];
+		
+	//banner hide title checkbox	
+	if(isset($_POST['memberlite_banner_hide_title_present'])) {
+		if(!empty($_POST['memberlite_banner_hide_title']))
+			$memberlite_banner_hide_title = 1;
+		else
+			$memberlite_banner_hide_title = 0;
+			
+		update_post_meta($post_id, '_memberlite_banner_hide_title', $memberlite_banner_hide_title);
+	}
 	
-	if(!isset($_POST['memberlite_banner_hide_title']))
-		$memberlite_banner_hide_title = 0;
-	else
-		$memberlite_banner_hide_title = 1;
+	//banner hide breadcrumbs checkbox
+	if(isset($_POST['memberlite_banner_hide_breadcrumbs_present']))	{
+		if(!empty($_POST['memberlite_banner_hide_breadcrumbs']))
+			$memberlite_banner_hide_breadcrumbs = 1;
+		else
+			$memberlite_banner_hide_breadcrumbs = 0;
+			
+		update_post_meta($post_id, '_memberlite_banner_hide_breadcrumbs', $memberlite_banner_hide_breadcrumbs);
+	}
 	
-	if(!isset($_POST['memberlite_banner_hide_breadcrumbs']))
-		$memberlite_banner_hide_breadcrumbs = 0;
-	else
-		$memberlite_banner_hide_breadcrumbs = 1;
+	//banner right content
+	if(isset($_POST['memberlite_banner_right'])) {
+		$memberlite_banner_right = $_POST['memberlite_banner_right'];
+		
+		update_post_meta($post_id, '_memberlite_banner_right', $memberlite_banner_right);
+	}
 	
-	if(!isset($_POST['memberlite_banner_right'])) {
-		return;
+	//banner bottom content
+	if(isset($_POST['memberlite_banner_bottom'])) {
+		$memberlite_banner_bottom = $_POST['memberlite_banner_bottom'];
+		
+		update_post_meta($post_id, '_memberlite_banner_bottom', $memberlite_banner_bottom);
 	}
-	$memberlite_banner_right = $_POST['memberlite_banner_right'];
-
-	if(!isset($_POST['memberlite_banner_bottom'])) {
-		return;
+	
+	//landing page level
+	if(isset($_POST['memberlite_landing_page_level'])) {
+		$memberlite_landing_page_level = $_POST['memberlite_landing_page_level'];
+		
+		update_post_meta($post_id, '_memberlite_landing_page_level', $memberlite_landing_page_level);
 	}
-	$memberlite_banner_bottom = $_POST['memberlite_banner_bottom'];
-
-/*	if(!isset($_POST['memberlite_landing_page_level'])) {
-		return;
+	
+	//landing page checkout button
+	if(isset($_POST['memberlite_landing_page_checkout_button'])) {
+		$memberlite_landing_page_checkout_button = $_POST['memberlite_landing_page_checkout_button'];
+		
+		update_post_meta($post_id, '_memberlite_landing_page_checkout_button', $memberlite_landing_page_checkout_button);
 	}
-	$memberlite_landing_page_level = $_POST['memberlite_landing_page_level'];
-
-	if(!isset($_POST['memberlite_landing_page_checkout_button'])) {
-		return;
-	}
-	$memberlite_landing_page_checkout_button = $_POST['memberlite_landing_page_checkout_button'];
-
-	if(!isset($_POST['memberlite_landing_page_upsell'])) {
-		return;
-	}
-	$memberlite_landing_page_upsell = $_POST['memberlite_landing_page_upsell'];
-*/
-	// Update the meta field in the database.
-	update_post_meta($post_id, '_memberlite_banner_desc', $memberlite_banner_desc);
-	update_post_meta($post_id, '_memberlite_banner_hide_title', $memberlite_banner_hide_title);
-	update_post_meta($post_id, '_memberlite_banner_hide_breadcrumbs', $memberlite_banner_hide_breadcrumbs);
-	update_post_meta($post_id, '_memberlite_banner_right', $memberlite_banner_right);
-	update_post_meta($post_id, '_memberlite_banner_bottom', $memberlite_banner_bottom);
-	update_post_meta($post_id, '_memberlite_landing_page_level', $memberlite_landing_page_level);
-	update_post_meta($post_id, '_memberlite_landing_page_checkout_button', $memberlite_landing_page_checkout_button);
-	update_post_meta($post_id, '_memberlite_landing_page_upsell', $memberlite_landing_page_upsell);
+	
+	//landing page upsell content
+	if(isset($_POST['memberlite_landing_page_upsell'])) {
+		$memberlite_landing_page_upsell = $_POST['memberlite_landing_page_upsell'];
+		
+		update_post_meta($post_id, '_memberlite_landing_page_upsell', $memberlite_landing_page_upsell);
+	}	
 }
 add_action('save_post', 'memberlite_settings_save_meta_box_data');
 
