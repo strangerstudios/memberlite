@@ -148,6 +148,7 @@
 				<header class="masthead">
 					<div class="row">
 						<div class="large-12 columns">
+							<?php do_action('before_masthead_inner'); ?>
 							<?php if(is_page_template( 'templates/interstitial.php' )) { 
 								$referrer = $_GET['redirect_to'];
 								?>
@@ -174,7 +175,8 @@
 								if(!empty($memberlite_banner_desc))
 									echo apply_filters('the_content',$memberlite_banner_desc);
 							?>
-							</div>
+							<?php do_action('after_masthead_inner'); ?>
+						</div>
 					</div><!-- .row -->
 				</header><!-- .masthead -->
 				<?php

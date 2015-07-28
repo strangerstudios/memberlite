@@ -38,7 +38,7 @@ function memberlite_subpagelist_shortcode_handler($atts, $content=null, $code=""
 		
 	// get posts
 	query_posts(array("post_type"=>"page", "showposts"=>-1, "orderby"=>$orderby, "post_parent"=>$post->ID, "order"=>$order, "post__not_in"=>$exclude));
-  
+
   	//to show excerpts. save the old value to revert
 	global $more;
 	$oldmore = $more;
@@ -67,7 +67,7 @@ function memberlite_subpagelist_shortcode_handler($atts, $content=null, $code=""
 			$r .= ' columns">';
 		}
 	
-		$r .= '<article id="post-' . get_the_ID() . '" class="' . implode(" ", get_post_class()) . ' memberlite_subpagelist_item">';
+		$r .= '<article id="post-' . get_the_ID() . '" class="' . implode(" ", get_post_class()) . ' memberlite_subpagelist_item ' . $count. '">';
 
 		if ( has_post_thumbnail() && empty($layout)) 
 		{					
@@ -126,11 +126,11 @@ function memberlite_subpagelist_shortcode_handler($atts, $content=null, $code=""
 			$r .= '</div>'; //end columns
 			
 			//end and begin new row
-			if($layout == '2col')
+			if($layout == '2col' && $count++ % 2 == 1)
 				$r .= '</div><hr /><div class="row">';
 			elseif($layout == '3col' && $count++ % 3 == 2)
 				$r .= '</div><hr /><div class="row">';
-			elseif($layout == '4col')
+			elseif($layout == '4col' && $count++ % 4 == 0)
 				$r .= '</div><hr /><div class="row">';
 		}
 
