@@ -1249,7 +1249,7 @@ a:active {
 }
 .masthead-banner .masthead-post-byline {
 	background: rgba(0,0,0,.6);
-	width: 45%;
+	width: 90%;
 	padding: 1rem 0;
 }
 .masthead h1 {
@@ -1712,7 +1712,7 @@ a:active {
 #pmpro_levels .medium-4 .pmpro_btn, #pmpro_levels .medium-3 .pmpro_btn, .pmpro_levels-table .pmpro_btn, .pmpro_levels-compare_table .pmpro_btn {
 	display: block;
 }
-#pmpro_levels .pmpro_levels-table.pmpro_level-highlight, #pmpro_levels .pmpro_levels-2col .pmpro_level-highlight, #pmpro_levels .pmpro_levels-3col .pmpro_level-highlight, #pmpro_levels .pmpro_levels-4col .pmpro_level-highlight, .memberlite_signup { box-shadow: 0px 5px 10px #AAA; padding: 1rem; background: #FFF; z-index: 100; border-top: .5rem solid #18BC9C; border-bottom: 1.5rem solid #18BC9C; border-left: 1px solid #CCC; border-right: 1px solid #CCC; }
+#pmpro_levels .pmpro_levels-table.pmpro_level-highlight, #pmpro_levels.pmpro_levels-div .pmpro_level-highlight, #pmpro_levels .pmpro_levels-2col .pmpro_level-highlight, #pmpro_levels .pmpro_levels-3col .pmpro_level-highlight, #pmpro_levels .pmpro_levels-4col .pmpro_level-highlight, .memberlite_signup { box-shadow: 0px 5px 10px #AAA; padding: 1rem; background: #FFF; z-index: 100; border-top: .5rem solid #18BC9C; border-bottom: 1.5rem solid #18BC9C; border-left: 1px solid #CCC; border-right: 1px solid #CCC; }
 #pmpro_levels.pmpro_levels-2col .pmpro_level-highlight, #pmpro_levels.pmpro_levels-3col .pmpro_level-highlight, #pmpro_levels.pmpro_levels-4col .pmpro_level-highlight {margin-top: -1.5rem; }
 
 #pmpro_levels_table td, #pmpro_levels.pmpro_levels-table td {vertical-align: middle; }
@@ -1954,24 +1954,31 @@ object {
 .gallery-caption {}
 
 
+@media only screen and (min-width: 1160px) {
+	.hide-screen {display: none; }	
+}
+
 @media only screen and (min-width: 960px) and (max-width: 1160px) {
-	
+	.hide-screen {display: none; }	
 }
 
 @media only screen and (min-width: 768px) and (max-width: 959px) {
-
+	.hide-mobile {display: none; }
 }
 
 @media only screen and (max-width: 767px) {
+	.hide-mobile {display: none; }
 	.header-right, #site-navigation {display: none; }
 	.site-branding {text-align: center; width: 100%; }	
 	.menu-toggle {display: block; position: absolute; top: 25px; right: 0px; }
 	.testimonials-widget-testimonial span.image	{display: block; float: none; margin: 0; text-align: center; }
 	form.pmpro_form label {display: block; float: none; margin: 0; text-align: left; width: 100%; }
+	form.pmpro_form label.pmpro_clickable {display: inline-block; }
 	form.pmpro_form .pmpro_thead-msg {width: 45%; white-space:normal; font-size: 10px; }
 	form.pmpro_form .input, form.pmpro_form select {width: 93%; }
 	form.pmpro_form #CVV, form.pmpro_form select#ExpirationMonth, form.pmpro_form select#ExpirationYear {width: 43%; }
-	form.pmpro_form .pmpro_submit {margin: 0; }
+	form.pmpro_form .pmpro_submit, form.pmpro_form .leftmar {margin: 0; }
+	.pmpro_levels-div {text-align: center; }
 	.pmpro_levels-div .entry-footer .alignright, .pmpro_levels-2col .entry-footer .alignright {float: none; margin: 0 0 1.5rem 0; display: block; }
 	.home .masthead {text-align: center; }
 	.footer-widgets .widget {padding-top: 2rem; padding-bottom: 2rem; }
