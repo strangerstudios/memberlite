@@ -15,10 +15,11 @@ function memberlite_subpagelist_shortcode_handler($atts, $content=null, $code=""
 	extract(shortcode_atts(array(
 		'exclude' => NULL,
 		'layout' => NULL,
-		'show' => 'excerpt',
 		'link' => true,
 		'orderby'	=> 'menu_order',
-		'order'	=>	'ASC'
+		'order'	=>	'ASC',
+		'show' => 'excerpt',
+		'thumbnail' => true,
 	), $atts));
 	
 	if($link && strtolower($link) != "false")
@@ -26,8 +27,10 @@ function memberlite_subpagelist_shortcode_handler($atts, $content=null, $code=""
 	else
 		$link = false;
 	
-	if(!is_numeric($columns))
-		$columns = false;
+	if($thumbnail && strtolower($thumbnail) != "false")
+		$thumbnail = true;
+	else
+		$thumbnail = false;		
 
 	// prep exclude array
 	$exclude = str_replace(" ", "", $exclude);
@@ -37,24 +40,33 @@ function memberlite_subpagelist_shortcode_handler($atts, $content=null, $code=""
 	$r = "";
 		
 	// get posts
-	query_posts(array("post_type"=>"page", "showposts"=>-1, "orderby"=>$orderby, "post_parent"=>$post->ID, "order"=>$order, "post__not_in"=>$exclude));
+	$args = array(
+		"post_type"=>"page",
+		"showposts"=>-1,
+		"orderby"=>$orderby,
+		"post_parent"=>$post->ID,
+		"order"=>$order,
+		"post__not_in"=>$exclude
+	);
+	$memberlite_subpageposts = get_posts($args);
+	
+	$layout_cols = preg_replace('/[^0-9]/', '', $layout);;	
+	if(!empty($layout_cols))
+		$memberlite_subpageposts_chunks = array_chunk($memberlite_subpageposts, $layout_cols);
+	else
+		$memberlite_subpageposts_chunks = array_chunk($memberlite_subpageposts, '1');
 
   	//to show excerpts. save the old value to revert
 	global $more;
 	$oldmore = $more;
 	$more = 0;
-	$count = 0;
 
-	if(!empty($layout))
-		$r .= '<div class="row">';
-  
 	// the Loop		
-	if ( have_posts() ) : while ( have_posts() ) : the_post();	
-
-		if(!empty($layout))
-		{
-			$r .= '<div class="medium-';
-			
+	foreach($memberlite_subpageposts_chunks as $row):
+		$r .= '<div class="row">';
+		foreach($row as $post): 
+			setup_postdata($post);
+			$r .= '<div class="medium-';			
 			if($layout == '2col')
 				$r .= '6';
 			elseif($layout == '3col')
@@ -63,82 +75,67 @@ function memberlite_subpagelist_shortcode_handler($atts, $content=null, $code=""
 				$r .= '3';
 			else
 				$r .= '12';
-			
 			$r .= ' columns">';
-		}
+			$r .= '<article id="post-' . get_the_ID() . '" class="' . implode(" ", get_post_class()) . ' memberlite_subpagelist_item">';
 	
-		$r .= '<article id="post-' . get_the_ID() . '" class="' . implode(" ", get_post_class()) . ' memberlite_subpagelist_item ' . $count. '">';
-
-		if ( has_post_thumbnail() && empty($layout)) 
-		{					
+			if ( has_post_thumbnail() && empty($layout) && !empty($thumbnail)) 
+			{					
+				if($link)
+					$r .= '<a href="' . get_permalink() . '">' . get_the_post_thumbnail($post->ID, 'thumbnail', array('class' => 'alignright')) . '</a>';
+				else
+					$r .= get_the_post_thumbnail($post->ID, 'thumbnail');
+			}
+			
+			$r .= '<header class="entry-header">';
+			$r .= '<h1 class="entry-title">';
+	
 			if($link)
-				$r .= '<a href="' . get_permalink() . '">' . get_the_post_thumbnail($post->ID, 'thumbnail', array('class' => 'alignright')) . '</a>';
+			{
+				$r .= '<a href="' . get_permalink() . '" rel="bookmark">';
+				$r .= the_title('','',false);
+				$r .= '</a>';
+			}
 			else
-				$r .= get_the_post_thumbnail($post->ID, 'thumbnail');
-		}
-		
-		$r .= '<header class="entry-header">';
-		$r .= '<h1 class="entry-title">';
-
-		if($link)
-		{
-			$r .= '<a href="' . get_permalink() . '" rel="bookmark">';
-			$r .= the_title('','',false);
-			$r .= '</a>';
-		}
-		else
-		{
-			$r .= the_title('','',false);
-		}
-					
-		$r .= '</h1>';
-		$r .= '</header>';		
-		$r .= '<div class="entry-content">';		
-
-		if ( has_post_thumbnail() && !empty($layout)) 
-		{					
+			{
+				$r .= the_title('','',false);
+			}
+						
+			$r .= '</h1>';
+			$r .= '</header>';		
+			$r .= '<div class="entry-content">';		
+	
+			if ( has_post_thumbnail() && !empty($layout) && !empty($thumbnail)) 
+			{					
+				if($link)
+					$r .= '<a href="' . get_permalink() . '">' . get_the_post_thumbnail($post->ID, 'thumbnail', array('class' => 'alignright')) . '</a>';
+				else
+					$r .= get_the_post_thumbnail($post->ID, 'thumbnail');
+			}
+										
+			if($show == "excerpt")
+				$r .= apply_filters('the_content', preg_replace("/\[memberlite_subpagelist[^\]]*\]/", "", get_the_excerpt( '' )));
+			elseif($show == "content")
+				$r .= apply_filters('the_content', preg_replace("/\[memberlite_subpagelist[^\]]*\]/", "", get_the_content( '' )));						
+			else
+				$r .= '';
+			
 			if($link)
-				$r .= '<a href="' . get_permalink() . '">' . get_the_post_thumbnail($post->ID, 'thumbnail', array('class' => 'alignright')) . '</a>';
-			else
-				$r .= get_the_post_thumbnail($post->ID, 'thumbnail');
-		}
+			{
+				$r .= '<a class="more-link" href="' . get_permalink() . '" rel="bookmark">';
+				$r .= __('(more...)','memberlite');
+				$r .= '</a>';
+			}
 									
-		if($show == "excerpt")
-			$r .= apply_filters('the_content', preg_replace("/\[memberlite_subpagelist[^\]]*\]/", "", get_the_excerpt( '' )));
-		elseif($show == "content")
-			$r .= apply_filters('the_content', preg_replace("/\[memberlite_subpagelist[^\]]*\]/", "", get_the_content( '' )));						
-		else
-			$r .= '';
+			$r .= '</div>';
+				
+			$r .= '</article>';
+			$r .= '</div>'; //end columns		
 		
-		if($link)
-		{
-			$r .= '<a class="more-link" href="' . get_permalink() . '" rel="bookmark">';
-			$r .= __('(more...)','memberlite');
-			$r .= '</a>';
-		}
-								
-		$r .= '</div>';
-			
-		$r .= '</article>';
+			endforeach;
+		$r .= '</div><hr />'; //end row
 	
-		if(!empty($layout))
-		{
-			$r .= '</div>'; //end columns
-			
-			//end and begin new row
-			if($layout == '2col' && $count++ % 2 == 1)
-				$r .= '</div><hr /><div class="row">';
-			elseif($layout == '3col' && $count++ % 3 == 2)
-				$r .= '</div><hr /><div class="row">';
-			elseif($layout == '4col' && $count++ % 4 == 0)
-				$r .= '</div><hr /><div class="row">';
-		}
+	endforeach;
 
-	endwhile; endif;
-	
-	if(!empty($layout))
-		$r .= '</div>'; //end row
-		
 	//Reset Query
 	wp_reset_query();
 
