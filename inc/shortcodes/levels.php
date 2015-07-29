@@ -230,15 +230,6 @@ function memberlite_levels_shortcode($atts, $content=null, $code="")
 								?>
 								<th class="<?php if($current_level) { echo 'pmpro_level-current '; } if($highlight == $level->id) { echo 'pmpro_level-highlight '; } ?>">
 									<h2><?php echo $level->name?></h2>
-									<?php
-										$level_page = memberlite_getLevelLandingPage($level->id);
-										if(!empty($level_page))
-										{
-										?>
-										<p><a href="<?php echo get_permalink($level_page->ID); ?>"><?php echo $more_button; ?></a></p>
-										<?php
-										}
-									?>
 								</th>
 								<?php
 							}

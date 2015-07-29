@@ -333,10 +333,13 @@ function memberlite_page_title() {
 		if(defined('PMPRO_VERSION'))
 		{
 			$level = pmpro_getLevel($memberlite_landing_page_level);
-			echo '<p class="pmpro_level-price">' . memberlite_getLevelCost($level, true, true) . '</p>';
-			if(empty($memberlite_banner_desc))
-				echo wpautop($level->description);
-			echo '<p>' . do_shortcode('[memberlite_btn style="action" href="' . pmpro_url('checkout','?level=' . $memberlite_landing_page_level,'https') . '" text="' . $memberlite_landing_page_checkout_button . '"]') . '</p>';
+			if(!empty($level))
+			{
+				echo '<p class="pmpro_level-price">' . memberlite_getLevelCost($level, true, true) . '</p>';
+				if(empty($memberlite_banner_desc))
+					echo wpautop($level->description);
+				echo '<p>' . do_shortcode('[memberlite_btn style="action" href="' . pmpro_url('checkout','?level=' . $memberlite_landing_page_level,'https') . '" text="' . $memberlite_landing_page_checkout_button . '"]') . '</p>';
+			}
 		}
 	}	
 	else
@@ -543,7 +546,7 @@ function memberlite_getLevelLandingPage($level_id) {
 		'post_type' => apply_filters('memberlite_level_landing_page_post_types', array('page', 'post')),
 		'meta_query' => array(
 			array(
-				'key' => 'landing_page_level',
+				'key' => '_memberlite_landing_page_level',
 				'value' => $level_id,
 			)
 		)

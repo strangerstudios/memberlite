@@ -12,7 +12,7 @@
 		
 		<?php
 			global $memberlite_landing_page_level, $memberlite_landing_page_checkout_button;
-			if(defined('PMPRO_VERSION'))
+			if(defined('PMPRO_VERSION') && !empty($memberlite_landing_page_level) && ($memberlite_landing_page_level != 'blank'))
 				echo do_shortcode('[memberlite_btn style="action" href="' . pmpro_url('checkout','?level=' . $memberlite_landing_page_level,'https') . '" text="' . $memberlite_landing_page_checkout_button . '"]');
 		?>
 
