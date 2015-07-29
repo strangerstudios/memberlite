@@ -96,6 +96,21 @@ class memberlite_Customize {
 			)
 		);
 		$wp_customize->add_setting(
+			'nav_menu_search',
+			array(
+				'default' => false
+			)
+		);
+		$wp_customize->add_control(
+			'nav_menu_search', 
+			array(
+				'type' => 'checkbox',
+				'label' => 'Show Search Form After Main Nav', 
+				'section' => 'memberlite_theme_options',
+				'priority' => '16'
+			)
+		);
+		$wp_customize->add_setting(
 			'sidebar_location',
 			array(
 				'default' => $memberlite_defaults['sidebar_location'],

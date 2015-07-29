@@ -37,7 +37,12 @@
 	<?php do_action('before_site_header'); ?>
 	<header id="masthead" class="site-header" role="banner">
 		<div class="row">
-			<div class="<?php if(is_page_template( 'templates/interstitial.php' )) { echo 'large-12'; } else { echo 'medium-4'; } ?> columns site-branding">
+			<?php
+				$meta_login = get_theme_mod( 'meta_login', false ); 
+				if(!is_page_template( 'templates/interstitial.php' ) && (!empty($meta_login) || has_nav_menu('meta') || is_active_sidebar('sidebar-3')) ) 
+					$show_header_right = true;
+			?>
+			<div class="<?php if(is_page_template( 'templates/interstitial.php') || empty($show_header_right)) { echo 'large-12'; } else { echo 'medium-4'; } ?> columns site-branding">
 				<?php
 					if(is_active_sidebar('sidebar-5'))
 						echo '<button class="menu-toggle"><i class="fa fa-bars"></i></button>';
@@ -45,58 +50,57 @@
 				<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
 				<span class="site-description"><?php bloginfo( 'description' ); ?></span>
 			</div><!-- .column4 -->
-			<?php 
-				if(!is_page_template( 'templates/interstitial.php' ) ) 
+			<?php
+				if(!empty($show_header_right))
 				{
-					$meta_login = get_theme_mod( 'meta_login', false );
 					?>
 					<div class="medium-8 columns header-right<?php if($meta_login == false) { ?> no-meta-menu<?php } ?>">
-						<?php
-							if($meta_login != false)
-							{
-								?>
-								<div id="meta-member">
-									<aside class="widget">
-									<?php 
-										global $current_user, $pmpro_pages;
-										if($user_ID)
-										{ 
-											?>				
-											<span class="user">Welcome, 
-											<?php
-												if(!empty($pmpro_pages))
-												{
-													$account_page = get_post($pmpro_pages['account']);
-													?>
-													<a href="<?php echo pmpro_url("account"); ?>"><?php echo preg_replace("/\@.*/", "", $current_user->display_name)?></a>
-													<?php
-												}
-												else
-												{
-													?>
-													<a href="<?php echo admin_url("profile.php"); ?>"><?php echo preg_replace("/\@.*/", "", $current_user->display_name)?></a>
-													<?php
-												}
-											?>
-											</span>
-											<?php
-										}
-									
-										$member_menu_defaults = array(
-											'theme_location' => 'member',
-											'container' => 'nav',
-											'container_id' => 'member-navigation',
-											'container_class' => 'member-navigation',
-											'fallback_cb' => false
-										);					
-										wp_nav_menu( $member_menu_defaults ); 
-									?>
-									</aside>
-								</div><!-- #meta-member -->
+					<?php
+						if(!empty($meta_login))
+						{	
+							?>
+							<div id="meta-member">
+								<aside class="widget">
 								<?php 
-							} 
-						?>
-						<?php 	
+									global $current_user, $pmpro_pages;
+									if($user_ID)
+									{ 
+										?>				
+										<span class="user">Welcome, 
+										<?php
+											if(!empty($pmpro_pages))
+											{
+												$account_page = get_post($pmpro_pages['account']);
+												?>
+												<a href="<?php echo pmpro_url("account"); ?>"><?php echo preg_replace("/\@.*/", "", $current_user->display_name)?></a>
+												<?php
+											}
+											else
+											{
+												?>
+												<a href="<?php echo admin_url("profile.php"); ?>"><?php echo preg_replace("/\@.*/", "", $current_user->display_name)?></a>
+												<?php
+											}
+										?>
+										</span>
+										<?php
+									}									
+									$member_menu_defaults = array(
+										'theme_location' => 'member',
+										'container' => 'nav',
+										'container_id' => 'member-navigation',
+										'container_class' => 'member-navigation',
+										'fallback_cb' => false
+									);					
+									wp_nav_menu( $member_menu_defaults ); 
+								?>
+								</aside>
+							</div><!-- #meta-member -->
+							<?php
+						}
+						
+						if(has_nav_menu('meta'))
+						{							
 							$meta_defaults = array(
 								'theme_location' => 'meta',
 								'container' => 'nav',
@@ -105,18 +109,21 @@
 								'fallback_cb' => false
 							);					
 							wp_nav_menu( $meta_defaults ); 
+						}
+						
+						if(is_dynamic_sidebar('sidebar-3'))
+							dynamic_sidebar('sidebar-3');
 						?>
-						<?php dynamic_sidebar('sidebar-3'); ?>
 					</div><!-- .column8 -->
 					<?php 
-				}
-			?>
+					}
+				?>
 		</div><!-- .row -->
 	</header><!-- #masthead -->
 	<?php do_action('before_site_navigation'); ?>
 	<?php if(!is_page_template( 'templates/interstitial.php' )) { ?>
 	<nav id="site-navigation">
-	<?php 
+	<?php
 		$primary_defaults = array(
 			'theme_location' => 'primary',
 			'container' => 'div',

@@ -153,7 +153,7 @@ function memberlite_widgets_init() {
 add_action('widgets_init', 'memberlite_widgets_init');
 
 /* Adds a Log Out link in member menu */
-function memberlite_member_menu( $items, $args ) {
+function memberlite_menus( $items, $args ) {
 	if ($args->theme_location == 'member') {
 		if (is_user_logged_in())
 			$items .= '<li><a href="'. wp_logout_url() .'">' . __('Log Out','memberlite') . '</a></li>';
@@ -163,9 +163,14 @@ function memberlite_member_menu( $items, $args ) {
 			$items .= '<li><a href="'. wp_registration_url() .'">' . __('Register','memberlite') . '</a></li>';	  
 		}
 	}
+	if ($args->theme_location == 'primary') {
+		$nav_menu_search = get_theme_mod( 'nav_menu_search', false );
+		if(!empty($nav_menu_search))
+			$items .= get_search_form(false);
+	}
 	return $items;
 }
-add_filter( 'wp_nav_menu_items', 'memberlite_member_menu', 10, 2 );
+add_filter( 'wp_nav_menu_items', 'memberlite_menus', 10, 2 );
 
 function memberlite_wp_nav_menu( $menu ) {
 	return do_shortcode( $menu ); 

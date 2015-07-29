@@ -543,6 +543,8 @@ input[type="password"]:focus,
 input[type="search"]:focus,
 textarea:focus {
 	color: #111;
+	box-shadow: 0px 0px 3px #CCC;
+	outline: 0;
 }
 input[type="text"],
 input[type="email"],
@@ -751,6 +753,10 @@ a:active {
 .main-navigation ul ul li:first-child a, .main-navigation ul li:first-child ul li a, .meta-navigation ul ul li:first-child a, .header-right .widget_nav_menu ul ul li:first-child a {
 	padding-left: 1.5rem;
 }
+
+#site-navigation .search-form {float: right; position: relative; }
+#site-navigation .search-form input[type=search] {width: 100%; }
+#site-navigation .search-form input[type=submit].search-submit {background: none; padding: 0; position: absolute; text-index: -9999em; }
 
 #mobile-navigation {
 	position: absolute;
