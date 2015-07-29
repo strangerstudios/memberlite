@@ -70,7 +70,7 @@ function memberlite_support() {
 			</div>
 			<?php } ?>
 			<h2 class="nav-tab-wrapper">
-				<a href="admin.php?page=memberlite-support&tab=overview" class="nav-tab<?php if( ($view == 'overview') || (empty($view)) ) { ?> nav-tab-active<?php } ?>"><?php _e('Settings', 'memberlite');?></a>
+				<a href="admin.php?page=memberlite-support&tab=overview" class="nav-tab<?php if( ($view == 'overview') || (empty($view)) ) { ?> nav-tab-active<?php } ?>"><?php _e('License', 'memberlite');?></a>
 				<a href="admin.php?page=memberlite-support&tab=docs" class="nav-tab<?php if($view == 'docs') { ?> nav-tab-active<?php } ?>"><?php _e('Documentation', 'memberlite');?></a>
 			</h2>
 			<br class="clear" />
@@ -82,11 +82,11 @@ function memberlite_support() {
 						<div class="inside">
 							
 							<?php if(empty($key)) { ?>
-								<div class="notice notice-error inline"><p><strong>It appears that you have not entered and verified your Paid Memberships Pro license key yet.</strong> Your license key can be found in your membership email receipt or in your <a href="http://www.paidmembershipspro.com/login/?redirect_to=/membership-account/" target="_blank">Membership Account</a></p></div>
+								<div class="notice notice-error inline"><p><strong>It appears that you have not entered and verified your Paid Memberships Pro license key.</strong> Your license key can be found in your membership email receipt or in your <a href="http://www.paidmembershipspro.com/login/?redirect_to=/membership-account/" target="_blank">Membership Account</a></p></div>
 							<?php } elseif(!pmpro_license_isValid()) { ?>
 								<div class="notice notice-error inline"><p><strong>Your license is invalid or expired.</strong> Visit the PMPro <a href="http://www.paidmembershipspro.com/login/?redirect_to=/membership-account/" target="_blank">Membership Account</a> page to confirm that your account is active and to find your license key.</p></div>
 							<?php } elseif(!pmpro_license_isValid(NULL, 'plus')) { ?>
-								<div class="notice notice-error inline"><p><strong>The Memberlite theme requires a PMPro Plus license. You will have to <a href="http://www.paidmembershipspro.com/login/?redirect_to=/membership-account/membership-checkout/?level=20">upgrade your PMPro license</a> to receive automatic updates.</p></div>
+								<div class="notice notice-error inline"><p><strong>The Memberlite Theme requires a PMPro Plus license. <a href="http://www.paidmembershipspro.com/login/?redirect_to=/membership-account/membership-checkout/?level=20" target="_blank">Please upgrade your PMPro license</a> to receive automatic updates.</p></div>
 							<?php } else { ?>													
 								<div class="notice inline"><p><strong>Thank you!</strong> A valid <strong><?php echo ucwords($pmpro_license_check['license']);?></strong> license key has been used to activate your support license on this site.</p></div>
 							<?php } ?>
@@ -147,10 +147,10 @@ function memberlite_support() {
 					<h3>Integrated Plugins</h3>
 					<p>Memberlite includes formatting for use with:</p>
 					<ul class="ul-disc">
-						<li><strong><a href="http://www.paidmembershipspro.com" target="_blank">Paid Memberships Pro</a></strong><br /><a href="<?php admin_url( 'plugin-install.php?tab=search&s=paid+memberships+pro'); ?>">Install Plugin &raquo;</a></li>
-						<li><strong><a href="http://www.woothemes.com/woocommerce/" target="_blank">WooCommerce</a></strong><br /><a href="<?php admin_url( 'plugin-install.php?tab=search&s=woocommerce'); ?>">Install Plugin &raquo;</a> &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; <a href="<?php admin_url( 'plugin-install.php?tab=search&type=term&s=pmpro+woocommerce'); ?>">Install PMPro WooCommerce Addon &raquo;</a></li>						
-						<li><strong><a href="http://www.bbpress.org" target="_blank">bbPress</a></strong><br /><a href="<?php admin_url( 'plugin-install.php?tab=search&s=bbpress'); ?>">Install Plugin</a> &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; <a href="<?php admin_url( 'plugin-install.php?tab=search&type=term&s=pmpro+bbpress'); ?>">Install PMPro bbPress Addon &raquo;</a></li>
-						<li><strong><a href="http://wp-events-plugin.com" target="_blank">Events Manager</a></strong><br /><a href="<?php admin_url( 'plugin-install.php?tab=search&s=events+manager'); ?>">Install Plugin &raquo;</a> &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; <a href="<?php admin_url( 'plugin-install.php?tab=search&type=term&s=pmpro+woocommerce'); ?>">Install PMPro Addon &raquo;</a></li>						
+						<li><strong><a href="http://www.paidmembershipspro.com" target="_blank">Paid Memberships Pro</a></strong><br /><a href="<?php echo admin_url( 'plugin-install.php?tab=search&s=paid+memberships+pro'); ?>">Install Plugin &raquo;</a></li>
+						<li><strong><a href="http://www.woothemes.com/woocommerce/" target="_blank">WooCommerce</a></strong><br /><a href="<?php echo admin_url( 'plugin-install.php?tab=search&s=woocommerce'); ?>">Install Plugin &raquo;</a> &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; <a href="<?php admin_url( 'plugin-install.php?tab=search&type=term&s=pmpro+woocommerce'); ?>">Install PMPro WooCommerce Addon &raquo;</a></li>						
+						<li><strong><a href="http://www.bbpress.org" target="_blank">bbPress</a></strong><br /><a href="<?php echo admin_url( 'plugin-install.php?tab=search&s=bbpress'); ?>">Install Plugin</a> &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; <a href="<?php admin_url( 'plugin-install.php?tab=search&type=term&s=pmpro+bbpress'); ?>">Install PMPro bbPress Addon &raquo;</a></li>
+						<li><strong><a href="http://wp-events-plugin.com" target="_blank">Events Manager</a></strong><br /><a href="<?php echo admin_url( 'plugin-install.php?tab=search&s=events+manager'); ?>">Install Plugin &raquo;</a> &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; <a href="<?php admin_url( 'plugin-install.php?tab=search&type=term&s=pmpro+woocommerce'); ?>">Install PMPro Addon &raquo;</a></li>						
 				</div>		
 			<?php } ?>
 		</div></div><!-- /.wrap-->
