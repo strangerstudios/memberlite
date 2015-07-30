@@ -172,6 +172,32 @@ function memberlite_menus( $items, $args ) {
 }
 add_filter( 'wp_nav_menu_items', 'memberlite_menus', 10, 2 );
 
+function memberlite_member_menu_cb( $args )
+{
+    extract( $args );
+	if(empty($link_before))
+		$link_before = '<li class="menu_item">';
+	if(empty($link_after))
+		$link_after = '</li>';
+	if (is_user_logged_in())
+		$link = $link_before . '<a href="'. wp_logout_url() .'">' . $before . __('Log Out','memberlite') . $after . '</a>';	  
+	else
+	{
+		$link = $link_before . '<a href="'. wp_login_url() .'">' . $before . __('Log In','memberlite') . $after . '</a>';	  
+		$link .= $link_before . '<a href="'. wp_registration_url() .'">' . $before . __('Register','memberlite') . $after . '</a>' . $link_after;
+	}
+    $output = sprintf( $items_wrap, $menu_id, $menu_class, $link );
+    if(!empty($container))
+    {
+        $output  = "<$container class='$container_class' id='$container_id'>$output</$container>";
+    }
+    if($echo)
+    {
+        echo $output;
+    }
+    return $output;
+}
+
 function memberlite_wp_nav_menu( $menu ) {
 	return do_shortcode( $menu ); 
 } 

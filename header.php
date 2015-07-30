@@ -90,7 +90,8 @@
 										'container' => 'nav',
 										'container_id' => 'member-navigation',
 										'container_class' => 'member-navigation',
-										'fallback_cb' => false
+										'fallback_cb' => 'memberlite_member_menu_cb',
+										'items_wrap' => '<ul id="%1$s" class="%2$s">%3$s</ul>',
 									);					
 									wp_nav_menu( $member_menu_defaults ); 
 								?>
