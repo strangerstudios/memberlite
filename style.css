@@ -1430,7 +1430,8 @@ a:active {
 	font-style: italic;
 	color: #AAA;
 }
-.entry-footer a {
+#primary .entry-footer a {
+	border-bottom: 1px dotted #FAFAFA;
 	color: #777;
 	text-decoration: none;
 }
@@ -1707,7 +1708,7 @@ a:active {
 #pmpro_levels .row .post {
 	padding: 0 1rem;
 }
-#pmpro_levels .post h2, .memberlite_signup h2 {
+#pmpro_levels .post h2, .memberlite_signup h2, .pmpro_signup_form h2 {
 	background: #FAFAFA;
 	color: #2C3E50;
 	border-top: 1px solid #CCC;
@@ -1718,7 +1719,7 @@ a:active {
 #pmpro_levels .medium-4 .pmpro_btn, #pmpro_levels .medium-3 .pmpro_btn, .pmpro_levels-table .pmpro_btn, .pmpro_levels-compare_table .pmpro_btn {
 	display: block;
 }
-#pmpro_levels .pmpro_levels-table.pmpro_level-highlight, #pmpro_levels.pmpro_levels-div .pmpro_level-highlight, #pmpro_levels .pmpro_levels-2col .pmpro_level-highlight, #pmpro_levels .pmpro_levels-3col .pmpro_level-highlight, #pmpro_levels .pmpro_levels-4col .pmpro_level-highlight, .memberlite_signup { box-shadow: 0px 5px 10px #AAA; padding: 1rem; background: #FFF; z-index: 100; border-top: .5rem solid #18BC9C; border-bottom: 1.5rem solid #18BC9C; border-left: 1px solid #CCC; border-right: 1px solid #CCC; }
+#pmpro_levels.pmpro_levels-table.pmpro_level-highlight, #pmpro_levels.pmpro_levels-div .pmpro_level-highlight, #pmpro_levels.pmpro_levels-2col .pmpro_level-highlight, #pmpro_levels.pmpro_levels-3col .pmpro_level-highlight, #pmpro_levels.pmpro_levels-4col .pmpro_level-highlight, .memberlite_signup, .pmpro_signup_form { box-shadow: 0px 5px 10px #AAA; padding: 1rem; background: #FFF; z-index: 100; border-top: .5rem solid #18BC9C; border-bottom: 1.5rem solid #18BC9C; border-left: 1px solid #CCC; border-right: 1px solid #CCC; }
 #pmpro_levels.pmpro_levels-2col .pmpro_level-highlight, #pmpro_levels.pmpro_levels-3col .pmpro_level-highlight, #pmpro_levels.pmpro_levels-4col .pmpro_level-highlight {margin-top: -1.5rem; }
 
 #pmpro_levels_table td, #pmpro_levels.pmpro_levels-table td {vertical-align: middle; }
@@ -1784,9 +1785,10 @@ form.pmpro_form textarea {width:75%; }
 #pmpro_account .pmpro_box h3 {margin: 0 0 2rem 0; }
 #pmpro_account #pmpro_account-profile ul {margin-top: 1rem; margin-bottom: 1rem; }
 
-form.memberlite_signup label {float: none; margin: 0; width: auto; display: block; text-align: left; }
-form.memberlite_signup input[type=text], form.memberlite_signup input[type=email], form.memberlite_signup input[type=password] {width: 100%; }
-form.memberlite_signup .pmpro_btn {display: block; width: 100%; }
+form.memberlite_signup label, form.pmpro_signup_form label {float: none; margin: 0; width: auto; display: block; text-align: left; }
+form.memberlite_signup input[type=text], form.memberlite_signup input[type=email], form.memberlite_signup input[type=password], form.pmpro_signup_form input[type=text], form.pmpro_signup_form input[type=email], form.pmpro_signup_form input[type=password]
+ {width: 100%; }
+form.memberlite_signup .pmpro_btn, form.pmpro_signup_form .pmpro_btn {display: block; width: 100%; }
 
 /*--------------------------------------------------------------
 10.6 Third Party Plugin Integrated Styles
