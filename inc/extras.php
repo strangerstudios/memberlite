@@ -360,21 +360,23 @@ function memberlite_getSidebar() {
 	
 	if(is_page())
 	{
-		global $post, $hidechildren;
-		if(!$hidechildren)
+		global $post, $memberlite_hide_children;
+		if(empty($memberlite_hide_children))
+			$memberlite_hide_children = get_post_meta($post->ID, '_memberlite_hide_children', true);
+		if(empty($memberlite_hide_children))
 		{
 			if($post->post_parent) 
 			{
 				$exclude = get_post_meta($post->ID,'exclude',true);
 				$pagemenuid = end(get_post_ancestors($post));
-				$children = wp_list_pages('title_li=&child_of=' . $pagemenuid . '&exclude=' . $exclude . '&echo=0&sort_column=menu_order');
+				$children = wp_list_pages('title_li=&child_of=' . $pagemenuid . '&exclude=' . $exclude . '&echo=0&sort_column=menu_order,post_title');
 				$titlenamer = get_the_title($pagemenuid);
 				$titlelink = get_permalink($pagemenuid);
 			}
 			else 
 			{
 				$exclude = "";
-				$children = wp_list_pages('title_li=&child_of=' . $post->ID . '&exclude=' . $exclude . '&echo=0&sort_column=menu_order');
+				$children = wp_list_pages('title_li=&child_of=' . $post->ID . '&exclude=' . $exclude . '&echo=0&sort_column=menu_order,post_title');
 				$titlenamer = get_the_title($post->ID);
 				$titlelink = get_permalink($post->ID);
 			}

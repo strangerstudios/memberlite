@@ -211,8 +211,14 @@ add_action('add_meta_boxes', 'memberlite_sidebar_add_meta_box');
 function memberlite_sidebar_meta_box_callback($post) {
 	global $wp_registered_sidebars;
 	wp_nonce_field('memberlite_sidebar_meta_box', 'memberlite_sidebar_meta_box_nonce');
+	$memberlite_hide_children = get_post_meta($post->ID, '_memberlite_hide_children', true);
 	$memberlite_custom_sidebar = get_post_meta($post->ID, '_memberlite_custom_sidebar', true);
 	$memberlite_default_sidebar = get_post_meta($post->ID, '_memberlite_default_sidebar', true);
+	if ( (get_post_type($post) == 'page' ) || (isset($_POST['post_type']) && 'page' == $_POST['post_type'])) {
+		echo '<input type="hidden" name="memberlite_hide_children_present" value="1" />';
+		echo '<label for="memberlite_hide_children" class="selectit"><input name="memberlite_hide_children" type="checkbox" id="memberlite_hide_children" value="1" '. checked( $memberlite_hide_children, 1, false) .'>' . __('Hide Page Children Menu in Sidebar', 'memberlite') . '</label>';
+		echo '<hr />';
+	}
 	echo '<p>' . __('Swap the default sidebar.', 'memberlite');
 	echo ' <a href="' . admin_url( 'custom-sidebars.php') . '">' . __('Manage Custom Sidebars','memberlite') . '</a></p>';
 	echo '<p><strong>' . __('Select Sidebar', 'memberlite') . '</strong></p>';
@@ -261,19 +267,28 @@ function memberlite_sidebar_save_meta_box_data($post_id) {
 		}
 	}
 	
-	if(!isset($_POST['memberlite_custom_sidebar'])) {
-		return;
+	//hide or show subpage menu in sidebar
+	if(isset($_POST['memberlite_hide_children_present'])) {
+		if(!empty($_POST['memberlite_hide_children']))
+			$memberlite_hide_children = 1;
+		else
+			$memberlite_hide_children = 0;
+			
+		update_post_meta($post_id, '_memberlite_hide_children', $memberlite_hide_children);
 	}
-	$memberlite_custom_sidebar = sanitize_text_field($_POST['memberlite_custom_sidebar']);
 	
-	if(!isset($_POST['memberlite_default_sidebar'])) {
-		return;
+	//custom sidebar selection
+	if(isset($_POST['memberlite_custom_sidebar'])) {
+		$memberlite_custom_sidebar = $_POST['memberlite_custom_sidebar'];
+		update_post_meta($post_id, '_memberlite_custom_sidebar', $memberlite_custom_sidebar);
 	}
-	$memberlite_default_sidebar = sanitize_text_field($_POST['memberlite_default_sidebar']);
 
-	// Update the meta field in the database.
-	update_post_meta($post_id, '_memberlite_custom_sidebar', $memberlite_custom_sidebar);
-	update_post_meta($post_id, '_memberlite_default_sidebar', $memberlite_default_sidebar);
+	//default sidebar behavior
+	if(isset($_POST['memberlite_default_sidebar'])) {
+		$memberlite_default_sidebar = $_POST['memberlite_default_sidebar'];
+		update_post_meta($post_id, '_memberlite_default_sidebar', $memberlite_default_sidebar);
+	}
+	
 }
 add_action('save_post', 'memberlite_sidebar_save_meta_box_data');
 
