@@ -1493,6 +1493,37 @@ a:active {
 	border-bottom: 1px dotted #FFF;
 }
 
+.memberlite_tabbable ul.memberlite_tabs {margin: 0; }
+.memberlite_tabbable ul.memberlite_tabs li {
+	float: left;
+	list-style: none;
+	margin: 0 .5rem 0 0;
+}
+.memberlite_tabbable ul.memberlite_tabs li > a {
+	background: none;
+	border: 1px solid #CCC;
+	border-top-left-radius: 3px;
+	border-top-right-radius: 3px;
+	border-bottom: none;
+	color: #777777;
+	display: inline-block;
+	float: none;
+	padding: 1.5rem 2rem;
+	text-decoration: none;
+}
+.memberlite_tabbable ul.memberlite_tabs li > a:hover {
+	background: #EFEFEF;
+}
+.memberlite_tabbable ul.memberlite_tabs li.memberlite_active a {
+	color: #FFF !important;
+	background-color: #18BC9C;
+	border-color: #18BC9C;
+	font-weight: bold;
+}
+.memberlite_tabbable .memberlite_tab_content {clear: both; padding-top: 4rem; border-top: .5rem solid #18BC9C;}
+.memberlite_tabbable .memberlite_tab_pane {display: none;}
+.memberlite_tabbable .memberlite_tab_pane.memberlite_active {display: block;}
+
 /*--------------------------------------------------------------
 10.2 Asides
 --------------------------------------------------------------*/

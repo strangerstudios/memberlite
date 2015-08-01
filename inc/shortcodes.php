@@ -14,3 +14,4 @@ require_once($path . "/shortcodes/messages.php");
 require_once($path . "/shortcodes/recent_posts.php");
 require_once($path . "/shortcodes/signup.php");
 require_once($path . "/shortcodes/subpagelist.php");
+require_once($path . "/shortcodes/tabs.php");
