@@ -34,8 +34,8 @@ function memberlite_signup_shortcode($atts, $content=null, $code="")
 			<?php
 				if(!empty($intro))
 					echo wpautop($intro);
-			?>			
-			<input type="hidden" id="level" name="level" value="<?php echo $level; ?>" />	
+			?>
+			<input type="hidden" id="level" name="level" value="<?php echo $level; ?>" />
 			<?php
 				if(!empty($current_user->ID))
 				{
