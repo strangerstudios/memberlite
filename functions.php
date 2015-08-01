@@ -204,31 +204,6 @@ function memberlite_wp_nav_menu( $menu ) {
 } 
 add_filter('wp_nav_menu', 'memberlite_wp_nav_menu');
 
-function memberlite_pmpro_after_checkout($user_id)
-{
-	global $redirect_to;
-	if(!empty($_SESSION['redirect_to']))
-	{
-		$redirect_to = $_SESSION['redirect_to'];
-		unsset($_SESSION['redirect_to']);
-	}
-	elseif(!empty($_REQUEST['redirect_to']))
-	{
-		$redirect_to = $_REQUEST['redirect_to'];
-	}
-	if(!empty($redirect_to))
-	{
-		function memberlite_pmpro_confirmation_url($url, $user_id, $level)
-		{
-			global $redirect_to;
-			$url = add_query_arg("redirect_to", $redirect_to, $url);
-			return $url;
-		}
-		add_filter("pmpro_confirmation_url", "memberlite_pmpro_confirmation_url", 10, 3);
-	}
-}
-add_action("pmpro_after_checkout", "memberlite_pmpro_after_checkout");
-
 /* Custom admin theme pages. */
 require get_template_directory() . '/inc/admin.php';
 
