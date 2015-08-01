@@ -3,7 +3,7 @@
 function memberlite_tabs_shortcode($atts, $content = null) {
 	// $atts    ::= array of attributes
 	// $content ::= text within enclosing form of shortcode element
-	// examples: [tabs class="text-center" items="Tab 1, Tab 2, Tab 3"][/tabs]
+	// examples: [memberlite_tabs class="text-center" items="Tab 1, Tab 2, Tab 3"][/tabs]
     extract(shortcode_atts(array(
 		'class' => '',
 		'items' => '',
@@ -39,23 +39,24 @@ function memberlite_tabs_shortcode($atts, $content = null) {
     $result .= '</div></div>';
     return force_balance_tags($result);
 }
-add_shortcode('tabs', 'memberlite_tabs_shortcode');
+add_shortcode('memberlite_tabs', 'memberlite_tabs_shortcode');
 
 function memberlite_tab_shortcode($atts, $content = null) {
 	// $atts    ::= array of attributes
 	// $content ::= text within enclosing form of shortcode element
-	// examples: [tab item="Tab 1"]
+	// examples: [memberlite_tab class="text-center" item="Tab 1"]
     extract(shortcode_atts(array(
 		'item' => '',
+		'class' => '',
     ), $atts));
 	global $memberlite_active_tabs;
 	$item_id = sanitize_title_with_dashes($item);
-    $result = '<div class="memberlite_tab_pane ';
+    $result = '<div class="memberlite_tab_pane ' . $class;
 	if($item == $memberlite_active_tabs[count($memberlite_active_tabs)-1])
-		$result .= 'memberlite_active';
+		$result .= ' memberlite_active';
 	$result .= '" id="tab-' . $item_id . '" >';
     $result .= do_shortcode($content);
     $result .= '</div>';
     return force_balance_tags($result);
 }
-add_shortcode('tab', 'memberlite_tab_shortcode');
+add_shortcode('memberlite_tab', 'memberlite_tab_shortcode');
