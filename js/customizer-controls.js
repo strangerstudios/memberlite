@@ -15,7 +15,6 @@
 		value.bind( function( to ) {
 						
 			//ignore "custom"
-			console.log(to);
 			if(to != 'custom')
 			{			
 				//update colors											
@@ -25,7 +24,7 @@
 				header_logo = $('#customize-control-display_header_text').find('input:checked');
 				
 				for(i = 0; i < 7; i++) {
-					if(!header_logo || i > 2)
+					if(header_logo.length || i > 1)
 						$('#customize-control-'+memberlite_color_controls[i]).find( '.color-picker-hex' ).wpColorPicker('color', colors[i]);
 				}
 				memberlite_color_controls_listener_flag = true;				
