@@ -1054,6 +1054,12 @@ a:active {
 	font-size: 1.2rem;
 	font-size: 12px;
 }
+#secondary .widget li ul.children ul.children li {
+	padding: 0;
+}
+#secondary .widget li ul.children ul.children li a::before {
+	content: "- ";
+}
 #secondary .widget-title, .widget_calendar #wp-calendar caption {
 	padding: .5em;
 	border-top: 1px solid #CCC;
@@ -1992,7 +1998,6 @@ object {
 }
 .gallery-caption {}
 
-
 @media only screen and (min-width: 1160px) {
 	.hide-screen {display: none; }	
 }
@@ -2014,6 +2019,7 @@ object {
 	form.pmpro_form label {display: block; float: none; margin: 0; text-align: left; width: 100%; }
 	form.pmpro_form label.pmpro_clickable {display: inline-block; }
 	form.pmpro_form .pmpro_thead-msg {width: 45%; white-space:normal; font-size: 10px; }
+	form.pmpro_form .pmpro_select_payment_method span {display: block; }
 	form.pmpro_form .input, form.pmpro_form select {width: 93%; }
 	form.pmpro_form #CVV, form.pmpro_form select#ExpirationMonth, form.pmpro_form select#ExpirationYear {width: 43%; }
 	form.pmpro_form .pmpro_submit, form.pmpro_form .leftmar {margin: 0; }
@@ -2023,5 +2029,3 @@ object {
 	.footer-widgets .widget {padding-top: 2rem; padding-bottom: 2rem; }
 	.footer-widgets .widget:nth-child(even) {background: rgba(255,255,255,0.2); }
 }
-
-.row-demo .columns span { background: #CCC; display: block; }

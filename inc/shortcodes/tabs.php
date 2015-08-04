@@ -46,8 +46,8 @@ function memberlite_tab_shortcode($atts, $content = null) {
 	// $content ::= text within enclosing form of shortcode element
 	// examples: [memberlite_tab class="text-center" item="Tab 1"]
     extract(shortcode_atts(array(
-		'item' => '',
 		'class' => '',
+		'item' => '',
     ), $atts));
 	global $memberlite_active_tabs;
 	$item_id = sanitize_title_with_dashes($item);

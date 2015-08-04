@@ -114,7 +114,7 @@ function memberlite_support() {
 			<?php } ?>
 			<?php if($view == 'docs') { ?>
 				<div id="memberlite-shortcodes">
-					<h3>Adding Your Logo</h3>
+					<h2>Adding Your Logo</h2>
 					<p>Use the Appearance Header Screen to add a Custom Header logo (formatted for retina display) and to toggle the display of header text and text color.</p>
 					<p><?php 
 						if ( current_theme_supports( 'custom-header' ) && current_user_can( 'customize') ) 
@@ -124,33 +124,38 @@ function memberlite_support() {
 							<?php
 						}
 					?>
-					<a href="http://demo.paidmembershipspro.com/memberlite/documentation/adding-your-logo/" target="_blank">Explore Documentation on Custom Headers in Memberlite &raquo;</a></p>
+					<a href="http://www.paidmembershipspro.com/themes/memberlite/adding-your-logo/" target="_blank">Explore Documentation on Custom Headers in Memberlite &raquo;</a></p>
 					<hr />
-					<h3>Customize the Theme</h3>
+					<h2>Customize the Theme</h2>
 					<p>Use the Customize Screen to modify theme layout, logo, fonts, colors, copyright message and more.</p>
-					<p><a href="<?php echo wp_customize_url (); ?>">Customize Your Theme &raquo;</a> &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; <a href="http://demo.paidmembershipspro.com/memberlite/documentation/customize-the-theme/" target="_blank">Explore Documentation on Customizing Memberlite &raquo;</a></p>
+					<p><a href="<?php echo wp_customize_url (); ?>">Customize Your Theme &raquo;</a> &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; <a href="http://www.paidmembershipspro.com/themes/memberlite/customize-the-theme/" target="_blank">Explore Documentation on Customizing Memberlite &raquo;</a></p>
 					<hr />
-					<h3>Using Child Themes</h3>
+					<h2>Using Child Themes</h2>
 					<p>If you need to customize the theme beyond the settings in "Customize", use a child theme.</p>
 					<p><a href="https://github.com/strangerstudios/memberlite-child" target="_blank">Download a Blank Child Theme &raquo;</a> &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; <a href="http://codex.wordpress.org/Child_Themes" target="_blank">About Child Themes (WordPress Codex)  &raquo; </a></p>
 					<hr />
-					<h3>Shortcodes</h3>
+					<h2>Shortcodes</h2>
 					<p>Memberlite shortcodes enhance the appearance of your site content and can be used to  customize the display of Paid Memberships Pro-generated pages. Shortcodes are included for:</p>
 					<ul class="ul-disc">
-						<li>[row] and [column] for formatting text in responsive columns. <a href="http://demo.paidmembershipspro.com/memberlite/shortcodes/column-shortcodes" target="_blank">docs</a></li>
-						<li>[memberlite_subpagelist] to show a list of a given pages' subpages in the order you define. <a href="http://demo.paidmembershipspro.com/memberlite/shortcodes" target="_blank">docs</a></li>
-						<li>[memberlite_signup] to display a block with signup fields for a specific membership level. <a href="http://demo.paidmembershipspro.com/memberlite/shortcodes" target="_blank">docs</a></li>
-						<li>[memberlite_levels] to display a block with details and a registration link for the specified membership levels. <a href="http://demo.paidmembershipspro.com/memberlite/shortcodes" target="_blank">docs</a></li>
+						<li>[row] and [column] for formatting text in responsive columns. <a href="http://www.paidmembershipspro.com/themes/memberlite/shortcodes/column-shortcodes/" target="_blank">docs</a></li>
+						<li>[fa] for Font Awesome icons. <a href="http://www.paidmembershipspro.com/themes/memberlite/shortcodes/font-awesome-icons/" target="_blank">docs</a></li>
+						<li>[memberlite_btn] for formatted buttons. <a href="http://www.paidmembershipspro.com/themes/memberlite/shortcodes/buttons/" target="_blank">docs</a></li>
+						<li>[memberlite_levels] to display a block with details and a registration link for the specified membership levels. <a href="http://www.paidmembershipspro.com/themes/memberlite/shortcodes/membership-levels-display/" target="_blank">docs</a></li>
+						<li>[memberlite_msg] for contextual message blocks. <a href="http://www.paidmembershipspro.com/themes/memberlite/shortcodes/contextual-messages/" target="_blank">docs</a></li>
+						<li>[memberlite_recent_posts] designed to be used on the homepage and outputs the newest posts overall or in a defined category. <a href="http://www.paidmembershipspro.com/themes/memberlite/shortcodes/recent-posts/" target="_blank">docs</a></li>
+						<li>[memberlite_signup] to display a block with signup fields for a specific membership level. <a href="http://www.paidmembershipspro.com/themes/memberlite/shortcodes/membership-signup-block/" target="_blank">docs</a></li>
+						<li>[memberlite_subpagelist] to show a list of a given pages' subpages in the order you define. <a href="http://www.paidmembershipspro.com/themes/memberlite/shortcodes/subpagelist/" target="_blank">docs</a></li>
+						<li>[memberlite_tabs] and [memberlite_tab] for tabbed content blocks. <a href="http://www.paidmembershipspro.com/themes/memberlite/shortcodes/tabs/" target="_blank">docs</a></li>
 					</ul>
-					<p><a href="http://demo.paidmembershipspro.com/memberlite/shortcodes" target="_blank">View Shortcode Documentation &raquo;</a></p>
+					<p><a href="http://www.paidmembershipspro.com/themes/memberlite/shortcodes/" target="_blank">View Shortcode Documentation &raquo;</a></p>
 					<hr />
-					<h3>Integrated Plugins</h3>
+					<h2>Integrated Plugins</h2>
 					<p>Memberlite includes formatting for use with:</p>
 					<ul class="ul-disc">
 						<li><strong><a href="http://www.paidmembershipspro.com" target="_blank">Paid Memberships Pro</a></strong><br /><a href="<?php echo admin_url( 'plugin-install.php?tab=search&s=paid+memberships+pro'); ?>">Install Plugin &raquo;</a></li>
-						<li><strong><a href="http://www.woothemes.com/woocommerce/" target="_blank">WooCommerce</a></strong><br /><a href="<?php echo admin_url( 'plugin-install.php?tab=search&s=woocommerce'); ?>">Install Plugin &raquo;</a> &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; <a href="<?php admin_url( 'plugin-install.php?tab=search&type=term&s=pmpro+woocommerce'); ?>">Install PMPro WooCommerce Addon &raquo;</a></li>						
-						<li><strong><a href="http://www.bbpress.org" target="_blank">bbPress</a></strong><br /><a href="<?php echo admin_url( 'plugin-install.php?tab=search&s=bbpress'); ?>">Install Plugin</a> &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; <a href="<?php admin_url( 'plugin-install.php?tab=search&type=term&s=pmpro+bbpress'); ?>">Install PMPro bbPress Addon &raquo;</a></li>
-						<li><strong><a href="http://wp-events-plugin.com" target="_blank">Events Manager</a></strong><br /><a href="<?php echo admin_url( 'plugin-install.php?tab=search&s=events+manager'); ?>">Install Plugin &raquo;</a> &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; <a href="<?php admin_url( 'plugin-install.php?tab=search&type=term&s=pmpro+woocommerce'); ?>">Install PMPro Addon &raquo;</a></li>						
+						<li><strong><a href="http://www.woothemes.com/woocommerce/" target="_blank">WooCommerce</a></strong><br /><a href="<?php echo admin_url( 'plugin-install.php?tab=search&s=woocommerce'); ?>">Install Plugin &raquo;</a> &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; <a href="<?php echo admin_url( 'plugin-install.php?tab=search&type=term&s=Paid+Memberships+Pro+-+WooCommerce+Add+On'); ?>">Install PMPro WooCommerce Addon &raquo;</a></li>						
+						<li><strong><a href="http://www.bbpress.org" target="_blank">bbPress</a></strong><br /><a href="<?php echo admin_url( 'plugin-install.php?tab=search&s=bbpress'); ?>">Install Plugin</a> &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; <a href="<?php echo admin_url( 'plugin-install.php?tab=search&type=term&s=Paid+Memberships+Pro+-+bbPress+Add+On'); ?>">Install PMPro bbPress Addon &raquo;</a></li>
+						<li><strong><a href="http://wp-events-plugin.com" target="_blank">Events Manager</a></strong><br /><a href="<?php echo admin_url( 'plugin-install.php?tab=search&s=events+manager'); ?>">Install Plugin &raquo;</a></li>						
 				</div>		
 			<?php } ?>
 		</div></div><!-- /.wrap-->

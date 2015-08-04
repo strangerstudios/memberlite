@@ -207,6 +207,11 @@ add_filter('the_content','memberlite_the_content');
 
 function memberlite_page_title() {
 	global $post; 
+	
+	//capture output
+	ob_start();
+	
+	//figure out page title
 	if(function_exists('is_woocommerce') && is_woocommerce())
 	{
 		woocommerce_breadcrumb();
@@ -346,10 +351,24 @@ function memberlite_page_title() {
 	{
 		the_title( '<h1 class="entry-title">', '</h1>' );
 	}
+	
+	//get captured output
+	$page_title_html = ob_get_contents();
+	ob_end_clean();
+	
+	//filter
+	$page_title_html = apply_filters('memberlite_page_title', $page_title_html);
+	
+	echo $page_title_html;
 }
 
 function memberlite_getSidebar() {
 	global $post;
+	
+	//capture output
+	ob_start();
+	
+	//figure out sidebars
 	$memberlite_custom_sidebar = get_post_meta($post->ID, '_memberlite_custom_sidebar', true);
 	if (is_404() || is_home() || is_search() || is_single() || is_category() || is_author() || is_archive() || is_day() || is_month() || is_year() ) 
 	{
@@ -396,28 +415,17 @@ function memberlite_getSidebar() {
 		if($memberlite_custom_sidebar != 'sidebar-1')
 			dynamic_sidebar('sidebar-1');
 	}
+	
+	//get captured output
+	$sidebar_html = ob_get_contents();
+	ob_end_clean();
+	
+	//filter
+	$sidebar_html = apply_filters('memberlite_getSidebar', $sidebar_html);
+	
+	echo $sidebar_html;
 }
 
-remove_action( 'woocommerce_before_main_content','woocommerce_breadcrumb', 20, 0);
-remove_action( 'woocommerce_sidebar', 'woocommerce_get_sidebar', 10);
-remove_action( 'woocommerce_archive_description', 'woocommerce_taxonomy_archive_description' );
-remove_action( 'woocommerce_archive_description', 'woocommerce_product_archive_description' );
-add_filter('woocommerce_show_page_title',false);
-add_filter ( 'woocommerce_product_thumbnails_columns', 'xx_thumb_cols' );
-function xx_thumb_cols() {
-	return 5; // .last class applied to every 4th thumbnail
-}
-function woo_related_products_limit() {
-	global $product;
-	$args['posts_per_page'] = 4;
-	return $args;
-}
-add_filter( 'woocommerce_output_related_products_args', 'memberlite_related_products_args' );
-	function memberlite_related_products_args( $args ) {	
-	$args['posts_per_page'] = 4; // 4 related products
-	$args['columns'] = 4; // arranged in 2 columns
-	return $args;
-}
 function memberlite_getLevelCost(&$level, $tags = true, $short = false)
 {
 	global $pmpro_currency_symbol;
