@@ -205,41 +205,41 @@ function memberlite_wp_nav_menu( $menu ) {
 add_filter('wp_nav_menu', 'memberlite_wp_nav_menu');
 
 /* Custom admin theme pages. */
-require get_template_directory() . '/inc/admin.php';
+require_once get_template_directory() . '/inc/admin.php';
 
 /* Implement the Custom Header feature. */
-require get_template_directory() . '/inc/custom-header.php';
+require_once get_template_directory() . '/inc/custom-header.php';
 
 /* Custom sidebars pages. */
-require get_template_directory() . '/inc/custom-sidebars.php';
+require_once get_template_directory() . '/inc/custom-sidebars.php';
 
 /* Customizer additions. */
-require get_template_directory() . '/inc/customizer.php';
+require_once get_template_directory() . '/inc/customizer.php';
 
 /* Custom functions that act independently of the theme templates. */
-require get_template_directory() . '/inc/extras.php';
+require_once get_template_directory() . '/inc/extras.php';
 
 /* Load Jetpack compatibility file. */
-require get_template_directory() . '/inc/jetpack.php';
+require_once get_template_directory() . '/inc/jetpack.php';
 
 /* Custom template tags. */
-require get_template_directory() . '/inc/template-tags.php';
+require_once get_template_directory() . '/inc/template-tags.php';
 
 /* Custom meta boxes. */
-require get_template_directory() . '/inc/metaboxes.php';
+require_once get_template_directory() . '/inc/metaboxes.php';
 
 /* Custom widgets that act independently of the theme templates. */
-require get_template_directory() . '/inc/widgets.php';
+require_once get_template_directory() . '/inc/widgets.php';
 
 if(function_exists('is_woocommerce'))
 {
 	/* Integration for WooCommerce. */
-	require get_template_directory() . '/inc/integrations/woocommerce.php';
+	require_once get_template_directory() . '/inc/integrations/woocommerce.php';
 }
 
 /* Custom shortcodes that act independently of the theme templates. */
-require get_template_directory() . '/inc/shortcodes.php';
+require_once get_template_directory() . '/inc/shortcodes.php';
 
 /* PMPro License code */
 if(!defined('PMPRO_LICENSE_SERVER'))
-	require get_template_directory() . '/inc/license.php';
+	require_once get_template_directory() . '/inc/license.php';
