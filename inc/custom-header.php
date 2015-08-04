@@ -73,10 +73,9 @@ function memberlite_header_style() {
 				background-size: 768px auto;
 			}
 		}
-		@media (max-width: 359px) {
-			.site-branding {
-				background-size: 360px auto;
-			}
+		@media (max-width: 480px) {
+			.site-branding {width: 100%; }
+			.site-branding .site-title a {height: 75px; width: 80%; background-size: contain; background-position: left center; }
 		}
 	<?php
 		endif;

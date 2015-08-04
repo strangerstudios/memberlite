@@ -21,14 +21,17 @@
 <body <?php body_class(); ?>>
 <?php do_action('before_page'); ?>
 <div id="page" class="hfeed site">
-	<?php do_action('before_mobile_nav'); ?>
+	<?php do_action('before_mobile_nav'); ?>	
 	<?php
 		if(is_active_sidebar('sidebar-5'))
 		{
 			?>
-			<nav id="mobile-navigation" class="mobile-navigation" role="navigation">
+			<nav id="mobile-navigation" role="navigation">
 				<?php dynamic_sidebar('sidebar-5'); ?>	
 			</nav>
+			<div class="mobile-navigation-bar">
+				<button class="menu-toggle"><i class="fa fa-bars"></i></button>
+			</div>
 			<?php
 		}
 	?>
@@ -42,11 +45,7 @@
 				if(!is_page_template( 'templates/interstitial.php' ) && (!empty($meta_login) || has_nav_menu('meta') || is_active_sidebar('sidebar-3')) ) 
 					$show_header_right = true;
 			?>
-			<div class="<?php if(is_page_template( 'templates/interstitial.php') || empty($show_header_right)) { echo 'large-12'; } else { echo 'medium-4'; } ?> columns site-branding">
-				<?php
-					if(is_active_sidebar('sidebar-5'))
-						echo '<button class="menu-toggle"><i class="fa fa-bars"></i></button>';
-				?>
+			<div class="<?php if(is_page_template( 'templates/interstitial.php') || empty($show_header_right)) { echo 'large-12'; } else { echo 'medium-4'; } ?> columns site-branding">				
 				<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
 				<span class="site-description"><?php bloginfo( 'description' ); ?></span>
 			</div><!-- .column4 -->

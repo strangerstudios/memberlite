@@ -658,6 +658,7 @@ a:active {
 /* Small menu */
 .menu-toggle {
 	display: none;
+	padding: .5rem 1rem;
 }
 .member-navigation, .meta-navigation, .header-right .widget_nav_menu, .header-right .widget_nav_menu div {
 	display: inline-block;
@@ -764,11 +765,9 @@ a:active {
 	width: 75%;
 	background: #2C3E50;
 	z-index: 100;
-	border-right: 1px dotted #CCC;
 	color: #FFF;
 	overflow: auto;
 }
-
 #mobile-navigation-height-col {
 	background: #2C3E50;
 	bottom: 0;
@@ -779,7 +778,6 @@ a:active {
 	width: 75%;
 	z-index: 99;	
 }
-
 #mobile-navigation a {
 	color: #FFF;
 	text-decoration: none;
@@ -792,37 +790,31 @@ a:active {
 #mobile-navigation .widget_theme_my_login {
 	border-bottom: 1px solid rgba(0,0,0,0.2);
 }
-
 #mobile-navigation .widget_theme_my_login p {
 	margin: 0 0 1rem 0;
 }
 #mobile-navigation .widget_theme_my_login input[type=text], #mobile-navigation .widget_theme_my_login input[type=password], #mobile-navigation .widget_theme_my_login input[type=submit] {
 	width: 100%;
 }
-
 #mobile-navigation .widget_theme_my_login .tml-action-links {
 	border: none;
 	margin: 0;
 	padding: 0;
 }
-
 #mobile-navigation ul.menu, #mobile-navigation ul.menu li {
 	list-style: none;
 	padding: 0;
 	margin: 0;
 }
-
 #mobile-navigation ul.menu ul.sub-menu {
 	margin-left: 0;
 }
-
 #mobile-navigation ul.menu ul a, #mobile-navigation .widget_theme_my_login ul.tml-action-links li a {
 	font-size: .8em;	
 }
-
 #mobile-navigation ul.menu a, #mobile-navigation .widget_theme_my_login ul.tml-action-links li a {
 	display: block;
-	padding: 1rem;
+	padding: .5rem 1rem;
 }
 #mobile-navigation ul.menu a:hover, #mobile-navigation .widget_theme_my_login ul.tml-action-links li a:hover {
 	background: rgba(0,0,0,0.2);
@@ -864,17 +856,6 @@ a:active {
 .masthead-banner .masthead .memberlite-breadcrumb {
 	position: absolute; 
 	top: -2em; 
-}
-
-@media screen and (max-width: 600px) {
-	.menu-toggle,
-	.main-navigation.toggled .nav-menu {
-		display: block;
-	}
-
-	.main-navigation ul {
-		display: none;
-	}
 }
 .site-main .comment-navigation,
 .site-main .paging-navigation,
@@ -2011,10 +1992,13 @@ object {
 }
 
 @media only screen and (max-width: 767px) {
+	.menu-toggle, .main-navigation.toggled .nav-menu {display: block; }
+	.main-navigation ul {display: none;	}
 	.hide-mobile {display: none; }
 	.header-right, #site-navigation {display: none; }
 	.site-branding {text-align: center; width: 100%; }	
-	.menu-toggle {display: block; position: absolute; top: 25px; right: 0px; }
+	.site-branding .site-title a {width: 100%; height: auto; background-size: contain; }
+	.menu-toggle {display: block; position: absolute; right: 10px; top: 25px; z-index: 100; }
 	.testimonials-widget-testimonial span.image	{display: block; float: none; margin: 0; text-align: center; }
 	form.pmpro_form label {display: block; float: none; margin: 0; text-align: left; width: 100%; }
 	form.pmpro_form label.pmpro_clickable {display: inline-block; }
@@ -2028,4 +2012,8 @@ object {
 	.home .masthead {text-align: center; }
 	.footer-widgets .widget {padding-top: 2rem; padding-bottom: 2rem; }
 	.footer-widgets .widget:nth-child(even) {background: rgba(255,255,255,0.2); }
+}
+
+@media only screen and (max-width: 480px) {
+	.menu-toggle {top: 1.8rem; }
 }
