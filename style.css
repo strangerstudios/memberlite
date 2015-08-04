@@ -497,6 +497,7 @@ a.pmpro_btn:hover, .entry-footer a.pmpro_btn:hover, input[type="submit"].pmpro_b
 	font-family: 'Lato', sans-serif;
 	font-style: normal;
 	font-weight: 400;
+	overflow: hidden;
 	padding: 1rem 1.5rem;
 	text-decoration: none;
 	text-shadow: none;
