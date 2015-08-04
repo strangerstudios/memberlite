@@ -1,20 +1,20 @@
-#Member Lite: An Easy to Customize Theme for Membership Sites
+#Memberlite: An Easy to Customize Theme for Membership Sites
 ===
 
 ##Getting Started
 ---------------
 
-Member Lite makes it eay to customze the appearance and layout of your site using the Theme Customization Screen (Appearance > Customize). 
+Memberlite makes it easy to customize the appearance and layout of your site using the Theme Customization Screen (Appearance > Customize). 
 
 ###Adding Your Logo
 Use the Appearance Header Screen to add a Custom Header logo (formatted for retina display) and to toggle the display of header text and text color.
 
-[Explore Documentation on Custom Headers in MemberLite](http://demo.paidmembershipspro.com/memberlite/documentation/adding-your-logo/)
+[Explore Documentation on Custom Headers in Memberlite](http://www.paidmembershipspro.com/themes/memberlite/adding-your-logo/)
 
 ###Customize the Theme
 Use the Customize Screen to modify theme layout, logo, fonts, colors, copyright message and more.
 
-[Explore Documentation on Customizing Member Lite »](http://demo.paidmembershipspro.com/memberlite/documentation/customize-the-theme/)
+[Explore Documentation on Customizing Memberlite »](http://www.paidmembershipspro.com/themes/memberlite/customize-the-theme/)
 
 ###Using Child Themes
 If you need to customize the theme beyond the settings in "Customize", use a child theme.
@@ -22,25 +22,39 @@ If you need to customize the theme beyond the settings in "Customize", use a chi
 [Download a Blank Child Theme »](https://github.com/strangerstudios/memberlite-child) | [About Child Themes (WordPress Codex) »](http://codex.wordpress.org/Child_Themes)
 
 ###Shortcodes
-MemberLite shortcodes enhance the appearance of your site content and can be used to customize the display of Paid Memberships Pro-generated pages. Shortcodes are included for:
+Memberlite shortcodes enhance the appearance of your site content and can be used to customize the display of Paid Memberships Pro-generated pages. Shortcodes are included for:
 
-[row] and [column] for formatting text in responsive columns.
-[memberlite_subpagelist] to show a list of a given pages' subpages in the order you define.
-[memberlite_signup] to display a block with signup fields for a specific membership level.
-[memberlite_levels] to display a block with details and a registration link for the specified membership levels.
-[View Shortcode Documentation »](http://demo.paidmembershipspro.com/memberlite/documentation/shortcodes/)
+[row] and [column] for formatting text in responsive columns. [docs](http://www.paidmembershipspro.com/themes/memberlite/shortcodes/column-shortcodes/)
+
+[fa] for Font Awesome icons. [docs](http://www.paidmembershipspro.com/themes/memberlite/shortcodes/font-awesome-icons/)
+
+[memberlite_btn] for formatted buttons. [docs](http://www.paidmembershipspro.com/themes/memberlite/shortcodes/buttons/)
+
+[memberlite_levels] to display a block with details and a registration link for the specified membership levels. [docs](http://www.paidmembershipspro.com/themes/memberlite/shortcodes/membership-levels-display/)
+
+[memberlite_msg] for contextual message blocks. [docs](http://www.paidmembershipspro.com/themes/memberlite/shortcodes/contextual-messages/)
+
+[memberlite_recent_posts] designed to be used on the homepage and outputs the newest posts overall or in a defined category. [docs](http://www.paidmembershipspro.com/themes/memberlite/shortcodes/recent-posts/)
+
+[memberlite_signup] to display a block with signup fields for a specific membership level. [docs](http://www.paidmembershipspro.com/themes/memberlite/shortcodes/membership-signup-block/)
+
+[memberlite_subpagelist] to show a list of a given pages' subpages in the order you define. [docs](http://www.paidmembershipspro.com/themes/memberlite/shortcodes/subpagelist/)
+
+[memberlite_tabs] and [memberlite_tab] for tabbed content blocks. [docs](http://www.paidmembershipspro.com/themes/memberlite/shortcodes/tabs/)
+
+[View Shortcode Documentation »](http://www.paidmembershipspro.com/themes/memberlite/shortcodes/)
 
 ###Integrated Plugins
-MemberLite includes formatting for use with:
+Memberlite includes formatting for use with:
 
 **Paid Memberships Pro**
 [Install Paid Memberships Pro »](http://www.paidmembershipspro.com/documentation/download/)
 
 **WooCommerce**
-[Install WooCommerce »](https://wordpress.org/plugins/woocommerce/) | [Install Paid Membreships Pro - WooCommerce Addon »](https://wordpress.org/plugins/pmpro-woocommerce/)
+[Install WooCommerce »](https://wordpress.org/plugins/woocommerce/) | [Install Paid Memberships Pro - WooCommerce Add On »](https://wordpress.org/plugins/pmpro-woocommerce/)
 
 **bbPress**
-[Install bbPress »](https://wordpress.org/plugins/bbpress/) | [Install Paid Memberships Pro - bbPress Addon »](https://wordpress.org/plugins/pmpro-bbpress/)
+[Install bbPress »](https://wordpress.org/plugins/bbpress/) | [Install Paid Memberships Pro - bbPress Add On »](https://wordpress.org/plugins/pmpro-bbpress/)
 
 **Events Manager**
 [Install Events Manager »](https://wordpress.org/plugins/events-manager/)
