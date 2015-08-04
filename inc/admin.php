@@ -34,7 +34,7 @@ function memberlite_support() {
 		{
 		?>
 		<div id="message" class="updated fade">
-			<p>Your license key has been validated.</p>
+			<p><?php _e('Your license key has been validated.', 'memberlite');?></p>
 		</div>
 		<?php
 		}
@@ -63,10 +63,10 @@ function memberlite_support() {
 	?>
 	<div id="wpbody-content" aria-label="Main content" tabindex="0">	
 		<div class="wrap"><div class="metabox-holder">
-			<h2>Memberlite Theme Documentation and Support</h2>
+			<h2><?php _e('Memberlite Theme Documentation and Support', 'memberlite');?></h2>
 			<?php if(empty($key)) { ?>
 			<div class="error">
-				<p>Uh Oh - You haven't entered your Paid Memberships Pro license key.</p>
+				<p><?php _e("Uh Oh - You haven't entered your Paid Memberships Pro license key.", "memberlite");?></p>
 			</div>
 			<?php } ?>
 			<h2 class="nav-tab-wrapper">
@@ -78,17 +78,17 @@ function memberlite_support() {
 			<?php if( ($view == 'overview') || (empty($view)) ) { ?>
 				<div id="memberlite-overview">
 					<div class="postbox">
-						<h3 class="hndle">License Key</h3>
+						<h3 class="hndle"><?php _e('License Key', 'memberlite');?></h3>
 						<div class="inside">
 							
 							<?php if(empty($key)) { ?>
-								<div class="notice notice-error inline"><p><strong>It appears that you have not entered and verified your Paid Memberships Pro license key.</strong> Your license key can be found in your membership email receipt or in your <a href="http://www.paidmembershipspro.com/login/?redirect_to=/membership-account/" target="_blank">Membership Account</a></p></div>
+								<div class="notice notice-error inline"><p><strong><?php _e('It appears that you have not entered and verified your Paid Memberships Pro license key.</strong> Your license key can be found in your membership email receipt or in your <a href="http://www.paidmembershipspro.com/login/?redirect_to=/membership-account/" target="_blank">Membership Account</a>', 'memberlite');?></p></div>
 							<?php } elseif(!pmpro_license_isValid()) { ?>
-								<div class="notice notice-error inline"><p><strong>Your license is invalid or expired.</strong> Visit the PMPro <a href="http://www.paidmembershipspro.com/login/?redirect_to=/membership-account/" target="_blank">Membership Account</a> page to confirm that your account is active and to find your license key.</p></div>
+								<div class="notice notice-error inline"><p><?php _e('<strong>Your license is invalid or expired.</strong> Visit the PMPro <a href="http://www.paidmembershipspro.com/login/?redirect_to=/membership-account/" target="_blank">Membership Account</a> page to confirm that your account is active and to find your license key.', 'memberlite');?></p></div>
 							<?php } elseif(!pmpro_license_isValid(NULL, 'plus')) { ?>
-								<div class="notice notice-error inline"><p><strong>The Memberlite Theme requires a PMPro Plus license. <a href="http://www.paidmembershipspro.com/login/?redirect_to=/membership-account/membership-checkout/?level=20" target="_blank">Please upgrade your PMPro license</a> to receive automatic updates.</p></div>
+								<div class="notice notice-error inline"><p><?php _e('<strong>The Memberlite Theme requires a PMPro Plus license. <a href="http://www.paidmembershipspro.com/login/?redirect_to=/membership-account/membership-checkout/?level=20" target="_blank">Please upgrade your PMPro license</a> to receive automatic updates.', 'memberlite');?></p></div>
 							<?php } else { ?>													
-								<div class="notice inline"><p><strong>Thank you!</strong> A valid <strong><?php echo ucwords($pmpro_license_check['license']);?></strong> license key has been used to activate your support license on this site.</p></div>
+								<div class="notice inline"><p><?php printf(__('<strong>Thank you!</strong> A valid <strong>%s</strong> license key has been used to activate your support license on this site.', 'memberlite'), ucwords($pmpro_license_check['license']));?></p></div>
 							<?php } ?>
 							
 							<table class="form-table">
@@ -101,8 +101,7 @@ function memberlite_support() {
 											<form id="pmpro-settings-verify-key" method="post">
 												<input type="password" name="pmpro-license-key" id="pmpro-settings-key" value="<?php echo esc_attr($key);?>" placeholder="Enter PMPro license key here..." size="50" />
 												<?php wp_nonce_field( 'pmpro-key-nonce', 'pmpro-key-nonce' ); ?>
-												<?php submit_button( __( 'Verify Key', 'pmpro' ), 'primary', 'pmpro-verify-submit', false ); ?>
-												<?php submit_button( __( 'Deactivate Key', 'pmpro' ), 'secondary', 'pmpro-deactivate-submit', false ); ?>
+												<?php submit_button( __( 'Verify Key', 'pmpro' ), 'primary', 'pmpro-verify-submit', false ); ?>										
 											</form>
 										</td>
 									</tr>
