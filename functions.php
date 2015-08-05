@@ -4,7 +4,6 @@
  *
  * @package Memberlite
  */
-
 define('MEMBERLITE_VERSION', '2.0');
 
 //enqueue additional stylesheets and javascript
@@ -204,8 +203,17 @@ function memberlite_wp_nav_menu( $menu ) {
 } 
 add_filter('wp_nav_menu', 'memberlite_wp_nav_menu');
 
+/* PMPro License code */
+if(!defined('PMPRO_LICENSE_SERVER'))
+	require_once get_template_directory() . '/inc/license.php';
+
+/* Updater coder */
+if(is_admin())
+	require_once get_template_directory() . '/inc/updates.php';
+	
 /* Custom admin theme pages. */
-require_once get_template_directory() . '/inc/admin.php';
+if(is_admin())
+	require_once get_template_directory() . '/inc/admin.php';
 
 /* Implement the Custom Header feature. */
 require_once get_template_directory() . '/inc/custom-header.php';
@@ -226,7 +234,8 @@ require_once get_template_directory() . '/inc/jetpack.php';
 require_once get_template_directory() . '/inc/template-tags.php';
 
 /* Custom meta boxes. */
-require_once get_template_directory() . '/inc/metaboxes.php';
+if(is_admin())
+	require_once get_template_directory() . '/inc/metaboxes.php';
 
 /* Custom widgets that act independently of the theme templates. */
 require_once get_template_directory() . '/inc/widgets.php';
@@ -239,7 +248,3 @@ if(function_exists('is_woocommerce'))
 
 /* Custom shortcodes that act independently of the theme templates. */
 require_once get_template_directory() . '/inc/shortcodes.php';
-
-/* PMPro License code */
-if(!defined('PMPRO_LICENSE_SERVER'))
-	require_once get_template_directory() . '/inc/license.php';
