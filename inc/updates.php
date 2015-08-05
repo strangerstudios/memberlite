@@ -73,6 +73,9 @@ function memberlite_update_themes_filter( $value ) {
 		return $value;
 	
 	//get data for theme
+	$theme_file_abs = ABSPATH . 'wp-content/themes/' . $update_info['Slug'];
+	$theme_file = $theme_file_abs . "/style.css";
+
 	$theme_data = wp_get_theme($update_info['Slug']);
 
 	//compare versions
@@ -87,8 +90,19 @@ function memberlite_update_themes_filter( $value ) {
 
 		//get license key if one is available
 		$key = get_option("pmpro_license_key", "");
-		if(!empty($key))
+		if(!empty($key) && pmpro_license_isValid($key, "plus"))
 			$value->response[$update_info['Slug']]['package'] = add_query_arg("key", $key, $value->response[$update_info['Slug']]['package']);
+		else
+		{
+			global $memberlite_license_error;
+
+			//only want to show this once
+			if(empty($memberlite_license_error))
+			{
+				$memberlite_license_error = true;
+				echo "<div class='error'><p>" . sprintf(__('A valid PMPro Plus license key is required to update Memberlite. <a href="%s">Please validate your PMPro Plus license key</a>.', 'memberlite'), admin_url('options-general.php?page=pmpro_license_settings')) . "</p></div>";
+			}
+		}
 	}
 	
 	// Return the update object.
@@ -98,7 +112,7 @@ function memberlite_update_themes_filter( $value ) {
 /**
  * Disables SSL verification to prevent download package failures.
  *
- * @since 1.8.5
+ * @since 2.0
  *
  * @param array $args  Array of request args.
  * @param string $url  The URL to be pinged.
@@ -112,3 +126,22 @@ function memberlite_http_request_args_for_update_info($args, $url)
 	
 	return $args;
 }
+
+/**
+ * Force update of theme update data when the PMPro License key is updated
+ *
+ * @since 2.0
+ *
+ * @param array $args  Array of request args.
+ * @param string $url  The URL to be pinged.
+ * @return array $args Amended array of request args.
+ */
+function memberlite_update_option_pmpro_license_key($option, $old_value, $value) 
+{
+	if($option == "pmpro_license_key")
+	{
+		delete_option('memberlite_update_info_timestamp');
+		delete_site_transient('update_themes');
+	}
+}
+
