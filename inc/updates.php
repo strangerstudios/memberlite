@@ -6,7 +6,6 @@
 */
 function memberlite_setupUpdateInfo()
 {
-	add_filter('themes_api', 'memberlite_themes_api', 10, 3);
 	add_filter('pre_set_site_transient_update_themes', 'memberlite_update_themes_filter');
 	add_filter('http_request_args', 'memberlite_http_request_args_for_update_info', 10, 2);
 }
@@ -65,6 +64,7 @@ function memberlite_update_themes_filter( $value ) {
 	if ( empty( $value ) ) {
 		return $value;
 	}
+	
 	// get update_info information
 	$update_info = memberlite_getUpdateInfo();
 	
@@ -73,10 +73,7 @@ function memberlite_update_themes_filter( $value ) {
 		return $value;
 	
 	//get data for theme
-	$theme_file_abs = ABSPATH . 'wp-content/themes/' . $update_info['Slug'];
-	$theme_file = $theme_file_abs . "/style.css";
-
-	$theme_data = wp_get_theme('style.css', $theme_file_abs);
+	$theme_data = wp_get_theme($update_info['Slug']);
 
 	//compare versions
 	if(!empty($update_info['License']) && version_compare($theme_data['Version'], $update_info['Version'], '<'))
@@ -87,42 +84,15 @@ function memberlite_update_themes_filter( $value ) {
 			'url' => $update_info['ThemeURI'],
 			'package' => $update_info['Download']
 		);
+
+		//get license key if one is available
+		$key = get_option("pmpro_license_key", "");
+		if(!empty($key))
+			$value->response[$update_info['Slug']]['package'] = add_query_arg("key", $key, $value->response[$update_info['Slug']]['package']);
 	}
 	
 	// Return the update object.
 	return $value;
-}
-
-/**
- * Setup theme updaters
- *
- * @since  2.0
- */
-function memberlite_themes_api($api, $action = '', $args = null)
-{	
-	//Not even looking for theme information? Or not given slug?
-	if('theme_information' != $action || empty($args->slug))
-		return $api;
-	
-	//looking for memberlite?
-	if($args->slug !== 'memberlite')
-		return $api;
-
-	$update_info = memberlite_getUpdateInfo();
-	
-	//no addons?
-	if(empty($update_info))
-		return $api;
-		
-	// Create a new stdClass object and populate it with our plugin information.
-	$api = pmpro_getThemeAPIObjectFromUpdateInfo($update_info);
-	
-	//get license key if one is available
-	$key = get_option("pmpro_license_key", "");
-	if(!empty($key) && !empty($api->download_link))
-		$api->download_link = add_query_arg("key", $key, $api->download_link);
-	
-	return $api;
 }
 
 /**
