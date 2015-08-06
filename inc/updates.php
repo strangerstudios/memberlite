@@ -8,6 +8,7 @@ function memberlite_setupUpdateInfo()
 {
 	add_filter('pre_set_site_transient_update_themes', 'memberlite_update_themes_filter');
 	add_filter('http_request_args', 'memberlite_http_request_args_for_update_info', 10, 2);
+	add_action('update_option_pmpro_license_key', 'memberlite_update_option_pmpro_license_key', 10, 3);
 }
 add_action('init', 'memberlite_setupUpdateInfo');
 
