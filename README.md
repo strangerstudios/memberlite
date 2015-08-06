@@ -58,3 +58,10 @@ Memberlite includes formatting for use with:
 
 **Events Manager**
 [Install Events Manager »](https://wordpress.org/plugins/events-manager/)
+
+###Changelog
+**2.0.1**
+* Added hook to reset update_themes cache when pmpro license is updated.
+
+**2.0**
+* Initial version.
