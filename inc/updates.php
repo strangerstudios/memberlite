@@ -8,7 +8,7 @@ function memberlite_setupUpdateInfo()
 {
 	add_filter('pre_set_site_transient_update_themes', 'memberlite_update_themes_filter');
 	add_filter('http_request_args', 'memberlite_http_request_args_for_update_info', 10, 2);
-	add_action('update_option_pmpro_license_key', 'memberlite_update_option_pmpro_license_key', 10, 3);
+	add_action('update_option_pmpro_license_key', 'memberlite_update_option_pmpro_license_key', 10, 2);
 }
 add_action('init', 'memberlite_setupUpdateInfo');
 
@@ -26,11 +26,20 @@ function memberlite_getUpdateInfo()
 	//if no update_infos locally, we need to hit the server
 	if(empty($update_info) || !empty($_REQUEST['force-check']) || current_time('timestamp') > $update_info_timestamp+86400)
 	{
+		/**
+         * Filter to change the timeout for this wp_remote_get() request.
+         *
+         * @since 2.0.1
+         *
+         * @param int $timeout The number of seconds before the request times out
+         */
+        $timeout = apply_filters("memberlite_get_update_info_timeout", 5);
+
 		//get em
-		$remote_info = wp_remote_get(PMPRO_LICENSE_SERVER . "/themes/memberlite");
+		$remote_info = wp_remote_get(PMPRO_LICENSE_SERVER . "/themes/memberlite", $timeout);
 		
-		//test response
-		if(empty($remote_info['response']) || $remote_info['response']['code'] != '200')
+		//test response		
+        if(is_wp_error($remote_info) || empty($remote_info['response']) || $remote_info['response']['code'] != '200')
 		{
 			//error
 			pmpro_setMessage("Could not connect to the PMPro License Server to get update information. Try again later.", "error");
@@ -137,12 +146,9 @@ function memberlite_http_request_args_for_update_info($args, $url)
  * @param string $url  The URL to be pinged.
  * @return array $args Amended array of request args.
  */
-function memberlite_update_option_pmpro_license_key($option, $old_value, $value) 
-{
-	if($option == "pmpro_license_key")
-	{
-		delete_option('memberlite_update_info_timestamp');
-		delete_site_transient('update_themes');
-	}
+function memberlite_update_option_pmpro_license_key($old_value, $value) 
+{	
+	delete_option('memberlite_update_info_timestamp');
+	delete_site_transient('update_themes');
 }
 
