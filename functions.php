@@ -155,10 +155,19 @@ add_action('widgets_init', 'memberlite_widgets_init');
 /* Adds a Log Out link in member menu */
 function memberlite_menus( $items, $args ) {
 	if ($args->theme_location == 'member') {
-		if (is_user_logged_in())
+		if (is_user_logged_in() && pmpro_hasMembershipLevel($user_ID))
+		{
+			//user is logged in and has a membership level
 			$items .= '<li><a href="'. wp_logout_url() .'">' . __('Log Out','memberlite') . '</a></li>';
+		}
+		elseif (is_user_logged_in() )
+		{
+			//user is logged in and does not have a membership level
+			$items = '<li><a href="'. wp_logout_url() .'">' . __('Log Out','memberlite') . '</a></li>';
+		}
 		else
 		{
+			//not logged in
 			$items = '<li><a href="'. wp_login_url() .'">' . __('Log In','memberlite') . '</a></li>';	  
 			$items .= '<li><a href="'. wp_registration_url() .'">' . __('Register','memberlite') . '</a></li>';	  
 		}
