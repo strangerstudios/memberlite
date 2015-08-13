@@ -60,6 +60,9 @@ Memberlite includes formatting for use with:
 [Install Events Manager »](https://wordpress.org/plugins/events-manager/)
 
 ###Changelog
+**2.0.2**
+* ENHANCEMENT: Now respecting your choice if you set a specific page template on the "static front page".
+
 **2.0.1**
 * BUG: Added hook to reset update_themes cache when pmpro license is updated.
 * ENHANCEMENT: Added the "pmpro_license_check_key_timeout" filter which can be used to set the timeout of the call to the PMPro License Server to something other than 5s. This is useful if you find your website timing out or having trouble getting updates.
