@@ -4,8 +4,7 @@
  *
  * @package Memberlite
  */
-
-define('MEMBERLITE_VERSION', '2.0');
+define('MEMBERLITE_VERSION', '2.0.1');
 
 //enqueue additional stylesheets and javascript
 function memberlite_init_styles()
@@ -156,10 +155,19 @@ add_action('widgets_init', 'memberlite_widgets_init');
 /* Adds a Log Out link in member menu */
 function memberlite_menus( $items, $args ) {
 	if ($args->theme_location == 'member') {
-		if (is_user_logged_in())
+		if (is_user_logged_in() && pmpro_hasMembershipLevel($user_ID))
+		{
+			//user is logged in and has a membership level
 			$items .= '<li><a href="'. wp_logout_url() .'">' . __('Log Out','memberlite') . '</a></li>';
+		}
+		elseif (is_user_logged_in() )
+		{
+			//user is logged in and does not have a membership level
+			$items = '<li><a href="'. wp_logout_url() .'">' . __('Log Out','memberlite') . '</a></li>';
+		}
 		else
 		{
+			//not logged in
 			$items = '<li><a href="'. wp_login_url() .'">' . __('Log In','memberlite') . '</a></li>';	  
 			$items .= '<li><a href="'. wp_registration_url() .'">' . __('Register','memberlite') . '</a></li>';	  
 		}
@@ -204,42 +212,48 @@ function memberlite_wp_nav_menu( $menu ) {
 } 
 add_filter('wp_nav_menu', 'memberlite_wp_nav_menu');
 
+/* PMPro License code */
+if(!defined('PMPRO_LICENSE_SERVER'))
+	require_once get_template_directory() . '/inc/license.php';
+
+/* Updater coder */
+if(is_admin())
+	require_once get_template_directory() . '/inc/updates.php';
+	
 /* Custom admin theme pages. */
-require get_template_directory() . '/inc/admin.php';
+if(is_admin())
+	require_once get_template_directory() . '/inc/admin.php';
 
 /* Implement the Custom Header feature. */
-require get_template_directory() . '/inc/custom-header.php';
+require_once get_template_directory() . '/inc/custom-header.php';
 
 /* Custom sidebars pages. */
-require get_template_directory() . '/inc/custom-sidebars.php';
+require_once get_template_directory() . '/inc/custom-sidebars.php';
 
 /* Customizer additions. */
-require get_template_directory() . '/inc/customizer.php';
+require_once get_template_directory() . '/inc/customizer.php';
 
 /* Custom functions that act independently of the theme templates. */
-require get_template_directory() . '/inc/extras.php';
+require_once get_template_directory() . '/inc/extras.php';
 
 /* Load Jetpack compatibility file. */
-require get_template_directory() . '/inc/jetpack.php';
+require_once get_template_directory() . '/inc/jetpack.php';
 
 /* Custom template tags. */
-require get_template_directory() . '/inc/template-tags.php';
+require_once get_template_directory() . '/inc/template-tags.php';
 
 /* Custom meta boxes. */
-require get_template_directory() . '/inc/metaboxes.php';
+if(is_admin())
+	require_once get_template_directory() . '/inc/metaboxes.php';
 
 /* Custom widgets that act independently of the theme templates. */
-require get_template_directory() . '/inc/widgets.php';
+require_once get_template_directory() . '/inc/widgets.php';
 
 if(function_exists('is_woocommerce'))
 {
 	/* Integration for WooCommerce. */
-	require get_template_directory() . '/inc/integrations/woocommerce.php';
+	require_once get_template_directory() . '/inc/integrations/woocommerce.php';
 }
 
 /* Custom shortcodes that act independently of the theme templates. */
-require get_template_directory() . '/inc/shortcodes.php';
-
-/* PMPro License code */
-if(!defined('PMPRO_LICENSE_SERVER'))
-	require get_template_directory() . '/inc/license.php';
+require_once get_template_directory() . '/inc/shortcodes.php';

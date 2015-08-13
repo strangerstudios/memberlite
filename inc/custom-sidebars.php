@@ -25,12 +25,12 @@ function memberlite_custom_sidebars() {
 			
 			if(empty($new_sidebar))
 			{
-				$msg = "Please enter a valid sidebar name.";
+				$msg = __("Please enter a valid sidebar name.", "memberlite");
 				$msgt = "error";
 			}
 			elseif(memberlite_sidebarExists($new_sidebar))
 			{
-				$msg = "Sidebar id or name already used. Try another name.";
+				$msg = __("Sidebar id or name already used. Try another name.", "memberlite");
 				$msgt = "error";
 			}
 			else
@@ -47,7 +47,7 @@ function memberlite_custom_sidebars() {
 				//save option
 				update_option('memberlite_custom_sidebars', $memberlite_custom_sidebars);
 
-				$msg = "Sidebar added.";
+				$msg = __("Sidebar added.", "memberlite");
 				$msgt = "updated fade";
 			}
 		}
@@ -93,11 +93,11 @@ function memberlite_custom_sidebars() {
 ?>
 	<div id="wpbody-content" aria-label="Main content" tabindex="0">	
 		<div class="wrap"><div class="metabox-holder">
-			<h2>MemberLite Custom Sidebars</h2>
+			<h2><?php _e('Memberlite Custom Sidebars', 'memberlite');?></h2>
 			<br class="clear" />
 			<div id="memberlite-custom-sidebars">
 				<div class="postbox">
-					<h3 class="hndle">Add New Sidebar</h3>
+					<h3 class="hndle"><?php _e('Add New Sidebar', 'memberlite');?></h3>
 					<div class="inside">
 						<form id="memberlite_add_sidebar_form" method="post" action="<?php echo admin_url("themes.php?page=memberlite-custom-sidebars");?>">					
 							<label for="memberlite_custom_sidebar_name"><?php _e('Sidebar Name','memberlite'); ?></label>
@@ -131,13 +131,13 @@ function memberlite_custom_sidebars() {
 										if(in_array($wp_registered_sidebar['name'], $memberlite_custom_sidebars))
 										{ 
 										?>
-											<a href="javascript:confirmCustomSidebarDeletion('Are you sure that you want to delete the <?php echo $wp_registered_sidebar['name'];?> sidebar?', '<?php echo wp_nonce_url(admin_url("themes.php?page=memberlite-custom-sidebars&delete=" . urlencode($wp_registered_sidebar['name'])), "memberlite_delete_custom_sidebar");?>');">Delete</a>
+											<a href="javascript:confirmCustomSidebarDeletion('Are you sure that you want to delete the <?php echo $wp_registered_sidebar['name'];?> sidebar?', '<?php echo wp_nonce_url(admin_url("themes.php?page=memberlite-custom-sidebars&delete=" . urlencode($wp_registered_sidebar['name'])), "memberlite_delete_custom_sidebar");?>');"><?php _e('Delete', 'memberlite'); ?></a>
 										<?php 
 										} 
 										else 
 										{ 
 										?>
-											<em>Not a custom sidebar.</em>
+											<em><?php _e('Not a custom sidebar.', 'memberlite');?></em>
 										<?php 
 										} 
 									?>
