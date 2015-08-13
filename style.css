@@ -1,10 +1,10 @@
 /*
-Theme Name: MemberLite
+Theme Name: Memberlite
 Theme URI: http://demo.paidmembershipspro.com/memberlite/
 Author: Kim Coleman
 Author URI: http://www.paidmembershipspro.com
 Description: Responsive, Customizable and Easily Integrated with Paid Memberships Pro
-Version: 2.0
+Version: 2.0.1
 Text Domain: memberlite
 Domain Path: /languages/
 
@@ -15,21 +15,36 @@ Domain Path: /languages/
 2.0 - Typography
 3.0 - Elements
 4.0 - Forms
+	4.1 - Buttons
+	4.2 - Form Elements
+	4.3 - Messages
 5.0 - Navigation
 	5.1 - Links
 	5.2 - Menus
+	5.3 - Breadcrumbs
+	5.4 - Prev/Next Navigation
 6.0 - Accessibility
 7.0 - Alignments
 8.0 - Clearings
 9.0 - Widgets
 10.0 - Content
-	10.1 - Posts and pages
-	10.2 - Asides
-	10.3 - Comments
-11.0 - Infinite scroll
-12.0 - Media
-	12.1 - Captions
-	12.2 - Galleries
+	10.1 - Header and Member Meta
+	10.2 - Front Page
+	10.3 - Interstitial Page
+	10.4 - Posts and pages
+	10.5 - Asides
+	10.6 - Comments
+	10.7 - Shortcodes
+	10.8 - Footer
+11.0 - Third Party Plugin Integrated Styles
+	11.1 Paid Memberships Pro Integrated Styles
+	11.2 - Theme My Login
+	11.3 Testimonials Widget
+12.0 Infinite scroll
+13.0 - Media
+	13.1 - Captions
+	13.2 - Galleries
+14.0 - Responsive Styles
 --------------------------------------------------------------*/
 
 /*--------------------------------------------------------------
@@ -179,6 +194,11 @@ div.lead p, p.lead {
 	font-size: 20px;
 	font-size: 2rem;
 	line-height: 3rem;
+}
+img.avatar {
+	border-radius: 50%;
+	transition: transform 0.5s ease;
+	transform: scale(0.8);
 }
 b, strong {
 	font-weight: bold;
@@ -386,6 +406,10 @@ dl dt:first-child {
 /*--------------------------------------------------------------
 4.0 Forms
 --------------------------------------------------------------*/
+
+/*--------------------------------------------------------------
+4.1 Buttons
+--------------------------------------------------------------*/
 button,
 input,
 select,
@@ -409,9 +433,11 @@ a.pmpro_btn,
 .pmpro_content_message a:link,
 input[type="submit"].pmpro_btn,
 #main div.em-search-main button.em-search-submit  {
-	border-radius: 3px;
 	background: #95a5a6;
 	border: none;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
 	box-shadow: none;
 	color: #FFF !important;
 	cursor: pointer; /* Improves usability and consistency of cursor style between image-type 'input' and others */
@@ -497,6 +523,7 @@ a.pmpro_btn:hover, .entry-footer a.pmpro_btn:hover, input[type="submit"].pmpro_b
 	font-family: 'Lato', sans-serif;
 	font-style: normal;
 	font-weight: 400;
+	overflow: hidden;
 	padding: 1rem 1.5rem;
 	text-decoration: none;
 	text-shadow: none;
@@ -508,6 +535,9 @@ a.pmpro_btn:hover, .entry-footer a.pmpro_btn:hover, input[type="submit"].pmpro_b
 .btn_block, .btn_block:link {display: block; }
 .btn .fa {padding: 0 .5rem; }
 
+/*--------------------------------------------------------------
+4.2 Form Elements
+--------------------------------------------------------------*/
 input[type="checkbox"],
 input[type="radio"] {
 	padding: 0; /* Addresses excess padding in IE8/9 */
@@ -534,6 +564,8 @@ input[type="search"],
 textarea {
 	color: #666;
 	border: 1px solid #ccc;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
 	border-radius: 3px;
 }
 input[type="text"]:focus,
@@ -543,7 +575,9 @@ input[type="password"]:focus,
 input[type="search"]:focus,
 textarea:focus {
 	color: #111;
-	box-shadow: 0px 0px 3px #CCC;
+	-webkit-box-shadow: 0px 0px 3px 0px #CCCCCC;
+	-moz-box-shadow: 0px 0px 3px 0px #CCCCCC;
+	box-shadow: 0px 0px 3px 0px #CCCCCC;
 	outline: 0;
 }
 input[type="text"],
@@ -560,9 +594,9 @@ textarea {
 	width: 100%;
 }
 
-/*--------------------------------------------------
-	Messages - Success, Error, Alert
-----------------------------------------------------*/
+/*--------------------------------------------------------------
+4.3 Messages - Success, Error, Alert
+--------------------------------------------------------------*/
 .pmpro_message, .pmpro_content_message, #pmpro_account_loggedin {
 	background-color: #d9edf7; 
 	-webkit-border-radius: 5px; 
@@ -595,7 +629,6 @@ select.pmpro_error {background-image: none;}
 5.0 Navigation
 --------------------------------------------------------------*/
 
-
 /*--------------------------------------------------------------
 5.1 Links and Colors
 --------------------------------------------------------------*/
@@ -616,6 +649,7 @@ a:active {
 .error {color: #d9534f; }
 .alert {color: #f0ad4e; }
 .muted {color: #AAA; }
+
 /*--------------------------------------------------------------
 5.2 Menus
 --------------------------------------------------------------*/
@@ -710,13 +744,13 @@ a:active {
 	float: left;
 	position: absolute;
 	top: 3.75rem;
-	left: -999em;
+	left: -9999em;
 	z-index: 99999;
 	margin: 0;
 	text-align: left;
 }
 .main-navigation ul ul ul, .meta-navigation ul ul ul, .header-right .widget_nav_menu ul ul ul {
-	left: -999em;
+	left: -9999em;
 	top: 0;
 }
 .main-navigation ul ul a, .meta-navigation ul ul a, .header-right .widget_nav_menu ul ul a {
@@ -841,6 +875,9 @@ a:active {
 	color: #FFF;
 	width: 90%;
 }
+/*--------------------------------------------------------------
+5.3 Breadcrumbs
+--------------------------------------------------------------*/
 .memberlite-breadcrumb {
 	color: #FFF;
 	font-size: 1.2rem; 
@@ -857,6 +894,9 @@ a:active {
 	position: absolute; 
 	top: -2em; 
 }
+/*--------------------------------------------------------------
+5.4 Prev/Next Navigation
+--------------------------------------------------------------*/
 .site-main .comment-navigation,
 .site-main .paging-navigation,
 .site-main .post-navigation {
@@ -893,6 +933,8 @@ a:active {
 .screen-reader-text:active,
 .screen-reader-text:focus {
 	background-color: #f1f1f1;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
 	border-radius: 3px;
 	box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
 	clip: auto !important;
@@ -969,15 +1011,11 @@ a:active {
 /*--------------------------------------------------------------
 9.0 Widgets
 --------------------------------------------------------------*/
-.widget {
-
-}
-
+.widget { }
 /* Make sure select elements fit in widgets */
 .widget select {
 	max-width: 100%;
 }
-
 /* Search widget */
 .widget_search .search-submit, .widget_product_search input[type=submit] {
 	display: none;
@@ -1068,13 +1106,16 @@ a:active {
 .memberlite_recent_posts { }
 .memberlite_recent_posts h1 {margin-bottom: .5em; }
 .memberlite_recent_posts .row {margin-top: 1em; }
+.memberlite_recent_posts .post-date {color: #AAA; }
+.memberlite_recent_posts .hentry {margin: 0; }
+
 .widget_recent_entries_thumbnails li {clear: left; }
 .widget_recent_entries_thumbnails .widget_post_thumbnail, .memberlite_recent_posts .widget_post_thumbnail {
 	display: block;
 	float: left;
 	width: 80px; 
 	height: 80px;
-	border-radius:50%;
+	border-radius: 50%;
 	margin: 0 .5em 0em -.5em;
 }
 #secondary .widget_recent_entries_thumbnails .widget_post_thumbnail:hover, .memberlite_recent_posts .widget_post_thumbnail:hover, .footer-widgets .widget_post_thumbnail:hover {
@@ -1111,17 +1152,18 @@ a:active {
 .content-sidebar #primary, .blog.sidebar-blog-right #primary, .archive.sidebar-blog-right #primary, .search.sidebar-blog-right #primary {
 	float: left;	
 }
-
+/*--------------------------------------------------------------
+10.1 Header and Member Meta
+--------------------------------------------------------------*/
 .site-header .row {
 	margin-bottom: 0;
 }
-
 .site-header .site-title {
 	margin: 20px 0 0 0;
 }
 .site-header .site-title a {
-	font-size: 3.5rem;
 	border: none;
+	font-size: 3.5rem;
 }
 .site-branding .site-title a {
 	text-decoration: none;
@@ -1132,29 +1174,34 @@ a:active {
 	font-style: italic; 
 	margin: 0 0 20px 0;	
 }
-.header-right {text-align: right;}
+.header-right {
+	text-align: right;
+}
 .header-right aside {
 	display: inline-block;
 }
-
 #meta-member aside {
 	background: #18BC9C;
-	font-size: 12px;
+	-moz-border-radius-bottomright: 3px;
+	-webkit-border-bottom-right-radius: 3px;
+	border-bottom-right-radius: 3px;
+	-moz-border-radius-bottomleft: 3px;
+	-webkit-border-bottom-left-radius: 3px;
+	border-bottom-left-radius: 3px;
 	color: #FFF;
-	padding: .5em 1em;	
-	margin: 0 0 1.5em 0;
-	border-bottom-left-radius: 3px; border-bottom-right-radius: 3px;
-	
+	font-size: 1.2rem;
+	margin: 0 0 1.5rem 0;
+	padding: .5rem 1rem;	
 }
 #meta-member .user {
-	font-family: 'Lato', sans-serif;
-	font-size: 1.2em;
 	border-right: 1px solid #DDD;
-	padding-right: .5em;
+	font-family: 'Lato', sans-serif;
+	font-size: 1.2rem;
+	padding-right: .5rem;
 }
 #meta-member a {
-	display: inline-block;
 	color: #FFF;
+	display: inline-block;
 	text-decoration: none;
 }
 #meta-member a:hover {
@@ -1181,15 +1228,17 @@ a:active {
 }
 /* Dropdown Menu */
 #meta-member .member-navigation ul ul {
+	-webkit-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.2);
+	-moz-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.2);
+	box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.2);
 	display: none; 
-	box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
-	position: absolute;
-	top: 2.6rem;
-	left: -999em;
-	z-index: 99999;
+	left: -9999em;
 	margin: 0;
 	padding: 0;
+	position: absolute;
 	text-align: left;
+	top: 2.6rem;
+	z-index: 99999;
 }
 #meta-member .member-navigation ul li:hover > ul {
 	display: block;
@@ -1291,7 +1340,7 @@ a:active {
 	float: left;
 	width: 80px; 
 	height: 80px;
-	border-radius:50%;
+	border-radius: 50%;
 	margin: 0 20px 0 10px;
 }
 .masthead .post_author_avatar img {
@@ -1301,7 +1350,7 @@ a:active {
 }
 
 /*--------------------------------------------------------------
-10.1 Posts and pages
+10.2 Front Page
 --------------------------------------------------------------*/
 .home .home-content h1 {
 	text-align: center; 
@@ -1313,14 +1362,15 @@ a:active {
 	text-align: center; 
 }
 
-.memberlite_recent_posts .post-date {color: #AAA; }
-.memberlite_recent_posts .hentry {margin: 0; }
-
+/*--------------------------------------------------------------
+10.3 Interstitial Page
+--------------------------------------------------------------*/
 .interstitial .site-branding, .interstitial .masthead {text-align: center; }
 .interstitial .masthead .btn {position: absolute; top: 0; right: 0; }
- 
-.sticky {
-}
+
+/*--------------------------------------------------------------
+10.4 Posts and Pages
+--------------------------------------------------------------*/
 .hentry {
 	margin: 0 0 4rem;
 }
@@ -1349,7 +1399,7 @@ a:active {
 	float: left;
 	width: 80px; 
 	height: 80px;
-	border-radius:50%;
+	border-radius: 50%;
 	margin: -.5rem 1.5rem 0 -.5rem;
 }
 .hentry .post_author_avatar img {
@@ -1446,73 +1496,8 @@ a:active {
 	margin: 0 0 1.5rem;
 }
 
-
-.banner {
-	padding: 4rem 0;
-}
-.banner_body {background-color: #FFF; }
-.banner_primary {background-color: #2C3E50; }
-.banner_secondary {background-color: #18BC9C; }
-.banner_action {background-color: #F39C12; }
-
-#main .banner_primary, #main .banner_primary h1, #main .banner_primary h2, #main .banner_primary h3, #main .banner_primary h4, #main .banner_primary h5, #main .banner_primary a, #main .banner_primary a:link,
-#main .banner_secondary, #main .banner_secondary h1, #main .banner_secondary h2, #main .banner_secondary h3, #main .banner_secondary h4, #main .banner_secondary h5, #main .banner_secondary a, #main .banner_secondary a:link {
-	color: #FFF; 
-}
-
-#banner_bottom {
-	background-color: #18BC9C;
-	color: #FFF;
-	padding: 2rem 0;
-}
-#banner_bottom p {
-	font-size: 2rem;
-	font-size: 20px;
-	line-height: 3.3rem;
-}
-#banner_bottom h1, #banner_bottom h2, #banner_bottom h3, #banner_bottom h4, #banner_bottom h5 {
-	color: #FFF;
-	margin: 0 0 1.6rem 0;
-}
-#banner_bottom h1 a, #banner_bottom h2 a, #banner_bottom h3 a, #banner_bottom h4 a, #banner_bottom h5 a {
-	color: #FFF;
-	text-decoration: none;
-	border-bottom: 1px dotted #FFF;
-}
-
-.memberlite_tabbable ul.memberlite_tabs {margin: 0; }
-.memberlite_tabbable ul.memberlite_tabs li {
-	float: left;
-	list-style: none;
-	margin: 0 .5rem 0 0;
-}
-.memberlite_tabbable ul.memberlite_tabs li > a {
-	background: none;
-	border: 1px solid #CCC;
-	border-top-left-radius: 3px;
-	border-top-right-radius: 3px;
-	border-bottom: none;
-	color: #777777;
-	display: inline-block;
-	float: none;
-	padding: 1.5rem 2rem;
-	text-decoration: none;
-}
-.memberlite_tabbable ul.memberlite_tabs li > a:hover {
-	background: #EFEFEF;
-}
-.memberlite_tabbable ul.memberlite_tabs li.memberlite_active a {
-	color: #FFF !important;
-	background-color: #18BC9C;
-	border-color: #18BC9C;
-	font-weight: bold;
-}
-.memberlite_tabbable .memberlite_tab_content {clear: both; padding-top: 4rem; border-top: .5rem solid #18BC9C;}
-.memberlite_tabbable .memberlite_tab_pane {display: none;}
-.memberlite_tabbable .memberlite_tab_pane.memberlite_active {display: block;}
-
 /*--------------------------------------------------------------
-10.2 Asides
+10.5 Asides
 --------------------------------------------------------------*/
 .blog .format-aside .entry-title,
 .archive .format-aside .entry-title {
@@ -1520,7 +1505,7 @@ a:active {
 }
 
 /*--------------------------------------------------------------
-10.3 Comments
+10.6 Comments
 --------------------------------------------------------------*/
 .comment-content a {
 	word-wrap: break-word;
@@ -1529,7 +1514,7 @@ a:active {
 	float: left;
 	width: 80px; 
 	height: 80px;
-	border-radius:50%;
+	border-radius: 50%;
 	margin: -.5rem .5rem 0 -.5rem;
 }
 .comment .gravatar img {
@@ -1632,8 +1617,74 @@ a:active {
 	font-size: 3rem; 
 	color: #FFF; 
 }
+
 /*--------------------------------------------------------------
-10.4 Footer
+10.7 Shortcodes
+--------------------------------------------------------------*/
+.banner {
+	padding: 4rem 0;
+}
+.banner_body {background-color: #FFF; }
+.banner_primary {background-color: #2C3E50; }
+.banner_secondary {background-color: #18BC9C; }
+.banner_action {background-color: #F39C12; }
+#main .banner_primary, #main .banner_primary h1, #main .banner_primary h2, #main .banner_primary h3, #main .banner_primary h4, #main .banner_primary h5, #main .banner_primary a, #main .banner_primary a:link,
+#main .banner_secondary, #main .banner_secondary h1, #main .banner_secondary h2, #main .banner_secondary h3, #main .banner_secondary h4, #main .banner_secondary h5, #main .banner_secondary a, #main .banner_secondary a:link {
+	color: #FFF; 
+}
+#banner_bottom {
+	background-color: #18BC9C;
+	color: #FFF;
+	padding: 2rem 0;
+}
+#banner_bottom p {
+	font-size: 2rem;
+	font-size: 20px;
+	line-height: 3.3rem;
+}
+#banner_bottom h1, #banner_bottom h2, #banner_bottom h3, #banner_bottom h4, #banner_bottom h5 {
+	color: #FFF;
+	margin: 0 0 1.6rem 0;
+}
+#banner_bottom h1 a, #banner_bottom h2 a, #banner_bottom h3 a, #banner_bottom h4 a, #banner_bottom h5 a {
+	color: #FFF;
+	text-decoration: none;
+	border-bottom: 1px dotted #FFF;
+}
+
+.memberlite_tabbable ul.memberlite_tabs {margin: 0; }
+.memberlite_tabbable ul.memberlite_tabs li {
+	float: left;
+	list-style: none;
+	margin: 0 .5rem 0 0;
+}
+.memberlite_tabbable ul.memberlite_tabs li > a {
+	background: none;
+	border: 1px solid #CCC;
+	border-top-left-radius: 3px;
+	border-top-right-radius: 3px;
+	border-bottom: none;
+	color: #777777;
+	display: inline-block;
+	float: none;
+	padding: 1.5rem 2rem;
+	text-decoration: none;
+}
+.memberlite_tabbable ul.memberlite_tabs li > a:hover {
+	background: #EFEFEF;
+}
+.memberlite_tabbable ul.memberlite_tabs li.memberlite_active a {
+	color: #FFF !important;
+	background-color: #18BC9C;
+	border-color: #18BC9C;
+	font-weight: bold;
+}
+.memberlite_tabbable .memberlite_tab_content {clear: both; padding-top: 4rem; border-top: .5rem solid #18BC9C;}
+.memberlite_tabbable .memberlite_tab_pane {display: none;}
+.memberlite_tabbable .memberlite_tab_pane.memberlite_active {display: block;}
+
+/*--------------------------------------------------------------
+10.8 Footer
 --------------------------------------------------------------*/
 .footer-widgets {
 	background: #2C3E50;
@@ -1675,7 +1726,7 @@ a:active {
 	float: left;
 	width: 80px; 
 	height: 80px;
-	border-radius:50%;
+	border-radius: 50%;
 	margin: 0 20px 0 0;
 }
 .footer-widgets .post_author_avatar img {
@@ -1715,9 +1766,12 @@ a:active {
 	margin: 0;
 }
 
+/*--------------------------------------------------------------
+11.0 Third Party Plugin Integrated Styles
+--------------------------------------------------------------*/
 
 /*--------------------------------------------------------------
-10.5 Paid Memberships Pro Integrated Styles
+11.1 Paid Memberships Pro Integrated Styles
 --------------------------------------------------------------*/
 #pmpro_levels {margin-top: 2rem; margin-bottom: 2rem; }
 #pmpro_levels .medium-4, #pmpro_levels .medium-3 {
@@ -1809,10 +1863,8 @@ form.memberlite_signup input[type=text], form.memberlite_signup input[type=email
 form.memberlite_signup .pmpro_btn, form.pmpro_signup_form .pmpro_btn {display: block; width: 100%; }
 
 /*--------------------------------------------------------------
-10.6 Third Party Plugin Integrated Styles
+11.2 Theme My Login: https://wordpress.org/plugins/theme-my-login/
 --------------------------------------------------------------*/
-
-/* Theme My Login: https://wordpress.org/plugins/theme-my-login/ */
 #your-profile label {display: inline-block; }
 #your-profile .form-table th {width: 250px; }
 #your-profile h3 {
@@ -1839,7 +1891,7 @@ form.memberlite_signup .pmpro_btn, form.pmpro_signup_form .pmpro_btn {display: b
 	float: left;
 	width: 80px; 
 	height: 80px;
-	border-radius:50%;
+	border-radius: 50%;
 	margin: 0 10px 0 0;
 }
 .tml-user-avatar img {
@@ -1865,9 +1917,11 @@ form.memberlite_signup .pmpro_btn, form.pmpro_signup_form .pmpro_btn {display: b
 #secondary .tml-action-links {text-align: center; }
 ul.tml-user-links {list-style: none; margin-bottom: 0; }
 
-/* Testimonials Widget: https://wordpress.org/plugins/testimonials-widget/ */
+/*--------------------------------------------------------------
+11.3 Testimonials Widget: https://wordpress.org/plugins/testimonials-widget/
+--------------------------------------------------------------*/
 .testimonials-widget-testimonial span.image {
-	border-radius:50%;
+	border-radius: 50%;
 	margin: 0 2rem 0 1rem;
 }
 .testimonials-widget-testimonial span.image img {
@@ -1884,7 +1938,7 @@ ul.tml-user-links {list-style: none; margin-bottom: 0; }
 #secondary .testimonials-widget-testimonial blockquote {padding: 0;}
 
 /*--------------------------------------------------------------
-11.0 Infinite scroll
+12.0 Infinite scroll
 --------------------------------------------------------------*/
 /* Globally hidden elements when Infinite Scroll is supported and in use. */
 .infinite-scroll .paging-navigation, /* Older / Newer Posts Navigation (always hidden) */
@@ -1897,7 +1951,7 @@ ul.tml-user-links {list-style: none; margin-bottom: 0; }
 }
 
 /*--------------------------------------------------------------
-12.0 Media
+13.0 Media
 --------------------------------------------------------------*/
 .page-content img.wp-smiley,
 .entry-content img.wp-smiley,
@@ -1915,7 +1969,7 @@ object {
 }
 
 /*--------------------------------------------------------------
-12.1 Captions
+13.1 Captions
 --------------------------------------------------------------*/
 .wp-caption {
 	margin-bottom: 1.5rem;
@@ -1942,7 +1996,7 @@ object {
 }
 
 /*--------------------------------------------------------------
-12.2 Galleries
+13.2 Galleries
 --------------------------------------------------------------*/
 .gallery {
 	margin-bottom: 1.5rem;
@@ -1979,6 +2033,9 @@ object {
 }
 .gallery-caption {}
 
+/*--------------------------------------------------------------
+14.0 Responsive Styles
+--------------------------------------------------------------*/
 @media only screen and (min-width: 1160px) {
 	.hide-screen {display: none; }	
 }
