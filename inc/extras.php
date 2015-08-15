@@ -427,87 +427,85 @@ function memberlite_getSidebar() {
 }
 
 function memberlite_getLevelCost(&$level, $tags = true, $short = false)
-{
-	global $pmpro_currency_symbol;
+{	
+	$r = '<span class="pmpro_level-initialprice">';		
 	//initial payment
-	if(empty($short))
-		$r = sprintf(__('The price for membership is <strong>%s</strong> now', 'pmpro'), $pmpro_currency_symbol . number_format($level->initial_payment, 2));
+	if(!$short)
+		$r .= sprintf(__('The price for membership is <strong>%s</strong> now', 'pmpro'), pmpro_formatPrice($level->initial_payment));
 	elseif(pmpro_isLevelFree($level))
-		$r = sprintf(__('<strong>FREE</strong>', 'pmpro'));
+		$r .= sprintf(__('<strong>FREE</strong>', 'pmpro'));		
 	else
-		$r = sprintf(__('<strong>%s</strong>', 'pmpro'), $pmpro_currency_symbol . number_format($level->initial_payment, 2));
-			
+		$r .= sprintf(__('<strong>%s</strong> now', 'pmpro'), pmpro_formatPrice($level->initial_payment));
+	$r .= '</span>';
+		
 	//recurring part
 	if($level->billing_amount != '0.00')
 	{
 		if($level->billing_limit > 1)
-		{			
+		{				
 			if($level->cycle_number == '1')
 			{
-				$r .= sprintf(__(' and then <strong>%s per %s for %d more %s</strong>.', 'pmpro'), $pmpro_currency_symbol . $level->billing_amount, pmpro_translate_billing_period($level->cycle_period), $level->billing_limit, pmpro_translate_billing_period($level->cycle_period, $level->billing_limit));
-			}				
+				$r .= sprintf(__(' and then <strong>%s per %s for %d more %s</strong>.', 'pmpro'), pmpro_formatPrice($level->billing_amount), pmpro_translate_billing_period($level->cycle_period), $level->billing_limit, pmpro_translate_billing_period($level->cycle_period, $level->billing_limit));
+			}
 			else
-			{ 
-				$r .= sprintf(__(' and then <strong>%s every %d %s for %d more %s</strong>.', 'pmpro'), $pmpro_currency_symbol . $level->billing_amount, $level->cycle_number, pmpro_translate_billing_period($level->cycle_period, $level->cycle_number), $level->billing_limit, pmpro_translate_billing_period($level->cycle_period, $level->billing_limit));
+			{
+				$r .= sprintf(__(' and then <strong>%s every %d %s for %d more %s</strong>.', 'pmpro'), pmpro_formatPrice($level->billing_amount), $level->cycle_number, pmpro_translate_billing_period($level->cycle_period, $level->cycle_number), $level->billing_limit, pmpro_translate_billing_period($level->cycle_period, $level->billing_limit));
 			}
 		}
 		elseif($level->billing_limit == 1)
 		{
-			$r .= sprintf(__(' and then <strong>%s after %d %s</strong>.', 'pmpro'), $pmpro_currency_symbol . $level->billing_amount, $level->cycle_number, pmpro_translate_billing_period($level->cycle_period, $level->cycle_number));
+			$r .= sprintf(__(' and then <strong>%s after %d %s</strong>.', 'pmpro'), pmpro_formatPrice($level->billing_amount), $level->cycle_number, pmpro_translate_billing_period($level->cycle_period, $level->cycle_number));
 		}
 		else
 		{
-			if( $level->billing_amount === $level->initial_payment ) {
+			if( $level->billing_amount === $level->initial_payment ) 
+			{
 				if($level->cycle_number == '1')
 				{
-					if(empty($short))
-					{
-						$r = sprintf(__('The price for membership is <strong>%s per %s</strong>.', 'pmpro'), $pmpro_currency_symbol . number_format($level->initial_payment, 2), pmpro_translate_billing_period($level->cycle_period) );
-					}
+					if(!$short)
+						$r = sprintf(__('The price for membership is <strong>%s per %s</strong>.', 'pmpro'), pmpro_formatPrice($level->initial_payment), pmpro_translate_billing_period($level->cycle_period) );
 					else
-					{
-						$r = sprintf(__('<strong>%s/%s</strong>', 'pmpro'), $pmpro_currency_symbol . number_format($level->initial_payment, 2), pmpro_translate_billing_period($level->cycle_period) );
-					}
+						$r = sprintf(__('<strong>%s/%s</strong>', 'pmpro'), pmpro_formatPrice($level->initial_payment), pmpro_translate_billing_period($level->cycle_period) );
 				}
 				else
 				{
-					if(empty($short))
-					{
-						$r = sprintf(__('The price for membership is <strong>%s every %d %s</strong>.', 'pmpro'), $pmpro_currency_symbol . number_format($level->initial_payment, 2), $level->cycle_number, pmpro_translate_billing_period($level->cycle_period, $level->cycle_number) );
-					}
+					if(!$short)
+						$r = sprintf(__('The price for membership is <strong>%s every %d %s</strong>.', 'pmpro'), pmpro_formatPrice($level->initial_payment), $level->cycle_number, pmpro_translate_billing_period($level->cycle_period, $level->cycle_number) );
 					else
-					{
-						$r = sprintf(__('<strong>%s every %d %s</strong>.', 'pmpro'), $pmpro_currency_symbol . number_format($level->initial_payment, 2), $level->cycle_number, pmpro_translate_billing_period($level->cycle_period, $level->cycle_number) );
-					}
+						$r = sprintf(__('<strong>%s every %d %s</strong>.', 'pmpro'), pmpro_formatPrice($level->initial_payment), $level->cycle_number, pmpro_translate_billing_period($level->cycle_period, $level->cycle_number) );
 				}
-			} else {
+			} 
+			else 
+			{
 				$r .= '<span class="pmpro_level-subprice">';
 				if($level->cycle_number == '1')
 				{
-					if(empty($short))
+					if(!$short)
 					{
-						$r .= sprintf(__(' and then <strong>%s per %s</strong>.', 'pmpro'), $pmpro_currency_symbol . $level->billing_amount, pmpro_translate_billing_period($level->cycle_period));
+						$r .= sprintf(__(' and then <strong>%s per %s</strong>.', 'pmpro'), pmpro_formatPrice($level->billing_amount), pmpro_translate_billing_period($level->cycle_period));
 					}
 					else
 					{
-						$r .= sprintf(__('then <strong>%s/%s</strong>', 'pmpro'), $pmpro_currency_symbol . $level->billing_amount, pmpro_translate_billing_period($level->cycle_period));
+						$r .= sprintf(__(' then <strong>%s/%s</strong>.', 'pmpro'), pmpro_formatPrice($level->billing_amount), pmpro_translate_billing_period($level->cycle_period));
 					}
 				}
 				else
 				{
-					$r .= sprintf(__(' and then <strong>%s every %d %s</strong>.', 'pmpro'), $pmpro_currency_symbol . $level->billing_amount, $level->cycle_number, pmpro_translate_billing_period($level->cycle_period, $level->cycle_number));
+					$r .= sprintf(__(' and then <strong>%s every %d %s</strong>.', 'pmpro'), pmpro_formatPrice($level->billing_amount), $level->cycle_number, pmpro_translate_billing_period($level->cycle_period, $level->cycle_number));
 				}
 				$r .= '</span>';
 			}
 		}
 	}
+	elseif(!pmpro_isLevelFree($level))
+		$r .= ".";
 
 	//add a space
 	$r .= ' ';
-	
 	//trial part
 	if($level->trial_limit)
 	{
+		$r .= '<span class="pmpro_level-trialprice">';
 		if($level->trial_amount == '0.00')
 		{
 			if($level->trial_limit == '1')
@@ -523,29 +521,28 @@ function memberlite_getLevelCost(&$level, $tags = true, $short = false)
 		{
 			if($level->trial_limit == '1')
 			{
-				$r .= ' ' . sprintf(__('After your initial payment, your first payment will cost %s.', 'pmpro'), $pmpro_currency_symbol . $level->trial_amount);
+				$r .= ' ' . sprintf(__('After your initial payment, your first payment will cost %s.', 'pmpro'), pmpro_formatPrice($level->trial_amount));
 			}
 			else
 			{
-				$r .= ' ' . sprintf(__('After your initial payment, your first %d payments will cost %s.', 'pmpro'), $level->trial_limit, $pmpro_currency_symbol . $level->trial_amount);
+				$r .= ' ' . sprintf(__('After your initial payment, your first %d payments will cost %s.', 'pmpro'), $level->trial_limit, pmpro_formatPrice($level->trial_amount));
 			}
 		}
+		$r .= '</span>';
 	}
-				
 	//taxes part
 	$tax_state = pmpro_getOption("tax_state");
 	$tax_rate = pmpro_getOption("tax_rate");
-	
 	if($tax_state && $tax_rate && !pmpro_isLevelFree($level))
 	{
-		$r .= sprintf(__('Customers in %s will be charged %s%% tax.', 'pmpro'), $tax_state, round($tax_rate * 100, 2));			
+		$r .= '<span class="pmpro_level-tax">';
+		$r .= sprintf(__('Customers in %s will be charged %s%% tax.', 'pmpro'), $tax_state, round($tax_rate * 100, 2));
+		$r .= '</span>';
 	}
-	
 	if(!$tags)
 		$r = strip_tags($r);
-	
-	$r = apply_filters("pmpro_level_cost_text", $r, $level);		
-	return $r;
+	$r = apply_filters("pmpro_level_cost_text", $r, $level, $tags, $short);	//passing $tags and $short since v2.0
+	return $r;		
 }
 
 function memberlite_getLevelLandingPage($level_id) {

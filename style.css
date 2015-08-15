@@ -1829,13 +1829,13 @@ a:active {
 }
 
 .pmpro_levels-3col .pmpro_level-price, .pmpro_levels-4col .pmpro_level-price {font-size: 24px; font-size: 2.4rem; }
-.pmpro_levels-3col .pmpro_level-subprice, .pmpro_levels-4col .pmpro_level-subprice {display: block; font-size: 14px; font-size: 1.4rem; }
-.pmpro_levels-table .pmpro_level-subprice {display: block; }
+.pmpro_levels-3col .pmpro_level-subprice, .pmpro_levels-4col .pmpro_level-subprice {display: block; font-size: 14px; font-size: 1.4rem; line-height: 2rem; } 
+.pmpro_levels-3col .pmpro_level-trialprice, .pmpro_levels-4col .pmpro_level-trialprice {display: block; font-size: 14px; font-size: 1.4rem; line-height: 2rem; margin: 1rem; }
+.pmpro_levels-div .pmpro_level-subprice, .pmpro_levels-table .pmpro_level-subprice { }
+.pmpro_levels-3col .pmpro_level-expiration, .pmpro_levels-4col .pmpro_level-expiration { }
 
-.pmpro_levels-3col .pmpro_level-expiration, .pmpro_levels-4col .pmpro_level-expiration {
-}
-
-.pmpro_levels-div .pmpro_level-price, .pmpro_levels-2col .pmpro_level-price, .pmpro_levels-div .pmpro_level-expiration, .pmpro_levels-2col .pmpro_level-expiration {display: inline-block; }
+.pmpro_levels-div .pmpro_btn-select, .pmpro_levels-2col .pmpro_btn-select {margin-left: 3rem; }
+.pmpro_levels-div .pmpro_level-price, .pmpro_levels-2col .pmpro_level-price, .pmpro_levels-div .pmpro_level-expiration, .pmpro_levels-2col .pmpro_level-expiration {display: inline; margin: 0; }
 
 .memberlite_signup-fixed {position: fixed; top: 0; }
 
