@@ -791,7 +791,7 @@ a:active {
 
 #site-navigation .search-form {float: right; position: relative; }
 #site-navigation .search-form input[type=search] {width: 100%; }
-#site-navigation .search-form input[type=submit].search-submit {background: none; padding: 0; position: absolute; text-index: -9999em; }
+#site-navigation .search-form input[type=submit].search-submit {background: none; padding: 0; position: absolute; text-indent: -9999em; }
 
 #mobile-navigation {
 	position: absolute;

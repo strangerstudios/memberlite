@@ -30,6 +30,7 @@ function memberlite_body_classes( $classes ) {
 	global $post, $memberlite_defaults;
 	$classes[] = get_theme_mod('sidebar_location',$memberlite_defaults['sidebar_location']);
 	$classes[] = get_theme_mod('sidebar_location_blog',$memberlite_defaults['sidebar_location_blog']);
+	$classes[] = 'scheme_' . get_theme_mod('memberlite_color_scheme',$memberlite_defaults['memberlite_color_scheme']);
 	if ( is_page_template( 'templates/sidebar-content.php' ) )
 		$classes[] = 'sidebar-content';
 	if ( is_page_template( 'templates/content-sidebar.php' ) )

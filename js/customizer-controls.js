@@ -2,6 +2,8 @@
 	var memberlite_color_controls, memberlite_color_controls_listener_flag;	
 	memberlite_color_controls = ['header_textcolor', 
 				'background_color', 
+				'memberlite_bgcolor_site_navigation',
+				'memberlite_color_site_navigation',
 				'memberlite_color_link', 
 				'memberlite_color_meta_link', 
 				'memberlite_color_primary',
@@ -23,7 +25,7 @@
 				memberlite_color_controls_listener_flag = false;
 				header_logo = $('#customize-control-display_header_text').find('input:checked');
 				
-				for(i = 0; i < 7; i++) {
+				for(i = 0; i < 9; i++) {
 					if(header_logo.length || i > 1)
 						$('#customize-control-'+memberlite_color_controls[i]).find( '.color-picker-hex' ).wpColorPicker('color', colors[i]);
 				}
@@ -33,7 +35,7 @@
 	} );
 	
 	// Set color scheme to custom when a color is changed specifically
-	for(i = 0; i < 7; i++) {
+	for(i = 0; i < 9; i++) {
 		wp.customize(memberlite_color_controls[i].replace(/memberlite_/, ''), function( value ) {
 			value.bind( function( to ) {			
 				if(memberlite_color_controls_listener_flag)
