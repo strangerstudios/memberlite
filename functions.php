@@ -155,6 +155,7 @@ add_action('widgets_init', 'memberlite_widgets_init');
 /* Adds a Log Out link in member menu */
 function memberlite_menus( $items, $args ) {
 	if ($args->theme_location == 'member') {
+		global $user_ID;
 		if (is_user_logged_in() && pmpro_hasMembershipLevel($user_ID))
 		{
 			//user is logged in and has a membership level

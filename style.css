@@ -1285,6 +1285,9 @@ a:active {
 	padding: 20rem 0 0 0;
 	margin: 0;
 }
+.home .masthead-banner .masthead {
+	padding: 4rem 0;
+}
 .masthead-banner .masthead .memberlite-breadcrumb {
 	position: absolute;
 	top: -18rem;
@@ -1305,6 +1308,10 @@ a:active {
 .masthead-banner .masthead h1 {
 	padding-bottom: 2rem;
 }
+.home .masthead-banner .masthead h1 {
+	padding-bottom: 0;
+}
+
 .masthead-banner .masthead .masthead-post-byline h1 {
 	padding-bottom: 0;
 }
