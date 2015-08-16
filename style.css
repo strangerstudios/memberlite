@@ -186,6 +186,9 @@ h1 a, h2 a, h3 a, h4 a, h5 a, h6 a, .navigation a {
 h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover, h5 a:hover, h6 a:hover, .navigation a {
 	border-bottom: 1px dotted #777;
 }
+.entry-content tbody td h1, .entry-content tbody td h2, .entry-content tbody td h3, .entry-content tbody td h4, .entry-content tbody td h5, .entry-content tbody td h6 {
+	margin-top: 0;
+}
 p {
 	margin-bottom: 2.6rem;
 }
@@ -382,10 +385,10 @@ thead th {
 tbody th {
 	border-bottom: 1px dotted #CCC;
 }
-
 td {
-	padding: 1rem;
 	border-bottom: 1px dotted #CCC;
+	padding: 1rem;
+	vertical-align: top;
 }
 tbody tr:nth-child(even) th, tbody tr:nth-child(even) td {
 	background: #FAFAFA;
