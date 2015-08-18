@@ -1574,7 +1574,7 @@ a:active {
 	border-bottom: 1px dotted #CCC;
 	padding-right: 0;
 }
-.comment.parent .comment.parent {
+.comment.parent .comment.parent, .comment.parent .depth-2, .comment.parent .depth-3, .comment.parent .depth-4, .comment.parent .depth-5 {
 	border-left: 20px solid #EFEFEF;
 	margin-left: -1rem;
 	border-top: 1px dotted #CCC;
