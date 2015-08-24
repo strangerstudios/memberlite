@@ -213,6 +213,20 @@ function memberlite_wp_nav_menu( $menu ) {
 } 
 add_filter('wp_nav_menu', 'memberlite_wp_nav_menu');
 
+/* Exclude pings and trackbacks from the number of comments on a post. */
+function memberlite_comment_count( $count ) {
+	global $id;
+	$comment_count = 0;
+	$comments = get_approved_comments( $id );
+	foreach ( $comments as $comment ) {
+		if ( $comment->comment_type === '' ) {
+			$comment_count++;
+		}
+	}
+	return $comment_count;
+}
+add_filter( 'get_comments_number', 'memberlite_comment_count', 0 );
+
 /* PMPro License code */
 if(!defined('PMPRO_LICENSE_SERVER'))
 	require_once get_template_directory() . '/inc/license.php';

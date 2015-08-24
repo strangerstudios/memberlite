@@ -158,6 +158,9 @@ h2 {
 .entry-content h2 {
 	margin: 3rem 0 1rem 0;
 }
+#comments h2 {
+	margin: 0 0 1rem 0;
+}
 h3, .widget_calendar #wp-calendar caption {
 	font-size: 20px;
 	font-size: 2rem;
@@ -903,7 +906,7 @@ a:active {
 .site-main .comment-navigation,
 .site-main .paging-navigation,
 .site-main .post-navigation {
-	margin: 0 0 4em;
+	margin: 0 0 2em;
 	overflow: hidden;
 }
 .comment-navigation .nav-previous,
@@ -1532,12 +1535,12 @@ a:active {
 	transition: transform 0.5s ease;
 	transform: scale(0.8);
 }
-.comment-meta {
+.comment-meta, .logged-in-as {
 	font-style: italic;
 	color: #AAA;
 }
-.comment-meta a {
-	color: #777;
+.comment-meta a, .logged-in-as a {
+	color: #777 !important;
 	text-decoration: none;
 }
 .comment-meta a:hover {
@@ -1553,13 +1556,16 @@ a:active {
 .comments-list {
 	border-top: 1px solid #CCC;
 }
-.comment {
+.comment, .pingback, .trackback {
 	padding: 1rem 1rem 0 1rem;
 	border-bottom: 1px dotted #CCC;
 	border-top: 1px dotted #CCC;
 	position: relative;
 }
-.comment.even {
+.pingback, .trackback {
+	padding: 1rem;
+}
+.comment.even, .pingback.even, .trackback.event {
 	background: #FAFAFA;
 }
 .comment.even .child-comments .comment {
@@ -1568,7 +1574,6 @@ a:active {
 .comment.odd .child-comments .comment {
 	background: #FFF;
 }
-
 .comment.parent {
 	border-left: 1px solid #CCC;
 	border-bottom: 1px dotted #CCC;
@@ -1620,12 +1625,18 @@ a:active {
 .comment-respond .form-allowed-tags, .comment-respond .form-submit, .comment-respond .comment-subscription-form {
 	margin-left: 13%; 
 }
+.comment-respond .form-submit {
+	margin-top: 1rem;
+}
 .comment .fa-caret-left {
 	position: absolute; 
 	top: 1rem; 
-	left: -.25rem; 
+	left: -1rem; 
 	font-size: 3rem; 
 	color: #FFF; 
+}
+.comment.even .fa-caret-left, .comment.even .child-comments .comment .fa-caret-left {
+	color: #FAFAFA; 
 }
 
 /*--------------------------------------------------------------
@@ -1689,9 +1700,21 @@ a:active {
 	border-color: #18BC9C;
 	font-weight: bold;
 }
-.memberlite_tabbable .memberlite_tab_content {clear: both; padding-top: 4rem; border-top: .5rem solid #18BC9C;}
-.memberlite_tabbable .memberlite_tab_pane {display: none;}
-.memberlite_tabbable .memberlite_tab_pane.memberlite_active {display: block;}
+.memberlite_tabbable .memberlite_tab_content {
+	border-top: .5rem solid #18BC9C;
+	clear: both; 
+	padding-top: 4rem;
+}
+.memberlite_tabbable .memberlite_tab_pane {
+	display: none;
+}
+.memberlite_tabbable .memberlite_tab_pane.memberlite_active {
+	display: block;
+}
+
+#comments .memberlite_tabbable .memberlite_tab_content {
+	padding-top: 0; 
+}
 
 /*--------------------------------------------------------------
 10.8 Footer
@@ -2067,6 +2090,10 @@ object {
 	.site-branding .site-title a {width: 100%; height: auto; background-size: contain; }
 	.menu-toggle {display: block; position: absolute; right: 10px; top: 25px; z-index: 100; }
 	.testimonials-widget-testimonial span.image	{display: block; float: none; margin: 0; text-align: center; }
+	.comment-respond label {display: block; text-align: left; width: 100%; }
+	.comment-respond input[type=text], .comment-respond input[type=email], .comment-respond input[type=url], .comment-respond textarea {width: 100%; }
+	.comment-respond .form-allowed-tags, .comment-respond .form-submit, .comment-respond .comment-subscription-form {margin-left: 0; }
+	.comment-respond .form-submit input[type=submit] {width: 100%; }
 	form.pmpro_form label {display: block; float: none; margin: 0; text-align: left; width: 100%; }
 	form.pmpro_form label.pmpro_clickable {display: inline-block; }
 	form.pmpro_form .pmpro_thead-msg {width: 45%; white-space:normal; font-size: 10px; }
