@@ -60,8 +60,20 @@ Memberlite includes formatting for use with:
 [Install Events Manager »](https://wordpress.org/plugins/events-manager/)
 
 ###Changelog
+**2.0.3**
+* ENHANCEMENT: Updating Title of Contents and general stylesheet formatting improvements.
+* ENHANCEMENT: Added post_parent and thumbnail_size attributes to [memberlite_subpagelist] shortcode.
+* BUG: Removed pmpro_content_filter from banner description so it is not duplicated in post content.
+* ENHANCEMENT: Improved memberlite_getLevelCost function to respect price formatting filters in Paid Memberships Pro.
+* ENHANCEMENT: Added masthead banner background image support to front-page template.
+* ENHANCEMENT: Added customizer settings for primary navigation bar background color and link color.
+* ENHANCEMENT: Added 'scheme_SCHEMENAME' to body classes array when an included color scheme is selected in customizer.'
+* ENHANCEMENT: Improved formatting for comments, nested comments, pingbacks and trackbacks
+* BUG: Fixing issue where archvies and index weren't showing full the_content when set in customizer.  
+
 **2.0.2**
 * ENHANCEMENT: Now respecting your choice if you set a specific page template on the "static front page".
+* BUG: Updates to member menu area to only show the "member menu" selection if current user has membership level.
 
 **2.0.1**
 * BUG: Added hook to reset update_themes cache when pmpro license is updated.

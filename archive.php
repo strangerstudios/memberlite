@@ -10,7 +10,9 @@ get_header(); ?>
 		<main id="main" class="site-main" role="main">
 		<?php do_action('before_loop'); ?>
 		<?php if ( have_posts() ) : ?>
+			<?php global $more; ?>
 			<?php while ( have_posts() ) : the_post(); ?>
+				<?php $more = 1; ?>
 				<?php get_template_part( 'content', get_post_format() ); ?>
 			<?php endwhile; ?>
 			<?php memberlite_paging_nav(); ?>

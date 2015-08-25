@@ -99,8 +99,6 @@ function memberlite_levels_shortcode($atts, $content=null, $code="")
 		
 		$pmpro_levels_filtered = apply_filters("pmpro_levels_array", $pmpro_levels_filtered);
 		$numeric_levels_array = array_values($pmpro_levels_filtered);
-				
-		$original_level = $level;
 				  
 		//update per discount code
 		if(!empty($discount_code) && !empty($pmpro_levels_filtered))
@@ -446,7 +444,8 @@ function memberlite_levels_shortcode($atts, $content=null, $code="")
 					  $current_level = false;
 				?>
 				<div class="medium-<?php
-					if($layout == '2col') { echo '6'; }
+					if($layout == 'div' || empty($layout)) { echo '12'; }
+					elseif($layout == '2col') { echo '6'; }
 					elseif($layout == '3col') { echo '4'; }
 					elseif($layout == '4col') { echo '3'; } 
 					else { if(count($pmpro_levels) > 1) { echo '12'; } } 

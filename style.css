@@ -4,7 +4,7 @@ Theme URI: http://demo.paidmembershipspro.com/memberlite/
 Author: Kim Coleman
 Author URI: http://www.paidmembershipspro.com
 Description: Responsive, Customizable and Easily Integrated with Paid Memberships Pro
-Version: 2.0.1
+Version: 2.0.3
 Text Domain: memberlite
 Domain Path: /languages/
 
@@ -15,21 +15,36 @@ Domain Path: /languages/
 2.0 - Typography
 3.0 - Elements
 4.0 - Forms
+	4.1 - Buttons
+	4.2 - Form Elements
+	4.3 - Messages
 5.0 - Navigation
 	5.1 - Links
 	5.2 - Menus
+	5.3 - Breadcrumbs
+	5.4 - Prev/Next Navigation
 6.0 - Accessibility
 7.0 - Alignments
 8.0 - Clearings
 9.0 - Widgets
 10.0 - Content
-	10.1 - Posts and pages
-	10.2 - Asides
-	10.3 - Comments
-11.0 - Infinite scroll
-12.0 - Media
-	12.1 - Captions
-	12.2 - Galleries
+	10.1 - Header and Member Meta
+	10.2 - Front Page
+	10.3 - Interstitial Page
+	10.4 - Posts and pages
+	10.5 - Asides
+	10.6 - Comments
+	10.7 - Shortcodes
+	10.8 - Footer
+11.0 - Third Party Plugin Integrated Styles
+	11.1 Paid Memberships Pro Integrated Styles
+	11.2 - Theme My Login
+	11.3 Testimonials Widget
+12.0 Infinite scroll
+13.0 - Media
+	13.1 - Captions
+	13.2 - Galleries
+14.0 - Responsive Styles
 --------------------------------------------------------------*/
 
 /*--------------------------------------------------------------
@@ -143,6 +158,9 @@ h2 {
 .entry-content h2 {
 	margin: 3rem 0 1rem 0;
 }
+#comments h2 {
+	margin: 0 0 1rem 0;
+}
 h3, .widget_calendar #wp-calendar caption {
 	font-size: 20px;
 	font-size: 2rem;
@@ -171,6 +189,9 @@ h1 a, h2 a, h3 a, h4 a, h5 a, h6 a, .navigation a {
 h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover, h5 a:hover, h6 a:hover, .navigation a {
 	border-bottom: 1px dotted #777;
 }
+.entry-content tbody td h1, .entry-content tbody td h2, .entry-content tbody td h3, .entry-content tbody td h4, .entry-content tbody td h5, .entry-content tbody td h6 {
+	margin-top: 0;
+}
 p {
 	margin-bottom: 2.6rem;
 }
@@ -179,6 +200,11 @@ div.lead p, p.lead {
 	font-size: 20px;
 	font-size: 2rem;
 	line-height: 3rem;
+}
+img.avatar {
+	border-radius: 50%;
+	transition: transform 0.5s ease;
+	transform: scale(0.8);
 }
 b, strong {
 	font-weight: bold;
@@ -362,10 +388,10 @@ thead th {
 tbody th {
 	border-bottom: 1px dotted #CCC;
 }
-
 td {
-	padding: 1rem;
 	border-bottom: 1px dotted #CCC;
+	padding: 1rem;
+	vertical-align: top;
 }
 tbody tr:nth-child(even) th, tbody tr:nth-child(even) td {
 	background: #FAFAFA;
@@ -385,6 +411,10 @@ dl dt:first-child {
 }
 /*--------------------------------------------------------------
 4.0 Forms
+--------------------------------------------------------------*/
+
+/*--------------------------------------------------------------
+4.1 Buttons
 --------------------------------------------------------------*/
 button,
 input,
@@ -409,9 +439,11 @@ a.pmpro_btn,
 .pmpro_content_message a:link,
 input[type="submit"].pmpro_btn,
 #main div.em-search-main button.em-search-submit  {
-	border-radius: 3px;
 	background: #95a5a6;
 	border: none;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
 	box-shadow: none;
 	color: #FFF !important;
 	cursor: pointer; /* Improves usability and consistency of cursor style between image-type 'input' and others */
@@ -509,6 +541,9 @@ a.pmpro_btn:hover, .entry-footer a.pmpro_btn:hover, input[type="submit"].pmpro_b
 .btn_block, .btn_block:link {display: block; }
 .btn .fa {padding: 0 .5rem; }
 
+/*--------------------------------------------------------------
+4.2 Form Elements
+--------------------------------------------------------------*/
 input[type="checkbox"],
 input[type="radio"] {
 	padding: 0; /* Addresses excess padding in IE8/9 */
@@ -535,6 +570,8 @@ input[type="search"],
 textarea {
 	color: #666;
 	border: 1px solid #ccc;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
 	border-radius: 3px;
 }
 input[type="text"]:focus,
@@ -544,7 +581,9 @@ input[type="password"]:focus,
 input[type="search"]:focus,
 textarea:focus {
 	color: #111;
-	box-shadow: 0px 0px 3px #CCC;
+	-webkit-box-shadow: 0px 0px 3px 0px #CCCCCC;
+	-moz-box-shadow: 0px 0px 3px 0px #CCCCCC;
+	box-shadow: 0px 0px 3px 0px #CCCCCC;
 	outline: 0;
 }
 input[type="text"],
@@ -561,9 +600,9 @@ textarea {
 	width: 100%;
 }
 
-/*--------------------------------------------------
-	Messages - Success, Error, Alert
-----------------------------------------------------*/
+/*--------------------------------------------------------------
+4.3 Messages - Success, Error, Alert
+--------------------------------------------------------------*/
 .pmpro_message, .pmpro_content_message, #pmpro_account_loggedin {
 	background-color: #d9edf7; 
 	-webkit-border-radius: 5px; 
@@ -596,7 +635,6 @@ select.pmpro_error {background-image: none;}
 5.0 Navigation
 --------------------------------------------------------------*/
 
-
 /*--------------------------------------------------------------
 5.1 Links and Colors
 --------------------------------------------------------------*/
@@ -617,6 +655,7 @@ a:active {
 .error {color: #d9534f; }
 .alert {color: #f0ad4e; }
 .muted {color: #AAA; }
+
 /*--------------------------------------------------------------
 5.2 Menus
 --------------------------------------------------------------*/
@@ -711,13 +750,13 @@ a:active {
 	float: left;
 	position: absolute;
 	top: 3.75rem;
-	left: -999em;
+	left: -9999em;
 	z-index: 99999;
 	margin: 0;
 	text-align: left;
 }
 .main-navigation ul ul ul, .meta-navigation ul ul ul, .header-right .widget_nav_menu ul ul ul {
-	left: -999em;
+	left: -9999em;
 	top: 0;
 }
 .main-navigation ul ul a, .meta-navigation ul ul a, .header-right .widget_nav_menu ul ul a {
@@ -758,7 +797,7 @@ a:active {
 
 #site-navigation .search-form {float: right; position: relative; }
 #site-navigation .search-form input[type=search] {width: 100%; }
-#site-navigation .search-form input[type=submit].search-submit {background: none; padding: 0; position: absolute; text-index: -9999em; }
+#site-navigation .search-form input[type=submit].search-submit {background: none; padding: 0; position: absolute; text-indent: -9999em; }
 
 #mobile-navigation {
 	position: absolute;
@@ -842,6 +881,9 @@ a:active {
 	color: #FFF;
 	width: 90%;
 }
+/*--------------------------------------------------------------
+5.3 Breadcrumbs
+--------------------------------------------------------------*/
 .memberlite-breadcrumb {
 	color: #FFF;
 	font-size: 1.2rem; 
@@ -858,10 +900,13 @@ a:active {
 	position: absolute; 
 	top: -2em; 
 }
+/*--------------------------------------------------------------
+5.4 Prev/Next Navigation
+--------------------------------------------------------------*/
 .site-main .comment-navigation,
 .site-main .paging-navigation,
 .site-main .post-navigation {
-	margin: 0 0 4em;
+	margin: 0 0 2em;
 	overflow: hidden;
 }
 .comment-navigation .nav-previous,
@@ -894,6 +939,8 @@ a:active {
 .screen-reader-text:active,
 .screen-reader-text:focus {
 	background-color: #f1f1f1;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
 	border-radius: 3px;
 	box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
 	clip: auto !important;
@@ -970,15 +1017,11 @@ a:active {
 /*--------------------------------------------------------------
 9.0 Widgets
 --------------------------------------------------------------*/
-.widget {
-
-}
-
+.widget { }
 /* Make sure select elements fit in widgets */
 .widget select {
 	max-width: 100%;
 }
-
 /* Search widget */
 .widget_search .search-submit, .widget_product_search input[type=submit] {
 	display: none;
@@ -1069,13 +1112,16 @@ a:active {
 .memberlite_recent_posts { }
 .memberlite_recent_posts h1 {margin-bottom: .5em; }
 .memberlite_recent_posts .row {margin-top: 1em; }
+.memberlite_recent_posts .post-date {color: #AAA; }
+.memberlite_recent_posts .hentry {margin: 0; }
+
 .widget_recent_entries_thumbnails li {clear: left; }
 .widget_recent_entries_thumbnails .widget_post_thumbnail, .memberlite_recent_posts .widget_post_thumbnail {
 	display: block;
 	float: left;
 	width: 80px; 
 	height: 80px;
-	border-radius:50%;
+	border-radius: 50%;
 	margin: 0 .5em 0em -.5em;
 }
 #secondary .widget_recent_entries_thumbnails .widget_post_thumbnail:hover, .memberlite_recent_posts .widget_post_thumbnail:hover, .footer-widgets .widget_post_thumbnail:hover {
@@ -1112,17 +1158,18 @@ a:active {
 .content-sidebar #primary, .blog.sidebar-blog-right #primary, .archive.sidebar-blog-right #primary, .search.sidebar-blog-right #primary {
 	float: left;	
 }
-
+/*--------------------------------------------------------------
+10.1 Header and Member Meta
+--------------------------------------------------------------*/
 .site-header .row {
 	margin-bottom: 0;
 }
-
 .site-header .site-title {
 	margin: 20px 0 0 0;
 }
 .site-header .site-title a {
-	font-size: 3.5rem;
 	border: none;
+	font-size: 3.5rem;
 }
 .site-branding .site-title a {
 	text-decoration: none;
@@ -1133,29 +1180,34 @@ a:active {
 	font-style: italic; 
 	margin: 0 0 20px 0;	
 }
-.header-right {text-align: right;}
+.header-right {
+	text-align: right;
+}
 .header-right aside {
 	display: inline-block;
 }
-
 #meta-member aside {
 	background: #18BC9C;
-	font-size: 12px;
+	-moz-border-radius-bottomright: 3px;
+	-webkit-border-bottom-right-radius: 3px;
+	border-bottom-right-radius: 3px;
+	-moz-border-radius-bottomleft: 3px;
+	-webkit-border-bottom-left-radius: 3px;
+	border-bottom-left-radius: 3px;
 	color: #FFF;
-	padding: .5em 1em;	
-	margin: 0 0 1.5em 0;
-	border-bottom-left-radius: 3px; border-bottom-right-radius: 3px;
-	
+	font-size: 1.2rem;
+	margin: 0 0 1.5rem 0;
+	padding: .5rem 1rem;	
 }
 #meta-member .user {
-	font-family: 'Lato', sans-serif;
-	font-size: 1.2em;
 	border-right: 1px solid #DDD;
-	padding-right: .5em;
+	font-family: 'Lato', sans-serif;
+	font-size: 1.2rem;
+	padding-right: .5rem;
 }
 #meta-member a {
-	display: inline-block;
 	color: #FFF;
+	display: inline-block;
 	text-decoration: none;
 }
 #meta-member a:hover {
@@ -1182,15 +1234,17 @@ a:active {
 }
 /* Dropdown Menu */
 #meta-member .member-navigation ul ul {
+	-webkit-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.2);
+	-moz-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.2);
+	box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.2);
 	display: none; 
-	box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
-	position: absolute;
-	top: 2.6rem;
-	left: -999em;
-	z-index: 99999;
+	left: -9999em;
 	margin: 0;
 	padding: 0;
+	position: absolute;
 	text-align: left;
+	top: 2.6rem;
+	z-index: 99999;
 }
 #meta-member .member-navigation ul li:hover > ul {
 	display: block;
@@ -1237,6 +1291,9 @@ a:active {
 	padding: 20rem 0 0 0;
 	margin: 0;
 }
+.home .masthead-banner .masthead {
+	padding: 4rem 0;
+}
 .masthead-banner .masthead .memberlite-breadcrumb {
 	position: absolute;
 	top: -18rem;
@@ -1257,6 +1314,10 @@ a:active {
 .masthead-banner .masthead h1 {
 	padding-bottom: 2rem;
 }
+.home .masthead-banner .masthead h1 {
+	padding-bottom: 0;
+}
+
 .masthead-banner .masthead .masthead-post-byline h1 {
 	padding-bottom: 0;
 }
@@ -1292,7 +1353,7 @@ a:active {
 	float: left;
 	width: 80px; 
 	height: 80px;
-	border-radius:50%;
+	border-radius: 50%;
 	margin: 0 20px 0 10px;
 }
 .masthead .post_author_avatar img {
@@ -1302,7 +1363,7 @@ a:active {
 }
 
 /*--------------------------------------------------------------
-10.1 Posts and pages
+10.2 Front Page
 --------------------------------------------------------------*/
 .home .home-content h1 {
 	text-align: center; 
@@ -1314,14 +1375,15 @@ a:active {
 	text-align: center; 
 }
 
-.memberlite_recent_posts .post-date {color: #AAA; }
-.memberlite_recent_posts .hentry {margin: 0; }
-
+/*--------------------------------------------------------------
+10.3 Interstitial Page
+--------------------------------------------------------------*/
 .interstitial .site-branding, .interstitial .masthead {text-align: center; }
 .interstitial .masthead .btn {position: absolute; top: 0; right: 0; }
- 
-.sticky {
-}
+
+/*--------------------------------------------------------------
+10.4 Posts and Pages
+--------------------------------------------------------------*/
 .hentry {
 	margin: 0 0 4rem;
 }
@@ -1350,7 +1412,7 @@ a:active {
 	float: left;
 	width: 80px; 
 	height: 80px;
-	border-radius:50%;
+	border-radius: 50%;
 	margin: -.5rem 1.5rem 0 -.5rem;
 }
 .hentry .post_author_avatar img {
@@ -1447,7 +1509,139 @@ a:active {
 	margin: 0 0 1.5rem;
 }
 
+/*--------------------------------------------------------------
+10.5 Asides
+--------------------------------------------------------------*/
+.blog .format-aside .entry-title,
+.archive .format-aside .entry-title {
+	display: none;
+}
 
+/*--------------------------------------------------------------
+10.6 Comments
+--------------------------------------------------------------*/
+.comment-content a {
+	word-wrap: break-word;
+}
+.comment .gravatar {
+	float: left;
+	width: 80px; 
+	height: 80px;
+	border-radius: 50%;
+	margin: -.5rem .5rem 0 -.5rem;
+}
+.comment .gravatar img {
+	border-radius: 50%;
+	transition: transform 0.5s ease;
+	transform: scale(0.8);
+}
+.comment-meta, .logged-in-as {
+	font-style: italic;
+	color: #AAA;
+}
+.comment-meta a, .logged-in-as a {
+	color: #777 !important;
+	text-decoration: none;
+}
+.comment-meta a:hover {
+	border-bottom: 1px dotted #777;
+}
+.comment-meta h4 {
+	font-style: normal;
+	padding-top: .25rem;
+}
+.comment-content {
+	clear: left;
+}
+.comments-list {
+	border-top: 1px solid #CCC;
+}
+.comment, .pingback, .trackback {
+	padding: 1rem 1rem 0 1rem;
+	border-bottom: 1px dotted #CCC;
+	border-top: 1px dotted #CCC;
+	position: relative;
+}
+.pingback, .trackback {
+	padding: 1rem;
+}
+.comment.even, .pingback.even, .trackback.event {
+	background: #FAFAFA;
+}
+.comment.even .child-comments .comment {
+	background: #FAFAFA;
+}
+.comment.odd .child-comments .comment {
+	background: #FFF;
+}
+.comment.parent {
+	border-left: 1px solid #CCC;
+	border-bottom: 1px dotted #CCC;
+	padding-right: 0;
+}
+.comment.parent .comment.parent, .comment.parent .depth-2, .comment.parent .depth-3, .comment.parent .depth-4, .comment.parent .depth-5 {
+	border-left: 20px solid #EFEFEF;
+	margin-left: -1rem;
+	border-top: 1px dotted #CCC;
+}
+.child-comments.comments-list {
+	border-top: none;
+}
+.child-comments.comments-list .comment {
+	padding-right: 0; 
+}
+.comment-content {
+	padding-bottom: 1rem;
+}
+.bypostauthor {
+}
+.comment-respond {
+	margin: 1.5rem 0; 
+}
+.comment-respond .comment-notes, .comment-respond .form-allowed-tags {
+	color: #AAA;
+	font-style: italic; 
+}
+.comment-respond label {
+	display: inline-block; 
+	width: 12%;
+	text-align: right;
+	margin: 0 1% 0 0;
+}
+.comment-respond p {
+	position: relative;
+}
+.comment-respond input[type=text], .comment-respond input[type=email], .comment-respond input[type=url], .comment-respond textarea {
+	width: 84%; 
+}
+.comment-respond .comment-form-comment {margin-bottom: 0; }
+.comment-respond .form-allowed-tags, .comment-respond .form-allowed-tags code {font-size: 12px; }
+
+.comment-respond .comment-form-author span.required, .comment-respond .comment-form-email span.required {
+	position: absolute; 
+	top: 0; 
+	right: 0; 
+}
+.comment-respond .form-allowed-tags, .comment-respond .form-submit, .comment-respond .comment-subscription-form {
+	margin-left: 13%; 
+}
+.comment-respond .form-submit {
+	margin-top: 1rem;
+}
+.comment .fa-caret-left {
+	position: absolute; 
+	top: 1rem; 
+	left: -1rem; 
+	font-size: 3rem; 
+	color: #FFF; 
+}
+.comment.even .fa-caret-left, .comment.even .child-comments .comment .fa-caret-left {
+	color: #FAFAFA; 
+}
+
+/*--------------------------------------------------------------
+10.7 Shortcodes
+--------------------------------------------------------------*/
 .banner {
 	padding: 4rem 0;
 }
@@ -1455,12 +1649,10 @@ a:active {
 .banner_primary {background-color: #2C3E50; }
 .banner_secondary {background-color: #18BC9C; }
 .banner_action {background-color: #F39C12; }
-
 #main .banner_primary, #main .banner_primary h1, #main .banner_primary h2, #main .banner_primary h3, #main .banner_primary h4, #main .banner_primary h5, #main .banner_primary a, #main .banner_primary a:link,
 #main .banner_secondary, #main .banner_secondary h1, #main .banner_secondary h2, #main .banner_secondary h3, #main .banner_secondary h4, #main .banner_secondary h5, #main .banner_secondary a, #main .banner_secondary a:link {
 	color: #FFF; 
 }
-
 #banner_bottom {
 	background-color: #18BC9C;
 	color: #FFF;
@@ -1508,133 +1700,24 @@ a:active {
 	border-color: #18BC9C;
 	font-weight: bold;
 }
-.memberlite_tabbable .memberlite_tab_content {clear: both; padding-top: 4rem; border-top: .5rem solid #18BC9C;}
-.memberlite_tabbable .memberlite_tab_pane {display: none;}
-.memberlite_tabbable .memberlite_tab_pane.memberlite_active {display: block;}
-
-/*--------------------------------------------------------------
-10.2 Asides
---------------------------------------------------------------*/
-.blog .format-aside .entry-title,
-.archive .format-aside .entry-title {
+.memberlite_tabbable .memberlite_tab_content {
+	border-top: .5rem solid #18BC9C;
+	clear: both; 
+	padding-top: 4rem;
+}
+.memberlite_tabbable .memberlite_tab_pane {
 	display: none;
 }
+.memberlite_tabbable .memberlite_tab_pane.memberlite_active {
+	display: block;
+}
+
+#comments .memberlite_tabbable .memberlite_tab_content {
+	padding-top: 0; 
+}
 
 /*--------------------------------------------------------------
-10.3 Comments
---------------------------------------------------------------*/
-.comment-content a {
-	word-wrap: break-word;
-}
-.comment .gravatar {
-	float: left;
-	width: 80px; 
-	height: 80px;
-	border-radius:50%;
-	margin: -.5rem .5rem 0 -.5rem;
-}
-.comment .gravatar img {
-	border-radius: 50%;
-	transition: transform 0.5s ease;
-	transform: scale(0.8);
-}
-.comment-meta {
-	font-style: italic;
-	color: #AAA;
-}
-.comment-meta a {
-	color: #777;
-	text-decoration: none;
-}
-.comment-meta a:hover {
-	border-bottom: 1px dotted #777;
-}
-.comment-meta h4 {
-	font-style: normal;
-	padding-top: .25rem;
-}
-.comment-content {
-	clear: left;
-}
-.comments-list {
-	border-top: 1px solid #CCC;
-}
-.comment {
-	padding: 1rem 1rem 0 1rem;
-	border-bottom: 1px dotted #CCC;
-	border-top: 1px dotted #CCC;
-	position: relative;
-}
-.comment.even {
-	background: #FAFAFA;
-}
-.comment.even .child-comments .comment {
-	background: #FAFAFA;
-}
-.comment.odd .child-comments .comment {
-	background: #FFF;
-}
-
-.comment.parent {
-	border-left: 1px solid #CCC;
-	border-bottom: 1px dotted #CCC;
-	padding-right: 0;
-}
-.comment.parent .comment.parent {
-	border-left: 20px solid #EFEFEF;
-	margin-left: -1rem;
-	border-top: 1px dotted #CCC;
-}
-.child-comments.comments-list {
-	border-top: none;
-}
-.child-comments.comments-list .comment {
-	padding-right: 0; 
-}
-.comment-content {
-	padding-bottom: 1rem;
-}
-.bypostauthor {
-}
-.comment-respond {
-	margin: 1.5rem 0; 
-}
-.comment-respond .comment-notes, .comment-respond .form-allowed-tags {
-	color: #AAA;
-	font-style: italic; 
-}
-.comment-respond label {
-	display: inline-block; 
-	width: 12%;
-	text-align: right;
-	margin: 0 1% 0 0;
-}
-.comment-respond p {
-	position: relative;
-}
-.comment-respond input[type=text], .comment-respond input[type=email], .comment-respond input[type=url], .comment-respond textarea {
-	width: 84%; 
-}
-.comment-respond .comment-form-comment {margin-bottom: 0; }
-.comment-respond .form-allowed-tags, .comment-respond .form-allowed-tags code {font-size: 12px; }
-
-.comment-respond .comment-form-author span.required, .comment-respond .comment-form-email span.required {
-	position: absolute; 
-	top: 0; 
-	right: 0; 
-}
-.comment-respond .form-allowed-tags, .comment-respond .form-submit, .comment-respond .comment-subscription-form {
-	margin-left: 13%; 
-}
-.comment .fa-caret-left {
-	position: absolute; 
-	top: 1rem; 
-	left: -.25rem; 
-	font-size: 3rem; 
-	color: #FFF; 
-}
-/*--------------------------------------------------------------
-10.4 Footer
+10.8 Footer
 --------------------------------------------------------------*/
 .footer-widgets {
 	background: #2C3E50;
@@ -1676,7 +1759,7 @@ a:active {
 	float: left;
 	width: 80px; 
 	height: 80px;
-	border-radius:50%;
+	border-radius: 50%;
 	margin: 0 20px 0 0;
 }
 .footer-widgets .post_author_avatar img {
@@ -1716,9 +1799,12 @@ a:active {
 	margin: 0;
 }
 
+/*--------------------------------------------------------------
+11.0 Third Party Plugin Integrated Styles
+--------------------------------------------------------------*/
 
 /*--------------------------------------------------------------
-10.5 Paid Memberships Pro Integrated Styles
+11.1 Paid Memberships Pro Integrated Styles
 --------------------------------------------------------------*/
 #pmpro_levels {margin-top: 2rem; margin-bottom: 2rem; }
 #pmpro_levels .medium-4, #pmpro_levels .medium-3 {
@@ -1776,13 +1862,13 @@ a:active {
 }
 
 .pmpro_levels-3col .pmpro_level-price, .pmpro_levels-4col .pmpro_level-price {font-size: 24px; font-size: 2.4rem; }
-.pmpro_levels-3col .pmpro_level-subprice, .pmpro_levels-4col .pmpro_level-subprice {display: block; font-size: 14px; font-size: 1.4rem; }
-.pmpro_levels-table .pmpro_level-subprice {display: block; }
+.pmpro_levels-3col .pmpro_level-subprice, .pmpro_levels-4col .pmpro_level-subprice {display: block; font-size: 14px; font-size: 1.4rem; line-height: 2rem; } 
+.pmpro_levels-3col .pmpro_level-trialprice, .pmpro_levels-4col .pmpro_level-trialprice {display: block; font-size: 14px; font-size: 1.4rem; line-height: 2rem; margin: 1rem; }
+.pmpro_levels-div .pmpro_level-subprice, .pmpro_levels-table .pmpro_level-subprice { }
+.pmpro_levels-3col .pmpro_level-expiration, .pmpro_levels-4col .pmpro_level-expiration { }
 
-.pmpro_levels-3col .pmpro_level-expiration, .pmpro_levels-4col .pmpro_level-expiration {
-}
-
-.pmpro_levels-div .pmpro_level-price, .pmpro_levels-2col .pmpro_level-price, .pmpro_levels-div .pmpro_level-expiration, .pmpro_levels-2col .pmpro_level-expiration {display: inline-block; }
+.pmpro_levels-div .pmpro_btn-select, .pmpro_levels-2col .pmpro_btn-select {margin-left: 3rem; }
+.pmpro_levels-div .pmpro_level-price, .pmpro_levels-2col .pmpro_level-price, .pmpro_levels-div .pmpro_level-expiration, .pmpro_levels-2col .pmpro_level-expiration {display: inline; margin: 0; }
 
 .memberlite_signup-fixed {position: fixed; top: 0; }
 
@@ -1810,10 +1896,8 @@ form.memberlite_signup input[type=text], form.memberlite_signup input[type=email
 form.memberlite_signup .pmpro_btn, form.pmpro_signup_form .pmpro_btn {display: block; width: 100%; }
 
 /*--------------------------------------------------------------
-10.6 Third Party Plugin Integrated Styles
+11.2 Theme My Login: https://wordpress.org/plugins/theme-my-login/
 --------------------------------------------------------------*/
-
-/* Theme My Login: https://wordpress.org/plugins/theme-my-login/ */
 #your-profile label {display: inline-block; }
 #your-profile .form-table th {width: 250px; }
 #your-profile h3 {
@@ -1840,7 +1924,7 @@ form.memberlite_signup .pmpro_btn, form.pmpro_signup_form .pmpro_btn {display: b
 	float: left;
 	width: 80px; 
 	height: 80px;
-	border-radius:50%;
+	border-radius: 50%;
 	margin: 0 10px 0 0;
 }
 .tml-user-avatar img {
@@ -1866,9 +1950,16 @@ form.memberlite_signup .pmpro_btn, form.pmpro_signup_form .pmpro_btn {display: b
 #secondary .tml-action-links {text-align: center; }
 ul.tml-user-links {list-style: none; margin-bottom: 0; }
 
-/* Testimonials Widget: https://wordpress.org/plugins/testimonials-widget/ */
+#primary .medium-4 .login input[type="text"], #primary .medium-4 .login input[type="password"] {width: 100%; }
+#primary .medium-4 .login #pass-strength-result {width: 100%; }
+#primary .medium-4 .login input[type="submit"] {display: block; width: 100%; }
+#primary .medium-4 .tml-action-links {text-align: center; }
+
+/*--------------------------------------------------------------
+11.3 Testimonials Widget: https://wordpress.org/plugins/testimonials-widget/
+--------------------------------------------------------------*/
 .testimonials-widget-testimonial span.image {
-	border-radius:50%;
+	border-radius: 50%;
 	margin: 0 2rem 0 1rem;
 }
 .testimonials-widget-testimonial span.image img {
@@ -1885,7 +1976,7 @@ ul.tml-user-links {list-style: none; margin-bottom: 0; }
 #secondary .testimonials-widget-testimonial blockquote {padding: 0;}
 
 /*--------------------------------------------------------------
-11.0 Infinite scroll
+12.0 Infinite scroll
 --------------------------------------------------------------*/
 /* Globally hidden elements when Infinite Scroll is supported and in use. */
 .infinite-scroll .paging-navigation, /* Older / Newer Posts Navigation (always hidden) */
@@ -1898,7 +1989,7 @@ ul.tml-user-links {list-style: none; margin-bottom: 0; }
 }
 
 /*--------------------------------------------------------------
-12.0 Media
+13.0 Media
 --------------------------------------------------------------*/
 .page-content img.wp-smiley,
 .entry-content img.wp-smiley,
@@ -1916,7 +2007,7 @@ object {
 }
 
 /*--------------------------------------------------------------
-12.1 Captions
+13.1 Captions
 --------------------------------------------------------------*/
 .wp-caption {
 	margin-bottom: 1.5rem;
@@ -1943,7 +2034,7 @@ object {
 }
 
 /*--------------------------------------------------------------
-12.2 Galleries
+13.2 Galleries
 --------------------------------------------------------------*/
 .gallery {
 	margin-bottom: 1.5rem;
@@ -1980,6 +2071,9 @@ object {
 }
 .gallery-caption {}
 
+/*--------------------------------------------------------------
+14.0 Responsive Styles
+--------------------------------------------------------------*/
 @media only screen and (min-width: 1160px) {
 	.hide-screen {display: none; }	
 }
@@ -2001,6 +2095,10 @@ object {
 	.site-branding .site-title a {width: 100%; height: auto; background-size: contain; }
 	.menu-toggle {display: block; position: absolute; right: 10px; top: 25px; z-index: 100; }
 	.testimonials-widget-testimonial span.image	{display: block; float: none; margin: 0; text-align: center; }
+	.comment-respond label {display: block; text-align: left; width: 100%; }
+	.comment-respond input[type=text], .comment-respond input[type=email], .comment-respond input[type=url], .comment-respond textarea {width: 100%; }
+	.comment-respond .form-allowed-tags, .comment-respond .form-submit, .comment-respond .comment-subscription-form {margin-left: 0; }
+	.comment-respond .form-submit input[type=submit] {width: 100%; }
 	form.pmpro_form label {display: block; float: none; margin: 0; text-align: left; width: 100%; }
 	form.pmpro_form label.pmpro_clickable {display: inline-block; }
 	form.pmpro_form .pmpro_thead-msg {width: 45%; white-space:normal; font-size: 10px; }

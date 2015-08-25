@@ -18,6 +18,7 @@ function memberlite_subpagelist_shortcode_handler($atts, $content=null, $code=""
 		'link' => true,
 		'orderby'	=> 'menu_order',
 		'order'	=>	'ASC',
+		'post_parent' => $post->ID,
 		'show' => 'excerpt',
 		'thumbnail' => true,
 	), $atts));
@@ -26,11 +27,18 @@ function memberlite_subpagelist_shortcode_handler($atts, $content=null, $code=""
 		$link = true;
 	else
 		$link = false;
-	
+		
 	if($thumbnail && strtolower($thumbnail) != "false")
-		$thumbnail = true;
+	{
+		if(strtolower($thumbnail) == "medium")
+			$thumbnail = "medium";
+		elseif(strtolower($thumbnail) == "large")
+			$thumbnail = "large";
+		else
+			$thumbnail = "thumbnail";
+	}
 	else
-		$thumbnail = false;		
+		$thumbnail = false;
 
 	// prep exclude array
 	$exclude = str_replace(" ", "", $exclude);
@@ -44,7 +52,7 @@ function memberlite_subpagelist_shortcode_handler($atts, $content=null, $code=""
 		"post_type"=>"page",
 		"showposts"=>-1,
 		"orderby"=>$orderby,
-		"post_parent"=>$post->ID,
+		"post_parent"=>$post_parent,
 		"order"=>$order,
 		"post__not_in"=>$exclude
 	);
@@ -78,12 +86,12 @@ function memberlite_subpagelist_shortcode_handler($atts, $content=null, $code=""
 			$r .= ' columns">';
 			$r .= '<article id="post-' . get_the_ID() . '" class="' . implode(" ", get_post_class()) . ' memberlite_subpagelist_item">';
 	
-			if ( has_post_thumbnail() && empty($layout) && !empty($thumbnail)) 
+			if ( has_post_thumbnail() && empty($layout) && !empty($thumbnail))
 			{					
 				if($link)
-					$r .= '<a href="' . get_permalink() . '">' . get_the_post_thumbnail($post->ID, 'thumbnail', array('class' => 'alignright')) . '</a>';
+					$r .= '<a href="' . get_permalink() . '">' . get_the_post_thumbnail($post->ID, $thumbnail, array('class' => 'alignright')) . '</a>';
 				else
-					$r .= get_the_post_thumbnail($post->ID, 'thumbnail');
+					$r .= get_the_post_thumbnail($post->ID, $thumbnail);
 			}
 			
 			$r .= '<header class="entry-header">';

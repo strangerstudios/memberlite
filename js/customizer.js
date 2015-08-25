@@ -38,6 +38,22 @@
 			}
 		} );
 	} );
+	// Primary Navigation Background Color.
+	wp.customize( 'bgcolor_site_navigation', function( value ) {
+		value.bind( function( to ) {
+			$(memberlite_defaults.bgcolor_site_navigation_elements).css( {
+				'background': to,
+			} );
+		} );
+	} );
+	// Primary Navigation Background Color.
+	wp.customize( 'color_site_navigation', function( value ) {
+		value.bind( function( to ) {
+			$(memberlite_defaults.color_site_navigation_elements).css( {
+				'color': to,
+			} );
+		} );
+	} );
 	// Link Color.
 	wp.customize( 'color_link', function( value ) {
 		value.bind( function( to ) {

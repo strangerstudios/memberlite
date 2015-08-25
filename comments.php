@@ -19,49 +19,93 @@ if ( post_password_required() ) {
 ?>
 
 <div id="comments" class="comments-area">
-
-	<?php // You can start editing here -- including this comment! ?>
-
 	<?php if ( have_comments() ) : ?>
-		<h2 class="comments-title">
-			<?php
-				printf( _nx( 'One thought on &ldquo;%2$s&rdquo;', '%1$s thoughts on &ldquo;%2$s&rdquo;', get_comments_number(), 'comments title', 'memberlite' ),
-					number_format_i18n( get_comments_number() ), '<span>' . get_the_title() . '</span>' );
-			?>
-		</h2>
-
-		<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // are there comments to navigate through ?>
-		<nav id="comment-nav-above" class="comment-navigation" role="navigation">
-			<h1 class="screen-reader-text"><?php _e( 'Comment navigation', 'memberlite' ); ?></h1>
-			<div class="nav-previous"><?php previous_comments_link( __( '&larr; Older Comments', 'memberlite' ) ); ?></div>
-			<div class="nav-next"><?php next_comments_link( __( 'Newer Comments &rarr;', 'memberlite' ) ); ?></div>
-		</nav><!-- #comment-nav-above -->
-		<?php endif; // check for comment navigation ?>
-
-		<?php
-			wp_list_comments( array(
-				'style'      => 'div',
-				'short_ping' => true,
-				'walker'	  => new comment_walker()
-			) );
+	
+		<?php 
+			$memberlite_comments = get_comments(array('type' => 'comment','post_id' => $post->ID));
+			$memberlite_trackbacks = get_comments(array('type' => 'trackback','post_id' => $post->ID));
+			$memberlite_pingbacks = get_comments(array('type' => 'pingback','post_id' => $post->ID));
 		?>
-
-		<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // are there comments to navigate through ?>
-		<nav id="comment-nav-below" class="comment-navigation" role="navigation">
-			<h1 class="screen-reader-text"><?php _e( 'Comment navigation', 'memberlite' ); ?></h1>
-			<div class="nav-previous"><?php previous_comments_link( __( '&larr; Older Comments', 'memberlite' ) ); ?></div>
-			<div class="nav-next"><?php next_comments_link( __( 'Newer Comments &rarr;', 'memberlite' ) ); ?></div>
-		</nav><!-- #comment-nav-below -->
-		<?php endif; // check for comment navigation ?>
-
+		
+		<?php
+			if(count($memberlite_trackbacks) == 0 && count($memberlite_pingbacks) == 0) 
+			{
+				?>
+				<h2><?php printf(__('Comments (%s)','pmpromd'), count($memberlite_comments)); ?></h2>
+				<?php
+					wp_list_comments( array(
+						'per_page'	=> 0,
+						'type'		=> 'comment',
+						'style'		=> 'div',
+						'walker'		=> new comment_walker()
+					) );
+				?>
+				<?php
+					// If comments are closed and there are comments, let's leave a little note, shall we?
+					if ( ! comments_open() && '0' != get_comments_number() && post_type_supports( get_post_type(), 'comments' ) ) :
+				?>
+					<p class="pmpro_message pmpro_alert no-comments"><?php _e( 'Comments are closed.', 'memberlite' ); ?></p>
+				<?php endif; ?>
+				<?php
+			}
+			else
+			{
+				?>
+				<div class="memberlite_tabbable">
+					<ul class="memberlite_tabs">
+						<?php if(count($memberlite_comments) > 0) { ?><li class="memberlite_active"><a href="#tab-comments" data-toggle="tab"><?php printf(__('Comments (%s)','pmpromd'), count($memberlite_comments)); ?></a></li><?php } ?>
+						<?php if(count($memberlite_trackbacks) > 0) { ?><li><a href="#tab-tracks" data-toggle="tab"><?php printf(__('Trackbacks (%s)','pmpromd'), count($memberlite_trackbacks)); ?></a></li><?php } ?>
+						<?php if(count($memberlite_pingbacks) > 0) { ?><li><a href="#tab-pings" data-toggle="tab"><?php printf(__('Pingbacks (%s)','pmpromd'), count($memberlite_pingbacks)); ?></a></li><?php } ?>
+					</ul>
+					<div class="memberlite_tab_content">	
+					<?php if(count($memberlite_comments) > 0) { ?>
+						<div class="memberlite_tab_pane memberlite_active" id="tab-comments">
+							<?php
+								wp_list_comments( array(
+									'per_page'	=> 0,
+									'type'		=> 'comment',
+									'style'		=> 'div',
+									'walker'		=> new comment_walker()
+								) );
+							?>
+							<?php
+								// If comments are closed and there are comments, let's leave a little note, shall we?
+								if ( ! comments_open() && '0' != get_comments_number() && post_type_supports( get_post_type(), 'comments' ) ) :
+							?>
+								<p class="pmpro_message pmpro_alert no-comments"><?php _e( 'Comments are closed.', 'memberlite' ); ?></p>
+							<?php endif; ?>
+						</div>
+					<?php } ?>
+					<?php if(count($memberlite_trackbacks) > 0) { ?>			
+						<div class="memberlite_tab_pane" id="tab-tracks">
+						<?php
+							wp_list_comments( array(
+								'type'		=> 'trackback',
+								'short_ping'=> true,
+								'style'		=> 'div',
+								'walker'		=> new pings_walker()
+							));
+						?>
+						</div>
+					<?php } ?>
+					<?php if(count($memberlite_pingbacks) > 0) { ?>			
+						<div class="memberlite_tab_pane" id="tab-pings">
+						<?php
+							wp_list_comments( array(
+								'type'		=> 'pingback',
+								'short_ping'=> true,
+								'style'		=> 'div',
+								'walker'		=> new pings_walker()
+							));
+						?>
+						</div>
+					<?php } ?>
+					</div>			
+				</div>
+				<?php
+			}
+		?>
 	<?php endif; // have_comments() ?>
-
-	<?php
-		// If comments are closed and there are comments, let's leave a little note, shall we?
-		if ( ! comments_open() && '0' != get_comments_number() && post_type_supports( get_post_type(), 'comments' ) ) :
-	?>
-		<p class="no-comments"><?php _e( 'Comments are closed.', 'memberlite' ); ?></p>
-	<?php endif; ?>
 
 	<?php comment_form(); ?>
 

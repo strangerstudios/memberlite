@@ -4,7 +4,7 @@
  *
  * @package Memberlite
  */
-define('MEMBERLITE_VERSION', '2.0.1');
+define('MEMBERLITE_VERSION', '2.0.3');
 
 //enqueue additional stylesheets and javascript
 function memberlite_init_styles()
@@ -155,6 +155,7 @@ add_action('widgets_init', 'memberlite_widgets_init');
 /* Adds a Log Out link in member menu */
 function memberlite_menus( $items, $args ) {
 	if ($args->theme_location == 'member') {
+		global $user_ID;
 		if (is_user_logged_in() && pmpro_hasMembershipLevel($user_ID))
 		{
 			//user is logged in and has a membership level
@@ -211,6 +212,20 @@ function memberlite_wp_nav_menu( $menu ) {
 	return do_shortcode( $menu ); 
 } 
 add_filter('wp_nav_menu', 'memberlite_wp_nav_menu');
+
+/* Exclude pings and trackbacks from the number of comments on a post. */
+function memberlite_comment_count( $count ) {
+	global $id;
+	$comment_count = 0;
+	$comments = get_approved_comments( $id );
+	foreach ( $comments as $comment ) {
+		if ( $comment->comment_type === '' ) {
+			$comment_count++;
+		}
+	}
+	return $comment_count;
+}
+add_filter( 'get_comments_number', 'memberlite_comment_count', 0 );
 
 /* PMPro License code */
 if(!defined('PMPRO_LICENSE_SERVER'))
