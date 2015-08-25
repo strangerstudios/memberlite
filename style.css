@@ -1950,6 +1950,11 @@ form.memberlite_signup .pmpro_btn, form.pmpro_signup_form .pmpro_btn {display: b
 #secondary .tml-action-links {text-align: center; }
 ul.tml-user-links {list-style: none; margin-bottom: 0; }
 
+#primary .medium-4 .login input[type="text"], #primary .medium-4 .login input[type="password"] {width: 100%; }
+#primary .medium-4 .login #pass-strength-result {width: 100%; }
+#primary .medium-4 .login input[type="submit"] {display: block; width: 100%; }
+#primary .medium-4 .tml-action-links {text-align: center; }
+
 /*--------------------------------------------------------------
 11.3 Testimonials Widget: https://wordpress.org/plugins/testimonials-widget/
 --------------------------------------------------------------*/
