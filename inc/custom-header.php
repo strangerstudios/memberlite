@@ -88,13 +88,12 @@ function memberlite_header_style() {
 		.site-description {
 			clip: rect(1px, 1px, 1px, 1px);
 			position: absolute;
-		}	
+		}
 	<?php
 		// If the user has set a custom color for the text use that
 		else :
 	?>
-		.site-title a,
-		.site-description {
+		.site-header .site-title a, .site-header .site-description {
 			color: #<?php echo $header_text_color; ?>;
 		}
 	<?php endif; ?>

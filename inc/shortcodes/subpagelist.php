@@ -20,7 +20,7 @@ function memberlite_subpagelist_shortcode_handler($atts, $content=null, $code=""
 		'order'	=>	'ASC',
 		'post_parent' => $post->ID,
 		'show' => 'excerpt',
-		'thumbnail' => true,
+		'thumbnail' => false,
 	), $atts));
 	
 	if($link && strtolower($link) != "false")
@@ -85,13 +85,17 @@ function memberlite_subpagelist_shortcode_handler($atts, $content=null, $code=""
 				$r .= '12';
 			$r .= ' columns">';
 			$r .= '<article id="post-' . get_the_ID() . '" class="' . implode(" ", get_post_class()) . ' memberlite_subpagelist_item">';
-	
+		
 			if ( has_post_thumbnail() && empty($layout) && !empty($thumbnail))
-			{					
-				if($link)
-					$r .= '<a href="' . get_permalink() . '">' . get_the_post_thumbnail($post->ID, $thumbnail, array('class' => 'alignright')) . '</a>';
+			{
+				if($layout == '3col' || $layout == '4col')
+					$thumbnail_class = "aligncenter";
 				else
-					$r .= get_the_post_thumbnail($post->ID, $thumbnail);
+					$thumbnail_class = "alignright";		
+				if($link)
+					$r .= '<a href="' . get_permalink() . '">' . get_the_post_thumbnail($post->ID, $thumbnail, array('class' => $thumbnail_class )) . '</a>';
+				else
+					$r .= get_the_post_thumbnail($post->ID, $thumbnail, array('class' => $thumbnail_class) );
 			}
 			
 			$r .= '<header class="entry-header">';
@@ -113,11 +117,15 @@ function memberlite_subpagelist_shortcode_handler($atts, $content=null, $code=""
 			$r .= '<div class="entry-content">';		
 	
 			if ( has_post_thumbnail() && !empty($layout) && !empty($thumbnail)) 
-			{					
-				if($link)
-					$r .= '<a href="' . get_permalink() . '">' . get_the_post_thumbnail($post->ID, 'thumbnail', array('class' => 'alignright')) . '</a>';
+			{			
+				if($layout == '3col' || $layout == '4col')
+					$thumbnail_class = "aligncenter";
 				else
-					$r .= get_the_post_thumbnail($post->ID, 'thumbnail');
+					$thumbnail_class = "alignright";		
+				if($link)
+					$r .= '<a href="' . get_permalink() . '">' . get_the_post_thumbnail($post->ID, $thumbnail, array('class' => $thumbnail_class )) . '</a>';
+				else
+					$r .= get_the_post_thumbnail($post->ID, $thumbnail, array('class' => $thumbnail_class) );
 			}
 										
 			if($show == "excerpt")

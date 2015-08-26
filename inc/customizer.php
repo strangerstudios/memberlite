@@ -19,6 +19,7 @@ $memberlite_defaults = array(
 	'memberlite_footerwidgets' => '4',
 	'copyright_textbox' => '<a href="http://wordpress.org/" rel="license">Proudly powered by WordPress</a><span class="sep"> | </span>Theme: Memberlite by <a href="http://paidmembershipspro.com" rel="license">Kim Coleman</a>',
 	'memberlite_color_scheme' => 'Default',
+	'memberlite_darkcs' => false,
 	'bgcolor_site_navigation' => '#FAFAFA',
 	'color_site_navigation' => '#777777',
 	'color_link' => '#2C3E50',
@@ -28,10 +29,10 @@ $memberlite_defaults = array(
 	'color_action' => '#F39C12',
 	'bgcolor_site_navigation_elements' => '#site-navigation',
 	'color_site_navigation_elements' => '.main-navigation a',
-	'color_link_color_elements' => '#primary a',
+	'color_link_color_elements' => '#primary a, .footer-navigation a',
 	'color_meta_link_color_elements' => '#meta-navigation a',
 	'color_primary_background_elements' => '#mobile-navigation, #mobile-navigation-height-col, .masthead, .footer-widgets, .btn_primary, .btn_primary:link, .bg_primary, .banner_primary',
-	'color_primary_color_elements' => '.site-header .site-title a, .main-navigation ul ul a, .main-navigation li:hover > a, #secondary .widget a:hover, .primary',
+	'color_primary_color_elements' => '.main-navigation ul ul a, .main-navigation li:hover > a, #meta-navigation ul ul a, #secondary .widget a:hover, #pmpro_levels .post h2, .memberlite_signup h2, .pmpro_signup_form h2, .primary',
 	'color_secondary_background_elements' => '#meta-member aside, #meta-member .member-navigation ul ul, .btn_secondary, .btn_secondary:link, .btn_primary:hover, .pmpro_content_message a:hover, .woocommerce button.button.alt:hover, .woocommerce input.button.alt:hover, .woocommerce-page #content input.button.alt:hover, .woocommerce-page #respond input#submit.alt:hover, .woocommerce-page a.button.alt:hover, .woocommerce-page button.button.alt:hover, .woocommerce-page input.button.alt:hover, #banner_bottom, .bg_secondary, .banner_secondary, .memberlite_tabbable ul.memberlite_tabs li.memberlite_active a',
 	'color_secondary_border_elements' => '#pmpro_levels .pmpro_level-highlight, #pmpro_levels.pmpro_levels-2col .pmpro_level-highlight, #pmpro_levels.pmpro_levels-3col .pmpro_level-highlight, #pmpro_levels.pmpro_levels-4col .pmpro_level-highlight, #pmpro_levels.pmpro_levels-div .pmpro_level-highlight, #pmpro_levels.pmpro_levels-compare_table thead tr:first-child th.pmpro_level-highlight, #pmpro_levels.pmpro_levels-compare_table tfoot tr:last-child td.pmpro_level-highlight, .memberlite_signup, .pmpro_signup_form, .memberlite_tabbable ul.memberlite_tabs li.memberlite_active a, .memberlite_tabbable .memberlite_tab_content',
 	'color_secondary_border_left_elements' => '#pmpro_levels.pmpro_levels-compare_table thead th.pmpro_level-highlight, #pmpro_levels.pmpro_levels-compare_table tbody td.pmpro_level-highlight, #pmpro_levels.pmpro_levels-compare_table tfoot td.pmpro_level-highlight, #pmpro_levels.pmpro_levels-table .pmpro_level-highlight td:first-child',
@@ -324,6 +325,21 @@ class memberlite_Customize {
 			)
 		);
 		$wp_customize->add_setting(
+			'memberlite_darkcss',
+			array(
+				'default' => false
+			)
+		);
+		$wp_customize->add_control(
+			'memberlite_darkcss', 
+			array(
+				'type' => 'checkbox',
+				'label' => 'Use Dark Background/Inverted Scheme', 
+				'section' => 'colors',
+				'priority' => '2'
+			)
+		);
+		$wp_customize->add_setting(
 			'bgcolor_site_navigation',
 			array(
 				'default' => $memberlite_defaults['bgcolor_site_navigation'],
@@ -484,7 +500,7 @@ class memberlite_Customize {
 			<?php self::generate_css($memberlite_defaults['color_action_color_elements'], 'color', 'color_action'); ?>
 			<?php self::generate_css('.btn_secondary:hover', 'background', 'color_primary'); ?>
 			<?php self::generate_css('.btn_action:hover, a.pmpro_btn:hover, input[type="submit"].pmpro_btn:hover, .entry-footer a.pmpro_btn:hover', 'background', 'color_secondary'); ?>
-			<?php self::generate_css('#site-title a', 'color', 'header_textcolor', '#'); ?> 
+			<?php self::generate_css('.site-header .site-title a, .site-header .site-description', 'color', 'header_textcolor', '#'); ?>
 			<?php self::generate_css('body', 'background-color', 'background_color', '#'); ?> 
 			<?php 
 				$fonts_string = get_theme_mod('memberlite_webfonts');
@@ -560,11 +576,13 @@ class memberlite_Customize {
 	 * The order of colors in a colors array:
 	 * 1. Header Text Color
 	 * 2. Background Color
-	 * 3. Link Color
-	 * 4. Meta Link Color
-	 * 5. Primary Color
-	 * 6. Secondary Color
-	 * 7. Action Color
+	 * 3. Primary Navigation Background Color
+	 * 4. Primary Navigation Link Color
+	 * 5. Link Color
+	 * 6. Meta Link Color
+	 * 7. Primary Color
+	 * 8. Secondary Color
+	 * 9. Action Color
 	 *
 	 * @since Twenty Fifteen 1.0
 	 *
