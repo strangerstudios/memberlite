@@ -60,6 +60,11 @@ Memberlite includes formatting for use with:
 [Install Events Manager »](https://wordpress.org/plugins/events-manager/)
 
 ###Changelog
+**2.0.3.1**
+* ENHANCEMENT: Support added for dark background via customizer setting and additional dark.css
+* BUG: Fixing issue with [memberlite_subpagelist] shortcode thumbnail size setting
+* BUG: Header text color fix in customizer
+
 **2.0.3**
 * SECURITY: Fixed XSS issue with the h1 display of search queries.
 * BUG: Removed pmpro_content_filter from banner description so it is not duplicated in post content.
