@@ -19,7 +19,7 @@ $memberlite_defaults = array(
 	'memberlite_footerwidgets' => '4',
 	'copyright_textbox' => '<a href="http://wordpress.org/" rel="license">Proudly powered by WordPress</a><span class="sep"> | </span>Theme: Memberlite by <a href="http://paidmembershipspro.com" rel="license">Kim Coleman</a>',
 	'memberlite_color_scheme' => 'Default',
-	'memberlite_darkcs' => false,
+	'memberlite_darkcss' => false,
 	'bgcolor_site_navigation' => '#FAFAFA',
 	'color_site_navigation' => '#777777',
 	'color_link' => '#2C3E50',

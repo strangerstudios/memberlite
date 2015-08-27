@@ -22,7 +22,8 @@ function memberlite_init_styles()
 	wp_enqueue_script('memberlite-navigation', get_template_directory_uri() . '/js/navigation.js', array( 'jquery' ), MEMBERLITE_VERSION, true);
 	wp_enqueue_script('memberlite-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array( 'jquery' ), MEMBERLITE_VERSION, true);
 
-	$memberlite_darkcss = get_theme_mod('memberlite_darkcss',$memberlite_defaults['memberlite_darkcss']);
+	//load dark.css for dark/inverted backgrounds
+	$memberlite_darkcss = get_theme_mod('memberlite_darkcss',$memberlite_defaults['memberlite_darkcss'],false);
 	if( !empty($memberlite_darkcss) )
 	{
 		wp_enqueue_style('memberlite_darkcss', get_template_directory_uri() . "/css/dark.css", array(), MEMBERLITE_VERSION);
