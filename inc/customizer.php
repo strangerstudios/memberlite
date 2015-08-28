@@ -40,7 +40,8 @@ $memberlite_defaults = array(
 	'color_secondary_color_elements' => 'a:hover, blockquote.quote:before, q:before, .testimonials-widget-testimonial .open-quote::before, .testimonials-widget-testimonial .close-quote::after, .woocommerce ul.products li.product .price, .woocommerce-page ul.products li.product .price, .woocommerce #content div.product p.price, .woocommerce #content div.product span.price, .woocommerce div.product p.price, .woocommerce div.product span.price, .woocommerce-page #content div.product p.price, .woocommerce-page #content div.product span.price, .woocommerce-page div.product p.price, .woocommerce-page div.product span.price, .secondary',
 	'color_action_background_elements' => '.btn_action, .btn_action:link, .pmpro_content_message a, .pmpro_content_message a:link, .pmpro_btn, .pmpro_btn:link, .pmpro_btn:visited, a.pmpro_btn, a.pmpro_btn:link, a.pmpro_btn:visited, input[type=button].pmpro_btn, input[type=submit].pmpro_btn, .woocommerce #content input.button.alt, .woocommerce #respond input#submit.alt, .woocommerce a.button.alt, .woocommerce button.button.alt, .woocommerce input.button.alt, .woocommerce-page #content input.button.alt, .woocommerce-page #respond input#submit.alt, .woocommerce-page a.button.alt, .woocommerce-page button.button.alt, .woocommerce-page input.button.alt, .bg_action, .banner_action',
 	'color_action_color_elements' => '.action',	
-	'delimiter' => '&nbsp;&#47;&nbsp;'
+	'delimiter' => '&nbsp;&#47;&nbsp;',
+	'memberlite_darkcss' => false,
 );
 class memberlite_Customize {
 	public static function register ( $wp_customize ) {
