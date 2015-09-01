@@ -60,6 +60,9 @@ Memberlite includes formatting for use with:
 [Install Events Manager »](https://wordpress.org/plugins/events-manager/)
 
 ###Changelog
+**2.0.3.2**
+* ENHANCEMENT: Added "lock" icon to membership-restricted post titles (requires PMPro v1.8.5.4 or higher)
+
 **2.0.3.1**
 * ENHANCEMENT: Support added for dark background via customizer setting and additional dark.css
 * BUG: Fixing issue with [memberlite_subpagelist] shortcode thumbnail size setting
