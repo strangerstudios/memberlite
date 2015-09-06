@@ -26,7 +26,6 @@ add_filter( 'wp_page_menu_args', 'memberlite_page_menu_args' );
  * @return array
  */
 function memberlite_body_classes( $classes ) {
-	// Adds a class of group-blog to blogs with more than 1 published author.
 	global $post, $memberlite_defaults;
 	$classes[] = get_theme_mod('sidebar_location',$memberlite_defaults['sidebar_location']);
 	$classes[] = get_theme_mod('sidebar_location_blog',$memberlite_defaults['sidebar_location_blog']);

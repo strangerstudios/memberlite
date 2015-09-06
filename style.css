@@ -1420,6 +1420,16 @@ a:active {
 	transition: transform 0.5s ease;
 	transform: scale(0.8);
 }
+.pmpro-level-required .entry-header h1:before {
+	content: "\f023";
+	font-family: 'FontAwesome';
+	padding-right: 10px;
+}
+.pmpro-level-required.pmpro-has-access .entry-header h1:before {
+	content: "";
+	font-family: 'FontAwesome';
+	padding-right: 0;
+}
 .wp-post-image {
 	background: #FAFAFA;
 	padding: .25rem;
