@@ -1883,11 +1883,13 @@ a:active {
 .memberlite_signup-fixed {position: fixed; top: 0; }
 
 .pmpro_asterisk {color: #C00; }
+.pmpro_asterisk abbr {border: none; }
 form.pmpro_form table {margin: 0 0 2.5rem; }
 form.pmpro_form #pmpro_level_cost {margin: 0; }
 form.pmpro_form p {margin: .5rem 0; }
 form.pmpro_form label {font-weight: 400; }
-form.pmpro_form thead th span.pmpro_thead-msg {font-family: 'Lato', sans-serif; font-weight: normal; }
+form.pmpro_form thead th span.pmpro_thead-name {width: 35%; }
+form.pmpro_form thead th span.pmpro_thead-msg {font-family: 'Lato', sans-serif; font-weight: normal; width: 65%; }
 form.pmpro_form tbody td {padding: 1rem; }
 form.pmpro_form .pmpro_submit {padding: 0 1rem; }
 form.pmpro_form textarea {width:75%; }
