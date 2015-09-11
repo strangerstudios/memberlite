@@ -10,7 +10,10 @@
 		<?php if(!is_front_page() && !is_page_template('templates/fluid-width.php') && !is_page_template( 'templates/interstitial.php' )) { ?></div><!-- .row --><?php } ?>
 		<?php
 			global $post;
-			$memberlite_banner_bottom = get_post_meta($post->ID, '_memberlite_banner_bottom', true);
+			if(!empty($post) && !empty($post->ID))
+				$memberlite_banner_bottom = get_post_meta($post->ID, '_memberlite_banner_bottom', true);
+			else
+				$memberlite_banner_bottom = false;
 			if(!empty($memberlite_banner_bottom))
 			{
 				?>
