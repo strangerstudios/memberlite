@@ -167,6 +167,9 @@
 										memberlite_getBreadcrumbs(); 
 								?>
 							<?php } ?>
+							<?php if(is_search()) { ?>
+								<?php memberlite_page_title(); ?>
+							<?php } else { ?>
 							<?php	
 								$memberlite_banner_right = get_post_meta($post->ID, '_memberlite_banner_right', true);
 								if(!empty($memberlite_banner_right))
@@ -182,6 +185,7 @@
 								if(!empty($memberlite_banner_desc))
 									echo wpautop(do_shortcode($memberlite_banner_desc));
 							?>
+							<?php } ?>
 							<?php do_action('after_masthead_inner'); ?>
 						</div>
 					</div><!-- .row -->
