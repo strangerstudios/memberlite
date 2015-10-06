@@ -161,3 +161,30 @@ function memberlite_support() {
 	<div class="clear"></div></div>
 	<?php	
 }
+
+/*
+	Add a Banner Image as a secondary thumbnail
+*/
+function memberlite_banner_image_setup()
+{
+	//$memberlite_post_types = get_post_types( array('public' => true), 'names' );
+	if (class_exists('MultiPostThumbnails')) {
+	    $screens = get_post_types( array('public' => true), 'names' );
+		foreach ($screens as $screen) 
+		{
+			if(in_array($screen, array('reply','topic')))
+				continue;
+			else
+			{
+				new MultiPostThumbnails(
+					array(
+						'label' => 'Banner Image',
+						'id' => 'memberlite_banner_image' . $screen,
+						'post_type' => $screen,
+					)
+				);
+			}
+		}
+	}
+}
+add_action('wp_loaded', 'memberlite_banner_image_setup');

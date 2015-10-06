@@ -371,47 +371,57 @@ function memberlite_getSidebar() {
 	
 	//figure out sidebars
 	$memberlite_custom_sidebar = get_post_meta($post->ID, '_memberlite_custom_sidebar', true);
-	if (is_404() || is_home() || is_search() || is_single() || is_category() || is_author() || is_archive() || is_day() || is_month() || is_year() ) 
+	if(!in_array(get_post_type($post), array('post','page')) )
+	{
+		//this is a cpt and may have a custom cpt sidebar defined
+		$memberlite_cpt_sidebars = get_option('memberlite_cpt_sidebars', array());
+		$memberlite_cpt_sidebar_id = $memberlite_cpt_sidebars[get_post_type($post)];
+		if(!empty($memberlite_cpt_sidebar_id))
+			dynamic_sidebar($memberlite_cpt_sidebar_id);
+	}
+	elseif (is_404() || is_home() || is_search() || is_single() || is_category() || is_author() || is_archive() || is_day() || is_month() || is_year() ) 
 	{
 		//Sidebar for Posts and Archives
 		if($memberlite_custom_sidebar != 'sidebar-2')
 			dynamic_sidebar('sidebar-2');	
-	}
-	
-	if(is_page())
+	}	
+	else
 	{
-		global $post, $memberlite_hide_children;
-		if(empty($memberlite_hide_children))
-			$memberlite_hide_children = get_post_meta($post->ID, '_memberlite_hide_children', true);
-		if(empty($memberlite_hide_children))
+		//Sidebar for Pages
+		if(is_page())
 		{
-			if($post->post_parent) 
+			global $post, $memberlite_hide_children;
+			if(empty($memberlite_hide_children))
+				$memberlite_hide_children = get_post_meta($post->ID, '_memberlite_hide_children', true);
+			if(empty($memberlite_hide_children))
 			{
-				$exclude = get_post_meta($post->ID,'exclude',true);
-				$pagemenuid = end(get_post_ancestors($post));
-				$children = wp_list_pages('title_li=&child_of=' . $pagemenuid . '&exclude=' . $exclude . '&echo=0&sort_column=menu_order,post_title');
-				$titlenamer = get_the_title($pagemenuid);
-				$titlelink = get_permalink($pagemenuid);
+				if($post->post_parent) 
+				{
+					$exclude = get_post_meta($post->ID,'exclude',true);
+					$pagemenuid = end(get_post_ancestors($post));
+					$children = wp_list_pages('title_li=&child_of=' . $pagemenuid . '&exclude=' . $exclude . '&echo=0&sort_column=menu_order,post_title');
+					$titlenamer = get_the_title($pagemenuid);
+					$titlelink = get_permalink($pagemenuid);
+				}
+				else 
+				{
+					$exclude = "";
+					$children = wp_list_pages('title_li=&child_of=' . $post->ID . '&exclude=' . $exclude . '&echo=0&sort_column=menu_order,post_title');
+					$titlenamer = get_the_title($post->ID);
+					$titlelink = get_permalink($post->ID);
+				}
+				if($children) 
+				{ ?>
+					<aside id="nav_menu-submenu" class="widget widget_nav_menu">
+						<h3 class="widget-title"><a<?php if(is_page($pagemenuid)) { ?> class="active"<?php } ?> href="<?php echo $titlelink?>"><?php echo $titlenamer?></a></h3>
+						<ul class="menu">
+							<?php echo $children; ?>
+						</ul>
+					</aside> <!-- end widget -->
+				<?php
+				}						
 			}
-			else 
-			{
-				$exclude = "";
-				$children = wp_list_pages('title_li=&child_of=' . $post->ID . '&exclude=' . $exclude . '&echo=0&sort_column=menu_order,post_title');
-				$titlenamer = get_the_title($post->ID);
-				$titlelink = get_permalink($post->ID);
-			}
-			if($children) 
-			{ ?>
-				<aside id="nav_menu-submenu" class="widget widget_nav_menu">
-					<h3 class="widget-title"><a<?php if(is_page($pagemenuid)) { ?> class="active"<?php } ?> href="<?php echo $titlelink?>"><?php echo $titlenamer?></a></h3>
-					<ul class="menu">
-						<?php echo $children; ?>
-					</ul>
-				</aside> <!-- end widget -->
-			<?php
-			}						
 		}
-		
 		//Sidebar for Non-template Pages
 		if($memberlite_custom_sidebar != 'sidebar-1')
 			dynamic_sidebar('sidebar-1');
@@ -787,4 +797,48 @@ function memberlite_getBreadcrumbs()
 	<?php
 		}
 	}
+}
+
+function memberlite_getBannerImageID($post = NULL)
+{
+	global $memberlite_defaults;
+	$memberlite_loop_images = get_theme_mod( 'memberlite_loop_images',$memberlite_defaults['memberlite_loop_images'] ); 
+	if(
+		(in_the_loop() && 
+			($memberlite_loop_images == 'show_both' || $memberlite_loop_images == 'show_banner')
+		) || 
+		is_single() ||
+		is_home() || 
+		(is_page() && !is_page_template('templates/landing.php'))		 
+	  )
+	{
+		if(class_exists('MultiPostThumbnails'))
+		{
+			//The Banner Image meta box is available
+			$thumbnail_id = MultiPostThumbnails::get_post_thumbnail_id(
+				$post->post_type,
+				'memberlite_banner_image' . $post->post_type,
+				$post->ID
+			);
+		}
+		if(!empty($thumbnail_id))
+		{
+			//Use Banner Image as banner
+			return $thumbnail_id;
+		}
+		else
+		{
+			$memberlite_show_image_banner = get_post_meta($post->ID, 'memberlite_show_image_banner', true);
+			if(!empty($memberlite_show_image_banner) || in_the_loop() )
+			{
+				//Use Featured Image as banner 
+				$thumbnail_id = get_post_thumbnail_id($post->ID);
+				return $thumbnail_id;
+			}
+			else
+				return false;
+		}
+	}
+	else
+		return false;
 }

@@ -719,7 +719,7 @@ a:active {
 	margin: 0;
 	padding-left: 0;
 }
-.meta-navigation li, .header-right  .widget_nav_menu li, .footer-navigation li {
+.meta-navigation li, .header-right .widget_nav_menu li, .footer-navigation li {
 	border-right: 1px solid #CCC;
 	display: inline-block;
 	float: none;
@@ -744,7 +744,7 @@ a:active {
 }
 
 /* Dropdown Menu */
-.main-navigation ul ul, .meta-navigation ul ul, .header-right .widget_nav_menu ul ul {
+.main-navigation ul.sub-menu, .meta-navigation ul.sub-menu, .header-right .widget_nav_menu ul.sub-menu {
 	background: #FFF;
 	box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
 	float: left;
@@ -755,27 +755,25 @@ a:active {
 	margin: 0;
 	text-align: left;
 }
-.main-navigation ul ul ul, .meta-navigation ul ul ul, .header-right .widget_nav_menu ul ul ul {
+.meta-navigation ul.sub-menu ul.sub-menu, .header-right .widget_nav_menu ul.sub-menu ul.sub-menu {
 	left: -9999em;
 	top: 0;
 }
-.main-navigation ul ul a, .meta-navigation ul ul a, .header-right .widget_nav_menu ul ul a {
+.main-navigation ul.sub-menu li, .meta-navigation ul.sub-menu li, .header-right .widget_nav_menu ul.sub-menu li {
+	padding: 0;
+	border: none;
+}
+.main-navigation ul.sub-menu a, .meta-navigation ul.sub-menu a, .header-right .widget_nav_menu ul.sub-menu a {
 	width: 200px;
 	padding: .5rem 1.5rem;
 	border-right: none;
 	border-top: 1px dotted #EEE;
 }
-.main-navigation ul ul li, .meta-navigation ul ul li, .header-right .widget_nav_menu ul ul li {
-	padding: 0;
-	border: none;
-}
 .main-navigation li:hover > a {
 	color: #2C3E50;
 }
-.main-navigation ul ul :hover > a, .meta-navigation ul ul :hover > a, .header-right .widget_nav_menu ul ul :hover > a  {
-	background: #FAFAFA;
-}
-.main-navigation ul ul a:hover {
+.main-navigation ul.sub-menu li:hover > a, .meta-navigation ul.sub-menu li:hover > a, .header-right .widget_nav_menu ul.sub-menu li:hover > a  {
+	background: rgba(0,0,0,0.1);
 }
 .main-navigation ul li:hover > ul {
 	left: auto;
@@ -783,9 +781,11 @@ a:active {
 .main-navigation ul li:first-child:hover > ul {
 	left: -1.5rem;
 }
-
+.main-navigation ul li:hover > ul li:hover > ul {
+	top: 0;
+}
 .meta-navigation ul li:hover > ul, .header-right .widget_nav_menu ul li:hover > ul {
-	left: -.5rem;
+	left: 0;
 	top: 2.75rem;
 }
 .main-navigation ul ul li:hover > ul, .meta-navigation ul ul li:hover > ul, .header-right .widget_nav_menu  ul ul li:hover > ul {
@@ -1233,7 +1233,8 @@ a:active {
 	margin: 0 1rem;
 }
 /* Dropdown Menu */
-#meta-member .member-navigation ul ul {
+#meta-member .member-navigation .sub-menu {
+	background: #18BC9C;
 	-webkit-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.2);
 	-moz-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.2);
 	box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.2);
@@ -1248,18 +1249,22 @@ a:active {
 }
 #meta-member .member-navigation ul li:hover > ul {
 	display: block;
-	left: -.5rem;
+	left: auto;
 }
-#meta-member .member-navigation ul ul li {
+#meta-member .member-navigation .sub-menu li {
 	border: none;
+	display: block;
 }
-#meta-member .member-navigation ul ul a {
+#meta-member .member-navigation .sub-menu li a {
 	margin: 0;
 	padding: .5rem 1rem;
 	width: 125px;
 }
 #meta-member .member-navigation ul ul a:hover {
-	background: rgba(0,0,0,0.2)
+	background: rgba(0,0,0,0.1);
+}
+#meta-member .member-navigation .sub-menu .sub-menu {
+	display: none;
 }
 .masthead-banner {
 	background-position: center center;
@@ -2113,7 +2118,8 @@ object {
 	.header-right, #site-navigation {display: none; }
 	.site-branding {text-align: center; width: 100%; }	
 	.site-branding .site-title a {width: 100%; height: auto; background-size: contain; }
-	.menu-toggle {display: block; position: absolute; right: 10px; top: 25px; z-index: 100; }
+	.menu-toggle {display: block; position: absolute; right: 10px; top: 2.5rem; z-index: 100; }
+	body.admin-bar .menu-toggle {top: 7.1rem; }	
 	.testimonials-widget-testimonial span.image	{display: block; float: none; margin: 0; text-align: center; }
 	.comment-respond label {display: block; text-align: left; width: 100%; }
 	.comment-respond input[type=text], .comment-respond input[type=email], .comment-respond input[type=url], .comment-respond textarea {width: 100%; }

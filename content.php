@@ -8,16 +8,17 @@ global $memberlite_defaults;
 	<?php
 		$memberlite_loop_images = get_theme_mod( 'memberlite_loop_images',$memberlite_defaults['memberlite_loop_images'] ); 
 		if($memberlite_loop_images == 'show_both' || $memberlite_loop_images == 'show_banner')
-		{		
-			if(memberlite_getPostThumbnailWidth($post->ID) > '740')
+		{
+			$banner_image_id = memberlite_getBannerImageID($post);
+			$banner_image_src = wp_get_attachment_image_src( $banner_image_id, 'banner');
+			if(!empty($banner_image_src))
 			{
-				$thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'banner'); ?>
-				<div class="entry-banner" style="background-image: url('<?php echo esc_attr($thumbnail[0]);?>');"><?php
+				?>
+				<div class="entry-banner" style="background-image: url('<?php echo esc_attr($banner_image_src[0]);?>');">
+				<?php
 			}
-			elseif($memberlite_loop_images != 'show_banner')
-				the_post_thumbnail( 'thumbnail', array( 'class' => 'alignright' ) );
 		}
-		elseif($memberlite_loop_images == ('show_thumbnail'))
+		elseif($memberlite_loop_images == 'show_thumbnail')
 			the_post_thumbnail( 'thumbnail', array( 'class' => 'alignright' ) );
 		?>
 		<header class="entry-header">
@@ -31,7 +32,7 @@ global $memberlite_defaults;
 			<?php endif; ?>
 		</header><!-- .entry-header -->
 	<?php		
-		if(($memberlite_loop_images == 'show_both' || $memberlite_loop_images == 'show_banner') && memberlite_getPostThumbnailWidth($post->ID) > '740')
+		if(!empty($banner_image_src))
 		{
 			?>
 			</div> <!-- .entry-banner -->
@@ -40,6 +41,12 @@ global $memberlite_defaults;
 	?>
 
 	<div class="entry-content">
+		<?php
+			if($memberlite_loop_images == 'show_both')
+			{
+				the_post_thumbnail( 'thumbnail', array( 'class' => 'alignright' ) );
+			}
+		?>
 		<?php 
 			$content_archives = get_theme_mod('content_archives'); 
 			if($content_archives == 'excerpt')

@@ -15,7 +15,15 @@ function memberlite_custom_sidebars_menu() {
 add_action('admin_menu', 'memberlite_custom_sidebars_menu');
 
 function memberlite_custom_sidebars() { 	
+	global $wp_registered_sidebars;
+
+	//get options
 	$memberlite_custom_sidebars = get_option('memberlite_custom_sidebars', array());
+	$memberlite_cpt_sidebars = get_option('memberlite_cpt_sidebars', array());
+
+	//get post types
+	$memberlite_post_types = get_post_types( array('public' => true, '_builtin' => false), 'objects' );
+
 	if(!empty($_REQUEST['memberlite_custom_sidebar_name'])) {
 
 		//check nonce
@@ -45,8 +53,9 @@ function memberlite_custom_sidebars() {
 				$memberlite_custom_sidebars = array_values(array_filter($memberlite_custom_sidebars));
 
 				//save option
-				update_option('memberlite_custom_sidebars', $memberlite_custom_sidebars);
-
+				delete_option('memberlite_custom_sidebars');
+				add_option('memberlite_custom_sidebars', $memberlite_custom_sidebars, NULL, 'no');
+				
 				$msg = __("Sidebar added.", "memberlite");
 				$msgt = "updated fade";
 			}
@@ -71,7 +80,8 @@ function memberlite_custom_sidebars() {
 				$memberlite_custom_sidebars = array_values(array_filter($memberlite_custom_sidebars));
 
 				//save option
-				update_option('memberlite_custom_sidebars', $memberlite_custom_sidebars);
+				delete_option('memberlite_custom_sidebars');
+				add_option('memberlite_custom_sidebars', $memberlite_custom_sidebars, NULL, 'no');
 
 				$msg = "Custom sidebar deleted.";
 				$msgt = "updated fade";
@@ -83,7 +93,27 @@ function memberlite_custom_sidebars() {
 			}
 		}
 	}
-
+	elseif(!empty($_REQUEST['memberlite_cpt_sidebar']))
+	{
+		//check nonce
+		if(!empty($_REQUEST['_wpnonce']) && check_admin_referer('memberlite_cpt_sidebar'))
+		{
+			//get values
+			$memberlite_cpt_sidebars = array();
+			$memberlite_sidebar_cpt_sidebar_ids = $_REQUEST['memberlite_sidebar_cpt_sidebar_ids'];
+			$memberlite_sidebar_cpt_names = $_REQUEST['memberlite_sidebar_cpt_names'];
+			
+			//build array
+			for($i = 0; $i < count($memberlite_sidebar_cpt_names); $i++)
+			{
+				$memberlite_cpt_sidebars[$memberlite_sidebar_cpt_names[$i]] = $memberlite_sidebar_cpt_sidebar_ids[$i];
+			}
+	
+			//update option
+			delete_option('memberlite_cpt_sidebars');
+			add_option('memberlite_cpt_sidebars', $memberlite_cpt_sidebars, NULL, 'no');
+		}
+	}
 	if(!empty($msg))
 	{
 	?>
@@ -148,6 +178,64 @@ function memberlite_custom_sidebars() {
 					?>
 					</tbody>
 				</table>
+				<hr />
+				<h2><?php _e('Assign Sidebars to Custom Post Types','memberlite'); ?></h2>
+				<p><?php _e('For each detected CPT below, select the sidebar you would like to display.','memberlite'); ?></p>
+				<?php
+					if(!empty($memberlite_post_types))
+					{
+						?>
+						<form id="memberlite_cpt_sidebar_form" method="post" action="<?php echo admin_url("themes.php?page=memberlite-custom-sidebars");?>">					
+							<table class="widefat" id="memberlite-cpt-sidebars-table">
+								<thead>
+									<tr>
+										<th scope="col" class="manage-column column-cpt-name"><?php _e( 'Custom Post Type', 'memberlite' ); ?></th>
+										<th scope="col" class="manage-column column-cpt-actions"><?php _e( 'Select Sidebar', 'memberlite' ); ?></th>
+									</tr>
+								</thead>
+								<tbody class="memberlite-cpt-sidebars">
+								<?php
+									foreach($memberlite_post_types as $post_type)
+									{
+										if(in_array($post_type->name, array('reply')))
+											continue;
+										else
+										{
+											$count++;
+											?>
+											<tr class="memberlite-cpt-sidebars-row<?php if($count % 2 == 0) { echo ' alternate'; } ?>">
+												<td class="cpt-name"><?php echo $post_type->labels->name; ?></td>
+												<td class="cpt-actions">
+												<?php
+													echo '<select id="memberlite_sidebar_cpt_sidebar_ids" name="memberlite_sidebar_cpt_sidebar_ids[]">';
+													echo '<option value="memberlite_sidebar_default"' . selected( $memberlite_cpt_sidebars[$post_type->name], 'memberlite_sidebar_default' ) . '>- Default Sidebar -</option>';
+													foreach($wp_registered_sidebars as $wp_registered_sidebar)
+													{
+														echo '<option value="' . $wp_registered_sidebar['id'] . '"' . selected( $memberlite_cpt_sidebars[$post_type->name], $wp_registered_sidebar['id'] ) . '>' . $wp_registered_sidebar['name'] . '</option>';
+													}
+														echo '<option value="memberlite_sidebar_blank"' . selected( $memberlite_cpt_sidebars[$post_type->name], 'memberlite_sidebar_blank' ) . '>- Hide Sidebar -</option>';
+													echo '</select>';
+												?>
+												<input type="hidden" name="memberlite_sidebar_cpt_names[]" id="memberlite_sidebar_cpt_names" value="<?php echo $post_type->name; ?>">
+												</td>
+											</tr>
+											<?php
+										} 
+									}
+								?>
+								</tbody>
+							</table>
+							<?php wp_nonce_field('memberlite_cpt_sidebar'); ?>
+							<input type="hidden" name="memberlite_cpt_sidebar" value="1" />
+							<p><?php submit_button( __( 'Save CPT Sidebar Selections', 'memberlite' ), 'primary', 'memberlite_cpt_sidebar_submit', false ); ?></p>
+						</form>
+						<?php
+					}
+					else
+					{
+						echo '<p><em>No custom post types found.';
+					}
+				?>
 			</div> <!-- end memberlite-custom-sidebars-->			
 		</div></div><!-- /.wrap-->
 	<div class="clear"></div>

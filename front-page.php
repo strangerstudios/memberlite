@@ -26,15 +26,14 @@ get_header(); ?>
 		else
 		{
 			//use our default front page format
-			$memberlite_hide_image_banner = get_post_meta($post->ID, 'memberlite_hide_image_banner', true);
-			if(memberlite_getPostThumbnailWidth($post->ID) > '740' && empty($memberlite_hide_image_banner) )
+			$banner_image_id = memberlite_getBannerImageID($post);
+			$banner_image_src = wp_get_attachment_image_src( $banner_image_id, 'full');
+			if(!empty($banner_image_src))
 			{
-				//get src of thumbnail
-				$thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'full');			
 				?>
-				<div class="masthead-banner" style="background-image: url('<?php echo esc_attr($thumbnail[0]);?>');">
+				<div class="masthead-banner" style="background-image: url('<?php echo esc_attr($banner_image_src[0]);?>');">
 				<?php
-			}			
+			}	
 			while ( have_posts() ) : the_post(); ?>
 			<header class="masthead">
 				<div class="row">
@@ -48,7 +47,7 @@ get_header(); ?>
 				</div><!-- .row -->
 			</header><!-- .masthead -->
 			<?php
-				if(memberlite_getPostThumbnailWidth($post->ID) > '740' && empty($memberlite_hide_image_banner) )
+				if(!empty($banner_image_src))
 				{
 					?>
 					</div> <!-- .masthead-banner -->

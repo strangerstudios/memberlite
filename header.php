@@ -22,12 +22,25 @@
 <?php do_action('before_page'); ?>
 <div id="page" class="hfeed site">
 	<?php do_action('before_mobile_nav'); ?>	
-	<?php
-		if(is_active_sidebar('sidebar-5'))
+	<?php 
+		if(is_active_sidebar('sidebar-5') || has_nav_menu('primary'))
 		{
+			//show the mobile menu widget area
 			?>
 			<nav id="mobile-navigation" role="navigation">
-				<?php dynamic_sidebar('sidebar-5'); ?>	
+			<?php
+				if(is_active_sidebar('sidebar-5'))
+				{
+					dynamic_sidebar('sidebar-5');
+				}
+				elseif(has_nav_menu('primary'))
+				{
+					$mobile_defaults = array(
+						'theme_location' => 'primary',
+					);				
+					wp_nav_menu($mobile_defaults ); 				
+				}
+			?>
 			</nav>
 			<div class="mobile-navigation-bar">
 				<button class="menu-toggle"><i class="fa fa-bars"></i></button>
@@ -138,17 +151,16 @@
 	<?php do_action('before_content'); ?>
 	<div id="content" class="site-content">
 		<?php do_action('before_masthead'); ?>
-		<?php 
+		<?php
 			if((!is_front_page() || 'posts' == get_option( 'show_on_front' )) && !is_404())
 			{
-				global $post;
-				$memberlite_hide_image_banner = get_post_meta($post->ID, 'memberlite_hide_image_banner', true);
-				if((is_singular('post') || (is_page()) && !is_page_template( 'templates/landing.php' )) && memberlite_getPostThumbnailWidth($post->ID) > '740' && empty($memberlite_hide_image_banner) )
+				$post = get_queried_object();
+				$banner_image_id = memberlite_getBannerImageID($post);
+				$banner_image_src = wp_get_attachment_image_src( $banner_image_id, 'full');
+				if(!empty($banner_image_src))
 				{
-					//get src of thumbnail
-					$thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'full');			
 					?>
-					<div class="masthead-banner" style="background-image: url('<?php echo esc_attr($thumbnail[0]);?>');">
+					<div class="masthead-banner" style="background-image: url('<?php echo esc_attr($banner_image_src[0]);?>');">
 					<?php
 				}
 				?>
@@ -191,7 +203,7 @@
 					</div><!-- .row -->
 				</header><!-- .masthead -->
 				<?php
-					if((is_singular('post') || (is_page()) && !is_page_template( 'templates/landing.php' )) && memberlite_getPostThumbnailWidth($post->ID) > '740' && empty($memberlite_hide_image_banner) )
+					if(!empty($banner_image_src))
 					{
 						?>
 						</div> <!-- .masthead-banner -->

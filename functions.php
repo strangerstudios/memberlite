@@ -6,6 +6,9 @@
  */
 define('MEMBERLITE_VERSION', '2.0.3.1');
 
+//get default values for options/etc
+require_once get_template_directory() . '/inc/defaults.php';
+
 //enqueue additional stylesheets and javascript
 function memberlite_init_styles()
 {	

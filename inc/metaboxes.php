@@ -193,16 +193,21 @@ add_action('save_post', 'memberlite_settings_save_meta_box_data');
 
 /* Adds a Custom Sidebar meta box to the side column on the Post and Page edit screens. */
 function memberlite_sidebar_add_meta_box() {
-	$screens = array('post', 'page', 'forum', 'event', 'event-recurring');
+	$screens = get_post_types( array('public' => true), 'names' );
 	foreach ($screens as $screen) {
-		add_meta_box(
-			'memberlite_sidebar_section',
-			__('Custom Sidebar', 'memberlite'),
-			'memberlite_sidebar_meta_box_callback',
-			$screen,
-			'side',
-			'core'
-		);
+		if(in_array($screen, array('reply','topic')))
+			continue;
+		else
+		{
+			add_meta_box(
+				'memberlite_sidebar_section',
+				__('Custom Sidebar', 'memberlite'),
+				'memberlite_sidebar_meta_box_callback',
+				$screen,
+				'side',
+				'core'
+			);
+		}
 	}
 }
 add_action('add_meta_boxes', 'memberlite_sidebar_add_meta_box');
@@ -213,27 +218,44 @@ function memberlite_sidebar_meta_box_callback($post) {
 	wp_nonce_field('memberlite_sidebar_meta_box', 'memberlite_sidebar_meta_box_nonce');
 	$memberlite_hide_children = get_post_meta($post->ID, '_memberlite_hide_children', true);
 	$memberlite_custom_sidebar = get_post_meta($post->ID, '_memberlite_custom_sidebar', true);
+	if(!in_array(get_post_type($post), array('post','page')) )
+	{
+		//this is a cpt and may have a custom cpt sidebar defined
+		$memberlite_cpt_sidebars = get_option('memberlite_cpt_sidebars', array());
+		$memberlite_cpt_sidebar_id = $memberlite_cpt_sidebars[get_post_type($post)];
+	}
+	elseif(get_post_type($post) == 'post')
+	{
+		$memberlite_cpt_sidebar_id = 'sidebar-2';
+	}
+	else
+	{
+		$memberlite_cpt_sidebar_id = 'sidebar-1';
+	}
 	$memberlite_default_sidebar = get_post_meta($post->ID, '_memberlite_default_sidebar', true);
 	if ( (get_post_type($post) == 'page' ) || (isset($_POST['post_type']) && 'page' == $_POST['post_type'])) {
 		echo '<input type="hidden" name="memberlite_hide_children_present" value="1" />';
 		echo '<label for="memberlite_hide_children" class="selectit"><input name="memberlite_hide_children" type="checkbox" id="memberlite_hide_children" value="1" '. checked( $memberlite_hide_children, 1, false) .'>' . __('Hide Page Children Menu in Sidebar', 'memberlite') . '</label>';
 		echo '<hr />';
 	}
-	echo '<p>' . __('Swap the default sidebar.', 'memberlite');
-	echo ' <a href="' . admin_url( 'custom-sidebars.php') . '">' . __('Manage Custom Sidebars','memberlite') . '</a></p>';
-	echo '<p><strong>' . __('Select Sidebar', 'memberlite') . '</strong></p>';
+	echo '<p>' . sprintf( __('The current default sidebar is <strong>%s</strong>.', 'memberlite' ), $memberlite_cpt_sidebar_id);
+	echo ' <a href="' . admin_url( 'custom-sidebars.php') . '">' . __('Manage Custom Sidebars','memberlite') . '</a></p><hr />';
+	echo '<p><strong>' . __('Select Custom Sidebar', 'memberlite') . '</strong></p>';
 	echo '<label class="screen-reader-text" for="memberlite_custom_sidebar">';
 	_e('Select Sidebar', 'memberlite');
 	echo '</label> ';
 	echo '<select id="memberlite_custom_sidebar" name="memberlite_custom_sidebar">';
+	echo '<option value="memberlite_sidebar_blank"' . selected( $memberlite_custom_sidebar, 'memberlite_sidebar_blank' ) . '>- Select -</option>';
+	$memberlite_theme_sidebars = array('sidebar-3', 'sidebar-4', 'sidebar-5');
 	foreach($wp_registered_sidebars as $wp_registered_sidebar)
 	{
+		if(in_array($wp_registered_sidebar['id'], $memberlite_theme_sidebars))
+			continue;
 		echo '<option value="' . $wp_registered_sidebar['id'] . '"' . selected( $memberlite_custom_sidebar, $wp_registered_sidebar['id'] ) . '>' . $wp_registered_sidebar['name'] . '</option>';
 	}
-		echo '<option value="memberlite_sidebar_blank"' . selected( $memberlite_custom_sidebar, 'memberlite_sidebar_blank' ) . '>- Hide Sidebar -</option>';
 	echo '</select>';	
 	echo '<hr />';
-	echo '<p><strong>' . __('Default Sidebar Behavior', 'memberlite') . '</strong></p>';
+	echo '<p><strong>' . __('Default Sidebar Behavior', 'memberlite') . '</strong></p>';	
 	echo '<label class="screen-reader-text" for="memberlite_default_sidebar">';
 	_e('Default Sidebar', 'memberlite');
 	echo '</label> ';
@@ -292,28 +314,28 @@ function memberlite_sidebar_save_meta_box_data($post_id) {
 }
 add_action('save_post', 'memberlite_sidebar_save_meta_box_data');
 
-/* Add Setting in Featured Images meta box */
-function memberlite_featured_image_meta( $content ) {
-    global $post;
-	if(in_array( get_post_type($post->ID), array('post','page')))
+/* Add Banner Image Setting meta box */
+function memberlite_featured_image_meta( $content, $post_id ) {
+	if(has_post_thumbnail($post_id) && !class_exists('MultiPostThumbnails'))
 	{
-		$id = 'memberlite_hide_image_banner';
-		$value = esc_attr( get_post_meta( $post->ID, $id, true ) );
-		$label = '<label for="' . $id . '" class="selectit"><input name="' . $id . '" type="checkbox" id="' . $id . '" value="' . $value . ' "'. checked( $value, 1, false) .'>' . __('Hide Image Banner on Single View', 'memberlite') . '</label>';
+		$id = 'memberlite_show_image_banner';
+		$value = esc_attr( get_post_meta( $post_id, $id, true ) );
+		$label = '<label for="' . $id . '" class="selectit"><input name="' . $id . '" type="checkbox" id="' . $id . '" value="' . $value . ' "'. checked( $value, 1, false) .'>' . __('Show as Banner Image', 'memberlite') . '</label>';
 		return $content .= $label;
 	}
 	else
 		return $content;
 }
-add_filter( 'admin_post_thumbnail_html', 'memberlite_featured_image_meta' );
+add_filter( 'admin_post_thumbnail_html', 'memberlite_featured_image_meta', 10, 2 );
+
 
 /* Save Setting in Featured Images meta box */
 function memberlite_save_featured_image_meta( $post_id, $post, $update ) {  
 	$value = 0;
-	if ( isset( $_REQUEST['memberlite_hide_image_banner'] ) ) {
+	if ( isset( $_REQUEST['memberlite_show_image_banner'] ) ) {
 		$value = 1;
 	}
 	// Set meta value to either 1 or 0
-	update_post_meta( $post_id, 'memberlite_hide_image_banner', $value );
+	update_post_meta( $post_id, 'memberlite_show_image_banner', $value );
 }
 add_action( 'save_post', 'memberlite_save_featured_image_meta', 10, 3 );

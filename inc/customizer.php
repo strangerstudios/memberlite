@@ -10,39 +10,6 @@
  *
  * @param WP_Customize_Manager $wp_customize Theme Customizer object.
  */
-$memberlite_defaults = array(
-	'memberlite_webfonts' => 'Lato_Lato',
-	'sidebar_location' => 'sidebar-right',
-	'sidebar_location_blog' => 'sidebar-blog-right',
-	'content_archives' => 'content',
-	'memberlite_loop_images' => 'show_both',
-	'memberlite_footerwidgets' => '4',
-	'copyright_textbox' => '<a href="http://wordpress.org/" rel="license">Proudly powered by WordPress</a><span class="sep"> | </span>Theme: Memberlite by <a href="http://paidmembershipspro.com" rel="license">Kim Coleman</a>',
-	'memberlite_color_scheme' => 'Default',
-	'memberlite_darkcss' => false,
-	'bgcolor_site_navigation' => '#FAFAFA',
-	'color_site_navigation' => '#777777',
-	'color_link' => '#2C3E50',
-	'color_meta_link' => '#2C3E50',
-	'color_primary' => '#2C3E50',
-	'color_secondary' => '#18BC9C',
-	'color_action' => '#F39C12',
-	'bgcolor_site_navigation_elements' => '#site-navigation',
-	'color_site_navigation_elements' => '.main-navigation a',
-	'color_link_color_elements' => '#primary a, .footer-navigation a',
-	'color_meta_link_color_elements' => '#meta-navigation a',
-	'color_primary_background_elements' => '#mobile-navigation, #mobile-navigation-height-col, .masthead, .footer-widgets, .btn_primary, .btn_primary:link, .bg_primary, .banner_primary',
-	'color_primary_color_elements' => '.main-navigation ul ul a, .main-navigation li:hover > a, #meta-navigation ul ul a, #secondary .widget a:hover, #pmpro_levels .post h2, .memberlite_signup h2, .pmpro_signup_form h2, .primary',
-	'color_secondary_background_elements' => '#meta-member aside, #meta-member .member-navigation ul ul, .btn_secondary, .btn_secondary:link, .btn_primary:hover, .pmpro_content_message a:hover, .woocommerce button.button.alt:hover, .woocommerce input.button.alt:hover, .woocommerce-page #content input.button.alt:hover, .woocommerce-page #respond input#submit.alt:hover, .woocommerce-page a.button.alt:hover, .woocommerce-page button.button.alt:hover, .woocommerce-page input.button.alt:hover, #banner_bottom, .bg_secondary, .banner_secondary, .memberlite_tabbable ul.memberlite_tabs li.memberlite_active a',
-	'color_secondary_border_elements' => '#pmpro_levels .pmpro_level-highlight, #pmpro_levels.pmpro_levels-2col .pmpro_level-highlight, #pmpro_levels.pmpro_levels-3col .pmpro_level-highlight, #pmpro_levels.pmpro_levels-4col .pmpro_level-highlight, #pmpro_levels.pmpro_levels-div .pmpro_level-highlight, #pmpro_levels.pmpro_levels-compare_table thead tr:first-child th.pmpro_level-highlight, #pmpro_levels.pmpro_levels-compare_table tfoot tr:last-child td.pmpro_level-highlight, .memberlite_signup, .pmpro_signup_form, .memberlite_tabbable ul.memberlite_tabs li.memberlite_active a, .memberlite_tabbable .memberlite_tab_content',
-	'color_secondary_border_left_elements' => '#pmpro_levels.pmpro_levels-compare_table thead th.pmpro_level-highlight, #pmpro_levels.pmpro_levels-compare_table tbody td.pmpro_level-highlight, #pmpro_levels.pmpro_levels-compare_table tfoot td.pmpro_level-highlight, #pmpro_levels.pmpro_levels-table .pmpro_level-highlight td:first-child',
-	'color_secondary_border_right_elements' => '#pmpro_levels.pmpro_levels-compare_table thead th.pmpro_level-highlight, #pmpro_levels.pmpro_levels-compare_table tbody td.pmpro_level-highlight, #pmpro_levels.pmpro_levels-compare_table tfoot td.pmpro_level-highlight, #pmpro_levels.pmpro_levels-table .pmpro_level-highlight td:last-child',
-	'color_secondary_color_elements' => 'a:hover, blockquote.quote:before, q:before, .testimonials-widget-testimonial .open-quote::before, .testimonials-widget-testimonial .close-quote::after, .woocommerce ul.products li.product .price, .woocommerce-page ul.products li.product .price, .woocommerce #content div.product p.price, .woocommerce #content div.product span.price, .woocommerce div.product p.price, .woocommerce div.product span.price, .woocommerce-page #content div.product p.price, .woocommerce-page #content div.product span.price, .woocommerce-page div.product p.price, .woocommerce-page div.product span.price, .secondary',
-	'color_action_background_elements' => '.btn_action, .btn_action:link, .pmpro_content_message a, .pmpro_content_message a:link, .pmpro_btn, .pmpro_btn:link, .pmpro_btn:visited, a.pmpro_btn, a.pmpro_btn:link, a.pmpro_btn:visited, input[type=button].pmpro_btn, input[type=submit].pmpro_btn, .woocommerce #content input.button.alt, .woocommerce #respond input#submit.alt, .woocommerce a.button.alt, .woocommerce button.button.alt, .woocommerce input.button.alt, .woocommerce-page #content input.button.alt, .woocommerce-page #respond input#submit.alt, .woocommerce-page a.button.alt, .woocommerce-page button.button.alt, .woocommerce-page input.button.alt, .bg_action, .banner_action',
-	'color_action_color_elements' => '.action',	
-	'delimiter' => '&nbsp;&#47;&nbsp;',
-	'memberlite_darkcss' => false,
-);
 class memberlite_Customize {
 	public static function register ( $wp_customize ) {
 		global $memberlite_defaults;
@@ -499,8 +466,49 @@ class memberlite_Customize {
 			<?php self::generate_css($memberlite_defaults['color_secondary_color_elements'], 'color', 'color_secondary'); ?>
 			<?php self::generate_css($memberlite_defaults['color_action_background_elements'], 'background', 'color_action'); ?>
 			<?php self::generate_css($memberlite_defaults['color_action_color_elements'], 'color', 'color_action'); ?>
-			<?php self::generate_css('.btn_secondary:hover', 'background', 'color_primary'); ?>
-			<?php self::generate_css('.btn_action:hover, a.pmpro_btn:hover, input[type="submit"].pmpro_btn:hover, .entry-footer a.pmpro_btn:hover', 'background', 'color_secondary'); ?>
+						
+			<?php 
+				//hover styles
+				$color_primary = get_theme_mod('color_primary');
+				if(empty($color_primary))
+					$color_primary = $memberlite_defaults['color_primary'];
+				$color_primary_rgb = self::hex2rgb($color_primary);
+				$color_primary_hover = vsprintf('rgba( %1$s, %2$s, %3$s, 0.7)', $color_primary_rgb);
+				echo $memberlite_defaults['color_primary_background_hover_elements'] . " {background: " . $color_primary_hover . "}\n";
+				echo $memberlite_defaults['color_primary_color_hover_elements'] . " {color: " . $color_primary_hover . "}\n";				
+				
+				/*$color_secondary = get_theme_mod('color_secondary');
+				if(empty($color_secondary))
+					$color_secondary = $memberlite_defaults['color_secondary'];
+				$color_secondary_rgb = self::hex2rgb($color_secondary);
+				$color_secondary_hover = vsprintf('rgba( %1$s, %2$s, %3$s, 0.7)', $color_secondary_rgb);
+				echo $memberlite_defaults['color_secondary_background_hover_elements'] . " {background: " . $color_secondary_hover . "}\n";
+				echo $memberlite_defaults['color_secondary_color_hover_elements'] . " {color: " . $color_secondary_hover . "}\n";
+				*/
+				
+				$color_action = get_theme_mod('color_action');
+				if(empty($color_action))
+					$color_action = $memberlite_defaults['color_action'];
+				$color_action_rgb = self::hex2rgb($color_action);
+				$color_action_hover = vsprintf('rgba( %1$s, %2$s, %3$s, 0.7)', $color_action_rgb);
+				echo $memberlite_defaults['color_action_background_hover_elements'] . ' {background: ' . $color_action_hover . '}\n';
+				echo $memberlite_defaults['color_action_color_hover_elements'] . ' {color: ' . $color_action_hover . '}\n';
+				
+				$color_link = get_theme_mod('color_link');
+				if(empty($color_link))
+					$color_link = $memberlite_defaults['color_link'];
+				$color_link_rgb = self::hex2rgb($color_link);
+				$color_link_hover = vsprintf('rgba( %1$s, %2$s, %3$s, 0.7)', $color_link_rgb);
+				echo $memberlite_defaults['color_link_hover_elements'] . ' {color: ' . $color_link_hover . '}\n';
+				
+				$color_site_navigation = get_theme_mod('color_site_navigation');
+				if(empty($color_site_navigation))
+					$color_site_navigation = $memberlite_defaults['color_site_navigation'];
+				$color_site_navigation_rgb = self::hex2rgb($color_site_navigation);
+				$color_site_navigation_hover = vsprintf('rgba( %1$s, %2$s, %3$s, 0.7)', $color_site_navigation_rgb);
+				echo $memberlite_defaults['color_site_navigation_hover_elements'] . ' {color: ' . $color_site_navigation_hover . '}\n';
+			?>
+			
 			<?php self::generate_css('.site-header .site-title a, .site-header .site-description', 'color', 'header_textcolor', '#'); ?>
 			<?php self::generate_css('body', 'background-color', 'background_color', '#'); ?> 
 			<?php 
@@ -531,22 +539,6 @@ class memberlite_Customize {
 			true
 		);
 		// Localize the script with new data
-		$memberlite_defaults = array(
-			'bgcolor_site_navigation_elements' => $memberlite_defaults['bgcolor_site_navigation_elements'],
-			'color_site_navigation_elements' => $memberlite_defaults['color_site_navigation_elements'],
-			'color_link_color_elements' => $memberlite_defaults['color_link_color_elements'],
-			'color_meta_link_color_elements' => $memberlite_defaults['color_meta_link_color_elements'],
-			'color_primary_background_elements' => $memberlite_defaults['color_primary_background_elements'],
-			'color_primary_color_elements' => $memberlite_defaults['color_primary_color_elements'],
-			'color_secondary_background_elements' => $memberlite_defaults['color_secondary_background_elements'],
-			'color_secondary_border_elements' => $memberlite_defaults['color_secondary_border_elements'],
-			'color_secondary_border_right_elements' => $memberlite_defaults['color_secondary_border_right_elements'],
-			'color_secondary_border_left_elements' => $memberlite_defaults['color_secondary_border_left_elements'],
-			'color_secondary_color_elements' => $memberlite_defaults['color_secondary_color_elements'],
-			'color_action_background_elements' => $memberlite_defaults['color_action_background_elements'],
-			'color_action_color_elements' => $memberlite_defaults['color_action_color_elements'],
-			'delimiter' => $memberlite_defaults['delimiter'],
-		);
 		wp_localize_script( 'memberlite_customizer', 'memberlite_defaults', $memberlite_defaults );
 		wp_enqueue_script('memberlite_customizer');
 	}
@@ -804,6 +796,33 @@ class memberlite_Customize {
 	public static function customizer_controls_js() {
 		wp_enqueue_script( 'memberlite_customizer-controls', get_template_directory_uri() . '/js/customizer-controls.js', array( 'customize-controls', 'iris', 'underscore', 'wp-util' ), MEMBERLITE_VERSION, true );
 		wp_localize_script( 'memberlite_customizer-controls', 'colorSchemes', memberlite_Customize::get_color_schemes() );
+	}
+	
+	/**
+	 * Convert HEX to RGB.
+	 *
+	 * Borrowed from Twentyfifteen: https://github.com/WordPress/WordPress/blob/master/wp-content/themes/twentyfifteen/inc/customizer.php
+	 * 
+	 * @since Memberlite 2.0.4
+	 *
+	 * @param string $color The original color, in 3- or 6-digit hexadecimal form.
+	 * @return array Array containing RGB (red, green, and blue) values for the given
+	 *               HEX code, empty array otherwise.
+	 */
+	public static function hex2rgb( $color ) {
+		$color = trim( $color, '#' );
+		if ( strlen( $color ) == 3 ) {
+			$r = hexdec( substr( $color, 0, 1 ).substr( $color, 0, 1 ) );
+			$g = hexdec( substr( $color, 1, 1 ).substr( $color, 1, 1 ) );
+			$b = hexdec( substr( $color, 2, 1 ).substr( $color, 2, 1 ) );
+		} else if ( strlen( $color ) == 6 ) {
+			$r = hexdec( substr( $color, 0, 2 ) );
+			$g = hexdec( substr( $color, 2, 2 ) );
+			$b = hexdec( substr( $color, 4, 2 ) );
+		} else {
+			return array();
+		}
+		return array( 'red' => $r, 'green' => $g, 'blue' => $b );
 	}
 }
 

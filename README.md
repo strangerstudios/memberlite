@@ -61,7 +61,11 @@ Memberlite includes formatting for use with:
 
 ###Changelog
 **2.0.3.2**
+* BUG: Fixed bug where the mobile menu icon would sometimes not show on mobile or ipad layouts.
+* BUG: Fixed bug where the wrong banner image would sometimes show on blog and archive pages.
 * ENHANCEMENT: Added "lock" icon to membership-restricted post titles (requires PMPro v1.8.5.4 or higher)
+* ENHANCEMENT: Added the ability to select a separate banner and feature image when the Multiple Post Thumbnails Plugin is enabled.
+* ENHANCEMENT: Setting the hover colors of primary, secondary, and action links to a lighter version of the color instead of using other colors from the color scheme.
 
 **2.0.3.1**
 * ENHANCEMENT: Support added for dark background via customizer setting and additional dark.css
