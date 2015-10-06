@@ -155,13 +155,16 @@
 			if((!is_front_page() || 'posts' == get_option( 'show_on_front' )) && !is_404())
 			{
 				$post = get_queried_object();
-				$banner_image_id = memberlite_getBannerImageID($post);
-				$banner_image_src = wp_get_attachment_image_src( $banner_image_id, 'full');
-				if(!empty($banner_image_src))
+				if(!empty($post))
 				{
-					?>
-					<div class="masthead-banner" style="background-image: url('<?php echo esc_attr($banner_image_src[0]);?>');">
-					<?php
+					$banner_image_id = memberlite_getBannerImageID($post);
+					$banner_image_src = wp_get_attachment_image_src( $banner_image_id, 'full');
+					if(!empty($banner_image_src))
+					{
+						?>
+						<div class="masthead-banner" style="background-image: url('<?php echo esc_attr($banner_image_src[0]);?>');">
+						<?php
+					}
 				}
 				?>
 				<header class="masthead">
@@ -174,29 +177,33 @@
 								<a class="btn" href="<?php echo esc_attr($referrer); ?>"><?php _e( 'No Thanks &raquo;','memberlite'); ?></a>
 							<?php } else { ?>
 								<?php 
-									$memberlite_banner_hide_breadcrumbs = get_post_meta($post->ID, '_memberlite_banner_hide_breadcrumbs', true);
-									if(empty($memberlite_banner_hide_breadcrumbs))
-										memberlite_getBreadcrumbs(); 
+									if(!empty($post))
+									{
+										$memberlite_banner_hide_breadcrumbs = get_post_meta($post->ID, '_memberlite_banner_hide_breadcrumbs', true);
+										if(empty($memberlite_banner_hide_breadcrumbs))
+											memberlite_getBreadcrumbs(); 
+									}
 								?>
 							<?php } ?>
+							
 							<?php if(is_search()) { ?>
 								<?php memberlite_page_title(); ?>
-							<?php } else { ?>
-							<?php	
-								$memberlite_banner_right = get_post_meta($post->ID, '_memberlite_banner_right', true);
-								if(!empty($memberlite_banner_right))
-									echo '<div class="pull-right">' . apply_filters('the_content',$memberlite_banner_right) . '</div>';
-							?>
-							<?php 
-								$memberlite_banner_hide_title = get_post_meta($post->ID, '_memberlite_banner_hide_title', true);
-								if(empty($memberlite_banner_hide_title))
-									memberlite_page_title(); 
-							?>
-							<?php
-								$memberlite_banner_desc = get_post_meta($post->ID, '_memberlite_banner_desc', true);
-								if(!empty($memberlite_banner_desc))
-									echo wpautop(do_shortcode($memberlite_banner_desc));
-							?>
+							<?php } elseif(!empty($post)) { ?>
+								<?php								
+									$memberlite_banner_right = get_post_meta($post->ID, '_memberlite_banner_right', true);
+									if(!empty($memberlite_banner_right))
+										echo '<div class="pull-right">' . apply_filters('the_content',$memberlite_banner_right) . '</div>';
+								?>
+								<?php 
+									$memberlite_banner_hide_title = get_post_meta($post->ID, '_memberlite_banner_hide_title', true);
+									if(empty($memberlite_banner_hide_title))
+										memberlite_page_title(); 
+								?>
+								<?php
+									$memberlite_banner_desc = get_post_meta($post->ID, '_memberlite_banner_desc', true);
+									if(!empty($memberlite_banner_desc))
+										echo wpautop(do_shortcode($memberlite_banner_desc));
+								?>
 							<?php } ?>
 							<?php do_action('after_masthead_inner'); ?>
 						</div>
