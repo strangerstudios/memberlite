@@ -106,8 +106,8 @@ add_action('after_setup_theme', 'memberlite_setup');
 function memberlite_widgets_init() {
 	global $memberlite_defaults;
 	register_sidebar( array(
-		'name'          => __('Pages', 'memberlite'),
-		'id'            => 'sidebar-1',
+		'name'          => __('Posts and Archives', 'memberlite'),
+		'id'            => 'sidebar-2',
 		'description'   => '',
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 		'after_widget'  => '</aside>',
@@ -115,8 +115,8 @@ function memberlite_widgets_init() {
 		'after_title'   => '</h3>',
 	));
 	register_sidebar( array(
-		'name'          => __('Posts and Archives', 'memberlite'),
-		'id'            => 'sidebar-2',
+		'name'          => __('Pages', 'memberlite'),
+		'id'            => 'sidebar-1',
 		'description'   => '',
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 		'after_widget'  => '</aside>',
