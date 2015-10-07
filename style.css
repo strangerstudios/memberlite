@@ -1929,17 +1929,14 @@ form.memberlite_signup .pmpro_btn, form.pmpro_signup_form .pmpro_btn {display: b
 }
 #your-profile p {margin-bottom: .5rem; }
 #your-profile p.submit {text-align: center; }
-.widget_theme_my_login .login, .entry-content .login {padding: 0; }
-.widget_theme_my_login .login input {margin: 0; }
 #secondary .widget_theme_my_login .widget-title {margin-bottom: .5em; }
 #secondary .widget_theme_my_login ul li {
 	border: none;
 	padding: 0;
 }
-#secondary .widget_theme_my_login p label, #secondary .widget_theme_my_login p .input {margin: 0 .5em; }
-#secondary .widget_theme_my_login p.forgetmenot, #secondary .widget_theme_my_login p.submit {margin: .5em; }
-#secondary .widget_theme_my_login p .input {width: 95%; }
-#secondary .widget_theme_my_login p.submit input[type=submit] {width: 100%; }
+#secondary .tml {max-width: 100%; margin: 0 .5em; }
+#secondary .tml p {margin-bottom: 1rem; }
+#secondary .tml .input {margin-top: 0; }
 .tml-user-avatar {
 	float: left;
 	width: 80px; 
@@ -1952,15 +1949,22 @@ form.memberlite_signup .pmpro_btn, form.pmpro_signup_form .pmpro_btn {display: b
 	transition: transform 0.5s ease;
 	transform: scale(0.8);
 }
-.tml-action-links {margin: 1rem 0 0 0; padding: 1rem 0 0 0; border-top: 1px dotted #AAA; list-style: none; }
-.tml-action-links li{display:inline-block;margin-right:15px}
-
+.tml .tml-action-links {
+	border-top: 1px dotted #AAA; 
+	list-style: none; 
+	margin: 1rem 0 0 0; 
+	padding: 1rem 0 0 0; 
+	width: 100%; 
+}
+.tml .tml-action-links li {
+	display:inline-block;
+}
 #primary .tml-action-links {
-	padding: 1rem;
-	border-bottom: 1px dotted #CCC;
 	background: #FAFAFA;
-	font-style: italic;
+	border-bottom: 1px dotted #CCC;
 	color: #AAA;
+	font-style: italic;
+	padding: 1rem;
 }
 #primary .tml-action-links a {
 	color: #777;
