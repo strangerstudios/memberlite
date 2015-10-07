@@ -27,20 +27,26 @@ add_filter( 'wp_page_menu_args', 'memberlite_page_menu_args' );
  */
 function memberlite_body_classes( $classes ) {
 	global $post, $memberlite_defaults;
+	
+	//sidebar classes
 	$classes[] = get_theme_mod('sidebar_location',$memberlite_defaults['sidebar_location']);
 	$classes[] = get_theme_mod('sidebar_location_blog',$memberlite_defaults['sidebar_location_blog']);
-	$classes[] = 'scheme_' . get_theme_mod('memberlite_color_scheme',$memberlite_defaults['memberlite_color_scheme']);
 	if ( is_page_template( 'templates/sidebar-content.php' ) )
 		$classes[] = 'sidebar-content';
 	if ( is_page_template( 'templates/content-sidebar.php' ) )
 		$classes[] = 'content-sidebar';
-	if ( is_multi_author() ) {
+	
+	//color scheme class
+	$classes[] = 'scheme_' . get_theme_mod('memberlite_color_scheme',$memberlite_defaults['memberlite_color_scheme']);
+	
+	//other classes	
+	if ( is_multi_author() )
 		$classes[] = 'group-blog';
 	if ( is_page_template( 'templates/landing.php' ) )
 		$classes[] = 'landing';
 	if ( is_page_template( 'templates/interstitial.php' ) )
 		$classes[] = 'interstitial';
-	}
+		
 	return $classes;
 }
 add_filter( 'body_class', 'memberlite_body_classes' );
