@@ -4,7 +4,7 @@ Theme URI: http://demo.paidmembershipspro.com/memberlite/
 Author: Kim Coleman
 Author URI: http://www.paidmembershipspro.com
 Description: Responsive, Customizable and Easily Integrated with Paid Memberships Pro
-Version: 2.0.3.1
+Version: 2.0.3.2
 Text Domain: memberlite
 Domain Path: /languages/
 
@@ -1332,11 +1332,11 @@ a:active {
 .masthead .pmpro_level-price {font-size: 24px; font-size: 2.4rem; margin: .5rem 0 0 0; }
 .masthead .pmpro_level-subprice {display: block; font-size: 14px; font-size: 1.4rem; }
 
-.masthead-banner .masthead-post-byline p {
-	margin: 0; 
+.masthead .masthead-post-byline p.entry-meta {
+	margin: .5em 0 0 0;
 }
 .masthead-banner .masthead-post-byline p.entry-meta {
-	margin-bottom: .5em;
+	margin: 0 0 .5em 0;
 }
 .masthead p a, .masthead .memberlite-breadcrumb a {
 	color: #FFF;
@@ -1404,7 +1404,7 @@ a:active {
 }
 .hentry .entry-banner .entry-header {
 	background: rgba(0,0,0,0.6);
-	width: 70%;
+	width: 100%;
 	position: absolute;
 	bottom: 0;
 	margin: 0;
@@ -1425,15 +1425,18 @@ a:active {
 	transition: transform 0.5s ease;
 	transform: scale(0.8);
 }
-.pmpro-level-required .entry-header h1:before {
+.pmpro-level-required h1.entry-title:before, .pmpro-body-level-required h1.entry-title:before {
 	content: "\f023";
 	font-family: 'FontAwesome';
 	padding-right: 10px;
 }
-.pmpro-level-required.pmpro-has-access .entry-header h1:before {
+.pmpro-level-required.pmpro-has-access  h1.entry-title:before, .pmpro-body-level-required.pmpro-body-has-access  h1.entry-title:before {
 	content: "";
 	font-family: 'FontAwesome';
 	padding-right: 0;
+}
+#primary .entry-banner h1.entry-title:before {
+	color: #FFF;
 }
 .wp-post-image {
 	background: #FAFAFA;
