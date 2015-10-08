@@ -218,27 +218,29 @@ function memberlite_sidebar_meta_box_callback($post) {
 	wp_nonce_field('memberlite_sidebar_meta_box', 'memberlite_sidebar_meta_box_nonce');
 	$memberlite_hide_children = get_post_meta($post->ID, '_memberlite_hide_children', true);
 	$memberlite_custom_sidebar = get_post_meta($post->ID, '_memberlite_custom_sidebar', true);
+	
+	//check post type and custom cpt sidebar
 	if(!in_array(get_post_type($post), array('post','page')) )
 	{
-		//this is a cpt and may have a custom cpt sidebar defined
 		$memberlite_cpt_sidebars = get_option('memberlite_cpt_sidebars', array());
 		$memberlite_cpt_sidebar_id = $memberlite_cpt_sidebars[get_post_type($post)];
 	}
 	elseif(get_post_type($post) == 'post')
-	{
 		$memberlite_cpt_sidebar_id = 'sidebar-2';
-	}
 	else
-	{
 		$memberlite_cpt_sidebar_id = 'sidebar-1';
-	}
+	
+	//get the name of the default sidebar
+	if(!empty($wp_registered_sidebars[$memberlite_cpt_sidebar_id]))
+		$memberlite_cpt_sidebar_name = $wp_registered_sidebars[$memberlite_cpt_sidebar_id]['name'];
+	
 	$memberlite_default_sidebar = get_post_meta($post->ID, '_memberlite_default_sidebar', true);
 	if ( (get_post_type($post) == 'page' ) || (isset($_POST['post_type']) && 'page' == $_POST['post_type'])) {
 		echo '<input type="hidden" name="memberlite_hide_children_present" value="1" />';
 		echo '<label for="memberlite_hide_children" class="selectit"><input name="memberlite_hide_children" type="checkbox" id="memberlite_hide_children" value="1" '. checked( $memberlite_hide_children, 1, false) .'>' . __('Hide Page Children Menu in Sidebar', 'memberlite') . '</label>';
 		echo '<hr />';
 	}
-	echo '<p>' . sprintf( __('The current default sidebar is <strong>%s</strong>.', 'memberlite' ), $memberlite_cpt_sidebar_id);
+	echo '<p>' . sprintf( __('The current default sidebar is <strong>%s</strong>.', 'memberlite' ), $memberlite_cpt_sidebar_name);
 	echo ' <a href="' . admin_url( 'custom-sidebars.php') . '">' . __('Manage Custom Sidebars','memberlite') . '</a></p><hr />';
 	echo '<p><strong>' . __('Select Custom Sidebar', 'memberlite') . '</strong></p>';
 	echo '<label class="screen-reader-text" for="memberlite_custom_sidebar">';
