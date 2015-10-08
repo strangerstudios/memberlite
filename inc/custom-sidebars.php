@@ -29,7 +29,7 @@ function memberlite_custom_sidebars() {
 		//check nonce
 		if(check_admin_referer('memberlite_add_custom_sidebar'))
 		{	
-			$new_sidebar = trim(sanitize_text_field($_REQUEST['memberlite_custom_sidebar_name']));
+			$new_sidebar = trim(stripslashes(sanitize_text_field($_REQUEST['memberlite_custom_sidebar_name'])));
 			
 			if(empty($new_sidebar))
 			{
@@ -161,7 +161,7 @@ function memberlite_custom_sidebars() {
 										if(in_array($wp_registered_sidebar['name'], $memberlite_custom_sidebars))
 										{ 
 										?>
-											<a href="javascript:confirmCustomSidebarDeletion('Are you sure that you want to delete the <?php echo $wp_registered_sidebar['name'];?> sidebar?', '<?php echo wp_nonce_url(admin_url("themes.php?page=memberlite-custom-sidebars&delete=" . urlencode($wp_registered_sidebar['name'])), "memberlite_delete_custom_sidebar");?>');"><?php _e('Delete', 'memberlite'); ?></a>
+											<a href="javascript:confirmCustomSidebarDeletion('Are you sure that you want to delete the <?php echo esc_js($wp_registered_sidebar['name']);?> sidebar?', '<?php echo wp_nonce_url(admin_url("themes.php?page=memberlite-custom-sidebars&delete=" . urlencode($wp_registered_sidebar['name'])), "memberlite_delete_custom_sidebar");?>');"><?php _e('Delete', 'memberlite'); ?></a>
 										<?php 
 										} 
 										else 
