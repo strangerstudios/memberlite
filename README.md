@@ -59,14 +59,34 @@ Memberlite includes formatting for use with:
 **Events Manager**
 [Install Events Manager »](https://wordpress.org/plugins/events-manager/)
 
+**Testimonials Widget**
+[Install Testimonials Widget »](https://wordpress.org/plugins/testimonials-widget/)
+
+We highly recommend using these plugins for every site running Memberlite:
+
+**Multiple Post Thumbnails**
+[Install Multiple Post Thumbnails »](https://wordpress.org/plugins/multiple-post-thumbnails/)
+
+**Theme My Login**
+[Install Theme My Login »](https://wordpress.org/plugins/theme-my-login/)
+
+
 ###Changelog
 **2.0.3.2**
+* BUG: Updated sidebar registration order so default widgets of new WP install are placed in the Posts custom sidebar.
+* BUG: Fixed dropdown submenu menus at the third level/depth.
+* BUG: Fixed case where the member menu wouldn’t appear for a logged in member.
 * BUG: Fixed bug where the mobile menu icon would sometimes not show on mobile or ipad layouts.
 * BUG: Fixed bug where the wrong banner image would sometimes show on blog and archive pages.
 * BUG: Better handling of custom sidebars with quotes and other special characters in them.
+* ENHANCEMENT: Now falling back to primary menu (if set) if mobile menu widgets are not defined.
+* ENHANCEMENT: Now using the main navigation bar color for dropdown menus.
+* ENHANCEMENT: Added support for assigning custom sidebars to detected CPTs.
 * ENHANCEMENT: Added "lock" icon to membership-restricted post titles (requires PMPro v1.8.5.4 or higher)
-* ENHANCEMENT: Added the ability to select a separate banner and feature image when the Multiple Post Thumbnails Plugin is enabled.
+* ENHANCEMENT: Added the ability to select a separate banner and feature image when the Multiple Post Thumbnails Plugin () is enabled.
 * ENHANCEMENT: Setting the hover colors of primary, secondary, and action links to a lighter version of the color instead of using other colors from the color scheme.
+* ENHANCEMENT: Moved memberlite_defaults array to a separate included file.
+* ENHANCEMENT: Design improvements for galleries and image captions.
 
 **2.0.3.1**
 * ENHANCEMENT: Support added for dark background via customizer setting and additional dark.css
