@@ -766,7 +766,7 @@ a:active {
 .main-navigation ul.sub-menu a, .meta-navigation ul.sub-menu a, .header-right .widget_nav_menu ul.sub-menu a {
 	width: 200px;
 	padding: .5rem 1.5rem;
-	border-right: none;
+	border-left: none;
 	border-top: 1px dotted #EEE;
 }
 .main-navigation li:hover > a {

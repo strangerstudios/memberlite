@@ -72,6 +72,9 @@ We highly recommend using these plugins for every site running Memberlite:
 
 
 ###Changelog
+**2.0.3.3**
+* BUG: Updated memberlite_defaults for banner hover background color.
+
 **2.0.3.2**
 * BUG: Updated sidebar registration order so default widgets of new WP install are placed in the Posts custom sidebar.
 * BUG: Fixed dropdown submenu menus at the third level/depth.
