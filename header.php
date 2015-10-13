@@ -152,7 +152,8 @@
 	<div id="content" class="site-content">
 		<?php do_action('before_masthead'); ?>
 		<?php
-			if((!is_front_page() || 'posts' == get_option( 'show_on_front' )) && !is_404())
+			$template = get_page_template();
+			if( !is_front_page() || (is_front_page() && (basename($template) != 'page.php') || 'posts' == get_option( 'show_on_front' )) && !is_404())
 			{
 				$post = get_queried_object();
 				if(!empty($post))
@@ -220,8 +221,7 @@
 				<?php if(!is_page_template( 'templates/fluid-width.php' )) { ?>
 					<div class="row">
 				<?php } ?>
-				<?php 
-			//end !is_front_page()
+				<?php
 			} 
 		?>
 		<?php do_action('after_masthead'); ?>
