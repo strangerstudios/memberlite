@@ -474,39 +474,36 @@ class memberlite_Customize {
 					$color_primary = $memberlite_defaults['color_primary'];
 				$color_primary_rgb = self::hex2rgb($color_primary);
 				$color_primary_hover = vsprintf('rgba( %1$s, %2$s, %3$s, 0.7)', $color_primary_rgb);
-				echo $memberlite_defaults['color_primary_background_hover_elements'] . " {background: " . $color_primary_hover . "}\n";
-				echo $memberlite_defaults['color_primary_color_hover_elements'] . " {color: " . $color_primary_hover . "}\n";				
-				
-				/*$color_secondary = get_theme_mod('color_secondary');
+				echo $memberlite_defaults['color_primary_background_hover_elements'] . " {background: " . $color_primary_hover . "}";
+				echo $memberlite_defaults['color_primary_color_hover_elements'] . " {color: " . $color_primary_hover . "}";				
+
+				$color_secondary = get_theme_mod('color_secondary');
 				if(empty($color_secondary))
 					$color_secondary = $memberlite_defaults['color_secondary'];
 				$color_secondary_rgb = self::hex2rgb($color_secondary);
 				$color_secondary_hover = vsprintf('rgba( %1$s, %2$s, %3$s, 0.7)', $color_secondary_rgb);
-				echo $memberlite_defaults['color_secondary_background_hover_elements'] . " {background: " . $color_secondary_hover . "}\n";
-				echo $memberlite_defaults['color_secondary_color_hover_elements'] . " {color: " . $color_secondary_hover . "}\n";
-				*/
-				
+				echo $memberlite_defaults['color_secondary_background_hover_elements'] . " {background: " . $color_secondary_hover . "}";
+			
 				$color_action = get_theme_mod('color_action');
 				if(empty($color_action))
 					$color_action = $memberlite_defaults['color_action'];
 				$color_action_rgb = self::hex2rgb($color_action);
 				$color_action_hover = vsprintf('rgba( %1$s, %2$s, %3$s, 0.7)', $color_action_rgb);
-				echo $memberlite_defaults['color_action_background_hover_elements'] . ' {background: ' . $color_action_hover . '}\n';
-				echo $memberlite_defaults['color_action_color_hover_elements'] . ' {color: ' . $color_action_hover . '}\n';
-				
+				echo $memberlite_defaults['color_action_background_hover_elements'] . ' {background: ' . $color_action_hover . '}';
+			
 				$color_link = get_theme_mod('color_link');
 				if(empty($color_link))
 					$color_link = $memberlite_defaults['color_link'];
 				$color_link_rgb = self::hex2rgb($color_link);
 				$color_link_hover = vsprintf('rgba( %1$s, %2$s, %3$s, 0.7)', $color_link_rgb);
-				echo $memberlite_defaults['color_link_hover_elements'] . ' {color: ' . $color_link_hover . '}\n';
+				echo $memberlite_defaults['color_link_hover_elements'] . ' {color: ' . $color_link_hover . '}';
 				
 				$color_site_navigation = get_theme_mod('color_site_navigation');
 				if(empty($color_site_navigation))
 					$color_site_navigation = $memberlite_defaults['color_site_navigation'];
 				$color_site_navigation_rgb = self::hex2rgb($color_site_navigation);
 				$color_site_navigation_hover = vsprintf('rgba( %1$s, %2$s, %3$s, 0.7)', $color_site_navigation_rgb);
-				echo $memberlite_defaults['color_site_navigation_hover_elements'] . ' {color: ' . $color_site_navigation_hover . '}\n';
+				echo $memberlite_defaults['color_site_navigation_hover_elements'] . ' {color: ' . $color_site_navigation_hover . '}';
 			?>
 			
 			<?php self::generate_css('.site-header .site-title a, .site-header .site-description', 'color', 'header_textcolor', '#'); ?>

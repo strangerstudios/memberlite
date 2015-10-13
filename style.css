@@ -507,7 +507,7 @@ a.pmpro_btn:active,
 	color: #FFF;
 }
 
-a.pmpro_btn:hover, .entry-footer a.pmpro_btn:hover, input[type="submit"].pmpro_btn:hover {
+a.pmpro_btn:hover, input[type="submit"].pmpro_btn:hover {
 	background: #18BC9C;
 	border: none;
 	text-shadow: none;
@@ -1506,6 +1506,8 @@ a:active {
 .entry-footer a:hover {
 	border-bottom: 1px dotted #777;
 }
+#primary .entry-footer a.pmpro_btn, .entry-footer a.pmpro_btn:hover {border: none; }
+
 .byline,
 .updated {
 	display: none;
