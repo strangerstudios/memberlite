@@ -374,12 +374,12 @@ table, #pmpro_account_loggedin {
 	margin: 0 0 3.5rem;
 	width: 100%;
 }
-th, .pmpro_checkout thead th {
+th, .pmpro_checkout thead th, .pmpro_checkout h2 {
 	font-family: 'Lato', sans-serif;
 	font-weight: 400;
 	padding: 1rem;
 }
-thead th {
+thead th, .pmpro_checkout h2 {
 	background: #EFEFEF; 
 	border-top: 1px solid #CCC;
 	border-bottom: 1px solid #CCC;
@@ -388,7 +388,7 @@ thead th {
 tbody th {
 	border-bottom: 1px dotted #CCC;
 }
-td {
+td, .pmpro_checkout .pmpro_checkout-fields {
 	border-bottom: 1px dotted #CCC;
 	padding: 1rem;
 	vertical-align: top;
@@ -1969,6 +1969,7 @@ form.memberlite_signup .pmpro_btn, form.pmpro_signup_form .pmpro_btn {display: b
 	padding: 1rem;
 }
 #primary .tml-action-links a {
+	border-bottom: 1px solid transparent;
 	color: #777;
 	text-decoration: none;
 }
