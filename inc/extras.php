@@ -309,9 +309,10 @@ function memberlite_page_title() {
 	}
 	elseif(is_search())
 	{
-		global $s;
 		?>
-		<h1 class="page-title"><?php printf( __( 'Search Results for: %s', 'memberlite' ), '<span>' . $s . '</span>' ); ?></h1>
+		<h1 class="page-title">
+			<?php printf( __( 'Search Results for: %s', 'memberlite' ), '<span>' . get_search_query() . '</span>' ); ?>
+		</h1>
 		<?php
 	}
 	elseif(is_singular('post'))
@@ -376,8 +377,12 @@ function memberlite_getSidebar() {
 	ob_start();
 	
 	//figure out sidebars
-	$memberlite_custom_sidebar = get_post_meta($post->ID, '_memberlite_custom_sidebar', true);
-	if(!in_array(get_post_type($post), array('post','page')) )
+	if(!empty($post) && !empty($post->ID))
+		$memberlite_custom_sidebar = get_post_meta($post->ID, '_memberlite_custom_sidebar', true);
+	else
+		$memberlite_custom_sidebar = false;
+
+	if(!empty($post) && !empty($post->ID) && !in_array(get_post_type($post), array('post','page')) )
 	{
 		//this is a cpt and may have a custom cpt sidebar defined
 		$memberlite_cpt_sidebars = get_option('memberlite_cpt_sidebars', array());
@@ -784,7 +789,6 @@ function memberlite_getBreadcrumbs()
 		}
 		elseif(is_search() && '' != $search_breadcrumbs)
 		{
-			global $s;
 		?>
 		<nav class="memberlite-breadcrumb" itemprop="breadcrumb">
           	<a href="<?php echo home_url()?>"><?php _e('Home', 'memberlite'); ?></a>
@@ -798,7 +802,7 @@ function memberlite_getBreadcrumbs()
 					<?php
 				}
 			?>
-			<?php _e('Search Results For','memberlite'); ?> '<?php echo $s;?>'
+			<?php _e('Search Results For','memberlite'); ?> '<?php the_search_query();?>'
 		</nav>
 	<?php
 		}
