@@ -374,12 +374,12 @@ table, #pmpro_account_loggedin {
 	margin: 0 0 3.5rem;
 	width: 100%;
 }
-th, .pmpro_checkout thead th, .pmpro_checkout h2 {
+th {
 	font-family: 'Lato', sans-serif;
 	font-weight: 400;
 	padding: 1rem;
 }
-thead th, .pmpro_checkout h2 {
+thead th {
 	background: #EFEFEF; 
 	border-top: 1px solid #CCC;
 	border-bottom: 1px solid #CCC;
@@ -388,7 +388,7 @@ thead th, .pmpro_checkout h2 {
 tbody th {
 	border-bottom: 1px dotted #CCC;
 }
-td, .pmpro_checkout .pmpro_checkout-fields {
+td {
 	border-bottom: 1px dotted #CCC;
 	padding: 1rem;
 	vertical-align: top;
@@ -1896,13 +1896,33 @@ a:active {
 .pmpro_asterisk abbr {border: none; }
 form.pmpro_form table {margin: 0 0 2.5rem; }
 form.pmpro_form #pmpro_level_cost {margin: 0; }
-form.pmpro_form p {margin: .5rem 0; }
+form.pmpro_form p {margin: 1rem 0; }
 form.pmpro_form label {font-weight: 400; }
-form.pmpro_form thead th span.pmpro_thead-name {width: 35%; }
-form.pmpro_form thead th span.pmpro_thead-msg {font-family: 'Lato', sans-serif; font-weight: normal; width: 65%; }
-form.pmpro_form tbody td {padding: 1rem; }
+form.pmpro_form span.pmpro_thead-name {width: 35%; }
+form.pmpro_form span.pmpro_thead-msg {font-family: 'Lato', sans-serif; font-weight: normal; width: 65%; }
 form.pmpro_form .pmpro_submit {padding: 0 1rem; }
 form.pmpro_form textarea {width:75%; }
+form.pmpro_form .pmpro_checkout {
+	padding-top: 0;
+}
+form.pmpro_form .pmpro_checkout h2 {
+	background: #EFEFEF; 
+	border-top: 1px solid #CCC;
+	border-bottom: 1px solid #CCC;
+	font-family: 'Lato', sans-serif;
+	font-weight: 400;
+	padding: 1rem;
+	margin: 0;
+}
+form.pmpro_form .pmpro_checkout .pmpro_checkout-fields {
+	padding: 1rem;
+}
+form.pmpro_form .pmpro_checkout #other_discount_code_p, form.pmpro_form .pmpro_checkout #other_discount_code_div {
+	border-top: 1px dotted #CCC;
+	margin: 1rem 0 0 0;
+	padding: 1rem 0 0 0;	
+}
+form.pmpro_form .pmpro_checkout #other_discount_code_div input[type=button], #discount_code_button {padding-top: 3px; padding-bottom: 3px; }
 
 #pmpro_account .pmpro_box {padding: 3rem 0 0 0; margin: 0 0 3rem 0; border-bottom: none; border-top: 1px dotted #CCC; }
 #pmpro_account #pmpro_account-membership .pmpro_actionlinks {text-align: center; }
