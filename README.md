@@ -72,6 +72,10 @@ We highly recommend using these plugins for every site running Memberlite:
 
 
 ###Changelog
+**2.0.3.4**
+* SECURITY: Now using get_search_query() and the_search_query() to prevent XSS issues in h1s and breadcrumbs on search results pages. (Thanks, retr0)
+* ENHANCEMENT: Tweaks to checkout page CSS.
+
 **2.0.3.3**
 * BUG: Updated memberlite_defaults for banner hover background color.
 
