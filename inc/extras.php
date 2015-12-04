@@ -291,9 +291,13 @@ function memberlite_page_title() {
 				elseif ( is_tax( 'post_format', 'post-format-chat' ) ) :
 					_e( 'Chats', 'memberlite' );
 	
-				elseif (bbp_is_forum_archive()) :
+				elseif ( function_exists('is_bbpress') && bbp_is_forum_archive() ) :
 					_e( 'Forums', 'memberlite');
-					
+				
+				elseif(is_post_type_archive() ) :
+					$obj = get_queried_object();
+					echo $obj->labels->name;
+				
 				else :
 					_e( 'Archives', 'memberlite' );
 	

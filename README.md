@@ -72,6 +72,10 @@ We highly recommend using these plugins for every site running Memberlite:
 
 
 ###Changelog
+**2.0.3.5**
+* BUG: Fixed current_user level class on compare_table layout in membership levels shortcode.
+* BUG: Fixed notie when bbpress is not activated for memberlite_page_title function
+
 **2.0.3.4**
 * SECURITY: Now using get_search_query() and the_search_query() to prevent XSS issues in h1s and breadcrumbs on search results pages. (Thanks, retr0)
 * ENHANCEMENT: Tweaks to checkout page CSS.
