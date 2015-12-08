@@ -74,6 +74,7 @@ We highly recommend using these plugins for every site running Memberlite:
 ###Changelog
 **2.0.3.5**
 * BUG: Fixed homepage bottom banner when page template is defined.
+* BUG: Fixed highlighted level in the compare_table layout when highlighted level is first column.
 * BUG: Fixed current_user level class on compare_table layout in membership levels shortcode.
 * BUG: Fixed notie when bbpress is not activated for memberlite_page_title function
 

@@ -327,7 +327,7 @@ function memberlite_levels_shortcode($atts, $content=null, $code="")
 								$compareitem_values = explode(",", $compareitem);
 								foreach($compareitem_values as $compareitem_value)
 								{			
-									if($count > 0 && !empty($numeric_levels_array[$count]))
+									if($count >= 0 && !empty($numeric_levels_array[$count]))
 										$level = $numeric_levels_array[$count];
 									else
 										$level = NULL;
