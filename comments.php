@@ -22,9 +22,9 @@ if ( post_password_required() ) {
 	<?php if ( have_comments() ) : ?>
 	
 		<?php 
-			$memberlite_comments = get_comments(array('type' => 'comment','post_id' => $post->ID));
-			$memberlite_trackbacks = get_comments(array('type' => 'trackback','post_id' => $post->ID));
-			$memberlite_pingbacks = get_comments(array('type' => 'pingback','post_id' => $post->ID));
+			$memberlite_comments = get_comments(array('type' => 'comment','post_id' => $post->ID,'status' => 'approve'));
+			$memberlite_trackbacks = get_comments(array('type' => 'trackback','post_id' => $post->ID,'status' => 'approve'));
+			$memberlite_pingbacks = get_comments(array('type' => 'pingback','post_id' => $post->ID,'status' => 'approve'));
 		?>
 		
 		<?php

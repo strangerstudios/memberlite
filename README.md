@@ -73,14 +73,12 @@ We highly recommend using these plugins for every site running Memberlite:
 
 ###Changelog
 **2.0.3.5**
-<<<<<<< HEAD
+* BUG: Fixed comment/ping/trackback count for 'approve' status only.
 * BUG: Updated Comment Walker to respect PHP strict standards
-=======
 * BUG: Fixed homepage bottom banner when page template is defined.
 * BUG: Fixed highlighted level in the compare_table layout when highlighted level is first column.
 * BUG: Fixed current_user level class on compare_table layout in membership levels shortcode.
-* BUG: Fixed notie when bbpress is not activated for memberlite_page_title function
->>>>>>> bd40cb9a54aa081519b475cf0ab86e04703d9be0
+* BUG: Fixed notice when bbpress is not activated for memberlite_page_title function
 
 **2.0.3.4**
 * SECURITY: Now using get_search_query() and the_search_query() to prevent XSS issues in h1s and breadcrumbs on search results pages. (Thanks, retr0)
