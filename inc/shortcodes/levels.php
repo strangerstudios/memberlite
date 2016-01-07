@@ -226,7 +226,7 @@ function memberlite_levels_shortcode($atts, $content=null, $code="")
 							foreach($pmpro_levels_filtered as $level)
 							{				  
 								?>
-								<th class="<?php if($current_level) { echo 'pmpro_level-current '; } if($highlight == $level->id) { echo 'pmpro_level-highlight '; } ?>">
+								<th class="<?php if($current_user->membership_level->ID == $level->id) { echo 'pmpro_level-current '; } if($highlight == $level->id) { echo 'pmpro_level-highlight '; } ?>">
 									<h2><?php echo $level->name?></h2>
 								</th>
 								<?php
@@ -240,7 +240,7 @@ function memberlite_levels_shortcode($atts, $content=null, $code="")
 							foreach($pmpro_levels_filtered as $level)
 							{				  
 								?>
-								<th class="<?php if($current_level) { echo 'pmpro_level-current '; } if($highlight == $level->id) { echo 'pmpro_level-highlight '; } ?>">
+								<th class="<?php if($current_user->membership_level->ID == $level->id) { echo 'pmpro_level-current '; } if($highlight == $level->id) { echo 'pmpro_level-highlight '; } ?>">
 									<h1 class="primary">
 									<?php 
 										if($price === 'full')
@@ -262,7 +262,7 @@ function memberlite_levels_shortcode($atts, $content=null, $code="")
 							foreach($pmpro_levels_filtered as $level)
 							{				  
 								?>
-								<th class="muted <?php if($current_level) { echo 'pmpro_level-current '; } if($highlight == $level->id) { echo 'pmpro_level-highlight '; } ?>">
+								<th class="muted <?php if($current_user->membership_level->ID == $level->id) { echo 'pmpro_level-current '; } if($highlight == $level->id) { echo 'pmpro_level-highlight '; } ?>">
 									<?php 
 										$level_expiration = pmpro_getLevelExpiration($level);
 										if(empty($level_expiration))
@@ -280,7 +280,11 @@ function memberlite_levels_shortcode($atts, $content=null, $code="")
 						<th>&nbsp;</th>
 						<?php
 							foreach($pmpro_levels_filtered as $level)
-							{				  
+							{		
+								if(isset($current_user->membership_level->ID))
+								  $current_level = ($current_user->membership_level->ID == $level->id);
+								else
+								  $current_level = false;									  
 								?>
 								<th class="<?php if($current_level) { echo 'pmpro_level-current '; } if($highlight == $level->id) { echo 'pmpro_level-highlight '; } ?>">
 								<?php if(empty($current_user->membership_level->ID)) { ?>
@@ -323,13 +327,13 @@ function memberlite_levels_shortcode($atts, $content=null, $code="")
 								$compareitem_values = explode(",", $compareitem);
 								foreach($compareitem_values as $compareitem_value)
 								{			
-									if($count > 0 && !empty($numeric_levels_array[$count]))
+									if($count >= 0 && !empty($numeric_levels_array[$count]))
 										$level = $numeric_levels_array[$count];
 									else
 										$level = NULL;
 									$count++;
 									?>
-									<td class="<?php if($current_level) { echo 'pmpro_level-current '; } if(!empty($level) && $highlight == $level->id) { echo 'pmpro_level-highlight '; } ?>">
+									<td class="<?php if($current_user->membership_level->ID == $level->id) { echo 'pmpro_level-current '; } if(!empty($level) && $highlight == $level->id) { echo 'pmpro_level-highlight '; } ?>">
 										<?php 
 											if($compareitem_value == '1') { echo '<i class="fa fa-check fa-2x success"></i>'; } 
 											elseif($compareitem_value == '0') { echo '<i class="fa fa-minus muted"></i>'; } 
@@ -350,7 +354,11 @@ function memberlite_levels_shortcode($atts, $content=null, $code="")
 						<td>&nbsp;</td>
 						<?php
 							foreach($pmpro_levels_filtered as $level)
-							{				  
+							{		
+								if(isset($current_user->membership_level->ID))
+								  $current_level = ($current_user->membership_level->ID == $level->id);
+								else
+								  $current_level = false;		  
 								?>
 								<td class="<?php if($current_level) { echo 'pmpro_level-current '; } if(!empty($level) && $highlight == $level->id) { echo 'pmpro_level-highlight '; } ?>">
 								<?php if(empty($current_user->membership_level->ID)) { ?>
@@ -386,7 +394,7 @@ function memberlite_levels_shortcode($atts, $content=null, $code="")
 							foreach($pmpro_levels_filtered as $level)
 							{				  
 								?>
-								<td class="muted <?php if($current_level) { echo 'pmpro_level-current '; } if($highlight == $level->id) { echo 'pmpro_level-highlight '; } ?>">
+								<td class="muted <?php if($current_user->membership_level->ID == $level->id) { echo 'pmpro_level-current '; } if($highlight == $level->id) { echo 'pmpro_level-highlight '; } ?>">
 									<?php 
 										$level_expiration = pmpro_getLevelExpiration($level);
 										if(empty($level_expiration))
@@ -408,7 +416,7 @@ function memberlite_levels_shortcode($atts, $content=null, $code="")
 							foreach($pmpro_levels_filtered as $level)
 							{				  
 								?>
-								<td class="<?php if($current_level) { echo 'pmpro_level-current '; } if(!empty($level) && $highlight == $level->id) { echo 'pmpro_level-highlight '; } ?>">
+								<td class="<?php if($current_user->membership_level->ID == $level->id) { echo 'pmpro_level-current '; } if(!empty($level) && $highlight == $level->id) { echo 'pmpro_level-highlight '; } ?>">
 									<?php
 										$level_page = memberlite_getLevelLandingPage($level->id);
 										if(!empty($level_page))

@@ -8,6 +8,7 @@
  */
 ?>
 		<?php 
+			$template = get_page_template();
 			if( 
 				!is_page_template('templates/fluid-width.php') && 
 				!is_page_template( 'templates/interstitial.php' ) &&
