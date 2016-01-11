@@ -650,7 +650,7 @@ function memberlite_levels_shortcode($atts, $content=null, $code="")
 			<div class="nav-previous alignleft">
 				<?php if(!empty($current_user->membership_level->ID)) { ?>
 					<a href="<?php echo pmpro_url("account")?>"><?php _e('&larr; Return to Your Account', 'pmpro');?></a>
-				<?php } else { ?>
+				<?php } elseif(!is_front_page()) { ?>
 					<a href="<?php echo home_url()?>"><?php _e('&larr; Return to Home', 'pmpro');?></a>
 				<?php } ?>
 			</div>
