@@ -72,6 +72,10 @@ We highly recommend using these plugins for every site running Memberlite:
 
 
 ###Changelog
+**2.0.3.6**
+* ENHANCEMENT: Added responsive appearance to compare_table Membership Levels layout.
+* BUG: Fixed notices in memberlite_levels shortcode.
+
 **2.0.3.5**
 * BUG: Fixed comment/ping/trackback count for 'approve' status only.
 * BUG: Updated Comment Walker to respect PHP strict standards
