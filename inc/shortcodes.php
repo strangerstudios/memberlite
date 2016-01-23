@@ -6,6 +6,7 @@
  */
 
 $path = dirname(__FILE__);
+require_once($path . "/shortcodes/banners.php");
 require_once($path . "/shortcodes/buttons.php");
 require_once($path . "/shortcodes/columns.php");
 require_once($path . "/shortcodes/font-awesome.php");
