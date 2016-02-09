@@ -8,6 +8,7 @@
 
 	<div class="entry-content">
 		<?php //NOTE: The title is generated in header.php via the memberlite_page_title() function found in functions.php ?>
+		<?php do_action('before_content_single'); ?>
 		
 		<?php the_content(); ?>
 		
@@ -17,6 +18,7 @@
 				'after'  => '</div>',
 			) );
 		?>
+		<?php do_action('after_content_single'); ?>
 	</div><!-- .entry-content -->
 
 	<footer class="entry-footer">
