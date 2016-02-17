@@ -4,7 +4,7 @@ Theme URI: http://demo.paidmembershipspro.com/memberlite/
 Author: Kim Coleman
 Author URI: http://www.paidmembershipspro.com
 Description: Responsive, Customizable and Easily Integrated with Paid Memberships Pro
-Version: 2.0.3.5
+Version: 2.0.3.6
 Text Domain: memberlite
 Domain Path: /languages/
 Tags: black, blue, gray, pink, orange, dark, light, two-columns, left-sidebar, fixed-layout, responsive-layout, custom-background, custom-colors, custom-header, custom-menu, featured-images, post-formats, sticky-post, threaded-comments, translation-ready
@@ -1851,7 +1851,7 @@ a:active {
 	padding: .5rem;
 	margin: 0 0 1rem 0;
 }
-#pmpro_levels .medium-4 .pmpro_btn, #pmpro_levels .medium-3 .pmpro_btn, .pmpro_levels-table .pmpro_btn, .pmpro_levels-compare_table .pmpro_btn {
+#pmpro_levels .medium-4 .pmpro_btn, #pmpro_levels .medium-3 .pmpro_btn, .pmpro_levels-table .pmpro_btn, .pmpro_levels-compare_table .pmpro_btn, .pmpro_levels-compare_table_responsive .pmpro_btn {
 	display: block;
 }
 #pmpro_levels.pmpro_levels-table.pmpro_level-highlight, #pmpro_levels.pmpro_levels-div .pmpro_level-highlight, #pmpro_levels.pmpro_levels-2col .pmpro_level-highlight, #pmpro_levels.pmpro_levels-3col .pmpro_level-highlight, #pmpro_levels.pmpro_levels-4col .pmpro_level-highlight, .memberlite_signup, .pmpro_signup_form {padding: 1rem; background: #FFF; z-index: 100; border-top: .5rem solid #18BC9C; border-bottom: 1.5rem solid #18BC9C; border-left: 1px solid #CCC; border-right: 1px solid #CCC; }
@@ -1877,6 +1877,9 @@ a:active {
 #pmpro_levels.pmpro_levels-compare_table thead tr:last-child th.pmpro_level-highlight, #pmpro_levels.pmpro_levels-compare_table tbody tr td.pmpro_level-highlight, #pmpro_levels.pmpro_levels-compare_table tfoot tr td.pmpro_level-highlight { border-bottom: none; }
 #pmpro_levels.pmpro_levels-compare_table tfoot tr:last-child td.pmpro_level-highlight {border-bottom: 1rem solid #18BC9C; }
 
+#pmpro_levels.pmpro_levels-compare_table_responsive {display: none; }
+#pmpro_levels.pmpro_levels-compare_table_responsive {text-align: center; }
+#pmpro_levels.pmpro_levels-compare_table_responsive .pmpro_level-highlight {border-top: .5rem solid #18BC9C; border-bottom: 1.5rem solid #18BC9C; border-left: 1px solid #CCC; border-right: 1px solid #CCC; }
 
 #pmpro_levels.pmpro_levels-compare_table:hover tbody tr:nth-child(even) td {background: none !important; }
 #pmpro_levels.pmpro_levels-compare_table tbody tr:hover {background-color: rgba(252,248,227,0.8); }
@@ -2169,6 +2172,8 @@ object {
 	form.pmpro_form .pmpro_submit, form.pmpro_form .leftmar {margin: 0; }
 	.pmpro_levels-div {text-align: center; }
 	.pmpro_levels-div .entry-footer .alignright, .pmpro_levels-2col .entry-footer .alignright {float: none; margin: 0 0 1.5rem 0; display: block; }
+	#pmpro_levels.pmpro_levels-compare_table {display: none; }
+	#pmpro_levels.pmpro_levels-compare_table_responsive {display: block; }
 	.home .masthead {text-align: center; }
 	.footer-widgets .widget {padding-top: 2rem; padding-bottom: 2rem; }
 	.footer-widgets .widget:nth-child(even) {background: rgba(255,255,255,0.2); }
