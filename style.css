@@ -1,10 +1,10 @@
 /*
 Theme Name: Memberlite
-Theme URI: http://demo.paidmembershipspro.com/memberlite/
-Author: Kim Coleman
-Author URI: http://www.paidmembershipspro.com
+Theme URI: http://www.memberlitetheme.com/
+Author: kimannwall, strangerstudios
+Author URI: http://www.memberlitetheme.com
 Description: Responsive, Customizable and Easily Integrated with Paid Memberships Pro
-Version: 2.0.3.6
+Version: 3.0
 Text Domain: memberlite
 Domain Path: /languages/
 Tags: black, blue, gray, pink, orange, dark, light, two-columns, left-sidebar, fixed-layout, responsive-layout, custom-background, custom-colors, custom-header, custom-menu, featured-images, post-formats, sticky-post, threaded-comments, translation-ready
@@ -35,12 +35,12 @@ Tags: black, blue, gray, pink, orange, dark, light, two-columns, left-sidebar, f
 	10.4 - Posts and pages
 	10.5 - Asides
 	10.6 - Comments
-	10.7 - Shortcodes
-	10.8 - Footer
+	10.7 - Footer
+	10.8 - Memberlite Shortcodes
 11.0 - Third Party Plugin Integrated Styles
-	11.1 Paid Memberships Pro Integrated Styles
+	11.1 - Paid Memberships Pro Integrated Styles
 	11.2 - Theme My Login
-	11.3 Testimonials Widget
+	11.3 - Testimonials Widget
 12.0 Infinite scroll
 13.0 - Media
 	13.1 - Captions
@@ -1650,84 +1650,7 @@ a:active {
 }
 
 /*--------------------------------------------------------------
-10.7 Shortcodes
-.banner {
-	padding: 4rem 0;
-}
-.banner_body {background-color: #FFF; }
-.banner_primary {background-color: #2C3E50; }
-.banner_secondary {background-color: #18BC9C; }
-.banner_action {background-color: #F39C12; }
-#main .banner_primary, #main .banner_primary h1, #main .banner_primary h2, #main .banner_primary h3, #main .banner_primary h4, #main .banner_primary h5, #main .banner_primary a, #main .banner_primary a:link,
-#main .banner_secondary, #main .banner_secondary h1, #main .banner_secondary h2, #main .banner_secondary h3, #main .banner_secondary h4, #main .banner_secondary h5, #main .banner_secondary a, #main .banner_secondary a:link {
-	color: #FFF; 
-}
-#banner_bottom {
-	background-color: #18BC9C;
-	color: #FFF;
-	padding: 2rem 0;
-}
-#banner_bottom p {
-	font-size: 2rem;
-	font-size: 20px;
-	line-height: 3.3rem;
-}
-#banner_bottom h1, #banner_bottom h2, #banner_bottom h3, #banner_bottom h4, #banner_bottom h5 {
-	color: #FFF;
-	margin: 0 0 1.6rem 0;
-}
-#banner_bottom h1 a, #banner_bottom h2 a, #banner_bottom h3 a, #banner_bottom h4 a, #banner_bottom h5 a {
-	color: #FFF;
-	text-decoration: none;
-	border-bottom: 1px dotted #FFF;
-}
-
-.memberlite_tabbable ul.memberlite_tabs {margin: 0; }
-.memberlite_tabbable ul.memberlite_tabs li {
-	float: left;
-	list-style: none;
-	margin: 0 .5rem 0 0;
-}
-.memberlite_tabbable ul.memberlite_tabs li > a {
-	background: none;
-	border: 1px solid #CCC;
-	border-top-left-radius: 3px;
-	border-top-right-radius: 3px;
-	border-bottom: none;
-	color: #777777;
-	display: inline-block;
-	float: none;
-	padding: 1.5rem 2rem;
-	text-decoration: none;
-}
-.memberlite_tabbable ul.memberlite_tabs li > a:hover {
-	background: #EFEFEF;
-}
-.memberlite_tabbable ul.memberlite_tabs li.memberlite_active a {
-	color: #FFF !important;
-	background-color: #18BC9C;
-	border-color: #18BC9C;
-	font-weight: bold;
-}
-.memberlite_tabbable .memberlite_tab_content {
-	border-top: .5rem solid #18BC9C;
-	clear: both; 
-	padding-top: 4rem;
-}
-.memberlite_tabbable .memberlite_tab_pane {
-	display: none;
-}
-.memberlite_tabbable .memberlite_tab_pane.memberlite_active {
-	display: block;
-}
-
-#comments .memberlite_tabbable .memberlite_tab_content {
-	padding-top: 0; 
-}
---------------------------------------------------------------*/
-
-/*--------------------------------------------------------------
-10.8 Footer
+10.7 Footer
 --------------------------------------------------------------*/
 .footer-widgets {
 	background: #2C3E50;
@@ -1827,6 +1750,31 @@ a:active {
 	color: #FFF;
 	text-decoration: none;
 	border-bottom: 1px dotted #FFF;
+}
+
+/*--------------------------------------------------------------
+10.8 Memberlite Shortcodes
+--------------------------------------------------------------*/
+.banner_body {background-color: #FFF; }
+.banner_primary {background-color: #2C3E50; }
+.banner_secondary {background-color: #18BC9C; }
+.banner_action {background-color: #F39C12; }
+#main .banner_primary, #main .banner_primary h1, #main .banner_primary h2, #main .banner_primary h3, #main .banner_primary h4, #main .banner_primary h5, #main .banner_primary a, #main .banner_primary a:link,
+#main .banner_secondary, #main .banner_secondary h1, #main .banner_secondary h2, #main .banner_secondary h3, #main .banner_secondary h4, #main .banner_secondary h5, #main .banner_secondary a, #main .banner_secondary a:link {
+	color: #FFF; 
+}
+
+.btn_primary, .btn_primary:link {background: #2C3E50; }
+.btn_secondary, .btn_secondary:link {background: #18BC9C; }
+.btn_action, .btn_action:link {background: #F39C12; }
+
+.memberlite_tabbable ul.memberlite_tabs li.memberlite_active a {
+	color: #FFF !important;
+	background-color: #18BC9C;
+	border-color: #18BC9C;
+}
+.memberlite_tabbable .memberlite_tab_content {
+	border-top-color: #18BC9C;
 }
 
 /*--------------------------------------------------------------
