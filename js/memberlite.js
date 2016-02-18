@@ -2,6 +2,7 @@
  * memberlite.js
  */
 jQuery( document ).ready(function() {
+  //switch tab content when clicked
   jQuery('.memberlite_tabbable .memberlite_tabs li a').click(function(e) {
   
 	//don't want to jump to #
@@ -27,5 +28,8 @@ jQuery( document ).ready(function() {
 	//highlight the active one
 	jQuery(this).closest('li').addClass('memberlite_active');
   
-  });  
+  });
+  
+  //check if we should switch tab content on page loads
+  jQuery('a[href=' + window.location.hash + ']').click();
 });
