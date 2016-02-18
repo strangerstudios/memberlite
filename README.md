@@ -28,6 +28,8 @@ Memberlite shortcodes enhance the appearance of your site content and can be use
 
 [fa] for Font Awesome icons. [docs](http://www.paidmembershipspro.com/themes/memberlite/shortcodes/font-awesome-icons/)
 
+[memberlite_banner] for formatted banners. [docs](http://www.paidmembershipspro.com/themes/memberlite/shortcodes/banners/)
+
 [memberlite_btn] for formatted buttons. [docs](http://www.paidmembershipspro.com/themes/memberlite/shortcodes/buttons/)
 
 [memberlite_levels] to display a block with details and a registration link for the specified membership levels. [docs](http://www.paidmembershipspro.com/themes/memberlite/shortcodes/membership-levels-display/)
@@ -81,6 +83,7 @@ We highly recommend using these plugins for every site running Memberlite:
 * BUG: Fixed notices in memberlite_levels shortcode.
 
 **2.0.3.5**
+* FEATURE: Added memberlite_banner shortcode
 * BUG: Fixed comment/ping/trackback count for 'approve' status only.
 * BUG: Updated Comment Walker to respect PHP strict standards
 * BUG: Fixed homepage bottom banner when page template is defined.
