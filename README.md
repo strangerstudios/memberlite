@@ -74,6 +74,9 @@ We highly recommend using these plugins for every site running Memberlite:
 
 
 ###Changelog
+**2.0.3.7**
+* ENHANCEMENT: Added JS code to swap to a tab if an anchor is in the URL.
+
 **2.0.3.6**
 * ENHANCEMENT: Added responsive appearance to compare_table Membership Levels layout.
 * Added hooks for before and after content hooks to single page and single post.
