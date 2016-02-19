@@ -240,6 +240,12 @@ function memberlite_page_title() {
 			endif;	
 			woocommerce_taxonomy_archive_description();
 	}
+	elseif(is_post_type_archive())
+	{
+		?>
+		<h1 class="page-title"><?php post_type_archive_title(); ?></h1>
+		<?php
+	}
 	elseif(is_author() || is_tag() || is_archive())
 	{
 		?>
@@ -293,10 +299,6 @@ function memberlite_page_title() {
 	
 				elseif ( function_exists('is_bbpress') && bbp_is_forum_archive() ) :
 					_e( 'Forums', 'memberlite');
-				
-				elseif(is_post_type_archive() ) :
-					$obj = get_queried_object();
-					echo $obj->labels->name;
 				
 				else :
 					_e( 'Archives', 'memberlite' );
@@ -698,6 +700,16 @@ function memberlite_getBreadcrumbs()
 			</nav>
 			<?php
 		}
+		elseif(is_post_type_archive() && '' != $archive_breadcrumbs)
+		{
+		?>
+		<nav class="memberlite-breadcrumb" itemprop="breadcrumb">
+          	<a href="<?php echo get_option('home'); ?>/"><?php _e('Home', 'memberlite'); ?></a>
+			<span class="sep"><?php echo $memberlite_defaults['delimiter']; ?></span>
+			<?php post_type_archive_title(); ?>
+		</nav>
+		<?php	
+		}
 		elseif(((is_author() || is_tag() || is_archive())) && '' != $archive_breadcrumbs)
 		{
 		?>
@@ -772,7 +784,7 @@ function memberlite_getBreadcrumbs()
 		</nav>
 		<?php
 		}
-		elseif(is_single() && '' != $post_breadcrumbs)
+		elseif(is_singular(array('post')) && '' != $post_breadcrumbs)
 		{
 		?>
 		<nav class="memberlite-breadcrumb" itemprop="breadcrumb">
@@ -790,6 +802,26 @@ function memberlite_getBreadcrumbs()
 			<?php the_title(); ?>
 		</nav>
 		<?php
+		}
+		elseif(is_single() && '' != $post_breadcrumbs)
+		{
+			$post_type_object = get_post_type_object(get_post_type($post));
+		?>
+		<nav class="memberlite-breadcrumb" itemprop="breadcrumb">
+          	<a href="<?php echo home_url()?>"><?php _e('Home', 'memberlite'); ?></a>
+			<?php
+				if($post_type_object->has_archive == true)
+				{
+				?>
+					<span class="sep"><?php echo $memberlite_defaults['delimiter']; ?></span>
+					<a href="<?php echo get_post_type_archive_link( get_post_type($post) ); ?>"><?php echo $post_type_object->labels->name; ?></a>
+					<?php 
+				}
+			?>
+			<span class="sep"><?php echo $memberlite_defaults['delimiter']; ?></span>
+			<?php the_title(); ?>
+		</nav>	
+		<?php	
 		}
 		elseif(is_search() && '' != $search_breadcrumbs)
 		{
