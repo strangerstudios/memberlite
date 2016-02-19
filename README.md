@@ -74,6 +74,10 @@ We highly recommend using these plugins for every site running Memberlite:
 
 
 ###Changelog
+**3.0**
+* ENHANCEMENT: Moving all shortcodes to 'memberlite-shortocdes' plugin for better compatibility for theme changes.
+* ENHANCEMENT: Improved handling of CPT titles, breadcrumbs, and sidebars for single and archive view.
+
 **2.0.3.7**
 * ENHANCEMENT: Added JS code to swap to a tab if an anchor is in the URL.
 
