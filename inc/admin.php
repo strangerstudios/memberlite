@@ -19,7 +19,7 @@ function memberlite_support() {
 	//only let admins get here
 	if(!function_exists("current_user_can") || (!current_user_can("edit_theme_options") && !current_user_can("member_lite_options")))
 	{
-		die(__("You do not have permissions to perform this action.", "pmpro"));
+		die(__('You do not have permissions to perform this action.', 'memberlite'));
 	}
 	
 	if(isset($_REQUEST['tab']))

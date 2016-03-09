@@ -144,14 +144,14 @@ class comment_walker extends Walker_Comment {
 	var $tree_type = 'comment';
 	var $db_fields = array( 'parent' => 'comment_parent', 'id' => 'comment_ID' );
 
-	// constructor – wrapper for the comments list
+	// constructor: wrapper for the comments list
 	function __construct() { ?>
 
 		<section class="comments-list">
 
 	<?php }
 
-	// start_lvl – wrapper for child comments list
+	// start_lvl: wrapper for child comments list
 	function start_lvl( &$output, $depth = 0, $args = array() ) {
 		$GLOBALS['comment_depth'] = $depth + 2; ?>
 		
@@ -159,7 +159,7 @@ class comment_walker extends Walker_Comment {
 
 	<?php }
 
-	// end_lvl – closing wrapper for child comments list
+	// end_lvl: closing wrapper for child comments list
 	function end_lvl( &$output, $depth = 0, $args = array() ) {
 		$GLOBALS['comment_depth'] = $depth + 2; ?>
 
@@ -167,7 +167,7 @@ class comment_walker extends Walker_Comment {
 
 	<?php }
 
-	// start_el – HTML for comment template
+	// start_el: HTML for comment template
 	function start_el( &$output, $comment, $depth = 0, $args = array(), $id = 0 ) {
 		$depth++;
 		$GLOBALS['comment_depth'] = $depth;
@@ -184,7 +184,7 @@ class comment_walker extends Walker_Comment {
 
 		<article <?php comment_class(empty( $args['has_children'] ) ? '' :'parent') ?> id="comment-<?php comment_ID() ?>" itemscope itemtype="http://schema.org/Comment">
 			<?php if($depth > 1) { ?><i class="fa fa-caret-left"></i><?php } ?>
-			<figure class="gravatar"><?php echo get_avatar( $comment, 80, '', 'Author’s gravatar' ); ?></figure>
+			<figure class="gravatar"><?php echo get_avatar( $comment, 80, '', 'Author&#8217;s gravatar' ); ?></figure>
 			<div class="comment-meta post-meta" role="complementary">
 				<h4 class="comment-author">
 					<a class="comment-author-link" href="<?php comment_author_url(); ?>" itemprop="author" rel="nofollow" target="_blank"><?php comment_author(); ?></a>
@@ -202,14 +202,14 @@ class comment_walker extends Walker_Comment {
 
 	<?php }
 
-	// end_el – closing HTML for comment template
+	// end_el: closing HTML for comment template
 	function end_el(&$output, $comment, $depth = 0, $args = array() ) { ?>
 
 		</article>
 
 	<?php }
 
-	// destructor – closing wrapper for the comments list
+	// destructor: closing wrapper for the comments list
 	function __destruct() { ?>
 
 		</section>
@@ -221,14 +221,14 @@ class pings_walker extends Walker_Comment {
 	var $tree_type = 'comment';
 	var $db_fields = array( 'parent' => 'comment_parent', 'id' => 'comment_ID' );
 
-	// constructor – wrapper for the comments list
+	// constructor: wrapper for the comments list
 	function __construct() { ?>
 
 		<section class="comments-list">
 
 	<?php }
 
-	// start_lvl – wrapper for child comments list
+	// start_lvl: wrapper for child comments list
 	function start_lvl( &$output, $depth = 0, $args = array() ) {
 		$GLOBALS['comment_depth'] = $depth + 2; ?>
 		
@@ -236,7 +236,7 @@ class pings_walker extends Walker_Comment {
 
 	<?php }
 
-	// end_lvl – closing wrapper for child comments list
+	// end_lvl: closing wrapper for child comments list
 	function end_lvl( &$output, $depth = 0, $args = array() ) {
 		$GLOBALS['comment_depth'] = $depth + 2; ?>
 
@@ -244,7 +244,7 @@ class pings_walker extends Walker_Comment {
 
 	<?php }
 
-	// start_el – HTML for comment template
+	// start_el: HTML for comment template
 	function start_el( &$output, $comment, $depth = 0, $args = array(), $id = 0 ) {
 		$depth++;
 		$GLOBALS['comment_depth'] = $depth;
@@ -273,14 +273,14 @@ class pings_walker extends Walker_Comment {
 			</div>
 	<?php }
 
-	// end_el – closing HTML for comment template
+	// end_el: closing HTML for comment template
 	function end_el(&$output, $comment, $depth = 0, $args = array() ) { ?>
 
 		</article>
 
 	<?php }
 
-	// destructor – closing wrapper for the comments list
+	// destructor: closing wrapper for the comments list
 	function __destruct() { ?>
 
 		</section>

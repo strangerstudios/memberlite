@@ -145,7 +145,7 @@ class memberlite_Customize {
 		
 		$memberlite_breadcrumbs[] = array(
 			'slug'=>'page_breadcrumbs', 
-			'label' => __('Breadcrumbs on Pages', 'ssbootstrapt'),
+			'label' => __('Breadcrumbs on Pages', 'memberlite'),
 			'priority' => 51
 		);
 		$memberlite_breadcrumbs[] = array(
