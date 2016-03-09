@@ -9,42 +9,17 @@ Memberlite makes it easy to customize the appearance and layout of your site usi
 ###Adding Your Logo
 Use the Appearance Header Screen to add a Custom Header logo (formatted for retina display) and to toggle the display of header text and text color.
 
-[Explore Documentation on Custom Headers in Memberlite](http://www.paidmembershipspro.com/themes/memberlite/adding-your-logo/)
+[Explore Documentation on Custom Headers in Memberlite](http://www.memberlitetheme.com/documentation/adding-your-logo/)
 
 ###Customize the Theme
 Use the Customize Screen to modify theme layout, logo, fonts, colors, copyright message and more.
 
-[Explore Documentation on Customizing Memberlite »](http://www.paidmembershipspro.com/themes/memberlite/customize-the-theme/)
+[Explore Documentation on Customizing Memberlite »](http://memberlitetheme.com/documentation/customize-the-theme/)
 
 ###Using Child Themes
 If you need to customize the theme beyond the settings in "Customize", use a child theme.
 
 [Download a Blank Child Theme »](https://github.com/strangerstudios/memberlite-child) | [About Child Themes (WordPress Codex) »](http://codex.wordpress.org/Child_Themes)
-
-###Shortcodes
-Memberlite shortcodes enhance the appearance of your site content and can be used to customize the display of Paid Memberships Pro-generated pages. Shortcodes are included for:
-
-[row] and [column] for formatting text in responsive columns. [docs](http://www.paidmembershipspro.com/themes/memberlite/shortcodes/column-shortcodes/)
-
-[fa] for Font Awesome icons. [docs](http://www.paidmembershipspro.com/themes/memberlite/shortcodes/font-awesome-icons/)
-
-[memberlite_banner] for formatted banners. [docs](http://www.paidmembershipspro.com/themes/memberlite/shortcodes/banners/)
-
-[memberlite_btn] for formatted buttons. [docs](http://www.paidmembershipspro.com/themes/memberlite/shortcodes/buttons/)
-
-[memberlite_levels] to display a block with details and a registration link for the specified membership levels. [docs](http://www.paidmembershipspro.com/themes/memberlite/shortcodes/membership-levels-display/)
-
-[memberlite_msg] for contextual message blocks. [docs](http://www.paidmembershipspro.com/themes/memberlite/shortcodes/contextual-messages/)
-
-[memberlite_recent_posts] designed to be used on the homepage and outputs the newest posts overall or in a defined category. [docs](http://www.paidmembershipspro.com/themes/memberlite/shortcodes/recent-posts/)
-
-[memberlite_signup] to display a block with signup fields for a specific membership level. [docs](http://www.paidmembershipspro.com/themes/memberlite/shortcodes/membership-signup-block/)
-
-[memberlite_subpagelist] to show a list of a given pages' subpages in the order you define. [docs](http://www.paidmembershipspro.com/themes/memberlite/shortcodes/subpagelist/)
-
-[memberlite_tabs] and [memberlite_tab] for tabbed content blocks. [docs](http://www.paidmembershipspro.com/themes/memberlite/shortcodes/tabs/)
-
-[View Shortcode Documentation »](http://www.paidmembershipspro.com/themes/memberlite/shortcodes/)
 
 ###Integrated Plugins
 Memberlite includes formatting for use with:
@@ -75,6 +50,7 @@ We highly recommend using these plugins for every site running Memberlite:
 
 ###Changelog
 **3.0**
+* BUG: Fixing errors and alerts from Theme Check plugin.
 * ENHANCEMENT: Moving all shortcodes to 'memberlite-shortocdes' plugin for better compatibility for theme changes.
 * ENHANCEMENT: Improved handling of CPT titles, breadcrumbs, and sidebars for single and archive view.
 
