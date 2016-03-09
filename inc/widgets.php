@@ -13,8 +13,8 @@
 class WP_Widget_Recent_Posts_Thumbnails extends WP_Widget {
 
 	function __construct() {
-		$widget_ops = array('classname' => 'widget_recent_entries_thumbnails', 'description' => __( "Your site&#8217;s most recent Posts with Thumbnails.") );
-		parent::__construct('recent-posts-thumbnails', __('Recent Posts w/Thumbnails'), $widget_ops);
+		$widget_ops = array('classname' => 'widget_recent_entries_thumbnails', 'description' => __( "Your site&#8217;s most recent Posts with Thumbnails.", 'memberlite') );
+		parent::__construct('recent-posts-thumbnails', __('Recent Posts w/Thumbnails', 'memberlite'), $widget_ops);
 		$this->alt_option_name = 'widget_recent_entries_thumbnails';
 
 		add_action( 'save_post', array($this, 'flush_widget_cache') );

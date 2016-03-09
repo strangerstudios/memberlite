@@ -65,6 +65,9 @@ function memberlite_setup() {
 	// Add default posts and comments RSS feed links to head.
 	add_theme_support('automatic-feed-links');
 
+	// Add document title tag to HTML
+	add_theme_support('title-tag');
+
 	// Enable support for Post Thumbnails on posts and pages.
 	add_theme_support('post-thumbnails');
 	set_post_thumbnail_size( 150, 150, true );
@@ -235,14 +238,6 @@ function memberlite_comment_count( $count ) {
 }
 add_filter( 'get_comments_number', 'memberlite_comment_count', 0 );
 
-/* PMPro License code */
-if(!defined('PMPRO_LICENSE_SERVER'))
-	require_once get_template_directory() . '/inc/license.php';
-
-/* Updater coder */
-if(is_admin())
-	require_once get_template_directory() . '/inc/updates.php';
-	
 /* Custom admin theme pages. */
 if(is_admin())
 	require_once get_template_directory() . '/inc/admin.php';
