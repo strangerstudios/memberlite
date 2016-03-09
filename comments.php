@@ -32,6 +32,7 @@ if ( post_password_required() ) {
 			{
 				?>
 				<h2><?php printf(__('Comments (%s)','pmpromd'), count($memberlite_comments)); ?></h2>
+				<?php the_comments_navigation(); ?>
 				<?php
 					wp_list_comments( array(
 						'per_page'	=> 0,
@@ -40,6 +41,7 @@ if ( post_password_required() ) {
 						'walker'		=> new comment_walker()
 					) );
 				?>
+				<?php the_comments_navigation(); ?>
 				<?php
 					// If comments are closed and there are comments, let's leave a little note, shall we?
 					if ( ! comments_open() && '0' != get_comments_number() && post_type_supports( get_post_type(), 'comments' ) ) :
@@ -60,6 +62,7 @@ if ( post_password_required() ) {
 					<div class="memberlite_tab_content">	
 					<?php if(count($memberlite_comments) > 0) { ?>
 						<div class="memberlite_tab_pane memberlite_active" id="tab-comments">
+							<?php the_comments_navigation(); ?>
 							<?php
 								wp_list_comments( array(
 									'per_page'	=> 0,
@@ -68,6 +71,7 @@ if ( post_password_required() ) {
 									'walker'		=> new comment_walker()
 								) );
 							?>
+							<?php the_comments_navigation(); ?>
 							<?php
 								// If comments are closed and there are comments, let's leave a little note, shall we?
 								if ( ! comments_open() && '0' != get_comments_number() && post_type_supports( get_post_type(), 'comments' ) ) :

@@ -5,6 +5,8 @@ Author: kimannwall, strangerstudios
 Author URI: http://www.memberlitetheme.com
 Description: Responsive, Customizable and Easily Integrated with Paid Memberships Pro
 Version: 3.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: memberlite
 Domain Path: /languages/
 Tags: black, blue, gray, pink, orange, dark, light, two-columns, left-sidebar, fixed-layout, responsive-layout, custom-background, custom-colors, custom-header, custom-menu, featured-images, post-formats, sticky-post, threaded-comments, translation-ready
@@ -904,10 +906,13 @@ a:active {
 /*--------------------------------------------------------------
 5.4 Prev/Next Navigation
 --------------------------------------------------------------*/
-.site-main .comment-navigation,
 .site-main .paging-navigation,
 .site-main .post-navigation {
 	margin: 0 0 2em;
+	overflow: hidden;
+}
+.site-main .comment-navigation {
+	margin: 1em 0;
 	overflow: hidden;
 }
 .comment-navigation .nav-previous,
