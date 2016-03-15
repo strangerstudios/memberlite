@@ -35,7 +35,7 @@ function memberlite_init_styles()
 		wp_enqueue_script('comment-reply');
 	}
 }
-add_action("wp_enqueue_scripts", "memberlite_init_styles");	
+add_action('wp_enqueue_scripts', 'memberlite_init_styles');	
 
 /* Load fonts via Google API */
 function memberlite_load_fonts()
@@ -99,6 +99,9 @@ function memberlite_setup() {
 		'default-color' => 'ffffff',
 		'default-image' => '',
 	)));
+	
+	// Styles the visual editor to resemble the theme style
+	add_editor_style( array( 'css/editor-style.css') );
 }
 endif; // memberlite_setup
 add_action('after_setup_theme', 'memberlite_setup');
@@ -165,7 +168,7 @@ function memberlite_widgets_init() {
 add_action('widgets_init', 'memberlite_widgets_init');
 
 /* Adds a Log Out link in member menu */
-function memberlite_menus( $items, $args ) {
+function me∂SS_mberlite_menus( $items, $args ) {
 	if ($args->theme_location == 'member') {
 		if (is_user_logged_in() && defined('PMPRO_VERSION') && pmpro_hasMembershipLevel())
 		{

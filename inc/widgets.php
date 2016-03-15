@@ -17,9 +17,9 @@ class WP_Widget_Recent_Posts_Thumbnails extends WP_Widget {
 		parent::__construct('recent-posts-thumbnails', __('Recent Posts w/Thumbnails', 'memberlite'), $widget_ops);
 		$this->alt_option_name = 'widget_recent_entries_thumbnails';
 
-		add_action( 'save_post', array($this, 'flush_widget_cache') );
-		add_action( 'deleted_post', array($this, 'flush_widget_cache') );
-		add_action( 'switch_theme', array($this, 'flush_widget_cache') );
+		add_action( 'save_post', array($this, 'memberlite_flush_widget_cache') );
+		add_action( 'deleted_post', array($this, 'memberlite_flush_widget_cache') );
+		add_action( 'switch_theme', array($this, 'memberlite_flush_widget_cache') );
 	}
 
 	function widget($args, $instance) {
@@ -44,7 +44,7 @@ class WP_Widget_Recent_Posts_Thumbnails extends WP_Widget {
 		ob_start();
 		extract($args);
 
-		$title = ( ! empty( $instance['title'] ) ) ? $instance['title'] : __( 'Recent Posts w/Thumbnails' );
+		$title = ( ! empty( $instance['title'] ) ) ? $instance['title'] : __('Recent Posts w/Thumbnails','memberlite');
 
 		/** This filter is documented in wp-includes/default-widgets.php */
 		$title = apply_filters( 'widget_title', $title, $instance, $this->id_base );
@@ -109,7 +109,7 @@ class WP_Widget_Recent_Posts_Thumbnails extends WP_Widget {
 		$instance['title'] = strip_tags($new_instance['title']);
 		$instance['number'] = (int) $new_instance['number'];
 		$instance['show_date'] = isset( $new_instance['show_date'] ) ? (bool) $new_instance['show_date'] : false;
-		$this->flush_widget_cache();
+		$this->memberlite_flush_widget_cache();
 
 		$alloptions = wp_cache_get( 'alloptions', 'options' );
 		if ( isset($alloptions['widget_recent_entries_thumbnails']) )
@@ -118,7 +118,7 @@ class WP_Widget_Recent_Posts_Thumbnails extends WP_Widget {
 		return $instance;
 	}
 
-	function flush_widget_cache() {
+	function memberlite_flush_widget_cache() {
 		wp_cache_delete('widget_recent_posts_thumbnails', 'widget');
 	}
 

@@ -294,7 +294,7 @@ function memberlite_registerCustomSidebar($name, $id = NULL)
 		$id = generateSlug($name, 45);
 
 	return register_sidebar( array(
-		'name' => __( $name, 'memberlite' ),
+		'name' => $name,
 		'id' => $id,
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 		'after_widget' => '</aside>',

@@ -90,3 +90,19 @@ function memberlite_banner_image_setup()
 	}
 }
 add_action('wp_loaded', 'memberlite_banner_image_setup');
+
+/*
+	Update the mce_buttons in Editor
+*/
+function memberlite_mce_buttons( $buttons, $id ){
+ 
+    /* only add this for content editor */
+    if ( 'content' != $id )
+        return $buttons;
+ 
+    /* add next page after more tag button */
+    array_splice( $buttons, 13, 0, 'wp_page' );
+ 
+    return $buttons;
+}
+add_filter( 'mce_buttons', 'memberlite_mce_buttons', 1, 2 );
