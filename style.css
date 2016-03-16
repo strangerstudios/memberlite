@@ -1880,6 +1880,11 @@ form.pmpro_form .pmpro_checkout h2 {
 	padding: 1rem;
 	margin: 0;
 }
+form.pmpro_form div.pmpro_checkout h2:after {
+	clear: both;
+	content: '';
+    display: table;
+}
 form.pmpro_form .pmpro_checkout .pmpro_checkout-fields {
 	padding: 1rem;
 }
