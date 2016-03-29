@@ -134,6 +134,16 @@
 			$('.memberlite-breadcrumb .sep, .bbp-breadcrumb-sep').text( to );
 		} );
 	} );
+	wp.customize( 'posts_entry_meta_before', function( value ) {
+		value.bind( function( to ) {
+			$('.masthead-post-byline .entry-meta').text( to );
+		} );
+	} );
+	wp.customize( 'posts_entry_meta_after', function( value ) {
+		value.bind( function( to ) {
+			$('.post .entry-footer').text( to );
+		} );
+	} );
 	wp.customize( 'copyright_textbox', function( value ) {
 		value.bind( function( to ) {
 			$('.site-info p').text( to );

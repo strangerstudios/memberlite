@@ -169,7 +169,7 @@ function memberlite_widgets_init() {
 add_action('widgets_init', 'memberlite_widgets_init');
 
 /* Adds a Log Out link in member menu */
-function me∂SS_mberlite_menus( $items, $args ) {
+function memberlite_menus( $items, $args ) {
 	if ($args->theme_location == 'member') {
 		if (is_user_logged_in() && defined('PMPRO_VERSION') && pmpro_hasMembershipLevel())
 		{
