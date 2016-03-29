@@ -86,7 +86,7 @@ class memberlite_Customize {
 				'type' => 'checkbox',
 				'label' => 'Show Search Form After Main Nav', 
 				'section' => 'memberlite_theme_options',
-				'priority' => '16'
+				'priority' => '20'
 			)
 		);
 		$wp_customize->add_setting(
@@ -107,7 +107,7 @@ class memberlite_Customize {
 						'sidebar-right'  => 'Right Sidebar',
 						'sidebar-left'   => 'Left Sidebar',
 					),
-				'priority' => 20
+				'priority' => 25
 			)
 		);
 		$wp_customize->add_setting(
@@ -207,6 +207,40 @@ class memberlite_Customize {
 			);
 		};
 		$wp_customize->add_setting(
+			'memberlite_post_nav',
+			array(
+				'default' => true,
+				'santize_callback' => 'memberlite_sanitize_checkbox',
+				'santize_js_callback' => 'memberlite_sanitize_js_callback',
+			)
+		);
+		$wp_customize->add_control(
+			'memberlite_post_nav', 
+			array(
+				'type' => 'checkbox',
+				'label' => 'Show Prev/Next on Single Posts', 
+				'section' => 'memberlite_theme_options',
+				'priority' => '60'
+			)
+		);
+		$wp_customize->add_setting(
+			'memberlite_page_nav',
+			array(
+				'default' => true,
+				'santize_callback' => 'memberlite_sanitize_checkbox',
+				'santize_js_callback' => 'memberlite_sanitize_js_callback',
+			)
+		);
+		$wp_customize->add_control(
+			'memberlite_page_nav', 
+			array(
+				'type' => 'checkbox',
+				'label' => 'Show Prev/Next on Single Pages', 
+				'section' => 'memberlite_theme_options',
+				'priority' => '61'
+			)
+		);
+		$wp_customize->add_setting(
 			'memberlite_loop_images',
 			array(
 				'default' => $memberlite_defaults['memberlite_loop_images'],
@@ -229,7 +263,47 @@ class memberlite_Customize {
 					'show_thumbnail' => 'Show Thumbnail Only',
 					'show_none'  => 'Do Not Show Featured Images',
 				),
-				'priority' => 59
+				'priority' => 70
+			)
+		);
+		$wp_customize->add_setting(
+			'posts_entry_meta_before',
+			array(
+				'default' => $memberlite_defaults['posts_entry_meta_before'],
+				'type' => 'theme_mod',
+				'capability' => 'edit_theme_options',
+				'santize_callback' => 'sanitize_text_field',
+				'sanitize_js_callback' => 'memberlite_sanitize_js_callback',
+				'transport' => 'postMessage',
+			)
+		);
+		$wp_customize->add_control(
+			'posts_entry_meta_before',
+			array(
+				'label' => 'Post Entry Meta (before)',
+				'section' => 'memberlite_theme_options',
+				'type' => 'text',
+				'priority' => 80
+			)
+		);
+		$wp_customize->add_setting(
+			'posts_entry_meta_after',
+			array(
+				'default' => $memberlite_defaults['posts_entry_meta_after'],
+				'type' => 'theme_mod',
+				'capability' => 'edit_theme_options',
+				'santize_callback' => 'sanitize_text_field',
+				'sanitize_js_callback' => 'memberlite_sanitize_js_callback',
+				'transport' => 'postMessage',
+			)
+		);
+		$wp_customize->add_control(
+			'posts_entry_meta_after',
+			array(
+				'label' => 'Post Entry Meta (after)',
+				'section' => 'memberlite_theme_options',
+				'type' => 'text',
+				'priority' => 90
 			)
 		);
 		$wp_customize->add_setting(
@@ -252,7 +326,7 @@ class memberlite_Customize {
 					'4' => '4',
 					'6' => '6'
 				),
-				'priority' => 60
+				'priority' => 100
 			)
 		);
 		$wp_customize->add_setting(
@@ -272,7 +346,7 @@ class memberlite_Customize {
 				'label' => 'Breadcrumb Delimiter',
 				'section' => 'memberlite_theme_options',
 				'type' => 'text',
-				'priority' => 65
+				'priority' => 110
 			)
 		);
 		$wp_customize->add_setting(
@@ -292,7 +366,7 @@ class memberlite_Customize {
 				'label' => 'Copyright Text',
 				'section' => 'memberlite_theme_options',
 				'type' => 'text',
-				'priority' => 70
+				'priority' => 120
 			)
 		);
 		$wp_customize->add_setting(
@@ -827,7 +901,8 @@ class memberlite_Customize {
 	 * @since Memberlite 3.0
 	 */
 	public static function memberlite_sanitize_js_callback( $value ) {
-	    return esc_js( $value );
+		$value = esc_js( $value );
+		return $value;
 	}
 
 	/**

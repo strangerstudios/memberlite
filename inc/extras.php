@@ -329,7 +329,7 @@ function memberlite_page_title() {
 			<div class="post_author_avatar"><?php echo get_avatar( $author_id, 80 ); ?></div>
 			<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
 			<p class="entry-meta">
-				<?php memberlite_posted_on($post); ?>
+				<?php echo memberlite_get_entry_meta($post, 'before'); ?>
 			</p><!-- .entry-meta -->
 		</div>
 		<?php
@@ -769,4 +769,74 @@ function memberlite_getBannerImageID($post = NULL)
 	}
 	else
 		return false;
+}
+
+/* Parses tags added to fields in customizer (i.e. posts_entry_meta_before and posts_entry_meta_after. Available tags include:
+	{post_author} - Entry author display name
+	{post_author_posts_link} - Entry author display name, linked to their archive
+	{post_categories} - List of entry categories separated by a comma.
+	{post_comments} - Entry comments link in the format "X Comment/s".
+	{post_date} - Date the entry was published, formatted to your site's "Date Format" under Settings > General
+	{post_permalink} - A permalink to the post displayed as "permalink".
+	{post_permalink_icon} - A permalink to the post displayed as the Font Awesome "link" icon.
+	{post_tags} - List of entry tags separated by a comma.
+	{post_time} - Time the entry was published, formatted to your site's "Time Format" under Settings > General
+*/
+function memberlite_parse_tags($meta, $post = NULL) {
+	if(empty($post))
+		global $post;
+	
+	$searches = array();
+	$replacements = array();
+
+	if(strpos($meta, '{post_author}') !== false) {
+		$searches[] = "{post_author}";
+		$replacements[] = '<span class="author vcard">' . esc_html( get_the_author() ) . '</span>';
+	}
+	
+	if(strpos($meta, '{post_author_posts_link}') !== false) {
+		$searches[] = "{post_author_posts_link}";
+		$replacements[] = '<span class="author vcard"><a class="url fn n" href="' . esc_url( get_author_posts_url( get_the_author_meta( 'ID' ), get_the_author_meta( 'user_nicename' ) ) ) . '">' . esc_html( get_the_author() ) . '</a></span>';
+	}
+	
+	if(strpos($meta, '{post_categories}') !== false) {
+		$searches[] = "{post_categories}";
+		$replacements[] = get_the_category_list( __( ', ', 'memberlite' ) );
+	}
+	
+	if(strpos($meta, '{post_comments}') !== false) {
+		$searches[] = "{post_comments}";
+		$replacements[] = '';
+		if ( ! post_password_required() && ( comments_open() || '0' != get_comments_number() ) ) {
+			$replacements[] = '<span class="comments-link">' . comments_popup_link( __( 'Leave a comment', 'memberlite' ), __( '1 Comment', 'memberlite' ), __( '% Comments', 'memberlite' ) ) . ' </span>';
+		}
+	}
+	
+	if(strpos($meta, '{post_date}') !== false) {
+		$searches[] = "{post_date}";
+		$replacements[] = '<time class="entry-date published" datetime="' . esc_attr( get_the_date( 'Y-m-d' ) ) . '">' . esc_html( get_the_date() ) . '</time>';
+	}
+	
+	if(strpos($meta, '{post_permalink}') !== false) {
+		$searches[] = "{post_permalink}";
+		$replacements[] = '<a href="' . get_permalink() . '" rel="bookmark">permalink</a>';
+	}
+	
+	if(strpos($meta, '{post_permalink_icon}') !== false) {
+		$searches[] = "{post_permalink_icon}";
+		$replacements[] = '<a href="' . get_permalink() . '" rel="bookmark"><i class="fa fa-link"></i></a>';
+	}
+		if(strpos($meta, '{post_tags}') !== false) {
+		$searches[] = "{post_tags}";
+		$replacements[] = get_the_tag_list( '', __( ', ', 'memberlite' ) );
+	}
+
+	if(strpos($meta, '{post_time}') !== false) {
+		$searches[] = "{post_time}";
+		$replacements[] = '<time class="entry-time" datetime="' . esc_attr( get_the_date( 'H:i' ) ) . '">' . esc_html( get_the_time() ) . '</time>';
+	}
+
+	
+	$meta = str_replace($searches, $replacements, $meta);	
+	return $meta;
 }

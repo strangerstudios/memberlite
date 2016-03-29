@@ -61,43 +61,79 @@ function memberlite_post_nav() {
 }
 endif;
 
-if ( ! function_exists( 'memberlite_posted_on' ) ) :
+if ( ! function_exists( 'memberlite_page_nav' ) ) :
 /**
- * Prints HTML with meta information for the current post-date/time and author.
+ * Display navigation to next/previous page when applicable.
  */
-function memberlite_posted_on($post = NULL) {		
-
-	if(empty($post))
-		global $post;
+function memberlite_page_nav() {
+	global $post;
 	
-	$time_string = '<time class="entry-date published" datetime="%1$s">%2$s</time>';
-	if ( get_the_time( 'U' ) !== get_the_modified_time( 'U' ) ) {
-		$time_string .= '<time class="updated" datetime="%3$s">%4$s</time>';
+	//check if subpage
+	if(!empty($post->post_parent))
+		$child_of = end(get_post_ancestors($post));
+	else
+		$child_of = $post->ID;	
+	
+	//build array of page ids for navigation
+	$allpages = get_pages('child_of=' . $child_of . '&sort_column=menu_order&sort_order=asc');
+	
+	$pages = array();
+	$pages[] = $child_of;		//parent id is first
+	foreach ($allpages as $page) {
+	   $pages[] += $page->ID;
 	}
-
-	$time_string = sprintf( $time_string,
-		esc_attr( get_the_date( 'c' ) ),
-		esc_html( get_the_date() ),
-		esc_attr( get_the_modified_date( 'c' ) ),
-		esc_html( get_the_modified_date() )
-	);
-
-	$posted_on = sprintf(
-		_x( 'Posted on %s', 'post date', 'memberlite' ),
-		'<a href="' . esc_url( get_permalink() ) . '" rel="bookmark">' . $time_string . '</a>'
-	);
-
-	$author = get_userdata($post->post_author);
 	
-	$byline = sprintf(
-		_x( 'by %s', 'post author', 'memberlite' ),
-		'<span class="author vcard"><a class="url fn n" href="' . esc_url( get_author_posts_url( $author->ID ) ) . '">' . esc_html( $author->display_name ) . '</a></span>'
-	);
-
-	echo '<span class="posted-on">' . $posted_on . '</span><span class="byline"> ' . $byline . '</span>';
-
+	//figure out prev and next post IDs
+	$current = array_search($post->ID, $pages);
+	
+	//prev
+	if(!empty($pages[$current-1]))
+		$previousID = $pages[$current-1];
+	else
+		$previousID = false;
+	
+	//next
+	if(!empty($pages[$current+1]))
+		$nextID = $pages[$current+1];
+	else
+		$nextID = false;
+	
+	//don't show if neither prev or next
+	if ( empty($nextID) && empty($previousID) ) {
+		return;
+	}
+	
+	//HTML
+	?>
+	<nav class="navigation post-navigation" role="navigation">
+		<h1 class="screen-reader-text"><?php _e( 'Page navigation', 'memberlite' ); ?></h1>
+		<div class="nav-links">
+			<?php if(!empty($previousID) && ($previousID != $post->ID)) { ?>
+				<div class="nav-previous"><a href="<?php echo get_permalink($previousID); ?>" rel="prev"><span class="meta-nav">&larr;</span> <?php echo get_the_title($previousID); ?></a></div>
+			<?php } if(!empty($nextID) && ($nextID != $post->ID)) { ?>
+				<div class="nav-next"><a href="<?php echo get_permalink($nextID); ?>" rel="next"><?php echo get_the_title($nextID); ?> <span class="meta-nav">&rarr;</span></a></div>
+			<?php } ?>
+		</div><!-- .nav-links -->
+	</nav><!-- .navigation -->
+	<?php
 }
 endif;
+
+/**
+ * Prints HTML with meta information based on theme setting Post Entry Meta (before or after) in customizer.
+ */
+function memberlite_get_entry_meta($post = NULL, $location = "before") {
+    global $memberlite_defaults;
+	
+	if(empty($post))
+        global $post;
+    
+    $meta = get_theme_mod( 'posts_entry_meta_' . $location, $memberlite_defaults['posts_entry_meta_' . $location] );
+    $meta = apply_filters('memberlite_get_entry_meta', $meta, $post, $location);
+    $meta = memberlite_parse_tags($meta, $post);
+    
+    return $meta;
+}
 
 /**
  * Returns true if a blog has more than 1 category.
