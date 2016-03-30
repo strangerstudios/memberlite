@@ -65,7 +65,7 @@
 		</nav><!-- #footer-navigation -->
 		<?php do_action('before_site_info'); ?>
 		<div class="row site-info">
-			<div class="large-12 columns">				
+			<div class="large-10 columns">				
 				<?php 
 					global $memberlite_defaults;
 					$copyright_textbox = get_theme_mod( 'copyright_textbox',$memberlite_defaults['copyright_textbox'] ); 
@@ -73,6 +73,13 @@
 					{
 						echo wpautop($copyright_textbox); 
 					}				
+				?>
+			</div>
+			<div class="large-2 columns text-right">
+				<?php
+					$back_to_top = apply_filters('memberlite_back_to_top', __('<i class="fa fa-chevron-up"></i> Back to Top', 'memberlite') );
+					if($back_to_top)
+						echo '<a class="skip-link btn" href="#page">' . $back_to_top . '</a>';
 				?>
 			</div><!-- .columns -->
 		</div><!-- .row, .site-info -->

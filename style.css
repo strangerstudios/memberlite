@@ -1731,12 +1731,14 @@ a:active {
 	padding-top: 1rem;
 	padding-bottom: 1rem; 
 }
-.site-footer .site-info p, .site-footer .site-info a {	
+.site-footer .site-info p, .site-footer .site-info .large-10 a {	
 	font-style: italic; 
 	color: #AAA;
 	margin: 0;
 }
-
+.site-footer .site-info .large-2 a {
+	text-decoration: none;
+}
 #banner_bottom {
 	background-color: #18BC9C;
 	color: #FFF;

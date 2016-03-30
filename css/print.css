@@ -10,7 +10,7 @@
 body {background:white; font-size:10pt; margin:0 }
 #masthead .site-branding {width: 100%; text-align: left; }
 #page a { text-decoration:underline; border: none; }
-#site-navigation, #masthead .header-right, .masthead .memberlite-breadcrumb, .post-navigation, #respond, #secondary, #banner_bottom, .site-footer .footer-widgets, #footer-navigation { display:none }
+#site-navigation, #masthead .header-right, .masthead .memberlite-breadcrumb, .post-navigation, #respond, #secondary, #banner_bottom, .site-footer .footer-widgets, #footer-navigation, .site-info .skip-link { display:none }
 #footer, .ad { display:none }
 h1, h2, h3, h4, h5, h6 { page-break-after:avoid; page-break-inside:avoid }
 h3 { margin-left:10px; margin-bottom:0px; padding-bottom:0px }
