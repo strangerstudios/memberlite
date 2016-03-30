@@ -111,18 +111,15 @@
 							</div><!-- #meta-member -->
 							<?php
 						}
-						
-						if(has_nav_menu('meta'))
-						{							
-							$meta_defaults = array(
-								'theme_location' => 'meta',
-								'container' => 'nav',
-								'container_id' => 'meta-navigation',
-								'container_class' => 'meta-navigation',
-								'fallback_cb' => false
-							);					
-							wp_nav_menu( $meta_defaults ); 
-						}
+											
+						$meta_defaults = array(
+							'theme_location' => 'meta',
+							'container' => 'nav',
+							'container_id' => 'meta-navigation',
+							'container_class' => 'meta-navigation',
+							'fallback_cb' => false
+						);
+						wp_nav_menu( $meta_defaults );
 						
 						if(is_dynamic_sidebar('sidebar-3'))
 							dynamic_sidebar('sidebar-3');

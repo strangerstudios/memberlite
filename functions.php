@@ -171,7 +171,8 @@ add_action('widgets_init', 'memberlite_widgets_init');
 
 /* Adds a Log Out link in member menu */
 function memberlite_menus( $items, $args ) {
-	if ($args->theme_location == 'member') {
+	//is this the member menu location or a replaced menu using pmpro-nav-menus plugin
+	if ($args->theme_location == 'member' || ( strpos($args->theme_location, '-member') !== false ) ) {
 		if (is_user_logged_in() && defined('PMPRO_VERSION') && pmpro_hasMembershipLevel())
 		{
 			//user is logged in and has a membership level
@@ -189,7 +190,8 @@ function memberlite_menus( $items, $args ) {
 			$items .= '<li><a href="'. wp_registration_url() .'">' . __('Register','memberlite') . '</a></li>';	  
 		}
 	}
-	if ($args->theme_location == 'primary') {
+	//is this the primary menu location or a replaced menu using pmpro-nav-menus plugin
+	if ($args->theme_location == 'primary' || ( strpos($args->theme_location, '-primary') !== false ) ) {
 		$nav_menu_search = get_theme_mod( 'nav_menu_search', false );
 		if(!empty($nav_menu_search))
 			$items .= get_search_form(false);
