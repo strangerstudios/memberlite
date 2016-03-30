@@ -31,7 +31,7 @@ function memberlite_settings_meta_box_callback($post) {
 	$memberlite_banner_right = get_post_meta($post->ID, '_memberlite_banner_right', true);
 	$memberlite_banner_bottom = get_post_meta($post->ID, '_memberlite_banner_bottom', true);
 	$memberlite_landing_page_checkout_button = get_post_meta($post->ID, '_memberlite_landing_page_checkout_button', true);
-	$memberlite_landing_page_level = get_post_meta($post->ID, '_memberlite_landing_page_level', true);
+	$pmproal_landing_page_level = get_post_meta($post->ID, '_pmproal_landing_page_level', true);
 	$memberlite_landing_page_upsell = get_post_meta($post->ID, '_memberlite_landing_page_upsell', true);
 	
 	echo '<h2>' . __('Page Banner Settings', 'memberlite') . '</h2>';
@@ -74,14 +74,14 @@ function memberlite_settings_meta_box_callback($post) {
 		{
 			echo '<table class="form-table"><tbody>';
 			echo '<tr><th scope="row">' . __('Membership Level', 'memberlite') . '</th>';
-			echo '<td><label class="screen-reader-text" for="memberlite_landing_page_level">';
+			echo '<td><label class="screen-reader-text" for="pmproal_landing_page_level">';
 				_e('Landing Page Membership Level', 'memberlite');
 			echo '</label> ';
-			echo '<select id="memberlite_landing_page_level" name="memberlite_landing_page_level">';
-			echo '<option value="blank" ' . selected( $memberlite_landing_page_level, "blank" ) . '>- Select -</option>';
+			echo '<select id="pmproal_landing_page_level" name="pmproal_landing_page_level">';
+			echo '<option value="blank" ' . selected( $pmproal_landing_page_level, "blank" ) . '>- Select -</option>';
 			foreach($membership_levels as $level)
 			{			
-				echo '<option value="' . $level->id . '"' . selected( $memberlite_landing_page_level, $level->id ) . '>' . $level->name . '</option>';
+				echo '<option value="' . $level->id . '"' . selected( $pmproal_landing_page_level, $level->id ) . '>' . $level->name . '</option>';
 			}
 			echo '</select></td></tr>';	
 			echo '<tr><th scope="row">' . __('Checkout Button Text', 'memberlite') . '</th>';
@@ -169,10 +169,10 @@ function memberlite_settings_save_meta_box_data($post_id) {
 	}
 	
 	//landing page level
-	if(isset($_POST['memberlite_landing_page_level'])) {
-		$memberlite_landing_page_level = $_POST['memberlite_landing_page_level'];
+	if(isset($_POST['pmproal_landing_page_level'])) {
+		$pmproal_landing_page_level = $_POST['pmproal_landing_page_level'];
 		
-		update_post_meta($post_id, '_memberlite_landing_page_level', $memberlite_landing_page_level);
+		update_post_meta($post_id, '_pmproal_landing_page_level', $pmproal_landing_page_level);
 	}
 	
 	//landing page checkout button

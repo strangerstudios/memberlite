@@ -11,9 +11,9 @@
 		<?php the_content(); ?>
 		
 		<?php
-			global $memberlite_landing_page_level, $memberlite_landing_page_checkout_button;
-			if(defined('PMPRO_VERSION') && !empty($memberlite_landing_page_level) && ($memberlite_landing_page_level != 'blank'))
-				echo do_shortcode('[memberlite_btn style="action" href="' . pmpro_url('checkout','?level=' . $memberlite_landing_page_level,'https') . '" text="' . $memberlite_landing_page_checkout_button . '"]');
+			global $pmproal_landing_page_level, $memberlite_landing_page_checkout_button;
+			if(defined('PMPRO_VERSION') && !empty($pmproal_landing_page_level) && ($pmproal_landing_page_level != 'blank'))
+				echo do_shortcode('[memberlite_btn style="action" href="' . pmpro_url('checkout','?level=' . $pmproal_landing_page_level,'https') . '" text="' . $memberlite_landing_page_checkout_button . '"]');
 		?>
 
 		<?php

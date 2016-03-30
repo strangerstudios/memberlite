@@ -346,18 +346,18 @@ function memberlite_page_title() {
 	}
 	elseif(is_page_template('templates/landing.php'))
 	{
-		global $memberlite_landing_page_level, $memberlite_banner_desc, $memberlite_landing_page_checkout_button;
+		global $pmproal_landing_page_level, $memberlite_banner_desc, $memberlite_landing_page_checkout_button;
 		the_post_thumbnail( 'medium', array( 'class' => 'alignleft' ) );
 		the_title( '<h1 class="entry-title">', '</h1>' );
 		if(defined('PMPRO_VERSION'))
 		{
-			$level = pmpro_getLevel($memberlite_landing_page_level);
+			$level = pmpro_getLevel($pmproal_landing_page_level);
 			if(!empty($level))
 			{
 				echo '<p class="pmpro_level-price">' . pmpro_getLevelCost($level, true, true) . '</p>';
 				if(empty($memberlite_banner_desc))
 					echo wpautop($level->description);
-				echo '<p>' . do_shortcode('[memberlite_btn style="action" href="' . pmpro_url('checkout','?level=' . $memberlite_landing_page_level,'https') . '" text="' . $memberlite_landing_page_checkout_button . '"]') . '</p>';
+				echo '<p>' . do_shortcode('[memberlite_btn style="action" href="' . pmpro_url('checkout','?level=' . $pmproal_landing_page_level,'https') . '" text="' . $memberlite_landing_page_checkout_button . '"]') . '</p>';
 			}
 		}
 	}	
@@ -452,28 +452,6 @@ function memberlite_getSidebar() {
 	$sidebar_html = apply_filters('memberlite_getSidebar', $sidebar_html);
 	
 	echo $sidebar_html;
-}
-
-function memberlite_getLevelLandingPage($level_id) {
-	if(is_object($level_id))
-		$level_id = $level_id->id;
-	
-	$args = array(
-		'post_type' => apply_filters('memberlite_level_landing_page_post_types', array('page', 'post')),
-		'meta_query' => array(
-			array(
-				'key' => '_memberlite_landing_page_level',
-				'value' => $level_id,
-			)
-		)
-	);
-	
-	$posts = get_posts($args);
-	
-	if(empty($posts))
-		return false;
-	else
-		return $posts[0];
 }
 
 /* Customizes the bbp_breadcrumb output */
