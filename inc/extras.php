@@ -809,8 +809,28 @@ function memberlite_parse_tags($meta, $post = NULL) {
 	if(strpos($meta, '{post_comments}') !== false) {
 		$searches[] = "{post_comments}";
 		$replacements[] = '';
+		$num_comments = get_comments_number();
+		if ( comments_open() ) {
+			if ( $num_comments == 0 ) {
+				$comments = __('No Comments', 'memberlite');
+			} elseif ( $num_comments > 1 ) {
+				$comments = $num_comments . __(' Comments', 'memberlite');
+			} else {
+				$comments = __('1 Comment', 'memberlite');
+			}
+			$write_comments = '<a href="';
+			if(is_single())
+			{
+				$write_comments .= '#respond';
+			}
+			else
+			{
+				$write_comments .= get_comments_link();
+			}
+			$write_comments .= '">'. $comments.'</a>';
+		} 
 		if ( ! post_password_required() && ( comments_open() || '0' != get_comments_number() ) ) {
-			$replacements[] = '<span class="comments-link">' . comments_popup_link( __( 'Leave a comment', 'memberlite' ), __( '1 Comment', 'memberlite' ), __( '% Comments', 'memberlite' ) ) . ' </span>';
+			$replacements[] = '<span class="comments-link">' . $write_comments . '</span>';
 		}
 	}
 	
