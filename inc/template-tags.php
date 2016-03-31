@@ -70,9 +70,12 @@ function memberlite_page_nav() {
 	
 	//check if subpage
 	if(!empty($post->post_parent))
-		$child_of = end(get_post_ancestors($post));
+	{
+		$post_ancestors = get_post_ancestors($post);
+		$child_of = end($post_ancestors);
+	}
 	else
-		$child_of = $post->ID;	
+		$child_of = $post->ID;
 	
 	//build array of page ids for navigation
 	$allpages = get_pages('child_of=' . $child_of . '&sort_column=menu_order&sort_order=asc');
@@ -105,7 +108,7 @@ function memberlite_page_nav() {
 	
 	//HTML
 	?>
-	<nav class="navigation post-navigation" role="navigation">
+	<nav class="navigation page-navigation" role="navigation">
 		<h1 class="screen-reader-text"><?php _e( 'Page navigation', 'memberlite' ); ?></h1>
 		<div class="nav-links">
 			<?php if(!empty($previousID) && ($previousID != $post->ID)) { ?>
