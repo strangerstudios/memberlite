@@ -5,6 +5,8 @@ Author: kimannwall, strangerstudios
 Author URI: http://www.memberlitetheme.com
 Description: Responsive, Customizable and Easily Integrated with Paid Memberships Pro
 Version: 3.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: memberlite
 Domain Path: /languages/
 Tags: black, blue, gray, pink, orange, dark, light, two-columns, left-sidebar, fixed-layout, responsive-layout, custom-background, custom-colors, custom-header, custom-menu, featured-images, post-formats, sticky-post, threaded-comments, translation-ready
@@ -904,10 +906,13 @@ a:active {
 /*--------------------------------------------------------------
 5.4 Prev/Next Navigation
 --------------------------------------------------------------*/
-.site-main .comment-navigation,
 .site-main .paging-navigation,
 .site-main .post-navigation {
 	margin: 0 0 2em;
+	overflow: hidden;
+}
+.site-main .comment-navigation {
+	margin: 1em 0;
 	overflow: hidden;
 }
 .comment-navigation .nav-previous,
@@ -1726,12 +1731,14 @@ a:active {
 	padding-top: 1rem;
 	padding-bottom: 1rem; 
 }
-.site-footer .site-info p, .site-footer .site-info a {	
+.site-footer .site-info p, .site-footer .site-info .large-10 a {	
 	font-style: italic; 
 	color: #AAA;
 	margin: 0;
 }
-
+.site-footer .site-info .large-2 a {
+	text-decoration: none;
+}
 #banner_bottom {
 	background-color: #18BC9C;
 	color: #FFF;
@@ -1874,6 +1881,11 @@ form.pmpro_form .pmpro_checkout h2 {
 	font-weight: 400;
 	padding: 1rem;
 	margin: 0;
+}
+form.pmpro_form div.pmpro_checkout h2:after {
+	clear: both;
+	content: '';
+    display: table;
 }
 form.pmpro_form .pmpro_checkout .pmpro_checkout-fields {
 	padding: 1rem;

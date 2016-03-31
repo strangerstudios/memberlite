@@ -329,7 +329,7 @@ function memberlite_page_title() {
 			<div class="post_author_avatar"><?php echo get_avatar( $author_id, 80 ); ?></div>
 			<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
 			<p class="entry-meta">
-				<?php memberlite_posted_on($post); ?>
+				<?php echo memberlite_get_entry_meta($post, 'before'); ?>
 			</p><!-- .entry-meta -->
 		</div>
 		<?php
@@ -346,18 +346,18 @@ function memberlite_page_title() {
 	}
 	elseif(is_page_template('templates/landing.php'))
 	{
-		global $memberlite_landing_page_level, $memberlite_banner_desc, $memberlite_landing_page_checkout_button;
+		global $pmproal_landing_page_level, $memberlite_banner_desc, $memberlite_landing_page_checkout_button;
 		the_post_thumbnail( 'medium', array( 'class' => 'alignleft' ) );
 		the_title( '<h1 class="entry-title">', '</h1>' );
 		if(defined('PMPRO_VERSION'))
 		{
-			$level = pmpro_getLevel($memberlite_landing_page_level);
+			$level = pmpro_getLevel($pmproal_landing_page_level);
 			if(!empty($level))
 			{
-				echo '<p class="pmpro_level-price">' . memberlite_getLevelCost($level, true, true) . '</p>';
+				echo '<p class="pmpro_level-price">' . pmpro_getLevelCost($level, true, true) . '</p>';
 				if(empty($memberlite_banner_desc))
 					echo wpautop($level->description);
-				echo '<p>' . do_shortcode('[memberlite_btn style="action" href="' . pmpro_url('checkout','?level=' . $memberlite_landing_page_level,'https') . '" text="' . $memberlite_landing_page_checkout_button . '"]') . '</p>';
+				echo '<p>' . do_shortcode('[memberlite_btn style="action" href="' . pmpro_url('checkout','?level=' . $pmproal_landing_page_level,'https') . '" text="' . $memberlite_landing_page_checkout_button . '"]') . '</p>';
 			}
 		}
 	}	
@@ -454,152 +454,11 @@ function memberlite_getSidebar() {
 	echo $sidebar_html;
 }
 
-function memberlite_getLevelCost(&$level, $tags = true, $short = false)
-{	
-	$r = '<span class="pmpro_level-initialprice">';		
-	//initial payment
-	if(!$short)
-		$r .= sprintf(__('The price for membership is <strong>%s</strong> now', 'pmpro'), pmpro_formatPrice($level->initial_payment));
-	elseif(pmpro_isLevelFree($level))
-		$r .= sprintf(__('<strong>FREE</strong>', 'pmpro'));		
-	else
-		$r .= sprintf(__('<strong>%s</strong> now', 'pmpro'), pmpro_formatPrice($level->initial_payment));
-	$r .= '</span>';
-		
-	//recurring part
-	if($level->billing_amount != '0.00')
-	{
-		if($level->billing_limit > 1)
-		{				
-			if($level->cycle_number == '1')
-			{
-				$r .= sprintf(__(' and then <strong>%s per %s for %d more %s</strong>.', 'pmpro'), pmpro_formatPrice($level->billing_amount), pmpro_translate_billing_period($level->cycle_period), $level->billing_limit, pmpro_translate_billing_period($level->cycle_period, $level->billing_limit));
-			}
-			else
-			{
-				$r .= sprintf(__(' and then <strong>%s every %d %s for %d more %s</strong>.', 'pmpro'), pmpro_formatPrice($level->billing_amount), $level->cycle_number, pmpro_translate_billing_period($level->cycle_period, $level->cycle_number), $level->billing_limit, pmpro_translate_billing_period($level->cycle_period, $level->billing_limit));
-			}
-		}
-		elseif($level->billing_limit == 1)
-		{
-			$r .= sprintf(__(' and then <strong>%s after %d %s</strong>.', 'pmpro'), pmpro_formatPrice($level->billing_amount), $level->cycle_number, pmpro_translate_billing_period($level->cycle_period, $level->cycle_number));
-		}
-		else
-		{
-			if( $level->billing_amount === $level->initial_payment ) 
-			{
-				if($level->cycle_number == '1')
-				{
-					if(!$short)
-						$r = sprintf(__('The price for membership is <strong>%s per %s</strong>.', 'pmpro'), pmpro_formatPrice($level->initial_payment), pmpro_translate_billing_period($level->cycle_period) );
-					else
-						$r = sprintf(__('<strong>%s/%s</strong>', 'pmpro'), pmpro_formatPrice($level->initial_payment), pmpro_translate_billing_period($level->cycle_period) );
-				}
-				else
-				{
-					if(!$short)
-						$r = sprintf(__('The price for membership is <strong>%s every %d %s</strong>.', 'pmpro'), pmpro_formatPrice($level->initial_payment), $level->cycle_number, pmpro_translate_billing_period($level->cycle_period, $level->cycle_number) );
-					else
-						$r = sprintf(__('<strong>%s every %d %s</strong>.', 'pmpro'), pmpro_formatPrice($level->initial_payment), $level->cycle_number, pmpro_translate_billing_period($level->cycle_period, $level->cycle_number) );
-				}
-			} 
-			else 
-			{
-				$r .= '<span class="pmpro_level-subprice">';
-				if($level->cycle_number == '1')
-				{
-					if(!$short)
-					{
-						$r .= sprintf(__(' and then <strong>%s per %s</strong>.', 'pmpro'), pmpro_formatPrice($level->billing_amount), pmpro_translate_billing_period($level->cycle_period));
-					}
-					else
-					{
-						$r .= sprintf(__(' then <strong>%s/%s</strong>.', 'pmpro'), pmpro_formatPrice($level->billing_amount), pmpro_translate_billing_period($level->cycle_period));
-					}
-				}
-				else
-				{
-					$r .= sprintf(__(' and then <strong>%s every %d %s</strong>.', 'pmpro'), pmpro_formatPrice($level->billing_amount), $level->cycle_number, pmpro_translate_billing_period($level->cycle_period, $level->cycle_number));
-				}
-				$r .= '</span>';
-			}
-		}
-	}
-	elseif(!pmpro_isLevelFree($level))
-		$r .= ".";
-
-	//add a space
-	$r .= ' ';
-	//trial part
-	if($level->trial_limit)
-	{
-		$r .= '<span class="pmpro_level-trialprice">';
-		if($level->trial_amount == '0.00')
-		{
-			if($level->trial_limit == '1')
-			{
-				$r .= ' ' . __('After your initial payment, your first payment is Free.', 'pmpro');
-			}
-			else
-			{
-				$r .= ' ' . sprintf(__('After your initial payment, your first %d payments are Free.', 'pmpro'), $level->trial_limit);
-			}
-		}
-		else
-		{
-			if($level->trial_limit == '1')
-			{
-				$r .= ' ' . sprintf(__('After your initial payment, your first payment will cost %s.', 'pmpro'), pmpro_formatPrice($level->trial_amount));
-			}
-			else
-			{
-				$r .= ' ' . sprintf(__('After your initial payment, your first %d payments will cost %s.', 'pmpro'), $level->trial_limit, pmpro_formatPrice($level->trial_amount));
-			}
-		}
-		$r .= '</span>';
-	}
-	//taxes part
-	$tax_state = pmpro_getOption("tax_state");
-	$tax_rate = pmpro_getOption("tax_rate");
-	if($tax_state && $tax_rate && !pmpro_isLevelFree($level))
-	{
-		$r .= '<span class="pmpro_level-tax">';
-		$r .= sprintf(__('Customers in %s will be charged %s%% tax.', 'pmpro'), $tax_state, round($tax_rate * 100, 2));
-		$r .= '</span>';
-	}
-	if(!$tags)
-		$r = strip_tags($r);
-	$r = apply_filters("pmpro_level_cost_text", $r, $level, $tags, $short);	//passing $tags and $short since v2.0
-	return $r;		
-}
-
-function memberlite_getLevelLandingPage($level_id) {
-	if(is_object($level_id))
-		$level_id = $level_id->id;
-	
-	$args = array(
-		'post_type' => apply_filters('memberlite_level_landing_page_post_types', array('page', 'post')),
-		'meta_query' => array(
-			array(
-				'key' => '_memberlite_landing_page_level',
-				'value' => $level_id,
-			)
-		)
-	);
-	
-	$posts = get_posts($args);
-	
-	if(empty($posts))
-		return false;
-	else
-		return $posts[0];
-}
-
 /* Customizes the bbp_breadcrumb output */
 function memberlite_bbp_breadcrumb( $args ) {
 	global $memberlite_defaults;
 	$args = array(
-		'sep' => $memberlite_defaults['delimiter'],
+		'sep' => get_theme_mod('delimiter',$memberlite_defaults['delimiter']),
 		'home_text' => __('Home', 'memberlite'),
 		'before' => '',
 		'after' => '',	
@@ -613,6 +472,7 @@ add_filter('bbp_no_breadcrumb', '__return_true');
 
 function memberlite_getBreadcrumbs()
 {
+	global $posts, $post, $memberlite_defaults;
 	$page_breadcrumbs = get_theme_mod( 'page_breadcrumbs', false );
 	$post_breadcrumbs = get_theme_mod( 'post_breadcrumbs', false );
 	$archive_breadcrumbs = get_theme_mod( 'archive_breadcrumbs', false );
@@ -626,7 +486,7 @@ function memberlite_getBreadcrumbs()
 		|| '' != $search_breadcrumbs
 		|| '' != $profile_breadcrumbs
 	) ? true : false;	
-	global $posts, $post, $memberlite_defaults;
+	$memberlite_delimiter = get_theme_mod('delimiter',$memberlite_defaults['delimiter']);
 	if($show_breadcrumbs)
 	{
 		if(function_exists('is_woocommerce') && is_woocommerce())
@@ -650,7 +510,7 @@ function memberlite_getBreadcrumbs()
 		?>
 		<nav class="memberlite-breadcrumb" itemprop="breadcrumb">
           	<a href="<?php echo home_url()?>"><?php _e('Home', 'memberlite'); ?></a>
-			<span class="sep"><?php echo $memberlite_defaults['delimiter']; ?></span>
+			<span class="sep"><?php echo $memberlite_delimiter; ?></span>
 			<?php
 				global $post;
 				$parent_id  = $post->post_parent;
@@ -672,7 +532,7 @@ function memberlite_getBreadcrumbs()
 			?>			
 			<nav class="memberlite-breadcrumb" itemprop="breadcrumb">
 				<a href="<?php echo home_url()?>"><?php _e('Home', 'memberlite'); ?></a>
-				<span class="sep"><?php echo $memberlite_defaults['delimiter']; ?></span>
+				<span class="sep"><?php echo $memberlite_delimiter; ?></span>
 				<?php
 					$breadcrumbs = get_post_ancestors($post->ID);				
 					if($breadcrumbs)
@@ -682,7 +542,7 @@ function memberlite_getBreadcrumbs()
 						{
 							?>
 							<a href="<?php echo get_permalink($crumb); ?>"><?php echo get_the_title($crumb); ?></a>
-							<span class="sep"><?php echo $memberlite_defaults['delimiter']; ?></span>
+							<span class="sep"><?php echo $memberlite_delimiter; ?></span>
 							<?php
 						}
 					}				
@@ -692,7 +552,7 @@ function memberlite_getBreadcrumbs()
 					{ 
 						?>
 						<a href="<?php echo get_permalink(pmpro_getOption('account_page_id')); ?>"><?php echo get_the_title(pmpro_getOption('account_page_id')); ?></a>
-						<span class="sep"><?php echo $memberlite_defaults['delimiter']; ?></span>
+						<span class="sep"><?php echo $memberlite_delimiter; ?></span>
 						<?php 
 					} 
 				?>
@@ -704,8 +564,8 @@ function memberlite_getBreadcrumbs()
 		{
 		?>
 		<nav class="memberlite-breadcrumb" itemprop="breadcrumb">
-          	<a href="<?php echo get_option('home'); ?>/"><?php _e('Home', 'memberlite'); ?></a>
-			<span class="sep"><?php echo $memberlite_defaults['delimiter']; ?></span>
+          	<a href="<?php echo home_url()?>"><?php _e('Home', 'memberlite'); ?></a>
+			<span class="sep"><?php echo $memberlite_delimiter; ?></span>
 			<?php post_type_archive_title(); ?>
 		</nav>
 		<?php	
@@ -714,14 +574,14 @@ function memberlite_getBreadcrumbs()
 		{
 		?>
 		<nav class="memberlite-breadcrumb" itemprop="breadcrumb">
-          	<a href="<?php echo get_option('home'); ?>/"><?php _e('Home', 'memberlite'); ?></a>
-			<span class="sep"><?php echo $memberlite_defaults['delimiter']; ?></span>
+          	<a href="<?php echo home_url()?>"><?php _e('Home', 'memberlite'); ?></a>
+			<span class="sep"><?php echo $memberlite_delimiter; ?></span>
 			<?php 
 				if(get_option('page_for_posts'))
 				{
 					?>
 					<a href="<?php echo get_permalink(get_option('page_for_posts')); ?>"><?php echo get_the_title(get_option('page_for_posts')); ?></a>
-					<span class="sep"><?php echo $memberlite_defaults['delimiter']; ?></span>
+					<span class="sep"><?php echo $memberlite_delimiter; ?></span>
 					<?php
 				}
 			?>
@@ -789,13 +649,13 @@ function memberlite_getBreadcrumbs()
 		?>
 		<nav class="memberlite-breadcrumb" itemprop="breadcrumb">
           	<a href="<?php echo home_url()?>"><?php _e('Home', 'memberlite'); ?></a>
-			<span class="sep"><?php echo $memberlite_defaults['delimiter']; ?></span>
+			<span class="sep"><?php echo $memberlite_delimiter; ?></span>
 			<?php 
 				if(get_option('page_for_posts'))
 				{
 					?>
 					<a href="<?php echo get_permalink(get_option('page_for_posts')); ?>"><?php echo get_the_title(get_option('page_for_posts')); ?></a>
-					<span class="sep"><?php echo $memberlite_defaults['delimiter']; ?></span>
+					<span class="sep"><?php echo $memberlite_delimiter; ?></span>
 					<?php
 				}
 			?>
@@ -813,12 +673,12 @@ function memberlite_getBreadcrumbs()
 				if($post_type_object->has_archive == true)
 				{
 				?>
-					<span class="sep"><?php echo $memberlite_defaults['delimiter']; ?></span>
+					<span class="sep"><?php echo $memberlite_delimiter; ?></span>
 					<a href="<?php echo get_post_type_archive_link( get_post_type($post) ); ?>"><?php echo $post_type_object->labels->name; ?></a>
 					<?php 
 				}
 			?>
-			<span class="sep"><?php echo $memberlite_defaults['delimiter']; ?></span>
+			<span class="sep"><?php echo $memberlite_delimiter; ?></span>
 			<?php the_title(); ?>
 		</nav>	
 		<?php	
@@ -828,13 +688,13 @@ function memberlite_getBreadcrumbs()
 		?>
 		<nav class="memberlite-breadcrumb" itemprop="breadcrumb">
           	<a href="<?php echo home_url()?>"><?php _e('Home', 'memberlite'); ?></a>
-			<span class="sep"><?php echo $memberlite_defaults['delimiter']; ?></span>
+			<span class="sep"><?php echo $memberlite_delimiter; ?></span>
 			<?php 
 				if(get_option('page_for_posts'))
 				{
 					?>
 					<a href="<?php echo get_permalink(get_option('page_for_posts')); ?>"><?php echo get_the_title(get_option('page_for_posts')); ?></a>
-					<span class="sep"><?php echo $memberlite_defaults['delimiter']; ?></span>
+					<span class="sep"><?php echo $memberlite_delimiter; ?></span>
 					<?php
 				}
 			?>
@@ -887,4 +747,96 @@ function memberlite_getBannerImageID($post = NULL)
 	}
 	else
 		return false;
+}
+
+/* Parses tags added to fields in customizer (i.e. posts_entry_meta_before and posts_entry_meta_after. Available tags include:
+	{post_author} - Entry author display name
+	{post_author_posts_link} - Entry author display name, linked to their archive
+	{post_categories} - List of entry categories separated by a comma.
+	{post_comments} - Entry comments link in the format "X Comment/s".
+	{post_date} - Date the entry was published, formatted to your site's "Date Format" under Settings > General
+	{post_permalink} - A permalink to the post displayed as "permalink".
+	{post_permalink_icon} - A permalink to the post displayed as the Font Awesome "link" icon.
+	{post_tags} - List of entry tags separated by a comma.
+	{post_time} - Time the entry was published, formatted to your site's "Time Format" under Settings > General
+*/
+function memberlite_parse_tags($meta, $post = NULL) {
+	if(empty($post))
+		global $post;
+	
+	$author = get_userdata($post->post_author);
+	
+	$searches = array();
+	$replacements = array();
+		
+	if(strpos($meta, '{post_author}') !== false) {
+		$searches[] = "{post_author}";
+		$replacements[] = '<span class="author vcard">' . esc_html( $author->display_name ) . '</span>';
+	}
+	
+	if(strpos($meta, '{post_author_posts_link}') !== false) {
+		$searches[] = "{post_author_posts_link}";
+		$replacements[] = '<span class="author vcard"><a class="url fn n" href="' . esc_url( get_author_posts_url( $author->ID, $author->user_nicename ) ) . '">' . esc_html( $author->display_name ) . '</a></span>';
+	}
+	
+	if(strpos($meta, '{post_categories}') !== false) {
+		$searches[] = "{post_categories}";
+		$replacements[] = get_the_category_list( __( ', ', 'memberlite' ) );
+	}
+	
+	if(strpos($meta, '{post_comments}') !== false) {
+		$searches[] = "{post_comments}";
+		$replacements[] = '';
+		$num_comments = get_comments_number();
+		if ( comments_open() ) {
+			if ( $num_comments == 0 ) {
+				$comments = __('No Comments', 'memberlite');
+			} elseif ( $num_comments > 1 ) {
+				$comments = $num_comments . __(' Comments', 'memberlite');
+			} else {
+				$comments = __('1 Comment', 'memberlite');
+			}
+			$write_comments = '<a href="';
+			if(is_single())
+			{
+				$write_comments .= '#respond';
+			}
+			else
+			{
+				$write_comments .= get_comments_link();
+			}
+			$write_comments .= '">'. $comments.'</a>';
+		} 
+		if ( ! post_password_required() && ( comments_open() || '0' != get_comments_number() ) ) {
+			$replacements[] = '<span class="comments-link">' . $write_comments . '</span>';
+		}
+	}
+	
+	if(strpos($meta, '{post_date}') !== false) {
+		$searches[] = "{post_date}";
+		$replacements[] = '<time class="entry-date published" datetime="' . esc_attr( get_the_date( 'Y-m-d' ) ) . '">' . esc_html( get_the_date() ) . '</time>';
+	}
+	
+	if(strpos($meta, '{post_permalink}') !== false) {
+		$searches[] = "{post_permalink}";
+		$replacements[] = '<a href="' . get_permalink() . '" rel="bookmark">permalink</a>';
+	}
+	
+	if(strpos($meta, '{post_permalink_icon}') !== false) {
+		$searches[] = "{post_permalink_icon}";
+		$replacements[] = '<a href="' . get_permalink() . '" rel="bookmark"><i class="fa fa-link"></i></a>';
+	}
+		if(strpos($meta, '{post_tags}') !== false) {
+		$searches[] = "{post_tags}";
+		$replacements[] = get_the_tag_list( '', __( ', ', 'memberlite' ) );
+	}
+
+	if(strpos($meta, '{post_time}') !== false) {
+		$searches[] = "{post_time}";
+		$replacements[] = '<time class="entry-time" datetime="' . esc_attr( get_the_date( 'H:i' ) ) . '">' . esc_html( get_the_time() ) . '</time>';
+	}
+
+	
+	$meta = str_replace($searches, $replacements, $meta);	
+	return $meta;
 }

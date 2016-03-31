@@ -1,0 +1,161 @@
+body#tinymce.wp-editor,
+body#tinymce.wp-editor button,
+body#tinymce.wp-editor input,
+body#tinymce.wp-editor select,
+body#tinymce.wp-editor textarea,
+body#tinymce.wp-editor .btn {
+	color: #404040;
+	font-family: 'Lato', sans-serif;
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 1.8rem;
+}
+body#tinymce.wp-editor h1 {
+	font-size: 30px;
+	line-height: 4.2rem;
+}
+body#tinymce.wp-editor h2 {
+	font-size: 25px;
+	line-height: 3.6rem;
+	margin: 3rem 0 1rem 0;
+}
+body#tinymce.wp-editor h3 {
+	font-size: 20px;
+	line-height: 3rem;
+	margin: 2.6rem 0 1rem 0;
+}
+body#tinymce.wp-editor h4 {
+	font-size: 20px;
+	line-height: 3rem;
+	margin: 2.6rem 0 1rem 0;
+}
+body#tinymce.wp-editor h5, body#tinymce.wp-editor h6 {
+	font-size: 16px;
+	line-height: 2.6rem;
+	margin: 2.6rem 0 1rem 0;
+}
+body#tinymce.wp-editor h1 a, body#tinymce.wp-editor h2 a, body#tinymce.wp-editor h3 a, body#tinymce.wp-editor h4 a, body#tinymce.wp-editor h5 a, body#tinymce.wp-editor h6 a {
+	text-decoration: none;
+}
+body#tinymce.wp-editor h1 a:hover, body#tinymce.wp-editor h2 a:hover, body#tinymce.wp-editor h3 a:hover, body#tinymce.wp-editor h4 a:hover, body#tinymce.wp-editor h5 a:hover, body#tinymce.wp-editor h6 a:hover {
+	border-bottom: 1px dotted #777;
+}
+body#tinymce.wp-editor p {
+	margin-bottom: 2.6rem;
+}
+body#tinymce.wp-editor table {
+	margin: 0 0 3.5rem;
+	width: 100%;
+}
+body#tinymce.wp-editor th {
+	font-family: 'Lato', sans-serif;
+	font-weight: 400;
+	padding: 1rem;
+}
+body#tinymce.wp-editor thead th {
+	background: #EFEFEF; 
+	border-top: 1px solid #CCC;
+	border-bottom: 1px solid #CCC;
+	padding: 1rem;
+}
+body#tinymce.wp-editor tbody th {
+	border-bottom: 1px dotted #CCC;
+}
+body#tinymce.wp-editor td {
+	border-bottom: 1px dotted #CCC;
+	padding: 1rem;
+	vertical-align: top;
+}
+body#tinymce.wp-editor tbody tr:nth-child(even) th, body#tinymce.wp-editor tbody tr:nth-child(even) td {
+	background: #FAFAFA;
+}
+body#tinymce.wp-editor dl {
+	margin: 0 0 1.5rem 0;
+	border-top: 1px solid #CCC;
+	border-bottom: 1px solid #CCC;
+}
+body#tinymce.wp-editor dt {
+	padding: 1rem 0 0 0;
+	border-top: 1px dotted #CCC; 
+}
+body#tinymce.wp-editor dl dt:first-child {
+	border-top: none;
+}
+body#tinymce.wp-editor hr {
+	background-color: #ccc;
+	border: 0;
+	height: 1px;
+	margin: 3rem 0;
+}
+body#tinymce.wp-editor blockquote {
+	margin: 1.5rem 0;
+	background: #FAFAFA;
+	padding: 1rem 1rem 1px 1rem;
+	border-left: 5px solid #CCC;
+}
+body#tinymce.wp-editor blockquote.quote, body#tinymce.wp-editor q {
+	background: none;
+	color: #666;
+	border: none;
+	padding: 0 0 0 5rem;
+	position: relative;
+}
+body#tinymce.wp-editor blockquote cite {
+	display: block;
+	margin-top: .5rem;
+	text-align: right;
+	font-style: italic;
+	color: #AAA;
+}
+body#tinymce.wp-editor blockquote cite a {
+	color: #AAA;
+	text-decoration: none;
+}
+body#tinymce.wp-editor address {
+	margin: 0 0 1.5rem;
+}
+body#tinymce.wp-editor pre {
+	background: #eee;
+	font-family: "Courier 10 Pitch", Courier, monospace;
+	font-size: 15px;
+	margin-bottom: 1.6rem;
+	max-width: 100%;
+	overflow: auto;
+	padding: 1.6rem;
+}
+body#tinymce.wp-editor code, body#tinymce.wp-editor kbd, body#tinymce.wp-editor tt, body#tinymce.wp-editor var {
+	background-color: #eee;
+	color: #d14;
+	padding: 2px 4px;
+}
+body#tinymce.wp-editor code, body#tinymce.wp-editor kbd, body#tinymce.wp-editor tt, body#tinymce.wp-editor var {
+	font: 15px Monaco, Consolas, "Andale Mono", "DejaVu Sans Mono", monospace;
+}
+body#tinymce.wp-editor abbr, body#tinymce.wp-editor acronym {
+	border-bottom: 1px dotted #666;
+	cursor: help;
+}
+body#tinymce.wp-editor mark, body#tinymce.wp-editor ins {
+	background: #fff9c0;
+	padding: 2px 4px;
+	text-decoration: none;
+}
+body#tinymce.wp-editor sup, body#tinymce.wp-editor sub {
+	font-size: 75%;
+	height: 0;
+	line-height: 0;
+	position: relative;
+	vertical-align: baseline;
+}
+body#tinymce.wp-editor sup {
+	bottom: 1em;
+}
+body#tinymce.wp-editor sub {
+	top: .5em;
+}
+body#tinymce.wp-editor small {
+	font-size: 75%;
+}
+body#tinymce.wp-editor big {
+	font-size: 125%;
+}

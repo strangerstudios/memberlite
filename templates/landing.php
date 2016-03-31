@@ -2,7 +2,7 @@
 /**
 Template Name: Landing Page
 **/
-$memberlite_landing_page_level = get_post_meta($post->ID,'_memberlite_landing_page_level',true);
+$pmproal_landing_page_level = get_post_meta($post->ID,'_pmproal_landing_page_level',true);
 $memberlite_banner_desc = get_post_meta($post->ID, '_memberlite_banner_desc', true);
 $memberlite_landing_page_checkout_button = get_post_meta($post->ID,'_memberlite_landing_page_checkout_button',true);
 $memberlite_landing_page_upsell = get_post_meta($post->ID,'_memberlite_landing_page_upsell',true);
@@ -30,7 +30,7 @@ get_header(); ?>
 	<?php
 		if(defined('PMPRO_VERSION'))
 		{
-			$level = pmpro_getLevel($memberlite_landing_page_level);
+			$level = pmpro_getLevel($pmproal_landing_page_level);
 			if(!empty($level))
 			{
 				do_action('before_sidebar'); ?>
@@ -41,7 +41,7 @@ get_header(); ?>
 						$memberlite_default_sidebar = get_post_meta($post->ID, '_memberlite_default_sidebar', true);
 						if(empty($memberlite_default_sidebar) || $memberlite_default_sidebar == 'default_sidebar_above')
 						{
-							echo do_shortcode('[memberlite_signup level="' . $memberlite_landing_page_level . '" short="true" title="Sign Up Now"]'); 
+							echo do_shortcode('[memberlite_signup level="' . $pmproal_landing_page_level . '" short="true" title="Sign Up Now"]'); 
 						}		
 						if(!empty($memberlite_custom_sidebar))
 						{
@@ -50,7 +50,7 @@ get_header(); ?>
 						}
 						if(!empty($memberlite_default_sidebar) && $memberlite_default_sidebar == 'default_sidebar_below')
 						{
-							echo do_shortcode('[memberlite_signup level="' . $memberlite_landing_page_level . '" short="true" title="Sign Up Now"]'); 
+							echo do_shortcode('[memberlite_signup level="' . $pmproal_landing_page_level . '" short="true" title="Sign Up Now"]'); 
 						}
 					?>
 				<?php do_action('after_sidebar_widgets'); ?>

@@ -21,7 +21,9 @@ function memberlite_init_styles()
 	wp_enqueue_style('memberlite_style', get_stylesheet_uri(), array(), MEMBERLITE_VERSION);
 	wp_enqueue_style('memberlite_print_style', get_template_directory_uri() . "/css/print.css", array(), MEMBERLITE_VERSION, "print");
 	wp_enqueue_script('memberlite-navigation', get_template_directory_uri() . '/js/navigation.js', array( 'jquery' ), MEMBERLITE_VERSION, true);
+	wp_enqueue_script('memberlite-script', get_template_directory_uri() . '/js/memberlite.js', array( 'jquery' ), MEMBERLITE_VERSION, true);
 	wp_enqueue_script('memberlite-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array( 'jquery' ), MEMBERLITE_VERSION, true);
+	wp_enqueue_style('memberlite_fontawesome', get_template_directory_uri() . "/font-awesome/css/font-awesome.min.css", array(), "4.5.0");
 
 	//load dark.css for dark/inverted backgrounds
 	$memberlite_darkcss = get_theme_mod('memberlite_darkcss',$memberlite_defaults['memberlite_darkcss'],false);
@@ -35,7 +37,7 @@ function memberlite_init_styles()
 		wp_enqueue_script('comment-reply');
 	}
 }
-add_action("wp_enqueue_scripts", "memberlite_init_styles");	
+add_action('wp_enqueue_scripts', 'memberlite_init_styles');	
 
 /* Load fonts via Google API */
 function memberlite_load_fonts()
@@ -64,6 +66,9 @@ function memberlite_setup() {
 
 	// Add default posts and comments RSS feed links to head.
 	add_theme_support('automatic-feed-links');
+
+	// Add document title tag to HTML
+	add_theme_support('title-tag');
 
 	// Enable support for Post Thumbnails on posts and pages.
 	add_theme_support('post-thumbnails');
@@ -96,6 +101,9 @@ function memberlite_setup() {
 		'default-color' => 'ffffff',
 		'default-image' => '',
 	)));
+	
+	// Styles the visual editor to resemble the theme style
+	add_editor_style( array( 'css/editor-style.css') );
 }
 endif; // memberlite_setup
 add_action('after_setup_theme', 'memberlite_setup');
@@ -163,8 +171,9 @@ add_action('widgets_init', 'memberlite_widgets_init');
 
 /* Adds a Log Out link in member menu */
 function memberlite_menus( $items, $args ) {
-	if ($args->theme_location == 'member') {
-		if (is_user_logged_in() && pmpro_hasMembershipLevel())
+	//is this the member menu location or a replaced menu using pmpro-nav-menus plugin
+	if ($args->theme_location == 'member' || ( strpos($args->theme_location, '-member') !== false ) ) {
+		if (is_user_logged_in() && defined('PMPRO_VERSION') && pmpro_hasMembershipLevel())
 		{
 			//user is logged in and has a membership level
 			$items .= '<li><a href="'. wp_logout_url() .'">' . __('Log Out','memberlite') . '</a></li>';
@@ -181,7 +190,8 @@ function memberlite_menus( $items, $args ) {
 			$items .= '<li><a href="'. wp_registration_url() .'">' . __('Register','memberlite') . '</a></li>';	  
 		}
 	}
-	if ($args->theme_location == 'primary') {
+	//is this the primary menu location or a replaced menu using pmpro-nav-menus plugin
+	if ($args->theme_location == 'primary' || ( strpos($args->theme_location, '-primary') !== false ) ) {
 		$nav_menu_search = get_theme_mod( 'nav_menu_search', false );
 		if(!empty($nav_menu_search))
 			$items .= get_search_form(false);
@@ -235,14 +245,6 @@ function memberlite_comment_count( $count ) {
 }
 add_filter( 'get_comments_number', 'memberlite_comment_count', 0 );
 
-/* PMPro License code */
-if(!defined('PMPRO_LICENSE_SERVER'))
-	require_once get_template_directory() . '/inc/license.php';
-
-/* Updater coder */
-if(is_admin())
-	require_once get_template_directory() . '/inc/updates.php';
-	
 /* Custom admin theme pages. */
 if(is_admin())
 	require_once get_template_directory() . '/inc/admin.php';

@@ -18,6 +18,12 @@
 				'after'  => '</div>',
 			) );
 		?>
+		
+		<?php 
+			if( !empty( get_theme_mod( 'memberlite_page_nav', 1 ) ) )
+				memberlite_page_nav();
+		?>
+		
 		<?php do_action('after_content_page'); ?>
 	</div><!-- .entry-content -->
 	<footer class="entry-footer">
