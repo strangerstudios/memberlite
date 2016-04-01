@@ -510,7 +510,7 @@ function memberlite_getBreadcrumbs()
 		?>
 		<nav class="memberlite-breadcrumb" itemprop="breadcrumb">
           	<a href="<?php echo home_url()?>"><?php _e('Home', 'memberlite'); ?></a>
-			<span class="sep"><?php echo $memberlite_delimiter; ?></span>
+			<span class="sep"><?php echo esc_html($memberlite_delimiter); ?></span>
 			<?php
 				global $post;
 				$parent_id  = $post->post_parent;
@@ -532,7 +532,7 @@ function memberlite_getBreadcrumbs()
 			?>			
 			<nav class="memberlite-breadcrumb" itemprop="breadcrumb">
 				<a href="<?php echo home_url()?>"><?php _e('Home', 'memberlite'); ?></a>
-				<span class="sep"><?php echo $memberlite_delimiter; ?></span>
+				<span class="sep"><?php echo esc_html($memberlite_delimiter); ?></span>
 				<?php
 					$breadcrumbs = get_post_ancestors($post->ID);				
 					if($breadcrumbs)
@@ -542,7 +542,7 @@ function memberlite_getBreadcrumbs()
 						{
 							?>
 							<a href="<?php echo get_permalink($crumb); ?>"><?php echo get_the_title($crumb); ?></a>
-							<span class="sep"><?php echo $memberlite_delimiter; ?></span>
+							<span class="sep"><?php echo esc_html($memberlite_delimiter); ?></span>
 							<?php
 						}
 					}				
@@ -552,7 +552,7 @@ function memberlite_getBreadcrumbs()
 					{ 
 						?>
 						<a href="<?php echo get_permalink(pmpro_getOption('account_page_id')); ?>"><?php echo get_the_title(pmpro_getOption('account_page_id')); ?></a>
-						<span class="sep"><?php echo $memberlite_delimiter; ?></span>
+						<span class="sep"><?php echo esc_html($memberlite_delimiter); ?></span>
 						<?php 
 					} 
 				?>
@@ -565,7 +565,7 @@ function memberlite_getBreadcrumbs()
 		?>
 		<nav class="memberlite-breadcrumb" itemprop="breadcrumb">
           	<a href="<?php echo home_url()?>"><?php _e('Home', 'memberlite'); ?></a>
-			<span class="sep"><?php echo $memberlite_delimiter; ?></span>
+			<span class="sep"><?php echo esc_html($memberlite_delimiter); ?></span>
 			<?php post_type_archive_title(); ?>
 		</nav>
 		<?php	
@@ -575,13 +575,13 @@ function memberlite_getBreadcrumbs()
 		?>
 		<nav class="memberlite-breadcrumb" itemprop="breadcrumb">
           	<a href="<?php echo home_url()?>"><?php _e('Home', 'memberlite'); ?></a>
-			<span class="sep"><?php echo $memberlite_delimiter; ?></span>
+			<span class="sep"><?php echo esc_html($memberlite_delimiter); ?></span>
 			<?php 
 				if(get_option('page_for_posts'))
 				{
 					?>
 					<a href="<?php echo get_permalink(get_option('page_for_posts')); ?>"><?php echo get_the_title(get_option('page_for_posts')); ?></a>
-					<span class="sep"><?php echo $memberlite_delimiter; ?></span>
+					<span class="sep"><?php echo esc_html($memberlite_delimiter); ?></span>
 					<?php
 				}
 			?>
@@ -649,13 +649,13 @@ function memberlite_getBreadcrumbs()
 		?>
 		<nav class="memberlite-breadcrumb" itemprop="breadcrumb">
           	<a href="<?php echo home_url()?>"><?php _e('Home', 'memberlite'); ?></a>
-			<span class="sep"><?php echo $memberlite_delimiter; ?></span>
+			<span class="sep"><?php echo esc_html($memberlite_delimiter); ?></span>
 			<?php 
 				if(get_option('page_for_posts'))
 				{
 					?>
 					<a href="<?php echo get_permalink(get_option('page_for_posts')); ?>"><?php echo get_the_title(get_option('page_for_posts')); ?></a>
-					<span class="sep"><?php echo $memberlite_delimiter; ?></span>
+					<span class="sep"><?php echo esc_html($memberlite_delimiter); ?></span>
 					<?php
 				}
 			?>
@@ -673,12 +673,12 @@ function memberlite_getBreadcrumbs()
 				if($post_type_object->has_archive == true)
 				{
 				?>
-					<span class="sep"><?php echo $memberlite_delimiter; ?></span>
+					<span class="sep"><?php echo esc_html($memberlite_delimiter); ?></span>
 					<a href="<?php echo get_post_type_archive_link( get_post_type($post) ); ?>"><?php echo $post_type_object->labels->name; ?></a>
 					<?php 
 				}
 			?>
-			<span class="sep"><?php echo $memberlite_delimiter; ?></span>
+			<span class="sep"><?php echo esc_html($memberlite_delimiter); ?></span>
 			<?php the_title(); ?>
 		</nav>	
 		<?php	
@@ -688,13 +688,13 @@ function memberlite_getBreadcrumbs()
 		?>
 		<nav class="memberlite-breadcrumb" itemprop="breadcrumb">
           	<a href="<?php echo home_url()?>"><?php _e('Home', 'memberlite'); ?></a>
-			<span class="sep"><?php echo $memberlite_delimiter; ?></span>
+			<span class="sep"><?php echo esc_html($memberlite_delimiter); ?></span>
 			<?php 
 				if(get_option('page_for_posts'))
 				{
 					?>
 					<a href="<?php echo get_permalink(get_option('page_for_posts')); ?>"><?php echo get_the_title(get_option('page_for_posts')); ?></a>
-					<span class="sep"><?php echo $memberlite_delimiter; ?></span>
+					<span class="sep"><?php echo esc_html($memberlite_delimiter); ?></span>
 					<?php
 				}
 			?>

@@ -5,7 +5,7 @@
  * @package Memberlite
  */
 
-/**
+ /**
  * Add postMessage support for site title and description for the Theme Customizer.
  *
  * @param WP_Customize_Manager $wp_customize Theme Customizer object.
@@ -355,8 +355,8 @@ class memberlite_Customize {
 				'default' => $memberlite_defaults['copyright_textbox'],
 				'type' => 'theme_mod',
 				'capability' => 'edit_theme_options',
-				'santize_callback' => 'sanitize_text_field',
-				'sanitize_js_callback' => 'memberlite_sanitize_js_callback',
+				'santize_callback' => array('memberlite_Customize', 'sanitize_text_with_links'),
+				'sanitize_js_callback' => array('memberlite_Customize', 'sanitize_js_text_with_links'),
 				'transport' => 'postMessage',
 			)
 		);
@@ -929,7 +929,37 @@ class memberlite_Customize {
 			$value = 'default';
 		}
 		return esc_js($value);
-	}	
+	}
+	
+	/**
+	 * Sanitization callback text that may contain links
+	 *
+	 * @since Memberlite 2.0
+	 *
+	 * @param string $value string to sanitize.
+	 * @return string sanitized string.
+	 */
+	public static function sanitize_text_with_links( $value ) {
+		$allowed_html = array(
+			'a' => array(
+				'class' => array(),
+				'href' => array(),
+				'title' => array(),
+			),
+		);		
+		return wp_kses($value, $allowed_html);
+	}
+	
+	public static function sanitize_js_text_with_links( $value ) {
+		$allowed_html = array(
+			'a' => array(
+				'class' => array(),
+				'href' => array(),
+				'title' => array(),
+			),
+		);
+		return esc_js(wp_kses($value, $allowed_html));
+	}
 	
 	/**
 	 * Binds JS listener to make Customizer color_scheme control.

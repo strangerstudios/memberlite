@@ -71,7 +71,7 @@
 					$copyright_textbox = get_theme_mod( 'copyright_textbox',$memberlite_defaults['copyright_textbox'] ); 
 					if ( ! empty( $copyright_textbox ) ) 
 					{
-						echo wpautop($copyright_textbox); 
+						echo wpautop(memberlite_Customize::sanitize_text_with_links($copyright_textbox));
 					}				
 				?>
 			</div>
