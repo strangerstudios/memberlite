@@ -50,6 +50,13 @@ We highly recommend using these plugins for every site running Memberlite:
 
 ###Changelog
 **3.0**
+* ENHANCEMENT: Added single post meta settings with template variables for before and after post.
+* ENHANCEMENT: Added Back to Top footer link
+* ENHANCEMENT: Added customizer settings for page and post navigation
+* ENHANCEMENT: Added single page navigation within parent/child page hierarchy
+* ENHANCEMENT: Updating theme for compatibility with pmpro-advanced-levels-shortcode addon
+* ENHANCEMENT: JS for smooth scroll to # target links in page
+* BUG: Fixing nav menus when using pmpro-nav-menus addon
 * BUG: Fixing errors and alerts from Theme Check plugin.
 * ENHANCEMENT: Moving all shortcodes to 'memberlite-shortocdes' plugin for better compatibility for theme changes.
 * ENHANCEMENT: Improved handling of CPT titles, breadcrumbs, and sidebars for single and archive view.
