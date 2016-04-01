@@ -915,15 +915,24 @@ a:active {
 	margin: 1em 0;
 	overflow: hidden;
 }
+.site-main .page-navigation {
+	border-top: 1px solid #ccc;
+	clear: both;
+	margin: 2em 0 0 0;
+	overflow: hidden;
+	padding-top: 3rem;
+}
 .comment-navigation .nav-previous,
 .paging-navigation .nav-previous,
-.post-navigation .nav-previous {
+.post-navigation .nav-previous,
+.page-navigation .nav-previous {
 	float: left;
 	width: 50%;
 }
 .comment-navigation .nav-next,
 .paging-navigation .nav-next,
-.post-navigation .nav-next {
+.post-navigation .nav-next,
+.page-navigation .nav-next {
 	float: right;
 	text-align: right;
 	width: 50%;

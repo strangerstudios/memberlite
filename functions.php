@@ -274,8 +274,10 @@ if(is_admin())
 /* Custom widgets that act independently of the theme templates. */
 require_once get_template_directory() . '/inc/widgets.php';
 
+/* Integration for Paid Memberships Pro. */
+if(defined('PMPRO_VERSION'))
+	require_once get_template_directory() . '/inc/integrations/paid-memberships-pro.php';
+
+/* Integration for WooCommerce. */
 if(function_exists('is_woocommerce'))
-{
-	/* Integration for WooCommerce. */
 	require_once get_template_directory() . '/inc/integrations/woocommerce.php';
-}
