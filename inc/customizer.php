@@ -373,8 +373,8 @@ class memberlite_Customize {
 			'memberlite_color_scheme',
 			array(
 				'default' => $memberlite_defaults['memberlite_color_scheme'],
-				'santize_callback' => array('memberlite_Customize', 'sanitize_color_scheme'),
-				'santize_js_callback' => array('memberlite_Customize', 'sanitize_js_color_scheme'),
+				'sanitize_callback' => array('memberlite_Customize', 'sanitize_color_scheme'),
+				'sanitize_js_callback' => array('memberlite_Customize', 'sanitize_js_color_scheme'),
 				'type' => 'theme_mod',
 				'capability' => 'edit_theme_options',
 				'transport' => 'postMessage',
