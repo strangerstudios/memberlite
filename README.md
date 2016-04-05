@@ -50,6 +50,7 @@ We highly recommend using these plugins for every site running Memberlite:
 
 ###Changelog
 **3.0**
+* BUG: Fixing content_width for full width or fluid width page template.
 * ENHANCEMENT: Added single post meta settings with template variables for before and after post.
 * ENHANCEMENT: Added Back to Top footer link
 * ENHANCEMENT: Added customizer settings for page and post navigation

@@ -53,6 +53,15 @@ if(!isset($content_width)) {
 	$content_width = 701; /* pixels */
 }
 
+/* Adjust the content width based on the template. */
+function memberlite_adjust_content_width() {
+    global $content_width;
+ 
+    if ( is_page_template( 'templates/full-width.php' ) || is_page_template( 'templates/fluid-width.php' ) )
+        $content_width = 1170; /* pixels */
+}
+add_action( 'template_redirect', 'memberlite_adjust_content_width' );
+
 if(!function_exists('memberlite_setup')) :
 /* Sets up theme defaults and registers support for various WordPress features. */
 function memberlite_setup() {
