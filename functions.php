@@ -84,7 +84,6 @@ function memberlite_setup() {
 	set_post_thumbnail_size( 150, 150, true );
 	add_image_size('mini', 80, 80, true, array('center','center'));
 	add_image_size('banner', 740, 200, true, array('center','center'));
-	add_image_size('large', 701, 1200, false, array('center','center'));
 	add_image_size('masthead', 1600, 300, true, array('center','center'));
 	
 	// This theme uses wp_nav_menu() in four locations.
