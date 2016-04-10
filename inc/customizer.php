@@ -27,7 +27,7 @@ class memberlite_Customize {
 			array(
 				'default' => $memberlite_defaults['memberlite_webfonts'],
 				'santize_callback' => 'sanitize_text_field',
-				'sanitize_js_callback' => 'memberlite_sanitize_js_callback',
+				'sanitize_js_callback' => array('memberlite_Customize', 'memberlite_sanitize_js_callback'),
 			)
 		);
 		$wp_customize->add_control(
@@ -60,7 +60,7 @@ class memberlite_Customize {
 			array(
 				'default' => false,
 				'santize_callback' => 'memberlite_sanitize_checkbox',
-				'santize_js_callback' => 'memberlite_sanitize_js_callback',
+				'santize_js_callback' => array('memberlite_Customize', 'memberlite_sanitize_js_callback'),
 			)
 		);
 		$wp_customize->add_control(
@@ -77,7 +77,7 @@ class memberlite_Customize {
 			array(
 				'default' => false,
 				'santize_callback' => 'memberlite_sanitize_checkbox',
-				'santize_js_callback' => 'memberlite_sanitize_js_callback',
+				'santize_js_callback' => array('memberlite_Customize', 'memberlite_sanitize_js_callback'),
 			)
 		);
 		$wp_customize->add_control(
@@ -94,7 +94,7 @@ class memberlite_Customize {
 			array(
 				'default' => $memberlite_defaults['sidebar_location'],
 				'santize_callback' => 'sanitize_text_field',
-				'sanitize_js_callback' => 'memberlite_sanitize_js_callback',
+				'sanitize_js_callback' => array('memberlite_Customize', 'memberlite_sanitize_js_callback'),
 			)
 		);
 		$wp_customize->add_control(
@@ -115,7 +115,7 @@ class memberlite_Customize {
 			array(
 				'default' => $memberlite_defaults['sidebar_location_blog'],
 				'santize_callback' => 'sanitize_text_field',
-				'sanitize_js_callback' => 'memberlite_sanitize_js_callback',
+				'sanitize_js_callback' => array('memberlite_Customize', 'memberlite_sanitize_js_callback'),
 			)
 		);
 		$wp_customize->add_control(
@@ -136,7 +136,7 @@ class memberlite_Customize {
 			array(
 				'default' => $memberlite_defaults['content_archives'],
 				'santize_callback' => 'sanitize_text_field',
-				'sanitize_js_callback' => 'memberlite_sanitize_js_callback',
+				'sanitize_js_callback' => array('memberlite_Customize', 'memberlite_sanitize_js_callback'),
 			)
 		);
 		$wp_customize->add_control(
@@ -192,7 +192,7 @@ class memberlite_Customize {
 				array(
 					'default' => false,
 					'santize_callback' => 'memberlite_sanitize_checkbox',
-					'santize_js_callback' => 'memberlite_sanitize_js_callback',
+					'santize_js_callback' => array('memberlite_Customize', 'memberlite_sanitize_js_callback'),
 				)
 			);
 			// CONTROLS
@@ -211,7 +211,7 @@ class memberlite_Customize {
 			array(
 				'default' => true,
 				'santize_callback' => 'memberlite_sanitize_checkbox',
-				'santize_js_callback' => 'memberlite_sanitize_js_callback',
+				'santize_js_callback' => array('memberlite_Customize', 'memberlite_sanitize_js_callback'),
 			)
 		);
 		$wp_customize->add_control(
@@ -228,7 +228,7 @@ class memberlite_Customize {
 			array(
 				'default' => true,
 				'santize_callback' => 'memberlite_sanitize_checkbox',
-				'santize_js_callback' => 'memberlite_sanitize_js_callback',
+				'santize_js_callback' => array('memberlite_Customize', 'memberlite_sanitize_js_callback'),
 			)
 		);
 		$wp_customize->add_control(
@@ -247,7 +247,7 @@ class memberlite_Customize {
 				'type' => 'theme_mod',
 				'capability' => 'edit_theme_options',
 				'santize_callback' => 'sanitize_text_field',
-				'sanitize_js_callback' => 'memberlite_sanitize_js_callback',
+				'sanitize_js_callback' => array('memberlite_Customize', 'memberlite_sanitize_js_callback'),
 				'transport' => 'refresh',
 			)
 		);
@@ -273,7 +273,7 @@ class memberlite_Customize {
 				'type' => 'theme_mod',
 				'capability' => 'edit_theme_options',
 				'santize_callback' => 'sanitize_text_field',
-				'sanitize_js_callback' => 'memberlite_sanitize_js_callback',
+				'sanitize_js_callback' => array('memberlite_Customize', 'memberlite_sanitize_js_callback'),
 				'transport' => 'postMessage',
 			)
 		);
@@ -293,7 +293,7 @@ class memberlite_Customize {
 				'type' => 'theme_mod',
 				'capability' => 'edit_theme_options',
 				'santize_callback' => 'sanitize_text_field',
-				'sanitize_js_callback' => 'memberlite_sanitize_js_callback',
+				'sanitize_js_callback' => array('memberlite_Customize', 'memberlite_sanitize_js_callback'),
 				'transport' => 'postMessage',
 			)
 		);
@@ -311,7 +311,7 @@ class memberlite_Customize {
 			array(
 				'default' => $memberlite_defaults['memberlite_footerwidgets'],
 				'santize_callback' => 'intval_base10',
-				'santize_js_callback' => 'memberlite_sanitize_js_callback',
+				'santize_js_callback' => array('memberlite_Customize', 'memberlite_sanitize_js_callback'),
 			)
 		);
 		$wp_customize->add_control(
@@ -336,7 +336,7 @@ class memberlite_Customize {
 				'type' => 'theme_mod',
 				'capability' => 'edit_theme_options',
 				'santize_callback' => 'sanitize_text_field',
-				'sanitize_js_callback' => 'memberlite_sanitize_js_callback',
+				'sanitize_js_callback' => array('memberlite_Customize', 'memberlite_sanitize_js_callback'),
 				'transport' => 'postMessage',
 			)
 		);
@@ -395,7 +395,7 @@ class memberlite_Customize {
 			array(
 				'default' => false,
 				'santize_callback' => 'memberlite_sanitize_checkbox',
-				'santize_js_callback' => 'memberlite_sanitize_js_callback',
+				'santize_js_callback' => array('memberlite_Customize', 'memberlite_sanitize_js_callback'),
 			)
 		);
 		$wp_customize->add_control(
