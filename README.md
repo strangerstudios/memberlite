@@ -50,6 +50,9 @@ We highly recommend using these plugins for every site running Memberlite:
 
 ###Changelog
 **3.0**
+* BUG: Removed add_image_size('large') declaration
+* ENHANCEMENT: Added image size for 'fullwidth' (full width 12 columns - 1170px)
+* ENHANCEMENT: Added fallback to author avatar for recent posts widget when featured image is not set
 * BUG: Fixing content_width for full width or fluid width page template.
 * ENHANCEMENT: Added single post meta settings with template variables for before and after post.
 * ENHANCEMENT: Added Back to Top footer link

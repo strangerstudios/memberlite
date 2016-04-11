@@ -1126,13 +1126,12 @@ a:active {
 }
 
 .widget_recent_entries_thumbnails li {clear: left; }
-.widget_recent_entries_thumbnails .widget_post_thumbnail {
+.widget_recent_entries_thumbnails .widget_post_thumbnail, .memberlite_recent_posts .widget_post_thumbnail {
 	display: block;
-	float: left;
 	width: 80px; 
 	height: 80px;
 	border-radius: 50%;
-	margin: 0 .5em 0em -.5em;
+	margin-left: -.5em;
 }
 #secondary .widget_recent_entries_thumbnails .widget_post_thumbnail:hover, .footer-widgets .widget_post_thumbnail:hover {
 	border: none;
@@ -1157,7 +1156,6 @@ a:active {
 }
 .widget_recent_entries_thumbnails .widget_has_thumbnail .post-date {
 	display: block;
-	padding-left: 80px;
 }
 /*--------------------------------------------------------------
 10.0 Content
