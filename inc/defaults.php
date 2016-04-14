@@ -2,6 +2,7 @@
 global $memberlite_defaults;
 $memberlite_defaults = array(
 	'memberlite_webfonts' => 'Lato_Lato',
+	'columns_ratio' => '8-4',
 	'sidebar_location' => 'sidebar-right',
 	'sidebar_location_blog' => 'sidebar-blog-right',
 	'content_archives' => 'content',

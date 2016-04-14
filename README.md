@@ -50,6 +50,7 @@ We highly recommend using these plugins for every site running Memberlite:
 
 ###Changelog
 **3.0**
+* ENHANCEMENT: Added customization setting for columns ratio of primary and sidebar.
 * BUG: Removed add_image_size('large') declaration
 * ENHANCEMENT: Added image size for 'fullwidth' (full width 12 columns - 1170px)
 * ENHANCEMENT: Added fallback to author avatar for recent posts widget when featured image is not set

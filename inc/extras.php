@@ -83,6 +83,17 @@ function memberlite_wp_title( $title, $sep ) {
 }
 add_filter( 'wp_title', 'memberlite_wp_title', 10, 2 );
 
+/* Get main and sidebar columns width from theme mod or defaults. */
+function memberlite_getColumnsRatio( $location = NULL ) {
+	global $memberlite_defaults;
+	$columns_ratio = get_theme_mod( 'columns_ratio', $memberlite_defaults['columns_ratio'] );
+	$columns_ratio_array = explode( '-', $columns_ratio );
+	if($location == 'sidebar')
+		return $columns_ratio_array[1];
+	else
+		return $columns_ratio_array[0];
+}
+
 /**
  * Sets the authordata global when viewing an author archive.
  *

@@ -6,7 +6,7 @@
  */
 get_header(); ?>
 
-	<div id="primary" class="<?php if(bbp_is_single_user()) { ?>medium-12<?php } else { ?>medium-8<?php } ?> columns content-area">
+	<div id="primary" class="<?php if(bbp_is_single_user()) { ?>medium-12<?php } else { ?>medium-<?php echo memberlite_getColumnsRatio(); ?><?php } ?> columns content-area">
 		<main id="main" class="site-main" role="main">
 
 			<?php while ( have_posts() ) : the_post(); ?>

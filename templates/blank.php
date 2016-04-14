@@ -11,7 +11,7 @@ if(empty($checkout_button))
 	$checkout_button = 'Select';	
 get_header(); ?>
 
-	<div id="primary" class="medium-8 columns content-area">
+	<div id="primary" class="medium-<?php echo memberlite_getColumnsRatio(); ?> columns content-area">
 		<main id="main" class="site-main" role="main">
 
 			<?php while ( have_posts() ) : the_post(); ?>
@@ -35,7 +35,7 @@ get_header(); ?>
 		</main><!-- #main -->
 	</div><!-- #primary -->
 
-	<div id="secondary" class="medium-4 columns widget-area" role="complementary">
+	<div id="secondary" class="medium-<?php echo memberlite_getColumnsRatio( 'sidebar' ); ?> columns widget-area" role="complementary">
 		<?php
 			if(!empty($before_sidebar)) 
 			{ 

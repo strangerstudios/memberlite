@@ -6,7 +6,7 @@
  */
 ?>
 <?php do_action('before_sidebar'); ?>
-<div id="secondary" class="medium-4 columns widget-area" role="complementary">
+<div id="secondary" class="medium-<?php echo memberlite_getColumnsRatio( 'sidebar' ); ?> columns widget-area" role="complementary">
 <?php do_action('before_sidebar_widgets'); ?>
 <?php 
 	if(is_singular())

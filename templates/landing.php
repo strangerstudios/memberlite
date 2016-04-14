@@ -9,7 +9,7 @@ $memberlite_landing_page_upsell = get_post_meta($post->ID,'_memberlite_landing_p
 if(empty($memberlite_landing_page_checkout_button))
 	$memberlite_landing_page_checkout_button = 'Select';	
 get_header(); ?>
-	<div id="primary" class="medium-8 columns content-area">
+	<div id="primary" class="medium-<?php echo memberlite_getColumnsRatio(); ?> columns content-area">
 		<?php do_action('before_main'); ?>
 		<main id="main" class="site-main" role="main">
 		<?php do_action('before_loop'); ?>
@@ -34,7 +34,7 @@ get_header(); ?>
 			if(!empty($level))
 			{
 				do_action('before_sidebar'); ?>
-				<div id="secondary" class="medium-4 columns widget-area" role="complementary">
+				<div id="secondary" class="medium-<?php echo memberlite_getColumnsRatio( 'sidebar' ); ?> columns widget-area" role="complementary">
 					<?php do_action('before_sidebar_widgets'); ?>
 					<?php 
 						$memberlite_custom_sidebar = get_post_meta($post->ID, '_memberlite_custom_sidebar', true);

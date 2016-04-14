@@ -90,6 +90,34 @@ class memberlite_Customize {
 			)
 		);
 		$wp_customize->add_setting(
+			'columns_ratio',
+			array(
+				'default' => $memberlite_defaults['columns_ratio'],
+				'type' => 'theme_mod',
+				'capability' => 'edit_theme_options',
+				'santize_callback' => 'sanitize_text_field',
+				'sanitize_js_callback' => array('memberlite_Customize', 'memberlite_sanitize_js_callback'),
+				'transport' => 'refresh',
+			)
+		);
+		$wp_customize->add_control(
+			'columns_ratio',
+			array(
+				'label' => 'Columns Ratio',
+				'section' => 'memberlite_theme_options',
+				'type'       => 'select',
+				'choices'    => array(
+					'6-6' => '6x6',
+					'7-5' => '7x5',
+					'8-4' => '8x4',
+					'9-3' => '9x3',
+					'10-2' => '10x2',
+					'11-1' => '11x1',
+				),
+				'priority' => 24
+			)
+		);
+		$wp_customize->add_setting(
 			'sidebar_location',
 			array(
 				'default' => $memberlite_defaults['sidebar_location'],

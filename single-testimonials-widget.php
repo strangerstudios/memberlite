@@ -5,7 +5,7 @@
  * @package Memberlite
  */
 get_header(); ?>
-	<div id="primary" class="medium-8 columns content-area">
+	<div id="primary" class="medium-<?php echo memberlite_getColumnsRatio(); ?> columns content-area">
 		<?php do_action('before_main'); ?>
 		<main id="main" class="site-main" role="main">
 		<?php do_action('after_loop'); ?>
