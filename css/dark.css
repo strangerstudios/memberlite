@@ -2,13 +2,19 @@
 body, blockquote.quote, q, .lead, div.lead p {color: #FFF; }
 hr {background-color: #666; }
 #site-navigation, .footer-navigation, .main-navigation a, .meta-navigation li, .header-right .widget_nav_menu li, .footer-navigation li, #secondary .widget-title, .widget_calendar #wp-calendar caption, #secondary .widget a, #secondary .widget a:link {border-color: #666; }
+#secondary .widget a, #secondary .widget a:link {color: #AAA; }
 blockquote { }
 
-blockquote, pre, .comment.odd .child-comments .comment, #secondary .widget-title, .widget_calendar #wp-calendar caption, .post .entry-footer, .comment.even, .pingback.even, .trackback.even, .comment.even .child-comments .comment, #your-profile h3, #primary .tml-action-links, thead th, tbody tr:nth-child(even) th, tbody tr:nth-child(even) td {background: rgba(255,255,255,0.1); }
+blockquote, pre, .comment.odd .child-comments .comment, #secondary .widget-title, .widget_calendar #wp-calendar caption, .post .entry-footer, .comment.even, .pingback.even, .trackback.even, .comment.even .child-comments .comment, #your-profile h3, #primary .tml-action-links, thead th, tbody tr:nth-child(even) th, tbody tr:nth-child(even) td, #bbpress-forums li.bbp-header {background: rgba(255,255,255,0.1); }
 .comment.odd .child-comments .comment {background: none; }
 
 mark, ins {color: #000; }
 
-#pmpro_levels .post h2, .memberlite_signup h2, .pmpro_signup_form h2 {background: rgba(255,255,255,0.4); }
+#pmpro_levels .post h2, .memberlite_signup h2, .pmpro_signup_form h2 {background: rgba(255,255,255,0.2); }
 
+#pmpro_levels_table {background: none; }
+#pmpro_levels_table.pmpro_checkout thead th, #pmpro_form .pmpro_checkout thead th {color: #FFF; }
 #pmpro_levels.pmpro_levels-table.pmpro_level-highlight, #pmpro_levels.pmpro_levels-div .pmpro_level-highlight, #pmpro_levels.pmpro_levels-2col .pmpro_level-highlight, #pmpro_levels.pmpro_levels-3col .pmpro_level-highlight, #pmpro_levels.pmpro_levels-4col .pmpro_level-highlight, .memberlite_signup, .pmpro_signup_form {background: rgba(255,255,255,0.1); border-left: none; border-right: none; }
+
+.bbp-pagination {color: #AAA; }
+#bbpress-forums div.even, #bbpress-forums ul.odd, #bbpress-forums div.even, #bbpress-forums ul.even {background: none; }
