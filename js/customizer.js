@@ -30,11 +30,16 @@
 				$( '.site-title' ).css( {
 					'text-indent': '0',
 				} );
-				$( '.site-description' ).css( {
+
+				$( '.site-title,  .site-description' ).css( {
 					'clip': 'auto',
-					'position': 'relative',
-					'color': to,
+					'position': 'static'
 				} );
+
+				$( '.site-title a' ).css( {
+					'color': to
+				} );
+
 			}
 		} );
 	} );

@@ -92,11 +92,12 @@ function memberlite_header_style() {
 	<?php
 		// If the user has set a custom color for the text use that
 		else :
+		/*
 	?>
 		.site-header .site-title a, .site-header .site-description {
 			color: #<?php echo $header_text_color; ?>;
 		}
-	<?php endif; ?>
+	<?php */ endif; ?>
 	</style>
 	<?php
 }

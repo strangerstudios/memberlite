@@ -589,6 +589,13 @@ class memberlite_Customize {
 		$wp_customize->get_setting( 'posts_entry_meta_before' )->transport = 'postMessage';
 		$wp_customize->get_setting( 'posts_entry_meta_after' )->transport = 'postMessage';
 		$wp_customize->get_setting( 'delimiter' )->transport = 'postMessage';
+		
+		// Rename the label to "Site Title & Tagline Color".
+		$wp_customize->get_control( 'header_textcolor' )->label = __( 'Site Title &amp; Tagline Color', 'memberlite' );
+	
+		// Rename the label to "Display Site Title & Tagline" for clarity.
+		$wp_customize->get_control( 'display_header_text' )->label = __( 'Display Site Title &amp; Tagline', 'memberlite' );
+		
 	}
 
 	public static function header_output() {
@@ -650,7 +657,7 @@ class memberlite_Customize {
 				echo $memberlite_defaults['color_site_navigation_hover_elements'] . ' {color: ' . $color_site_navigation_hover . '}';
 			?>
 			
-			<?php self::generate_css('.site-header .site-title a, .site-header .site-description', 'color', 'header_textcolor', '#'); ?>
+			<?php self::generate_css('.site-title a, .site-header .site-description', 'color', 'header_textcolor', '#'); ?>
 			<?php self::generate_css('body', 'background-color', 'background_color', '#'); ?> 
 			<?php 
 				$fonts_string = get_theme_mod('memberlite_webfonts');
