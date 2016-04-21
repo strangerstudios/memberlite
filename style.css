@@ -541,7 +541,7 @@ a.pmpro_btn:hover, input[type="submit"].pmpro_btn:hover {
 .btn_primary, .btn_primary:link {background: #2C3E50; }
 .btn_secondary, .btn_secondary:link {background: #18BC9C; }
 .btn_action, .btn_action:link {background: #F39C12; }
-.btn_block, .btn_block:link {display: block; }
+.btn_block, .btn_block:link {display: block; width: 100%; }
 .btn .fa {padding: 0 .5rem; }
 
 /*--------------------------------------------------------------
@@ -605,6 +605,7 @@ textarea {
 
 /*--------------------------------------------------------------
 4.3 Messages - Success, Error, Alert
+--------------------------------------------------------------*/
 .pmpro_message, .pmpro_content_message, #pmpro_account_loggedin {
 	background-color: #d9edf7; 
 	-webkit-border-radius: 5px; 
@@ -632,7 +633,6 @@ textarea {
 
 input.pmpro_error {background-image: none;}
 select.pmpro_error {background-image: none;}
---------------------------------------------------------------*/
 
 /*--------------------------------------------------------------
 5.0 Navigation
