@@ -29,7 +29,8 @@ function memberlite_body_classes( $classes ) {
 	global $post, $memberlite_defaults;
 	
 	//sidebar classes
-	$classes[] = get_theme_mod('sidebar_location',$memberlite_defaults['sidebar_location']);
+	if ( !is_page_template( 'templates/fluid-width.php' ) )
+		$classes[] = get_theme_mod('sidebar_location',$memberlite_defaults['sidebar_location']);
 	$classes[] = get_theme_mod('sidebar_location_blog',$memberlite_defaults['sidebar_location_blog']);
 	if ( is_page_template( 'templates/sidebar-content.php' ) )
 		$classes[] = 'sidebar-content';

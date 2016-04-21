@@ -153,7 +153,7 @@
 			if( !is_front_page() || (is_front_page() && (basename($template) != 'page.php') || 'posts' == get_option( 'show_on_front' )) && !is_404())
 			{
 				$post = get_queried_object();
-				if(!empty($post))
+				if(!empty($post) && !is_attachment())
 				{
 					$banner_image_id = memberlite_getBannerImageID($post);
 					$banner_image_src = wp_get_attachment_image_src( $banner_image_id, 'full');

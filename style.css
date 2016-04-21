@@ -1286,6 +1286,9 @@ a:active {
 	padding: 2rem 0;
 	margin-bottom: 4rem;
 }
+.page-template-fluid-width .masthead {
+	margin: 0;
+}
 .masthead-inv {
 	background-color: #FDFDFD;
 	padding: 2rem 0;
