@@ -20,7 +20,7 @@
 		?>
 		
 		<?php 
-			if( !empty( get_theme_mod( 'memberlite_page_nav', 1 ) ) )
+			if( !empty( get_theme_mod( 'memberlite_page_nav', 1 ) ) && !is_page_template('templates/fluid-width.php') )
 				memberlite_page_nav();
 		?>
 		
