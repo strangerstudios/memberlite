@@ -623,7 +623,7 @@ textarea {
 .pmpro_message.pmpro_default, .pmpro_content_message {background-color: #FAFAFA; color: #777; border-color: #DADADA; }
 .pmpro_success {background-color: #dff0d8; color: #3c763d; border-color: #d6e9c6; }
 .pmpro_error {background-color: #f2dede; color: #a94442; border-color: #ebccd1; }
-.pmpro_alert, .pmpro_content_message, #pmpro_account_loggedin {background-color: #fcf8e3; color: #8a6d3b; border-color: #faebcc;}
+.pmpro_alert, #pmpro_account_loggedin {background-color: #fcf8e3; color: #8a6d3b; border-color: #faebcc;}
 .pmpro_message h2, .pmpro_message h3, .pmpro_message h4, .pmpro_message h5, .pmpro_content_message h2, .pmpro_content_message h3, .pmpro_content_message h4, .pmpro_content_message h5 {margin-top: 1rem; }
 .pmpro_content_message a {margin: 5px 5px 0 0; }
 .pmpro_message a {color: #245269; text-decoration: underline; }
