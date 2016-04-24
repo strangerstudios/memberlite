@@ -620,7 +620,7 @@ textarea {
 	margin: .5em 0; 
 	padding: 10px 15px; 
 }
-.pmpro_message.pmpro_default {background-color: #FAFAFA; color: #777; border-color: #DADADA; }
+.pmpro_message.pmpro_default, .pmpro_content_message {background-color: #FAFAFA; color: #777; border-color: #DADADA; }
 .pmpro_success {background-color: #dff0d8; color: #3c763d; border-color: #d6e9c6; }
 .pmpro_error {background-color: #f2dede; color: #a94442; border-color: #ebccd1; }
 .pmpro_alert, .pmpro_content_message, #pmpro_account_loggedin {background-color: #fcf8e3; color: #8a6d3b; border-color: #faebcc;}
@@ -633,6 +633,9 @@ textarea {
 
 input.pmpro_error {background-image: none;}
 select.pmpro_error {background-image: none;}
+
+.pmpro_content_message p:last-child {margin-bottom: 0; }
+.pmpro_content_message a, .pmpro_content_message a:link {text-transform:capitalize; }
 
 /*--------------------------------------------------------------
 5.0 Navigation
