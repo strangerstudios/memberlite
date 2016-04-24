@@ -20,7 +20,7 @@ get_header(); ?>
 				<hr />				
 				<?php 
 					if(is_numeric($memberlite_landing_page_upsell))
-						echo do_shortcode('[memberlite_levels levels="' . intval($memberlite_landing_page_upsell) . '"]');
+						echo do_shortcode('[pmpro_advanced_levels levels="' . intval($memberlite_landing_page_upsell) . '"]');
 				?>
 			<?php } ?>
 			<?php do_action('after_loop'); ?>
