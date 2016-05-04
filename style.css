@@ -327,16 +327,20 @@ big {
 }
 .text-2x {
   font-size: 2rem;
+  line-height: 3.2rem;
 }
 .text-3x {
   font-size: 3rem;
+  line-height: 4.4rem;
 }
 .text-4x {
   font-size: 4rem;
-}
+  line-height: 5.8rem;
+ }
 .text-5x {
   font-size: 5rem;
-}
+  line-height: 7rem;
+ }
 /*--------------------------------------------------------------
 3.0 Elements
 --------------------------------------------------------------*/
@@ -788,6 +792,7 @@ a:active {
 	left: -1.5rem;
 }
 .main-navigation ul li:hover > ul li:hover > ul {
+	left: 100%;
 	top: 0;
 }
 .meta-navigation ul li:hover > ul, .header-right .widget_nav_menu ul li:hover > ul {
@@ -1791,6 +1796,12 @@ a:active {
 #main .banner_primary, #main .banner_primary h1, #main .banner_primary h2, #main .banner_primary h3, #main .banner_primary h4, #main .banner_primary h5, #main .banner_primary a, #main .banner_primary a:link,
 #main .banner_secondary, #main .banner_secondary h1, #main .banner_secondary h2, #main .banner_secondary h3, #main .banner_secondary h4, #main .banner_secondary h5, #main .banner_secondary a, #main .banner_secondary a:link {
 	color: #FFF; 
+}
+
+.banner_primary div.lead p, .banner_primary p.lead,
+.banner_secondary div.lead p, .banner_secondary p.lead,
+.banner_action div.lead p, .banner_action p.lead {
+	color: #FFF;
 }
 
 .btn_primary, .btn_primary:link {background: #2C3E50; }
