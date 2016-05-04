@@ -1175,17 +1175,26 @@ a:active {
 .site-header .row {
 	margin-bottom: 0;
 }
-.site-header .site-title {
-	margin: 20px 0 0 0;
+.site-branding {
+	margin-top: 20px;
 }
-.site-header .site-title a {
-	border: none;
-	font-size: 3.5rem;
+.site-branding a.custom-logo-link {
+	display: block;
+	float: left;
+}
+.site-branding a.custom-logo-link .custom-logo {
+	max-height: 100px;
+	width: auto;
+}
+.site-branding .site-title {
+	margin: 10px 0 0 0;
 }
 .site-branding .site-title a {
+	border: none;
+	font-size: 3.5rem;
 	text-decoration: none;
 }
-.site-header .site-description {
+.site-branding .site-description {
 	color: #AAA;
 	display: block;
 	font-style: italic; 

@@ -58,7 +58,8 @@
 				if(!is_page_template( 'templates/interstitial.php' ) && (!empty($meta_login) || has_nav_menu('meta') || is_active_sidebar('sidebar-3')) ) 
 					$show_header_right = true;
 			?>
-			<div class="<?php if(is_page_template( 'templates/interstitial.php') || empty($show_header_right)) { echo 'large-12'; } else { echo 'medium-4'; } ?> columns site-branding">				
+			<div class="<?php if(is_page_template( 'templates/interstitial.php') || empty($show_header_right)) { echo 'large-12'; } else { echo 'medium-' . memberlite_getColumnsRatio( 'header-left' ); } ?> columns site-branding">
+				<?php memberlite_the_custom_logo(); ?>
 				<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
 				<span class="site-description"><?php bloginfo( 'description' ); ?></span>
 			</div><!-- .column4 -->
@@ -66,7 +67,7 @@
 				if(!empty($show_header_right))
 				{
 					?>
-					<div class="medium-8 columns header-right<?php if($meta_login == false) { ?> no-meta-menu<?php } ?>">
+					<div class="medium-<?php echo memberlite_getColumnsRatio( 'header-right' ) ?> columns header-right<?php if($meta_login == false) { ?> no-meta-menu<?php } ?>">
 					<?php
 						if(!empty($meta_login))
 						{	

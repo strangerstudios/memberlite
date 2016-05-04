@@ -10,6 +10,10 @@
 		<?php //NOTE: The title is generated in header.php via the memberlite_page_title() function found in functions.php ?>
 		<?php do_action('before_content_single'); ?>
 		
+		<?php
+			if(get_post_format() == 'image')
+				the_post_thumbnail( 'fullwidth', array( 'class' => 'aligncenter' ) );
+		?>	
 		<?php the_content(); ?>
 		
 		<?php

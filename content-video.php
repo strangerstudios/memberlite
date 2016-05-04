@@ -25,9 +25,7 @@
 		<div class="clear"></div>
 	</div><!-- .entry-content -->
 	<footer class="entry-footer">
-		<?php if ( 'post' == get_post_type() ) : // Hide meta text for pages on Search ?>
-			<?php echo memberlite_get_entry_meta($post, 'after'); ?>
-		<?php endif; // End if 'post' == get_post_type() ?>
+		<?php echo memberlite_get_entry_meta($post, 'after'); ?>
 
 		<?php edit_post_link( __( 'Edit', 'memberlite' ), '<span class="edit-link">', '</span>' ); ?>
 	</footer><!-- .entry-footer -->

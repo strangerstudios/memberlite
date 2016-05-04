@@ -88,9 +88,15 @@ add_filter( 'wp_title', 'memberlite_wp_title', 10, 2 );
 function memberlite_getColumnsRatio( $location = NULL ) {
 	global $memberlite_defaults;
 	$columns_ratio = get_theme_mod( 'columns_ratio', $memberlite_defaults['columns_ratio'] );
+	$columns_ratio_header = get_theme_mod( 'columns_ratio_header', $memberlite_defaults['columns_ratio_header'] );
 	$columns_ratio_array = explode( '-', $columns_ratio );
+	$columns_ratio_header_array = explode( '-', $columns_ratio_header );
 	if($location == 'sidebar')
 		return $columns_ratio_array[1];
+	elseif($location == 'header-right')
+		return $columns_ratio_header_array[1];
+	elseif($location == 'header-left')
+		return $columns_ratio_header_array[0];
 	else
 		return $columns_ratio_array[0];
 }

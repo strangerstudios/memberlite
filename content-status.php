@@ -5,28 +5,17 @@
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-	<div class="entry-content">
-		<?php 
-			$content_archives = get_theme_mod('content_archives'); 
-			if($content_archives == 'excerpt')
-				the_excerpt();
-			else
-				the_content( __( 'Continue Reading', 'memberlite' ) ); 
-		?>
-		<?php
-			wp_link_pages( array(
-				'before' => '<div class="page-links">' . __( 'Pages:', 'memberlite' ),
-				'after'  => '</div>',
-			) );
-		?>
-		<p><a href="<?php the_permalink(); ?>" rel="bookmark"><i class="fa fa-link"></i></a></p>
+	<div class="entry-content lead">
+		<?php $author_id = $post->post_author; ?>
+		<div class="post_author_avatar"><?php echo get_avatar( $author_id, 80 ); ?></div>
+		<?php the_content( __( 'Continue Reading', 'memberlite' ) ); ?>
 		<div class="clear"></div>
 	</div><!-- .entry-content -->
-	<footer class="entry-footer">
-		<?php if ( 'post' == get_post_type() ) : // Hide meta text for pages on Search ?>
-			<?php echo memberlite_get_entry_meta($post, 'after'); ?>
-		<?php endif; // End if 'post' == get_post_type() ?>
-
-		<?php edit_post_link( __( 'Edit', 'memberlite' ), '<span class="edit-link">', '</span>' ); ?>
+		<footer class="entry-footer">
+		<div class="entry-meta">
+			<a href="<?php the_permalink(); ?>" rel="bookmark"><i class="fa fa-link"></i></a> |
+			<?php echo memberlite_get_entry_meta($post, 'before'); ?>
+			<?php edit_post_link( __( 'Edit', 'memberlite' ), '<span class="edit-link">', '</span>' ); ?>
+		</div><!-- .entry-meta -->
 	</footer><!-- .entry-footer -->
 </article><!-- #post-## -->

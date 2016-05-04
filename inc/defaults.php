@@ -3,6 +3,7 @@ global $memberlite_defaults;
 $memberlite_defaults = array(
 	'memberlite_webfonts' => 'Lato_Lato',
 	'columns_ratio' => '8-4',
+	'columns_ratio_header' => '4-8',
 	'sidebar_location' => 'sidebar-right',
 	'sidebar_location_blog' => 'sidebar-blog-right',
 	'content_archives' => 'content',
@@ -11,6 +12,7 @@ $memberlite_defaults = array(
 	'posts_entry_meta_after' => 'This entry was posted in {post_categories} and tagged {post_tags}. Bookmark the {post_permalink}.',
 	'memberlite_footerwidgets' => '4',
 	'copyright_textbox' => '<a href="http://wordpress.org/" rel="license">Proudly powered by WordPress</a><span class="sep"> | </span>Theme: Memberlite by <a href="http://memberlitetheme.com" rel="license">Kim Coleman</a>',
+	'memberlite_back_to_top' => true,
 	'memberlite_color_scheme' => 'Default',
 	'memberlite_darkcss' => false,
 	'bgcolor_site_navigation' => '#FAFAFA',

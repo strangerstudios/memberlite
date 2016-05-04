@@ -90,6 +90,39 @@ class memberlite_Customize {
 			)
 		);
 		$wp_customize->add_setting(
+			'columns_ratio_header',
+			array(
+				'default' => $memberlite_defaults['columns_ratio_header'],
+				'type' => 'theme_mod',
+				'capability' => 'edit_theme_options',
+				'santize_callback' => 'sanitize_text_field',
+				'sanitize_js_callback' => array('memberlite_Customize', 'memberlite_sanitize_js_callback'),
+				'transport' => 'refresh',
+			)
+		);
+		$wp_customize->add_control(
+			'columns_ratio_header',
+			array(
+				'label' => 'Columns Ratio - Header',
+				'section' => 'memberlite_theme_options',
+				'type'       => 'select',
+				'choices'    => array(
+					'1-11' => '1x11',
+					'2-10' => '2x10',
+					'3-9' => '3x9',
+					'4-8' => '4x8',
+					'5-7' => '5x7',
+					'6-6' => '6x6',
+					'7-5' => '7x5',
+					'8-4' => '8x4',
+					'9-3' => '9x3',
+					'10-2' => '10x2',
+					'11-1' => '11x1',
+				),
+				'priority' => 23
+			)
+		);
+		$wp_customize->add_setting(
 			'columns_ratio',
 			array(
 				'default' => $memberlite_defaults['columns_ratio'],
@@ -103,7 +136,7 @@ class memberlite_Customize {
 		$wp_customize->add_control(
 			'columns_ratio',
 			array(
-				'label' => 'Columns Ratio',
+				'label' => 'Columns Ratio - Primary',
 				'section' => 'memberlite_theme_options',
 				'type'       => 'select',
 				'choices'    => array(
@@ -398,6 +431,23 @@ class memberlite_Customize {
 			)
 		);
 		$wp_customize->add_setting(
+			'memberlite_back_to_top',
+			array(
+				'default' => true,
+				'santize_callback' => 'memberlite_sanitize_checkbox',
+				'santize_js_callback' => array('memberlite_Customize', 'memberlite_sanitize_js_callback'),
+			)
+		);
+		$wp_customize->add_control(
+			'memberlite_back_to_top', 
+			array(
+				'type' => 'checkbox',
+				'label' => 'Show Back to Top Link', 
+				'section' => 'memberlite_theme_options',
+				'priority' => '130'
+			)
+		);
+		$wp_customize->add_setting(
 			'memberlite_color_scheme',
 			array(
 				'default' => $memberlite_defaults['memberlite_color_scheme'],
@@ -582,8 +632,22 @@ class memberlite_Customize {
 				'priority' => 70,
 				) 
 		));		
-		$wp_customize->get_setting( 'blogname' )->transport         = 'postMessage';
-		$wp_customize->get_setting( 'blogdescription' )->transport  = 'postMessage';
+		
+		$wp_customize->get_setting( 'blogname' )->transport        = 'postMessage';
+		$wp_customize->get_setting( 'blogdescription' )->transport = 'postMessage';
+	
+		$wp_customize->selective_refresh->add_partial( 'blogname', array(
+			'selector' => '.site-title a',
+			'render_callback' => function() {
+				bloginfo( 'name' );
+			},
+		) );
+		$wp_customize->selective_refresh->add_partial( 'blogdescription', array(
+			'selector' => '.site-description',
+			'render_callback' => function() {
+				bloginfo( 'description' );
+			},
+		) );
 		$wp_customize->get_setting( 'header_textcolor' )->transport = 'postMessage';	
 		$wp_customize->get_setting( 'background_color' )->transport = 'postMessage';
 		$wp_customize->get_setting( 'posts_entry_meta_before' )->transport = 'postMessage';

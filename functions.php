@@ -23,7 +23,7 @@ function memberlite_init_styles()
 	wp_enqueue_script('memberlite-navigation', get_template_directory_uri() . '/js/navigation.js', array( 'jquery' ), MEMBERLITE_VERSION, true);
 	wp_enqueue_script('memberlite-script', get_template_directory_uri() . '/js/memberlite.js', array( 'jquery' ), MEMBERLITE_VERSION, true);
 	wp_enqueue_script('memberlite-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array( 'jquery' ), MEMBERLITE_VERSION, true);
-	wp_enqueue_style('memberlite_fontawesome', get_template_directory_uri() . "/font-awesome/css/font-awesome.min.css", array(), "4.5.0");
+	wp_enqueue_style('memberlite_fontawesome', get_template_directory_uri() . "/font-awesome/css/font-awesome.min.css", array(), "4.6.1");
 
 	//load dark.css for dark/inverted backgrounds
 	$memberlite_darkcss = get_theme_mod('memberlite_darkcss',$memberlite_defaults['memberlite_darkcss'],false);
@@ -50,7 +50,7 @@ add_action('wp_print_styles', 'memberlite_load_fonts');
 
 /* Set the content width based on the theme's design and stylesheet. */
 if(!isset($content_width)) {
-	$content_width = 701; /* pixels */
+	$content_width = 748; /* pixels */
 }
 
 /* Adjust the content width based on the template. */
@@ -78,6 +78,14 @@ function memberlite_setup() {
 
 	// Add document title tag to HTML
 	add_theme_support('title-tag');
+	
+	// Add logo upload support via Customizer
+	add_theme_support( 'custom-logo', array(
+	   'height'      => 100,
+	   'width'       => 360,
+	   'flex-width'	 => true,
+	   'header-text' => array( 'site-title', 'site-description' ),
+	) );
 
 	// Enable support for Post Thumbnails on posts and pages.
 	add_theme_support('post-thumbnails');
@@ -102,7 +110,7 @@ function memberlite_setup() {
 
 	// Enables support for Post Formats.
 	add_theme_support('post-formats', array(
-		'aside', 'image', 'video', 'quote', 'link'
+		'audio', 'image', 'link', 'quote', 'status', 'video',
 	));
 
 	// Setup the WordPress core custom background feature.
@@ -113,6 +121,12 @@ function memberlite_setup() {
 	
 	// Styles the visual editor to resemble the theme style
 	add_editor_style( array( 'css/editor-style.css') );
+
+	// Enable the use of shortcodes in text widgets.
+	add_filter( 'widget_text', 'do_shortcode' );
+
+	// Indicate widget sidebars can use selective refresh in the Customizer.
+	add_theme_support( 'customize-selective-refresh-widgets' );
 }
 endif; // memberlite_setup
 add_action('after_setup_theme', 'memberlite_setup');

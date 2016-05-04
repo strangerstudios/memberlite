@@ -7,6 +7,17 @@
  * @package Memberlite
  */
 
+if ( ! function_exists( 'memberlite_the_custom_logo' ) ) :
+/**
+ * Displays the optional custom logo.
+ */
+function memberlite_the_custom_logo() {
+	if ( function_exists( 'the_custom_logo' ) ) {
+		the_custom_logo();
+	}
+}
+endif;
+
 if ( ! function_exists( 'memberlite_paging_nav' ) ) :
 /**
  * Display navigation to next/previous set of posts when applicable.

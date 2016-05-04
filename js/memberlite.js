@@ -1,8 +1,7 @@
 /**
  * memberlite.js
  *
- */
-jQuery(document).ready(function(){		
+ *jQuery(document).ready(function(){		
 	jQuery('a[href*=#]').on('click', function(event) {
 		var target = jQuery( jQuery(this).attr('href') );
 	
@@ -13,4 +12,4 @@ jQuery(document).ready(function(){
 			}, 800);
 		}
 	});
-});
+});*/
