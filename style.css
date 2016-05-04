@@ -1938,6 +1938,8 @@ form.pmpro_form .pmpro_checkout #other_discount_code_div input[type=button], #di
 #pmpro_account .pmpro_box h3 {margin: 0 0 2rem 0; }
 #pmpro_account #pmpro_account-profile ul {margin-top: 1rem; margin-bottom: 1rem; }
 
+.pmpro_member_directory h3 {margin-top: 0; }
+
 /*--------------------------------------------------------------
 11.2 Theme My Login: https://wordpress.org/plugins/theme-my-login/
 --------------------------------------------------------------*/
