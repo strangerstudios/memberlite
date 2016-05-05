@@ -185,6 +185,11 @@
 								?>
 							<?php } ?>
 							
+							<?php
+								$memberlite_banner_extra_padding = get_post_meta($post->ID, '_memberlite_banner_extra_padding', true);
+								if(!empty($memberlite_banner_extra_padding))
+									echo '<div class="masthead-padding">';
+							?>
 							<?php if(is_search()) { ?>
 								<?php memberlite_page_title(); ?>
 							<?php } elseif(!empty($post)) { ?>
@@ -204,6 +209,10 @@
 										echo wpautop(do_shortcode($memberlite_banner_desc));
 								?>
 							<?php } ?>
+							<?php
+								if(!empty($memberlite_banner_extra_padding))
+									echo '</div> <!-- .masthead-padding -->';
+							?>
 							<?php do_action('after_masthead_inner'); ?>
 						</div>
 					</div><!-- .row -->

@@ -28,6 +28,7 @@ function memberlite_settings_meta_box_callback($post) {
 	$memberlite_banner_desc = get_post_meta($post->ID, '_memberlite_banner_desc', true);
 	$memberlite_banner_hide_title = get_post_meta($post->ID, '_memberlite_banner_hide_title', true);
 	$memberlite_banner_hide_breadcrumbs = get_post_meta($post->ID, '_memberlite_banner_hide_breadcrumbs', true);
+	$memberlite_banner_extra_padding = get_post_meta($post->ID, '_memberlite_banner_extra_padding', true);
 	$memberlite_banner_right = get_post_meta($post->ID, '_memberlite_banner_right', true);
 	$memberlite_banner_bottom = get_post_meta($post->ID, '_memberlite_banner_bottom', true);
 	$memberlite_landing_page_checkout_button = get_post_meta($post->ID, '_memberlite_landing_page_checkout_button', true);
@@ -49,6 +50,8 @@ function memberlite_settings_meta_box_callback($post) {
 	echo '<label for="memberlite_banner_hide_title" class="selectit"><input name="memberlite_banner_hide_title" type="checkbox" id="memberlite_banner_hide_title" value="1" '. checked( $memberlite_banner_hide_title, 1, false) .'>' . __('Hide Page Title on Single View', 'memberlite') . '</label>';
 	echo '<input type="hidden" name="memberlite_banner_hide_breadcrumbs_present" value="1" />';
 	echo '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label for="memberlite_banner_hide_breadcrumbs" class="selectit"><input name="memberlite_banner_hide_breadcrumbs" type="checkbox" id="memberlite_banner_hide_breadcrumbs" value="1" '. checked( $memberlite_banner_hide_breadcrumbs, 1, false) .'>' . __('Hide Breadcrumbs', 'memberlite') . '</label>';
+	echo '<input type="hidden" name="memberlite_banner_extra_padding_present" value="1" />';
+	echo '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label for="memberlite_banner_extra_padding" class="selectit"><input name="memberlite_banner_extra_padding" type="checkbox" id="memberlite_banner_extra_padding" value="1" '. checked( $memberlite_banner_extra_padding, 1, false) .'>' . __('Add Extra Banner Padding', 'memberlite') . '</label>';
 	echo '<p style="margin: 1rem 0 0 0;"><strong>' . __('Banner Right Column', 'memberlite') . '</strong> <em>Right side of the masthead banner. (i.e. Video Embed, Image or Action Button)</em></p>';
 	echo '<label class="screen-reader-text" for="memberlite_banner_right">';
 	_e('Banner Right Column', 'memberlite');
@@ -152,6 +155,16 @@ function memberlite_settings_save_meta_box_data($post_id) {
 			$memberlite_banner_hide_breadcrumbs = 0;
 			
 		update_post_meta($post_id, '_memberlite_banner_hide_breadcrumbs', $memberlite_banner_hide_breadcrumbs);
+	}
+	
+	//banner extra padding checkbox
+	if(isset($_POST['memberlite_banner_extra_padding_present']))	{
+		if(!empty($_POST['memberlite_banner_extra_padding']))
+			$memberlite_banner_extra_padding = 1;
+		else
+			$memberlite_banner_extra_padding = 0;
+			
+		update_post_meta($post_id, '_memberlite_banner_extra_padding', $memberlite_banner_extra_padding);
 	}
 	
 	//banner right content

@@ -722,7 +722,7 @@ class memberlite_Customize {
 			?>
 			
 			<?php self::generate_css('.site-title a, .site-header .site-description', 'color', 'header_textcolor', '#'); ?>
-			<?php self::generate_css('body', 'background-color', 'background_color', '#'); ?> 
+			<?php self::generate_css('body, .banner_body', 'background-color', 'background_color', '#'); ?> 
 			<?php 
 				$fonts_string = get_theme_mod('memberlite_webfonts');
 				if(empty($fonts_string))
