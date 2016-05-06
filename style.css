@@ -1352,7 +1352,7 @@ a:active {
 	text-decoration: none;
 	border-bottom: 1px dotted #FFF;
 }
-.masthead-banner .masthead h1 {
+.masthead-banner .masthead h1, .masthead .masthead-padding h1 {
 	padding-bottom: 2rem;
 }
 .home .masthead-banner .masthead h1 {
