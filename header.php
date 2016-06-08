@@ -203,11 +203,13 @@
 									if(empty($memberlite_banner_hide_title))
 										memberlite_page_title(); 
 								?>
+								<?php do_action('before_masthead_description'); ?>
 								<?php
 									$memberlite_banner_desc = get_post_meta($post->ID, '_memberlite_banner_desc', true);
 									if(!empty($memberlite_banner_desc))
 										echo wpautop(do_shortcode($memberlite_banner_desc));
 								?>
+								<?php do_action('after_masthead_description'); ?>
 							<?php } ?>
 							<?php
 								if(!empty($memberlite_banner_extra_padding))
