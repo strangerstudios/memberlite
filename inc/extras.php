@@ -433,7 +433,8 @@ function memberlite_getSidebar() {
 				if($post->post_parent) 
 				{
 					$exclude = get_post_meta($post->ID,'exclude',true);
-					$pagemenuid = end(get_post_ancestors($post));
+					$ancestors = get_post_ancestors($post);
+					$pagemenuid = end($ancestors);
 					$children = wp_list_pages('title_li=&child_of=' . $pagemenuid . '&exclude=' . $exclude . '&echo=0&sort_column=menu_order,post_title');
 					$titlenamer = get_the_title($pagemenuid);
 					$titlelink = get_permalink($pagemenuid);
