@@ -449,7 +449,7 @@ function memberlite_getSidebar() {
 				if($children) 
 				{ ?>
 					<aside id="nav_menu-submenu" class="widget widget_nav_menu">
-						<h3 class="widget-title"><a<?php if(is_page($pagemenuid)) { ?> class="active"<?php } ?> href="<?php echo $titlelink?>"><?php echo $titlenamer?></a></h3>
+						<h3 class="widget-title"><a<?php if(!empty($pagemenuid) && is_page($pagemenuid)) { ?> class="active"<?php } ?> href="<?php echo $titlelink?>"><?php echo $titlenamer?></a></h3>
 						<ul class="menu">
 							<?php echo $children; ?>
 						</ul>
