@@ -154,6 +154,11 @@
 			if( !is_front_page() || (is_front_page() && (basename($template) != 'page.php') || 'posts' == get_option( 'show_on_front' )) && !is_404())
 			{
 				$post = get_queried_object();
+				if(empty($post) && is_archive())
+				{
+					$page_for_posts_id = get_option('page_for_posts');
+					$post = get_page($page_for_posts_id);
+				}
 				if(!empty($post) && !is_attachment())
 				{
 					$banner_image_id = memberlite_getBannerImageID($post);
@@ -183,10 +188,12 @@
 											memberlite_getBreadcrumbs(); 
 									}
 								?>
-							<?php } ?>
-							
+							<?php } ?>							
 							<?php
-								$memberlite_banner_extra_padding = get_post_meta($post->ID, '_memberlite_banner_extra_padding', true);
+								if(!empty($post))
+								{
+									$memberlite_banner_extra_padding = get_post_meta($post->ID, '_memberlite_banner_extra_padding', true);
+								}
 								if(!empty($memberlite_banner_extra_padding))
 									echo '<div class="masthead-padding">';
 							?>
@@ -199,9 +206,12 @@
 										echo '<div class="pull-right">' . apply_filters('the_content',$memberlite_banner_right) . '</div>';
 								?>
 								<?php 
-									$memberlite_banner_hide_title = get_post_meta($post->ID, '_memberlite_banner_hide_title', true);
-									if(empty($memberlite_banner_hide_title))
-										memberlite_page_title(); 
+									if(!empty($post))
+									{
+										$memberlite_banner_hide_title = get_post_meta($post->ID, '_memberlite_banner_hide_title', true);
+										if(empty($memberlite_banner_hide_title))
+											memberlite_page_title(); 
+									}
 								?>
 								<?php do_action('before_masthead_description'); ?>
 								<?php

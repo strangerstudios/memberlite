@@ -50,7 +50,8 @@ We highly recommend using these plugins for every site running Memberlite:
 
 ###Changelog
 **3.0**
-* BUG: Fixing error when missing pagemenuid in sidebar
+* BUG: Fixing error when viewing archive and no $post is set.
+* BUG: Fixing error when missing pagemenuid in sidebar.
 * Cleaning blank spaces in style.css
 * BUG: Fixing CSS on checkout page headings (h2) for boxes added via Register Helper.
 * BUG: Fixing some dark.css colors for Paid Memberships Pro and bbPress.
