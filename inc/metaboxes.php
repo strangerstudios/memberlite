@@ -23,18 +23,20 @@ add_action('add_meta_boxes', 'memberlite_settings_add_meta_box');
 
 /* Meta box for Memberlite settings */
 function memberlite_settings_meta_box_callback($post) {
+	global $fontawesome_icons;
 	wp_nonce_field('memberlite_settings_meta_box', 'memberlite_settings_meta_box_nonce');
 	$memberlite_page_template = get_post_meta($post->ID, '_wp_page_template', true);
+	$memberlite_page_icon = get_post_meta($post->ID, '_memberlite_page_icon', true);
 	$memberlite_banner_desc = get_post_meta($post->ID, '_memberlite_banner_desc', true);
 	$memberlite_banner_hide_title = get_post_meta($post->ID, '_memberlite_banner_hide_title', true);
 	$memberlite_banner_hide_breadcrumbs = get_post_meta($post->ID, '_memberlite_banner_hide_breadcrumbs', true);
 	$memberlite_banner_extra_padding = get_post_meta($post->ID, '_memberlite_banner_extra_padding', true);
 	$memberlite_banner_right = get_post_meta($post->ID, '_memberlite_banner_right', true);
+	$memberlite_banner_right_icon = get_post_meta($post->ID, '_memberlite_banner_right_icon', true);
 	$memberlite_banner_bottom = get_post_meta($post->ID, '_memberlite_banner_bottom', true);
 	$memberlite_landing_page_checkout_button = get_post_meta($post->ID, '_memberlite_landing_page_checkout_button', true);
 	$pmproal_landing_page_level = get_post_meta($post->ID, '_pmproal_landing_page_level', true);
-	$memberlite_landing_page_upsell = get_post_meta($post->ID, '_memberlite_landing_page_upsell', true);
-	
+	$memberlite_landing_page_upsell = get_post_meta($post->ID, '_memberlite_landing_page_upsell', true);	
 	echo '<h2>' . __('Page Banner Settings', 'memberlite') . '</h2>';
 	echo '<p style="margin: 1rem 0 0 0;"><strong>' . __('Banner Description', 'memberlite') . '</strong> <em>Shown in the masthead banner below the page title.</em>';
 	if(($memberlite_page_template == 'templates/landing.php') && function_exists('pmpro_getAllLevels'))
@@ -55,17 +57,31 @@ function memberlite_settings_meta_box_callback($post) {
 	echo '<p style="margin: 1rem 0 0 0;"><strong>' . __('Banner Right Column', 'memberlite') . '</strong> <em>Right side of the masthead banner. (i.e. Video Embed, Image or Action Button)</em></p>';
 	echo '<label class="screen-reader-text" for="memberlite_banner_right">';
 	_e('Banner Right Column', 'memberlite');
-	echo '</label> ';
+	echo '</label>';
 	echo '<textarea class="large-text" rows="3" id="memberlite_banner_right" name="memberlite_banner_right">';
 		echo $memberlite_banner_right;
 	echo '</textarea>';
 	echo '<p style="margin: 1rem 0 0 0;"><strong>' . __('Page Bottom Banner', 'memberlite') . '</strong> <em>Banner shown above footer on pages. (i.e. call to action)</em></p>';	
 	echo '<label class="screen-reader-text" for="memberlite_banner_bottom">';
 	_e('Page Bottom Banner', 'memberlite');
-	echo '</label> ';
+	echo '</label>';
 	echo '<textarea class="large-text" rows="3" id="memberlite_banner_bottom" name="memberlite_banner_bottom">';
 		echo $memberlite_banner_bottom;
 	echo '</textarea>';
+	echo '<hr />';
+	echo '<p style="margin: 1rem 0 0 0;"><strong>' . __('Page Icon', 'memberlite') . '</strong>&nbsp;';
+	echo '<label class="screen-reader-text" for="memberlite_page_icon">';
+	_e('Select Icon', 'memberlite');
+	echo '</label>';
+	echo '<select id="memberlite_page_icon" name="memberlite_page_icon">';
+			echo '<option value="blank" ' . selected( $memberlite_page_icon, "blank" ) . '>- Select -</option>';
+			foreach($fontawesome_icons as $fontawesome_icon)
+			{			
+				echo '<option value="' . $fontawesome_icon . '"' . selected( $memberlite_page_icon, $fontawesome_icon ) . '>' . $fontawesome_icon . '</option>';
+			}
+	echo '</select></p>';
+	echo '<input type="hidden" name="memberlite_banner_right_icon_present" value="1" />';
+	echo '<p style="margin: 1rem 0 0 0;"><label for="memberlite_banner_right_icon" class="selectit"><input name="memberlite_banner_right_icon" type="checkbox" id="memberlite_banner_right_icon" value="1" '. checked( $memberlite_banner_right_icon, 1, false) .'>' . __('Show Icon in Banner Right Column', 'memberlite') . '</label></p>';
 	if(($memberlite_page_template == 'templates/landing.php') && function_exists('pmpro_getAllLevels'))
 	{
 		echo '<hr />';
@@ -79,7 +95,7 @@ function memberlite_settings_meta_box_callback($post) {
 			echo '<tr><th scope="row">' . __('Membership Level', 'memberlite') . '</th>';
 			echo '<td><label class="screen-reader-text" for="pmproal_landing_page_level">';
 				_e('Landing Page Membership Level', 'memberlite');
-			echo '</label> ';
+			echo '</label>';
 			echo '<select id="pmproal_landing_page_level" name="pmproal_landing_page_level">';
 			echo '<option value="blank" ' . selected( $pmproal_landing_page_level, "blank" ) . '>- Select -</option>';
 			foreach($membership_levels as $level)
@@ -90,12 +106,12 @@ function memberlite_settings_meta_box_callback($post) {
 			echo '<tr><th scope="row">' . __('Checkout Button Text', 'memberlite') . '</th>';
 			echo '<td><label class="screen-reader-text" for="memberlite_landing_page_checkout_button">';
 				_e('Checkout Button Text', 'memberlite');
-			echo '</label> ';
+			echo '</label>';
 			echo '<input type="text" id="memberlite_landing_page_checkout_button" name="memberlite_landing_page_checkout_button" value="' . $memberlite_landing_page_checkout_button . '"> <em>(default: "Select")</em></td></tr>';
 			echo '<tr><th scope="row">' . __('Membership Level Upsell', 'memberlite') . '</th>';
 			echo '<td><label class="screen-reader-text" for="memberlite_landing_page_upsell">';
 				_e('Landing Page Membership Level Upsell', 'memberlite');
-			echo '</label> ';
+			echo '</label>';
 			echo '<select id="memberlite_landing_page_upsell" name="memberlite_landing_page_upsell">';
 			echo '<option value="blank" ' . selected( $memberlite_landing_page_upsell, "blank" ) . '>- Select -</option>';
 			foreach($membership_levels as $level)
@@ -180,6 +196,23 @@ function memberlite_settings_save_meta_box_data($post_id) {
 		
 		update_post_meta($post_id, '_memberlite_banner_bottom', $memberlite_banner_bottom);
 	}
+	
+	//page icon
+	if(isset($_POST['memberlite_page_icon'])) {
+		$memberlite_page_icon = $_POST['memberlite_page_icon'];
+		
+		update_post_meta($post_id, '_memberlite_page_icon', $memberlite_page_icon);
+	}
+	
+	//page icon in banner right checkbox
+	if(isset($_POST['memberlite_banner_right_icon_present']))	{
+		if(!empty($_POST['memberlite_banner_right_icon']))
+			$memberlite_banner_right_icon = 1;
+		else
+			$memberlite_banner_right_icon = 0;
+			
+		update_post_meta($post_id, '_memberlite_banner_right_icon', $memberlite_banner_right_icon);
+	}	
 	
 	//landing page level
 	if(isset($_POST['pmproal_landing_page_level'])) {
@@ -269,7 +302,7 @@ function memberlite_sidebar_meta_box_callback($post) {
 	echo '<p><strong>' . __('Select Custom Sidebar', 'memberlite') . '</strong></p>';
 	echo '<label class="screen-reader-text" for="memberlite_custom_sidebar">';
 	_e('Select Sidebar', 'memberlite');
-	echo '</label> ';
+	echo '</label>';
 	echo '<select id="memberlite_custom_sidebar" name="memberlite_custom_sidebar">';
 	echo '<option value="memberlite_sidebar_blank"' . selected( $memberlite_custom_sidebar, 'memberlite_sidebar_blank' ) . '>- Select -</option>';
 	$memberlite_theme_sidebars = array('sidebar-3', 'sidebar-4', 'sidebar-5');
@@ -286,7 +319,7 @@ function memberlite_sidebar_meta_box_callback($post) {
 		echo '<p><strong>' . __('Default Sidebar Behavior', 'memberlite') . '</strong></p>';	
 		echo '<label class="screen-reader-text" for="memberlite_default_sidebar">';
 		_e('Default Sidebar', 'memberlite');
-		echo '</label> ';
+		echo '</label>';
 		echo '<select id="memberlite_default_sidebar" name="memberlite_default_sidebar">';
 		echo '<option value="default_sidebar_above"' . selected( $memberlite_default_sidebar, 'default_sidebar_above' ) . '>' . __('Show Default Sidebar Above', 'memberlite') . '</option>';
 		echo '<option value="default_sidebar_below"' . selected( $memberlite_default_sidebar, 'default_sidebar_below' ) . '>' . __('Show Default Sidebar Below', 'memberlite') . '</option>';

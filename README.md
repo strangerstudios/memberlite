@@ -50,6 +50,7 @@ We highly recommend using these plugins for every site running Memberlite:
 
 ###Changelog
 **3.0**
+* ENHANCEMENT: Added page setting for page icon and banner right icon display.
 * BUG: Fixing error when viewing archive and no $post is set.
 * BUG: Fixing error when missing pagemenuid in sidebar.
 * Cleaning blank spaces in style.css

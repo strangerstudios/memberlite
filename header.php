@@ -200,10 +200,12 @@
 							<?php if(is_search()) { ?>
 								<?php memberlite_page_title(); ?>
 							<?php } elseif(!empty($post)) { ?>
-								<?php								
-									$memberlite_banner_right = get_post_meta($post->ID, '_memberlite_banner_right', true);
+								<?php
+									$memberlite_banner_right = get_post_meta($post->ID, '_memberlite_banner_right', true);									
+									$memberlite_banner_right_icon = get_post_meta($post->ID, '_memberlite_banner_right_icon', true);
+									$memberlite_page_icon = get_post_meta($post->ID, '_memberlite_page_icon', true);
 									if(!empty($memberlite_banner_right))
-										echo '<div class="pull-right">' . apply_filters('the_content',$memberlite_banner_right) . '</div>';
+										echo '<div class="row"><div class="medium-8 columns">';
 								?>
 								<?php 
 									if(!empty($post))
@@ -220,6 +222,17 @@
 										echo wpautop(do_shortcode($memberlite_banner_desc));
 								?>
 								<?php do_action('after_masthead_description'); ?>
+								<?php 
+									if(!empty($memberlite_banner_right) || (!empty($memberlite_banner_right_icon)  && !empty($memberlite_page_icon)) )
+									{
+										echo '</div><div class="medium-4 columns">';
+										if(!empty($memberlite_banner_right_icon) && !empty($memberlite_page_icon))
+											echo '<div class="text-center"><i class="fa fa-5x fa-' . $memberlite_page_icon . '"></i></div>';
+										if(!empty($memberlite_banner_right))
+											echo wpautop($memberlite_banner_right);										
+										echo '</div></div>';
+									}
+								?>
 							<?php } ?>
 							<?php
 								if(!empty($memberlite_banner_extra_padding))
