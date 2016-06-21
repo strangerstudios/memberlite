@@ -50,6 +50,7 @@ We highly recommend using these plugins for every site running Memberlite:
 
 ###Changelog
 **3.0**
+* Cleaning blank spaces in style.css
 * BUG: Fixing CSS on checkout page headings (h2) for boxes added via Register Helper.
 * BUG: Fixing some dark.css colors for Paid Memberships Pro and bbPress.
 * ENHANCEMENT: Added customization setting for columns ratio of primary and sidebar.
