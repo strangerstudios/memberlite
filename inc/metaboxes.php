@@ -32,7 +32,7 @@ function memberlite_settings_meta_box_callback($post) {
 	$memberlite_banner_hide_breadcrumbs = get_post_meta($post->ID, '_memberlite_banner_hide_breadcrumbs', true);
 	$memberlite_banner_extra_padding = get_post_meta($post->ID, '_memberlite_banner_extra_padding', true);
 	$memberlite_banner_right = get_post_meta($post->ID, '_memberlite_banner_right', true);
-	$memberlite_banner_right_icon = get_post_meta($post->ID, '_memberlite_banner_right_icon', true);
+	$memberlite_banner_icon = get_post_meta($post->ID, '_memberlite_banner_icon', true);
 	$memberlite_banner_bottom = get_post_meta($post->ID, '_memberlite_banner_bottom', true);
 	$memberlite_landing_page_checkout_button = get_post_meta($post->ID, '_memberlite_landing_page_checkout_button', true);
 	$pmproal_landing_page_level = get_post_meta($post->ID, '_pmproal_landing_page_level', true);
@@ -80,8 +80,8 @@ function memberlite_settings_meta_box_callback($post) {
 				echo '<option value="' . $fontawesome_icon . '"' . selected( $memberlite_page_icon, $fontawesome_icon ) . '>' . $fontawesome_icon . '</option>';
 			}
 	echo '</select></p>';
-	echo '<input type="hidden" name="memberlite_banner_right_icon_present" value="1" />';
-	echo '<p style="margin: 1rem 0 0 0;"><label for="memberlite_banner_right_icon" class="selectit"><input name="memberlite_banner_right_icon" type="checkbox" id="memberlite_banner_right_icon" value="1" '. checked( $memberlite_banner_right_icon, 1, false) .'>' . __('Show Icon in Banner Right Column', 'memberlite') . '</label></p>';
+	echo '<input type="hidden" name="memberlite_banner_icon_present" value="1" />';
+	echo '<p style="margin: 1rem 0 0 0;"><label for="memberlite_banner_icon" class="selectit"><input name="memberlite_banner_icon" type="checkbox" id="memberlite_banner_icon" value="1" '. checked( $memberlite_banner_icon, 1, false) .'>' . __('Show Icon in Banner Title', 'memberlite') . '</label></p>';
 	if(($memberlite_page_template == 'templates/landing.php') && function_exists('pmpro_getAllLevels'))
 	{
 		echo '<hr />';
@@ -205,13 +205,13 @@ function memberlite_settings_save_meta_box_data($post_id) {
 	}
 	
 	//page icon in banner right checkbox
-	if(isset($_POST['memberlite_banner_right_icon_present']))	{
-		if(!empty($_POST['memberlite_banner_right_icon']))
-			$memberlite_banner_right_icon = 1;
+	if(isset($_POST['memberlite_banner_icon_present']))	{
+		if(!empty($_POST['memberlite_banner_icon']))
+			$memberlite_banner_icon = 1;
 		else
-			$memberlite_banner_right_icon = 0;
+			$memberlite_banner_icon = 0;
 			
-		update_post_meta($post_id, '_memberlite_banner_right_icon', $memberlite_banner_right_icon);
+		update_post_meta($post_id, '_memberlite_banner_icon', $memberlite_banner_icon);
 	}	
 	
 	//landing page level

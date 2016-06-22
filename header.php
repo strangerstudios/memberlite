@@ -202,10 +202,22 @@
 							<?php } elseif(!empty($post)) { ?>
 								<?php
 									$memberlite_banner_right = get_post_meta($post->ID, '_memberlite_banner_right', true);									
-									$memberlite_banner_right_icon = get_post_meta($post->ID, '_memberlite_banner_right_icon', true);
+									$memberlite_banner_icon = get_post_meta($post->ID, '_memberlite_banner_icon', true);
 									$memberlite_page_icon = get_post_meta($post->ID, '_memberlite_page_icon', true);
-									if(!empty($memberlite_banner_right))
-										echo '<div class="row"><div class="medium-8 columns">';
+									if(!empty($memberlite_banner_right) || (!empty($memberlite_banner_icon)  && !empty($memberlite_page_icon)) )
+										echo '<div class="row">';								
+									if(!empty($memberlite_banner_icon) && !empty($memberlite_page_icon) )
+									{
+										//Show the icon in a 2 column span
+										echo '<div class="medium-1 columns"><i class="fa fa-4x fa-' . $memberlite_page_icon . '"></i></div>';
+										//Add the column wrapper for page title and description
+										if(empty($memberlite_banner_right))
+											echo '<div class="medium-11 columns">';
+										else
+											echo '<div class="medium-7 columns">';
+									}
+									else
+										echo '<div class="medium-9 columns">';										
 								?>
 								<?php 
 									if(!empty($post))
@@ -223,15 +235,16 @@
 								?>
 								<?php do_action('after_masthead_description'); ?>
 								<?php 
-									if(!empty($memberlite_banner_right) || (!empty($memberlite_banner_right_icon)  && !empty($memberlite_page_icon)) )
+									if(!empty($memberlite_banner_right) || (!empty($memberlite_banner_icon)  && !empty($memberlite_page_icon)) )
+										echo '</div>';
+									if(!empty($memberlite_banner_right))
 									{
-										echo '</div><div class="medium-4 columns">';
-										if(!empty($memberlite_banner_right_icon) && !empty($memberlite_page_icon))
-											echo '<div class="text-center"><i class="fa fa-5x fa-' . $memberlite_page_icon . '"></i></div>';
-										if(!empty($memberlite_banner_right))
-											echo wpautop($memberlite_banner_right);										
-										echo '</div></div>';
+										echo '<div class="medium-4 columns">';
+										echo wpautop($memberlite_banner_right);										
+										echo '</div>';
 									}
+									if(!empty($memberlite_banner_right) || (!empty($memberlite_banner_icon)  && !empty($memberlite_page_icon)) )
+										echo '</div>';
 								?>
 							<?php } ?>
 							<?php
