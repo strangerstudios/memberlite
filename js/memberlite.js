@@ -3,7 +3,7 @@
  *
  */
 jQuery(document).ready(function(){		
-	jQuery('a[href*="#"]').on('click', function(event) {
+	jQuery('a[href*="#"]:not(.memberlite_tabs a)').on('click', function(event) {
 		var target = jQuery( jQuery(this).attr('href') );
 	
 		if( target.length ) {
