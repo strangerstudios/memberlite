@@ -410,7 +410,11 @@ function memberlite_getSidebar() {
 	{
 		//this is a cpt and may have a custom cpt sidebar defined
 		$memberlite_cpt_sidebars = get_option('memberlite_cpt_sidebars', array());
-		$memberlite_cpt_sidebar_id = $memberlite_cpt_sidebars[get_post_type($post)];
+		if(!empty($memberlite_cpt_sidebars))
+		{
+			$post_type = get_post_type($post);
+			$memberlite_cpt_sidebar_id = $memberlite_cpt_sidebars[$post_type];
+		}
 		if(!empty($memberlite_cpt_sidebar_id))
 			dynamic_sidebar($memberlite_cpt_sidebar_id);
 	}
