@@ -444,7 +444,11 @@ function memberlite_getSidebar() {
 	elseif (is_404() || is_home() || is_search() || is_single() || is_category() || is_author() || is_archive() || is_day() || is_month() || is_year() ) 
 	{
 		if(is_home())
+		{
 			$memberlite_custom_sidebar = get_post_meta(get_option('page_for_posts'), '_memberlite_custom_sidebar', true);
+			if(empty($memberlite_custom_sidebar))
+				$memberlite_custom_sidebar = 'sidebar-2';
+		}
 		else
 			$memberlite_custom_sidebar = 'sidebar-2';
 		
