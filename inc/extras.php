@@ -260,8 +260,9 @@ function memberlite_page_title() {
 	}
 	elseif(is_post_type_archive())
 	{
+		$post_type = get_post_type_object(get_query_var('post_type'));
 		?>
-		<h1 class="page-title"><?php post_type_archive_title(); ?></h1>
+		<h1 class="page-title"><?php echo $post_type->labels->name; ?></h1>
 		<?php
 	}
 	elseif(function_exists('is_bbpress') && is_bbpress() )
@@ -427,12 +428,13 @@ function memberlite_getSidebar() {
 		if(!empty($memberlite_cpt_sidebars))
 		{
 			$post_type = get_post_type($post);
-			$memberlite_cpt_sidebar_id = $memberlite_cpt_sidebars[$post_type];
+			if(!empty($memberlite_cpt_sidebars[$post_type]))
+				$memberlite_cpt_sidebar_id = $memberlite_cpt_sidebars[$post_type];
 		}
 		if(!empty($memberlite_cpt_sidebar_id))
 			dynamic_sidebar($memberlite_cpt_sidebar_id);
 	}
-	elseif(function_exists('is_bbpress'))
+	elseif(function_exists('is_bbpress') && is_bbpress())
 	{
 		//this is bbpress but not a cpt and may have a custom sidebar defined
 		$memberlite_cpt_sidebar_id = $memberlite_cpt_sidebars['forum'];
@@ -441,9 +443,14 @@ function memberlite_getSidebar() {
 	}
 	elseif (is_404() || is_home() || is_search() || is_single() || is_category() || is_author() || is_archive() || is_day() || is_month() || is_year() ) 
 	{
+		if(is_home())
+			$memberlite_custom_sidebar = get_post_meta(get_option('page_for_posts'), '_memberlite_custom_sidebar', true);
+		else
+			$memberlite_custom_sidebar = 'sidebar-2';
+		
 		//Sidebar for Posts and Archives
-		if($memberlite_custom_sidebar != 'sidebar-2')
-			dynamic_sidebar('sidebar-2');	
+		if(!empty($memberlite_custom_sidebar))
+			dynamic_sidebar($memberlite_custom_sidebar);	
 	}	
 	else
 	{
@@ -610,7 +617,9 @@ function memberlite_getBreadcrumbs()
 		<nav class="memberlite-breadcrumb" itemprop="breadcrumb">
           	<a href="<?php echo home_url()?>"><?php _e('Home', 'memberlite'); ?></a>
 			<span class="sep"><?php echo esc_html($memberlite_delimiter); ?></span>
-			<?php post_type_archive_title(); ?>
+			<?php
+				$post_type = get_post_type_object(get_query_var('post_type'));
+				echo $post_type->labels->name; ?>
 		</nav>
 		<?php	
 		}
