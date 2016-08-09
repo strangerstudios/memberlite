@@ -1687,7 +1687,7 @@ a:active {
 .comment-respond input[type=text], .comment-respond input[type=email], .comment-respond input[type=url], .comment-respond textarea {
 	width: 84%;
 }
-.comment-respond .comment-form-comment {margin-bottom: 0; }
+.logged-in .comment-respond .comment-form-comment {margin-bottom: 0; }
 .comment-respond .form-allowed-tags, .comment-respond .form-allowed-tags code {font-size: 12px; }
 
 .comment-respond .comment-form-author span.required, .comment-respond .comment-form-email span.required {
