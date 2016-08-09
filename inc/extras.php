@@ -264,6 +264,23 @@ function memberlite_page_title() {
 		<h1 class="page-title"><?php post_type_archive_title(); ?></h1>
 		<?php
 	}
+	elseif(function_exists('is_bbpress') && is_bbpress() )
+	{
+		?>
+		<h1 class="page-title">
+		<?php
+			if(bbp_is_search_results())
+				printf( __( 'Forum Search Results for: %s', 'memberlite' ), '<span>' . bbp_get_search_terms() . '</span>' );
+			elseif(bbp_is_search())
+				_e( 'Forum Search', 'memberlite');
+			elseif(bbp_is_single_forum())
+				the_title( '' );
+			else	
+				_e( 'Forums', 'memberlite');
+		?>
+		</h1>
+		<?php
+	}
 	elseif(is_author() || is_tag() || is_archive())
 	{
 		?>
@@ -314,10 +331,7 @@ function memberlite_page_title() {
 	
 				elseif ( is_tax( 'post_format', 'post-format-chat' ) ) :
 					_e( 'Chats', 'memberlite' );
-	
-				elseif ( function_exists('is_bbpress') && bbp_is_forum_archive() ) :
-					_e( 'Forums', 'memberlite');
-				
+					
 				else :
 					_e( 'Archives', 'memberlite' );
 	
@@ -330,7 +344,7 @@ function memberlite_page_title() {
 			if ( ! empty( $term_description ) ) :
 				printf( '<div class="taxonomy-description">%s</div>', $term_description );
 			endif;			
-	}
+	}	
 	elseif(is_search())
 	{
 		?>
@@ -406,15 +420,22 @@ function memberlite_getSidebar() {
 	else
 		$memberlite_custom_sidebar = false;
 
+	$memberlite_cpt_sidebars = get_option('memberlite_cpt_sidebars', array());
 	if(!empty($post) && !empty($post->ID) && !in_array(get_post_type($post), array('post','page')) )
 	{
 		//this is a cpt and may have a custom cpt sidebar defined
-		$memberlite_cpt_sidebars = get_option('memberlite_cpt_sidebars', array());
 		if(!empty($memberlite_cpt_sidebars))
 		{
 			$post_type = get_post_type($post);
 			$memberlite_cpt_sidebar_id = $memberlite_cpt_sidebars[$post_type];
 		}
+		if(!empty($memberlite_cpt_sidebar_id))
+			dynamic_sidebar($memberlite_cpt_sidebar_id);
+	}
+	elseif(function_exists('is_bbpress'))
+	{
+		//this is bbpress but not a cpt and may have a custom sidebar defined
+		$memberlite_cpt_sidebar_id = $memberlite_cpt_sidebars['forum'];
 		if(!empty($memberlite_cpt_sidebar_id))
 			dynamic_sidebar($memberlite_cpt_sidebar_id);
 	}
@@ -515,8 +536,8 @@ function memberlite_getBreadcrumbs()
 		if(function_exists('is_woocommerce') && is_woocommerce())
 		{
 		}
-		elseif(function_exists('is_bbpress') && is_bbpress())
-		{
+		elseif(function_exists('is_bbpress') && is_bbpress() )
+		{			
 		?>
 		<nav class="memberlite-breadcrumb" itemprop="breadcrumb">
 		<?php 
@@ -656,9 +677,6 @@ function memberlite_getBreadcrumbs()
 				elseif ( is_tax( 'post_format', 'post-format-chat' ) ) :
 					_e( 'Chats', 'memberlite' );
 	
-				elseif (function_exists('is_bbpress') && bbp_is_forum_archive()) :
-					_e( 'Forums', 'memberlite');
-					
 				else :
 					_e( 'Archives', 'memberlite' );
 	

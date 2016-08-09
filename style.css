@@ -1083,6 +1083,9 @@ a:active {
 .site-header .widget_search input[type=search] {
 	width: 150px;
 }
+#secondary .widget_search h3 {
+	margin-bottom: 1em;
+}
 #secondary .widget_search input[type=search], #secondary .widget_product_search input[type=search] {
 	width: 98%;
 }

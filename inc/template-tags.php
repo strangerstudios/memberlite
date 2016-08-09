@@ -79,6 +79,10 @@ if ( ! function_exists( 'memberlite_page_nav' ) ) :
 function memberlite_page_nav() {
 	global $post;
 	
+	$post_type_object = get_post_type_object(get_post_type($post));
+	if(empty($post_type_object))
+		return;
+				
 	//check if subpage
 	if(!empty($post->post_parent))
 	{

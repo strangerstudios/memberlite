@@ -187,6 +187,8 @@
 										if(empty($memberlite_banner_hide_breadcrumbs))
 											memberlite_getBreadcrumbs(); 
 									}
+									if(function_exists('is_bbpress') && bbp_is_search())
+											memberlite_getBreadcrumbs();											
 								?>
 							<?php } ?>							
 							<?php
@@ -197,7 +199,7 @@
 								if(!empty($memberlite_banner_extra_padding))
 									echo '<div class="masthead-padding">';
 							?>
-							<?php if(is_search()) { ?>
+							<?php if(is_search() || (function_exists('is_bbpress') && bbp_is_search())) { ?>
 								<?php memberlite_page_title(); ?>
 							<?php } elseif(!empty($post)) { ?>
 								<?php
@@ -205,19 +207,21 @@
 									$memberlite_banner_icon = get_post_meta($post->ID, '_memberlite_banner_icon', true);
 									$memberlite_page_icon = get_post_meta($post->ID, '_memberlite_page_icon', true);
 									if(!empty($memberlite_banner_right) || (!empty($memberlite_banner_icon)  && !empty($memberlite_page_icon)) )
-										echo '<div class="row">';								
-									if(!empty($memberlite_banner_icon) && !empty($memberlite_page_icon) )
 									{
-										//Show the icon in a 2 column span
-										echo '<div class="medium-1 columns"><i class="fa fa-4x fa-' . $memberlite_page_icon . '"></i></div>';
-										//Add the column wrapper for page title and description
-										if(empty($memberlite_banner_right))
-											echo '<div class="medium-11 columns">';
+										echo '<div class="row">';								
+										if(!empty($memberlite_banner_icon) && !empty($memberlite_page_icon) )
+										{
+											//Show the icon in a 2 column span
+											echo '<div class="medium-1 columns"><i class="fa fa-4x fa-' . $memberlite_page_icon . '"></i></div>';
+											//Add the column wrapper for page title and description
+											if(empty($memberlite_banner_right))
+												echo '<div class="medium-11 columns">';
+											else
+												echo '<div class="medium-7 columns">';
+										}
 										else
-											echo '<div class="medium-7 columns">';
+											echo '<div class="medium-9 columns">';
 									}
-									else
-										echo '<div class="medium-9 columns">';										
 								?>
 								<?php 
 									if(!empty($post))
@@ -236,15 +240,15 @@
 								<?php do_action('after_masthead_description'); ?>
 								<?php 
 									if(!empty($memberlite_banner_right) || (!empty($memberlite_banner_icon)  && !empty($memberlite_page_icon)) )
-										echo '</div>';
+										echo '</div> <!-- end .medium-X .columns -->';
 									if(!empty($memberlite_banner_right))
 									{
 										echo '<div class="medium-4 columns">';
 										echo wpautop($memberlite_banner_right);										
-										echo '</div>';
+										echo '</div> <!-- end .medium-4 .columns -->';
 									}
 									if(!empty($memberlite_banner_right) || (!empty($memberlite_banner_icon)  && !empty($memberlite_page_icon)) )
-										echo '</div>';
+										echo '</div> <!-- end .row -->';
 								?>
 							<?php } ?>
 							<?php

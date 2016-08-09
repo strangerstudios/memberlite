@@ -22,8 +22,10 @@ global $memberlite_defaults;
 			the_post_thumbnail( 'thumbnail', array( 'class' => 'alignright' ) );
 		?>
 		<header class="entry-header">
-			<?php $author_id = $post->post_author; ?>
-			<div class="post_author_avatar"><?php echo get_avatar( $author_id, 80 ); ?></div>
+			<?php if ( 'post' == get_post_type() ) : ?>
+				<?php $author_id = $post->post_author; ?>
+				<div class="post_author_avatar"><?php echo get_avatar( $author_id, 80 ); ?></div>
+			<?php endif; ?>
 			<?php the_title( sprintf( '<h1 class="entry-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h1>' ); ?>
 			<?php if ( 'post' == get_post_type() ) : ?>
 			<div class="entry-meta">
