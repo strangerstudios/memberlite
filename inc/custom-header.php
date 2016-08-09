@@ -15,7 +15,7 @@
 function memberlite_custom_header_setup() {
 	add_theme_support( 'custom-header', apply_filters( 'memberlite_custom_header_args', array(
 		'default-text-color'     => '2c3e50',
-		'height'                 => 100,
+		'height'                 => 110,
 		'width'                  => 1440,
 		'flex-height'            => true,
 		'flex-height'            => true,

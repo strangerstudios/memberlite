@@ -695,8 +695,8 @@ a:active {
 5.2 Menus
 --------------------------------------------------------------*/
 #site-navigation {
-	border-top: 1px solid #DADADA;
 	background: #FAFAFA;
+	border-top: 1px solid #DADADA;
 }
 .main-navigation {
 	clear: both;
@@ -1210,7 +1210,7 @@ a:active {
 	margin-bottom: 0;
 }
 .site-branding {
-	margin-top: 20px;
+	margin-top: 10px;
 }
 .site-branding a.custom-logo-link {
 	display: block;
@@ -2186,10 +2186,10 @@ object {
 	.main-navigation ul {display: none;	}
 	.hide-mobile {display: none; }
 	.header-right, #site-navigation {display: none; }
-	.site-branding {margin-top: 10px; text-align: center; width: 100%; }	
+	.site-branding {text-align: center; width: 100%; }	
 	.site-branding .site-title a {width: 100%; height: auto; background-size: contain; }
 	.menu-toggle {display: block; position: absolute; right: .5rem; top: .5rem; z-index: 100; }
-	body.admin-bar .menu-toggle {top: 7.1rem; }	
+	body.admin-bar .menu-toggle {top: 5.1rem; }	
 	.testimonials-widget-testimonial span.image	{display: block; float: none; margin: 0; text-align: center; }
 	.comment-respond label {display: block; text-align: left; width: 100%; }
 	.comment-respond input[type=text], .comment-respond input[type=email], .comment-respond input[type=url], .comment-respond textarea {width: 100%; }

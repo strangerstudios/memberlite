@@ -91,7 +91,7 @@ function memberlite_setup() {
 	add_theme_support('post-thumbnails');
 	set_post_thumbnail_size( 150, 150, true );
 	add_image_size('mini', 80, 80, true, array('center','center'));
-	add_image_size('banner', 748, 200, true, array('center','center'));
+	add_image_size('banner', 793, 200, true, array('center','center'));
 	add_image_size('fullwidth', 1170, 1200, false, array('center','center'));
 	add_image_size('masthead', 1600, 300, true, array('center','center'));
 	
