@@ -1826,8 +1826,8 @@ a:active {
 .banner_primary {background-color: #2C3E50; }
 .banner_secondary {background-color: #18BC9C; }
 .banner_action {background-color: #F39C12; }
-#main .banner_primary, #main .banner_primary h1, #main .banner_primary h2, #main .banner_primary h3, #main .banner_primary h4, #main .banner_primary h5, #main .banner_primary a, #main .banner_primary a:link,
-#main .banner_secondary, #main .banner_secondary h1, #main .banner_secondary h2, #main .banner_secondary h3, #main .banner_secondary h4, #main .banner_secondary h5, #main .banner_secondary a, #main .banner_secondary a:link {
+#main .banner_primary, #main .banner_primary h1, #main .banner_primary h2, #main .banner_primary h3, #main .banner_primary h4, #main .banner_primary h5, #main .banner_primary a, #main .banner_primary a:link, #main .banner_primary a:hover,
+#main .banner_secondary, #main .banner_secondary h1, #main .banner_secondary h2, #main .banner_secondary h3, #main .banner_secondary h4, #main .banner_secondary h5, #main .banner_secondary a, #main .banner_secondary a:link, #main .banner_secondary a:hover {
 	color: #FFF;
 }
 
