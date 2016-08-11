@@ -15,12 +15,18 @@ function memberlite_checkForUpdates() {
 	 * We need to convert header images into site logos.
 	 */
 	if($memberlite_db_version < '2016081101') {
-		//set site logo to be the same as the header image
-		
-		//remove the header image
+		$header_image_data = get_theme_mod('header_image_data');
+		$custom_logo = get_theme_mod('custom_logo');
+
+		if(!empty($header_image_data) && empty($custom_logo)) {
+			$custom_logo = $header_image_data->attachment_id;
+			set_theme_mod('custom_logo', $custom_logo);
+			remove_theme_mod('header_image');
+			remove_theme_mod('header_image_data');
+		}
 
 		//update db version
 		$memberlite_db_version = '2016081101';
-		//update_option('memberlite_db_version', $memberlite_db_version, 'no');
+		update_option('memberlite_db_version', $memberlite_db_version, 'no');
 	}
 }
