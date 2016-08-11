@@ -1,15 +1,25 @@
 <?php
 /**
- * Custom admin theme pages
+ * Custom admin theme pages and scripts
  *
  * @package Memberlite
  */
 
-/**
- * Adds Theme Support submenu page to "Appearance" menu.
- *
- */
+/*
+	Load scripts on admin pages.
+*/
+function memberlite_admin_enqueue_scripts() {
+	$screen = get_current_screen();
 
+	if($screen->base == 'post' && !empty($_REQUEST['action']) && $_REQUEST['action'] == 'edit') {
+		wp_enqueue_script('memberlite-admin-edit-post', get_template_directory_uri() . '/js/admin-edit-post.js', array( 'jquery' ), MEMBERLITE_VERSION, true);
+	}
+}
+add_action('admin_enqueue_scripts', 'memberlite_admin_enqueue_scripts');
+
+/*
+	Adds Theme Support submenu page to "Appearance" menu.
+*/
 function memberlite_theme_menu() {
 	add_theme_page('Memberlite Documentation and Support', 'Memberlite', 'edit_theme_options', 'memberlite-support', 'memberlite_support');
 }

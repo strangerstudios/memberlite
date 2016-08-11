@@ -50,6 +50,7 @@ function memberlite_settings_meta_box_callback($post) {
 	echo '&nbsp;&nbsp;<input type="radio" name="memberlite_banner_show" value="0" '. checked( $memberlite_banner_show, 0, false) .'> ';
 	_e('No', 'memberlite');	
 	echo '</p>';
+	echo '<span id="memberlite_top_banner_settings_wrapper">';
 	echo '<p style="margin: 1rem 0 0 0;"><strong>' . __('Banner Description', 'memberlite') . '</strong> <em>Shown in the masthead banner below the page title.</em>';
 	if(($memberlite_page_template == 'templates/landing.php') && function_exists('pmpro_getAllLevels'))
 		echo ' <em>Leave blank to show landing page level description as banner description.</em>';
@@ -73,6 +74,8 @@ function memberlite_settings_meta_box_callback($post) {
 	echo '<textarea class="large-text" rows="3" id="memberlite_banner_right" name="memberlite_banner_right">';
 		echo $memberlite_banner_right;
 	echo '</textarea>';
+	echo '</span>';
+	echo '<hr />';
 	echo '<p style="margin: 1rem 0 0 0;"><strong>' . __('Page Bottom Banner', 'memberlite') . '</strong> <em>Banner shown above footer on pages. (i.e. call to action)</em></p>';	
 	echo '<label class="screen-reader-text" for="memberlite_banner_bottom">';
 	_e('Page Bottom Banner', 'memberlite');
