@@ -7,17 +7,17 @@
 Memberlite makes it easy to customize the appearance and layout of your site using the Theme Customization Screen (Appearance > Customize). 
 
 ###Adding Your Logo
-Use the Appearance Header Screen to add a Custom Header logo (formatted for retina display) and to toggle the display of header text and text color.
+Use the Customize > Site Identity screen to add a custom logo (formatted for retina display), update your Site Title and Tagline, and toggle the display of your Site Title & Tagline.
 
-[Explore Documentation on Custom Headers in Memberlite](http://www.memberlitetheme.com/documentation/adding-your-logo/)
+[Explore Documentation on Custom Headers in Memberlite](http://www.memberlitetheme.com/documentation/site-branding/)
 
 ###Customize the Theme
-Use the Customize Screen to modify theme layout, logo, fonts, colors, copyright message and more.
+Use the Customize > Memberlite Options screen to modify theme layout, logo, fonts, colors, copyright message and more.
 
-[Explore Documentation on Customizing Memberlite »](http://memberlitetheme.com/documentation/customize-the-theme/)
+[Explore Documentation on Customizing Memberlite »](http://memberlitetheme.com/documentation/customize/)
 
 ###Using Child Themes
-If you need to customize the theme beyond the settings in "Customize", use a child theme.
+If you need to customize the theme beyond theme settings, use a child theme.
 
 [Download a Blank Child Theme »](https://github.com/strangerstudios/memberlite-child) | [About Child Themes (WordPress Codex) »](http://codex.wordpress.org/Child_Themes)
 
@@ -50,6 +50,7 @@ We highly recommend using these plugins for every site running Memberlite:
 
 ###Changelog
 **3.0**
+* ENHANCEMENT: Adding support for toggling display of page masthead banner.
 * BUG: Fixing index error on memberlite_cpt_sidebar_id.
 * ENHANCEMENT: Added page setting for page icon and banner right icon display.
 * BUG: Fixing error when viewing archive and no $post is set.

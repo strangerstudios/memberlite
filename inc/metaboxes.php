@@ -26,6 +26,9 @@ function memberlite_settings_meta_box_callback($post) {
 	global $fontawesome_icons;
 	wp_nonce_field('memberlite_settings_meta_box', 'memberlite_settings_meta_box_nonce');
 	$memberlite_page_template = get_post_meta($post->ID, '_wp_page_template', true);
+	$memberlite_banner_show = get_post_meta($post->ID, '_memberlite_banner_show', true);
+	if($memberlite_banner_show === '')
+		$memberlite_banner_show = 1;		//we want to default to showing if this has never been set
 	$memberlite_page_icon = get_post_meta($post->ID, '_memberlite_page_icon', true);
 	$memberlite_banner_desc = get_post_meta($post->ID, '_memberlite_banner_desc', true);
 	$memberlite_banner_hide_title = get_post_meta($post->ID, '_memberlite_banner_hide_title', true);
@@ -38,6 +41,15 @@ function memberlite_settings_meta_box_callback($post) {
 	$pmproal_landing_page_level = get_post_meta($post->ID, '_pmproal_landing_page_level', true);
 	$memberlite_landing_page_upsell = get_post_meta($post->ID, '_memberlite_landing_page_upsell', true);	
 	echo '<h2>' . __('Page Banner Settings', 'memberlite') . '</h2>';
+	echo '<p style="margin: 1rem 0 0 0;"><strong>' . __('Show Page Banner', 'memberlite') . '</strong> <em>Disable the entire page banner for this content.</em><br />';
+	echo '<label class="screen-reader-text" for="memberlite_banner_show">';
+	_e('Show Page Banner', 'memberlite');
+	echo '</label>';
+	echo '<input type="radio" name="memberlite_banner_show" value="1" '. checked( $memberlite_banner_show, 1, false) .'> ';
+	_e('Yes', 'memberlite');
+	echo '&nbsp;&nbsp;<input type="radio" name="memberlite_banner_show" value="0" '. checked( $memberlite_banner_show, 0, false) .'> ';
+	_e('No', 'memberlite');	
+	echo '</p>';
 	echo '<p style="margin: 1rem 0 0 0;"><strong>' . __('Banner Description', 'memberlite') . '</strong> <em>Shown in the masthead banner below the page title.</em>';
 	if(($memberlite_page_template == 'templates/landing.php') && function_exists('pmpro_getAllLevels'))
 		echo ' <em>Leave blank to show landing page level description as banner description.</em>';
@@ -145,6 +157,12 @@ function memberlite_settings_save_meta_box_data($post_id) {
 		if(!current_user_can('edit_post', $post_id)) {
 			return;
 		}
+	}
+	
+	//banner show radio
+	if(isset($_POST['memberlite_banner_show'])) {
+		$memberlite_banner_show = $_POST['memberlite_banner_show'];	
+		update_post_meta($post_id, '_memberlite_banner_show', $memberlite_banner_show);
 	}
 	
 	//banner description

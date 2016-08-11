@@ -148,28 +148,35 @@
 	<?php } ?>
 	<?php do_action('before_content'); ?>
 	<div id="content" class="site-content">
-		<?php do_action('before_masthead'); ?>
-		<?php
-			$template = get_page_template();
-			if( !is_front_page() || (is_front_page() && (basename($template) != 'page.php') || 'posts' == get_option( 'show_on_front' )) && !is_404())
+	<?php do_action('before_masthead'); ?>
+	<?php 
+		$memberlite_banner_show = get_post_meta($post->ID, '_memberlite_banner_show', true);
+		if($memberlite_banner_show === '')
+			$memberlite_banner_show = 1;		//we want to default to showing if this has never been set
+
+		$template = get_page_template();
+		if( !is_front_page() || (is_front_page() && (basename($template) != 'page.php') || 'posts' == get_option( 'show_on_front' )) && !is_404())
+		{
+			$post = get_queried_object();
+			if(empty($post) && is_archive())
 			{
-				$post = get_queried_object();
-				if(empty($post) && is_archive())
+				$page_for_posts_id = get_option('page_for_posts');
+				$post = get_page($page_for_posts_id);
+			}
+			if(!empty($post) && !is_attachment())
+			{
+				$banner_image_id = memberlite_getBannerImageID($post);
+				$banner_image_src = wp_get_attachment_image_src( $banner_image_id, 'full');
+				if(!empty($banner_image_src) && !empty($memberlite_banner_show))
 				{
-					$page_for_posts_id = get_option('page_for_posts');
-					$post = get_page($page_for_posts_id);
+					?>
+					<div class="masthead-banner" style="background-image: url('<?php echo esc_attr($banner_image_src[0]);?>');">
+					<?php
 				}
-				if(!empty($post) && !is_attachment())
-				{
-					$banner_image_id = memberlite_getBannerImageID($post);
-					$banner_image_src = wp_get_attachment_image_src( $banner_image_id, 'full');
-					if(!empty($banner_image_src))
-					{
-						?>
-						<div class="masthead-banner" style="background-image: url('<?php echo esc_attr($banner_image_src[0]);?>');">
-						<?php
-					}
-				}
+			}
+			
+			if(!empty($memberlite_banner_show))
+			{
 				?>
 				<header class="masthead">
 					<div class="row">
@@ -259,18 +266,21 @@
 						</div>
 					</div><!-- .row -->
 				</header><!-- .masthead -->
-				<?php
-					if(!empty($banner_image_src))
-					{
-						?>
-						</div> <!-- .masthead-banner -->
-						<?php
-					}
-				?>
-				<?php if(!is_page_template( 'templates/fluid-width.php' )) { ?>
-					<div class="row">
-				<?php } ?>
-				<?php
-			} 
-		?>
-		<?php do_action('after_masthead'); ?>
+				<?php 
+				} //checks if the banner is hidden
+			?>
+			<?php
+				if(!empty($banner_image_src) && !empty($memberlite_banner_show))
+				{
+					?>
+					</div> <!-- .masthead-banner -->
+					<?php
+				}
+			?>
+			<?php if(!is_page_template( 'templates/fluid-width.php' )) { ?>
+				<div class="row">
+			<?php } ?>
+			<?php
+		} 
+	?>
+	<?php do_action('after_masthead'); ?>
