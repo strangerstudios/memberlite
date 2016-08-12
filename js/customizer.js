@@ -51,7 +51,7 @@
 			} );
 		} );
 	} );
-	// Primary Navigation Background Color.
+	// Primary Navigation Color.
 	wp.customize( 'color_site_navigation', function( value ) {
 		value.bind( function( to ) {
 			$(memberlite_defaults.color_site_navigation_elements).css( {
