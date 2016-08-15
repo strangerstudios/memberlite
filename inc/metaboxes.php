@@ -401,7 +401,7 @@ add_action('save_post', 'memberlite_sidebar_save_meta_box_data');
 function memberlite_featured_image_meta( $content, $post_id ) {
 	if(has_post_thumbnail($post_id) && !class_exists('MultiPostThumbnails'))
 	{
-		$id = 'memberlite_show_image_banner';
+		$id = '_memberlite_show_image_banner';
 		$value = esc_attr( get_post_meta( $post_id, $id, true ) );
 		$label = '<label for="' . $id . '" class="selectit"><input name="' . $id . '" type="checkbox" id="' . $id . '" value="' . $value . ' "'. checked( $value, 1, false) .'>' . __('Show as Banner Image', 'memberlite') . '</label>';
 		return $content .= $label;
@@ -415,10 +415,10 @@ add_filter( 'admin_post_thumbnail_html', 'memberlite_featured_image_meta', 10, 2
 /* Save Setting in Featured Images meta box */
 function memberlite_save_featured_image_meta( $post_id, $post, $update ) {  
 	$value = 0;
-	if ( isset( $_REQUEST['memberlite_show_image_banner'] ) ) {
+	if ( isset( $_REQUEST['_memberlite_show_image_banner'] ) ) {
 		$value = 1;
 	}
 	// Set meta value to either 1 or 0
-	update_post_meta( $post_id, 'memberlite_show_image_banner', $value );
+	update_post_meta( $post_id, '_memberlite_show_image_banner', $value );
 }
 add_action( 'save_post', 'memberlite_save_featured_image_meta', 10, 3 );

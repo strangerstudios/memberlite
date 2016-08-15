@@ -50,6 +50,7 @@ We highly recommend using these plugins for every site running Memberlite:
 
 ###Changelog
 **3.0**
+* ENHANCEMENT: Page banner description and banner right column now inheriting ratio of primary columns.
 * ENHANCEMENT: Adding support for toggling display of page masthead banner.
 * BUG: Fixing index error on memberlite_cpt_sidebar_id.
 * ENHANCEMENT: Added page setting for page icon and banner right icon display.

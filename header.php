@@ -213,6 +213,7 @@
 									$memberlite_banner_right = get_post_meta($post->ID, '_memberlite_banner_right', true);									
 									$memberlite_banner_icon = get_post_meta($post->ID, '_memberlite_banner_icon', true);
 									$memberlite_page_icon = get_post_meta($post->ID, '_memberlite_page_icon', true);
+									$memberlite_columns_primary = memberlite_getColumnsRatio();
 									if(!empty($memberlite_banner_right) || (!empty($memberlite_banner_icon)  && !empty($memberlite_page_icon)) )
 									{
 										echo '<div class="row">';								
@@ -224,10 +225,10 @@
 											if(empty($memberlite_banner_right))
 												echo '<div class="medium-11 columns">';
 											else
-												echo '<div class="medium-7 columns">';
+												echo '<div class="medium-' . ($memberlite_columns_primary-1) .' columns">';
 										}
 										else
-											echo '<div class="medium-9 columns">';
+											echo '<div class="medium-' . $memberlite_columns_primary . '  columns">';
 									}
 								?>
 								<?php 
@@ -250,9 +251,9 @@
 										echo '</div> <!-- end .medium-X .columns -->';
 									if(!empty($memberlite_banner_right))
 									{
-										echo '<div class="medium-4 columns">';
+										echo '<div class="medium-' . memberlite_getColumnsRatio( 'sidebar' ) . ' columns">';
 										echo wpautop($memberlite_banner_right);										
-										echo '</div> <!-- end .medium-4 .columns -->';
+										echo '</div> <!-- end .medium-X .columns -->';
 									}
 									if(!empty($memberlite_banner_right) || (!empty($memberlite_banner_icon)  && !empty($memberlite_page_icon)) )
 										echo '</div> <!-- end .row -->';

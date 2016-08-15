@@ -788,7 +788,7 @@ function memberlite_getBannerImageID($post = NULL)
 		}
 		else
 		{
-			$memberlite_show_image_banner = get_post_meta($post->ID, 'memberlite_show_image_banner', true);
+			$memberlite_show_image_banner = get_post_meta($post->ID, '_memberlite_show_image_banner', true);
 			if(!empty($memberlite_show_image_banner) || in_the_loop() )
 			{
 				//Use Featured Image as banner 
