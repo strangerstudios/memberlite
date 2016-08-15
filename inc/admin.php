@@ -347,3 +347,44 @@ function memberlite_mce_buttons( $buttons, $id ){
     return $buttons;
 }
 add_filter( 'mce_buttons', 'memberlite_mce_buttons', 1, 2 );
+
+/*
+	Load any notifications.
+
+	1. Prompt the installation of memberlite-shortcodes if it's not activated already.
+*/
+//check for notifications
+function memberlite_admin_init_notifications() {
+	
+	//1. Prompt the installation of memberlite-shortcodes if it's not activated already.
+	if(!defined('MEMBERLITESC_VERSION')) {
+		//check if this notice has been dismissed already
+		$dismissed = get_option('memberlite_notice_install_memberlite_shortcodes_dismissed', false);
+		if(!$dismissed) {
+			add_action('admin_notices', 'memberlite_admin_notice_install_memberlite_shortcodes');
+		}
+	}
+}
+add_action('admin_init', 'memberlite_admin_init_notifications');
+
+//Install Memberlite Shortcodes Notice
+function memberlite_admin_notice_install_memberlite_shortcodes() {
+	// check if the plugin is installed, but not active
+	if(file_exists(WP_PLUGIN_DIR . '/memberlite-shortcodes/memberlite-shortcodes.php')) {
+		// installed but not activated
+		$click_link = wp_nonce_url(self_admin_url('plugins.php?action=activate&plugin=memberlite_shortcodes/memberlite_shortcodes.php'), 'activate-plugin_memberlite_shortcodes');
+		$click_text = __('Click here to activate the Memberlite Shortcodes plugin.', 'memberlite');
+	} else {
+		// need to install
+		$click_link = wp_nonce_url(self_admin_url('update.php?action=install-plugin&plugin=memberlite_shortcodes'), 'install-plugin_memberlite_shortcodes');
+		$click_text = __('Click here to install the Memberlite Shortcodes plugin.', 'memberlite');
+	}
+
+	//notice HTML
+	?>
+	<div class="notice notice-error is-dismissible"> 
+		<p><?php echo __('Some features of Memberlite now require the Memberlite Shortcodes plugin.', 'memberlite') . ' <a href="' . $click_link . '">' . $click_text . '</a>';?></p>
+	</div>
+	<?php
+}
+
