@@ -39,6 +39,7 @@ function memberlite_support() {
 	?>
 	<div id="wpbody-content" aria-label="Main content" tabindex="0">	
 		<style>
+			.about-wrap {max-width: 100%; }
 			.about-wrap .memberlite-badge {background-image: url(<?php echo get_template_directory_uri() . "/images/Memberlite_icon.png"; ?>); background-color: #FFF; color: #2C3E50; }
 			.about-wrap .dashicons {font-size: 40px; height: 40px; width: 40px; }
 			.about-wrap .plugin-card h3 {margin: 0 0 12px; }
@@ -46,9 +47,7 @@ function memberlite_support() {
 		<div class="wrap about-wrap">
 			<h1><?php _e('Welcome to the Memberlite Theme', 'memberlite'); ?></h1>
 			<div class="about-text"><?php _e("Memberlite is the ideal theme for your membership site - packed with integration for top membership site plugins including Paid Memberships Pro. It's fully customizable with your logo, colors, fonts, custom sidebars and more global layout settings.", "memberlite"); ?></div>
-			<div class="wp-badge memberlite-badge"><?php printf(__('Version %s', 'memberlite'), MEMBERLITE_VERSION); ?></div>
-			<br class="clear" />
-			<hr />
+			<div class="wp-badge memberlite-badge"><?php printf(__('Version %s', 'memberlite'), MEMBERLITE_VERSION); ?></div>			
 			<div class="feature-section two-col">
 				<div class="col">
 					<h2><span class="dashicons dashicons-format-image"></span> <?php _e('Adding Your Logo' ,'memberlite') ; ?></h2>
@@ -101,7 +100,20 @@ function memberlite_support() {
 							<div class="action-links">
 								<ul class="plugin-action-buttons">
 									<li>
-										<a class="install-now button" href="<?php echo admin_url( 'plugin-install.php?tab=search&s=memberlite+shortcodes'); ?>"><?php _e('Install Now' ,'memberlite'); ?></a>
+										<?php 
+											if(is_plugin_active('memberlite-shortcodes/memberlite-shortcodes.php'))
+											{
+												?>
+												<a class="button button-disabled"><?php _e('Installed' ,'memberlite'); ?></a>
+												<?php
+											}
+											else
+											{
+												?>
+												<a class="install-now button" href="<?php echo admin_url( 'plugin-install.php?tab=search&s=memberlite+shortcodes'); ?>"><?php _e('Install Now' ,'memberlite'); ?></a>
+												<?php
+											}
+										?>
 									</li>
 									<li><a href="http://memberlitetheme.com/memberlite-shortcodes/" target="_blank"><?php _e('More Details' ,'memberlite'); ?></a></li>
 								</ul>

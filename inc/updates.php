@@ -12,9 +12,12 @@ function memberlite_checkForUpdates() {
 	/**
 	 * Upgrade from v2.0.
 	 *
-	 * We need to convert header images into site logos.
-	 */
+	*/
 	if($memberlite_db_version < '2016081101') {
+
+		/**
+		 * We need to convert header images into site logos.
+		 */
 		$header_image_data = get_theme_mod('header_image_data');
 		$custom_logo = get_theme_mod('custom_logo');
 
@@ -25,6 +28,11 @@ function memberlite_checkForUpdates() {
 			remove_theme_mod('header_image_data');
 		}
 
+		/**
+		 * We need to convert 'memberlite_show_image_banner' meta to '_memberlite_show_image_banner'.
+		 */
+		 
+		
 		//update db version
 		$memberlite_db_version = '2016081101';
 		update_option('memberlite_db_version', $memberlite_db_version, 'no');
