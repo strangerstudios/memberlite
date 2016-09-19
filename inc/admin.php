@@ -18,6 +18,19 @@ function memberlite_admin_enqueue_scripts() {
 add_action('admin_enqueue_scripts', 'memberlite_admin_enqueue_scripts');
 
 /*
+	Redirect to Welcome tab if the user hasn't been there yet.
+*/
+function memberlite_admin_init_redirect_to_welcome() {
+	$memberlite_welcome_version = get_option('memberlite_welcome_version', 0);
+	if(version_compare($memberlite_welcome_version, MEMBERLITE_VERSION) < 0) {
+		update_option('memberlite_welcome_version', MEMBERLITE_VERSION, 'no');
+		wp_redirect(admin_url('admin.php?page=memberlite-support'));
+		exit;
+	}
+}
+add_action('admin_init', 'memberlite_admin_init_redirect_to_welcome');
+
+/*
 	Adds Theme Support submenu page to "Appearance" menu.
 */
 function memberlite_theme_menu() {
@@ -43,11 +56,13 @@ function memberlite_support() {
 			.about-wrap .memberlite-badge {background-image: url(<?php echo get_template_directory_uri() . "/images/Memberlite_icon.png"; ?>); background-color: #FFF; color: #2C3E50; }
 			.about-wrap .dashicons {font-size: 40px; height: 40px; width: 40px; }
 			.about-wrap .plugin-card h3 {margin: 0 0 12px; }
+			.about-wrap .about-text.about-text-no-right-margin {margin-right: 0; }
 		</style>
 		<div class="wrap about-wrap">
 			<h1><?php _e('Welcome to the Memberlite Theme', 'memberlite'); ?></h1>
 			<div class="about-text"><?php _e("Memberlite is the ideal theme for your membership site - packed with integration for top membership site plugins including Paid Memberships Pro. It's fully customizable with your logo, colors, fonts, custom sidebars and more global layout settings.", "memberlite"); ?></div>
 			<div class="wp-badge memberlite-badge"><?php printf(__('Version %s', 'memberlite'), MEMBERLITE_VERSION); ?></div>			
+						
 			<div class="feature-section two-col">
 				<div class="col">
 					<h2><span class="dashicons dashicons-format-image"></span> <?php _e('Adding Your Logo' ,'memberlite') ; ?></h2>
@@ -84,6 +99,24 @@ function memberlite_support() {
 					</p>
 				</div>
 			</div> <!-- end feature-section -->
+			
+			<?php
+				$pmpro_license_key = get_option("pmpro_license_key", "");
+				if(!empty($pmpro_license_key)) {
+			?>			
+			<br class="clear" />
+			<hr />
+			<h2><?php _e('Upgrading from Memberlite v2.0?' ,'memberlite'); ?></h2>
+			<div class="wrap">
+				<div class="about-text about-text-no-right-margin"><?php _e("We've done our best to make upgrading as smooth as possible. 
+							 To comply with the WordPress.org Theme Repository guidelines, 
+							 we have moved all shortcode functionality into separate plugins. 
+							 <strong>You will have to install the Memberlite Shortcodes and Advanced Levels Page Shortcode
+							 plugins below if you are using any of the Memberlite shortcodes.</strong>", "memberlite");?></div>				
+			</div> <!-- end upgrade notice -->			
+			<?php } ?>
+			
+			<br class="clear" />
 			<hr />
 			<h2><?php _e('We highly recommend using these plugins for every site running Memberlite:' ,'memberlite'); ?></h2>
 			<div class="wp-list-table widefat plugin-install">
@@ -189,6 +222,43 @@ function memberlite_support() {
 							</div>
 						</div>
 					</div> <!-- end plugin-card-theme-my-login -->
+					<?php if(!empty($pmpro_license_key)) { ?>
+					<div class="plugin-card plugin-card-pmpro-advanced-levels-shortcode">
+						<div class="plugin-card-top">
+							<div class="name column-name" style="margin-left: 0;">
+								<h3>
+									<a href="http://www.paidmembershipspro.com/add-ons/plus-add-ons/pmpro-advanced-levels-shortcode/" target="_blank"><?php _e('Advanced Levels Page Shortcode' ,'memberlite'); ?></a>									
+								</h3>
+							</div>
+							<div class="action-links">
+								<ul class="plugin-action-buttons">
+									<li>
+										<?php 
+											if(is_plugin_active('pmpro-advanced-levels-shortcode/pmpro-advanced-levels-shortcode.php')) {
+												?>
+												<a class="button button-disabled"><?php _e('Installed' ,'memberlite'); ?></a>
+												<?php
+											} else {
+												if(function_exists('pmpro_license_isValid') && pmpro_license_isValid($pmpro_license_key, 'plus')) {
+													//valid key
+													echo '<span class="install"><a class="install-now button" href="' . wp_nonce_url(self_admin_url('update.php?action=install-plugin&plugin=pmpro-advanced-levels-shortcode', 'install-plugin_pmpro-advanced-levels-shortcode')) . '">' . __('Install Now', 'pmpro') . '</a></span>';													
+												} else {
+													//invalid key													
+													echo '<span class="download"><a target="_blank" href="http://license.paidmembershipspro.com/downloads/plus/pmpro-advanced-levels-shortcode.zip?key=' . $pmpro_license_key . '">' . __('Download', 'pmpro') . '</a></span>';
+												}												
+											}
+										?>										
+									</li>
+									<li><a href="http://www.paidmembershipspro.com/add-ons/plus-add-ons/pmpro-advanced-levels-shortcode/" target="_blank"><?php _e('More Details' ,'memberlite'); ?></a></li>
+								</ul>
+							</div>
+							<div class="desc column-description" style="margin-left: 0;">
+								<p><?php _e('Adds a new shortcode with many attributes to customize the levels page, including integrated styles for widely used theme frameworks/parent themes.', 'memberlite'); ?></p>
+								<p class="authors"><cite><?php _e('By', 'memberlite'); ?> <a href="http://www.strangerstudios.com"><?php _e('Stranger Studios', 'memberlite'); ?></a></cite></p>
+							</div>
+						</div>
+					</div> <!-- end plugin-card-pmpro-advanced-levels-shortcode -->
+					<?php } ?>
 				</div> <!-- end the-list -->
 			</div> <!-- end plugin-install -->
 			<br class="clear" />
