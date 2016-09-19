@@ -8,12 +8,12 @@
  */
 function memberlite_checkForUpdates() {
 	$memberlite_db_version = get_option('memberlite_db_version', 0);
-
+	
 	/**
 	 * Upgrade from v2.0.
 	 *
 	*/
-	if($memberlite_db_version < '2016081101') {
+	if($memberlite_db_version < '2016091901') {
 
 		/**
 		 * We need to convert header images into site logos.
@@ -31,10 +31,12 @@ function memberlite_checkForUpdates() {
 		/**
 		 * We need to convert 'memberlite_show_image_banner' meta to '_memberlite_show_image_banner'.
 		 */
-		 
+		global $wpdb;
+		$sqlQuery = "UPDATE $wpdb->postmeta SET meta_key = '_memberlite_show_image_banner' WHERE meta_key = 'memberlite_show_image_banner'";
+		$wpdb->query($sqlQuery);
 		
 		//update db version
-		$memberlite_db_version = '2016081101';
+		$memberlite_db_version = '2016091901';
 		update_option('memberlite_db_version', $memberlite_db_version, 'no');
 	}
 }
