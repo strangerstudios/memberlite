@@ -2,7 +2,7 @@
 Contributors: kimannwall, strangerstudios
 Requires at least: WordPress 4.4
 Tested up to: WordPress 4.5
-Version: 3.0
+Version: 3.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: one-column, two-columns, left-sidebar, right-sidebar, flexible-header, custom-background, custom-colors, custom-header, custom-menu, custom-logo, editor-style, featured-images, footer-widgets, full-width-template, post-formats, theme-options, threaded-comments, translation-ready, e-commerce
@@ -55,6 +55,9 @@ We highly recommend using these plugins for every site running Memberlite:
 [Install Theme My Login »](https://wordpress.org/plugins/theme-my-login/)
 
 == Changelog ==
+**3.0.1**
+* BUG: Now filtering memberlite_banner_right to allow shortcodes.
+
 **3.0**
 * ENHANCEMENT: Page banner description and banner right column now inheriting ratio of primary columns.
 * ENHANCEMENT: Adding support for toggling display of page masthead banner.

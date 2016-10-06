@@ -49,6 +49,9 @@ We highly recommend using these plugins for every site running Memberlite:
 
 
 ###Changelog
+**3.0.1**
+* BUG: Now filtering memberlite_banner_right to allow shortcodes.
+
 **3.0**
 * BUG: Fixing errors and alerts from Theme Check plugin.
 * ENHANCEMENT: Page banner description and banner right column now inheriting ratio of primary columns.

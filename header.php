@@ -252,7 +252,7 @@
 									if(!empty($memberlite_banner_right))
 									{
 										echo '<div class="medium-' . memberlite_getColumnsRatio( 'sidebar' ) . ' columns">';
-										echo wpautop($memberlite_banner_right);										
+										echo wpautop(do_shortcode($memberlite_banner_right));
 										echo '</div> <!-- end .medium-X .columns -->';
 									}
 									if(!empty($memberlite_banner_right) || (!empty($memberlite_banner_icon)  && !empty($memberlite_page_icon)) )
