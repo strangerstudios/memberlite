@@ -12,7 +12,9 @@ get_header(); ?>
 		<?php while ( have_posts() ) : the_post(); ?>
 			<?php get_template_part( 'content', 'single' ); ?>
 			<?php 
-				if( !empty( get_theme_mod( 'memberlite_post_nav', 1 ) ) )
+				$theme_mod = get_theme_mod( 'memberlite_post_nav', 1 );
+
+				if( !empty( $theme_mod ) )
 					memberlite_post_nav();
 			?>
 			<?php
