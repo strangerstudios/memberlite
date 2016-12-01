@@ -51,6 +51,7 @@ We highly recommend using these plugins for every site running Memberlite:
 ###Changelog
 **3.0.1**
 * BUG: Now filtering memberlite_banner_right to allow shortcodes.
+* BUG: Fixing some display issues with no masthead and the blog sidebar float.
 
 **3.0**
 * BUG: Fixing errors and alerts from Theme Check plugin.

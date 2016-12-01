@@ -830,6 +830,11 @@ a:active {
 	padding-left: 1.5rem;
 }
 
+.search-no-results #site-navigation {
+	border-bottom: 1px solid #DADADA; 
+	margin-bottom: 4em;
+}
+
 #site-navigation .search-form {float: right; position: relative; }
 #site-navigation .search-form input[type=search] {width: 100%; }
 #site-navigation .search-form input[type=submit].search-submit {background: none; padding: 0; position: absolute; text-indent: -9999em; }
@@ -1196,10 +1201,10 @@ a:active {
 /*--------------------------------------------------------------
 10.0 Content
 --------------------------------------------------------------*/
-.sidebar-content #primary, .sidebar-left #primary, .blog.sidebar-blog-left #primary, .archive.sidebar-blog-left #primary, .search.sidebar-blog-left #primary {
+.sidebar-content #primary, .sidebar-left #primary, .blog.sidebar-blog-left #primary, .archive.sidebar-blog-left #primary, .search.sidebar-blog-left #primary, .single.sidebar-blog-left #primary {
 	float: right;
 }
-.content-sidebar #primary, .blog.sidebar-blog-right #primary, .archive.sidebar-blog-right #primary, .search.sidebar-blog-right #primary {
+.content-sidebar #primary, .blog.sidebar-blog-right #primary, .archive.sidebar-blog-right #primary, .search.sidebar-blog-right #primary, .single.sidebar-blog-right #primary {
 	float: left;	
 }
 /*--------------------------------------------------------------
