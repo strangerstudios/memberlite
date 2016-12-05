@@ -151,7 +151,7 @@
 	<?php do_action('before_masthead'); ?>
 	<?php 
 		$memberlite_banner_show = get_post_meta($post->ID, '_memberlite_banner_show', true);
-		if($memberlite_banner_show === '')
+		if( $memberlite_banner_show === '' || (function_exists('is_bbpress') && bbp_is_single_user()))
 			$memberlite_banner_show = 1;		//we want to default to showing if this has never been set
 
 		$template = get_page_template();
@@ -174,7 +174,6 @@
 					<?php
 				}
 			}
-			
 			if(!empty($memberlite_banner_show))
 			{
 				?>
@@ -206,7 +205,7 @@
 								if(!empty($memberlite_banner_extra_padding))
 									echo '<div class="masthead-padding">';
 							?>
-							<?php if(is_search() || (function_exists('is_bbpress') && bbp_is_search())) { ?>
+							<?php if(is_search() || (function_exists('is_bbpress') && (bbp_is_search() || bbp_is_single_user()))) { ?>
 								<?php memberlite_page_title(); ?>
 							<?php } elseif(!empty($post)) { ?>
 								<?php

@@ -7,11 +7,6 @@
 
 /* =bbPress Style
 -------------------------------------------------------------- */
-.bbp-user-page #site-navigation {
-	border-bottom: 1px solid #DADADA; 
-	margin-bottom: 2em;
-}
-
 #bbpress-forums hr {
 	margin: 0 0 24px 0;
 }

@@ -56,6 +56,7 @@ We highly recommend using these plugins for every site running Memberlite:
 
 == Changelog ==
 **3.0.1**
+* ENHANCEMENT: Added masthead with profile user name to bbPress single user profile view.
 * BUG: Now filtering memberlite_banner_right to allow shortcodes.
 * BUG: Fixing some display issues with no masthead and the blog sidebar float.
 
