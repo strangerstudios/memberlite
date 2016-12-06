@@ -363,9 +363,17 @@ function memberlite_page_title() {
 		<div class="masthead-post-byline">
 			<div class="post_author_avatar"><?php echo get_avatar( $author_id, 80 ); ?></div>
 			<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
-			<p class="entry-meta">
-				<?php echo memberlite_get_entry_meta($post, 'before'); ?>
-			</p><!-- .entry-meta -->
+			<?php
+				$memberlite_get_entry_meta_before = memberlite_get_entry_meta($post, 'before');
+				if(!empty($memberlite_get_entry_meta_before))
+				{
+					?>
+					<p class="entry-meta">
+						<?php echo memberlite_get_entry_meta($post, 'before'); ?>
+					</p><!-- .entry-meta -->
+					<?php
+				}
+			?>
 		</div>
 		<?php
 	}

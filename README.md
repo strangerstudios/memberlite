@@ -50,6 +50,7 @@ We highly recommend using these plugins for every site running Memberlite:
 
 ###Changelog
 **3.0.1**
+* BUG: Now hiding the wrapping <p> tag for memberlite_get_entry_meta before and after when set to none via customizer.
 * ENHANCEMENT: Added masthead with profile user name to bbPress single user profile view.
 * BUG: Now filtering memberlite_banner_right to allow shortcodes.
 * BUG: Fixing some display issues with no masthead and the blog sidebar float.
