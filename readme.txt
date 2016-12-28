@@ -61,6 +61,8 @@ We highly recommend using these plugins for every site running Memberlite:
 * BUG: Fixing some display issues with no masthead and the blog sidebar float.
 * ENHANCEMENT: Added masthead with profile user name to bbPress single user profile view.
 * NOTE/ENHANCEMENT: Added the code back to update from the PMPro license server until we get approval in the WordPress repository.
+* ENHANCEMENT: Added Narrow Width page template for an 8 column centered main content layout with no sidebar.
+
 
 **3.0**
 * ENHANCEMENT: Page banner description and banner right column now inheriting ratio of primary columns.
