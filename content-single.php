@@ -25,9 +25,16 @@
 		<?php do_action('after_content_single'); ?>
 	</div><!-- .entry-content -->
 
-	<footer class="entry-footer">
-		<?php echo memberlite_get_entry_meta($post, 'after'); ?>
-
-		<?php edit_post_link( __( 'Edit', 'memberlite' ), '<span class="edit-link">', '</span>' ); ?>
-	</footer><!-- .entry-footer -->
+	<?php 
+		$memberlite_get_entry_meta_after = memberlite_get_entry_meta($post, 'after'); 
+		if(!empty($memberlite_get_entry_meta_after) || current_user_can( 'edit_post', $post->ID ) )
+		{
+			?>
+			<footer class="entry-footer">
+				<?php echo $memberlite_get_entry_meta_after; ?>
+				<?php edit_post_link( __( 'Edit', 'memberlite' ), '<span class="edit-link">', '</span>' ); ?>
+			</footer><!-- .entry-footer -->
+			<?php
+		}
+	?>
 </article><!-- #post-## -->

@@ -265,7 +265,7 @@ function memberlite_page_title() {
 		<h1 class="page-title"><?php echo $post_type->labels->name; ?></h1>
 		<?php
 	}
-	elseif(function_exists('is_bbpress') && is_bbpress() )
+	elseif(function_exists('is_bbpress') && (is_bbpress() || bbp_is_single_user()))
 	{
 		?>
 		<h1 class="page-title">
@@ -276,6 +276,8 @@ function memberlite_page_title() {
 				_e( 'Forum Search', 'memberlite');
 			elseif(bbp_is_single_forum())
 				the_title( '' );
+			elseif(bbp_is_single_user())
+				echo sprintf(__( "%s's Profile", 'User viewing another users profile', 'bbpress' ), get_userdata( bbp_get_user_id() )->display_name );
 			else	
 				_e( 'Forums', 'memberlite');
 		?>
@@ -361,9 +363,17 @@ function memberlite_page_title() {
 		<div class="masthead-post-byline">
 			<div class="post_author_avatar"><?php echo get_avatar( $author_id, 80 ); ?></div>
 			<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
-			<p class="entry-meta">
-				<?php echo memberlite_get_entry_meta($post, 'before'); ?>
-			</p><!-- .entry-meta -->
+			<?php
+				$memberlite_get_entry_meta_before = memberlite_get_entry_meta($post, 'before');
+				if(!empty($memberlite_get_entry_meta_before))
+				{
+					?>
+					<p class="entry-meta">
+						<?php echo memberlite_get_entry_meta($post, 'before'); ?>
+					</p><!-- .entry-meta -->
+					<?php
+				}
+			?>
 		</div>
 		<?php
 	}

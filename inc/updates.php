@@ -52,6 +52,9 @@ function memberlite_checkForUpdates() {
 */
 function memberlite_setupUpdateInfo()
 {
+	if(!defined('PMPRO_LICENSE_SERVER'))
+		define('PMPRO_LICENSE_SERVER', 'http://license.paidmembershipspro.com');
+	
 	add_filter('pre_set_site_transient_update_themes', 'memberlite_update_themes_filter');
 	add_filter('http_request_args', 'memberlite_http_request_args_for_update_info', 10, 2);
 	add_action('update_option_pmpro_license_key', 'memberlite_update_option_pmpro_license_key', 10, 2);
@@ -86,7 +89,8 @@ function memberlite_getUpdateInfo()
         if(is_wp_error($remote_info) || empty($remote_info['response']) || $remote_info['response']['code'] != '200')
 		{
 			//error
-			pmpro_setMessage("Could not connect to the PMPro License Server to get update information. Try again later.", "error");
+			if(function_exists('pmpro_setMessage'))
+				pmpro_setMessage("Could not connect to the PMPro License Server to get update information. Try again later.", "error");
 		}
 		else
 		{
@@ -138,20 +142,6 @@ function memberlite_update_themes_filter( $value ) {
 			'url' => $update_info['ThemeURI'],
 			'package' => $update_info['Download']
 		);
-		//get license key if one is available
-		$key = get_option("pmpro_license_key", "");
-		if(!empty($key) && pmpro_license_isValid($key, "plus"))
-			$value->response[$update_info['Slug']]['package'] = add_query_arg("key", $key, $value->response[$update_info['Slug']]['package']);
-		else
-		{
-			global $memberlite_license_error;
-			//only want to show this once
-			if(empty($memberlite_license_error))
-			{
-				$memberlite_license_error = true;
-				echo "<div class='error'><p>" . sprintf(__('A valid PMPro Plus license key is required to update Memberlite. <a href="%s">Please validate your PMPro Plus license key</a>.', 'memberlite'), admin_url('options-general.php?page=pmpro_license_settings')) . "</p></div>";
-			}
-		}
 	}
 	
 	// Return the update object.

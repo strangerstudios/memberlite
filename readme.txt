@@ -2,7 +2,7 @@
 Contributors: kimannwall, strangerstudios
 Requires at least: WordPress 4.4
 Tested up to: WordPress 4.5
-Version: 3.0
+Version: 3.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: one-column, two-columns, left-sidebar, right-sidebar, flexible-header, custom-background, custom-colors, custom-header, custom-menu, custom-logo, editor-style, featured-images, footer-widgets, full-width-template, post-formats, theme-options, threaded-comments, translation-ready, e-commerce
@@ -55,6 +55,13 @@ We highly recommend using these plugins for every site running Memberlite:
 [Install Theme My Login »](https://wordpress.org/plugins/theme-my-login/)
 
 == Changelog ==
+**3.0.1**
+* BUG: Now hiding the wrapping <p> tag for memberlite_get_entry_meta before and after when set to none via customizer.
+* BUG: Now filtering memberlite_banner_right to allow shortcodes.
+* BUG: Fixing some display issues with no masthead and the blog sidebar float.
+* ENHANCEMENT: Added masthead with profile user name to bbPress single user profile view.
+* NOTE/ENHANCEMENT: Added the code back to update from the PMPro license server until we get approval in the WordPress repository.
+
 **3.0**
 * ENHANCEMENT: Page banner description and banner right column now inheriting ratio of primary columns.
 * ENHANCEMENT: Adding support for toggling display of page masthead banner.
