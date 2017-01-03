@@ -34,7 +34,7 @@ remove_action( 'woocommerce_before_main_content','woocommerce_breadcrumb', 20, 0
 remove_action( 'woocommerce_sidebar', 'woocommerce_get_sidebar', 10);
 remove_action( 'woocommerce_archive_description', 'woocommerce_taxonomy_archive_description' );
 remove_action( 'woocommerce_archive_description', 'woocommerce_product_archive_description' );
-add_filter('woocommerce_show_page_title',false);
+add_filter( 'woocommerce_show_page_title', '__return_false' );
 add_filter ( 'woocommerce_product_thumbnails_columns', 'xx_thumb_cols' );
 function xx_thumb_cols() {
 	return 5; // .last class applied to every 4th thumbnail

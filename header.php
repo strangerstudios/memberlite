@@ -182,7 +182,7 @@
 						<div class="large-12 columns">
 							<?php do_action('before_masthead_inner'); ?>
 							<?php if(is_page_template( 'templates/interstitial.php' )) { 
-								$referrer = $_GET['redirect_to'];
+								$referrer = isset( $_GET['redirect_to'] ) ? esc_url_raw( $_GET['redirect_to'] ) :null;
 								?>
 								<a class="btn" href="<?php echo esc_attr($referrer); ?>"><?php _e( 'No Thanks &raquo;','memberlite'); ?></a>
 							<?php } else { ?>
