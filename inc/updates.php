@@ -140,7 +140,7 @@ function memberlite_update_themes_filter( $value ) {
 		);
 		//get license key if one is available
 		$key = get_option("pmpro_license_key", "");
-		if(!empty($key) && pmpro_license_isValid($key, "plus"))
+		if(!empty($key) && function_exists('pmpro_license_isValid') && pmpro_license_isValid($key, "plus"))
 			$value->response[$update_info['Slug']]['package'] = add_query_arg("key", $key, $value->response[$update_info['Slug']]['package']);
 		else
 		{
