@@ -49,6 +49,9 @@ We highly recommend using these plugins for every site running Memberlite:
 
 
 ###Changelog
+**3.0.2**
+* BUG: Fixed issue with update code when PMPro is not installed.
+
 **3.0.1**
 * BUG: Now hiding the wrapping <p> tag for memberlite_get_entry_meta before and after when set to none via customizer.
 * ENHANCEMENT: Added masthead with profile user name to bbPress single user profile view.
