@@ -49,11 +49,16 @@ We highly recommend using these plugins for every site running Memberlite:
 
 
 ###Changelog
+**3.0.2**
+* BUG: Fixed issue with update code when PMPro is not installed.
+
 **3.0.1**
 * BUG: Now hiding the wrapping <p> tag for memberlite_get_entry_meta before and after when set to none via customizer.
 * ENHANCEMENT: Added masthead with profile user name to bbPress single user profile view.
 * BUG: Now filtering memberlite_banner_right to allow shortcodes.
 * BUG: Fixing some display issues with no masthead and the blog sidebar float.
+* NOTE/ENHANCEMENT: Added the code back to update from the PMPro license server until we get approval in the WordPress repository.
+* ENHANCEMENT: Added Narrow Width page template for an 8 column centered main content layout with no sidebar.
 
 **3.0**
 * BUG: Fixing errors and alerts from Theme Check plugin.
