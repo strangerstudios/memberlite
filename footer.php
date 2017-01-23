@@ -45,11 +45,13 @@
 	<?php if(!is_page_template( 'templates/interstitial.php' )) { ?>
 	<footer id="colophon" class="site-footer" role="contentinfo">
 		<?php do_action('before_footer_widgets'); ?>
+		<?php if(is_active_sidebar('sidebar-4')) { ?>
 		<div class="footer-widgets">
  			<div class="row">
 				<?php dynamic_sidebar('sidebar-4');	?>
 			</div><!-- .row -->
 		</div><!-- .footer-widgets -->
+		<?php } ?>
 		<?php do_action('after_footer_widgets'); ?>
 		<nav id="footer-navigation">
 			<?php 

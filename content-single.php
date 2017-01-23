@@ -31,7 +31,9 @@
 		{
 			?>
 			<footer class="entry-footer">
-				<?php echo $memberlite_get_entry_meta_after; ?>
+				<?php if ( 'post' == get_post_type() ) : 
+					echo $memberlite_get_entry_meta_after; 
+				endif; ?>
 				<?php edit_post_link( __( 'Edit', 'memberlite' ), '<span class="edit-link">', '</span>' ); ?>
 			</footer><!-- .entry-footer -->
 			<?php

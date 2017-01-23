@@ -269,6 +269,7 @@ blockquote cite a, .testimonials-widget blockquote .credit a {
 	color: #FFF;
 	font-size: 100%;
 }
+blockquote.contact-form-submission {color: #404040; }
 address {
 	margin: 0 0 1.5rem;
 }
