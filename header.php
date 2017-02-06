@@ -151,7 +151,7 @@
 	<?php do_action('before_masthead'); ?>
 	<?php 
 		$memberlite_banner_show = get_post_meta($post->ID, '_memberlite_banner_show', true);
-		if( $memberlite_banner_show === '' || (function_exists('is_bbpress') && bbp_is_single_user()))
+		if( $memberlite_banner_show === '' || (function_exists('is_bbpress') && ( bbp_is_single_user() || is_bbpress() ) ) )
 			$memberlite_banner_show = 1;		//we want to default to showing if this has never been set
 
 		$template = get_page_template();
