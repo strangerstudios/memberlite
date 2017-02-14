@@ -246,7 +246,7 @@ class comment_walker extends Walker_Comment {
 				<?php edit_comment_link('<span class="alignright">Edit this comment</span>','',''); ?>
 				<time class="comment-meta-item" datetime="<?php comment_date('Y-m-d') ?>T<?php comment_time('H:iP') ?>" itemprop="datePublished"><?php comment_date('jS F Y') ?>, <a href="#comment-<?php comment_ID() ?>" itemprop="url"><?php comment_time() ?></a></time>
 				<?php if ($comment->comment_approved == '0') : ?>
-				<p class="comment-meta-item">Your comment is awaiting moderation.</p>
+				<p class="comment-meta-item"><?php _e('Your comment is awaiting moderation.', 'memberlite'); ?></p>
 				<?php endif; ?>
 			</div>
 			<div class="comment-content post-content" itemprop="text">
@@ -322,7 +322,7 @@ class pings_walker extends Walker_Comment {
 				<time class="comment-meta-item" datetime="<?php comment_date('Y-m-d') ?>T<?php comment_time('H:iP') ?>" itemprop="datePublished"><?php comment_date('jS F Y') ?>, <a href="#comment-<?php comment_ID() ?>" itemprop="url"><?php comment_time() ?></a></time>
 				<?php edit_comment_link('<p class="comment-meta-item">Edit this comment</p>','',''); ?>
 				<?php if ($comment->comment_approved == '0') : ?>
-				<p class="comment-meta-item">Your comment is awaiting moderation.</p>
+				<p class="comment-meta-item"><?php _e('Your comment is awaiting moderation.', 'memberlite'); ?></p>
 				<?php endif; ?>
 			</div>
 	<?php }
