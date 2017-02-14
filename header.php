@@ -80,25 +80,16 @@
 									global $current_user, $pmpro_pages;
 									if($user_ID)
 									{ 
+										if(!empty($pmpro_pages)) {
+											$account_page = get_post($pmpro_pages['account']);
+											$user_account_link = '<a href="' . pmpro_url("account") . '">' . preg_replace("/\@.*/", "", $current_user->display_name) . '</a>';
+										}
+										else {
+											$user_account_link = '<a href="' . admin_url("profile.php") . '">' . preg_replace("/\@.*/", "", $current_user->display_name) . '</a>';											
+										}
 										?>				
-										<span class="user">Welcome, 
-										<?php
-											if(!empty($pmpro_pages))
-											{
-												$account_page = get_post($pmpro_pages['account']);
-												?>
-												<a href="<?php echo pmpro_url("account"); ?>"><?php echo preg_replace("/\@.*/", "", $current_user->display_name)?></a>
-												<?php
-											}
-											else
-											{
-												?>
-												<a href="<?php echo admin_url("profile.php"); ?>"><?php echo preg_replace("/\@.*/", "", $current_user->display_name)?></a>
-												<?php
-											}
-										?>
-										</span>
-										<?php
+										<span class="user"><?php printf(__('Welcome, %s', 'memberlite'), $user_account_link);?></span>
+										<?php										
 									}									
 									$member_menu_defaults = array(
 										'theme_location' => 'member',
