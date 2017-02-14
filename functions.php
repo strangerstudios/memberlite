@@ -46,19 +46,20 @@ function memberlite_load_fonts()
 }
 add_action('wp_print_styles', 'memberlite_load_fonts');
 
-/* Set the content width based on the theme's design and stylesheet. */
-if(!isset($content_width)) {
-	$content_width = 748; /* pixels */
-}
-
-/* Adjust the content width based on the template. */
+/* Set the content width. */
 function memberlite_adjust_content_width() {
     global $content_width;
  
-    if ( is_page_template( 'templates/full-width.php' ) || is_page_template( 'templates/fluid-width.php' ) )
+	//default if not set yet
+	if(!isset($content_width)) {
+		$content_width = 748; /* pixels */
+	}
+ 
+    /* Adjust the content width based on the template. */
+	if ( is_page_template( 'templates/full-width.php' ) || is_page_template( 'templates/fluid-width.php' ) )
         $content_width = 1170; /* pixels */
 }
-add_action( 'template_redirect', 'memberlite_adjust_content_width' );
+add_action( 'after_setup_theme', 'memberlite_adjust_content_width' );
 
 if(!function_exists('memberlite_setup')) :
 /* Sets up theme defaults and registers support for various WordPress features. */
