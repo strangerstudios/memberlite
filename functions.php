@@ -197,18 +197,18 @@ function memberlite_menus( $items, $args ) {
 		if (is_user_logged_in() && defined('PMPRO_VERSION') && pmpro_hasMembershipLevel())
 		{
 			//user is logged in and has a membership level
-			$items .= '<li><a href="'. wp_logout_url() .'">' . __('Log Out','memberlite') . '</a></li>';
+			$items .= '<li><a href="'. esc_url(wp_logout_url()) .'">' . __('Log Out','memberlite') . '</a></li>';
 		}
 		elseif (is_user_logged_in() )
 		{
 			//user is logged in and does not have a membership level
-			$items = '<li><a href="'. wp_logout_url() .'">' . __('Log Out','memberlite') . '</a></li>';
+			$items = '<li><a href="'. esc_url(wp_logout_url()) .'">' . __('Log Out','memberlite') . '</a></li>';
 		}
 		else
 		{
 			//not logged in
-			$items = '<li><a href="'. wp_login_url() .'">' . __('Log In','memberlite') . '</a></li>';	  
-			$items .= '<li><a href="'. wp_registration_url() .'">' . __('Register','memberlite') . '</a></li>';	  
+			$items = '<li><a href="'. esc_url(wp_login_url()) .'">' . __('Log In','memberlite') . '</a></li>';	  
+			$items .= '<li><a href="'. esc_url(wp_registration_url()) .'">' . __('Register','memberlite') . '</a></li>';	  
 		}
 	}
 	//is this the primary menu location or a replaced menu using pmpro-nav-menus plugin
