@@ -140,7 +140,7 @@ function memberlite_get_link_url() {
  *
  *
 */
-function get_the_content_after_more($content = NULL)
+function memberlite_get_the_content_after_more($content = NULL)
 {
 	if($content === NULL)
 		$content = get_the_content();
@@ -159,7 +159,7 @@ function get_the_content_after_more($content = NULL)
 		return "";
 }
 
-function get_the_content_before_more($content = NULL)
+function memberlite_get_the_content_before_more($content = NULL)
 {
 	if($content === NULL)
 		$content = get_the_content();
