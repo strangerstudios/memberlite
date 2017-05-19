@@ -1208,6 +1208,9 @@ a:active {
 .content-sidebar #primary, .blog.sidebar-blog-right #primary, .archive.sidebar-blog-right #primary, .search.sidebar-blog-right #primary, .single.sidebar-blog-right #primary {
 	float: left;	
 }
+.page-template-full-width #primary, .page-template-narrow-width #primary {
+	float: none;
+}
 /*--------------------------------------------------------------
 10.1 Header and Member Meta
 --------------------------------------------------------------*/
