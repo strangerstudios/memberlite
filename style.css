@@ -548,6 +548,10 @@ a.pmpro_btn:hover, input[type="submit"].pmpro_btn:hover {
 .btn_block, .btn_block:link {display: block; width: 100%; }
 .btn .fa {padding: 0 .5rem; }
 
+.pmpro_btn.pmpro_cancel {
+	color: #666 !important;
+}	
+
 /*--------------------------------------------------------------
 4.2 Form Elements
 --------------------------------------------------------------*/
