@@ -1940,7 +1940,7 @@ a:active {
 .memberlite_signup-fixed {position: fixed; top: 0; }
 
 .pmpro_asterisk {color: #C00; }
-.pmpro_asterisk abbr {border: none; }
+.pmpro_asterisk abbr {border: none; text-decoration: none;}
 form.pmpro_form table {margin: 0 0 2.5rem; }
 form.pmpro_form #pmpro_level_cost {margin: 0; }
 form.pmpro_form p {margin: 1rem 0; }
