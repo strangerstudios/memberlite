@@ -302,6 +302,9 @@ function memberlite_page_title() {
 	
 				elseif ( is_tax( 'post_format', 'post-format-chat' ) ) :
 					_e( 'Chats', 'memberlite' );
+				
+				elseif ( is_tax ( ) ) :
+                    single_term_title();
 					
 				else :
 					_e( 'Archives', 'memberlite' );
@@ -612,9 +615,16 @@ function memberlite_getBreadcrumbs()
           	<a href="<?php echo esc_url(home_url())?>"><?php _e('Home', 'memberlite'); ?></a>
 			<span class="sep"><?php echo esc_html($memberlite_delimiter); ?></span>
 			<?php 
-				if(get_option('page_for_posts'))
-				{
+				$queried_object = get_queried_object();
+				$term_taxonomy = $queried_object->taxonomy;
+				$taxonomy = get_taxonomy($term_taxonomy);
+				if ( count( $taxonomy->object_type ) === 1 && is_tax() ) {
+					$post_type = get_post_type_object( $taxonomy->object_type[0] );
 					?>
+					<a href="<?php echo get_post_type_archive_link( $taxonomy->object_type[0] ); ?>"><?php echo $post_type->labels->name; ?></a>
+					<span class="sep"><?php echo esc_html($memberlite_delimiter); ?></span>
+					<?php
+				} elseif(get_option('page_for_posts')) { ?>
 					<a href="<?php echo get_permalink(get_option('page_for_posts')); ?>"><?php echo get_the_title(get_option('page_for_posts')); ?></a>
 					<span class="sep"><?php echo esc_html($memberlite_delimiter); ?></span>
 					<?php
