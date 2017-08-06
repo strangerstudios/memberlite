@@ -1,10 +1,10 @@
 /*
 Theme Name: Memberlite
-Theme URI: http://www.memberlitetheme.com/
+Theme URI: https://memberlitetheme.com/
 Author: kimannwall, strangerstudios
 Author URI: http://www.memberlitetheme.com
 Description: Memberlite is the ideal theme for your membership site - packed with integration for top membership site plugins including Paid Memberships Pro. It's fully customizable with your logo, colors, fonts, custom sidebars and more global layout settings. Extend the site appearance further with icons, masthead banners, post formats, and additional settings for your site's pages. Memberlite is responsive, clean and minimal.
-Version: 3.0.2
+Version: 3.0.3
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: one-column, two-columns, left-sidebar, right-sidebar, flexible-header, custom-background, custom-colors, custom-header, custom-menu, custom-logo, editor-style, featured-images, footer-widgets, full-width-template, post-formats, theme-options, threaded-comments, translation-ready, e-commerce
@@ -269,6 +269,7 @@ blockquote cite a, .testimonials-widget blockquote .credit a {
 	color: #FFF;
 	font-size: 100%;
 }
+blockquote.contact-form-submission {color: #404040; }
 address {
 	margin: 0 0 1.5rem;
 }
@@ -546,6 +547,10 @@ a.pmpro_btn:hover, input[type="submit"].pmpro_btn:hover {
 .btn_action, .btn_action:link {background: #F39C12; }
 .btn_block, .btn_block:link {display: block; width: 100%; }
 .btn .fa {padding: 0 .5rem; }
+
+.pmpro_btn.pmpro_cancel {
+	color: #666 !important;
+}	
 
 /*--------------------------------------------------------------
 4.2 Form Elements
@@ -1206,6 +1211,9 @@ a:active {
 }
 .content-sidebar #primary, .blog.sidebar-blog-right #primary, .archive.sidebar-blog-right #primary, .search.sidebar-blog-right #primary, .single.sidebar-blog-right #primary {
 	float: left;	
+}
+.page-template-full-width #primary, .page-template-narrow-width #primary {
+	float: none;
 }
 /*--------------------------------------------------------------
 10.1 Header and Member Meta
@@ -1932,7 +1940,7 @@ a:active {
 .memberlite_signup-fixed {position: fixed; top: 0; }
 
 .pmpro_asterisk {color: #C00; }
-.pmpro_asterisk abbr {border: none; }
+.pmpro_asterisk abbr {border: none; text-decoration: none;}
 form.pmpro_form table {margin: 0 0 2.5rem; }
 form.pmpro_form #pmpro_level_cost {margin: 0; }
 form.pmpro_form p {margin: 1rem 0; }

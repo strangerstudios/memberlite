@@ -17,11 +17,21 @@
 			<cite>&mdash;<?php the_title( sprintf( '<a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a>' ); ?></cite>
 		</blockquote>
 	</div><!-- .entry-content -->
-	<footer class="entry-footer">
-		<div class="entry-meta">
-			<a href="<?php the_permalink(); ?>" rel="bookmark"><i class="fa fa-link"></i></a> |
-			<?php echo memberlite_get_entry_meta($post, 'before'); ?>
-			<?php edit_post_link( __( 'Edit', 'memberlite' ), '<span class="edit-link">', '</span>' ); ?>
-		</div><!-- .entry-meta -->
-	</footer><!-- .entry-footer -->
+	<?php 
+		$memberlite_get_entry_meta_after = memberlite_get_entry_meta($post, 'after'); 
+		if(!empty($memberlite_get_entry_meta_after) || current_user_can( 'edit_post', $post->ID ) )
+		{
+			?>
+			<footer class="entry-footer">
+				<div class="entry-meta">
+					<?php if ( 'post' == get_post_type() ) : ?>
+						<a href="<?php the_permalink(); ?>" rel="bookmark"><i class="fa fa-link"></i></a> |
+						<?php echo $memberlite_get_entry_meta_after; ?>
+					<?php endif; ?>
+					<?php edit_post_link( __( 'Edit', 'memberlite' ), '<span class="edit-link">', '</span>' ); ?>
+				</div><!-- .entry-meta -->
+			</footer><!-- .entry-footer -->
+			<?php 
+		} 
+	?>
 </article><!-- #post-## -->

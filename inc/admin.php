@@ -127,7 +127,7 @@ function memberlite_support() {
 							<div class="name column-name">
 								<h3>
 									<a href="http://memberlitetheme.com/memberlite-shortcodes/" target="_blank"><?php _e('Memberlite Shortcodes' ,'memberlite'); ?></a>
-									<img src="//ps.w.org/memberlite-shortcodes/assets/icon-256x256.png?rev=1241606" class="plugin-icon" alt="">
+									<img src="<?php echo get_template_directory_uri();?>/images/memberlite-shortcodes-icon-256x256.png" class="plugin-icon" alt="">
 								</h3>
 							</div>
 							<div class="action-links">
@@ -162,7 +162,7 @@ function memberlite_support() {
 							<div class="name column-name">
 								<h3>
 									<a href="http://www.paidmembershipspro.com" target="_blank"><?php _e('Paid Memberships Pro' ,'memberlite'); ?></a>
-									<img src="//ps.w.org/paid-memberships-pro/assets/icon-256x256.png" class="plugin-icon" alt="">
+									<img src="<?php echo get_template_directory_uri();?>/images/paid-memberships-pro-icon-256x256.png" class="plugin-icon" alt="">
 								</h3>
 							</div>
 							<div class="action-links">
@@ -205,7 +205,7 @@ function memberlite_support() {
 							<div class="name column-name">
 								<h3>
 									<a href="https://www.jfarthing.com/development/theme-my-login/" target="_blank"><?php _e('Theme My Login' ,'memberlite'); ?></a>
-									<img src="//ps.w.org/theme-my-login/assets/icon-256x256.png" class="plugin-icon" alt="">
+									<img src="<?php echo get_template_directory_uri();?>/images/theme-my-login-icon-256x256.png" class="plugin-icon" alt="">
 								</h3>
 							</div>
 							<div class="action-links">
@@ -273,7 +273,7 @@ function memberlite_support() {
 							<div class="name column-name">
 								<h3>
 									<a href="http://www.bbpress.org" target="_blank"><?php _e('bbPress' ,'memberlite'); ?></a>
-									<img src="http://ps.w.org/bbpress/assets/icon.svg" class="plugin-icon" alt="">
+									<img src="<?php echo get_template_directory_uri();?>/images/bbpress-icon.svg" class="plugin-icon" alt="">
 								</h3>
 							</div>
 							<div class="action-links">
@@ -296,7 +296,7 @@ function memberlite_support() {
 							<div class="name column-name">
 								<h3>
 									<a href="http://wp-events-plugin.com" target="_blank"><?php _e('Events Manager' ,'memberlite'); ?></a>
-									<img src="http://ps.w.org/events-manager/assets/icon-256x256.png" class="plugin-icon" alt="">
+									<img src="<?php echo get_template_directory_uri();?>/images/events-manager-icon-256x256.png" class="plugin-icon" alt="">
 								</h3>
 							</div>
 							<div class="action-links">
@@ -318,7 +318,7 @@ function memberlite_support() {
 							<div class="name column-name">
 								<h3>
 									<a href="http://www.paidmembershipspro.com" target="_blank"><?php _e('Paid Memberships Pro' ,'memberlite'); ?></a>
-									<img src="//ps.w.org/paid-memberships-pro/assets/icon-256x256.png" class="plugin-icon" alt="">
+									<img src="<?php echo get_template_directory_uri();?>/images/paid-memberships-pro-icon-256x256.png" class="plugin-icon" alt="">
 								</h3>
 							</div>
 							<div class="action-links">
@@ -361,7 +361,7 @@ function memberlite_support() {
 							<div class="name column-name">
 								<h3>
 									<a href="http://www.woothemes.com/woocommerce/" target="_blank"><?php _e('WooCommerce' ,'memberlite'); ?></a>
-									<img src="http://ps.w.org/woocommerce/assets/icon-256x256.png" class="plugin-icon" alt="">
+									<img src="<?php echo get_template_directory_uri();?>/images/woocommerce-icon-256x256.png" class="plugin-icon" alt="">
 								</h3>
 							</div>
 							<div class="action-links">

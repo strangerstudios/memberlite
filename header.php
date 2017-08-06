@@ -11,9 +11,11 @@
 <head>
 <meta charset="<?php bloginfo( 'charset' ); ?>">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title><?php wp_title( '|', true, 'right' ); ?></title>
 <link rel="profile" href="http://gmpg.org/xfn/11">
-<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
+
+<?php if ( is_singular() && pings_open() ) { ?>
+	<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
+<?php } ?>
 
 <?php wp_head(); ?>
 </head>
@@ -78,25 +80,16 @@
 									global $current_user, $pmpro_pages;
 									if($user_ID)
 									{ 
+										if(!empty($pmpro_pages)) {
+											$account_page = get_post($pmpro_pages['account']);
+											$user_account_link = '<a href="' . esc_url(pmpro_url("account")) . '">' . preg_replace("/\@.*/", "", $current_user->display_name) . '</a>';
+										}
+										else {
+											$user_account_link = '<a href="' . esc_url(admin_url("profile.php")) . '">' . preg_replace("/\@.*/", "", $current_user->display_name) . '</a>';											
+										}
 										?>				
-										<span class="user">Welcome, 
-										<?php
-											if(!empty($pmpro_pages))
-											{
-												$account_page = get_post($pmpro_pages['account']);
-												?>
-												<a href="<?php echo pmpro_url("account"); ?>"><?php echo preg_replace("/\@.*/", "", $current_user->display_name)?></a>
-												<?php
-											}
-											else
-											{
-												?>
-												<a href="<?php echo admin_url("profile.php"); ?>"><?php echo preg_replace("/\@.*/", "", $current_user->display_name)?></a>
-												<?php
-											}
-										?>
-										</span>
-										<?php
+										<span class="user"><?php printf(__('Welcome, %s', 'memberlite'), $user_account_link);?></span>
+										<?php										
 									}									
 									$member_menu_defaults = array(
 										'theme_location' => 'member',
@@ -150,8 +143,11 @@
 	<div id="content" class="site-content">
 	<?php do_action('before_masthead'); ?>
 	<?php 
-		$memberlite_banner_show = get_post_meta($post->ID, '_memberlite_banner_show', true);
-		if( $memberlite_banner_show === '' || (function_exists('is_bbpress') && bbp_is_single_user()))
+		if( !empty( $post ) )
+			$memberlite_banner_show = get_post_meta($post->ID, '_memberlite_banner_show', true);
+		else
+			$memberlite_banner_show = false;
+		if( $memberlite_banner_show === '' || (function_exists('is_bbpress') && ( bbp_is_single_user() || is_bbpress() ) ) )
 			$memberlite_banner_show = 1;		//we want to default to showing if this has never been set
 
 		$template = get_page_template();

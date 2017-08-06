@@ -52,38 +52,6 @@ function memberlite_body_classes( $classes ) {
 }
 add_filter( 'body_class', 'memberlite_body_classes' );
 
-/**
- * Filters wp_title to print a neat <title> tag based on what is being viewed.
- *
- * @param string $title Default title text for current view.
- * @param string $sep Optional separator.
- * @return string The filtered title.
- */
-function memberlite_wp_title( $title, $sep ) {
-	if ( is_feed() ) {
-		return $title;
-	}
-
-	global $page, $paged;
-
-	// Add the blog name
-	$title .= get_bloginfo( 'name', 'display' );
-
-	// Add the blog description for the home/front page.
-	$site_description = get_bloginfo( 'description', 'display' );
-	if ( $site_description && ( is_home() || is_front_page() ) ) {
-		$title .= " $sep $site_description";
-	}
-
-	// Add a page number if necessary:
-	if ( ( $paged >= 2 || $page >= 2 ) && ! is_404() ) {
-		$title .= " $sep " . sprintf( __( 'Page %s', 'memberlite' ), max( $paged, $page ) );
-	}
-
-	return $title;
-}
-add_filter( 'wp_title', 'memberlite_wp_title', 10, 2 );
-
 /* Get main and sidebar columns width from theme mod or defaults. */
 function memberlite_getColumnsRatio( $location = NULL ) {
 	global $memberlite_defaults;
@@ -172,7 +140,7 @@ function memberlite_get_link_url() {
  *
  *
 */
-function get_the_content_after_more($content = NULL)
+function memberlite_get_the_content_after_more($content = NULL)
 {
 	if($content === NULL)
 		$content = get_the_content();
@@ -191,7 +159,7 @@ function get_the_content_after_more($content = NULL)
 		return "";
 }
 
-function get_the_content_before_more($content = NULL)
+function memberlite_get_the_content_before_more($content = NULL)
 {
 	if($content === NULL)
 		$content = get_the_content();
@@ -274,7 +242,7 @@ function memberlite_page_title() {
 				printf( __( 'Forum Search Results for: %s', 'memberlite' ), '<span>' . bbp_get_search_terms() . '</span>' );
 			elseif(bbp_is_search())
 				_e( 'Forum Search', 'memberlite');
-			elseif(bbp_is_single_forum())
+			elseif( bbp_is_single_forum() || bbp_is_single_topic() )
 				the_title( '' );
 			elseif(bbp_is_single_user())
 				echo sprintf(__( "%s's Profile", 'User viewing another users profile', 'bbpress' ), get_userdata( bbp_get_user_id() )->display_name );
@@ -334,6 +302,9 @@ function memberlite_page_title() {
 	
 				elseif ( is_tax( 'post_format', 'post-format-chat' ) ) :
 					_e( 'Chats', 'memberlite' );
+				
+				elseif ( is_tax ( ) ) :
+                    single_term_title();
 					
 				else :
 					_e( 'Archives', 'memberlite' );
@@ -400,7 +371,7 @@ function memberlite_page_title() {
 				echo '<p class="pmpro_level-price">' . pmpro_getLevelCost($level, true, true) . '</p>';
 				if(empty($memberlite_banner_desc))
 					echo wpautop($level->description);
-				echo '<p>' . do_shortcode('[memberlite_btn style="action" href="' . pmpro_url('checkout','?level=' . $pmproal_landing_page_level,'https') . '" text="' . $memberlite_landing_page_checkout_button . '"]') . '</p>';
+				echo '<p>' . do_shortcode('[memberlite_btn style="action" href="' . esc_url(add_query_arg('level', $pmproal_landing_page_level, pmpro_url('checkout'))) . '" text="' . $memberlite_landing_page_checkout_button . '"]') . '</p>';
 			}
 		}
 	}	
@@ -574,7 +545,7 @@ function memberlite_getBreadcrumbs()
 		{
 		?>
 		<nav class="memberlite-breadcrumb" itemprop="breadcrumb">
-          	<a href="<?php echo home_url()?>"><?php _e('Home', 'memberlite'); ?></a>
+          	<a href="<?php echo esc_url(home_url())?>"><?php _e('Home', 'memberlite'); ?></a>
 			<span class="sep"><?php echo esc_html($memberlite_delimiter); ?></span>
 			<?php
 				global $post;
@@ -596,7 +567,7 @@ function memberlite_getBreadcrumbs()
 		{
 			?>			
 			<nav class="memberlite-breadcrumb" itemprop="breadcrumb">
-				<a href="<?php echo home_url()?>"><?php _e('Home', 'memberlite'); ?></a>
+				<a href="<?php echo esc_url(home_url())?>"><?php _e('Home', 'memberlite'); ?></a>
 				<span class="sep"><?php echo esc_html($memberlite_delimiter); ?></span>
 				<?php
 					$breadcrumbs = get_post_ancestors($post->ID);				
@@ -629,7 +600,7 @@ function memberlite_getBreadcrumbs()
 		{
 		?>
 		<nav class="memberlite-breadcrumb" itemprop="breadcrumb">
-          	<a href="<?php echo home_url()?>"><?php _e('Home', 'memberlite'); ?></a>
+          	<a href="<?php echo esc_url(home_url())?>"><?php _e('Home', 'memberlite'); ?></a>
 			<span class="sep"><?php echo esc_html($memberlite_delimiter); ?></span>
 			<?php
 				$post_type = get_post_type_object(get_query_var('post_type'));
@@ -641,12 +612,19 @@ function memberlite_getBreadcrumbs()
 		{
 		?>
 		<nav class="memberlite-breadcrumb" itemprop="breadcrumb">
-          	<a href="<?php echo home_url()?>"><?php _e('Home', 'memberlite'); ?></a>
+          	<a href="<?php echo esc_url(home_url())?>"><?php _e('Home', 'memberlite'); ?></a>
 			<span class="sep"><?php echo esc_html($memberlite_delimiter); ?></span>
 			<?php 
-				if(get_option('page_for_posts'))
-				{
+				$queried_object = get_queried_object();
+				$term_taxonomy = $queried_object->taxonomy;
+				$taxonomy = get_taxonomy($term_taxonomy);
+				if ( count( $taxonomy->object_type ) === 1 && is_tax() ) {
+					$post_type = get_post_type_object( $taxonomy->object_type[0] );
 					?>
+					<a href="<?php echo get_post_type_archive_link( $taxonomy->object_type[0] ); ?>"><?php echo $post_type->labels->name; ?></a>
+					<span class="sep"><?php echo esc_html($memberlite_delimiter); ?></span>
+					<?php
+				} elseif(get_option('page_for_posts')) { ?>
 					<a href="<?php echo get_permalink(get_option('page_for_posts')); ?>"><?php echo get_the_title(get_option('page_for_posts')); ?></a>
 					<span class="sep"><?php echo esc_html($memberlite_delimiter); ?></span>
 					<?php
@@ -712,7 +690,7 @@ function memberlite_getBreadcrumbs()
 		{
 		?>
 		<nav class="memberlite-breadcrumb" itemprop="breadcrumb">
-          	<a href="<?php echo home_url()?>"><?php _e('Home', 'memberlite'); ?></a>
+          	<a href="<?php echo esc_url(home_url())?>"><?php _e('Home', 'memberlite'); ?></a>
 			<span class="sep"><?php echo esc_html($memberlite_delimiter); ?></span>
 			<?php 
 				if(get_option('page_for_posts'))
@@ -732,7 +710,7 @@ function memberlite_getBreadcrumbs()
 			$post_type_object = get_post_type_object(get_post_type($post));
 		?>
 		<nav class="memberlite-breadcrumb" itemprop="breadcrumb">
-          	<a href="<?php echo home_url()?>"><?php _e('Home', 'memberlite'); ?></a>
+          	<a href="<?php echo esc_url(home_url())?>"><?php _e('Home', 'memberlite'); ?></a>
 			<?php
 				if($post_type_object->has_archive == true)
 				{
@@ -751,7 +729,7 @@ function memberlite_getBreadcrumbs()
 		{
 		?>
 		<nav class="memberlite-breadcrumb" itemprop="breadcrumb">
-          	<a href="<?php echo home_url()?>"><?php _e('Home', 'memberlite'); ?></a>
+          	<a href="<?php echo esc_url(home_url())?>"><?php _e('Home', 'memberlite'); ?></a>
 			<span class="sep"><?php echo esc_html($memberlite_delimiter); ?></span>
 			<?php 
 				if(get_option('page_for_posts'))

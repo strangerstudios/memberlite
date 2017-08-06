@@ -4,7 +4,7 @@
  *
  * @package Memberlite
  */
-define('MEMBERLITE_VERSION', '3.0.1');
+define('MEMBERLITE_VERSION', '3.0.3');
 
 //get default values for options/etc
 require_once get_template_directory() . '/inc/defaults.php';
@@ -13,9 +13,7 @@ require_once get_template_directory() . '/inc/defaults.php';
 function memberlite_init_styles()
 {	
 	global $memberlite_defaults;
-	//need jquery
-	wp_enqueue_script('jquery');
-	
+		
 	//framework stuff
 	wp_enqueue_style('memberlite_grid', get_template_directory_uri() . "/css/grid.css", array(), MEMBERLITE_VERSION);
 	wp_enqueue_style('memberlite_style', get_stylesheet_uri(), array(), MEMBERLITE_VERSION);
@@ -23,7 +21,7 @@ function memberlite_init_styles()
 	wp_enqueue_script('memberlite-navigation', get_template_directory_uri() . '/js/navigation.js', array( 'jquery' ), MEMBERLITE_VERSION, true);
 	wp_enqueue_script('memberlite-script', get_template_directory_uri() . '/js/memberlite.js', array( 'jquery' ), MEMBERLITE_VERSION, true);
 	wp_enqueue_script('memberlite-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array( 'jquery' ), MEMBERLITE_VERSION, true);
-	wp_enqueue_style('memberlite_fontawesome', get_template_directory_uri() . "/font-awesome/css/font-awesome.min.css", array(), "4.6.1");
+	wp_enqueue_style('font-awesome', get_template_directory_uri() . "/font-awesome/css/font-awesome.min.css", array(), "4.6.1");
 
 	//load dark.css for dark/inverted backgrounds
 	$memberlite_darkcss = get_theme_mod('memberlite_darkcss',$memberlite_defaults['memberlite_darkcss'],false);
@@ -48,19 +46,20 @@ function memberlite_load_fonts()
 }
 add_action('wp_print_styles', 'memberlite_load_fonts');
 
-/* Set the content width based on the theme's design and stylesheet. */
-if(!isset($content_width)) {
-	$content_width = 748; /* pixels */
-}
-
-/* Adjust the content width based on the template. */
+/* Set the content width. */
 function memberlite_adjust_content_width() {
     global $content_width;
  
-    if ( is_page_template( 'templates/full-width.php' ) || is_page_template( 'templates/fluid-width.php' ) )
+	//default if not set yet
+	if(!isset($content_width)) {
+		$content_width = 748; /* pixels */
+	}
+ 
+    /* Adjust the content width based on the template. */
+	if ( is_page_template( 'templates/full-width.php' ) || is_page_template( 'templates/fluid-width.php' ) )
         $content_width = 1170; /* pixels */
 }
-add_action( 'template_redirect', 'memberlite_adjust_content_width' );
+add_action( 'after_setup_theme', 'memberlite_adjust_content_width' );
 
 if(!function_exists('memberlite_setup')) :
 /* Sets up theme defaults and registers support for various WordPress features. */
@@ -198,18 +197,18 @@ function memberlite_menus( $items, $args ) {
 		if (is_user_logged_in() && defined('PMPRO_VERSION') && pmpro_hasMembershipLevel())
 		{
 			//user is logged in and has a membership level
-			$items .= '<li><a href="'. wp_logout_url() .'">' . __('Log Out','memberlite') . '</a></li>';
+			$items .= '<li><a href="'. esc_url(wp_logout_url()) .'">' . __('Log Out','memberlite') . '</a></li>';
 		}
 		elseif (is_user_logged_in() )
 		{
 			//user is logged in and does not have a membership level
-			$items = '<li><a href="'. wp_logout_url() .'">' . __('Log Out','memberlite') . '</a></li>';
+			$items = '<li><a href="'. esc_url(wp_logout_url()) .'">' . __('Log Out','memberlite') . '</a></li>';
 		}
 		else
 		{
 			//not logged in
-			$items = '<li><a href="'. wp_login_url() .'">' . __('Log In','memberlite') . '</a></li>';	  
-			$items .= '<li><a href="'. wp_registration_url() .'">' . __('Register','memberlite') . '</a></li>';	  
+			$items = '<li><a href="'. esc_url(wp_login_url()) .'">' . __('Log In','memberlite') . '</a></li>';	  
+			$items .= '<li><a href="'. esc_url(wp_registration_url()) .'">' . __('Register','memberlite') . '</a></li>';	  
 		}
 	}
 	//is this the primary menu location or a replaced menu using pmpro-nav-menus plugin
