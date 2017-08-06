@@ -15,6 +15,12 @@ get_header(); ?>
 		<?php do_action('before_loop'); ?>
 			<?php while ( have_posts() ) : the_post(); ?>
 				<?php get_template_part( 'content-landing', 'page' ); ?>
+				<?php
+				//If comments are open or we have at least one comment, load up the comment template
+				if ( comments_open() || '0' != get_comments_number() ) :
+					comments_template();
+				endif;
+				?>
 			<?php endwhile; // end of the loop. ?>
 			<?php if(!empty($memberlite_landing_page_upsell) && ($memberlite_landing_page_upsell != 'blank') ) { ?>
 				<hr />				
