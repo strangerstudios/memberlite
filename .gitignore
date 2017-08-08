@@ -1,0 +1,7 @@
+release/
+.idea/
+vendor/
+trash/
+.~*
+.~lock*
+.~lock.task.ods#
