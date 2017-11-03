@@ -4,7 +4,7 @@ Theme URI: https://memberlitetheme.com/
 Author: kimannwall, strangerstudios
 Author URI: http://www.memberlitetheme.com
 Description: Memberlite is the ideal theme for your membership site - packed with integration for top membership site plugins including Paid Memberships Pro. It's fully customizable with your logo, colors, fonts, custom sidebars and more global layout settings. Extend the site appearance further with icons, masthead banners, post formats, and additional settings for your site's pages. Memberlite is responsive, clean and minimal.
-Version: 3.0.3
+Version: 3.0.4
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: one-column, two-columns, left-sidebar, right-sidebar, flexible-header, custom-background, custom-colors, custom-header, custom-menu, custom-logo, editor-style, featured-images, footer-widgets, full-width-template, post-formats, theme-options, threaded-comments, translation-ready, e-commerce
@@ -445,6 +445,7 @@ a.pmpro_btn,
 .pmpro_content_message a,
 .pmpro_content_message a:link,
 input[type="submit"].pmpro_btn,
+input[type="button"].pmpro_btn,
 #main div.em-search-main button.em-search-submit  {
 	background: #95a5a6;
 	border: none;
@@ -481,7 +482,8 @@ input[type="submit"].pmpro_btn,
 a.pmpro_btn,
 a.pmpro_btn:link,
 a.pmpro_btn:visited,
-input[type="submit"].pmpro_btn {
+input[type="submit"].pmpro_btn,
+input[type="button"].pmpro_btn {
 	background: #F39C12;
 	border: none;
 	color: #FFF;
@@ -529,7 +531,7 @@ a.pmpro_btn:hover, input[type="submit"].pmpro_btn:hover {
 .btn_error:hover {background-color: #c9302c; }
 .btn_alert:hover {background-color: #ec971f; }
 
-.btn_link {
+.btn_link, .pmpro_btn-cancel {
 	cursor: pointer; /* Improves usability and consistency of cursor style between image-type 'input' and others */
 	display: inline-block;
 	/* -webkit-appearance: button; Corrects inability to style clickable 'input' types in iOS */
@@ -541,7 +543,7 @@ a.pmpro_btn:hover, input[type="submit"].pmpro_btn:hover {
 	text-decoration: none;
 	text-shadow: none;
 }
-.btn_link:hover {text-decoration: underline; }
+.btn_link:hover, .pmpro_btn-cancel {text-decoration: underline; }
 .btn_primary, .btn_primary:link {background: #2C3E50; }
 .btn_secondary, .btn_secondary:link {background: #18BC9C; }
 .btn_action, .btn_action:link {background: #F39C12; }
@@ -614,7 +616,7 @@ textarea {
 /*--------------------------------------------------------------
 4.3 Messages - Success, Error, Alert
 --------------------------------------------------------------*/
-.pmpro_message, .pmpro_content_message, #pmpro_account_loggedin, .pmpro_bbp_membership_msg {
+.pmpro_message, .pmpro_content_message, .pmpro_bbp_membership_msg {
 	background-color: #d9edf7;
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
@@ -643,7 +645,7 @@ textarea {
 	border-color: #ebccd1;
 	color: #a94442;
 }
-.pmpro_alert, #pmpro_account_loggedin, .pmpro_bbp_membership_msg {
+.pmpro_alert, .pmpro_bbp_membership_msg {
 	background-color: #fcf8e3;
 	border-color: #faebcc;
 	color: #8a6d3b;
@@ -667,7 +669,7 @@ select.pmpro_error {background-image: none;}
 .pmpro_bbp_membership_msg {clear: both; }
 
 #pmpro_account_loggedin {
-	margin: 0 0 3.5rem;
+	margin: 2rem 0;
 	width: 100%;
 }
 /*--------------------------------------------------------------
@@ -1939,37 +1941,42 @@ a:active {
 
 .memberlite_signup-fixed {position: fixed; top: 0; }
 
-.pmpro_asterisk {color: #C00; }
-.pmpro_asterisk abbr {border: none; text-decoration: none;}
-form.pmpro_form table {margin: 0 0 2.5rem; }
-form.pmpro_form #pmpro_level_cost {margin: 0; }
-form.pmpro_form p {margin: 1rem 0; }
-form.pmpro_form label {font-weight: 400; }
-form.pmpro_form span.pmpro_thead-name {width: 35%; }
-form.pmpro_form span.pmpro_thead-msg {font-family: 'Lato', sans-serif; font-weight: normal; width: 65%; }
-form.pmpro_form .pmpro_submit {padding: 0 1rem; }
-form.pmpro_form textarea {width:75%; }
-form.pmpro_form .pmpro_checkout {
-	padding-top: 0;
+.pmpro_asterisk {
+	color: #C00;
 }
-form.pmpro_form .pmpro_checkout h2 {
+.pmpro_asterisk abbr {
+	border: none;
+	text-decoration: none;
+}
+form.pmpro_form p {
+	margin: 1rem 0;
+}
+form.pmpro_form .input {
+	max-width: 90%;
+}
+form.pmpro_form textarea {
+	width:90%;
+}
+form.pmpro_form label {
+	font-weight: 400;
+}
+form#pmpro_form .pmpro_checkout h3 {
 	background: #EFEFEF;
-	border-top: 1px solid #CCC;
-	border-bottom: 1px solid #CCC;
-	font-family: 'Lato', sans-serif;
-	font-size: 16px;
-	font-size: 1.6rem;
+    border-top: 1px solid #CCC;
+    border-bottom: 1px solid #CCC;
+    padding: 1rem;
+}
+form#pmpro_form .pmpro_checkout h3 span.pmpro_checkout-h3-name {
 	font-weight: 700;
-	line-height: 2.6rem;
 	margin: 0;
-	padding: 1rem;
 }
-form.pmpro_form div.pmpro_checkout h2:after {
-	clear: both;
-	content: '';
-    display: table;
+form#pmpro_form .pmpro_checkout h3 span.pmpro_checkout-h3-msg {
+	float: right;
 }
-form.pmpro_form .pmpro_checkout .pmpro_checkout-fields {
+form#pmpro_form .pmpro_checkout h3 span.pmpro_checkout-h3-msg a {
+	text-decoration: underline;
+}
+form#pmpro_form .pmpro_checkout-fields {
 	padding: 1rem;
 }
 form.pmpro_form .pmpro_checkout #other_discount_code_p, form.pmpro_form .pmpro_checkout #other_discount_code_div {
@@ -1977,8 +1984,11 @@ form.pmpro_form .pmpro_checkout #other_discount_code_p, form.pmpro_form .pmpro_c
 	margin: 1rem 0 0 0;
 	padding: 1rem 0 0 0;	
 }
-form.pmpro_form .pmpro_checkout #other_discount_code_div input[type=button], #discount_code_button {padding-top: 3px; padding-bottom: 3px; }
+form.pmpro_form .pmpro_checkout #other_discount_code_div input[type=button], #other_discount_code_button, #discount_code_button, #vat_number_validation_button {padding-top: 3px; padding-bottom: 3px; }
 
+form.pmpro_form #pmpro_pricing_fields.pmpro_checkout h3 {
+	margin-top: 0;
+}
 #pmpro_account .pmpro_box {padding: 3rem 0 0 0; margin: 0 0 3rem 0; border-bottom: none; border-top: 1px dotted #CCC; }
 #pmpro_account #pmpro_account-membership .pmpro_actionlinks {text-align: center; }
 #pmpro_account .pmpro_actionlinks a {text-decoration: underline; }
@@ -2207,9 +2217,9 @@ object {
 	.comment-respond input[type=text], .comment-respond input[type=email], .comment-respond input[type=url], .comment-respond textarea {width: 100%; }
 	.comment-respond .form-allowed-tags, .comment-respond .form-submit, .comment-respond .comment-subscription-form {margin-left: 0; }
 	.comment-respond .form-submit input[type=submit] {width: 100%; }
-	form.pmpro_form label {display: block; float: none; margin: 0; text-align: left; width: 100%; }
-	form.pmpro_form label.pmpro_clickable {display: inline-block; }
-	form.pmpro_form .pmpro_thead-msg {width: 45%; white-space:normal; font-size: 10px; }
+	form#pmpro_form .pmpro_checkout-fields {padding: 1rem 0 0 0; }
+	form#pmpro_form .pmpro_checkout h3 span.pmpro_checkout-h3-msg {display: block; float: none; }
+	.pmpro_thead-msg {width: 45%; white-space:normal; font-size: 10px; }
 	form.pmpro_form .pmpro_select_payment_method span {display: block; }
 	form.pmpro_form .input, form.pmpro_form select {width: 93%; }
 	form.pmpro_form #CVV, form.pmpro_form select#ExpirationMonth, form.pmpro_form select#ExpirationYear {width: 43%; }
