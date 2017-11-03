@@ -279,9 +279,6 @@ if(is_admin())
 /* Implement the Custom Header feature. */
 require_once get_template_directory() . '/inc/custom-header.php';
 
-/* Custom sidebars pages. */
-require_once get_template_directory() . '/inc/custom-sidebars.php';
-
 /* Customizer additions. */
 require_once get_template_directory() . '/inc/customizer.php';
 
@@ -293,10 +290,6 @@ require_once get_template_directory() . '/inc/jetpack.php';
 
 /* Custom template tags. */
 require_once get_template_directory() . '/inc/template-tags.php';
-
-/* Custom meta boxes. */
-if(is_admin())
-	require_once get_template_directory() . '/inc/metaboxes.php';
 
 /* Custom widgets that act independently of the theme templates. */
 require_once get_template_directory() . '/inc/widgets.php';
