@@ -266,12 +266,6 @@ function memberlite_comment_count( $count ) {
 }
 add_filter( 'get_comments_number', 'memberlite_comment_count', 0 );
 
-/* Check for updates */
-if(is_admin()) {
-	require_once get_template_directory() . '/inc/updates.php';
-	memberlite_checkForUpdates();
-}
-
 /* Custom admin theme pages. */
 if(is_admin())
 	require_once get_template_directory() . '/inc/admin.php';
