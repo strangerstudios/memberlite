@@ -120,9 +120,6 @@ function memberlite_setup() {
 	// Styles the visual editor to resemble the theme style
 	add_editor_style( array( 'css/editor-style.css') );
 
-	// Enable the use of shortcodes in text widgets.
-	add_filter( 'widget_text', 'do_shortcode' );
-
 	// Indicate widget sidebars can use selective refresh in the Customizer.
 	add_theme_support( 'customize-selective-refresh-widgets' );
 }
@@ -266,21 +263,12 @@ function memberlite_comment_count( $count ) {
 }
 add_filter( 'get_comments_number', 'memberlite_comment_count', 0 );
 
-/* Check for updates */
-if(is_admin()) {
-	require_once get_template_directory() . '/inc/updates.php';
-	memberlite_checkForUpdates();
-}
-
 /* Custom admin theme pages. */
 if(is_admin())
 	require_once get_template_directory() . '/inc/admin.php';
 
 /* Implement the Custom Header feature. */
 require_once get_template_directory() . '/inc/custom-header.php';
-
-/* Custom sidebars pages. */
-require_once get_template_directory() . '/inc/custom-sidebars.php';
 
 /* Customizer additions. */
 require_once get_template_directory() . '/inc/customizer.php';
@@ -293,10 +281,6 @@ require_once get_template_directory() . '/inc/jetpack.php';
 
 /* Custom template tags. */
 require_once get_template_directory() . '/inc/template-tags.php';
-
-/* Custom meta boxes. */
-if(is_admin())
-	require_once get_template_directory() . '/inc/metaboxes.php';
 
 /* Custom widgets that act independently of the theme templates. */
 require_once get_template_directory() . '/inc/widgets.php';
