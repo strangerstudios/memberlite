@@ -33,24 +33,24 @@ class memberlite_Customize {
 		$wp_customize->add_control(
 			'memberlite_webfonts',
 			array(
-				'label' => 'Google Webfonts',
+				'label' => __( 'Google Webfonts', 'memberlite' ),
 				'section' => 'memberlite_theme_options',
 				'type'       => 'select',
 				'choices'    => array(
-					'Lato_Lato'  => 'Lato',
-					'PT-Sans_PT-Serif'  => 'PT Sans and PT Serif',
-					'Fjalla-One_Noto-Sans'  => 'Fjalla One and Noto Sans',
-					'Pathway-Gothic-One_Source-Sans-Pro' => 'Pathway Gothic One and Source Sans Pro',
-					'Oswald_Lato' => 'Oswald and Lato',
-					'Ubuntu_Open-Sans' => 'Ubuntu and Open Sans',
-					'Lato_Source-Sans-Pro' => 'Lato and Source Sans Pro',
-					'Roboto-Slab_Roboto'  => 'Roboto Slab and Roboto',
-					'Lato_Merriweather'  => 'Lato and Merriweather',
-					'Playfair-Display_Open-Sans'  => 'Playfair Display and Open Sans',
-					'Oswald_Quattrocento'  => 'Oswald and Quattrocento',
-					'Abril-Fatface_Open-Sans'  => 'Abril Fatface and Open Sans',
-					'Open-Sans_Gentium-Book-Basic' => 'Open Sans and Gentium Book Basic',
-					'Oswald_PT-Mono' => 'Oswald and PT Mono'
+					'Lato_Lato'  => __( 'Lato', 'memberlite' ),
+					'PT-Sans_PT-Serif'  => __( 'PT Sans and PT Serif', 'memberlite' ),
+					'Fjalla-One_Noto-Sans'  => __( 'Fjalla One and Noto Sans', 'memberlite' ),
+					'Pathway-Gothic-One_Source-Sans-Pro' => __( 'Pathway Gothic One and Source Sans Pro', 'memberlite' ),
+					'Oswald_Lato' => __( 'Oswald and Lato', 'memberlite' ),
+					'Ubuntu_Open-Sans' => __( 'Ubuntu and Open Sans', 'memberlite' ),
+					'Lato_Source-Sans-Pro' => __( 'Lato and Source Sans Pro', 'memberlite' ),
+					'Roboto-Slab_Roboto'  => __( 'Roboto Slab and Roboto', 'memberlite' ),
+					'Lato_Merriweather'  => __( 'Lato and Merriweather', 'memberlite' ),
+					'Playfair-Display_Open-Sans'  => __( 'Playfair Display and Open Sans', 'memberlite' ),
+					'Oswald_Quattrocento'  => __( 'Oswald and Quattrocento', 'memberlite' ),
+					'Abril-Fatface_Open-Sans'  => __( 'Abril Fatface and Open Sans', 'memberlite' ),
+					'Open-Sans_Gentium-Book-Basic' => __( 'Open Sans and Gentium Book Basic', 'memberlite' ),
+					'Oswald_PT-Mono' => __( 'Oswald and PT Mono', 'memberlite' )
 				),
 				'priority' => 10
 			)
@@ -67,7 +67,7 @@ class memberlite_Customize {
 			'meta_login', 
 			array(
 				'type' => 'checkbox',
-				'label' => 'Show Login/Member Info in Header', 
+				'label' => __( 'Show Login/Member Info in Header', 'memberlite' ), 
 				'section' => 'memberlite_theme_options',
 				'priority' => '15'
 			)
@@ -84,7 +84,7 @@ class memberlite_Customize {
 			'nav_menu_search', 
 			array(
 				'type' => 'checkbox',
-				'label' => 'Show Search Form After Main Nav', 
+				'label' => __( 'Show Search Form After Main Nav', 'memberlite' ),
 				'section' => 'memberlite_theme_options',
 				'priority' => '20'
 			)
@@ -103,7 +103,7 @@ class memberlite_Customize {
 		$wp_customize->add_control(
 			'columns_ratio_header',
 			array(
-				'label' => 'Columns Ratio - Header',
+				'label' => __( 'Columns Ratio - Header', 'memberlite' ),
 				'section' => 'memberlite_theme_options',
 				'type'       => 'select',
 				'choices'    => array(
@@ -136,16 +136,16 @@ class memberlite_Customize {
 		$wp_customize->add_control(
 			'columns_ratio',
 			array(
-				'label' => 'Columns Ratio - Primary',
+				'label' => __( 'Columns Ratio - Primary', 'memberlite' ),
 				'section' => 'memberlite_theme_options',
 				'type'       => 'select',
 				'choices'    => array(
-					'6-6' => '6x6',
-					'7-5' => '7x5',
-					'8-4' => '8x4',
-					'9-3' => '9x3',
-					'10-2' => '10x2',
-					'11-1' => '11x1',
+					'6-6' => __( '6x6', 'memberlite' ),
+					'7-5' => __( '7x5', 'memberlite' ),
+					'8-4' => __( '8x4', 'memberlite' ),
+					'9-3' => __( '9x3', 'memberlite' ), 
+					'10-2' => __( '10x2', 'memberlite' ),
+					'11-1' => __( '11x1', 'memberlite' ),
 				),
 				'priority' => 24
 			)
@@ -161,12 +161,12 @@ class memberlite_Customize {
 		$wp_customize->add_control(
 			'sidebar_location',
 			array(
-				'label' => 'Default Layout',
+				'label' => __( 'Default Layout', 'memberlite' ),
 				'section' => 'memberlite_theme_options',
 				'type'       => 'radio',
 					'choices'    => array(
-						'sidebar-right'  => 'Right Sidebar',
-						'sidebar-left'   => 'Left Sidebar',
+						'sidebar-right'  => __( 'Right Sidebar', 'memberlite' ),
+						'sidebar-left'   => __( 'Left Sidebar', 'memberlite' ),
 					),
 				'priority' => 25
 			)
@@ -182,12 +182,12 @@ class memberlite_Customize {
 		$wp_customize->add_control(
 			'sidebar_location_blog',
 			array(
-				'label' => 'Layout for Blog, Archive, Posts',
+				'label' => __( 'Layout for Blog, Archive, Posts', 'memberlite' ),
 				'section' => 'memberlite_theme_options',
 				'type'       => 'radio',
 					'choices'    => array(
-						'sidebar-blog-right'  => 'Right Sidebar',
-						'sidebar-blog-left'   => 'Left Sidebar',
+						'sidebar-blog-right'  => __( 'Right Sidebar', 'memberlite' ),
+						'sidebar-blog-left'   => __( 'Left Sidebar', 'memberlite' ),
 					),
 				'priority' => 30
 			)
@@ -203,12 +203,12 @@ class memberlite_Customize {
 		$wp_customize->add_control(
 			'content_archives',
 			array(
-				'label' => 'Content Archives',
+				'label' => __( 'Content Archives', 'memberlite' ),
 				'section' => 'memberlite_theme_options',
 				'type'       => 'radio',
 					'choices'    => array(
-						'content'  => 'Show Post Content',
-						'excerpt'   => 'Show Post Excerpts',
+						'content'  => __( 'Show Post Content', 'memberlite' ),
+						'excerpt'   => __( 'Show Post Excerpts', 'memberlite' ),
 					),
 				'priority' => 40
 			)
@@ -218,32 +218,32 @@ class memberlite_Customize {
 		
 		$memberlite_breadcrumbs[] = array(
 			'slug'=>'page_breadcrumbs', 
-			'label' => __('Breadcrumbs on Pages', 'memberlite'),
+			'label' => __( 'Breadcrumbs on Pages', 'memberlite' ),
 			'priority' => 51
 		);
 		$memberlite_breadcrumbs[] = array(
 			'slug'=>'post_breadcrumbs', 
-			'label' => __('Breadcrumbs on Posts', 'memberlite'),
+			'label' => __( 'Breadcrumbs on Posts', 'memberlite' ),
 			'priority' => 52
 		);
 		$memberlite_breadcrumbs[] = array(
 			'slug'=>'archive_breadcrumbs', 
-			'label' => __('Breadcrumbs on Archives', 'memberlite'),
+			'label' => __( 'Breadcrumbs on Archives', 'memberlite' ),
 			'priority' => 53
 		);
 		$memberlite_breadcrumbs[] = array(
 			'slug'=>'attachment_breadcrumbs', 
-			'label' => __('Breadcrumbs on Attachments', 'memberlite'),
+			'label' => __( 'Breadcrumbs on Attachments', 'memberlite' ),
 			'priority' => 54
 		);
 		$memberlite_breadcrumbs[] = array(
 			'slug'=>'search_breadcrumbs', 
-			'label' => __('Breadcrumbs on Search Results', 'memberlite'),
+			'label' => __( 'Breadcrumbs on Search Results', 'memberlite' ),
 			'priority' => 55
 		);
 		$memberlite_breadcrumbs[] = array(
 			'slug'=>'profile_breadcrumbs', 
-			'label' => __('Breadcrumbs on Profiles', 'memberlite'),
+			'label' => __( 'Breadcrumbs on Profiles', 'memberlite' ),
 			'priority' => 56
 		);
 		foreach( $memberlite_breadcrumbs as $memberlite_breadcrumb ) {
@@ -296,7 +296,7 @@ class memberlite_Customize {
 			'memberlite_page_nav', 
 			array(
 				'type' => 'checkbox',
-				'label' => 'Show Prev/Next on Single Pages', 
+				'label' => __( 'Show Prev/Next on Single Pages', 'memberlite' ), 
 				'section' => 'memberlite_theme_options',
 				'priority' => '61'
 			)
@@ -315,14 +315,14 @@ class memberlite_Customize {
 		$wp_customize->add_control(
 			'memberlite_loop_images',
 			array(
-				'label' => 'Featured Images on Index/Archives',
+				'label' => __( 'Featured Images on Index/Archives', 'memberlite' ),
 				'section' => 'memberlite_theme_options',
 				'type'       => 'select',
 				'choices'    => array(
-					'show_both' => 'Show Banner or Thumbnail',
-					'show_banner' => 'Show Banner Only',
-					'show_thumbnail' => 'Show Thumbnail Only',
-					'show_none'  => 'Do Not Show Featured Images',
+					'show_both' => __( 'Show Banner or Thumbnail', 'memberlite' ),
+					'show_banner' => __( 'Show Banner Only', 'memberlite' ),
+					'show_thumbnail' => __( 'Show Thumbnail Only', 'memberlite' ),
+					'show_none'  => __( 'Do Not Show Featured Images', 'memberlite' )
 				),
 				'priority' => 70
 			)
@@ -341,7 +341,7 @@ class memberlite_Customize {
 		$wp_customize->add_control(
 			'posts_entry_meta_before',
 			array(
-				'label' => 'Post Entry Meta (before)',
+				'label' => __( 'Post Entry Meta (before)', 'memberlite' ),
 				'section' => 'memberlite_theme_options',
 				'type' => 'text',
 				'priority' => 80
@@ -361,7 +361,7 @@ class memberlite_Customize {
 		$wp_customize->add_control(
 			'posts_entry_meta_after',
 			array(
-				'label' => 'Post Entry Meta (after)',
+				'label' => __( 'Post Entry Meta (after)', 'memberlite' ),
 				'section' => 'memberlite_theme_options',
 				'type' => 'text',
 				'priority' => 90
@@ -378,15 +378,15 @@ class memberlite_Customize {
 		$wp_customize->add_control(
 			'memberlite_footerwidgets',
 			array(
-				'label' => 'Footer Widgets',
+				'label' => __( 'Footer Widgets', 'memberlite' ),
 				'section' => 'memberlite_theme_options',
 				'type'       => 'select',
 				'choices'    => array(
-					'2' => '2',
-					'3' => '3',
-					'4' => '4',
-					'6' => '6'
-				),
+					'2' => __( '2', 'memberlite' ),
+					'3' => __( '3', 'memberlite' ),
+					'4' => __( '4', 'memberlite' ),
+					'6' => __( '6', 'memeberlite' ),
+				), 
 				'priority' => 100
 			)
 		);
@@ -404,7 +404,7 @@ class memberlite_Customize {
 		$wp_customize->add_control(
 			'delimiter',
 			array(
-				'label' => 'Breadcrumb Delimiter',
+				'label' => __( 'Breadcrumb Delimiter', 'memberlite' ),
 				'section' => 'memberlite_theme_options',
 				'type' => 'text',
 				'priority' => 110
@@ -424,7 +424,7 @@ class memberlite_Customize {
 		$wp_customize->add_control(
 			'copyright_textbox',
 			array(
-				'label' => 'Copyright Text',
+				'label' => __( 'Copyright Text', 'memberlite' ),
 				'section' => 'memberlite_theme_options',
 				'type' => 'text',
 				'priority' => 120
@@ -442,7 +442,7 @@ class memberlite_Customize {
 			'memberlite_back_to_top', 
 			array(
 				'type' => 'checkbox',
-				'label' => 'Show Back to Top Link', 
+				'label' => __( 'Show Back to Top Link', 'memberlite' ),
 				'section' => 'memberlite_theme_options',
 				'priority' => '130'
 			)
@@ -461,7 +461,7 @@ class memberlite_Customize {
 		$wp_customize->add_control(
 			'memberlite_color_scheme',
 			array(
-				'label' => 'Color Scheme',
+				'label' => __( 'Color Scheme', 'memberlite' ),
 				'section' => 'colors',
 				'type'       => 'select',
 				'choices'    => array_merge(memberlite_Customize::get_color_scheme_choices(), array('custom'=>'Custom')),
@@ -480,7 +480,7 @@ class memberlite_Customize {
 			'memberlite_darkcss', 
 			array(
 				'type' => 'checkbox',
-				'label' => 'Use Dark Background/Inverted Scheme', 
+				'label' => __( 'Use Dark Background/Inverted Scheme', 'memberlite' ),
 				'section' => 'colors',
 				'priority' => '2'
 			)
