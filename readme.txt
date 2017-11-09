@@ -25,6 +25,12 @@ but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 GNU General Public License for more details.
 
+Memberlite WordPress Theme bundles the following third-party resources:
+
+Font Awesome icons, Copyright Dave Gandy
+License: SIL Open Font License, version 4.6.1
+Source: http://fontawesome.io/
+
 == Getting Started ==
 Memberlite makes it easy to customize the appearance and layout of your site using the Theme Customization Screen (Appearance > Customize). 
 
