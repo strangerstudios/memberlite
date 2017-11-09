@@ -370,8 +370,8 @@ function memberlite_page_title() {
 			{
 				echo '<p class="pmpro_level-price">' . pmpro_getLevelCost($level, true, true) . '</p>';
 				if(empty($memberlite_banner_desc))
-					echo wpautop($level->description);
-				echo '<p>' . do_shortcode('[memberlite_btn style="action" href="' . esc_url(add_query_arg('level', $pmproal_landing_page_level, pmpro_url('checkout'))) . '" text="' . $memberlite_landing_page_checkout_button . '"]') . '</p>';
+					echo $level->description;
+					echo '<p>' . do_shortcode('[memberlite_btn style="action" href="' . esc_url(add_query_arg('level', $pmproal_landing_page_level, pmpro_url('checkout'))) . '" text="' . $memberlite_landing_page_checkout_button . '"]') . '</p>';
 			}
 		}
 	}	
