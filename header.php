@@ -90,15 +90,29 @@
 										?>				
 										<span class="user"><?php printf(__('Welcome, %s', 'memberlite'), $user_account_link);?></span>
 										<?php										
-									}									
-									$member_menu_defaults = array(
-										'theme_location' => 'member',
-										'container' => 'nav',
-										'container_id' => 'member-navigation',
-										'container_class' => 'member-navigation',
-										'fallback_cb' => 'memberlite_member_menu_cb',
-										'items_wrap' => '<ul id="%1$s" class="%2$s">%3$s</ul>',
-									);					
+									}
+									if($user_ID)
+									{
+										$member_menu_defaults = array(
+											'theme_location' => 'member',
+											'container' => 'nav',
+											'container_id' => 'member-navigation',
+											'container_class' => 'member-navigation',
+											'fallback_cb' => 'memberlite_member_menu_cb',
+											'items_wrap' => '<ul id="%1$s" class="%2$s">%3$s</ul>',
+										);	
+									}
+									else
+									{
+										$member_menu_defaults = array(
+											'theme_location' => 'member-logged-out',
+											'container' => 'nav',
+											'container_id' => 'member-navigation',
+											'container_class' => 'member-navigation',
+											'fallback_cb' => 'memberlite_member_menu_cb',
+											'items_wrap' => '<ul id="%1$s" class="%2$s">%3$s</ul>',
+										);
+									}				
 									wp_nav_menu( $member_menu_defaults ); 
 								?>
 								</aside>

@@ -97,6 +97,7 @@ function memberlite_setup() {
 	register_nav_menus( array(
 		'primary' => __('Primary Menu', 'memberlite'),
 		'member' => __('Member Menu', 'memberlite'),
+		'member-logged-out' => __('Member Menu - Logged Out', 'memberlite'),
 		'meta' => __('Meta Menu', 'memberlite'),
 		'footer' => __('Footer Menu', 'memberlite'),
 	));
@@ -193,7 +194,7 @@ add_action('widgets_init', 'memberlite_widgets_init');
 /* Adds a Log Out link in member menu */
 function memberlite_menus( $items, $args ) {
 	//is this the member menu location or a replaced menu using pmpro-nav-menus plugin
-	if ($args->theme_location == 'member' || ( strpos($args->theme_location, '-member') !== false ) ) {
+	if ($args->theme_location == 'member' || $args->theme_location == 'member-logged-out' || ( strpos($args->theme_location, '-member') !== false ) ) {
 		if (is_user_logged_in() && defined('PMPRO_VERSION') && pmpro_hasMembershipLevel())
 		{
 			//user is logged in and has a membership level
@@ -207,7 +208,7 @@ function memberlite_menus( $items, $args ) {
 		else
 		{
 			//not logged in
-			$items = '<li><a href="'. esc_url(wp_login_url()) .'">' . __('Log In','memberlite') . '</a></li>';	  
+			$items .= '<li><a href="'. esc_url(wp_login_url()) .'">' . __('Log In','memberlite') . '</a></li>';	  
 			$items .= '<li><a href="'. esc_url(wp_registration_url()) .'">' . __('Register','memberlite') . '</a></li>';	  
 		}
 	}
