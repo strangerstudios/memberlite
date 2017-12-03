@@ -2,13 +2,13 @@
 Contributors: kimannwall, strangerstudios
 Requires at least: WordPress 4.4
 Tested up to: WordPress 4.8.1
-Version: 3.0.3
+Version: 3.0.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: one-column, two-columns, left-sidebar, right-sidebar, flexible-header, custom-background, custom-colors, custom-header, custom-menu, custom-logo, editor-style, featured-images, footer-widgets, full-width-template, post-formats, theme-options, threaded-comments, translation-ready, e-commerce
 
 == Description ==
-Memberlite is the ideal theme for your membership site - packed with integration for top membership site plugins including Paid Memberships Pro. It's fully customizable with your logo, colors, fonts, custom sidebars and more global layout settings. Extend the site appearance further with icons, masthead banners, post formats, and additional settings for your pages. Memberlite is responsive, clean and minimal.
+Memberlite is the ideal theme for your membership site - packed with integration for top membership site plugins including Paid Memberships Pro. It's fully customizable with your logo, colors, fonts, and more global layout settings. Extend the site appearance further with the Memberlite Elements and Memberlite Shortcodes plugins. Memberlite is responsive, clean and minimal.
 
 == Copyright ==
 
@@ -28,7 +28,7 @@ GNU General Public License for more details.
 Memberlite WordPress Theme bundles the following third-party resources:
 
 Font Awesome icons, Copyright Dave Gandy
-License: SIL Open Font License, version 4.6.1
+License: SIL Open Font License, version 4.7
 Source: http://fontawesome.io/
 
 == Getting Started ==
@@ -76,7 +76,22 @@ We highly recommend using these plugins for every site running Memberlite:
 [Install Theme My Login »](https://wordpress.org/plugins/theme-my-login/)
 
 == Changelog ==
-**3.0.3**
+**3.1 - 2017-XX-XX **
+* BUG FIX: Wrapping strings in customizer to fix redirect issue.
+* SECURITY/BUG FIX: Added esc_url to wp-admin links on theme welcome page.
+* ENHANCEMENT: Updating to version 4.7 of Font Awesome.
+* ENHANCEMENT: Removing theme updates from Memberlite license server.
+* ENHANCEMENT: Removing theme elements that are plugin territory to the memberlite-elements plugin.
+* ENHANCEMENT: Removing welcome page redirect on theme activation.
+* ENHANCEMENT: Remove widget_text shortcode and moving to memberlite-elements plugin.
+* ENHANCEMENT: Adding WooCommerce page template 3.x support
+* ENHANCEMENT: Adding feature to define a member-menu area for logged out visitors
+
+**3.0.4 - 2017-10-27 **
+* SECURITY/BUG FIX/ENHANCEMENT: Added sanitization and escaping to the banner metabox on the edit post page, fixed the cropping settings for the uploaded images, and refactored the code to make it more readable. (Thanks, Massimo Marazzi)
+* ENHANCEMENT: Improved checkout template to work with the div-based layout now used in PMPro 1.9.4+.
+
+**3.0.3 - 2017-08-07 **
 * SECURITY: Escaping login/logout URLs, account/profile URLs, landing page level URL, home_url.
 * BUG FIX: Fixed float for Full Width and Narrow Width page templates when default pages layout set to left sidebar.
 * BUG/ENHANCEMENT: Wrapping welcome text in header and a few other strings for translation.
@@ -94,20 +109,20 @@ We highly recommend using these plugins for every site running Memberlite:
 * ENHANCEMENT: Improved page title for custom post type archives and custom taxonomies
 * ENHANCEMENT: Updated bbPress single forum topic title output.
 
-**3.0.2**
+**3.0.2 - 2017-01-12 **
 * BUG: Fixed issue with update code when PMPro is not installed.
 * BUG/ENHANCEMENT: Now running "do_shortcode" on the "Banner Right" content.
 * BUG/ENHANCEMENT: CSS tweak for input elements in iOS browsers.
 * ENHANCEMENT: Added Narrow Width page template for an 8 column centered main content layout with no sidebar.
 
-**3.0.1**
+**3.0.1 - 2016-12-06 **
 * BUG: Now hiding the wrapping <p> tag for memberlite_get_entry_meta before and after when set to none via customizer.
 * ENHANCEMENT: Added masthead with profile user name to bbPress single user profile view.
 * BUG: Now filtering memberlite_banner_right to allow shortcodes.
 * BUG: Fixing some display issues with no masthead and the blog sidebar float.
 * NOTE/ENHANCEMENT: Added the code back to update from the PMPro license server until we get approval in the WordPress repository.
 
-**3.0**
+**3.0 - 2016-09-20 **
 * ENHANCEMENT: Page banner description and banner right column now inheriting ratio of primary columns.
 * ENHANCEMENT: Adding support for toggling display of page masthead banner.
 * BUG: Fixing index error on memberlite_cpt_sidebar_id.
@@ -150,14 +165,14 @@ We highly recommend using these plugins for every site running Memberlite:
 * BUG: Fixed current_user level class on compare_table layout in membership levels shortcode.
 * BUG: Fixed notice when bbpress is not activated for memberlite_page_title function
 
-**2.0.3.4**
+**2.0.3.4 - 2015-11-07 **
 * SECURITY: Now using get_search_query() and the_search_query() to prevent XSS issues in h1s and breadcrumbs on search results pages. (Thanks, retr0)
 * ENHANCEMENT: Tweaks to checkout page CSS.
 
 **2.0.3.3**
 * BUG: Updated memberlite_defaults for banner hover background color.
 
-**2.0.3.2**
+**2.0.3.2 - 2015-10-08 **
 * BUG: Updated sidebar registration order so default widgets of new WP install are placed in the Posts custom sidebar.
 * BUG: Fixed dropdown submenu menus at the third level/depth.
 * BUG: Fixed case where the member menu wouldn’t appear for a logged in member.
@@ -173,12 +188,12 @@ We highly recommend using these plugins for every site running Memberlite:
 * ENHANCEMENT: Moved memberlite_defaults array to a separate included file.
 * ENHANCEMENT: Design improvements for galleries and image captions.
 
-**2.0.3.1**
+**2.0.3.1 - 2015-08-26 **
 * ENHANCEMENT: Support added for dark background via customizer setting and additional dark.css
 * BUG: Fixing issue with [memberlite_subpagelist] shortcode thumbnail size setting
 * BUG: Header text color fix in customizer
 
-**2.0.3**
+**2.0.3 - 2015-08-26 **
 * SECURITY: Fixed XSS issue with the h1 display of search queries.
 * BUG: Removed pmpro_content_filter from banner description so it is not duplicated in post content.
 * BUG: Fixing issue where archvies and index weren't showing full the_content when set in customizer.  
