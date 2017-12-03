@@ -130,7 +130,7 @@ function memberlite_support() {
 											else
 											{
 												?>
-												<a class="install-now button" href="<?php echo admin_url( 'plugin-install.php?tab=search&s=memberlite+shortcodes'); ?>"><?php _e('Install Now' ,'memberlite'); ?></a>
+												<a class="install-now button" href="<?php echo esc_url( admin_url( 'plugin-install.php?tab=search&s=memberlite+shortcodes') ); ?>"><?php _e('Install Now' ,'memberlite'); ?></a>
 												<?php
 											}
 										?>
@@ -155,7 +155,7 @@ function memberlite_support() {
 							<div class="action-links">
 								<ul class="plugin-action-buttons">
 									<li>
-										<a class="install-now button" href="<?php echo admin_url( 'plugin-install.php?tab=search&s=paid+memberships+pro'); ?>"><?php _e('Install Now' ,'memberlite'); ?></a>
+										<a class="install-now button" href="<?php echo esc_url( admin_url( 'plugin-install.php?tab=search&s=paid+memberships+pro') ); ?>"><?php _e('Install Now' ,'memberlite'); ?></a>
 									</li>
 									<li><a href="http://www.paidmembershipspro.com" target="_blank"><?php _e('More Details' ,'memberlite'); ?></a></li>
 								</ul>
@@ -176,7 +176,7 @@ function memberlite_support() {
 							<div class="action-links">
 								<ul class="plugin-action-buttons">
 									<li>
-										<a class="install-now button" href="<?php echo admin_url( 'plugin-install.php?tab=search&s=multiple+post+thumbnails'); ?>"><?php _e('Install Now' ,'memberlite'); ?></a>
+										<a class="install-now button" href="<?php echo esc_url( admin_url( 'plugin-install.php?tab=search&s=multiple+post+thumbnails') ); ?>"><?php _e('Install Now' ,'memberlite'); ?></a>
 									</li>
 									<li><a href="https://wordpress.org/plugins/multiple-post-thumbnails/" target="_blank"><?php _e('More Details' ,'memberlite'); ?></a></li>
 								</ul>
@@ -198,7 +198,7 @@ function memberlite_support() {
 							<div class="action-links">
 								<ul class="plugin-action-buttons">
 									<li>
-										<a class="install-now button" href="<?php echo admin_url( 'plugin-install.php?tab=search&s=theme+my+login'); ?>"><?php _e('Install Now' ,'memberlite'); ?></a>
+										<a class="install-now button" href="<?php echo esc_url( admin_url( 'plugin-install.php?tab=search&s=theme+my+login') ); ?>"><?php _e('Install Now' ,'memberlite'); ?></a>
 									</li>
 									<li><a href="https://www.jfarthing.com/development/theme-my-login/" target="_blank"><?php _e('More Details' ,'memberlite'); ?></a></li>
 								</ul>
@@ -266,14 +266,14 @@ function memberlite_support() {
 							<div class="action-links">
 								<ul class="plugin-action-buttons">
 									<li>
-										<a class="install-now button" href="<?php echo admin_url( 'plugin-install.php?tab=search&s=bbpress'); ?>"><?php _e('Install Now' ,'memberlite'); ?></a>
+										<a class="install-now button" href="<?php echo esc_url( admin_url( 'plugin-install.php?tab=search&s=bbpress') ); ?>"><?php _e('Install Now' ,'memberlite'); ?></a>
 									</li>
 									<li><a href="http://www.bbpress.org" target="_blank"><?php _e('More Details' ,'memberlite'); ?></a></li>
 								</ul>
 							</div>
 							<div class="desc column-description">
 								<p><?php _e('bbPress is forum software, made the WordPress way.', 'memberlite'); ?></p>
-								<p><a href="<?php echo admin_url( 'plugin-install.php?tab=search&type=term&s=Paid+Memberships+Pro+-+bbPress+Add+On'); ?>"><?php _e('Install Paid Memberships Pro - bbPress Add On' ,'memberlite'); ?></a></p>
+								<p><a href="<?php echo esc_url( admin_url( 'plugin-install.php?tab=search&type=term&s=Paid+Memberships+Pro+-+bbPress+Add+On') ); ?>"><?php _e('Install Paid Memberships Pro - bbPress Add On' ,'memberlite'); ?></a></p>
 								<p class="authors"><cite><?php _e('By', 'memberlite'); ?> <a href="http://www.bbpress.org"><?php _e('The bbPress Community', 'memberlite'); ?></a></cite></p>
 							</div>
 						</div>
@@ -289,7 +289,7 @@ function memberlite_support() {
 							<div class="action-links">
 								<ul class="plugin-action-buttons">
 									<li>
-										<a class="install-now button" href="<?php echo admin_url( 'plugin-install.php?tab=search&s=events+manager'); ?>"><?php _e('Install Now' ,'memberlite'); ?></a>
+										<a class="install-now button" href="<?php echo esc_url( admin_url( 'plugin-install.php?tab=search&s=events+manager') ); ?>"><?php _e('Install Now' ,'memberlite'); ?></a>
 									</li>
 									<li><a href="http://wp-events-plugin.com" target="_blank"><?php _e('More Details' ,'memberlite'); ?></a></li>
 								</ul>
@@ -311,7 +311,7 @@ function memberlite_support() {
 							<div class="action-links">
 								<ul class="plugin-action-buttons">
 									<li>
-										<a class="install-now button" href="<?php echo admin_url( 'plugin-install.php?tab=search&s=paid+memberships+pro'); ?>"><?php _e('Install Now' ,'memberlite'); ?></a>
+										<a class="install-now button" href="<?php echo esc_url( admin_url( 'plugin-install.php?tab=search&s=paid+memberships+pro') ); ?>"><?php _e('Install Now' ,'memberlite'); ?></a>
 									</li>
 									<li><a href="http://www.paidmembershipspro.com" target="_blank"><?php _e('More Details' ,'memberlite'); ?></a></li>
 								</ul>
@@ -332,7 +332,7 @@ function memberlite_support() {
 							<div class="action-links">
 								<ul class="plugin-action-buttons">
 									<li>
-										<a class="install-now button" href="<?php echo admin_url( 'plugin-install.php?tab=search&s='); ?>"><?php _e('Install Now' ,'memberlite'); ?></a>
+										<a class="install-now button" href="<?php echo esc_url( admin_url( 'plugin-install.php?tab=search&s=') ); ?>"><?php _e('Install Now' ,'memberlite'); ?></a>
 									</li>
 									<li><a href="https://wordpress.org/plugins/testimonials-widget/" target="_blank"><?php _e('More Details' ,'memberlite'); ?></a></li>
 								</ul>
@@ -354,14 +354,14 @@ function memberlite_support() {
 							<div class="action-links">
 								<ul class="plugin-action-buttons">
 									<li>
-										<a class="install-now button" href="<?php echo admin_url( 'plugin-install.php?tab=search&s=woocommerce'); ?>"><?php _e('Install Now' ,'memberlite'); ?></a>
+										<a class="install-now button" href="<?php echo esc_url( admin_url( 'plugin-install.php?tab=search&s=woocommerce') ); ?>"><?php _e('Install Now' ,'memberlite'); ?></a>
 									</li>
 									<li><a href="" target="_blank"><?php _e('More Details' ,'memberlite'); ?></a></li>
 								</ul>
 							</div>
 							<div class="desc column-description">
 								<p><?php _e('WooCommerce is a powerful, extendable eCommerce plugin that helps you sell anything. Beautifully.', 'memberlite'); ?></p>
-								<p><a href="<?php echo admin_url( 'plugin-install.php?tab=search&type=term&s=Paid+Memberships+Pro+-+WooCommerce+Add+On'); ?>"><?php _e('Install Paid Memberships Pro - WooCommerce Add On' ,'memberlite'); ?></a></p>
+								<p><a href="<?php echo esc_url( admin_url( 'plugin-install.php?tab=search&type=term&s=Paid+Memberships+Pro+-+WooCommerce+Add+On') ); ?>"><?php _e('Install Paid Memberships Pro - WooCommerce Add On' ,'memberlite'); ?></a></p>
 								<p class="authors"><cite><?php _e('By', 'memberlite'); ?> <a href="http://www.woothemes.com/woocommerce/"><?php _e('WooThemes', 'memberlite'); ?></a></cite></p>
 							</div>
 						</div>
