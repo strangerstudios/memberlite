@@ -8,6 +8,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: one-column, two-columns, left-sidebar, right-sidebar, flexible-header, custom-background, custom-colors, custom-header, custom-menu, custom-logo, editor-style, featured-images, footer-widgets, full-width-template, post-formats, theme-options, threaded-comments, translation-ready, e-commerce
 
 == Description ==
+=Build a Professional WordPress Membership Site=
 Memberlite is the ideal theme for your membership site - packed with integration for top membership site plugins including Paid Memberships Pro. It's fully customizable with your logo, colors, fonts, and more global layout settings. Extend the site appearance further with the Memberlite Elements and Memberlite Shortcodes plugins. Memberlite is responsive, clean and minimal.
 
 == Copyright ==
