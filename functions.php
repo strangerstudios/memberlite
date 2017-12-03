@@ -121,9 +121,6 @@ function memberlite_setup() {
 	// Styles the visual editor to resemble the theme style
 	add_editor_style( array( 'css/editor-style.css') );
 
-	// Enable the use of shortcodes in text widgets.
-	add_filter( 'widget_text', 'do_shortcode' );
-
 	// Indicate widget sidebars can use selective refresh in the Customizer.
 	add_theme_support( 'customize-selective-refresh-widgets' );
 }
