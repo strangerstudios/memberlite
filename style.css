@@ -1251,10 +1251,10 @@ a:active {
 .header-right {
 	text-align: right;
 }
-.header-right aside {
+.header-right #meta-member .meta-member-inner, .header-right aside {
 	display: inline-block;
 }
-#meta-member aside {
+#meta-member .meta-member-inner {
 	background: #18BC9C;
 	-moz-border-radius-bottomright: 3px;
 	-webkit-border-bottom-right-radius: 3px;

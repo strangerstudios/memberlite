@@ -65,97 +65,50 @@
 				<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
 				<span class="site-description"><?php bloginfo( 'description' ); ?></span>
 			</div><!-- .column4 -->
-			<?php
-				if(!empty($show_header_right))
-				{
-					?>
-					<div class="medium-<?php echo memberlite_getColumnsRatio( 'header-right' ) ?> columns header-right<?php if($meta_login == false) { ?> no-meta-menu<?php } ?>">
-					<?php
-						if(!empty($meta_login))
-						{	
-							?>
-							<div id="meta-member">
-								<aside class="widget">
-								<?php 
-									global $current_user, $pmpro_pages;
-									if($user_ID)
-									{ 
-										if(!empty($pmpro_pages)) {
-											$account_page = get_post($pmpro_pages['account']);
-											$user_account_link = '<a href="' . esc_url(pmpro_url("account")) . '">' . preg_replace("/\@.*/", "", $current_user->display_name) . '</a>';
-										}
-										else {
-											$user_account_link = '<a href="' . esc_url(admin_url("profile.php")) . '">' . preg_replace("/\@.*/", "", $current_user->display_name) . '</a>';											
-										}
-										?>				
-										<span class="user"><?php printf(__('Welcome, %s', 'memberlite'), $user_account_link);?></span>
-										<?php										
-									}
-									if($user_ID)
-									{
-										$member_menu_defaults = array(
-											'theme_location' => 'member',
-											'container' => 'nav',
-											'container_id' => 'member-navigation',
-											'container_class' => 'member-navigation',
-											'fallback_cb' => 'memberlite_member_menu_cb',
-											'items_wrap' => '<ul id="%1$s" class="%2$s">%3$s</ul>',
-										);	
-									}
-									else
-									{
-										$member_menu_defaults = array(
-											'theme_location' => 'member-logged-out',
-											'container' => 'nav',
-											'container_id' => 'member-navigation',
-											'container_class' => 'member-navigation',
-											'fallback_cb' => 'memberlite_member_menu_cb',
-											'items_wrap' => '<ul id="%1$s" class="%2$s">%3$s</ul>',
-										);
-									}				
-									wp_nav_menu( $member_menu_defaults ); 
-								?>
-								</aside>
-							</div><!-- #meta-member -->
-							<?php
-						}
-											
-						$meta_defaults = array(
-							'theme_location' => 'meta',
-							'container' => 'nav',
-							'container_id' => 'meta-navigation',
-							'container_class' => 'meta-navigation',
-							'fallback_cb' => false
-						);
-						wp_nav_menu( $meta_defaults );
-						
-						if(is_dynamic_sidebar('sidebar-3'))
-							dynamic_sidebar('sidebar-3');
-						?>
-					</div><!-- .column8 -->
+			
+			<?php if( !empty( $show_header_right ) ) { ?>
+				<div class="medium-<?php echo memberlite_getColumnsRatio( 'header-right' ) ?> columns header-right<?php if($meta_login == false) { ?> no-meta-menu<?php } ?>">
 					<?php 
+					if( !empty( $meta_login ) ) {	
+						get_template_part( 'components/header/meta', 'member' );
 					}
-				?>
+										
+					$meta_defaults = array(
+						'theme_location' => 'meta',
+						'container' => 'nav',
+						'container_id' => 'meta-navigation',
+						'container_class' => 'meta-navigation',
+						'fallback_cb' => false
+					);
+					wp_nav_menu( $meta_defaults );
+					
+					if(is_dynamic_sidebar('sidebar-3')) {
+						dynamic_sidebar('sidebar-3');
+					}
+					?>
+				</div><!-- .columns -->
+			<?php } ?>
+
 		</div><!-- .row -->
 	</header><!-- #masthead -->
 	<?php do_action('before_site_navigation'); ?>
 	<?php if(!is_page_template( 'templates/interstitial.php' )) { ?>
-	<nav id="site-navigation">
-	<?php
-		$primary_defaults = array(
-			'theme_location' => 'primary',
-			'container' => 'div',
-			'container_class' => 'main-navigation row',
-			'menu_class' => 'menu large-12 columns',
-			'fallback_cb' => false,					
-		);				
-		wp_nav_menu($primary_defaults); 				
-	?>
-	</nav><!-- #site-navigation -->
+		<nav id="site-navigation">
+		<?php
+			$primary_defaults = array(
+				'theme_location' => 'primary',
+				'container' => 'div',
+				'container_class' => 'main-navigation row',
+				'menu_class' => 'menu large-12 columns',
+				'fallback_cb' => false,					
+			);				
+			wp_nav_menu($primary_defaults); 				
+		?>
+		</nav><!-- #site-navigation -->
 	<?php } ?>
 	<?php do_action('before_content'); ?>
 	<div id="content" class="site-content">
-	<?php do_action('before_masthead'); ?>
+	<?php do_action('before_hero'); ?>
 	<?php 
 		if( !empty( $post ) )
 			$memberlite_banner_show = get_post_meta($post->ID, '_memberlite_banner_show', true);
@@ -293,4 +246,4 @@
 			<?php
 		} 
 	?>
-	<?php do_action('after_masthead'); ?>
+	<?php do_action('after_hero'); ?>
