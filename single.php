@@ -10,7 +10,7 @@ get_header(); ?>
 		<main id="main" class="site-main" role="main">
 		<?php do_action('before_loop'); ?>
 		<?php while ( have_posts() ) : the_post(); ?>
-			<?php get_template_part( 'content', 'single' ); ?>
+			<?php get_template_part( 'components/post/content', 'single' ); ?>
 			<?php 
 				$theme_mod = get_theme_mod( 'memberlite_post_nav', 1 );
 

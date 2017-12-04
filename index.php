@@ -13,7 +13,7 @@ get_header(); ?>
 			<?php global $more; ?>
 			<?php while ( have_posts() ) : the_post(); ?>
 				<?php $more = 1; ?>
-				<?php get_template_part( 'content', get_post_format() ); ?>
+				<?php get_template_part( 'components/post/content', get_post_format() ); ?>
 			<?php endwhile; ?>
 			<?php memberlite_paging_nav(); ?>
 		<?php else : ?>

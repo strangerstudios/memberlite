@@ -11,11 +11,11 @@ get_header(); ?>
 		<?php do_action('before_loop'); ?>
 		<?php if ( have_posts() ) : ?>
 			<?php while ( have_posts() ) : the_post(); ?>
-				<?php get_template_part( 'content', 'search' );	?>
+				<?php get_template_part( 'components/post/content', get_post_format() ); ?>
 			<?php endwhile; ?>
 			<?php memberlite_paging_nav(); ?>
 		<?php else : ?>
-			<?php get_template_part( 'content', 'none' ); ?>
+			<?php get_template_part( 'components/post/content', 'none' ); ?>
 		<?php endif; ?>
 		<?php do_action('after_loop'); ?>
 		</main><!-- #main -->
