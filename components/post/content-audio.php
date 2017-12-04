@@ -9,9 +9,7 @@
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-	<header class="entry-header">
-		<?php the_title( sprintf( '<h1 class="entry-title"><a href="%s" rel="bookmark"><i class="fa fa-headphones"></i>&nbsp;', esc_url( get_permalink() ) ), '</a></h1>' ); ?>
-	</header><!-- .entry-header -->
+	<?php get_template_part( 'components/post/entry', 'header' ); ?>
 	<div class="entry-content">
 		<?php 
 			$content_archives = get_theme_mod('content_archives'); 

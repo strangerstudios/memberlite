@@ -1502,7 +1502,34 @@ a:active {
 	transition: transform 0.5s ease;
 	transform: scale(0.8);
 }
-.pmpro-level-required h1.entry-title:before, .pmpro-body-level-required h1.entry-title:before {
+.hentry.format-audio h1.entry-title:before,
+.hentry.format-image h1.entry-title:before,
+.hentry.format-link h1.entry-title:before,
+.hentry.format-video h1.entry-title:before,
+.single-format-audio .masthead-post-byline h1.entry-title:before,
+.single-format-image .masthead-post-byline h1.entry-title:before,
+.single-format-link .masthead-post-byline h1.entry-title:before,
+.single-format-video .masthead-post-byline h1.entry-title:before {
+	font-family: 'FontAwesome';
+	padding-right: 10px;
+}
+.hentry.format-audio h1.entry-title:before,
+.single-format-audio .masthead-post-byline h1.entry-title:before {
+	content: "\f025";
+}
+.hentry.format-image h1.entry-title:before,
+.single-format-image .masthead-post-byline h1.entry-title:before {
+	content: "\f1c5";
+}
+.hentry.format-link h1.entry-title:before,
+.single-format-link .masthead-post-byline h1.entry-title:before {
+	content: "\f08e";
+}
+.hentry.format-video h1.entry-title:before,
+.single-format-video .masthead-post-byline h1.entry-title:before {
+	content: "\f03d";
+}
+.hentry.pmpro-level-required h1.entry-title:before, .pmpro-body-level-required .masthead-post-byline h1.entry-title:before {
 	content: "\f023";
 	font-family: 'FontAwesome';
 	padding-right: 10px;
