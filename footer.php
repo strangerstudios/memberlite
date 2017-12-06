@@ -17,21 +17,9 @@
 			) { ?>
 				</div><!-- .row -->
 		<?php } ?>
-		<?php
-			global $post;
-			if( !empty( $post ) && !empty( $post->ID ) ) {
-				$memberlite_banner_bottom = get_post_meta( $post->ID, '_memberlite_banner_bottom', true );
-			} else {
-				$memberlite_banner_bottom = false;
-			}
-			if( !empty( $memberlite_banner_bottom ) ) { ?>
-				<div id="banner_bottom">
-					<div class="row"><div class="large-12 columns">
-						<?php echo apply_filters( 'the_content', $memberlite_banner_bottom ); ?>
-					</div></div><!-- .row .columns --> 
-				</div><!-- #banner_bottom -->
-			<?php } ?>
+
 		<?php do_action('after_content'); ?>
+
 	</div><!-- #content -->
 	
 	<?php do_action('before_footer'); ?>
