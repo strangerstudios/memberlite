@@ -42,11 +42,12 @@
 	</div><!-- #content -->
 	
 	<?php do_action('before_footer'); ?>
+
 	<?php if(!is_page_template( 'templates/interstitial.php' )) { ?>
 	<footer id="colophon" class="site-footer" role="contentinfo">
-		<?php do_action('before_footer_widgets'); ?>
+		
 		<?php get_template_part( 'components/footer/footer', 'widgets' ); ?>
-		<?php do_action('after_footer_widgets'); ?>
+		
 		<?php if( has_nav_menu( 'footer' ) ) { ?>
 			<nav id="footer-navigation">
 				<?php 
@@ -61,29 +62,9 @@
 				?>
 			</nav><!-- #footer-navigation -->
 		<?php } ?>
-		<?php do_action('before_site_info'); ?>
-		<div class="row site-info">
-			<div class="large-10 columns">				
-				<?php 
-					global $memberlite_defaults;
-					$copyright_textbox = get_theme_mod( 'copyright_textbox',$memberlite_defaults['copyright_textbox'] ); 
-					if ( ! empty( $copyright_textbox ) ) 
-					{
-						echo wpautop(memberlite_Customize::sanitize_text_with_links($copyright_textbox));
-					}				
-				?>
-			</div>
-			<div class="large-2 columns text-right">
-				<?php
-					$back_to_top = get_theme_mod( 'memberlite_back_to_top',$memberlite_defaults['memberlite_back_to_top'] ) ;
-					if( !empty($back_to_top) )
-						$back_to_top = apply_filters('memberlite_back_to_top', __('<i class="fa fa-chevron-up"></i> Back to Top', 'memberlite') );					
-					if( !empty($back_to_top) )
-						echo '<a class="skip-link btn" href="#page">' . $back_to_top . '</a>';
-				?>
-			</div><!-- .columns -->
-		</div><!-- .row, .site-info -->
-		<?php do_action('after_site_info'); ?>
+
+		<?php get_template_part( 'components/footer/site', 'info' ); ?>
+
 	</footer><!-- #colophon -->
 	<?php } ?>
 	<?php do_action('after_footer'); ?>
