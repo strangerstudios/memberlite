@@ -127,6 +127,13 @@ function memberlite_setup() {
 endif; // memberlite_setup
 add_action( 'after_setup_theme', 'memberlite_setup' );
 
+function memberlite_wp_head() {
+	if ( is_singular() && pings_open() ) {
+		printf( '<link rel="pingback" href="%s">' . "\n", get_bloginfo( 'pingback_url' ) );
+	}
+}
+add_action( 'wp_head', 'memberlite_wp_head' );
+
 /* Register widget areas */
 function memberlite_widgets_init() {
 	global $memberlite_defaults;
