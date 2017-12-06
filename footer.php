@@ -53,18 +53,20 @@
 		</div><!-- .footer-widgets -->
 		<?php } ?>
 		<?php do_action('after_footer_widgets'); ?>
-		<nav id="footer-navigation">
-			<?php 
-				$footer_defaults = array(
-					'theme_location' => 'footer',
-					'container' => 'div',
-					'container_class' => 'footer-navigation row',
-					'menu_class' => 'menu large-12 columns',
-					'fallback_cb' => false,					
-				);				
-				wp_nav_menu($footer_defaults); 				
-			?>
-		</nav><!-- #footer-navigation -->
+		<?php if( has_nav_menu( 'footer' ) ) { ?>
+			<nav id="footer-navigation">
+				<?php 
+					$footer_defaults = array(
+						'theme_location' => 'footer',
+						'container' => 'div',
+						'container_class' => 'footer-navigation row',
+						'menu_class' => 'menu large-12 columns',
+						'fallback_cb' => false,					
+					);				
+					wp_nav_menu($footer_defaults); 				
+				?>
+			</nav><!-- #footer-navigation -->
+		<?php } ?>
 		<?php do_action('before_site_info'); ?>
 		<div class="row site-info">
 			<div class="large-10 columns">				
