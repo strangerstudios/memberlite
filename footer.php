@@ -45,13 +45,7 @@
 	<?php if(!is_page_template( 'templates/interstitial.php' )) { ?>
 	<footer id="colophon" class="site-footer" role="contentinfo">
 		<?php do_action('before_footer_widgets'); ?>
-		<?php if(is_active_sidebar('sidebar-4')) { ?>
-		<div class="footer-widgets">
- 			<div class="row">
-				<?php dynamic_sidebar('sidebar-4');	?>
-			</div><!-- .row -->
-		</div><!-- .footer-widgets -->
-		<?php } ?>
+		<?php get_template_part( 'components/footer/footer', 'widgets' ); ?>
 		<?php do_action('after_footer_widgets'); ?>
 		<?php if( has_nav_menu( 'footer' ) ) { ?>
 			<nav id="footer-navigation">
