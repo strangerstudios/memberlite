@@ -7,43 +7,36 @@
  * @package Memberlite
  */
 ?>
-		<?php 
+		<?php
 			$template = get_page_template();
 			if( 
 				!is_page_template('templates/fluid-width.php') && 
-				!is_page_template( 'templates/interstitial.php' ) &&
+				!is_page_template( 'templates/interstitial.php' ) && 
 				!is_404() && 
-				(!is_front_page() || (is_front_page() && !empty($template) && (basename($template) != 'page.php') || 'posts' == get_option( 'show_on_front' )))
-			) 
-			{ 
-				?>
+				( !is_front_page() || ( is_front_page() && !empty( $template ) && ( basename( $template ) != 'page.php' ) || 'posts' == get_option( 'show_on_front' ) ) )
+			) { ?>
 				</div><!-- .row -->
-				<?php 
-			} 
-		?>
+		<?php } ?>
 		<?php
 			global $post;
-			if(!empty($post) && !empty($post->ID))
-				$memberlite_banner_bottom = get_post_meta($post->ID, '_memberlite_banner_bottom', true);
-			else
+			if( !empty( $post ) && !empty( $post->ID ) ) {
+				$memberlite_banner_bottom = get_post_meta( $post->ID, '_memberlite_banner_bottom', true );
+			} else {
 				$memberlite_banner_bottom = false;
-			if(!empty($memberlite_banner_bottom))
-			{
-				?>
+			}
+			if( !empty( $memberlite_banner_bottom ) ) { ?>
 				<div id="banner_bottom">
 					<div class="row"><div class="large-12 columns">
-						<?php echo apply_filters('the_content',$memberlite_banner_bottom); ?>
-					</div></div>
-				</div>
-				<?php
-			}
-		?>
+						<?php echo apply_filters( 'the_content', $memberlite_banner_bottom ); ?>
+					</div></div><!-- .row .columns --> 
+				</div><!-- #banner_bottom -->
+			<?php } ?>
 		<?php do_action('after_content'); ?>
 	</div><!-- #content -->
 	
 	<?php do_action('before_footer'); ?>
 
-	<?php if(!is_page_template( 'templates/interstitial.php' )) { ?>
+	<?php if( !is_page_template( 'templates/interstitial.php' ) ) { ?>
 	<footer id="colophon" class="site-footer" role="contentinfo">
 		
 		<?php get_template_part( 'components/footer/footer', 'widgets' ); ?>
@@ -67,9 +60,14 @@
 
 	</footer><!-- #colophon -->
 	<?php } ?>
+
 	<?php do_action('after_footer'); ?>
+
 </div><!-- #page -->
+
 <?php do_action('after_page'); ?>
+
 <?php wp_footer(); ?>
+
 </body>
 </html>
