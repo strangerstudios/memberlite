@@ -55,27 +55,35 @@ add_filter( 'body_class', 'memberlite_body_classes' );
 /* Get main and sidebar columns width from theme mod or defaults. */
 function memberlite_getColumnsRatio( $location = NULL ) {
 	global $memberlite_defaults;
+	
+	//Get the values as set in customizer.
 	$columns_ratio = get_theme_mod( 'columns_ratio', $memberlite_defaults['columns_ratio'] );
 	$columns_ratio_header = get_theme_mod( 'columns_ratio_header', $memberlite_defaults['columns_ratio_header'] );
 	$columns_ratio_array = explode( '-', $columns_ratio );
 	$columns_ratio_header_array = explode( '-', $columns_ratio_header );
+
 	if( $location == 'sidebar' ) {
-		return $columns_ratio_array[1];
+		$r = $columns_ratio_array[1];
 	} elseif( $location == 'header-right' ) {
-		return $columns_ratio_header_array[1];
+		$r = $columns_ratio_header_array[1];
 	} elseif( $location == 'header-left' ) {
-		return $columns_ratio_header_array[0];
+		$r = $columns_ratio_header_array[0];
 	} elseif( is_page_template( 'templates/full-width.php' ) || is_page_template( 'templates/interstitial.php' ) ) {
-		return '12';
+		$r = '12';
 	} elseif( is_page_template( 'templates/narrow-width.php' ) ) {
-		return '8 medium-offset-2';
+		$r = '8 medium-offset-2';
 	} elseif( ( $location == 'masthead') && is_page_template( 'templates/narrow-width.php' ) ) {
-		return '8 medium-offset-2';
+		$r = '8 medium-offset-2';
 	} elseif( $location == 'masthead' ) {
-		return '12';
+		$r = '12';
 	} else {
-		return $columns_ratio_array[0];
+		$r = $columns_ratio_array[0];
 	}
+
+	//Filter to allow child themes and plugins to modify column width.
+	$r = apply_filters( 'memberlite_columns_ratio', $r, $location );
+
+	return $r;
 }
 
 /**
