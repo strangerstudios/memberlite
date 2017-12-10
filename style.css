@@ -1380,11 +1380,8 @@ a:active {
 	text-decoration: none;
 	border-bottom: 1px dotted #FFF;
 }
-.masthead-banner .masthead h1, .masthead .masthead-padding h1 {
-}
-
 .masthead-banner .masthead .masthead-post-byline h1 {
-	padding: 0;
+	margin-top: 0;
 }
 .masthead p, .masthead a.pmpro_btn {
 	margin: 2rem 0 0 0;
