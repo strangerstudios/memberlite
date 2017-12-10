@@ -411,83 +411,78 @@ function memberlite_page_title( $echo = true ) {
 	return $page_title_html;
 }
 
-function memberlite_getSidebar() {
+function memberlite_get_sidebar_content() {
 	global $post;
 	
 	//capture output
 	ob_start();
 	
 	//figure out sidebars
-	if(!empty($post) && !empty($post->ID))
-		$memberlite_custom_sidebar = get_post_meta($post->ID, '_memberlite_custom_sidebar', true);
-	else
+	if( !empty( $post ) && !empty( $post->ID ) ) {
+		$memberlite_custom_sidebar = get_post_meta( $post->ID, '_memberlite_custom_sidebar', true );
+	} else {
 		$memberlite_custom_sidebar = false;
-
-	$memberlite_cpt_sidebars = get_option('memberlite_cpt_sidebars', array());
-	if(!empty($post) && !empty($post->ID) && !in_array(get_post_type($post), array('post','page')) )
-	{
-		//this is a cpt and may have a custom cpt sidebar defined
-		if(!empty($memberlite_cpt_sidebars))
-		{
-			$post_type = get_post_type($post);
-			if(!empty($memberlite_cpt_sidebars[$post_type]))
-				$memberlite_cpt_sidebar_id = $memberlite_cpt_sidebars[$post_type];
-		}
-		if(!empty($memberlite_cpt_sidebar_id))
-			dynamic_sidebar($memberlite_cpt_sidebar_id);
 	}
-	elseif(function_exists('is_bbpress') && is_bbpress())
-	{
+
+	//Get the custom CPT sidebar settings
+	$memberlite_cpt_sidebars = get_option( 'memberlite_cpt_sidebars', array() );
+
+	if( !empty( $post ) && !empty( $post->ID ) && !in_array( get_post_type($post), array( 'post','page' ) ) ) {
+		//this is a cpt and may have a custom cpt sidebar defined
+		if( !empty( $memberlite_cpt_sidebars ) ) {
+			$post_type = get_post_type( $post );
+			if( !empty( $memberlite_cpt_sidebars[$post_type] ) ) {
+				$memberlite_cpt_sidebar_id = $memberlite_cpt_sidebars[$post_type];
+			}
+		}
+		if( !empty( $memberlite_cpt_sidebar_id ) ) {
+			dynamic_sidebar( $memberlite_cpt_sidebar_id );
+		}
+	} elseif( function_exists('is_bbpress') && is_bbpress() ) {
 		//this is bbpress but not a cpt and may have a custom sidebar defined
 		$memberlite_cpt_sidebar_id = $memberlite_cpt_sidebars['forum'];
-		if(!empty($memberlite_cpt_sidebar_id))
-			dynamic_sidebar($memberlite_cpt_sidebar_id);
-	}
-	elseif (is_404() || is_home() || is_search() || is_single() || is_category() || is_author() || is_archive() || is_day() || is_month() || is_year() ) 
-	{
-		if(is_home())
-		{
-			$memberlite_custom_sidebar = get_post_meta(get_option( 'page_for_posts' ), '_memberlite_custom_sidebar', true);
-			if(empty($memberlite_custom_sidebar))
-				$memberlite_custom_sidebar = 'sidebar-2';
+		if( !empty( $memberlite_cpt_sidebar_id ) ) {
+			dynamic_sidebar( $memberlite_cpt_sidebar_id );
 		}
-		else
+	} elseif ( is_home() || is_search() || is_single() || is_category() || is_author() || is_archive() || is_day() || is_month() || is_year() ) {
+		if( is_home() ) {
+			$memberlite_custom_sidebar = get_post_meta( get_option( 'page_for_posts' ), '_memberlite_custom_sidebar', true);
+			if( empty( $memberlite_custom_sidebar) || ( $memberlite_custom_sidebar === 'memberlite_sidebar_blank' ) ) {
+				$memberlite_custom_sidebar = 'sidebar-2';
+			}
+		} else {
 			$memberlite_custom_sidebar = 'sidebar-2';
+		}
 		
 		//Sidebar for Posts and Archives
-		if(!empty($memberlite_custom_sidebar))
-			dynamic_sidebar($memberlite_custom_sidebar);	
-	}	
-	else
-	{
+		if( !empty( $memberlite_custom_sidebar ) ) {
+			dynamic_sidebar( $memberlite_custom_sidebar );	
+		}
+	} else {
 		//Sidebar for Pages
-		if(is_page())
-		{
+		if( is_page() ) {
 			global $post, $memberlite_hide_children;
-			if(empty($memberlite_hide_children))
-				$memberlite_hide_children = get_post_meta($post->ID, '_memberlite_hide_children', true);
-			if(empty($memberlite_hide_children))
-			{
-				if($post->post_parent) 
-				{
-					$exclude = get_post_meta($post->ID,'exclude',true);
-					$ancestors = get_post_ancestors($post);
-					$pagemenuid = end($ancestors);
-					$children = wp_list_pages('title_li=&child_of=' . $pagemenuid . '&exclude=' . $exclude . '&echo=0&sort_column=menu_order,post_title');
-					$titlenamer = get_the_title($pagemenuid);
-					$titlelink = get_permalink($pagemenuid);
+			if( empty( $memberlite_hide_children ) ) {
+				$memberlite_hide_children = get_post_meta( $post->ID, '_memberlite_hide_children', true );
+			}
+			if( empty( $memberlite_hide_children ) ) {
+				if( $post->post_parent ) {
+					$exclude = get_post_meta( $post->ID,'exclude',true );
+					$ancestors = get_post_ancestors( $post );
+					$pagemenuid = end( $ancestors );
+					$children = wp_list_pages( 'title_li=&child_of=' . $pagemenuid . '&exclude=' . $exclude . '&echo=0&sort_column=menu_order,post_title' );
+					$titlenamer = get_the_title( $pagemenuid );
+					$titlelink = get_permalink( $pagemenuid) ;
+				} else {
+					$exclude = '';
+					$children = wp_list_pages( 'title_li=&child_of=' . $post->ID . '&exclude=' . $exclude . '&echo=0&sort_column=menu_order,post_title' );
+					$titlenamer = get_the_title( $post->ID );
+					$titlelink = get_permalink( $post->ID );
 				}
-				else 
-				{
-					$exclude = "";
-					$children = wp_list_pages('title_li=&child_of=' . $post->ID . '&exclude=' . $exclude . '&echo=0&sort_column=menu_order,post_title');
-					$titlenamer = get_the_title($post->ID);
-					$titlelink = get_permalink($post->ID);
-				}
-				if($children) 
-				{ ?>
+
+				if( $children ) { ?>
 					<aside id="nav_menu-submenu" class="widget widget_nav_menu">
-						<h3 class="widget-title"><a<?php if(!empty($pagemenuid) && is_page($pagemenuid)) { ?> class="active"<?php } ?> href="<?php echo $titlelink?>"><?php echo $titlenamer?></a></h3>
+						<h3 class="widget-title"><a<?php if( !empty( $pagemenuid ) && is_page( $pagemenuid ) ) { ?> class="active"<?php } ?> href="<?php echo $titlelink; ?>"><?php echo $titlenamer; ?></a></h3>
 						<ul class="menu">
 							<?php echo $children; ?>
 						</ul>
@@ -497,8 +492,9 @@ function memberlite_getSidebar() {
 			}
 		}
 		//Sidebar for Non-template Pages
-		if($memberlite_custom_sidebar != 'sidebar-1')
-			dynamic_sidebar('sidebar-1');
+		if( $memberlite_custom_sidebar != 'sidebar-1' ) {
+			dynamic_sidebar( 'sidebar-1' );
+		}
 	}
 	
 	//get captured output
@@ -506,7 +502,7 @@ function memberlite_getSidebar() {
 	ob_end_clean();
 	
 	//filter
-	$sidebar_html = apply_filters('memberlite_getSidebar', $sidebar_html);
+	$sidebar_html = apply_filters( 'memberlite_get_sidebar_content', $sidebar_html );
 	
 	echo $sidebar_html;
 }
@@ -614,9 +610,11 @@ function memberlite_getBreadcrumbs() {
 	          	<a href="<?php echo esc_url( home_url() ); ?>"><?php _e( 'Home', 'memberlite' ); ?></a>
 				<span class="sep"><?php echo esc_html( $memberlite_delimiter ); ?></span>
 				<?php 
-					$queried_object = get_queried_object();
-					$term_taxonomy = $queried_object->taxonomy;
-					$taxonomy = get_taxonomy($term_taxonomy);
+					if( is_tax() ) {
+						$queried_object = get_queried_object();
+						$term_taxonomy = $queried_object->taxonomy;
+						$taxonomy = get_taxonomy($term_taxonomy);
+					}
 					if ( is_tax() && count( $taxonomy->object_type ) === 1 ) {
 						$post_type = get_post_type_object( $taxonomy->object_type[0] );
 						?>
