@@ -1,7 +1,12 @@
 <?php
 /**
-Template Name: Landing Page
-**/
+ * Template Name: Landing Page
+ *
+ * The template for displaying pages with the Landing Page template.
+ *
+ * @package Memberlite
+ */
+
 $pmproal_landing_page_level = get_post_meta($post->ID,'_pmproal_landing_page_level',true);
 $memberlite_banner_desc = get_post_meta($post->ID, '_memberlite_banner_desc', true);
 $memberlite_landing_page_checkout_button = get_post_meta($post->ID,'_memberlite_landing_page_checkout_button',true);

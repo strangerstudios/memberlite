@@ -59,14 +59,22 @@ function memberlite_getColumnsRatio( $location = NULL ) {
 	$columns_ratio_header = get_theme_mod( 'columns_ratio_header', $memberlite_defaults['columns_ratio_header'] );
 	$columns_ratio_array = explode( '-', $columns_ratio );
 	$columns_ratio_header_array = explode( '-', $columns_ratio_header );
-	if($location == 'sidebar')
+	if( $location == 'sidebar' ) {
 		return $columns_ratio_array[1];
-	elseif($location == 'header-right')
+	} elseif( $location == 'header-right' ) {
 		return $columns_ratio_header_array[1];
-	elseif($location == 'header-left')
+	} elseif( $location == 'header-left' ) {
 		return $columns_ratio_header_array[0];
-	else
+	} elseif( is_page_template( 'templates/full-width.php' ) || is_page_template( 'templates/interstitial.php' ) ) {
+		return '12';
+	} elseif( is_page_template( 'templates/narrow-width.php' ) ) {
+		return '8 medium-offset-2';
+	}
+
+
+	else {
 		return $columns_ratio_array[0];
+	}
 }
 
 /**
