@@ -266,6 +266,14 @@ function memberlite_comment_count( $count ) {
 }
 add_filter( 'get_comments_number', 'memberlite_comment_count', 0 );
 
+/* Custom loader for get_sidebar to allow templates and child themes to modify */
+function memberlite_get_sidebar( $name = NULL ) {
+	$name = apply_filters( 'memberlite_get_sidebar', $name );
+	if( $name !== false ) {
+		get_sidebar( $name );
+	}
+}
+
 /* Custom admin theme pages. */
 if( is_admin() ) {
 	require_once get_template_directory() . '/inc/admin.php';

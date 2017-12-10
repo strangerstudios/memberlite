@@ -21,5 +21,5 @@ get_header(); ?>
 		</main><!-- #main -->
 		<?php do_action('after_main'); ?>
 	</section><!-- #primary -->
-<?php get_sidebar(); ?>
+<?php memberlite_get_sidebar(); ?>
 <?php get_footer(); ?>
