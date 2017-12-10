@@ -9,16 +9,20 @@
 <?php
 	global $memberlite_defaults;
 
-	$memberlite_loop_images = get_theme_mod( 'memberlite_loop_images',$memberlite_defaults['memberlite_loop_images'] ); 
-	if( $memberlite_loop_images == 'show_both' || $memberlite_loop_images == 'show_banner' ) {
-		$banner_image_id = memberlite_getBannerImageID( $post );
-		$banner_image_src = wp_get_attachment_image_src( $banner_image_id, 'banner' );
-		if( !empty( $banner_image_src ) ) { ?>
-			<div class="entry-banner" style="background-image: url('<?php echo esc_attr( $banner_image_src[0] ); ?>'); ">
-		<?php }
-	} elseif( $memberlite_loop_images == 'show_thumbnail' ) {
-		the_post_thumbnail( 'thumbnail', array( 'class' => 'alignright' ) );
-	} ?>
+	if ( memberlite_should_show_banner_image() ) {
+		$memberlite_get_banner_image_src = memberlite_get_banner_image_src( $post->ID, 'banner' );
+	}
+
+	if( !empty( $memberlite_get_banner_image_src ) ) { ?>
+		<div class="entry-banner" style="background-image: url('<?php echo esc_attr( $memberlite_get_banner_image_src[0] ); ?>'); ">
+	<?php } ?>
+
+	<?php 
+		$memberlite_loop_images = get_theme_mod( 'memberlite_loop_images', $memberlite_defaults['memberlite_loop_images'] );
+		if( $memberlite_loop_images === 'show_thumbnail' ) {
+			the_post_thumbnail( 'thumbnail', array( 'class' => 'alignright' ) );
+		} 
+	?>
 
 	<header class="entry-header">
 		<?php if ( 'post' == get_post_type() ) : ?>
@@ -33,7 +37,6 @@
 		<?php endif; ?>
 	</header><!-- .entry-header -->
 	
-	<?php if( !empty( $banner_image_src ) ) { ?>
-		</div> <!-- .entry-banner -->
-	<?php }
-?>
+	<?php if( !empty( $memberlite_get_banner_image_src ) ) { ?>
+		</div><!--.entry-banner-->
+	<?php } ?>

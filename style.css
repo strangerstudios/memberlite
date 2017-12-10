@@ -838,8 +838,6 @@ a:active {
 }
 
 .search-no-results #site-navigation {
-	border-bottom: 1px solid #DADADA; 
-	margin-bottom: 4em;
 }
 
 #site-navigation .search-form {float: right; position: relative; }
@@ -934,7 +932,7 @@ a:active {
 .memberlite-breadcrumb {
 	color: #FFF;
 	font-size: 1.2rem;
-	margin: 0 0 1em 0;
+	margin: 0;
 	padding: 0;
 }
 .memberlite-breadcrumb a {
@@ -944,8 +942,7 @@ a:active {
 	font-weight: 400;
 }
 .masthead-banner .masthead .memberlite-breadcrumb {
-	position: absolute;
-	top: -2em;
+
 }
 /*--------------------------------------------------------------
 5.4 Prev/Next Navigation
@@ -1337,13 +1334,13 @@ a:active {
 .masthead-banner {
 	background-position: center center;
 	background-size: cover;
-	margin-bottom: 4em;
+	margin-bottom: 4rem;
 	position: relative;
 }
 .masthead {
 	background-color: #2C3E50;
 	color: #FFF;
-	padding: 2rem 0;
+	padding: 2rem 0 4rem 0;
 	margin-bottom: 4rem;
 }
 .page-template-fluid-width .masthead {
@@ -1351,11 +1348,8 @@ a:active {
 }
 .masthead-inv {
 	background-color: #FDFDFD;
-	padding: 2rem 0;
-	margin-bottom: 4rem;
-}
-.home .masthead {
 	padding: 4rem 0;
+	margin-bottom: 4rem;
 }
 .home .masthead p {
 	font-size: 2rem;
@@ -1365,28 +1359,21 @@ a:active {
 .masthead-banner .masthead {
 	background-color: transparent;
 	margin: 0;
-	padding: 5em 0;
 }
 .masthead-padding {
 	padding: 5em 0;
 }
 .single-post .masthead-banner .masthead {
-	padding: 20rem 0 0 0;
-}
-.home .masthead-banner .masthead {
-	padding: 4rem 0;
-}
-.masthead-banner .masthead .memberlite-breadcrumb {
-	position: absolute;
-	top: -18rem;
+	padding-bottom: 0;
 }
 .masthead-banner .masthead-post-byline {
 	background: rgba(0,0,0,.6);
-	width: 90%;
+	margin: 16rem 0 0 0;
 	padding: 1rem 0;
+	width: 90%;
 }
 .masthead h1 {
-	margin: 0;
+	margin: 2rem 0 0 0;
 }
 .masthead h1 a, .masthead h2 a, .masthead h3 a {
 	color: #FFF;
@@ -1394,14 +1381,10 @@ a:active {
 	border-bottom: 1px dotted #FFF;
 }
 .masthead-banner .masthead h1, .masthead .masthead-padding h1 {
-	padding-bottom: 2rem;
-}
-.home .masthead-banner .masthead h1 {
-	padding-bottom: 0;
 }
 
 .masthead-banner .masthead .masthead-post-byline h1 {
-	padding-bottom: 0;
+	padding: 0;
 }
 .masthead p, .masthead a.pmpro_btn {
 	margin: 2rem 0 0 0;

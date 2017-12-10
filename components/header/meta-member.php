@@ -5,6 +5,7 @@
  * @package Memberlite
  */
 ?>
+
 <div id="meta-member">
 	<div class="meta-member-inner">
 	<?php 

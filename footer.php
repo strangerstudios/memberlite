@@ -11,7 +11,6 @@
 			$template = get_page_template();
 			if( 
 				!is_page_template('templates/fluid-width.php') && 
-				!is_page_template( 'templates/interstitial.php' ) && 
 				!is_404() && 
 				( !is_front_page() || ( is_front_page() && !empty( $template ) && ( basename( $template ) != 'page.php' ) || 'posts' == get_option( 'show_on_front' ) ) )
 			) { ?>
