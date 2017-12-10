@@ -19,7 +19,7 @@
 
 		<header class="masthead">
 			<div class="row">
-				<div class="large-12 columns">
+				<div class="medium-<?php echo memberlite_getColumnsRatio(); ?> columns">
 					
 					<?php do_action('before_masthead_inner'); ?>
 					

@@ -13,9 +13,9 @@ get_header(); ?>
 			<?php get_template_part( 'components/post/content', 'single' ); ?>
 			<?php 
 				$theme_mod = get_theme_mod( 'memberlite_post_nav', 1 );
-
-				if( !empty( $theme_mod ) )
+				if( !empty( $theme_mod ) ) {
 					memberlite_post_nav();
+				}
 			?>
 			<?php
 				// If comments are open or we have at least one comment, load up the comment template

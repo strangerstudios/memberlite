@@ -69,10 +69,11 @@ function memberlite_getColumnsRatio( $location = NULL ) {
 		return '12';
 	} elseif( is_page_template( 'templates/narrow-width.php' ) ) {
 		return '8 medium-offset-2';
-	}
-
-
-	else {
+	} elseif( ( $location == 'masthead') && is_page_template( 'templates/narrow-width.php' ) ) {
+		return '8 medium-offset-2';
+	} elseif( $location == 'masthead' ) {
+		return '12';
+	} else {
 		return $columns_ratio_array[0];
 	}
 }
