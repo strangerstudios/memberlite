@@ -413,7 +413,7 @@ function memberlite_page_title( $echo = true ) {
 
 function memberlite_nav_menu_submenu() {
 	global $post;
-
+	
 	//Build the pages array
 	if( $post->post_parent ) {
 		$exclude = get_post_meta( $post->ID,'exclude',true );
@@ -455,7 +455,7 @@ function memberlite_get_widget_areas() {
 	}
 
 	//Filter to allow customization of the array of widget areas
-	$widgets_areas = apply_filters( 'memberlite_get_widget_areas', $widget_areas );
+	$widget_areas = apply_filters( 'memberlite_get_widget_areas', $widget_areas );
 
 	return $widget_areas;
 }
