@@ -30,4 +30,5 @@ get_header(); ?>
 	</div><!-- #primary -->
 
 <?php memberlite_get_sidebar(); ?>
+
 <?php get_footer(); ?>
