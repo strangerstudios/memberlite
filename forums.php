@@ -4,6 +4,7 @@
  *
  * @package Memberlite
  */
+
 get_header(); ?>
 
 	<div id="primary" class="<?php if(bbp_is_single_user()) { ?>medium-12<?php } else { ?>medium-<?php echo memberlite_getColumnsRatio(); ?><?php } ?> columns content-area">
@@ -18,5 +19,6 @@ get_header(); ?>
 		</main><!-- #main -->
 	</div><!-- #primary -->
 
-<?php if(!bbp_is_single_user()) { ?><?php get_sidebar(); ?><?php } ?>
+<?php if( !bbp_is_single_user() ) { ?><?php get_sidebar(); ?><?php } ?>
+
 <?php get_footer(); ?>

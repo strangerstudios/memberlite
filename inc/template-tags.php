@@ -79,45 +79,47 @@ if ( ! function_exists( 'memberlite_page_nav' ) ) :
 function memberlite_page_nav() {
 	global $post;
 	
-	$post_type_object = get_post_type_object(get_post_type($post));
-	if(empty($post_type_object))
+	$post_type_object = get_post_type_object( get_post_type( $post ) );
+	if( empty( $post_type_object) ) {
 		return;
+	}
 				
 	//check if subpage
-	if(!empty($post->post_parent))
-	{
-		$post_ancestors = get_post_ancestors($post);
-		$child_of = end($post_ancestors);
-	}
-	else
+	if( !empty( $post->post_parent) ) {
+		$post_ancestors = get_post_ancestors( $post );
+		$child_of = end( $post_ancestors );
+	} else {
 		$child_of = $post->ID;
+	}
 	
 	//build array of page ids for navigation
-	$allpages = get_pages('child_of=' . $child_of . '&sort_column=menu_order&sort_order=asc');
+	$allpages = get_pages( 'child_of=' . $child_of . '&sort_column=menu_order&sort_order=asc' );
 	
 	$pages = array();
 	$pages[] = $child_of;		//parent id is first
-	foreach ($allpages as $page) {
+	foreach( $allpages as $page ) {
 	   $pages[] += $page->ID;
 	}
 	
 	//figure out prev and next post IDs
-	$current = array_search($post->ID, $pages);
+	$current = array_search( $post->ID, $pages );
 	
 	//prev
-	if(!empty($pages[$current-1]))
+	if( !empty( $pages[$current-1] ) ) {
 		$previousID = $pages[$current-1];
-	else
+	} else {
 		$previousID = false;
+	}
 	
 	//next
-	if(!empty($pages[$current+1]))
+	if( !empty( $pages[$current+1] ) ) {
 		$nextID = $pages[$current+1];
-	else
+	} else {
 		$nextID = false;
+	}
 	
 	//don't show if neither prev or next
-	if ( empty($nextID) && empty($previousID) ) {
+	if ( empty( $nextID ) && empty( $previousID ) ) {
 		return;
 	}
 	
@@ -126,9 +128,9 @@ function memberlite_page_nav() {
 	<nav class="navigation page-navigation" role="navigation">
 		<h1 class="screen-reader-text"><?php _e( 'Page navigation', 'memberlite' ); ?></h1>
 		<div class="nav-links">
-			<?php if(!empty($previousID) && ($previousID != $post->ID)) { ?>
+			<?php if( !empty($previousID ) && ( $previousID != $post->ID ) ) { ?>
 				<div class="nav-previous"><a href="<?php echo get_permalink($previousID); ?>" rel="prev"><span class="meta-nav">&larr;</span> <?php echo get_the_title($previousID); ?></a></div>
-			<?php } if(!empty($nextID) && ($nextID != $post->ID)) { ?>
+			<?php } if( !empty($nextID) && ( $nextID != $post->ID ) ) { ?>
 				<div class="nav-next"><a href="<?php echo get_permalink($nextID); ?>" rel="next"><?php echo get_the_title($nextID); ?> <span class="meta-nav">&rarr;</span></a></div>
 			<?php } ?>
 		</div><!-- .nav-links -->
@@ -140,15 +142,16 @@ endif;
 /**
  * Prints HTML with meta information based on theme setting Post Entry Meta (before or after) in customizer.
  */
-function memberlite_get_entry_meta($post = NULL, $location = "before") {
+function memberlite_get_entry_meta( $post = NULL, $location = "before" ) {
     global $memberlite_defaults;
 	
-	if(empty($post))
+	if( empty( $post ) ) {
         global $post;
+	}
     
     $meta = get_theme_mod( 'posts_entry_meta_' . $location, $memberlite_defaults['posts_entry_meta_' . $location] );
-    $meta = apply_filters('memberlite_get_entry_meta', $meta, $post, $location);
-    $meta = memberlite_parse_tags($meta, $post);
+    $meta = apply_filters( 'memberlite_get_entry_meta', $meta, $post, $location );
+    $meta = memberlite_parse_tags( $meta, $post );
     
     return $meta;
 }
@@ -340,5 +343,4 @@ class pings_walker extends Walker_Comment {
 		</section>
 	
 	<?php }
-
 }
