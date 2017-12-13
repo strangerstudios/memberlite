@@ -255,16 +255,17 @@ function memberlite_page_title( $echo = true ) {
 		?>
 		<h1 class="page-title">
 		<?php
-			if(bbp_is_search_results())
+			if( bbp_is_search_results() ) {
 				printf( __( 'Forum Search Results for: %s', 'memberlite' ), '<span>' . bbp_get_search_terms() . '</span>' );
-			elseif(bbp_is_search())
+			} elseif( bbp_is_search() ) {
 				_e( 'Forum Search', 'memberlite');
-			elseif( bbp_is_single_forum() || bbp_is_single_topic() )
+			} elseif( bbp_is_single_forum() || bbp_is_single_topic() ) {
 				the_title( '' );
-			elseif(bbp_is_single_user())
-				echo sprintf(__( "%s's Profile", 'User viewing another users profile', 'bbpress' ), get_userdata( bbp_get_user_id() )->display_name );
-			else	
+			} elseif( bbp_is_single_user() ) {
+				echo sprintf( __( "%s's Profile", 'memberlite' ), get_userdata( bbp_get_user_id() )->display_name );
+			} else {	
 				_e( 'Forums', 'memberlite');
+			}
 		?>
 		</h1>
 		<?php
