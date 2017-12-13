@@ -143,7 +143,5 @@ class WP_Widget_Recent_Posts_Thumbnails extends WP_Widget {
 <?php
 	}
 }
-register_widget('WP_Widget_Recent_Posts_Thumbnails');
+register_widget( 'WP_Widget_Recent_Posts_Thumbnails' );
 /* End Recent Posts with Thumbnails Widget */
-
-
