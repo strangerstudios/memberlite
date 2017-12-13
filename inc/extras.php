@@ -412,26 +412,41 @@ function memberlite_page_title( $echo = true ) {
 	return $page_title_html;
 }
 
-function memberlite_nav_menu_submenu() {	
-	$queried_object = get_queried_object();
+/**
+ * Are we on a "blog" page?
+ */
+function memberlite_is_blog() {	
+	$is_blog = ( is_home() || is_singular('post') || ( is_archive() && !is_post_type_archive() ) );
 	
+	$is_blog = apply_filters( 'memberlite_is_blog', $is_blog );
+	
+	return $is_blog;
+}
+
+function memberlite_nav_menu_submenu() {	
+	if( memberlite_is_blog() ) {
+		$current_post = get_post( get_option( 'page_for_posts' ) );
+	} else {
+		$current_post = get_queried_object();
+	}
+		
 	//Build the pages array
-	if( $queried_object->post_parent ) {
-		$exclude = get_post_meta( $queried_object->ID,'exclude',true );
-		$ancestors = get_post_ancestors( $queried_object );
+	if( $current_post->post_parent ) {
+		$exclude = get_post_meta( $current_post->ID,'exclude',true );
+		$ancestors = get_post_ancestors( $current_post );
 		if( !empty( $ancestors ) ) {
 			$pagemenuid = end( $ancestors );
 		} else {
-			$pagemenuid = $queried_object->ID;
+			$pagemenuid = $current_post->ID;
 		}
 		$children = wp_list_pages( 'title_li=&child_of=' . $pagemenuid . '&exclude=' . $exclude . '&echo=0&sort_column=menu_order,post_title' );
 		$titlenamer = get_the_title( $pagemenuid );
 		$titlelink = get_permalink( $pagemenuid) ;
 	} else {
 		$exclude = '';
-		$children = wp_list_pages( 'title_li=&child_of=' . $queried_object->ID . '&exclude=' . $exclude . '&echo=0&sort_column=menu_order,post_title' );
-		$titlenamer = get_the_title( $queried_object->ID );
-		$titlelink = get_permalink( $queried_object->ID );
+		$children = wp_list_pages( 'title_li=&child_of=' . $current_post->ID . '&exclude=' . $exclude . '&echo=0&sort_column=menu_order,post_title' );
+		$titlenamer = get_the_title( $current_post->ID );
+		$titlelink = get_permalink( $current_post->ID );
 	}
 
 	//Display the nav menu
@@ -454,7 +469,7 @@ function memberlite_get_widget_areas() {
 
 		//Add the 'Pages' sidebar
 		$widget_areas[] = 'sidebar-1';
-	} elseif( is_home() ) {
+	} elseif( memberlite_is_blog() ) {
 		//Add the submenu widget to the sidebar (not a real widget area; handled in memberlite_nav_menu_submenu() )
 		$widget_areas[] = 'memberlite_nav_menu_submenu';
 
