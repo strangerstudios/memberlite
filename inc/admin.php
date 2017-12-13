@@ -228,10 +228,10 @@ function memberlite_support() {
 											} else {
 												if(function_exists('pmpro_license_isValid') && pmpro_license_isValid($pmpro_license_key, 'plus')) {
 													//valid key
-													echo '<span class="install"><a class="install-now button" href="' . wp_nonce_url(self_admin_url('update.php?action=install-plugin&plugin=pmpro-advanced-levels-shortcode', 'install-plugin_pmpro-advanced-levels-shortcode')) . '">' . __('Install Now', 'pmpro') . '</a></span>';													
+													echo '<span class="install"><a class="install-now button" href="' . wp_nonce_url(self_admin_url('update.php?action=install-plugin&plugin=pmpro-advanced-levels-shortcode', 'install-plugin_pmpro-advanced-levels-shortcode')) . '">' . __('Install Now', 'memberlite') . '</a></span>';													
 												} else {
 													//invalid key													
-													echo '<span class="download"><a target="_blank" href="http://license.paidmembershipspro.com/downloads/plus/pmpro-advanced-levels-shortcode.zip?key=' . $pmpro_license_key . '">' . __('Download', 'pmpro') . '</a></span>';
+													echo '<span class="download"><a target="_blank" href="http://license.paidmembershipspro.com/downloads/plus/pmpro-advanced-levels-shortcode.zip?key=' . $pmpro_license_key . '">' . __('Download', 'memberlite') . '</a></span>';
 												}												
 											}
 										?>										
