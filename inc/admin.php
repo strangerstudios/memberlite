@@ -56,7 +56,7 @@ function memberlite_support() {
 					<p><?php _e('Use the Customize > Site Identity screen to add a custom logo and update or toggle the display of your Site Title and Tagline.', 'memberlite'); ?></p>
 					<p>
 						<a class="button button-primary" href="<?php echo wp_customize_url (); ?>"><?php _e('Add Your Logo', 'memberlite'); ?></a>
-						<a class="button" href="http://memberlitetheme.com/documentation/site-branding/" target="_blank"><?php _e('View Docs on Site Branding in Memberlite', 'memberlite') ;?></a>
+						<a class="button" href="https://memberlitetheme.com/documentation/site-branding/" target="_blank"><?php _e('View Docs on Site Branding in Memberlite', 'memberlite') ;?></a>
 					</p>
 				</div>
 				<div class="col">
@@ -64,7 +64,7 @@ function memberlite_support() {
 					<p><?php _e('Use the Customize > Memberlite Options screen to modify theme layout, logo, fonts, colors, copyright message and more.', 'memberlite'); ?></p>
 					<p>
 						<a class="button button-primary" href="<?php echo wp_customize_url (); ?>"><?php _e('Customize Your Theme', 'memberlite'); ?></a>
-						<a class="button" href="http://memberlitetheme.com/documentation/customize/" target="_blank"><?php _e('View Docs on on Customizing Memberlite', 'memberlite'); ?></a>
+						<a class="button" href="https://memberlitetheme.com/documentation/customize/" target="_blank"><?php _e('View Docs on on Customizing Memberlite', 'memberlite'); ?></a>
 					</p>
 				</div>
 				<br class="clear" />&nbsp;<br class="clear" />&nbsp;
@@ -74,15 +74,15 @@ function memberlite_support() {
 					<p><?php _e('If you need to customize the theme beyond the settings in Appearance > Customize, use a child theme.' ,'memberlite'); ?></p>
 					<p>
 						<a class="button button-primary"href="https://github.com/strangerstudios/memberlite-child" target="_blank"><?php _e('Download a Blank Child Theme' ,'memberlite'); ?></a>
-						<a class="button" href="http://codex.wordpress.org/Child_Themes" target="_blank"><?php _e('About Child Themes (WordPress Codex)', 'memberlite'); ?></a>
+						<a class="button" href="https://developer.wordpress.org/themes/advanced-topics/child-themes/" target="_blank"><?php _e('About Child Themes (WordPress Codex)', 'memberlite'); ?></a>
 					</p>
 				</div>
 				<div class="col">
 					<h2><span class="dashicons dashicons-lightbulb"></span> <?php _e('Theme Demo, Docs and Support' ,'memberlite'); ?></h2>
 					<p><?php _e('We offer a simple annual support membership if you need additional help with your Memberlite-powered WordPress site.' ,'memberlite'); ?></p>
 					<p>
-						<a class="button button-primary"href="http://demo.memberlitetheme.com" target="_blank"><?php _e('View Theme Demo' ,'memberlite'); ?></a>
-						<a class="button" href="http://memberlitetheme.com" target="_blank"><?php _e('View All Docs and Get Support', 'memberlite'); ?></a>
+						<a class="button button-primary" href="https://demo.memberlitetheme.com" target="_blank"><?php _e('View Theme Demo' ,'memberlite'); ?></a>
+						<a class="button" href="https://memberlitetheme.com" target="_blank"><?php _e('View All Docs and Get Support', 'memberlite'); ?></a>
 					</p>
 				</div>
 			</div> <!-- end feature-section -->
@@ -113,7 +113,7 @@ function memberlite_support() {
 						<div class="plugin-card-top">
 							<div class="name column-name">
 								<h3>
-									<a href="http://memberlitetheme.com/memberlite-shortcodes/" target="_blank"><?php _e('Memberlite Shortcodes' ,'memberlite'); ?></a>
+									<a href="https://memberlitetheme.com/memberlite-shortcodes/" target="_blank"><?php _e('Memberlite Shortcodes' ,'memberlite'); ?></a>
 									<img src="<?php echo get_template_directory_uri();?>/images/memberlite-shortcodes-icon-256x256.png" class="plugin-icon" alt="">
 								</h3>
 							</div>
@@ -135,12 +135,12 @@ function memberlite_support() {
 											}
 										?>
 									</li>
-									<li><a href="http://memberlitetheme.com/memberlite-shortcodes/" target="_blank"><?php _e('More Details' ,'memberlite'); ?></a></li>
+									<li><a href="https://memberlitetheme.com/memberlite-shortcodes/" target="_blank"><?php _e('More Details' ,'memberlite'); ?></a></li>
 								</ul>
 							</div>
 							<div class="desc column-description">
 								<p><?php _e('Enhance the appearance of your content with shortcodes for Banners, Buttons, Columns, Icons, Membership Signup Block, Messages, and Recent Posts.', 'memberlite'); ?></p>
-								<p class="authors"><cite><?php _e('By', 'memberlite'); ?> <a href="http://www.strangerstudios.com"><?php _e('Stranger Studios', 'memberlite'); ?></a></cite></p>
+								<p class="authors"><cite><?php _e('By', 'memberlite'); ?> <a href="https://www.strangerstudios.com"><?php _e('Stranger Studios', 'memberlite'); ?></a></cite></p>
 							</div>
 						</div>
 					</div> <!-- end plugin-card-memberlite-shortcodes -->
@@ -148,7 +148,7 @@ function memberlite_support() {
 						<div class="plugin-card-top">
 							<div class="name column-name">
 								<h3>
-									<a href="http://www.paidmembershipspro.com" target="_blank"><?php _e('Paid Memberships Pro' ,'memberlite'); ?></a>
+									<a href="https://www.paidmembershipspro.com" target="_blank"><?php _e('Paid Memberships Pro' ,'memberlite'); ?></a>
 									<img src="<?php echo get_template_directory_uri();?>/images/paid-memberships-pro-icon-256x256.png" class="plugin-icon" alt="">
 								</h3>
 							</div>
@@ -157,12 +157,12 @@ function memberlite_support() {
 									<li>
 										<a class="install-now button" href="<?php echo esc_url( admin_url( 'plugin-install.php?tab=search&s=paid+memberships+pro') ); ?>"><?php _e('Install Now' ,'memberlite'); ?></a>
 									</li>
-									<li><a href="http://www.paidmembershipspro.com" target="_blank"><?php _e('More Details' ,'memberlite'); ?></a></li>
+									<li><a href="https://www.paidmembershipspro.com" target="_blank"><?php _e('More Details' ,'memberlite'); ?></a></li>
 								</ul>
 							</div>
 							<div class="desc column-description">
 								<p><?php _e('A revenue-generating machine for membership sites. Unlimited levels with recurring payment, protected content and member management.', 'memberlite'); ?></p>
-								<p class="authors"><cite><?php _e('By', 'memberlite'); ?> <a href="http://www.strangerstudios.com"><?php _e('Stranger Studios', 'memberlite'); ?></a></cite></p>
+								<p class="authors"><cite><?php _e('By', 'memberlite'); ?> <a href="https://www.strangerstudios.com"><?php _e('Stranger Studios', 'memberlite'); ?></a></cite></p>
 							</div>
 						</div>
 					</div> <!-- end plugin-card-paid-memberships-pro -->
@@ -214,7 +214,7 @@ function memberlite_support() {
 						<div class="plugin-card-top">
 							<div class="name column-name" style="margin-left: 0;">
 								<h3>
-									<a href="http://www.paidmembershipspro.com/add-ons/plus-add-ons/pmpro-advanced-levels-shortcode/" target="_blank"><?php _e('Advanced Levels Page Shortcode' ,'memberlite'); ?></a>									
+									<a href="https://www.paidmembershipspro.com/add-ons/pmpro-advanced-levels-shortcode/" target="_blank"><?php _e('Advanced Levels Page Shortcode' ,'memberlite'); ?></a>									
 								</h3>
 							</div>
 							<div class="action-links">
@@ -231,17 +231,17 @@ function memberlite_support() {
 													echo '<span class="install"><a class="install-now button" href="' . wp_nonce_url(self_admin_url('update.php?action=install-plugin&plugin=pmpro-advanced-levels-shortcode', 'install-plugin_pmpro-advanced-levels-shortcode')) . '">' . __('Install Now', 'memberlite') . '</a></span>';													
 												} else {
 													//invalid key													
-													echo '<span class="download"><a target="_blank" href="http://license.paidmembershipspro.com/downloads/plus/pmpro-advanced-levels-shortcode.zip?key=' . $pmpro_license_key . '">' . __('Download', 'memberlite') . '</a></span>';
+													echo '<span class="download"><a class="install-now button" target="_blank" href="http://license.paidmembershipspro.com/downloads/plus/pmpro-advanced-levels-shortcode.zip?key=' . $pmpro_license_key . '">' . __('Download', 'memberlite') . '</a></span>';
 												}												
 											}
 										?>										
 									</li>
-									<li><a href="http://www.paidmembershipspro.com/add-ons/plus-add-ons/pmpro-advanced-levels-shortcode/" target="_blank"><?php _e('More Details' ,'memberlite'); ?></a></li>
+									<li><a href="https://www.paidmembershipspro.com/add-ons/pmpro-advanced-levels-shortcode/" target="_blank"><?php _e('More Details' ,'memberlite'); ?></a></li>
 								</ul>
 							</div>
 							<div class="desc column-description" style="margin-left: 0;">
 								<p><?php _e('Adds a new shortcode with many attributes to customize the levels page, including integrated styles for widely used theme frameworks/parent themes.', 'memberlite'); ?></p>
-								<p class="authors"><cite><?php _e('By', 'memberlite'); ?> <a href="http://www.strangerstudios.com"><?php _e('Stranger Studios', 'memberlite'); ?></a></cite></p>
+								<p class="authors"><cite><?php _e('By', 'memberlite'); ?> <a href="https://www.strangerstudios.com"><?php _e('Stranger Studios', 'memberlite'); ?></a></cite></p>
 							</div>
 						</div>
 					</div> <!-- end plugin-card-pmpro-advanced-levels-shortcode -->
@@ -259,7 +259,7 @@ function memberlite_support() {
 						<div class="plugin-card-top">
 							<div class="name column-name">
 								<h3>
-									<a href="http://www.bbpress.org" target="_blank"><?php _e('bbPress' ,'memberlite'); ?></a>
+									<a href="https://www.bbpress.org" target="_blank"><?php _e('bbPress' ,'memberlite'); ?></a>
 									<img src="<?php echo get_template_directory_uri();?>/images/bbpress-icon.svg" class="plugin-icon" alt="">
 								</h3>
 							</div>
@@ -268,13 +268,13 @@ function memberlite_support() {
 									<li>
 										<a class="install-now button" href="<?php echo esc_url( admin_url( 'plugin-install.php?tab=search&s=bbpress') ); ?>"><?php _e('Install Now' ,'memberlite'); ?></a>
 									</li>
-									<li><a href="http://www.bbpress.org" target="_blank"><?php _e('More Details' ,'memberlite'); ?></a></li>
+									<li><a href="https://www.bbpress.org" target="_blank"><?php _e('More Details' ,'memberlite'); ?></a></li>
 								</ul>
 							</div>
 							<div class="desc column-description">
 								<p><?php _e('bbPress is forum software, made the WordPress way.', 'memberlite'); ?></p>
 								<p><a href="<?php echo esc_url( admin_url( 'plugin-install.php?tab=search&type=term&s=Paid+Memberships+Pro+-+bbPress+Add+On') ); ?>"><?php _e('Install Paid Memberships Pro - bbPress Add On' ,'memberlite'); ?></a></p>
-								<p class="authors"><cite><?php _e('By', 'memberlite'); ?> <a href="http://www.bbpress.org"><?php _e('The bbPress Community', 'memberlite'); ?></a></cite></p>
+								<p class="authors"><cite><?php _e('By', 'memberlite'); ?> <a href="https://www.bbpress.org"><?php _e('The bbPress Community', 'memberlite'); ?></a></cite></p>
 							</div>
 						</div>
 					</div> <!-- end plugin-card-bbpress -->
@@ -304,7 +304,7 @@ function memberlite_support() {
 						<div class="plugin-card-top">
 							<div class="name column-name">
 								<h3>
-									<a href="http://www.paidmembershipspro.com" target="_blank"><?php _e('Paid Memberships Pro' ,'memberlite'); ?></a>
+									<a href="https://www.paidmembershipspro.com" target="_blank"><?php _e('Paid Memberships Pro' ,'memberlite'); ?></a>
 									<img src="<?php echo get_template_directory_uri();?>/images/paid-memberships-pro-icon-256x256.png" class="plugin-icon" alt="">
 								</h3>
 							</div>
@@ -313,12 +313,12 @@ function memberlite_support() {
 									<li>
 										<a class="install-now button" href="<?php echo esc_url( admin_url( 'plugin-install.php?tab=search&s=paid+memberships+pro') ); ?>"><?php _e('Install Now' ,'memberlite'); ?></a>
 									</li>
-									<li><a href="http://www.paidmembershipspro.com" target="_blank"><?php _e('More Details' ,'memberlite'); ?></a></li>
+									<li><a href="https://www.paidmembershipspro.com" target="_blank"><?php _e('More Details' ,'memberlite'); ?></a></li>
 								</ul>
 							</div>
 							<div class="desc column-description">
 								<p><?php _e('A revenue-generating machine for membership sites. Unlimited levels with recurring payment, protected content and member management.', 'memberlite'); ?></p>
-								<p class="authors"><cite><?php _e('By', 'memberlite'); ?> <a href="http://www.strangerstudios.com"><?php _e('Stranger Studios', 'memberlite'); ?></a></cite></p>
+								<p class="authors"><cite><?php _e('By', 'memberlite'); ?> <a href="https://www.strangerstudios.com"><?php _e('Stranger Studios', 'memberlite'); ?></a></cite></p>
 							</div>
 						</div>
 					</div> <!-- end plugin-card-paid-memberships-pro -->
@@ -347,7 +347,7 @@ function memberlite_support() {
 						<div class="plugin-card-top">
 							<div class="name column-name">
 								<h3>
-									<a href="http://www.woothemes.com/woocommerce/" target="_blank"><?php _e('WooCommerce' ,'memberlite'); ?></a>
+									<a href="https://woocommerce.com" target="_blank"><?php _e('WooCommerce' ,'memberlite'); ?></a>
 									<img src="<?php echo get_template_directory_uri();?>/images/woocommerce-icon-256x256.png" class="plugin-icon" alt="">
 								</h3>
 							</div>
@@ -362,7 +362,7 @@ function memberlite_support() {
 							<div class="desc column-description">
 								<p><?php _e('WooCommerce is a powerful, extendable eCommerce plugin that helps you sell anything. Beautifully.', 'memberlite'); ?></p>
 								<p><a href="<?php echo esc_url( admin_url( 'plugin-install.php?tab=search&type=term&s=Paid+Memberships+Pro+-+WooCommerce+Add+On') ); ?>"><?php _e('Install Paid Memberships Pro - WooCommerce Add On' ,'memberlite'); ?></a></p>
-								<p class="authors"><cite><?php _e('By', 'memberlite'); ?> <a href="http://www.woothemes.com/woocommerce/"><?php _e('WooThemes', 'memberlite'); ?></a></cite></p>
+								<p class="authors"><cite><?php _e('By', 'memberlite'); ?> <a href="https://woocommerce.com"><?php _e('WooThemes', 'memberlite'); ?></a></cite></p>
 							</div>
 						</div>
 					</div> <!-- end plugin-card-woocommerce -->
