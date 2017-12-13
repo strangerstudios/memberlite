@@ -4,7 +4,9 @@
  *
  * @package Memberlite
  */
+
 get_header(); ?>
+
 <div id="primary" class="large-12 columns content-area">
 	<?php do_action('before_main'); ?>
 	<main id="main" class="site-main" role="main">
@@ -22,4 +24,5 @@ get_header(); ?>
 	</main><!-- #main -->
 	<?php do_action('after_main'); ?>
 </div><!-- #primary -->
+
 <?php get_footer(); ?>
