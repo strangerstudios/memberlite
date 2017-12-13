@@ -412,22 +412,22 @@ function memberlite_page_title( $echo = true ) {
 	return $page_title_html;
 }
 
-function memberlite_nav_menu_submenu() {
-	global $post;
+function memberlite_nav_menu_submenu() {	
+	$queried_object = get_queried_object();
 	
 	//Build the pages array
-	if( $post->post_parent ) {
-		$exclude = get_post_meta( $post->ID,'exclude',true );
-		$ancestors = get_post_ancestors( $post );
+	if( $queried_object->post_parent ) {
+		$exclude = get_post_meta( $queried_object->ID,'exclude',true );
+		$ancestors = get_post_ancestors( $queried_object );
 		$pagemenuid = end( $ancestors );
 		$children = wp_list_pages( 'title_li=&child_of=' . $pagemenuid . '&exclude=' . $exclude . '&echo=0&sort_column=menu_order,post_title' );
 		$titlenamer = get_the_title( $pagemenuid );
 		$titlelink = get_permalink( $pagemenuid) ;
 	} else {
 		$exclude = '';
-		$children = wp_list_pages( 'title_li=&child_of=' . $post->ID . '&exclude=' . $exclude . '&echo=0&sort_column=menu_order,post_title' );
-		$titlenamer = get_the_title( $post->ID );
-		$titlelink = get_permalink( $post->ID );
+		$children = wp_list_pages( 'title_li=&child_of=' . $queried_object->ID . '&exclude=' . $exclude . '&echo=0&sort_column=menu_order,post_title' );
+		$titlenamer = get_the_title( $queried_object->ID );
+		$titlelink = get_permalink( $queried_object->ID );
 	}
 
 	//Display the nav menu
@@ -450,11 +450,17 @@ function memberlite_get_widget_areas() {
 
 		//Add the 'Pages' sidebar
 		$widget_areas[] = 'sidebar-1';
+	} elseif( is_home() ) {
+		//Add the submenu widget to the sidebar (not a real widget area; handled in memberlite_nav_menu_submenu() )
+		$widget_areas[] = 'memberlite_nav_menu_submenu';
+
+		//Add the 'Posts and Archives' sidebar
+		$widget_areas[] = 'sidebar-2';
 	} else {
 		//Add the 'Posts and Archives' sidebar
 		$widget_areas[] = 'sidebar-2';
 	}
-
+	
 	//Filter to allow customization of the array of widget areas
 	$widget_areas = apply_filters( 'memberlite_get_widget_areas', $widget_areas );
 
