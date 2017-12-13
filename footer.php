@@ -17,11 +17,11 @@
 				</div><!-- .row -->
 		<?php } ?>
 
-		<?php do_action('after_content'); ?>
+		<?php do_action( 'after_content' ); ?>
 
 	</div><!-- #content -->
 	
-	<?php do_action('before_footer'); ?>
+	<?php do_action( 'before_footer' ); ?>
 
 	<?php if( !is_page_template( 'templates/interstitial.php' ) ) { ?>
 	<footer id="colophon" class="site-footer" role="contentinfo">
@@ -38,7 +38,7 @@
 						'menu_class' => 'menu large-12 columns',
 						'fallback_cb' => false,					
 					);				
-					wp_nav_menu($footer_defaults); 				
+					wp_nav_menu( $footer_defaults ); 				
 				?>
 			</nav><!-- #footer-navigation -->
 		<?php } ?>
@@ -48,11 +48,11 @@
 	</footer><!-- #colophon -->
 	<?php } ?>
 
-	<?php do_action('after_footer'); ?>
+	<?php do_action( 'after_footer' ); ?>
 
 </div><!-- #page -->
 
-<?php do_action('after_page'); ?>
+<?php do_action( 'after_page' ); ?>
 
 <?php wp_footer(); ?>
 
