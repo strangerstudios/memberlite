@@ -9,14 +9,14 @@ get_header(); ?>
 
 <?php 
 	if ( 'posts' == get_option( 'show_on_front' ) ) {
-		include( get_home_template() );
+		get_template_part( 'index' );
 	} else {
 		/*
 			If a page template is specified, use that
 		*/
 		$template = get_page_template();
 		if( basename( $template ) != 'page.php' ) {
-			//use the template they specified
+			//use the template they specified; using get_template_part here would complicate the code
 			include( get_page_template() );
 		} else {
 			while ( have_posts() ) : the_post(); ?>

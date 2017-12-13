@@ -34,7 +34,7 @@
 					<?php
 						$memberlite_masthead_content = apply_filters( 'memberlite_masthead_content', '' );
 						if( $memberlite_masthead_content === '' ) {
-							if( is_front_page() ) {
+							if( is_front_page() && !is_home() ) {
 								echo memberlite_get_the_content_before_more($post->post_content);
 							} else {
 								//Just show the page title	
