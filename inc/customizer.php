@@ -385,7 +385,7 @@ class memberlite_Customize {
 					'2' => __( '2', 'memberlite' ),
 					'3' => __( '3', 'memberlite' ),
 					'4' => __( '4', 'memberlite' ),
-					'6' => __( '6', 'memeberlite' ),
+					'6' => __( '6', 'memberlite' ),
 				), 
 				'priority' => 100
 			)
