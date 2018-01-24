@@ -78,6 +78,7 @@ We highly recommend using these plugins for every site running Memberlite:
 
 == Changelog ==
 **3.1 - 2017-XX-XX **
+* BUG FIX/ENHANCEMENT: Prefixing all hooks with theme slug. Adding deprecated file for old hook names.
 * BUG FIX: Hiding 'Register' link in meta menu if registration is disabled.
 * BUG FIX: Wrapping strings in customizer to fix redirect issue.
 * SECURITY/BUG FIX: Added esc_url to wp-admin links on theme welcome page.
