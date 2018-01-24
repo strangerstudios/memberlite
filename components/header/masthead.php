@@ -6,7 +6,7 @@
  */
 ?>
 
-<?php do_action('before_masthead'); ?>
+<?php do_action('memberlite_before_masthead'); ?>
 
 <?php
 	global $post;
@@ -21,7 +21,7 @@
 			<div class="row">
 				<div class="medium-<?php echo memberlite_getColumnsRatio( 'masthead' ); ?> columns">
 					
-					<?php do_action('before_masthead_inner'); ?>
+					<?php do_action('memberlite_before_masthead_inner'); ?>
 					
 					<?php if( is_page_template( 'templates/interstitial.php' ) ) { 
 						$referrer = isset( $_GET['redirect_to'] ) ? esc_url_raw( $_GET['redirect_to'] ) :null;
@@ -45,7 +45,7 @@
 						}
 					?>
 
-					<?php do_action('after_masthead_inner'); ?>
+					<?php do_action('memberlite_after_masthead_inner'); ?>
 
 				</div><!--.columns-->
 			</div><!-- .row -->
@@ -57,4 +57,4 @@
 	} //checks if the banner is hidden
 ?>
 
-<?php do_action('after_masthead'); ?>
+<?php do_action('memberlite_after_masthead'); ?>

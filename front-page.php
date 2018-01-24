@@ -22,6 +22,7 @@ get_header(); ?>
 			while ( have_posts() ) : the_post(); ?>
 			<div class="row">
 				<div id="primary" class="large-12 columns content-area">
+					<?php do_action('memberlite_before_main'); ?>
 					<main id="main" class="site-main" role="main">
 						<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>	
 							<div class="home-content">
@@ -47,6 +48,7 @@ get_header(); ?>
 							</footer><!-- .entry-footer -->
 						</article><!-- #post-## -->
 					</main><!-- #main -->
+					<?php do_action('memberlite_after_main'); ?>
 				</div><!-- #primary -->
 			</div><!-- .row -->
 			<?php endwhile; // end of the loop. ?>

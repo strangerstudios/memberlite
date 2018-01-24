@@ -16,14 +16,14 @@
 </head>
 
 <body <?php body_class(); ?>>
-<?php do_action('before_page'); ?>
+<?php do_action('memberlite_before_page'); ?>
 <div id="page" class="hfeed site">
 
 	<?php get_template_part( 'components/header/mobile', 'menu' ); ?>
 
 	<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'memberlite' ); ?></a>
 	
-	<?php do_action('before_site_header'); ?>
+	<?php do_action('memberlite_before_site_header'); ?>
 	
 	<header id="masthead" class="site-header" role="banner">
 		<div class="row">
@@ -68,7 +68,7 @@
 		</div><!-- .row -->
 	</header><!-- #masthead -->
 
-	<?php do_action('before_site_navigation'); ?>
+	<?php do_action('memberlite_before_site_navigation'); ?>
 	
 	<?php if( !is_page_template( 'templates/interstitial.php' ) &&  has_nav_menu( 'primary' ) ) { ?>
 		<nav id="site-navigation">
@@ -85,7 +85,7 @@
 		</nav><!-- #site-navigation -->
 	<?php } ?>
 
-	<?php do_action('before_content'); ?>
+	<?php do_action('memberlite_before_content'); ?>
 	
 	<div id="content" class="site-content">
 

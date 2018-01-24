@@ -296,6 +296,9 @@ require_once get_template_directory() . '/inc/custom-header.php';
 /* Customizer additions. */
 require_once get_template_directory() . '/inc/customizer.php';
 
+/* Deprecated hooks, filters and functions. */
+require_once get_template_directory() . '/inc/deprecated.php';
+
 /* Custom functions that act independently of the theme templates. */
 require_once get_template_directory() . '/inc/extras.php';
 

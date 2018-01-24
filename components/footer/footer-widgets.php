@@ -6,7 +6,7 @@
  */
 ?>
 
-<?php do_action( 'before_footer_widgets' ); ?>
+<?php do_action( 'memberlite_before_footer_widgets' ); ?>
 
 <?php if( is_active_sidebar( 'sidebar-4' )) { ?>
 	<div class="footer-widgets">
@@ -16,4 +16,4 @@
 	</div><!-- .footer-widgets -->
 <?php } ?>
 
-<?php do_action( 'after_footer_widgets' ); ?>
+<?php do_action( 'memberlite_after_footer_widgets' ); ?>

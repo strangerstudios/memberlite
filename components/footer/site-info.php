@@ -6,7 +6,7 @@
  */
 ?>
 
-<?php do_action('before_site_info'); ?>
+<?php do_action('memberlite_before_site_info'); ?>
 		
 <div class="row site-info">
 	<?php 
@@ -35,4 +35,4 @@
 	<?php } ?>
 </div><!-- .row, .site-info -->
 
-<?php do_action('after_site_info'); ?>
+<?php do_action('memberlite_after_site_info'); ?>

@@ -5,7 +5,7 @@
  * @package Memberlite
  */
 ?>
-<?php do_action( 'before_mobile_nav' ); ?>	
+<?php do_action( 'memberlite_before_mobile_nav' ); ?>	
 
 <?php 
 	if( is_active_sidebar( 'sidebar-5' ) || has_nav_menu( 'primary' ) ) {
@@ -30,4 +30,4 @@
 	}
 ?>
 
-<?php do_action( 'after_mobile_nav' ); ?>
+<?php do_action( 'memberlite_after_mobile_nav' ); ?>
