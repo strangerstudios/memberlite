@@ -51,6 +51,7 @@ We highly recommend using these plugins for every site running Memberlite:
 ###Changelog
 
 **3.1 - 2017-XX-XX**
+* BUG FIX: Hiding 'Register' link in meta menu if registration is disabled.
 * BUG FIX: Wrapping strings in customizer to fix redirect issue.
 * SECURITY/BUG FIX: Added esc_url to wp-admin links on theme welcome page.
 * ENHANCEMENT: Updating to version 4.7 of Font Awesome.
