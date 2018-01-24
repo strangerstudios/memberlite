@@ -23,5 +23,7 @@ get_header(); ?>
 		</main><!-- #main -->
 		<?php do_action('memberlite_after_main'); ?>
 	</div><!-- #primary -->
+
 <?php memberlite_get_sidebar(); ?>
+
 <?php get_footer(); ?>

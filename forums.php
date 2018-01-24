@@ -19,6 +19,10 @@ get_header(); ?>
 		</main><!-- #main -->
 	</div><!-- #primary -->
 
-<?php if( !bbp_is_single_user() ) { ?><?php get_sidebar(); ?><?php } ?>
+<?php
+	if( !bbp_is_single_user() ) { 
+		memberlite_get_sidebar();
+	} 
+?>
 
 <?php get_footer(); ?>
