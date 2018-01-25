@@ -42,3 +42,16 @@ $memberlite_map_deprecated_hooks = array(
 	'memberlite_before_site_info'		=> 'before_site_info',
 	'memberlite_after_site_info'		=> 'after_site_info',
 );
+
+//anonymous function used below is only supported in php 5.2+
+if ( version_compare( phpversion(), '5.3.0', '>=' ) ) {
+	foreach( $memberlite_map_deprecated_hooks as $new => $old ) {
+		//assumes hooks with no parameters
+		add_action( $new, function() use ( $new, $old ) {
+			if( has_filter( $old ) ) {
+				trigger_error( sprintf( __('The %s hook has been deprecated since version 3.1 of Memberlite. Please use the %s hook instead.'), $old, $new ) );
+				do_action( $old );
+			}
+		} );
+	}
+}
