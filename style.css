@@ -1860,6 +1860,49 @@ a:active {
 .btn_secondary, .btn_secondary:link {background: #18BC9C; }
 .btn_action, .btn_action:link {background: #F39C12; }
 
+/* Tabs used in theme comments also used by Memberlite Shortcodes plugin */
+.memberlite_tabbable ul.memberlite_tabs {margin: 0; }
+.memberlite_tabbable ul.memberlite_tabs li {
+	float: left;
+	list-style: none;
+	margin: 0 .5rem 0 0;
+}
+.memberlite_tabbable ul.memberlite_tabs li > a {
+	background: none;
+	border: 1px solid #CCC;
+	border-top-left-radius: 3px;
+	border-top-right-radius: 3px;
+	border-bottom: none;
+	color: #777777;
+	display: inline-block;
+	float: none;
+	padding: 1.5rem 2rem;
+	text-decoration: none;
+}
+.memberlite_tabbable ul.memberlite_tabs li > a:hover {
+	background: #EFEFEF;
+}
+.memberlite_tabbable ul.memberlite_tabs li.memberlite_active a {
+	background-color: #BBB;
+	border-color: #BBB;
+	font-weight: bold;
+}
+.memberlite_tabbable .memberlite_tab_content {
+	border-top: .5rem solid #BBB;
+	clear: both; 
+	padding-top: 4rem;
+}
+.memberlite_tabbable .memberlite_tab_pane {
+	display: none;
+}
+.memberlite_tabbable .memberlite_tab_pane.memberlite_active {
+	display: block;
+}
+
+#comments .memberlite_tabbable .memberlite_tab_content {
+	padding-top: 0; 
+}
+
 .memberlite_tabbable ul.memberlite_tabs li.memberlite_active a {
 	color: #FFF !important;
 	background-color: #18BC9C;
