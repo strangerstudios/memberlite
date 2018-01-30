@@ -1246,6 +1246,7 @@ a:active {
 	margin: 0 0 20px 0;	
 }
 .header-right {
+	margin-bottom: 2rem;
 	text-align: right;
 }
 .header-right #meta-member .meta-member-inner, .header-right aside {
