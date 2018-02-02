@@ -25,7 +25,7 @@ class memberlite_Customize {
 			'memberlite_webfonts',
 			array(
 				'default' => $memberlite_defaults['memberlite_webfonts'],
-				'sanitize_callback' => 'sanitize_text_field',
+				'sanitize_callback' => array('memberlite_Customize', 'sanitize_select'),
 				'sanitize_js_callback' => array('memberlite_Customize', 'sanitize_js_callback'),
 			)
 		);
@@ -92,7 +92,7 @@ class memberlite_Customize {
 			'columns_ratio_header',
 			array(
 				'default' => $memberlite_defaults['columns_ratio_header'],				
-				'sanitize_callback' => 'sanitize_text_field',
+				'sanitize_callback' => array('memberlite_Customize', 'sanitize_select'),
 				'sanitize_js_callback' => array('memberlite_Customize', 'sanitize_js_callback'),
 				'transport' => 'refresh',
 			)
@@ -123,7 +123,7 @@ class memberlite_Customize {
 			'columns_ratio',
 			array(
 				'default' => $memberlite_defaults['columns_ratio'],				
-				'sanitize_callback' => 'sanitize_text_field',
+				'sanitize_callback' => array('memberlite_Customize', 'sanitize_select'),
 				'sanitize_js_callback' => array('memberlite_Customize', 'sanitize_js_callback'),
 				'transport' => 'refresh',
 			)
@@ -149,7 +149,7 @@ class memberlite_Customize {
 			'sidebar_location',
 			array(
 				'default' => $memberlite_defaults['sidebar_location'],
-				'sanitize_callback' => 'sanitize_text_field',
+				'sanitize_callback' => array('memberlite_Customize', 'sanitize_select'),
 				'sanitize_js_callback' => array('memberlite_Customize', 'sanitize_js_callback'),
 			)
 		);
@@ -170,7 +170,7 @@ class memberlite_Customize {
 			'sidebar_location_blog',
 			array(
 				'default' => $memberlite_defaults['sidebar_location_blog'],
-				'sanitize_callback' => 'sanitize_text_field',
+				'sanitize_callback' => array('memberlite_Customize', 'sanitize_select'),
 				'sanitize_js_callback' => array('memberlite_Customize', 'sanitize_js_callback'),
 			)
 		);
@@ -191,7 +191,7 @@ class memberlite_Customize {
 			'content_archives',
 			array(
 				'default' => $memberlite_defaults['content_archives'],
-				'sanitize_callback' => 'sanitize_text_field',
+				'sanitize_callback' => array('memberlite_Customize', 'sanitize_select'),
 				'sanitize_js_callback' => array('memberlite_Customize', 'sanitize_js_callback'),
 			)
 		);
@@ -300,7 +300,7 @@ class memberlite_Customize {
 			'memberlite_loop_images',
 			array(
 				'default' => $memberlite_defaults['memberlite_loop_images'],				
-				'sanitize_callback' => 'sanitize_text_field',
+				'sanitize_callback' => array('memberlite_Customize', 'sanitize_select'),
 				'sanitize_js_callback' => array('memberlite_Customize', 'sanitize_js_callback'),
 				'transport' => 'refresh',
 			)
@@ -973,6 +973,36 @@ class memberlite_Customize {
 	public static function sanitize_js_callback( $value ) {
 		$value = esc_js( $value );
 		return $value;
+	}
+	
+	/**
+	 * Sanitize select and radio fields. Based on (https://github.com/WPTRT/code-examples/blob/master/customizer/sanitization-callbacks.php#L262-L288)
+	 *
+	 * @since Memberlite 3.1
+	 *
+	 * - Sanitization: select
+	 * - Control: select, radio
+	 * 
+	 * Sanitization callback for 'select' and 'radio' type controls. This callback sanitizes `$input`
+	 * as a slug, and then validates `$input` against the choices defined for the control.
+	 * 
+	 * @see sanitize_key()               https://developer.wordpress.org/reference/functions/sanitize_key/
+	 * @see $wp_customize->get_control() https://developer.wordpress.org/reference/classes/wp_customize_manager/get_control/
+	 *
+	 * @param string               $input   Slug to sanitize.
+	 * @param WP_Customize_Setting $setting Setting instance.
+	 * @return string Sanitized slug if it is a valid choice; otherwise, the setting default.
+	 */
+	public static function sanitize_select( $input, $setting ) {
+		
+		// Ensure input is a slug.
+		$input = sanitize_key( $input );
+		
+		// Get list of choices from the control associated with the setting.
+		$choices = $setting->manager->get_control( $setting->id )->choices;
+		
+		// If the input is a valid key, return it; otherwise, return the default.
+		return ( array_key_exists( $input, $choices ) ? $input : $setting->default );
 	}
 
 	/**
