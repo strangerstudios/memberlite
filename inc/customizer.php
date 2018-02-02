@@ -489,7 +489,7 @@ class memberlite_Customize {
 			'bgcolor_site_navigation',
 			array(
 				'default' => $memberlite_defaults['bgcolor_site_navigation'],
-				'sanitize_callback' => 'sanitize_hex_field',
+				'sanitize_callback' => 'sanitize_hex_color',
 				'sanitize_js_callback' => 'maybe_hash_hex_color',
 				'type' => 'theme_mod',
 				'capability' => 'edit_theme_options',
@@ -510,7 +510,7 @@ class memberlite_Customize {
 			'color_site_navigation',
 			array(
 				'default' => $memberlite_defaults['color_site_navigation'],
-				'sanitize_callback' => 'sanitize_hex_field',
+				'sanitize_callback' => 'sanitize_hex_color',
 				'sanitize_js_callback' => 'maybe_hash_hex_color',
 				'type' => 'theme_mod',
 				'capability' => 'edit_theme_options',
@@ -531,7 +531,7 @@ class memberlite_Customize {
 			'color_link',
 			array(
 				'default' => $memberlite_defaults['color_link'],
-				'sanitize_callback' => 'sanitize_hex_field',
+				'sanitize_callback' => 'sanitize_hex_color',
 				'sanitize_js_callback' => 'maybe_hash_hex_color',
 				'type' => 'theme_mod',
 				'capability' => 'edit_theme_options',
@@ -552,7 +552,7 @@ class memberlite_Customize {
 			'color_meta_link',
 			array(
 				'default' => $memberlite_defaults['color_meta_link'],
-				'sanitize_callback' => 'sanitize_hex_field',
+				'sanitize_callback' => 'sanitize_hex_color',
 				'sanitize_js_callback' => 'maybe_hash_hex_color',
 				'type' => 'theme_mod',
 				'capability' => 'edit_theme_options',
@@ -573,7 +573,7 @@ class memberlite_Customize {
 			'color_primary',
 			array(
 				'default' => $memberlite_defaults['color_primary'],
-				'sanitize_callback' => 'sanitize_hex_field',
+				'sanitize_callback' => 'sanitize_hex_color',
 				'sanitize_js_callback' => 'maybe_hash_hex_color',
 				'type' => 'theme_mod',
 				'capability' => 'edit_theme_options',
@@ -594,7 +594,7 @@ class memberlite_Customize {
 			'color_secondary',
 			array(
 				'default' => $memberlite_defaults['color_secondary'],
-				'sanitize_callback' => 'sanitize_hex_field',
+				'sanitize_callback' => 'sanitize_hex_color',
 				'sanitize_js_callback' => 'maybe_hash_hex_color',
 				'type' => 'theme_mod',
 				'capability' => 'edit_theme_options',
@@ -615,7 +615,7 @@ class memberlite_Customize {
 			'color_action',
 			array(
 				'default' => $memberlite_defaults['color_action'],
-				'sanitize_callback' => 'sanitize_hex_field',
+				'sanitize_callback' => 'sanitize_hex_color',
 				'sanitize_js_callback' => 'maybe_hash_hex_color',
 				'type' => 'theme_mod',
 				'capability' => 'edit_theme_options',
