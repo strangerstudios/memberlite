@@ -215,9 +215,9 @@ dfn, cite, em, i {
 	font-style: italic;
 }
 blockquote {
-	margin: 1.5rem 0;
+	margin: 0 0 2.6rem 0;
 	background: #FAFAFA;
-	padding: 1rem 1rem 1px 1rem;
+	padding: 2.6rem 2.6rem 1px 2.6rem;
 	border-left: 5px solid #CCC;
 }
 blockquote.quote, q, .testimonials-widget blockquote {
