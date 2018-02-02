@@ -59,7 +59,7 @@ class memberlite_Customize {
 			'meta_login',
 			array(
 				'default' => false,
-				'sanitize_callback' => 'sanitize_checkbox',
+				'sanitize_callback' => array('memberlite_Customize', 'sanitize_checkbox'),
 				'sanitize_js_callback' => array('memberlite_Customize', 'sanitize_js_callback'),
 			)
 		);
@@ -76,7 +76,7 @@ class memberlite_Customize {
 			'nav_menu_search',
 			array(
 				'default' => false,
-				'sanitize_callback' => 'sanitize_checkbox',
+				'sanitize_callback' => array('memberlite_Customize', 'sanitize_checkbox'),
 				'sanitize_js_callback' => array('memberlite_Customize', 'sanitize_js_callback'),
 			)
 		);
@@ -252,7 +252,7 @@ class memberlite_Customize {
 				$memberlite_breadcrumb['slug'],
 				array(
 					'default' => false,
-					'sanitize_callback' => 'sanitize_checkbox',
+					'sanitize_callback' => array('memberlite_Customize', 'sanitize_checkbox'),
 					'sanitize_js_callback' => array('memberlite_Customize', 'sanitize_js_callback'),
 				)
 			);
@@ -271,7 +271,7 @@ class memberlite_Customize {
 			'memberlite_post_nav',
 			array(
 				'default' => true,
-				'sanitize_callback' => 'sanitize_checkbox',
+				'sanitize_callback' => array('memberlite_Customize', 'sanitize_checkbox'),
 				'sanitize_js_callback' => array('memberlite_Customize', 'sanitize_js_callback'),
 			)
 		);
@@ -288,7 +288,7 @@ class memberlite_Customize {
 			'memberlite_page_nav',
 			array(
 				'default' => true,
-				'sanitize_callback' => 'sanitize_checkbox',
+				'sanitize_callback' => array('memberlite_Customize', 'sanitize_checkbox'),
 				'sanitize_js_callback' => array('memberlite_Customize', 'sanitize_js_callback'),
 			)
 		);
@@ -434,7 +434,7 @@ class memberlite_Customize {
 			'memberlite_back_to_top',
 			array(
 				'default' => true,
-				'sanitize_callback' => 'sanitize_checkbox',
+				'sanitize_callback' => array('memberlite_Customize', 'sanitize_checkbox'),
 				'sanitize_js_callback' => array('memberlite_Customize', 'sanitize_js_callback'),
 			)
 		);
@@ -472,7 +472,7 @@ class memberlite_Customize {
 			'memberlite_darkcss',
 			array(
 				'default' => false,
-				'sanitize_callback' => 'sanitize_checkbox',
+				'sanitize_callback' => array('memberlite_Customize', 'sanitize_checkbox'),
 				'sanitize_js_callback' => array('memberlite_Customize', 'sanitize_js_callback'),
 			)
 		);
