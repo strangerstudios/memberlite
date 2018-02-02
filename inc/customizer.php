@@ -17,8 +17,7 @@ class memberlite_Customize {
 			'memberlite_theme_options', 
 			array(
 				'title' => __( 'Memberlite Options', 'memberlite' ),
-				'priority' => 35,
-				'capability' => 'edit_theme_options',
+				'priority' => 35,				
 				'description' => __('Allows you to customize settings for Memberlite.', 'memberlite'),
 			) 
 		);
@@ -92,9 +91,7 @@ class memberlite_Customize {
 		$wp_customize->add_setting(
 			'columns_ratio_header',
 			array(
-				'default' => $memberlite_defaults['columns_ratio_header'],
-				'type' => 'theme_mod',
-				'capability' => 'edit_theme_options',
+				'default' => $memberlite_defaults['columns_ratio_header'],				
 				'sanitize_callback' => 'sanitize_text_field',
 				'sanitize_js_callback' => array('memberlite_Customize', 'sanitize_js_callback'),
 				'transport' => 'refresh',
@@ -125,9 +122,7 @@ class memberlite_Customize {
 		$wp_customize->add_setting(
 			'columns_ratio',
 			array(
-				'default' => $memberlite_defaults['columns_ratio'],
-				'type' => 'theme_mod',
-				'capability' => 'edit_theme_options',
+				'default' => $memberlite_defaults['columns_ratio'],				
 				'sanitize_callback' => 'sanitize_text_field',
 				'sanitize_js_callback' => array('memberlite_Customize', 'sanitize_js_callback'),
 				'transport' => 'refresh',
@@ -304,9 +299,7 @@ class memberlite_Customize {
 		$wp_customize->add_setting(
 			'memberlite_loop_images',
 			array(
-				'default' => $memberlite_defaults['memberlite_loop_images'],
-				'type' => 'theme_mod',
-				'capability' => 'edit_theme_options',
+				'default' => $memberlite_defaults['memberlite_loop_images'],				
 				'sanitize_callback' => 'sanitize_text_field',
 				'sanitize_js_callback' => array('memberlite_Customize', 'sanitize_js_callback'),
 				'transport' => 'refresh',
@@ -331,8 +324,6 @@ class memberlite_Customize {
 			'posts_entry_meta_before',
 			array(
 				'default' => $memberlite_defaults['posts_entry_meta_before'],
-				'type' => 'theme_mod',
-				'capability' => 'edit_theme_options',
 				'sanitize_callback' => 'sanitize_text_field',
 				'sanitize_js_callback' => array('memberlite_Customize', 'sanitize_js_callback'),
 				'transport' => 'postMessage',
@@ -351,8 +342,6 @@ class memberlite_Customize {
 			'posts_entry_meta_after',
 			array(
 				'default' => $memberlite_defaults['posts_entry_meta_after'],
-				'type' => 'theme_mod',
-				'capability' => 'edit_theme_options',
 				'sanitize_callback' => 'sanitize_text_field',
 				'sanitize_js_callback' => array('memberlite_Customize', 'sanitize_js_callback'),
 				'transport' => 'postMessage',
@@ -394,8 +383,6 @@ class memberlite_Customize {
 			'delimiter',
 			array(
 				'default' => $memberlite_defaults['delimiter'],
-				'type' => 'theme_mod',
-				'capability' => 'edit_theme_options',
 				'sanitize_callback' => 'sanitize_text_field',
 				'sanitize_js_callback' => array('memberlite_Customize', 'sanitize_js_callback'),
 				'transport' => 'postMessage',
@@ -413,9 +400,7 @@ class memberlite_Customize {
 		$wp_customize->add_setting(
 			'copyright_textbox',
 			array(
-				'default' => $memberlite_defaults['copyright_textbox'],
-				'type' => 'theme_mod',
-				'capability' => 'edit_theme_options',
+				'default' => $memberlite_defaults['copyright_textbox'],				
 				'sanitize_callback' => array('memberlite_Customize', 'sanitize_text_with_links'),
 				'sanitize_js_callback' => array('memberlite_Customize', 'sanitize_js_text_with_links'),
 				'transport' => 'postMessage',
@@ -453,8 +438,6 @@ class memberlite_Customize {
 				'default' => $memberlite_defaults['memberlite_color_scheme'],
 				'sanitize_callback' => array('memberlite_Customize', 'sanitize_color_scheme'),
 				'sanitize_js_callback' => array('memberlite_Customize', 'sanitize_js_color_scheme'),
-				'type' => 'theme_mod',
-				'capability' => 'edit_theme_options',
 				'transport' => 'postMessage',
 			)
 		);
@@ -491,8 +474,6 @@ class memberlite_Customize {
 				'default' => $memberlite_defaults['bgcolor_site_navigation'],
 				'sanitize_callback' => 'sanitize_hex_color',
 				'sanitize_js_callback' => 'maybe_hash_hex_color',
-				'type' => 'theme_mod',
-				'capability' => 'edit_theme_options',
 				'transport' => 'postMessage',
 			) 
 		);
@@ -511,9 +492,7 @@ class memberlite_Customize {
 			array(
 				'default' => $memberlite_defaults['color_site_navigation'],
 				'sanitize_callback' => 'sanitize_hex_color',
-				'sanitize_js_callback' => 'maybe_hash_hex_color',
-				'type' => 'theme_mod',
-				'capability' => 'edit_theme_options',
+				'sanitize_js_callback' => 'maybe_hash_hex_color',				
 				'transport' => 'postMessage',
 			) 
 		);
@@ -533,8 +512,6 @@ class memberlite_Customize {
 				'default' => $memberlite_defaults['color_link'],
 				'sanitize_callback' => 'sanitize_hex_color',
 				'sanitize_js_callback' => 'maybe_hash_hex_color',
-				'type' => 'theme_mod',
-				'capability' => 'edit_theme_options',
 				'transport' => 'postMessage',
 			) 
 		);
@@ -553,9 +530,7 @@ class memberlite_Customize {
 			array(
 				'default' => $memberlite_defaults['color_meta_link'],
 				'sanitize_callback' => 'sanitize_hex_color',
-				'sanitize_js_callback' => 'maybe_hash_hex_color',
-				'type' => 'theme_mod',
-				'capability' => 'edit_theme_options',
+				'sanitize_js_callback' => 'maybe_hash_hex_color',				
 				'transport' => 'postMessage',
 			) 
 		);
@@ -575,8 +550,6 @@ class memberlite_Customize {
 				'default' => $memberlite_defaults['color_primary'],
 				'sanitize_callback' => 'sanitize_hex_color',
 				'sanitize_js_callback' => 'maybe_hash_hex_color',
-				'type' => 'theme_mod',
-				'capability' => 'edit_theme_options',
 				'transport' => 'postMessage',
 			) 
 		);
@@ -596,8 +569,6 @@ class memberlite_Customize {
 				'default' => $memberlite_defaults['color_secondary'],
 				'sanitize_callback' => 'sanitize_hex_color',
 				'sanitize_js_callback' => 'maybe_hash_hex_color',
-				'type' => 'theme_mod',
-				'capability' => 'edit_theme_options',
 				'transport' => 'postMessage',
 			) 
 		);
@@ -617,8 +588,6 @@ class memberlite_Customize {
 				'default' => $memberlite_defaults['color_action'],
 				'sanitize_callback' => 'sanitize_hex_color',
 				'sanitize_js_callback' => 'maybe_hash_hex_color',
-				'type' => 'theme_mod',
-				'capability' => 'edit_theme_options',
 				'transport' => 'postMessage',
 			) 
 		);
