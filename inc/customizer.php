@@ -689,36 +689,36 @@ class memberlite_Customize {
 					$color_primary = $memberlite_defaults['color_primary'];
 				$color_primary_rgb = self::hex2rgb($color_primary);
 				$color_primary_hover = vsprintf('rgba( %1$s, %2$s, %3$s, 0.7)', $color_primary_rgb);
-				echo $memberlite_defaults['color_primary_background_hover_elements'] . " {background: " . $color_primary_hover . "}";
-				echo $memberlite_defaults['color_primary_color_hover_elements'] . " {color: " . $color_primary_hover . "}";				
+				echo esc_html($memberlite_defaults['color_primary_background_hover_elements']) . " {background: " . esc_html($color_primary_hover) . "}";
+				echo esc_html($memberlite_defaults['color_primary_color_hover_elements']) . " {color: " . esc_html($color_primary_hover) . "}";				
 
 				$color_secondary = get_theme_mod('color_secondary');
 				if(empty($color_secondary))
 					$color_secondary = $memberlite_defaults['color_secondary'];
 				$color_secondary_rgb = self::hex2rgb($color_secondary);
 				$color_secondary_hover = vsprintf('rgba( %1$s, %2$s, %3$s, 0.7)', $color_secondary_rgb);
-				echo $memberlite_defaults['color_secondary_background_hover_elements'] . " {background: " . $color_secondary_hover . "}";
+				echo esc_html($memberlite_defaults['color_secondary_background_hover_elements']) . " {background: " . esc_html($color_secondary_hover) . "}";
 			
 				$color_action = get_theme_mod('color_action');
 				if(empty($color_action))
 					$color_action = $memberlite_defaults['color_action'];
 				$color_action_rgb = self::hex2rgb($color_action);
 				$color_action_hover = vsprintf('rgba( %1$s, %2$s, %3$s, 0.7)', $color_action_rgb);
-				echo $memberlite_defaults['color_action_background_hover_elements'] . ' {background: ' . $color_action_hover . '}';
+				echo esc_html($memberlite_defaults['color_action_background_hover_elements']) . ' {background: ' . esc_html($color_action_hover) . '}';
 			
 				$color_link = get_theme_mod('color_link');
 				if(empty($color_link))
 					$color_link = $memberlite_defaults['color_link'];
 				$color_link_rgb = self::hex2rgb($color_link);
 				$color_link_hover = vsprintf('rgba( %1$s, %2$s, %3$s, 0.7)', $color_link_rgb);
-				echo $memberlite_defaults['color_link_hover_elements'] . ' {color: ' . $color_link_hover . '}';
+				echo esc_html($memberlite_defaults['color_link_hover_elements']) . ' {color: ' . esc_html($color_link_hover) . '}';
 				
 				$color_site_navigation = get_theme_mod('color_site_navigation');
 				if(empty($color_site_navigation))
 					$color_site_navigation = $memberlite_defaults['color_site_navigation'];
 				$color_site_navigation_rgb = self::hex2rgb($color_site_navigation);
 				$color_site_navigation_hover = vsprintf('rgba( %1$s, %2$s, %3$s, 0.7)', $color_site_navigation_rgb);
-				echo $memberlite_defaults['color_site_navigation_hover_elements'] . ' {color: ' . $color_site_navigation_hover . '}';
+				echo esc_html($memberlite_defaults['color_site_navigation_hover_elements']) . ' {color: ' . esc_html($color_site_navigation_hover) . '}';
 			?>
 			
 			<?php self::generate_css('.site-title a, .site-header .site-description', 'color', 'header_textcolor', '#'); ?>
@@ -734,8 +734,8 @@ class memberlite_Customize {
 				$header_font = str_replace("-", " ", $fonts[0]);
 				$body_font = str_replace("-", " ", $fonts[1]);	
 			?>
-			<?php echo 'body, button, input[type="button"], input[type="reset"], input[type="submit"], .btn, a.comment-reply-link, a.pmpro_btn, input[type="submit"].pmpro_btn, .woocommerce #content input.button, .woocommerce #respond input#submit, .woocommerce a.button, .woocommerce button.button, .woocommerce input.button, .woocommerce-page #content input.button, .woocommerce-page #respond input#submit, .woocommerce-page a.button, .woocommerce-page button.button, .woocommerce-page input.button, .woocommerce #content input.button.alt, .woocommerce #respond input#submit.alt, .woocommerce a.button.alt, .woocommerce button.button.alt, .woocommerce input.button.alt, .woocommerce-page #content input.button.alt, .woocommerce-page #respond input#submit.alt, .woocommerce-page a.button.alt, .woocommerce-page button.button.alt, .woocommerce-page input.button.alt, form.pmpro_form thead th span.pmpro_thead-msg {font-family: "' . $body_font . '", sans-serif; }'; ?>
-			<?php echo 'h1, h2, h3, h4, h5, h6, label, .navigation, th, .pmpro_checkout thead th, #pmpro_account .pmpro_box h3, #meta-member .user, #bbpress-forums li.bbp-header, #bbpress-forums li.bbp-footer, #bbpress-forums fieldset.bbp-form legend {font-family: "' . $header_font . '", sans-serif; }'; ?>
+			<?php echo 'body, button, input[type="button"], input[type="reset"], input[type="submit"], .btn, a.comment-reply-link, a.pmpro_btn, input[type="submit"].pmpro_btn, .woocommerce #content input.button, .woocommerce #respond input#submit, .woocommerce a.button, .woocommerce button.button, .woocommerce input.button, .woocommerce-page #content input.button, .woocommerce-page #respond input#submit, .woocommerce-page a.button, .woocommerce-page button.button, .woocommerce-page input.button, .woocommerce #content input.button.alt, .woocommerce #respond input#submit.alt, .woocommerce a.button.alt, .woocommerce button.button.alt, .woocommerce input.button.alt, .woocommerce-page #content input.button.alt, .woocommerce-page #respond input#submit.alt, .woocommerce-page a.button.alt, .woocommerce-page button.button.alt, .woocommerce-page input.button.alt, form.pmpro_form thead th span.pmpro_thead-msg {font-family: "' . esc_html($body_font) . '", sans-serif; }'; ?>
+			<?php echo 'h1, h2, h3, h4, h5, h6, label, .navigation, th, .pmpro_checkout thead th, #pmpro_account .pmpro_box h3, #meta-member .user, #bbpress-forums li.bbp-header, #bbpress-forums li.bbp-footer, #bbpress-forums fieldset.bbp-form legend {font-family: "' . esc_html($header_font) . '", sans-serif; }'; ?>
 		</style> 
 		<!--/Customizer CSS-->
 		<?php
@@ -766,7 +766,7 @@ class memberlite_Customize {
             $prefix.$mod.$postfix
          );
          if ( $echo ) {
-            echo $return;
+            echo esc_html($return);
          }
       }
       return $return;
