@@ -215,7 +215,7 @@ function memberlite_the_content($content){
 add_filter('the_content','memberlite_the_content');
 
 function memberlite_page_title( $echo = true ) {
-	global $post; 
+	global $post;
 	
 	//capture output
 	ob_start();
@@ -392,9 +392,12 @@ function memberlite_page_title( $echo = true ) {
 					echo '<p>' . do_shortcode('[memberlite_btn style="action" href="' . esc_url(add_query_arg('level', $pmproal_landing_page_level, pmpro_url('checkout'))) . '" text="' . $memberlite_landing_page_checkout_button . '"]') . '</p>';
 			}
 		}
-	}	
+	}
+	elseif(is_404()) {
+		echo '<h1 class="entry-title">' . __('404: Page Not Found', 'memberlite') . '</h1>';
+	}
 	else
-	{
+	{		
 		the_title( '<h1 class="entry-title">', '</h1>' );
 	}
 	
