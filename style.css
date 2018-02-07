@@ -1,7 +1,7 @@
 /*
 Theme Name: Memberlite
 Theme URI: https://memberlitetheme.com/
-Author: kimannwall, strangerstudios
+Author: Stranger Studios
 Author URI: https://www.strangerstudios.com
 Description: Memberlite is the ideal theme for your membership site - packed with integration for top membership site plugins including Paid Memberships Pro. It's fully customizable with your logo, colors, fonts, custom sidebars and more global layout settings. Extend the site appearance further with icons, masthead banners, post formats, and additional settings for your site's pages. Memberlite is responsive, clean and minimal.
 Version: 3.0.4
@@ -215,9 +215,9 @@ dfn, cite, em, i {
 	font-style: italic;
 }
 blockquote {
-	margin: 1.5rem 0;
+	margin: 0 0 2.6rem 0;
 	background: #FAFAFA;
-	padding: 1rem 1rem 1px 1rem;
+	padding: 2.6rem 2.6rem 1px 2.6rem;
 	border-left: 5px solid #CCC;
 }
 blockquote.quote, q, .testimonials-widget blockquote {

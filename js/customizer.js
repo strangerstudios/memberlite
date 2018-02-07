@@ -141,7 +141,7 @@
 	} );
 	wp.customize( 'posts_entry_meta_before', function( value ) {
 		value.bind( function( to ) {
-			$('.masthead-post-byline .entry-meta').text( to );
+			$('.post .entry-meta').text( to );
 		} );
 	} );
 	wp.customize( 'posts_entry_meta_after', function( value ) {
