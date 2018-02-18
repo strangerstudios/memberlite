@@ -11,8 +11,10 @@
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<?php get_template_part( 'components/post/entry', 'header' ); ?>
 	<div class="entry-content">
+		<?php do_action('memberlite_before_content_post'); ?>
 		<?php the_post_thumbnail( 'fullwidth', array( 'class' => 'aligncenter' ) ); ?>
 		<div class="clear"></div>
+		<?php do_action('memberlite_after_content_post'); ?>
 	</div><!-- .entry-content -->
 	<?php 
 		$memberlite_get_entry_meta_after = memberlite_get_entry_meta($post, 'after'); 

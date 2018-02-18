@@ -14,6 +14,7 @@
 	<?php get_template_part( 'components/post/entry', 'header' ); ?>
 
 	<div class="entry-content">
+		<?php do_action('memberlite_before_content_post'); ?>
 		<?php
 			$memberlite_loop_images = get_theme_mod( 'memberlite_loop_images',$memberlite_defaults['memberlite_loop_images'] ); 
 			if( $memberlite_loop_images == 'show_both' ) {
@@ -35,6 +36,7 @@
 			) );
 		?>
 		<div class="clear"></div>
+		<?php do_action('memberlite_after_content_post'); ?>
 	</div><!-- .entry-content -->
 
 	<footer class="entry-footer">

@@ -10,10 +10,12 @@
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<div class="entry-content lead">
+		<?php do_action('memberlite_before_content_post'); ?>
 		<?php $author_id = $post->post_author; ?>
 		<div class="post_author_avatar"><?php echo get_avatar( $author_id, 80 ); ?></div>
 		<?php the_content( __( 'Continue Reading', 'memberlite' ) ); ?>
 		<div class="clear"></div>
+		<?php do_action('memberlite_after_content_post'); ?>
 	</div><!-- .entry-content -->
 
 	<?php 

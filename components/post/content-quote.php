@@ -15,10 +15,12 @@
 			the_post_thumbnail( 'thumbnail', array( 'class' => 'alignright' ) );
 		?>
 	<div class="entry-content">
+		<?php do_action('memberlite_before_content_post'); ?>
 		<blockquote class="quote">
 			<?php the_content( __( 'Continue Reading', 'memberlite' ) ); ?>
 			<cite>&mdash;<?php the_title( sprintf( '<a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a>' ); ?></cite>
 		</blockquote>
+		<?php do_action('memberlite_after_content_post'); ?>
 	</div><!-- .entry-content -->
 	<?php 
 		$memberlite_get_entry_meta_after = memberlite_get_entry_meta($post, 'after'); 
