@@ -419,7 +419,7 @@ function memberlite_page_title( $echo = true ) {
  * Are we on a "blog" page?
  */
 function memberlite_is_blog() {	
-	$is_blog = ( is_home() || is_singular('post') || ( is_archive() && !is_post_type_archive() ) );
+	$is_blog = ( is_home() || is_singular( 'post' ) || ( is_archive() && !is_post_type_archive() && !is_tax() ) );
 	
 	$is_blog = apply_filters( 'memberlite_is_blog', $is_blog );
 	
