@@ -26,7 +26,7 @@ add_filter( 'wp_page_menu_args', 'memberlite_page_menu_args' );
  * @return array
  */
 function memberlite_body_classes( $classes ) {
-	global $post, $memberlite_defaults;
+	global $memberlite_defaults;
 	
 	//sidebar classes
 	if ( !is_page_template( 'templates/fluid-width.php' ) )
@@ -334,7 +334,7 @@ function memberlite_page_title( $echo = true ) {
 			$term_description = term_description();
 			if ( ! empty( $term_description ) ) :
 				printf( '<div class="taxonomy-description">%s</div>', $term_description );
-			endif;			
+			endif;
 	}	
 	elseif(is_search())
 	{
