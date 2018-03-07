@@ -245,9 +245,8 @@ function memberlite_page_title( $echo = true ) {
 	}
 	elseif(is_post_type_archive())
 	{
-		$post_type = get_post_type_object(get_query_var('post_type'));
 		?>
-		<h1 class="page-title"><?php echo $post_type->labels->name; ?></h1>
+		<h1 class="page-title"><?php the_archive_title(); ?></h1>
 		<?php
 	}
 	elseif(function_exists('is_bbpress') && (is_bbpress() || bbp_is_single_user()))
