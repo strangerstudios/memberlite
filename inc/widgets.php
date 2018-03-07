@@ -81,7 +81,7 @@ class WP_Widget_Recent_Posts_Thumbnails extends WP_Widget {
 							<?php elseif( 'video' == get_post_format() ) : ?>
 								<a class="widget_post_thumbnail" href="<?php the_permalink(); ?>"><i class="fa fa-video-camera"></i></a>
 							<?php else : ?>
-								<?php $author_id = get_the_author_meta('id'); ?>
+								<?php $author_id = get_the_author_meta('ID'); ?>
 								<a class="widget_post_thumbnail" href="<?php the_permalink(); ?>"><?php echo get_avatar( $author_id, 80 ); ?></a>
 							<?php endif; ?>	
 						</div>
@@ -143,5 +143,12 @@ class WP_Widget_Recent_Posts_Thumbnails extends WP_Widget {
 <?php
 	}
 }
-register_widget( 'WP_Widget_Recent_Posts_Thumbnails' );
 /* End Recent Posts with Thumbnails Widget */
+
+/**
+ * Register the Widgets
+ */
+function memberlite_register_widgets() {
+	register_widget( 'WP_Widget_Recent_Posts_Thumbnails' );	
+}
+add_action( 'widgets_init', 'memberlite_register_widgets' );
