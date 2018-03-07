@@ -20,7 +20,7 @@ function memberlite_init_styles()
 	wp_enqueue_style('memberlite_print_style', get_template_directory_uri() . "/css/print.css", array(), MEMBERLITE_VERSION, "print");
 	wp_enqueue_script('memberlite-navigation', get_template_directory_uri() . '/js/navigation.js', array( 'jquery' ), MEMBERLITE_VERSION, true);
 	wp_enqueue_script('memberlite-script', get_template_directory_uri() . '/js/memberlite.js', array( 'jquery' ), MEMBERLITE_VERSION, true);
-	wp_enqueue_script('memberlite-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array( 'jquery' ), MEMBERLITE_VERSION, true);
+	wp_enqueue_script('memberlite-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), MEMBERLITE_VERSION, true);
 	wp_enqueue_style('font-awesome', get_template_directory_uri() . "/font-awesome/css/font-awesome.min.css", array(), "4.7");
 
 	//load dark.css for dark/inverted backgrounds
