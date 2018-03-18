@@ -765,12 +765,12 @@ function memberlite_parse_tags($meta, $post = NULL) {
 	$searches = array();
 	$replacements = array();
 		
-	if(strpos($meta, '{post_author}') !== false) {
+	if(strpos($meta, '{post_author}') !== false && !empty( $author ) ) {
 		$searches[] = "{post_author}";
 		$replacements[] = '<span class="author vcard">' . esc_html( $author->display_name ) . '</span>';
 	}
 	
-	if(strpos($meta, '{post_author_posts_link}') !== false) {
+	if(strpos($meta, '{post_author_posts_link}') !== false && !empty( $author ) ) {
 		$searches[] = "{post_author_posts_link}";
 		$replacements[] = '<span class="author vcard"><a class="url fn n" href="' . esc_url( get_author_posts_url( $author->ID, $author->user_nicename ) ) . '">' . esc_html( $author->display_name ) . '</a></span>';
 	}
