@@ -449,10 +449,8 @@ input[type="button"].pmpro_btn,
 #main div.em-search-main button.em-search-submit  {
 	background: #95a5a6;
 	border: none;
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
 	border-radius: 3px;
-	box-shadow: none;
+	box-shadow: 1px 2px 4px rgba(0,0,0,0.2);
 	color: #FFF !important;
 	cursor: pointer; /* Improves usability and consistency of cursor style between image-type 'input' and others */
 	-webkit-appearance: none;
@@ -486,6 +484,7 @@ input[type="submit"].pmpro_btn,
 input[type="button"].pmpro_btn {
 	background: #F39C12;
 	border: none;
+	box-shadow: 1px 2px 4px rgba(0,0,0,0.2);
 	color: #FFF;
 	font-size: 18px;
 	font-size: 1.8rem;
@@ -513,13 +512,24 @@ a.comment-reply-link:hover,
 a.pmpro_btn:active,
 #main div.em-search-main button.em-search-submit:hover {
 	background: #798d8f;
+	box-shadow: 1px 2px 4px rgba(0,0,0,0.4);
 	color: #FFF;
+	transform: translateY(-1px);
 }
 
-a.pmpro_btn:hover, input[type="submit"].pmpro_btn:hover {
-	background: #18BC9C;
+.pmpro_btn:hover, 
+.pmpro_btn:focus, 
+a.pmpro_btn:hover, 
+input[type="submit"].pmpro_btn:hover,
+.pmpro_checkout .pmpro_btn:hover, 
+.pmpro_checkout .pmpro_btn:focus, 
+.pmpro_content_message a:focus, 
+.pmpro_content_message a:hover {
+/*	background: #18BC9C; */
 	border: none;
+	box-shadow: 1px 2px 4px rgba(0,0,0,0.4);
 	text-shadow: none;
+	transform: translateY(-1px);
 }
 
 .btn_info, .btn_info:link {background-color: #5bc0de; }
@@ -1700,15 +1710,23 @@ a:active {
 }
 .comment-respond label {
 	display: inline-block;
-	width: 12%;
 	text-align: right;
 	margin: 0 1% 0 0;
+}
+.comment-respond p.comment-form-comment label,
+.comment-respond p.comment-form-author label,
+.comment-respond p.comment-form-email label,
+.comment-respond p.comment-form-url label {
+	width: 12%;
 }
 .comment-respond p {
 	position: relative;
 }
 .comment-respond input[type=text], .comment-respond input[type=email], .comment-respond input[type=url], .comment-respond textarea {
 	width: 84%;
+}
+.comment-repond input[type="checkbox"], .comment-repond input[type="radio"] {
+	margin-right: .5em;
 }
 .logged-in .comment-respond .comment-form-comment {margin-bottom: 0; }
 .comment-respond .form-allowed-tags, .comment-respond .form-allowed-tags code {font-size: 12px; }
