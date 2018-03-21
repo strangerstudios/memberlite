@@ -626,7 +626,11 @@ textarea {
 /*--------------------------------------------------------------
 4.3 Messages - Success, Error, Alert
 --------------------------------------------------------------*/
-.pmpro_message, .pmpro_content_message, .pmpro_bbp_membership_msg {
+.pmpro_message, 
+.pmpro_content_message, 
+.pmpro_bbp_membership_msg, 
+#buddypress div#message p,
+#sitewide-notice p {
 	background-color: #d9edf7;
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
@@ -640,22 +644,29 @@ textarea {
 	margin: .5em 0;
 	padding: 10px 15px;
 }
-.pmpro_message.pmpro_default, .pmpro_content_message {
+.pmpro_message.pmpro_default, 
+.pmpro_content_message,
+#buddypress div#message p,
+#sitewide-notice p {
 	background-color: #FAFAFA;
 	border-color: #DADADA;
 	color: #777;
 }
-.pmpro_success {
+.pmpro_success,
+#buddypress div#message.updated p {
 	background-color: #dff0d8;
 	border-color: #d6e9c6;
 	color: #3c763d;
 }
-.pmpro_error {
+.pmpro_error,
+#buddypress div#message.error p {
 	background-color: #f2dede;
 	border-color: #ebccd1;
 	color: #a94442;
 }
-.pmpro_alert, .pmpro_bbp_membership_msg {
+.pmpro_alert, 
+.pmpro_bbp_membership_msg,
+#buddypress div#message.warning p {
 	background-color: #fcf8e3;
 	border-color: #faebcc;
 	color: #8a6d3b;

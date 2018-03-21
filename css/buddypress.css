@@ -637,26 +637,6 @@ body.activity-permalink #buddypress div.activity-comments div.acomment-content {
 	padding: 10px 15px;
 }
 
-#buddypress div#message.error p {
-	background-color: #fdc;
-	border: 1px solid #a00;
-	clear: left;
-	color: #800;
-}
-
-#buddypress div#message.warning p {
-	background-color: #ffe0af;
-	border: 1px solid #ffd087;
-	clear: left;
-	color: #800;
-}
-
-#buddypress div#message.updated p {
-	background-color: #efc;
-	border: 1px solid #591;
-	color: #250;
-}
-
 #buddypress #pass-strength-result {
 	background-color: #eee;
 	border-color: #ddd;
@@ -925,8 +905,6 @@ body.no-js #buddypress #messages-bulk-management #select-all-messages {
 #buddypress .standard-form input:focus,
 #buddypress .standard-form textarea:focus,
 #buddypress .standard-form select:focus {
-	background: #fafafa;
-	color: #555;
 }
 
 #buddypress form#send-invite-form {
@@ -974,13 +952,6 @@ a.bp-title-button {
 #buddypress ul.button-nav li.current a,
 #buddypress div.generic-button a:hover,
 #buddypress .comment-reply-link:hover {
-	/*
-	background: #ededed;
-	border: 1px solid #bbb;
-	color: #555;
-	outline: none;
-	text-decoration: none;
-	*/
 }
 
 #buddypress form.standard-form .left-menu {
@@ -1433,12 +1404,14 @@ fieldset.create-site label {
 
 #buddypress div#message p,
 #sitewide-notice p {
+	margin-top: 3px;
+/*
 	background-color: #ffd;
 	border: 1px solid #cb2;
 	color: #440;
 	font-weight: 400;
-	margin-top: 3px;
 	text-decoration: none;
+*/
 }
 
 .bp-site-wide-message #message p,
