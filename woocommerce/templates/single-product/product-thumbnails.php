@@ -10,9 +10,9 @@
  * happen. When this occurs the version of the template file will be bumped and
  * the readme will list any important changes.
  *
- * @see 	    https://docs.woocommerce.com/document/template-structure/
- * @author 		WooThemes
- * @package 	WooCommerce/Templates
+ * @see         https://docs.woocommerce.com/document/template-structure/
+ * @author      WooThemes
+ * @package     WooCommerce/Templates
  * @version     3.1.0
  */
 
@@ -40,7 +40,7 @@ if ( $attachment_ids && has_post_thumbnail() ) {
 
 		$html  = '<div data-thumb="' . esc_url( $thumbnail[0] ) . '" class="woocommerce-product-gallery__image"><a href="' . esc_url( $full_size_image[0] ) . '">';
 		$html .= wp_get_attachment_image( $attachment_id, 'shop_single', false, $attributes );
- 		$html .= '</a></div>';
+		$html .= '</a></div>';
 
 		echo apply_filters( 'woocommerce_single_product_image_thumbnail_html', $html, $attachment_id );
 	}

@@ -53,7 +53,7 @@ body#tinymce.wp-editor th {
 	padding: 1rem;
 }
 body#tinymce.wp-editor thead th {
-	background: #EFEFEF; 
+	background: #EFEFEF;
 	border-top: 1px solid #CCC;
 	border-bottom: 1px solid #CCC;
 	padding: 1rem;
@@ -76,7 +76,7 @@ body#tinymce.wp-editor dl {
 }
 body#tinymce.wp-editor dt {
 	padding: 1rem 0 0 0;
-	border-top: 1px dotted #CCC; 
+	border-top: 1px dotted #CCC;
 }
 body#tinymce.wp-editor dl dt:first-child {
 	border-top: none;

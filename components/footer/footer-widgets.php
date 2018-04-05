@@ -8,10 +8,10 @@
 
 <?php do_action( 'memberlite_before_footer_widgets' ); ?>
 
-<?php if( is_active_sidebar( 'sidebar-4' )) { ?>
+<?php if ( is_active_sidebar( 'sidebar-4' ) ) { ?>
 	<div class="footer-widgets">
 		<div class="row">
-			<?php dynamic_sidebar( 'sidebar-4' );	?>
+			<?php dynamic_sidebar( 'sidebar-4' ); ?>
 		</div><!-- .row -->
 	</div><!-- .footer-widgets -->
 <?php } ?>
