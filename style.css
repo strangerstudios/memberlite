@@ -469,9 +469,9 @@ input[type="button"].pmpro_btn,
 #main div.em-search-main button.em-search-submit {
 	padding-bottom: .5rem;
 }
-a.comment-reply-link {
-	padding: .7rem 1.45rem;
-}
+.pmpro_content_message a,
+.pmpro_content_message a:link,
+a.comment-reply-link,
 a.btn.skip-link {
 	padding: .7rem 1.45rem;
 }
@@ -1185,6 +1185,7 @@ a:active {
 .widget_calendar #wp-calendar caption {
 	font-size: 2.3rem;
 	line-height: 3.7rem;
+	text-align: center;
 }
 #secondary .widget-title {
 	background: #FAFAFA;
@@ -1239,7 +1240,10 @@ a:active {
 #secondary .widget.widget_recent_comments #recentcomments {
 	color: #AAA;
 }
-.widget_recent_entries_thumbnails li {clear: left; }
+.widget_recent_entries_thumbnails li {
+	clear: left;
+	margin-bottom: 1.45rem;
+}
 .widget_recent_entries_thumbnails .widget_post_thumbnail, .memberlite_recent_posts .widget_post_thumbnail {
 	display: block;
 	width: 80px;
@@ -1259,7 +1263,7 @@ a:active {
 	background: none;
 }
 .widget_recent_entries_thumbnails h5 {
-	margin: 0;
+	margin: .7rem 0 0 0;
 }
 .widget_recent_entries_thumbnails .widget_post_thumbnail .fa {
 	font-size: 40px;
@@ -1435,11 +1439,6 @@ a:active {
 .single-post .masthead-banner .masthead {
 	padding-bottom: 0;
 }
-.masthead-banner .masthead-post-byline {
-	background: rgba(0,0,0,.6);
-	margin: 16rem 0 0 0;
-	padding: 1rem 0;
-}
 .masthead-post-byline {
 	display: grid;
 	grid-template-columns: 1fr .25fr 11fr 2fr;
@@ -1447,6 +1446,11 @@ a:active {
     "avatar . title ."
     "avatar . meta .";
     margin: 1.45rem 0 0 0;
+}
+.masthead-banner .masthead-post-byline {
+	background: rgba(0,0,0,.6);
+	margin: 16rem 0 0 0;
+	padding: 1.45rem;
 }
 .masthead h1 {
 	grid-area: title;
@@ -1457,7 +1461,8 @@ a:active {
 	text-decoration: none;
 	border-bottom: 1px dotted #FFF;
 }
-.masthead-banner .masthead .masthead-post-byline h1 {
+.masthead-banner .masthead .masthead-post-byline h1,
+.masthead-banner .masthead .masthead-post-byline .post_author_avatar {
 	margin-top: 0;
 }
 .masthead p {
@@ -1553,6 +1558,9 @@ a:active {
     "avatar . title"
     "avatar . meta";
     margin-bottom: 2.9rem;
+}
+#primary .post.hentry .entry-banner .entry-header {
+	margin-bottom: 0;
 }
 #primary .hentry .entry-header .entry-title {
 	margin: 0 0 .7rem 0;
@@ -1891,12 +1899,41 @@ a:active {
 	list-style: none;
 	margin: .7rem 0 0 0;
 }
-.footer-widgets .widget_theme_my_login .tml-user-avatar {float: left; margin: 0 1rem 2rem 0; }
-.footer-widgets .widget_theme_my_login p .input  {width: 100%; }
-.footer-widgets .widget_theme_my_login p.submit input[type=submit] {width: 100%; }
-.footer-widgets ul.tml-user-links li {border: none; padding: 0; }
-.footer-widgets .tml-action-links {font-size: 12px; text-align: center; }
-
+.footer-widgets .widget_theme_my_login .tml-user-avatar {
+	float: left; margin: 0 1rem 2rem 0;
+}
+.footer-widgets .widget_theme_my_login p .input  {
+	width: 100%;
+}
+.footer-widgets .widget_theme_my_login p.submit input[type=submit] {
+	width: 100%;
+}
+.footer-widgets ul.tml-user-links li {
+	border: none;
+	padding: 0;
+}
+.footer-widgets .tml-action-links {
+	font-size: 12px; 
+	text-align: center;
+}
+.footer-widgets .widget_calendar .calendar_wrap table {
+	background: #FFF;
+	color: #444;
+	margin: 0;
+}
+.footer-widgets .widget_calendar .calendar_wrap table a {
+	color: #444;
+	text-decoration: underline;
+}
+.footer-widgets .widget_calendar table thead th,
+.footer-widgets .widget_calendar table tbody td {
+	padding: .3rem;
+	color: #999;
+	text-align: center;
+}
+.footer-widgets .widget_calendar table tfoot td {
+	padding: .3rem;
+}
 .site-footer .site-info {
 	padding-top: 1rem;
 	padding-bottom: 1rem;
