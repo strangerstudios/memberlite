@@ -13,8 +13,7 @@
 		global $memberlite_defaults;
 		$back_to_top = get_theme_mod( 'memberlite_back_to_top', $memberlite_defaults['memberlite_back_to_top'] );
 	?>
-	<div class="large-
-	<?php
+	<div class="large-<?php
 	if ( ! empty( $back_to_top ) ) {
 		echo '10';
 	} else {
