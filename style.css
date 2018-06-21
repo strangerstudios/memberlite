@@ -1843,17 +1843,8 @@ a:active {
 .footer-widgets {
 	background: #2C3E50;
 	color: #FFF;
-	padding: 2.9rem 0;
+	padding: 4rem 0;
 }
-/*
-.footer-widgets aside {
-	font-size: 1.6rem;
-	line-height: 2.7rem;
-}
-.footer-widgets .widget_recent_entries_thumbnails h5 {
-	line-height: 2.7rem;
-}
-*/
 .footer-widgets h3 {
 	font-weight: 700;
 	margin: 0 0 1.45rem 0;
@@ -1949,7 +1940,7 @@ a:active {
 #banner_bottom {
 	background-color: #18BC9C;
 	color: #FFF;
-	padding: 2rem 0;
+	padding: 4rem 0;
 }
 #banner_bottom p {
 	font-size: 2rem;
