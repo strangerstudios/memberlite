@@ -8,7 +8,7 @@
 
 <?php do_action( 'memberlite_before_sidebar' ); ?>
 
-<div id="secondary" class="medium-<?php echo memberlite_getColumnsRatio( 'sidebar' ); ?> columns widget-area" role="complementary">
+<div id="secondary" class="medium-<?php echo esc_attr( memberlite_getColumnsRatio( 'sidebar' ) ); ?> columns widget-area" role="complementary">
 
 <?php do_action( 'memberlite_before_sidebar_widgets' ); ?>
 

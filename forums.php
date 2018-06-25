@@ -15,7 +15,7 @@ medium-12
 <?php
 	} else {
 	?>
-	medium-<?php echo memberlite_getColumnsRatio(); ?><?php } ?> columns content-area">
+	medium-<?php echo esc_attr( memberlite_getColumnsRatio() ); ?><?php } ?> columns content-area">
 		<main id="main" class="site-main" role="main">
 
 			<?php

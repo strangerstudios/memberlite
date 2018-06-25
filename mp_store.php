@@ -12,7 +12,7 @@
 
 get_header(); ?>
 
-	<div id="primary" class="medium-<?php echo memberlite_getColumnsRatio(); ?> columns content-area">
+	<div id="primary" class="medium-<?php echo esc_attr( memberlite_getColumnsRatio() ); ?> columns content-area">
 		<?php do_action( 'memberlite_before_main' ); ?>
 		<main id="main" class="site-main" role="main">
 			<?php do_action( 'memberlite_before_loop' ); ?>
