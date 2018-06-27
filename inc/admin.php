@@ -9,7 +9,7 @@
 	Adds Theme Support submenu page to "Appearance" menu.
 */
 function memberlite_theme_menu() {
-	add_theme_page( 'Memberlite Documentation and Support', 'Memberlite Guide', 'edit_theme_options', 'memberlite-support', 'memberlite_support' );
+	add_theme_page( __( 'Memberlite Documentation and Support', 'memberlite' ), __( 'Memberlite Guide', 'memberlite' ), 'edit_theme_options', 'memberlite-support', 'memberlite_support' );
 }
 add_action( 'admin_menu', 'memberlite_theme_menu' );
 
@@ -20,7 +20,7 @@ function memberlite_support() {
 		$view = '';
 	}
 	?>
-	<div id="wpbody-content" aria-label="Main content" tabindex="0">	
+	<div id="wpbody-content" aria-label="<?php esc_attr_e( 'Main content', 'memberlite' ); ?>" tabindex="0">	
 		<style>
 			.about-wrap {max-width: 100%; }
 			.about-wrap .memberlite-badge {background-image: url(<?php echo get_template_directory_uri() . '/images/Memberlite_icon.png'; ?>); background-color: #FFF; color: #2C3E50; }
