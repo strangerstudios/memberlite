@@ -622,17 +622,13 @@ class memberlite_Customize {
 		$wp_customize->selective_refresh->add_partial(
 			'blogname', array(
 				'selector'        => '.site-title a',
-				'render_callback' => function() {
-					bloginfo( 'name' );
-				},
+				'render_callback' => array( 'memberlite_Customize', 'bloginfo_name' ),
 			)
 		);
 		$wp_customize->selective_refresh->add_partial(
 			'blogdescription', array(
 				'selector'        => '.site-description',
-				'render_callback' => function() {
-					bloginfo( 'description' );
-				},
+				'render_callback' => array( 'memberlite_Customize', 'bloginfo_description' ),
 			)
 		);
 		$wp_customize->get_setting( 'header_textcolor' )->transport        = 'postMessage';
@@ -647,6 +643,24 @@ class memberlite_Customize {
 		// Rename the label to "Display Site Title & Tagline" for clarity.
 		$wp_customize->get_control( 'display_header_text' )->label = __( 'Display Site Title &amp; Tagline', 'memberlite' );
 
+	}
+
+	/**
+	 * Call bloginfo to echo the site name.
+	 * For use in a customizer callback above.
+	 * @since 3.1
+	 */
+	public static function bloginfo_name() {
+		bloginfo( 'name' );
+	}
+
+	/**
+	 * Call bloginfo to echo the site description.
+	 * For use in a customizer callback above.
+	 * @since 3.1
+	 */
+	public static function bloginfo_description() {
+		bloginfo( 'description' );
 	}
 
 	public static function header_output() {
