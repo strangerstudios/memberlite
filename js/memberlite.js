@@ -8,7 +8,7 @@ jQuery( document ).ready(
 		jQuery( 'a[href*="#"]:not(.memberlite_tabs a)' ).on(
 			'click', function(event) {
 
-				var target = jQuery( jQuery( this ).attr( 'href' ) );
+				var target = jQuery( '#' + jQuery( this ).attr( 'href' ).hash );
 
 				if ( target.length ) {
 					event.preventDefault();
