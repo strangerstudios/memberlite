@@ -157,7 +157,7 @@ h1, h2, .h1, .h2 {
 .entry-content h1, .entry-content .h1 {
 	font-size: 4.7rem;
 	line-height: 7.5rem;
-} 
+}
 h3, .h3 {
 	font-size: 2.3rem;
 	line-height: 3.7rem;
@@ -201,14 +201,14 @@ blockquote {
 	padding: 2.9rem 2.9rem 1px 2.9rem;
 	border-left: 5px solid #CCC;
 }
-blockquote.quote, q, .testimonials-widget blockquote {
+blockquote.quote, .testimonials-widget blockquote {
 	background: none;
 	color: #666;
 	border: none;
 	padding: 0 0 0 3.7rem;
 	position: relative;
 }
-blockquote.quote:before, q:before {
+blockquote.quote:before {
 	content: "\f10d";
 	font-family: 'FontAwesome';
 	color: #DDD;
@@ -322,11 +322,11 @@ big {
 	font-size: 2.7rem;
 	line-height: 4.4rem;
 }
-.entry-content tbody td h1, 
-.entry-content tbody td h2, 
-.entry-content tbody td h3, 
-.entry-content tbody td h4, 
-.entry-content tbody td h5, 
+.entry-content tbody td h1,
+.entry-content tbody td h2,
+.entry-content tbody td h3,
+.entry-content tbody td h4,
+.entry-content tbody td h5,
 .entry-content tbody td h6 {
 	margin-top: 0;
 }
@@ -864,8 +864,8 @@ a:active {
 }
 .search-no-results #site-navigation {  }
 #site-navigation .search-form {
-	float: right; 
-	position: relative; 
+	float: right;
+	position: relative;
 }
 #site-navigation .search-form input[type=search] {
 	width: 100%;
@@ -1205,7 +1205,7 @@ a:active {
 	color: #777;
 }
 #secondary select {
-	margin: 1.45rem; 
+	margin: 1.45rem;
 }
 #secondary .widget_nav_menu h3.widget-title {
 	margin-bottom: 0;
@@ -1442,7 +1442,7 @@ a:active {
 .masthead-post-byline {
 	display: grid;
 	grid-template-columns: 1fr .25fr 11fr 2fr;
-	grid-template-areas: 
+	grid-template-areas:
     "avatar . title ."
     "avatar . meta .";
     margin: 1.45rem 0 0 0;
@@ -1554,7 +1554,7 @@ a:active {
 #primary .post.hentry .entry-header {
 	display: grid;
 	grid-template-columns: 1fr .25fr 9fr;
-	grid-template-areas: 
+	grid-template-areas:
     "avatar . title"
     "avatar . meta";
     margin-bottom: 2.9rem;
@@ -1904,7 +1904,7 @@ a:active {
 	padding: 0;
 }
 .footer-widgets .tml-action-links {
-	font-size: 12px; 
+	font-size: 12px;
 	text-align: center;
 }
 .footer-widgets .widget_calendar .calendar_wrap table {
@@ -2147,15 +2147,15 @@ form#pmpro_form .pmpro_checkout h3 span.pmpro_checkout-h3-msg a {
 form#pmpro_form .pmpro_checkout-fields, form#pmpro_form .pmpro_sslseal {
 	padding: 1.45rem;
 }
-form.pmpro_form .pmpro_checkout #other_discount_code_p, 
+form.pmpro_form .pmpro_checkout #other_discount_code_p,
 form.pmpro_form .pmpro_checkout #other_discount_code_div {
 	border-top: 1px dotted #CCC;
 	margin: 1.45rem 0 0 0;
 	padding: 1.45rem 0 0 0;
 }
-form.pmpro_form .pmpro_checkout #other_discount_code_div input[type=button], 
-#other_discount_code_button, 
-#discount_code_button, 
+form.pmpro_form .pmpro_checkout #other_discount_code_div input[type=button],
+#other_discount_code_button,
+#discount_code_button,
 #vat_number_validation_button {
 }
 form.pmpro_form #pmpro_pricing_fields.pmpro_checkout h3 {
@@ -2247,10 +2247,10 @@ form.pmpro_form .pmpro_payment-expiration select {
 	border-radius: 50%;
 	max-width: 100%;
 }
-#primary .tml input, 
-#primary .tml textarea, 
+#primary .tml input,
+#primary .tml textarea,
 #primary .tml select {
-	margin: 0; 
+	margin: 0;
 	width: auto;
 }
 #primary .tml input[type="text"],
@@ -2270,7 +2270,7 @@ form.pmpro_form .pmpro_payment-expiration select {
 	width: auto;
 }
 /*
-#primary .medium-4 .login input[type="text"], 
+#primary .medium-4 .login input[type="text"],
 #primary .medium-4 .login input[type="password"] {
 	width: 100%;
 }
@@ -2289,10 +2289,10 @@ form.pmpro_form .pmpro_payment-expiration select {
 		text-align: left;
 	}
 }
-#secondary .tml input, 
-#secondary .tml textarea, 
+#secondary .tml input,
+#secondary .tml textarea,
 #secondary .tml select {
-	margin: 0; 
+	margin: 0;
 }
 .tml .tml-action-links {
 	border-top: 1px dotted #CCC;
@@ -2333,7 +2333,7 @@ form.pmpro_form .pmpro_payment-expiration select {
 #secondary .testimonials-widget-testimonial {
 	text-align: center;
 }
-#secondary .testimonials-widget-testimonial span.image, 
+#secondary .testimonials-widget-testimonial span.image,
 #secondary .testimonials-widget-testimonial span.image img {
 	margin: 0;
 }
