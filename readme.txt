@@ -28,9 +28,33 @@ GNU General Public License for more details.
 
 Memberlite WordPress Theme bundles the following third-party resources:
 
-Font Awesome icons, Copyright Dave Gandy
-License: SIL Open Font License, version 4.7
-Source: http://fontawesome.io/
+Font Awesome icons Copyright Dave Gandy
+License: CC BY 4.0 License
+Source: https://fontawesome.com/license
+
+Font Awesome CSS Copyright Dave Gandy
+License: MIT License
+Source: https://fontawesome.com/license
+
+Paid Memberships Pro icon and templates
+License: GPLv2
+Source: https://www.paidmembershipspro.com/paid-memberships-pro-is-100-gpl-and-why/
+
+bbPress icon, CSS and templates
+License: GPLv2
+Source: https://bbpress.org/about/gpl/
+
+BuddyPress CSS and templates
+License: GPLv2
+Source: https://buddypress.org/about/gpl/
+
+WooCommerce icon, CSS and templates
+License: GPLv3
+Source: https://github.com/woocommerce/woocommerce/blob/master/license.txt
+
+The Events Manager icon
+License: GPLv3
+Source: https://eventsmanagerpro.com/terms-conditions/
 
 == Getting Started ==
 Memberlite makes it easy to customize the appearance and layout of your site using the Theme Customization Screen (Appearance > Customize). 
