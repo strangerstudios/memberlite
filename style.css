@@ -1454,7 +1454,12 @@ a:active {
 }
 .masthead h1 {
 	grid-area: title;
+	-webkit-hyphens: auto;
+	-moz-hyphens: auto;
+	hyphens: auto;
 	margin: 2.9rem 0 0 0;
+	word-wrap: break-word;
+	overflow-wrap: break-word;
 }
 .masthead h1 a, .masthead h2 a, .masthead h3 a {
 	color: #FFF;
