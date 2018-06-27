@@ -1570,6 +1570,11 @@ a:active {
 #primary .hentry .entry-header .entry-title {
 	margin: 0 0 .7rem 0;
 	grid-area: title;
+	-webkit-hyphens: auto;
+	-moz-hyphens: auto;
+	hyphens: auto;
+	word-wrap: break-word;
+	overflow-wrap: break-word;
 }
 #primary .hentry .entry-header .entry-meta {
 	grid-area: meta;
