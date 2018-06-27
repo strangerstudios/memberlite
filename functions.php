@@ -94,11 +94,11 @@ if ( ! function_exists( 'memberlite_setup' ) ) :
 		// This theme uses wp_nav_menu() in four locations.
 		register_nav_menus(
 			array(
-				'primary'           => __( 'Primary Menu', 'memberlite' ),
-				'member'            => __( 'Member Menu', 'memberlite' ),
-				'member-logged-out' => __( 'Member Menu - Logged Out', 'memberlite' ),
-				'meta'              => __( 'Meta Menu', 'memberlite' ),
-				'footer'            => __( 'Footer Menu', 'memberlite' ),
+				'primary'           => __( 'Primary', 'memberlite' ),
+				'member'            => __( 'Member', 'memberlite' ),
+				'member-logged-out' => __( 'Member - Logged Out', 'memberlite' ),
+				'meta'              => __( 'Meta', 'memberlite' ),
+				'footer'            => __( 'Footer', 'memberlite' ),
 			)
 		);
 
