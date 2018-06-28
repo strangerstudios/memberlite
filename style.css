@@ -271,7 +271,7 @@ code, kbd, tt, var {
 	padding: 2px 4px;
 }
 code, kbd, tt, var {
-	font: 15px Monaco, Consolas, "Andale Mono", "DejaVu Sans Mono", monospace;
+	font: .8em Monaco, Consolas, "Andale Mono", "DejaVu Sans Mono", monospace;
 }
 abbr, acronym {
 	border-bottom: 1px dotted #666;
