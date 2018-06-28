@@ -21,7 +21,7 @@ function memberlite_init_styles() {
 	wp_enqueue_style( 'font-awesome', get_template_directory_uri() . '/font-awesome/css/font-awesome.min.css', array(), '4.7' );
 
 	// load dark.css for dark/inverted backgrounds
-	$memberlite_darkcss = get_theme_mod( 'memberlite_darkcss',$memberlite_defaults['memberlite_darkcss'], false );
+	$memberlite_darkcss = get_theme_mod( 'memberlite_darkcss', $memberlite_defaults['memberlite_darkcss'], false );
 	if ( ! empty( $memberlite_darkcss ) ) {
 		wp_enqueue_style( 'memberlite_darkcss', get_template_directory_uri() . '/css/dark.css', array(), MEMBERLITE_VERSION );
 	}
