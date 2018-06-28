@@ -1,5 +1,56 @@
 #Memberlite: An Easy to Customize Theme for Membership Sites
 ===
+##Description
+---------------
+
+**Build a Professional WordPress Membership Site**
+Memberlite is the ideal theme for your membership site - packed with integration for top membership site plugins including Paid Memberships Pro. It's fully customizable with your logo, colors, fonts, and more global layout settings. Extend the site appearance further with the Memberlite Elements and Memberlite Shortcodes plugins. Memberlite is responsive, clean and minimal.
+
+##Copyright
+---------------
+
+Memberlite WordPress Theme, Copyright (C) 2017 Stranger Studios, LLC and other contributors
+Memberlite is distributed under the terms of the GNU GPL
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+Memberlite WordPress Theme bundles the following third-party resources:
+
+Font Awesome icons Copyright Dave Gandy
+License: CC BY 4.0 License
+Source: https://fontawesome.com/license
+
+Font Awesome CSS Copyright Dave Gandy
+License: MIT License
+Source: https://fontawesome.com/license
+
+Paid Memberships Pro icon and templates
+License: GPLv2
+Source: https://www.paidmembershipspro.com/paid-memberships-pro-is-100-gpl-and-why/
+
+bbPress icon, CSS and templates
+License: GPLv2
+Source: https://bbpress.org/about/gpl/
+
+BuddyPress CSS and templates
+License: GPLv2
+Source: https://buddypress.org/about/gpl/
+
+WooCommerce icon, CSS and templates
+License: GPLv3
+Source: https://github.com/woocommerce/woocommerce/blob/master/license.txt
+
+The Events Manager icon
+License: GPLv3
+Source: https://eventsmanagerpro.com/terms-conditions/
 
 ##Getting Started
 ---------------
