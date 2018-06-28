@@ -146,7 +146,7 @@ add_action( 'after_setup_theme', 'memberlite_setup' );
 
 function memberlite_wp_head() {
 	if ( is_singular() && pings_open() ) {
-		printf( '<link rel="pingback" href="%s">' . "\n", get_bloginfo( 'pingback_url' ) );
+		printf( '<link rel="pingback" href="%s">' . "\n", esc_url( get_bloginfo( 'pingback_url' ) ) );
 	}
 }
 add_action( 'wp_head', 'memberlite_wp_head' );
@@ -264,15 +264,15 @@ function memberlite_member_menu_cb( $args ) {
 		$link_after = '</li>';
 	}
 	if ( is_user_logged_in() ) {
-		$link = $link_before . '<a href="' . wp_logout_url() . '">' . $before . __( 'Log Out', 'memberlite' ) . $after . '</a>';
+		$link = $link_before . '<a href="' . esc_url( wp_logout_url() ) . '">' . $before . __( 'Log Out', 'memberlite' ) . $after . '</a>';
 	} else {
 		// not logged in
-		$link = $link_before . '<a href="' . wp_login_url() . '">' . $before . __( 'Log In', 'memberlite' ) . $after . '</a>';
+		$link = $link_before . '<a href="' . esc_url( wp_login_url() ) . '">' . $before . __( 'Log In', 'memberlite' ) . $after . '</a>';
 
 		$show_register_link = get_option( 'users_can_register' ) || defined( 'PMPRO_VERSION' );
 		$show_register_link = apply_filters( 'memberlite_show_register_link', $show_register_link );
 		if ( ! empty( $show_register_link ) ) {
-			$link .= $link_before . '<a href="' . wp_registration_url() . '">' . $before . __( 'Register', 'memberlite' ) . $after . '</a>' . $link_after;
+			$link .= $link_before . '<a href="' . esc_url( wp_registration_url() ) . '">' . $before . __( 'Register','memberlite' ) . $after . '</a>' . $link_after;
 		}
 	}
 	$output = sprintf( $items_wrap, $menu_id, $menu_class, $link );
