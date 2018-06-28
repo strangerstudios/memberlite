@@ -239,7 +239,7 @@
 		'posts_entry_meta_before', function( value ) {
 			value.bind(
 				function( to ) {
-					$( '.post .entry-meta' ).text( to );
+					$( 'header .entry-meta' ).text( to );
 				}
 			);
 		}

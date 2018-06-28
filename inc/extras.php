@@ -528,7 +528,7 @@ function memberlite_getBreadcrumbs() {
 				?>
 				<?php the_title(); ?>
 			</nav>
-		<?php } elseif ( is_page() && ! is_front_page() && ! is_attachment() && '' != $page_breadcrumbs ) { ?>			
+		<?php } elseif ( is_page() && ! is_front_page() && ! is_attachment() && '' != $page_breadcrumbs ) { ?>
 			<nav class="memberlite-breadcrumb" itemprop="breadcrumb">
 				<a href="<?php echo esc_url( home_url() ); ?>"><?php _e( 'Home', 'memberlite' ); ?></a>
 				<span class="sep"><?php echo esc_html( $memberlite_delimiter ); ?></span>
@@ -588,7 +588,7 @@ function memberlite_getBreadcrumbs() {
 						<?php
 				}
 				?>
-								
+
 				<?php
 				if ( is_category() ) :
 					single_cat_title();
@@ -664,7 +664,7 @@ function memberlite_getBreadcrumbs() {
 				<?php } ?>
 				<span class="sep"><?php echo esc_html( $memberlite_delimiter ); ?></span>
 				<?php the_title(); ?>
-			</nav>	
+			</nav>
 		<?php } elseif ( is_search() && '' != $search_breadcrumbs ) { ?>
 			<nav class="memberlite-breadcrumb" itemprop="breadcrumb">
 				  <a href="<?php echo esc_url( home_url() ); ?>"><?php _e( 'Home', 'memberlite' ); ?></a>
@@ -739,6 +739,7 @@ function memberlite_get_banner_image_src( $post_id = null, $size = 'banner' ) {
 	{post_permalink_icon} - A permalink to the post displayed as the Font Awesome "link" icon.
 	{post_tags} - List of entry tags separated by a comma.
 	{post_time} - Time the entry was published, formatted to your site's "Time Format" under Settings > General
+	{post_title} - Title of the entry.
 */
 function memberlite_parse_tags( $meta, $post = null ) {
 	if ( empty( $post ) ) {
@@ -812,6 +813,11 @@ function memberlite_parse_tags( $meta, $post = null ) {
 	if ( strpos( $meta, '{post_time}' ) !== false ) {
 		$searches[]     = '{post_time}';
 		$replacements[] = '<time class="entry-time" datetime="' . esc_attr( get_the_date( 'H:i' ) ) . '">' . esc_html( get_the_time() ) . '</time>';
+	}
+
+	if ( strpos( $meta, '{post_title}' ) !== false ) {
+		$searches[]     = '{post_title}';
+		$replacements[] = '<span class="entry-title">' . esc_html( get_the_title() ) . '</span>';
 	}
 
 	$meta = str_replace( $searches, $replacements, $meta );
