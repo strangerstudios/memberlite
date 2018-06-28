@@ -30,9 +30,9 @@ function memberlite_body_classes( $classes ) {
 
 	// sidebar classes
 	if ( ! is_page_template( 'templates/fluid-width.php' ) ) {
-		$classes[] = get_theme_mod( 'sidebar_location',$memberlite_defaults['sidebar_location'] );
+		$classes[] = get_theme_mod( 'sidebar_location', $memberlite_defaults['sidebar_location'] );
 	}
-	$classes[] = get_theme_mod( 'sidebar_location_blog',$memberlite_defaults['sidebar_location_blog'] );
+	$classes[] = get_theme_mod( 'sidebar_location_blog', $memberlite_defaults['sidebar_location_blog'] );
 	if ( is_page_template( 'templates/sidebar-content.php' ) ) {
 		$classes[] = 'sidebar-content';
 	}
@@ -41,7 +41,7 @@ function memberlite_body_classes( $classes ) {
 	}
 
 	// color scheme class
-	$classes[] = 'scheme_' . get_theme_mod( 'memberlite_color_scheme',$memberlite_defaults['memberlite_color_scheme'] );
+	$classes[] = 'scheme_' . get_theme_mod( 'memberlite_color_scheme', $memberlite_defaults['memberlite_color_scheme'] );
 
 	// other classes
 	if ( is_multi_author() ) {
@@ -488,7 +488,7 @@ function memberlite_get_widget_areas() {
 function memberlite_bbp_breadcrumb( $args ) {
 	global $memberlite_defaults;
 	$args = array(
-		'sep' => get_theme_mod( 'delimiter',$memberlite_defaults['delimiter'] ),
+		'sep' => get_theme_mod( 'delimiter', $memberlite_defaults['delimiter'] ),
 		'home_text' => __( 'Home', 'memberlite' ),
 		'before' => '',
 		'after' => '',
@@ -519,7 +519,7 @@ function memberlite_getBreadcrumbs() {
 	$memberlite_show_breadcrumbs = apply_filters( 'memberlite_show_breadcrumbs',  true );
 
 	if ( $memberlite_show_breadcrumbs ) {
-		$memberlite_delimiter = get_theme_mod( 'delimiter',$memberlite_defaults['delimiter'] );
+		$memberlite_delimiter = get_theme_mod( 'delimiter', $memberlite_defaults['delimiter'] );
 
 		if ( function_exists( 'is_woocommerce' ) && is_woocommerce() ) {
 
@@ -723,7 +723,7 @@ function memberlite_should_show_banner_image( $post_id = null ) {
 		$r = false;
 	} else {
 		// Check if we should show the banner image in the loop based on customizer setting
-		$memberlite_loop_images = get_theme_mod( 'memberlite_loop_images',$memberlite_defaults['memberlite_loop_images'] );
+		$memberlite_loop_images = get_theme_mod( 'memberlite_loop_images', $memberlite_defaults['memberlite_loop_images'] );
 		if ( ( in_the_loop() && ( $memberlite_loop_images == 'show_both' || $memberlite_loop_images == 'show_banner' ) ) ) {
 			  $r = true;
 		} else {
