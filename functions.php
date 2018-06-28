@@ -229,18 +229,18 @@ function memberlite_menus( $items, $args ) {
 	if ( $args->theme_location == 'member' || $args->theme_location == 'member-logged-out' || ( strpos( $args->theme_location, '-member' ) !== false ) ) {
 		if ( is_user_logged_in() && defined( 'PMPRO_VERSION' ) && pmpro_hasMembershipLevel() ) {
 			// user is logged in and has a membership level
-			$items .= '<li><a href="' . esc_url( wp_logout_url() ) . '">' . __( 'Log Out','memberlite' ) . '</a></li>';
+			$items .= '<li><a href="' . esc_url( wp_logout_url() ) . '">' . __( 'Log Out', 'memberlite' ) . '</a></li>';
 		} elseif ( is_user_logged_in() ) {
 			// user is logged in and does not have a membership level
-			$items = '<li><a href="' . esc_url( wp_logout_url() ) . '">' . __( 'Log Out','memberlite' ) . '</a></li>';
+			$items = '<li><a href="' . esc_url( wp_logout_url() ) . '">' . __( 'Log Out', 'memberlite' ) . '</a></li>';
 		} else {
 			// not logged in
-			$items .= '<li><a href="' . esc_url( wp_login_url() ) . '">' . __( 'Log In','memberlite' ) . '</a></li>';
+			$items .= '<li><a href="' . esc_url( wp_login_url() ) . '">' . __( 'Log In', 'memberlite' ) . '</a></li>';
 
 			$show_register_link = get_option( 'users_can_register' ) || defined( 'PMPRO_VERSION' );
 			$show_register_link = apply_filters( 'memberlite_show_register_link', $show_register_link );
 			if ( ! empty( $show_register_link ) ) {
-				$items .= '<li><a href="' . esc_url( wp_registration_url() ) . '">' . __( 'Register','memberlite' ) . '</a></li>';
+				$items .= '<li><a href="' . esc_url( wp_registration_url() ) . '">' . __( 'Register', 'memberlite' ) . '</a></li>';
 			}
 		}
 	}
