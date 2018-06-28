@@ -2186,7 +2186,7 @@ form.pmpro_form .pmpro_payment-expiration select {
 #pmpro_account .pmpro_box {
 	border: none;
 	padding: 0;
-	margin: 0;
+	margin: 0 0 5.8rem;
 }
 #pmpro_account #pmpro_account-membership .pmpro_actionlinks,
 #pmpro_account #pmpro_account-invoices .pmpro_actionlinks {
