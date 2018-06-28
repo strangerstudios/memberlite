@@ -1017,15 +1017,17 @@ class memberlite_Customize {
 	/**
 	 * Sanitize select and radio fields. Based on (https://github.com/WPTRT/code-examples/blob/master/customizer/sanitization-callbacks.php#L262-L288)
 	 *
+	 * Updated to use sanitize_text_field instead of sanitize_key since we have select fields with uppercase keys
+	 *
 	 * @since Memberlite 3.1
 	 *
 	 * - Sanitization: select
 	 * - Control: select, radio
 	 *
 	 * Sanitization callback for 'select' and 'radio' type controls. This callback sanitizes `$input`
-	 * as a slug, and then validates `$input` against the choices defined for the control.
+	 * as text, and then validates `$input` against the choices defined for the control.
 	 *
-	 * @see sanitize_key()               https://developer.wordpress.org/reference/functions/sanitize_key/
+	 * @see sanitize_text_field()        https://developer.wordpress.org/reference/functions/sanitize_text_field/
 	 * @see $wp_customize->get_control() https://developer.wordpress.org/reference/classes/wp_customize_manager/get_control/
 	 *
 	 * @param string               $input   Slug to sanitize.
@@ -1033,11 +1035,7 @@ class memberlite_Customize {
 	 * @return string Sanitized slug if it is a valid choice; otherwise, the setting default.
 	 */
 	public static function sanitize_select( $input, $setting ) {
-
-		// Ensure input is a slug.
-		$input = sanitize_key( $input );
-
-		// Get list of choices from the control associated with the setting.
+		$input = sanitize_text_field( $input );
 		$choices = $setting->manager->get_control( $setting->id )->choices;
 
 		// If the input is a valid key, return it; otherwise, return the default.
