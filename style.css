@@ -1240,6 +1240,15 @@ a:active {
 #secondary .widget.widget_recent_comments #recentcomments {
 	color: #AAA;
 }
+.widget_recent_comments ul li a,
+.widget_recent_entries ul li a,
+.widget_recent_entries_thumbnails ul li a {
+	-webkit-hyphens: auto;
+	-moz-hyphens: auto;
+	hyphens: auto;
+	word-wrap: break-word;
+	overflow-wrap: break-word;
+}
 .widget_recent_entries_thumbnails li {
 	clear: left;
 	margin-bottom: 1.45rem;
@@ -1454,7 +1463,12 @@ a:active {
 }
 .masthead h1 {
 	grid-area: title;
+	-webkit-hyphens: auto;
+	-moz-hyphens: auto;
+	hyphens: auto;
 	margin: 2.9rem 0 0 0;
+	word-wrap: break-word;
+	overflow-wrap: break-word;
 }
 .masthead h1 a, .masthead h2 a, .masthead h3 a {
 	color: #FFF;
@@ -1565,6 +1579,11 @@ a:active {
 #primary .hentry .entry-header .entry-title {
 	margin: 0 0 .7rem 0;
 	grid-area: title;
+	-webkit-hyphens: auto;
+	-moz-hyphens: auto;
+	hyphens: auto;
+	word-wrap: break-word;
+	overflow-wrap: break-word;
 }
 #primary .hentry .entry-header .entry-meta {
 	grid-area: meta;
@@ -2167,7 +2186,7 @@ form.pmpro_form .pmpro_payment-expiration select {
 #pmpro_account .pmpro_box {
 	border: none;
 	padding: 0;
-	margin: 0;
+	margin: 0 0 5.8rem;
 }
 #pmpro_account #pmpro_account-membership .pmpro_actionlinks,
 #pmpro_account #pmpro_account-invoices .pmpro_actionlinks {
