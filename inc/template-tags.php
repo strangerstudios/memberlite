@@ -129,9 +129,9 @@ function memberlite_page_nav() {
 		<h1 class="screen-reader-text"><?php _e( 'Page navigation', 'memberlite' ); ?></h1>
 		<div class="nav-links">
 			<?php if( !empty($previousID ) && ( $previousID != $post->ID ) ) { ?>
-				<div class="nav-previous"><a href="<?php echo get_permalink($previousID); ?>" rel="prev"><span class="meta-nav">&larr;</span> <?php echo get_the_title($previousID); ?></a></div>
+				<div class="nav-previous"><a href="<?php echo esc_url( get_permalink( $previousID ) ); ?>" rel="prev"><span class="meta-nav">&larr;</span> <?php echo get_the_title($previousID); ?></a></div>
 			<?php } if( !empty($nextID) && ( $nextID != $post->ID ) ) { ?>
-				<div class="nav-next"><a href="<?php echo get_permalink($nextID); ?>" rel="next"><?php echo get_the_title($nextID); ?> <span class="meta-nav">&rarr;</span></a></div>
+				<div class="nav-next"><a href="<?php echo esc_url( get_permalink( $nextID ) ); ?>" rel="next"><?php echo get_the_title($nextID); ?> <span class="meta-nav">&rarr;</span></a></div>
 			<?php } ?>
 		</div><!-- .nav-links -->
 	</nav><!-- .navigation -->
@@ -244,7 +244,7 @@ class comment_walker extends Walker_Comment {
 			<figure class="gravatar"><?php echo get_avatar( $comment, 80, '', 'Author&#8217;s gravatar' ); ?></figure>
 			<div class="comment-meta post-meta" role="complementary">
 				<h4 class="comment-author">
-					<a class="comment-author-link" href="<?php comment_author_url(); ?>" itemprop="author" rel="nofollow" target="_blank"><?php comment_author(); ?></a>
+					<a class="comment-author-link" href="<?php esc_url( comment_author_url() ); ?>" itemprop="author" rel="nofollow" target="_blank"><?php comment_author(); ?></a>
 				</h4>
 				<?php edit_comment_link('<span class="alignright">Edit this comment</span>','',''); ?>
 				<time class="comment-meta-item" datetime="<?php comment_date('Y-m-d') ?>T<?php comment_time('H:iP') ?>" itemprop="datePublished"><?php comment_date('jS F Y') ?>, <a href="#comment-<?php comment_ID() ?>" itemprop="url"><?php comment_time() ?></a></time>
@@ -320,11 +320,11 @@ class pings_walker extends Walker_Comment {
 			<?php if($depth > 1) { ?><i class="fa fa-caret-left"></i><?php } ?>
 			<div class="comment-meta post-meta" role="complementary">
 				<h4 class="comment-author">
-					<a class="comment-author-link" href="<?php comment_author_url(); ?>" itemprop="author" rel="nofollow" target="_blank"><?php comment_author(); ?></a>
+					<a class="comment-author-link" href="<?php esc_url( comment_author_url() ); ?>" itemprop="author" rel="nofollow" target="_blank"><?php comment_author(); ?></a>
 				</h4>
 				<time class="comment-meta-item" datetime="<?php comment_date('Y-m-d') ?>T<?php comment_time('H:iP') ?>" itemprop="datePublished"><?php comment_date('jS F Y') ?>, <a href="#comment-<?php comment_ID() ?>" itemprop="url"><?php comment_time() ?></a></time>
 				<?php edit_comment_link('<p class="comment-meta-item">Edit this comment</p>','',''); ?>
-				<?php if ($comment->comment_approved == '0') : ?>
+				<?php if ( $comment->comment_approved == '0' ) : ?>
 				<p class="comment-meta-item"><?php _e('Your comment is awaiting moderation.', 'memberlite'); ?></p>
 				<?php endif; ?>
 			</div>

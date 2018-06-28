@@ -24,9 +24,9 @@
 					<?php do_action('memberlite_before_masthead_inner'); ?>
 					
 					<?php if( is_page_template( 'templates/interstitial.php' ) ) { 
-						$referrer = isset( $_GET['redirect_to'] ) ? esc_url_raw( $_GET['redirect_to'] ) :null;
+						$referrer = isset( $_GET['redirect_to'] ) ? esc_url_raw( $_GET['redirect_to'] ) : null;
 						?>
-						<a class="btn" href="<?php echo esc_attr($referrer); ?>"><?php _e( 'No Thanks &raquo;','memberlite'); ?></a>
+						<a class="btn" href="<?php echo esc_url($referrer); ?>"><?php _e( 'No Thanks &raquo;','memberlite'); ?></a>
 					<?php } ?>
 
 					<?php memberlite_getBreadcrumbs(); ?>
