@@ -36,7 +36,7 @@ add_action( 'wp_enqueue_scripts', 'memberlite_init_styles' );
 /* Load fonts via Google API */
 function memberlite_load_fonts() {
 	global $memberlite_defaults;
-	wp_register_style( 'googleFonts', '//fonts.googleapis.com/css?family=' . str_replace( '_', ':400,700|',str_replace( '-','+', get_theme_mod( 'memberlite_webfonts', $memberlite_defaults['memberlite_webfonts'] ) ) ) . ':400,700' );
+	wp_register_style( 'googleFonts', '//fonts.googleapis.com/css?family=' . str_replace( '_', ':400,700|', str_replace( '-', '+', get_theme_mod( 'memberlite_webfonts', $memberlite_defaults['memberlite_webfonts'] ) ) ) . ':400,700' );
 	wp_enqueue_style( 'googleFonts' );
 }
 add_action( 'wp_print_styles', 'memberlite_load_fonts' );
@@ -94,11 +94,11 @@ if ( ! function_exists( 'memberlite_setup' ) ) :
 		// This theme uses wp_nav_menu() in four locations.
 		register_nav_menus(
 			array(
-				'primary' => __( 'Primary Menu', 'memberlite' ),
-				'member' => __( 'Member Menu', 'memberlite' ),
+				'primary'           => __( 'Primary Menu', 'memberlite' ),
+				'member'            => __( 'Member Menu', 'memberlite' ),
 				'member-logged-out' => __( 'Member Menu - Logged Out', 'memberlite' ),
-				'meta' => __( 'Meta Menu', 'memberlite' ),
-				'footer' => __( 'Footer Menu', 'memberlite' ),
+				'meta'              => __( 'Meta Menu', 'memberlite' ),
+				'footer'            => __( 'Footer Menu', 'memberlite' ),
 			)
 		);
 
@@ -264,10 +264,10 @@ function memberlite_member_menu_cb( $args ) {
 		$link_after = '</li>';
 	}
 	if ( is_user_logged_in() ) {
-		$link = $link_before . '<a href="' . esc_url( wp_logout_url() ) . '">' . $before . __( 'Log Out','memberlite' ) . $after . '</a>';
+		$link = $link_before . '<a href="' . esc_url( wp_logout_url() ) . '">' . $before . __( 'Log Out', 'memberlite' ) . $after . '</a>';
 	} else {
 		// not logged in
-		$link = $link_before . '<a href="' . esc_url( wp_login_url() ) . '">' . $before . __( 'Log In','memberlite' ) . $after . '</a>';
+		$link = $link_before . '<a href="' . esc_url( wp_login_url() ) . '">' . $before . __( 'Log In', 'memberlite' ) . $after . '</a>';
 
 		$show_register_link = get_option( 'users_can_register' ) || defined( 'PMPRO_VERSION' );
 		$show_register_link = apply_filters( 'memberlite_show_register_link', $show_register_link );
@@ -277,7 +277,7 @@ function memberlite_member_menu_cb( $args ) {
 	}
 	$output = sprintf( $items_wrap, $menu_id, $menu_class, $link );
 	if ( ! empty( $container ) ) {
-		$output  = "<$container class='$container_class' id='$container_id'>$output</$container>";
+		$output = "<$container class='$container_class' id='$container_id'>$output</$container>";
 	}
 	if ( $echo ) {
 		echo $output;
@@ -294,7 +294,7 @@ add_filter( 'wp_nav_menu', 'memberlite_wp_nav_menu' );
 function memberlite_comment_count( $count ) {
 	global $id;
 	$comment_count = 0;
-	$comments = get_approved_comments( $id );
+	$comments      = get_approved_comments( $id );
 	foreach ( $comments as $comment ) {
 		if ( $comment->comment_type === '' ) {
 			$comment_count++;
