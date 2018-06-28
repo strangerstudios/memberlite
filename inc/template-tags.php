@@ -78,12 +78,12 @@ if ( ! function_exists( 'memberlite_page_nav' ) ) :
 	 */
 	function memberlite_page_nav() {
 		global $post;
-		
+
 		$post_type_object = get_post_type_object( get_post_type( $post ) );
 		if ( empty( $post_type_object) ) {
 			return;
 		}
-					
+
 		//check if subpage
 		if ( ! empty( $post->post_parent) ) {
 			$post_ancestors = get_post_ancestors( $post );
@@ -91,38 +91,38 @@ if ( ! function_exists( 'memberlite_page_nav' ) ) :
 		} else {
 			$child_of = $post->ID;
 		}
-		
+
 		//build array of page ids for navigation
 		$allpages = get_pages( 'child_of=' . $child_of . '&sort_column=menu_order&sort_order=asc' );
-		
+
 		$pages = array();
 		$pages[] = $child_of;		//parent id is first
 		foreach( $allpages as $page ) {
 		   $pages[] += $page->ID;
 		}
-		
+
 		//figure out prev and next post IDs
 		$current = array_search( $post->ID, $pages );
-		
+
 		//prev
 		if ( ! empty( $pages[$current-1] ) ) {
 			$previousID = $pages[$current-1];
 		} else {
 			$previousID = false;
 		}
-		
+
 		//next
 		if ( ! empty( $pages[$current+1] ) ) {
 			$nextID = $pages[$current+1];
 		} else {
 			$nextID = false;
 		}
-		
+
 		//don't show if neither prev or next
 		if ( empty( $nextID ) && empty( $previousID ) ) {
 			return;
 		}
-		
+
 		//HTML
 		?>
 		<nav class="navigation page-navigation" role="navigation">
@@ -144,15 +144,15 @@ endif;
  */
 function memberlite_get_entry_meta( $post = NULL, $location = "before" ) {
     global $memberlite_defaults;
-	
+
 	if ( empty( $post ) ) {
         global $post;
 	}
-    
+
     $meta = get_theme_mod( 'posts_entry_meta_' . $location, $memberlite_defaults['posts_entry_meta_' . $location] );
     $meta = apply_filters( 'memberlite_get_entry_meta', $meta, $post, $location );
     $meta = memberlite_parse_tags( $meta, $post );
-    
+
     return $meta;
 }
 
