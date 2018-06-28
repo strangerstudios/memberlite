@@ -11,7 +11,7 @@ body {background:white; font-size:10pt; margin:0 }
 #masthead .site-branding {width: 100%; text-align: left; }
 #page a { text-decoration:underline; border: none; }
 #site-navigation, #masthead .header-right, .masthead .memberlite-breadcrumb, .post-navigation, #respond, #secondary, #banner_bottom, .site-footer .footer-widgets, #footer-navigation, .site-info .skip-link { display:none }
-#footer, .ad { display:none }
+#footer, .ad, #nav-below { display:none }
 .masthead {padding: 0; margin: 0; }
 .site-footer .site-info {padding-bottom: 0; padding-top: 0; }
 .post-edit-link {display: none; }
