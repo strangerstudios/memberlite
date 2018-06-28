@@ -215,7 +215,7 @@ function memberlite_the_content( $content ) {
 		return $content;
 	}
 }
-add_filter( 'the_content','memberlite_the_content' );
+add_filter( 'the_content', 'memberlite_the_content' );
 
 function memberlite_page_title( $echo = true ) {
 	global $post;
@@ -249,7 +249,7 @@ function memberlite_page_title( $echo = true ) {
 		?>
 		<h1 class="page-title"><?php the_archive_title(); ?></h1>
 		<?php
-	} elseif ( function_exists( 'is_bbpress' ) && (is_bbpress() || bbp_is_single_user()) ) {
+	} elseif ( function_exists( 'is_bbpress' ) && ( is_bbpress() || bbp_is_single_user() ) ) {
 		?>
 		<h1 class="page-title">
 		<?php
@@ -702,7 +702,7 @@ function memberlite_getBreadcrumbs() {
 						<?php
 				}
 				?>
-				<?php _e( 'Search Results For','memberlite' ); ?> '<?php the_search_query(); ?>'
+				<?php _e( 'Search Results For', 'memberlite' ); ?> '<?php the_search_query(); ?>'
 			</nav>
 		<?php
 }
