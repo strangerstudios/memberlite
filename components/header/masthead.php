@@ -20,7 +20,7 @@ if ( ! empty( $memberlite_banner_show ) ) {
 
 		<header class="masthead">
 			<div class="row">
-				<div class="medium-<?php echo memberlite_getColumnsRatio( 'masthead' ); ?> columns">
+				<div class="medium-<?php echo esc_attr(memberlite_getColumnsRatio( 'masthead' ) ); ?> columns">
 					
 					<?php do_action( 'memberlite_before_masthead_inner' ); ?>
 					

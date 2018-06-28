@@ -39,7 +39,7 @@
 			if ( is_page_template( 'templates/interstitial.php' ) || empty( $show_header_right ) ) {
 				echo 'large-12';
 			} else {
-				echo 'medium-' . memberlite_getColumnsRatio( 'header-left' ); }
+				echo 'medium-' . esc_attr( memberlite_getColumnsRatio( 'header-left' ) ); }
 ?>
  columns site-branding">
 				
@@ -52,7 +52,7 @@
 			</div><!-- .column4 -->
 			
 			<?php if ( ! empty( $show_header_right ) ) { ?>
-				<div class="medium-<?php echo memberlite_getColumnsRatio( 'header-right' ); ?> columns header-right
+				<div class="medium-<?php echo esc_attr( memberlite_getColumnsRatio( 'header-right' ) ); ?> columns header-right
 												<?php
 												if ( $meta_login == false ) {
 								?>
