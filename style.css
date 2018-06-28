@@ -1240,6 +1240,15 @@ a:active {
 #secondary .widget.widget_recent_comments #recentcomments {
 	color: #AAA;
 }
+.widget_recent_comments ul li a,
+.widget_recent_entries ul li a,
+.widget_recent_entries_thumbnails ul li a {
+	-webkit-hyphens: auto;
+	-moz-hyphens: auto;
+	hyphens: auto;
+	word-wrap: break-word;
+	overflow-wrap: break-word;
+}
 .widget_recent_entries_thumbnails li {
 	clear: left;
 	margin-bottom: 1.45rem;
