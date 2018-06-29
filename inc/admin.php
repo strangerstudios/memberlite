@@ -38,7 +38,7 @@ function memberlite_support() {
 					<h2><span class="dashicons dashicons-format-image"></span> <?php _e( 'Adding Your Logo', 'memberlite' ); ?></h2>
 					<p><?php _e( 'Use the Customize > Site Identity screen to add a custom logo and update or toggle the display of your Site Title and Tagline.', 'memberlite' ); ?></p>
 					<p>
-						<a class="button button-primary" href="<?php echo wp_customize_url(); ?>"><?php _e( 'Add Your Logo', 'memberlite' ); ?></a>
+						<a class="button button-primary" href="<?php echo esc_url( wp_customize_url() ); ?>"><?php _e( 'Add Your Logo', 'memberlite' ); ?></a>
 						<a class="button" href="https://memberlitetheme.com/documentation/site-branding/" target="_blank"><?php _e( 'View Docs on Site Branding in Memberlite', 'memberlite' ); ?></a>
 					</p>
 				</div>
@@ -60,7 +60,7 @@ function memberlite_support() {
 ?>
 </p>
 					<p>
-						<a class="button button-primary" href="<?php echo wp_customize_url(); ?>">
+						<a class="button button-primary" href="<?php echo esc_url( wp_customize_url() ); ?>">
 																			<?php
 																			_e(
 																				'Customize Your Theme',
