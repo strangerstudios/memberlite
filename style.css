@@ -2239,6 +2239,9 @@ form.pmpro_form .pmpro_payment-expiration select {
 	font-size: 1.4rem;
 	font-style: italic;
 }
+.tml-profile table.form-table small {
+	display: block;
+}
 .tml-profile p.tml-submit-wrap {
 	text-align: right;
 }
