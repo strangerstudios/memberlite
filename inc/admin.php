@@ -14,11 +14,6 @@ function memberlite_theme_menu() {
 add_action( 'admin_menu', 'memberlite_theme_menu' );
 
 function memberlite_support() {
-	if ( isset( $_REQUEST['tab'] ) ) {
-		$view = $_REQUEST['tab'];
-	} else {
-		$view = '';
-	}
 	?>
 	<div id="wpbody-content" aria-label="<?php esc_attr_e( 'Main content', 'memberlite' ); ?>" tabindex="0">	
 		<style>
