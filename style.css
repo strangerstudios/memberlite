@@ -271,7 +271,7 @@ code, kbd, tt, var {
 	padding: 2px 4px;
 }
 code, kbd, tt, var {
-	font: 15px Monaco, Consolas, "Andale Mono", "DejaVu Sans Mono", monospace;
+	font: .8em Monaco, Consolas, "Andale Mono", "DejaVu Sans Mono", monospace;
 }
 abbr, acronym {
 	border-bottom: 1px dotted #666;
@@ -2238,6 +2238,9 @@ form.pmpro_form .pmpro_payment-expiration select {
 .tml-profile table.form-table span {
 	font-size: 1.4rem;
 	font-style: italic;
+}
+.tml-profile table.form-table small {
+	display: block;
 }
 .tml-profile p.tml-submit-wrap {
 	text-align: right;
