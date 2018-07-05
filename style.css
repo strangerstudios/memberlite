@@ -2313,23 +2313,32 @@ form.pmpro_form .pmpro_payment-expiration select {
 #secondary .tml select {
 	margin: 0;
 }
-.tml .tml-action-links {
+.tml .tml-links {
 	border-top: 1px dotted #CCC;
+	color: #CCC;
 	display: block;
+	margin: 0;
 	padding-top: 1.45rem;
 }
-.tml .tml-action-links li {
+.tml .tml-links li {
 	display: inline-block;
 }
-.tml .tml-action-links li a {
-	color: #777;
-	font-size: 1.4rem;
-	font-style: italic;
+.tml .tml-links li:after {
+	content: "|";
 	margin-right: 1.45rem;
+	padding-left: 1.45rem;
+}
+.tml .tml-links li:last-child:after {
+	content: "";
+	margin: 0;
+	padding: 0;
+}
+.tml .tml-links li a {
+	color: #777;
 	text-decoration: none;
 }
-#secondary .tml .tml-action-links li a,
-#secondary .tml .tml-action-links li a:hover {
+#secondary .tml .tml-links li a,
+#secondary .tml .tml-links li a:hover {
 	border: none;
 }
 
