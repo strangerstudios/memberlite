@@ -271,7 +271,7 @@ code, kbd, tt, var {
 	padding: 2px 4px;
 }
 code, kbd, tt, var {
-	font: .8em Monaco, Consolas, "Andale Mono", "DejaVu Sans Mono", monospace;
+	font: 15px Monaco, Consolas, "Andale Mono", "DejaVu Sans Mono", monospace;
 }
 abbr, acronym {
 	border-bottom: 1px dotted #666;
@@ -900,21 +900,26 @@ a:active {
 	text-decoration: none;
 	font-weight: bold;
 }
-
-#mobile-navigation .widget_theme_my_login h3, #mobile-navigation .widget_theme_my_login form {
+#mobile-navigation .widget {
 	padding: 1rem;
-}
-#mobile-navigation .widget_theme_my_login {
 }
 #mobile-navigation .widget_theme_my_login p {
 	margin: 0 0 1rem 0;
 }
-#mobile-navigation .widget_theme_my_login input[type=text], #mobile-navigation .widget_theme_my_login input[type=password], #mobile-navigation .widget_theme_my_login input[type=submit] {
+#mobile-navigation .widget_theme_my_login input[type=text],
+#mobile-navigation .widget_theme_my_login input[type=password],
+#mobile-navigation .widget_theme_my_login input[type=submit] {
 	width: 100%;
 }
-#mobile-navigation .widget_theme_my_login .tml-action-links {
-	border: none;
+#mobile-navigation .widget_theme_my_login .tml-links li {
+	display: block;
+}
+#mobile-navigation .widget_theme_my_login .tml-links li:after {
+	content: "";
 	margin: 0;
+	padding: 0;
+}
+#mobile-navigation .widget.widget_nav_menu {
 	padding: 0;
 }
 #mobile-navigation ul.menu, #mobile-navigation ul.menu li {
@@ -949,7 +954,6 @@ a:active {
 
 #mobile-navigation .widget_search {
 	border-bottom: 1px solid rgba(0,0,0,0.2);
-	padding: 1rem;
 }
 #mobile-navigation .widget_search input[type=search] {
 	background: rgba(0,0,0,0.2);
@@ -2238,9 +2242,6 @@ form.pmpro_form .pmpro_payment-expiration select {
 .tml-profile table.form-table span {
 	font-size: 1.4rem;
 	font-style: italic;
-}
-.tml-profile table.form-table small {
-	display: block;
 }
 .tml-profile p.tml-submit-wrap {
 	text-align: right;
