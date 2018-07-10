@@ -232,8 +232,10 @@ blockquote cite a, .testimonials-widget blockquote .credit a {
 	color: #AAA;
 	text-decoration: none;
 }
-.entry-content blockquote.alignleft, .entry-content blockquote.alignright {
-	width: 50%;
+@media only screen and (min-width: 768px) {
+	.entry-content blockquote.alignleft, .entry-content blockquote.alignright {
+		width: 50%;
+	}
 }
 .testimonials-widget-testimonial .open-quote:before {
 	content: "\f10d";
