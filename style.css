@@ -1,4 +1,4 @@
-/*
+ /*
 Theme Name: Memberlite
 Theme URI: https://memberlitetheme.com/
 Author: Stranger Studios
@@ -231,6 +231,9 @@ blockquote cite, .testimonials-widget blockquote .credit {
 blockquote cite a, .testimonials-widget blockquote .credit a {
 	color: #AAA;
 	text-decoration: none;
+}
+.entry-content blockquote.alignleft, .entry-content blockquote.alignright {
+	width: 50%;
 }
 .testimonials-widget-testimonial .open-quote:before {
 	content: "\f10d";
@@ -1914,7 +1917,6 @@ a:active {
 	margin: .7rem 0 0 0;
 }
 .footer-widgets .widget_theme_my_login .tml-user-avatar {
-	float: left; margin: 0 1rem 2rem 0;
 }
 .footer-widgets .widget_theme_my_login p .input  {
 	width: 100%;
@@ -2186,6 +2188,13 @@ form.pmpro_form #pmpro_pricing_fields.pmpro_checkout h3 {
 }
 form.pmpro_form .pmpro_payment-expiration select {
 	margin: 0 .5rem;
+}
+#secondary form.pmpro_form .pmpro_submit {
+	text-align: center;
+}
+#secondary form.pmpro_form .pmpro_submit .pmpro_btn {
+	display: block;
+	width: 100%;
 }
 #pmpro_account .pmpro_box {
 	border: none;
