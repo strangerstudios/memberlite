@@ -305,21 +305,30 @@ class memberlite_Customize {
 				'transport'            => 'refresh',
 			)
 		);
+
+		// Define dropdown options for the Featured Images on Index/Archives option.
+		$memberlite_loop_images_choices = array(
+			'show_none'      => __( 'Do Not Show Featured Images', 'memberlite' ),
+			'show_banner'    => __( 'Show Banner Only', 'memberlite' ),
+			'show_thumbnail' => __( 'Show Thumbnail Only', 'memberlite' ),
+		);
+
+		// Add a "show_both" option if the Multiple Post Thumbnails plugin is active.
+		if ( class_exists( 'MultiPostThumbnails' ) ) {
+			$memberlite_loop_images_choices['show_both'] = __( 'Show Banner and Thumbnail', 'memberlite' );
+		}
+
 		$wp_customize->add_control(
 			'memberlite_loop_images',
 			array(
-				'label'    => __( 'Featured Images on Index/Archives', 'memberlite' ),
+				'label'    => __( 'Featured Images on Posts Page and Archives', 'memberlite' ),
 				'section'  => 'memberlite_theme_options',
 				'type'     => 'select',
-				'choices'  => array(
-					'show_both'      => __( 'Show Banner or Thumbnail', 'memberlite' ),
-					'show_banner'    => __( 'Show Banner Only', 'memberlite' ),
-					'show_thumbnail' => __( 'Show Thumbnail Only', 'memberlite' ),
-					'show_none'      => __( 'Do Not Show Featured Images', 'memberlite' ),
-				),
+				'choices'  => $memberlite_loop_images_choices,
 				'priority' => 70,
 			)
 		);
+
 		$wp_customize->add_setting(
 			'posts_entry_meta_before',
 			array(
@@ -666,15 +675,15 @@ class memberlite_Customize {
 	public static function header_output() {
 		global $memberlite_defaults;
 		?>
-		<!--Customizer CSS--> 
+		<!--Customizer CSS-->
 		<style type="text/css">
 			<?php self::generate_css( $memberlite_defaults['bgcolor_site_navigation_elements'], 'background', 'bgcolor_site_navigation' ); ?>
 			<?php self::generate_css( $memberlite_defaults['color_site_navigation_elements'], 'color', 'color_site_navigation' ); ?>
 			<?php self::generate_css( $memberlite_defaults['color_link_color_elements'], 'color', 'color_link' ); ?>
 			<?php self::generate_css( $memberlite_defaults['color_meta_link_color_elements'], 'color', 'color_meta_link' ); ?>
-			<?php self::generate_css( $memberlite_defaults['color_primary_background_elements'], 'background', 'color_primary' ); ?> 
+			<?php self::generate_css( $memberlite_defaults['color_primary_background_elements'], 'background', 'color_primary' ); ?>
 			<?php self::generate_css( $memberlite_defaults['color_primary_color_elements'], 'color', 'color_primary' ); ?>
-			<?php self::generate_css( $memberlite_defaults['color_secondary_background_elements'], 'background', 'color_secondary' ); ?> 
+			<?php self::generate_css( $memberlite_defaults['color_secondary_background_elements'], 'background', 'color_secondary' ); ?>
 			<?php self::generate_css( $memberlite_defaults['color_secondary_border_elements'], 'border-top-color', 'color_secondary' ); ?>
 			<?php self::generate_css( $memberlite_defaults['color_secondary_border_elements'], 'border-bottom-color', 'color_secondary' ); ?>
 			<?php self::generate_css( $memberlite_defaults['color_secondary_border_left_elements'], 'border-left-color', 'color_secondary' ); ?>
@@ -682,7 +691,7 @@ class memberlite_Customize {
 			<?php self::generate_css( $memberlite_defaults['color_secondary_color_elements'], 'color', 'color_secondary' ); ?>
 			<?php self::generate_css( $memberlite_defaults['color_action_background_elements'], 'background', 'color_action' ); ?>
 			<?php self::generate_css( $memberlite_defaults['color_action_color_elements'], 'color', 'color_action' ); ?>
-						
+
 			<?php
 				// hover styles
 				$color_primary = get_theme_mod( 'color_primary' );
@@ -726,9 +735,9 @@ class memberlite_Customize {
 				$color_site_navigation_hover = vsprintf( 'rgba( %1$s, %2$s, %3$s, 0.7)', $color_site_navigation_rgb );
 				echo esc_html( $memberlite_defaults['color_site_navigation_hover_elements'] ) . ' {color: ' . esc_html( $color_site_navigation_hover ) . '}';
 			?>
-			
+
 			<?php self::generate_css( '.site-title a, .site-header .site-description', 'color', 'header_textcolor', '#' ); ?>
-			<?php self::generate_css( 'body, .banner_body', 'background-color', 'background_color', '#' ); ?> 
+			<?php self::generate_css( 'body, .banner_body', 'background-color', 'background_color', '#' ); ?>
 			<?php
 				$fonts_string = get_theme_mod( 'memberlite_webfonts' );
 			if ( empty( $fonts_string ) ) {
@@ -741,7 +750,7 @@ class memberlite_Customize {
 			?>
 			<?php echo 'body, button, input[type="button"], input[type="reset"], input[type="submit"], .btn, a.comment-reply-link, a.pmpro_btn, input[type="submit"].pmpro_btn, .woocommerce #content input.button, .woocommerce #respond input#submit, .woocommerce a.button, .woocommerce button.button, .woocommerce input.button, .woocommerce-page #content input.button, .woocommerce-page #respond input#submit, .woocommerce-page a.button, .woocommerce-page button.button, .woocommerce-page input.button, .woocommerce #content input.button.alt, .woocommerce #respond input#submit.alt, .woocommerce a.button.alt, .woocommerce button.button.alt, .woocommerce input.button.alt, .woocommerce-page #content input.button.alt, .woocommerce-page #respond input#submit.alt, .woocommerce-page a.button.alt, .woocommerce-page button.button.alt, .woocommerce-page input.button.alt, form.pmpro_form thead th span.pmpro_thead-msg {font-family: "' . esc_html( $body_font ) . '", sans-serif; }'; ?>
 			<?php echo 'h1, h2, h3, h4, h5, h6, label, .navigation, th, .pmpro_checkout thead th, #pmpro_account .pmpro_box h3, #meta-member .user, #bbpress-forums li.bbp-header, #bbpress-forums li.bbp-footer, #bbpress-forums fieldset.bbp-form legend {font-family: "' . esc_html( $header_font ) . '", sans-serif; }'; ?>
-		</style> 
+		</style>
 		<!--/Customizer CSS-->
 		<?php
 	}
@@ -1149,4 +1158,3 @@ add_action( 'wp_head', array( 'memberlite_Customize', 'header_output' ) );
 
 // Enqueue live preview javascript in Theme Customizer admin screen
 add_action( 'customize_preview_init', array( 'memberlite_Customize', 'live_preview' ) );
-
