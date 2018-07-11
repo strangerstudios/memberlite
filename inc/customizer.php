@@ -37,22 +37,7 @@ class memberlite_Customize {
 				'label'    => __( 'Google Webfonts', 'memberlite' ),
 				'section'  => 'memberlite_theme_options',
 				'type'     => 'select',
-				'choices'  => array(
-					'Lato_Lato'                          => __( 'Lato', 'memberlite' ),
-					'PT-Sans_PT-Serif'                   => __( 'PT Sans and PT Serif', 'memberlite' ),
-					'Fjalla-One_Noto-Sans'               => __( 'Fjalla One and Noto Sans', 'memberlite' ),
-					'Pathway-Gothic-One_Source-Sans-Pro' => __( 'Pathway Gothic One and Source Sans Pro', 'memberlite' ),
-					'Oswald_Lato'                        => __( 'Oswald and Lato', 'memberlite' ),
-					'Ubuntu_Open-Sans'                   => __( 'Ubuntu and Open Sans', 'memberlite' ),
-					'Lato_Source-Sans-Pro'               => __( 'Lato and Source Sans Pro', 'memberlite' ),
-					'Roboto-Slab_Roboto'                 => __( 'Roboto Slab and Roboto', 'memberlite' ),
-					'Lato_Merriweather'                  => __( 'Lato and Merriweather', 'memberlite' ),
-					'Playfair-Display_Open-Sans'         => __( 'Playfair Display and Open Sans', 'memberlite' ),
-					'Oswald_Quattrocento'                => __( 'Oswald and Quattrocento', 'memberlite' ),
-					'Abril-Fatface_Open-Sans'            => __( 'Abril Fatface and Open Sans', 'memberlite' ),
-					'Open-Sans_Gentium-Book-Basic'       => __( 'Open Sans and Gentium Book Basic', 'memberlite' ),
-					'Oswald_PT-Mono'                     => __( 'Oswald and PT Mono', 'memberlite' ),
-				),
+				'choices'  => memberlite_Customize::get_all_fonts(),
 				'priority' => 10,
 			)
 		);
@@ -479,7 +464,7 @@ class memberlite_Customize {
 				'priority' => '130',
 			)
 		);
-		
+
 		$wp_customize->add_setting(
 			'memberlite_color_scheme',
 			array(
@@ -844,6 +829,54 @@ class memberlite_Customize {
 			}
 		}
 		return $return;
+	}
+
+	/**
+	 * Get Google fonts
+	 */
+	public static function get_google_fonts() {
+		return array(
+			'Lato_Lato'                          => __( 'Lato', 'memberlite' ),
+			'PT-Sans_PT-Serif'                   => __( 'PT Sans and PT Serif', 'memberlite' ),
+			'Fjalla-One_Noto-Sans'               => __( 'Fjalla One and Noto Sans', 'memberlite' ),
+			'Pathway-Gothic-One_Source-Sans-Pro' => __( 'Pathway Gothic One and Source Sans Pro', 'memberlite' ),
+			'Oswald_Lato'                        => __( 'Oswald and Lato', 'memberlite' ),
+			'Ubuntu_Open-Sans'                   => __( 'Ubuntu and Open Sans', 'memberlite' ),
+			'Lato_Source-Sans-Pro'               => __( 'Lato and Source Sans Pro', 'memberlite' ),
+			'Roboto-Slab_Roboto'                 => __( 'Roboto Slab and Roboto', 'memberlite' ),
+			'Lato_Merriweather'                  => __( 'Lato and Merriweather', 'memberlite' ),
+			'Playfair-Display_Open-Sans'         => __( 'Playfair Display and Open Sans', 'memberlite' ),
+			'Oswald_Quattrocento'                => __( 'Oswald and Quattrocento', 'memberlite' ),
+			'Abril-Fatface_Open-Sans'            => __( 'Abril Fatface and Open Sans', 'memberlite' ),
+			'Open-Sans_Gentium-Book-Basic'       => __( 'Open Sans and Gentium Book Basic', 'memberlite' ),
+			'Oswald_PT-Mono'                     => __( 'Oswald and PT Mono', 'memberlite' ),
+		);
+	}
+
+	/**
+	 * Get array of web safe fonts
+	 */
+	public static function get_web_safe_fonts() {
+		return array(
+			'Arial_Arial'						 => __( 'Arial', 'memberlite' ),
+			'Bookman_Bookman'					 => __( 'Bookman', 'memberlite' ),
+			'Courier_Courier'					 => __( 'Courier', 'memberlite' ),
+			'Courier-New_Courier-New'			 => __( 'Courier New', 'memberlite' ),
+			'Garamond_Garamond'					 => __( 'Garamond', 'memberlite' ),
+			'Georgia_Georgia'					 => __( 'Georgia', 'memberlite' ),
+			'Helvetica_Helvetica'				 => __( 'Helvetica', 'memberlite' ),
+			'Times_Times'						 => __( 'Times', 'memberlite' ),
+			'Times-New-Roman_Times-New-Roman'	 => __( 'Times New Roman', 'memberlite' ),
+			'Trebuchet-MS_Trebuchet-MS'			 => __( 'Trebuchet MS', 'memberlite' ),
+			'Verdana_Verdana'					 => __( 'Verdana', 'memberlite' ),
+		);
+	}
+
+	/**
+	 * Get array of all fonts
+	 */
+	public static function get_all_fonts() {
+		return array_merge( memberlite_Customize::get_google_fonts(), memberlite_Customize::get_web_safe_fonts() );
 	}
 
 	/**

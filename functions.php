@@ -33,13 +33,19 @@ function memberlite_init_styles() {
 }
 add_action( 'wp_enqueue_scripts', 'memberlite_init_styles' );
 
+
 /* Load fonts via Google API */
-function memberlite_load_fonts() {
+function memberlite_load_google_fonts() {
 	global $memberlite_defaults;
-	wp_register_style( 'googleFonts', '//fonts.googleapis.com/css?family=' . str_replace( '_', ':400,700|', str_replace( '-', '+', get_theme_mod( 'memberlite_webfonts', $memberlite_defaults['memberlite_webfonts'] ) ) ) . ':400,700' );
-	wp_enqueue_style( 'googleFonts' );
+
+	$fonts_string = get_theme_mod( 'memberlite_webfonts' );
+
+	if( in_array( $fonts_string, array_keys( memberlite_Customize::get_google_fonts() ) ) ) {
+		wp_register_style( 'googleFonts', '//fonts.googleapis.com/css?family=' . str_replace( '_', ':400,700|', str_replace( '-', '+', get_theme_mod( 'memberlite_webfonts', $memberlite_defaults['memberlite_webfonts'] ) ) ) . ':400,700' );
+		wp_enqueue_style( 'googleFonts' );
+	}
 }
-add_action( 'wp_print_styles', 'memberlite_load_fonts' );
+add_action( 'wp_enqueue_scripts', 'memberlite_load_google_fonts' );
 
 /**
  * Set the content width in pixels, based on the theme's design and stylesheet.
