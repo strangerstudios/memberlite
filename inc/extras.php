@@ -233,15 +233,15 @@ function memberlite_page_title( $echo = true ) {
 		<h1 class="page-title">
 		<?php
 		if ( bbp_is_search_results() ) {
-			printf( __( 'Forum Search Results for: %s', 'memberlite' ), '<span>' . bbp_get_search_terms() . '</span>' );
+			printf( esc_html__( 'Forum Search Results for: %s', 'memberlite' ), '<span>' . esc_html( bbp_get_search_terms() ) . '</span>' );
 		} elseif ( bbp_is_search() ) {
-			_e( 'Forum Search', 'memberlite' );
+			esc_html_e( 'Forum Search', 'memberlite' );
 		} elseif ( bbp_is_single_forum() || bbp_is_single_topic() ) {
-			the_title( '' );
+			the_title();
 		} elseif ( bbp_is_single_user() ) {
-			echo sprintf( __( "%s's Profile", 'memberlite' ), get_userdata( bbp_get_user_id() )->display_name );
+			echo sprintf( esc_html__( '%s\'s Profile', 'memberlite' ), esc_html( get_userdata( bbp_get_user_id() )->display_name ) );
 		} else {
-			_e( 'Forums', 'memberlite' );
+			esc_html_e( 'Forums', 'memberlite' );
 		}
 		?>
 		</h1>
@@ -255,52 +255,52 @@ function memberlite_page_title( $echo = true ) {
 
 				elseif ( is_tag() ) :
 					$current_tag = single_tag_title( '', false );
-					printf( __( 'Posts Tagged: %s', 'memberlite' ), '<span>' . $current_tag . '</span>' );
+					printf( esc_html__( 'Posts Tagged: %s', 'memberlite' ), '<span>' . $current_tag . '</span>' );
 
 				elseif ( is_author() ) :
-					printf( __( 'Author: %s', 'memberlite' ), '<span class="vcard">' . get_the_author() . '</span>' );
+					printf( esc_html__( 'Author: %s', 'memberlite' ), '<span class="vcard">' . get_the_author() . '</span>' );
 
 				elseif ( is_day() ) :
-					printf( __( 'Day: %s', 'memberlite' ), '<span>' . get_the_date() . '</span>' );
+					printf( esc_html__( 'Day: %s', 'memberlite' ), '<span>' . get_the_date() . '</span>' );
 
 				elseif ( is_month() ) :
-					printf( __( 'Month: %s', 'memberlite' ), '<span>' . get_the_date( _x( 'F Y', 'monthly archives date format', 'memberlite' ) ) . '</span>' );
+					printf( esc_html__( 'Month: %s', 'memberlite' ), '<span>' . get_the_date( _x( 'F Y', 'monthly archives date format', 'memberlite' ) ) . '</span>' );
 
 				elseif ( is_year() ) :
-					printf( __( 'Year: %s', 'memberlite' ), '<span>' . get_the_date( _x( 'Y', 'yearly archives date format', 'memberlite' ) ) . '</span>' );
+					printf( esc_html__( 'Year: %s', 'memberlite' ), '<span>' . get_the_date( _x( 'Y', 'yearly archives date format', 'memberlite' ) ) . '</span>' );
 
 				elseif ( is_tax( 'post_format', 'post-format-aside' ) ) :
-					_e( 'Asides', 'memberlite' );
+					esc_html_e( 'Asides', 'memberlite' );
 
 				elseif ( is_tax( 'post_format', 'post-format-gallery' ) ) :
-					_e( 'Galleries', 'memberlite' );
+					esc_html_e( 'Galleries', 'memberlite' );
 
 				elseif ( is_tax( 'post_format', 'post-format-image' ) ) :
-					_e( 'Images', 'memberlite' );
+					esc_html_e( 'Images', 'memberlite' );
 
 				elseif ( is_tax( 'post_format', 'post-format-video' ) ) :
-					_e( 'Videos', 'memberlite' );
+					esc_html_e( 'Videos', 'memberlite' );
 
 				elseif ( is_tax( 'post_format', 'post-format-quote' ) ) :
-					_e( 'Quotes', 'memberlite' );
+					esc_html_e( 'Quotes', 'memberlite' );
 
 				elseif ( is_tax( 'post_format', 'post-format-link' ) ) :
-					_e( 'Links', 'memberlite' );
+					esc_html_e( 'Links', 'memberlite' );
 
 				elseif ( is_tax( 'post_format', 'post-format-status' ) ) :
-					_e( 'Statuses', 'memberlite' );
+					esc_html_e( 'Statuses', 'memberlite' );
 
 				elseif ( is_tax( 'post_format', 'post-format-audio' ) ) :
-					_e( 'Audios', 'memberlite' );
+					esc_html_e( 'Audios', 'memberlite' );
 
 				elseif ( is_tax( 'post_format', 'post-format-chat' ) ) :
-					_e( 'Chats', 'memberlite' );
+					esc_html_e( 'Chats', 'memberlite' );
 
 				elseif ( is_tax() ) :
 					single_term_title();
 
 				else :
-					_e( 'Archives', 'memberlite' );
+					esc_html_e( 'Archives', 'memberlite' );
 
 				endif;
 			?>
@@ -314,7 +314,7 @@ function memberlite_page_title( $echo = true ) {
 	} elseif ( is_search() ) {
 		?>
 		<h1 class="page-title">
-			<?php printf( __( 'Search Results for: %s', 'memberlite' ), '<span>' . get_search_query() . '</span>' ); ?>
+			<?php printf( esc_html__( 'Search Results for: %s', 'memberlite' ), '<span>' . get_search_query() . '</span>' ); ?>
 		</h1>
 		<?php
 	} elseif ( is_singular( 'post' ) ) {
@@ -510,7 +510,7 @@ function memberlite_getBreadcrumbs() {
 			</nav>
 		<?php } elseif ( is_attachment() && '' != $attachment_breadcrumbs ) { ?>
 			<nav class="memberlite-breadcrumb" itemprop="breadcrumb">
-				  <a href="<?php echo esc_url( home_url() ); ?>"><?php _e( 'Home', 'memberlite' ); ?></a>
+				  <a href="<?php echo esc_url( home_url() ); ?>"><?php esc_html_e( 'Home', 'memberlite' ); ?></a>
 				<span class="sep"><?php echo esc_html( $memberlite_delimiter ); ?></span>
 				<?php
 					global $post;
@@ -530,7 +530,7 @@ function memberlite_getBreadcrumbs() {
 			</nav>
 		<?php } elseif ( is_page() && ! is_front_page() && ! is_attachment() && '' != $page_breadcrumbs ) { ?>
 			<nav class="memberlite-breadcrumb" itemprop="breadcrumb">
-				<a href="<?php echo esc_url( home_url() ); ?>"><?php _e( 'Home', 'memberlite' ); ?></a>
+				<a href="<?php echo esc_url( home_url() ); ?>"><?php esc_html_e( 'Home', 'memberlite' ); ?></a>
 				<span class="sep"><?php echo esc_html( $memberlite_delimiter ); ?></span>
 				<?php
 					$breadcrumbs = get_post_ancestors( $post->ID );
@@ -558,7 +558,7 @@ function memberlite_getBreadcrumbs() {
 } elseif ( is_post_type_archive() && '' != $archive_breadcrumbs ) {
 ?>
 			<nav class="memberlite-breadcrumb" itemprop="breadcrumb">
-				  <a href="<?php echo esc_url( home_url() ); ?>"><?php _e( 'Home', 'memberlite' ); ?></a>
+				  <a href="<?php echo esc_url( home_url() ); ?>"><?php esc_html_e( 'Home', 'memberlite' ); ?></a>
 				<span class="sep"><?php echo esc_html( $memberlite_delimiter ); ?></span>
 				<?php
 				$post_type = get_post_type_object( get_query_var( 'post_type' ) );
@@ -567,7 +567,7 @@ function memberlite_getBreadcrumbs() {
 			</nav>
 		<?php } elseif ( ( ( is_author() || is_tag() || is_archive() ) ) && '' != $archive_breadcrumbs ) { ?>
 			<nav class="memberlite-breadcrumb" itemprop="breadcrumb">
-				  <a href="<?php echo esc_url( home_url() ); ?>"><?php _e( 'Home', 'memberlite' ); ?></a>
+				  <a href="<?php echo esc_url( home_url() ); ?>"><?php esc_html_e( 'Home', 'memberlite' ); ?></a>
 				<span class="sep"><?php echo esc_html( $memberlite_delimiter ); ?></span>
 				<?php
 				if ( is_tax() ) {
@@ -595,56 +595,56 @@ function memberlite_getBreadcrumbs() {
 
 					elseif ( is_tag() ) :
 						$current_tag = single_tag_title( '', false );
-						printf( __( 'Posts Tagged: %s', 'memberlite' ), '<span>' . $current_tag . '</span>' );
+						printf( esc_html__( 'Posts Tagged: %s', 'memberlite' ), '<span>' . $current_tag . '</span>' );
 
 					elseif ( is_author() ) :
-						printf( __( 'Author: %s', 'memberlite' ), '<span class="vcard">' . get_the_author() . '</span>' );
+						printf( esc_html__( 'Author: %s', 'memberlite' ), '<span class="vcard">' . get_the_author() . '</span>' );
 
 					elseif ( is_day() ) :
-						printf( __( 'Day: %s', 'memberlite' ), '<span>' . get_the_date() . '</span>' );
+						printf( esc_html__( 'Day: %s', 'memberlite' ), '<span>' . get_the_date() . '</span>' );
 
 					elseif ( is_month() ) :
-						printf( __( 'Month: %s', 'memberlite' ), '<span>' . get_the_date( _x( 'F Y', 'monthly archives date format', 'memberlite' ) ) . '</span>' );
+						printf( esc_html__( 'Month: %s', 'memberlite' ), '<span>' . get_the_date( _x( 'F Y', 'monthly archives date format', 'memberlite' ) ) . '</span>' );
 
 					elseif ( is_year() ) :
-						printf( __( 'Year: %s', 'memberlite' ), '<span>' . get_the_date( _x( 'Y', 'yearly archives date format', 'memberlite' ) ) . '</span>' );
+						printf( esc_html__( 'Year: %s', 'memberlite' ), '<span>' . get_the_date( _x( 'Y', 'yearly archives date format', 'memberlite' ) ) . '</span>' );
 
 					elseif ( is_tax( 'post_format', 'post-format-aside' ) ) :
-						_e( 'Asides', 'memberlite' );
+						esc_html_e( 'Asides', 'memberlite' );
 
 					elseif ( is_tax( 'post_format', 'post-format-gallery' ) ) :
-						_e( 'Galleries', 'memberlite' );
+						esc_html_e( 'Galleries', 'memberlite' );
 
 					elseif ( is_tax( 'post_format', 'post-format-image' ) ) :
-						_e( 'Images', 'memberlite' );
+						esc_html_e( 'Images', 'memberlite' );
 
 					elseif ( is_tax( 'post_format', 'post-format-video' ) ) :
-						_e( 'Videos', 'memberlite' );
+						esc_html_e( 'Videos', 'memberlite' );
 
 					elseif ( is_tax( 'post_format', 'post-format-quote' ) ) :
-						_e( 'Quotes', 'memberlite' );
+						esc_html_e( 'Quotes', 'memberlite' );
 
 					elseif ( is_tax( 'post_format', 'post-format-link' ) ) :
-						_e( 'Links', 'memberlite' );
+						esc_html_e( 'Links', 'memberlite' );
 
 					elseif ( is_tax( 'post_format', 'post-format-status' ) ) :
-						_e( 'Statuses', 'memberlite' );
+						esc_html_e( 'Statuses', 'memberlite' );
 
 					elseif ( is_tax( 'post_format', 'post-format-audio' ) ) :
-						_e( 'Audios', 'memberlite' );
+						esc_html_e( 'Audios', 'memberlite' );
 
 					elseif ( is_tax( 'post_format', 'post-format-chat' ) ) :
-						_e( 'Chats', 'memberlite' );
+						esc_html_e( 'Chats', 'memberlite' );
 
 					else :
-						_e( 'Archives', 'memberlite' );
+						esc_html_e( 'Archives', 'memberlite' );
 
 					endif;
 				?>
 			</nav>
 		<?php } elseif ( is_singular( array( 'post' ) ) && '' != $post_breadcrumbs ) { ?>
 			<nav class="memberlite-breadcrumb" itemprop="breadcrumb">
-				  <a href="<?php echo esc_url( home_url() ); ?>"><?php _e( 'Home', 'memberlite' ); ?></a>
+				  <a href="<?php echo esc_url( home_url() ); ?>"><?php esc_html_e( 'Home', 'memberlite' ); ?></a>
 				<span class="sep"><?php echo esc_html( $memberlite_delimiter ); ?></span>
 				<?php if ( get_option( 'page_for_posts' ) ) { ?>
 					<a href="<?php echo get_permalink( get_option( 'page_for_posts' ) ); ?>"><?php echo get_the_title( get_option( 'page_for_posts' ) ); ?></a>
@@ -657,7 +657,7 @@ function memberlite_getBreadcrumbs() {
 	$post_type_object = get_post_type_object( get_post_type( $post ) );
 			?>
 			<nav class="memberlite-breadcrumb" itemprop="breadcrumb">
-				  <a href="<?php echo esc_url( home_url() ); ?>"><?php _e( 'Home', 'memberlite' ); ?></a>
+				  <a href="<?php echo esc_url( home_url() ); ?>"><?php esc_html_e( 'Home', 'memberlite' ); ?></a>
 				<?php if ( $post_type_object->has_archive == true ) { ?>
 					<span class="sep"><?php echo esc_html( $memberlite_delimiter ); ?></span>
 					<a href="<?php echo get_post_type_archive_link( get_post_type( $post ) ); ?>"><?php echo $post_type_object->labels->name; ?></a>
@@ -667,7 +667,7 @@ function memberlite_getBreadcrumbs() {
 			</nav>
 		<?php } elseif ( is_search() && '' != $search_breadcrumbs ) { ?>
 			<nav class="memberlite-breadcrumb" itemprop="breadcrumb">
-				  <a href="<?php echo esc_url( home_url() ); ?>"><?php _e( 'Home', 'memberlite' ); ?></a>
+				  <a href="<?php echo esc_url( home_url() ); ?>"><?php esc_html_e( 'Home', 'memberlite' ); ?></a>
 				<span class="sep"><?php echo esc_html( $memberlite_delimiter ); ?></span>
 				<?php
 				if ( get_option( 'page_for_posts' ) ) {
@@ -677,7 +677,7 @@ function memberlite_getBreadcrumbs() {
 						<?php
 				}
 				?>
-				<?php _e( 'Search Results For', 'memberlite' ); ?> '<?php the_search_query(); ?>'
+				<?php esc_html_e( 'Search Results For', 'memberlite' ); ?> '<?php the_search_query(); ?>'
 			</nav>
 		<?php
 }
@@ -728,19 +728,21 @@ function memberlite_get_banner_image_src( $post_id = null, $size = 'banner' ) {
 	return $memberlite_banner_image_src;
 }
 
-/*
- Parses tags added to fields in customizer (i.e. posts_entry_meta_before and posts_entry_meta_after. Available tags include:
-	{post_author} - Entry author display name
-	{post_author_posts_link} - Entry author display name, linked to their archive
-	{post_categories} - List of entry categories separated by a comma.
-	{post_comments} - Entry comments link in the format "X Comment/s".
-	{post_date} - Date the entry was published, formatted to your site's "Date Format" under Settings > General
-	{post_permalink} - A permalink to the post displayed as "permalink".
-	{post_permalink_icon} - A permalink to the post displayed as the Font Awesome "link" icon.
-	{post_tags} - List of entry tags separated by a comma.
-	{post_time} - Time the entry was published, formatted to your site's "Time Format" under Settings > General
-	{post_title} - Title of the entry.
-*/
+/**
+ * Parses tags added to fields in customizer (i.e. posts_entry_meta_before and posts_entry_meta_after. Available tags include:
+ * 
+ * * {post_author} - Entry author display name
+ * * {post_author_posts_link} - Entry author display name, linked to their archive
+ * * {post_categories} - List of entry categories separated by a comma.
+ * * {post_comments} - Entry comments link in the format "X Comment/s".
+ * * {post_date} - Date the entry was published, formatted to your site's "Date Format" under Settings > General
+ * * {post_permalink} - A permalink to the post displayed as "permalink".
+ * * {post_permalink_icon} - A permalink to the post displayed as the Font Awesome "link" icon.
+ * * {post_tags} - List of entry tags separated by a comma.
+ * * {post_time} - Time the entry was published, formatted to your site's "Time Format" under Settings > General
+ * * {post_title} - Title of the entry.
+ * 
+ */
 function memberlite_parse_tags( $meta, $post = null ) {
 	if ( empty( $post ) ) {
 		global $post;
