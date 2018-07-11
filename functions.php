@@ -41,21 +41,70 @@ function memberlite_load_fonts() {
 }
 add_action( 'wp_print_styles', 'memberlite_load_fonts' );
 
-/* Set the content width. */
-function memberlite_adjust_content_width() {
+/**
+ * Set the content width in pixels, based on the theme's design and stylesheet.
+ *
+ * Priority 0 to make it available to lower priority callbacks.
+ *
+ * @global int $content_width
+ */
+function memberlite_content_width() {
+	$GLOBALS['content_width'] = apply_filters( 'memberlite_content_width', 744 );
+}
+add_action( 'after_setup_theme', 'memberlite_content_width', 0 );
+
+/*
+ * Adjust $content_width for full-width and fluid-width templates.
+ * We run on the wp action so is_page_template will work.
+ * We override the $content_width global.
+ */
+function memberlite_adjusted_content_width() {
 	global $content_width;
 
-	// default if not set yet
-	if ( ! isset( $content_width ) ) {
-		$content_width = 748; /* pixels */
-	}
+	// Get the primary column width value on a 12 column scale.
+	$memberlite_columns_ratio_primary = memberlite_getColumnsRatio();
 
-	/* Adjust the content width based on the template. */
 	if ( is_page_template( 'templates/full-width.php' ) || is_page_template( 'templates/fluid-width.php' ) ) {
-		$content_width = 1170; /* pixels */
+        $content_width = 1170; /* pixels */
+	} else {
+		switch ( $memberlite_columns_ratio_primary ) {
+			case 1:
+				$content_width = 61; /* pixels */
+				break;
+			case 2:
+				$content_width = 159; /* pixels */
+				break;
+			case 3:
+				$content_width = 257; /* pixels */
+				break;
+			case 4:
+				$content_width = 354; /* pixels */
+				break;
+			case 5:
+				$content_width = 452; /* pixels */
+				break;
+			case 6:
+				$content_width = 549; /* pixels */
+				break;
+			case 7:
+				$content_width = 646; /* pixels */
+				break;
+			case 8:
+				$content_width = 744; /* pixels */
+				break;
+			case 9:
+				$content_width = 842; /* pixels */
+				break;
+			case 10:
+				$content_width = 939; /* pixels */
+				break;
+			case 11:
+				$content_width = 1037; /* pixels */
+				break;
+		}
 	}
 }
-add_action( 'after_setup_theme', 'memberlite_adjust_content_width' );
+add_action( 'wp', 'memberlite_adjusted_content_width' );
 
 if ( ! function_exists( 'memberlite_setup' ) ) :
 	/* Sets up theme defaults and registers support for various WordPress features. */
