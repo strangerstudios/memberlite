@@ -21,6 +21,7 @@ class memberlite_Customize {
 				'description' => __( 'Allows you to customize settings for Memberlite.', 'memberlite' ),
 			)
 		);
+
 		$wp_customize->add_setting(
 			'memberlite_webfonts',
 			array(
@@ -29,6 +30,7 @@ class memberlite_Customize {
 				'sanitize_js_callback' => array( 'memberlite_Customize', 'sanitize_js_callback' ),
 			)
 		);
+
 		$wp_customize->add_control(
 			'memberlite_webfonts',
 			array(
@@ -54,6 +56,7 @@ class memberlite_Customize {
 				'priority' => 10,
 			)
 		);
+
 		$wp_customize->add_setting(
 			'meta_login',
 			array(
@@ -62,6 +65,7 @@ class memberlite_Customize {
 				'sanitize_js_callback' => array( 'memberlite_Customize', 'sanitize_js_callback' ),
 			)
 		);
+
 		$wp_customize->add_control(
 			'meta_login',
 			array(
@@ -71,6 +75,7 @@ class memberlite_Customize {
 				'priority' => '15',
 			)
 		);
+
 		$wp_customize->add_setting(
 			'nav_menu_search',
 			array(
@@ -79,6 +84,7 @@ class memberlite_Customize {
 				'sanitize_js_callback' => array( 'memberlite_Customize', 'sanitize_js_callback' ),
 			)
 		);
+
 		$wp_customize->add_control(
 			'nav_menu_search',
 			array(
@@ -88,6 +94,7 @@ class memberlite_Customize {
 				'priority' => '20',
 			)
 		);
+
 		$wp_customize->add_setting(
 			'columns_ratio_header',
 			array(
@@ -97,6 +104,7 @@ class memberlite_Customize {
 				'transport'            => 'refresh',
 			)
 		);
+
 		$wp_customize->add_control(
 			'columns_ratio_header',
 			array(
@@ -119,6 +127,7 @@ class memberlite_Customize {
 				'priority' => 23,
 			)
 		);
+
 		$wp_customize->add_setting(
 			'columns_ratio',
 			array(
@@ -128,6 +137,7 @@ class memberlite_Customize {
 				'transport'            => 'refresh',
 			)
 		);
+
 		$wp_customize->add_control(
 			'columns_ratio',
 			array(
@@ -145,6 +155,7 @@ class memberlite_Customize {
 				'priority' => 24,
 			)
 		);
+
 		$wp_customize->add_setting(
 			'sidebar_location',
 			array(
@@ -153,6 +164,7 @@ class memberlite_Customize {
 				'sanitize_js_callback' => array( 'memberlite_Customize', 'sanitize_js_callback' ),
 			)
 		);
+
 		$wp_customize->add_control(
 			'sidebar_location',
 			array(
@@ -166,6 +178,7 @@ class memberlite_Customize {
 				'priority' => 25,
 			)
 		);
+
 		$wp_customize->add_setting(
 			'sidebar_location_blog',
 			array(
@@ -174,6 +187,7 @@ class memberlite_Customize {
 				'sanitize_js_callback' => array( 'memberlite_Customize', 'sanitize_js_callback' ),
 			)
 		);
+
 		$wp_customize->add_control(
 			'sidebar_location_blog',
 			array(
@@ -187,6 +201,7 @@ class memberlite_Customize {
 				'priority' => 30,
 			)
 		);
+
 		$wp_customize->add_setting(
 			'content_archives',
 			array(
@@ -195,6 +210,7 @@ class memberlite_Customize {
 				'sanitize_js_callback' => array( 'memberlite_Customize', 'sanitize_js_callback' ),
 			)
 		);
+
 		$wp_customize->add_control(
 			'content_archives',
 			array(
@@ -216,31 +232,37 @@ class memberlite_Customize {
 			'label'    => __( 'Breadcrumbs on Pages', 'memberlite' ),
 			'priority' => 51,
 		);
+
 		$memberlite_breadcrumbs[] = array(
 			'slug'     => 'post_breadcrumbs',
 			'label'    => __( 'Breadcrumbs on Posts', 'memberlite' ),
 			'priority' => 52,
 		);
+
 		$memberlite_breadcrumbs[] = array(
 			'slug'     => 'archive_breadcrumbs',
 			'label'    => __( 'Breadcrumbs on Archives', 'memberlite' ),
 			'priority' => 53,
 		);
+
 		$memberlite_breadcrumbs[] = array(
 			'slug'     => 'attachment_breadcrumbs',
 			'label'    => __( 'Breadcrumbs on Attachments', 'memberlite' ),
 			'priority' => 54,
 		);
+
 		$memberlite_breadcrumbs[] = array(
 			'slug'     => 'search_breadcrumbs',
 			'label'    => __( 'Breadcrumbs on Search Results', 'memberlite' ),
 			'priority' => 55,
 		);
+
 		$memberlite_breadcrumbs[] = array(
 			'slug'     => 'profile_breadcrumbs',
 			'label'    => __( 'Breadcrumbs on Profiles', 'memberlite' ),
 			'priority' => 56,
 		);
+
 		foreach ( $memberlite_breadcrumbs as $memberlite_breadcrumb ) {
 			// SETTINGS
 			$wp_customize->add_setting(
@@ -262,6 +284,7 @@ class memberlite_Customize {
 				)
 			);
 		};
+
 		$wp_customize->add_setting(
 			'memberlite_post_nav',
 			array(
@@ -270,6 +293,7 @@ class memberlite_Customize {
 				'sanitize_js_callback' => array( 'memberlite_Customize', 'sanitize_js_callback' ),
 			)
 		);
+
 		$wp_customize->add_control(
 			'memberlite_post_nav',
 			array(
@@ -279,6 +303,7 @@ class memberlite_Customize {
 				'priority' => '60',
 			)
 		);
+
 		$wp_customize->add_setting(
 			'memberlite_page_nav',
 			array(
@@ -287,6 +312,7 @@ class memberlite_Customize {
 				'sanitize_js_callback' => array( 'memberlite_Customize', 'sanitize_js_callback' ),
 			)
 		);
+
 		$wp_customize->add_control(
 			'memberlite_page_nav',
 			array(
@@ -296,6 +322,7 @@ class memberlite_Customize {
 				'priority' => '61',
 			)
 		);
+
 		$wp_customize->add_setting(
 			'memberlite_loop_images',
 			array(
@@ -338,6 +365,7 @@ class memberlite_Customize {
 				'transport'            => 'postMessage',
 			)
 		);
+
 		$wp_customize->add_control(
 			'posts_entry_meta_before',
 			array(
@@ -347,6 +375,7 @@ class memberlite_Customize {
 				'priority' => 80,
 			)
 		);
+
 		$wp_customize->add_setting(
 			'posts_entry_meta_after',
 			array(
@@ -356,6 +385,7 @@ class memberlite_Customize {
 				'transport'            => 'postMessage',
 			)
 		);
+
 		$wp_customize->add_control(
 			'posts_entry_meta_after',
 			array(
@@ -365,6 +395,7 @@ class memberlite_Customize {
 				'priority' => 90,
 			)
 		);
+
 		$wp_customize->add_setting(
 			'memberlite_footerwidgets',
 			array(
@@ -373,6 +404,7 @@ class memberlite_Customize {
 				'sanitize_js_callback' => array( 'memberlite_Customize', 'sanitize_js_callback' ),
 			)
 		);
+
 		$wp_customize->add_control(
 			'memberlite_footerwidgets',
 			array(
@@ -388,6 +420,7 @@ class memberlite_Customize {
 				'priority' => 100,
 			)
 		);
+
 		$wp_customize->add_setting(
 			'delimiter',
 			array(
@@ -397,6 +430,7 @@ class memberlite_Customize {
 				'transport'            => 'postMessage',
 			)
 		);
+
 		$wp_customize->add_control(
 			'delimiter',
 			array(
@@ -406,6 +440,7 @@ class memberlite_Customize {
 				'priority' => 110,
 			)
 		);
+
 		$wp_customize->add_setting(
 			'copyright_textbox',
 			array(
@@ -415,6 +450,7 @@ class memberlite_Customize {
 				'transport'            => 'postMessage',
 			)
 		);
+
 		$wp_customize->add_control(
 			'copyright_textbox',
 			array(
@@ -424,6 +460,7 @@ class memberlite_Customize {
 				'priority' => 120,
 			)
 		);
+
 		$wp_customize->add_setting(
 			'memberlite_back_to_top',
 			array(
@@ -432,6 +469,7 @@ class memberlite_Customize {
 				'sanitize_js_callback' => array( 'memberlite_Customize', 'sanitize_js_callback' ),
 			)
 		);
+
 		$wp_customize->add_control(
 			'memberlite_back_to_top',
 			array(
@@ -441,6 +479,7 @@ class memberlite_Customize {
 				'priority' => '130',
 			)
 		);
+		
 		$wp_customize->add_setting(
 			'memberlite_color_scheme',
 			array(
@@ -450,6 +489,7 @@ class memberlite_Customize {
 				'transport'            => 'postMessage',
 			)
 		);
+
 		$wp_customize->add_control(
 			'memberlite_color_scheme',
 			array(
@@ -460,6 +500,7 @@ class memberlite_Customize {
 				'priority' => 1,
 			)
 		);
+
 		$wp_customize->add_setting(
 			'memberlite_darkcss',
 			array(
@@ -468,6 +509,7 @@ class memberlite_Customize {
 				'sanitize_js_callback' => array( 'memberlite_Customize', 'sanitize_js_callback' ),
 			)
 		);
+
 		$wp_customize->add_control(
 			'memberlite_darkcss',
 			array(
@@ -477,6 +519,7 @@ class memberlite_Customize {
 				'priority' => '2',
 			)
 		);
+
 		$wp_customize->add_setting(
 			'bgcolor_site_navigation',
 			array(
@@ -486,6 +529,7 @@ class memberlite_Customize {
 				'transport'            => 'postMessage',
 			)
 		);
+
 		$wp_customize->add_control(
 			new WP_Customize_Color_Control(
 				$wp_customize,
@@ -498,6 +542,7 @@ class memberlite_Customize {
 				)
 			)
 		);
+
 		$wp_customize->add_setting(
 			'color_site_navigation',
 			array(
@@ -507,6 +552,7 @@ class memberlite_Customize {
 				'transport'            => 'postMessage',
 			)
 		);
+
 		$wp_customize->add_control(
 			new WP_Customize_Color_Control(
 				$wp_customize,
@@ -519,6 +565,7 @@ class memberlite_Customize {
 				)
 			)
 		);
+
 		$wp_customize->add_setting(
 			'color_link',
 			array(
@@ -528,6 +575,7 @@ class memberlite_Customize {
 				'transport'            => 'postMessage',
 			)
 		);
+
 		$wp_customize->add_control(
 			new WP_Customize_Color_Control(
 				$wp_customize,
@@ -540,6 +588,7 @@ class memberlite_Customize {
 				)
 			)
 		);
+
 		$wp_customize->add_setting(
 			'color_meta_link',
 			array(
@@ -549,6 +598,7 @@ class memberlite_Customize {
 				'transport'            => 'postMessage',
 			)
 		);
+
 		$wp_customize->add_control(
 			new WP_Customize_Color_Control(
 				$wp_customize,
@@ -561,6 +611,7 @@ class memberlite_Customize {
 				)
 			)
 		);
+
 		$wp_customize->add_setting(
 			'color_primary',
 			array(
@@ -570,6 +621,7 @@ class memberlite_Customize {
 				'transport'            => 'postMessage',
 			)
 		);
+
 		$wp_customize->add_control(
 			new WP_Customize_Color_Control(
 				$wp_customize,
@@ -582,6 +634,7 @@ class memberlite_Customize {
 				)
 			)
 		);
+
 		$wp_customize->add_setting(
 			'color_secondary',
 			array(
@@ -591,6 +644,7 @@ class memberlite_Customize {
 				'transport'            => 'postMessage',
 			)
 		);
+
 		$wp_customize->add_control(
 			new WP_Customize_Color_Control(
 				$wp_customize,
@@ -603,6 +657,7 @@ class memberlite_Customize {
 				)
 			)
 		);
+
 		$wp_customize->add_setting(
 			'color_action',
 			array(
@@ -612,6 +667,7 @@ class memberlite_Customize {
 				'transport'            => 'postMessage',
 			)
 		);
+
 		$wp_customize->add_control(
 			new WP_Customize_Color_Control(
 				$wp_customize,
@@ -626,6 +682,7 @@ class memberlite_Customize {
 		);
 
 		$wp_customize->get_setting( 'blogname' )->transport        = 'postMessage';
+
 		$wp_customize->get_setting( 'blogdescription' )->transport = 'postMessage';
 
 		$wp_customize->selective_refresh->add_partial(
@@ -634,12 +691,14 @@ class memberlite_Customize {
 				'render_callback' => array( 'memberlite_Customize', 'bloginfo_name' ),
 			)
 		);
+
 		$wp_customize->selective_refresh->add_partial(
 			'blogdescription', array(
 				'selector'        => '.site-description',
 				'render_callback' => array( 'memberlite_Customize', 'bloginfo_description' ),
 			)
 		);
+
 		$wp_customize->get_setting( 'header_textcolor' )->transport        = 'postMessage';
 		$wp_customize->get_setting( 'background_color' )->transport        = 'postMessage';
 		$wp_customize->get_setting( 'posts_entry_meta_before' )->transport = 'postMessage';
