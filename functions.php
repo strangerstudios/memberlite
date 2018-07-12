@@ -33,16 +33,47 @@ function memberlite_init_styles() {
 }
 add_action( 'wp_enqueue_scripts', 'memberlite_init_styles' );
 
-
-/* Load fonts via Google API */
-function memberlite_load_google_fonts() {
+function memberlite_google_fonts_url() {
 	global $memberlite_defaults;
 
-	$fonts_string = get_theme_mod( 'memberlite_webfonts' );
+	// Get the selected fonts from theme options.
+	$fonts_string = get_theme_mod( 'memberlite_webfonts', $memberlite_defaults['memberlite_webfonts'] );
 
-	if( in_array( $fonts_string, array_keys( memberlite_Customize::get_google_fonts() ) ) ) {
-		wp_register_style( 'googleFonts', '//fonts.googleapis.com/css?family=' . str_replace( '_', ':400,700|', str_replace( '-', '+', get_theme_mod( 'memberlite_webfonts', $memberlite_defaults['memberlite_webfonts'] ) ) ) . ':400,700' );
-		wp_enqueue_style( 'googleFonts' );
+	// Check if custom font is a Google Font.
+	if ( ! in_array( $fonts_string, array_keys( memberlite_Customize::get_google_fonts() ) ) ) {
+		return null;
+	} else {
+		// Build the encoded Google fonts URL.
+		$fonts_url = '';
+
+		// Break the theme mod for custom fonts into two parts.
+		$fonts_string_parts = explode( '_', $fonts_string );
+
+		// Build the array of font families to return.
+		$font_families = array();
+		$font_families[] = str_replace( '-', ' ', $fonts_string_parts[0] ) . ':400,700';
+		$font_families[] = str_replace( '-', ' ', $fonts_string_parts[1] ) . ':400,700';
+
+		$query_args = array(
+			'family' => urlencode( implode( '|', $font_families ) ),
+			'subset' => urlencode( 'latin,latin-ext' ),
+		);
+
+		$fonts_url = add_query_arg( $query_args, '//fonts.googleapis.com/css' );
+
+		return esc_url_raw( $fonts_url );
+	}
+}
+
+/**
+ * Enqueue fonts via Google API
+ */
+function memberlite_load_google_fonts() {
+	// Get the encoded URL of the Google Fonts (if set).
+	$fonts_url = memberlite_google_fonts_url();
+
+	if ( ! empty( $fonts_url ) ) {
+		wp_enqueue_style( 'memberlite-google-fonts', $fonts_url, array(), MEMBERLITE_VERSION );
 	}
 }
 add_action( 'wp_enqueue_scripts', 'memberlite_load_google_fonts' );
