@@ -34,7 +34,7 @@ class memberlite_Customize {
 		$wp_customize->add_control(
 			'memberlite_webfonts',
 			array(
-				'label'    => __( 'Google Webfonts', 'memberlite' ),
+				'label'    => __( 'Font', 'memberlite' ),
 				'section'  => 'memberlite_theme_options',
 				'type'     => 'select',
 				'choices'  => memberlite_Customize::get_all_fonts(),
