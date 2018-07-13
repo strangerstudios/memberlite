@@ -5,41 +5,27 @@
  * @package Memberlite
  */
 ?>
-<?php do_action('before_sidebar'); ?>
-<div id="secondary" class="medium-<?php echo memberlite_getColumnsRatio( 'sidebar' ); ?> columns widget-area" role="complementary">
-<?php do_action('before_sidebar_widgets'); ?>
-<?php 
-	if(is_singular())
-	{	
-		$memberlite_custom_sidebar = get_post_meta($post->ID, '_memberlite_custom_sidebar', true);
-		$memberlite_default_sidebar = get_post_meta($post->ID, '_memberlite_default_sidebar', true);
+
+<?php do_action( 'memberlite_before_sidebar' ); ?>
+
+<div id="secondary" class="medium-<?php echo esc_attr( memberlite_getColumnsRatio( 'sidebar' ) ); ?> columns widget-area" role="complementary">
+
+<?php do_action( 'memberlite_before_sidebar_widgets' ); ?>
+
+<?php
+	$widget_areas = memberlite_get_widget_areas();
+foreach ( $widget_areas as $widget_area ) {
+	// memberlite_nav_menu_submenu is not a real widget area, load the function instead
+	if ( $widget_area === 'memberlite_nav_menu_submenu' ) {
+		memberlite_nav_menu_submenu();
+	} else {
+		dynamic_sidebar( $widget_area );
 	}
-	if(function_exists('is_bbpress') && ( is_bbpress() ))
-	{
-		if(bbp_is_single_topic() || bbp_is_single_forum() )
-		{
-			$memberlite_custom_sidebar = get_post_meta(bbp_get_forum_id(), '_memberlite_custom_sidebar', true);
-			$memberlite_default_sidebar = get_post_meta(bbp_get_forum_id(), '_memberlite_default_sidebar', true);			
-		}
-		else
-		{
-			$memberlite_default_sidebar = 'default_sidebar_above';
-		}
-	}	
-	if(empty($memberlite_default_sidebar) || $memberlite_default_sidebar == 'default_sidebar_above')
-	{
-		memberlite_getSidebar();
-	}
-	if(!empty($memberlite_custom_sidebar))
-	{
-		//Custom sidebar
-		dynamic_sidebar($memberlite_custom_sidebar);
-	}
-	if(!empty($memberlite_default_sidebar) && $memberlite_default_sidebar == 'default_sidebar_below')
-	{
-		memberlite_getSidebar();
-	}
+}
 ?>
-<?php do_action('after_sidebar_widgets'); ?>
+
+<?php do_action( 'memberlite_after_sidebar_widgets' ); ?>
+
 </div><!-- #secondary -->
-<?php do_action('after_sidebar'); ?>
+
+<?php do_action( 'memberlite_after_sidebar' ); ?>

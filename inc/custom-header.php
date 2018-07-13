@@ -13,35 +13,39 @@
  * @uses memberlite_admin_header_image()
  */
 function memberlite_custom_header_setup() {
-	add_theme_support( 'custom-header', apply_filters( 'memberlite_custom_header_args', array(
-		'default-text-color'     => '2c3e50',
-		'height'                 => 110,
-		'width'                  => 1440,
-		'flex-height'            => true,
-		'flex-height'            => true,
-		'wp-head-callback'       => 'memberlite_header_style'
-	) ) );
+	add_theme_support(
+		'custom-header', apply_filters(
+			'memberlite_custom_header_args', array(
+				'default-text-color' => '2c3e50',
+				'height'             => 110,
+				'width'              => 1440,
+				'flex-height'        => true,
+				'flex-height'        => true,
+				'wp-head-callback'   => 'memberlite_header_style',
+			)
+		)
+	);
 }
 add_action( 'after_setup_theme', 'memberlite_custom_header_setup' );
 
 if ( ! function_exists( 'memberlite_header_style' ) ) :
-/**
- * Styles the header image and text displayed on the blog
- *
- * @see memberlite_custom_header_setup().
- */
-function memberlite_header_style() {
-	$header_image = get_header_image();
+	/**
+	 * Styles the header image and text displayed on the blog
+	 *
+	 * @see memberlite_custom_header_setup().
+	 */
+	function memberlite_header_style() {
+		$header_image = get_header_image();
 
-	// If no custom options for text are set, let's bail.
-	if ( empty( $header_image ) && display_header_text() ) {
-		return;
-	}
+		// If no custom options for text are set, let's bail.
+		if ( empty( $header_image ) && display_header_text() ) {
+			return;
+		}
 
-	// If we get this far, we have custom styles. Let's do this.
-	?>
-	<style type="text/css">
-	<?php
+		// If we get this far, we have custom styles. Let's do this.
+		?>
+		<style type="text/css">
+		<?php
 		// Has a Custom Header been added?
 		if ( ! empty( $header_image ) ) :
 	?>
@@ -63,5 +67,5 @@ function memberlite_header_style() {
 	<?php endif; ?>
 	</style>
 	<?php
-}
+	}
 endif; // memberlite_header_style
