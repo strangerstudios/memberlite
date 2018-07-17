@@ -13,13 +13,13 @@
 	if ( $user_ID ) {
 		if ( ! empty( $pmpro_pages ) ) {
 			$account_page      = get_post( $pmpro_pages['account'] );
-			$user_account_link = '<a href="' . esc_url( pmpro_url( 'account' ) ) . '">' . preg_replace( '/\@.*/', '', $current_user->display_name ) . '</a>';
+			$user_account_link = '<a href="' . esc_url( pmpro_url( 'account' ) ) . '">' . esc_html( preg_replace( '/\@.*/', '', $current_user->display_name ) ) . '</a>';
 		} else {
-			$user_account_link = '<a href="' . esc_url( admin_url( 'profile.php' ) ) . '">' . preg_replace( '/\@.*/', '', $current_user->display_name ) . '</a>';
+			$user_account_link = '<a href="' . esc_url( admin_url( 'profile.php' ) ) . '">' . esc_html( preg_replace( '/\@.*/', '', $current_user->display_name ) ) . '</a>';
 		}
 		?>
 							
-		<span class="user"><?php printf( __( 'Welcome, %s', 'memberlite' ), $user_account_link ); ?></span>
+		<span class="user"><?php printf( __( 'Welcome, %s', 'memberlite' ), esc_url( $user_account_link ) ); ?></span>
 			<?php
 	}
 	if ( $user_ID ) {
