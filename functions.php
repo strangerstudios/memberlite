@@ -433,3 +433,18 @@ if ( defined( 'PMPRO_VERSION' ) ) {
 if ( function_exists( 'is_woocommerce' ) ) {
 	require_once get_template_directory() . '/inc/integrations/woocommerce.php';
 }
+
+
+function memberlite_frontpage_template_hierarchy( $templates ) {
+    $templates = array();
+    if ( ! is_home() ) {
+        $custom = get_page_template_slug( get_queried_object_id() );
+        if ( ! empty ( $custom ) ) {
+            $templates[] = $custom;
+        }
+        $templates[] = 'front-page.php';
+    }
+    // Return the template hierarchy.
+    return $templates;
+}
+add_filter( 'frontpage_template_hierarchy', 'memberlite_frontpage_template_hierarchy', 5 );
