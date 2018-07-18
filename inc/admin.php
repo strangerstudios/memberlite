@@ -9,7 +9,7 @@
 	Adds Theme Support submenu page to "Appearance" menu.
 */
 function memberlite_theme_menu() {
-	add_theme_page( __( 'Memberlite Documentation and Support', 'memberlite' ), __( 'Memberlite Guide', 'memberlite' ), 'edit_theme_options', 'memberlite-support', 'memberlite_support' );
+	add_theme_page( esc_html__( 'Memberlite Documentation and Support', 'memberlite' ), esc_html__( 'Memberlite Guide', 'memberlite' ), 'edit_theme_options', 'memberlite-support', 'memberlite_support' );
 }
 add_action( 'admin_menu', 'memberlite_theme_menu' );
 
@@ -24,17 +24,17 @@ function memberlite_support() {
 			.about-wrap .about-text.about-text-no-right-margin {margin-right: 0; }
 		</style>
 		<div class="wrap about-wrap">
-			<h1><?php _e( 'Welcome to the Memberlite Theme', 'memberlite' ); ?></h1>
-			<div class="about-text"><?php _e( "Memberlite is the ideal theme for your membership site - packed with integration for top membership site plugins including Paid Memberships Pro. It's fully customizable with your logo, colors, fonts, custom sidebars and more global layout settings.", 'memberlite' ); ?></div>
-			<div class="wp-badge memberlite-badge"><?php printf( __( 'Version %s', 'memberlite' ), MEMBERLITE_VERSION ); ?></div>			
+			<h1><?php esc_html_e( 'Welcome to the Memberlite Theme', 'memberlite' ); ?></h1>
+			<div class="about-text"><?php esc_html_e( "Memberlite is the ideal theme for your membership site - packed with integration for top membership site plugins including Paid Memberships Pro. It's fully customizable with your logo, colors, fonts, custom sidebars and more global layout settings.", 'memberlite' ); ?></div>
+			<div class="wp-badge memberlite-badge"><?php printf( esc_html__( 'Version %s', 'memberlite' ), MEMBERLITE_VERSION ); ?></div>			
 						
 			<div class="feature-section two-col">
 				<div class="col">
-					<h2><span class="dashicons dashicons-format-image"></span> <?php _e( 'Adding Your Logo', 'memberlite' ); ?></h2>
-					<p><?php _e( 'Use the Customize > Site Identity screen to add a custom logo and update or toggle the display of your Site Title and Tagline.', 'memberlite' ); ?></p>
+					<h2><span class="dashicons dashicons-format-image"></span> <?php esc_html_e( 'Adding Your Logo', 'memberlite' ); ?></h2>
+					<p><?php esc_html_e( 'Use the Customize > Site Identity screen to add a custom logo and update or toggle the display of your Site Title and Tagline.', 'memberlite' ); ?></p>
 					<p>
-						<a class="button button-primary" href="<?php echo esc_url( wp_customize_url() ); ?>"><?php _e( 'Add Your Logo', 'memberlite' ); ?></a>
-						<a class="button" href="https://memberlitetheme.com/documentation/site-branding/" target="_blank"><?php _e( 'View Docs on Site Branding in Memberlite', 'memberlite' ); ?></a>
+						<a class="button button-primary" href="<?php echo esc_url( wp_customize_url() ); ?>"><?php esc_html_e( 'Add Your Logo', 'memberlite' ); ?></a>
+						<a class="button" href="https://memberlitetheme.com/documentation/site-branding/" target="_blank"><?php esc_html_e( 'View Docs on Site Branding in Memberlite', 'memberlite' ); ?></a>
 					</p>
 				</div>
 				<div class="col">
@@ -491,10 +491,10 @@ function memberlite_support() {
 } else {
 	if ( function_exists( 'pmpro_license_isValid' ) && pmpro_license_isValid( $pmpro_license_key, 'plus' ) ) {
 		// valid key
-		echo '<span class="install"><a class="install-now button" href="' . wp_nonce_url( self_admin_url( 'update.php?action=install-plugin&plugin=pmpro-advanced-levels-shortcode', 'install-plugin_pmpro-advanced-levels-shortcode' ) ) . '">' . __( 'Install Now', 'memberlite' ) . '</a></span>';
+		echo '<span class="install"><a class="install-now button" href="' . wp_nonce_url( self_admin_url( 'update.php?action=install-plugin&plugin=pmpro-advanced-levels-shortcode', 'install-plugin_pmpro-advanced-levels-shortcode' ) ) . '">' . esc_html__( 'Install Now', 'memberlite' ) . '</a></span>';
 	} else {
 		// invalid key
-		echo '<span class="download"><a class="install-now button" target="_blank" href="http://license.paidmembershipspro.com/downloads/plus/pmpro-advanced-levels-shortcode.zip?key=' . $pmpro_license_key . '">' . __( 'Download', 'memberlite' ) . '</a></span>';
+		echo '<span class="download"><a class="install-now button" target="_blank" href="http://license.paidmembershipspro.com/downloads/plus/pmpro-advanced-levels-shortcode.zip?key=' . $pmpro_license_key . '">' . esc_html__( 'Download', 'memberlite' ) . '</a></span>';
 	}
 }
 										?>
@@ -990,7 +990,7 @@ function memberlite_admin_notice_install_memberlite_shortcodes() {
 			'memberlite'
 		);
 ?>
-:</strong> <?php echo __( 'Some features of Memberlite now require the Memberlite Shortcodes plugin.', 'memberlite' ) . ' <a href="' . $click_link . '">' . $click_text . '</a>'; ?></p>
+:</strong> <?php echo esc_html__( 'Some features of Memberlite now require the Memberlite Shortcodes plugin.', 'memberlite' ) . ' <a href="' . $click_link . '">' . $click_text . '</a>'; ?></p>
 	</div>
 	<?php
 }
@@ -1024,7 +1024,7 @@ function memberlite_admin_notice_install_advanced_levels_shortcode() {
 			'memberlite'
 		);
 ?>
-:</strong> <?php echo __( 'The [memberlite_levels] shortcode has been merged into the Advanced Levels Shortcode add on.', 'memberlite' ) . ' <a href="' . $click_link . '">' . $click_text . '</a>'; ?></p>
+:</strong> <?php echo esc_html__( 'The [memberlite_levels] shortcode has been merged into the Advanced Levels Shortcode add on.', 'memberlite' ) . ' <a href="' . $click_link . '">' . $click_text . '</a>'; ?></p>
 	</div>
 	<?php
 }

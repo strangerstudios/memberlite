@@ -28,7 +28,7 @@ if ( ! empty( $memberlite_banner_show ) ) {
 					if ( is_page_template( 'templates/interstitial.php' ) ) {
 						$referrer = isset( $_GET['redirect_to'] ) ? esc_url_raw( wp_unslash( $_GET['redirect_to'] ) ) : null;
 						?>
-						<a class="btn" href="<?php echo esc_url( $referrer ); ?>"><?php _e( 'No Thanks &raquo;', 'memberlite' ); ?></a>
+						<a class="btn" href="<?php echo esc_url( $referrer ); ?>"><?php esc_html_e( 'No Thanks &raquo;', 'memberlite' ); ?></a>
 					<?php } ?>
 
 					<?php memberlite_getBreadcrumbs(); ?>

@@ -15,7 +15,7 @@
 		<?php
 			wp_link_pages(
 				array(
-					'before' => '<div class="page-links">' . __( 'Pages:', 'memberlite' ),
+					'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'memberlite' ),
 					'after'  => '</div>',
 				)
 			);
@@ -25,7 +25,7 @@
 	if ( current_user_can( 'edit_post', $post->ID ) ) {
 		?>
 		<footer class="entry-footer">
-			<?php edit_post_link( __( 'Edit', 'memberlite' ), '<span class="edit-link">', '</span>' ); ?>
+			<?php edit_post_link( esc_html__( 'Edit', 'memberlite' ), '<span class="edit-link">', '</span>' ); ?>
 			</footer><!-- .entry-footer -->
 			<?php
 	}

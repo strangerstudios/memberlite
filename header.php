@@ -21,7 +21,7 @@
 
 	<?php get_template_part( 'components/header/mobile', 'menu' ); ?>
 
-	<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'memberlite' ); ?></a>
+	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'memberlite' ); ?></a>
 	
 	<?php do_action( 'memberlite_before_site_header' ); ?>
 	
