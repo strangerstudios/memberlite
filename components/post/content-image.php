@@ -26,7 +26,7 @@
 				echo $memberlite_get_entry_meta_after;
 				endif;
 				?>
-				<?php edit_post_link( __( 'Edit', 'memberlite' ), '<span class="edit-link">', '</span>' ); ?>
+				<?php edit_post_link( esc_html__( 'Edit', 'memberlite' ), '<span class="edit-link">', '</span>' ); ?>
 			</footer><!-- .entry-footer -->
 			<?php
 	}

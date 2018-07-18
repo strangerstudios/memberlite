@@ -13,7 +13,7 @@
 		<?php do_action( 'memberlite_before_content_post' ); ?>
 		<?php $author_id = $post->post_author; ?>
 		<div class="post_author_avatar"><?php echo get_avatar( $author_id, 80 ); ?></div>
-		<?php the_content( __( 'Continue Reading', 'memberlite' ) ); ?>
+		<?php the_content( esc_html__( 'Continue Reading', 'memberlite' ) ); ?>
 		<div class="clear"></div>
 		<?php do_action( 'memberlite_after_content_post' ); ?>
 	</div><!-- .entry-content -->
@@ -28,7 +28,7 @@
 						<a href="<?php the_permalink(); ?>" rel="bookmark"><i class="fa fa-link"></i></a> |
 						<?php echo $memberlite_get_entry_meta_after; ?>
 					<?php endif; ?>
-				<?php edit_post_link( __( 'Edit', 'memberlite' ), '<span class="edit-link">', '</span>' ); ?>
+				<?php edit_post_link( esc_html__( 'Edit', 'memberlite' ), '<span class="edit-link">', '</span>' ); ?>
 			</div><!-- .entry-meta -->
 			</footer><!-- .entry-footer -->
 			<?php

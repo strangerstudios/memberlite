@@ -360,7 +360,7 @@ function memberlite_page_title( $echo = true ) {
 			}
 		}
 	} elseif ( is_404() ) {
-		echo '<h1 class="entry-title">' . __( '404: Page Not Found', 'memberlite' ) . '</h1>';
+		echo '<h1 class="entry-title">' . esc_html__( '404: Page Not Found', 'memberlite' ) . '</h1>';
 	} else {
 		the_title( '<h1 class="entry-title">', '</h1>' );
 	}
