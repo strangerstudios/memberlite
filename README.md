@@ -22,7 +22,7 @@ but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 GNU General Public License for more details.
 
-Memberlite WordPress Theme bundles the following third-party resources:
+Memberlite WordPress Theme bundles or has used original or modified code from the following third-party resources:
 
 Font Awesome icons Copyright Dave Gandy
 License: CC BY 4.0 License
@@ -51,6 +51,14 @@ Source: https://github.com/woocommerce/woocommerce/blob/master/license.txt
 The Events Manager icon
 License: GPLv3
 Source: https://eventsmanagerpro.com/terms-conditions/
+
+MarketPress template
+License: GPLv2
+Source: https://wordpress.org/plugins/wordpress-ecommerce/
+
+CSS grid based on Foundation by Zurb
+License: MIT License
+Source: https://foundation.zurb.com/get-involved/faq.html
 
 ##Getting Started
 ---------------
