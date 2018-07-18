@@ -17,7 +17,7 @@
 		if ( $content_archives == 'excerpt' ) {
 				the_excerpt();
 		} else {
-			the_content( __( 'Continue Reading', 'memberlite' ) );
+			the_content( esc_html__( 'Continue Reading', 'memberlite' ) );
 		}
 		?>
 		<?php
@@ -42,7 +42,7 @@
 					echo $memberlite_get_entry_meta_after;
 					endif;
 					?>
-					<?php edit_post_link( __( 'Edit', 'memberlite' ), '<span class="edit-link">', '</span>' ); ?>
+					<?php edit_post_link( esc_html__( 'Edit', 'memberlite' ), '<span class="edit-link">', '</span>' ); ?>
 				</div><!-- .entry-meta -->
 			</footer><!-- .entry-footer -->
 			<?php

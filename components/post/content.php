@@ -46,6 +46,6 @@
 			<?php echo memberlite_get_entry_meta( $post, 'after' ); ?>
 		<?php endif; // End if 'post' == get_post_type() ?>
 
-		<?php edit_post_link( __( 'Edit', 'memberlite' ), '<span class="edit-link">', '</span>' ); ?>
+		<?php edit_post_link( esc_html__( 'Edit', 'memberlite' ), '<span class="edit-link">', '</span>' ); ?>
 	</footer><!-- .entry-footer -->
 </article><!-- #post-## -->

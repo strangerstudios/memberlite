@@ -29,15 +29,15 @@ if ( ! function_exists( 'memberlite_paging_nav' ) ) :
 		}
 		?>
 		<nav class="navigation paging-navigation" role="navigation">
-		<h1 class="screen-reader-text"><?php _e( 'Posts navigation', 'memberlite' ); ?></h1>
+		<h1 class="screen-reader-text"><?php esc_html_e( 'Posts navigation', 'memberlite' ); ?></h1>
 		<div class="nav-links">
 
 			<?php if ( get_next_posts_link() ) : ?>
-			<div class="nav-previous"><?php next_posts_link( __( '<span class="meta-nav">&larr;</span> Older posts', 'memberlite' ) ); ?></div>
+			<div class="nav-previous"><?php next_posts_link( esc_html__( '<span class="meta-nav">&larr;</span> Older posts', 'memberlite' ) ); ?></div>
 			<?php endif; ?>
 
 			<?php if ( get_previous_posts_link() ) : ?>
-			<div class="nav-next"><?php previous_posts_link( __( 'Newer posts <span class="meta-nav">&rarr;</span>', 'memberlite' ) ); ?></div>
+			<div class="nav-next"><?php previous_posts_link( esc_html__( 'Newer posts <span class="meta-nav">&rarr;</span>', 'memberlite' ) ); ?></div>
 			<?php endif; ?>
 
 		</div><!-- .nav-links -->
@@ -60,7 +60,7 @@ if ( ! function_exists( 'memberlite_post_nav' ) ) :
 		}
 		?>
 		<nav class="navigation post-navigation" role="navigation">
-		<h1 class="screen-reader-text"><?php _e( 'Post navigation', 'memberlite' ); ?></h1>
+		<h1 class="screen-reader-text"><?php esc_html_e( 'Post navigation', 'memberlite' ); ?></h1>
 		<div class="nav-links">
 			<?php
 				previous_post_link( '<div class="nav-previous">%link</div>', _x( '<span class="meta-nav">&larr;</span> %title', 'Previous post link', 'memberlite' ) );
@@ -126,7 +126,7 @@ if ( ! function_exists( 'memberlite_page_nav' ) ) :
 		// HTML
 		?>
 		<nav class="navigation page-navigation" role="navigation">
-		<h1 class="screen-reader-text"><?php _e( 'Page navigation', 'memberlite' ); ?></h1>
+		<h1 class="screen-reader-text"><?php esc_html_e( 'Page navigation', 'memberlite' ); ?></h1>
 		<div class="nav-links">
 			<?php if ( ! empty( $previousID ) && ( $previousID != $post->ID ) ) { ?>
 				<div class="nav-previous"><a href="<?php echo esc_url( get_permalink( $previousID ) ); ?>" rel="prev"><span class="meta-nav">&larr;</span> <?php echo get_the_title( $previousID ); ?></a></div>
@@ -264,7 +264,7 @@ class comment_walker extends Walker_Comment {
 				<?php edit_comment_link( '<span class="alignright">Edit this comment</span>', '', '' ); ?>
 				<time class="comment-meta-item" datetime="<?php comment_date( 'Y-m-d' ); ?>T<?php comment_time( 'H:iP' ); ?>" itemprop="datePublished"><?php comment_date( 'jS F Y' ); ?>, <a href="#comment-<?php comment_ID(); ?>" itemprop="url"><?php comment_time(); ?></a></time>
 				<?php if ( $comment->comment_approved == '0' ) : ?>
-				<p class="comment-meta-item"><?php _e( 'Your comment is awaiting moderation.', 'memberlite' ); ?></p>
+				<p class="comment-meta-item"><?php esc_html_e( 'Your comment is awaiting moderation.', 'memberlite' ); ?></p>
 				<?php endif; ?>
 			</div>
 			<div class="comment-content post-content" itemprop="text">
@@ -368,7 +368,7 @@ class pings_walker extends Walker_Comment {
 				<time class="comment-meta-item" datetime="<?php comment_date( 'Y-m-d' ); ?>T<?php comment_time( 'H:iP' ); ?>" itemprop="datePublished"><?php comment_date( 'jS F Y' ); ?>, <a href="#comment-<?php comment_ID(); ?>" itemprop="url"><?php comment_time(); ?></a></time>
 				<?php edit_comment_link( '<p class="comment-meta-item">Edit this comment</p>', '', '' ); ?>
 				<?php if ( $comment->comment_approved == '0' ) : ?>
-				<p class="comment-meta-item"><?php _e( 'Your comment is awaiting moderation.', 'memberlite' ); ?></p>
+				<p class="comment-meta-item"><?php esc_html_e( 'Your comment is awaiting moderation.', 'memberlite' ); ?></p>
 				<?php endif; ?>
 			</div>
 	<?php

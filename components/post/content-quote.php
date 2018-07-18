@@ -18,7 +18,7 @@
 	<div class="entry-content">
 		<?php do_action( 'memberlite_before_content_post' ); ?>
 		<blockquote class="quote">
-			<?php the_content( __( 'Continue Reading', 'memberlite' ) ); ?>
+			<?php the_content( esc_html__( 'Continue Reading', 'memberlite' ) ); ?>
 			<cite>&mdash;<?php the_title( sprintf( '<a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a>' ); ?></cite>
 		</blockquote>
 		<?php do_action( 'memberlite_after_content_post' ); ?>
@@ -33,7 +33,7 @@
 						<a href="<?php the_permalink(); ?>" rel="bookmark"><i class="fa fa-link"></i></a> |
 						<?php echo $memberlite_get_entry_meta_after; ?>
 					<?php endif; ?>
-				<?php edit_post_link( __( 'Edit', 'memberlite' ), '<span class="edit-link">', '</span>' ); ?>
+				<?php edit_post_link( esc_html__( 'Edit', 'memberlite' ), '<span class="edit-link">', '</span>' ); ?>
 			</div><!-- .entry-meta -->
 			</footer><!-- .entry-footer -->
 			<?php
