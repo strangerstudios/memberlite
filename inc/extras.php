@@ -496,6 +496,8 @@ function memberlite_getBreadcrumbs() {
 	if ( $memberlite_show_breadcrumbs ) {
 		$memberlite_delimiter = get_theme_mod( 'delimiter', $memberlite_defaults['delimiter'] );
 
+		$memberlite_hide_home_breadcrumb = apply_filters( 'memberlite_hide_home_breadcrumb', false );
+
 		if ( function_exists( 'is_woocommerce' ) && is_woocommerce() ) {
 
 		} elseif ( function_exists( 'is_bbpress' ) && is_bbpress() ) {
@@ -510,8 +512,10 @@ function memberlite_getBreadcrumbs() {
 			</nav>
 		<?php } elseif ( is_attachment() && '' != $attachment_breadcrumbs ) { ?>
 			<nav class="memberlite-breadcrumb" itemprop="breadcrumb">
-				  <a href="<?php echo esc_url( home_url() ); ?>"><?php esc_html_e( 'Home', 'memberlite' ); ?></a>
-				<span class="sep"><?php echo esc_html( $memberlite_delimiter ); ?></span>
+				<?php if ( ! $memberlite_hide_home_breadcrumb ) { ?>
+					<a href="<?php echo esc_url( home_url() ); ?>"><?php esc_html_e( 'Home', 'memberlite' ); ?></a>
+					<span class="sep"><?php echo esc_html( $memberlite_delimiter ); ?></span>
+				<?php } ?>
 				<?php
 					global $post;
 					$parent_id   = $post->post_parent;
@@ -530,8 +534,10 @@ function memberlite_getBreadcrumbs() {
 			</nav>
 		<?php } elseif ( is_page() && ! is_front_page() && ! is_attachment() && '' != $page_breadcrumbs ) { ?>
 			<nav class="memberlite-breadcrumb" itemprop="breadcrumb">
-				<a href="<?php echo esc_url( home_url() ); ?>"><?php esc_html_e( 'Home', 'memberlite' ); ?></a>
-				<span class="sep"><?php echo esc_html( $memberlite_delimiter ); ?></span>
+				<?php if ( ! $memberlite_hide_home_breadcrumb ) { ?>
+					<a href="<?php echo esc_url( home_url() ); ?>"><?php esc_html_e( 'Home', 'memberlite' ); ?></a>
+					<span class="sep"><?php echo esc_html( $memberlite_delimiter ); ?></span>
+				<?php } ?>
 				<?php
 					$breadcrumbs = get_post_ancestors( $post->ID );
 				if ( ! empty( $breadcrumbs ) ) {
@@ -558,8 +564,10 @@ function memberlite_getBreadcrumbs() {
 } elseif ( is_post_type_archive() && '' != $archive_breadcrumbs ) {
 ?>
 			<nav class="memberlite-breadcrumb" itemprop="breadcrumb">
-				  <a href="<?php echo esc_url( home_url() ); ?>"><?php esc_html_e( 'Home', 'memberlite' ); ?></a>
-				<span class="sep"><?php echo esc_html( $memberlite_delimiter ); ?></span>
+				<?php if ( ! $memberlite_hide_home_breadcrumb ) { ?>
+					<a href="<?php echo esc_url( home_url() ); ?>"><?php esc_html_e( 'Home', 'memberlite' ); ?></a>
+					<span class="sep"><?php echo esc_html( $memberlite_delimiter ); ?></span>
+				<?php } ?>
 				<?php
 				$post_type = get_post_type_object( get_query_var( 'post_type' ) );
 				echo $post_type->labels->name;
@@ -567,8 +575,10 @@ function memberlite_getBreadcrumbs() {
 			</nav>
 		<?php } elseif ( ( ( is_author() || is_tag() || is_archive() ) ) && '' != $archive_breadcrumbs ) { ?>
 			<nav class="memberlite-breadcrumb" itemprop="breadcrumb">
-				  <a href="<?php echo esc_url( home_url() ); ?>"><?php esc_html_e( 'Home', 'memberlite' ); ?></a>
-				<span class="sep"><?php echo esc_html( $memberlite_delimiter ); ?></span>
+				<?php if ( ! $memberlite_hide_home_breadcrumb ) { ?>
+					<a href="<?php echo esc_url( home_url() ); ?>"><?php esc_html_e( 'Home', 'memberlite' ); ?></a>
+					<span class="sep"><?php echo esc_html( $memberlite_delimiter ); ?></span>
+				<?php } ?>
 				<?php
 				if ( is_tax() ) {
 					$queried_object = get_queried_object();
@@ -644,8 +654,10 @@ function memberlite_getBreadcrumbs() {
 			</nav>
 		<?php } elseif ( is_singular( array( 'post' ) ) && '' != $post_breadcrumbs ) { ?>
 			<nav class="memberlite-breadcrumb" itemprop="breadcrumb">
-				  <a href="<?php echo esc_url( home_url() ); ?>"><?php esc_html_e( 'Home', 'memberlite' ); ?></a>
-				<span class="sep"><?php echo esc_html( $memberlite_delimiter ); ?></span>
+				<?php if ( ! $memberlite_hide_home_breadcrumb ) { ?>
+					<a href="<?php echo esc_url( home_url() ); ?>"><?php esc_html_e( 'Home', 'memberlite' ); ?></a>
+					<span class="sep"><?php echo esc_html( $memberlite_delimiter ); ?></span>
+				<?php } ?>
 				<?php if ( get_option( 'page_for_posts' ) ) { ?>
 					<a href="<?php echo esc_url( get_permalink( get_option( 'page_for_posts' ) ) ); ?>"><?php echo get_the_title( get_option( 'page_for_posts' ) ); ?></a>
 					<span class="sep"><?php echo esc_html( $memberlite_delimiter ); ?></span>
@@ -657,7 +669,9 @@ function memberlite_getBreadcrumbs() {
 	$post_type_object = get_post_type_object( get_post_type( $post ) );
 			?>
 			<nav class="memberlite-breadcrumb" itemprop="breadcrumb">
-				  <a href="<?php echo esc_url( home_url() ); ?>"><?php esc_html_e( 'Home', 'memberlite' ); ?></a>
+				<?php if ( ! $memberlite_hide_home_breadcrumb ) { ?>
+					<a href="<?php echo esc_url( home_url() ); ?>"><?php esc_html_e( 'Home', 'memberlite' ); ?></a>
+				<?php } ?>
 				<?php if ( $post_type_object->has_archive == true ) { ?>
 					<span class="sep"><?php echo esc_html( $memberlite_delimiter ); ?></span>
 					<a href="<?php echo esc_url( get_post_type_archive_link( get_post_type( $post ) ) ); ?>"><?php echo $post_type_object->labels->name; ?></a>
@@ -667,8 +681,10 @@ function memberlite_getBreadcrumbs() {
 			</nav>
 		<?php } elseif ( is_search() && '' != $search_breadcrumbs ) { ?>
 			<nav class="memberlite-breadcrumb" itemprop="breadcrumb">
-				  <a href="<?php echo esc_url( home_url() ); ?>"><?php esc_html_e( 'Home', 'memberlite' ); ?></a>
-				<span class="sep"><?php echo esc_html( $memberlite_delimiter ); ?></span>
+				<?php if ( ! $memberlite_hide_home_breadcrumb ) { ?>
+					<a href="<?php echo esc_url( home_url() ); ?>"><?php esc_html_e( 'Home', 'memberlite' ); ?></a>
+					<span class="sep"><?php echo esc_html( $memberlite_delimiter ); ?></span>
+				<?php } ?>
 				<?php
 				if ( get_option( 'page_for_posts' ) ) {
 					?>
