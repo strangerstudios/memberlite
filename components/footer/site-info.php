@@ -32,7 +32,7 @@
 	<?php if ( ! empty( $back_to_top ) ) { ?>
 		<div class="large-2 columns text-right">
 		<?php
-			$back_to_top = apply_filters( 'memberlite_back_to_top', __( '<i class="fa fa-chevron-up"></i> Back to Top', 'memberlite' ) );
+			$back_to_top = apply_filters( 'memberlite_back_to_top', esc_html__( '<i class="fa fa-chevron-up"></i> Back to Top', 'memberlite' ) );
 		if ( ! empty( $back_to_top ) ) {
 			echo '<a class="skip-link btn" href="#page">' . esc_html( $back_to_top ) . '</a>';
 		}
