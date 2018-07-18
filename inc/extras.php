@@ -512,7 +512,7 @@ function memberlite_getBreadcrumbs() {
 			</nav>
 		<?php } elseif ( is_attachment() && '' != $attachment_breadcrumbs ) { ?>
 			<nav class="memberlite-breadcrumb" itemprop="breadcrumb">
-				<?php if ( ! $memberlite_hide_home_breadcrumb ) { ?>
+				<?php if ( empty( $memberlite_hide_home_breadcrumb ) ) { ?>
 					<a href="<?php echo esc_url( home_url() ); ?>"><?php esc_html_e( 'Home', 'memberlite' ); ?></a>
 					<span class="sep"><?php echo esc_html( $memberlite_delimiter ); ?></span>
 				<?php } ?>
@@ -534,7 +534,7 @@ function memberlite_getBreadcrumbs() {
 			</nav>
 		<?php } elseif ( is_page() && ! is_front_page() && ! is_attachment() && '' != $page_breadcrumbs ) { ?>
 			<nav class="memberlite-breadcrumb" itemprop="breadcrumb">
-				<?php if ( ! $memberlite_hide_home_breadcrumb ) { ?>
+				<?php if ( empty( $memberlite_hide_home_breadcrumb ) ) { ?>
 					<a href="<?php echo esc_url( home_url() ); ?>"><?php esc_html_e( 'Home', 'memberlite' ); ?></a>
 					<span class="sep"><?php echo esc_html( $memberlite_delimiter ); ?></span>
 				<?php } ?>
@@ -564,7 +564,7 @@ function memberlite_getBreadcrumbs() {
 } elseif ( is_post_type_archive() && '' != $archive_breadcrumbs ) {
 ?>
 			<nav class="memberlite-breadcrumb" itemprop="breadcrumb">
-				<?php if ( ! $memberlite_hide_home_breadcrumb ) { ?>
+				<?php if ( empty( $memberlite_hide_home_breadcrumb ) ) { ?>
 					<a href="<?php echo esc_url( home_url() ); ?>"><?php esc_html_e( 'Home', 'memberlite' ); ?></a>
 					<span class="sep"><?php echo esc_html( $memberlite_delimiter ); ?></span>
 				<?php } ?>
@@ -575,7 +575,7 @@ function memberlite_getBreadcrumbs() {
 			</nav>
 		<?php } elseif ( ( ( is_author() || is_tag() || is_archive() ) ) && '' != $archive_breadcrumbs ) { ?>
 			<nav class="memberlite-breadcrumb" itemprop="breadcrumb">
-				<?php if ( ! $memberlite_hide_home_breadcrumb ) { ?>
+				<?php if ( empty( $memberlite_hide_home_breadcrumb ) ) { ?>
 					<a href="<?php echo esc_url( home_url() ); ?>"><?php esc_html_e( 'Home', 'memberlite' ); ?></a>
 					<span class="sep"><?php echo esc_html( $memberlite_delimiter ); ?></span>
 				<?php } ?>
@@ -654,7 +654,7 @@ function memberlite_getBreadcrumbs() {
 			</nav>
 		<?php } elseif ( is_singular( array( 'post' ) ) && '' != $post_breadcrumbs ) { ?>
 			<nav class="memberlite-breadcrumb" itemprop="breadcrumb">
-				<?php if ( ! $memberlite_hide_home_breadcrumb ) { ?>
+				<?php if ( empty( $memberlite_hide_home_breadcrumb ) ) { ?>
 					<a href="<?php echo esc_url( home_url() ); ?>"><?php esc_html_e( 'Home', 'memberlite' ); ?></a>
 					<span class="sep"><?php echo esc_html( $memberlite_delimiter ); ?></span>
 				<?php } ?>
@@ -669,7 +669,7 @@ function memberlite_getBreadcrumbs() {
 	$post_type_object = get_post_type_object( get_post_type( $post ) );
 			?>
 			<nav class="memberlite-breadcrumb" itemprop="breadcrumb">
-				<?php if ( ! $memberlite_hide_home_breadcrumb ) { ?>
+				<?php if ( empty( $memberlite_hide_home_breadcrumb ) ) { ?>
 					<a href="<?php echo esc_url( home_url() ); ?>"><?php esc_html_e( 'Home', 'memberlite' ); ?></a>
 				<?php } ?>
 				<?php if ( $post_type_object->has_archive == true ) { ?>
@@ -681,7 +681,7 @@ function memberlite_getBreadcrumbs() {
 			</nav>
 		<?php } elseif ( is_search() && '' != $search_breadcrumbs ) { ?>
 			<nav class="memberlite-breadcrumb" itemprop="breadcrumb">
-				<?php if ( ! $memberlite_hide_home_breadcrumb ) { ?>
+				<?php if ( empty( $memberlite_hide_home_breadcrumb ) ) { ?>
 					<a href="<?php echo esc_url( home_url() ); ?>"><?php esc_html_e( 'Home', 'memberlite' ); ?></a>
 					<span class="sep"><?php echo esc_html( $memberlite_delimiter ); ?></span>
 				<?php } ?>
@@ -746,7 +746,7 @@ function memberlite_get_banner_image_src( $post_id = null, $size = 'banner' ) {
 
 /**
  * Parses tags added to fields in customizer (i.e. posts_entry_meta_before and posts_entry_meta_after. Available tags include:
- * 
+ *
  * * {post_author} - Entry author display name
  * * {post_author_posts_link} - Entry author display name, linked to their archive
  * * {post_categories} - List of entry categories separated by a comma.
@@ -757,7 +757,7 @@ function memberlite_get_banner_image_src( $post_id = null, $size = 'banner' ) {
  * * {post_tags} - List of entry tags separated by a comma.
  * * {post_time} - Time the entry was published, formatted to your site's "Time Format" under Settings > General
  * * {post_title} - Title of the entry.
- * 
+ *
  */
 function memberlite_parse_tags( $meta, $post = null ) {
 	if ( empty( $post ) ) {
