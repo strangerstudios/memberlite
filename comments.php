@@ -48,7 +48,7 @@ if ( post_password_required() ) {
 		<?php
 		if ( count( $memberlite_trackbacks ) == 0 && count( $memberlite_pingbacks ) == 0 ) {
 		?>
-				<h2><?php printf( esc_html__( 'Comments (%s)', 'memberlite' ), count( $memberlite_comments ) ) ); ?></h2>
+				<h2><?php printf( esc_html__( 'Comments (%s)', 'memberlite' ), count( $memberlite_comments ) ); ?></h2>
 				<?php the_comments_navigation(); ?>
 				<?php
 				wp_list_comments(
@@ -65,7 +65,7 @@ if ( post_password_required() ) {
 				// If comments are closed and there are comments, let's leave a little note, shall we?
 				if ( ! comments_open() && '0' != get_comments_number() && post_type_supports( get_post_type(), 'comments' ) ) :
 				?>
-				<p class="pmpro_message pmpro_alert no-comments"><?php esc_html_e( 'Comments are closed.', 'memberlite' ) ); ?></p>
+				<p class="pmpro_message pmpro_alert no-comments"><?php esc_html_e( 'Comments are closed.', 'memberlite' ); ?></p>
 				<?php endif; ?>
 				<?php
 		} else {
@@ -75,15 +75,15 @@ if ( post_password_required() ) {
 						<?php
 						if ( count( $memberlite_comments ) > 0 ) {
 ?>
-<li class="memberlite_active"><a href="#tab-comments" data-toggle="tab"><?php printf( esc_html__( 'Comments (%s)', 'memberlite' ), count( $memberlite_comments ) ) ); ?></a></li><?php } ?>
+<li class="memberlite_active"><a href="#tab-comments" data-toggle="tab"><?php printf( esc_html__( 'Comments (%s)', 'memberlite' ), count( $memberlite_comments ) ); ?></a></li><?php } ?>
 						<?php
 						if ( count( $memberlite_trackbacks ) > 0 ) {
 ?>
-<li><a href="#tab-tracks" data-toggle="tab"><?php printf( esc_html__( 'Trackbacks (%s)', 'memberlite' ), count( $memberlite_trackbacks ) ) ); ?></a></li><?php } ?>
+<li><a href="#tab-tracks" data-toggle="tab"><?php printf( esc_html__( 'Trackbacks (%s)', 'memberlite' ), count( $memberlite_trackbacks ) ); ?></a></li><?php } ?>
 						<?php
 						if ( count( $memberlite_pingbacks ) > 0 ) {
 ?>
-<li><a href="#tab-pings" data-toggle="tab"><?php printf( esc_html__( 'Pingbacks (%s)', 'memberlite' ), count( $memberlite_pingbacks ) ) ); ?></a></li><?php } ?>
+<li><a href="#tab-pings" data-toggle="tab"><?php printf( esc_html__( 'Pingbacks (%s)', 'memberlite' ), count( $memberlite_pingbacks ) ); ?></a></li><?php } ?>
 					</ul>
 					<div class="memberlite_tab_content">	
 					<?php if ( count( $memberlite_comments ) > 0 ) { ?>
@@ -104,7 +104,7 @@ if ( post_password_required() ) {
 								// If comments are closed and there are comments, let's leave a little note, shall we?
 							if ( ! comments_open() && '0' != get_comments_number() && post_type_supports( get_post_type(), 'comments' ) ) :
 							?>
-							<p class="pmpro_message pmpro_alert no-comments"><?php esc_html_e( 'Comments are closed.', 'memberlite' ) ); ?></p>
+							<p class="pmpro_message pmpro_alert no-comments"><?php esc_html_e( 'Comments are closed.', 'memberlite' ); ?></p>
 							<?php endif; ?>
 						</div>
 					<?php } ?>

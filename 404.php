@@ -14,8 +14,8 @@ get_header(); ?>
 			<div class="entry-content">
 				<div class="row">
 					<div class="medium-8 medium-offset-2 columns">
-						<h1 class="entry-title"><?php esc_html_e( 'Oops! That page can&rsquo;t be found.', 'memberlite' ) ); ?></h1>
-						<p><?php esc_html_e( 'It looks like nothing was found at this location. Maybe try a search?', 'memberlite' ) ); ?></p>
+						<h1 class="entry-title"><?php esc_html_e( 'Oops! That page can&rsquo;t be found.', 'memberlite' ); ?></h1>
+						<p><?php esc_html_e( 'It looks like nothing was found at this location. Maybe try a search?', 'memberlite' ); ?></p>
 						<?php get_search_form(); ?>						
 					</div>
 				</div>
