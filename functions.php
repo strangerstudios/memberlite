@@ -40,7 +40,7 @@ function memberlite_google_fonts_url() {
 	$fonts_string = get_theme_mod( 'memberlite_webfonts', $memberlite_defaults['memberlite_webfonts'] );
 
 	// Check if custom font is a Google Font.
-	if ( ! in_array( $fonts_string, array_keys( memberlite_Customize::get_google_fonts() ) ) ) {
+	if ( ! in_array( $fonts_string, array_keys( Memberlite_Customize::get_google_fonts() ) ) ) {
 		return null;
 	} else {
 		// Build the encoded Google fonts URL.

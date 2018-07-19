@@ -10,7 +10,7 @@
   *
   * @param WP_Customize_Manager $wp_customize Theme Customizer object.
   */
-class memberlite_Customize {
+class Memberlite_Customize {
 	public static function register( $wp_customize ) {
 		global $memberlite_defaults;
 		$wp_customize->add_section(
@@ -26,8 +26,8 @@ class memberlite_Customize {
 			'memberlite_webfonts',
 			array(
 				'default'              => $memberlite_defaults['memberlite_webfonts'],
-				'sanitize_callback'    => array( 'memberlite_Customize', 'sanitize_select' ),
-				'sanitize_js_callback' => array( 'memberlite_Customize', 'sanitize_js_callback' ),
+				'sanitize_callback'    => array( 'Memberlite_Customize', 'sanitize_select' ),
+				'sanitize_js_callback' => array( 'Memberlite_Customize', 'sanitize_js_callback' ),
 			)
 		);
 
@@ -37,7 +37,7 @@ class memberlite_Customize {
 				'label'    => __( 'Font', 'memberlite' ),
 				'section'  => 'memberlite_theme_options',
 				'type'     => 'select',
-				'choices'  => memberlite_Customize::get_all_fonts(),
+				'choices'  => Memberlite_Customize::get_all_fonts(),
 				'priority' => 10,
 			)
 		);
@@ -46,8 +46,8 @@ class memberlite_Customize {
 			'meta_login',
 			array(
 				'default'              => false,
-				'sanitize_callback'    => array( 'memberlite_Customize', 'sanitize_checkbox' ),
-				'sanitize_js_callback' => array( 'memberlite_Customize', 'sanitize_js_callback' ),
+				'sanitize_callback'    => array( 'Memberlite_Customize', 'sanitize_checkbox' ),
+				'sanitize_js_callback' => array( 'Memberlite_Customize', 'sanitize_js_callback' ),
 			)
 		);
 
@@ -65,8 +65,8 @@ class memberlite_Customize {
 			'nav_menu_search',
 			array(
 				'default'              => false,
-				'sanitize_callback'    => array( 'memberlite_Customize', 'sanitize_checkbox' ),
-				'sanitize_js_callback' => array( 'memberlite_Customize', 'sanitize_js_callback' ),
+				'sanitize_callback'    => array( 'Memberlite_Customize', 'sanitize_checkbox' ),
+				'sanitize_js_callback' => array( 'Memberlite_Customize', 'sanitize_js_callback' ),
 			)
 		);
 
@@ -84,8 +84,8 @@ class memberlite_Customize {
 			'columns_ratio_header',
 			array(
 				'default'              => $memberlite_defaults['columns_ratio_header'],
-				'sanitize_callback'    => array( 'memberlite_Customize', 'sanitize_select' ),
-				'sanitize_js_callback' => array( 'memberlite_Customize', 'sanitize_js_callback' ),
+				'sanitize_callback'    => array( 'Memberlite_Customize', 'sanitize_select' ),
+				'sanitize_js_callback' => array( 'Memberlite_Customize', 'sanitize_js_callback' ),
 				'transport'            => 'refresh',
 			)
 		);
@@ -117,8 +117,8 @@ class memberlite_Customize {
 			'columns_ratio',
 			array(
 				'default'              => $memberlite_defaults['columns_ratio'],
-				'sanitize_callback'    => array( 'memberlite_Customize', 'sanitize_select' ),
-				'sanitize_js_callback' => array( 'memberlite_Customize', 'sanitize_js_callback' ),
+				'sanitize_callback'    => array( 'Memberlite_Customize', 'sanitize_select' ),
+				'sanitize_js_callback' => array( 'Memberlite_Customize', 'sanitize_js_callback' ),
 				'transport'            => 'refresh',
 			)
 		);
@@ -145,8 +145,8 @@ class memberlite_Customize {
 			'sidebar_location',
 			array(
 				'default'              => $memberlite_defaults['sidebar_location'],
-				'sanitize_callback'    => array( 'memberlite_Customize', 'sanitize_select' ),
-				'sanitize_js_callback' => array( 'memberlite_Customize', 'sanitize_js_callback' ),
+				'sanitize_callback'    => array( 'Memberlite_Customize', 'sanitize_select' ),
+				'sanitize_js_callback' => array( 'Memberlite_Customize', 'sanitize_js_callback' ),
 			)
 		);
 
@@ -168,8 +168,8 @@ class memberlite_Customize {
 			'sidebar_location_blog',
 			array(
 				'default'              => $memberlite_defaults['sidebar_location_blog'],
-				'sanitize_callback'    => array( 'memberlite_Customize', 'sanitize_select' ),
-				'sanitize_js_callback' => array( 'memberlite_Customize', 'sanitize_js_callback' ),
+				'sanitize_callback'    => array( 'Memberlite_Customize', 'sanitize_select' ),
+				'sanitize_js_callback' => array( 'Memberlite_Customize', 'sanitize_js_callback' ),
 			)
 		);
 
@@ -191,8 +191,8 @@ class memberlite_Customize {
 			'content_archives',
 			array(
 				'default'              => $memberlite_defaults['content_archives'],
-				'sanitize_callback'    => array( 'memberlite_Customize', 'sanitize_select' ),
-				'sanitize_js_callback' => array( 'memberlite_Customize', 'sanitize_js_callback' ),
+				'sanitize_callback'    => array( 'Memberlite_Customize', 'sanitize_select' ),
+				'sanitize_js_callback' => array( 'Memberlite_Customize', 'sanitize_js_callback' ),
 			)
 		);
 
@@ -254,8 +254,8 @@ class memberlite_Customize {
 				$memberlite_breadcrumb['slug'],
 				array(
 					'default'              => false,
-					'sanitize_callback'    => array( 'memberlite_Customize', 'sanitize_checkbox' ),
-					'sanitize_js_callback' => array( 'memberlite_Customize', 'sanitize_js_callback' ),
+					'sanitize_callback'    => array( 'Memberlite_Customize', 'sanitize_checkbox' ),
+					'sanitize_js_callback' => array( 'Memberlite_Customize', 'sanitize_js_callback' ),
 				)
 			);
 			// CONTROLS
@@ -274,8 +274,8 @@ class memberlite_Customize {
 			'memberlite_post_nav',
 			array(
 				'default'              => true,
-				'sanitize_callback'    => array( 'memberlite_Customize', 'sanitize_checkbox' ),
-				'sanitize_js_callback' => array( 'memberlite_Customize', 'sanitize_js_callback' ),
+				'sanitize_callback'    => array( 'Memberlite_Customize', 'sanitize_checkbox' ),
+				'sanitize_js_callback' => array( 'Memberlite_Customize', 'sanitize_js_callback' ),
 			)
 		);
 
@@ -293,8 +293,8 @@ class memberlite_Customize {
 			'memberlite_page_nav',
 			array(
 				'default'              => true,
-				'sanitize_callback'    => array( 'memberlite_Customize', 'sanitize_checkbox' ),
-				'sanitize_js_callback' => array( 'memberlite_Customize', 'sanitize_js_callback' ),
+				'sanitize_callback'    => array( 'Memberlite_Customize', 'sanitize_checkbox' ),
+				'sanitize_js_callback' => array( 'Memberlite_Customize', 'sanitize_js_callback' ),
 			)
 		);
 
@@ -312,8 +312,8 @@ class memberlite_Customize {
 			'memberlite_loop_images',
 			array(
 				'default'              => $memberlite_defaults['memberlite_loop_images'],
-				'sanitize_callback'    => array( 'memberlite_Customize', 'sanitize_select' ),
-				'sanitize_js_callback' => array( 'memberlite_Customize', 'sanitize_js_callback' ),
+				'sanitize_callback'    => array( 'Memberlite_Customize', 'sanitize_select' ),
+				'sanitize_js_callback' => array( 'Memberlite_Customize', 'sanitize_js_callback' ),
 				'transport'            => 'refresh',
 			)
 		);
@@ -346,7 +346,7 @@ class memberlite_Customize {
 			array(
 				'default'              => $memberlite_defaults['posts_entry_meta_before'],
 				'sanitize_callback'    => 'sanitize_text_field',
-				'sanitize_js_callback' => array( 'memberlite_Customize', 'sanitize_js_callback' ),
+				'sanitize_js_callback' => array( 'Memberlite_Customize', 'sanitize_js_callback' ),
 				'transport'            => 'postMessage',
 			)
 		);
@@ -366,7 +366,7 @@ class memberlite_Customize {
 			array(
 				'default'              => $memberlite_defaults['posts_entry_meta_after'],
 				'sanitize_callback'    => 'sanitize_text_field',
-				'sanitize_js_callback' => array( 'memberlite_Customize', 'sanitize_js_callback' ),
+				'sanitize_js_callback' => array( 'Memberlite_Customize', 'sanitize_js_callback' ),
 				'transport'            => 'postMessage',
 			)
 		);
@@ -386,7 +386,7 @@ class memberlite_Customize {
 			array(
 				'default'              => $memberlite_defaults['memberlite_footerwidgets'],
 				'sanitize_callback'    => 'intval_base10',
-				'sanitize_js_callback' => array( 'memberlite_Customize', 'sanitize_js_callback' ),
+				'sanitize_js_callback' => array( 'Memberlite_Customize', 'sanitize_js_callback' ),
 			)
 		);
 
@@ -411,7 +411,7 @@ class memberlite_Customize {
 			array(
 				'default'              => $memberlite_defaults['delimiter'],
 				'sanitize_callback'    => 'sanitize_text_field',
-				'sanitize_js_callback' => array( 'memberlite_Customize', 'sanitize_js_callback' ),
+				'sanitize_js_callback' => array( 'Memberlite_Customize', 'sanitize_js_callback' ),
 				'transport'            => 'postMessage',
 			)
 		);
@@ -430,8 +430,8 @@ class memberlite_Customize {
 			'copyright_textbox',
 			array(
 				'default'              => $memberlite_defaults['copyright_textbox'],
-				'sanitize_callback'    => array( 'memberlite_Customize', 'sanitize_text_with_links' ),
-				'sanitize_js_callback' => array( 'memberlite_Customize', 'sanitize_js_text_with_links' ),
+				'sanitize_callback'    => array( 'Memberlite_Customize', 'sanitize_text_with_links' ),
+				'sanitize_js_callback' => array( 'Memberlite_Customize', 'sanitize_js_text_with_links' ),
 				'transport'            => 'postMessage',
 			)
 		);
@@ -450,8 +450,8 @@ class memberlite_Customize {
 			'memberlite_back_to_top',
 			array(
 				'default'              => true,
-				'sanitize_callback'    => array( 'memberlite_Customize', 'sanitize_checkbox' ),
-				'sanitize_js_callback' => array( 'memberlite_Customize', 'sanitize_js_callback' ),
+				'sanitize_callback'    => array( 'Memberlite_Customize', 'sanitize_checkbox' ),
+				'sanitize_js_callback' => array( 'Memberlite_Customize', 'sanitize_js_callback' ),
 			)
 		);
 
@@ -469,8 +469,8 @@ class memberlite_Customize {
 			'memberlite_color_scheme',
 			array(
 				'default'              => $memberlite_defaults['memberlite_color_scheme'],
-				'sanitize_callback'    => array( 'memberlite_Customize', 'sanitize_color_scheme' ),
-				'sanitize_js_callback' => array( 'memberlite_Customize', 'sanitize_js_color_scheme' ),
+				'sanitize_callback'    => array( 'Memberlite_Customize', 'sanitize_color_scheme' ),
+				'sanitize_js_callback' => array( 'Memberlite_Customize', 'sanitize_js_color_scheme' ),
 				'transport'            => 'postMessage',
 			)
 		);
@@ -481,7 +481,7 @@ class memberlite_Customize {
 				'label'    => __( 'Color Scheme', 'memberlite' ),
 				'section'  => 'colors',
 				'type'     => 'select',
-				'choices'  => array_merge( memberlite_Customize::get_color_scheme_choices(), array( 'custom' => 'Custom' ) ),
+				'choices'  => array_merge( Memberlite_Customize::get_color_scheme_choices(), array( 'custom' => 'Custom' ) ),
 				'priority' => 1,
 			)
 		);
@@ -490,8 +490,8 @@ class memberlite_Customize {
 			'memberlite_darkcss',
 			array(
 				'default'              => false,
-				'sanitize_callback'    => array( 'memberlite_Customize', 'sanitize_checkbox' ),
-				'sanitize_js_callback' => array( 'memberlite_Customize', 'sanitize_js_callback' ),
+				'sanitize_callback'    => array( 'Memberlite_Customize', 'sanitize_checkbox' ),
+				'sanitize_js_callback' => array( 'Memberlite_Customize', 'sanitize_js_callback' ),
 			)
 		);
 
@@ -673,14 +673,14 @@ class memberlite_Customize {
 		$wp_customize->selective_refresh->add_partial(
 			'blogname', array(
 				'selector'        => '.site-title a',
-				'render_callback' => array( 'memberlite_Customize', 'bloginfo_name' ),
+				'render_callback' => array( 'Memberlite_Customize', 'bloginfo_name' ),
 			)
 		);
 
 		$wp_customize->selective_refresh->add_partial(
 			'blogdescription', array(
 				'selector'        => '.site-description',
-				'render_callback' => array( 'memberlite_Customize', 'bloginfo_description' ),
+				'render_callback' => array( 'Memberlite_Customize', 'bloginfo_description' ),
 			)
 		);
 
@@ -802,15 +802,15 @@ class memberlite_Customize {
 	public static function live_preview() {
 		global $memberlite_defaults;
 		wp_register_script(
-			'memberlite_customizer',
+			'Memberlite_Customizer',
 			get_template_directory_uri() . '/js/customizer.js',
 			array( 'jquery', 'customize-preview' ),
 			'20140902',
 			true
 		);
 		// Localize the script with new data
-		wp_localize_script( 'memberlite_customizer', 'memberlite_defaults', $memberlite_defaults );
-		wp_enqueue_script( 'memberlite_customizer' );
+		wp_localize_script( 'Memberlite_Customizer', 'memberlite_defaults', $memberlite_defaults );
+		wp_enqueue_script( 'Memberlite_Customizer' );
 	}
 
 	public static function generate_css( $selector, $style, $mod_name, $prefix = '', $postfix = '', $echo = true ) {
@@ -876,7 +876,7 @@ class memberlite_Customize {
 	 * Get array of all fonts
 	 */
 	public static function get_all_fonts() {
-		return array_merge( memberlite_Customize::get_google_fonts(), memberlite_Customize::get_web_safe_fonts() );
+		return array_merge( Memberlite_Customize::get_google_fonts(), Memberlite_Customize::get_web_safe_fonts() );
 	}
 
 	/**
@@ -1083,7 +1083,7 @@ class memberlite_Customize {
 	 * @return array Array of color schemes.
 	 */
 	public static function get_color_scheme_choices() {
-		$color_schemes                = memberlite_Customize::get_color_schemes();
+		$color_schemes                = Memberlite_Customize::get_color_schemes();
 		$color_scheme_control_options = array();
 		foreach ( $color_schemes as $color_scheme => $value ) {
 			$color_scheme_control_options[ $color_scheme ] = $value['label'];
@@ -1152,7 +1152,7 @@ class memberlite_Customize {
 	 * @return string Color scheme name.
 	 */
 	public static function sanitize_color_scheme( $value ) {
-		$color_schemes = memberlite_Customize::get_color_scheme_choices();
+		$color_schemes = Memberlite_Customize::get_color_scheme_choices();
 		if ( ! array_key_exists( $value, $color_schemes ) ) {
 			$value = 'default';
 		}
@@ -1160,7 +1160,7 @@ class memberlite_Customize {
 	}
 
 	public static function sanitize_js_color_scheme( $value ) {
-		$color_schemes = memberlite_Customize::get_color_scheme_choices();
+		$color_schemes = Memberlite_Customize::get_color_scheme_choices();
 		if ( ! array_key_exists( $value, $color_schemes ) ) {
 			$value = 'default';
 		}
@@ -1205,8 +1205,8 @@ class memberlite_Customize {
 	 * @since Twenty Fifteen 1.0
 	 */
 	public static function customizer_controls_js() {
-		wp_enqueue_script( 'memberlite_customizer-controls', get_template_directory_uri() . '/js/customizer-controls.js', array( 'customize-controls', 'iris', 'underscore', 'wp-util' ), MEMBERLITE_VERSION, true );
-		wp_localize_script( 'memberlite_customizer-controls', 'colorSchemes', memberlite_Customize::get_color_schemes() );
+		wp_enqueue_script( 'Memberlite_Customizer-controls', get_template_directory_uri() . '/js/customizer-controls.js', array( 'customize-controls', 'iris', 'underscore', 'wp-util' ), MEMBERLITE_VERSION, true );
+		wp_localize_script( 'Memberlite_Customizer-controls', 'colorSchemes', Memberlite_Customize::get_color_schemes() );
 	}
 
 	/**
@@ -1242,11 +1242,11 @@ class memberlite_Customize {
 }
 
 // Setup the Theme Customizer settings and controls...
-add_action( 'customize_register', array( 'memberlite_Customize', 'register' ) );
-add_action( 'customize_controls_enqueue_scripts', array( 'memberlite_Customize', 'customizer_controls_js' ) );
+add_action( 'customize_register', array( 'Memberlite_Customize', 'register' ) );
+add_action( 'customize_controls_enqueue_scripts', array( 'Memberlite_Customize', 'customizer_controls_js' ) );
 
 // Output custom CSS to live site
-add_action( 'wp_head', array( 'memberlite_Customize', 'header_output' ) );
+add_action( 'wp_head', array( 'Memberlite_Customize', 'header_output' ) );
 
 // Enqueue live preview javascript in Theme Customizer admin screen
-add_action( 'customize_preview_init', array( 'memberlite_Customize', 'live_preview' ) );
+add_action( 'customize_preview_init', array( 'Memberlite_Customize', 'live_preview' ) );
