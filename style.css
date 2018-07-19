@@ -210,7 +210,7 @@ blockquote.quote, .testimonials-widget blockquote {
 }
 blockquote.quote:before {
 	content: "\f10d";
-	font-family: 'FontAwesome';
+	font-family: 'Font Awesome 5 Free';
 	color: #DDD;
 	font-size: 2.9rem;
 	left: 0rem;
@@ -239,14 +239,14 @@ blockquote cite a, .testimonials-widget blockquote .credit a {
 }
 .testimonials-widget-testimonial .open-quote:before {
 	content: "\f10d";
-	font-family: 'FontAwesome';
+	font-family: 'Font Awesome 5 Free';
 	color: #DDD;
 	font-size: 2.9rem;
 	padding-right: 1rem;
 }
 .testimonials-widget-testimonial .close-quote:after {
 	content: "\f10e";
-	font-family: 'FontAwesome';
+	font-family: 'Font Awesome 5 Free';
 	color: #DDD;
 	font-size: 2.9rem;
 	padding-left: 1rem;
@@ -1614,7 +1614,7 @@ a:active {
 .single-format-image .masthead-post-byline h1.entry-title:before,
 .single-format-link .masthead-post-byline h1.entry-title:before,
 .single-format-video .masthead-post-byline h1.entry-title:before {
-	font-family: 'FontAwesome';
+	font-family: 'Font Awesome 5 Free';
 	padding-right: 10px;
 }
 .hentry.format-audio h1.entry-title:before,
@@ -1635,12 +1635,12 @@ a:active {
 }
 .hentry.pmpro-level-required h1.entry-title:before, .pmpro-body-level-required .masthead-post-byline h1.entry-title:before {
 	content: "\f023";
-	font-family: 'FontAwesome';
+	font-family: 'Font Awesome 5 Free';
 	padding-right: 10px;
 }
 .pmpro-level-required.pmpro-has-access  h1.entry-title:before, .pmpro-body-level-required.pmpro-body-has-access  h1.entry-title:before {
 	content: "";
-	font-family: 'FontAwesome';
+	font-family: 'Font Awesome 5 Free';
 	padding-right: 0;
 }
 #primary .entry-banner h1.entry-title:before {
