@@ -56,7 +56,7 @@ if ( post_password_required() ) {
 						'per_page' => 0,
 						'type'     => 'comment',
 						'style'    => 'div',
-						'walker'   => new comment_walker(),
+						'walker'   => new Memberlite_Walker_Comment(),
 					)
 				);
 			?>
@@ -95,7 +95,7 @@ if ( post_password_required() ) {
 										'per_page' => 0,
 										'type'     => 'comment',
 										'style'    => 'div',
-										'walker'   => new comment_walker(),
+										'walker'   => new Memberlite_Walker_Comment(),
 									)
 								);
 							?>
