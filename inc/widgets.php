@@ -3,11 +3,10 @@
  * Custom widgets that act independently of the theme templates.
  **/
 
-/* Recent Posts with Thumbnails Widget */
 /**
- * Recent_Posts widget class
- *
- * @since 2.8.0
+ * Recent Posts with Thumbnails Widget
+ * Based on the Recent_Posts widget class in core WP
+ * /wp-includes/widgets/class-wp-widget-recent-posts.php
  */
 class Memberlite_Widget_Recent_Posts_Thumbnails extends WP_Widget {
 
