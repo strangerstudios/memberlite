@@ -1,6 +1,6 @@
 <?php
 /**
- * The template for displaying all single posts.
+ * The template for displaying individual testimonials.
  *
  * @package Memberlite
  */
