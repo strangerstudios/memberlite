@@ -18,7 +18,7 @@
 		<?php
 			$memberlite_loop_images = get_theme_mod( 'memberlite_loop_images', $memberlite_defaults['memberlite_loop_images'] );
 		if ( $memberlite_loop_images == 'show_both' ) {
-			the_post_thumbnail( 'thumbnail', array( 'class' => 'alignright' ) );
+			the_post_thumbnail( 'memberlite-thumbnail', array( 'class' => 'alignright' ) );
 		}
 		?>
 		<?php

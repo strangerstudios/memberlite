@@ -11,13 +11,13 @@
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<div class="entry-content">
 		<?php // NOTE: The title is generated in header.php via the memberlite_page_title() function found in functions.php ?>
-		<?php do_action( 'memberlite_before_content_single' ); ?>		
+		<?php do_action( 'memberlite_before_content_single' ); ?>
 		<?php
 		if ( get_post_format() == 'image' ) {
-			the_post_thumbnail( 'fullwidth', array( 'class' => 'aligncenter' ) );
+			the_post_thumbnail( 'memberlite-fullwidth', array( 'class' => 'aligncenter' ) );
 		}
 		?>
-			
+
 		<?php the_content(); ?>
 		<?php
 			wp_link_pages(

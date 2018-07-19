@@ -172,10 +172,10 @@ if ( ! function_exists( 'memberlite_setup' ) ) :
 		// Enable support for Post Thumbnails on posts and pages.
 		add_theme_support( 'post-thumbnails' );
 		set_post_thumbnail_size( 150, 150, true );
-		add_image_size( 'mini', 80, 80, true, array( 'center', 'center' ) );
-		add_image_size( 'banner', 793, 200, true, array( 'center', 'center' ) );
-		add_image_size( 'fullwidth', 1170, 1200, false, array( 'center', 'center' ) );
-		add_image_size( 'masthead', 1600, 300, true, array( 'center', 'center' ) );
+		add_image_size( 'memberlite-mini', 80, 80, true, array( 'center', 'center' ) );
+		add_image_size( 'memberlite-banner', 793, 200, true, array( 'center', 'center' ) );
+		add_image_size( 'memberlite-fullwidth', 1170, 1200, false, array( 'center', 'center' ) );
+		add_image_size( 'memberlite-masthead', 1600, 300, true, array( 'center', 'center' ) );
 
 		// This theme uses wp_nav_menu() in four locations.
 		register_nav_menus(

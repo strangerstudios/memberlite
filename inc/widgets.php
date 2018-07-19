@@ -94,13 +94,13 @@ class Memberlite_Widget_Recent_Posts_Thumbnails extends WP_Widget {
 					<div class="row">
 						<div class="medium-3 columns">
 							<?php if ( has_post_thumbnail() ) : ?>
-								<a class="widget_post_thumbnail" href="<?php the_permalink(); ?>"><?php the_post_thumbnail( 'mini' ); ?></a>
+								<a class="widget_post_thumbnail" href="<?php the_permalink(); ?>"><?php the_post_thumbnail( 'memberlite-mini' ); ?></a>
 							<?php elseif ( 'video' == get_post_format() ) : ?>
 								<a class="widget_post_thumbnail" href="<?php the_permalink(); ?>"><i class="fa fa-video-camera"></i></a>
 							<?php else : ?>
 								<?php $author_id = get_the_author_meta( 'ID' ); ?>
 								<a class="widget_post_thumbnail" href="<?php the_permalink(); ?>"><?php echo get_avatar( $author_id, 80 ); ?></a>
-							<?php endif; ?>	
+							<?php endif; ?>
 						</div>
 						<div class="medium-9 columns">
 							<h5><a href="<?php the_permalink(); ?>"><?php get_the_title() ? the_title() : the_ID(); ?></a></h5>
