@@ -116,7 +116,7 @@ if ( post_password_required() ) {
 									'type'       => 'trackback',
 									'short_ping' => true,
 									'style'      => 'div',
-									'walker'     => new pings_walker(),
+									'walker'     => new Memberlite_Walker_Pings(),
 								)
 							);
 						?>
@@ -130,7 +130,7 @@ if ( post_password_required() ) {
 									'type'       => 'pingback',
 									'short_ping' => true,
 									'style'      => 'div',
-									'walker'     => new pings_walker(),
+									'walker'     => new Memberlite_Walker_Pings(),
 								)
 							);
 						?>
