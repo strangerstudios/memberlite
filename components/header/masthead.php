@@ -43,7 +43,7 @@ if ( ! empty( $memberlite_banner_show ) ) {
 							memberlite_page_title();
 						}
 					} else {
-						echo $memberlite_masthead_content;
+						echo wp_kses_post( $memberlite_masthead_content );
 					}
 					?>
 

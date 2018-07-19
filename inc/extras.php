@@ -221,7 +221,7 @@ function memberlite_page_title( $echo = true ) {
 			// Show an optional term description.
 			$term_description = woocommerce_product_archive_description();
 			if ( ! empty( $term_description ) ) :
-				printf( '<div class="taxonomy-description">%s</div>', $term_description );
+				printf( '<div class="taxonomy-description">%s</div>', wp_kses_post( $term_description ) );
 			endif;
 			woocommerce_taxonomy_archive_description();
 	} elseif ( is_post_type_archive() ) {
@@ -328,7 +328,7 @@ function memberlite_page_title( $echo = true ) {
 			if ( ! empty( $memberlite_get_entry_meta_before ) ) {
 				?>
 				<p class="entry-meta">
-					<?php echo memberlite_get_entry_meta( $post, 'before' ); ?>
+					<?php echo Memberlite_Customize::sanitize_text_with_links( memberlite_get_entry_meta( $post, 'before' ) ); ?>
 					</p><!-- .entry-meta -->
 					<?php
 			}
@@ -354,7 +354,7 @@ function memberlite_page_title( $echo = true ) {
 			if ( ! empty( $level ) ) {
 				echo '<p class="pmpro_level-price">' . pmpro_getLevelCost( $level, true, true ) . '</p>';
 				if ( empty( $memberlite_banner_desc ) ) {
-					echo $level->description;
+					echo wp_kses_post( $level->description );
 				}
 					echo '<p>' . do_shortcode( '[memberlite_btn style="action" href="' . esc_url( add_query_arg( 'level', $pmproal_landing_page_level, pmpro_url( 'checkout' ) ) ) . '" text="' . $memberlite_landing_page_checkout_button . '"]' ) . '</p>';
 			}
@@ -570,7 +570,7 @@ function memberlite_getBreadcrumbs() {
 				<?php } ?>
 				<?php
 				$post_type = get_post_type_object( get_query_var( 'post_type' ) );
-				echo $post_type->labels->name;
+				echo esc_html( $post_type->labels->name );
 			?>
 			</nav>
 		<?php } elseif ( ( ( is_author() || is_tag() || is_archive() ) ) && '' != $archive_breadcrumbs ) { ?>
