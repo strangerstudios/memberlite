@@ -25,16 +25,16 @@
 		global $memberlite_defaults;
 		$copyright_textbox = get_theme_mod( 'copyright_textbox', $memberlite_defaults['copyright_textbox'] );
 	if ( ! empty( $copyright_textbox ) ) {
-		echo wpautop( memberlite_Customize::sanitize_text_with_links( $copyright_textbox ) );
+		echo wpautop( Memberlite_Customize::sanitize_text_with_links( $copyright_textbox ) );
 	}
 	?>
 	</div>
 	<?php if ( ! empty( $back_to_top ) ) { ?>
 		<div class="large-2 columns text-right">
 		<?php
-			$back_to_top = apply_filters( 'memberlite_back_to_top', esc_html__( '<i class="fa fa-chevron-up"></i> Back to Top', 'memberlite' ) );
+			$back_to_top = apply_filters( 'memberlite_back_to_top', '<i class="fa fa-chevron-up"></i> ' . esc_html__( 'Back to Top', 'memberlite' ) );
 		if ( ! empty( $back_to_top ) ) {
-			echo '<a class="skip-link btn" href="#page">' . esc_html( $back_to_top ) . '</a>';
+			echo '<a class="skip-link btn" href="#page">' . $back_to_top . '</a>';
 		}
 		?>
 		</div><!-- .columns -->

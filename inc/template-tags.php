@@ -199,7 +199,7 @@ function memberlite_category_transient_flusher() {
 add_action( 'edit_category', 'memberlite_category_transient_flusher' );
 add_action( 'save_post', 'memberlite_category_transient_flusher' );
 
-class comment_walker extends Walker_Comment {
+class Memberlite_Walker_Comment extends Walker_Comment {
 	var $tree_type = 'comment';
 	var $db_fields = array(
 		'parent' => 'comment_parent',
@@ -304,7 +304,7 @@ class comment_walker extends Walker_Comment {
 	}
 }
 
-class pings_walker extends Walker_Comment {
+class Memberlite_Walker_Pings extends Walker_Comment {
 	var $tree_type = 'comment';
 	var $db_fields = array(
 		'parent' => 'comment_parent',

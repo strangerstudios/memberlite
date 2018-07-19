@@ -3,13 +3,12 @@
  * Custom widgets that act independently of the theme templates.
  **/
 
-/* Recent Posts with Thumbnails Widget */
 /**
- * Recent_Posts widget class
- *
- * @since 2.8.0
+ * Recent Posts with Thumbnails Widget
+ * Based on the Recent_Posts widget class in core WP
+ * /wp-includes/widgets/class-wp-widget-recent-posts.php
  */
-class WP_Widget_Recent_Posts_Thumbnails extends WP_Widget {
+class Memberlite_Widget_Recent_Posts_Thumbnails extends WP_Widget {
 
 	function __construct() {
 		$widget_ops = array(
@@ -19,9 +18,9 @@ class WP_Widget_Recent_Posts_Thumbnails extends WP_Widget {
 		parent::__construct( 'recent-posts-thumbnails', esc_html__( 'Recent Posts w/Thumbnails', 'memberlite' ), $widget_ops );
 		$this->alt_option_name = 'widget_recent_entries_thumbnails';
 
-		add_action( 'save_post', array( $this, 'memberlite_flush_widget_cache' ) );
-		add_action( 'deleted_post', array( $this, 'memberlite_flush_widget_cache' ) );
-		add_action( 'switch_theme', array( $this, 'memberlite_flush_widget_cache' ) );
+		add_action( 'save_post', array( $this, 'flush_widget_cache' ) );
+		add_action( 'deleted_post', array( $this, 'flush_widget_cache' ) );
+		add_action( 'switch_theme', array( $this, 'flush_widget_cache' ) );
 	}
 
 	function widget( $args, $instance ) {
@@ -132,7 +131,7 @@ class WP_Widget_Recent_Posts_Thumbnails extends WP_Widget {
 		$instance['title']     = strip_tags( $new_instance['title'] );
 		$instance['number']    = (int) $new_instance['number'];
 		$instance['show_date'] = isset( $new_instance['show_date'] ) ? (bool) $new_instance['show_date'] : false;
-		$this->memberlite_flush_widget_cache();
+		$this->flush_widget_cache();
 
 		$alloptions = wp_cache_get( 'alloptions', 'options' );
 		if ( isset( $alloptions['widget_recent_entries_thumbnails'] ) ) {
@@ -142,7 +141,7 @@ class WP_Widget_Recent_Posts_Thumbnails extends WP_Widget {
 		return $instance;
 	}
 
-	function memberlite_flush_widget_cache() {
+	function flush_widget_cache() {
 		wp_cache_delete( 'widget_recent_posts_thumbnails', 'widget' );
 	}
 
@@ -168,6 +167,6 @@ class WP_Widget_Recent_Posts_Thumbnails extends WP_Widget {
  * Register the Widgets
  */
 function memberlite_register_widgets() {
-	register_widget( 'WP_Widget_Recent_Posts_Thumbnails' );
+	register_widget( 'Memberlite_Widget_Recent_Posts_Thumbnails' );
 }
 add_action( 'widgets_init', 'memberlite_register_widgets' );

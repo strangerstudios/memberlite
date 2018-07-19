@@ -56,7 +56,7 @@ if ( post_password_required() ) {
 						'per_page' => 0,
 						'type'     => 'comment',
 						'style'    => 'div',
-						'walker'   => new comment_walker(),
+						'walker'   => new Memberlite_Walker_Comment(),
 					)
 				);
 			?>
@@ -95,7 +95,7 @@ if ( post_password_required() ) {
 										'per_page' => 0,
 										'type'     => 'comment',
 										'style'    => 'div',
-										'walker'   => new comment_walker(),
+										'walker'   => new Memberlite_Walker_Comment(),
 									)
 								);
 							?>
@@ -116,7 +116,7 @@ if ( post_password_required() ) {
 									'type'       => 'trackback',
 									'short_ping' => true,
 									'style'      => 'div',
-									'walker'     => new pings_walker(),
+									'walker'     => new Memberlite_Walker_Pings(),
 								)
 							);
 						?>
@@ -130,7 +130,7 @@ if ( post_password_required() ) {
 									'type'       => 'pingback',
 									'short_ping' => true,
 									'style'      => 'div',
-									'walker'     => new pings_walker(),
+									'walker'     => new Memberlite_Walker_Pings(),
 								)
 							);
 						?>
