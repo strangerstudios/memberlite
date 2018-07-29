@@ -192,6 +192,83 @@ function memberlite_support() {
 			<div class="wp-list-table widefat plugin-install">
 				<h2 class="screen-reader-text">Plugins list</h2>	
 				<div id="the-list">
+					<div class="plugin-card plugin-card-memberlite-elements">
+						<div class="plugin-card-top">
+							<div class="name column-name">
+								<h3>
+									<a href="https://memberlitetheme.com/memberlite-elements/" target="_blank">
+									<?php
+									_e(
+										'Memberlite Elements',
+										'memberlite'
+									);
+?>
+</a>
+									<img src="<?php echo get_template_directory_uri(); ?>/images/memberlite-elements-icon-256x256.png" class="plugin-icon" alt="">
+								</h3>
+							</div>
+							<div class="action-links">
+								<ul class="plugin-action-buttons">
+									<li>
+										<?php
+										if ( is_plugin_active( 'memberlite-elements/memberlite-elements.php' ) ) {
+										?>
+												<a class="button button-disabled">
+												<?php
+												_e(
+													'Installed',
+													'memberlite'
+												);
+?>
+</a>
+										<?php } else { ?>
+												<a class="install-now button" href="<?php echo esc_url( admin_url( 'plugin-install.php?tab=search&s=memberlite+shortcodes' ) ); ?>">
+																								<?php
+																								_e(
+																									'Install Now',
+																									'memberlite'
+																								);
+?>
+</a>
+											<?php } ?>
+									</li>
+									<li><a href="https://memberlitetheme.com/memberlite-elements/" target="_blank">
+									<?php
+									_e(
+										'More Details',
+										'memberlite'
+									);
+?>
+</a></li>
+								</ul>
+							</div>
+							<div class="desc column-description">
+								<p>
+								<?php
+								_e(
+									'Improved features and control for your Memberlite banners, sidebars, and landing pages.',
+									'memberlite'
+								);
+?>
+</p>
+								<p class="authors"><cite>
+								<?php
+								_e(
+									'By',
+									'memberlite'
+								);
+?>
+ <a href="https://www.strangerstudios.com">
+	<?php
+	_e(
+		'Stranger Studios',
+		'memberlite'
+	);
+?>
+</a></cite></p>
+							</div>
+						</div>
+					</div> <!-- end plugin-card-memberlite-elements -->
 					<div class="plugin-card plugin-card-memberlite-shortcodes">
 						<div class="plugin-card-top">
 							<div class="name column-name">
