@@ -159,7 +159,7 @@ function memberlite_support() {
 			<h2>
 			<?php
 			_e(
-				'Upgrading from Memberlite v2.0?',
+				'Upgrading from Memberlite v3.0?',
 				'memberlite'
 			);
 ?>
@@ -169,10 +169,10 @@ function memberlite_support() {
 				<?php
 				_e(
 					"We've done our best to make upgrading as smooth as possible. 
-							 To comply with the WordPress.org Theme Repository guidelines, 
-							 we have moved all shortcode functionality into separate plugins. 
-							 <strong>You will have to install the Memberlite Shortcodes and Advanced Levels Page Shortcode
-							 plugins below if you are using any of the Memberlite shortcodes.</strong>", 'memberlite'
+					 To comply with the WordPress.org Theme Repository guidelines, 
+					 we have moved some banner and sidebar functionality into a separate plugin.
+					 <strong>You will have to install the Memberlite Elements plugin below to
+					 retain access to all Memberlite features.</strong>", 'memberlite'
 				);
 ?>
 </div>				
@@ -911,7 +911,17 @@ function memberlite_admin_init_notifications() {
 	$script           = basename( $_SERVER['SCRIPT_NAME'] );
 	$maybe_installing = $script == 'update.php' || $script == 'plugins.php';
 
-	// 1. Prompt the installation of memberlite-shortcodes if it's not activated already.
+	// 1. Prompt the installation of memberlite-elements if it's not activated already.
+	if ( ! defined( 'MEMBERLITE_ELEMENTS_VERSION' ) && ! $maybe_installing ) {
+		// check if this notice has been dismissed already
+		$mle_dismissed = get_option( 'memberlite_notice_install_memberlite_elements_dismissed', false );
+		if ( ! $mle_dismissed ) {
+			wp_enqueue_script( 'memberlite-admin-dismiss-notice', get_template_directory_uri() . '/js/admin-dismiss-notice.js', array( 'jquery' ), MEMBERLITE_VERSION, true );
+			add_action( 'admin_notices', 'memberlite_admin_notice_install_memberlite_elements' );
+		}
+	}
+
+	// 2. Prompt the installation of memberlite-shortcodes if it's not activated already.
 	if ( ! defined( 'MEMBERLITESC_VERSION' ) && ! $maybe_installing ) {
 		// check if this notice has been dismissed already
 		$mls_dismissed = get_option( 'memberlite_notice_install_memberlite_shortcodes_dismissed', false );
@@ -921,7 +931,7 @@ function memberlite_admin_init_notifications() {
 		}
 	}
 
-	// 2. Prompt the installation of pmpro-advanced-levels-shortcode if it's not activated already.
+	// 3. Prompt the installation of pmpro-advanced-levels-shortcode if it's not activated already.
 	if ( ! function_exists( 'pmpro_advanced_levels_shortcode' ) && ! $maybe_installing ) {
 		// check if this notice has been dismissed already
 		$als_dismissed = get_option( 'memberlite_notice_install_advanced_levels_shortcode_dismissed', false );
@@ -960,6 +970,40 @@ function memberlite_wp_ajax_dismiss_notice() {
 }
 add_action( 'wp_ajax_nopriv_memberlite_dismiss_notice', 'memberlite_wp_ajax_dismiss_notice' );
 add_action( 'wp_ajax_memberlite_dismiss_notice', 'memberlite_wp_ajax_dismiss_notice' );
+
+// Install Memberlite Elements Notice
+function memberlite_admin_notice_install_memberlite_elements() {
+	// check if the plugin is installed, but not active
+	if ( file_exists( WP_PLUGIN_DIR . '/memberlite-elements/memberlite-elements.php' ) ) {
+		// installed but not activated
+		$click_link = wp_nonce_url( self_admin_url( 'plugins.php?action=activate&plugin=memberlite-elements/memberlite-elements.php' ), 'activate-plugin_memberlite-elements/memberlite-elements.php' );
+		$click_text = __(
+			'Click here to activate the Memberlite Elements plugin.',
+			'memberlite'
+		);
+	} else {
+		// need to install
+		$click_link = wp_nonce_url( self_admin_url( 'update.php?action=install-plugin&plugin=memberlite-elements' ), 'install-plugin_memberlite-elements' );
+		$click_text = __(
+			'Click here to install the Memberlite Elements plugin.',
+			'memberlite'
+		);
+	}
+
+	// notice HTML
+	?>
+	<div id="memberlite-admin-notice-install_memberlite_elements" class="notice notice-error is-dismissible memberlite-notice"> 
+		<p><strong>
+		<?php
+		_e(
+			'Memberlite',
+			'memberlite'
+		);
+?>
+:</strong> <?php echo esc_html__( 'Some features of Memberlite now require the Memberlite Elements plugin.', 'memberlite' ) . ' <a href="' . $click_link . '">' . $click_text . '</a>'; ?></p>
+	</div>
+	<?php
+}
 
 // Install Memberlite Shortcodes Notice
 function memberlite_admin_notice_install_memberlite_shortcodes() {
