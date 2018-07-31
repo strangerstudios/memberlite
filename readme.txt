@@ -13,7 +13,7 @@ Memberlite is the ideal theme for your membership site - packed with integration
 
 == Copyright ==
 
-Memberlite WordPress Theme, Copyright (C) 2017 Stranger Studios, LLC and other contributors
+Memberlite WordPress Theme, Copyright (C) 2018 Stranger Studios, LLC and other contributors
 Memberlite is distributed under the terms of the GNU GPL
 
 This program is free software: you can redistribute it and/or modify
@@ -109,19 +109,22 @@ We highly recommend using these plugins for every site running Memberlite:
 [Install Theme My Login »](https://wordpress.org/plugins/theme-my-login/)
 
 == Changelog ==
-**3.1 - 2017-XX-XX **
-* ENHANCEMENT: Improving print styles for better output
-* BUG FIX/ENHANCEMENT: Prefixing all hooks with theme slug. Adding deprecated file for old hook names.
+
+**4.0 - 2018-07-31 **
+* SECURITY/BUG FIX: Added esc_url to wp-admin links on theme welcome page.
+* SECURITY/BUG FIX: Various other escaping and sanitization fixes. (Thanks, Justin Tadlock and Sakin Shrestha)
 * BUG FIX: Hiding 'Register' link in meta menu if registration is disabled.
 * BUG FIX: Wrapping strings in customizer to fix redirect issue.
-* SECURITY/BUG FIX: Added esc_url to wp-admin links on theme welcome page.
-* ENHANCEMENT: Updating to version 4.7 of Font Awesome.
-* ENHANCEMENT: Removing theme updates from Memberlite license server.
-* ENHANCEMENT: Removing theme elements that are plugin territory to the memberlite-elements plugin.
-* ENHANCEMENT: Removing welcome page redirect on theme activation.
-* ENHANCEMENT: Remove widget_text shortcode and moving to memberlite-elements plugin.
+* BUG FIX: Fixed styles for some BuddyPress buttons that were invisible.
+* BUG FIX/ENHANCEMENT: Fixed blockquotes styling. (Thanks, Justin Tadlock and Sakin Shrestha)
+* BUG FIX/ENHANCEMENT: Prefixing all hooks with theme slug. Adding deprecated file for old hook names.
+* ENHANCEMENT: Some banner, widget, and sidebar features were moved into a separate plugin Memberlite Elements, available from the wp.org repository here https://wordpress.org/plugins/memberlite-elements/.
+* ENHANCEMENT: Improving print styles for better output
+* ENHANCEMENT: Updating to version 5.2 of Font Awesome.
 * ENHANCEMENT: Adding WooCommerce page template 3.x support
 * ENHANCEMENT: Adding feature to define a member-menu area for logged out visitors
+* ENHANCEMENT: Added {post_type} as a variable for the Post Entry Meta settings.
+* ENHANCEMENT: Added some web safe fonts (non-Google Font) options for the font settings. Also allowing translators to exclude certain fonts.
 
 **3.0.4 - 2017-10-27 **
 * SECURITY/BUG FIX/ENHANCEMENT: Added sanitization and escaping to the banner metabox on the edit post page, fixed the cropping settings for the uploaded images, and refactored the code to make it more readable. (Thanks, Massimo Marazzi)
