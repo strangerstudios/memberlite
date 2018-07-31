@@ -28,7 +28,7 @@
 				
 		<?php do_action( 'memberlite_after_content_page' ); ?>
 	</div><!-- .entry-content -->
-	<?php if ( current_user_can( 'edit_post', $post->ID ) ) { ?>
+	<?php if ( !empty( $post->post_type ) && current_user_can( 'edit_post', $post->ID ) ) { ?>
 		<footer class="entry-footer">
 			<?php edit_post_link( esc_html__( 'Edit', 'memberlite' ), '<span class="edit-link">', '</span>' ); ?>
 		</footer><!-- .entry-footer -->
