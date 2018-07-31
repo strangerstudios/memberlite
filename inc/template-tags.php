@@ -33,11 +33,11 @@ if ( ! function_exists( 'memberlite_paging_nav' ) ) :
 		<div class="nav-links">
 
 			<?php if ( get_next_posts_link() ) : ?>
-			<div class="nav-previous"><?php next_posts_link( esc_html__( '<span class="meta-nav">&larr;</span> Older posts', 'memberlite' ) ); ?></div>
+			<div class="nav-previous"><?php next_posts_link( '<span class="meta-nav">&larr;</span> ' . esc_html__( 'Older posts', 'memberlite' ) ); ?></div>
 			<?php endif; ?>
 
 			<?php if ( get_previous_posts_link() ) : ?>
-			<div class="nav-next"><?php previous_posts_link( esc_html__( 'Newer posts <span class="meta-nav">&rarr;</span>', 'memberlite' ) ); ?></div>
+			<div class="nav-next"><?php previous_posts_link( esc_html__( 'Newer posts', 'memberlite' ) . ' <span class="meta-nav">&rarr;</span>' ); ?></div>
 			<?php endif; ?>
 
 		</div><!-- .nav-links -->
