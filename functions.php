@@ -398,6 +398,12 @@ function memberlite_get_sidebar( $name = null ) {
 	}
 }
 
+/* Check for updates */
+if( is_admin() ) {
+	require_once get_template_directory() . '/inc/updates.php';
+	memberlite_checkForUpdates();
+}
+
 /* Custom admin theme pages. */
 if ( is_admin() ) {
 	require_once get_template_directory() . '/inc/admin.php';
