@@ -385,7 +385,7 @@ class Memberlite_Customize {
 			'memberlite_footerwidgets',
 			array(
 				'default'              => $memberlite_defaults['memberlite_footerwidgets'],
-				'sanitize_callback'    => 'intval_base10',
+				'sanitize_callback'    => 'absint',
 				'sanitize_js_callback' => array( 'Memberlite_Customize', 'sanitize_js_callback' ),
 			)
 		);
