@@ -73,42 +73,26 @@ class Memberlite_Widget_Recent_Posts_Thumbnails extends WP_Widget {
 			)
 		);
 
-		if ( $r->have_posts() ) :
-		?>
+		if ( $r->have_posts() ) : ?>
 			<?php echo $before_widget; ?>
-			<?php
-			if ( $title ) {
-				echo $before_title . $title . $after_title;}
-?>
+			<?php if ( $title ) {
+				echo $before_title . $title . $after_title;
+			} ?>
 			<ul>
-			<?php
-			while ( $r->have_posts() ) :
-				$r->the_post();
-?>
-				<li
-				<?php
-				if ( has_post_thumbnail() ) {
-					echo ' class="widget_has_thumbnail"';}
-?>
->
-					<div class="row">
-						<div class="medium-3 columns">
-							<?php if ( has_post_thumbnail() ) : ?>
-								<a class="widget_post_thumbnail" href="<?php the_permalink(); ?>"><?php the_post_thumbnail( 'memberlite-mini' ); ?></a>
-							<?php elseif ( 'video' == get_post_format() ) : ?>
-								<a class="widget_post_thumbnail" href="<?php the_permalink(); ?>"><i class="fa fa-video-camera"></i></a>
-							<?php else : ?>
-								<?php $author_id = get_the_author_meta( 'ID' ); ?>
-								<a class="widget_post_thumbnail" href="<?php the_permalink(); ?>"><?php echo get_avatar( $author_id, 80 ); ?></a>
-							<?php endif; ?>
-						</div>
-						<div class="medium-9 columns">
-							<h5><a href="<?php the_permalink(); ?>"><?php get_the_title() ? the_title() : the_ID(); ?></a></h5>
-							<?php if ( $show_date ) : ?>
-								<span class="post-date"><?php echo get_the_date(); ?></span>
-							<?php endif; ?>
-						</div>
-					</div>
+			<?php while ( $r->have_posts() ) : $r->the_post(); ?>
+				<li>
+					<?php if ( has_post_thumbnail() ) { ?>
+						<a class="widget_post_thumbnail" href="<?php the_permalink(); ?>"><?php the_post_thumbnail( 'thumbnail' ); ?></a>
+					<?php } elseif ( 'video' == get_post_format() ) { ?>
+						<a class="widget_post_thumbnail" href="<?php the_permalink(); ?>"><i class="fa fa-video"></i></a>
+					<?php } else { ?>
+						<?php $author_id = get_the_author_meta( 'ID' ); ?>
+						<a class="widget_post_thumbnail" href="<?php the_permalink(); ?>"><?php echo get_avatar( $author_id, 80 ); ?></a>
+					<?php } ?>
+					<h4 class="entry-title"><a href="<?php the_permalink(); ?>"><?php get_the_title() ? the_title() : the_ID(); ?></a></h4>
+					<?php if ( $show_date ) : ?>
+						<span class="post-date"><?php echo get_the_date(); ?></span>
+					<?php endif; ?>
 				</li>
 			<?php endwhile; ?>
 			</ul>

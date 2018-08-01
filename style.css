@@ -1259,39 +1259,47 @@ a:active {
 	overflow-wrap: break-word;
 }
 .widget_recent_entries_thumbnails li {
-	clear: left;
+	display: grid;
+	grid-template-columns: 80px 1.45rem auto;
+	grid-template-areas:
+    "thumbnail . title"
+    "thumbnail . date";
 	margin-bottom: 1.45rem;
 }
-.widget_recent_entries_thumbnails .widget_post_thumbnail, .memberlite_recent_posts .widget_post_thumbnail {
-	display: block;
-	width: 80px;
-	height: 80px;
-	border-radius: 50%;
-	margin-left: -.5em;
+.widget_recent_entries_thumbnails .entry-title {
+	align-self: end;
+	grid-area: title;
+	margin: 0;
 }
-#secondary .widget_recent_entries_thumbnails .widget_post_thumbnail:hover, .footer-widgets .widget_post_thumbnail:hover {
+.widget_recent_entries_thumbnails .post-date {
+	align-self: start;
+	color: #AAA;
+	grid-area: date;
+}
+.widget_recent_entries_thumbnails a.widget_post_thumbnail {
+	border-radius: 50%;
+	filter: alpha(opacity=100);
+	grid-area: thumbnail;
+	height: auto;
+	opacity: 1.0;
+	width: 100%;
+}
+.widget_recent_entries_thumbnails a.widget_post_thumbnail:hover {
 	border: none;
 }
 .widget_recent_entries_thumbnails .widget_post_thumbnail img {
 	border-radius: 50%;
-	transition: transform 0.5s ease;
-	transform: scale(0.8);
+	margin: 0;
+}
+/*
+#secondary .widget_recent_entries_thumbnails .widget_post_thumbnail:hover, .footer-widgets .widget_post_thumbnail:hover {
 	border: none;
-	padding: 0;
-	background: none;
 }
-.widget_recent_entries_thumbnails h5 {
-	margin: .7rem 0 0 0;
-}
+*/
+
 .widget_recent_entries_thumbnails .widget_post_thumbnail .fa {
 	font-size: 40px;
 	margin: 20px;
-}
-.widget_recent_entries_thumbnails .entry-content {
-	clear: both;
-}
-.widget_recent_entries_thumbnails .widget_has_thumbnail .post-date {
-	display: block;
 }
 #secondary .widget.widget_meta h3.widget-title {
 	margin-bottom: 0;
@@ -1646,7 +1654,7 @@ a:active {
 #primary .entry-banner h1.entry-title:before {
 	color: #FFF;
 }
-.wp-post-image {
+.entry-content .wp-post-image {
 	background: #FAFAFA;
 	padding: .25rem;
 	border-top: 1px dotted #CCC;
