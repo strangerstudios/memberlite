@@ -21,9 +21,9 @@ if ( ! empty( $memberlite_banner_show ) ) {
 		<header class="masthead">
 			<div class="row">
 				<div class="medium-<?php echo esc_attr(memberlite_getColumnsRatio( 'masthead' ) ); ?> columns">
-					
+
 					<?php do_action( 'memberlite_before_masthead_inner' ); ?>
-					
+
 					<?php
 					if ( is_page_template( 'templates/interstitial.php' ) ) {
 						$referrer = isset( $_GET['redirect_to'] ) ? esc_url_raw( wp_unslash( $_GET['redirect_to'] ) ) : null;
@@ -36,12 +36,8 @@ if ( ! empty( $memberlite_banner_show ) ) {
 					<?php
 					$memberlite_masthead_content = apply_filters( 'memberlite_masthead_content', '' );
 					if ( $memberlite_masthead_content === '' ) {
-						if ( is_front_page() && ! is_home() ) {
-							echo memberlite_get_the_content_before_more( $post->post_content );
-						} else {
-							// Just show the page title
-							memberlite_page_title();
-						}
+						// Just show the page title
+						memberlite_page_title();
 					} else {
 						echo wp_kses_post( $memberlite_masthead_content );
 					}
@@ -52,7 +48,7 @@ if ( ! empty( $memberlite_banner_show ) ) {
 				</div><!--.columns-->
 			</div><!-- .row -->
 		</header><!-- .masthead -->
-		
+
 		<?php do_action( 'memberlite_after_masthead_outer' ); ?>
 
 	<?php

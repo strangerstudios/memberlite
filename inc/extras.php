@@ -74,7 +74,10 @@ function memberlite_getColumnsRatio( $location = null ) {
 		$r = $columns_ratio_header_array[1];
 	} elseif ( $location == 'header-left' ) {
 		$r = $columns_ratio_header_array[0];
-	} elseif ( is_page_template( 'templates/full-width.php' ) || is_page_template( 'templates/interstitial.php' ) ) {
+	} elseif ( is_front_page() && empty( get_page_template_slug() ) && 'posts' != get_option( 'show_on_front' ) ||
+		is_page_template( 'templates/full-width.php' ) ||
+		is_page_template( 'templates/interstitial.php' )
+	) {
 		$r = '12';
 	} elseif ( is_page_template( 'templates/narrow-width.php' ) ) {
 		$r = '8 medium-offset-2';
