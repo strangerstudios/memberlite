@@ -326,7 +326,7 @@ class Memberlite_Customize {
 		);
 
 		// Add a "show_both" option if the Multiple Post Thumbnails plugin is active.
-		if ( class_exists( 'MultiPostThumbnails' ) ) {
+		if ( defined( 'MEMBERLITE_ELEMENTS_VERSION' ) && class_exists( 'MultiPostThumbnails' ) ) {
 			$memberlite_loop_images_choices['show_both'] = __( 'Show Banner and Thumbnail', 'memberlite' );
 		}
 
