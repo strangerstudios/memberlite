@@ -1563,8 +1563,9 @@ a:active {
 }
 .columns .hentry.memberlite_subpagelist_item {margin: 0; }
 .hentry .entry-banner {
-	background-position: left bottom;
+	background-position: center center;
 	background-repeat: no-repeat;
+	background-size: cover;
 	height: 200px;
 	position: relative;
 	margin: 0 0 1.5rem;
