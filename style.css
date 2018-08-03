@@ -209,13 +209,14 @@ blockquote.quote, .testimonials-widget blockquote {
 	position: relative;
 }
 blockquote.quote:before {
+	color: #DDD;
 	content: "\f10d";
 	font-family: 'Font Awesome 5 Free';
-	color: #DDD;
 	font-size: 2.9rem;
+	font-weight: 700;
 	left: 0rem;
-	top: 0rem;
 	position: absolute;
+	top: 0rem;
 	z-index: -1;
 }
 blockquote.quote p:last-child {
@@ -238,17 +239,19 @@ blockquote cite a, .testimonials-widget blockquote .credit a {
 	}
 }
 .testimonials-widget-testimonial .open-quote:before {
+	color: #DDD;
 	content: "\f10d";
 	font-family: 'Font Awesome 5 Free';
-	color: #DDD;
 	font-size: 2.9rem;
+	font-weight: 700;
 	padding-right: 1rem;
 }
 .testimonials-widget-testimonial .close-quote:after {
+	color: #DDD;
 	content: "\f10e";
 	font-family: 'Font Awesome 5 Free';
-	color: #DDD;
 	font-size: 2.9rem;
+	font-weight: 700;
 	padding-left: 1rem;
 }
 .footer-widgets .testimonials-widget blockquote {
@@ -1624,6 +1627,7 @@ a:active {
 .single-format-link .masthead-post-byline h1.entry-title:before,
 .single-format-video .masthead-post-byline h1.entry-title:before {
 	font-family: 'Font Awesome 5 Free';
+	font-weight: 700;
 	padding-right: 10px;
 }
 .hentry.format-audio h1.entry-title:before,
@@ -1645,11 +1649,13 @@ a:active {
 .hentry.pmpro-level-required h1.entry-title:before, .pmpro-body-level-required .masthead-post-byline h1.entry-title:before {
 	content: "\f023";
 	font-family: 'Font Awesome 5 Free';
+	font-weight: 700;
 	padding-right: 10px;
 }
 .pmpro-level-required.pmpro-has-access  h1.entry-title:before, .pmpro-body-level-required.pmpro-body-has-access  h1.entry-title:before {
 	content: "";
 	font-family: 'Font Awesome 5 Free';
+	font-weight: 700;
 	padding-right: 0;
 }
 #primary .entry-banner h1.entry-title:before {
