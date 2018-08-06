@@ -14,19 +14,6 @@ function memberlite_theme_menu() {
 add_action( 'admin_menu', 'memberlite_theme_menu' );
 
 /*
-	Redirect to Welcome tab if the user hasn't been there yet.
-*/
-function memberlite_admin_init_redirect_to_welcome() {
-	$memberlite_welcome_version = get_option('memberlite_welcome_version', 0);
-	if(version_compare($memberlite_welcome_version, MEMBERLITE_VERSION) < 0) {
-		update_option('memberlite_welcome_version', MEMBERLITE_VERSION, 'no');
-		wp_redirect(admin_url('admin.php?page=memberlite-support'));
-		exit;
-	}
-}
-add_action('admin_init', 'memberlite_admin_init_redirect_to_welcome');
-
-/*
 	Render the welcome/support page
 */
 function memberlite_support() {
