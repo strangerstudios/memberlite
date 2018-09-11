@@ -448,7 +448,7 @@ input[type="button"].pmpro_btn,
 	border: none;
 	border-radius: 3px;
 	box-shadow: 1px 2px 4px rgba(0,0,0,0.2);
-	color: #FFF !important;
+	color: #FFF;
 	cursor: pointer; /* Improves usability and consistency of cursor style between image-type 'input' and others */
 	-webkit-appearance: none;
 	font-family: 'Lato', sans-serif;
