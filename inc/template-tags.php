@@ -219,7 +219,7 @@ class Memberlite_Walker_Comment extends Walker_Comment {
 	function start_lvl( &$output, $depth = 0, $args = array() ) {
 		$GLOBALS['comment_depth'] = $depth + 2;
 		?>
-		
+
 		<section class="child-comments comments-list">
 
 	<?php
@@ -299,7 +299,7 @@ class Memberlite_Walker_Comment extends Walker_Comment {
 	?>
 
 		</section>
-	
+
 	<?php
 	}
 }
@@ -324,7 +324,7 @@ class Memberlite_Walker_Pings extends Walker_Comment {
 	function start_lvl( &$output, $depth = 0, $args = array() ) {
 		$GLOBALS['comment_depth'] = $depth + 2;
 		?>
-		
+
 		<section class="child-comments comments-list">
 
 	<?php
@@ -388,7 +388,7 @@ class Memberlite_Walker_Pings extends Walker_Comment {
 	?>
 
 		</section>
-	
+
 	<?php
 	}
 }
