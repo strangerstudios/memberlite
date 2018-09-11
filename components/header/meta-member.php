@@ -18,9 +18,8 @@
 				$user_account_link = '<a href="' . esc_url( admin_url( 'profile.php' ) ) . '">' . esc_html( preg_replace( '/\@.*/', '', $current_user->display_name ) ) . '</a>';
 			}
 			?>
-								
 			<span class="user"><?php printf( esc_html__( 'Welcome, %s', 'memberlite' ), $user_account_link ); ?></span>
-				<?php
+			<?php
 		}
 		if ( $user_ID ) {
 			$member_menu_defaults = array(
