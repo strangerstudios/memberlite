@@ -92,6 +92,11 @@ if ( ! function_exists( 'memberlite_page_nav' ) ) :
 			$child_of = $post->ID;
 		}
 
+		// Check if this is a
+		if ( empty( $child_of ) ) {
+			return;
+		}
+
 		// build array of page ids for navigation
 		$allpages = get_pages( 'child_of=' . $child_of . '&sort_column=menu_order&sort_order=asc' );
 
