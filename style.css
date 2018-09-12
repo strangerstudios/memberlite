@@ -596,12 +596,12 @@ input::-moz-focus-inner { /* Corrects inner padding and border displayed oddly i
 	border: 0;
 	padding: 0;
 }
-#primary input[type="text"],
-#primary input[type="email"],
-#primary input[type="url"],
-#primary input[type="password"],
-#primary input[type="search"],
-#primary textarea {
+.content-area input[type="text"],
+.content-area input[type="email"],
+.content-area input[type="url"],
+.content-area input[type="password"],
+.content-area input[type="search"],
+.content-area textarea {
 	color: #666;
 	border: 1px solid #ccc;
 	border-radius: 3px;
@@ -653,7 +653,6 @@ textarea {
 .pmpro_message,
 .pmpro_content_message,
 .pmpro_bbp_membership_msg,
-#buddypress div#message p,
 #sitewide-notice p {
 	background-color: #d9edf7;
 	border-radius: 5px;
@@ -670,27 +669,23 @@ textarea {
 }
 .pmpro_message.pmpro_default,
 .pmpro_content_message,
-#buddypress div#message p,
 #sitewide-notice p {
 	background-color: #FAFAFA;
 	border-color: #CCC;
 	color: #777;
 }
-.pmpro_success,
-#buddypress div#message.updated p {
+.pmpro_success {
 	background-color: #dff0d8;
 	border-color: #d6e9c6;
 	color: #3c763d;
 }
-.pmpro_error,
-#buddypress div#message.error p {
+.pmpro_error {
 	background-color: #f2dede;
 	border-color: #ebccd1;
 	color: #a94442;
 }
 .pmpro_alert,
-.pmpro_bbp_membership_msg,
-#buddypress div#message.warning p {
+.pmpro_bbp_membership_msg {
 	background-color: #fcf8e3;
 	border-color: #faebcc;
 	color: #8a6d3b;
@@ -2521,8 +2516,4 @@ object {
 	.home .masthead {text-align: center; }
 	.footer-widgets .widget {padding-top: 2rem; padding-bottom: 2rem; }
 	.footer-widgets .widget:nth-child(even) {background: rgba(255,255,255,0.2); }
-}
-
-@media only screen and (max-width: 480px) {
-
 }
