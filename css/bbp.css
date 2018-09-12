@@ -1,0 +1,36 @@
+/**
+ * BuddyPress specific CSS
+ *
+ */
+
+ @media screen and (min-width: 46.8em) {
+	body.buddypress #page .site-content {
+    	padding-top: 0;
+	}
+}
+
+.buddypress-wrap form.bp-dir-search-form input[type=search],
+.buddypress-wrap form.bp-dir-search-form input[type=text],
+.buddypress-wrap form.bp-invites-search-form input[type=search],
+.buddypress-wrap form.bp-invites-search-form input[type=text],
+.buddypress-wrap form.bp-messages-search-form input[type=search],
+.buddypress-wrap form.bp-messages-search-form input[type=text] {
+	width: 70%;
+}
+.buddypress-wrap form.bp-dir-search-form input[type=search]:focus,
+.buddypress-wrap form.bp-dir-search-form input[type=text]:focus,
+.buddypress-wrap form.bp-invites-search-form input[type=search]:focus,
+.buddypress-wrap form.bp-invites-search-form input[type=text]:focus,
+.buddypress-wrap form.bp-messages-search-form input[type=search]:focus,
+.buddypress-wrap form.bp-messages-search-form input[type=text]:focus {
+	box-shadow: none;
+}
+.buddypress-wrap form.bp-dir-search-form button[type=submit],
+.buddypress-wrap form.bp-invites-search-form button[type=submit],
+.buddypress-wrap form.bp-messages-search-form button[type=submit] {
+	box-shadow: none;
+	transform: none;
+}
+.buddypress-wrap .select-wrap select {
+	text-indent: 0;
+}
