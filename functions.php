@@ -49,10 +49,13 @@ function memberlite_google_fonts_url() {
 		// Break the theme mod for custom fonts into two parts.
 		$fonts_string_parts = explode( '_', $fonts_string );
 
+		// Filter to modify which font weights are enqueued.
+		$font_weights = apply_filters( 'memberlite_google_fonts_weights', '400,700' );
+
 		// Build the array of font families to return.
 		$font_families = array();
-		$font_families[] = str_replace( '-', ' ', $fonts_string_parts[0] ) . ':400,700';
-		$font_families[] = str_replace( '-', ' ', $fonts_string_parts[1] ) . ':400,700';
+		$font_families[] = str_replace( '-', ' ', $fonts_string_parts[0] ) . ':' . $font_weights;
+		$font_families[] = str_replace( '-', ' ', $fonts_string_parts[1] ) . ':' . $font_weights;
 
 		$query_args = array(
 			'family' => urlencode( implode( '|', $font_families ) ),
