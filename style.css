@@ -527,9 +527,9 @@ input[type="submit"].pmpro_btn:hover,
 .pmpro_checkout .pmpro_btn:focus,
 .pmpro_content_message a:focus,
 .pmpro_content_message a:hover {
-/*	background: #18BC9C; */
 	border: none;
 	box-shadow: 1px 2px 4px rgba(0,0,0,0.4);
+	color: #FFF;
 	text-shadow: none;
 	transform: translateY(-1px);
 }
