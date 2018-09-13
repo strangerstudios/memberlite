@@ -1152,7 +1152,7 @@ class Memberlite_Customize {
 	 * @return string Color scheme name.
 	 */
 	public static function sanitize_color_scheme( $value ) {
-		$color_schemes = Memberlite_Customize::get_color_scheme_choices();
+		$color_schemes = array_merge( Memberlite_Customize::get_color_scheme_choices(), array( 'custom' => 'Custom' ) );
 		if ( ! array_key_exists( $value, $color_schemes ) ) {
 			$value = 'default';
 		}
@@ -1160,7 +1160,7 @@ class Memberlite_Customize {
 	}
 
 	public static function sanitize_js_color_scheme( $value ) {
-		$color_schemes = Memberlite_Customize::get_color_scheme_choices();
+		$color_schemes = array_merge( Memberlite_Customize::get_color_scheme_choices(), array( 'custom' => 'Custom' ) );
 		if ( ! array_key_exists( $value, $color_schemes ) ) {
 			$value = 'default';
 		}
