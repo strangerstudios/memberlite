@@ -1162,6 +1162,9 @@ a:active {
 #secondary .widget.widget_text .textwidget {
 	padding: 1.45rem;
 }
+#secondary .widget.widget_text .textwidget.custom-html-widget {
+	padding: 0;
+}
 /* All widgets */
 #secondary .widget {
 	margin-bottom: 2.9rem;
