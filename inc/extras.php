@@ -415,7 +415,7 @@ function memberlite_nav_menu_submenu() {
 		$children   = wp_list_pages( 'title_li=&child_of=' . $pagemenuid . '&exclude=' . $exclude . '&echo=0&sort_column=menu_order,post_title' );
 		$titlenamer = get_the_title( $pagemenuid );
 		$titlelink  = get_permalink( $pagemenuid );
-	} else {
+	} elseif( ! empty( $current_post->ID ) )  {
 		$exclude    = '';
 		$children   = wp_list_pages( 'title_li=&child_of=' . $current_post->ID . '&exclude=' . $exclude . '&echo=0&sort_column=menu_order,post_title' );
 		$titlenamer = get_the_title( $current_post->ID );
