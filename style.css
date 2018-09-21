@@ -240,6 +240,7 @@ blockquote cite a, .testimonials-widget blockquote .credit a {
 .testimonials-widget-testimonial .open-quote:before {
 	content: "\f10d";
 	font-family: 'Font Awesome 5 Free';
+	font-weight: 700;
 	color: #DDD;
 	font-size: 2.9rem;
 	padding-right: 1rem;
@@ -247,6 +248,7 @@ blockquote cite a, .testimonials-widget blockquote .credit a {
 .testimonials-widget-testimonial .close-quote:after {
 	content: "\f10e";
 	font-family: 'Font Awesome 5 Free';
+	font-weight: 700;
 	color: #DDD;
 	font-size: 2.9rem;
 	padding-left: 1rem;
@@ -470,6 +472,12 @@ input[type="button"].pmpro_btn,
 	transition-duration: 0.3s;
 	-webkit-transition-property: color, background-color;
 	transition-property: color, background-color;
+}
+button.inline-form-button,
+input[type="button"].inline-form-button,
+input[type="reset"].inline-form-button,
+input[type="submit"].inline-form-button {
+	padding: .7rem 1.45rem;
 }
 #main div.em-search-main button.em-search-submit {
 	padding-bottom: .5rem;
@@ -966,15 +974,18 @@ a:active {
 #mobile-navigation .widget_theme_my_login ul.tml-user-links {
 	margin-bottom: 2rem;
 }
-
 #mobile-navigation .widget_search {
-	border-bottom: 1px solid rgba(0,0,0,0.2);
+	border-bottom: 1px solid rgba(0,0,0,0.1);
 }
 #mobile-navigation .widget_search input[type=search] {
-	background: rgba(0,0,0,0.2);
-	border: 1px solid rgba(0,0,0,0.2);
+	background: rgba(255,255,255,0.2);
+	border: 1px solid rgba(255,255,255,0.3);
 	color: #FFF;
 	width: 90%;
+}
+#mobile-navigation .widget_search input[type=search]::placeholder {
+	color: #FFF;
+	opacity: 1;
 }
 /*--------------------------------------------------------------
 5.3 Breadcrumbs
@@ -1214,7 +1225,7 @@ a:active {
 	border-top: 1px solid #CCC;
 	border-bottom: 1px dotted #CCC;
 	line-height: 2.9rem;
-	margin: 0 0 .7rem 0;
+	margin: 0;
 	padding: 1.45rem;
 }
 .widget_calendar #wp-calendar caption {
@@ -2180,8 +2191,11 @@ form#pmpro_form .pmpro_checkout h3 span.pmpro_checkout-h3-msg {
 form#pmpro_form .pmpro_checkout h3 span.pmpro_checkout-h3-msg a {
 	text-decoration: underline;
 }
-form#pmpro_form .pmpro_checkout-fields, form#pmpro_form .pmpro_sslseal {
+form#pmpro_form .pmpro_checkout-fields {
 	padding: 1.45rem;
+}
+form#pmpro_form .pmpro_sslseal {
+	padding: 1.45rem 1.45rem 1.45rem 0;
 }
 form.pmpro_form .pmpro_checkout #other_discount_code_p,
 form.pmpro_form .pmpro_checkout #other_discount_code_div {
@@ -2238,29 +2252,39 @@ form.pmpro_form .pmpro_payment-expiration select {
 	background: #FAFAFA;
 	border-top: 1px solid #CCC;
 	border-bottom: 1px dotted #CCC;
-	margin: 0;
+	margin-bottom: 0;
+	margin-top: 0;
 	padding: .7rem 1.45rem;
 }
-.tml-profile table.tml-form-table {
-	margin: 0 0 2.9rem 0;
+.tml-profile .tml-field-wrap h3 {
+	margin-left: -1.45rem;
+	margin-right: -1.45rem;
 }
-.tml-profile table.tml-form-table th,
-.tml-profile table.tml-form-table td,
-.tml-profile table.form-table th,
-.tml-profile table.form-table td {
-	display: table-cell;
+.tml-profile .tml-field-wrap {
+	padding: 0 1.45rem;
 }
-.tml-profile table.tml-form-table th,
-.tml-profile table.form-table th {
-	width: 30%;
+.tml-profile .tml-label,
+.tml-profile .tml-description {
+	margin: 0;
 }
-.tml-profile table.tml-form-table label,
-.tml-profile table.form-table label {
-	display: inline-block;
+.tml-profile table {
+	display: block;
+	margin: 1em 0;
+	padding: 0 1.45rem;
 }
-.tml-profile table.tml-form-table span,
-.tml-profile table.form-table span {
-	font-size: 1.4rem;
+.tml-profile tr,
+.tml-profile tr:nth-child(even) th,
+.tml-profile tr:nth-child(even) td,
+.tml-profile th,
+.tml-profile td {
+	background: none;
+	border: none;
+	display: block;
+	padding: 0;
+}
+.tml-profile .description {
+	display: block;
+	font-size: .85em;
 	font-style: italic;
 }
 .tml-profile p.tml-submit-wrap {
@@ -2343,15 +2367,15 @@ form.pmpro_form .pmpro_payment-expiration select {
 }
 .tml .tml-links li:after {
 	content: "|";
-	margin-right: 1.45rem;
-	padding-left: 1.45rem;
+	margin-right: .7rem;
+	padding-left: .7rem;
 }
 .tml .tml-links li:last-child:after {
 	content: "";
 	margin: 0;
 	padding: 0;
 }
-.tml .tml-links li a {
+.site-main .tml .tml-links li a {
 	color: #777;
 	text-decoration: none;
 }
