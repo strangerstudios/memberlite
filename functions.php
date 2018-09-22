@@ -446,6 +446,11 @@ if ( function_exists( 'is_buddypress' ) ) {
 	require_once get_template_directory() . '/inc/integrations/buddypress.php';
 }
 
+/* Integration for Theme My Login. */
+if ( function_exists( 'theme_my_login' ) ) {
+	require_once get_template_directory() . '/inc/integrations/theme-my-login.php';
+}
+
 /* Integration for WooCommerce. */
 if ( function_exists( 'is_woocommerce' ) ) {
 	require_once get_template_directory() . '/inc/integrations/woocommerce.php';
