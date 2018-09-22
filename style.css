@@ -922,10 +922,12 @@ a:active {
 	text-decoration: none;
 	font-weight: bold;
 }
-#mobile-navigation .widget {
+#mobile-navigation .widget,
+#mobile-navigation .search-form {
 	padding: 1rem;
 }
-#mobile-navigation .widget.widget_nav_menu {
+#mobile-navigation .widget.widget_nav_menu,
+#mobile-navigation .widget.widget_search {
 	padding: 0;
 }
 #mobile-navigation ul.menu,
@@ -951,19 +953,27 @@ a:active {
 	padding-left: 1.5rem;
 	font-weight: 400;
 }
-#mobile-navigation .widget_search {
+#mobile-navigation .search-form {
+	border-top: 1px solid rgba(0,0,0,0.1);
 	border-bottom: 1px solid rgba(0,0,0,0.1);
 }
-#mobile-navigation .widget_search input[type=search] {
+#mobile-navigation .search-form input[type=search] {
 	background: rgba(255,255,255,0.2);
 	border: 1px solid rgba(255,255,255,0.3);
 	color: #FFF;
 	width: 90%;
 }
-#mobile-navigation .widget_search input[type=search]::placeholder {
+#mobile-navigation .search-form input[type=search]::placeholder {
 	color: #FFF;
 	opacity: 1;
 }
+#mobile-navigation .search-form input[type=submit].search-submit {
+	background: none;
+	padding: 0;
+	position: absolute;
+	text-indent: -9999em;
+}
+
 /*--------------------------------------------------------------
 5.3 Breadcrumbs
 --------------------------------------------------------------*/
