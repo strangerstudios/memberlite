@@ -51,7 +51,7 @@ jQuery( document ).ready(
 		);
 
 		// check if we should switch tab content on page loads
-		jQuery( 'a[href="' + window.location.hash + '"]' ).click();
+		jQuery( 'a[data-toggle="tab"][href="' + window.location.hash + '"]' ).click();
 
 		// mobile navigation
 		var mobilenav_trigger = jQuery( 'button.menu-toggle' );
