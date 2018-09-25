@@ -63,7 +63,7 @@ Source: https://foundation.zurb.com/get-involved/faq.html
 ##Getting Started
 ---------------
 
-Memberlite makes it easy to customize the appearance and layout of your site using the Theme Customization Screen (Appearance > Customize). 
+Memberlite makes it easy to customize the appearance and layout of your site using the Theme Customization Screen (Appearance > Customize).
 
 ###Adding Your Logo
 Use the Customize > Site Identity screen to add a custom logo (formatted for retina display), update your Site Title and Tagline, and toggle the display of your Site Title & Tagline.
@@ -108,6 +108,39 @@ We highly recommend using these plugins for every site running Memberlite:
 
 
 ###Changelog
+
+**4.0.1 - 2018-09-25**
+* SECURITY: Switching to use absint as a sanitizing function instead of intval_base10 which doesn't work.
+* SECURITY: Fixed escaping in the user account link.
+* BUG FIX: Fix targeting of jQuery for tabbable Content, Post Comments and Permalinks.
+* BUG FIX: Font Awesome icons added via the :before selector in css require a font-weight attribute.
+* BUG FIX: Fixing bug with menu placed text color in header right widget area via widgets > add new.
+* BUG FIX: Fixed bug where "Custom" color scheme didn't save because it wasn't a valid value in sanitization callback.
+* BUG FIX: Fixing code formatting where additional line was breaking columns layout.
+* BUG FIX/ENHANCEMENT: Updating styles for BuddyPress to add to existing BuddyPress template stylesheets instead of complete override.
+* BUG FIX/ENHANCEMENT: Updating primary area form styling to reference the .site-content class instead of the #primary div.
+* BUG FIX/ENHANCEMENT: Updating the primary link color and hover color to use a class instead of an ID attribute.
+* BUG FIX/ENHANCEMENT: Updating memberlite_page_nav function to bail if the post ID is 0.
+* BUG FIX/ENHANCEMENT: Font Awesome fixes for font-weight and buttons; Theme My Login 7 formatting fixes.
+* BUG FIX/ENHANCEMENT: Updating check to require both Multiple Post Thumbnails and Memberlite Elements plugins to allow the show_both option in customizer.
+* BUG FIX/ENHANCEMENT: Improving appearance of front page when set to static.
+* BUG FIX/ENHANCEMENT: Adjusting style for banner images in the loop.
+* BUG FIX/ENHANCEMENT: Updating Recent Posts w/Thumbnails widget to use grid instead of float.
+* BUG FIX/ENHANCEMENT: Fixing case where customizer preview wasn't adjusting site description when changing site title and tagline text color.
+* ENHANCEMENT: Moving all Theme My Login related styles to a separate optionally loaded integration file.
+* ENHANCEMENT: Fixing mobile navigation search form to be the same whether added via Widget or via the Memberlite Options > Search Form After Navigation setting.
+* ENHANCEMENT: Adding pmpro_btn-cancel to the standard link color default customization.
+* ENHANCEMENT: Improving button and link-type button appearance throughout theme and for use in Paid Memberships Pro.
+* ENHANCEMENT: Fixing padding on bbPress search widget to match other widget spacing.
+* ENHANCEMENT: Removing padding on Custom HTML widget when placed in the sidebar (#secondary) location.
+* ENHANCEMENT: Cleaning up tabs on empty lines.
+* ENHANCEMENT: Removing the !important declaration from button font color.
+* ENHANCEMENT: Adjusting text size of post titles in recent posts with thumbnails widget.
+* ENHANCEMENT: Adding rel="nofollow" to the custom excerpt more link.
+* ENHANCEMENT: Updating screenshot.
+* ENHANCEMENT: Updating "Tested up to" WordPress version value.
+* ENHANCEMENT: Adjusting featured image size in loop to use the 'medium' size for better appearance.
+* FEATURE: Added 'memberlite_google_fonts_weights' filter to adjust which font weights are enqueued when loading Google Fonts.
 
 **4.0 - 2018-07-31**
 * SECURITY/BUG FIX: Added esc_url to wp-admin links on theme welcome page.
