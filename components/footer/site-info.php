@@ -7,20 +7,18 @@
 ?>
 
 <?php do_action( 'memberlite_before_site_info' ); ?>
-		
+
 <div class="row site-info">
 	<?php
 		global $memberlite_defaults;
 		$back_to_top = get_theme_mod( 'memberlite_back_to_top', $memberlite_defaults['memberlite_back_to_top'] );
 	?>
-	<div class="large-
-	<?php
-	if ( ! empty( $back_to_top ) ) {
-		echo '10';
-	} else {
-		echo '12'; }
-?>
- columns">
+	<div class="large-<?php
+		if ( ! empty( $back_to_top ) ) {
+			echo '10';
+		} else {
+		echo '12';
+	} ?> columns">
 	<?php
 		global $memberlite_defaults;
 		$copyright_textbox = get_theme_mod( 'copyright_textbox', $memberlite_defaults['copyright_textbox'] );
