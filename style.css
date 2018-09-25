@@ -525,10 +525,13 @@ a.pmpro_btn:active,
 	color: #FFF;
 	transform: translateY(-1px);
 }
-
+.site-main .btn:hover {
+	color: #FFF;
+}
 .pmpro_btn:hover,
 .pmpro_btn:focus,
 a.pmpro_btn:hover,
+.site-main .pmpro_btn:hover,
 input[type="submit"].pmpro_btn:hover,
 .pmpro_checkout .pmpro_btn:hover,
 .pmpro_checkout .pmpro_btn:focus,
@@ -540,33 +543,76 @@ input[type="submit"].pmpro_btn:hover,
 	text-shadow: none;
 	transform: translateY(-1px);
 }
-
-.btn_info, .btn_info:link {background-color: #5bc0de; }
-.btn_success, .btn_success:link {background-color: #5cb85c; }
-.btn_error, .btn_error:link {background-color: #d9534f; }
-.btn_alert, .btn_alert:link {background-color: #f0ad4e; }
-.btn_info:hover {background-color: #31b0d5; }
-.btn_success:hover {background-color: #449d44; }
-.btn_error:hover {background-color: #c9302c; }
-.btn_alert:hover {background-color: #ec971f; }
-
-.btn_link, .pmpro_btn-cancel {
-	cursor: pointer; /* Improves usability and consistency of cursor style between image-type 'input' and others */
-	display: inline-block;
-	/* -webkit-appearance: button; Corrects inability to style clickable 'input' types in iOS */
-	font-family: 'Lato', sans-serif;
-	font-style: normal;
-	font-weight: 400;
-	overflow: hidden;
-	padding: 1.45rem 2.9rem;
-	text-decoration: none;
-	text-shadow: none;
+.btn_info,
+.btn_info:link {
+	background-color: #5bc0de;
 }
-.btn_link:hover, .pmpro_btn-cancel {text-decoration: underline; }
-.btn_primary, .btn_primary:link {background: #2C3E50; }
-.btn_secondary, .btn_secondary:link {background: #18BC9C; }
-.btn_action, .btn_action:link {background: #F39C12; }
-.btn_block, .btn_block:link {display: block; width: 100%; }
+.btn_success,
+.btn_success:link {
+	background-color: #5cb85c;
+}
+.btn_error,
+.btn_error:link {
+	background-color: #d9534f;
+}
+.btn_alert,
+.btn_alert:link {
+	background-color: #f0ad4e;
+}
+.btn_info:hover {
+	background-color: #31b0d5;
+}
+.btn_success:hover {
+	background-color: #449d44;
+}
+.btn_error:hover {
+	background-color: #c9302c;
+}
+.btn_alert:hover {
+	background-color: #ec971f;
+}
+.btn_link,
+.pmpro_btn-cancel,
+.pmpro_nolink,
+.pmpro_nolink:link,
+.pmpro_cancel,
+.pmpro_cancel:link,
+a.pmpro_cancel:link,
+.site-main .pmpro_btn.pmpro_cancel,
+.site-main .pmpro_btn.pmpro_btn-cancel {
+    background: none;
+    border: none;
+    box-shadow: none;
+	color: #2C3E50;
+    text-decoration: underline;
+}
+.btn_link:hover,
+.pmpro_btn.pmpro_btn-cancel:hover,
+.pmpro_btn.pmpro_nolink:hover,
+.pmpro_btn.pmpro_cancel:hover,
+a.pmpro_btn.pmpro_cancel:hover,
+.site-main .pmpro_btn.pmpro_cancel:hover,
+.site-main .pmpro_btn.pmpro_btn-cancel:hover {
+	background: none;
+	box-shadow: none;
+	transform: none;
+}
+.btn_primary,
+.btn_primary:link {
+	background: #2C3E50;
+}
+.btn_secondary,
+.btn_secondary:link {
+	background: #18BC9C;
+}
+.btn_action,
+.btn_action:link {
+	background: #F39C12;
+}
+.btn_block,
+.btn_block:link {
+	display: block; width: 100%;
+}
 .btn .fa,
 .btn .fab,
 .btn .far,
@@ -577,11 +623,6 @@ input[type="submit"].pmpro_btn:hover,
 .btn_link .fas {
 	padding: 0 .5rem;
 }
-
-.pmpro_btn.pmpro_cancel {
-	color: #666 !important;
-}
-
 /*--------------------------------------------------------------
 4.2 Form Elements
 --------------------------------------------------------------*/
