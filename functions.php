@@ -165,8 +165,9 @@ if ( ! function_exists( 'memberlite_setup' ) ) :
 		// Add logo upload support via Customizer
 		add_theme_support(
 			'custom-logo', array(
-				'height'      => 100,
-				'width'       => 360,
+				'height'      => 200,
+				'width'       => 720,
+				'flex-height'  => true,
 				'flex-width'  => true,
 				'header-text' => array( 'site-title', 'site-description' ),
 			)
