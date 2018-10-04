@@ -239,12 +239,14 @@ function memberlite_page_title( $echo = true ) {
 		<h1 class="page-title">
 		<?php
 		if ( bbp_is_search_results() ) {
+			/* translators: %s: bbPress forum search terms */
 			printf( esc_html__( 'Forum Search Results for: %s', 'memberlite' ), '<span>' . esc_html( bbp_get_search_terms() ) . '</span>' );
 		} elseif ( bbp_is_search() ) {
 			esc_html_e( 'Forum Search', 'memberlite' );
 		} elseif ( bbp_is_single_forum() || bbp_is_single_topic() ) {
 			the_title();
 		} elseif ( bbp_is_single_user() ) {
+			/* translators: %s: bbPress user profile display name */
 			echo sprintf( esc_html__( '%s\'s Profile', 'memberlite' ), esc_html( get_userdata( bbp_get_user_id() )->display_name ) );
 		} else {
 			esc_html_e( 'Forums', 'memberlite' );
@@ -261,18 +263,23 @@ function memberlite_page_title( $echo = true ) {
 
 				elseif ( is_tag() ) :
 					$current_tag = single_tag_title( '', false );
+					/* translators: %s: current tag archive's single title */
 					printf( esc_html__( 'Posts Tagged: %s', 'memberlite' ), '<span>' . $current_tag . '</span>' );
 
 				elseif ( is_author() ) :
+					/* translators: %s: current author archive's name */
 					printf( esc_html__( 'Author: %s', 'memberlite' ), '<span class="vcard">' . get_the_author() . '</span>' );
 
 				elseif ( is_day() ) :
+					/* translators: %s: day for the viewed archive */
 					printf( esc_html__( 'Day: %s', 'memberlite' ), '<span>' . get_the_date() . '</span>' );
 
 				elseif ( is_month() ) :
+					/* translators: %s: month for the viewed archive */
 					printf( esc_html__( 'Month: %s', 'memberlite' ), '<span>' . get_the_date( _x( 'F Y', 'monthly archives date format', 'memberlite' ) ) . '</span>' );
 
 				elseif ( is_year() ) :
+					/* translators: %s: year for the viewed archive */
 					printf( esc_html__( 'Year: %s', 'memberlite' ), '<span>' . get_the_date( _x( 'Y', 'yearly archives date format', 'memberlite' ) ) . '</span>' );
 
 				elseif ( is_tax( 'post_format', 'post-format-aside' ) ) :
@@ -320,7 +327,10 @@ function memberlite_page_title( $echo = true ) {
 	} elseif ( is_search() ) {
 		?>
 		<h1 class="page-title">
-			<?php printf( esc_html__( 'Search Results for: %s', 'memberlite' ), '<span>' . get_search_query() . '</span>' ); ?>
+			<?php
+				/* translators: %s: search keywords */
+				printf( esc_html__( 'Search Results for: %s', 'memberlite' ), '<span>' . get_search_query() . '</span>' );
+			?>
 		</h1>
 		<?php
 	} elseif ( is_singular( 'post' ) ) {
@@ -611,18 +621,23 @@ function memberlite_getBreadcrumbs() {
 
 					elseif ( is_tag() ) :
 						$current_tag = single_tag_title( '', false );
+						/* translators: %s: current tag archive's single title */
 						printf( esc_html__( 'Posts Tagged: %s', 'memberlite' ), '<span>' . $current_tag . '</span>' );
 
 					elseif ( is_author() ) :
+						/* translators: %s: current author archive's name */
 						printf( esc_html__( 'Author: %s', 'memberlite' ), '<span class="vcard">' . get_the_author() . '</span>' );
 
 					elseif ( is_day() ) :
+						/* translators: %s: day for the viewed archive */
 						printf( esc_html__( 'Day: %s', 'memberlite' ), '<span>' . get_the_date() . '</span>' );
 
 					elseif ( is_month() ) :
+						/* translators: %s: month for the viewed archive */
 						printf( esc_html__( 'Month: %s', 'memberlite' ), '<span>' . get_the_date( _x( 'F Y', 'monthly archives date format', 'memberlite' ) ) . '</span>' );
 
 					elseif ( is_year() ) :
+						/* translators: %s: year for the viewed archive */
 						printf( esc_html__( 'Year: %s', 'memberlite' ), '<span>' . get_the_date( _x( 'Y', 'yearly archives date format', 'memberlite' ) ) . '</span>' );
 
 					elseif ( is_tax( 'post_format', 'post-format-aside' ) ) :
