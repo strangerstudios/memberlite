@@ -42,8 +42,12 @@ function memberlite_support() {
 		<div class="wrap about-wrap">
 			<h1><?php esc_html_e( 'Welcome to the Memberlite Theme', 'memberlite' ); ?></h1>
 			<div class="about-text"><?php esc_html_e( "Memberlite is the ideal theme for your membership site - packed with integration for top membership site plugins including Paid Memberships Pro. It's fully customizable with your logo, colors, fonts, custom sidebars and more global layout settings.", 'memberlite' ); ?></div>
-			<div class="wp-badge memberlite-badge"><?php printf( esc_html__( 'Version %s', 'memberlite' ), MEMBERLITE_VERSION ); ?></div>
-
+			<div class="wp-badge memberlite-badge">
+				<?php
+					/* translators: Memberlite version number */
+					printf( esc_html__( 'Version %s', 'memberlite' ), MEMBERLITE_VERSION );
+				?>
+			</div>
 			<div class="feature-section two-col">
 				<div class="col">
 					<h2><span class="dashicons dashicons-format-image"></span> <?php esc_html_e( 'Adding Your Logo', 'memberlite' ); ?></h2>
