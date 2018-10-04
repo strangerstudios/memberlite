@@ -59,7 +59,7 @@ foreach ( $memberlite_map_deprecated_hooks as $new => $old ) {
 function memberlite_maybe_show_deprecated_hook_message( $new, $old ) {
 	if ( has_filter( $old ) ) {
 		/* translators: 1: the old hook name, 2: the new or replacement hook name */
-		trigger_error( sprintf( esc_html__( 'The %1$s hook has been deprecated since version 3.1 of Memberlite. Please use the %2$s hook instead.', 'mnemberlite' ), $old, $new ) );
+		trigger_error( sprintf( esc_html__( 'The %1$s hook has been deprecated since version 3.1 of Memberlite. Please use the %2$s hook instead.', 'memberlite' ), $old, $new ) );
 		do_action( $old );
 	}
 }
