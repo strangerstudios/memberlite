@@ -835,20 +835,16 @@ a:active {
 .no-meta-menu .widget_search {
 	margin-top: 4.5rem;
 }
-.footer-navigation {
-	padding-top: 2.9rem;
-	padding-bottom: 1.45rem;
-	border-bottom: 1px solid #CCC;
-}
-.footer-navigation ul ul {
-	display: none;
-}
-.meta-navigation ul, .header-right .widget_nav_menu ul, .footer-navigation ul {
+.meta-navigation ul,
+.header-right .widget_nav_menu ul,
+.footer-navigation ul {
 	list-style: none;
 	margin: 0 0 1.45rem 0;
 	padding-left: 0;
 }
-.meta-navigation ul li, .header-right .widget_nav_menu ul li, .footer-navigation ul li {
+.meta-navigation ul li,
+.header-right .widget_nav_menu ul li,
+.footer-navigation ul li {
 	border-right: 1px solid #CCC;
 	display: inline-block;
 	float: none;
@@ -871,6 +867,19 @@ a:active {
 .meta-navigation li:last-child, .header-right .widget_nav_menu li:last-child, .footer-navigation li:last-child {
 	border-right: none;
 	padding-right: 0;
+}
+.footer-navigation ul {
+	border-bottom: 1px solid #CCC;
+	margin: 0;
+	padding-top: 2.9rem;
+	padding-bottom: 2.9rem;
+}
+.footer-navigation.footer-widgets-empty ul {
+	border-top: 1px solid #CCC;
+	margin-top: 2.9rem;
+}
+.footer-navigation ul ul {
+	display: none;
 }
 
 /* Dropdown Menu */
@@ -1036,20 +1045,21 @@ a:active {
 /*--------------------------------------------------------------
 5.4 Prev/Next Navigation
 --------------------------------------------------------------*/
+.site-main .post-navigation,
 .site-main .paging-navigation,
-.site-main .post-navigation {
-	margin: 0 0 2.9rem 0;
+.site-main .page-navigation,
+.site-main .page-links {
+	margin: 2.9rem 0;
 	overflow: hidden;
 }
 .site-main .comment-navigation {
 	margin: 1em 0;
 	overflow: hidden;
 }
-.site-main .page-navigation {
+.site-main .page-navigation,
+.site-main .page-links {
 	border-top: 1px solid #ccc;
 	clear: both;
-	margin: 2.9rem 0 0 0;
-	overflow: hidden;
 	padding-top: 2.9rem;
 }
 .comment-navigation .nav-previous,
@@ -1785,10 +1795,6 @@ a:active {
 .entry-content,
 .entry-summary {
 
-}
-.page-links {
-	clear: both;
-	margin: 0 0 1.5rem;
 }
 
 /*--------------------------------------------------------------
