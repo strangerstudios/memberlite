@@ -20,7 +20,7 @@ if ( post_password_required() ) {
 
 <div id="comments" class="comments-area">
 	<?php if ( have_comments() ) : ?>
-	
+
 		<?php
 			$memberlite_comments   = get_comments(
 				array(
@@ -44,11 +44,14 @@ if ( post_password_required() ) {
 				)
 			);
 		?>
-		
-		<?php
-		if ( count( $memberlite_trackbacks ) == 0 && count( $memberlite_pingbacks ) == 0 ) {
-		?>
-				<h2><?php printf( esc_html__( 'Comments (%s)', 'memberlite' ), count( $memberlite_comments ) ); ?></h2>
+
+		<?php if ( count( $memberlite_trackbacks ) == 0 && count( $memberlite_pingbacks ) == 0 ) { ?>
+				<h2>
+					<?php
+						/* translators: %s: number of comments */
+						printf( esc_html__( 'Comments (%s)', 'memberlite' ), count( $memberlite_comments ) );
+					?>
+				</h2>
 				<?php the_comments_navigation(); ?>
 				<?php
 				wp_list_comments(
@@ -72,20 +75,34 @@ if ( post_password_required() ) {
 		?>
 				<div class="memberlite_tabbable">
 					<ul class="memberlite_tabs">
-						<?php
-						if ( count( $memberlite_comments ) > 0 ) {
-?>
-<li class="memberlite_active"><a href="#tab-comments" data-toggle="tab"><?php printf( esc_html__( 'Comments (%s)', 'memberlite' ), count( $memberlite_comments ) ); ?></a></li><?php } ?>
-						<?php
-						if ( count( $memberlite_trackbacks ) > 0 ) {
-?>
-<li><a href="#tab-tracks" data-toggle="tab"><?php printf( esc_html__( 'Trackbacks (%s)', 'memberlite' ), count( $memberlite_trackbacks ) ); ?></a></li><?php } ?>
-						<?php
-						if ( count( $memberlite_pingbacks ) > 0 ) {
-?>
-<li><a href="#tab-pings" data-toggle="tab"><?php printf( esc_html__( 'Pingbacks (%s)', 'memberlite' ), count( $memberlite_pingbacks ) ); ?></a></li><?php } ?>
+						<?php if ( count( $memberlite_comments ) > 0 ) { ?>
+							<li class="memberlite_active"><a href="#tab-comments" data-toggle="tab">
+								<?php
+									/* translators: %s: number of comments */
+									printf( esc_html__( 'Comments (%s)', 'memberlite' ), count( $memberlite_comments ) );
+								?>
+							</a></li>
+						<?php } ?>
+
+						<?php if ( count( $memberlite_trackbacks ) > 0 ) { ?>
+							<li><a href="#tab-tracks" data-toggle="tab">
+								<?php
+									/* translators: %s: number of trackbacks */
+									printf( esc_html__( 'Trackbacks (%s)', 'memberlite' ), count( $memberlite_trackbacks ) );
+								?>
+							</a></li>
+						<?php } ?>
+
+						<?php if ( count( $memberlite_pingbacks ) > 0 ) { ?>
+							<li><a href="#tab-pings" data-toggle="tab">
+								<?php
+									/* translators: number of pingbacks */
+									printf( esc_html__( 'Pingbacks (%s)', 'memberlite' ), count( $memberlite_pingbacks ) );
+								?>
+							</a></li>
+						<?php } ?>
 					</ul>
-					<div class="memberlite_tab_content">	
+					<div class="memberlite_tab_content">
 					<?php if ( count( $memberlite_comments ) > 0 ) { ?>
 						<div class="memberlite_tab_pane memberlite_active" id="tab-comments">
 							<?php the_comments_navigation(); ?>
@@ -108,7 +125,7 @@ if ( post_password_required() ) {
 							<?php endif; ?>
 						</div>
 					<?php } ?>
-					<?php if ( count( $memberlite_trackbacks ) > 0 ) { ?>			
+					<?php if ( count( $memberlite_trackbacks ) > 0 ) { ?>
 						<div class="memberlite_tab_pane" id="tab-tracks">
 						<?php
 							wp_list_comments(
@@ -122,7 +139,7 @@ if ( post_password_required() ) {
 						?>
 						</div>
 					<?php } ?>
-					<?php if ( count( $memberlite_pingbacks ) > 0 ) { ?>			
+					<?php if ( count( $memberlite_pingbacks ) > 0 ) { ?>
 						<div class="memberlite_tab_pane" id="tab-pings">
 						<?php
 							wp_list_comments(
@@ -136,7 +153,7 @@ if ( post_password_required() ) {
 						?>
 						</div>
 					<?php } ?>
-					</div>			
+					</div>
 				</div>
 				<?php
 		}
