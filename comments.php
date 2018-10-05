@@ -56,10 +56,10 @@ if ( post_password_required() ) {
 				<?php
 				wp_list_comments(
 					array(
-						'per_page' => 0,
-						'type'     => 'comment',
-						'style'    => 'div',
-						'walker'   => new Memberlite_Walker_Comment(),
+						'avatar_size'	=> 40,
+						'per_page'		=> 0,
+						'type'			=> 'comment',
+						'style'			=> 'div',
 					)
 				);
 			?>
@@ -109,10 +109,10 @@ if ( post_password_required() ) {
 							<?php
 								wp_list_comments(
 									array(
+										'avatar_size'	=> 40,
 										'per_page' => 0,
 										'type'     => 'comment',
 										'style'    => 'div',
-										'walker'   => new Memberlite_Walker_Comment(),
 									)
 								);
 							?>
@@ -130,10 +130,11 @@ if ( post_password_required() ) {
 						<?php
 							wp_list_comments(
 								array(
+									'max_depth'	 => 1,
 									'type'       => 'trackback',
-									'short_ping' => true,
+									'short_ping' => false,
 									'style'      => 'div',
-									'walker'     => new Memberlite_Walker_Pings(),
+									//'walker'     => new Memberlite_Walker_Pings(),
 								)
 							);
 						?>
@@ -144,10 +145,11 @@ if ( post_password_required() ) {
 						<?php
 							wp_list_comments(
 								array(
+									'max_depth'	 => 1,
 									'type'       => 'pingback',
-									'short_ping' => true,
+									'short_ping' => false,
 									'style'      => 'div',
-									'walker'     => new Memberlite_Walker_Pings(),
+									//'walker'     => new Memberlite_Walker_Pings(),
 								)
 							);
 						?>
