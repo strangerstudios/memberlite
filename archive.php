@@ -13,13 +13,8 @@ get_header(); ?>
 		<?php do_action( 'memberlite_before_loop' ); ?>
 
 		<?php if ( have_posts() ) : ?>
-			<?php global $more; ?>
-
-			<?php
-			while ( have_posts() ) :
-				the_post();
-?>
-				<?php $more = 1; ?>
+			<?php while ( have_posts() ) :
+				the_post(); ?>
 				<?php get_template_part( 'components/post/content', get_post_format() ); ?>
 			<?php endwhile; ?>
 
