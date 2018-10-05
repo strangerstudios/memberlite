@@ -162,7 +162,7 @@ h3, .h3 {
 	line-height: 3.7rem;
 }
 h3.comment-reply-title {
-	margin-bottom: 0;
+	margin: 0;
 }
 h4, .h4 {
 	font-size: 2.1rem;
@@ -210,6 +210,7 @@ blockquote.quote, .testimonials-widget blockquote {
 blockquote.quote:before {
 	content: "\f10d";
 	font-family: 'Font Awesome 5 Free';
+	font-weight: 700;
 	color: #DDD;
 	font-size: 2.9rem;
 	left: 0rem;
@@ -438,7 +439,7 @@ input[type="reset"],
 input[type="submit"],
 .btn,
 .btn:link,
-a.comment-reply-link,
+.content-area a.comment-reply-link,
 a.pmpro_btn,
 .pmpro_content_message a,
 .pmpro_content_message a:link,
@@ -485,6 +486,7 @@ input[type="submit"].inline-form-button {
 .pmpro_content_message a,
 .pmpro_content_message a:link,
 a.comment-reply-link,
+a.comment-reply-link:link,
 a.btn.skip-link {
 	padding: .7rem 1.45rem;
 }
@@ -516,9 +518,9 @@ input[type="submit"]:active,
 .btn:hover,
 .btn:active,
 .btn:focus,
-a.comment-reply-link:focus,
-a.comment-reply-link:active,
-a.comment-reply-link:hover,
+.content-area a.comment-reply-link:focus,
+.content-area a.comment-reply-link:active,
+.content-area a.comment-reply-link:hover,
 a.pmpro_btn:active,
 #main div.em-search-main button.em-search-submit:hover {
 	background: #798d8f;
@@ -839,20 +841,16 @@ a:active {
 .no-meta-menu .widget_search {
 	margin-top: 4.5rem;
 }
-.footer-navigation {
-	padding-top: 2.9rem;
-	padding-bottom: 1.45rem;
-	border-bottom: 1px solid #CCC;
-}
-.footer-navigation ul ul {
-	display: none;
-}
-.meta-navigation ul, .header-right .widget_nav_menu ul, .footer-navigation ul {
+.meta-navigation ul,
+.header-right .widget_nav_menu ul,
+.footer-navigation ul {
 	list-style: none;
 	margin: 0 0 1.45rem 0;
 	padding-left: 0;
 }
-.meta-navigation ul li, .header-right .widget_nav_menu ul li, .footer-navigation ul li {
+.meta-navigation ul li,
+.header-right .widget_nav_menu ul li,
+.footer-navigation ul li {
 	border-right: 1px solid #CCC;
 	display: inline-block;
 	float: none;
@@ -875,6 +873,19 @@ a:active {
 .meta-navigation li:last-child, .header-right .widget_nav_menu li:last-child, .footer-navigation li:last-child {
 	border-right: none;
 	padding-right: 0;
+}
+.footer-navigation ul {
+	border-bottom: 1px solid #CCC;
+	margin: 0;
+	padding-top: 2.9rem;
+	padding-bottom: 2.9rem;
+}
+.footer-navigation.footer-widgets-empty ul {
+	border-top: 1px solid #CCC;
+	margin-top: 2.9rem;
+}
+.footer-navigation ul ul {
+	display: none;
 }
 
 /* Dropdown Menu */
@@ -1040,20 +1051,21 @@ a:active {
 /*--------------------------------------------------------------
 5.4 Prev/Next Navigation
 --------------------------------------------------------------*/
+.site-main .post-navigation,
 .site-main .paging-navigation,
-.site-main .post-navigation {
-	margin: 0 0 2.9rem 0;
+.site-main .page-navigation,
+.site-main .page-links {
+	margin: 2.9rem 0;
 	overflow: hidden;
 }
 .site-main .comment-navigation {
 	margin: 1em 0;
 	overflow: hidden;
 }
-.site-main .page-navigation {
+.site-main .page-navigation,
+.site-main .page-links {
 	border-top: 1px solid #ccc;
 	clear: both;
-	margin: 2.9rem 0 0 0;
-	overflow: hidden;
 	padding-top: 2.9rem;
 }
 .comment-navigation .nav-previous,
@@ -1683,6 +1695,7 @@ a:active {
 .single-format-link .masthead-post-byline h1.entry-title:before,
 .single-format-video .masthead-post-byline h1.entry-title:before {
 	font-family: 'Font Awesome 5 Free';
+	font-weight: 700;
 	padding-right: 10px;
 }
 .hentry.format-audio h1.entry-title:before,
@@ -1695,7 +1708,7 @@ a:active {
 }
 .hentry.format-link h1.entry-title:before,
 .single-format-link .masthead-post-byline h1.entry-title:before {
-	content: "\f08e";
+	content: "\f35d";
 }
 .hentry.format-video h1.entry-title:before,
 .single-format-video .masthead-post-byline h1.entry-title:before {
@@ -1723,6 +1736,11 @@ a:active {
 	border-bottom: 1px dotted #CCC;
 	margin-bottom: 1.5rem;
 }
+.format-status .entry-content .post_author_avatar {
+	float: left;
+	margin: 0 2.9rem 2.9rem 0;
+}
+
 .format-image .wp-post-image {
 	margin-bottom: 0;
 	padding-right: 0;
@@ -1792,10 +1810,6 @@ a:active {
 .entry-summary {
 
 }
-.page-links {
-	clear: both;
-	margin: 0 0 1.5rem;
-}
 
 /*--------------------------------------------------------------
 10.5 Asides
@@ -1808,56 +1822,24 @@ a:active {
 /*--------------------------------------------------------------
 10.6 Comments
 --------------------------------------------------------------*/
-.comment-content a {
-	word-wrap: break-word;
+.comment,
+.pingback,
+.trackback {
+	border: 1px dotted #CCC;
 }
-.comment .gravatar {
-	float: left;
-	width: 80px;
-	height: 80px;
-	border-radius: 50%;
-	margin: -.5rem .5rem 0 -.5rem;
+.comment .comment-body,
+.pingback,
+.trackback {
+	padding: 2.9rem;
 }
-.comment .gravatar img {
-	border-radius: 50%;
-	transition: transform 0.5s ease;
-	transform: scale(0.8);
-}
-.comment-meta, .logged-in-as {
-	color: #AAA;
-	font-size: 1.4rem;
-	font-style: italic;
-}
-.comment-meta a, .logged-in-as a {
-	color: #777 !important;
-	text-decoration: none;
-}
-.comment-meta a:hover {
-	border-bottom: 1px dotted #777;
-}
-.comment-meta h4 {
-	font-style: normal;
-	padding-top: .7rem;
-	margin: 0;
-}
-.comment-content {
-	clear: left;
-	padding: 1.45rem 0;
-}
-.comments-list {
-	border-top: 1px solid #CCC;
-}
-.comment, .pingback, .trackback {
-	padding: 1.45rem 1.45rem 1px 1.45rem;
-	border-bottom: 1px dotted #CCC;
-	border-top: 1px dotted #CCC;
-	position: relative;
-}
-.pingback, .trackback {
-	padding: 1.45rem;
-}
-.comment.even, .pingback.even, .trackback.event {
+.comment,
+.pingback.even,
+.trackback.event {
 	background: #FAFAFA;
+}
+.comment.depth-1.thread-alt,
+.comment .comment.alt {
+	background: #FFF;
 }
 .comment.even .child-comments .comment {
 	background: #FAFAFA;
@@ -1865,26 +1847,55 @@ a:active {
 .comment.odd .child-comments .comment {
 	background: #FFF;
 }
-.comment.parent {
+.comment {
+	margin: 0 2.9rem 2.9rem 2.9rem;
+}
+.comment.depth-1 {
+	margin: 0;
+}
+.comment-content a {
+	word-wrap: break-word;
+}
+.content-area .comment-meta a,
+.content-area .logged-in-as a {
+	text-decoration: none;
+}
+.comment-meta .comment-author.vcard {
+	color: #777;
+}
+.comment .comment-meta .comment-author.vcard {
+	display: grid;
+	line-height: 3.4rem;
+	grid-gap: 10px;
+	grid-template-columns: 40px auto auto;
+	justify-content: start;
+}
+.comment .comment-meta .avatar {
+	border-radius: 50%;
+	display: inline-block;
+}
+.comment-meta .comment-author.vcard .fn {
+	font-size: 2.1rem;
+}
+.comment-meta .comment-metadata {
+	font-size: 1.4rem;
+	line-height: 1.6rem;
+	margin: 0 0 1.45rem 0;
+}
+.comment .comment-meta .comment-metadata {
+	margin-left: 50px;
+}
+.comment-meta .comment-metadata .edit-link {
 	border-left: 1px solid #CCC;
-	border-bottom: 1px dotted #CCC;
-	padding-right: 0;
-}
-.comment.parent .comment.parent, .comment.parent .depth-2, .comment.parent .depth-3, .comment.parent .depth-4, .comment.parent .depth-5 {
-	border-left: 20px solid #EFEFEF;
-	margin-left: -1.45rem;
-	border-top: 1px dotted #CCC;
-}
-.child-comments.comments-list {
-	border-top: none;
-}
-.child-comments.comments-list .comment {
-	padding-right: 0;
-}
-.bypostauthor {
+	grid-area: edit-link;
+	margin: 0 0 0 .7rem;
+	padding: 0 0 0 .7rem;
 }
 .comment-respond {
-	margin: 1.45rem 0;
+	margin: 2.9rem;
+}
+.comment .comment-respond {
+	margin: 0 2.9rem;
 }
 .comment-respond .comment-notes, .comment-respond .form-allowed-tags {
 	color: #AAA;
@@ -1893,7 +1904,12 @@ a:active {
 .comment-respond label {
 	display: inline-block;
 	text-align: right;
-	margin: 0 1% 0 0;
+	margin: 0 .7rem 0 0;
+}
+.comment-respond p.comment-form-cookies-consent label {
+	display: inline;
+	text-align: left;
+	margin: 0 0 0 .7rem;
 }
 .comment-respond p.comment-form-comment label,
 .comment-respond p.comment-form-author label,
@@ -1904,15 +1920,18 @@ a:active {
 .comment-respond p {
 	position: relative;
 }
+.comment-respond p.logged-in-as,
+.comment-respond p.comment-notes {
+	font-size: 1.4rem;
+	font-style: italic;
+}
 .comment-respond input[type=text], .comment-respond input[type=email], .comment-respond input[type=url], .comment-respond textarea {
 	width: 84%;
 }
 .comment-repond input[type="checkbox"], .comment-repond input[type="radio"] {
 	margin-right: .5em;
 }
-.logged-in .comment-respond .comment-form-comment {margin-bottom: 0; }
 .comment-respond .form-allowed-tags, .comment-respond .form-allowed-tags code {font-size: 12px; }
-
 .comment-respond .comment-form-author span.required, .comment-respond .comment-form-email span.required {
 	position: absolute;
 	top: 0;
@@ -1921,20 +1940,16 @@ a:active {
 .comment-respond .form-allowed-tags, .comment-respond .form-submit, .comment-respond .comment-subscription-form {
 	margin-left: 13%;
 }
-.comment-respond .form-submit {
-	margin-top: 1rem;
+.pingback h4.comment-author {
+	margin: 0;
 }
-.comment .fa-caret-left {
-	position: absolute;
-	top: 1rem;
-	left: -1rem;
-	font-size: 3rem;
-	color: #FFF;
+.pingback .comment-meta-item {
+	font-size: 1.4rem;
+	line-height: 1.6rem;
 }
-.comment.even .fa-caret-left, .comment.even .child-comments .comment .fa-caret-left {
-	color: #FAFAFA;
+.pingback .comment-content p:last-child {
+	margin-bottom:  0;
 }
-
 /*--------------------------------------------------------------
 10.7 Footer
 --------------------------------------------------------------*/

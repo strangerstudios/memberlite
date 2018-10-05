@@ -105,7 +105,7 @@ function memberlite_adjusted_content_width() {
 	$memberlite_columns_ratio_primary = memberlite_getColumnsRatio();
 
 	if ( is_page_template( 'templates/full-width.php' ) || is_page_template( 'templates/fluid-width.php' ) ) {
-        $content_width = 1170; /* pixels */
+		$content_width = 1170; /* pixels */
 	} else {
 		switch ( $memberlite_columns_ratio_primary ) {
 			case 1:
@@ -142,7 +142,7 @@ function memberlite_adjusted_content_width() {
 				$content_width = 1037; /* pixels */
 				break;
 		}
-	}
+	} // End if().
 }
 add_action( 'wp', 'memberlite_adjusted_content_width' );
 
@@ -165,8 +165,9 @@ if ( ! function_exists( 'memberlite_setup' ) ) :
 		// Add logo upload support via Customizer
 		add_theme_support(
 			'custom-logo', array(
-				'height'      => 100,
-				'width'       => 360,
+				'height'      => 200,
+				'width'       => 720,
+				'flex-height'  => true,
 				'flex-width'  => true,
 				'header-text' => array( 'site-title', 'site-description' ),
 			)
@@ -402,7 +403,7 @@ function memberlite_get_sidebar( $name = null ) {
 }
 
 /* Check for updates */
-if( is_admin() ) {
+if ( is_admin() ) {
 	require_once get_template_directory() . '/inc/updates.php';
 	memberlite_checkForUpdates();
 }
@@ -457,15 +458,15 @@ if ( function_exists( 'is_woocommerce' ) ) {
 }
 
 function memberlite_frontpage_template_hierarchy( $templates ) {
-    $templates = array();
-    if ( ! is_home() ) {
-        $custom = get_page_template_slug( get_queried_object_id() );
-        if ( ! empty ( $custom ) ) {
-            $templates[] = $custom;
-        }
-        $templates[] = 'front-page.php';
-    }
-    // Return the template hierarchy.
-    return $templates;
+	$templates = array();
+	if ( ! is_home() ) {
+		$custom = get_page_template_slug( get_queried_object_id() );
+		if ( ! empty( $custom ) ) {
+			$templates[] = $custom;
+		}
+		$templates[] = 'front-page.php';
+	}
+	// Return the template hierarchy.
+	return $templates;
 }
 add_filter( 'frontpage_template_hierarchy', 'memberlite_frontpage_template_hierarchy', 5 );

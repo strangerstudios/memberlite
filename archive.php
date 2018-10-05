@@ -7,19 +7,14 @@
 
 get_header(); ?>
 
-	<section id="primary" class="medium-<?php echo esc_attr(memberlite_getColumnsRatio() ); ?> columns content-area">
+	<section id="primary" class="medium-<?php echo esc_attr( memberlite_getColumnsRatio() ); ?> columns content-area">
 		<?php do_action( 'memberlite_before_main' ); ?>
 		<main id="main" class="site-main" role="main">
 		<?php do_action( 'memberlite_before_loop' ); ?>
 
 		<?php if ( have_posts() ) : ?>
-			<?php global $more; ?>
-
-			<?php
-			while ( have_posts() ) :
-				the_post();
-?>
-				<?php $more = 1; ?>
+			<?php while ( have_posts() ) :
+				the_post(); ?>
 				<?php get_template_part( 'components/post/content', get_post_format() ); ?>
 			<?php endwhile; ?>
 

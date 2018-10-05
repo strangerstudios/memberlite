@@ -17,17 +17,31 @@
 		<?php do_action( 'memberlite_before_content_post' ); ?>
 		<?php
 			$memberlite_loop_images = get_theme_mod( 'memberlite_loop_images', $memberlite_defaults['memberlite_loop_images'] );
-		if ( $memberlite_loop_images == 'show_both' ) {
-			the_post_thumbnail( 'medium', array( 'class' => 'alignright' ) );
-		}
+			if ( $memberlite_loop_images == 'show_both' ) {
+				the_post_thumbnail(
+					'medium',
+					array(
+						'class' => 'alignright',
+					)
+				);
+			}
 		?>
 		<?php
 			$content_archives = get_theme_mod( 'content_archives' );
-		if ( $content_archives == 'excerpt' ) {
-			the_excerpt();
-		} else {
-			the_content();
-		}
+			if ( $content_archives == 'excerpt' ) {
+				$content_arr = get_extended( $post->post_content );
+				if ( empty( $content_arr['extended'] ) ) {
+					// There is no custom excerpt designated, show the_excerpt()
+					the_excerpt();
+				} else {
+					// There is an excerpt designated by the <!--more--> tag, show that.
+					echo apply_filters( 'the_content', $content_arr['main'] );
+				}
+			} else {
+				global $more;
+				$more = 1;
+				the_content();
+			}
 		?>
 		<?php
 			wp_link_pages(

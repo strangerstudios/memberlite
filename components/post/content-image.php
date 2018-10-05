@@ -12,7 +12,12 @@
 	<?php get_template_part( 'components/post/entry', 'header' ); ?>
 	<div class="entry-content">
 		<?php do_action( 'memberlite_before_content_post' ); ?>
-		<?php the_post_thumbnail( 'memberlite-fullwidth', array( 'class' => 'aligncenter' ) ); ?>
+		<?php the_post_thumbnail(
+			'memberlite-fullwidth',
+			array(
+				'class' => 'aligncenter',
+			)
+		); ?>
 		<div class="clear"></div>
 		<?php do_action( 'memberlite_after_content_post' ); ?>
 	</div><!-- .entry-content -->
