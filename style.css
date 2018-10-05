@@ -1731,6 +1731,11 @@ a:active {
 	border-bottom: 1px dotted #CCC;
 	margin-bottom: 1.5rem;
 }
+.format-status .entry-content .post_author_avatar {
+	float: left;
+	margin: 0 2.9rem 2.9rem 0;
+}
+
 .format-image .wp-post-image {
 	margin-bottom: 0;
 	padding-right: 0;
