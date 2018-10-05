@@ -18,7 +18,23 @@
 	<div class="entry-content">
 		<?php do_action( 'memberlite_before_content_post' ); ?>
 		<blockquote class="quote">
-			<?php the_content( esc_html__( 'Continue Reading', 'memberlite' ) ); ?>
+			<?php
+				$content_archives = get_theme_mod( 'content_archives' );
+				if ( $content_archives == 'excerpt' ) {
+					$content_arr = get_extended ( $post->post_content );
+					if ( empty( $content_arr['extended'] ) ) {
+						// There is no custom excerpt designated, show the_excerpt()
+						the_excerpt();
+					} else {
+						// There is an excerpt designated by the <!--more--> tag, show that.
+						echo apply_filters( 'the_content', $content_arr['main'] );
+					}
+				} else {
+					global $more;
+					$more = 1;
+					the_content();
+				}
+			?>
 			<cite>&mdash;<?php the_title( sprintf( '<a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a>' ); ?></cite>
 		</blockquote>
 		<?php do_action( 'memberlite_after_content_post' ); ?>
