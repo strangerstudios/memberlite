@@ -17,14 +17,14 @@ add_action( 'admin_menu', 'memberlite_theme_menu' );
 	Redirect to Welcome tab if the user hasn't been there yet.
 */
 function memberlite_admin_init_redirect_to_welcome() {
-	$memberlite_welcome_version = get_option('memberlite_welcome_version', 0);
-	if(version_compare($memberlite_welcome_version, MEMBERLITE_VERSION) < 0) {
-		update_option('memberlite_welcome_version', MEMBERLITE_VERSION, 'no');
-		wp_redirect(admin_url('admin.php?page=memberlite-support'));
+	$memberlite_welcome_version = get_option( 'memberlite_welcome_version', 0 );
+	if (version_compare( $memberlite_welcome_version, MEMBERLITE_VERSION) < 0 ) {
+		update_option( 'memberlite_welcome_version', MEMBERLITE_VERSION, 'no' );
+		wp_redirect( admin_url( 'admin.php?page=memberlite-support' ) );
 		exit;
 	}
 }
-add_action('admin_init', 'memberlite_admin_init_redirect_to_welcome');
+add_action( 'admin_init', 'memberlite_admin_init_redirect_to_welcome' );
 
 /*
 	Render the welcome/support page
@@ -224,15 +224,14 @@ function memberlite_support() {
 										<?php if ( is_plugin_active( 'pmpro-advanced-levels-shortcode/pmpro-advanced-levels-shortcode.php' ) ) { ?>
 												<a class="button button-disabled"><?php esc_html_e( 'Installed', 'memberlite' ); ?></a>
 										<?php } else {
-												if ( function_exists( 'pmpro_license_isValid' ) && pmpro_license_isValid( $pmpro_license_key, 'plus' ) ) {
-													// valid key
-													echo '<span class="install"><a class="install-now button" href="' . wp_nonce_url( self_admin_url( 'update.php?action=install-plugin&plugin=pmpro-advanced-levels-shortcode', 'install-plugin_pmpro-advanced-levels-shortcode' ) ) . '">' . esc_html_e( 'Install Now', 'memberlite' ) . '</a></span>';
-												} else {
-													// invalid key
-													echo '<span class="download"><a class="install-now button" target="_blank" href="http://license.paidmembershipspro.com/downloads/plus/pmpro-advanced-levels-shortcode.zip?key=' . $pmpro_license_key . '">' . esc_html__( 'Download', 'memberlite' ) . '</a></span>';
-												}
+											if ( function_exists( 'pmpro_license_isValid' ) && pmpro_license_isValid( $pmpro_license_key, 'plus' ) ) {
+												// valid key
+												echo '<span class="install"><a class="install-now button" href="' . wp_nonce_url( self_admin_url( 'update.php?action=install-plugin&plugin=pmpro-advanced-levels-shortcode', 'install-plugin_pmpro-advanced-levels-shortcode' ) ) . '">' . esc_html_e( 'Install Now', 'memberlite' ) . '</a></span>';
+											} else {
+												// invalid key
+												echo '<span class="download"><a class="install-now button" target="_blank" href="http://license.paidmembershipspro.com/downloads/plus/pmpro-advanced-levels-shortcode.zip?key=' . $pmpro_license_key . '">' . esc_html__( 'Download', 'memberlite' ) . '</a></span>';
 											}
-										?>
+										} ?>
 									</li>
 									<li><a href="https://www.paidmembershipspro.com/add-ons/pmpro-advanced-levels-shortcode/" target="_blank"><?php esc_html_e( 'More Details', 'memberlite' ); ?></a></li>
 								</ul>

@@ -15,7 +15,7 @@
 		<?php
 			$content_archives = get_theme_mod( 'content_archives' );
 			if ( $content_archives == 'excerpt' ) {
-				$content_arr = get_extended ( $post->post_content );
+				$content_arr = get_extended( $post->post_content );
 				if ( empty( $content_arr['extended'] ) ) {
 					// There is no custom excerpt designated, show the_excerpt()
 					the_excerpt();

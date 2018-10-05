@@ -104,6 +104,6 @@
 
 	<?php get_template_part( 'components/header/masthead' ); ?>
 
-	<?php if ( ! is_page_template( 'templates/fluid-width.php' ) &&  ! is_404() ) { ?>
+	<?php if ( ! is_page_template( 'templates/fluid-width.php' ) && ! is_404() ) { ?>
 		<div class="row">
 	<?php } ?>

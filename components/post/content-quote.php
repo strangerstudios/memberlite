@@ -12,7 +12,12 @@
 		global $memberlite_defaults;
 		$memberlite_loop_images = get_theme_mod( 'memberlite_loop_images', $memberlite_defaults['memberlite_loop_images'] );
 	if ( $memberlite_loop_images == 'show_both' || $memberlite_loop_images == 'show_thumbnail' ) {
-		the_post_thumbnail( 'medium', array( 'class' => 'alignright' ) );
+		the_post_thumbnail(
+			'medium',
+			array(
+				'class' => 'alignright',
+			)
+		);
 	}
 		?>
 	<div class="entry-content">
@@ -21,7 +26,7 @@
 			<?php
 				$content_archives = get_theme_mod( 'content_archives' );
 				if ( $content_archives == 'excerpt' ) {
-					$content_arr = get_extended ( $post->post_content );
+					$content_arr = get_extended( $post->post_content );
 					if ( empty( $content_arr['extended'] ) ) {
 						// There is no custom excerpt designated, show the_excerpt()
 						the_excerpt();

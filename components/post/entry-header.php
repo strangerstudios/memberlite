@@ -19,9 +19,14 @@ if ( ! empty( $memberlite_get_banner_image_src ) ) {
 	<?php } ?>
 
 	<?php
-		$memberlite_loop_images = get_theme_mod( 'memberlite_loop_images', $memberlite_defaults['memberlite_loop_images'] );
+	$memberlite_loop_images = get_theme_mod( 'memberlite_loop_images', $memberlite_defaults['memberlite_loop_images'] );
 	if ( $memberlite_loop_images === 'show_thumbnail' ) {
-		the_post_thumbnail( 'thumbnail', array( 'class' => 'alignright' ) );
+		the_post_thumbnail(
+			'thumbnail',
+			array(
+				'class' => 'alignright',
+			)
+		);
 	}
 	?>
 
@@ -37,7 +42,7 @@ if ( ! empty( $memberlite_get_banner_image_src ) ) {
 		</div><!-- .entry-meta -->
 		<?php endif; ?>
 	</header><!-- .entry-header -->
-	
+
 	<?php if ( ! empty( $memberlite_get_banner_image_src ) ) { ?>
 		</div><!--.entry-banner-->
 	<?php } ?>

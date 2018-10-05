@@ -66,13 +66,9 @@ if ( post_password_required() ) {
 			<?php the_comments_navigation(); ?>
 				<?php
 				// If comments are closed and there are comments, let's leave a little note, shall we?
-				if ( ! comments_open() && '0' != get_comments_number() && post_type_supports( get_post_type(), 'comments' ) ) :
-				?>
-				<p class="pmpro_message pmpro_alert no-comments"><?php esc_html_e( 'Comments are closed.', 'memberlite' ); ?></p>
-				<?php endif; ?>
-				<?php
-		} else {
-		?>
+				if ( ! comments_open() && '0' != get_comments_number() && post_type_supports( get_post_type(), 'comments' ) ) { ?>
+					<p class="pmpro_message pmpro_alert no-comments"><?php esc_html_e( 'Comments are closed.', 'memberlite' ); ?></p>
+				<?php } else { ?>
 				<div class="memberlite_tabbable">
 					<ul class="memberlite_tabs">
 						<?php if ( count( $memberlite_comments ) > 0 ) { ?>
@@ -134,7 +130,6 @@ if ( post_password_required() ) {
 									'type'       => 'trackback',
 									'short_ping' => false,
 									'style'      => 'div',
-									//'walker'     => new Memberlite_Walker_Pings(),
 								)
 							);
 						?>
@@ -149,7 +144,6 @@ if ( post_password_required() ) {
 									'type'       => 'pingback',
 									'short_ping' => false,
 									'style'      => 'div',
-									//'walker'     => new Memberlite_Walker_Pings(),
 								)
 							);
 						?>
@@ -157,10 +151,8 @@ if ( post_password_required() ) {
 					<?php } ?>
 					</div>
 				</div>
-				<?php
-		}
-		?>
-	<?php endif; // have_comments() ?>
+				<?php } // End if(). ?>
+	<?php endif; ?>
 
 	<?php comment_form(); ?>
 

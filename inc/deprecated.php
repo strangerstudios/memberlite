@@ -48,7 +48,9 @@ foreach ( $memberlite_map_deprecated_hooks as $new => $old ) {
 	// assumes hooks with no parameters
 	if ( version_compare( phpversion(), '5.3.0', '>=' ) ) {
 		// Using anonmyous functions for PHP 5.3+
-		$func = function() use ( $new, $old ) { memberlite_maybe_show_deprecated_hook_message( $new, $old ); };
+		$func = function() use ( $new, $old ) {
+			memberlite_maybe_show_deprecated_hook_message( $new, $old );
+		};
 	} else {
 		// Using create_function for PHP 5.2
 		$func = create_function( '', "memberlite_maybe_show_deprecated_hook_message( '$new', '$old' );" );
