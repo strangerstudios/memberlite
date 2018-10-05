@@ -442,6 +442,7 @@ a.comment-reply-link,
 a.pmpro_btn,
 .pmpro_content_message a,
 .pmpro_content_message a:link,
+.pmpro_content_message a:visited,
 input[type="submit"].pmpro_btn,
 input[type="button"].pmpro_btn,
 #main div.em-search-main button.em-search-submit  {
@@ -536,7 +537,8 @@ input[type="submit"].pmpro_btn:hover,
 .pmpro_checkout .pmpro_btn:hover,
 .pmpro_checkout .pmpro_btn:focus,
 .pmpro_content_message a:focus,
-.pmpro_content_message a:hover {
+.pmpro_content_message a:hover,
+.site-main .pmpro_content_message a:hover {
 	border: none;
 	box-shadow: 1px 2px 4px rgba(0,0,0,0.4);
 	color: #FFF;
@@ -598,16 +600,19 @@ a.pmpro_btn.pmpro_cancel:hover,
 	transform: none;
 }
 .btn_primary,
-.btn_primary:link {
+.btn_primary:link,
+.menu-toggle {
 	background: #2C3E50;
 }
 .btn_secondary,
 .btn_secondary:link {
 	background: #18BC9C;
+	color: #FFF;
 }
 .btn_action,
 .btn_action:link {
 	background: #F39C12;
+	color: #FFF;
 }
 .btn_block,
 .btn_block:link {
@@ -752,7 +757,6 @@ input.pmpro_error {background-image: none;}
 select.pmpro_error {background-image: none;}
 
 .pmpro_content_message p:last-child {margin-bottom: 0; }
-.pmpro_content_message a, .pmpro_content_message a:link {text-transform:capitalize; }
 
 .pmpro_bbp_membership_msg {clear: both; }
 
@@ -1697,9 +1701,11 @@ a:active {
 .single-format-video .masthead-post-byline h1.entry-title:before {
 	content: "\f03d";
 }
-.hentry.pmpro-level-required h1.entry-title:before, .pmpro-body-level-required .masthead-post-byline h1.entry-title:before {
+.hentry.pmpro-level-required h1.entry-title:before,
+.pmpro-body-level-required .masthead-post-byline h1.entry-title:before {
 	content: "\f023";
 	font-family: 'Font Awesome 5 Free';
+	font-weight: 700;
 	padding-right: 10px;
 }
 .pmpro-level-required.pmpro-has-access  h1.entry-title:before, .pmpro-body-level-required.pmpro-body-has-access  h1.entry-title:before {
@@ -2048,10 +2054,6 @@ a:active {
 .banner_action div.lead p, .banner_action p.lead {
 	color: #FFF;
 }
-
-.btn_primary, .btn_primary:link, .menu-toggle {background: #2C3E50; }
-.btn_secondary, .btn_secondary:link {background: #18BC9C; }
-.btn_action, .btn_action:link {background: #F39C12; }
 
 /* Tabs used in theme comments also used by Memberlite Shortcodes plugin */
 .memberlite_tabbable ul.memberlite_tabs {margin: 0; }
