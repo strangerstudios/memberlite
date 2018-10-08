@@ -436,7 +436,7 @@ function memberlite_nav_menu_submenu() {
 	}
 
 	// Display the nav menu
-	if ( $children ) {
+	if ( ! empty( $children ) ) {
 	?>
 		<aside id="nav_menu-submenu" class="widget widget_nav_menu">
 			<h3 class="widget-title"><a
