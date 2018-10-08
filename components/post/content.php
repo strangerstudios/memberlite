@@ -29,18 +29,9 @@
 		<?php
 			$content_archives = get_theme_mod( 'content_archives' );
 			if ( $content_archives == 'excerpt' ) {
-				$content_arr = get_extended( $post->post_content );
-				if ( empty( $content_arr['extended'] ) ) {
-					// There is no custom excerpt designated, show the_excerpt()
-					the_excerpt();
-				} else {
-					// There is an excerpt designated by the <!--more--> tag, show that.
-					echo apply_filters( 'the_content', $content_arr['main'] );
-				}
+				memberlite_the_excerpt();
 			} else {
-				global $more;
-				$more = 1;
-				the_content();
+				memberlite_more_content();
 			}
 		?>
 		<?php
@@ -57,7 +48,7 @@
 
 	<footer class="entry-footer">
 		<?php if ( 'post' == get_post_type() ) : // Hide meta text for pages on Search ?>
-			<?php echo memberlite_get_entry_meta( $post, 'after' ); ?>
+			<?php echo Memberlite_Customize::sanitize_text_with_links( memberlite_get_entry_meta( $post, 'after' ) ); ?>
 		<?php endif; // End if 'post' == get_post_type() ?>
 
 		<?php edit_post_link( esc_html__( 'Edit', 'memberlite' ), '<span class="edit-link">', '</span>' ); ?>
