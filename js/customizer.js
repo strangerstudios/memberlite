@@ -47,9 +47,10 @@
 							}
 						);
 
-						$( '.site-title,  .site-description' ).css(
+						$( '.site-title, .site-description' ).css(
 							{
 								'clip': 'auto',
+								'color': to,
 								'position': 'static'
 							}
 						);

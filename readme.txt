@@ -2,7 +2,7 @@
 Contributors: kimannwall, strangerstudios
 Requires at least: WordPress 4.4
 Tested up to: WordPress 4.9.8
-Version: 4.0
+Version: 4.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: one-column, two-columns, left-sidebar, right-sidebar, flexible-header, custom-background, custom-colors, custom-header, custom-menu, custom-logo, editor-style, featured-images, footer-widgets, full-width-template, post-formats, theme-options, threaded-comments, translation-ready, e-commerce
@@ -65,7 +65,7 @@ License: MIT License
 Source: https://foundation.zurb.com/get-involved/faq.html
 
 == Getting Started ==
-Memberlite makes it easy to customize the appearance and layout of your site using the Theme Customization Screen (Appearance > Customize). 
+Memberlite makes it easy to customize the appearance and layout of your site using the Theme Customization Screen (Appearance > Customize).
 
 == Adding Your Logo ==
 Use the Customize > Site Identity screen to add a custom logo (formatted for retina display), update your Site Title and Tagline, and toggle the display of your Site Title & Tagline.
@@ -85,32 +85,65 @@ If you need to customize the theme beyond theme settings, use a child theme.
 == Integrated Plugins ==
 Memberlite includes formatting for use with:
 
-**Paid Memberships Pro**
+= Paid Memberships Pro =
 [Install Paid Memberships Pro »](http://www.paidmembershipspro.com/documentation/download/)
 
-**WooCommerce**
+= WooCommerce =
 [Install WooCommerce »](https://wordpress.org/plugins/woocommerce/) | [Install Paid Memberships Pro - WooCommerce Add On »](https://wordpress.org/plugins/pmpro-woocommerce/)
 
-**bbPress**
+= bbPress =
 [Install bbPress »](https://wordpress.org/plugins/bbpress/) | [Install Paid Memberships Pro - bbPress Add On »](https://wordpress.org/plugins/pmpro-bbpress/)
 
-**Events Manager**
+= Events Manager =
 [Install Events Manager »](https://wordpress.org/plugins/events-manager/)
 
-**Testimonials Widget**
+= Testimonials Widget =
 [Install Testimonials Widget »](https://wordpress.org/plugins/testimonials-widget/)
 
 We highly recommend using these plugins for every site running Memberlite:
 
-**Multiple Post Thumbnails**
+= Multiple Post Thumbnails =
 [Install Multiple Post Thumbnails »](https://wordpress.org/plugins/multiple-post-thumbnails/)
 
-**Theme My Login**
+= Theme My Login =
 [Install Theme My Login »](https://wordpress.org/plugins/theme-my-login/)
 
 == Changelog ==
 
-**4.0 - 2018-07-31 **
+= 4.0.1 - 2018-09-25 =
+* SECURITY: Switching to use absint as a sanitizing function instead of intval_base10 which doesn't work.
+* SECURITY: Fixed escaping in the user account link.
+* BUG FIX: Fix targeting of jQuery for tabbable Content, Post Comments and Permalinks.
+* BUG FIX: Font Awesome icons added via the :before selector in css require a font-weight attribute.
+* BUG FIX: Fixing bug with menu placed text color in header right widget area via widgets > add new.
+* BUG FIX: Fixed bug where "Custom" color scheme didn't save because it wasn't a valid value in sanitization callback.
+* BUG FIX: Fixing code formatting where additional line was breaking columns layout.
+* BUG FIX/ENHANCEMENT: Updating styles for BuddyPress to add to existing BuddyPress template stylesheets instead of complete override.
+* BUG FIX/ENHANCEMENT: Updating primary area form styling to reference the .site-content class instead of the #primary div.
+* BUG FIX/ENHANCEMENT: Updating the primary link color and hover color to use a class instead of an ID attribute.
+* BUG FIX/ENHANCEMENT: Updating memberlite_page_nav function to bail if the post ID is 0.
+* BUG FIX/ENHANCEMENT: Font Awesome fixes for font-weight and buttons; Theme My Login 7 formatting fixes.
+* BUG FIX/ENHANCEMENT: Updating check to require both Multiple Post Thumbnails and Memberlite Elements plugins to allow the show_both option in customizer.
+* BUG FIX/ENHANCEMENT: Improving appearance of front page when set to static.
+* BUG FIX/ENHANCEMENT: Adjusting style for banner images in the loop.
+* BUG FIX/ENHANCEMENT: Updating Recent Posts w/Thumbnails widget to use grid instead of float.
+* BUG FIX/ENHANCEMENT: Fixing case where customizer preview wasn't adjusting site description when changing site title and tagline text color.
+* ENHANCEMENT: Moving all Theme My Login related styles to a separate optionally loaded integration file.
+* ENHANCEMENT: Fixing mobile navigation search form to be the same whether added via Widget or via the Memberlite Options > Search Form After Navigation setting.
+* ENHANCEMENT: Adding pmpro_btn-cancel to the standard link color default customization.
+* ENHANCEMENT: Improving button and link-type button appearance throughout theme and for use in Paid Memberships Pro.
+* ENHANCEMENT: Fixing padding on bbPress search widget to match other widget spacing.
+* ENHANCEMENT: Removing padding on Custom HTML widget when placed in the sidebar (#secondary) location.
+* ENHANCEMENT: Cleaning up tabs on empty lines.
+* ENHANCEMENT: Removing the !important declaration from button font color.
+* ENHANCEMENT: Adjusting text size of post titles in recent posts with thumbnails widget.
+* ENHANCEMENT: Adding rel="nofollow" to the custom excerpt more link.
+* ENHANCEMENT: Updating screenshot.
+* ENHANCEMENT: Updating "Tested up to" WordPress version value.
+* ENHANCEMENT: Adjusting featured image size in loop to use the 'medium' size for better appearance.
+* FEATURE: Added 'memberlite_google_fonts_weights' filter to adjust which font weights are enqueued when loading Google Fonts.
+
+= 4.0 - 2018-07-31 =
 * SECURITY/BUG FIX: Added esc_url to wp-admin links on theme welcome page.
 * SECURITY/BUG FIX: Various other escaping and sanitization fixes. (Thanks, Justin Tadlock and Sakin Shrestha)
 * BUG FIX: Hiding 'Register' link in meta menu if registration is disabled.
@@ -126,11 +159,11 @@ We highly recommend using these plugins for every site running Memberlite:
 * ENHANCEMENT: Added {post_type} as a variable for the Post Entry Meta settings.
 * ENHANCEMENT: Added some web safe fonts (non-Google Font) options for the font settings. Also allowing translators to exclude certain fonts.
 
-**3.0.4 - 2017-10-27 **
+= 3.0.4 - 2017-10-27 =
 * SECURITY/BUG FIX/ENHANCEMENT: Added sanitization and escaping to the banner metabox on the edit post page, fixed the cropping settings for the uploaded images, and refactored the code to make it more readable. (Thanks, Massimo Marazzi)
 * ENHANCEMENT: Improved checkout template to work with the div-based layout now used in PMPro 1.9.4+.
 
-**3.0.3 - 2017-08-07 **
+= 3.0.3 - 2017-08-07 =
 * SECURITY: Escaping login/logout URLs, account/profile URLs, landing page level URL, home_url.
 * BUG FIX: Fixed float for Full Width and Narrow Width page templates when default pages layout set to left sidebar.
 * BUG/ENHANCEMENT: Wrapping welcome text in header and a few other strings for translation.
@@ -144,24 +177,24 @@ We highly recommend using these plugins for every site running Memberlite:
 * NOTE/ENHACEMENT: Now only showing the post meta generated by memberlite_get_entry_meta() on the post CPT.
 * NOTE/ENHANCEMENT: Now only showing the footer widgets primary background stripe if there are active widgets in the area.
 * ENHANCEMENT: Added CSS for JetPack contact form submission/results blockquote.
-* ENHANCEMENT: Improved breadcrumbs for custom post type archives and custom taxonomies 
+* ENHANCEMENT: Improved breadcrumbs for custom post type archives and custom taxonomies
 * ENHANCEMENT: Improved page title for custom post type archives and custom taxonomies
 * ENHANCEMENT: Updated bbPress single forum topic title output.
 
-**3.0.2 - 2017-01-12 **
+= 3.0.2 - 2017-01-12 =
 * BUG: Fixed issue with update code when PMPro is not installed.
 * BUG/ENHANCEMENT: Now running "do_shortcode" on the "Banner Right" content.
 * BUG/ENHANCEMENT: CSS tweak for input elements in iOS browsers.
 * ENHANCEMENT: Added Narrow Width page template for an 8 column centered main content layout with no sidebar.
 
-**3.0.1 - 2016-12-06 **
+= 3.0.1 - 2016-12-06 =
 * BUG: Now hiding the wrapping <p> tag for memberlite_get_entry_meta before and after when set to none via customizer.
 * ENHANCEMENT: Added masthead with profile user name to bbPress single user profile view.
 * BUG: Now filtering memberlite_banner_right to allow shortcodes.
 * BUG: Fixing some display issues with no masthead and the blog sidebar float.
 * NOTE/ENHANCEMENT: Added the code back to update from the PMPro license server until we get approval in the WordPress repository.
 
-**3.0 - 2016-09-20 **
+= 3.0 - 2016-09-20 =
 * ENHANCEMENT: Page banner description and banner right column now inheriting ratio of primary columns.
 * ENHANCEMENT: Adding support for toggling display of page masthead banner.
 * BUG: Fixing index error on memberlite_cpt_sidebar_id.
@@ -187,15 +220,15 @@ We highly recommend using these plugins for every site running Memberlite:
 * ENHANCEMENT: Moving all shortcodes to 'memberlite-shortocdes' plugin for better compatibility for theme changes.
 * ENHANCEMENT: Improved handling of CPT titles, breadcrumbs, and sidebars for single and archive view.
 
-**2.0.3.7**
+= 2.0.3.7 =
 * ENHANCEMENT: Added JS code to swap to a tab if an anchor is in the URL.
 
-**2.0.3.6**
+= 2.0.3.6 =
 * ENHANCEMENT: Added responsive appearance to compare_table Membership Levels layout.
 * Added hooks for before and after content hooks to single page and single post.
 * BUG: Fixed notices in memberlite_levels shortcode.
 
-**2.0.3.5**
+= 2.0.3.5 =
 * FEATURE: Added memberlite_banner shortcode
 * BUG: Fixed comment/ping/trackback count for 'approve' status only.
 * BUG: Updated Comment Walker to respect PHP strict standards
@@ -204,14 +237,14 @@ We highly recommend using these plugins for every site running Memberlite:
 * BUG: Fixed current_user level class on compare_table layout in membership levels shortcode.
 * BUG: Fixed notice when bbpress is not activated for memberlite_page_title function
 
-**2.0.3.4 - 2015-11-07 **
+= 2.0.3.4 - 2015-11-07 =
 * SECURITY: Now using get_search_query() and the_search_query() to prevent XSS issues in h1s and breadcrumbs on search results pages. (Thanks, retr0)
 * ENHANCEMENT: Tweaks to checkout page CSS.
 
-**2.0.3.3**
+= 2.0.3.3 =
 * BUG: Updated memberlite_defaults for banner hover background color.
 
-**2.0.3.2 - 2015-10-08 **
+= 2.0.3.2 - 2015-10-08  =
 * BUG: Updated sidebar registration order so default widgets of new WP install are placed in the Posts custom sidebar.
 * BUG: Fixed dropdown submenu menus at the third level/depth.
 * BUG: Fixed case where the member menu wouldn’t appear for a logged in member.
@@ -227,15 +260,15 @@ We highly recommend using these plugins for every site running Memberlite:
 * ENHANCEMENT: Moved memberlite_defaults array to a separate included file.
 * ENHANCEMENT: Design improvements for galleries and image captions.
 
-**2.0.3.1 - 2015-08-26 **
+= 2.0.3.1 - 2015-08-26 =
 * ENHANCEMENT: Support added for dark background via customizer setting and additional dark.css
 * BUG: Fixing issue with [memberlite_subpagelist] shortcode thumbnail size setting
 * BUG: Header text color fix in customizer
 
-**2.0.3 - 2015-08-26 **
+= 2.0.3 - 2015-08-26 =
 * SECURITY: Fixed XSS issue with the h1 display of search queries.
 * BUG: Removed pmpro_content_filter from banner description so it is not duplicated in post content.
-* BUG: Fixing issue where archvies and index weren't showing full the_content when set in customizer.  
+* BUG: Fixing issue where archvies and index weren't showing full the_content when set in customizer.
 * ENHANCEMENT: Updating Title of Contents and general stylesheet formatting improvements.
 * ENHANCEMENT: Added post_parent and thumbnail_size attributes to [memberlite_subpagelist] shortcode.
 * ENHANCEMENT: Improved memberlite_getLevelCost function to respect price formatting filters in Paid Memberships Pro.
@@ -244,13 +277,13 @@ We highly recommend using these plugins for every site running Memberlite:
 * ENHANCEMENT: Added 'scheme_SCHEMENAME' to body classes array when an included color scheme is selected in customizer.'
 * ENHANCEMENT: Improved formatting for comments, nested comments, pingbacks and trackbacks
 
-**2.0.2**
+= 2.0.2 =
 * ENHANCEMENT: Now respecting your choice if you set a specific page template on the "static front page".
 * BUG: Updates to member menu area to only show the "member menu" selection if current user has membership level.
 
-**2.0.1**
+= 2.0.1 =
 * BUG: Added hook to reset update_themes cache when pmpro license is updated.
 * ENHANCEMENT: Added the "pmpro_license_check_key_timeout" filter which can be used to set the timeout of the call to the PMPro License Server to something other than 5s. This is useful if you find your website timing out or having trouble getting updates.
 
-**2.0**
+= 2.0 =
 * Initial version.

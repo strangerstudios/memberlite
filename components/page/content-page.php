@@ -6,7 +6,7 @@
  */
 ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>	
+<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<div class="entry-content">
 		<?php do_action( 'memberlite_before_content_page' ); ?>
 		<?php the_content(); ?>
@@ -18,17 +18,17 @@
 				)
 			);
 		?>
-			
+
 		<?php
 			$memberlite_page_nav = get_theme_mod( 'memberlite_page_nav', 1 );
 		if ( ! empty( $memberlite_page_nav ) && ! is_page_template( 'templates/fluid-width.php' ) ) {
 			memberlite_page_nav();
 		}
 		?>
-				
+
 		<?php do_action( 'memberlite_after_content_page' ); ?>
 	</div><!-- .entry-content -->
-	<?php if ( !empty( $post->post_type ) && current_user_can( 'edit_post', $post->ID ) ) { ?>
+	<?php if ( ! empty( $post->post_type ) && current_user_can( 'edit_post', $post->ID ) ) { ?>
 		<footer class="entry-footer">
 			<?php edit_post_link( esc_html__( 'Edit', 'memberlite' ), '<span class="edit-link">', '</span>' ); ?>
 		</footer><!-- .entry-footer -->

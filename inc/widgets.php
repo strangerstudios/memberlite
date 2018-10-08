@@ -89,7 +89,7 @@ class Memberlite_Widget_Recent_Posts_Thumbnails extends WP_Widget {
 						<?php $author_id = get_the_author_meta( 'ID' ); ?>
 						<a class="widget_post_thumbnail" href="<?php the_permalink(); ?>"><?php echo get_avatar( $author_id, 80 ); ?></a>
 					<?php } ?>
-					<h4 class="entry-title"><a href="<?php the_permalink(); ?>"><?php get_the_title() ? the_title() : the_ID(); ?></a></h4>
+					<h5 class="entry-title"><a href="<?php the_permalink(); ?>"><?php get_the_title() ? the_title() : the_ID(); ?></a></h5>
 					<?php if ( $show_date ) : ?>
 						<span class="post-date"><?php echo get_the_date(); ?></span>
 					<?php endif; ?>

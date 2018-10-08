@@ -4,7 +4,7 @@
  *
  * @package Memberlite
  */
-define( 'MEMBERLITE_VERSION', '4.0' );
+define( 'MEMBERLITE_VERSION', '4.0.1' );
 
 // get default values for options/etc
 require_once get_template_directory() . '/inc/defaults.php';
@@ -49,10 +49,13 @@ function memberlite_google_fonts_url() {
 		// Break the theme mod for custom fonts into two parts.
 		$fonts_string_parts = explode( '_', $fonts_string );
 
+		// Filter to modify which font weights are enqueued.
+		$font_weights = apply_filters( 'memberlite_google_fonts_weights', '400,700' );
+
 		// Build the array of font families to return.
 		$font_families = array();
-		$font_families[] = str_replace( '-', ' ', $fonts_string_parts[0] ) . ':400,700';
-		$font_families[] = str_replace( '-', ' ', $fonts_string_parts[1] ) . ':400,700';
+		$font_families[] = str_replace( '-', ' ', $fonts_string_parts[0] ) . ':' . $font_weights;
+		$font_families[] = str_replace( '-', ' ', $fonts_string_parts[1] ) . ':' . $font_weights;
 
 		$query_args = array(
 			'family' => urlencode( implode( '|', $font_families ) ),
@@ -102,7 +105,7 @@ function memberlite_adjusted_content_width() {
 	$memberlite_columns_ratio_primary = memberlite_getColumnsRatio();
 
 	if ( is_page_template( 'templates/full-width.php' ) || is_page_template( 'templates/fluid-width.php' ) ) {
-        $content_width = 1170; /* pixels */
+		$content_width = 1170; /* pixels */
 	} else {
 		switch ( $memberlite_columns_ratio_primary ) {
 			case 1:
@@ -139,7 +142,7 @@ function memberlite_adjusted_content_width() {
 				$content_width = 1037; /* pixels */
 				break;
 		}
-	}
+	} // End if().
 }
 add_action( 'wp', 'memberlite_adjusted_content_width' );
 
@@ -162,8 +165,9 @@ if ( ! function_exists( 'memberlite_setup' ) ) :
 		// Add logo upload support via Customizer
 		add_theme_support(
 			'custom-logo', array(
-				'height'      => 100,
-				'width'       => 360,
+				'height'      => 200,
+				'width'       => 720,
+				'flex-height'  => true,
 				'flex-width'  => true,
 				'header-text' => array( 'site-title', 'site-description' ),
 			)
@@ -399,7 +403,7 @@ function memberlite_get_sidebar( $name = null ) {
 }
 
 /* Check for updates */
-if( is_admin() ) {
+if ( is_admin() ) {
 	require_once get_template_directory() . '/inc/updates.php';
 	memberlite_checkForUpdates();
 }
@@ -438,22 +442,31 @@ if ( defined( 'PMPRO_VERSION' ) ) {
 	require_once get_template_directory() . '/inc/integrations/paid-memberships-pro.php';
 }
 
+/* Integration for BuddyPress. */
+if ( function_exists( 'is_buddypress' ) ) {
+	require_once get_template_directory() . '/inc/integrations/buddypress.php';
+}
+
+/* Integration for Theme My Login. */
+if ( function_exists( 'theme_my_login' ) ) {
+	require_once get_template_directory() . '/inc/integrations/theme-my-login.php';
+}
+
 /* Integration for WooCommerce. */
 if ( function_exists( 'is_woocommerce' ) ) {
 	require_once get_template_directory() . '/inc/integrations/woocommerce.php';
 }
 
-
 function memberlite_frontpage_template_hierarchy( $templates ) {
-    $templates = array();
-    if ( ! is_home() ) {
-        $custom = get_page_template_slug( get_queried_object_id() );
-        if ( ! empty ( $custom ) ) {
-            $templates[] = $custom;
-        }
-        $templates[] = 'front-page.php';
-    }
-    // Return the template hierarchy.
-    return $templates;
+	$templates = array();
+	if ( ! is_home() ) {
+		$custom = get_page_template_slug( get_queried_object_id() );
+		if ( ! empty( $custom ) ) {
+			$templates[] = $custom;
+		}
+		$templates[] = 'front-page.php';
+	}
+	// Return the template hierarchy.
+	return $templates;
 }
 add_filter( 'frontpage_template_hierarchy', 'memberlite_frontpage_template_hierarchy', 5 );

@@ -1,0 +1,192 @@
+/**
+ * Theme My Login specific CSS
+ *
+ * @package Memberlite
+ */
+
+/* =Theme My Login Style
+-------------------------------------------------------------- */
+
+
+/*--------------------------------------------------------------
+5.2 Menus
+--------------------------------------------------------------*/
+#mobile-navigation .widget_theme_my_login p {
+	margin: 0 0 1rem 0;
+}
+#mobile-navigation .widget_theme_my_login input[type=text],
+#mobile-navigation .widget_theme_my_login input[type=password],
+#mobile-navigation .widget_theme_my_login input[type=submit] {
+	width: 100%;
+}
+#mobile-navigation .widget_theme_my_login .tml-links li {
+	display: block;
+}
+#mobile-navigation .widget_theme_my_login .tml-links li:after {
+	content: "";
+	margin: 0;
+	padding: 0;
+}
+#mobile-navigation .widget_theme_my_login .tml-user-avatar {
+	margin-left: 1rem;
+}
+#mobile-navigation .widget_theme_my_login ul.tml-user-links {
+	margin-bottom: 2rem;
+}
+#mobile-navigation .widget_theme_my_login ul.tml-action-links li a {
+	font-size: .8em;
+}
+#mobile-navigation .widget_theme_my_login ul.tml-action-links li a {
+	display: block;
+	padding: .5rem 1rem;
+}
+#mobile-navigation .widget_theme_my_login ul.tml-action-links li a:hover {
+	background: rgba(0,0,0,0.2);
+}
+/*--------------------------------------------------------------
+11.2 Theme My Login: https://wordpress.org/plugins/theme-my-login/
+--------------------------------------------------------------*/
+.tml {
+	max-width: 100%;
+}
+.tml p {
+	margin: 0 0 1.45rem 0;
+}
+.tml-profile h3 {
+	background: #FAFAFA;
+	border-top: 1px solid #CCC;
+	border-bottom: 1px dotted #CCC;
+	margin-bottom: 0;
+	margin-top: 0;
+	padding: .7rem 1.45rem;
+}
+.tml-profile .tml-field-wrap h3 {
+	margin-left: -1.45rem;
+	margin-right: -1.45rem;
+}
+.tml-profile .tml-field-wrap {
+	padding: 0 1.45rem;
+}
+.tml-profile .tml-label,
+.tml-profile .tml-description {
+	margin: 0;
+}
+.tml-profile table {
+	display: block;
+	margin: 1em 0;
+	padding: 0 1.45rem;
+}
+.tml-profile tr,
+.tml-profile tr:nth-child(even) th,
+.tml-profile tr:nth-child(even) td,
+.tml-profile th,
+.tml-profile td {
+	background: none;
+	border: none;
+	display: block;
+	padding: 0;
+}
+.tml-profile td,
+.tml-profile tr:nth-child(even) td {
+	padding-bottom: 1.45rem;
+}
+.tml-profile .description {
+	display: block;
+	font-size: .85em;
+	font-style: italic;
+	margin: 0;
+}
+.tml-profile p.tml-submit-wrap {
+	text-align: right;
+}
+#secondary .widget_theme_my_login {
+	background: #FAFAFA;
+	border: 1px solid #CCC;
+	padding: 1.45rem;
+}
+#secondary .widget_theme_my_login h3.widget-title {
+	background: none;
+	border: none;
+	padding: 0;
+}
+#secondary .widget_theme_my_login ul li {
+	border: none;
+	margin: 0;
+	padding: 0;
+}
+.tml.tml-user-panel {
+	display: grid;
+	grid-template-columns: 80px auto;
+	grid-template-areas:
+    "avatar user-links"
+    "avatar nav";
+}
+.tml.tml-user-panel .tml-user-avatar {
+	grid-area: avatar;
+}
+.tml.tml-user-panel .tml-user-links {
+	grid-area: user-links;
+}
+.tml.tml-user-panel nav {
+	grid-area: nav;
+}
+#primary .tml input,
+#primary .tml select {
+	width: auto;
+}
+#primary .tml input[type="text"],
+#primary .tml input[type="email"],
+#primary .tml input[type="url"],
+#primary .tml input[type="password"],
+#primary .tml textarea,
+#primary .tml select {
+	min-width: 320px;
+}
+#primary .pmpro_message.pmpro_default .tml input,
+#primary .pmpro_message.pmpro_default .tml textarea,
+#primary .pmpro_message.pmpro_default .tml select {
+	width: 100%;
+}
+#primary .pmpro_message.pmpro_default .tml input[type="checkbox"] {
+	width: auto;
+}
+@media screen and (min-width: 768px) {
+	#primary .tml-login .tml-rememberme-wrap,
+	#primary .tml-login .tml-submit-wrap {
+		display: block;
+		text-align: left;
+	}
+}
+#secondary .tml input,
+#secondary .tml textarea,
+#secondary .tml select {
+	margin: 0;
+}
+.tml .tml-links {
+	border-top: 1px dotted #CCC;
+	color: #CCC;
+	display: block;
+	margin: 0;
+	padding-top: 1.45rem;
+}
+.tml .tml-links li {
+	display: inline-block;
+}
+.tml .tml-links li:after {
+	content: "|";
+	margin-right: .7rem;
+	padding-left: .7rem;
+}
+.tml .tml-links li:last-child:after {
+	content: "";
+	margin: 0;
+	padding: 0;
+}
+.site-main .tml .tml-links li a {
+	color: #777;
+	text-decoration: none;
+}
+#secondary .tml .tml-links li a,
+#secondary .tml .tml-links li a:hover {
+	border: none;
+}
