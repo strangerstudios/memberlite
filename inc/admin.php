@@ -34,7 +34,7 @@ function memberlite_support() {
 	<div id="wpbody-content" aria-label="<?php esc_attr_e( 'Main content', 'memberlite' ); ?>" tabindex="0">
 		<style>
 			.about-wrap {max-width: 100%; }
-			.about-wrap .memberlite-badge {background-image: url(<?php echo get_template_directory_uri() . '/images/Memberlite_icon.png'; ?>); background-color: #FFF; color: #2C3E50; }
+			.about-wrap .memberlite-badge {background-image: url(<?php echo esc_url( get_template_directory_uri() ) . '/images/Memberlite_icon.png'; ?>); background-color: #FFF; color: #2C3E50; }
 			.about-wrap .dashicons {font-size: 40px; height: 40px; width: 40px; }
 			.about-wrap .plugin-card h3 {margin: 0 0 12px; }
 			.about-wrap .about-text.about-text-no-right-margin {margin-right: 0; }
@@ -98,7 +98,7 @@ function memberlite_support() {
 						<div class="plugin-card-top">
 							<div class="name column-name">
 								<h3><a href="https://memberlitetheme.com/memberlite-elements/" target="_blank"><?php esc_html_e( 'Memberlite Elements', 'memberlite' ); ?></a></h3>
-								<img src="<?php echo get_template_directory_uri(); ?>/images/memberlite-elements-icon-256x256.png" class="plugin-icon" alt="Memberlite Elements" />
+								<img src="<?php echo esc_url( get_template_directory_uri() ); ?>/images/memberlite-elements-icon-256x256.png" class="plugin-icon" alt="Memberlite Elements" />
 							</div>
 							<div class="action-links">
 								<ul class="plugin-action-buttons">
@@ -146,7 +146,7 @@ function memberlite_support() {
 						<div class="plugin-card-top">
 							<div class="name column-name">
 								<h3><a href="https://www.paidmembershipspro.com" target="_blank"><?php esc_html_e( 'Paid Memberships Pro', 'memberlite' ); ?></a></h3>
-								<img src="<?php echo get_template_directory_uri(); ?>/images/paid-memberships-pro-icon-256x256.png" class="plugin-icon" alt="Paid Memberships Pro">
+								<img src="<?php echo esc_url( get_template_directory_uri() ); ?>/images/paid-memberships-pro-icon-256x256.png" class="plugin-icon" alt="Paid Memberships Pro">
 							</div>
 							<div class="action-links">
 								<ul class="plugin-action-buttons">
@@ -164,7 +164,7 @@ function memberlite_support() {
 						<div class="plugin-card-top">
 							<div class="name column-name">
 								<h3><a href="https://wordpress.org/plugins/multiple-post-thumbnails/" target="_blank"><?php esc_html_e( 'Multiple Post Thumbnails', 'memberlite' ); ?></a></h3>
-								<img src="<?php echo get_template_directory_uri(); ?>/images/multiple-post-thumbnails-icon-256x256.png" class="plugin-icon" alt="Multiple Post Thumbnails">
+								<img src="<?php echo esc_url( get_template_directory_uri() ); ?>/images/multiple-post-thumbnails-icon-256x256.png" class="plugin-icon" alt="Multiple Post Thumbnails">
 							</div>
 							<div class="action-links">
 								<ul class="plugin-action-buttons">
@@ -182,7 +182,7 @@ function memberlite_support() {
 						<div class="plugin-card-top">
 							<div class="name column-name">
 								<h3><a href="https://thememylogin.com/" target="_blank"><?php esc_html_e( 'Theme My Login', 'memberlite' ); ?></a></h3>
-								<img src="<?php echo get_template_directory_uri(); ?>/images/theme-my-login-icon-256x256.png" class="plugin-icon" alt="Theme My Login">
+								<img src="<?php echo esc_url( get_template_directory_uri() ); ?>/images/theme-my-login-icon-256x256.png" class="plugin-icon" alt="Theme My Login">
 							</div>
 							<div class="action-links">
 								<ul class="plugin-action-buttons">
@@ -201,7 +201,7 @@ function memberlite_support() {
 						<div class="plugin-card-top">
 							<div class="name column-name">
 								<h3><a href="https://www.paidmembershipspro.com/add-ons/pmpro-advanced-levels-shortcode/" target="_blank"><?php esc_html_e( 'Advanced Levels Page Shortcode', 'memberlite' ); ?></a></h3>
-								<img src="<?php echo get_template_directory_uri(); ?>/images/pmpro-advanced-levels-shortcode-icon-256x256.png" class="plugin-icon" alt="Advanced Levels Page Shortcode" />
+								<img src="<?php echo esc_url( get_template_directory_uri() ); ?>/images/pmpro-advanced-levels-shortcode-icon-256x256.png" class="plugin-icon" alt="Advanced Levels Page Shortcode" />
 							</div>
 							<div class="action-links">
 								<ul class="plugin-action-buttons">
@@ -211,10 +211,10 @@ function memberlite_support() {
 										<?php } else {
 											if ( function_exists( 'pmpro_license_isValid' ) && pmpro_license_isValid( $pmpro_license_key, 'plus' ) ) {
 												// valid key
-												echo '<span class="install"><a class="install-now button" href="' . wp_nonce_url( self_admin_url( 'update.php?action=install-plugin&plugin=pmpro-advanced-levels-shortcode', 'install-plugin_pmpro-advanced-levels-shortcode' ) ) . '">' . esc_html_e( 'Install Now', 'memberlite' ) . '</a></span>';
+												echo '<span class="install"><a class="install-now button" href="' . esc_url( wp_nonce_url( self_admin_url( 'update.php?action=install-plugin&plugin=pmpro-advanced-levels-shortcode', 'install-plugin_pmpro-advanced-levels-shortcode' ) ) ) . '">' . esc_html_e( 'Install Now', 'memberlite' ) . '</a></span>';
 											} else {
 												// invalid key
-												echo '<span class="download"><a class="install-now button" target="_blank" href="http://license.paidmembershipspro.com/downloads/plus/pmpro-advanced-levels-shortcode.zip?key=' . $pmpro_license_key . '">' . esc_html__( 'Download', 'memberlite' ) . '</a></span>';
+												echo '<span class="download"><a class="install-now button" target="_blank" href="http://license.paidmembershipspro.com/downloads/plus/pmpro-advanced-levels-shortcode.zip?key=' . esc_attr( $pmpro_license_key ) . '">' . esc_html__( 'Download', 'memberlite' ) . '</a></span>';
 											}
 										} ?>
 									</li>
@@ -240,7 +240,7 @@ function memberlite_support() {
 						<div class="plugin-card-top">
 							<div class="name column-name">
 								<h3><a href="https://www.bbpress.org" target="_blank"><?php esc_html_e( 'bbPress', 'memberlite' ); ?></a></h3>
-								<img src="<?php echo get_template_directory_uri(); ?>/images/bbpress-icon.svg" class="plugin-icon" alt="bbPress" />
+								<img src="<?php echo esc_url( get_template_directory_uri() ); ?>/images/bbpress-icon.svg" class="plugin-icon" alt="bbPress" />
 							</div>
 							<div class="action-links">
 								<ul class="plugin-action-buttons">
@@ -259,7 +259,7 @@ function memberlite_support() {
 						<div class="plugin-card-top">
 							<div class="name column-name">
 								<h3><a href="http://wp-events-plugin.com" target="_blank"><?php esc_html_e( 'Events Manager', 'memberlite' ); ?></a></h3>
-								<img src="<?php echo get_template_directory_uri(); ?>/images/events-manager-icon-256x256.png" class="plugin-icon" alt="Events Manager" />
+								<img src="<?php echo esc_url( get_template_directory_uri() ); ?>/images/events-manager-icon-256x256.png" class="plugin-icon" alt="Events Manager" />
 							</div>
 							<div class="action-links">
 								<ul class="plugin-action-buttons">
@@ -277,7 +277,7 @@ function memberlite_support() {
 						<div class="plugin-card-top">
 							<div class="name column-name">
 								<h3><a href="https://www.paidmembershipspro.com" target="_blank"><?php esc_html_e( 'Paid Memberships Pro', 'memberlite' ); ?></a></h3>
-								<img src="<?php echo get_template_directory_uri(); ?>/images/paid-memberships-pro-icon-256x256.png" class="plugin-icon" alt="Paid Memberships Pro" />
+								<img src="<?php echo esc_url( get_template_directory_uri() ); ?>/images/paid-memberships-pro-icon-256x256.png" class="plugin-icon" alt="Paid Memberships Pro" />
 							</div>
 							<div class="action-links">
 								<ul class="plugin-action-buttons">
@@ -295,7 +295,7 @@ function memberlite_support() {
 						<div class="plugin-card-top">
 							<div class="name column-name">
 								<h3><a href="https://wordpress.org/plugins/testimonials-widget/" target="_blank"><?php esc_html_e( 'Testimonials Widget', 'memberlite' ); ?></a></h3>
-								<img src="<?php echo get_template_directory_uri(); ?>/images/testimonials-widget-icon-256x256.png" class="plugin-icon" alt="">
+								<img src="<?php echo esc_url( get_template_directory_uri() ); ?>/images/testimonials-widget-icon-256x256.png" class="plugin-icon" alt="">
 							</div>
 							<div class="action-links">
 								<ul class="plugin-action-buttons">
@@ -314,7 +314,7 @@ function memberlite_support() {
 						<div class="plugin-card-top">
 							<div class="name column-name">
 								<h3><a href="https://woocommerce.com" target="_blank"><?php esc_html_e( 'WooCommerce', 'memberlite' ); ?></a></h3>
-								<img src="<?php echo get_template_directory_uri(); ?>/images/woocommerce-icon-256x256.png" class="plugin-icon" alt="WooCommerce">
+								<img src="<?php echo esc_url( get_template_directory_uri() ); ?>/images/woocommerce-icon-256x256.png" class="plugin-icon" alt="WooCommerce">
 							</div>
 							<div class="action-links">
 								<ul class="plugin-action-buttons">
@@ -416,14 +416,14 @@ function memberlite_admin_notice_install_memberlite_elements() {
 	// check if the plugin is installed, but not active
 	if ( file_exists( WP_PLUGIN_DIR . '/memberlite-elements/memberlite-elements.php' ) ) {
 		// installed but not activated
-		$click_link = wp_nonce_url( self_admin_url( 'plugins.php?action=activate&plugin=memberlite-elements/memberlite-elements.php' ), 'activate-plugin_memberlite-elements/memberlite-elements.php' );
+		$click_link = esc_url( wp_nonce_url( self_admin_url( 'plugins.php?action=activate&plugin=memberlite-elements/memberlite-elements.php' ), 'activate-plugin_memberlite-elements/memberlite-elements.php' ) );
 		$click_text = __(
 			'Click here to activate the Memberlite Elements plugin.',
 			'memberlite'
 		);
 	} else {
 		// need to install
-		$click_link = wp_nonce_url( self_admin_url( 'update.php?action=install-plugin&plugin=memberlite-elements' ), 'install-plugin_memberlite-elements' );
+		$click_link = esc_url( wp_nonce_url( self_admin_url( 'update.php?action=install-plugin&plugin=memberlite-elements' ), 'install-plugin_memberlite-elements' ) );
 		$click_text = __(
 			'Click here to install the Memberlite Elements plugin.',
 			'memberlite'
