@@ -186,6 +186,7 @@ function memberlite_get_the_content_before_more( $content = null ) {
 		return $content;
 	}
 }
+
 function memberlite_the_content( $content ) {
 	$moretag = preg_match( '/\<span id="more-[0-9]*"\>\<\/span\>/', $content, $matches );
 	if ( ! $moretag ) {
@@ -204,6 +205,35 @@ function memberlite_the_content( $content ) {
 	}
 }
 add_filter( 'the_content', 'memberlite_the_content' );
+
+/**
+ * Show the excerpt for a post whether it is specified,
+ * implied by a more tag, or generated.
+ */
+function memberlite_the_excerpt() {
+	global $post;
+
+	$content_arr = get_extended( $post->post_content );
+	if ( empty( $content_arr['extended'] ) ) {
+		// There is no custom excerpt designated, show the_excerpt()
+		the_excerpt();
+	} else {
+		// There is an excerpt designated by the <!--more--> tag, show that.
+		echo wp_kses_post( apply_filters( 'the_content', $content_arr['main'] ) );
+	}
+}
+
+/**
+ * Show the full post content.
+ * Override the $more global so full content shows on archives/etc.
+ * Despite warnings in theme checks, this is the approved way of
+ * doing this.
+ */
+function memberlite_more_content() {
+	global $more;
+	$more = 1;
+	the_content();
+}
 
 function memberlite_page_title( $echo = true ) {
 	global $post;
