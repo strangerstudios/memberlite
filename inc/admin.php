@@ -87,27 +87,12 @@ function memberlite_support() {
 				</div>
 			</div> <!-- end feature-section -->
 
-			<?php
-				$pmpro_license_key = get_option( 'pmpro_license_key', '' );
-			if ( ! empty( $pmpro_license_key ) ) {
-				?>
-
-			<br class="clear" />
-			<hr />
-			<h2><?php esc_html_e( 'Upgrading from Memberlite v3.0?', 'memberlite' ); ?></h2>
-			<div class="wrap">
-				<div class="about-text about-text-no-right-margin">
-					<?php esc_html_e( "We've done our best to make upgrading as smooth as possible. To comply with the WordPress.org Theme Repository guidelines, we have moved some banner and sidebar functionality into a separate plugin. <strong>You will have to install the Memberlite Elements plugin below to retain access to all Memberlite features.</strong>", 'memberlite' ); ?>
-				</div>
-			</div> <!-- end upgrade notice -->
-			<?php } ?>
-
 			<br class="clear" />
 			<hr />
 
 			<h2><?php esc_html_e( 'We highly recommend using these plugins for every site running Memberlite:', 'memberlite' ); ?></h2>
 			<div class="wp-list-table widefat plugin-install">
-				<h2 class="screen-reader-text">Plugins list</h2>
+				<h2 class="screen-reader-text"><?php esc_html_e( 'Plugins list', 'memberlite' );?></h2>
 				<div id="the-list">
 					<div class="plugin-card plugin-card-memberlite-elements">
 						<div class="plugin-card-top">
