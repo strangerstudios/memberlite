@@ -1089,14 +1089,13 @@ a:active {
 6.0 Accessibility
 --------------------------------------------------------------*/
 /* Text meant only for screen readers */
-.screen-reader-text {
+.says, .screen-reader-text {
 	clip: rect(1px, 1px, 1px, 1px);
 	position: absolute !important;
 	height: 1px;
 	width: 1px;
 	overflow: hidden;
 }
-
 .screen-reader-text:hover,
 .screen-reader-text:active,
 .screen-reader-text:focus {
@@ -1877,7 +1876,20 @@ a:active {
 .comment-meta .comment-author.vcard .fn {
 	font-size: 2.1rem;
 }
-.comment-meta .comment-metadata {
+.bypostauthor {
+    border-left-width: 10px;
+    border-style: solid;
+}
+.bypostauthor .comment-meta .comment-author.vcard .fn:after {
+	content: "\f007";
+	font-family: 'Font Awesome 5 Free';
+	font-size: 1.2rem;
+	font-weight: 700;
+	margin-left: 5px;
+	margin-top: -2px;
+}
+.comment-meta .comment-metadata,
+.comment-awaiting-moderation {
 	font-size: 1.4rem;
 	line-height: 1.6rem;
 	margin: 0 0 1.45rem 0;
@@ -1890,6 +1902,9 @@ a:active {
 	grid-area: edit-link;
 	margin: 0 0 0 .7rem;
 	padding: 0 0 0 .7rem;
+}
+.comment-awaiting-moderation {
+	font-style: italic;
 }
 .comment-respond {
 	margin: 2.9rem;
