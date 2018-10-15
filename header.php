@@ -19,6 +19,10 @@
 <?php do_action( 'memberlite_before_page' ); ?>
 <div id="page" class="hfeed site">
 
+<?php
+	// Hide header output for the Blank page template.
+	if ( ! is_page_template( 'templates/blank.php' ) ) { ?>
+
 	<?php get_template_part( 'components/header/mobile', 'menu' ); ?>
 
 	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'memberlite' ); ?></a>
@@ -97,6 +101,7 @@
 		?>
 		</nav><!-- #site-navigation -->
 	<?php } ?>
+<?php } // End if(). ?>
 
 	<?php do_action( 'memberlite_before_content' ); ?>
 
@@ -104,6 +109,6 @@
 
 	<?php get_template_part( 'components/header/masthead' ); ?>
 
-	<?php if ( ! is_page_template( 'templates/fluid-width.php' ) && ! is_404() ) { ?>
+	<?php if ( ! is_page_template( 'templates/fluid-width.php' )  && ! is_page_template( 'templates/blank.php' ) && ! is_404() ) { ?>
 		<div class="row">
 	<?php } ?>
