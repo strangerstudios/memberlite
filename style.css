@@ -439,7 +439,6 @@ input[type="reset"],
 input[type="submit"],
 .btn,
 .btn:link,
-.content-area a.comment-reply-link,
 a.pmpro_btn,
 .pmpro_content_message a,
 .pmpro_content_message a:link,
@@ -518,9 +517,6 @@ input[type="submit"]:active,
 .btn:hover,
 .btn:active,
 .btn:focus,
-.content-area a.comment-reply-link:focus,
-.content-area a.comment-reply-link:active,
-.content-area a.comment-reply-link:hover,
 a.pmpro_btn:active,
 #main div.em-search-main button.em-search-submit:hover {
 	background: #798d8f;
@@ -528,19 +524,18 @@ a.pmpro_btn:active,
 	color: #FFF;
 	transform: translateY(-1px);
 }
-.site-main .btn:hover {
+.content-area .btn:hover {
 	color: #FFF;
 }
 .pmpro_btn:hover,
 .pmpro_btn:focus,
 a.pmpro_btn:hover,
-.site-main .pmpro_btn:hover,
+.content-area .pmpro_btn:hover,
 input[type="submit"].pmpro_btn:hover,
 .pmpro_checkout .pmpro_btn:hover,
 .pmpro_checkout .pmpro_btn:focus,
 .pmpro_content_message a:focus,
-.pmpro_content_message a:hover,
-.site-main .pmpro_content_message a:hover {
+.pmpro_content_message a:hover {
 	border: none;
 	box-shadow: 1px 2px 4px rgba(0,0,0,0.4);
 	color: #FFF;
@@ -582,8 +577,8 @@ input[type="submit"].pmpro_btn:hover,
 .pmpro_cancel,
 .pmpro_cancel:link,
 a.pmpro_cancel:link,
-.site-main .pmpro_btn.pmpro_cancel,
-.site-main .pmpro_btn.pmpro_btn-cancel {
+.content-area .pmpro_btn.pmpro_cancel,
+.content-area .pmpro_btn.pmpro_btn-cancel {
     background: none;
     border: none;
     box-shadow: none;
@@ -595,8 +590,8 @@ a.pmpro_cancel:link,
 .pmpro_btn.pmpro_nolink:hover,
 .pmpro_btn.pmpro_cancel:hover,
 a.pmpro_btn.pmpro_cancel:hover,
-.site-main .pmpro_btn.pmpro_cancel:hover,
-.site-main .pmpro_btn.pmpro_btn-cancel:hover {
+.content-area .pmpro_btn.pmpro_cancel:hover,
+.content-area .pmpro_btn.pmpro_btn-cancel:hover {
 	background: none;
 	box-shadow: none;
 	transform: none;
@@ -630,6 +625,23 @@ a.pmpro_btn.pmpro_cancel:hover,
 .btn_link .fas {
 	padding: 0 .5rem;
 }
+
+.content-area a.btn,
+.content-area a.btn:link,
+.content-area a.comment-reply-link,
+.content-area a.pmpro_btn,
+.content-area a.pmpro_btn:link,
+.content-area a.pmpro_btn:visited,
+.content-area a.btn:hover,
+.content-area a.btn:active,
+.content-area a.btn:focus,
+.content-area a.comment-reply-link:focus,
+.content-area a.comment-reply-link:active,
+.content-area a.comment-reply-link:hover,
+.content-area .pmpro_content_message a:hover {
+	color: #FFF;
+}
+
 /*--------------------------------------------------------------
 4.2 Form Elements
 --------------------------------------------------------------*/
