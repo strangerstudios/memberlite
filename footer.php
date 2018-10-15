@@ -7,7 +7,8 @@
  * @package Memberlite
  */
 ?>
-		<?php if ( ! is_page_template( 'templates/fluid-width.php' ) && ! is_404() ) { ?>
+
+		<?php if ( ! is_page_template( 'templates/fluid-width.php' )  && ! is_page_template( 'templates/blank.php' ) && ! is_404() ) { ?>
 			</div><!-- .row -->
 		<?php } ?>
 
@@ -17,7 +18,7 @@
 
 	<?php do_action( 'memberlite_before_footer' ); ?>
 
-	<?php if ( ! is_page_template( 'templates/interstitial.php' ) ) { ?>
+	<?php if ( ! is_page_template( 'templates/interstitial.php' ) && ! is_page_template( 'templates/blank.php' ) ) { ?>
 	<footer id="colophon" class="site-footer" role="contentinfo">
 
 		<?php get_template_part( 'components/footer/footer', 'widgets' ); ?>
@@ -45,11 +46,12 @@
 		<?php get_template_part( 'components/footer/site', 'info' ); ?>
 
 	</footer><!-- #colophon -->
-	<?php } ?>
+	<?php } // End if(). ?>
 
 	<?php do_action( 'memberlite_after_footer' ); ?>
 
 </div><!-- #page -->
+
 
 <?php do_action( 'memberlite_after_page' ); ?>
 
