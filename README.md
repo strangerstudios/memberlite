@@ -62,10 +62,10 @@ Source: https://foundation.zurb.com/get-involved/faq.html
 
 Memberlite makes it easy to customize the appearance and layout of your site using the Theme Customization Screen (Appearance > Customize).
 
-###Adding Your Logo
+### Adding Your Logo
 Use the Customize > Site Identity screen to add a custom logo (formatted for retina display), update your Site Title and Tagline, and toggle the display of your Site Title & Tagline.
 
-[Explore Documentation on Custom Headers in Memberlite](http://www.memberlitetheme.com/documentation/site-branding/)
+[Explore Documentation on Custom Headers in Memberlite »](http://www.memberlitetheme.com/documentation/site-branding/)
 
 ### Customize the Theme
 Use the Customize > Memberlite Options screen to modify theme layout, logo, fonts, colors, copyright message and more.
