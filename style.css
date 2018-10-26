@@ -1149,6 +1149,25 @@ a:active {
 	display: block;
 	margin: 0 auto;
 }
+.alignwide {
+	margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    max-width: 1000%;
+    width: auto;
+}
+.alignfull {
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    max-width: 1000%;
+    width: auto;
+}
+.wp-block-image.alignwide,
+.wp-block-image.alignfull {
+	text-align: center;
+}
+.wp-block-image.alignwide img {
+	width: 90%;
+}
 .text-center {
 	text-align: center;
 }

@@ -181,6 +181,9 @@ if ( ! function_exists( 'memberlite_setup' ) ) :
 		add_image_size( 'memberlite-fullwidth', 1170, 1200, false, array( 'center', 'center' ) );
 		add_image_size( 'memberlite-masthead', 1600, 300, true, array( 'center', 'center' ) );
 
+		// Enable support for "wide" or "full" alignment Gutenberg blocks.
+		add_theme_support( 'align-wide' );
+
 		// This theme uses wp_nav_menu() in four locations.
 		register_nav_menus(
 			array(
@@ -225,6 +228,38 @@ if ( ! function_exists( 'memberlite_setup' ) ) :
 			)
 		);
 
+		// Adds custom theme colors to the Gutenberg editor palette.
+		$color_primary = get_theme_mod( 'color_primary' );
+		if ( empty( $color_primary ) ) {
+			$color_primary = $memberlite_defaults['color_primary'];
+		}
+		$color_secondary = get_theme_mod( 'color_secondary' );
+		if ( empty( $color_secondary ) ) {
+			$color_secondary = $memberlite_defaults['color_secondary'];
+		}
+		$color_action = get_theme_mod( 'color_action' );
+		if ( empty( $color_action ) ) {
+			$color_action = $memberlite_defaults['color_action'];
+		}
+
+		add_theme_support( 'editor-color-palette', array(
+		    array(
+		        'name' => __( 'color_primary', 'themeLamemberlitengDomain' ),
+		        'slug' => 'color-primary',
+		        'color' => $color_primary,
+		    ),
+		    array(
+		        'name' => __( 'color_secondary', 'memberlite' ),
+		        'slug' => 'color-secondary',
+		        'color' => $color_secondary,
+		    ),
+		    array(
+		        'name' => __( 'color_action', 'memberlite' ),
+		        'slug' => 'color-action',
+		        'color' => $color_action,
+		    ),
+		) );
+		
 		// Styles the visual editor to resemble the theme style
 		add_editor_style( array( 'css/editor-style.css' ) );
 
