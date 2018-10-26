@@ -109,6 +109,25 @@ We highly recommend using these plugins for every site running Memberlite:
 
 ###Changelog
 
+**4.2 - 2018-10-26**
+* SECURITY: Properly escaping the URL for excerpt_more.
+* BUG FIX/ENHANCEMENT: Localizing the 'more' link in excerpt.
+* BUG FIX/ENHANCEMENT: Only applying filter to excerpt_more on the frontend.
+* ENHANCEMENT: Adding new "blank" page template without a header or a footer.
+
+**4.1 - 2018-10-08**
+* SECURITY: Sanitizing meta section just in case.
+* SECURITY: Using esc_html_e to properly escape translatable content.
+* BUG FIX/ENHANCEMENT: Improving button color and font color behavior.
+* BUG FIX/ENHANCEMENT: Fixing missing end break for if statement.
+* BUG FIX/ENHANCEMENT: Adjusting how the_excerpt and <!--more--> tags are handled in loop.
+* BUG FIX/ENHANCEMENT: Improving 'status' post format layout.
+* BUG FIX/ENHANCEMENT: Improving code for WPCS.
+* BUG FIX/ENHANCEMENT: Removing $more tag global.
+* BUG FIX/ENHANCEMENT: Removing custom content walker for comments and pings.
+* ENHANCEMENT: Adding .bypostauthor class; adding class for comments in moderation; hiding "says" from comments.
+* ENHANCEMENT: Added memberlite_the_excerpt and memberlite_more_content functions used in post template parts.
+
 **4.0.1 - 2018-09-25**
 * SECURITY: Switching to use absint as a sanitizing function instead of intval_base10 which doesn't work.
 * SECURITY: Fixed escaping in the user account link.
