@@ -124,7 +124,12 @@ function memberlite_getPostThumbnailWidth( $post_id = null ) {
  */
 function memberlite_excerpt_more( $more ) {
 	global $post;
-	return ' <a href="' . get_permalink( $post->ID ) . '" rel="nofollow">(more...)</a></p>';
+
+	if ( ! is_admin() ) {
+		$more = ' <a href="' . esc_url( get_permalink( $post->ID ) ) . '" rel="nofollow">' . esc_html( __( '(more...)', 'memberlite' ) ) . '</a>';
+	}
+
+	return $more;
 }
 add_filter( 'excerpt_more', 'memberlite_excerpt_more' );
 

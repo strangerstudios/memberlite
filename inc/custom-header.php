@@ -27,7 +27,7 @@ function memberlite_custom_header_setup() {
         )
     );
 }
-add_action( 'after_setup_theme', 'memberlite_custom_header_setup' );
+add_action('after_setup_theme', 'memberlite_custom_header_setup');
 
 if ( ! function_exists( 'memberlite_header_style' ) ) :
     /**
