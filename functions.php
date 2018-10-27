@@ -229,6 +229,7 @@ if ( ! function_exists( 'memberlite_setup' ) ) :
 		);
 
 		// Adds custom theme colors to the Gutenberg editor palette.
+		global $memberlite_defaults;
 		$color_primary = get_theme_mod( 'color_primary' );
 		if ( empty( $color_primary ) ) {
 			$color_primary = $memberlite_defaults['color_primary'];
@@ -244,17 +245,17 @@ if ( ! function_exists( 'memberlite_setup' ) ) :
 
 		add_theme_support( 'editor-color-palette', array(
 		    array(
-		        'name' => __( 'color_primary', 'themeLamemberlitengDomain' ),
+		        'name' => __( 'Primary Color', 'themeLamemberlitengDomain' ),
 		        'slug' => 'color-primary',
 		        'color' => $color_primary,
 		    ),
 		    array(
-		        'name' => __( 'color_secondary', 'memberlite' ),
+		        'name' => __( 'Secondary Color', 'memberlite' ),
 		        'slug' => 'color-secondary',
 		        'color' => $color_secondary,
 		    ),
 		    array(
-		        'name' => __( 'color_action', 'memberlite' ),
+		        'name' => __( 'Action Color', 'memberlite' ),
 		        'slug' => 'color-action',
 		        'color' => $color_action,
 		    ),
