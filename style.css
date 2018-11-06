@@ -2159,6 +2159,8 @@ a:active {
 /*--------------------------------------------------------------
 11.1 Paid Memberships Pro Integrated Styles
 --------------------------------------------------------------*/
+
+/* Membership Levels and Advanced Levels Page Shortcode */
 #pmpro_levels {margin-top: 2rem; margin-bottom: 2rem; }
 #pmpro_levels .medium-4, #pmpro_levels .medium-3 {
 	text-align: center;
@@ -2228,6 +2230,7 @@ a:active {
 
 .memberlite_signup-fixed {position: fixed; top: 0; }
 
+/* Membership Checkout */
 .pmpro_asterisk {
 	color: #C00;
 }
@@ -2296,6 +2299,8 @@ form.pmpro_form .pmpro_payment-expiration select {
 	display: block;
 	width: 100%;
 }
+
+/* Membership Account */
 #pmpro_account .pmpro_box {
 	border: none;
 	padding: 0;
@@ -2311,9 +2316,17 @@ form.pmpro_form .pmpro_payment-expiration select {
 #pmpro_account .pmpro_actionlinks a {
 	text-decoration: underline;
 }
+
+/* Member Directory and Profiles */
 .pmpro_member_directory h3 {
 	margin-top: 0;
 }
+
+/* Sitewide Sales */
+#pmpro_sws_banner_top span.pmpro_sws_banner-button .pmpro_btn {
+	padding: .45rem 1.45rem;
+}
+
 /*--------------------------------------------------------------
 11.2 Testimonials Widget: https://wordpress.org/plugins/testimonials-widget/
 --------------------------------------------------------------*/
