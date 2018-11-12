@@ -443,6 +443,8 @@ a.pmpro_btn,
 .pmpro_content_message a,
 .pmpro_content_message a:link,
 .pmpro_content_message a:visited,
+a.comment-reply-link,
+a.comment-reply-link:link,
 input[type="submit"].pmpro_btn,
 input[type="button"].pmpro_btn,
 #main div.em-search-main button.em-search-submit  {
@@ -536,7 +538,9 @@ input[type="submit"].pmpro_btn:hover,
 .pmpro_checkout .pmpro_btn:hover,
 .pmpro_checkout .pmpro_btn:focus,
 .pmpro_content_message a:focus,
-.pmpro_content_message a:hover {
+.pmpro_content_message a:hover,
+a.comment-reply-link:focus,
+a.comment-reply-link:hover {
 	border: none;
 	box-shadow: 1px 2px 4px rgba(0,0,0,0.4);
 	color: #FFF;
@@ -1837,6 +1841,10 @@ a:active {
 /*--------------------------------------------------------------
 10.6 Comments
 --------------------------------------------------------------*/
+#comments { 
+	margin-bottom:  2.9rem;
+}
+
 .comment,
 .pingback,
 .trackback {
