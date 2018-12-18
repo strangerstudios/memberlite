@@ -21,6 +21,7 @@ function memberlite_support() {
 	<div id="wpbody-content" aria-label="<?php esc_attr_e( 'Main content', 'memberlite' ); ?>" tabindex="0">
 		<style>
 			.about-wrap {max-width: 100%; }
+			.about-wrap img{max-width:140px;}
 			.about-wrap .memberlite-badge {background-image: url(<?php echo esc_url( get_template_directory_uri() ) . '/images/Memberlite_icon.png'; ?>); background-color: #FFF; color: #2C3E50; }
 			.about-wrap .dashicons {font-size: 40px; height: 40px; width: 40px; }
 			.about-wrap .plugin-card h3 {margin: 0 0 12px; }
