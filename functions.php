@@ -227,6 +227,40 @@ if ( ! function_exists( 'memberlite_setup' ) ) :
 				)
 			)
 		);
+		
+		// Adds Color Scheme to Block Editor
+		add_theme_support( 'editor-color-palette', array(
+		    array(
+		        'name' => __( 'Primary', 'memberlite' ),
+		        'slug' => 'primary',
+		        'color' => get_theme_mod( 'color_primary' ),
+		    ),
+		    array(
+		        'name' => __( 'Secondary', 'memberlite' ),
+		        'slug' => 'secondary',
+		        'color' => get_theme_mod( 'color_secondary' ),
+		    ),
+			array(
+		        'name' => __( 'Action', 'memberlite' ),
+		        'slug' => 'action',
+		        'color' => get_theme_mod( 'color_action' ),
+		    ),
+			array(
+		        'name' => __( 'Navigation', 'memberlite' ),
+		        'slug' => 'navigation',
+		        'color' => get_theme_mod( 'color_site_navigation' ),
+		    ),
+			array(
+		        'name' => __( 'Navigation Background', 'memberlite' ),
+		        'slug' => 'bgnavigation',
+		        'color' => get_theme_mod( 'bgcolor_site_navigation' ),
+		    ),
+			array(
+		        'name' => __( 'Background', 'memberlite' ),
+		        'slug' => 'background',
+		        'color' => '#' . get_theme_mod( 'background_color' ),
+		    ),
+		) );
 
 		// Styles the visual editor to resemble the theme style
 		add_editor_style( array( 'css/editor-style.css' ) );
