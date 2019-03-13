@@ -200,14 +200,17 @@ blockquote {
 	padding: 2.9rem 2.9rem 1px 2.9rem;
 	border-left: 5px solid #CCC;
 }
-blockquote.quote, .testimonials-widget blockquote {
+blockquote.quote,
+.testimonials-widget blockquote,
+.wp-block-quote {
 	background: none;
 	color: #666;
 	border: none;
 	padding: 0 0 0 3.7rem;
 	position: relative;
 }
-blockquote.quote:before {
+blockquote.quote:before,
+.wp-block-quote:before {
 	content: "\f10d";
 	font-family: 'Font Awesome 5 Free';
 	font-weight: 700;
@@ -218,17 +221,26 @@ blockquote.quote:before {
 	position: absolute;
 	z-index: -1;
 }
-blockquote.quote p:last-child {
+blockquote.quote p:last-child,
+.wp-block-quote p:last-child {
 	margin-bottom: 0;
 }
-blockquote cite, .testimonials-widget blockquote .credit {
+blockquote cite,
+.testimonials-widget blockquote .credit,
+.wp-block-quote cite {
 	display: block;
 	margin-top: .5rem;
 	text-align: right;
 	font-style: italic;
 	color: #AAA;
 }
-blockquote cite a, .testimonials-widget blockquote .credit a {
+.wp-block-quote cite,
+.wp-block-pullquote cite {
+	margin-bottom: 2.9rem;
+}
+blockquote cite a,
+.testimonials-widget blockquote .credit a,
+.wp-block-quote cite a {
 	color: #AAA;
 	text-decoration: none;
 }
@@ -283,6 +295,10 @@ details[open] > summary:before {
 }
 details > summary::-webkit-details-marker {
 	display: none;
+}
+.wp-block-image figcaption {
+	font-size: 1.4rem;
+	line-height: 2.2rem;
 }
 pre {
 	background: #eee;
