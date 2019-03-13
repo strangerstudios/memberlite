@@ -819,9 +819,6 @@ function memberlite_get_banner_image_src( $post_id = null, $size = 'banner' ) {
  *
  */
 function memberlite_parse_tags( $meta, $post = null ) {
-	if ( empty( $post ) ) {
-		global $post;
-	}
 
 	$author = get_userdata( $post->post_author );
 
@@ -840,15 +837,19 @@ function memberlite_parse_tags( $meta, $post = null ) {
 
 	if ( strpos( $meta, '{post_categories}' ) !== false ) {
 		$searches[]     = '{post_categories}';
-		$replacements[] = get_the_category_list( __( ', ', 'memberlite' ) );
+		$category_list = get_the_category_list( __( ', ', 'memberlite' ), '', $post->ID );
+		if ( ! empty( $category_list ) ) {
+			$replacements[] = $category_list;
+		} else {
+			$replacements[] = __( 'No Category', 'memberlite' );
+		}
 	}
 
 	if ( strpos( $meta, '{post_comments}' ) !== false ) {
 		$searches[]     = '{post_comments}';
-		$replacements[] = '';
-		$num_comments   = get_comments_number();
-		if ( comments_open() ) {
-			if ( $num_comments == 0 ) {
+		$num_comments   = get_comments_number( $post->ID );
+		if ( ! post_password_required() && ( comments_open() || ( $num_comments > 0 ) ) ) {
+			if ( $num_comments === 0 ) {
 				$comments = __( 'No Comments', 'memberlite' );
 			} elseif ( $num_comments > 1 ) {
 				$comments = $num_comments . __( ' Comments', 'memberlite' );
@@ -859,28 +860,28 @@ function memberlite_parse_tags( $meta, $post = null ) {
 			if ( is_single() ) {
 				$write_comments .= '#respond';
 			} else {
-				$write_comments .= get_comments_link();
+				$write_comments .= get_comments_link( $post->ID );
 			}
 			$write_comments .= '">' . $comments . '</a>';
-		}
-		if ( ! post_password_required() && ( comments_open() || '0' != get_comments_number() ) ) {
 			$replacements[] = '<span class="comments-link">' . $write_comments . '</span>';
+		} else {
+			$replacements[] = __( 'Comments Off', 'memberlite' );
 		}
 	}
 
 	if ( strpos( $meta, '{post_date}' ) !== false ) {
 		$searches[]     = '{post_date}';
-		$replacements[] = '<time class="entry-date published" datetime="' . esc_attr( get_the_date( 'Y-m-d' ) ) . '">' . esc_html( get_the_date() ) . '</time>';
+		$replacements[] = '<time class="entry-date published" datetime="' . esc_attr( get_the_date( 'Y-m-d', $post->ID ) ) . '">' . esc_html( get_the_date( get_option( 'date_format' ), $post->ID ) ) . '</time>';
 	}
 
 	if ( strpos( $meta, '{post_permalink}' ) !== false ) {
 		$searches[]     = '{post_permalink}';
-		$replacements[] = '<a href="' . get_permalink() . '" rel="bookmark">permalink</a>';
+		$replacements[] = '<a href="' . get_permalink( $post->ID ) . '" rel="bookmark">' . __( 'permalink', 'memberlite' ) . '</a>';
 	}
 
 	if ( strpos( $meta, '{post_permalink_icon}' ) !== false ) {
 		$searches[]     = '{post_permalink_icon}';
-		$replacements[] = '<a href="' . get_permalink() . '" rel="bookmark"><i class="fa fa-link"></i></a>';
+		$replacements[] = '<a href="' . get_permalink( $post->ID ) . '" rel="bookmark"><i class="fa fa-link"></i></a>';
 	}
 	if ( strpos( $meta, '{post_tags}' ) !== false ) {
 		$searches[]     = '{post_tags}';
@@ -889,12 +890,12 @@ function memberlite_parse_tags( $meta, $post = null ) {
 
 	if ( strpos( $meta, '{post_time}' ) !== false ) {
 		$searches[]     = '{post_time}';
-		$replacements[] = '<time class="entry-time" datetime="' . esc_attr( get_the_date( 'H:i' ) ) . '">' . esc_html( get_the_time() ) . '</time>';
+		$replacements[] = '<time class="entry-time" datetime="' . esc_attr( get_the_date( 'H:i' ), $post->ID ) . '">' . esc_html( get_the_time() ) . '</time>';
 	}
 
 	if ( strpos( $meta, '{post_title}' ) !== false ) {
 		$searches[]     = '{post_title}';
-		$replacements[] = '<span class="entry-title">' . esc_html( get_the_title() ) . '</span>';
+		$replacements[] = '<span class="entry-title">' . esc_html( get_the_title( $post->ID ) ) . '</span>';
 	}
 
 	$meta = str_replace( $searches, $replacements, $meta );
