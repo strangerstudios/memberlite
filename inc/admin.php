@@ -23,61 +23,65 @@ function memberlite_support() {
 			.about-wrap {max-width: 100%; }
 			.about-wrap .memberlite-badge {background-image: url(<?php echo esc_url( get_template_directory_uri() ) . '/images/Memberlite_icon.png'; ?>); background-color: #FFF; color: #2C3E50; }
 			.about-wrap .dashicons {font-size: 40px; height: 40px; width: 40px; }
-			.about-wrap .plugin-card h3 {margin: 0 0 12px; }
-			.about-wrap .about-text.about-text-no-right-margin {margin-right: 0; }
+			.about-wrap .memberlite-feature-section { display: grid; grid-template-columns: 1fr 1fr; grid-gap: 2.9rem; }
+			.about-wrap .memberlite-feature-section h2 { line-height: 1; text-align: left; }
+			@media screen and (max-width:782px) {
+				.about-wrap .memberlite-feature-section { display: block; }
+			}
 		</style>
-		<div class="wrap about-wrap">
-			<h1><?php esc_html_e( 'Welcome to the Memberlite Theme', 'memberlite' ); ?></h1>
-			<div class="about-text"><?php esc_html_e( "Memberlite is the ideal theme for your membership site - packed with integration for top membership site plugins including Paid Memberships Pro. It's fully customizable with your logo, colors, fonts, custom sidebars and more global layout settings.", 'memberlite' ); ?></div>
-			<div class="wp-badge memberlite-badge">
-				<?php
-					/* translators: Memberlite version number */
-					printf( esc_html__( 'Version %s', 'memberlite' ), MEMBERLITE_VERSION );
-				?>
-			</div>
-			<div class="feature-section two-col">
-				<div class="col">
-					<h2><span class="dashicons dashicons-format-image"></span> <?php esc_html_e( 'Adding Your Logo', 'memberlite' ); ?></h2>
-					<p><?php esc_html_e( 'Use the Customize > Site Identity screen to add a custom logo and update or toggle the display of your Site Title and Tagline.', 'memberlite' ); ?></p>
-					<p>
-						<a class="button button-primary" href="<?php echo esc_url( wp_customize_url() ); ?>"><?php esc_html_e( 'Add Your Logo', 'memberlite' ); ?></a>
-						<a class="button" href="https://memberlitetheme.com/documentation/site-branding/" target="_blank"><?php esc_html_e( 'View Docs on Site Branding in Memberlite', 'memberlite' ); ?></a>
-					</p>
+		<div class="wrap full-width-layout">
+			<div class="about-wrap">
+				<h1><?php esc_html_e( 'Welcome to the Memberlite Theme', 'memberlite' ); ?></h1>
+				<div class="about-text"><?php esc_html_e( "Memberlite is the ideal theme for your membership site - packed with integration for top membership site plugins including Paid Memberships Pro. It's fully customizable with your logo, colors, fonts, custom sidebars and more global layout settings.", 'memberlite' ); ?></div>
+				<div class="wp-badge memberlite-badge">
+					<?php
+						/* translators: Memberlite version number */
+						printf( esc_html__( 'Version %s', 'memberlite' ), MEMBERLITE_VERSION );
+					?>
 				</div>
-				<div class="col">
-					<h2><span class="dashicons dashicons-admin-customizer"></span> <?php esc_html_e( 'Customize the Theme', 'memberlite' ); ?></h2>
-					<p><?php esc_html_e( 'Use the Customize > Memberlite Options screen to modify theme layout, logo, fonts, colors, copyright message and more.', 'memberlite' ); ?></p>
-					<p>
-						<a class="button button-primary" href="<?php echo esc_url( wp_customize_url() ); ?>"><?php esc_html_e( 'Customize Your Theme', 'memberlite' ); ?></a>
-						<a class="button" href="https://memberlitetheme.com/documentation/customize/" target="_blank"><?php esc_html_e( 'View Docs on on Customizing Memberlite', 'memberlite' ); ?></a>
-					</p>
-				</div>
-				<br class="clear" />&nbsp;<br class="clear" />&nbsp;
-				<hr />
-				<div class="col">
-					<h2><span class="dashicons dashicons-admin-appearance"></span> <?php esc_html_e( 'Using Child Themes', 'memberlite' ); ?></h2>
-					<p><?php esc_html_e( 'If you need to customize the theme beyond the settings in Appearance > Customize, use a child theme.', 'memberlite' ); ?></p>
-					<p>
-						<a class="button button-primary"href="https://github.com/strangerstudios/memberlite-child" target="_blank">
-						<?php esc_html_e( 'Download a Blank Child Theme', 'memberlite' ); ?></a>
-						<a class="button" href="https://developer.wordpress.org/themes/advanced-topics/child-themes/" target="_blank">
-						<?php esc_html_e( 'About Child Themes (WordPress Codex)', 'memberlite' ); ?></a>
-					</p>
-				</div>
-				<div class="col">
-					<h2><span class="dashicons dashicons-lightbulb"></span> <?php esc_html_e( 'Theme Demo, Docs and Support', 'memberlite' ); ?></h2>
-					<p><?php esc_html_e( 'We offer a simple annual support membership if you need additional help with your Memberlite-powered WordPress site.', 'memberlite' ); ?></p>
-					<p>
-						<a class="button button-primary" href="https://demo.memberlitetheme.com" target="_blank"><?php esc_html_e( 'View Theme Demo', 'memberlite' ); ?></a>
-						<a class="button" href="https://memberlitetheme.com" target="_blank"><?php esc_html_e( 'View All Docs and Get Support', 'memberlite' ); ?></a>
-					</p>
-				</div>
-			</div> <!-- end feature-section -->
+				<div class="memberlite-feature-section">
+					<div class="col">
+						<h2><span class="dashicons dashicons-format-image"></span> <?php esc_html_e( 'Adding Your Logo', 'memberlite' ); ?></h2>
+						<p><?php esc_html_e( 'Use the Customize > Site Identity screen to add a custom logo and update or toggle the display of your Site Title and Tagline.', 'memberlite' ); ?></p>
+						<p>
+							<a class="button button-primary" href="<?php echo esc_url( wp_customize_url() ); ?>"><?php esc_html_e( 'Add Your Logo', 'memberlite' ); ?></a>
+							<a class="button" href="https://memberlitetheme.com/documentation/site-branding/" target="_blank"><?php esc_html_e( 'Docs: Site Branding in Memberlite', 'memberlite' ); ?></a>
+						</p>
+					</div>
+					<div class="col">
+						<h2><span class="dashicons dashicons-admin-customizer"></span> <?php esc_html_e( 'Customize the Theme', 'memberlite' ); ?></h2>
+						<p><?php esc_html_e( 'Use the Customize > Memberlite Options screen to modify theme layout, logo, fonts, colors, copyright message and more.', 'memberlite' ); ?></p>
+						<p>
+							<a class="button button-primary" href="<?php echo esc_url( wp_customize_url() ); ?>"><?php esc_html_e( 'Customize Your Theme', 'memberlite' ); ?></a>
+							<a class="button" href="https://memberlitetheme.com/documentation/customize/" target="_blank"><?php esc_html_e( 'Docs: Customizing Memberlite', 'memberlite' ); ?></a>
+						</p>
+					</div>
+					<div class="col">
+						<h2><span class="dashicons dashicons-admin-appearance"></span> <?php esc_html_e( 'Using Child Themes', 'memberlite' ); ?></h2>
+						<p><?php esc_html_e( 'If you need to customize the theme beyond the settings in Appearance > Customize, use a child theme.', 'memberlite' ); ?></p>
+						<p>
+							<a class="button button-primary" href="https://github.com/strangerstudios/memberlite-child" target="_blank">
+							<?php esc_html_e( 'Download a Blank Child Theme', 'memberlite' ); ?></a>
+							<a class="button" href="https://developer.wordpress.org/themes/advanced-topics/child-themes/" target="_blank">
+							<?php esc_html_e( 'About Child Themes (WordPress Codex)', 'memberlite' ); ?></a>
+						</p>
+					</div>
+					<div class="col">
+						<h2><span class="dashicons dashicons-lightbulb"></span> <?php esc_html_e( 'Theme Demo, Docs and Support', 'memberlite' ); ?></h2>
+						<p><?php esc_html_e( 'We offer a simple annual support membership if you need additional help with your Memberlite-powered WordPress site.', 'memberlite' ); ?></p>
+						<p>
+							<a class="button button-primary" href="https://demo.memberlitetheme.com" target="_blank"><?php esc_html_e( 'View Theme Demo', 'memberlite' ); ?></a>
+							<a class="button" href="https://memberlitetheme.com" target="_blank"><?php esc_html_e( 'View All Docs and Get Support', 'memberlite' ); ?></a>
+						</p>
+					</div>
+				</div> <!-- end memberlite-feature-section -->
 
-			<br class="clear" />
-			<hr />
+				<br class="clear" />
+				<hr />
+			</div> <!-- end about-wrap -->
 
 			<h2><?php esc_html_e( 'We highly recommend using these plugins for every site running Memberlite:', 'memberlite' ); ?></h2>
+
 			<div class="wp-list-table widefat plugin-install">
 				<h2 class="screen-reader-text"><?php esc_html_e( 'Plugins list', 'memberlite' );?></h2>
 				<div id="the-list">
