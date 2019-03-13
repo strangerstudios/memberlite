@@ -844,7 +844,7 @@ class Memberlite_Customize {
 	public static function generate_css( $selector, $style, $value, $prefix = '', $postfix = '', $echo = true ) {
 		$return = '';
 
-		// Note: We only need to escape the value here. 
+		// Note: We only need to escape the value here.
 		// $selector is known value and escaping it would break the CSS usage of ">" symbol.
 		if ( ! empty( $value ) ) {
 			$return = sprintf(
