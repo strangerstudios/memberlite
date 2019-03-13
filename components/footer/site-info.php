@@ -13,12 +13,12 @@
 		global $memberlite_defaults;
 		$back_to_top = get_theme_mod( 'memberlite_back_to_top', $memberlite_defaults['memberlite_back_to_top'] );
 	?>
-	<div class="large-<?php
+	<div class="medium-<?php
 	if ( ! empty( $back_to_top ) ) {
 		echo '10';
 	} else {
 		echo '12';
-	} ?> columns">
+	} ?> small-12 columns">
 	<?php
 		global $memberlite_defaults;
 		$copyright_textbox = get_theme_mod( 'copyright_textbox', $memberlite_defaults['copyright_textbox'] );
@@ -28,11 +28,11 @@
 	?>
 	</div>
 	<?php if ( ! empty( $back_to_top ) ) { ?>
-		<div class="large-2 columns text-right">
+		<div class="medium-2 small-12 columns">
 		<?php
 			$back_to_top = apply_filters( 'memberlite_back_to_top', '<i class="fa fa-chevron-up"></i> ' . esc_html__( 'Back to Top', 'memberlite' ) );
 			if ( ! empty( $back_to_top ) ) {
-				echo '<a class="skip-link btn" href="#page">' . $back_to_top . '</a>';
+				echo '<a class="skip-link btn btn_block" href="#page">' . $back_to_top . '</a>';
 			}
 		?>
 		</div><!-- .columns -->

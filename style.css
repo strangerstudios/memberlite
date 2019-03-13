@@ -2526,4 +2526,5 @@ object {
 	.masthead .post_author_avatar {margin-top: 1.45rem; text-align: center; }
 	.footer-widgets .widget {padding-top: 2rem; padding-bottom: 2rem; }
 	.footer-widgets .widget:nth-child(even) {background: rgba(255,255,255,0.2); }
+	.site-footer .site-info .skip-link {margin-top: 1.45rem; }
 }
