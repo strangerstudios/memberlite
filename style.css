@@ -739,6 +739,7 @@ textarea {
 #pmpro_form .pmpro_message {
 	margin-top: 0;
 }
+#pmpro_form .pmpro_checkout-field .pmpro_message {margin-top: .7rem; }
 .pmpro_message.pmpro_default,
 .pmpro_content_message,
 #sitewide-notice p {
