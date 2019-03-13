@@ -452,7 +452,7 @@ function memberlite_nav_menu_submenu() {
 	}
 
 	// Build the pages array
-	if ( $current_post->post_parent ) {
+	if ( ! empty( $current_post ) && ! empty( $current_post->post_parent ) ) {
 		$exclude   = get_post_meta( $current_post->ID, 'exclude', true );
 		$ancestors = get_post_ancestors( $current_post );
 		if ( ! empty( $ancestors ) ) {
