@@ -180,6 +180,12 @@ h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover, h5 a:hover, h6 a:hover, .navigat
 p {
 	margin-bottom: 2.9rem;
 }
+.has-medium-font-size,
+.has-large-font-size,
+.has-huge-font-size {
+	line-height: 1.8;
+}
+
 div.lead p, p.lead {
 	color: #666;
 	font-size: 2.3rem;
@@ -296,7 +302,9 @@ details[open] > summary:before {
 details > summary::-webkit-details-marker {
 	display: none;
 }
-.wp-block-image figcaption {
+.wp-block-image figcaption,
+.wp-block-gallery .blocks-gallery-image figcaption,
+.wp-block-gallery .blocks-gallery-item figcaption {
 	font-size: 1.4rem;
 	line-height: 2.2rem;
 }
@@ -380,11 +388,22 @@ big {
 3.0 Elements
 --------------------------------------------------------------*/
 hr {
-	background-color: #ccc;
+	background-color: #CCC;
 	border: 0;
 	height: 1px;
 	margin: 2.9rem 0;
 }
+hr.wp-block-separator {
+	margin-left: auto;
+	margin-right: auto;
+}
+hr.wp-block-separator:not(.is-style-wide):not(.is-style-dots) {
+	max-width: 100px;
+}
+hr.wp-block-separator.is-style-dots:before {
+	color: #CCC;
+}
+
 ul, ol {
 	margin: 0 0 2.9rem 3.2rem;
 }
@@ -404,6 +423,9 @@ li > ul,
 li > ol {
 	margin-bottom: 1rem;
 	margin-top: 1rem;
+}
+ul.wp-block-gallery {
+	margin-left: 0;
 }
 img {
 	height: auto; /* Make sure images are scaled correctly. */
