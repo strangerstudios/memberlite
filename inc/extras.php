@@ -847,7 +847,7 @@ function memberlite_parse_tags( $meta, $post = null ) {
 
 	if ( strpos( $meta, '{post_comments}' ) !== false ) {
 		$searches[]     = '{post_comments}';
-		$num_comments   = get_comments_number( $post->ID );
+		$num_comments   = $post->comment_count;
 		if ( ! post_password_required() && ( comments_open() || ( $num_comments > 0 ) ) ) {
 			if ( $num_comments === 0 ) {
 				$comments = __( 'No Comments', 'memberlite' );
