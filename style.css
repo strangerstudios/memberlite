@@ -1993,7 +1993,7 @@ a:active {
 	font-style: italic;
 }
 .comment-respond {
-	margin: 2.9rem;
+	margin-top: 2.9rem;
 }
 .comment .comment-respond {
 	margin: 0 2.9rem;
@@ -2187,6 +2187,7 @@ a:active {
 	color: #777777;
 	display: inline-block;
 	float: none;
+	outline: none;
 	padding: 1.5rem 2rem;
 	text-decoration: none;
 }
