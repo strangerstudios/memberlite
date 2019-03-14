@@ -228,39 +228,39 @@ if ( ! function_exists( 'memberlite_setup' ) ) :
 			)
 		);
 		
-		// Adds Color Scheme to Block Editor
-		add_theme_support( 'editor-color-palette', array(
-		    array(
-		        'name' => __( 'Primary', 'memberlite' ),
-		        'slug' => 'primary',
-		        'color' => get_theme_mod( 'color_primary' ),
-		    ),
-		    array(
-		        'name' => __( 'Secondary', 'memberlite' ),
-		        'slug' => 'secondary',
-		        'color' => get_theme_mod( 'color_secondary' ),
-		    ),
-			array(
-		        'name' => __( 'Action', 'memberlite' ),
-		        'slug' => 'action',
-		        'color' => get_theme_mod( 'color_action' ),
-		    ),
-			array(
-		        'name' => __( 'Navigation', 'memberlite' ),
-		        'slug' => 'navigation',
-		        'color' => get_theme_mod( 'color_site_navigation' ),
-		    ),
-			array(
-		        'name' => __( 'Navigation Background', 'memberlite' ),
-		        'slug' => 'bgnavigation',
-		        'color' => get_theme_mod( 'bgcolor_site_navigation' ),
-		    ),
-			array(
-		        'name' => __( 'Background', 'memberlite' ),
-		        'slug' => 'background',
-		        'color' => '#' . get_theme_mod( 'background_color' ),
-		    ),
-		) );
+		// Build unique array of Color Scheme values to include in Block Editor
+		$color_scheme = array();
+		$color_scheme['color_primary'] = get_theme_mod( 'color_primary' ); // Primary Color
+		$color_scheme['color_secondary'] = get_theme_mod( 'color_secondary' ); // Secondary Color
+		$color_scheme['color_action'] = get_theme_mod( 'color_action' ); // Action Color
+
+		// Add header_textcolor if set.
+		$header_textcolor = get_theme_mod( 'header_textcolor' );
+		if ( $header_textcolor != 'blank' ) {
+			$color_scheme['header_textcolor'] = '#' . $header_textcolor; // Site Title & Tagline Color
+		}
+
+		$color_scheme['background_color'] = get_theme_mod( 'background_color' ); // Background Color
+		$color_scheme['bgcolor_site_navigation'] = get_theme_mod( 'bgcolor_site_navigation' );  // Primary Navigation Background Color
+		$color_scheme['color_site_navigation'] = get_theme_mod( 'color_site_navigation' );  // Primary Navigation Color
+		$color_scheme['color_link'] = get_theme_mod( 'color_link' ); // Link Color
+		$color_scheme['color_meta_link'] = get_theme_mod( 'color_meta_link' ); // Meta Link Color
+		
+		// Get all unique color values.
+		$color_scheme = array_unique( $color_scheme, SORT_STRING );
+		
+		// Build colors array for palette.
+		$colors = array();
+		foreach( $color_scheme as $slug => $color ) {
+			$colors[] = array(
+				'name' => $slug,	// can use a lookup array instead
+				'slug' => $slug,
+				'color' => $color,
+			);
+		}
+		
+		// Add color values to Block Editor
+		add_theme_support( 'editor-color-palette', $colors );
 
 		// Styles the visual editor to resemble the theme style
 		add_editor_style( array( 'css/editor-style.css' ) );
