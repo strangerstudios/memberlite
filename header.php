@@ -82,6 +82,14 @@
 				</div><!-- .columns -->
 			<?php } ?>
 
+			<?php
+				// show the mobile menu toggle button
+				if ( is_active_sidebar( 'sidebar-5' ) || has_nav_menu( 'primary' ) ) { ?>
+					<div class="mobile-navigation-bar">
+					<button class="menu-toggle"><i class="fa fa-bars"></i></button>
+					</div>
+				<?php }
+			?>
 		</div><!-- .row -->
 	</header><!-- #masthead -->
 
