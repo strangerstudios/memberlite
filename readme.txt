@@ -1,8 +1,8 @@
 === Memberlite ===
 Contributors: kimannwall, strangerstudios
 Requires at least: WordPress 4.4
-Tested up to: WordPress 4.9.8
-Version: 4.2
+Tested up to: WordPress 5.1.1
+Version: 4.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: one-column, two-columns, left-sidebar, right-sidebar, flexible-header, custom-background, custom-colors, custom-header, custom-menu, custom-logo, editor-style, featured-images, footer-widgets, full-width-template, post-formats, theme-options, threaded-comments, translation-ready, e-commerce
