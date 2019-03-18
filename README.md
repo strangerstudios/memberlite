@@ -105,7 +105,7 @@ We highly recommend using these plugins for every site running Memberlite:
 
 ### Changelog
 
-**4.2 - 2018-10-26**
+**4.3 - 2019-03-19**
 * BUG FIX: Fixing bug where {post_comments} replacement wasn't returning the correct count in masthead area.
 * BUG FIX: Fixing spacing when applying a discount code and the error/success message displays.
 * BUG FIX: Fixing issue with escaped CSS selectors and .site-title ‘blank’ color value.
