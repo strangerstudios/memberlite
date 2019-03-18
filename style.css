@@ -410,6 +410,9 @@ ul, ol {
 ul {
 	list-style: disc;
 }
+ul ul {
+	list-style-type: circle;
+}
 ol {
 	list-style: decimal;
 }
