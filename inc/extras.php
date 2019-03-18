@@ -847,7 +847,16 @@ function memberlite_parse_tags( $meta, $post = null ) {
 
 	if ( strpos( $meta, '{post_comments}' ) !== false ) {
 		$searches[]     = '{post_comments}';
-		$num_comments   = $post->comment_count;
+		
+		// Get comments count (exclude Trackbacks and Pingbacks).
+		$comment_args = array(
+			'post_id'	=> $post->ID,
+			'count'		=> true,
+			'type'		=> 'comment'
+		);
+		$num_comments = get_comments($comment_args);
+
+		// Show comment count if open and post is public.
 		if ( ! post_password_required() && ( comments_open() || ( $num_comments > 0 ) ) ) {
 			if ( $num_comments === 0 ) {
 				$comments = __( 'No Comments', 'memberlite' );
