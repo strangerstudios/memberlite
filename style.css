@@ -1933,7 +1933,12 @@ a:active {
 	background: #FFF;
 }
 .comment {
+	-webkit-hyphens: auto;
+	-moz-hyphens: auto;
+	hyphens: auto;
 	margin: 0 2.9rem 2.9rem 2.9rem;
+	overflow-wrap: break-word;
+	word-wrap: break-word;
 }
 .comment.depth-1 {
 	margin: 0;
