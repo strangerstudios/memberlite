@@ -81,6 +81,24 @@ class Memberlite_Customize {
 		);
 
 		$wp_customize->add_setting(
+		    'sticky_nav',
+			array(
+		        'default'   => false,
+		        'transport' => 'refresh',
+		    )
+		);
+
+		$wp_customize->add_control(
+		    'sticky_nav',
+			array(
+				'type'     => 'checkbox',
+		        'label'    => __( 'Stick Menu to Top of Screen on Scroll', 'memberlite' ),
+		        'section'  => 'memberlite_theme_options',
+		        'priority' => '21',
+		    )
+		);
+
+		$wp_customize->add_setting(
 			'columns_ratio_header',
 			array(
 				'default'              => $memberlite_defaults['columns_ratio_header'],

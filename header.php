@@ -96,6 +96,12 @@
 	<?php do_action( 'memberlite_before_site_navigation' ); ?>
 
 	<?php if ( ! is_page_template( 'templates/interstitial.php' ) && has_nav_menu( 'primary' ) ) { ?>
+		<?php
+			$sticky_nav = get_theme_mod( 'sticky_nav' );
+			if ( $sticky_nav === TRUE ) { ?>
+				<div class="site-navigation-sticky-wrapper">
+			<?php }
+		?>
 		<nav id="site-navigation">
 		<?php
 			$primary_defaults = array(
@@ -108,8 +114,26 @@
 			wp_nav_menu( $primary_defaults );
 		?>
 		</nav><!-- #site-navigation -->
-	<?php } ?>
-<?php } // End if(). ?>
+		<?php
+			if ( $sticky_nav === TRUE ) { ?>
+			</div> <!-- .site-navigation-sticky-wrapper -->
+			<script>
+				jQuery(document).ready(function ($) {
+					var s = $("#site-navigation");
+					var pos = s.position();
+					$(window).scroll(function() {
+						var windowpos = $(window).scrollTop();
+						if ( windowpos >= pos.top ) {
+							s.addClass("site-navigation-sticky");
+						} else {
+							s.removeClass("site-navigation-sticky");
+						}
+					});
+				});
+			</script>
+		<?php }
+		}
+	} // End if(). ?>
 
 	<?php do_action( 'memberlite_before_content' ); ?>
 

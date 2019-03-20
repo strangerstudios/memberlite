@@ -876,9 +876,27 @@ a:active {
 /*--------------------------------------------------------------
 5.2 Menus
 --------------------------------------------------------------*/
+.site-navigation-sticky-wrapper {
+	height: 80px;
+}
 #site-navigation {
 	background: #FAFAFA;
 	border-top: 1px solid #DADADA;
+}
+.site-navigation-sticky-wrapper #site-navigation {
+	height: 80px;
+}
+#site-navigation.site-navigation-sticky {
+	border-bottom: 1px solid #DADADA;
+	box-shadow: 0px 0px 5px #CCC;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: 99999;
+}
+/* Admin Bar adjustment */
+.admin-bar #site-navigation.site-navigation-sticky {
+	top: 32px;
 }
 .main-navigation {
 	clear: both;
@@ -2543,7 +2561,7 @@ object {
 	.menu-toggle, .main-navigation.toggled .nav-menu {display: block; }
 	.main-navigation ul {display: none;	}
 	.hide-mobile {display: none; }
-	.header-right, #site-navigation {display: none; }
+	.header-right, .site-navigation-sticky-wrapper, #site-navigation {display: none; }
 	.site-header .row {align-items: center; display: grid; grid-template-columns: 1fr auto; grid-template-areas: "site-branding menu-toggle"; }
 	.site-header .site-branding {grid-area: site-branding; margin: .9rem 0; padding: 0 0 0 .9rem; width: 100%; }
 	.site-header .mobile-navigation-bar {grid-area: menu-toggle; }
