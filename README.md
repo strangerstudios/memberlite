@@ -111,6 +111,7 @@ We highly recommend using these plugins for every site running Memberlite:
 * BUG FIX: Fixing issue with escaped CSS selectors and .site-title ‘blank’ color value.
 * BUG FIX: Fixing warning on homepage when displaying latest posts and no posts are found.
 * BUG FIX/ENHANCEMENT: Fixing the `memberlite_parse_tags` replacements to be more reliable for post entry meta before and after.
+* ENHANCEMENT: Now aligning floated images on small screens to center and block to avoid broken text wrap on mobile.
 * ENHANCEMENT: Adjusting layout of the Memberlite Guide page to match WP 5.0+ admin styles.
 * ENHANCEMENT: Adjusting responsive view of masthead/post byline area to display avatar above title for small screens; no hyphenation on small screens.
 * ENHANCEMENT: Adjusting responsive view of site footer copyright and ‘back to top’ link area.
