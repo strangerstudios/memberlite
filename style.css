@@ -2569,7 +2569,7 @@ object {
 	.site-title a {width: 100%; height: auto; background-size: contain; }
 	.menu-toggle {display: block; margin-right: .9rem; }
 	.testimonials-widget-testimonial span.image	{display: block; float: none; margin: 0; text-align: center; }
-	img.alignleft, img.alignright {clear:both; display: block; float: none; margin-bottom: 2.9rem; margin-left: auto; margin-right: auto; }
+	img.alignleft, img.alignright, .wp-block-image figure.alignleft, .wp-block-image figure.alignright {clear:both; display: block; float: none; margin-bottom: 2.9rem; margin-left: auto; margin-right: auto; text-align: center; }
 	.comment-respond label {display: block; text-align: left; width: 100%; }
 	.comment-respond input[type=text], .comment-respond input[type=email], .comment-respond input[type=url], .comment-respond textarea {width: 100%; }
 	.comment-respond .form-allowed-tags, .comment-respond .form-submit, .comment-respond .comment-subscription-form {margin-left: 0; }
