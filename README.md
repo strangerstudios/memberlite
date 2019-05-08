@@ -120,6 +120,7 @@ We highly recommend using these plugins for every site running Memberlite:
 * ENHANCEMENT: Adjusted responsive view of site footer copyright and ‘back to top’ link area.
 * ENHANCEMENT: Restructured the header for small screens to use grid layout so menu toggle button doesn't overlap logo.
 * ENHANCEMENT: Adjusted margin around comment form; Adjusted tabs on comment/pingbacks area to have no outline.
+* ENHANCEMENT: Updating to Font Awesome version 5.8.2.
 * FEATURE: Added support for the additional HTML5 tags `details` and `summary`.
 * FEATURE: Added RTL support.
 * FEATURE: Began adding styles for core WP Blocks, including blockquotes, image gallery displays, captions; Support for default styles including font sizes small, medium, large, huge.
