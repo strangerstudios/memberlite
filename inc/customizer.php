@@ -85,6 +85,8 @@ class Memberlite_Customize {
 			array(
 		        'default'   => false,
 		        'transport' => 'refresh',
+				'sanitize_callback'    => array( 'Memberlite_Customize', 'sanitize_checkbox' ),
+				'sanitize_js_callback' => array( 'Memberlite_Customize', 'sanitize_js_callback' ),
 		    )
 		);
 
