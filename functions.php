@@ -4,7 +4,7 @@
  *
  * @package Memberlite
  */
-define( 'MEMBERLITE_VERSION', '4.2' );
+define( 'MEMBERLITE_VERSION', '4.3' );
 
 // get default values for options/etc
 require_once get_template_directory() . '/inc/defaults.php';
@@ -16,9 +16,12 @@ function memberlite_init_styles() {
 	// framework stuff
 	wp_enqueue_style( 'memberlite_grid', get_template_directory_uri() . '/css/grid.css', array(), MEMBERLITE_VERSION );
 	wp_enqueue_style( 'memberlite_style', get_stylesheet_uri(), array(), MEMBERLITE_VERSION );
+	if ( is_rtl() ) {
+		wp_enqueue_style( 'memberlite_rtl', get_template_directory_uri() . '/css/rtl.css', array( 'memberlite_style' ), MEMBERLITE_VERSION );
+	}
 	wp_enqueue_style( 'memberlite_print_style', get_template_directory_uri() . '/css/print.css', array(), MEMBERLITE_VERSION, 'print' );
 	wp_enqueue_script( 'memberlite-script', get_template_directory_uri() . '/js/memberlite.js', array( 'jquery' ), MEMBERLITE_VERSION, true );
-	wp_enqueue_style( 'font-awesome', get_template_directory_uri() . '/font-awesome/css/all.min.css', array(), '5.2' );
+	wp_enqueue_style( 'font-awesome', get_template_directory_uri() . '/font-awesome/css/all.min.css', array(), '5.8.2' );
 
 	// load dark.css for dark/inverted backgrounds
 	$memberlite_darkcss = get_theme_mod( 'memberlite_darkcss', $memberlite_defaults['memberlite_darkcss'], false );
@@ -227,6 +230,40 @@ if ( ! function_exists( 'memberlite_setup' ) ) :
 				)
 			)
 		);
+		
+		// Build unique array of Color Scheme values to include in Block Editor
+		$color_scheme = array();
+		$color_scheme['color_primary'] = get_theme_mod( 'color_primary' ); // Primary Color
+		$color_scheme['color_secondary'] = get_theme_mod( 'color_secondary' ); // Secondary Color
+		$color_scheme['color_action'] = get_theme_mod( 'color_action' ); // Action Color
+
+		// Add header_textcolor if set.
+		$header_textcolor = get_theme_mod( 'header_textcolor' );
+		if ( $header_textcolor != 'blank' ) {
+			$color_scheme['header_textcolor'] = '#' . $header_textcolor; // Site Title & Tagline Color
+		}
+
+		$color_scheme['background_color'] = get_theme_mod( 'background_color' ); // Background Color
+		$color_scheme['bgcolor_site_navigation'] = get_theme_mod( 'bgcolor_site_navigation' );  // Primary Navigation Background Color
+		$color_scheme['color_site_navigation'] = get_theme_mod( 'color_site_navigation' );  // Primary Navigation Color
+		$color_scheme['color_link'] = get_theme_mod( 'color_link' ); // Link Color
+		$color_scheme['color_meta_link'] = get_theme_mod( 'color_meta_link' ); // Meta Link Color
+		
+		// Get all unique color values.
+		$color_scheme = array_unique( $color_scheme, SORT_STRING );
+		
+		// Build colors array for palette.
+		$colors = array();
+		foreach( $color_scheme as $slug => $color ) {
+			$colors[] = array(
+				'name' => $slug,	// can use a lookup array instead
+				'slug' => $slug,
+				'color' => $color,
+			);
+		}
+		
+		// Add color values to Block Editor
+		add_theme_support( 'editor-color-palette', $colors );
 
 		// Adds custom theme colors to the Gutenberg editor palette.
 		global $memberlite_defaults;

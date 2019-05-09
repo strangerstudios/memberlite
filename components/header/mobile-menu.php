@@ -23,9 +23,6 @@ if ( is_active_sidebar( 'sidebar-5' ) || has_nav_menu( 'primary' ) ) {
 	}
 		?>
 		</nav>
-		<div class="mobile-navigation-bar">
-		<button class="menu-toggle"><i class="fa fa-bars"></i></button>
-		</div>
 		<?php
 }
 ?>

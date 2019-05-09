@@ -105,6 +105,30 @@ We highly recommend using these plugins for every site running Memberlite:
 
 ### Changelog
 
+**4.3 - 2019-05-09**
+* BUG FIX: Fixed bug where {post_comments} replacement wasn't returning the correct count in masthead area.
+* BUG FIX: Fixed spacing when applying a discount code and the error/success message displays.
+* BUG FIX: Fixed issue with escaped CSS selectors and .site-title ‘blank’ color value.
+* BUG FIX: Fixing warning on homepage when displaying latest posts and no posts are found.
+* BUG FIX/ENHANCEMENT: Fixed the `memberlite_parse_tags` replacements to be more reliable for post entry meta before and after.
+* BUG FIX/ENHANCEMENT: Adjusting button text color for columns layouts of Advanced Levels Page shortcode
+* ENHANCEMENT: Adjusting image block for responsive screens to display block and not floated.
+* ENHANCEMENT: Added option for sticky navbar.
+* ENHANCEMENT: Now aligning floated images on small screens to center and block to avoid broken text wrap on mobile.
+* ENHANCEMENT: Adjusted layout of the Memberlite Guide page to match WP 5.0+ admin styles.
+* ENHANCEMENT: Adjusted responsive view of masthead/post byline area to display avatar above title for small screens; no hyphenation on small screens.
+* ENHANCEMENT: Adjusted responsive view of site footer copyright and ‘back to top’ link area.
+* ENHANCEMENT: Restructured the header for small screens to use grid layout so menu toggle button doesn't overlap logo.
+* ENHANCEMENT: Adjusted margin around comment form; Adjusted tabs on comment/pingbacks area to have no outline.
+* ENHANCEMENT: Updating to Font Awesome version 5.8.2.
+* FEATURE: Added support for the additional HTML5 tags `details` and `summary`.
+* FEATURE: Added RTL support.
+* FEATURE: Began adding styles for core WP Blocks, including blockquotes, image gallery displays, captions; Support for default styles including font sizes small, medium, large, huge.
+* FEATURE: Added theme’s color scheme to block editor via `editor-color-palette` theme support.
+* FEATURE: Built unique array of Color Scheme values to include in Block Editor.
+* FEATURE: Now using a comment query to get count so we can exclude trackbacks and pingbacks.
+* FEATURE: Added word break and hyphen styles for comments content.
+
 **4.2 - 2018-10-26**
 * SECURITY: Properly escaping the URL for excerpt_more.
 * BUG FIX/ENHANCEMENT: Localizing the 'more' link in excerpt.

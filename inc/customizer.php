@@ -81,6 +81,24 @@ class Memberlite_Customize {
 		);
 
 		$wp_customize->add_setting(
+		    'sticky_nav',
+			array(
+		        'default'   => false,
+		        'transport' => 'refresh',
+		    )
+		);
+
+		$wp_customize->add_control(
+		    'sticky_nav',
+			array(
+				'type'     => 'checkbox',
+		        'label'    => __( 'Stick Menu to Top of Screen on Scroll', 'memberlite' ),
+		        'section'  => 'memberlite_theme_options',
+		        'priority' => '21',
+		    )
+		);
+
+		$wp_customize->add_setting(
 			'columns_ratio_header',
 			array(
 				'default'              => $memberlite_defaults['columns_ratio_header'],
@@ -726,20 +744,20 @@ class Memberlite_Customize {
 		?>
 		<!--Customizer CSS-->
 		<style type="text/css">
-			<?php self::generate_css( $memberlite_defaults['bgcolor_site_navigation_elements'], 'background', 'bgcolor_site_navigation' ); ?>
-			<?php self::generate_css( $memberlite_defaults['color_site_navigation_elements'], 'color', 'color_site_navigation' ); ?>
-			<?php self::generate_css( $memberlite_defaults['color_link_color_elements'], 'color', 'color_link' ); ?>
-			<?php self::generate_css( $memberlite_defaults['color_meta_link_color_elements'], 'color', 'color_meta_link' ); ?>
-			<?php self::generate_css( $memberlite_defaults['color_primary_background_elements'], 'background', 'color_primary' ); ?>
-			<?php self::generate_css( $memberlite_defaults['color_primary_color_elements'], 'color', 'color_primary' ); ?>
-			<?php self::generate_css( $memberlite_defaults['color_secondary_background_elements'], 'background', 'color_secondary' ); ?>
-			<?php self::generate_css( $memberlite_defaults['color_secondary_border_elements'], 'border-top-color', 'color_secondary' ); ?>
-			<?php self::generate_css( $memberlite_defaults['color_secondary_border_elements'], 'border-bottom-color', 'color_secondary' ); ?>
-			<?php self::generate_css( $memberlite_defaults['color_secondary_border_left_elements'], 'border-left-color', 'color_secondary' ); ?>
-			<?php self::generate_css( $memberlite_defaults['color_secondary_border_right_elements'], 'border-right-color', 'color_secondary' ); ?>
-			<?php self::generate_css( $memberlite_defaults['color_secondary_color_elements'], 'color', 'color_secondary' ); ?>
-			<?php self::generate_css( $memberlite_defaults['color_action_background_elements'], 'background', 'color_action' ); ?>
-			<?php self::generate_css( $memberlite_defaults['color_action_color_elements'], 'color', 'color_action' ); ?>
+			<?php self::generate_css_from_mod( $memberlite_defaults['bgcolor_site_navigation_elements'], 'background', 'bgcolor_site_navigation' ); ?>
+			<?php self::generate_css_from_mod( $memberlite_defaults['color_site_navigation_elements'], 'color', 'color_site_navigation' ); ?>
+			<?php self::generate_css_from_mod( $memberlite_defaults['color_link_color_elements'], 'color', 'color_link' ); ?>
+			<?php self::generate_css_from_mod( $memberlite_defaults['color_meta_link_color_elements'], 'color', 'color_meta_link' ); ?>
+			<?php self::generate_css_from_mod( $memberlite_defaults['color_primary_background_elements'], 'background', 'color_primary' ); ?>
+			<?php self::generate_css_from_mod( $memberlite_defaults['color_primary_color_elements'], 'color', 'color_primary' ); ?>
+			<?php self::generate_css_from_mod( $memberlite_defaults['color_secondary_background_elements'], 'background', 'color_secondary' ); ?>
+			<?php self::generate_css_from_mod( $memberlite_defaults['color_secondary_border_elements'], 'border-top-color', 'color_secondary' ); ?>
+			<?php self::generate_css_from_mod( $memberlite_defaults['color_secondary_border_elements'], 'border-bottom-color', 'color_secondary' ); ?>
+			<?php self::generate_css_from_mod( $memberlite_defaults['color_secondary_border_left_elements'], 'border-left-color', 'color_secondary' ); ?>
+			<?php self::generate_css_from_mod( $memberlite_defaults['color_secondary_border_right_elements'], 'border-right-color', 'color_secondary' ); ?>
+			<?php self::generate_css_from_mod( $memberlite_defaults['color_secondary_color_elements'], 'color', 'color_secondary' ); ?>
+			<?php self::generate_css_from_mod( $memberlite_defaults['color_action_background_elements'], 'background', 'color_action' ); ?>
+			<?php self::generate_css_from_mod( $memberlite_defaults['color_action_color_elements'], 'color', 'color_action' ); ?>
 
 			<?php
 				// hover styles
@@ -749,8 +767,8 @@ class Memberlite_Customize {
 			}
 				$color_primary_rgb   = self::hex2rgb( $color_primary );
 				$color_primary_hover = vsprintf( 'rgba( %1$s, %2$s, %3$s, 0.7)', $color_primary_rgb );
-				echo esc_html( $memberlite_defaults['color_primary_background_hover_elements'] ) . ' {background: ' . esc_html( $color_primary_hover ) . '}';
-				echo esc_html( $memberlite_defaults['color_primary_color_hover_elements'] ) . ' {color: ' . esc_html( $color_primary_hover ) . '}';
+				self::generate_css( $memberlite_defaults['color_primary_background_hover_elements'], 'background', $color_primary_hover );
+				self::generate_css( $memberlite_defaults['color_primary_color_hover_elements'], 'color', $color_primary_hover );
 
 				$color_secondary = get_theme_mod( 'color_secondary' );
 			if ( empty( $color_secondary ) ) {
@@ -758,7 +776,7 @@ class Memberlite_Customize {
 			}
 				$color_secondary_rgb   = self::hex2rgb( $color_secondary );
 				$color_secondary_hover = vsprintf( 'rgba( %1$s, %2$s, %3$s, 0.7)', $color_secondary_rgb );
-				echo esc_html( $memberlite_defaults['color_secondary_background_hover_elements'] ) . ' {background: ' . esc_html( $color_secondary_hover ) . '}';
+				self::generate_css( $memberlite_defaults['color_secondary_background_hover_elements'], 'background', $color_secondary_hover );
 
 				$color_action = get_theme_mod( 'color_action' );
 			if ( empty( $color_action ) ) {
@@ -766,7 +784,7 @@ class Memberlite_Customize {
 			}
 				$color_action_rgb   = self::hex2rgb( $color_action );
 				$color_action_hover = vsprintf( 'rgba( %1$s, %2$s, %3$s, 0.7)', $color_action_rgb );
-				echo esc_html( $memberlite_defaults['color_action_background_hover_elements'] ) . ' {background: ' . esc_html( $color_action_hover ) . '}';
+				self::generate_css( $memberlite_defaults['color_action_background_hover_elements'], 'background', $color_action_hover );
 
 				$color_link = get_theme_mod( 'color_link' );
 			if ( empty( $color_link ) ) {
@@ -774,7 +792,7 @@ class Memberlite_Customize {
 			}
 				$color_link_rgb   = self::hex2rgb( $color_link );
 				$color_link_hover = vsprintf( 'rgba( %1$s, %2$s, %3$s, 0.7)', $color_link_rgb );
-				echo esc_html( $memberlite_defaults['color_link_hover_elements'] ) . ' {color: ' . esc_html( $color_link_hover ) . '}';
+				self::generate_css( $memberlite_defaults['color_link_hover_elements'], 'color', $color_link_hover );
 
 				$color_site_navigation = get_theme_mod( 'color_site_navigation' );
 			if ( empty( $color_site_navigation ) ) {
@@ -782,11 +800,16 @@ class Memberlite_Customize {
 			}
 				$color_site_navigation_rgb   = self::hex2rgb( $color_site_navigation );
 				$color_site_navigation_hover = vsprintf( 'rgba( %1$s, %2$s, %3$s, 0.7)', $color_site_navigation_rgb );
-				echo esc_html( $memberlite_defaults['color_site_navigation_hover_elements'] ) . ' {color: ' . esc_html( $color_site_navigation_hover ) . '}';
+				self::generate_css( $memberlite_defaults['color_site_navigation_hover_elements'], 'color', $color_site_navigation_hover );
 			?>
 
-			<?php self::generate_css( '.site-title a, .site-header .site-description', 'color', 'header_textcolor', '#' ); ?>
-			<?php self::generate_css( 'body, .banner_body', 'background-color', 'background_color', '#' ); ?>
+			<?php
+				$header_textcolor = get_theme_mod( 'header_textcolor' );
+				if ( $header_textcolor != 'blank' ) {
+					self::generate_css_from_mod( '.site-title a, .site-header .site-description', 'color', 'header_textcolor', '#' );
+				}
+			?>
+			<?php self::generate_css_from_mod( 'body, .banner_body', 'background-color', 'background_color', '#' ); ?>
 			<?php
 				$fonts_string = get_theme_mod( 'memberlite_webfonts' );
 			if ( empty( $fonts_string ) ) {
@@ -818,19 +841,38 @@ class Memberlite_Customize {
 		wp_enqueue_script( 'Memberlite_Customizer' );
 	}
 
-	public static function generate_css( $selector, $style, $mod_name, $prefix = '', $postfix = '', $echo = true ) {
+	public static function generate_css_from_mod( $selector, $style, $mod_name, $prefix = '', $postfix = '', $echo = true ) {
 		$return = '';
 		$mod    = get_theme_mod( $mod_name );
 
 		if ( ! empty( $mod ) ) {
 			$return = sprintf(
-				'%s { %s:%s; }',
+				'%s { %s: %s; }',
 				$selector,
 				$style,
 				$prefix . $mod . $postfix
 			);
 			if ( $echo ) {
 				echo esc_html( $return );
+			}
+		}
+		return $return;
+	}
+
+	public static function generate_css( $selector, $style, $value, $prefix = '', $postfix = '', $echo = true ) {
+		$return = '';
+
+		// Note: We only need to escape the value here.
+		// $selector is known value and escaping it would break the CSS usage of ">" symbol.
+		if ( ! empty( $value ) ) {
+			$return = sprintf(
+				'%s { %s: %s; }',
+				$selector,
+				$style,
+				$prefix . esc_html( $value ) . $postfix
+			);
+			if ( $echo ) {
+				echo $return;
 			}
 		}
 		return $return;

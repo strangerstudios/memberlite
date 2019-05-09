@@ -4,7 +4,7 @@ Theme URI: https://memberlitetheme.com/
 Author: Stranger Studios
 Author URI: https://www.strangerstudios.com
 Description: Memberlite is the ideal theme for your membership site - packed with integration for top membership site plugins including Paid Memberships Pro. It's fully customizable with your logo, colors, fonts, custom sidebars and more global layout settings. Extend the site appearance further with icons, masthead banners, post formats, and additional settings for your site's pages. Memberlite is responsive, clean and minimal.
-Version: 4.2
+Version: 4.3
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: one-column, two-columns, left-sidebar, right-sidebar, flexible-header, custom-background, custom-colors, custom-header, custom-menu, custom-logo, editor-style, featured-images, footer-widgets, full-width-template, post-formats, theme-options, threaded-comments, translation-ready, e-commerce
@@ -180,6 +180,12 @@ h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover, h5 a:hover, h6 a:hover, .navigat
 p {
 	margin-bottom: 2.9rem;
 }
+.has-medium-font-size,
+.has-large-font-size,
+.has-huge-font-size {
+	line-height: 1.8;
+}
+
 div.lead p, p.lead {
 	color: #666;
 	font-size: 2.3rem;
@@ -200,14 +206,17 @@ blockquote {
 	padding: 2.9rem 2.9rem 1px 2.9rem;
 	border-left: 5px solid #CCC;
 }
-blockquote.quote, .testimonials-widget blockquote {
+blockquote.quote,
+.testimonials-widget blockquote,
+.wp-block-quote {
 	background: none;
 	color: #666;
 	border: none;
 	padding: 0 0 0 3.7rem;
 	position: relative;
 }
-blockquote.quote:before {
+blockquote.quote:before,
+.wp-block-quote:before {
 	content: "\f10d";
 	font-family: 'Font Awesome 5 Free';
 	font-weight: 700;
@@ -218,17 +227,26 @@ blockquote.quote:before {
 	position: absolute;
 	z-index: -1;
 }
-blockquote.quote p:last-child {
+blockquote.quote p:last-child,
+.wp-block-quote p:last-child {
 	margin-bottom: 0;
 }
-blockquote cite, .testimonials-widget blockquote .credit {
+blockquote cite,
+.testimonials-widget blockquote .credit,
+.wp-block-quote cite {
 	display: block;
 	margin-top: .5rem;
 	text-align: right;
 	font-style: italic;
 	color: #AAA;
 }
-blockquote cite a, .testimonials-widget blockquote .credit a {
+.wp-block-quote cite,
+.wp-block-pullquote cite {
+	margin-bottom: 2.9rem;
+}
+blockquote cite a,
+.testimonials-widget blockquote .credit a,
+.wp-block-quote cite a {
 	color: #AAA;
 	text-decoration: none;
 }
@@ -260,6 +278,35 @@ blockquote cite a, .testimonials-widget blockquote .credit a {
 blockquote.contact-form-submission {color: #404040; }
 address {
 	margin: 0 0 2.9rem;
+}
+details {
+	border-top: 1px solid #CCC;
+	cursor: pointer;
+	margin: 0;
+	padding: 1.45rem;
+}
+details > summary {
+	list-style: none;
+	outline:none;
+}
+details > summary:before {
+	content: "\f078";
+	float: right;
+	font-family: 'Font Awesome 5 Free';
+	font-weight: 700;
+	margin: 0 1.45rem;
+}
+details[open] > summary:before {
+	content: "\f077";
+}
+details > summary::-webkit-details-marker {
+	display: none;
+}
+.wp-block-image figcaption,
+.wp-block-gallery .blocks-gallery-image figcaption,
+.wp-block-gallery .blocks-gallery-item figcaption {
+	font-size: 1.4rem;
+	line-height: 2.2rem;
 }
 pre {
 	background: #eee;
@@ -341,16 +388,30 @@ big {
 3.0 Elements
 --------------------------------------------------------------*/
 hr {
-	background-color: #ccc;
+	background-color: #CCC;
 	border: 0;
 	height: 1px;
 	margin: 2.9rem 0;
 }
+hr.wp-block-separator {
+	margin-left: auto;
+	margin-right: auto;
+}
+hr.wp-block-separator:not(.is-style-wide):not(.is-style-dots) {
+	max-width: 100px;
+}
+hr.wp-block-separator.is-style-dots:before {
+	color: #CCC;
+}
+
 ul, ol {
 	margin: 0 0 2.9rem 3.2rem;
 }
 ul {
 	list-style: disc;
+}
+ul ul {
+	list-style-type: circle;
 }
 ol {
 	list-style: decimal;
@@ -365,6 +426,9 @@ li > ul,
 li > ol {
 	margin-bottom: 1rem;
 	margin-top: 1rem;
+}
+ul.wp-block-gallery {
+	margin-left: 0;
 }
 img {
 	height: auto; /* Make sure images are scaled correctly. */
@@ -443,6 +507,8 @@ a.pmpro_btn,
 .pmpro_content_message a,
 .pmpro_content_message a:link,
 .pmpro_content_message a:visited,
+a.comment-reply-link,
+a.comment-reply-link:link,
 input[type="submit"].pmpro_btn,
 input[type="button"].pmpro_btn,
 #main div.em-search-main button.em-search-submit  {
@@ -531,11 +597,14 @@ a.pmpro_btn:active,
 .pmpro_btn:focus,
 a.pmpro_btn:hover,
 .content-area .pmpro_btn:hover,
+.entry-content a.pmpro_btn:hover,
 input[type="submit"].pmpro_btn:hover,
 .pmpro_checkout .pmpro_btn:hover,
 .pmpro_checkout .pmpro_btn:focus,
 .pmpro_content_message a:focus,
-.pmpro_content_message a:hover {
+.pmpro_content_message a:hover,
+a.comment-reply-link:focus,
+a.comment-reply-link:hover {
 	border: none;
 	box-shadow: 1px 2px 4px rgba(0,0,0,0.4);
 	color: #FFF;
@@ -734,6 +803,7 @@ textarea {
 #pmpro_form .pmpro_message {
 	margin-top: 0;
 }
+#pmpro_form .pmpro_checkout-field .pmpro_message {margin-top: .7rem; }
 .pmpro_message.pmpro_default,
 .pmpro_content_message,
 #sitewide-notice p {
@@ -806,9 +876,27 @@ a:active {
 /*--------------------------------------------------------------
 5.2 Menus
 --------------------------------------------------------------*/
+.site-navigation-sticky-wrapper {
+	height: 80px;
+}
 #site-navigation {
 	background: #FAFAFA;
 	border-top: 1px solid #DADADA;
+}
+.site-navigation-sticky-wrapper #site-navigation {
+	height: 80px;
+}
+#site-navigation.site-navigation-sticky {
+	border-bottom: 1px solid #DADADA;
+	box-shadow: 0px 0px 5px #CCC;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: 99999;
+}
+/* Admin Bar adjustment */
+.admin-bar #site-navigation.site-navigation-sticky {
+	top: 32px;
 }
 .main-navigation {
 	clear: both;
@@ -1855,6 +1943,10 @@ a:active {
 /*--------------------------------------------------------------
 10.6 Comments
 --------------------------------------------------------------*/
+#comments { 
+	margin-bottom:  2.9rem;
+}
+
 .comment,
 .pingback,
 .trackback {
@@ -1881,7 +1973,12 @@ a:active {
 	background: #FFF;
 }
 .comment {
+	-webkit-hyphens: auto;
+	-moz-hyphens: auto;
+	hyphens: auto;
 	margin: 0 2.9rem 2.9rem 2.9rem;
+	overflow-wrap: break-word;
+	word-wrap: break-word;
 }
 .comment.depth-1 {
 	margin: 0;
@@ -1941,7 +2038,7 @@ a:active {
 	font-style: italic;
 }
 .comment-respond {
-	margin: 2.9rem;
+	margin-top: 2.9rem;
 }
 .comment .comment-respond {
 	margin: 0 2.9rem;
@@ -2135,6 +2232,7 @@ a:active {
 	color: #777777;
 	display: inline-block;
 	float: none;
+	outline: none;
 	padding: 1.5rem 2rem;
 	text-decoration: none;
 }
@@ -2178,6 +2276,8 @@ a:active {
 /*--------------------------------------------------------------
 11.1 Paid Memberships Pro Integrated Styles
 --------------------------------------------------------------*/
+
+/* Membership Levels and Advanced Levels Page Shortcode */
 #pmpro_levels {margin-top: 2rem; margin-bottom: 2rem; }
 #pmpro_levels .medium-4, #pmpro_levels .medium-3 {
 	text-align: center;
@@ -2196,6 +2296,7 @@ a:active {
 #pmpro_levels .medium-4 .pmpro_btn, #pmpro_levels .medium-3 .pmpro_btn, .pmpro_levels-table .pmpro_btn, .pmpro_advanced_levels-compare_table .pmpro_btn, .pmpro_advanced_levels-compare_table_responsive .pmpro_btn {
 	display: block;
 }
+#primary #pmpro_levels .entry-footer .pmpro_btn {color: #FFF; }
 #pmpro_levels.pmpro_levels-table.pmpro_level-highlight, #pmpro_levels.pmpro_levels-div .pmpro_level-highlight, #pmpro_levels.pmpro_levels-2col .pmpro_level-highlight, #pmpro_levels.pmpro_levels-3col .pmpro_level-highlight, #pmpro_levels.pmpro_levels-4col .pmpro_level-highlight, .memberlite_signup, .pmpro_signup_form {padding: 1rem; background: #FFF; z-index: 100; border-top: .5rem solid #18BC9C; border-bottom: 1.5rem solid #18BC9C; border-left: 1px solid #CCC; border-right: 1px solid #CCC; }
 #pmpro_levels.pmpro_levels-2col .pmpro_level-highlight, #pmpro_levels.pmpro_levels-3col .pmpro_level-highlight, #pmpro_levels.pmpro_levels-4col .pmpro_level-highlight {margin-top: -1.5rem; }
 
@@ -2247,6 +2348,7 @@ a:active {
 
 .memberlite_signup-fixed {position: fixed; top: 0; }
 
+/* Membership Checkout */
 .pmpro_asterisk {
 	color: #C00;
 }
@@ -2315,6 +2417,8 @@ form.pmpro_form .pmpro_payment-expiration select {
 	display: block;
 	width: 100%;
 }
+
+/* Membership Account */
 #pmpro_account .pmpro_box {
 	border: none;
 	padding: 0;
@@ -2330,9 +2434,17 @@ form.pmpro_form .pmpro_payment-expiration select {
 #pmpro_account .pmpro_actionlinks a {
 	text-decoration: underline;
 }
+
+/* Member Directory and Profiles */
 .pmpro_member_directory h3 {
 	margin-top: 0;
 }
+
+/* Sitewide Sales */
+#pmpro_sws_banner_top span.pmpro_sws_banner-button .pmpro_btn {
+	padding: .45rem 1.45rem;
+}
+
 /*--------------------------------------------------------------
 11.2 Testimonials Widget: https://wordpress.org/plugins/testimonials-widget/
 --------------------------------------------------------------*/
@@ -2469,12 +2581,14 @@ object {
 	.menu-toggle, .main-navigation.toggled .nav-menu {display: block; }
 	.main-navigation ul {display: none;	}
 	.hide-mobile {display: none; }
-	.header-right, #site-navigation {display: none; }
-	.site-branding {text-align: center; width: 100%; }
-	.site-branding .site-title a {width: 100%; height: auto; background-size: contain; }
-	.menu-toggle {display: block; position: absolute; right: .5rem; top: .5rem; z-index: 100; }
-	body.admin-bar .menu-toggle {top: 5.1rem; }
+	.header-right, .site-navigation-sticky-wrapper, #site-navigation {display: none; }
+	.site-header .row {align-items: center; display: grid; grid-template-columns: 1fr auto; grid-template-areas: "site-branding menu-toggle"; }
+	.site-header .site-branding {grid-area: site-branding; margin: .9rem 0; padding: 0 0 0 .9rem; width: 100%; }
+	.site-header .mobile-navigation-bar {grid-area: menu-toggle; }
+	.site-title a {width: 100%; height: auto; background-size: contain; }
+	.menu-toggle {display: block; margin-right: .9rem; }
 	.testimonials-widget-testimonial span.image	{display: block; float: none; margin: 0; text-align: center; }
+	img.alignleft, img.alignright, .wp-block-image figure.alignleft, .wp-block-image figure.alignright {clear:both; display: block; float: none; margin-bottom: 2.9rem; margin-left: auto; margin-right: auto; text-align: center; }
 	.comment-respond label {display: block; text-align: left; width: 100%; }
 	.comment-respond input[type=text], .comment-respond input[type=email], .comment-respond input[type=url], .comment-respond textarea {width: 100%; }
 	.comment-respond .form-allowed-tags, .comment-respond .form-submit, .comment-respond .comment-subscription-form {margin-left: 0; }
@@ -2490,6 +2604,14 @@ object {
 	#pmpro_levels.pmpro_advanced_levels-compare_table {display: none; }
 	#pmpro_levels.pmpro_advanced_levels-compare_table_responsive {display: block; }
 	.home .masthead {text-align: center; }
+	#primary .post.hentry .entry-header, .masthead-post-byline { grid-template-columns: 1fr; grid-template-areas: "avatar" "title" "meta"; }
+	.single .masthead-banner .masthead {padding-top: 0; }
+	.masthead-banner .masthead-post-byline { margin: 1em 0; }
+	#primary .hentry .entry-header .entry-title { margin-top: 1.45rem; -webkit-hyphens: none; -moz-hyphens: none; hyphens: none; word-wrap: normal; overflow-wrap: normal; }
+	.masthead h1 { margin-top: 1.45rem; -webkit-hyphens: none; -moz-hyphens: none; hyphens: none; }
+	#primary .hentry .entry-header .post_author_avatar {text-align: center; }
+	.masthead .post_author_avatar {margin-top: 1.45rem; text-align: center; }
 	.footer-widgets .widget {padding-top: 2rem; padding-bottom: 2rem; }
 	.footer-widgets .widget:nth-child(even) {background: rgba(255,255,255,0.2); }
+	.site-footer .site-info .skip-link {margin-top: 1.45rem; }
 }
