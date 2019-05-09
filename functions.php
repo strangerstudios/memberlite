@@ -282,7 +282,7 @@ if ( ! function_exists( 'memberlite_setup' ) ) :
 
 		add_theme_support( 'editor-color-palette', array(
 		    array(
-		        'name' => __( 'Primary Color', 'themeLamemberlitengDomain' ),
+		        'name' => __( 'Primary Color', 'memberlite' ),
 		        'slug' => 'color-primary',
 		        'color' => $color_primary,
 		    ),
