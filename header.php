@@ -98,7 +98,7 @@
 	<?php if ( ! is_page_template( 'templates/interstitial.php' ) && has_nav_menu( 'primary' ) ) { ?>
 		<?php
 			$sticky_nav = get_theme_mod( 'sticky_nav' );
-			if ( $sticky_nav === TRUE ) { ?>
+			if ( $sticky_nav == true ) { ?>
 				<div class="site-navigation-sticky-wrapper">
 			<?php }
 		?>
@@ -115,7 +115,7 @@
 		?>
 		</nav><!-- #site-navigation -->
 		<?php
-			if ( $sticky_nav === TRUE ) { ?>
+			if ( $sticky_nav == true ) { ?>
 			</div> <!-- .site-navigation-sticky-wrapper -->
 			<script>
 				jQuery(document).ready(function ($) {
