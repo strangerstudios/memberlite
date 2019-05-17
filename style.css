@@ -639,34 +639,6 @@ a.comment-reply-link:hover {
 .btn_alert:hover {
 	background-color: #ec971f;
 }
-.btn_link,
-.pmpro_btn-cancel,
-.pmpro_nolink,
-.pmpro_nolink:link,
-.pmpro_cancel,
-.pmpro_cancel:link,
-a.pmpro_cancel:link,
-.content-area .pmpro_btn.pmpro_cancel,
-.content-area .pmpro_btn.pmpro_btn-cancel
-.content-area .pmpro_btn.pmpro_btn-cancel:link,
-.content-area .pmpro_btn.pmpro_btn-cancel:visited {
-    background: none;
-    border: none;
-    box-shadow: none;
-	color: #2C3E50;
-    text-decoration: underline;
-}
-.btn_link:hover,
-.pmpro_btn.pmpro_btn-cancel:hover,
-.pmpro_btn.pmpro_nolink:hover,
-.pmpro_btn.pmpro_cancel:hover,
-a.pmpro_btn.pmpro_cancel:hover,
-.content-area .pmpro_btn.pmpro_cancel:hover,
-.content-area .pmpro_btn.pmpro_btn-cancel:hover {
-	background: none;
-	box-shadow: none;
-	transform: none;
-}
 .btn_primary,
 .btn_primary:link,
 .menu-toggle {
@@ -711,6 +683,49 @@ a.pmpro_btn.pmpro_cancel:hover,
 .content-area a.comment-reply-link:hover,
 .content-area .pmpro_content_message a:hover {
 	color: #FFF;
+}
+
+/* Link-style button */
+.btn_link {
+	background: none;
+    border: none;
+    box-shadow: none;
+	color: #2C3E50;
+    text-decoration: underline;
+}
+.btn_link:hover {
+	background: none;
+	box-shadow: none;
+	transform: none;
+}
+
+/* Cancel-style button */
+.pmpro_btn-cancel,
+.pmpro_nolink,
+.pmpro_nolink:link,
+.pmpro_cancel,
+.pmpro_cancel:link,
+a.pmpro_cancel:link,
+.content-area .pmpro_btn.pmpro_cancel,
+.content-area .pmpro_btn.pmpro_btn-cancel,
+.content-area .pmpro_btn.pmpro_btn-cancel:link,
+.content-area .pmpro_btn.pmpro_btn-cancel:visited {
+    background: none;
+    border: none;
+    box-shadow: none;
+	color: #666;
+    text-decoration: underline;
+}
+.pmpro_btn.pmpro_btn-cancel:hover,
+.pmpro_btn.pmpro_nolink:hover,
+.pmpro_btn.pmpro_cancel:hover,
+a.pmpro_btn.pmpro_cancel:hover,
+.content-area .pmpro_btn.pmpro_cancel:hover,
+.content-area .pmpro_btn.pmpro_btn-cancel:hover {
+	background: none;
+	box-shadow: none;
+	color: #777;
+	transform: none;
 }
 
 /*--------------------------------------------------------------
