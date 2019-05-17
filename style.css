@@ -647,7 +647,9 @@ a.comment-reply-link:hover {
 .pmpro_cancel:link,
 a.pmpro_cancel:link,
 .content-area .pmpro_btn.pmpro_cancel,
-.content-area .pmpro_btn.pmpro_btn-cancel {
+.content-area .pmpro_btn.pmpro_btn-cancel
+.content-area .pmpro_btn.pmpro_btn-cancel:link,
+.content-area .pmpro_btn.pmpro_btn-cancel:visited {
     background: none;
     border: none;
     box-shadow: none;
