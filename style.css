@@ -72,6 +72,13 @@ html {
 	font-size: 62.5%; /* Corrects text resizing oddly in IE6/7 when body font-size is set using em units http://clagnut.com/blog/348/#c790 */
 	-webkit-text-size-adjust: 100%; /* Prevents iOS text size adjust after orientation change, without disabling user zoom */
 }
+/* Check if browser supports */
+@supports (scroll-behavior: smooth) { 
+	html {
+		/* Modern replacement for javascript smooth scrolling */
+		/* scroll-behavior: smooth;  */
+	}
+}
 *,
 *:before,
 *:after { /* apply a natural box layout model to all elements; see http://www.paulirish.com/2012/box-sizing-border-box-ftw/ */
@@ -1233,6 +1240,13 @@ a:active {
 	top: 5px;
 	width: auto;
 	z-index: 100000; /* Above WP toolbar */
+}
+
+/* disable smooth scrolling (set in reset section) for users that have opted in to reduced motion in their browser settings. */
+@media (prefers-reduced-motion: reduce) { 
+	html {
+	  scroll-behavior: auto;
+	}
 }
 
 /*--------------------------------------------------------------
