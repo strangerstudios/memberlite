@@ -6,7 +6,9 @@
 // TODO: - check if we should switch tab content on page loads
 // TODO: - mobile navigation
 // TODO: Transpile (Babel) 
-TODO: Minify JS
+TODO: Minify JS 
+? minify 39.56% compression, saving 3.78 kb.
+? should we minify or leave open to optimization plugins
 // *??? Only load polyfills if Edge or IE and >= 9
 // *??? Polyfills in own file, maybe PHP browser detect and enqueue when IE/Safari
 * Replaced polyfills with polyfill service, thus no need to transpile
