@@ -1,24 +1,4 @@
-/* 
-* TO DO'S * 
-// TODO: - scroll to target links in page
-// TODO: - sticky navigation
-// TODO: - switch tab content when clicked
-// TODO: - check if we should switch tab content on page loads
-// TODO: - mobile navigation
-// TODO: Transpile (Babel) 
-TODO: Minify JS 
-? minify 39.56% compression, saving 3.78 kb.
-? should we minify or leave open to optimization plugins
-// *??? Only load polyfills if Edge or IE and >= 9
-// *??? Polyfills in own file, maybe PHP browser detect and enqueue when IE/Safari
-* Replaced polyfills with polyfill service, thus no need to transpile
-*/
-
-// *** Polyfills ***
-// https://polyfill.io
-// Only loads polyfills the current user's browser needs.
-
-// *** Custom Scripts from libraries ***
+// *** Custom Scripts from external libraries ***
 
 // Throttle
 /**
