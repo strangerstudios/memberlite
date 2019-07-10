@@ -4,83 +4,17 @@
 // TODO: - sticky navigation
 // TODO: - switch tab content when clicked
 // TODO: - check if we should switch tab content on page loads
-TODO: - mobile navigation
-TODO: Transpile (Babel) 
-*??? Only load polyfills if Edge or IE and >= 9
-*??? Polyfills in own file, maybe PHP browser detect and enqueue when IE/Safari
+// TODO: - mobile navigation
+// TODO: Transpile (Babel) 
+TODO: Minify JS
+// *??? Only load polyfills if Edge or IE and >= 9
+// *??? Polyfills in own file, maybe PHP browser detect and enqueue when IE/Safari
+* Replaced polyfills with polyfill service, thus no need to transpile
 */
 
 // *** Polyfills ***
-
-// Closest
-if (!Element.prototype.matches) {
-  Element.prototype.matches = Element.prototype.msMatchesSelector || 
-                              Element.prototype.webkitMatchesSelector;
-}
-
-if (!Element.prototype.closest) {
-  Element.prototype.closest = function(s) {
-    var el = this;
-
-    do {
-      if (el.matches(s)) return el;
-      el = el.parentElement || el.parentNode;
-    } while (el !== null && el.nodeType === 1);
-    return null;
-  };
-}
-
-// Before
-// https://developer.mozilla.org/en-US/docs/Web/API/ChildNode/before#polyfill 
-(function (arr) {
-  arr.forEach(function (item) {
-    if (item.hasOwnProperty('before')) {
-      return;
-    }
-    Object.defineProperty(item, 'before', {
-      configurable: true,
-      enumerable: true,
-      writable: true,
-      value: function before() {
-        var argArr = Array.prototype.slice.call(arguments),
-          docFrag = document.createDocumentFragment();
-        
-        argArr.forEach(function (argItem) {
-          var isNode = argItem instanceof Node;
-          docFrag.appendChild(isNode ? argItem : document.createTextNode(String(argItem)));
-        });
-        
-        this.parentNode.insertBefore(docFrag, this);
-      }
-    });
-  });
-})([Element.prototype, CharacterData.prototype, DocumentType.prototype]);
-
-// After
-// https://developer.mozilla.org/en-US/docs/Web/API/ChildNode/after#Polyfill
-(function (arr) {
-  arr.forEach(function (item) {
-    if (item.hasOwnProperty('after')) {
-      return;
-    }
-    Object.defineProperty(item, 'after', {
-      configurable: true,
-      enumerable: true,
-      writable: true,
-      value: function after() {
-        var argArr = Array.prototype.slice.call(arguments),
-          docFrag = document.createDocumentFragment();
-        
-        argArr.forEach(function (argItem) {
-          var isNode = argItem instanceof Node;
-          docFrag.appendChild(isNode ? argItem : document.createTextNode(String(argItem)));
-        });
-        
-        this.parentNode.insertBefore(docFrag, this.nextSibling);
-      }
-    });
-  });
-})([Element.prototype, CharacterData.prototype, DocumentType.prototype]);
+// https://polyfill.io
+// Only loads polyfills the current user's browser needs.
 
 // *** Custom Scripts from libraries ***
 
