@@ -21,12 +21,18 @@ function memberlite_init_styles() {
 	}
 	wp_enqueue_style( 'memberlite_print_style', get_template_directory_uri() . '/css/print.css', array(), MEMBERLITE_VERSION, 'print' );
 
-	if ( ! wp_script_is( 'polyfill-io' ) ) {
-		wp_register_script( 'polyfill-io', 'https://polyfill.io/v3/polyfill.min.js', array(), '3', false );
-		wp_enqueue_script( 'polyfill-io' );
-	}
+	wp_enqueue_script( 'memberlite-polyfills', get_template_directory_uri() . '/js/polyfills.js', array(), MEMBERLITE_VERSION, true );
+	wp_script_add_data( 'memberlite-polyfills', 'conditional', 'IE' ); // load polyfills only for IE
 
-	wp_enqueue_script( 'memberlite-script', get_template_directory_uri() . '/js/memberlite.min.js', array(), MEMBERLITE_VERSION, true );
+	// Internet Explorer HTML5 support 
+    wp_enqueue_script( 'html5shiv', '//cdnjs.com/libraries/html5shiv', array(), '3.7.3', false);
+    wp_script_add_data( 'html5shiv', 'conditional', 'lt IE 9' );
+
+    // Internet Explorer 8 media query support
+    wp_enqueue_script( 'respond', '//cdnjs.com/libraries/respond.js/', array(), '1.4.2', false);
+    wp_script_add_data( 'respond', 'conditional', 'lt IE 9' );
+
+	wp_enqueue_script( 'memberlite-script', get_template_directory_uri() . '/js/memberlite.js', array(), MEMBERLITE_VERSION, true );
 
 	wp_enqueue_style( 'font-awesome', get_template_directory_uri() . '/font-awesome/css/all.min.css', array(), '5.8.2' );
 
