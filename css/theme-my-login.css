@@ -126,6 +126,8 @@
 }
 .tml.tml-user-panel .tml-user-links {
 	grid-area: user-links;
+	list-style: none;
+	margin-left: 0;
 }
 .tml.tml-user-panel nav {
 	grid-area: nav;

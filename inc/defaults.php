@@ -22,6 +22,7 @@ $memberlite_defaults = array(
 	'color_primary'                             => '#2C3E50',
 	'color_secondary'                           => '#18BC9C',
 	'color_action'                              => '#F39C12',
+	'bgcolor_header_elements'		  			=> '#masthead',
 	'bgcolor_site_navigation_elements'          => '#site-navigation, .main-navigation ul.sub-menu',
 	'color_site_navigation_elements'            => '.main-navigation a',
 	'color_site_navigation_hover_elements'      => '.main-navigation li:hover, .main-navigation li:hover > a',

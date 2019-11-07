@@ -1370,27 +1370,27 @@ a:active {
 #secondary .widget a.btn, #secondary .widget a.btn:hover {
 	border-bottom: none;
 }
-#secondary .widget ul {
+#secondary .widget ul.menu {
 	list-style: none;
 	margin: 0;
 }
-#secondary .widget li {
+#secondary .widget ul.menu li {
 	border-bottom: 1px dotted #CCC;
 	margin: 0;
 	padding: 1.45rem;
 }
-#secondary .widget li ul li {
+#secondary .widget ul.menu li ul li {
 	border: none;
 	padding: 0;
 }
-#secondary .widget li ul li a {
+#secondary .widget ul.menu li ul li a {
 	font-size: 1.2rem;
 	font-size: 12px;
 }
-#secondary .widget li ul.children ul.children li {
+#secondary .widget ul.menu li ul.children ul.children li {
 	padding: 0;
 }
-#secondary .widget li ul.children ul.children li a::before {
+#secondary .widget ul.menu li ul.children ul.children li a::before {
 	content: "- ";
 }
 .widget_calendar #wp-calendar caption {
@@ -1512,13 +1512,23 @@ a:active {
 /*--------------------------------------------------------------
 10.0 Content
 --------------------------------------------------------------*/
-.sidebar-content #primary, .sidebar-left #primary, .blog.sidebar-blog-left #primary, .archive.sidebar-blog-left #primary, .search.sidebar-blog-left #primary, .single.sidebar-blog-left #primary {
+.page.sidebar-content #primary,
+.page.sidebar-left #primary,
+.blog.sidebar-blog-left #primary,
+.archive.sidebar-blog-left #primary,
+.search.sidebar-blog-left #primary,
+.single.sidebar-blog-left #primary {
 	float: right;
 }
-.content-sidebar #primary, .blog.sidebar-blog-right #primary, .archive.sidebar-blog-right #primary, .search.sidebar-blog-right #primary, .single.sidebar-blog-right #primary {
+.page.content-sidebar #primary,
+.blog.sidebar-blog-right #primary,
+.archive.sidebar-blog-right #primary,
+.search.sidebar-blog-right #primary,
+.single.sidebar-blog-right #primary {
 	float: left;
 }
-.page-template-full-width #primary, .page-template-narrow-width #primary {
+.page.page-template-full-width #primary,
+.page.page-template-narrow-width #primary {
 	float: none;
 }
 /*--------------------------------------------------------------
@@ -1533,6 +1543,9 @@ a:active {
 .site-branding a.custom-logo-link {
 	display: block;
 	float: left;
+}
+.site-branding a.custom-logo-link:focus {
+	outline: none;
 }
 .site-branding a.custom-logo-link .custom-logo {
 	max-height: 100px;
@@ -1678,6 +1691,15 @@ a:active {
     "avatar . meta .";
     margin: 1.45rem 0 0 0;
 }
+.single-post.sidebar-blog-none .masthead-post-byline {
+	grid-template-columns: 1fr;
+	grid-template-areas:
+	"avatar"
+	"title"
+	"meta";
+	margin: 0;
+	text-align: center;
+}
 .masthead-banner .masthead-post-byline {
 	background: rgba(0,0,0,.6);
 	margin: 16rem 0 0 0;
@@ -1691,6 +1713,12 @@ a:active {
 	margin: 2.9rem 0 0 0;
 	word-wrap: break-word;
 	overflow-wrap: break-word;
+}
+.page.sidebar-none #content .masthead h1.page-title,
+.blog.sidebar-blog-none #content .masthead h1.page-title,
+.archive.sidebar-blog-none #content .masthead h1.page-title,
+.search.sidebar-blog-none #content .masthead h1.page-title {
+	text-align: center;
 }
 .masthead h1 a, .masthead h2 a, .masthead h3 a {
 	color: #FFF;
@@ -2446,6 +2474,9 @@ form.pmpro_form .pmpro_payment-expiration select {
 }
 #pmpro_account #pmpro_account-membership table .pmpro_actionlinks {
 	text-align: left;
+}
+#pmpro_account .pmpro_box ul li {
+	margin-bottom: 0;
 }
 #pmpro_account .pmpro_actionlinks a {
 	text-decoration: underline;

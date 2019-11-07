@@ -98,6 +98,27 @@ function memberlite_getColumnsRatio( $location = null ) {
 	return $r;
 }
 
+function memberlite_sidebar_location_none_columns_ratio( $r, $location ) {
+	if ( ! empty( $location ) ) {
+		return $r;
+	}
+
+	if ( is_page() ) {
+		$sidebar_location = get_theme_mod( 'sidebar_location', $memberlite_defaults['sidebar_location'] );
+		if ( $sidebar_location === 'sidebar-none' && empty( is_page_template() ) ) {
+			$r = '8 medium-offset-2';
+		}
+	} else if ( memberlite_is_blog() || is_search() ) {
+		$sidebar_location = get_theme_mod( 'sidebar_location_blog', $memberlite_defaults['sidebar_location_blog'] );
+		if ( $sidebar_location === 'sidebar-blog-none' ) {
+			$r = '8 medium-offset-2';
+		}
+	}
+
+	return $r;
+}
+add_filter( 'memberlite_columns_ratio', 'memberlite_sidebar_location_none_columns_ratio', 10, 2 );
+
 /**
  * Get the width of a thumbnail.
  */
