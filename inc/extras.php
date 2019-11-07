@@ -394,9 +394,10 @@ function memberlite_page_title( $echo = true ) {
 		<?php
 	} elseif ( is_singular( 'post' ) ) {
 		$author_id = $post->post_author;
+		$memberlite_avatar_size = apply_filters( 'memberlite_avatar_size', 80 );
 		?>
 		<div class="masthead-post-byline">
-			<div class="post_author_avatar"><?php echo get_avatar( $author_id, 80 ); ?></div>
+			<div class="post_author_avatar"><?php echo get_avatar( $author_id, $memberlite_avatar_size ); ?></div>
 			<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
 			<?php
 				$memberlite_get_entry_meta_before = memberlite_get_entry_meta( $post, 'before' );
