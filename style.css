@@ -1370,11 +1370,18 @@ a:active {
 #secondary .widget a.btn, #secondary .widget a.btn:hover {
 	border-bottom: none;
 }
-#secondary .widget ul.menu {
+#secondary .widget ul.menu,
+#secondary .widget_recent_entries ul,
+#secondary .widget_categories ul,
+#secondary .widget_recent_comments ul,
+#secondary .widget_search ul {
 	list-style: none;
 	margin: 0;
 }
-#secondary .widget ul.menu li {
+#secondary .widget ul.menu li,
+#secondary .widget_recent_entries ul li,
+#secondary .widget_categories ul li,
+#secondary .widget_recent_comments ul li {
 	border-bottom: 1px dotted #CCC;
 	margin: 0;
 	padding: 1.45rem;
@@ -1713,6 +1720,9 @@ a:active {
 	margin: 2.9rem 0 0 0;
 	word-wrap: break-word;
 	overflow-wrap: break-word;
+}
+.single-post.sidebar-blog-none .masthead-post-byline h1 {
+	margin-top: 1.45rem;
 }
 .page.sidebar-none #content .masthead h1.page-title,
 .blog.sidebar-blog-none #content .masthead h1.page-title,
