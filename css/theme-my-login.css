@@ -107,9 +107,11 @@
 #secondary .widget_theme_my_login h3.widget-title {
 	background: none;
 	border: none;
+	margin-bottom: .9rem;
 	padding: 0;
 }
-#secondary .widget_theme_my_login ul li {
+#secondary .widget.widget_theme_my_login ul li,
+#secondary .widget.widget_theme_my_login ul.menu li {
 	border: none;
 	margin: 0;
 	padding: 0;
