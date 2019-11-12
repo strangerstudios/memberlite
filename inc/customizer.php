@@ -791,20 +791,24 @@ class Memberlite_Customize {
 			if ( empty( $color_primary ) ) {
 				$color_primary = $memberlite_defaults['color_primary'];
 			}
-				self::generate_css( $memberlite_defaults['color_primary_background_hover_elements'], 'filter', 'brightness(1.2)' );
-				self::generate_css( $memberlite_defaults['color_primary_color_hover_elements'], 'filter', 'brightness(1.2)' );
-
+				$color_primary_rgb   = self::hex2rgb( $color_primary );
+				$color_primary_hover = vsprintf( 'rgba( %1$s, %2$s, %3$s, 0.7)', $color_primary_rgb );
+				self::generate_css( $memberlite_defaults['color_primary_background_hover_elements'], 'background', $color_primary_hover );
+				self::generate_css( $memberlite_defaults['color_primary_color_hover_elements'], 'color', $color_primary_hover );
 				$color_secondary = get_theme_mod( 'color_secondary' );
 			if ( empty( $color_secondary ) ) {
 				$color_secondary = $memberlite_defaults['color_secondary'];
 			}
-				self::generate_css( $memberlite_defaults['color_secondary_background_hover_elements'], 'filter', 'brightness(1.2)' );
-
+				$color_secondary_rgb   = self::hex2rgb( $color_secondary );
+				$color_secondary_hover = vsprintf( 'rgba( %1$s, %2$s, %3$s, 0.7)', $color_secondary_rgb );
+				self::generate_css( $memberlite_defaults['color_secondary_background_hover_elements'], 'background', $color_secondary_hover );
 				$color_action = get_theme_mod( 'color_action' );
 			if ( empty( $color_action ) ) {
 				$color_action = $memberlite_defaults['color_action'];
 			}
-				self::generate_css( $memberlite_defaults['color_action_background_hover_elements'], 'filter', 'brightness(1.2)' );
+				$color_action_rgb   = self::hex2rgb( $color_action );
+				$color_action_hover = vsprintf( 'rgba( %1$s, %2$s, %3$s, 0.7)', $color_action_rgb );
+				self::generate_css( $memberlite_defaults['color_action_background_hover_elements'], 'background', $color_action_hover );
 
 				$color_link = get_theme_mod( 'color_link' );
 			if ( empty( $color_link ) ) {
