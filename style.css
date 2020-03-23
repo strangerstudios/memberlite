@@ -1489,7 +1489,9 @@ a:active {
 .footer-widgets .widget_recent_entries_thumbnails .post-date {
 	color: #DDD;
 }
-.widget_recent_entries_thumbnails a.widget_post_thumbnail {
+.widget_recent_entries_thumbnails a.widget_post_thumbnail,
+#secondary .widget_recent_entries_thumbnails a.widget_post_thumbnail {
+	border: none;
 	border-radius: 50%;
 	filter: alpha(opacity=100);
 	grid-area: thumbnail;
@@ -1497,7 +1499,8 @@ a:active {
 	opacity: 1.0;
 	width: 100%;
 }
-.widget_recent_entries_thumbnails a.widget_post_thumbnail:hover {
+.widget_recent_entries_thumbnails a.widget_post_thumbnail:hover,
+#secondary .widget_recent_entries_thumbnails a.widget_post_thumbnail:hover {
 	border: none;
 }
 .widget_recent_entries_thumbnails .widget_post_thumbnail img {

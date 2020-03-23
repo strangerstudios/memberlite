@@ -225,7 +225,7 @@ if ( ! function_exists( 'memberlite_setup' ) ) :
 		add_theme_support(
 			'custom-background', apply_filters(
 				'memberlite_custom_background_args', array(
-					'default-color' => 'ffffff',
+					'default-color' => 'FFFFFF',
 					'default-image' => '',
 				)
 			)
