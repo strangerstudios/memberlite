@@ -113,6 +113,7 @@ We highly recommend using these plugins for every site running Memberlite:
 * BUG FIX/ENHANCEMENT: Now adjusting buttons and button-style links hover "brightness" instead of opacity for better appearance.
 * ENHANCEMENT: Adding `memberlite_avatar_size` filter for adjusting avatar display size.
 * ENHANCEMENT: Improving Accessibility and SEO by adding `alt` tags to post thumbnails and avatar.
+* ENHANCEMENT: Updating to Font Awesome version 5.12.1.
 
 **4.3 - 2019-05-13**
 * BUG FIX: Fixed bug where {post_comments} replacement wasn't returning the correct count in masthead area.
