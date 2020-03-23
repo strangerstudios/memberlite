@@ -805,7 +805,8 @@ textarea {
 .pmpro_message,
 .pmpro_content_message,
 .pmpro_bbp_membership_msg,
-#sitewide-notice p {
+#sitewide-notice p,
+p.success {
 	background-color: #d9edf7;
 	border-radius: 5px;
 	border: 1px solid #bce8f1;
@@ -827,7 +828,8 @@ textarea {
 	border-color: #CCC;
 	color: #777;
 }
-.pmpro_success {
+.pmpro_success,
+p.success {
 	background-color: #dff0d8;
 	border-color: #d6e9c6;
 	color: #3c763d;
