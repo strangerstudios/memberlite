@@ -2524,6 +2524,12 @@ form.pmpro_form .pmpro_payment-expiration select {
 	margin: 0 0 .9rem 0;
 	padding: 0;
 }
+.widget_pmpro_member_login p.pmpro_form_nav {
+	margin: 0;
+}
+.widget_pmpro_member_login hr {
+	margin: 1.45rem 0;
+}
 .widget.widget_pmpro_member_login ul li,
 .widget.widget_pmpro_member_login ul.menu li,
 #secondary .widget.widget_pmpro_member_login ul li,
