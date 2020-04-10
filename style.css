@@ -1,4 +1,4 @@
- /*
+/*
 Theme Name: Memberlite
 Theme URI: https://memberlitetheme.com/
 Author: Stranger Studios
@@ -2507,6 +2507,30 @@ form.pmpro_form .pmpro_payment-expiration select {
 #pmpro_sws_banner_top span.pmpro_sws_banner-button .pmpro_btn {
 	padding: .45rem 1.45rem;
 }
+
+/* Member Log In / Log Out Widget */
+.widget_pmpro_member_login {
+	background: #FAFAFA;
+	border: 1px solid #CCC;
+	padding: 1.45rem;
+}
+.widget_pmpro_member_login h3 {
+	background: none;
+	border: none;
+	margin: 0 0 .9rem 0;
+	padding: 0;
+}
+.widget.widget_pmpro_member_login ul li,
+.widget.widget_pmpro_member_login ul.menu li,
+#secondary .widget.widget_pmpro_member_login ul li,
+#secondary .widget.widget_pmpro_member_login ul.menu li {
+	border: none;
+	margin: 0;
+	padding: 0;
+}
+#secondary .widget.widget_pmpro_member_login ul.menu ul.sub-menu {
+	margin-top: 0;
+} 
 
 /*--------------------------------------------------------------
 11.2 Testimonials Widget: https://wordpress.org/plugins/testimonials-widget/
