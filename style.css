@@ -1374,17 +1374,21 @@ a:active {
 	border-bottom: none;
 }
 #secondary .widget ul.menu,
+#secondary .widget_archive ul,
 #secondary .widget_recent_entries ul,
 #secondary .widget_categories ul,
 #secondary .widget_recent_comments ul,
-#secondary .widget_search ul {
+#secondary .widget_search ul,
+#secondary .widget_meta ul {
 	list-style: none;
 	margin: 0;
 }
 #secondary .widget ul.menu li,
+#secondary .widget_archive ul li,
 #secondary .widget_recent_entries ul li,
 #secondary .widget_categories ul li,
-#secondary .widget_recent_comments ul li {
+#secondary .widget_recent_comments ul li,
+#secondary .widget_meta ul li {
 	border-bottom: 1px dotted #CCC;
 	margin: 0;
 	padding: 1.45rem;
