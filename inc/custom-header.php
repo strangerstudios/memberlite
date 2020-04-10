@@ -13,19 +13,18 @@
  * @uses memberlite_admin_header_image()
  */
 function memberlite_custom_header_setup() {
-    add_theme_support(
-        'custom-header', apply_filters(
-            'memberlite_custom_header_args',
-            array(
-                'default-text-color' => '2c3e50',
-                'height'             => 110,
-                'width'              => 1440,
-                'flex-height'        => true,
-                'flex-height'        => true,
-                'wp-head-callback'   => 'memberlite_header_style',
-            )
+    $custom_header = apply_filters(
+        'memberlite_custom_header_args',
+        array(
+            'default-text-color' => '2c3e50',
+            'height'             => 110,
+            'width'              => 1440,
+            'flex-height'        => true,
+            'flex-height'        => true,
+            'wp-head-callback'   => 'memberlite_header_style',
         )
     );
+    add_theme_support( 'custom-header', $custom_header );
 }
 add_action('after_setup_theme', 'memberlite_custom_header_setup');
 

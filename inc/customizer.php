@@ -84,6 +84,7 @@ class Memberlite_Customize {
 		    'sticky_nav',
 			array(
 		        'default'   => false,
+		        'sanitize_callback' => array( 'Memberlite_Customize', 'sanitize_checkbox' ),
 		        'transport' => 'refresh',
 		    )
 		);

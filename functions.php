@@ -222,14 +222,13 @@ if ( ! function_exists( 'memberlite_setup' ) ) :
 		);
 
 		// Setup the WordPress core custom background feature.
-		add_theme_support(
-			'custom-background', apply_filters(
-				'memberlite_custom_background_args', array(
-					'default-color' => 'FFFFFF',
-					'default-image' => '',
-				)
+		$custom_background = apply_filters(
+			'memberlite_custom_background_args', array(
+				'default-color' => 'FFFFFF',
+				'default-image' => '',
 			)
 		);
+		add_theme_support( 'custom-background', $custom_background );
 		
 		// Build unique array of Color Scheme values to include in Block Editor
 		$color_scheme = array();
