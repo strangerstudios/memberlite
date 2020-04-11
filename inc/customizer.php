@@ -845,7 +845,7 @@ class Memberlite_Customize {
 				$header_font = str_replace( '-', ' ', $fonts[0] );
 				$body_font   = str_replace( '-', ' ', $fonts[1] );
 			?>
-			<?php echo 'body, button, input, select, textarea, input[type="button"], input[type="reset"], input[type="submit"], .btn, .btn:link, a.comment-reply-link, a.pmpro_btn, input[type="submit"].pmpro_btn, .woocommerce #content input.button, .woocommerce #respond input#submit, .woocommerce a.button, .woocommerce button.button, .woocommerce input.button, .woocommerce-page #content input.button, .woocommerce-page #respond input#submit, .woocommerce-page a.button, .woocommerce-page button.button, .woocommerce-page input.button, .woocommerce #content input.button.alt, .woocommerce #respond input#submit.alt, .woocommerce a.button.alt, .woocommerce button.button.alt, .woocommerce input.button.alt, .woocommerce-page #content input.button.alt, .woocommerce-page #respond input#submit.alt, .woocommerce-page a.button.alt, .woocommerce-page button.button.alt, .woocommerce-page input.button.alt, form.pmpro_form thead th span.pmpro_thead-msg {font-family: "' . esc_html( $body_font ) . '", sans-serif; }'; ?>
+			<?php echo 'body {font-family: "' . esc_html( $body_font ) . '", sans-serif; }'; ?>
 			<?php echo 'h1, h2, h3, h4, h5, h6, label, .navigation, th, .pmpro_checkout thead th, #pmpro_account .pmpro_box h3, #meta-member .user, #bbpress-forums li.bbp-header, #bbpress-forums li.bbp-footer, #bbpress-forums fieldset.bbp-form legend {font-family: "' . esc_html( $header_font ) . '", sans-serif; }'; ?>
 		</style>
 		<!--/Customizer CSS-->

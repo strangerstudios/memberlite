@@ -87,7 +87,6 @@ body.reply-edit .reply {
 #bbpress-forums li.bbp-header,
 #bbpress-forums li.bbp-footer {
 	font-weight: bold;
-	font-family: 'Lato', sans-serif;
 	font-weight: 400;
 	padding: 1rem;
 	text-align: center;
@@ -581,7 +580,6 @@ td.bbp-topic-counts {
 	margin: 0 0 4rem 0;
 }
 #bbpress-forums fieldset.bbp-form legend {
-	font-family: 'Lato', sans-serif;
 	padding: 5px;
 }
 #bbpress-forums fieldset.bbp-form label {
