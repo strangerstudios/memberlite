@@ -2450,6 +2450,9 @@ form#pmpro_form .pmpro_checkout h3 span.pmpro_checkout-h3-msg a {
 form#pmpro_form .pmpro_checkout-fields {
 	padding: 1.45rem;
 }
+form#pmpro_form #pmpro_payment_information_fields .pmpro_checkout-fields {
+	padding-bottom: 0;
+}
 form#pmpro_form .pmpro_sslseal {
 	padding: 1.45rem 1.45rem 1.45rem 0;
 }
