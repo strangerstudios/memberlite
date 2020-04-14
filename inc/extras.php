@@ -385,6 +385,14 @@ function memberlite_page_title( $echo = true ) {
 		if ( ! empty( $term_description ) ) :
 			printf( '<div class="taxonomy-description">%s</div>', $term_description );
 			endif;
+
+			// Show an optional author bio.
+		if ( is_author() ) {
+			$author_bio = get_the_author_meta( 'user_description' );
+			if ( ! empty( $author_bio ) ) :
+				printf( '<div class="author-description">%s</div>', $author_bio );
+				endif;
+		}
 	} elseif ( is_search() ) {
 		?>
 		<h1 class="page-title">
