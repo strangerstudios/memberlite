@@ -1835,7 +1835,7 @@ a:active {
 #primary .hentry .entry-banner .entry-header a {
 	color: #FFF;
 }
-#primary .post.hentry .entry-header {
+.entry-header-grid .entry-header {
 	display: grid;
 	grid-template-columns: 1fr .25fr 9fr;
 	grid-template-areas:
@@ -1843,10 +1843,10 @@ a:active {
     "avatar . meta";
     margin-bottom: 2.9rem;
 }
-#primary .post.hentry .entry-banner .entry-header {
+.entry-header-grid .entry-banner .entry-header {
 	margin-bottom: 0;
 }
-#primary .hentry .entry-header .entry-title {
+.entry-header-grid .entry-header .entry-title {
 	margin: 0 0 .7rem 0;
 	grid-area: title;
 	-webkit-hyphens: auto;
@@ -1855,10 +1855,10 @@ a:active {
 	word-wrap: break-word;
 	overflow-wrap: break-word;
 }
-#primary .hentry .entry-header .entry-meta {
+.entry-header-grid .entry-header .entry-meta {
 	grid-area: meta;
 }
-#primary .hentry .entry-header .post_author_avatar {
+.entry-header-grid .entry-header .post_author_avatar {
 	border-radius: 50%;
 	grid-area: avatar;
 	height: auto;
