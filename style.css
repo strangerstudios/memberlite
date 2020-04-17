@@ -2432,7 +2432,8 @@ form.pmpro_form .input {
 form.pmpro_form textarea {
 	width:90%;
 }
-form.pmpro_form label {
+form.pmpro_form label,
+#loginform label {
 	font-weight: 400;
 }
 form#pmpro_form .pmpro_checkout h3 {
@@ -2503,6 +2504,19 @@ form.pmpro_form .pmpro_payment-expiration select {
 }
 #pmpro_account .pmpro_actionlinks a {
 	text-decoration: underline;
+}
+
+/* Membership Invoice */
+.pmpro_invoice_wrap h3 {
+	margin-top: 0;
+}
+.pmpro_invoice_wrap .pmpro_invoice_details p {
+	margin-bottom: 0;
+}
+
+/* Membership Cancel */
+.pmpro_cancel_wrap h2 {
+	margin-top: 0;
 }
 
 /* Member Directory and Profiles */
@@ -2690,11 +2704,12 @@ object {
 	.main-navigation ul {display: none;	}
 	.hide-mobile {display: none; }
 	.header-right, .site-navigation-sticky-wrapper, #site-navigation {display: none; }
-	.site-header .row {align-items: center; display: grid; grid-template-columns: 1fr auto; grid-template-areas: "site-branding menu-toggle"; }
-	.site-header .site-branding {grid-area: site-branding; margin: .9rem 0; padding: 0 0 0 .9rem; width: 100%; }
+	.site-header { padding: 0 .9rem; }
+	.site-header .row {align-items: center; display: grid; grid-column-gap: .9rem; grid-template-columns: 1fr auto; grid-template-areas: "site-branding menu-toggle"; }
+	.site-header .site-branding {grid-area: site-branding; margin: .9rem 0; padding: 0; width: 100%; }
 	.site-header .mobile-navigation-bar {grid-area: menu-toggle; }
 	.site-title a {width: 100%; height: auto; background-size: contain; }
-	.menu-toggle {display: block; margin-right: .9rem; }
+	.menu-toggle {display: block; }
 	.testimonials-widget-testimonial span.image	{display: block; float: none; margin: 0; text-align: center; }
 	img.alignleft, img.alignright, .wp-block-image figure.alignleft, .wp-block-image figure.alignright {clear:both; display: block; float: none; margin-bottom: 2.9rem; margin-left: auto; margin-right: auto; text-align: center; }
 	.comment-respond label {display: block; text-align: left; width: 100%; }
@@ -2719,6 +2734,7 @@ object {
 	.masthead h1 { margin-top: 1.45rem; -webkit-hyphens: none; -moz-hyphens: none; hyphens: none; }
 	#primary .hentry .entry-header .post_author_avatar {text-align: center; }
 	.masthead .post_author_avatar {margin-top: 1.45rem; text-align: center; }
+	.footer-widgets {padding: 0; }
 	.footer-widgets .widget {padding-top: 5.8rem; padding-bottom: 5.8rem; }
 	.footer-widgets .widget:nth-child(even) {background: rgba(255,255,255,0.2); }
 	.site-footer .site-info .skip-link {margin-top: 1.45rem; }
