@@ -767,7 +767,9 @@ input::-moz-focus-inner { /* Corrects inner padding and border displayed oddly i
 .footer-widgets input[type=url],
 .footer-widgets input[type=password],
 .footer-widgets input[type=search],
-.footer-widgets textarea {
+.footer-widgets textarea,
+#mobile-navigation input[type=text],
+#mobile-navigation input[type=password] {
 	color: #666;
 	border: 1px solid #ccc;
 	border-radius: 3px;
@@ -2541,7 +2543,8 @@ form.pmpro_form .pmpro_payment-expiration select {
 }
 
 /* Member Log In / Log Out Widget */
-.widget_pmpro_member_login {
+#secondary .widget_pmpro_member_login .pmpro_login_wrap,
+#secondary .widget_pmpro_member_login .pmpro_logged_in_welcome_wrap {
 	background: #FAFAFA;
 	border: 1px solid #CCC;
 	padding: 1.45rem;
@@ -2569,7 +2572,38 @@ form.pmpro_form .pmpro_payment-expiration select {
 #secondary .widget.widget_pmpro_member_login ul.menu ul.sub-menu {
 	margin-top: 0;
 } 
-
+.widget.widget_pmpro_member_login .pmpro_logged_in_welcome_wrap {
+	display: grid;
+	grid-template-columns: 80px auto;
+	grid-template-areas:
+	"name name"
+	"avatar nav";
+}
+.widget.widget_pmpro_member_login .pmpro_logged_in_welcome_wrap h3 {
+	grid-area: name;
+}
+.widget.widget_pmpro_member_login .pmpro_logged_in_welcome_wrap .avatar {
+	grid-area: avatar;
+}
+.widget.widget_pmpro_member_login .pmpro_logged_in_welcome_wrap .menu {
+	grid-area: user-links;
+	list-style: none;
+	margin-left: 0;
+}
+.widget.widget_pmpro_member_login #loginform input[type=text],
+.widget.widget_pmpro_member_login #loginform input[type=password] {
+	max-width: 100%;
+	width: 100%;
+}
+#mobile-navigation .widget.widget_pmpro_member_login .pmpro_logged_in_welcome_wrap {
+	grid-template-columns: auto;
+	grid-template-areas:
+	"name"
+	"nav";
+}
+#mobile-navigation .widget.widget_pmpro_member_login .pmpro_logged_in_welcome_wrap .avatar {
+	display: none;
+}
 /*--------------------------------------------------------------
 11.2 Testimonials Widget: https://wordpress.org/plugins/testimonials-widget/
 --------------------------------------------------------------*/
