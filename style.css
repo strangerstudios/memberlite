@@ -2530,6 +2530,9 @@ form.pmpro_form .pmpro_payment-expiration select {
 }
 
 /* Log In / Change Password / Profiles */
+.pmpro_reset_password_wrap {
+	margin-bottom: 2.9rem;
+}
 .pmpro_login_wrap h2,
 .pmpro_lost_password_wrap h2,
 .pmpro_reset_password_wrap h2,
