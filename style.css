@@ -1360,17 +1360,15 @@ a:active {
 #secondary .widget {
 	margin-bottom: 2.9rem;
 }
-#secondary .widget a, #secondary .widget a:link {
+.widget-area .widget a:not(.btn),
+.widget-area .widget a:link:not(.btn) {
 	border-bottom: 1px dotted #FFF;
 	text-decoration: none;
 	color: #777;
 }
-#secondary .widget a:hover {
+.widget-area .widget a:hover:not(.btn) {
 	color: #2C3E50;
 	border-bottom-color: #777;
-}
-#secondary .widget a.btn, #secondary .widget a.btn:hover {
-	border-bottom: none;
 }
 #secondary .widget ul.menu,
 #secondary .widget_archive ul,
@@ -2541,7 +2539,11 @@ form.pmpro_form .pmpro_payment-expiration select {
 .pmpro_member_profile_edit_wrap h2 {
 	margin-top: 0;
 }
-
+.pmpro_login_wrap p.pmpro_actions_nav,
+.pmpro_lost_password_wrap p.pmpro_actions_nav,
+.pmpro_reset_password_wrap p.pmpro_actions_nav {
+	text-align: left;
+}
 /* Member Log In / Log Out Widget */
 #secondary .widget_pmpro_member_login .pmpro_login_wrap,
 #secondary .widget_pmpro_member_login .pmpro_logged_in_welcome_wrap {
@@ -2555,8 +2557,9 @@ form.pmpro_form .pmpro_payment-expiration select {
 	margin: 0 0 .9rem 0;
 	padding: 0;
 }
-.widget_pmpro_member_login p.pmpro_form_nav {
+.widget_pmpro_member_login p.pmpro_actions_nav {
 	margin: 0;
+	text-align: left;
 }
 .widget_pmpro_member_login hr {
 	margin: 1.45rem 0;
