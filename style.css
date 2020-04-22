@@ -2544,6 +2544,15 @@ form.pmpro_form .pmpro_payment-expiration select {
 .pmpro_reset_password_wrap p.pmpro_actions_nav {
 	text-align: left;
 }
+.pmpro_member_profile_edit_wrap .input {
+	width: 80%;
+}
+.pmpro_member_profile_edit_wrap .pmpro_checkout_box-user .pmpro_member_profile_edit-fields {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-column-gap: 1.45rem;
+}
+
 /* Member Log In / Log Out Widget */
 #secondary .widget_pmpro_member_login .pmpro_login_wrap,
 #secondary .widget_pmpro_member_login .pmpro_logged_in_welcome_wrap {
@@ -2738,11 +2747,11 @@ object {
 	form.pmpro_form .pmpro_select_payment_method span {display: block; }
 	form.pmpro_form .input, form.pmpro_form select {width: 93%; }
 	form.pmpro_form #CVV, form.pmpro_form select#ExpirationMonth, form.pmpro_form select#ExpirationYear {width: 43%; }
-	form.pmpro_form .pmpro_submit, form.pmpro_form .leftmar {margin: 0; }
 	.pmpro_levels-div {text-align: center; }
 	.pmpro_levels-div .entry-footer .alignright, .pmpro_levels-2col .entry-footer .alignright {float: none; margin: 0 0 1.5rem 0; display: block; }
 	#pmpro_levels.pmpro_advanced_levels-compare_table {display: none; }
 	#pmpro_levels.pmpro_advanced_levels-compare_table_responsive {display: block; }
+	.pmpro_member_profile_edit_wrap .pmpro_checkout_box-user .pmpro_member_profile_edit-fields {display: block; }
 	.home .masthead {text-align: center; }
 	#primary .post.hentry .entry-header, .masthead-post-byline { grid-template-columns: 1fr; grid-template-areas: "avatar" "title" "meta"; }
 	.single .masthead-banner .masthead {padding-top: 0; }
