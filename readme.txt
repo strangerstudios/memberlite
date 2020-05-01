@@ -110,7 +110,7 @@ We highly recommend using these plugins for every site running Memberlite:
 
 == Changelog ==
 
-= 4.4 =
+= 4.4 - 2020-04-30 =
 * FEATURE: Added layout for "No Sidebar" Layout for Blog, Archive, Posts.
 * FEATURE: Added header background color customizer setting.
 * ENHANCEMENT: Added support for new frontend login, log in widget, and profiles in PMPro v2.3+.
