@@ -40,22 +40,22 @@ function pmpro_login_memberlite_page_title( $page_title_html ) {
 	if ( empty( $pmpro_pages ) || empty( $pmpro_pages['login'] ) ) {
 		return $page_title_html;
 	}
-	
+
 	if ( ! is_page( $pmpro_pages['login'] ) ) {
 		return $page_title_html;
 	}
 
 	if ( is_user_logged_in() ) {
-		$title = __( 'Welcome', 'paid-memberships-pro' );
+		$title = __( 'Welcome', 'memberlite' );
 	} elseif ( ! empty( $_REQUEST['action'] ) && $_REQUEST['action'] === 'reset_pass' ) {
-		$title = __( 'Lost Password', 'paid-memberships-pro' );
+		$title = __( 'Lost Password', 'memberlite' );
 	} elseif ( ! empty( $_REQUEST['action'] ) && $_REQUEST['action'] === 'rp' ) {
-		$title = __( 'Reset Password', 'paid-memberships-pro' );
+		$title = __( 'Reset Password', 'memberlite' );
 	} else {
 		return $page_title_html;
 	}
 
-	$page_title_html = '<h1 class="page-title">' . esc_html__( $title ) . '</h1>';
+	$page_title_html = '<h1 class="page-title">' . esc_html( $title ) . '</h1>';
 
 	return $page_title_html;
 }
