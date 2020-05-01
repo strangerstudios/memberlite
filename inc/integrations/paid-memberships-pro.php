@@ -37,7 +37,11 @@ function pmpro_login_memberlite_page_title( $page_title_html ) {
 		return $page_title_html;
 	}
 
-	if ( empty( $pmpro_pages ) || ! is_page( $pmpro_pages['login'] ) ) {
+	if ( empty( $pmpro_pages ) || empty( $pmpro_pages['login'] ) ) {
+		return $page_title_html;
+	}
+	
+	if ( ! is_page( $pmpro_pages['login'] ) ) {
 		return $page_title_html;
 	}
 
