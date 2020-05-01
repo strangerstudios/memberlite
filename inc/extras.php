@@ -98,6 +98,29 @@ function memberlite_getColumnsRatio( $location = null ) {
 	return $r;
 }
 
+function memberlite_sidebar_location_none_columns_ratio( $r, $location ) {
+	global $memberlite_defaults;
+
+	if ( ! empty( $location ) ) {
+		return $r;
+	}
+
+	if ( is_page() ) {
+		$sidebar_location = get_theme_mod( 'sidebar_location', $memberlite_defaults['sidebar_location'] );
+		if ( $sidebar_location === 'sidebar-none' && empty( is_page_template() ) ) {
+			$r = '8 medium-offset-2';
+		}
+	} elseif ( memberlite_is_blog() || is_search() ) {
+		$sidebar_location = get_theme_mod( 'sidebar_location_blog', $memberlite_defaults['sidebar_location_blog'] );
+		if ( $sidebar_location === 'sidebar-blog-none' ) {
+			$r = '8 medium-offset-2';
+		}
+	}
+
+	return $r;
+}
+add_filter( 'memberlite_columns_ratio', 'memberlite_sidebar_location_none_columns_ratio', 10, 2 );
+
 /**
  * Get the width of a thumbnail.
  */
@@ -362,6 +385,14 @@ function memberlite_page_title( $echo = true ) {
 		if ( ! empty( $term_description ) ) :
 			printf( '<div class="taxonomy-description">%s</div>', $term_description );
 			endif;
+
+			// Show an optional author bio.
+		if ( is_author() ) {
+			$author_bio = get_the_author_meta( 'user_description' );
+			if ( ! empty( $author_bio ) ) :
+				printf( '<div class="author-description">%s</div>', $author_bio );
+				endif;
+		}
 	} elseif ( is_search() ) {
 		?>
 		<h1 class="page-title">
@@ -372,10 +403,11 @@ function memberlite_page_title( $echo = true ) {
 		</h1>
 		<?php
 	} elseif ( is_singular( 'post' ) ) {
-		$author_id = $post->post_author;
+		$author = get_userdata( $post->post_author );
+		$memberlite_avatar_size = apply_filters( 'memberlite_avatar_size', 80 );
 		?>
 		<div class="masthead-post-byline">
-			<div class="post_author_avatar"><?php echo get_avatar( $author_id, 80 ); ?></div>
+			<div class="post_author_avatar"><?php echo get_avatar( $author->ID, $memberlite_avatar_size, '', $author->display_name ); ?></div>
 			<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
 			<?php
 				$memberlite_get_entry_meta_before = memberlite_get_entry_meta( $post, 'before' );

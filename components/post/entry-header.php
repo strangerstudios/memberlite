@@ -32,8 +32,11 @@ if ( ! empty( $memberlite_get_banner_image_src ) ) {
 
 	<header class="entry-header">
 		<?php if ( 'post' == get_post_type() ) : ?>
-			<?php $author_id = $post->post_author; ?>
-			<div class="post_author_avatar"><?php echo get_avatar( $author_id, 80 ); ?></div>
+			<?php
+				$author = get_userdata( $post->post_author );
+				$memberlite_avatar_size = apply_filters( 'memberlite_avatar_size', 80 );
+			?>
+			<div class="post_author_avatar"><?php echo get_avatar( $author->ID, $memberlite_avatar_size, '', $author->display_name ); ?></div>
 		<?php endif; ?>
 		<?php the_title( sprintf( '<h1 class="entry-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h1>' ); ?>
 		<?php if ( 'post' == get_post_type() ) : ?>

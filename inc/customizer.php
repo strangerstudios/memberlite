@@ -84,7 +84,10 @@ class Memberlite_Customize {
 		    'sticky_nav',
 			array(
 		        'default'   => false,
+		        'sanitize_callback' => array( 'Memberlite_Customize', 'sanitize_checkbox' ),
 		        'transport' => 'refresh',
+				'sanitize_callback'    => array( 'Memberlite_Customize', 'sanitize_checkbox' ),
+				'sanitize_js_callback' => array( 'Memberlite_Customize', 'sanitize_js_callback' ),
 		    )
 		);
 
@@ -177,6 +180,7 @@ class Memberlite_Customize {
 				'choices'  => array(
 					'sidebar-right' => __( 'Right Sidebar', 'memberlite' ),
 					'sidebar-left'  => __( 'Left Sidebar', 'memberlite' ),
+					'sidebar-none'  => __( 'No Sidebar', 'memberlite' ),
 				),
 				'priority' => 25,
 			)
@@ -200,6 +204,7 @@ class Memberlite_Customize {
 				'choices'  => array(
 					'sidebar-blog-right' => __( 'Right Sidebar', 'memberlite' ),
 					'sidebar-blog-left'  => __( 'Left Sidebar', 'memberlite' ),
+					'sidebar-blog-none'  => __( 'No Sidebar', 'memberlite' ),
 				),
 				'priority' => 30,
 			)
@@ -529,6 +534,29 @@ class Memberlite_Customize {
 		);
 
 		$wp_customize->add_setting(
+			'bgcolor_header',
+			array(
+				'default'              => $memberlite_defaults['bgcolor_header'],
+				'sanitize_callback'    => 'sanitize_hex_color',
+				'sanitize_js_callback' => 'maybe_hash_hex_color',
+				'transport'            => 'postMessage',
+			)
+		);
+
+		$wp_customize->add_control(
+			new WP_Customize_Color_Control(
+				$wp_customize,
+				'memberlite_bgcolor_header',
+				array(
+					'label'    => __( 'Header Background Color', 'memberlite' ),
+					'section'  => 'colors',
+					'settings' => 'bgcolor_header',
+					'priority' => 10,
+				)
+			)
+		);
+
+		$wp_customize->add_setting(
 			'bgcolor_site_navigation',
 			array(
 				'default'              => $memberlite_defaults['bgcolor_site_navigation'],
@@ -546,7 +574,7 @@ class Memberlite_Customize {
 					'label'    => __( 'Primary Navigation Background Color', 'memberlite' ),
 					'section'  => 'colors',
 					'settings' => 'bgcolor_site_navigation',
-					'priority' => 10,
+					'priority' => 20,
 				)
 			)
 		);
@@ -569,7 +597,7 @@ class Memberlite_Customize {
 					'label'    => __( 'Primary Navigation Color', 'memberlite' ),
 					'section'  => 'colors',
 					'settings' => 'color_site_navigation',
-					'priority' => 20,
+					'priority' => 30,
 				)
 			)
 		);
@@ -592,7 +620,7 @@ class Memberlite_Customize {
 					'label'    => __( 'Link Color', 'memberlite' ),
 					'section'  => 'colors',
 					'settings' => 'color_link',
-					'priority' => 30,
+					'priority' => 40,
 				)
 			)
 		);
@@ -615,7 +643,7 @@ class Memberlite_Customize {
 					'label'    => __( 'Meta Link Color', 'memberlite' ),
 					'section'  => 'colors',
 					'settings' => 'color_meta_link',
-					'priority' => 40,
+					'priority' => 50,
 				)
 			)
 		);
@@ -638,7 +666,7 @@ class Memberlite_Customize {
 					'label'    => __( 'Primary Color', 'memberlite' ),
 					'section'  => 'colors',
 					'settings' => 'color_primary',
-					'priority' => 50,
+					'priority' => 60,
 				)
 			)
 		);
@@ -661,7 +689,7 @@ class Memberlite_Customize {
 					'label'    => __( 'Secondary Color', 'memberlite' ),
 					'section'  => 'colors',
 					'settings' => 'color_secondary',
-					'priority' => 60,
+					'priority' => 70,
 				)
 			)
 		);
@@ -684,7 +712,7 @@ class Memberlite_Customize {
 					'label'    => __( 'Action Color', 'memberlite' ),
 					'section'  => 'colors',
 					'settings' => 'color_action',
-					'priority' => 70,
+					'priority' => 80,
 				)
 			)
 		);
@@ -744,6 +772,7 @@ class Memberlite_Customize {
 		?>
 		<!--Customizer CSS-->
 		<style type="text/css">
+			<?php self::generate_css_from_mod( $memberlite_defaults['bgcolor_header_elements'], 'background', 'bgcolor_header' ); ?>
 			<?php self::generate_css_from_mod( $memberlite_defaults['bgcolor_site_navigation_elements'], 'background', 'bgcolor_site_navigation' ); ?>
 			<?php self::generate_css_from_mod( $memberlite_defaults['color_site_navigation_elements'], 'color', 'color_site_navigation' ); ?>
 			<?php self::generate_css_from_mod( $memberlite_defaults['color_link_color_elements'], 'color', 'color_link' ); ?>
@@ -769,7 +798,6 @@ class Memberlite_Customize {
 				$color_primary_hover = vsprintf( 'rgba( %1$s, %2$s, %3$s, 0.7)', $color_primary_rgb );
 				self::generate_css( $memberlite_defaults['color_primary_background_hover_elements'], 'background', $color_primary_hover );
 				self::generate_css( $memberlite_defaults['color_primary_color_hover_elements'], 'color', $color_primary_hover );
-
 				$color_secondary = get_theme_mod( 'color_secondary' );
 			if ( empty( $color_secondary ) ) {
 				$color_secondary = $memberlite_defaults['color_secondary'];
@@ -777,7 +805,6 @@ class Memberlite_Customize {
 				$color_secondary_rgb   = self::hex2rgb( $color_secondary );
 				$color_secondary_hover = vsprintf( 'rgba( %1$s, %2$s, %3$s, 0.7)', $color_secondary_rgb );
 				self::generate_css( $memberlite_defaults['color_secondary_background_hover_elements'], 'background', $color_secondary_hover );
-
 				$color_action = get_theme_mod( 'color_action' );
 			if ( empty( $color_action ) ) {
 				$color_action = $memberlite_defaults['color_action'];
@@ -820,7 +847,7 @@ class Memberlite_Customize {
 				$header_font = str_replace( '-', ' ', $fonts[0] );
 				$body_font   = str_replace( '-', ' ', $fonts[1] );
 			?>
-			<?php echo 'body, button, input[type="button"], input[type="reset"], input[type="submit"], .btn, a.comment-reply-link, a.pmpro_btn, input[type="submit"].pmpro_btn, .woocommerce #content input.button, .woocommerce #respond input#submit, .woocommerce a.button, .woocommerce button.button, .woocommerce input.button, .woocommerce-page #content input.button, .woocommerce-page #respond input#submit, .woocommerce-page a.button, .woocommerce-page button.button, .woocommerce-page input.button, .woocommerce #content input.button.alt, .woocommerce #respond input#submit.alt, .woocommerce a.button.alt, .woocommerce button.button.alt, .woocommerce input.button.alt, .woocommerce-page #content input.button.alt, .woocommerce-page #respond input#submit.alt, .woocommerce-page a.button.alt, .woocommerce-page button.button.alt, .woocommerce-page input.button.alt, form.pmpro_form thead th span.pmpro_thead-msg {font-family: "' . esc_html( $body_font ) . '", sans-serif; }'; ?>
+			<?php echo 'body {font-family: "' . esc_html( $body_font ) . '", sans-serif; }'; ?>
 			<?php echo 'h1, h2, h3, h4, h5, h6, label, .navigation, th, .pmpro_checkout thead th, #pmpro_account .pmpro_box h3, #meta-member .user, #bbpress-forums li.bbp-header, #bbpress-forums li.bbp-footer, #bbpress-forums fieldset.bbp-form legend {font-family: "' . esc_html( $header_font ) . '", sans-serif; }'; ?>
 		</style>
 		<!--/Customizer CSS-->

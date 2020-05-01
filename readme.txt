@@ -1,8 +1,8 @@
 === Memberlite ===
 Contributors: kimannwall, strangerstudios
 Requires at least: WordPress 4.4
-Tested up to: WordPress 5.2
-Version: 4.3
+Tested up to: WordPress 5.4
+Version: 4.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: one-column, two-columns, left-sidebar, right-sidebar, flexible-header, custom-background, custom-colors, custom-header, custom-menu, custom-logo, editor-style, featured-images, footer-widgets, full-width-template, post-formats, theme-options, threaded-comments, translation-ready, e-commerce
@@ -109,6 +109,19 @@ We highly recommend using these plugins for every site running Memberlite:
 [Install Theme My Login »](https://wordpress.org/plugins/theme-my-login/)
 
 == Changelog ==
+
+= 4.4 - 2020-04-30 =
+* FEATURE: Added layout for "No Sidebar" Layout for Blog, Archive, Posts.
+* FEATURE: Added header background color customizer setting.
+* ENHANCEMENT: Added support for new frontend login, log in widget, and profiles in PMPro v2.3+.
+* BUG FIX/ENHANCEMENT: Improved CSS for sidebar menus and other widgets to only target menu-style lists, not all lists and for the Theme My Login widget.
+* BUG FIX/ENHANCEMENT: Improved Customizer CSS output so that all input types to respect custom font settings.
+* BUG FIX/ENHANCEMENT: Adjusted buttons and button-style links hover "brightness" instead of opacity for better appearance.
+* BUG FIX/ENHANCEMENT: Added post_class `entry-header-grid` to posts formats so styling only applies in main loop.
+* BUG FIX/ENHANCEMENT: Adjusted secondary (sidebar) text link to not apply to buttons.
+* ENHANCEMENT: Added `memberlite_avatar_size` filter for adjusting avatar display size.
+* ENHANCEMENT: Improved Accessibility and SEO by adding `alt` tags to post thumbnails and avatar.
+* ENHANCEMENT: Updated to Font Awesome version 5.13.0.
 
 = 4.3 - 2019-05-13 =
 * BUG FIX: Fixed bug where {post_comments} replacement wasn't returning the correct count in masthead area.

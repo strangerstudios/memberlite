@@ -4,7 +4,7 @@
  *
  * @package Memberlite
  */
-define( 'MEMBERLITE_VERSION', '4.3' );
+define( 'MEMBERLITE_VERSION', '4.4' );
 
 // get default values for options/etc
 require_once get_template_directory() . '/inc/defaults.php';
@@ -21,7 +21,7 @@ function memberlite_init_styles() {
 	}
 	wp_enqueue_style( 'memberlite_print_style', get_template_directory_uri() . '/css/print.css', array(), MEMBERLITE_VERSION, 'print' );
 	wp_enqueue_script( 'memberlite-script', get_template_directory_uri() . '/js/memberlite.js', array( 'jquery' ), MEMBERLITE_VERSION, true );
-	wp_enqueue_style( 'font-awesome', get_template_directory_uri() . '/font-awesome/css/all.min.css', array(), '5.8.2' );
+	wp_enqueue_style( 'font-awesome', get_template_directory_uri() . '/font-awesome/css/all.min.css', array(), '5.13.0' );
 
 	// load dark.css for dark/inverted backgrounds
 	$memberlite_darkcss = get_theme_mod( 'memberlite_darkcss', $memberlite_defaults['memberlite_darkcss'], false );
@@ -222,14 +222,13 @@ if ( ! function_exists( 'memberlite_setup' ) ) :
 		);
 
 		// Setup the WordPress core custom background feature.
-		add_theme_support(
-			'custom-background', apply_filters(
-				'memberlite_custom_background_args', array(
-					'default-color' => 'ffffff',
-					'default-image' => '',
-				)
+		$custom_background = apply_filters(
+			'memberlite_custom_background_args', array(
+				'default-color' => 'FFFFFF',
+				'default-image' => '',
 			)
 		);
+		add_theme_support( 'custom-background', $custom_background );
 		
 		// Build unique array of Color Scheme values to include in Block Editor
 		$color_scheme = array();
@@ -282,7 +281,7 @@ if ( ! function_exists( 'memberlite_setup' ) ) :
 
 		add_theme_support( 'editor-color-palette', array(
 		    array(
-		        'name' => __( 'Primary Color', 'themeLamemberlitengDomain' ),
+		        'name' => __( 'Primary Color', 'memberlite' ),
 		        'slug' => 'color-primary',
 		        'color' => $color_primary,
 		    ),
