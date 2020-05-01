@@ -107,9 +107,11 @@
 #secondary .widget_theme_my_login h3.widget-title {
 	background: none;
 	border: none;
+	margin-bottom: .9rem;
 	padding: 0;
 }
-#secondary .widget_theme_my_login ul li {
+#secondary .widget.widget_theme_my_login ul li,
+#secondary .widget.widget_theme_my_login ul.menu li {
 	border: none;
 	margin: 0;
 	padding: 0;
@@ -126,6 +128,8 @@
 }
 .tml.tml-user-panel .tml-user-links {
 	grid-area: user-links;
+	list-style: none;
+	margin-left: 0;
 }
 .tml.tml-user-panel nav {
 	grid-area: nav;

@@ -8,7 +8,7 @@
  */
 ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+<article id="post-<?php the_ID(); ?>" <?php post_class( ); ?>>
 	<div class="entry-content">
 		<?php // NOTE: The title is generated in header.php via the memberlite_page_title() function found in functions.php ?>
 		<?php do_action( 'memberlite_before_content_single' ); ?>
