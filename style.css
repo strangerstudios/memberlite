@@ -2544,7 +2544,15 @@ form.pmpro_form .pmpro_payment-expiration select {
 .pmpro_reset_password_wrap p.pmpro_actions_nav {
 	text-align: left;
 }
-.pmpro_member_profile_edit_wrap .input {
+.pmpro_member_profile_edit_wrap h3 {
+	background: #FAFAFA;
+	border-top: 1px solid #CCC;
+	border-bottom: 1px solid #CCC;
+	padding: 1.45rem;
+}
+.pmpro_member_profile_edit_wrap .input[type=text],
+.pmpro_member_profile_edit_wrap .input[type=email],
+.pmpro_member_profile_edit_wrap .input[type=password] {
 	width: 80%;
 }
 .pmpro_member_profile_edit_wrap .pmpro_checkout_box-user .pmpro_member_profile_edit-fields {
