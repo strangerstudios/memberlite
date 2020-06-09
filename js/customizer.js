@@ -66,6 +66,20 @@
 			);
 		}
 	);
+	// Header Background Color.
+	wp.customize(
+		'bgcolor_header', function( value ) {
+			value.bind(
+				function( to ) {
+					$( '#masthead' ).css(
+						{
+							'background': to,
+						}
+					);
+				}
+			);
+		}
+	);
 	// Primary Navigation Background Color.
 	wp.customize(
 		'bgcolor_site_navigation', function( value ) {
