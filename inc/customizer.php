@@ -772,7 +772,7 @@ class Memberlite_Customize {
 		?>
 		<!--Customizer CSS-->
 		<style type="text/css">
-			<?php self::generate_css_from_mod( $memberlite_defaults['bgcolor_header_elements'], 'background', 'bgcolor_header' ); ?>
+			<?php self::generate_css_from_mod( $memberlite_defaults['bgcolor_header_elements'], 'background-color', 'bgcolor_header' ); ?>
 			<?php self::generate_css_from_mod( $memberlite_defaults['bgcolor_site_navigation_elements'], 'background', 'bgcolor_site_navigation' ); ?>
 			<?php self::generate_css_from_mod( $memberlite_defaults['color_site_navigation_elements'], 'color', 'color_site_navigation' ); ?>
 			<?php self::generate_css_from_mod( $memberlite_defaults['color_link_color_elements'], 'color', 'color_link' ); ?>
