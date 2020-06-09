@@ -73,7 +73,7 @@
 				function( to ) {
 					$( '#masthead' ).css(
 						{
-							'background': to,
+							'background-color': to,
 						}
 					);
 				}
