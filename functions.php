@@ -385,6 +385,11 @@ function memberlite_widgets_init() {
 }
 add_action( 'widgets_init', 'memberlite_widgets_init' );
 
+/* Get the redirect_to URL to use for "Log In" links. */
+function memberlite_login_redirect_to() {
+	return apply_filters(  'memberlite_login_redirect_to', site_url( $_SERVER['REQUEST_URI'] ) );
+}
+
 /* Adds a Log Out link in member menu */
 function memberlite_menus( $items, $args ) {
 	// is this the member menu location or a replaced menu using pmpro-nav-menus plugin
@@ -397,7 +402,7 @@ function memberlite_menus( $items, $args ) {
 			$items = '<li><a href="' . esc_url( wp_logout_url() ) . '">' . esc_html__( 'Log Out', 'memberlite' ) . '</a></li>';
 		} else {
 			// not logged in
-			$items .= '<li><a href="' . esc_url( wp_login_url() ) . '">' . esc_html__( 'Log In', 'memberlite' ) . '</a></li>';
+			$items .= '<li><a href="' . esc_url( wp_login_url( memberlite_login_redirect_to() ) ) . '">' . esc_html__( 'Log In', 'memberlite' ) . '</a></li>';
 
 			$show_register_link = get_option( 'users_can_register' ) || defined( 'PMPRO_VERSION' );
 			$show_register_link = apply_filters( 'memberlite_show_register_link', $show_register_link );
@@ -429,7 +434,7 @@ function memberlite_member_menu_cb( $args ) {
 		$link = $link_before . '<a href="' . esc_url( wp_logout_url() ) . '">' . $before . esc_html__( 'Log Out', 'memberlite' ) . $after . '</a>';
 	} else {
 		// not logged in
-		$link = $link_before . '<a href="' . esc_url( wp_login_url() ) . '">' . $before . esc_html__( 'Log In', 'memberlite' ) . $after . '</a>';
+		$link = $link_before . '<a href="' . esc_url( wp_login_url( memberlite_login_redirect_to() ) ) . '">' . $before . esc_html__( 'Log In', 'memberlite' ) . $after . '</a>';
 
 		$show_register_link = get_option( 'users_can_register' ) || defined( 'PMPRO_VERSION' );
 		$show_register_link = apply_filters( 'memberlite_show_register_link', $show_register_link );
