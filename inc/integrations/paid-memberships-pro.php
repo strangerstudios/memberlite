@@ -27,6 +27,41 @@ function memberlite_pmpro_theme_mod_memberlite_page_nav( $mod ) {
 add_filter( 'theme_mod_memberlite_page_nav', 'memberlite_pmpro_theme_mod_memberlite_page_nav' );
 
 /**
+ * Hide subpage menu if this the PMPro Membership Account page or one of its subpages.
+ */
+function memberlite_pmpro_sidebar_hide_children( $widget_areas ) {
+	global $pmpro_pages;
+
+	$queried_object = get_queried_object();
+
+	// no queried object or pmpro_pages and we stop
+	if ( empty( $pmpro_pages ) || empty( $pmpro_pages['account'] ) || empty( $queried_object ) || empty( $queried_object->post_type ) ) {
+		return $widget_areas;
+	}
+
+	//are we even showing children?
+	$memberlite_nav_menu_submenu_key = array_search( 'memberlite_nav_menu_submenu', $widget_areas );
+	if ( $memberlite_nav_menu_submenu_key === false ) {
+		return $widget_areas;
+	}
+
+	// which page to be checking
+	if ( ! empty( $queried_object->post_parent ) ) {
+		$queried_object_ancestors = get_post_ancestors( $queried_object );
+		$toplevelpost   = end( $queried_object_ancestors );
+	} else {
+		$toplevelpost = $queried_object->ID;
+	}
+
+	if ( $toplevelpost == $pmpro_pages['account'] ) {
+		unset( $widget_areas[$memberlite_nav_menu_submenu_key] );
+	}
+
+	return $widget_areas;
+}
+add_filter( 'memberlite_get_widget_areas', 'memberlite_pmpro_sidebar_hide_children' );
+
+/**
  * Filter the page title on the Log In page based on page action.
  *
  */
