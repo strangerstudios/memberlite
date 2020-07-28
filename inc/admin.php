@@ -169,24 +169,6 @@ function memberlite_support() {
 							</div>
 						</div>
 					</div> <!-- end plugin-card-multiple-post-thumbnails -->
-					<div class="plugin-card plugin-card-theme-my-login">
-						<div class="plugin-card-top">
-							<div class="name column-name">
-								<h3><a href="https://thememylogin.com/" target="_blank"><?php esc_html_e( 'Theme My Login', 'memberlite' ); ?></a></h3>
-								<img src="<?php echo esc_url( get_template_directory_uri() ); ?>/images/theme-my-login-icon-256x256.png" class="plugin-icon" alt="Theme My Login">
-							</div>
-							<div class="action-links">
-								<ul class="plugin-action-buttons">
-									<li><a class="install-now button" href="<?php echo esc_url( admin_url( 'plugin-install.php?tab=search&s=theme+my+login' ) ); ?>"><?php esc_html_e( 'Install Now', 'memberlite' ); ?></a></li>
-									<li><a href="https://thememylogin.com/" target="_blank"><?php esc_html_e( 'More Details', 'memberlite' ); ?></a></li>
-								</ul>
-							</div>
-							<div class="desc column-description">
-								<p><?php esc_html_e( 'Themes the WordPress login and profile pages according to your theme. Additional settings for restricting admin access and redirection.', 'memberlite' ); ?></p>
-								<p class="authors"><cite><?php esc_html_e( 'By', 'memberlite' ); ?> <a href="https://www.jfarthing.com/" target="_blank"><?php esc_html_e( 'Jeff Farthing', 'memberlite' ); ?></a></cite></p>
-							</div>
-						</div>
-					</div> <!-- end plugin-card-theme-my-login -->
 					<?php if ( ! empty( $pmpro_license_key ) ) { ?>
 					<div class="plugin-card plugin-card-pmpro-advanced-levels-shortcode">
 						<div class="plugin-card-top">
