@@ -1,6 +1,6 @@
 <?php
 global $memberlite_defaults;
-$memberlite_defaults = array(
+$memberlite_defaults = apply_filters( 'memberlite_defaults', array(
 	'memberlite_webfonts'                       => 'Lato_Lato',
 	'columns_ratio'                             => '8-4',
 	'columns_ratio_header'                      => '4-8',
@@ -45,4 +45,4 @@ $memberlite_defaults = array(
 	'color_action_color_elements'               => '.action, .has-text-color.has-color-action-color',
 	'delimiter'                                 => '&nbsp;&#47;&nbsp;',
 	'memberlite_darkcss'                        => false,
-);
+) );
