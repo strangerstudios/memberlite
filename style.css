@@ -422,9 +422,6 @@ li > ol {
 	margin-bottom: 1rem;
 	margin-top: 1rem;
 }
-ul.wp-block-gallery {
-	margin-left: 0;
-}
 img {
 	height: auto; /* Make sure images are scaled correctly. */
 	max-width: 100%; /* Adhere to container width. */
