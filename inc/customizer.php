@@ -1279,6 +1279,13 @@ class Memberlite_Customize {
 				'href'  => array(),
 				'title' => array(),
 			),
+			'span' => array(
+				'class' => array(),
+			),
+			'time' => array(
+				'class' => array(),
+				'datetime' => array(),
+			),
 		);
 		return wp_kses( $value, $allowed_html );
 	}
