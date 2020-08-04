@@ -393,7 +393,7 @@ function memberlite_login_redirect_to() {
 /* Adds a Log Out link in member menu */
 function memberlite_menus( $items, $args ) {
 	// is this the member menu location or a replaced menu using pmpro-nav-menus plugin
-	if ( $args->theme_location == 'member' || $args->theme_location == 'member-logged-out' || ( strpos( $args->theme_location, '-member' ) !== false ) ) {
+	if ( $args->theme_location == 'member' || $args->theme_location == 'member-logged-out' || ( substr( $args->theme_location, -strlen( '-member' ) ) === '-member' ) ) {
 		if ( is_user_logged_in() && defined( 'PMPRO_VERSION' ) && pmpro_hasMembershipLevel() ) {
 			// user is logged in and has a membership level
 			$items .= '<li><a href="' . esc_url( wp_logout_url() ) . '">' . esc_html__( 'Log Out', 'memberlite' ) . '</a></li>';
@@ -412,7 +412,7 @@ function memberlite_menus( $items, $args ) {
 		}
 	}
 	// is this the primary menu location or a replaced menu using pmpro-nav-menus plugin
-	if ( $args->theme_location == 'primary' || ( strpos( $args->theme_location, '-primary' ) !== false ) ) {
+	if ( $args->theme_location == 'primary' || ( substr( $args->theme_location, -strlen( '-primary' ) ) === '-primary' ) ) {
 		$nav_menu_search = get_theme_mod( 'nav_menu_search', false );
 		if ( ! empty( $nav_menu_search ) ) {
 			$items .= get_search_form( false );
