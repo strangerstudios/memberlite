@@ -35,6 +35,8 @@
 				$meta_login = get_theme_mod( 'meta_login', false );
 				if ( ! is_page_template( 'templates/interstitial.php' ) && ( ! empty( $meta_login ) || has_nav_menu( 'meta' ) || is_active_sidebar( 'sidebar-3' ) ) ) {
 					$show_header_right = true;
+				} else {
+					$show_header_right = false;
 				}
 				/**
 				 * Filter to hide or show the right column area of the header.
