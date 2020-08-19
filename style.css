@@ -1252,13 +1252,23 @@ a:active {
 	display: block;
 	margin: 0 auto;
 }
-.alignwide {
-	margin-left: calc(50% - 50vw);
-    margin-right: calc(50% - 50vw);
+.single.sidebar-blog-none .alignwide,
+.page-template-default.sidebar-none .alignwide,
+.page-template-full-width .alignwide,
+.page-template-fluid-width .alignwide,
+.page-template-narrow-width .alignwide,
+.page-template-blank .alignwide {
+	margin-left: calc(50% - 45vw);
+    margin-right: calc(50% - 45vw);
     max-width: 1000%;
     width: auto;
 }
-.alignfull {
+.single.sidebar-blog-none .alignfull,
+.page-template-default.sidebar-none .alignfull,
+.page-template-full-width .alignfull,
+.page-template-fluid-width .alignfull,
+.page-template-narrow-width .alignfull,
+.page-template-blank .alignfull {
     margin-left: calc(50% - 50vw);
     margin-right: calc(50% - 50vw);
     max-width: 1000%;
@@ -1268,8 +1278,10 @@ a:active {
 .wp-block-image.alignfull {
 	text-align: center;
 }
-.wp-block-image.alignwide img {
-	width: 90%;
+.wp-block-cover,
+.wp-block-cover-image {
+	min-height: initial;
+	padding: 5.8rem 0 2.9rem 0;
 }
 .text-center {
 	text-align: center;
