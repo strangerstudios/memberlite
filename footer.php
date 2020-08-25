@@ -30,15 +30,16 @@
 				if ( ! is_active_sidebar( 'sidebar-4' ) ) {
 					$footer_defaults_container_class .= ' footer-widgets-empty';
 				}
-
-				$footer_defaults = array(
-					'theme_location'  => 'footer',
-					'container'       => 'div',
-					'container_class' => $footer_defaults_container_class,
-					'menu_class'      => 'menu',
-					'fallback_cb'     => false,
-				);
-				wp_nav_menu( $footer_defaults );
+				if ( has_nav_menu( 'footer' ) ) {
+					$footer_defaults = array(
+						'theme_location'  => 'footer',
+						'container'       => 'div',
+						'container_class' => $footer_defaults_container_class,
+						'menu_class'      => 'menu',
+						'fallback_cb'     => false,
+					);
+					wp_nav_menu( $footer_defaults );
+				}
 				?>
 			</nav><!-- #footer-navigation -->
 		<?php } ?>
