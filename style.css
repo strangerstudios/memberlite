@@ -1463,6 +1463,12 @@ a:active {
 #secondary .widget_nav_menu li.page_item_has_children.current_page_ancestor .children {
 	display: block;
 }
+#secondary .widget_nav_menu li.current_page_item a,
+#secondary .widget_nav_menu li.current_page_item a:hover {
+	border: none;
+	font-weight: bold;
+	text-decoration: underline;
+}
 #secondary .widget.widget_categories {
 	font-size: 1.4rem;
 }
