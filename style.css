@@ -755,6 +755,12 @@ input::-moz-focus-inner { /* Corrects inner padding and border displayed oddly i
 	border-radius: 3px;
 	padding: 1.45rem;
 }
+.content-area select {
+	color: #666;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	padding: 1.35rem;
+}
 #secondary input[type=text],
 #secondary input[type=email],
 #secondary input[type=url],
