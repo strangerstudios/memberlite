@@ -838,17 +838,11 @@ class Memberlite_Customize {
 			?>
 			<?php self::generate_css_from_mod( 'body, .banner_body', 'background-color', 'background_color', '#' ); ?>
 			<?php
-				$fonts_string = get_theme_mod( 'memberlite_webfonts' );
-			if ( empty( $fonts_string ) ) {
-				global $memberlite_defaults;
-				$fonts_string = $memberlite_defaults['memberlite_webfonts'];
-			}
-				$fonts       = explode( '_', $fonts_string );
-				$header_font = str_replace( '-', ' ', $fonts[0] );
-				$body_font   = str_replace( '-', ' ', $fonts[1] );
+				$header_font = memberlite_get_font( 'header_font', true );
+				$body_font = memberlite_get_font( 'body_font', true );
+				echo 'body {font-family: "' . esc_html( $body_font ) . '", sans-serif; }';
+				echo 'h1, h2, h3, h4, h5, h6, label, .navigation, th, .pmpro_checkout thead th, #pmpro_account .pmpro_box h3, #meta-member .user, #bbpress-forums li.bbp-header, #bbpress-forums li.bbp-footer, #bbpress-forums fieldset.bbp-form legend {font-family: "' . esc_html( $header_font ) . '", sans-serif; }';
 			?>
-			<?php echo 'body {font-family: "' . esc_html( $body_font ) . '", sans-serif; }'; ?>
-			<?php echo 'h1, h2, h3, h4, h5, h6, label, .navigation, th, .pmpro_checkout thead th, #pmpro_account .pmpro_box h3, #meta-member .user, #bbpress-forums li.bbp-header, #bbpress-forums li.bbp-footer, #bbpress-forums fieldset.bbp-form legend {font-family: "' . esc_html( $header_font ) . '", sans-serif; }'; ?>
 		</style>
 		<!--/Customizer CSS-->
 		<?php

@@ -36,6 +36,28 @@ function memberlite_init_styles() {
 }
 add_action( 'wp_enqueue_scripts', 'memberlite_init_styles' );
 
+function memberlite_get_font( $font_type, $nicename = NULL ) {
+	global $memberlite_defaults;
+
+	// Get the selected fonts from theme options.
+	$fonts_string = get_theme_mod( 'memberlite_webfonts', $memberlite_defaults['memberlite_webfonts'] );
+
+	// Break the theme mod for custom fonts into two parts.
+	$fonts_string_parts = explode( '_', $fonts_string );
+
+	if ( $font_type === 'header_font' ) {
+		$r = $fonts_string_parts[0];
+	} else {
+		$r = $fonts_string_parts[1];
+	}
+
+	if ( ! empty( $nicename ) ) {
+		$r = str_replace( '-', ' ', $r );
+	}
+
+	return $r;
+}
+
 function memberlite_google_fonts_url() {
 	global $memberlite_defaults;
 
@@ -49,16 +71,13 @@ function memberlite_google_fonts_url() {
 		// Build the encoded Google fonts URL.
 		$fonts_url = '';
 
-		// Break the theme mod for custom fonts into two parts.
-		$fonts_string_parts = explode( '_', $fonts_string );
-
 		// Filter to modify which font weights are enqueued.
 		$font_weights = apply_filters( 'memberlite_google_fonts_weights', '400,700' );
 
 		// Build the array of font families to return.
 		$font_families = array();
-		$font_families[] = str_replace( '-', ' ', $fonts_string_parts[0] ) . ':' . $font_weights;
-		$font_families[] = str_replace( '-', ' ', $fonts_string_parts[1] ) . ':' . $font_weights;
+		$font_families[] = memberlite_get_font( 'header_font', true ) . ':' . $font_weights;
+		$font_families[] = memberlite_get_font( 'body_font', true ) . ':' . $font_weights;
 
 		$query_args = array(
 			'family' => urlencode( implode( '|', $font_families ) ),
