@@ -756,10 +756,16 @@ input::-moz-focus-inner { /* Corrects inner padding and border displayed oddly i
 	padding: 1.45rem;
 }
 .content-area select {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
 	color: #666;
 	border: 1px solid #ccc;
 	border-radius: 3px;
-	padding: 1.35rem;
+	padding: 1.45rem;
+}
+.content-area select:focus {
+	outline: none;
 }
 #secondary input[type=text],
 #secondary input[type=email],
@@ -788,7 +794,7 @@ input[type=search]:focus,
 textarea:focus {
 	color: #111;
 	box-shadow: 0px 0px 3px 0px #CCCCCC;
-	outline: 0;
+	outline: none;
 }
 textarea {
 	overflow: auto; /* Removes default vertical scrollbar in IE6/7/8/9 */
@@ -2428,6 +2434,12 @@ a:active {
 .pmpro_levels-div .pmpro_level-price, .pmpro_levels-2col .pmpro_level-price, .pmpro_levels-div .pmpro_level-expiration, .pmpro_levels-2col .pmpro_level-expiration {display: inline; margin: 0; }
 
 .memberlite_signup-fixed {position: fixed; top: 0; }
+
+/* Special Fields */
+.pmpro_checkout-field-date select,
+.pmpro_checkout-field-date input {
+	margin-right: .9rem;
+}
 
 /* Membership Checkout */
 .pmpro_asterisk {
