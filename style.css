@@ -754,6 +754,7 @@ input::-moz-focus-inner { /* Corrects inner padding and border displayed oddly i
 	border: 1px solid #ccc;
 	border-radius: 3px;
 	padding: 1.45rem;
+	word-break: normal;
 }
 .content-area select {
 	-webkit-appearance: none;
