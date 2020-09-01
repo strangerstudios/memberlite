@@ -126,7 +126,7 @@ function memberlite_support() {
 								<div class="plugin-card-top">
 									<div class="name column-name">
 										<h3><a href="https://memberlitetheme.com/memberlite-shortcodes/" target="_blank"><?php esc_html_e( 'Memberlite Shortcodes', 'memberlite' ); ?></a></h3>
-										<img src="<?php echo get_template_directory_uri(); ?>/images/memberlite-shortcodes-icon-256x256.png" class="plugin-icon" alt="Memberlite Shortcodes">
+										<img src="<?php echo esc_url( get_template_directory_uri() ); ?>/images/memberlite-shortcodes-icon-256x256.png" class="plugin-icon" alt="Memberlite Shortcodes">
 									</div>
 									<div class="action-links">
 										<ul class="plugin-action-buttons">

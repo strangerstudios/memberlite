@@ -16,7 +16,15 @@
 </head>
 
 <body <?php body_class(); ?>>
-<?php do_action( 'memberlite_before_page' ); ?>
+<?php 
+	do_action( 'memberlite_before_page' );
+	
+	if ( function_exists( 'wp_body_open' ) ) {
+		wp_body_open();
+	} else {
+		do_action( 'wp_body_open' );
+	} 
+?>
 <div id="page" class="hfeed site">
 
 <?php
@@ -76,14 +84,16 @@
 						get_template_part( 'components/header/meta', 'member' );
 					}
 
-					$meta_defaults = array(
-						'theme_location'  => 'meta',
-						'container'       => 'nav',
-						'container_id'    => 'meta-navigation',
-						'container_class' => 'meta-navigation',
-						'fallback_cb'     => false,
-					);
-					wp_nav_menu( $meta_defaults );
+					if ( has_nav_menu( 'meta' ) ) {
+						$meta_defaults = array(
+							'theme_location'  => 'meta',
+							'container'       => 'nav',
+							'container_id'    => 'meta-navigation',
+							'container_class' => 'meta-navigation',
+							'fallback_cb'     => false,
+						);
+							wp_nav_menu( $meta_defaults );
+					}
 
 					if ( is_dynamic_sidebar( 'sidebar-3' ) ) {
 						dynamic_sidebar( 'sidebar-3' );
@@ -114,6 +124,7 @@
 		?>
 		<nav id="site-navigation">
 		<?php
+		if ( has_nav_menu( 'primary' ) ) {
 			$primary_defaults = array(
 				'theme_location'  => 'primary',
 				'container'       => 'div',
@@ -122,6 +133,7 @@
 				'fallback_cb'     => false,
 			);
 			wp_nav_menu( $primary_defaults );
+		}
 		?>
 		</nav><!-- #site-navigation -->
 		<?php
