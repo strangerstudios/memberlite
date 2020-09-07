@@ -122,6 +122,29 @@ function memberlite_sidebar_location_none_columns_ratio( $r, $location ) {
 add_filter( 'memberlite_columns_ratio', 'memberlite_sidebar_location_none_columns_ratio', 10, 2 );
 
 /**
+ * Hide the sidebar if the theme option is set to none.
+ *
+ */
+function memberlite_sidebar_none_get_sidebar( $name ) {
+	global $memberlite_defaults;
+
+	if ( is_page() ) {
+		$sidebar_location = get_theme_mod( 'sidebar_location', $memberlite_defaults['sidebar_location'] );
+		if ( $sidebar_location === 'sidebar-none' && empty( is_page_template() ) ) {
+			$name = false;
+		}
+	} elseif ( memberlite_is_blog() || is_search() ) {
+		$sidebar_location = get_theme_mod( 'sidebar_location_blog', $memberlite_defaults['sidebar_location_blog'] );
+		if ( $sidebar_location === 'sidebar-blog-none' ) {
+			$name = false;
+		}
+	}
+
+	return $name;
+}
+add_filter( 'memberlite_get_sidebar', 'memberlite_sidebar_none_get_sidebar' );
+
+/**
  * Get the width of a thumbnail.
  */
 function memberlite_getPostThumbnailWidth( $post_id = null ) {
