@@ -1,4 +1,5 @@
 # Memberlite: An Easy to Customize Theme for Membership Sites
+![Memberlite Theme](https://github.com/travislima/memberlite/blob/dev/images/memberlite-banner.png)
 
 ## Description
 
