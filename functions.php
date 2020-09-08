@@ -4,7 +4,7 @@
  *
  * @package Memberlite
  */
-define( 'MEMBERLITE_VERSION', '4.4' );
+define( 'MEMBERLITE_VERSION', '4.5' );
 
 // get default values for options/etc
 require_once get_template_directory() . '/inc/defaults.php';
