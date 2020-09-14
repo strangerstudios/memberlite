@@ -92,7 +92,7 @@
 							'container_class' => 'meta-navigation',
 							'fallback_cb'     => false,
 						);
-							wp_nav_menu( $meta_defaults );
+						wp_nav_menu( $meta_defaults );
 					}
 
 					if ( is_dynamic_sidebar( 'sidebar-3' ) ) {

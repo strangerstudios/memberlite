@@ -206,7 +206,7 @@ if ( ! function_exists( 'memberlite_setup' ) ) :
 		// Enable support for "wide" or "full" alignment Gutenberg blocks.
 		add_theme_support( 'align-wide' );
 
-		// This theme uses wp_nav_menu() in four locations.
+		// This theme uses wp_nav_menu() in five locations.
 		register_nav_menus(
 			array(
 				'primary'           => __( 'Primary', 'memberlite' ),
