@@ -122,6 +122,29 @@ function memberlite_sidebar_location_none_columns_ratio( $r, $location ) {
 add_filter( 'memberlite_columns_ratio', 'memberlite_sidebar_location_none_columns_ratio', 10, 2 );
 
 /**
+ * Hide the sidebar if the theme option is set to none.
+ *
+ */
+function memberlite_sidebar_none_get_sidebar( $name ) {
+	global $memberlite_defaults;
+
+	if ( is_page() ) {
+		$sidebar_location = get_theme_mod( 'sidebar_location', $memberlite_defaults['sidebar_location'] );
+		if ( $sidebar_location === 'sidebar-none' && empty( is_page_template() ) ) {
+			$name = false;
+		}
+	} elseif ( memberlite_is_blog() || is_search() ) {
+		$sidebar_location = get_theme_mod( 'sidebar_location_blog', $memberlite_defaults['sidebar_location_blog'] );
+		if ( $sidebar_location === 'sidebar-blog-none' ) {
+			$name = false;
+		}
+	}
+
+	return $name;
+}
+add_filter( 'memberlite_get_sidebar', 'memberlite_sidebar_none_get_sidebar' );
+
+/**
  * Get the width of a thumbnail.
  */
 function memberlite_getPostThumbnailWidth( $post_id = null ) {
@@ -859,21 +882,21 @@ function memberlite_parse_tags( $meta, $post = null ) {
 
 	if ( strpos( $meta, '{post_author}' ) !== false && ! empty( $author ) ) {
 		$searches[]     = '{post_author}';
-		$replacements[] = '<span class="author vcard">' . esc_html( $author->display_name ) . '</span>';
+		$replacements[] = '<span class="author vcard post_meta_author">' . esc_html( $author->display_name ) . '</span>';
 	}
 
 	if ( strpos( $meta, '{post_author_posts_link}' ) !== false && ! empty( $author ) ) {
 		$searches[]     = '{post_author_posts_link}';
-		$replacements[] = '<span class="author vcard"><a class="url fn n" href="' . esc_url( get_author_posts_url( $author->ID, $author->user_nicename ) ) . '">' . esc_html( $author->display_name ) . '</a></span>';
+		$replacements[] = '<span class="author vcard post_meta_author_posts_link"><a class="url fn n" href="' . esc_url( get_author_posts_url( $author->ID, $author->user_nicename ) ) . '">' . esc_html( $author->display_name ) . '</a></span>';
 	}
 
 	if ( strpos( $meta, '{post_categories}' ) !== false ) {
 		$searches[]     = '{post_categories}';
 		$category_list = get_the_category_list( __( ', ', 'memberlite' ), '', $post->ID );
 		if ( ! empty( $category_list ) ) {
-			$replacements[] = $category_list;
+			$replacements[] = '<span class="post_meta_categories">' . $category_list . '</span>';
 		} else {
-			$replacements[] = __( 'No Category', 'memberlite' );
+			$replacements[] = '<span class="post_meta_categories">' . __( 'No Category', 'memberlite' ) . '</span>';
 		}
 	}
 
@@ -904,39 +927,42 @@ function memberlite_parse_tags( $meta, $post = null ) {
 				$write_comments .= get_comments_link( $post->ID );
 			}
 			$write_comments .= '">' . $comments . '</a>';
-			$replacements[] = '<span class="comments-link">' . $write_comments . '</span>';
+			$replacements[] = '<span class="post_meta_comments">' . $write_comments . '</span>';
 		} else {
-			$replacements[] = __( 'Comments Off', 'memberlite' );
+			$replacements[] = '<span class="post_meta_comments">' . __( 'Comments Off', 'memberlite' ) . '</span>';
 		}
 	}
 
 	if ( strpos( $meta, '{post_date}' ) !== false ) {
 		$searches[]     = '{post_date}';
-		$replacements[] = '<time class="entry-date published" datetime="' . esc_attr( get_the_date( 'Y-m-d', $post->ID ) ) . '">' . esc_html( get_the_date( get_option( 'date_format' ), $post->ID ) ) . '</time>';
+		$replacements[] = '<span class="post_meta_date"><time class="entry-date published" datetime="' . esc_attr( get_the_date( 'Y-m-d', $post->ID ) ) . '">' . esc_html( get_the_date( get_option( 'date_format' ), $post->ID ) ) . '</time></span>';
 	}
 
 	if ( strpos( $meta, '{post_permalink}' ) !== false ) {
 		$searches[]     = '{post_permalink}';
-		$replacements[] = '<a href="' . get_permalink( $post->ID ) . '" rel="bookmark">' . __( 'permalink', 'memberlite' ) . '</a>';
+		$replacements[] = '<span class="post_meta_permalink"><a href="' . get_permalink( $post->ID ) . '" rel="bookmark">' . __( 'permalink', 'memberlite' ) . '</a></span>';
 	}
 
 	if ( strpos( $meta, '{post_permalink_icon}' ) !== false ) {
 		$searches[]     = '{post_permalink_icon}';
-		$replacements[] = '<a href="' . get_permalink( $post->ID ) . '" rel="bookmark"><i class="fa fa-link"></i></a>';
+		$replacements[] = '<span class="post_meta_permalink_icon"><a href="' . get_permalink( $post->ID ) . '" rel="bookmark" class="post_meta_permalink_icon"><i class="fa fa-link"></i></a></span>';
 	}
 	if ( strpos( $meta, '{post_tags}' ) !== false ) {
 		$searches[]     = '{post_tags}';
-		$replacements[] = get_the_tag_list( '', __( ', ', 'memberlite' ) );
+		$tag_list = get_the_tag_list( '', __( ', ', 'memberlite' ) );
+		if ( ! empty( $tag_list ) ) {
+			$replacements[] = '<span class="post_meta_tags">' . $tag_list . '</span>';
+		}
 	}
 
 	if ( strpos( $meta, '{post_time}' ) !== false ) {
 		$searches[]     = '{post_time}';
-		$replacements[] = '<time class="entry-time" datetime="' . esc_attr( get_the_date( 'H:i' ), $post->ID ) . '">' . esc_html( get_the_time() ) . '</time>';
+		$replacements[] = '<span class="post_meta_time"><time class="entry-time" datetime="' . esc_attr( get_the_date( 'H:i' ), $post->ID ) . '">' . esc_html( get_the_time() ) . '</time></span>';
 	}
 
 	if ( strpos( $meta, '{post_title}' ) !== false ) {
 		$searches[]     = '{post_title}';
-		$replacements[] = '<span class="entry-title">' . esc_html( get_the_title( $post->ID ) ) . '</span>';
+		$replacements[] = '<span class="entry-title post_meta_title">' . esc_html( get_the_title( $post->ID ) ) . '</span>';
 	}
 
 	$meta = str_replace( $searches, $replacements, $meta );

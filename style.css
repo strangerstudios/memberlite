@@ -4,11 +4,13 @@ Theme URI: https://memberlitetheme.com/
 Author: Stranger Studios
 Author URI: https://www.strangerstudios.com
 Description: Memberlite is the ideal theme for your membership site - packed with integration for top membership site plugins including Paid Memberships Pro. It's fully customizable with your logo, colors, fonts, custom sidebars and more global layout settings. Extend the site appearance further with icons, masthead banners, post formats, and additional settings for your site's pages. Memberlite is responsive, clean and minimal.
-Version: 4.4
+Version: 4.5
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: one-column, two-columns, left-sidebar, right-sidebar, flexible-header, custom-background, custom-colors, custom-header, custom-menu, custom-logo, editor-style, featured-images, footer-widgets, full-width-template, post-formats, theme-options, threaded-comments, translation-ready, e-commerce
 Text Domain: memberlite
+Tested up to: 5.5.1
+Requires PHP: 5.6
 
 /*--------------------------------------------------------------
 >>> TABLE OF CONTENTS:
@@ -422,9 +424,6 @@ li > ol {
 	margin-bottom: 1rem;
 	margin-top: 1rem;
 }
-ul.wp-block-gallery {
-	margin-left: 0;
-}
 img {
 	height: auto; /* Make sure images are scaled correctly. */
 	max-width: 100%; /* Adhere to container width. */
@@ -755,6 +754,19 @@ input::-moz-focus-inner { /* Corrects inner padding and border displayed oddly i
 	border: 1px solid #ccc;
 	border-radius: 3px;
 	padding: 1.45rem;
+	word-break: normal;
+}
+.content-area select {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	color: #666;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	padding: 1.45rem;
+}
+.content-area select:focus {
+	outline: none;
 }
 #secondary input[type=text],
 #secondary input[type=email],
@@ -783,7 +795,8 @@ input[type=search]:focus,
 textarea:focus {
 	color: #111;
 	box-shadow: 0px 0px 3px 0px #CCCCCC;
-	outline: 0;
+	outline: none;
+	word-break: initial;
 }
 textarea {
 	overflow: auto; /* Removes default vertical scrollbar in IE6/7/8/9 */
@@ -1255,13 +1268,23 @@ a:active {
 	display: block;
 	margin: 0 auto;
 }
-.alignwide {
-	margin-left: calc(50% - 50vw);
-    margin-right: calc(50% - 50vw);
+.single.sidebar-blog-none .alignwide,
+.page-template-default.sidebar-none .alignwide,
+.page-template-full-width .alignwide,
+.page-template-fluid-width .alignwide,
+.page-template-narrow-width .alignwide,
+.page-template-blank .alignwide {
+	margin-left: calc(50% - 45vw);
+    margin-right: calc(50% - 45vw);
     max-width: 1000%;
     width: auto;
 }
-.alignfull {
+.single.sidebar-blog-none .alignfull,
+.page-template-default.sidebar-none .alignfull,
+.page-template-full-width .alignfull,
+.page-template-fluid-width .alignfull,
+.page-template-narrow-width .alignfull,
+.page-template-blank .alignfull {
     margin-left: calc(50% - 50vw);
     margin-right: calc(50% - 50vw);
     max-width: 1000%;
@@ -1271,8 +1294,10 @@ a:active {
 .wp-block-image.alignfull {
 	text-align: center;
 }
-.wp-block-image.alignwide img {
-	width: 90%;
+.wp-block-cover,
+.wp-block-cover-image {
+	min-height: initial;
+	padding: 5.8rem 0 2.9rem 0;
 }
 .text-center {
 	text-align: center;
@@ -1439,6 +1464,12 @@ a:active {
 #secondary .widget_nav_menu li.page_item_has_children.current_page_parent .children,
 #secondary .widget_nav_menu li.page_item_has_children.current_page_ancestor .children {
 	display: block;
+}
+#secondary .widget_nav_menu li.current_page_item a,
+#secondary .widget_nav_menu li.current_page_item a:hover {
+	border: none;
+	font-weight: bold;
+	text-decoration: underline;
 }
 #secondary .widget.widget_categories {
 	font-size: 1.4rem;
@@ -2412,6 +2443,12 @@ a:active {
 
 .memberlite_signup-fixed {position: fixed; top: 0; }
 
+/* Special Fields */
+.pmpro_checkout-field-date select,
+.pmpro_checkout-field-date input {
+	margin-right: .9rem;
+}
+
 /* Membership Checkout */
 .pmpro_asterisk {
 	color: #C00;
@@ -2544,7 +2581,15 @@ form.pmpro_form .pmpro_payment-expiration select {
 .pmpro_reset_password_wrap p.pmpro_actions_nav {
 	text-align: left;
 }
-.pmpro_member_profile_edit_wrap .input {
+.pmpro_member_profile_edit_wrap h3 {
+	background: #FAFAFA;
+	border-top: 1px solid #CCC;
+	border-bottom: 1px solid #CCC;
+	padding: 1.45rem;
+}
+.pmpro_member_profile_edit_wrap .input[type=text],
+.pmpro_member_profile_edit_wrap .input[type=email],
+.pmpro_member_profile_edit_wrap .input[type=password] {
 	width: 80%;
 }
 .pmpro_member_profile_edit_wrap .pmpro_checkout_box-user .pmpro_member_profile_edit-fields {

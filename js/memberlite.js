@@ -47,6 +47,12 @@ jQuery( document ).ready(
 				// highlight the active one
 				jQuery( this ).closest( 'li' ).addClass( 'memberlite_active' );
 
+				// update the URL
+				if(history.pushState) {
+				    history.pushState( null, null, '#' + tab );
+				} else {
+				    location.hash = '#' + tab;
+				}
 			}
 		);
 

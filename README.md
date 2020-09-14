@@ -1,3 +1,5 @@
+![Memberlite Theme](https://github.com/strangerstudios/memberlite/blob/dev/images/memberlite-banner.jpg)
+
 # Memberlite: An Easy to Customize Theme for Membership Sites
 
 ## Description
@@ -95,15 +97,40 @@ Memberlite includes formatting for use with:
 **Testimonials Widget**
 [Install Testimonials Widget »](https://wordpress.org/plugins/testimonials-widget/)
 
-We highly recommend using these plugins for every site running Memberlite:
+We highly recommend using this plugins for every site running Memberlite:
 
 **Multiple Post Thumbnails**
 [Install Multiple Post Thumbnails »](https://wordpress.org/plugins/multiple-post-thumbnails/)
 
-**Theme My Login**
-[Install Theme My Login »](https://wordpress.org/plugins/theme-my-login/)
-
 ### Changelog
+
+**4.5 - 2020-09-14**
+* SECURITY: Escaped `get_template_directory_uri` in inc/admin.php that was missing.
+* BUG FIX: Fixed bug where sidebar would show below content if "No Sidebar" layout was chosen in theme options.
+* BUG FIX: Fixed undefined variable `show_header_right`.
+* BUG FIX: Removed old CSS not used anymore by block editor for gallery block.
+* BUG FIX: Now allowing span and time as allowed HTML for the sanitization of post meta before and after values from Customizer.
+* BUG FIX: Updated Customizer CSS to fix potential override of header background image with specified background-color.
+* BUG FIX/ENHANCEMENT: Adjusted support for Nav Menus Add On to better detect member-specific menus.
+* BUG FIX/ENHANCEMENT: Added styles to avoid word wrap in specific form input fields for Column block compatibility.
+* BUG FIX/ENHANCEMENT: Adjusted alignwide and alignfull as block editor styles to fix bugs with column layouts.
+* BUG FIX/ENHANCEMENT: Now hiding the sidebar child pages menu if this is a membership account page or a child of it.
+* BUG FIX/ENHANCEMENT: Updated all color schemes and customizer controls to include header background color for preview and save.
+* BUG FIX/ENHANCEMENT: Updated search results to check post type before adding `entry-header-grid` to post_class.
+* ENHANCEMENT: Added styles to highlight the current page item in the subpages sidebar display.
+* ENHANCEMENT: Added styles to select type form inputs to match other form fields display.
+* ENHANCEMENT: Updated to Font Awesome version 5.14.0
+* ENHANCEMENT: Checking to see if menu theme_location exists before calling wp_nav_menu for certain menus.
+* ENHANCEMENT: Added in backwards compatibility for wp_body_open (required to call at the top of the body tag).
+* ENHANCEMENT: Adjusted stylesheet to include tested up to and PHP versions.
+* ENHANCEMENT: Updated Memberlite Guide to support child themes via the `memberlite_guide_additional` action hook.
+* ENHANCEMENT: Updated Memberlite Guide to allow child themes to filter recommended and integrated plugins via `memberlite_plugins_recommended` filter hook.
+* ENHANCEMENT: Added `memberlite_defaults` filter for child themes or plugin to adjust theme default options.
+* ENHANCEMENT: Wrapped replacement variables for the post meta before and after in a unique span for styling via CSS.
+* ENHANCEMENT: Added `memberlite_show_header_right` filter to hide header right area in logo space.
+* ENHANCEMENT: Added `memberlite_login_redirect_to` function and filter to get the `redirect_to` URL attribute used for "Log In" links.
+* ENHANCEMENT: Adjusted appearance of headings and form elements on the new Member Profile Edit page in PMPro.
+* REFACTOR: Added new function `memberlite_get_font` to return the header or body font from theme options. 
 
 **4.4 - 2020-04-30**
 * FEATURE: Added layout for "No Sidebar" Layout for Blog, Archive, Posts.

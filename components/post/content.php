@@ -10,7 +10,13 @@
 
 <?php global $memberlite_defaults; ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class( 'entry-header-grid' ); ?>>
+<article id="post-<?php the_ID(); ?>"
+	<?php if ( get_post_type() == 'post' ) {
+		post_class( 'entry-header-grid' );
+	} else {
+		post_class( );
+	} ?>>
+	
 	<?php get_template_part( 'components/post/entry', 'header' ); ?>
 
 	<div class="entry-content">

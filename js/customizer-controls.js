@@ -2,6 +2,7 @@
 	var memberlite_color_controls, memberlite_color_controls_listener_flag;
 	memberlite_color_controls               = ['header_textcolor',
 				'background_color',
+				'memberlite_bgcolor_header',
 				'memberlite_bgcolor_site_navigation',
 				'memberlite_color_site_navigation',
 				'memberlite_color_link',
