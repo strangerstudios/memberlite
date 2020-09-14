@@ -1,3 +1,3 @@
 # Items to ignore when downloading a zip
-.gitattribuets export-ignore
+.gitattributes export-ignore
 images/memberlite-banner.jpg export-ignore
