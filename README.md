@@ -104,7 +104,7 @@ We highly recommend using this plugins for every site running Memberlite:
 
 ### Changelog
 
-**4.5 - 2020-09-08**
+**4.5 - 2020-09-14**
 * SECURITY: Escaped `get_template_directory_uri` in inc/admin.php that was missing.
 * BUG FIX: Fixed bug where sidebar would show below content if "No Sidebar" layout was chosen in theme options.
 * BUG FIX: Fixed undefined variable `show_header_right`.
