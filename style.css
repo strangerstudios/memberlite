@@ -9,7 +9,7 @@ License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: one-column, two-columns, left-sidebar, right-sidebar, flexible-header, custom-background, custom-colors, custom-header, custom-menu, custom-logo, editor-style, featured-images, footer-widgets, full-width-template, post-formats, theme-options, threaded-comments, translation-ready, e-commerce
 Text Domain: memberlite
-Tested up to: 5.5
+Tested up to: 5.5.1
 Requires PHP: 5.6
 
 /*--------------------------------------------------------------
@@ -796,6 +796,7 @@ textarea:focus {
 	color: #111;
 	box-shadow: 0px 0px 3px 0px #CCCCCC;
 	outline: none;
+	word-break: initial;
 }
 textarea {
 	overflow: auto; /* Removes default vertical scrollbar in IE6/7/8/9 */

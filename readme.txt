@@ -1,8 +1,9 @@
 === Memberlite ===
 Contributors: kimannwall, strangerstudios
 Requires at least: WordPress 4.4
-Tested up to: WordPress 5.4
+Tested up to: WordPress 5.5.1
 Version: 4.5
+Requires PHP: 5.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: one-column, two-columns, left-sidebar, right-sidebar, flexible-header, custom-background, custom-colors, custom-header, custom-menu, custom-logo, editor-style, featured-images, footer-widgets, full-width-template, post-formats, theme-options, threaded-comments, translation-ready, e-commerce
@@ -107,7 +108,7 @@ We highly recommend using these plugins for every site running Memberlite:
 
 == Changelog ==
 
-= 4.5 - 2020-09-08 =
+= 4.5 - 2020-09-14 =
 * SECURITY: Escaped `get_template_directory_uri` in inc/admin.php that was missing.
 * BUG FIX: Fixed bug where sidebar would show below content if "No Sidebar" layout was chosen in theme options.
 * BUG FIX: Fixed undefined variable `show_header_right`.
