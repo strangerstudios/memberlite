@@ -26,27 +26,28 @@
 			</span>
 			<?php
 		}
-		if ( has_nav_menu( 'member' ) || has_nav_menu( 'member-logged-out') ) {
-			if ( $user_ID ) {
-				$member_menu_defaults = array(
+		if ( $user_ID ) {
+			wp_nav_menu(
+				array(
 					'theme_location'  => 'member',
 					'container'       => 'nav',
 					'container_id'    => 'member-navigation',
 					'container_class' => 'member-navigation',
 					'fallback_cb'     => 'memberlite_member_menu_cb',
 					'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s</ul>',
-				);
-			} else {
-				$member_menu_defaults = array(
+				)
+			);
+		} else {
+			wp_nav_menu(
+				array(
 					'theme_location'  => 'member-logged-out',
 					'container'       => 'nav',
 					'container_id'    => 'member-navigation',
 					'container_class' => 'member-navigation',
 					'fallback_cb'     => 'memberlite_member_menu_cb',
 					'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s</ul>',
-				);
-			}
-			wp_nav_menu( $member_menu_defaults );
+				)
+			);
 		}
 	?>
 	</div><!-- .meta-member-inner -->
