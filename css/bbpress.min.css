@@ -958,6 +958,7 @@ fieldset div.avatar {
 	border-top: 1px solid #CCC;
 	border-bottom: 1px solid #CCC;
 	font-size: 2rem;
+	margin-bottom: 0;
 	padding: 1rem;
 }
 #bbpress-forums #bbp-user-subscriptions .bbp-user-section {
