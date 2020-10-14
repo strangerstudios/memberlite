@@ -104,6 +104,12 @@ We highly recommend using this plugins for every site running Memberlite:
 
 ### Changelog
 
+**4.5.1 - 2020-10-14**
+* BUG FIX: Adjusting Nav Menus code to supress warnings and fix issue with meta menu callback not adding log in or log out links.
+* BUG FIX/ENHANCEMENT: Updated stylesheets for version 2.6+ of bbPress.
+* BUG FIX/ENHANCEMENT: Adding expected Memberlite hooks to forum.php template.
+* ENHANCEMENT: Styles to support new Payment Request Button features planned for PMPro.
+
 **4.5 - 2020-09-14**
 * SECURITY: Escaped `get_template_directory_uri` in inc/admin.php that was missing.
 * BUG FIX: Fixed bug where sidebar would show below content if "No Sidebar" layout was chosen in theme options.

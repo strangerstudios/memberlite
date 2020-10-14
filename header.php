@@ -74,30 +74,27 @@
 			</div><!-- .column4 -->
 
 			<?php if ( ! empty( $show_header_right ) ) { ?>
-				<div class="medium-<?php echo esc_attr( memberlite_getColumnsRatio( 'header-right' ) ); ?> columns header-right
-												<?php
-												if ( $meta_login == false ) {
-								?>
-								 no-meta-menu<?php } ?>">
+				<div class="medium-<?php echo esc_attr( memberlite_getColumnsRatio( 'header-right' ) ); ?> columns header-right<?php if ( $meta_login == false ) { ?> no-meta-menu<?php } ?>">
 					<?php
-					if ( ! empty( $meta_login ) ) {
-						get_template_part( 'components/header/meta', 'member' );
-					}
+						if ( ! empty( $meta_login ) ) {
+							get_template_part( 'components/header/meta', 'member' );
+						}
 
-					if ( has_nav_menu( 'meta' ) ) {
-						$meta_defaults = array(
-							'theme_location'  => 'meta',
-							'container'       => 'nav',
-							'container_id'    => 'meta-navigation',
-							'container_class' => 'meta-navigation',
-							'fallback_cb'     => false,
-						);
-						wp_nav_menu( $meta_defaults );
-					}
+						if ( has_nav_menu( 'meta' ) ) {
+							wp_nav_menu(
+								array(
+									'theme_location'  => 'meta',
+									'container'       => 'nav',
+									'container_id'    => 'meta-navigation',
+									'container_class' => 'meta-navigation',
+									'fallback_cb'     => false,
+								)
+							);
+						}
 
-					if ( is_dynamic_sidebar( 'sidebar-3' ) ) {
-						dynamic_sidebar( 'sidebar-3' );
-					}
+						if ( is_dynamic_sidebar( 'sidebar-3' ) ) {
+							dynamic_sidebar( 'sidebar-3' );
+						}
 					?>
 				</div><!-- .columns -->
 			<?php } ?>
