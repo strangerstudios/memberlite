@@ -254,7 +254,7 @@ li.bbp-topic-freshness {
 #bbpress-forums div.bbp-forum-author .bbp-author-name,
 #bbpress-forums div.bbp-topic-author .bbp-author-name,
 #bbpress-forums div.bbp-reply-author .bbp-author-name {
-	margin: 1.45rem;
+	margin: .9rem 0 0 0;
 	word-wrap: break-word;
 	display: inline-block;
 }
@@ -305,7 +305,7 @@ div.bbp-reply-header,
 li.bbp-body div.hentry {
 	margin-bottom: 0;
 	overflow: hidden;
-	padding: 1em;
+	padding: .9rem;
 }
 
 div.bbp-forum-header,
@@ -772,6 +772,7 @@ td.bbp-topic-counts {
 	-webkit-appearance: menulist-button;
 	-moz-appearance: menulist-button;
 	appearance: menulist-button;
+	padding: inherit;
 }
 
 textarea#bbp_reply_content,
