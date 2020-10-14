@@ -2,7 +2,7 @@
 Contributors: kimannwall, strangerstudios
 Requires at least: WordPress 4.4
 Tested up to: WordPress 5.5.1
-Version: 4.5
+Version: 4.5.1
 Requires PHP: 5.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -107,6 +107,12 @@ We highly recommend using these plugins for every site running Memberlite:
 [Install Multiple Post Thumbnails »](https://wordpress.org/plugins/multiple-post-thumbnails/)
 
 == Changelog ==
+
+= 4.5.1 - 2020-10-14 =
+* BUG FIX: Adjusting Nav Menus code to supress warnings and fix issue with meta menu callback not adding log in or log out links.
+* BUG FIX/ENHANCEMENT: Updated stylesheets for version 2.6+ of bbPress.
+* BUG FIX/ENHANCEMENT: Adding expected Memberlite hooks to forum.php template.
+* ENHANCEMENT: Styles to support new Payment Request Button features planned for PMPro.
 
 = 4.5 - 2020-09-14 =
 * SECURITY: Escaped `get_template_directory_uri` in inc/admin.php that was missing.
