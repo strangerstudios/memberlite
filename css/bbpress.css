@@ -237,7 +237,7 @@ li.bbp-topic-freshness {
 #bbpress-forums li.bbp-body div.bbp-forum-author,
 #bbpress-forums li.bbp-body div.bbp-topic-author,
 #bbpress-forums li.bbp-body div.bbp-reply-author {
-	line-height: 14px;
+	line-height: 2rem;
 }
 
 #bbpress-forums div.bbp-forum-author img.avatar,
@@ -768,6 +768,12 @@ td.bbp-topic-counts {
 	padding: 0;
 }
 
+#bbpress-forums fieldset select {
+	-webkit-appearance: menulist-button;
+	-moz-appearance: menulist-button;
+	appearance: menulist-button;
+}
+
 textarea#bbp_reply_content,
 textarea#bbp_topic_content,
 textarea#bbp_forum_content {
@@ -942,6 +948,10 @@ p.form-allowed-tags {
 #bbpress-forums #bbp-your-profile fieldset dl label[for] {
 	text-align: left;
 	width: 60%;
+}
+
+#bbpress-forums #bbp-your-profile fieldset select {
+	margin-top: 1.45rem;
 }
 
 #bbpress-forums #bbp-your-profile fieldset p.description {
@@ -1132,7 +1142,7 @@ div.bbp-template-notice.warning a {
 
 div.bbp-template-notice p,
 div.bbp-template-notice li {
-	margin: 1.45rem 0;
+	margin: 0;
 }
 
 #bbpress-forums div.bbp-template-notice code {
@@ -1245,7 +1255,7 @@ div.bbp-template-notice li {
 #bbpress-forums .widget_display_replies img.avatar {
 	float: none;
 	vertical-align: middle;
-	border: 3px double #ddd;
+	border: 1px solid #CCC;
 	max-height: 20px;
 	max-width: 20px;
 }
