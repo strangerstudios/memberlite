@@ -914,11 +914,11 @@ function memberlite_parse_tags( $meta, $post = null ) {
 		// Show comment count if open and post is public.
 		if ( ! post_password_required() && ( comments_open() || ( $num_comments > 0 ) ) ) {
 			if ( $num_comments === 0 ) {
-				$comments = __( 'No Comments', 'memberlite' );
+				$comments = esc_html__( 'No Comments', 'memberlite' );
 			} elseif ( $num_comments > 1 ) {
-				$comments = $num_comments . __( ' Comments', 'memberlite' );
+				$comments = sprintf( esc_html__( '%s Comments', 'memberlite' ), $num_comments );
 			} else {
-				$comments = __( '1 Comment', 'memberlite' );
+				$comments = esc_html__( '1 Comment', 'memberlite' );
 			}
 			$write_comments = '<a href="';
 			if ( is_single() ) {
@@ -929,7 +929,7 @@ function memberlite_parse_tags( $meta, $post = null ) {
 			$write_comments .= '">' . $comments . '</a>';
 			$replacements[] = '<span class="post_meta_comments">' . $write_comments . '</span>';
 		} else {
-			$replacements[] = '<span class="post_meta_comments">' . __( 'Comments Off', 'memberlite' ) . '</span>';
+			$replacements[] = '<span class="post_meta_comments">' . esc_html__( 'Comments Off', 'memberlite' ) . '</span>';
 		}
 	}
 
