@@ -684,15 +684,23 @@ a.comment-reply-link:hover {
 /* Link-style button */
 .btn_link {
 	background: none;
-    border: none;
-    box-shadow: none;
+	border: none;
+	box-shadow: none;
 	color: #2C3E50;
-    text-decoration: underline;
+	cursor: pointer; /* Improves usability and consistency of cursor style between image-type ‘input’ and others */
+	display: inline-block;
+	font-style: normal;
+	font-weight: 400;
+	overflow: hidden;
+	padding: 1.45rem 2.9rem;
+	text-decoration: underline;
+	text-shadow: none;
 }
 .btn_link:hover {
 	background: none;
 	box-shadow: none;
 	transform: none;
+	text-decoration: underline;
 }
 
 /* Cancel-style button */
