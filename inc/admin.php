@@ -22,15 +22,18 @@ function memberlite_support() {
 	?>
 	<div id="wpbody-content" aria-label="<?php esc_attr_e( 'Main content', 'memberlite' ); ?>" tabindex="0">
 		<style>
-			.wrap hr {margin: 40px 0; }
-			.wrap .about-wrap {max-width: 100%; }
-			.wrap .about-wrap .memberlite-badge {background-image: url(<?php echo esc_url( get_template_directory_uri() ) . '/images/Memberlite_icon.png'; ?>); background-color: #FFF; color: #2C3E50; }
-			.wrap .about-wrap .dashicons {font-size: 20px; height: 30px; width: 30px; }
-			.wrap .about-wrap .memberlite-feature-section { display: grid; grid-template-columns: 1fr 1fr 1fr; grid-gap: 2.9rem; }
-			.wrap .about-wrap .memberlite-feature-section h3 { line-height: 1; text-align: left; }
-			.wrap .welcome-panel { padding-bottom: 23px; }
-			@media screen and (max-width:782px) {
-				.about-wrap .memberlite-feature-section { display: block; }
+			.wrap hr {margin: 40px 0;}
+			.wrap .about-wrap {max-width: 100%;}
+			.wrap .about-wrap .memberlite-badge {background-image: url(<?php echo esc_url( get_template_directory_uri() ) . '/images/Memberlite_icon.png'; ?>); background-color: #FFF; color: #2C3E50;}
+			.wrap .about-wrap .dashicons {font-size: 20px; height: 30px; width: 30px;}
+			.wrap .about-wrap .memberlite-feature-section {display: grid; grid-template-columns: 1fr 1fr 1fr; grid-gap: 2.9rem;}
+			.wrap .about-wrap .memberlite-feature-section h3 {line-height: 1; text-align: left;}
+			.wrap .welcome-panel {padding-bottom: 23px;}
+			.wrap .welcome-panel p {font-size: 16px; line-height: 1.5;}
+			@media screen and (max-width: 782px) {
+				.about-wrap h1, .about-wrap .about-text {margin-right: 0;}
+				.wrap .about-wrap .memberlite-badge {display: none;}
+				.wrap .about-wrap .memberlite-feature-section {display: block;}
 			}
 		</style>
 		<div class="wrap full-width-layout">
@@ -79,9 +82,8 @@ function memberlite_support() {
 						<?php do_action( 'memberlite_guide_additional' ); ?>
 					<?php } else { ?>
 						<h1><?php esc_html_e( 'Using Child Themes', 'memberlite' ); ?></h1>
-						<p><?php esc_html_e( 'If you need to customize the theme beyond the settings in Appearance > Customize, use a child theme.', 'memberlite' ); ?> <a href="https://github.com/strangerstudios/memberlite-child" target="_blank">
-							<?php esc_html_e( 'Download a Blank Child Theme &raquo;', 'memberlite' ); ?></a></p>
-						<p><a href="https://developer.wordpress.org/themes/advanced-topics/child-themes/" target="_blank"><?php esc_html_e( 'About Child Themes (WordPress Codex)', 'memberlite' ); ?></a></p>
+						<p><?php esc_html_e( 'If you need to customize the theme beyond the settings in Appearance > Customize, use a child theme. Child themes allow you to change the appearance of your site, while preseving the ability to update the primary "parent" theme.', 'memberlite' ); ?> <a href="https://developer.wordpress.org/themes/advanced-topics/child-themes/" target="_blank"><?php esc_html_e( 'Learn more about child themes in the WordPress Theme Handbook', 'memberlite' ); ?></a></p>
+						<a class="button button-hero button-primary" href="https://memberlitetheme.com/themes/custom-child-theme/" target="_blank"><?php esc_html_e( 'Download a Blank Child Theme', 'memberlite' ); ?></a>
 					<?php } ?>
 				</div>
 			</div>
