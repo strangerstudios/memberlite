@@ -1114,36 +1114,49 @@ a:active {
 #mobile-navigation a {
 	color: #FFF;
 	text-decoration: none;
-	font-weight: bold;
+}
+#mobile-navigation a:hover {
+	text-decoration: underline;
 }
 #mobile-navigation .widget,
 #mobile-navigation .search-form {
-	padding: 1rem;
+	padding: 1.45rem
 }
 #mobile-navigation .widget.widget_nav_menu,
 #mobile-navigation .widget.widget_search {
 	padding: 0;
 }
-#mobile-navigation ul.menu,
-#mobile-navigation ul.menu li {
+#mobile-navigation .widget h3 {
+	margin: 0;
+}
+#mobile-navigation .widget ul,
+#mobile-navigation .widget ol {
+	margin: 0 0 0 2.9rem;
+}
+#mobile-navigation .widget ul li,
+#mobile-navigation .widget ol li {
+	margin-bottom: 0;
+}
+#mobile-navigation .widget.widget_nav_menu ul.menu,
+#mobile-navigation .widget.widget_nav_menu ul.menu li {
 	list-style: none;
 	padding: 0;
 	margin: 0;
 }
-#mobile-navigation ul.menu ul.sub-menu {
+#mobile-navigation .widget.widget_nav_menu ul.menu ul.sub-menu {
 	margin-left: 0;
 }
-#mobile-navigation ul.menu ul a {
+#mobile-navigation .widget.widget_nav_menu ul.menu ul a {
 	font-size: .8em;
 }
-#mobile-navigation ul.menu a {
+#mobile-navigation .widget.widget_nav_menu ul.menu a {
 	display: block;
-	padding: .5rem 1rem;
+	padding: .9rem 1.45rem;
 }
-#mobile-navigation ul.menu a:hover {
+#mobile-navigation .widget.widget_nav_menu ul.menu a:hover {
 	background: rgba(0,0,0,0.2);
 }
-#mobile-navigation ul.menu ul.sub-menu li a {
+#mobile-navigation .widget.widget_nav_menu ul.menu ul.sub-menu li a {
 	padding-left: 1.5rem;
 	font-weight: 400;
 }
@@ -2643,7 +2656,7 @@ form.pmpro_form .pmpro_payment-expiration select {
 #secondary .widget.widget_pmpro_member_login ul.menu ul.sub-menu {
 	margin-top: 0;
 } 
-.widget.widget_pmpro_member_login .pmpro_logged_in_welcome_wrap .menu {
+#secondary .widget.widget_pmpro_member_login .pmpro_logged_in_welcome_wrap .menu {
 	list-style: none;
 	margin-left: 0;
 }
