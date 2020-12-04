@@ -1149,6 +1149,7 @@ a:active {
 #mobile-navigation .widget.widget_nav_menu ul.menu ul a {
 	font-size: .8em;
 }
+#mobile-navigation .widget.widget_nav_menu h3,
 #mobile-navigation .widget.widget_nav_menu ul.menu a {
 	display: block;
 	padding: .9rem 1.45rem;
@@ -2814,8 +2815,9 @@ object {
 	.comment-respond input[type=text], .comment-respond input[type=email], .comment-respond input[type=url], .comment-respond textarea {width: 100%; }
 	.comment-respond .form-allowed-tags, .comment-respond .form-submit, .comment-respond .comment-subscription-form {margin-left: 0; }
 	.comment-respond .form-submit input[type=submit] {width: 100%; }
-	form#pmpro_form .pmpro_checkout-fields {padding: 1rem 0 0 0; }
-	form#pmpro_form .pmpro_checkout h3 span.pmpro_checkout-h3-msg {display: block; float: none; }
+	form#pmpro_form .pmpro_checkout-fields, form#pmpro_form #pmpro_payment_information_fields .pmpro_checkout-field-payment-request-button {padding: 1.45rem 0; }
+	form#pmpro_form .pmpro_checkout h3 {padding: 1.45rem .9rem .9rem .9rem; line-height: 3.2rem;}
+	form#pmpro_form .pmpro_checkout h3 span.pmpro_checkout-h3-msg {display: block; float: none; margin: 0; }
 	form.pmpro_form .pmpro_select_payment_method span {display: block; }
 	form.pmpro_form .input, form.pmpro_form select {width: 93%; }
 	form.pmpro_form #CVV, form.pmpro_form select#ExpirationMonth, form.pmpro_form select#ExpirationYear {width: 43%; }
