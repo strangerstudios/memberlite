@@ -233,7 +233,7 @@ function memberlite_support() {
 								<div class="desc column-description">
 									<p><?php esc_html_e( 'bbPress is forum software, made the WordPress way.', 'memberlite' ); ?></p>
 									<p><a href="<?php echo esc_url( admin_url( 'plugin-install.php?tab=search&type=term&s=Paid+Memberships+Pro+-+bbPress+Add+On' ) ); ?>"><?php esc_html_e( 'Install Paid Memberships Pro - bbPress Add On', 'memberlite' ); ?></a></p>
-									<p class="authors"><cite><?php esc_html_e( 'By', 'memberlite' ); ?> <a href="https://www.bbpress.org" target="_blank"><?php esc_html_e( 'The bbPress Community', 'memberlite' ); ?></a></cite></p>
+									<p class="authors"><cite><?php esc_html_e( 'By', 'memberlite' ); ?> <a href="https://www.bbpress.org" target="_blank"><?php esc_html_e( 'The bbPress Contributors', 'memberlite' ); ?></a></cite></p>
 								</div>
 							</div>
 						</div> <!-- end plugin-card-bbpress -->
@@ -378,7 +378,7 @@ add_action( 'wp_ajax_memberlite_dismiss_notice', 'memberlite_wp_ajax_dismiss_not
 function memberlite_admin_notice_welcome_link() {
 	// notice HTML
 	?>
-	<div id="memberlite-admin-notice-welcome_link" class="notice notice-error is-dismissible memberlite-notice">
+	<div id="memberlite-admin-notice-welcome_link" class="notice notice-info is-dismissible memberlite-notice">
 		<p><strong><?php esc_html_e( 'Memberlite', 'memberlite' ); ?>:</strong>
 		<?php
 			echo esc_html__( "We have documentation and recommended plugins to help you get started with Memberlite Theme.", 'memberlite' );
