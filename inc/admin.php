@@ -43,7 +43,7 @@ function memberlite_support() {
 				<div class="wp-badge memberlite-badge">
 					<?php
 						/* translators: Memberlite version number */
-						printf( esc_html__( 'Version %s', 'memberlite' ), MEMBERLITE_VERSION );
+						echo esc_html( sprintf( __( 'Version %s', 'memberlite' ), MEMBERLITE_VERSION ) );
 					?>
 				</div>
 				<div class="memberlite-feature-section">
@@ -92,7 +92,12 @@ function memberlite_support() {
 				$memberlite_plugins_recommended = apply_filters( 'memberlite_plugins_recommended', array( 'memberlite-elements', 'memberlite-shortcodes', 'paid-memberships-pro', 'multiple-post-thumbnails' ) );
 				if ( ! empty( $memberlite_plugins_recommended ) ) { ?>
 					<hr />
-					<h2><?php printf( esc_html__( 'We highly recommend using these plugins for every site running %s:', 'memberlite' ), $memberlite_theme ); ?></h2>
+					<h2>
+						<?php
+							/* translators: Active theme name */
+							echo esc_html( sprintf( __( 'We highly recommend using these plugins for every site running %s:', 'memberlite' ), $memberlite_theme ) );
+						?>
+					</h2>
 					<div class="wp-list-table widefat plugin-install">
 						<h2 class="screen-reader-text"><?php esc_html_e( 'Plugins list', 'memberlite' );?></h2>
 						<div id="the-list">
@@ -213,7 +218,12 @@ function memberlite_support() {
 				$memberlite_plugins_integrated = apply_filters( 'memberlite_plugins_integrated', array( 'bbpress', 'events-manager', 'paid-memberships-pro', 'testimonials-widget', 'woocommerce' ) );
 				if ( ! empty( $memberlite_plugins_integrated ) ) { ?>
 				<hr />
-				<h2><?php printf( esc_html__( '%s offers integration for these plugins:', 'memberlite' ), $memberlite_theme ); ?></h2>
+				<h2>
+					<?php
+						/* translators: Active theme name */
+						echo esc_html( sprintf( __( '%s offers integration for these plugins:', 'memberlite' ), $memberlite_theme ) );
+					?>
+				</h2>
 				<div class="wp-list-table widefat plugin-install">
 					<h2 class="screen-reader-text">Plugins list</h2>
 					<div id="the-list">
@@ -381,10 +391,10 @@ function memberlite_admin_notice_welcome_link() {
 	<div id="memberlite-admin-notice-welcome_link" class="notice notice-info is-dismissible memberlite-notice">
 		<p><strong><?php esc_html_e( 'Memberlite', 'memberlite' ); ?>:</strong>
 		<?php
-			echo esc_html__( "We have documentation and recommended plugins to help you get started with Memberlite Theme.", 'memberlite' );
-			$click_link = esc_url( add_query_arg( 'page', 'memberlite-support', admin_url( 'themes.php' ) ) );
-			$click_text = esc_html__( 'Click here to view the Memberlite welcome page.', 'memberlite' );
-			echo ' <a href="' . $click_link . '">' . $click_text . '</a>';
+			echo esc_html__( 'We have documentation and recommended plugins to help you get started with Memberlite Theme.', 'memberlite' );
+			$click_link = add_query_arg( 'page', 'memberlite-support', admin_url( 'themes.php' ) );
+			$click_text = __( 'Click here to view the Memberlite welcome page.', 'memberlite' );
+			echo ' <a href="' . esc_url( $click_link ) . '">' . esc_html( $click_text ) . '</a>';
 		?>
 		</p>
 	</div>
