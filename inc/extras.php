@@ -299,7 +299,7 @@ function memberlite_page_title( $echo = true ) {
 		<h1 class="page-title">
 		<?php
 		if ( is_shop() ) {
-			echo get_the_title( get_option( 'woocommerce_shop_page_id' ) );
+			echo esc_html( get_the_title( get_option( 'woocommerce_shop_page_id' ) ) );
 		} elseif ( is_archive() ) {
 			single_cat_title();
 		} else {
@@ -339,83 +339,23 @@ function memberlite_page_title( $echo = true ) {
 		</h1>
 		<?php
 	} elseif ( is_author() || is_tag() || is_archive() ) {
-		?>
+		$archive_title = get_the_archive_title();
+		$archive_description = get_the_archive_description();
+
+		if ( ! empty( $archive_title ) ) { ?>
 			<h1 class="page-title">
+				<?php echo $archive_title; ?>
+			</h1>
 			<?php
-			if ( is_category() ) :
-				single_cat_title();
-
-				elseif ( is_tag() ) :
-					$current_tag = single_tag_title( '', false );
-					/* translators: %s: current tag archive's single title */
-					printf( esc_html__( 'Posts Tagged: %s', 'memberlite' ), '<span>' . $current_tag . '</span>' );
-
-				elseif ( is_author() ) :
-					/* translators: %s: current author archive's name */
-					printf( esc_html__( 'Author: %s', 'memberlite' ), '<span class="vcard">' . get_the_author() . '</span>' );
-
-				elseif ( is_day() ) :
-					/* translators: %s: day for the viewed archive */
-					printf( esc_html__( 'Day: %s', 'memberlite' ), '<span>' . get_the_date() . '</span>' );
-
-				elseif ( is_month() ) :
-					/* translators: %s: month for the viewed archive */
-					printf( esc_html__( 'Month: %s', 'memberlite' ), '<span>' . get_the_date( _x( 'F Y', 'monthly archives date format', 'memberlite' ) ) . '</span>' );
-
-				elseif ( is_year() ) :
-					/* translators: %s: year for the viewed archive */
-					printf( esc_html__( 'Year: %s', 'memberlite' ), '<span>' . get_the_date( _x( 'Y', 'yearly archives date format', 'memberlite' ) ) . '</span>' );
-
-				elseif ( is_tax( 'post_format', 'post-format-aside' ) ) :
-					esc_html_e( 'Asides', 'memberlite' );
-
-				elseif ( is_tax( 'post_format', 'post-format-gallery' ) ) :
-					esc_html_e( 'Galleries', 'memberlite' );
-
-				elseif ( is_tax( 'post_format', 'post-format-image' ) ) :
-					esc_html_e( 'Images', 'memberlite' );
-
-				elseif ( is_tax( 'post_format', 'post-format-video' ) ) :
-					esc_html_e( 'Videos', 'memberlite' );
-
-				elseif ( is_tax( 'post_format', 'post-format-quote' ) ) :
-					esc_html_e( 'Quotes', 'memberlite' );
-
-				elseif ( is_tax( 'post_format', 'post-format-link' ) ) :
-					esc_html_e( 'Links', 'memberlite' );
-
-				elseif ( is_tax( 'post_format', 'post-format-status' ) ) :
-					esc_html_e( 'Statuses', 'memberlite' );
-
-				elseif ( is_tax( 'post_format', 'post-format-audio' ) ) :
-					esc_html_e( 'Audios', 'memberlite' );
-
-				elseif ( is_tax( 'post_format', 'post-format-chat' ) ) :
-					esc_html_e( 'Chats', 'memberlite' );
-
-				elseif ( is_tax() ) :
-					single_term_title();
-
-				else :
-					esc_html_e( 'Archives', 'memberlite' );
-
-				endif;
-			?>
-		</h1>
-		<?php
-			// Show an optional term description.
-			$term_description = term_description();
-		if ( ! empty( $term_description ) ) :
-			printf( '<div class="taxonomy-description">%s</div>', $term_description );
-			endif;
-
-			// Show an optional author bio.
-		if ( is_author() ) {
-			$author_bio = get_the_author_meta( 'user_description' );
-			if ( ! empty( $author_bio ) ) :
-				printf( '<div class="author-description">%s</div>', $author_bio );
-				endif;
 		}
+
+		if ( ! empty( $archive_description ) ) { ?>
+			<div class="taxonomy-description">
+				<?php echo $archive_description; ?>
+			</div>
+			<?php
+		}
+
 	} elseif ( is_search() ) {
 		?>
 		<h1 class="page-title">
