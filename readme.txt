@@ -108,6 +108,13 @@ We highly recommend using these plugins for every site running Memberlite:
 
 == Changelog ==
 
+= 4.5.2 - 2020-12-04 =
+* BUG FIX: Fixed issue with the Log in and Log Out links in member header theme area.
+* BUG FIX/ENHANCEMENT: Fixed localization and escaping for the post meta before and after replacement variables.
+* ENHANCEMENT: Improved styles for mobile navigation widget area, link type buttons, PMPro Checkout page, and bbPress.
+* ENHANCEMENT: Improved Memberlite Guide admin page formatting.
+* ENHANCEMENT: Updated to Font Awesome version 5.15.1.
+
 = 4.5.1 - 2020-10-14 =
 * BUG FIX: Adjusting Nav Menus code to supress warnings and fix issue with meta menu callback not adding log in or log out links.
 * BUG FIX/ENHANCEMENT: Updated stylesheets for version 2.6+ of bbPress.
