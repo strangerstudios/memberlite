@@ -1802,7 +1802,7 @@ a:active {
 .masthead-banner .masthead .masthead-post-byline .post_author_avatar {
 	margin-top: 0;
 }
-.masthead p {
+.masthead p:last-child {
 	margin: 0;
 }
 .masthead a.pmpro_btn {
