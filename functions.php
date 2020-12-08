@@ -471,10 +471,8 @@ function memberlite_member_menu_cb( $args ) {
 	return $output;
 }
 
-function memberlite_wp_nav_menu( $menu ) {
-	return do_shortcode( $menu );
-}
-add_filter( 'wp_nav_menu', 'memberlite_wp_nav_menu' );
+/* Allow the use of shortcodes in menus */
+add_filter( 'wp_nav_menu', 'do_shortcode', 11 );
 
 /* Exclude pings and trackbacks from the number of comments on a post. */
 function memberlite_comment_count( $count ) {
