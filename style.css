@@ -1226,8 +1226,10 @@ a:active {
 .post-navigation .nav-previous,
 .page-navigation .nav-previous {
 	float: left;
+	overflow-wrap: break-word;
 	text-align: left;
-	width: 50%;
+	width: 49%;
+	word-wrap: break-word;
 }
 .comment-navigation .nav-next,
 .paging-navigation .nav-next,
@@ -1235,7 +1237,7 @@ a:active {
 .page-navigation .nav-next {
 	float: right;
 	text-align: right;
-	width: 50%;
+	width: 49%;
 }
 
 /*--------------------------------------------------------------
