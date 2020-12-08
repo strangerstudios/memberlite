@@ -293,9 +293,7 @@ function memberlite_page_title( $echo = true ) {
 	ob_start();
 
 	// figure out page title
-	if ( function_exists( 'is_woocommerce' ) && is_woocommerce() ) {
-		woocommerce_breadcrumb();
-		?>
+	if ( function_exists( 'is_woocommerce' ) && is_woocommerce() ) { ?>
 		<h1 class="page-title">
 		<?php
 		if ( is_shop() ) {
@@ -533,7 +531,9 @@ function memberlite_getBreadcrumbs() {
 
 		$memberlite_hide_home_breadcrumb = apply_filters( 'memberlite_hide_home_breadcrumb', false );
 
-		if ( function_exists( 'is_bbpress' ) && is_bbpress() ) { ?>
+		if ( function_exists( 'is_woocommerce' ) && is_woocommerce() ) {
+			woocommerce_breadcrumb();
+		} elseif ( function_exists( 'is_bbpress' ) && is_bbpress() ) { ?>
 			<nav class="memberlite-breadcrumb" itemprop="breadcrumb">
 			<?php
 				/* Displays bbp_breadcrumb in theme masthead */
