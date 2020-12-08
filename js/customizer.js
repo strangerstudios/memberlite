@@ -245,7 +245,7 @@
 		'delimiter', function( value ) {
 			value.bind(
 				function( to ) {
-					$( '.memberlite-breadcrumb .sep, .bbp-breadcrumb-sep' ).text( to );
+					$( '.memberlite-breadcrumb .sep, .bbp-breadcrumb-sep, .woocommerce-breadcrumb .sep' ).text( to );
 				}
 			);
 		}
