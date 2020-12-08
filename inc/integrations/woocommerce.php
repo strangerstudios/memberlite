@@ -43,6 +43,16 @@ function memberlite_woocommerce_product_thumbnails_columns() {
 	return 5; // .last class applied to every 4th thumbnail
 }
 
+/**
+ * Change the breadcrumb separator
+ */
+add_filter( 'woocommerce_breadcrumb_defaults', 'memberlite_woocommerce_breadcrumb_defaults' );
+function memberlite_woocommerce_breadcrumb_defaults( $defaults ) {
+	global $memberlite_defaults;
+	$defaults['delimiter'] = '<span class="sep">' . get_theme_mod( 'delimiter', $memberlite_defaults['delimiter'] ) . '</span>';
+	return $defaults;
+}
+
 // Limit the number of related products shown
 function memberlite_woocommerce_output_related_products_args( $args ) {
 	$args['posts_per_page'] = 4; // 4 related products
