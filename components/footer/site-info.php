@@ -23,16 +23,21 @@
 		global $memberlite_defaults;
 		$copyright_textbox = get_theme_mod( 'copyright_textbox', $memberlite_defaults['copyright_textbox'] );
 		if ( ! empty( $copyright_textbox ) ) {
-			echo wpautop( Memberlite_Customize::sanitize_text_with_links( $copyright_textbox ) );
+			echo '<p>' . Memberlite_Customize::sanitize_text_with_links( $copyright_textbox ) . '</p>';
 		}
 	?>
 	</div>
 	<?php if ( ! empty( $back_to_top ) ) { ?>
 		<div class="medium-2 small-12 columns">
 		<?php
+			$back_to_top_allowed_html = array(
+				'i' => array(
+					'class' => array(),
+				),
+			);
 			$back_to_top = apply_filters( 'memberlite_back_to_top', '<i class="fa fa-chevron-up"></i> ' . esc_html__( 'Back to Top', 'memberlite' ) );
 			if ( ! empty( $back_to_top ) ) {
-				echo '<a class="skip-link btn btn_block" href="#page">' . $back_to_top . '</a>';
+				echo '<a class="skip-link btn btn_block" href="#page">' . wp_kses( $back_to_top, $back_to_top_allowed_html ) . '</a>';
 			}
 		?>
 		</div><!-- .columns -->

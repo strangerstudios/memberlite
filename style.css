@@ -4,7 +4,7 @@ Theme URI: https://memberlitetheme.com/
 Author: Stranger Studios
 Author URI: https://www.strangerstudios.com
 Description: Memberlite is the ideal theme for your membership site - packed with integration for top membership site plugins including Paid Memberships Pro. It's fully customizable with your logo, colors, fonts, custom sidebars and more global layout settings. Extend the site appearance further with icons, masthead banners, post formats, and additional settings for your site's pages. Memberlite is responsive, clean and minimal.
-Version: 4.5.1
+Version: 4.5.2
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: one-column, two-columns, left-sidebar, right-sidebar, flexible-header, custom-background, custom-colors, custom-header, custom-menu, custom-logo, editor-style, featured-images, footer-widgets, full-width-template, post-formats, theme-options, threaded-comments, translation-ready, e-commerce
@@ -684,15 +684,23 @@ a.comment-reply-link:hover {
 /* Link-style button */
 .btn_link {
 	background: none;
-    border: none;
-    box-shadow: none;
+	border: none;
+	box-shadow: none;
 	color: #2C3E50;
-    text-decoration: underline;
+	cursor: pointer; /* Improves usability and consistency of cursor style between image-type ‘input’ and others */
+	display: inline-block;
+	font-style: normal;
+	font-weight: 400;
+	overflow: hidden;
+	padding: 1.45rem 2.9rem;
+	text-decoration: underline;
+	text-shadow: none;
 }
 .btn_link:hover {
 	background: none;
 	box-shadow: none;
 	transform: none;
+	text-decoration: underline;
 }
 
 /* Cancel-style button */
@@ -1106,36 +1114,50 @@ a:active {
 #mobile-navigation a {
 	color: #FFF;
 	text-decoration: none;
-	font-weight: bold;
+}
+#mobile-navigation a:hover {
+	text-decoration: underline;
 }
 #mobile-navigation .widget,
 #mobile-navigation .search-form {
-	padding: 1rem;
+	padding: 1.45rem
 }
 #mobile-navigation .widget.widget_nav_menu,
 #mobile-navigation .widget.widget_search {
 	padding: 0;
 }
-#mobile-navigation ul.menu,
-#mobile-navigation ul.menu li {
+#mobile-navigation .widget h3 {
+	margin: 0;
+}
+#mobile-navigation .widget ul,
+#mobile-navigation .widget ol {
+	margin: 0 0 0 2.9rem;
+}
+#mobile-navigation .widget ul li,
+#mobile-navigation .widget ol li {
+	margin-bottom: 0;
+}
+#mobile-navigation .widget.widget_nav_menu ul.menu,
+#mobile-navigation .widget.widget_nav_menu ul.menu li {
 	list-style: none;
 	padding: 0;
 	margin: 0;
 }
-#mobile-navigation ul.menu ul.sub-menu {
+#mobile-navigation .widget.widget_nav_menu ul.menu ul.sub-menu {
 	margin-left: 0;
 }
-#mobile-navigation ul.menu ul a {
+#mobile-navigation .widget.widget_nav_menu ul.menu ul a {
 	font-size: .8em;
 }
-#mobile-navigation ul.menu a {
+#mobile-navigation .widget.widget_nav_menu h3,
+#mobile-navigation .widget.widget_nav_menu ul.menu a {
 	display: block;
-	padding: .5rem 1rem;
+	padding: .9rem 1.45rem;
 }
-#mobile-navigation ul.menu a:hover {
+#mobile-navigation .widget.widget_nav_menu ul.menu a:hover {
 	background: rgba(0,0,0,0.2);
 }
-#mobile-navigation ul.menu ul.sub-menu li a {
+#mobile-navigation .widget.widget_nav_menu ul.menu ul.sub-menu li a {
 	padding-left: 1.5rem;
 	font-weight: 400;
 }
@@ -1204,8 +1226,10 @@ a:active {
 .post-navigation .nav-previous,
 .page-navigation .nav-previous {
 	float: left;
+	overflow-wrap: break-word;
 	text-align: left;
-	width: 50%;
+	width: 49%;
+	word-wrap: break-word;
 }
 .comment-navigation .nav-next,
 .paging-navigation .nav-next,
@@ -1213,7 +1237,7 @@ a:active {
 .page-navigation .nav-next {
 	float: right;
 	text-align: right;
-	width: 50%;
+	width: 49%;
 }
 
 /*--------------------------------------------------------------
@@ -1780,7 +1804,7 @@ a:active {
 .masthead-banner .masthead .masthead-post-byline .post_author_avatar {
 	margin-top: 0;
 }
-.masthead p {
+.masthead p:last-child {
 	margin: 0;
 }
 .masthead a.pmpro_btn {
@@ -2635,7 +2659,7 @@ form.pmpro_form .pmpro_payment-expiration select {
 #secondary .widget.widget_pmpro_member_login ul.menu ul.sub-menu {
 	margin-top: 0;
 } 
-.widget.widget_pmpro_member_login .pmpro_logged_in_welcome_wrap .menu {
+#secondary .widget.widget_pmpro_member_login .pmpro_logged_in_welcome_wrap .menu {
 	list-style: none;
 	margin-left: 0;
 }
@@ -2793,8 +2817,9 @@ object {
 	.comment-respond input[type=text], .comment-respond input[type=email], .comment-respond input[type=url], .comment-respond textarea {width: 100%; }
 	.comment-respond .form-allowed-tags, .comment-respond .form-submit, .comment-respond .comment-subscription-form {margin-left: 0; }
 	.comment-respond .form-submit input[type=submit] {width: 100%; }
-	form#pmpro_form .pmpro_checkout-fields {padding: 1rem 0 0 0; }
-	form#pmpro_form .pmpro_checkout h3 span.pmpro_checkout-h3-msg {display: block; float: none; }
+	form#pmpro_form .pmpro_checkout-fields, form#pmpro_form #pmpro_payment_information_fields .pmpro_checkout-field-payment-request-button {padding: 1.45rem 0; }
+	form#pmpro_form .pmpro_checkout h3 {padding: 1.45rem .9rem .9rem .9rem; line-height: 3.2rem;}
+	form#pmpro_form .pmpro_checkout h3 span.pmpro_checkout-h3-msg {display: block; float: none; margin: 0; }
 	form.pmpro_form .pmpro_select_payment_method span {display: block; }
 	form.pmpro_form .input, form.pmpro_form select {width: 93%; }
 	form.pmpro_form #CVV, form.pmpro_form select#ExpirationMonth, form.pmpro_form select#ExpirationYear {width: 43%; }

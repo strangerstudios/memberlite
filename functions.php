@@ -4,7 +4,7 @@
  *
  * @package Memberlite
  */
-define( 'MEMBERLITE_VERSION', '4.5.1' );
+define( 'MEMBERLITE_VERSION', '4.5.2' );
 
 // get default values for options/etc
 require_once get_template_directory() . '/inc/defaults.php';
@@ -21,7 +21,7 @@ function memberlite_init_styles() {
 	}
 	wp_enqueue_style( 'memberlite_print_style', get_template_directory_uri() . '/css/print.css', array(), MEMBERLITE_VERSION, 'print' );
 	wp_enqueue_script( 'memberlite-script', get_template_directory_uri() . '/js/memberlite.js', array( 'jquery' ), MEMBERLITE_VERSION, true );
-	wp_enqueue_style( 'font-awesome', get_template_directory_uri() . '/font-awesome/css/all.min.css', array(), '5.14.0' );
+	wp_enqueue_style( 'font-awesome', get_template_directory_uri() . '/font-awesome/css/all.min.css', array(), '5.15.1' );
 
 	// load dark.css for dark/inverted backgrounds
 	$memberlite_darkcss = get_theme_mod( 'memberlite_darkcss', $memberlite_defaults['memberlite_darkcss'], false );
@@ -471,10 +471,8 @@ function memberlite_member_menu_cb( $args ) {
 	return $output;
 }
 
-function memberlite_wp_nav_menu( $menu ) {
-	return do_shortcode( $menu );
-}
-add_filter( 'wp_nav_menu', 'memberlite_wp_nav_menu' );
+/* Allow the use of shortcodes in menus */
+add_filter( 'wp_nav_menu', 'do_shortcode', 11 );
 
 /* Exclude pings and trackbacks from the number of comments on a post. */
 function memberlite_comment_count( $count ) {

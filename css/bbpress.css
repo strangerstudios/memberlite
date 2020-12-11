@@ -212,6 +212,7 @@ li.bbp-topic-freshness {
 #bbpress-forums #subscription-toggle,
 #bbpress-forums #favorite-toggle {
 	float: right;
+	margin-bottom: .9rem;
 }
 
 #bbpress-forums div.bbp-forum-title h3,
@@ -747,7 +748,7 @@ td.bbp-topic-counts {
 #bbpress-forums fieldset.bbp-form legend {
 	border: none;
 	font-weight: 700;
-	margin: 2.9rem 0;
+	margin: 2.9rem 0 1.45rem 0;
 	width: auto;
 }
 
@@ -829,7 +830,7 @@ body.reply-edit .bbp-reply-form code {
 	display: block;
 	padding: 8px;
 	margin-top: 5px;
-	width: 369px;
+	width: 100%;
 }
 
 #merge_tag,
@@ -850,7 +851,7 @@ p.form-allowed-tags {
 /* =TinyMCE in themes
 -------------------------------------------------------------- */
 #bbpress-forums div.bbp-the-content-wrapper {
-	margin-bottom: 10px;
+	margin-bottom: 2.9rem;
 }
 
 #bbpress-forums div.bbp-the-content-wrapper textarea.bbp-the-content {

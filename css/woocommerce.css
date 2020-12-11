@@ -78,7 +78,8 @@
 .woocommerce .woocommerce-breadcrumb, .woocommerce-page .woocommerce-breadcrumb {
 	color: #FFF;
 	font-size: 1.2rem;
-	margin: 0 0 1em 0;
+	line-height: 2.2rem;
+	margin: 0;
 	padding: 0;
 }
 .woocommerce .masthead .woocommerce-breadcrumb, .woocommerce-page .masthead .woocommerce-breadcrumb {

@@ -134,9 +134,9 @@ if ( ! function_exists( 'memberlite_page_nav' ) ) :
 		<h1 class="screen-reader-text"><?php esc_html_e( 'Page navigation', 'memberlite' ); ?></h1>
 		<div class="nav-links">
 			<?php if ( ! empty( $previousID ) && ( $previousID != $post->ID ) ) { ?>
-				<div class="nav-previous"><a href="<?php echo esc_url( get_permalink( $previousID ) ); ?>" rel="prev"><span class="meta-nav">&larr;</span> <?php echo get_the_title( $previousID ); ?></a></div>
+				<div class="nav-previous"><a href="<?php echo esc_url( get_permalink( $previousID ) ); ?>" rel="prev"><span class="meta-nav">&larr;</span> <?php echo esc_html( get_the_title( $previousID ) ); ?></a></div>
 			<?php } if ( ! empty( $nextID ) && ( $nextID != $post->ID ) ) { ?>
-				<div class="nav-next"><a href="<?php echo esc_url( get_permalink( $nextID ) ); ?>" rel="next"><?php echo get_the_title( $nextID ); ?> <span class="meta-nav">&rarr;</span></a></div>
+				<div class="nav-next"><a href="<?php echo esc_url( get_permalink( $nextID ) ); ?>" rel="next"><?php echo esc_html( get_the_title( $nextID ) ); ?> <span class="meta-nav">&rarr;</span></a></div>
 			<?php } ?>
 		</div><!-- .nav-links -->
 	</nav><!-- .navigation -->

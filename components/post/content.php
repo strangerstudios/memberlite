@@ -33,7 +33,7 @@
 			}
 		?>
 		<?php
-			$content_archives = get_theme_mod( 'content_archives' );
+			$content_archives = get_theme_mod( 'content_archives', $memberlite_defaults['content_archives'] );
 			if ( $content_archives == 'excerpt' ) {
 				memberlite_the_excerpt();
 			} else {

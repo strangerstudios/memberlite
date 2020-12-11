@@ -22,15 +22,18 @@ function memberlite_support() {
 	?>
 	<div id="wpbody-content" aria-label="<?php esc_attr_e( 'Main content', 'memberlite' ); ?>" tabindex="0">
 		<style>
-			.wrap hr {margin: 40px 0; }
-			.wrap .about-wrap {max-width: 100%; }
-			.wrap .about-wrap .memberlite-badge {background-image: url(<?php echo esc_url( get_template_directory_uri() ) . '/images/Memberlite_icon.png'; ?>); background-color: #FFF; color: #2C3E50; }
-			.wrap .about-wrap .dashicons {font-size: 20px; height: 30px; width: 30px; }
-			.wrap .about-wrap .memberlite-feature-section { display: grid; grid-template-columns: 1fr 1fr 1fr; grid-gap: 2.9rem; }
-			.wrap .about-wrap .memberlite-feature-section h3 { line-height: 1; text-align: left; }
-			.wrap .welcome-panel { padding-bottom: 23px; }
-			@media screen and (max-width:782px) {
-				.about-wrap .memberlite-feature-section { display: block; }
+			.wrap hr {margin: 40px 0;}
+			.wrap .about-wrap {max-width: 100%;}
+			.wrap .about-wrap .memberlite-badge {background-image: url(<?php echo esc_url( get_template_directory_uri() ) . '/images/Memberlite_icon.png'; ?>); background-color: #FFF; color: #2C3E50;}
+			.wrap .about-wrap .dashicons {font-size: 20px; height: 30px; width: 30px;}
+			.wrap .about-wrap .memberlite-feature-section {display: grid; grid-template-columns: 1fr 1fr 1fr; grid-gap: 2.9rem;}
+			.wrap .about-wrap .memberlite-feature-section h3 {line-height: 1; text-align: left;}
+			.wrap .welcome-panel {padding-bottom: 23px;}
+			.wrap .welcome-panel p {font-size: 16px; line-height: 1.5;}
+			@media screen and (max-width: 782px) {
+				.about-wrap h1, .about-wrap .about-text {margin-right: 0;}
+				.wrap .about-wrap .memberlite-badge {display: none;}
+				.wrap .about-wrap .memberlite-feature-section {display: block;}
 			}
 		</style>
 		<div class="wrap full-width-layout">
@@ -40,7 +43,7 @@ function memberlite_support() {
 				<div class="wp-badge memberlite-badge">
 					<?php
 						/* translators: Memberlite version number */
-						printf( esc_html__( 'Version %s', 'memberlite' ), MEMBERLITE_VERSION );
+						echo esc_html( sprintf( __( 'Version %s', 'memberlite' ), MEMBERLITE_VERSION ) );
 					?>
 				</div>
 				<div class="memberlite-feature-section">
@@ -79,9 +82,8 @@ function memberlite_support() {
 						<?php do_action( 'memberlite_guide_additional' ); ?>
 					<?php } else { ?>
 						<h1><?php esc_html_e( 'Using Child Themes', 'memberlite' ); ?></h1>
-						<p><?php esc_html_e( 'If you need to customize the theme beyond the settings in Appearance > Customize, use a child theme.', 'memberlite' ); ?> <a href="https://github.com/strangerstudios/memberlite-child" target="_blank">
-							<?php esc_html_e( 'Download a Blank Child Theme &raquo;', 'memberlite' ); ?></a></p>
-						<p><a href="https://developer.wordpress.org/themes/advanced-topics/child-themes/" target="_blank"><?php esc_html_e( 'About Child Themes (WordPress Codex)', 'memberlite' ); ?></a></p>
+						<p><?php esc_html_e( 'If you need to customize the theme beyond the settings in Appearance > Customize, use a child theme. Child themes allow you to change the appearance of your site, while preseving the ability to update the primary "parent" theme.', 'memberlite' ); ?> <a href="https://developer.wordpress.org/themes/advanced-topics/child-themes/" target="_blank"><?php esc_html_e( 'Learn more about child themes in the WordPress Theme Handbook', 'memberlite' ); ?></a></p>
+						<a class="button button-hero button-primary" href="https://memberlitetheme.com/themes/custom-child-theme/" target="_blank"><?php esc_html_e( 'Download a Blank Child Theme', 'memberlite' ); ?></a>
 					<?php } ?>
 				</div>
 			</div>
@@ -90,7 +92,12 @@ function memberlite_support() {
 				$memberlite_plugins_recommended = apply_filters( 'memberlite_plugins_recommended', array( 'memberlite-elements', 'memberlite-shortcodes', 'paid-memberships-pro', 'multiple-post-thumbnails' ) );
 				if ( ! empty( $memberlite_plugins_recommended ) ) { ?>
 					<hr />
-					<h2><?php printf( esc_html__( 'We highly recommend using these plugins for every site running %s:', 'memberlite' ), $memberlite_theme ); ?></h2>
+					<h2>
+						<?php
+							/* translators: Active theme name */
+							echo esc_html( sprintf( __( 'We highly recommend using these plugins for every site running %s:', 'memberlite' ), $memberlite_theme ) );
+						?>
+					</h2>
 					<div class="wp-list-table widefat plugin-install">
 						<h2 class="screen-reader-text"><?php esc_html_e( 'Plugins list', 'memberlite' );?></h2>
 						<div id="the-list">
@@ -211,7 +218,12 @@ function memberlite_support() {
 				$memberlite_plugins_integrated = apply_filters( 'memberlite_plugins_integrated', array( 'bbpress', 'events-manager', 'paid-memberships-pro', 'testimonials-widget', 'woocommerce' ) );
 				if ( ! empty( $memberlite_plugins_integrated ) ) { ?>
 				<hr />
-				<h2><?php printf( esc_html__( '%s offers integration for these plugins:', 'memberlite' ), $memberlite_theme ); ?></h2>
+				<h2>
+					<?php
+						/* translators: Active theme name */
+						echo esc_html( sprintf( __( '%s offers integration for these plugins:', 'memberlite' ), $memberlite_theme ) );
+					?>
+				</h2>
 				<div class="wp-list-table widefat plugin-install">
 					<h2 class="screen-reader-text">Plugins list</h2>
 					<div id="the-list">
@@ -231,7 +243,7 @@ function memberlite_support() {
 								<div class="desc column-description">
 									<p><?php esc_html_e( 'bbPress is forum software, made the WordPress way.', 'memberlite' ); ?></p>
 									<p><a href="<?php echo esc_url( admin_url( 'plugin-install.php?tab=search&type=term&s=Paid+Memberships+Pro+-+bbPress+Add+On' ) ); ?>"><?php esc_html_e( 'Install Paid Memberships Pro - bbPress Add On', 'memberlite' ); ?></a></p>
-									<p class="authors"><cite><?php esc_html_e( 'By', 'memberlite' ); ?> <a href="https://www.bbpress.org" target="_blank"><?php esc_html_e( 'The bbPress Community', 'memberlite' ); ?></a></cite></p>
+									<p class="authors"><cite><?php esc_html_e( 'By', 'memberlite' ); ?> <a href="https://www.bbpress.org" target="_blank"><?php esc_html_e( 'The bbPress Contributors', 'memberlite' ); ?></a></cite></p>
 								</div>
 							</div>
 						</div> <!-- end plugin-card-bbpress -->
@@ -376,13 +388,13 @@ add_action( 'wp_ajax_memberlite_dismiss_notice', 'memberlite_wp_ajax_dismiss_not
 function memberlite_admin_notice_welcome_link() {
 	// notice HTML
 	?>
-	<div id="memberlite-admin-notice-welcome_link" class="notice notice-error is-dismissible memberlite-notice">
+	<div id="memberlite-admin-notice-welcome_link" class="notice notice-info is-dismissible memberlite-notice">
 		<p><strong><?php esc_html_e( 'Memberlite', 'memberlite' ); ?>:</strong>
 		<?php
-			echo esc_html__( "We have documentation and recommended plugins to help you get started with Memberlite Theme.", 'memberlite' );
-			$click_link = esc_url( add_query_arg( 'page', 'memberlite-support', admin_url( 'themes.php' ) ) );
-			$click_text = esc_html__( 'Click here to view the Memberlite welcome page.', 'memberlite' );
-			echo ' <a href="' . $click_link . '">' . $click_text . '</a>';
+			echo esc_html__( 'We have documentation and recommended plugins to help you get started with Memberlite Theme.', 'memberlite' );
+			$click_link = add_query_arg( 'page', 'memberlite-support', admin_url( 'themes.php' ) );
+			$click_text = __( 'Click here to view the Memberlite welcome page.', 'memberlite' );
+			echo ' <a href="' . esc_url( $click_link ) . '">' . esc_html( $click_text ) . '</a>';
 		?>
 		</p>
 	</div>

@@ -1,8 +1,8 @@
 === Memberlite ===
 Contributors: kimannwall, strangerstudios
 Requires at least: WordPress 4.4
-Tested up to: WordPress 5.5.1
-Version: 4.5.1
+Tested up to: WordPress 5.6
+Version: 4.5.2
 Requires PHP: 5.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -81,7 +81,7 @@ Use the Customize > Memberlite Options screen to modify theme layout, logo, font
 == Using Child Themes ==
 If you need to customize the theme beyond theme settings, use a child theme.
 
-[Download a Blank Child Theme »](https://github.com/strangerstudios/memberlite-child) | [About Child Themes (WordPress Codex) »](http://codex.wordpress.org/Child_Themes)
+[Memberlite Child Theme Downloads »](https://memberlitetheme.com/themes/) | [About Child Themes (WordPress Codex) »](https://developer.wordpress.org/themes/advanced-topics/child-themes/)
 
 == Integrated Plugins ==
 Memberlite includes formatting for use with:
@@ -107,6 +107,14 @@ We highly recommend using these plugins for every site running Memberlite:
 [Install Multiple Post Thumbnails »](https://wordpress.org/plugins/multiple-post-thumbnails/)
 
 == Changelog ==
+
+= 4.5.2 - 2020-12-08 =
+* BUG FIX: Fixed issue with the Log in and Log Out links in member header theme area.
+* BUG FIX/ENHANCEMENT: Fixed localization and escaping throughout theme.
+* BUG FIX/ENHANCEMENT: Improved styling of frontend elements throughout theme.
+* ENHANCEMENT: Updated to Font Awesome version 5.15.1.
+* ENHANCEMENT: Improved Memberlite Guide admin page formatting.
+* ENHANCEMENT: Updated to Font Awesome version 5.15.1.
 
 = 4.5.1 - 2020-10-14 =
 * BUG FIX: Adjusting Nav Menus code to supress warnings and fix issue with meta menu callback not adding log in or log out links.
