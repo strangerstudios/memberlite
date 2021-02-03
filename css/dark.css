@@ -1,20 +1,174 @@
-/* Inverted Color Profiles for Dark Backgrounds */
-body, blockquote.quote, q, .lead, div.lead p {color: #FFF; }
-hr {background-color: #666; }
-#site-navigation, .footer-navigation, .main-navigation a, .meta-navigation li, .header-right .widget_nav_menu li, .footer-navigation li, #secondary .widget-title, .widget_calendar #wp-calendar caption, #secondary .widget a, #secondary .widget a:link {border-color: #666; }
-#secondary .widget a, #secondary .widget a:link {color: #AAA; }
-blockquote { }
+/*--------------------------------------------------------------
+Inverted Color Profiles for Dark Backgrounds
+--------------------------------------------------------------*/
+body,
+blockquote.quote,
+.q,
+.lead,
+div.lead p,
+.pmpro_content_message {
+	color: #FFF;
+}
+hr {
+	background-color: #666;
+}
+#site-navigation {
+	border-top: none;
+}
+.footer-navigation ul,
+.footer-navigation.footer-widgets-empty ul,
+.main-navigation a,
+.meta-navigation ul li,
+.header-right .widget_nav_menu ul li,
+.footer-navigation ul li,
+.pmpro_content_message,
+#secondary .widget-title,
+.widget_calendar #wp-calendar caption,
+#secondary .widget a,
+#secondary .widget a:link,
+#secondary .widget_pmpro_member_login .pmpro_login_wrap,
+#secondary .widget_pmpro_member_login .pmpro_logged_in_welcome_wrap {
+	border-color: rgba(255,255,255,0.3);
+}
+#secondary .widget a,
+#secondary .widget a:link {
+	color: #AAA;
+}
+blockquote,
+.pre,
+#secondary .widget-title,
+.post .entry-footer,
+#your-profile h3,
+#primary .tml-action-links,
+thead th,
+tbody tr:nth-child(even) th,
+tbody tr:nth-child(even) td,
+.pmpro_content_message,
+#bbpress-forums li.bbp-header,
+#secondary .widget_pmpro_member_login .pmpro_login_wrap,
+#secondary .widget_pmpro_member_login .pmpro_logged_in_welcome_wrap {
+	background: rgba(255,255,255,0.1);
+}
+.comment,
+.comment.depth-1.thread-alt,
+.comment .comment.alt,
+.comment.odd .child-comments .comment {
+	background: none;
+}
+mark,
+.ins {
+	color: #000;
+}
+.search-form input[type=search] {
+	background: none;
+	color: rgba(255,255,255,0.8);
+}
+.content-area input[type=text],
+.content-area input[type=email],
+.content-area input[type=url],
+.content-area input[type=password],
+.content-area input[type=search],
+.content-area textarea,
+#secondary input[type=text],
+#secondary input[type=email],
+#secondary input[type=url],
+#secondary input[type=password],
+#secondary input[type=search],
+#secondary textarea,
+.footer-widgets input[type=text],
+.footer-widgets input[type=email],
+.footer-widgets input[type=url],
+.footer-widgets input[type=password],
+.footer-widgets input[type=search],
+.footer-widgets textarea,
+#mobile-navigation input[type=text],
+#mobile-navigation input[type=password] {
+	color: #FFF;
+	background: none;
+	border-color: rgba(255,255,255,0.3);
+}
 
-blockquote, pre, .comment.odd .child-comments .comment, #secondary .widget-title, .widget_calendar #wp-calendar caption, .post .entry-footer, .comment.even, .pingback.even, .trackback.even, .comment.even .child-comments .comment, #your-profile h3, #primary .tml-action-links, thead th, tbody tr:nth-child(even) th, tbody tr:nth-child(even) td, #bbpress-forums li.bbp-header {background: rgba(255,255,255,0.1); }
-.comment.odd .child-comments .comment {background: none; }
+/* Comments */
+.comment,
+.pingback,
+.trackback {
+	border-color: rgba(255,255,255,0.1);
+}
+.comment,
+.pingback.even,
+.trackback.event {
+	background: none;
+}
+.comment.depth-1.thread-alt,
+.comment .comment.alt {
+	background: rgba(255,255,255,0.1);
+}
+.comment.even .child-comments .comment {
+	background: none;
+}
+.comment.odd .child-comments .comment {
+	background: rgba(255,255,255,0.1);
+}
+.comment-meta .comment-author.vcard {
+	color: #FFF;
+}
+.comment-meta .comment-metadata .edit-link {
+	border-left-color: rgba(255,255,255,0.3);
+}
+.comment-respond .comment-notes, .comment-respond .form-allowed-tags {
+	color: #AAA;
+}
 
-mark, ins {color: #000; }
+/*--------------------------------------------------------------
+Paid Memberships Pro Integrated Styles
+--------------------------------------------------------------*/
+#pmpro_levels .post h2,
+.memberlite_signup h2,
+.pmpro_signup_form h2 {
+	background: rgba(255,255,255,0.2);
+}
+#pmpro_levels_table {
+	background: none;
+}
+#pmpro_levels_table.pmpro_checkout thead th,
+#pmpro_form .pmpro_checkout thead th {
+	color: #FFF;
+}
+#pmpro_levels.pmpro_levels-table.pmpro_level-highlight,
+#pmpro_levels.pmpro_levels-div .pmpro_level-highlight,
+#pmpro_levels.pmpro_levels-2col .pmpro_level-highlight,
+#pmpro_levels.pmpro_levels-3col .pmpro_level-highlight,
+#pmpro_levels.pmpro_levels-4col .pmpro_level-highlight,
+.memberlite_signup,
+.pmpro_signup_form {
+	background: rgba(255,255,255,0.1);
+	border-left: none;
+	border-right: none;
+}
+form#pmpro_form .pmpro_checkout h3 {
+	background: rgba(255,255,255,0.1);
+	border-color: rgba(255,255,255,0.3);
+}
+.pmpro_checkout_gateway-stripe form.pmpro_form #pmpro_payment_information_fields div#AccountNumber,
+.pmpro_checkout_gateway-stripe form.pmpro_form #pmpro_payment_information_fields div#Expiry,
+.pmpro_checkout_gateway-stripe form.pmpro_form #pmpro_payment_information_fields div#CVV,
+.pmpro_billing_gateway-stripe form.pmpro_form #pmpro_payment_information_fields div#AccountNumber,
+.pmpro_billing_gateway-stripe form.pmpro_form #pmpro_payment_information_fields div#Expiry,
+.pmpro_billing_gateway-stripe form.pmpro_form #pmpro_payment_information_fields div#CVV {
+	color: #FFF;
+	background: none;
+	border-color: rgba(255,255,255,0.3);
+}
 
-#pmpro_levels .post h2, .memberlite_signup h2, .pmpro_signup_form h2 {background: rgba(255,255,255,0.2); }
-
-#pmpro_levels_table {background: none; }
-#pmpro_levels_table.pmpro_checkout thead th, #pmpro_form .pmpro_checkout thead th {color: #FFF; }
-#pmpro_levels.pmpro_levels-table.pmpro_level-highlight, #pmpro_levels.pmpro_levels-div .pmpro_level-highlight, #pmpro_levels.pmpro_levels-2col .pmpro_level-highlight, #pmpro_levels.pmpro_levels-3col .pmpro_level-highlight, #pmpro_levels.pmpro_levels-4col .pmpro_level-highlight, .memberlite_signup, .pmpro_signup_form {background: rgba(255,255,255,0.1); border-left: none; border-right: none; }
-
-.bbp-pagination {color: #AAA; }
-#bbpress-forums div.even, #bbpress-forums ul.odd, #bbpress-forums div.even, #bbpress-forums ul.even {background: none; }
+/*--------------------------------------------------------------
+bbPress specific CSS
+--------------------------------------------------------------*/
+.bbp-pagination {
+	color: #AAA;
+}
+#bbpress-forums div.even,
+#bbpress-forums ul.odd,
+#bbpress-forums div.even,
+#bbpress-forums ul.even {
+	background: none;
+}
