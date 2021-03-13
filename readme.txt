@@ -1,9 +1,9 @@
 === Memberlite ===
 Contributors: kimannwall, strangerstudios
-Requires at least: WordPress 4.4
-Tested up to: WordPress 5.6
-Version: 4.5.2
+Requires at least: 4.4
+Tested up to: 5.7
 Requires PHP: 5.6
+Stable tag: 4.5.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: one-column, two-columns, left-sidebar, right-sidebar, flexible-header, custom-background, custom-colors, custom-header, custom-menu, custom-logo, editor-style, featured-images, footer-widgets, full-width-template, post-formats, theme-options, threaded-comments, translation-ready, e-commerce
@@ -107,6 +107,11 @@ We highly recommend using these plugins for every site running Memberlite:
 [Install Multiple Post Thumbnails »](https://wordpress.org/plugins/multiple-post-thumbnails/)
 
 == Changelog ==
+
+= 4.5.3 - 2021-03-13 =
+* ENHANCEMENT: Now showing member welcome/links in mobile menu if no other widgets defined.
+* BUG FIX: Fixed issues with background color and font color for button or cover blocks.
+* BUG FIX: General improvements for sites using an inverted (dark) body background color.
 
 = 4.5.2 - 2020-12-08 =
 * BUG FIX: Fixed issue with the Log in and Log Out links in member header theme area.
