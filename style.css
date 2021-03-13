@@ -902,14 +902,18 @@ a:active {
 	color: #000;
 }
 
-.primary {color: #2C3E50; }
-.secondary {color: #18BC9C; }
-.action {color: #F39C12; }
+.primary, .has-text-color.has-color-primary-color {color: #2C3E50; }
+.secondary, .has-text-color.has-color-secondary-color {color: #18BC9C; }
+.action, .has-text-color.has-color-action-color {color: #F39C12; }
 .info {color: #5bc0de; }
 .success {color: #5cb85c; }
 .error {color: #d9534f; }
 .alert {color: #f0ad4e; }
 .muted {color: #AAA; }
+
+.bg_primary, .has-color-primary-background-color {background-color: #2C3E50; }
+.bg_secondary, .has-color-secondary-background-color {background-color: #18BC9C; }
+.bg_action, .has-color-action-background-color {background-color: #F39C12; }
 
 /*--------------------------------------------------------------
 5.2 Menus
@@ -1149,7 +1153,7 @@ a:active {
 }
 #mobile-navigation .widget.widget_nav_menu ul.menu ul.sub-menu,
 #mobile-navigation #menu-primary-menu ul.sub-menu {
-	margin-left: 0;
+	margin: 0;
 }
 #mobile-navigation .widget.widget_nav_menu ul.menu ul a,
 #mobile-navigation #menu-primary-menu ul a {
@@ -1648,56 +1652,54 @@ a:active {
 .header-right {
 	text-align: right;
 }
-.header-right #meta-member .meta-member-inner, .header-right aside {
+.header-right #meta-member .meta-member-inner,
+.header-right aside {
 	display: inline-block;
 }
-#meta-member .meta-member-inner {
+.header-right #meta-member .meta-member-inner {
 	background-color: #18BC9C;
-	-moz-border-radius-bottomright: 3px;
-	-webkit-border-bottom-right-radius: 3px;
 	border-bottom-right-radius: 3px;
-	-moz-border-radius-bottomleft: 3px;
-	-webkit-border-bottom-left-radius: 3px;
 	border-bottom-left-radius: 3px;
 	color: #FFF;
 	font-size: 1.4rem;
 	margin: 0 0 1.45rem 0;
 	padding: .7rem;
 }
-#meta-member .user {
+.header-right #meta-member .user {
 	border-right: 1px solid #DDD;
 	padding: 0 .7rem;
 }
-#meta-member a {
+.header-right #meta-member a {
 	color: #FFF;
 	display: inline-block;
 	text-decoration: none;
 }
-#meta-member a:hover {
+.header-right #meta-member a:hover {
 	color: #FFF;
 }
-#meta-member span.user a {
+.header-right #meta-member span.user a {
 	margin: 0;
 }
-#meta-member .member-navigation, #meta-member .member-navigation ul {
+.header-right #meta-member .member-navigation,
+.header-right #meta-member .member-navigation ul {
 	display: inline-block;
 	list-style: none;
 	margin: 0;
 }
-#meta-member .member-navigation li {
+.header-right #meta-member .member-navigation li {
 	border-right: 1px solid #DDD;
 	display: inline-block;
 	margin: 0;
 	position: relative;
 }
-#meta-member .member-navigation li:last-child {
+.header-right #meta-member .member-navigation li:last-child {
 	border: none;
 }
-#meta-member .member-navigation li a {
+.header-right #meta-member .member-navigation li a {
 	margin: 0 1rem;
 }
 /* Dropdown Menu */
-#meta-member .member-navigation .sub-menu {
+.header-right #meta-member .member-navigation .sub-menu {
 	background-color: #18BC9C;
 	box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.2);
 	display: none;
@@ -1710,25 +1712,53 @@ a:active {
 	top: 2.6rem;
 	z-index: 99999;
 }
-#meta-member .member-navigation ul li:hover > ul {
+.header-right #meta-member .member-navigation ul li:hover > ul {
 	display: block;
 	left: auto;
 }
-#meta-member .member-navigation .sub-menu li {
+.header-right #meta-member .member-navigation .sub-menu li {
 	border: none;
 	display: block;
 }
-#meta-member .member-navigation .sub-menu li a {
+.header-right #meta-member .member-navigation .sub-menu li a {
 	margin: 0;
 	padding: .5rem 1rem;
 	width: 125px;
 }
-#meta-member .member-navigation ul ul a:hover {
+.header-right #meta-member .member-navigation ul ul a:hover {
 	background-color: rgba(0,0,0,0.1);
 }
-#meta-member .member-navigation .sub-menu .sub-menu {
+.header-right #meta-member .member-navigation .sub-menu .sub-menu {
 	display: none;
 }
+#mobile-navigation #meta-member .meta-member-inner {
+	border-bottom-right-radius: 0;
+	border-bottom-left-radius: 0;
+	padding: .9rem 1.45rem;
+}
+#mobile-navigation #meta-member .meta-member-inner ul {
+	list-style: none;
+	margin: 0;
+}
+#mobile-navigation #meta-member .meta-member-inner ul li {
+	display: inline-block;
+	margin: 0;
+}
+#mobile-navigation #meta-member .meta-member-inner ul li:after {
+	opacity: 0.5;
+	content: " |";
+}
+#mobile-navigation #meta-member .meta-member-inner ul li:last-child {
+	margin-right: 0;
+}
+#mobile-navigation #meta-member .meta-member-inner ul li:last-child:after {
+	content: '';
+}
+.logged-in #mobile-navigation #meta-member .meta-member-inner ul li a {
+	font-size: .8em;
+}
+
+/* Masthead Banners */
 .masthead-banner {
 	background-position: center center;
 	background-size: cover;
