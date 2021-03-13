@@ -59,7 +59,8 @@ mark,
 .ins {
 	color: #000;
 }
-.search-form input[type=search] {
+.search-form input[type=search],
+#mobile-navigation .search-form input[type=search] {
 	background: none;
 	color: rgba(255,255,255,0.8);
 }
