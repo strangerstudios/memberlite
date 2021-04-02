@@ -89,7 +89,7 @@ function memberlite_support() {
 			</div>
 
 			<?php
-				$memberlite_plugins_recommended = apply_filters( 'memberlite_plugins_recommended', array( 'memberlite-elements', 'memberlite-shortcodes', 'paid-memberships-pro', 'multiple-post-thumbnails' ) );
+				$memberlite_plugins_recommended = apply_filters( 'memberlite_plugins_recommended', array( 'memberlite-elements', 'memberlite-shortcodes', 'paid-memberships-pro', 'multiple-post-thumbnails', 'getwid' ) );
 				if ( ! empty( $memberlite_plugins_recommended ) ) { ?>
 					<hr />
 					<h2>
@@ -208,6 +208,27 @@ function memberlite_support() {
 								</div>
 							</div> <!-- end plugin-card-multiple-post-thumbnails -->
 							<?php } ?>
+
+                            <?php if ( in_array( 'getwid', $memberlite_plugins_recommended ) ) { ?>
+                                <div class="plugin-card plugin-card-getwid">
+                                    <div class="plugin-card-top">
+                                        <div class="name column-name">
+                                            <h3><a href="https://wordpress.org/plugins/getwid/" target="_blank"><?php esc_html_e( 'Getwid', 'memberlite' ); ?></a></h3>
+                                            <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/images/getwid-icon-256x256.png" class="plugin-icon" alt="Getwid">
+                                        </div>
+                                        <div class="action-links">
+                                            <ul class="plugin-action-buttons">
+                                                <li><a class="install-now button" href="<?php echo esc_url( admin_url( 'plugin-install.php?tab=search&s=getwid' ) ); ?>"><?php esc_html_e( 'Install Now', 'memberlite' ); ?></a></li>
+                                                <li><a href="https://wordpress.org/plugins/getwid/" target="_blank"><?php esc_html_e( 'More Details', 'memberlite' ); ?></a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="desc column-description">
+                                            <p><?php esc_html_e( 'Getwid is a collection of 40+ Gutenberg blocks that greatly extends the library of existing core WordPress blocks and 35+ unique pre-made block templates for the Block Editor.', 'memberlite' ); ?></p>
+                                            <p class="authors"><cite><?php esc_html_e( 'By', 'memberlite' ); ?> <a href="https://motopress.com/" target="_blank"><?php esc_html_e( 'MotoPress', 'memberlite' ); ?></a></cite></p>
+                                        </div>
+                                    </div>
+                                </div> <!-- end plugin-card-getwid-->
+							<?php } ?>
 							<?php do_action( 'memberlite_plugins_recommended_additional' ); ?>
 						</div> <!-- end the-list -->
 					</div> <!-- end plugin-install -->
@@ -215,7 +236,7 @@ function memberlite_support() {
 			?>
 			<br class="clear" />
 			<?php
-				$memberlite_plugins_integrated = apply_filters( 'memberlite_plugins_integrated', array( 'bbpress', 'events-manager', 'paid-memberships-pro', 'testimonials-widget', 'woocommerce' ) );
+				$memberlite_plugins_integrated = apply_filters( 'memberlite_plugins_integrated', array( 'bbpress', 'events-manager', 'paid-memberships-pro', 'testimonials-widget', 'woocommerce', 'getwid' ) );
 				if ( ! empty( $memberlite_plugins_integrated ) ) { ?>
 				<hr />
 				<h2>
@@ -333,6 +354,27 @@ function memberlite_support() {
 								</div>
 							</div>
 						</div> <!-- end plugin-card-woocommerce -->
+						<?php } ?>
+
+						<?php if ( in_array( 'getwid', $memberlite_plugins_integrated ) ) { ?>
+						<div class="plugin-card plugin-card-getwid">
+							<div class="plugin-card-top">
+								<div class="name column-name">
+									<h3><a href="https://wordpress.org/plugins/getwid/" target="_blank"><?php esc_html_e( 'Getwid', 'memberlite' ); ?></a></h3>
+									<img src="<?php echo esc_url( get_template_directory_uri() ); ?>/images/getwid-icon-256x256.png" class="plugin-icon" alt="Getwid">
+								</div>
+								<div class="action-links">
+									<ul class="plugin-action-buttons">
+										<li><a class="install-now button" href="<?php echo esc_url( admin_url( 'plugin-install.php?tab=search&s=getwid' ) ); ?>"><?php esc_html_e( 'Install Now', 'memberlite' ); ?></a></li>
+										<li><a href="https://wordpress.org/plugins/getwid/" target="_blank"><?php esc_html_e( 'More Details', 'memberlite' ); ?></a></li>
+									</ul>
+								</div>
+								<div class="desc column-description">
+									<p><?php esc_html_e( 'Getwid is a collection of 40+ Gutenberg blocks that greatly extends the library of existing core WordPress blocks and 35+ unique pre-made block templates for the Block Editor.', 'memberlite' ); ?></p>
+									<p class="authors"><cite><?php esc_html_e( 'By', 'memberlite' ); ?> <a href="https://motopress.com/" target="_blank"><?php esc_html_e( 'MotoPress', 'memberlite' ); ?></a></cite></p>
+								</div>
+							</div>
+						</div> <!-- end plugin-card-getwid-->
 						<?php } ?>
 						<?php do_action( 'memberlite_plugins_integrated_additional' ); ?>
 					</div> <!-- end the-list -->

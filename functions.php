@@ -551,6 +551,11 @@ if ( function_exists( 'is_woocommerce' ) ) {
 	require_once get_template_directory() . '/inc/integrations/woocommerce.php';
 }
 
+/* Integration for Getwid. */
+if ( function_exists( 'getwid' ) ) {
+	require_once get_template_directory() . '/inc/integrations/getwid.php';
+}
+
 function memberlite_frontpage_template_hierarchy( $templates ) {
 	$templates = array();
 	if ( ! is_home() ) {
