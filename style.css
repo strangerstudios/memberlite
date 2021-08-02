@@ -405,7 +405,9 @@ hr.wp-block-separator:not(.is-style-wide):not(.is-style-dots) {
 hr.wp-block-separator.is-style-dots:before {
 	color: #CCC;
 }
-
+hr.wp-block-separator.is-style-wide {
+	border: 0;
+}
 ul, ol {
 	margin: 0 0 2.9rem 3.2rem;
 }
