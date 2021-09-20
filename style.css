@@ -222,7 +222,7 @@ blockquote.quote:before,
 	content: "\f10d";
 	font-family: 'Font Awesome 5 Free';
 	font-weight: 700;
-	color: #DDD;
+	color: var(--memberlite-color-secondary);
 	font-size: 2.9rem;
 	left: 0rem;
 	top: 0rem;
@@ -261,7 +261,7 @@ blockquote cite a,
 	content: "\f10d";
 	font-family: 'Font Awesome 5 Free';
 	font-weight: 700;
-	color: #DDD;
+	color: var(--memberlite-color-secondary);
 	font-size: 2.9rem;
 	padding-right: 1rem;
 }
@@ -269,7 +269,7 @@ blockquote cite a,
 	content: "\f10e";
 	font-family: 'Font Awesome 5 Free';
 	font-weight: 700;
-	color: #DDD;
+	color: var(--memberlite-color-secondary);
 	font-size: 2.9rem;
 	padding-left: 1rem;
 }
@@ -513,7 +513,7 @@ input[type=submit].pmpro_btn,
 input[type=button].pmpro_btn,
 #loginform input[type=submit].button.button-primary,
 #main div.em-search-main button.em-search-submit  {
-	background-color: #95a5a6;
+	background-color: var(--memberlite-color-button);
 	border: none;
 	border-radius: 3px;
 	box-shadow: 1px 2px 4px rgba(0,0,0,0.2);
@@ -559,13 +559,16 @@ a.btn.skip-link {
 a.pmpro_btn,
 a.pmpro_btn:link,
 a.pmpro_btn:visited,
+.pmpro_content_message a,
+.pmpro_content_message a:link,
+.pmpro_content_message a:visited,
 input[type=submit].pmpro_btn,
 input[type=button].pmpro_btn,
 #loginform input[type=submit].button.button-primary {
-	background-color: #F39C12;
+	background-color: var(--memberlite-color-action);
 	border: none;
 	box-shadow: 1px 2px 4px rgba(0,0,0,0.2);
-	color: #FFF;
+	color: var(--memberlite-color-white);
 	font-size: 1.8rem;
 	padding: 1.45rem 2.9rem;
 	text-shadow: none;
@@ -587,13 +590,13 @@ input[type=submit]:active,
 .btn:focus,
 a.pmpro_btn:active,
 #main div.em-search-main button.em-search-submit:hover {
-	background-color: #798d8f;
+	background-color: var(--memberlite-color-button);
 	box-shadow: 1px 2px 4px rgba(0,0,0,0.4);
-	color: #FFF;
+	color: var(--memberlite-color-white);
 	transform: translateY(-1px);
 }
 .content-area .btn:hover {
-	color: #FFF;
+	color: var(--memberlite-color-white);
 }
 .pmpro_btn:hover,
 .pmpro_btn:focus,
@@ -610,7 +613,7 @@ a.comment-reply-link:focus,
 a.comment-reply-link:hover {
 	border: none;
 	box-shadow: 1px 2px 4px rgba(0,0,0,0.4);
-	color: #FFF;
+	color: var(--memberlite-color-white);
 	text-shadow: none;
 	transform: translateY(-1px);
 }
@@ -645,16 +648,16 @@ a.comment-reply-link:hover {
 .btn_primary,
 .btn_primary:link,
 .menu-toggle {
-	background-color: #2C3E50;
+	background-color: var(--memberlite-color-primary);
 }
 .btn_secondary,
 .btn_secondary:link {
-	background-color: #18BC9C;
+	background-color: var(--memberlite-color-secondary);
 	color: #FFF;
 }
 .btn_action,
 .btn_action:link {
-	background-color: #F39C12;
+	background-color: var(--memberlite-color-action);
 	color: #FFF;
 }
 .btn_block,
@@ -685,7 +688,7 @@ a.comment-reply-link:hover {
 .content-area a.comment-reply-link:active,
 .content-area a.comment-reply-link:hover,
 .content-area .pmpro_content_message a:hover {
-	color: #FFF;
+	color: var(--memberlite-color-white);
 }
 
 /* Link-style button */
@@ -901,7 +904,7 @@ select.pmpro_error {background-image: none;}
 5.1 Links and Colors
 --------------------------------------------------------------*/
 a {
-	color: #2C3E50;
+	color: var(--memberlite-color-link);
 }
 a:hover,
 a:focus,
@@ -909,18 +912,18 @@ a:active {
 	color: #000;
 }
 
-.primary, .has-text-color.has-color-primary-color {color: #2C3E50; }
-.secondary, .has-text-color.has-color-secondary-color {color: #18BC9C; }
-.action, .has-text-color.has-color-action-color {color: #F39C12; }
+.primary, .has-text-color.has-color-primary-color {color: var(--memberlite-color-primary); }
+.secondary, .has-text-color.has-color-secondary-color {color: var(--memberlite-color-secondary); }
+.action, .has-text-color.has-color-action-color {color: var(--memberlite-color-action); }
 .info {color: #5bc0de; }
 .success {color: #5cb85c; }
 .error {color: #d9534f; }
 .alert {color: #f0ad4e; }
 .muted {color: #AAA; }
 
-.bg_primary, .has-color-primary-background-color {background-color: #2C3E50; }
-.bg_secondary, .has-color-secondary-background-color {background-color: #18BC9C; }
-.bg_action, .has-color-action-background-color {background-color: #F39C12; }
+.bg_primary, .has-color-primary-background-color {background-color: var(--memberlite-color-primary); }
+.bg_secondary, .has-color-secondary-background-color {background-color: var(--memberlite-color-secondary) }
+.bg_action, .has-color-action-background-color {background-color: var(--memberlite-color-action); }
 
 /*--------------------------------------------------------------
 5.2 Menus
@@ -929,7 +932,7 @@ a:active {
 	height: 80px;
 }
 #site-navigation {
-	background-color: #FAFAFA;
+	background-color: var(--memberlite-color-site-navigation-background);
 	border-top: 1px solid #DADADA;
 }
 .site-navigation-sticky-wrapper #site-navigation {
@@ -964,7 +967,7 @@ a:active {
 	margin: 0;
 }
 .main-navigation a {
-	color: #777;
+	color: var(--memberlite-color-site-navigation);
 	border-left: 1px dotted #CCC;
 	display: block;
 	padding: .7rem 1.45rem;
@@ -1009,7 +1012,7 @@ a:active {
 }
 .meta-navigation a, .header-right .widget_nav_menu a, .footer-navigation a {
 	border-bottom: 1px dotted transparent;
-	color: #2C3E50;
+	color: var(--memberlite-color-meta-link);
 	display: block;
 	text-decoration: none;
 }
@@ -1039,7 +1042,7 @@ a:active {
 
 /* Dropdown Menu */
 .main-navigation ul.sub-menu, .meta-navigation ul.sub-menu, .header-right .widget_nav_menu ul.sub-menu {
-	background-color: #FFF;
+	background-color: var(--memberlite-color-site-navigation-background);
 	box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
 	float: left;
 	position: absolute;
@@ -1107,13 +1110,13 @@ a:active {
 	position: absolute;
 	left: -100%;
 	width: 75%;
-	background-color: #2C3E50;
+	background-color: var(--memberlite-color-primary);
 	z-index: 100;
 	color: #FFF;
 	overflow: auto;
 }
 #mobile-navigation-height-col {
-	background-color: #2C3E50;
+	background-color: var(--memberlite-color-primary);
 	bottom: 0;
 	height: 100%;
 	left: -100%;
@@ -1664,7 +1667,7 @@ a:active {
 	display: inline-block;
 }
 .header-right #meta-member .meta-member-inner {
-	background-color: #18BC9C;
+	background-color: var(--memberlite-color-secondary);
 	border-bottom-right-radius: 3px;
 	border-bottom-left-radius: 3px;
 	color: #FFF;
@@ -1707,7 +1710,7 @@ a:active {
 }
 /* Dropdown Menu */
 .header-right #meta-member .member-navigation .sub-menu {
-	background-color: #18BC9C;
+	background-color: var(--memberlite-color-secondary);
 	box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.2);
 	display: none;
 	left: -9999em;
@@ -1773,7 +1776,7 @@ a:active {
 	position: relative;
 }
 .masthead {
-	background-color: #2C3E50;
+	background-color: var(--memberlite-color-primary);
 	color: #FFF;
 	padding: 2.9rem 0 5.8rem 0;
 	margin-bottom: 5.8rem;
@@ -2265,7 +2268,7 @@ a:active {
 10.7 Footer
 --------------------------------------------------------------*/
 .footer-widgets {
-	background-color: #2C3E50;
+	background-color: var(--memberlite-color-primary);
 	color: #FFF;
 	padding: 5.8rem 0;
 }
@@ -2345,7 +2348,7 @@ a:active {
 	text-decoration: none;
 }
 #banner_bottom {
-	background-color: #18BC9C;
+	background-color: var(--memberlite-color-secondary);
 	color: #FFF;
 	padding: 4rem 0;
 }
@@ -2367,9 +2370,9 @@ a:active {
 /*--------------------------------------------------------------
 10.8 Memberlite Shortcodes
 --------------------------------------------------------------*/
-.banner_primary {background-color: #2C3E50; }
-.banner_secondary {background-color: #18BC9C; }
-.banner_action {background-color: #F39C12; }
+.banner_primary {background-color: var(--memberlite-color-primary); }
+.banner_secondary {background-color: var(--memberlite-color-secondary); }
+.banner_action {background-color: var(--memberlite-color-action); }
 #main .banner_primary, #main .banner_primary h1, #main .banner_primary h2, #main .banner_primary h3, #main .banner_primary h4, #main .banner_primary h5, #main .banner_primary a, #main .banner_primary a:link, #main .banner_primary a:hover,
 #main .banner_secondary, #main .banner_secondary h1, #main .banner_secondary h2, #main .banner_secondary h3, #main .banner_secondary h4, #main .banner_secondary h5, #main .banner_secondary a, #main .banner_secondary a:link, #main .banner_secondary a:hover {
 	color: #FFF;
@@ -2410,7 +2413,7 @@ a:active {
 	font-weight: bold;
 }
 .memberlite_tabbable .memberlite_tab_content {
-	border-top: .5rem solid #BBB;
+	border-top: .5rem solid var(--memberlite-color-secondary);
 	clear: both;
 	padding-top: 4rem;
 }
@@ -2427,11 +2430,11 @@ a:active {
 
 .memberlite_tabbable ul.memberlite_tabs li.memberlite_active a {
 	color: #FFF !important;
-	background-color: #18BC9C;
-	border-color: #18BC9C;
+	background-color: var(--memberlite-color-secondary);
+	border-color: var(--memberlite-color-secondary);
 }
 .memberlite_tabbable .memberlite_tab_content {
-	border-top-color: #18BC9C;
+	border-top-color: var(--memberlite-color-secondary);
 }
 
 /*--------------------------------------------------------------
@@ -2452,7 +2455,7 @@ a:active {
 }
 #pmpro_levels .post h2, .memberlite_signup h2, .pmpro_signup_form h2 {
 	background-color: #FAFAFA;
-	color: #2C3E50;
+	color: var(--memberlite-color-primary);
 	border-top: 1px solid #CCC;
 	border-bottom: 1px dotted #CCC;
 	padding: .5rem;
@@ -2462,13 +2465,13 @@ a:active {
 	display: block;
 }
 #primary #pmpro_levels .entry-footer .pmpro_btn {color: #FFF; }
-#pmpro_levels.pmpro_levels-table.pmpro_level-highlight, #pmpro_levels.pmpro_levels-div .pmpro_level-highlight, #pmpro_levels.pmpro_levels-2col .pmpro_level-highlight, #pmpro_levels.pmpro_levels-3col .pmpro_level-highlight, #pmpro_levels.pmpro_levels-4col .pmpro_level-highlight, .memberlite_signup, .pmpro_signup_form {padding: 1rem; background-color: #FFF; z-index: 100; border-top: .5rem solid #18BC9C; border-bottom: 1.5rem solid #18BC9C; border-left: 1px solid #CCC; border-right: 1px solid #CCC; }
+#pmpro_levels.pmpro_levels-table.pmpro_level-highlight, #pmpro_levels.pmpro_levels-div .pmpro_level-highlight, #pmpro_levels.pmpro_levels-2col .pmpro_level-highlight, #pmpro_levels.pmpro_levels-3col .pmpro_level-highlight, #pmpro_levels.pmpro_levels-4col .pmpro_level-highlight, .memberlite_signup, .pmpro_signup_form {padding: 1rem; background-color: #FFF; z-index: 100; border-top: .5rem solid var(--memberlite-color-secondary); border-bottom: 1.5rem solid var(--memberlite-color-secondary); border-left: 1px solid #CCC; border-right: 1px solid #CCC; }
 #pmpro_levels.pmpro_levels-2col .pmpro_level-highlight, #pmpro_levels.pmpro_levels-3col .pmpro_level-highlight, #pmpro_levels.pmpro_levels-4col .pmpro_level-highlight {margin-top: -1.5rem; }
 
 #pmpro_levels_table td, #pmpro_levels.pmpro_levels-table td {vertical-align: middle; }
 
-#pmpro_levels.pmpro_levels-table .pmpro_level-highlight td:first-child {border-left: 15px solid #18BC9C }
-#pmpro_levels.pmpro_levels-table .pmpro_level-highlight td:last-child {border-right: 15px solid #18BC9C }
+#pmpro_levels.pmpro_levels-table .pmpro_level-highlight td:first-child {border-left: 15px solid var(--memberlite-color-secondary) }
+#pmpro_levels.pmpro_levels-table .pmpro_level-highlight td:last-child {border-right: 15px solid var(--memberlite-color-secondary) }
 
 #pmpro_levels.pmpro_advanced_levels-compare_table {overflow: hidden; }
 #pmpro_levels.pmpro_advanced_levels-compare_table th, #pmpro_levels.pmpro_advanced_levels-compare_table td {padding: 1rem 2rem; position: relative; text-align: center; }
@@ -2480,10 +2483,10 @@ a:active {
 #pmpro_levels.pmpro_advanced_levels-compare_table tbody td:first-child {text-align: right; }
 #pmpro_levels.pmpro_advanced_levels-compare_table tbody tr:last-child td {border-bottom: .5rem solid #CCC; }
 #pmpro_levels.pmpro_advanced_levels-compare_table thead tr:last-child th {border-bottom: .5rem solid #CCC; }
-#pmpro_levels.pmpro_advanced_levels-compare_table thead th.pmpro_level-highlight, #pmpro_levels.pmpro_advanced_levels-compare_table tbody td.pmpro_level-highlight, #pmpro_levels.pmpro_advanced_levels-compare_table tfoot td.pmpro_level-highlight { border-left: 1rem solid #18BC9C; border-right: 1rem solid #18BC9C; }
-#pmpro_levels.pmpro_advanced_levels-compare_table thead tr:first-child th.pmpro_level-highlight { border-top: 1rem solid #18BC9C; }
+#pmpro_levels.pmpro_advanced_levels-compare_table thead th.pmpro_level-highlight, #pmpro_levels.pmpro_advanced_levels-compare_table tbody td.pmpro_level-highlight, #pmpro_levels.pmpro_advanced_levels-compare_table tfoot td.pmpro_level-highlight { border-left: 1rem solid var(--memberlite-color-secondary); border-right: 1rem solid var(--memberlite-color-secondary); }
+#pmpro_levels.pmpro_advanced_levels-compare_table thead tr:first-child th.pmpro_level-highlight { border-top: 1rem solid var(--memberlite-color-secondary); }
 #pmpro_levels.pmpro_advanced_levels-compare_table thead tr:last-child th.pmpro_level-highlight, #pmpro_levels.pmpro_advanced_levels-compare_table tbody tr td.pmpro_level-highlight, #pmpro_levels.pmpro_advanced_levels-compare_table tfoot tr td.pmpro_level-highlight { border-bottom: none; }
-#pmpro_levels.pmpro_advanced_levels-compare_table tfoot tr:last-child td.pmpro_level-highlight {border-bottom: 1rem solid #18BC9C; }
+#pmpro_levels.pmpro_advanced_levels-compare_table tfoot tr:last-child td.pmpro_level-highlight {border-bottom: 1rem solid var(--memberlite-color-secondary); }
 
 #pmpro_levels.pmpro_advanced_levels-compare_table_responsive {display: none; }
 #pmpro_levels.pmpro_advanced_levels-compare_table_responsive {text-align: center; }

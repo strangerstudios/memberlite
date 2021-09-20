@@ -23,7 +23,7 @@
 .woocommerce #content input.button, .woocommerce #respond input#submit, .woocommerce a.button, .woocommerce button.button, .woocommerce input.button, .woocommerce-page #content input.button, .woocommerce-page #respond input#submit, .woocommerce-page a.button, .woocommerce-page button.button, .woocommerce-page input.button,
 .woocommerce #content input.button.alt, .woocommerce #respond input#submit.alt, .woocommerce a.button.alt, .woocommerce button.button.alt, .woocommerce input.button.alt, .woocommerce-page #content input.button.alt, .woocommerce-page #respond input#submit.alt, .woocommerce-page a.button.alt, .woocommerce-page button.button.alt, .woocommerce-page input.button.alt {
 	border-radius: 3px;
-	background: #95a5a6;
+	background: var(--memberlite-color-button);
 	border: none;
 	box-shadow: none;
 	color: #FFF !important;
@@ -54,7 +54,7 @@
 	padding: .3rem 1.5rem;
 }
 .woocommerce #content input.button.alt, .woocommerce #respond input#submit.alt, .woocommerce a.button.alt, .woocommerce button.button.alt, .woocommerce input.button.alt, .woocommerce-page #content input.button.alt, .woocommerce-page #respond input#submit.alt, .woocommerce-page a.button.alt, .woocommerce-page button.button.alt, .woocommerce-page input.button.alt {
-	background: #F39C12;
+	background: var(--memberlite-color-action);
 	border: none;
 	color: #FFF;
 	font-size: 18px;
@@ -67,11 +67,11 @@
 .woocommerce-page #content input.button:hover, .woocommerce-page #respond input#submit:hover,
 .woocommerce-page a.button:hover, .woocommerce-page button.button:hover,
 .woocommerce-page input.button:hover {
-	background: #798d8f;
+	background: var(--memberlite-color-button);
 	color: #FFF;
 }
 .woocommerce #content input.button.alt:hover, .woocommerce #respond input#submit.alt:hover, .woocommerce a.button.alt:hover, .woocommerce button.button.alt:hover, .woocommerce input.button.alt:hover, .woocommerce-page #content input.button.alt:hover, .woocommerce-page #respond input#submit.alt:hover, .woocommerce-page a.button.alt:hover, .woocommerce-page button.button.alt:hover, .woocommerce-page input.button.alt:hover {
-	background: #18BC9C;
+	background: var(--memberlite-color-button);
 	border: none;
 	text-shadow: none;
 }
@@ -191,3 +191,20 @@
 }
 .woocommerce table.cart td.actions #coupon_code, .woocommerce-page #content table.cart td.actions #coupon_code, .woocommerce-page table.cart td.actions #coupon_code {width: 160px; }
 .woocommerce-shipping-calculator p {margin: 0; }
+
+.woocommerce ul.products li.product .price,
+.woocommerce-page ul.products li.product .price,
+.woocommerce #content div.product p.price,
+.woocommerce #content div.product span.price,
+.woocommerce div.product p.price,
+.woocommerce div.product span.price,
+.woocommerce-page #content div.product p.price,
+.woocommerce-page #content div.product span.price,
+.woocommerce-page div.product p.price,
+.woocommerce-page div.product span.price {
+	color: var(--memberlite-color-secondary);
+}
+
+.woocommerce #content input.button.alt, .woocommerce #respond input#submit.alt, .woocommerce a.button.alt, .woocommerce button.button.alt, .woocommerce input.button.alt, .woocommerce-page #content input.button.alt, .woocommerce-page #respond input#submit.alt, .woocommerce-page a.button.alt, .woocommerce-page button.button.alt, .woocommerce-page input.button.alt {
+	background: var(--memberlite-color-action);
+}
