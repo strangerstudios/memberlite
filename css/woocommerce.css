@@ -26,7 +26,7 @@
 	background: var(--memberlite-color-button);
 	border: none;
 	box-shadow: none;
-	color: #FFF !important;
+	color: var(--memberlite-color-white) !important;
 	cursor: pointer; /* Improves usability and consistency of cursor style between image-type 'input' and others */
 	/* -webkit-appearance: button; Corrects inability to style clickable 'input' types in iOS */
 	font-size: 16px;
@@ -56,7 +56,7 @@
 .woocommerce #content input.button.alt, .woocommerce #respond input#submit.alt, .woocommerce a.button.alt, .woocommerce button.button.alt, .woocommerce input.button.alt, .woocommerce-page #content input.button.alt, .woocommerce-page #respond input#submit.alt, .woocommerce-page a.button.alt, .woocommerce-page button.button.alt, .woocommerce-page input.button.alt {
 	background: var(--memberlite-color-action);
 	border: none;
-	color: #FFF;
+	color: var(--memberlite-color-white) !important;
 	font-size: 18px;
 	font-size: 1.8rem;
 	padding: 1.4rem 2rem;
@@ -68,7 +68,7 @@
 .woocommerce-page a.button:hover, .woocommerce-page button.button:hover,
 .woocommerce-page input.button:hover {
 	background: var(--memberlite-color-button);
-	color: #FFF;
+	color: var(--memberlite-color-white) !important;
 }
 .woocommerce #content input.button.alt:hover, .woocommerce #respond input#submit.alt:hover, .woocommerce a.button.alt:hover, .woocommerce button.button.alt:hover, .woocommerce input.button.alt:hover, .woocommerce-page #content input.button.alt:hover, .woocommerce-page #respond input#submit.alt:hover, .woocommerce-page a.button.alt:hover, .woocommerce-page button.button.alt:hover, .woocommerce-page input.button.alt:hover {
 	background: var(--memberlite-color-button);
@@ -76,19 +76,19 @@
 	text-shadow: none;
 }
 .woocommerce .woocommerce-breadcrumb, .woocommerce-page .woocommerce-breadcrumb {
-	color: #FFF;
+	color: var(--memberlite-color-white) !important;
 	font-size: 1.2rem;
 	line-height: 2.2rem;
 	margin: 0;
 	padding: 0;
 }
 .woocommerce .masthead .woocommerce-breadcrumb, .woocommerce-page .masthead .woocommerce-breadcrumb {
-	color: #FFF;
+	color: var(--memberlite-color-white) !important;
 }
 .woocommerce .masthead .woocommerce-breadcrumb a, .woocommerce-page .masthead .woocommerce-breadcrumb a {
-	color: #FFF;
+	color: var(--memberlite-color-white) !important;
 	text-decoration: none;
-	border-bottom: 1px dotted #FFF;
+	border-bottom: 1px dotted var(--memberlite-color-white) !important;
 	filter: alpha(opacity=80);
 	opacity: 0.8;
 }
@@ -152,16 +152,16 @@
 }
 .woocommerce #content div.product .woocommerce-tabs ul.tabs li a, .woocommerce div.product .woocommerce-tabs ul.tabs li a, .woocommerce-page #content div.product .woocommerce-tabs ul.tabs li a, .woocommerce-page div.product .woocommerce-tabs ul.tabs li a {
 	text-shadow: none;
-	color: #FFF;
+	color: var(--memberlite-color-white) !important;
 }
 .woocommerce #content div.product .woocommerce-tabs ul.tabs li a:hover, .woocommerce div.product .woocommerce-tabs ul.tabs li a:hover, .woocommerce-page #content div.product .woocommerce-tabs ul.tabs li a:hover, .woocommerce-page div.product .woocommerce-tabs ul.tabs li a:hover {
-	color: #FFF;
+	color: var(--memberlite-color-white) !important;
 }
 .woocommerce #content div.product .woocommerce-tabs ul.tabs li:hover, .woocommerce div.product .woocommerce-tabs ul.tabs li:hover, .woocommerce-page #content div.product .woocommerce-tabs ul.tabs li:hover, .woocommerce-page div.product .woocommerce-tabs ul.tabs li:hover {
 	background: #798d8f;
 }
 .woocommerce #content div.product .woocommerce-tabs ul.tabs li.active:hover, .woocommerce div.product .woocommerce-tabs ul.tabs li.active:hover, .woocommerce-page #content div.product .woocommerce-tabs ul.tabs li.active:hover, .woocommerce-page div.product .woocommerce-tabs ul.tabs li.active:hover {
-	background: #FFF;
+	background: var(--memberlite-color-white) !important;
 }
 .woocommerce #content div.product .woocommerce-tabs ul.tabs li.active a:hover, .woocommerce div.product .woocommerce-tabs ul.tabs li.active a:hover, .woocommerce-page #content div.product .woocommerce-tabs ul.tabs li.active a:hover, .woocommerce-page div.product .woocommerce-tabs ul.tabs li.active a:hover {
 	color: #404040;
