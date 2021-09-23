@@ -688,7 +688,7 @@ a.comment-reply-link:hover {
 .content-area a.comment-reply-link:active,
 .content-area a.comment-reply-link:hover,
 .content-area .pmpro_content_message a:hover {
-	color: var(--memberlite-color-white) !important;
+	color: var(--memberlite-color-white);
 }
 
 /* Link-style button */
