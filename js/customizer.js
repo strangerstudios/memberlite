@@ -214,6 +214,20 @@
 			);
 		}
 	);
+	// Button Color.
+		wp.customize(
+		'color_button', function( value ) {
+			value.bind(
+				function( to ) {
+					$( memberlite_defaults.color_button_background_elements ).css(
+						{
+							'background': to,
+						}
+					);
+				}
+			);
+		}
+	);
 	// Action Color.
 	wp.customize(
 		'color_action', function( value ) {

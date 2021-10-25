@@ -693,7 +693,7 @@ class Memberlite_Customize {
 				)
 			)
 		);
-
+		
 		$wp_customize->add_setting(
 			'color_action',
 			array(
@@ -710,12 +710,37 @@ class Memberlite_Customize {
 				'memberlite_color_action',
 				array(
 					'label'    => __( 'Action Color', 'memberlite' ),
+					'description' => __( 'Also used for CTA buttons' ),
 					'section'  => 'colors',
 					'settings' => 'color_action',
 					'priority' => 80,
 				)
 			)
 		);
+		
+		$wp_customize->add_setting(
+			'color_button',
+			array(
+				'default'              => $memberlite_defaults['color_button'],
+				'sanitize_callback'    => 'sanitize_hex_color',
+				'sanitize_js_callback' => 'maybe_hash_hex_color',
+				'transport'            => 'postMessage',
+			)
+		);
+
+		$wp_customize->add_control(
+			new WP_Customize_Color_Control(
+				$wp_customize,
+				'memberlite_color_button',
+				array(
+					'label'    => __( 'Default Button Color', 'memberlite' ),
+					'section'  => 'colors',
+					'settings' => 'color_button',
+					'priority' => 90,
+				)
+			)
+		);
+
 
 		$wp_customize->get_setting( 'blogname' )->transport        = 'postMessage';
 
@@ -772,23 +797,31 @@ class Memberlite_Customize {
 		?>
 		<!--Customizer CSS-->
 		<style type="text/css">
-			<?php self::generate_css_from_mod( $memberlite_defaults['bgcolor_header_elements'], 'background-color', 'bgcolor_header' ); ?>
-			<?php self::generate_css_from_mod( $memberlite_defaults['bgcolor_site_navigation_elements'], 'background', 'bgcolor_site_navigation' ); ?>
-			<?php self::generate_css_from_mod( $memberlite_defaults['color_site_navigation_elements'], 'color', 'color_site_navigation' ); ?>
-			<?php self::generate_css_from_mod( $memberlite_defaults['color_link_color_elements'], 'color', 'color_link' ); ?>
-			<?php self::generate_css_from_mod( $memberlite_defaults['color_meta_link_color_elements'], 'color', 'color_meta_link' ); ?>
-			<?php self::generate_css_from_mod( $memberlite_defaults['color_primary_background_elements'], 'background', 'color_primary' ); ?>
-			<?php self::generate_css_from_mod( $memberlite_defaults['color_primary_color_elements'], 'color', 'color_primary' ); ?>
-			<?php self::generate_css_from_mod( $memberlite_defaults['color_secondary_background_elements'], 'background', 'color_secondary' ); ?>
-			<?php self::generate_css_from_mod( $memberlite_defaults['color_secondary_border_elements'], 'border-top-color', 'color_secondary' ); ?>
-			<?php self::generate_css_from_mod( $memberlite_defaults['color_secondary_border_elements'], 'border-bottom-color', 'color_secondary' ); ?>
-			<?php self::generate_css_from_mod( $memberlite_defaults['color_secondary_border_left_elements'], 'border-left-color', 'color_secondary' ); ?>
-			<?php self::generate_css_from_mod( $memberlite_defaults['color_secondary_border_right_elements'], 'border-right-color', 'color_secondary' ); ?>
-			<?php self::generate_css_from_mod( $memberlite_defaults['color_secondary_color_elements'], 'color', 'color_secondary' ); ?>
-			<?php self::generate_css_from_mod( $memberlite_defaults['color_action_background_elements'], 'background', 'color_action' ); ?>
-			<?php self::generate_css_from_mod( $memberlite_defaults['color_action_color_elements'], 'color', 'color_action' ); ?>
-
+			<?php // self::generate_css_from_mod( $memberlite_defaults['bgcolor_header_elements'], 'background-color', 'bgcolor_header' ); ?>
+			<?php // self::generate_css_from_mod( $memberlite_defaults['bgcolor_site_navigation_elements'], 'background', 'bgcolor_site_navigation' ); ?>
+			<?php // self::generate_css_from_mod( $memberlite_defaults['color_site_navigation_elements'], 'color', 'color_site_navigation' ); ?>
+			<?php // self::generate_css_from_mod( $memberlite_defaults['color_link_color_elements'], 'color', 'color_link' ); ?>
+			<?php // self::generate_css_from_mod( $memberlite_defaults['color_meta_link_color_elements'], 'color', 'color_meta_link' ); ?>
+			<?php // self::generate_css_from_mod( $memberlite_defaults['color_primary_background_elements'], 'background', 'color_primary' ); ?>
+			<?php // self::generate_css_from_mod( $memberlite_defaults['color_primary_color_elements'], 'color', 'color_primary' ); ?>
+			<?php // self::generate_css_from_mod( $memberlite_defaults['color_secondary_background_elements'], 'background', 'color_secondary' ); ?>
+			<?php // self::generate_css_from_mod( $memberlite_defaults['color_secondary_border_elements'], 'border-top-color', 'color_secondary' ); ?>
+			<?php // self::generate_css_from_mod( $memberlite_defaults['color_secondary_border_elements'], 'border-bottom-color', 'color_secondary' ); ?>
+			<?php // self::generate_css_from_mod( $memberlite_defaults['color_secondary_border_left_elements'], 'border-left-color', 'color_secondary' ); ?>
+			<?php // self::generate_css_from_mod( $memberlite_defaults['color_secondary_border_right_elements'], 'border-right-color', 'color_secondary' ); ?>
+			<?php // self::generate_css_from_mod( $memberlite_defaults['color_secondary_color_elements'], 'color', 'color_secondary' ); ?>
+			<?php // self::generate_css_from_mod( $memberlite_defaults['color_action_background_elements'], 'background', 'color_action' ); ?>
+			<?php // self::generate_css_from_mod( $memberlite_defaults['color_action_color_elements'], 'color', 'color_action' ); ?>
+			
 			<?php
+				// site and header backgrounds - no hover styles required
+				$color_site_background = get_theme_mod( 'background_color' );
+				
+				$color_header_background = get_theme_mod( 'bgcolor_header' );
+			if ( empty( $color_header_background ) ) {
+				$color_header_background = $memberlite_defaults['bgcolor_header'];
+			}
+				
 				// hover styles
 				$color_primary = get_theme_mod( 'color_primary' );
 			if ( empty( $color_primary ) ) {
@@ -798,6 +831,7 @@ class Memberlite_Customize {
 				$color_primary_hover = vsprintf( 'rgba( %1$s, %2$s, %3$s, 0.7)', $color_primary_rgb );
 				self::generate_css( $memberlite_defaults['color_primary_background_hover_elements'], 'background', $color_primary_hover );
 				self::generate_css( $memberlite_defaults['color_primary_color_hover_elements'], 'color', $color_primary_hover );
+				
 				$color_secondary = get_theme_mod( 'color_secondary' );
 			if ( empty( $color_secondary ) ) {
 				$color_secondary = $memberlite_defaults['color_secondary'];
@@ -805,6 +839,7 @@ class Memberlite_Customize {
 				$color_secondary_rgb   = self::hex2rgb( $color_secondary );
 				$color_secondary_hover = vsprintf( 'rgba( %1$s, %2$s, %3$s, 0.7)', $color_secondary_rgb );
 				self::generate_css( $memberlite_defaults['color_secondary_background_hover_elements'], 'background', $color_secondary_hover );
+							
 				$color_action = get_theme_mod( 'color_action' );
 			if ( empty( $color_action ) ) {
 				$color_action = $memberlite_defaults['color_action'];
@@ -812,6 +847,14 @@ class Memberlite_Customize {
 				$color_action_rgb   = self::hex2rgb( $color_action );
 				$color_action_hover = vsprintf( 'rgba( %1$s, %2$s, %3$s, 0.7)', $color_action_rgb );
 				self::generate_css( $memberlite_defaults['color_action_background_hover_elements'], 'background', $color_action_hover );
+				
+				$color_button = get_theme_mod( 'color_button' );
+			/*if ( empty( $color_button ) ) {
+				$color_button = $memberlite_defaults['color_button'];
+			}*/
+				$color_button_rgb   = self::hex2rgb( $color_button );
+				$color_button_hover = vsprintf( 'rgba( %1$s, %2$s, %3$s, 0.7)', $color_button_rgb );
+				self::generate_css( $memberlite_defaults['color_button_background_hover_elements'], 'background', $color_button_hover );
 
 				$color_link = get_theme_mod( 'color_link' );
 			if ( empty( $color_link ) ) {
@@ -820,6 +863,22 @@ class Memberlite_Customize {
 				$color_link_rgb   = self::hex2rgb( $color_link );
 				$color_link_hover = vsprintf( 'rgba( %1$s, %2$s, %3$s, 0.7)', $color_link_rgb );
 				self::generate_css( $memberlite_defaults['color_link_hover_elements'], 'color', $color_link_hover );
+				
+				$color_meta_link = get_theme_mod( 'color_meta_link' );
+			if ( empty( $color_meta_link ) ) {
+				$color_meta_link = $memberlite_defaults['color_meta_link'];
+			}
+				$color_meta_link_rgb   = self::hex2rgb( $color_meta_link );
+				$color_meta_link_hover = vsprintf( 'rgba( %1$s, %2$s, %3$s, 0.7)', $color_meta_link_rgb );
+				self::generate_css( $memberlite_defaults['color_meta_link_hover_elements'], 'color', $color_meta_link_hover );
+				
+				$color_site_navigation_background = get_theme_mod( 'bgcolor_site_navigation' );
+			if ( empty( $color_site_navigation_background ) ) {
+				$color_site_navigation_background = $memberlite_defaults['bgcolor_site_navigation'];
+			}
+				$color_site_navigation_background_rgb   = self::hex2rgb( $color_site_navigation_background );
+				$color_site_navigation_background_hover = vsprintf( 'rgba( %1$s, %2$s, %3$s, 0.7)', $color_site_navigation_background_rgb );
+				self::generate_css( $memberlite_defaults['bgcolor_site_navigation_hover_elements'], 'color', $color_site_navigation_background_hover );
 
 				$color_site_navigation = get_theme_mod( 'color_site_navigation' );
 			if ( empty( $color_site_navigation ) ) {
@@ -836,6 +895,31 @@ class Memberlite_Customize {
 					self::generate_css_from_mod( '.site-title a, .site-header .site-description', 'color', 'header_textcolor', '#' );
 				}
 			?>
+			
+			<?php // CSS Variable Output for Site Header ?>
+			
+			:root {
+				--memberlite-color-white: #ffffff;
+				--memberlite-color-text: #444;
+				--memberlite-color-site-background: <?php echo '#'.esc_attr($color_site_background); ?>;
+				--memberlite-color-site-title-tagline: <?php echo '#'.esc_attr($header_textcolor); ?>;
+				--memberlite-color-header-background: <?php echo esc_attr($color_header_background); ?>;
+				--memberlite-color-site-navigation-background: <?php echo esc_attr($color_site_navigation_background); ?>;
+				--memberlite-color-site-navigation: <?php echo esc_attr($color_site_navigation); ?>;
+				--memberlite-color-link: <?php echo esc_attr($color_link); ?>;
+				--memberlite-color-meta-link: <?php echo esc_attr($color_meta_link); ?>;
+				--memberlite-color-primary: <?php echo esc_attr($color_primary); ?>;
+				--memberlite-color-secondary: <?php echo esc_attr($color_secondary); ?>;
+				--memberlite-color-action: <?php echo esc_attr($color_action); ?>;
+				--memberlite-color-button: <?php echo esc_attr($color_button); ?>;
+			}
+			
+			<?php // Maintain White Text Color for Buttons in Customizer View
+				if (is_customize_preview()) {
+			?>
+				button, input[type=button], input[type=reset], input[type=submit],.btn,.btn:link, a.pmpro_btn,.pmpro_content_message a,.pmpro_content_message a:link,.pmpro_content_message a:visited, a.comment-reply-link, a.comment-reply-link:link, input[type=submit].pmpro_btn, input[type=button].pmpro_btn, #loginform input[type=submit].button.button-primary, #main div.em-search-main button.em-search-submit, a.pmpro_btn, a.pmpro_btn:link, a.pmpro_btn:visited,.pmpro_content_message a,.pmpro_content_message a:link,.pmpro_content_message a:visited, input[type=submit].pmpro_btn, input[type=button].pmpro_btn, #loginform input[type=submit].button.button-primary, button:hover, input[type=button]:hover, input[type=reset]:hover, input[type=submit]:hover, button:focus, input[type=button]:focus, input[type=reset]:focus, input[type=submit]:focus, button:active, input[type=button]:active, input[type=reset]:active, input[type=submit]:active,.btn:hover,.btn:active,.btn:focus, a.pmpro_btn:active,.pmpro_btn:hover,.pmpro_btn:focus, a.pmpro_btn:hover,.content-area .pmpro_btn:hover,.entry-content a.pmpro_btn:hover, input[type=submit].pmpro_btn:hover, #loginform input[type=submit].button.button-primary:hover,.pmpro_checkout .pmpro_btn:hover,.pmpro_checkout .pmpro_btn:focus,.pmpro_content_message a:focus,.pmpro_content_message a:hover, a.comment-reply-link:focus, a.comment-reply-link:hover { color: var(--memberlite-color-white) !important }
+			<?php } ?>
+			
 			<?php self::generate_css_from_mod( 'body, .banner_body', 'background-color', 'background_color', '#' ); ?>
 			<?php
 				$header_font = memberlite_get_font( 'header_font', true );
@@ -964,6 +1048,7 @@ class Memberlite_Customize {
 	 * 8. Primary Color
 	 * 9. Secondary Color
 	 * 10. Action Color
+	 * 11. Default Button Color
 	 *
 	 * @since Twenty Fifteen 1.0
 	 *
@@ -985,6 +1070,7 @@ class Memberlite_Customize {
 						'#2C3E50',
 						'#18BC9C',
 						'#F39C12',
+						'#2C3E50',
 					),
 				),
 				'education'      => array(
@@ -1000,6 +1086,7 @@ class Memberlite_Customize {
 						'#354458',
 						'#EB7260',
 						'#29ABA4',
+						'#3A9AD9',
 					),
 				),
 				'modern_teal'    => array(
@@ -1015,6 +1102,7 @@ class Memberlite_Customize {
 						'#00CCD6',
 						'#424242',
 						'#FFD900',
+						'#00CCD6',
 					),
 				),
 				'mono_blue'      => array(
@@ -1030,6 +1118,7 @@ class Memberlite_Customize {
 						'#333333',
 						'#555555',
 						'#00AEEF',
+						'#555555',
 					),
 				),
 				'mono_green'     => array(
@@ -1045,6 +1134,7 @@ class Memberlite_Customize {
 						'#333333',
 						'#555555',
 						'#00A651',
+						'#555555',
 					),
 				),
 				'mono_orange'    => array(
@@ -1060,6 +1150,7 @@ class Memberlite_Customize {
 						'#333333',
 						'#555555',
 						'#F39C12',
+						'#555555',
 					),
 				),
 				'mono_pink'      => array(
@@ -1075,6 +1166,7 @@ class Memberlite_Customize {
 						'#333333',
 						'#555555',
 						'#ED0977',
+						'#555555',
 					),
 				),
 				'pop'            => array(
@@ -1090,6 +1182,7 @@ class Memberlite_Customize {
 						'#53BBF4',
 						'#FFAC00',
 						'#FF85CB',
+						'#B1EB00',
 					),
 				),
 				'primary'        => array(
@@ -1105,6 +1198,7 @@ class Memberlite_Customize {
 						'#1352A2',
 						'#FB6964',
 						'#FFD464',
+						'#FB6964',
 					),
 				),
 				'raspberry_lime' => array(
@@ -1120,6 +1214,7 @@ class Memberlite_Customize {
 						'#AA2159',
 						'#009D97',
 						'#BCC747',
+						'#009D97',
 					),
 				),
 				'slate_blue'     => array(
@@ -1135,6 +1230,7 @@ class Memberlite_Customize {
 						'#67727A',
 						'#6991AC',
 						'#D75C37',
+						'#6991AC',
 					),
 				),
 				'watermelon'     => array(
@@ -1150,6 +1246,7 @@ class Memberlite_Customize {
 						'#83BF17',
 						'#363635',
 						'#F15D58',
+						'#83BF17',
 					),
 				),
 			)

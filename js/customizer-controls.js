@@ -9,7 +9,8 @@
 				'memberlite_color_meta_link',
 				'memberlite_color_primary',
 				'memberlite_color_secondary',
-				'memberlite_color_action'
+				'memberlite_color_action',
+				'memberlite_color_button',
 				];
 	memberlite_color_controls_listener_flag = true;
 
