@@ -12,23 +12,25 @@
     return w.Date.now()};t.debounce=o,t.throttle=i,t.isObject=u,t.isObjectLike=f,t.isSymbol=c,t.now=D,t.toNumber=a,t.VERSION=p,typeof define=="function"&&typeof define.amd=="object"&&define.amd?(w._=t, define(function(){return t})):N?((N.exports=t)._=t,S._=t):w._=t}).call(this);
 
 // *** Variables ****
-var anchorLinks = document.querySelectorAll('[href*="#"]:not([data-toggle="tab"])'); /* Exclude Memberlite tabs */
-var memberliteSiteNavigation = document.getElementById('site-navigation');
-var memberliteSiteNavigationSticky = document.querySelector('.site-navigation-sticky-wrapper');
+var memberliteLinks = document.querySelectorAll( '[href*="#"]:not([data-toggle="tab"])' ); /* Exclude Memberlite tabs */
+var memberliteSiteNavigation = document.getElementById( 'site-navigation' );
+var memberliteSiteNavigationSticky = document.querySelector( '.site-navigation-sticky-wrapper' );
 
 // *** Shared Functions ****
 
-function getElementHeight(e) {
-  if (e != null) {
-    return e.clientHeight;
-  }
-  return 0;
+function memberliteGetElementHeight( e ) {
+	if ( e != null ) {
+		return e.clientHeight;
+	}
+
+	return 0;
 }
 
-function offsetH(e) {
-  var rect = e.getBoundingClientRect(),
-      scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-  return parseInt(rect.top + scrollTop);
+function memberliteOffsetH( e ) {
+	var rect = e.getBoundingClientRect(),
+		scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+	return parseInt( rect.top + scrollTop );
 }
 
 // Borrowed from Chris Ferdinandi
@@ -40,165 +42,182 @@ function offsetH(e) {
  * @public
  * @param {Element} elem  the element to simulate a click on
  */
-var simulateClick = function simulateClick(elem) {
-  // Create our event (with options)
-  var evt = new MouseEvent('click', {
-    bubbles: true,
-    cancelable: true,
-    view: window
-  });
-  // If cancelled, don't dispatch our event
-  var canceled = !elem.dispatchEvent(evt);
+var memberliteSimulateClick = function ( elem ) {
+	// Create our event (with options)
+	var evt = new MouseEvent( 'click', {
+		bubbles : true,
+		cancelable : true,
+		view : window
+	} );
+
+	// If cancelled, don't dispatch our event
+	var canceled = ! elem.dispatchEvent( evt );
 };
 
 // *** Site-Specific Functions ***
 
 // scroll to target links in page
-function memberliteSmootScroll(elemArray) {
-  var scrollBounce = arguments.length <= 1 || arguments[1] === undefined ? 0 : arguments[1];
+function memberliteSmootScroll( elemArray ) {
+	var scrollBounce = arguments.length <= 1 || arguments[1] === undefined ? 0 : arguments[1];
 
-  var elemArrayArray = Array.prototype.slice.call(elemArray); // Convert Nodelist to Array (IE doesn't support nodelist with foreach)
+	var elemArrayArray = Array.prototype.slice.call( elemArray ); // Convert Nodelist to Array (IE doesn't support nodelist with foreach)
 
-  elemArrayArray.forEach(function (link) {
-    link.addEventListener('click', function (event) {
-      event.preventDefault();
-      var target = document.querySelector(event.target.hash);
-      target.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
-      });
+	elemArrayArray.forEach( function ( link ) {
+		link.addEventListener( 'click', function ( event ) {
+			event.preventDefault();
 
-      // Check whether sticky navigation or WP adminbar is active
-      // and add their height to adjust scroll positions
+			var target = document.querySelector( event.target.hash );
 
-      scrollBounce = scrollBounce + getElementHeight(document.getElementById('wpadminbar')) + (memberliteSiteNavigationSticky != null ? getElementHeight(memberliteSiteNavigation) : 0);
-      // Adjust scroll position if required
-      if (scrollBounce) {
-        setTimeout(function () {
-          window.scrollBy({ top: -scrollBounce, behavior: 'smooth' });
-          scrollBounce = 0;
-        }, offsetH(target) / 6 > 500 ? parseInt(offsetH(target) / 6) : 500); //adjust time according to length of scroll
-      }
-    });
-  });
+			target.scrollIntoView( {
+				behavior : 'smooth',
+				block : 'start'
+			} );
+
+			// Check whether sticky navigation or WP adminbar is active
+			// and add their height to adjust scroll positions
+
+			scrollBounce = scrollBounce + memberliteGetElementHeight( document.getElementById( 'wpadminbar' ) ) + (memberliteSiteNavigationSticky != null ? memberliteGetElementHeight( memberliteSiteNavigation ) : 0);
+
+			// Adjust scroll position if required
+			if ( scrollBounce ) {
+				setTimeout(
+					function () {
+						window.scrollBy( {top : -scrollBounce, behavior : 'smooth'} );
+						scrollBounce = 0;
+					},
+					memberliteOffsetH( target ) / 6 > 500 ? parseInt( memberliteOffsetH( target ) / 6 ) : 500 //adjust time according to length of scroll
+				);
+			}
+		} );
+	} );
 }
+
 // Take Action
-memberliteSmootScroll(anchorLinks);
+memberliteSmootScroll( memberliteLinks );
 
 // Sticky Nav - replaces inline script previously in header.php
-// Borrowed from Jessica Chan: 
+// Borrowed from Jessica Chan:
 // https://github.com/thecodercoder/simple-sticky-header
 
 // This function will run a throttled script every 300 ms to minimize resource usage
-var memberliteStickyNav = _.throttle(function () {
+var memberliteStickyNav = _.throttle( function () {
 
-  // Detect scroll position
-  var scrollPosition = Math.round(window.scrollY);
+	// Detect scroll position
+	var scrollPosition = Math.round( window.scrollY );
 
-  // If we've scrolled 100px, add "sticky" class to the header
-  if (scrollPosition > getElementHeight(memberliteSiteNavigation)) {
-    memberliteSiteNavigation.classList.add('site-navigation-sticky');
-  }
-  // If not, remove "sticky" class from header
-  else {
-      memberliteSiteNavigation.classList.remove('site-navigation-sticky');
-    }
-}, 300);
+	// If we've scrolled 100px, add "sticky" class to the header
+	if ( scrollPosition > memberliteGetElementHeight( memberliteSiteNavigation ) ) {
+		memberliteSiteNavigation.classList.add( 'site-navigation-sticky' );
+	}
+	// If not, remove "sticky" class from header
+	else {
+		memberliteSiteNavigation.classList.remove( 'site-navigation-sticky' );
+	}
+}, 300 );
 
-if (memberliteSiteNavigationSticky != null) {
-  // Run the checkHeader function every time you scroll
-  window.addEventListener('scroll', memberliteStickyNav);
+if ( memberliteSiteNavigationSticky != null ) {
+	// Run the checkHeader function every time you scroll
+	window.addEventListener( 'scroll', memberliteStickyNav );
 }
 
 // switch tab content when clicked
-var memberliteTabAnchors = document.querySelectorAll('.memberlite_tabbable .memberlite_tabs li a');
-if (memberliteTabAnchors != null) {
-var memberliteTabAnchorsArray = Array.prototype.slice.call(memberliteTabAnchors); // Convert Nodelist to Array (IE doesn't support nodelist with foreach)
-  memberliteTabAnchorsArray.forEach(function (link) {
+var memberliteTabAnchors = document.querySelectorAll( '.memberlite_tabbable .memberlite_tabs li a' );
+if ( memberliteTabAnchors != null ) {
+	// Convert Nodelist to Array (IE doesn't support nodelist with foreach)
+	var memberliteTabAnchorsArray = Array.prototype.slice.call( memberliteTabAnchors );
 
-    var memberliteTabAnchor = link.getAttribute('href');
+	memberliteTabAnchorsArray.forEach( function ( link ) {
+		var memberliteTabAnchor = link.getAttribute( 'href' );
 
-    link.addEventListener('click', function (event, memberliteTabAnchor) {
+		link.addEventListener( 'click', function ( event, memberliteTabAnchor ) {
+			event.preventDefault();
 
-      event.preventDefault();
-      var memberliteTabName = this.getAttribute('href').replace(/#/, '');
-      var memberliteTabArea = this.closest('.memberlite_tabbable');
-      var memberliteTabPanes = memberliteTabArea.querySelectorAll('.memberlite_tab_pane');
+			var memberliteTabName = this.getAttribute( 'href' ).replace( /#/, '' );
+			var memberliteTabArea = this.closest( '.memberlite_tabbable' );
+			var memberliteTabPanes = memberliteTabArea.querySelectorAll( '.memberlite_tab_pane' );
 
-      for (var index = 0; index < memberliteTabPanes.length; index++) {
-        memberliteTabPanes[index].style.display = 'none';
-        memberliteTabPanes[index].classList.remove('memberlite-active');
-      }
+			for ( var index = 0; index < memberliteTabPanes.length; index++ ) {
+				memberliteTabPanes[index].style.display = 'none';
+				memberliteTabPanes[index].classList.remove( 'memberlite-active' );
+			}
 
-      var memberliteTabPaneActive = document.getElementById(memberliteTabName);
-      memberliteTabPaneActive.style.display = 'block';
-      memberliteTabPaneActive.classList.add('memberlite_active');
+			var memberliteTabPaneActive = document.getElementById( memberliteTabName );
 
-      var memberliteTabAreaListItems = memberliteTabArea.querySelectorAll('.memberlite_tabs li');
-      for (var _index = 0; _index < memberliteTabAreaListItems.length; _index++) {
-        memberliteTabAreaListItems[_index].classList.remove('memberlite_active');
-      }
-      this.closest('li').classList.add('memberlite_active');
-    });
-  });
+			memberliteTabPaneActive.style.display = 'block';
+			memberliteTabPaneActive.classList.add( 'memberlite_active' );
+
+			var memberliteTabAreaListItems = memberliteTabArea.querySelectorAll( '.memberlite_tabs li' );
+
+			for ( var _index = 0; _index < memberliteTabAreaListItems.length; _index++ ) {
+				memberliteTabAreaListItems[_index].classList.remove( 'memberlite_active' );
+			}
+
+			this.closest( 'li' ).classList.add( 'memberlite_active' );
+		} );
+	} );
 }
 
-function memberliteTabSwitch(anchor) {}
+function memberliteTabSwitch( anchor ) {
+}
 
 /*
 TODO:  see if possible to monitor with haschange to trigger again if location changes.
 */
 // Get value with hashtag (#): (#VideoTutorial)
-var urlHash = location.hash;
-// console.log('hash :', hash == ''); 
-if (urlHash != null && urlHash != '') {
-  var memberliteTabHash = document.querySelector('a[data-toggle="tab"][href="' + urlHash + '"]');
-  simulateClick(memberliteTabHash);
+var memberliteUrlHash = location.hash;
+
+if ( memberliteUrlHash != null && memberliteUrlHash != '' ) {
+	var memberliteTabHash = document.querySelector( 'a[data-toggle="tab"][href="' + memberliteUrlHash + '"]' );
+
+	memberliteSimulateClick( memberliteTabHash );
 }
 
 // mobile navigation
-var mobilenav_trigger = document.querySelector('button.menu-toggle'),
-    mobilenav = document.getElementById('mobile-navigation');
-var mobilenavDiv = document.createElement('div');
-mobilenavDiv.setAttribute('id', 'mobile-navigation-height-col');
-mobilenav.after(mobilenavDiv);
-mobilenav_trigger.addEventListener('click', function (event) {
-  mobilenav.classList.toggle('toggled');
-  if (mobilenav.classList.contains('toggled')) {
-    mobilenav.style.left = '0px';
-    mobilenav.style.transition = '0.35s';
-    mobilenavDiv.style.left = '0px';
-    mobilenavDiv.style.transition = '0.35s';
-  } else {
-    mobilenav.style.left = '-100%';
-    mobilenav.style.transition = '0.35s';
-    mobilenavDiv.style.left = '-100%';
-    mobilenavDiv.style.transition = '0.35s';
-  }
-});
+var memberliteMobilenav_trigger = document.querySelector( 'button.menu-toggle' ),
+	memberliteMobilenav = document.getElementById( 'mobile-navigation' ),
+	memberliteMobilenavDiv = document.createElement( 'div' );
+
+memberliteMobilenavDiv.setAttribute( 'id', 'mobile-navigation-height-col' );
+memberliteMobilenav.after( memberliteMobilenavDiv );
+
+memberliteMobilenav_trigger.addEventListener( 'click', function ( event ) {
+	memberliteMobilenav.classList.toggle( 'toggled' );
+
+	if ( memberliteMobilenav.classList.contains( 'toggled' ) ) {
+		memberliteMobilenav.style.left = '0px';
+		memberliteMobilenav.style.transition = '0.35s';
+		memberliteMobilenavDiv.style.left = '0px';
+		memberliteMobilenavDiv.style.transition = '0.35s';
+	}
+	else {
+		memberliteMobilenav.style.left = '-100%';
+		memberliteMobilenav.style.transition = '0.35s';
+		memberliteMobilenavDiv.style.left = '-100%';
+		memberliteMobilenavDiv.style.transition = '0.35s';
+	}
+} );
 
 // skip link focus fix
 // borrowed from _s theme: https://git.io/vWdr2
 
-var isIe = /(trident|msie)/i.test(navigator.userAgent);
+var memberliteIsIe = /(trident|msie)/i.test( navigator.userAgent );
 
-if (isIe && document.getElementById && window.addEventListener) {
-  window.addEventListener('hashchange', function () {
-    var id = location.hash.substring(1),
-        element;
+if ( memberliteIsIe && document.getElementById && window.addEventListener ) {
+	window.addEventListener( 'hashchange', function () {
+		var id = location.hash.substring( 1 ), element;
 
-    if (!/^[A-z0-9_-]+$/.test(id)) {
-      return;
-    }
+		if ( ! /^[A-z0-9_-]+$/.test( id ) ) {
+			return;
+		}
 
-    element = document.getElementById(id);
+		element = document.getElementById( id );
 
-    if (element) {
-      if (!/^(?:a|select|input|button|textarea)$/i.test(element.tagName)) {
-        element.tabIndex = -1;
-      }
+		if ( element ) {
+			if ( ! /^(?:a|select|input|button|textarea)$/i.test( element.tagName ) ) {
+				element.tabIndex = -1;
+			}
 
-      element.focus();
-    }
-  }, false);
+			element.focus();
+		}
+	}, false );
 }
