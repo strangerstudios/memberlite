@@ -8,12 +8,14 @@
  */
 ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+<?php global $memberlite_defaults; ?>
+
+<article id="post-<?php the_ID(); ?>" <?php post_class( 'entry-header-grid' ); ?>>
 	<?php get_template_part( 'components/post/entry', 'header' ); ?>
 	<div class="entry-content">
 		<?php do_action( 'memberlite_before_content_post' ); ?>
 		<?php
-			$content_archives = get_theme_mod( 'content_archives' );
+			$content_archives = get_theme_mod( 'content_archives', $memberlite_defaults['content_archives'] );
 			if ( $content_archives == 'excerpt' ) {
 				memberlite_the_excerpt();
 			} else {

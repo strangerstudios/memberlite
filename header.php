@@ -16,7 +16,15 @@
 </head>
 
 <body <?php body_class(); ?>>
-<?php do_action( 'memberlite_before_page' ); ?>
+<?php 
+	do_action( 'memberlite_before_page' );
+	
+	if ( function_exists( 'wp_body_open' ) ) {
+		wp_body_open();
+	} else {
+		do_action( 'wp_body_open' );
+	} 
+?>
 <div id="page" class="hfeed site">
 
 <?php
@@ -33,9 +41,19 @@
 		<div class="row">
 			<?php
 				$meta_login = get_theme_mod( 'meta_login', false );
-			if ( ! is_page_template( 'templates/interstitial.php' ) && ( ! empty( $meta_login ) || has_nav_menu( 'meta' ) || is_active_sidebar( 'sidebar-3' ) ) ) {
-				$show_header_right = true;
-			}
+				if ( ! is_page_template( 'templates/interstitial.php' ) && ( ! empty( $meta_login ) || has_nav_menu( 'meta' ) || is_active_sidebar( 'sidebar-3' ) ) ) {
+					$show_header_right = true;
+				} else {
+					$show_header_right = false;
+				}
+				/**
+				 * Filter to hide or show the right column area of the header.
+				 *
+				 * @param bool $show_header_right True to show the header right, false to hide it.
+				 *
+				 * @return bool $show_header_right
+				 */
+				$show_header_right = apply_filters( 'memberlite_show_header_right', $show_header_right );
 			?>
 
 			<div class="
@@ -56,28 +74,27 @@
 			</div><!-- .column4 -->
 
 			<?php if ( ! empty( $show_header_right ) ) { ?>
-				<div class="medium-<?php echo esc_attr( memberlite_getColumnsRatio( 'header-right' ) ); ?> columns header-right
-												<?php
-												if ( $meta_login == false ) {
-								?>
-								 no-meta-menu<?php } ?>">
+				<div class="medium-<?php echo esc_attr( memberlite_getColumnsRatio( 'header-right' ) ); ?> columns header-right<?php if ( $meta_login == false ) { ?> no-meta-menu<?php } ?>">
 					<?php
-					if ( ! empty( $meta_login ) ) {
-						get_template_part( 'components/header/meta', 'member' );
-					}
+						if ( ! empty( $meta_login ) ) {
+							get_template_part( 'components/header/meta', 'member' );
+						}
 
-					$meta_defaults = array(
-						'theme_location'  => 'meta',
-						'container'       => 'nav',
-						'container_id'    => 'meta-navigation',
-						'container_class' => 'meta-navigation',
-						'fallback_cb'     => false,
-					);
-					wp_nav_menu( $meta_defaults );
+						if ( has_nav_menu( 'meta' ) ) {
+							wp_nav_menu(
+								array(
+									'theme_location'  => 'meta',
+									'container'       => 'nav',
+									'container_id'    => 'meta-navigation',
+									'container_class' => 'meta-navigation',
+									'fallback_cb'     => false,
+								)
+							);
+						}
 
-					if ( is_dynamic_sidebar( 'sidebar-3' ) ) {
-						dynamic_sidebar( 'sidebar-3' );
-					}
+						if ( is_dynamic_sidebar( 'sidebar-3' ) ) {
+							dynamic_sidebar( 'sidebar-3' );
+						}
 					?>
 				</div><!-- .columns -->
 			<?php } ?>
@@ -104,6 +121,7 @@
 		?>
 		<nav id="site-navigation">
 		<?php
+		if ( has_nav_menu( 'primary' ) ) {
 			$primary_defaults = array(
 				'theme_location'  => 'primary',
 				'container'       => 'div',
@@ -112,6 +130,7 @@
 				'fallback_cb'     => false,
 			);
 			wp_nav_menu( $primary_defaults );
+		}
 		?>
 		</nav><!-- #site-navigation -->
 		<?php

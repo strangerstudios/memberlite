@@ -10,7 +10,13 @@
 
 <?php global $memberlite_defaults; ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+<article id="post-<?php the_ID(); ?>"
+	<?php if ( get_post_type() == 'post' ) {
+		post_class( 'entry-header-grid' );
+	} else {
+		post_class( );
+	} ?>>
+	
 	<?php get_template_part( 'components/post/entry', 'header' ); ?>
 
 	<div class="entry-content">
@@ -27,7 +33,7 @@
 			}
 		?>
 		<?php
-			$content_archives = get_theme_mod( 'content_archives' );
+			$content_archives = get_theme_mod( 'content_archives', $memberlite_defaults['content_archives'] );
 			if ( $content_archives == 'excerpt' ) {
 				memberlite_the_excerpt();
 			} else {

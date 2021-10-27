@@ -153,6 +153,13 @@ if ( memberliteTabAnchors != null ) {
 			}
 
 			this.closest( 'li' ).classList.add( 'memberlite_active' );
+
+			// update the URL
+			if( history.pushState ) {
+				history.pushState( null, null, '#' + tab );
+			} else {
+				location.hash = '#' + tab;
+			}
 		} );
 	} );
 }

@@ -98,6 +98,52 @@ function memberlite_getColumnsRatio( $location = null ) {
 	return $r;
 }
 
+function memberlite_sidebar_location_none_columns_ratio( $r, $location ) {
+	global $memberlite_defaults;
+
+	if ( ! empty( $location ) ) {
+		return $r;
+	}
+
+	if ( is_page() ) {
+		$sidebar_location = get_theme_mod( 'sidebar_location', $memberlite_defaults['sidebar_location'] );
+		if ( $sidebar_location === 'sidebar-none' && empty( is_page_template() ) ) {
+			$r = '8 medium-offset-2';
+		}
+	} elseif ( memberlite_is_blog() || is_search() ) {
+		$sidebar_location = get_theme_mod( 'sidebar_location_blog', $memberlite_defaults['sidebar_location_blog'] );
+		if ( $sidebar_location === 'sidebar-blog-none' ) {
+			$r = '8 medium-offset-2';
+		}
+	}
+
+	return $r;
+}
+add_filter( 'memberlite_columns_ratio', 'memberlite_sidebar_location_none_columns_ratio', 10, 2 );
+
+/**
+ * Hide the sidebar if the theme option is set to none.
+ *
+ */
+function memberlite_sidebar_none_get_sidebar( $name ) {
+	global $memberlite_defaults;
+
+	if ( is_page() ) {
+		$sidebar_location = get_theme_mod( 'sidebar_location', $memberlite_defaults['sidebar_location'] );
+		if ( $sidebar_location === 'sidebar-none' && empty( is_page_template() ) ) {
+			$name = false;
+		}
+	} elseif ( memberlite_is_blog() || is_search() ) {
+		$sidebar_location = get_theme_mod( 'sidebar_location_blog', $memberlite_defaults['sidebar_location_blog'] );
+		if ( $sidebar_location === 'sidebar-blog-none' ) {
+			$name = false;
+		}
+	}
+
+	return $name;
+}
+add_filter( 'memberlite_get_sidebar', 'memberlite_sidebar_none_get_sidebar' );
+
 /**
  * Get the width of a thumbnail.
  */
@@ -247,13 +293,11 @@ function memberlite_page_title( $echo = true ) {
 	ob_start();
 
 	// figure out page title
-	if ( function_exists( 'is_woocommerce' ) && is_woocommerce() ) {
-		woocommerce_breadcrumb();
-		?>
+	if ( function_exists( 'is_woocommerce' ) && is_woocommerce() ) { ?>
 		<h1 class="page-title">
 		<?php
 		if ( is_shop() ) {
-			echo get_the_title( get_option( 'woocommerce_shop_page_id' ) );
+			echo esc_html( get_the_title( get_option( 'woocommerce_shop_page_id' ) ) );
 		} elseif ( is_archive() ) {
 			single_cat_title();
 		} else {
@@ -293,75 +337,23 @@ function memberlite_page_title( $echo = true ) {
 		</h1>
 		<?php
 	} elseif ( is_author() || is_tag() || is_archive() ) {
-		?>
+		$archive_title = get_the_archive_title();
+		$archive_description = get_the_archive_description();
+
+		if ( ! empty( $archive_title ) ) { ?>
 			<h1 class="page-title">
+				<?php echo wp_kses_post( $archive_title ); ?>
+			</h1>
 			<?php
-			if ( is_category() ) :
-				single_cat_title();
+		}
 
-				elseif ( is_tag() ) :
-					$current_tag = single_tag_title( '', false );
-					/* translators: %s: current tag archive's single title */
-					printf( esc_html__( 'Posts Tagged: %s', 'memberlite' ), '<span>' . $current_tag . '</span>' );
+		if ( ! empty( $archive_description ) ) { ?>
+			<div class="taxonomy-description">
+				<?php echo wp_kses_post( $archive_description ); ?>
+			</div>
+			<?php
+		}
 
-				elseif ( is_author() ) :
-					/* translators: %s: current author archive's name */
-					printf( esc_html__( 'Author: %s', 'memberlite' ), '<span class="vcard">' . get_the_author() . '</span>' );
-
-				elseif ( is_day() ) :
-					/* translators: %s: day for the viewed archive */
-					printf( esc_html__( 'Day: %s', 'memberlite' ), '<span>' . get_the_date() . '</span>' );
-
-				elseif ( is_month() ) :
-					/* translators: %s: month for the viewed archive */
-					printf( esc_html__( 'Month: %s', 'memberlite' ), '<span>' . get_the_date( _x( 'F Y', 'monthly archives date format', 'memberlite' ) ) . '</span>' );
-
-				elseif ( is_year() ) :
-					/* translators: %s: year for the viewed archive */
-					printf( esc_html__( 'Year: %s', 'memberlite' ), '<span>' . get_the_date( _x( 'Y', 'yearly archives date format', 'memberlite' ) ) . '</span>' );
-
-				elseif ( is_tax( 'post_format', 'post-format-aside' ) ) :
-					esc_html_e( 'Asides', 'memberlite' );
-
-				elseif ( is_tax( 'post_format', 'post-format-gallery' ) ) :
-					esc_html_e( 'Galleries', 'memberlite' );
-
-				elseif ( is_tax( 'post_format', 'post-format-image' ) ) :
-					esc_html_e( 'Images', 'memberlite' );
-
-				elseif ( is_tax( 'post_format', 'post-format-video' ) ) :
-					esc_html_e( 'Videos', 'memberlite' );
-
-				elseif ( is_tax( 'post_format', 'post-format-quote' ) ) :
-					esc_html_e( 'Quotes', 'memberlite' );
-
-				elseif ( is_tax( 'post_format', 'post-format-link' ) ) :
-					esc_html_e( 'Links', 'memberlite' );
-
-				elseif ( is_tax( 'post_format', 'post-format-status' ) ) :
-					esc_html_e( 'Statuses', 'memberlite' );
-
-				elseif ( is_tax( 'post_format', 'post-format-audio' ) ) :
-					esc_html_e( 'Audios', 'memberlite' );
-
-				elseif ( is_tax( 'post_format', 'post-format-chat' ) ) :
-					esc_html_e( 'Chats', 'memberlite' );
-
-				elseif ( is_tax() ) :
-					single_term_title();
-
-				else :
-					esc_html_e( 'Archives', 'memberlite' );
-
-				endif;
-			?>
-		</h1>
-		<?php
-			// Show an optional term description.
-			$term_description = term_description();
-		if ( ! empty( $term_description ) ) :
-			printf( '<div class="taxonomy-description">%s</div>', $term_description );
-			endif;
 	} elseif ( is_search() ) {
 		?>
 		<h1 class="page-title">
@@ -372,10 +364,11 @@ function memberlite_page_title( $echo = true ) {
 		</h1>
 		<?php
 	} elseif ( is_singular( 'post' ) ) {
-		$author_id = $post->post_author;
+		$author = get_userdata( $post->post_author );
+		$memberlite_avatar_size = apply_filters( 'memberlite_avatar_size', 80 );
 		?>
 		<div class="masthead-post-byline">
-			<div class="post_author_avatar"><?php echo get_avatar( $author_id, 80 ); ?></div>
+			<div class="post_author_avatar"><?php echo get_avatar( $author->ID, $memberlite_avatar_size, '', $author->display_name ); ?></div>
 			<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
 			<?php
 				$memberlite_get_entry_meta_before = memberlite_get_entry_meta( $post, 'before' );
@@ -394,25 +387,11 @@ function memberlite_page_title( $echo = true ) {
 		<h1 class="page-title">
 		<?php
 		if ( get_option( 'page_for_posts' ) ) {
-			echo get_the_title( get_option( 'page_for_posts' ) );
+			echo esc_html( get_the_title( get_option( 'page_for_posts' ) ) );
 		}
 		?>
 		</h1>
 		<?php
-	} elseif ( is_page_template( 'templates/landing.php' ) ) {
-		global $pmproal_landing_page_level, $memberlite_banner_desc, $memberlite_landing_page_checkout_button;
-		the_post_thumbnail( 'medium', array( 'class' => 'alignleft' ) );
-		the_title( '<h1 class="entry-title">', '</h1>' );
-		if ( defined( 'PMPRO_VERSION' ) ) {
-			$level = pmpro_getLevel( $pmproal_landing_page_level );
-			if ( ! empty( $level ) ) {
-				echo '<p class="pmpro_level-price">' . pmpro_getLevelCost( $level, true, true ) . '</p>';
-				if ( empty( $memberlite_banner_desc ) ) {
-					echo wp_kses_post( $level->description );
-				}
-					echo '<p>' . do_shortcode( '[memberlite_btn style="action" href="' . esc_url( add_query_arg( 'level', $pmproal_landing_page_level, pmpro_url( 'checkout' ) ) ) . '" text="' . $memberlite_landing_page_checkout_button . '"]' ) . '</p>';
-			}
-		}
 	} elseif ( is_404() ) {
 		echo '<h1 class="entry-title">' . esc_html__( '404: Page Not Found', 'memberlite' ) . '</h1>';
 	} else {
@@ -427,7 +406,7 @@ function memberlite_page_title( $echo = true ) {
 	$page_title_html = apply_filters( 'memberlite_page_title', $page_title_html );
 
 	if ( $echo ) {
-		echo $page_title_html;
+		echo wp_kses_post( $page_title_html );
 	}
 
 	return $page_title_html;
@@ -478,9 +457,9 @@ function memberlite_nav_menu_submenu() {
 			<?php
 			if ( ! empty( $pagemenuid ) && is_page( $pagemenuid ) ) {
 ?>
- class="active"<?php } ?> href="<?php echo esc_url( $titlelink ); ?>"><?php echo $titlenamer; ?></a></h3>
+ class="active"<?php } ?> href="<?php echo esc_url( $titlelink ); ?>"><?php echo esc_html( $titlenamer ); ?></a></h3>
 			<ul class="menu">
-				<?php echo $children; ?>
+				<?php echo wp_kses_post( $children ); ?>
 			</ul>
 		</aside> <!-- end widget -->
 	<?php
@@ -553,14 +532,13 @@ function memberlite_getBreadcrumbs() {
 		$memberlite_hide_home_breadcrumb = apply_filters( 'memberlite_hide_home_breadcrumb', false );
 
 		if ( function_exists( 'is_woocommerce' ) && is_woocommerce() ) {
-
-		} elseif ( function_exists( 'is_bbpress' ) && is_bbpress() ) {
-		?>
+			woocommerce_breadcrumb();
+		} elseif ( function_exists( 'is_bbpress' ) && is_bbpress() ) { ?>
 			<nav class="memberlite-breadcrumb" itemprop="breadcrumb">
 			<?php
 				/* Displays bbp_breadcrumb in theme masthead */
 				remove_filter( 'bbp_no_breadcrumb', '__return_true' );
-				echo bbp_breadcrumb();
+				echo wp_kses_post( bbp_breadcrumb() );
 				add_filter( 'bbp_no_breadcrumb', '__return_true' );
 			?>
 			</nav>
@@ -581,7 +559,7 @@ function memberlite_getBreadcrumbs() {
 				}
 					$breadcrumbs = array_reverse( $breadcrumbs );
 				foreach ( $breadcrumbs as $crumb ) {
-					echo $crumb;
+					echo wp_kses_post( $crumb );
 				}
 				?>
 				<?php the_title(); ?>
@@ -598,7 +576,7 @@ function memberlite_getBreadcrumbs() {
 					$breadcrumbs = array_reverse( $breadcrumbs );
 					foreach ( $breadcrumbs as $crumb ) {
 					?>
-							<a href="<?php echo esc_url( get_permalink( $crumb ) ); ?>"><?php echo get_the_title( $crumb ); ?></a>
+							<a href="<?php echo esc_url( get_permalink( $crumb ) ); ?>"><?php echo esc_html( get_the_title( $crumb ) ); ?></a>
 							<span class="sep"><?php echo esc_html( $memberlite_delimiter ); ?></span>
 						<?php
 					}
@@ -607,9 +585,9 @@ function memberlite_getBreadcrumbs() {
 				<?php
 				if ( function_exists( 'pmpro_getOption' ) && is_page( array( pmpro_getOption( 'cancel_page_id' ), pmpro_getOption( 'billing_page_id' ), pmpro_getOption( 'confirmation_page_id' ), pmpro_getOption( 'invoice_page_id' ) ) ) && ! in_array( pmpro_getOption( 'account_page_id' ), get_post_ancestors( $post->ID ) ) ) {
 				?>
-						<a href="<?php echo esc_url( get_permalink( pmpro_getOption( 'account_page_id' ) ) ); ?>"><?php echo get_the_title( pmpro_getOption( 'account_page_id' ) ); ?></a>
-						<span class="sep"><?php echo esc_html( $memberlite_delimiter ); ?></span>
-						<?php
+					<a href="<?php echo esc_url( get_permalink( pmpro_getOption( 'account_page_id' ) ) ); ?>"><?php echo esc_html( get_the_title( pmpro_getOption( 'account_page_id' ) ) ); ?></a>
+					<span class="sep"><?php echo esc_html( $memberlite_delimiter ); ?></span>
+					<?php
 				}
 				?>
 				<?php the_title(); ?>
@@ -642,12 +620,12 @@ function memberlite_getBreadcrumbs() {
 				if ( is_tax() && count( $taxonomy->object_type ) === 1 ) {
 					$post_type = get_post_type_object( $taxonomy->object_type[0] );
 					?>
-					<a href="<?php echo esc_url( get_post_type_archive_link( $taxonomy->object_type[0] ) ); ?>"><?php echo $post_type->labels->name; ?></a>
+					<a href="<?php echo esc_url( get_post_type_archive_link( $taxonomy->object_type[0] ) ); ?>"><?php echo esc_html( $post_type->labels->name ); ?></a>
 						<span class="sep"><?php echo esc_html( $memberlite_delimiter ); ?></span>
 						<?php
 				} elseif ( get_option( 'page_for_posts' ) ) {
 				?>
-						<a href="<?php echo esc_url( get_permalink( get_option( 'page_for_posts' ) ) ); ?>"><?php echo get_the_title( get_option( 'page_for_posts' ) ); ?></a>
+						<a href="<?php echo esc_url( get_permalink( get_option( 'page_for_posts' ) ) ); ?>"><?php echo esc_html( get_the_title( get_option( 'page_for_posts' ) ) ); ?></a>
 						<span class="sep"><?php echo esc_html( $memberlite_delimiter ); ?></span>
 						<?php
 				}
@@ -660,7 +638,7 @@ function memberlite_getBreadcrumbs() {
 					elseif ( is_tag() ) :
 						$current_tag = single_tag_title( '', false );
 						/* translators: %s: current tag archive's single title */
-						printf( esc_html__( 'Posts Tagged: %s', 'memberlite' ), '<span>' . $current_tag . '</span>' );
+						printf( esc_html__( 'Posts Tagged: %s', 'memberlite' ), '<span>' . esc_html( $current_tag ) . '</span>' );
 
 					elseif ( is_author() ) :
 						/* translators: %s: current author archive's name */
@@ -718,7 +696,7 @@ function memberlite_getBreadcrumbs() {
 					<span class="sep"><?php echo esc_html( $memberlite_delimiter ); ?></span>
 				<?php } ?>
 				<?php if ( get_option( 'page_for_posts' ) ) { ?>
-					<a href="<?php echo esc_url( get_permalink( get_option( 'page_for_posts' ) ) ); ?>"><?php echo get_the_title( get_option( 'page_for_posts' ) ); ?></a>
+					<a href="<?php echo esc_url( get_permalink( get_option( 'page_for_posts' ) ) ); ?>"><?php echo esc_html( get_the_title( get_option( 'page_for_posts' ) ) ); ?></a>
 					<span class="sep"><?php echo esc_html( $memberlite_delimiter ); ?></span>
 				<?php } ?>
 				<?php the_title(); ?>
@@ -733,7 +711,7 @@ function memberlite_getBreadcrumbs() {
 				<?php } ?>
 				<?php if ( $post_type_object->has_archive == true ) { ?>
 					<span class="sep"><?php echo esc_html( $memberlite_delimiter ); ?></span>
-					<a href="<?php echo esc_url( get_post_type_archive_link( get_post_type( $post ) ) ); ?>"><?php echo $post_type_object->labels->name; ?></a>
+					<a href="<?php echo esc_url( get_post_type_archive_link( get_post_type( $post ) ) ); ?>"><?php echo esc_html( $post_type_object->labels->name ); ?></a>
 				<?php } ?>
 				<span class="sep"><?php echo esc_html( $memberlite_delimiter ); ?></span>
 				<?php the_title(); ?>
@@ -747,7 +725,7 @@ function memberlite_getBreadcrumbs() {
 				<?php
 				if ( get_option( 'page_for_posts' ) ) {
 					?>
-					<a href="<?php echo esc_url( get_permalink( get_option( 'page_for_posts' ) ) ); ?>"><?php echo get_the_title( get_option( 'page_for_posts' ) ); ?></a>
+					<a href="<?php echo esc_url( get_permalink( get_option( 'page_for_posts' ) ) ); ?>"><?php echo esc_html( get_the_title( get_option( 'page_for_posts' ) ) ); ?></a>
 						<span class="sep"><?php echo esc_html( $memberlite_delimiter ); ?></span>
 						<?php
 				}
@@ -827,21 +805,21 @@ function memberlite_parse_tags( $meta, $post = null ) {
 
 	if ( strpos( $meta, '{post_author}' ) !== false && ! empty( $author ) ) {
 		$searches[]     = '{post_author}';
-		$replacements[] = '<span class="author vcard">' . esc_html( $author->display_name ) . '</span>';
+		$replacements[] = '<span class="author vcard post_meta_author">' . esc_html( $author->display_name ) . '</span>';
 	}
 
 	if ( strpos( $meta, '{post_author_posts_link}' ) !== false && ! empty( $author ) ) {
 		$searches[]     = '{post_author_posts_link}';
-		$replacements[] = '<span class="author vcard"><a class="url fn n" href="' . esc_url( get_author_posts_url( $author->ID, $author->user_nicename ) ) . '">' . esc_html( $author->display_name ) . '</a></span>';
+		$replacements[] = '<span class="author vcard post_meta_author_posts_link"><a class="url fn n" href="' . esc_url( get_author_posts_url( $author->ID, $author->user_nicename ) ) . '">' . esc_html( $author->display_name ) . '</a></span>';
 	}
 
 	if ( strpos( $meta, '{post_categories}' ) !== false ) {
 		$searches[]     = '{post_categories}';
 		$category_list = get_the_category_list( __( ', ', 'memberlite' ), '', $post->ID );
 		if ( ! empty( $category_list ) ) {
-			$replacements[] = $category_list;
+			$replacements[] = '<span class="post_meta_categories">' . $category_list . '</span>';
 		} else {
-			$replacements[] = __( 'No Category', 'memberlite' );
+			$replacements[] = '<span class="post_meta_categories">' . __( 'No Category', 'memberlite' ) . '</span>';
 		}
 	}
 
@@ -859,11 +837,12 @@ function memberlite_parse_tags( $meta, $post = null ) {
 		// Show comment count if open and post is public.
 		if ( ! post_password_required() && ( comments_open() || ( $num_comments > 0 ) ) ) {
 			if ( $num_comments === 0 ) {
-				$comments = __( 'No Comments', 'memberlite' );
+				$comments = esc_html__( 'No Comments', 'memberlite' );
 			} elseif ( $num_comments > 1 ) {
-				$comments = $num_comments . __( ' Comments', 'memberlite' );
+				/* translators: %s: number of comments */
+				$comments = sprintf( esc_html__( '%s Comments', 'memberlite' ), $num_comments );
 			} else {
-				$comments = __( '1 Comment', 'memberlite' );
+				$comments = esc_html__( '1 Comment', 'memberlite' );
 			}
 			$write_comments = '<a href="';
 			if ( is_single() ) {
@@ -872,39 +851,42 @@ function memberlite_parse_tags( $meta, $post = null ) {
 				$write_comments .= get_comments_link( $post->ID );
 			}
 			$write_comments .= '">' . $comments . '</a>';
-			$replacements[] = '<span class="comments-link">' . $write_comments . '</span>';
+			$replacements[] = '<span class="post_meta_comments">' . $write_comments . '</span>';
 		} else {
-			$replacements[] = __( 'Comments Off', 'memberlite' );
+			$replacements[] = '<span class="post_meta_comments">' . esc_html__( 'Comments Off', 'memberlite' ) . '</span>';
 		}
 	}
 
 	if ( strpos( $meta, '{post_date}' ) !== false ) {
 		$searches[]     = '{post_date}';
-		$replacements[] = '<time class="entry-date published" datetime="' . esc_attr( get_the_date( 'Y-m-d', $post->ID ) ) . '">' . esc_html( get_the_date( get_option( 'date_format' ), $post->ID ) ) . '</time>';
+		$replacements[] = '<span class="post_meta_date"><time class="entry-date published" datetime="' . esc_attr( get_the_date( 'Y-m-d', $post->ID ) ) . '">' . esc_html( get_the_date( get_option( 'date_format' ), $post->ID ) ) . '</time></span>';
 	}
 
 	if ( strpos( $meta, '{post_permalink}' ) !== false ) {
 		$searches[]     = '{post_permalink}';
-		$replacements[] = '<a href="' . get_permalink( $post->ID ) . '" rel="bookmark">' . __( 'permalink', 'memberlite' ) . '</a>';
+		$replacements[] = '<span class="post_meta_permalink"><a href="' . get_permalink( $post->ID ) . '" rel="bookmark">' . __( 'permalink', 'memberlite' ) . '</a></span>';
 	}
 
 	if ( strpos( $meta, '{post_permalink_icon}' ) !== false ) {
 		$searches[]     = '{post_permalink_icon}';
-		$replacements[] = '<a href="' . get_permalink( $post->ID ) . '" rel="bookmark"><i class="fa fa-link"></i></a>';
+		$replacements[] = '<span class="post_meta_permalink_icon"><a href="' . get_permalink( $post->ID ) . '" rel="bookmark" class="post_meta_permalink_icon"><i class="fa fa-link"></i></a></span>';
 	}
 	if ( strpos( $meta, '{post_tags}' ) !== false ) {
 		$searches[]     = '{post_tags}';
-		$replacements[] = get_the_tag_list( '', __( ', ', 'memberlite' ) );
+		$tag_list = get_the_tag_list( '', __( ', ', 'memberlite' ) );
+		if ( ! empty( $tag_list ) ) {
+			$replacements[] = '<span class="post_meta_tags">' . $tag_list . '</span>';
+		}
 	}
 
 	if ( strpos( $meta, '{post_time}' ) !== false ) {
 		$searches[]     = '{post_time}';
-		$replacements[] = '<time class="entry-time" datetime="' . esc_attr( get_the_date( 'H:i' ), $post->ID ) . '">' . esc_html( get_the_time() ) . '</time>';
+		$replacements[] = '<span class="post_meta_time"><time class="entry-time" datetime="' . esc_attr( get_the_date( 'H:i' ), $post->ID ) . '">' . esc_html( get_the_time() ) . '</time></span>';
 	}
 
 	if ( strpos( $meta, '{post_title}' ) !== false ) {
 		$searches[]     = '{post_title}';
-		$replacements[] = '<span class="entry-title">' . esc_html( get_the_title( $post->ID ) ) . '</span>';
+		$replacements[] = '<span class="entry-title post_meta_title">' . esc_html( get_the_title( $post->ID ) ) . '</span>';
 	}
 
 	$meta = str_replace( $searches, $replacements, $meta );

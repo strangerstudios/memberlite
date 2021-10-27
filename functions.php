@@ -4,7 +4,7 @@
  *
  * @package Memberlite
  */
-define( 'MEMBERLITE_VERSION', '4.3' );
+define( 'MEMBERLITE_VERSION', '4.5.3' );
 
 // get default values for options/etc
 require_once get_template_directory() . '/inc/defaults.php';
@@ -20,10 +20,8 @@ function memberlite_init_styles() {
 		wp_enqueue_style( 'memberlite_rtl', get_template_directory_uri() . '/css/rtl.css', array( 'memberlite_style' ), MEMBERLITE_VERSION );
 	}
 	wp_enqueue_style( 'memberlite_print_style', get_template_directory_uri() . '/css/print.css', array(), MEMBERLITE_VERSION, 'print' );
-
 	wp_enqueue_script( 'memberlite-script', get_template_directory_uri() . '/js/memberlite.js', array(), MEMBERLITE_VERSION, true );
-
-	wp_enqueue_style( 'font-awesome', get_template_directory_uri() . '/font-awesome/css/all.min.css', array(), '5.8.2' );
+	wp_enqueue_style( 'font-awesome', get_template_directory_uri() . '/font-awesome/css/all.min.css', array(), '5.15.1' );
 
 	// load dark.css for dark/inverted backgrounds
 	$memberlite_darkcss = get_theme_mod( 'memberlite_darkcss', $memberlite_defaults['memberlite_darkcss'], false );
@@ -38,6 +36,28 @@ function memberlite_init_styles() {
 }
 add_action( 'wp_enqueue_scripts', 'memberlite_init_styles' );
 
+function memberlite_get_font( $font_type, $nicename = NULL ) {
+	global $memberlite_defaults;
+
+	// Get the selected fonts from theme options.
+	$fonts_string = get_theme_mod( 'memberlite_webfonts', $memberlite_defaults['memberlite_webfonts'] );
+
+	// Break the theme mod for custom fonts into two parts.
+	$fonts_string_parts = explode( '_', $fonts_string );
+
+	if ( $font_type === 'header_font' ) {
+		$r = $fonts_string_parts[0];
+	} else {
+		$r = $fonts_string_parts[1];
+	}
+
+	if ( ! empty( $nicename ) ) {
+		$r = str_replace( '-', ' ', $r );
+	}
+
+	return $r;
+}
+
 function memberlite_google_fonts_url() {
 	global $memberlite_defaults;
 
@@ -51,16 +71,13 @@ function memberlite_google_fonts_url() {
 		// Build the encoded Google fonts URL.
 		$fonts_url = '';
 
-		// Break the theme mod for custom fonts into two parts.
-		$fonts_string_parts = explode( '_', $fonts_string );
-
 		// Filter to modify which font weights are enqueued.
 		$font_weights = apply_filters( 'memberlite_google_fonts_weights', '400,700' );
 
 		// Build the array of font families to return.
 		$font_families = array();
-		$font_families[] = str_replace( '-', ' ', $fonts_string_parts[0] ) . ':' . $font_weights;
-		$font_families[] = str_replace( '-', ' ', $fonts_string_parts[1] ) . ':' . $font_weights;
+		$font_families[] = memberlite_get_font( 'header_font', true ) . ':' . $font_weights;
+		$font_families[] = memberlite_get_font( 'body_font', true ) . ':' . $font_weights;
 
 		$query_args = array(
 			'family' => urlencode( implode( '|', $font_families ) ),
@@ -189,7 +206,7 @@ if ( ! function_exists( 'memberlite_setup' ) ) :
 		// Enable support for "wide" or "full" alignment Gutenberg blocks.
 		add_theme_support( 'align-wide' );
 
-		// This theme uses wp_nav_menu() in four locations.
+		// This theme uses wp_nav_menu() in five locations.
 		register_nav_menus(
 			array(
 				'primary'           => __( 'Primary', 'memberlite' ),
@@ -224,14 +241,13 @@ if ( ! function_exists( 'memberlite_setup' ) ) :
 		);
 
 		// Setup the WordPress core custom background feature.
-		add_theme_support(
-			'custom-background', apply_filters(
-				'memberlite_custom_background_args', array(
-					'default-color' => 'ffffff',
-					'default-image' => '',
-				)
+		$custom_background = apply_filters(
+			'memberlite_custom_background_args', array(
+				'default-color' => 'FFFFFF',
+				'default-image' => '',
 			)
 		);
+		add_theme_support( 'custom-background', $custom_background );
 		
 		// Build unique array of Color Scheme values to include in Block Editor
 		$color_scheme = array();
@@ -284,7 +300,7 @@ if ( ! function_exists( 'memberlite_setup' ) ) :
 
 		add_theme_support( 'editor-color-palette', array(
 		    array(
-		        'name' => __( 'Primary Color', 'themeLamemberlitengDomain' ),
+		        'name' => __( 'Primary Color', 'memberlite' ),
 		        'slug' => 'color-primary',
 		        'color' => $color_primary,
 		    ),
@@ -388,10 +404,15 @@ function memberlite_widgets_init() {
 }
 add_action( 'widgets_init', 'memberlite_widgets_init' );
 
+/* Get the redirect_to URL to use for "Log In" links. */
+function memberlite_login_redirect_to() {
+	return apply_filters(  'memberlite_login_redirect_to', site_url( $_SERVER['REQUEST_URI'] ) );
+}
+
 /* Adds a Log Out link in member menu */
 function memberlite_menus( $items, $args ) {
 	// is this the member menu location or a replaced menu using pmpro-nav-menus plugin
-	if ( $args->theme_location == 'member' || $args->theme_location == 'member-logged-out' || ( strpos( $args->theme_location, '-member' ) !== false ) ) {
+	if ( $args->theme_location == 'member' || $args->theme_location == 'member-logged-out' || ( substr( $args->theme_location, -strlen( '-member' ) ) === '-member' ) ) {
 		if ( is_user_logged_in() && defined( 'PMPRO_VERSION' ) && pmpro_hasMembershipLevel() ) {
 			// user is logged in and has a membership level
 			$items .= '<li><a href="' . esc_url( wp_logout_url() ) . '">' . esc_html__( 'Log Out', 'memberlite' ) . '</a></li>';
@@ -400,7 +421,7 @@ function memberlite_menus( $items, $args ) {
 			$items = '<li><a href="' . esc_url( wp_logout_url() ) . '">' . esc_html__( 'Log Out', 'memberlite' ) . '</a></li>';
 		} else {
 			// not logged in
-			$items .= '<li><a href="' . esc_url( wp_login_url() ) . '">' . esc_html__( 'Log In', 'memberlite' ) . '</a></li>';
+			$items .= '<li><a href="' . esc_url( wp_login_url( memberlite_login_redirect_to() ) ) . '">' . esc_html__( 'Log In', 'memberlite' ) . '</a></li>';
 
 			$show_register_link = get_option( 'users_can_register' ) || defined( 'PMPRO_VERSION' );
 			$show_register_link = apply_filters( 'memberlite_show_register_link', $show_register_link );
@@ -410,7 +431,7 @@ function memberlite_menus( $items, $args ) {
 		}
 	}
 	// is this the primary menu location or a replaced menu using pmpro-nav-menus plugin
-	if ( $args->theme_location == 'primary' || ( strpos( $args->theme_location, '-primary' ) !== false ) ) {
+	if ( $args->theme_location == 'primary' || ( substr( $args->theme_location, -strlen( '-primary' ) ) === '-primary' ) ) {
 		$nav_menu_search = get_theme_mod( 'nav_menu_search', false );
 		if ( ! empty( $nav_menu_search ) ) {
 			$items .= get_search_form( false );
@@ -432,7 +453,7 @@ function memberlite_member_menu_cb( $args ) {
 		$link = $link_before . '<a href="' . esc_url( wp_logout_url() ) . '">' . $before . esc_html__( 'Log Out', 'memberlite' ) . $after . '</a>';
 	} else {
 		// not logged in
-		$link = $link_before . '<a href="' . esc_url( wp_login_url() ) . '">' . $before . esc_html__( 'Log In', 'memberlite' ) . $after . '</a>';
+		$link = $link_before . '<a href="' . esc_url( wp_login_url( memberlite_login_redirect_to() ) ) . '">' . $before . esc_html__( 'Log In', 'memberlite' ) . $after . '</a>';
 
 		$show_register_link = get_option( 'users_can_register' ) || defined( 'PMPRO_VERSION' );
 		$show_register_link = apply_filters( 'memberlite_show_register_link', $show_register_link );
@@ -450,10 +471,8 @@ function memberlite_member_menu_cb( $args ) {
 	return $output;
 }
 
-function memberlite_wp_nav_menu( $menu ) {
-	return do_shortcode( $menu );
-}
-add_filter( 'wp_nav_menu', 'memberlite_wp_nav_menu' );
+/* Allow the use of shortcodes in menus */
+add_filter( 'wp_nav_menu', 'do_shortcode', 11 );
 
 /* Exclude pings and trackbacks from the number of comments on a post. */
 function memberlite_comment_count( $count ) {

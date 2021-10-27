@@ -4,7 +4,6 @@
  */
 .woocommerce #content input.button, .woocommerce #respond input#submit, .woocommerce a.button, .woocommerce button.button, .woocommerce input.button, .woocommerce-page #content input.button, .woocommerce-page #respond input#submit, .woocommerce-page a.button, .woocommerce-page button.button, .woocommerce-page input.button, .woocommerce #content input.button.alt, .woocommerce #respond input#submit.alt, .woocommerce a.button.alt, .woocommerce button.button.alt, .woocommerce input.button.alt, .woocommerce-page #content input.button.alt, .woocommerce-page #respond input#submit.alt, .woocommerce-page a.button.alt, .woocommerce-page button.button.alt, .woocommerce-page input.button.alt {
 	color: #404040;
-	font-family: 'Lato', sans-serif;
 	font-weight: 400;
 	font-size: 16px;
 	font-size: 1.6rem;
@@ -30,7 +29,6 @@
 	color: #FFF !important;
 	cursor: pointer; /* Improves usability and consistency of cursor style between image-type 'input' and others */
 	/* -webkit-appearance: button; Corrects inability to style clickable 'input' types in iOS */
-	font-family: 'Lato', sans-serif;
 	font-size: 16px;
 	font-size: 1.6rem;
 	font-style: normal;
@@ -80,7 +78,8 @@
 .woocommerce .woocommerce-breadcrumb, .woocommerce-page .woocommerce-breadcrumb {
 	color: #FFF;
 	font-size: 1.2rem;
-	margin: 0 0 1em 0;
+	line-height: 2.2rem;
+	margin: 0;
 	padding: 0;
 }
 .woocommerce .masthead .woocommerce-breadcrumb, .woocommerce-page .masthead .woocommerce-breadcrumb {

@@ -15,10 +15,10 @@
 
 	<div id="bbp-user-wrapper">
 		<div class="row">
-			<div class="medium-2 columns">
+			<div class="medium-<?php echo esc_attr( memberlite_getColumnsRatio( 'sidebar' ) ); ?> columns">
 				<?php bbp_get_template_part( 'user', 'details' ); ?>
 			</div> <!-- end medium-2 -->
-			<div class="medium-10 columns">
+			<div class="medium-<?php echo esc_attr( memberlite_getColumnsRatio() ); ?> columns">
 				<div id="bbp-user-body">
 					<?php
 					if ( bbp_is_favorites() ) {

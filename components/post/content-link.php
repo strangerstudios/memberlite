@@ -8,7 +8,7 @@
  */
 ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+<article id="post-<?php the_ID(); ?>" <?php post_class( 'entry-header-grid' ); ?>>
 	<?php get_template_part( 'components/post/entry', 'header' ); ?>
 	<?php
 		$memberlite_get_entry_meta_after = memberlite_get_entry_meta( $post, 'after' );

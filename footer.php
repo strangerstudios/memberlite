@@ -26,19 +26,19 @@
 		<?php if ( has_nav_menu( 'footer' ) ) { ?>
 			<nav id="footer-navigation" class="row">
 				<?php
-				$footer_defaults_container_class = 'footer-navigation large-12 columns';
-				if ( ! is_active_sidebar( 'sidebar-4' ) ) {
-					$footer_defaults_container_class .= ' footer-widgets-empty';
-				}
-
-				$footer_defaults = array(
-					'theme_location'  => 'footer',
-					'container'       => 'div',
-					'container_class' => $footer_defaults_container_class,
-					'menu_class'      => 'menu',
-					'fallback_cb'     => false,
-				);
-				wp_nav_menu( $footer_defaults );
+					$footer_defaults_container_class = 'footer-navigation large-12 columns';
+					if ( ! is_active_sidebar( 'sidebar-4' ) ) {
+						$footer_defaults_container_class .= ' footer-widgets-empty';
+					}
+					wp_nav_menu(
+						array(
+							'theme_location'  => 'footer',
+							'container'       => 'div',
+							'container_class' => $footer_defaults_container_class,
+							'menu_class'      => 'menu',
+							'fallback_cb'     => false,
+						)
+					);
 				?>
 			</nav><!-- #footer-navigation -->
 		<?php } ?>

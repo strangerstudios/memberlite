@@ -21,31 +21,34 @@
 			<span class="user">
 				<?php
 					/* translators: a generated link to the user's account or profile page */
-					printf( esc_html__( 'Welcome, %s', 'memberlite' ), $user_account_link );
+					echo Memberlite_Customize::sanitize_text_with_links( sprintf( __( 'Welcome, %s', 'memberlite' ), $user_account_link ) );
 				?>
 			</span>
 			<?php
 		}
 		if ( $user_ID ) {
-			$member_menu_defaults = array(
-				'theme_location'  => 'member',
-				'container'       => 'nav',
-				'container_id'    => 'member-navigation',
-				'container_class' => 'member-navigation',
-				'fallback_cb'     => 'memberlite_member_menu_cb',
-				'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s</ul>',
+			wp_nav_menu(
+				array(
+					'theme_location'  => 'member',
+					'container'       => 'nav',
+					'container_id'    => 'member-navigation',
+					'container_class' => 'member-navigation',
+					'fallback_cb'     => 'memberlite_member_menu_cb',
+					'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s</ul>',
+				)
 			);
 		} else {
-			$member_menu_defaults = array(
-				'theme_location'  => 'member-logged-out',
-				'container'       => 'nav',
-				'container_id'    => 'member-navigation',
-				'container_class' => 'member-navigation',
-				'fallback_cb'     => 'memberlite_member_menu_cb',
-				'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s</ul>',
+			wp_nav_menu(
+				array(
+					'theme_location'  => 'member-logged-out',
+					'container'       => 'nav',
+					'container_id'    => 'member-navigation',
+					'container_class' => 'member-navigation',
+					'fallback_cb'     => 'memberlite_member_menu_cb',
+					'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s</ul>',
+				)
 			);
 		}
-		wp_nav_menu( $member_menu_defaults );
 	?>
 	</div><!-- .meta-member-inner -->
 </div><!-- #meta-member -->

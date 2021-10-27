@@ -66,6 +66,20 @@
 			);
 		}
 	);
+	// Header Background Color.
+	wp.customize(
+		'bgcolor_header', function( value ) {
+			value.bind(
+				function( to ) {
+					$( '#masthead' ).css(
+						{
+							'background-color': to,
+						}
+					);
+				}
+			);
+		}
+	);
 	// Primary Navigation Background Color.
 	wp.customize(
 		'bgcolor_site_navigation', function( value ) {
@@ -231,7 +245,7 @@
 		'delimiter', function( value ) {
 			value.bind(
 				function( to ) {
-					$( '.memberlite-breadcrumb .sep, .bbp-breadcrumb-sep' ).text( to );
+					$( '.memberlite-breadcrumb .sep, .bbp-breadcrumb-sep, .woocommerce-breadcrumb .sep' ).text( to );
 				}
 			);
 		}

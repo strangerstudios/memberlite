@@ -1,8 +1,9 @@
 === Memberlite ===
 Contributors: kimannwall, strangerstudios
-Requires at least: WordPress 4.4
-Tested up to: WordPress 5.2
-Version: 4.3
+Requires at least: 4.4
+Tested up to: 5.7
+Requires PHP: 5.6
+Stable tag: 4.5.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: one-column, two-columns, left-sidebar, right-sidebar, flexible-header, custom-background, custom-colors, custom-header, custom-menu, custom-logo, editor-style, featured-images, footer-widgets, full-width-template, post-formats, theme-options, threaded-comments, translation-ready, e-commerce
@@ -80,7 +81,7 @@ Use the Customize > Memberlite Options screen to modify theme layout, logo, font
 == Using Child Themes ==
 If you need to customize the theme beyond theme settings, use a child theme.
 
-[Download a Blank Child Theme »](https://github.com/strangerstudios/memberlite-child) | [About Child Themes (WordPress Codex) »](http://codex.wordpress.org/Child_Themes)
+[Memberlite Child Theme Downloads »](https://memberlitetheme.com/themes/) | [About Child Themes (WordPress Codex) »](https://developer.wordpress.org/themes/advanced-topics/child-themes/)
 
 == Integrated Plugins ==
 Memberlite includes formatting for use with:
@@ -105,10 +106,67 @@ We highly recommend using these plugins for every site running Memberlite:
 = Multiple Post Thumbnails =
 [Install Multiple Post Thumbnails »](https://wordpress.org/plugins/multiple-post-thumbnails/)
 
-= Theme My Login =
-[Install Theme My Login »](https://wordpress.org/plugins/theme-my-login/)
-
 == Changelog ==
+
+= 4.5.3 - 2021-03-13 =
+* ENHANCEMENT: Now showing member welcome/links in mobile menu if no other widgets defined.
+* BUG FIX: Fixed issues with background color and font color for button or cover blocks.
+* BUG FIX: General improvements for sites using an inverted (dark) body background color.
+
+= 4.5.2 - 2020-12-08 =
+* BUG FIX: Fixed issue with the Log in and Log Out links in member header theme area.
+* BUG FIX/ENHANCEMENT: Fixed localization and escaping throughout theme.
+* BUG FIX/ENHANCEMENT: Improved styling of frontend elements throughout theme.
+* ENHANCEMENT: Updated to Font Awesome version 5.15.1.
+* ENHANCEMENT: Improved Memberlite Guide admin page formatting.
+* ENHANCEMENT: Updated to Font Awesome version 5.15.1.
+
+= 4.5.1 - 2020-10-14 =
+* BUG FIX: Adjusting Nav Menus code to supress warnings and fix issue with meta menu callback not adding log in or log out links.
+* BUG FIX/ENHANCEMENT: Updated stylesheets for version 2.6+ of bbPress.
+* BUG FIX/ENHANCEMENT: Adding expected Memberlite hooks to forum.php template.
+* ENHANCEMENT: Styles to support new Payment Request Button features planned for PMPro.
+
+= 4.5 - 2020-09-14 =
+* SECURITY: Escaped `get_template_directory_uri` in inc/admin.php that was missing.
+* BUG FIX: Fixed bug where sidebar would show below content if "No Sidebar" layout was chosen in theme options.
+* BUG FIX: Fixed undefined variable `show_header_right`.
+* BUG FIX: Removed old CSS not used anymore by block editor for gallery block.
+* BUG FIX: Now allowing span and time as allowed HTML for the sanitization of post meta before and after values from Customizer.
+* BUG FIX: Updated Customizer CSS to fix potential override of header background image with specified background-color.
+* BUG FIX/ENHANCEMENT: Adjusted support for Nav Menus Add On to better detect member-specific menus.
+* BUG FIX/ENHANCEMENT: Added styles to avoid word wrap in specific form input fields for Column block compatibility.
+* BUG FIX/ENHANCEMENT: Adjusted alignwide and alignfull as block editor styles to fix bugs with column layouts.
+* BUG FIX/ENHANCEMENT: Now hiding the sidebar child pages menu if this is a membership account page or a child of it.
+* BUG FIX/ENHANCEMENT: Updated all color schemes and customizer controls to include header background color for preview and save.
+* BUG FIX/ENHANCEMENT: Updated search results to check post type before adding `entry-header-grid` to post_class.
+* ENHANCEMENT: Added styles to highlight the current page item in the subpages sidebar display.
+* ENHANCEMENT: Added styles to select type form inputs to match other form fields display.
+* ENHANCEMENT: Updated to Font Awesome version 5.14.0
+* ENHANCEMENT: Checking to see if menu theme_location exists before calling wp_nav_menu for certain menus.
+* ENHANCEMENT: Added in backwards compatibility for wp_body_open (required to call at the top of the body tag).
+* ENHANCEMENT: Adjusted stylesheet to include tested up to and PHP versions.
+* ENHANCEMENT: Updated Memberlite Guide to support child themes via the `memberlite_guide_additional` action hook.
+* ENHANCEMENT: Updated Memberlite Guide to allow child themes to filter recommended and integrated plugins via `memberlite_plugins_recommended` filter hook.
+* ENHANCEMENT: Added `memberlite_defaults` filter for child themes or plugin to adjust theme default options.
+* ENHANCEMENT: Wrapped replacement variables for the post meta before and after in a unique span for styling via CSS.
+* ENHANCEMENT: Added `memberlite_show_header_right` filter to hide header right area in logo space.
+* ENHANCEMENT: Added `memberlite_login_redirect_to` function and filter to get the `redirect_to` URL attribute used for "Log In" links.
+* ENHANCEMENT: Adjusted appearance of headings and form elements on the new Member Profile Edit page in PMPro.
+* REFACTOR: Added new function `memberlite_get_font` to return the header or body font from theme options. 
+
+= 4.4 - 2020-04-30 =
+* FEATURE: Added layout for "No Sidebar" Layout for Blog, Archive, Posts.
+* FEATURE: Added header background color customizer setting.
+* ENHANCEMENT: Added support for new frontend login, log in widget, and profiles in PMPro v2.3+.
+* BUG FIX/ENHANCEMENT: Improved CSS for sidebar menus and other widgets to only target menu-style lists, not all lists and for the Theme My Login widget.
+* BUG FIX/ENHANCEMENT: Improved Customizer CSS output so that all input types to respect custom font settings.
+* BUG FIX/ENHANCEMENT: Adjusted buttons and button-style links hover "brightness" instead of opacity for better appearance.
+* BUG FIX/ENHANCEMENT: Added post_class `entry-header-grid` to posts formats so styling only applies in main loop.
+* BUG FIX/ENHANCEMENT: Adjusted secondary (sidebar) text link to not apply to buttons.
+* ENHANCEMENT: Added `memberlite_avatar_size` filter for adjusting avatar display size.
+* ENHANCEMENT: Improved Accessibility and SEO by adding `alt` tags to post thumbnails and avatar.
+* ENHANCEMENT: Updated to Font Awesome version 5.13.0.
 
 = 4.3 - 2019-05-13 =
 * BUG FIX: Fixed bug where {post_comments} replacement wasn't returning the correct count in masthead area.
