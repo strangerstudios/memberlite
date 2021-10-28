@@ -244,12 +244,24 @@ function memberlite_the_content( $content ) {
 		$moretag = preg_match( '/(\<\!\-\-more\-\-\>)/', $content, $matches );
 	}
 	if ( $moretag ) {
-		$morespan     = $matches[0];
+		$morespan = $matches[0];
 		$morespan_pos = strpos( $content, $morespan );
-		$leadcontent  = '<div class="lead">';
-		$leadcontent .= substr( $content, 0, $morespan_pos );
-		$leadcontent .= '</div><hr />';
-		$newcontent   = substr( $content, $morespan_pos + strlen( $morespan ), strlen( $content ) - strlen( $morespan ) );
+		$leadcontent = substr( $content, 0, $morespan_pos );
+
+		/**
+		 * Filter to turn off the enlarged/enhanced excerpt text for a single post.
+		 *
+		 * @since 4.5.4
+		 *
+		 * @param bool $memberlite_excerpt_larger Enlarge/enhance the excerpt text on a single post.
+		 * @return bool $memberlite_excerpt_larger
+		 *
+		 */
+		$memberlite_excerpt_larger = apply_filters( 'memberlite_excerpt_larger', true);
+		if ( ! empty( $memberlite_excerpt_larger ) ) {
+			$leadcontent = '<div class="lead">' . $leadcontent . '</div><hr />';
+		}
+		$newcontent = substr( $content, $morespan_pos + strlen( $morespan ), strlen( $content ) - strlen( $morespan ) );
 		return $leadcontent . $newcontent;
 	} else {
 		return $content;
