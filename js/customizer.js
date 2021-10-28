@@ -6,29 +6,29 @@
 ( function( $ ) {
 	// Site title and description.
 	wp.customize(
-		'blogname', function( value ) {
-			value.bind(
-				function( to ) {
-					$( '.site-title a' ).text( to );
+		'blogname', function( setting ) {
+			setting.bind(
+				function( value ) {
+					$( '.site-title a' ).text( value );
 				}
 			);
 		}
 	);
 	wp.customize(
-		'blogdescription', function( value ) {
-			value.bind(
-				function( to ) {
-					$( '.site-description' ).text( to );
+		'blogdescription', function( setting ) {
+			setting.bind(
+				function( value ) {
+					$( '.site-description' ).text( value );
 				}
 			);
 		}
 	);
 	// Header text color.
 	wp.customize(
-		'header_textcolor', function( value ) {
-			value.bind(
-				function( to ) {
-					if ( 'blank' === to ) {
+		'header_textcolor', function( setting ) {
+			setting.bind(
+				function( value ) {
+					if ( 'blank' === value ) {
 						$( '.site-title' ).css(
 							{
 								'text-indent': '-9999em',
@@ -50,14 +50,14 @@
 						$( '.site-title, .site-description' ).css(
 							{
 								'clip': 'auto',
-								'color': to,
+								'color': value,
 								'position': 'static'
 							}
 						);
 
 						$( '.site-title a' ).css(
 							{
-								'color': to
+								'color': value
 							}
 						);
 
@@ -66,227 +66,138 @@
 			);
 		}
 	);
+	// Body Background Color.
+	wp.customize(
+		'background_color', function( setting ) {
+			setting.bind(
+				function( value ) {
+					document.documentElement.style.setProperty('--memberlite-color-site-background', value );
+				}
+			);
+		}
+	);
 	// Header Background Color.
 	wp.customize(
-		'bgcolor_header', function( value ) {
-			value.bind(
-				function( to ) {
-					$( '#masthead' ).css(
-						{
-							'background-color': to,
-						}
-					);
+		'bgcolor_header', function( setting ) {
+			setting.bind(
+				function( value ) {
+					document.documentElement.style.setProperty('--memberlite-color-header-background', value );
 				}
 			);
 		}
 	);
 	// Primary Navigation Background Color.
 	wp.customize(
-		'bgcolor_site_navigation', function( value ) {
-			value.bind(
-				function( to ) {
-					$( memberlite_defaults.bgcolor_site_navigation_elements ).css(
-						{
-							'background': to,
-						}
-					);
+		'bgcolor_site_navigation', function( setting ) {
+			setting.bind(
+				function( value ) {
+					document.documentElement.style.setProperty('--memberlite-color-site-navigation-background', value );
 				}
 			);
 		}
 	);
 	// Primary Navigation Color.
 	wp.customize(
-		'color_site_navigation', function( value ) {
-			value.bind(
-				function( to ) {
-					$( memberlite_defaults.color_site_navigation_elements ).css(
-						{
-							'color': to,
-						}
-					);
+		'color_site_navigation', function( setting ) {
+			setting.bind(
+				function( value ) {
+					document.documentElement.style.setProperty('--memberlite-color-site-navigation', value );
 				}
 			);
 		}
 	);
 	// Link Color.
 	wp.customize(
-		'color_link', function( value ) {
-			value.bind(
-				function( to ) {
-					$( memberlite_defaults.color_link_color_elements ).css(
-						{
-							'color': to,
-						}
-					);
+		'color_link', function( setting ) {
+			setting.bind(
+				function( value ) {
+					document.documentElement.style.setProperty('--memberlite-color-link', value );
 				}
 			);
 		}
 	);
 	// Meta Link Color.
 	wp.customize(
-		'color_meta_link', function( value ) {
-			value.bind(
-				function( to ) {
-					$( memberlite_defaults.color_meta_link_color_elements ).css(
-						{
-							'color': to,
-						}
-					);
+		'color_meta_link', function( setting ) {
+			setting.bind(
+				function( value ) {
+					document.documentElement.style.setProperty('--memberlite-color-meta-link', value );
 				}
 			);
 		}
 	);
 	// Primary Color.
 	wp.customize(
-		'color_primary', function( value ) {
-			value.bind(
-				function( to ) {
-					$( memberlite_defaults.color_primary_background_elements ).css(
-						{
-							'background': to,
-						}
-					);
-				}
-			);
-		}
-	);
-	wp.customize(
-		'color_primary', function( value ) {
-			value.bind(
-				function( to ) {
-					$( memberlite_defaults.color_primary_color_elements ).css(
-						{
-							'color': to,
-						}
-					);
+		'color_primary', function( setting ) {
+			setting.bind(
+				function( value ) {
+					document.documentElement.style.setProperty('--memberlite-color-primary', value );
 				}
 			);
 		}
 	);
 	// Secondary Color.
 	wp.customize(
-		'color_secondary', function( value ) {
-			value.bind(
-				function( to ) {
-					$( memberlite_defaults.color_secondary_background_elements ).css(
-						{
-							'background': to,
-						}
-					);
-				}
-			);
-		}
-	);
-	wp.customize(
-		'color_secondary', function( value ) {
-			value.bind(
-				function( to ) {
-					$( memberlite_defaults.color_secondary_border_elements ).css(
-						{
-							'border-bottom-color': to,
-							'border-top-color': to,
-						}
-					);
-					$( memberlite_defaults.color_secondary_border_left_elements ).css(
-						{
-							'border-left-color': to,
-						}
-					);
-					$( memberlite_defaults.color_secondary_border_right_elements ).css(
-						{
-							'border-right-color': to,
-						}
-					);
-				}
-			);
-		}
-	);
-	wp.customize(
-		'color_secondary', function( value ) {
-			value.bind(
-				function( to ) {
-					$( memberlite_defaults.color_secondary_color_elements ).css(
-						{
-							'color': to,
-						}
-					);
-				}
-			);
-		}
-	);
-	// Button Color.
-		wp.customize(
-		'color_button', function( value ) {
-			value.bind(
-				function( to ) {
-					$( memberlite_defaults.color_button_background_elements ).css(
-						{
-							'background': to,
-						}
-					);
+		'color_secondary', function( setting ) {
+			setting.bind(
+				function( value ) {
+					document.documentElement.style.setProperty('--memberlite-color-secondary', value );
 				}
 			);
 		}
 	);
 	// Action Color.
 	wp.customize(
-		'color_action', function( value ) {
-			value.bind(
-				function( to ) {
-					$( memberlite_defaults.color_action_background_elements ).css(
-						{
-							'background': to,
-						}
-					);
+		'color_action', function( setting ) {
+			setting.bind(
+				function( value ) {
+					document.documentElement.style.setProperty('--memberlite-color-action', value );
+				}
+			);
+		}
+	);
+	// Button Color.
+		wp.customize(
+		'color_button', function( setting ) {
+			setting.bind(
+				function( value ) {
+					document.documentElement.style.setProperty('--memberlite-color-button', value );
 				}
 			);
 		}
 	);
 	wp.customize(
-		'color_action', function( value ) {
-			value.bind(
-				function( to ) {
-					$( memberlite_defaults.color_action_color_elements ).css(
-						{
-							'color': to,
-						}
-					);
+		'delimiter', function( setting ) {
+			setting.bind(
+				function( value ) {
+					$( '.memberlite-breadcrumb .sep, .bbp-breadcrumb-sep, .woocommerce-breadcrumb .sep' ).text( value );
 				}
 			);
 		}
 	);
 	wp.customize(
-		'delimiter', function( value ) {
-			value.bind(
-				function( to ) {
-					$( '.memberlite-breadcrumb .sep, .bbp-breadcrumb-sep, .woocommerce-breadcrumb .sep' ).text( to );
+		'posts_entry_meta_before', function( setting ) {
+			setting.bind(
+				function( value ) {
+					$( 'header .entry-meta' ).text( value );
 				}
 			);
 		}
 	);
 	wp.customize(
-		'posts_entry_meta_before', function( value ) {
-			value.bind(
-				function( to ) {
-					$( 'header .entry-meta' ).text( to );
+		'posts_entry_meta_after', function( setting ) {
+			setting.bind(
+				function( value ) {
+					$( '.post .entry-footer' ).text( value );
 				}
 			);
 		}
 	);
 	wp.customize(
-		'posts_entry_meta_after', function( value ) {
-			value.bind(
-				function( to ) {
-					$( '.post .entry-footer' ).text( to );
-				}
-			);
-		}
-	);
-	wp.customize(
-		'copyright_textbox', function( value ) {
-			value.bind(
-				function( to ) {
-					$( '.site-info p' ).text( to );
+		'copyright_textbox', function( setting ) {
+			setting.bind(
+				function( value ) {
+					$( '.site-info p' ).text( value );
 				}
 			);
 		}

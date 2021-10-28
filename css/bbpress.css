@@ -140,7 +140,7 @@ body.reply-edit .reply {
 #bbpress-forums li.bbp-header,
 #bbpress-forums li.bbp-footer {
 	font-weight: 400;
-	/* maybe font family ? */
+	font-family: var(--memberlite-header-font);
 	padding: 1rem;
 	text-align: center;
 }
@@ -747,6 +747,7 @@ td.bbp-topic-counts {
 }
 #bbpress-forums fieldset.bbp-form legend {
 	border: none;
+	font-family: var(--memberlite-header-font);
 	font-weight: 700;
 	margin: 2.9rem 0 1.45rem 0;
 	width: auto;
