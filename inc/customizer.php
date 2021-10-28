@@ -346,6 +346,7 @@ class Memberlite_Customize {
 			'show_none'      => __( 'Do Not Show Featured Images', 'memberlite' ),
 			'show_banner'    => __( 'Show Banner Only', 'memberlite' ),
 			'show_thumbnail' => __( 'Show Thumbnail Only', 'memberlite' ),
+			'show_block'	 => __( 'Show Block Image In Excerpt', 'memberlite' ),
 		);
 
 		// Add a "show_both" option if the Multiple Post Thumbnails plugin is active.

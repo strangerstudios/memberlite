@@ -35,6 +35,10 @@
 			$content_archives = get_theme_mod( 'content_archives', $memberlite_defaults['content_archives'] );
 			if ( $content_archives == 'excerpt' ) {
 				memberlite_the_excerpt();
+				$memberlite_loop_images = get_theme_mod( 'memberlite_loop_images', $memberlite_defaults['memberlite_loop_images'] );
+				if ( $memberlite_loop_images == 'show_block' ) {
+					the_post_thumbnail( null, 'large' );
+				}
 			} else {
 				memberlite_more_content();
 				$author_block = get_theme_mod( 'author_block', $memberlite_defaults['author_block'] );

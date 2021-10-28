@@ -239,6 +239,7 @@ function memberlite_get_the_content_before_more( $content = null ) {
 }
 
 function memberlite_the_content( $content ) {
+	global $memberlite_defaults;
 	$moretag = preg_match( '/\<span id="more-[0-9]*"\>\<\/span\>/', $content, $matches );
 	if ( ! $moretag ) {
 		$moretag = preg_match( '/(\<\!\-\-more\-\-\>)/', $content, $matches );
@@ -247,6 +248,11 @@ function memberlite_the_content( $content ) {
 		$morespan = $matches[0];
 		$morespan_pos = strpos( $content, $morespan );
 		$leadcontent = substr( $content, 0, $morespan_pos );
+
+		$memberlite_loop_images = get_theme_mod( 'memberlite_loop_images', $memberlite_defaults['memberlite_loop_images'] );
+		if ( $memberlite_loop_images == 'show_block' ) {
+			$leadcontent .= get_the_post_thumbnail( null, 'large' );
+		}
 
 		/**
 		 * Filter to turn off the enlarged/enhanced excerpt text for a single post.

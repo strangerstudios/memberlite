@@ -2172,11 +2172,7 @@ a:active {
 	color: var(--memberlite-color-white);
 }
 .entry-content .wp-post-image {
-	background-color: #FAFAFA;
-	padding: .25rem;
-	border-top: 1px dotted #CCC;
-	border-bottom: 1px dotted #CCC;
-	margin-bottom: 1.5rem;
+	margin-bottom: 2.9rem;
 }
 .format-status .entry-content .post_author_avatar {
 	float: left;
