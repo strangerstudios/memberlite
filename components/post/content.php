@@ -31,16 +31,18 @@
 					)
 				);
 			}
-		?>
-		<?php
+
 			$content_archives = get_theme_mod( 'content_archives', $memberlite_defaults['content_archives'] );
 			if ( $content_archives == 'excerpt' ) {
 				memberlite_the_excerpt();
 			} else {
 				memberlite_more_content();
+				$author_block = get_theme_mod( 'author_block', $memberlite_defaults['author_block'] );
+				if ( ! empty( $author_block ) ) {
+					get_template_part( 'components/post/entry', 'author-block' );
+				}
 			}
-		?>
-		<?php
+
 			wp_link_pages(
 				array(
 					'before' => '<div class="page-links">' . __( 'Pages:', 'memberlite' ),

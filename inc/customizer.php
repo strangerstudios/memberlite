@@ -405,6 +405,25 @@ class Memberlite_Customize {
 		);
 
 		$wp_customize->add_setting(
+			'author_block',
+			array(
+				'default'              => $memberlite_defaults['author_block'],
+				'sanitize_callback'    => array( 'Memberlite_Customize', 'sanitize_checkbox' ),
+				'sanitize_js_callback' => array( 'Memberlite_Customize', 'sanitize_js_callback' ),
+			)
+		);
+
+		$wp_customize->add_control(
+			'author_block',
+			array(
+				'type'     => 'checkbox',
+				'label'    => __( 'Show Author Block on Single Posts', 'memberlite' ),
+				'section'  => 'memberlite_theme_options',
+				'priority' => 100,
+			)
+		);
+
+		$wp_customize->add_setting(
 			'memberlite_footerwidgets',
 			array(
 				'default'              => $memberlite_defaults['memberlite_footerwidgets'],
@@ -425,7 +444,7 @@ class Memberlite_Customize {
 					'4' => __( '4', 'memberlite' ),
 					'6' => __( '6', 'memberlite' ),
 				),
-				'priority' => 100,
+				'priority' => 110,
 			)
 		);
 
@@ -445,7 +464,7 @@ class Memberlite_Customize {
 				'label'    => __( 'Breadcrumb Delimiter', 'memberlite' ),
 				'section'  => 'memberlite_theme_options',
 				'type'     => 'text',
-				'priority' => 110,
+				'priority' => 120,
 			)
 		);
 
@@ -465,7 +484,7 @@ class Memberlite_Customize {
 				'label'    => __( 'Copyright Text', 'memberlite' ),
 				'section'  => 'memberlite_theme_options',
 				'type'     => 'text',
-				'priority' => 120,
+				'priority' => 130,
 			)
 		);
 
@@ -484,7 +503,7 @@ class Memberlite_Customize {
 				'type'     => 'checkbox',
 				'label'    => __( 'Show Back to Top Link', 'memberlite' ),
 				'section'  => 'memberlite_theme_options',
-				'priority' => '130',
+				'priority' => 140,
 			)
 		);
 

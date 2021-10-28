@@ -8,6 +8,8 @@
  */
 ?>
 
+<?php global $memberlite_defaults; ?>
+
 <article id="post-<?php the_ID(); ?>" <?php post_class( ); ?>>
 	<div class="entry-content">
 		<?php // NOTE: The title is generated in header.php via the memberlite_page_title() function found in functions.php ?>
@@ -31,6 +33,12 @@
 					'after'  => '</div>',
 				)
 			);
+		?>
+		<?php
+			$author_block = get_theme_mod( 'author_block', $memberlite_defaults['author_block'] );
+			if ( ! empty( $author_block ) ) {
+				get_template_part( 'components/post/entry', 'author-block' );
+			}
 		?>
 		<?php do_action( 'memberlite_after_content_single' ); ?>
 	</div><!-- .entry-content -->
