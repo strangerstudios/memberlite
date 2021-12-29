@@ -2277,7 +2277,7 @@ a:active {
 	flex-wrap: wrap;
 	gap: 2.9rem;
 	-webkit-box-pack: justify;
-	justify-content: space-between;
+	justify-content: flex-start;
 	margin-bottom: 2rem;
 }
 .grid-list article {
@@ -2351,7 +2351,7 @@ a:active {
 		-webkit-box-flex: 0;
 		flex-grow: 0;
 		flex-shrink: 1;
-		flex-basis: calc(25% - 2.9rem);
+		flex-basis: calc(25% - 2.175rem);
 	}
 	.content-archives-grid .grid-list article {
 		-webkit-box-flex: 0;
