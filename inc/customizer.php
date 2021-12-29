@@ -228,6 +228,7 @@ class Memberlite_Customize {
 				'choices'  => array(
 					'content' => __( 'Show Post Content', 'memberlite' ),
 					'excerpt' => __( 'Show Post Excerpts', 'memberlite' ),
+					'grid'	  => __( 'Show As Grid', 'memberlite' ),
 				),
 				'priority' => 40,
 			)

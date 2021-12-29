@@ -2127,10 +2127,10 @@ a:active {
 .hentry .post_author_avatar img {
 	border-radius: 50%;
 }
-.hentry.format-audio h1.entry-title:before,
-.hentry.format-image h1.entry-title:before,
-.hentry.format-link h1.entry-title:before,
-.hentry.format-video h1.entry-title:before,
+.hentry.format-audio h1.entry-title a:before,
+.hentry.format-image h1.entry-title a:before,
+.hentry.format-link h1.entry-title a:before,
+.hentry.format-video h1.entry-title a:before,
 .single-format-audio .masthead-post-byline h1.entry-title:before,
 .single-format-image .masthead-post-byline h1.entry-title:before,
 .single-format-link .masthead-post-byline h1.entry-title:before,
@@ -2139,31 +2139,31 @@ a:active {
 	font-weight: 700;
 	padding-right: 10px;
 }
-.hentry.format-audio h1.entry-title:before,
+.hentry.format-audio h1.entry-title a:before,
 .single-format-audio .masthead-post-byline h1.entry-title:before {
 	content: "\f025";
 }
-.hentry.format-image h1.entry-title:before,
+.hentry.format-image h1.entry-title a:before,
 .single-format-image .masthead-post-byline h1.entry-title:before {
 	content: "\f1c5";
 }
-.hentry.format-link h1.entry-title:before,
+.hentry.format-link h1.entry-title a:before,
 .single-format-link .masthead-post-byline h1.entry-title:before {
 	content: "\f35d";
 }
-.hentry.format-video h1.entry-title:before,
+.hentry.format-video h1.entry-title a:before,
 .single-format-video .masthead-post-byline h1.entry-title:before {
 	content: "\f03d";
 }
-.hentry.pmpro-level-required h1.entry-title:before,
+.hentry.pmpro-level-required h1.entry-title a:before,
 .pmpro-body-level-required .masthead-post-byline h1.entry-title:before {
 	content: "\f023";
 	font-family: 'Font Awesome 5 Free';
 	font-weight: 700;
 	padding-right: 10px;
 }
-.pmpro-level-required.pmpro-has-access  h1.entry-title:before,
-.pmpro-body-level-required.pmpro-body-has-access  h1.entry-title:before {
+.pmpro-level-required.pmpro-has-access h1.entry-title:before,
+.pmpro-body-level-required.pmpro-body-has-access h1.entry-title:before {
 	content: "";
 	font-family: 'Font Awesome 5 Free';
 	padding-right: 0;
@@ -2271,7 +2271,106 @@ a:active {
 .entry-summary {
 
 }
+.grid-list {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	gap: 2.9rem;
+	-webkit-box-pack: justify;
+	justify-content: space-between;
+	margin-bottom: 2rem;
+}
+.grid-list article {
+	background: var(--memberlite-color-white);
+	border-radius: 7px;
+	box-shadow: 1px 2px 5px rgba(0,0,0,0.2);
+	margin: 0;
+	text-align: center;
+	-webkit-transition: all .2s ease-in-out;
+	-moz-transition: all .2s ease-in-out;
+	-o-transition: all .2s ease-in-out;
+	display: flex;
+	flex-direction: column;
+    flex-wrap: wrap;
+	-webkit-box-pack: justify;
+	justify-content: space-between;
+}
+.grid-list article:hover {
+	-webkit-transform: scale(1.03);
+	-moz-transform: scale(1.03);
+	-o-transform: scale(1.03);
+}
+.grid-list h1,
+.grid-list h2 {
+	font-size: 2.1rem;
+	letter-spacing: -.2px;
+	line-height: 2.8rem;
+	margin: 0;
+}
+.grid-list h1 a,
+.grid-list h2 a {
+	color: var(--memberlite-color-text);
+	display: block;
+	padding: 1.45rem;
+	text-decoration: none;
+}
+.grid-list h1 a:hover,
+.grid-list h2 a:hover {
+	border-bottom: none;
+	color: var(--memberlite-color-primary);
+}
+.grid-list a > img {
+	display: block;
+	text-align: center;
+	width: auto;
+}
+.grid-list a > img.wp-post-image {
+	margin-bottom: 0;
+}
+.content-archives-grid .grid-list img {
+	border-top-left-radius: 7px;
+	border-top-right-radius: 7px;
+}
+.grid-list a:hover,
+.grid-list a:focus,
+.grid-list a:active {
+	filter: unset;
+}
+.grid-list .button-link-list {
+	font-size: 1.4rem;
+	line-height: 1.4rem;
+	margin-bottom: 1.45rem;
+	padding: 0 1.45rem;
+}
 
+@media only screen and (min-width: 1160px) {
+	.grid-list {
+		flex-direction: row;
+	}
+	.grid-list article {
+		-webkit-box-flex: 0;
+		flex-grow: 0;
+		flex-shrink: 1;
+		flex-basis: calc(25% - 2.9rem);
+	}
+	.content-archives-grid .grid-list article {
+		-webkit-box-flex: 0;
+		flex-grow: 0;
+		flex-shrink: 1;
+		flex-basis: calc(33.3% - 4.35rem);
+	}
+}
+@media only screen and (min-width: 768px) and (max-width: 1160px) {
+	.grid-list {
+		flex-direction: row;
+	}
+	.grid-list article {
+		-webkit-box-flex: 0;
+		flex-grow: 0;
+		flex-shrink: 1;
+		flex-basis: calc(50% - 1.45rem);
+	}
+}
 /*--------------------------------------------------------------
 10.5 Asides
 --------------------------------------------------------------*/
