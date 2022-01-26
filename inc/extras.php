@@ -246,19 +246,21 @@ function memberlite_get_the_content_before_more( $content = null ) {
 
 function memberlite_the_content( $content ) {
 	global $memberlite_defaults;
+
+	// Identify where the more tag is (block editor or class editor).
 	$moretag = preg_match( '/\<span id="more-[0-9]*"\>\<\/span\>/', $content, $matches );
 	if ( ! $moretag ) {
 		$moretag = preg_match( '/(\<\!\-\-more\-\-\>)/', $content, $matches );
 	}
-	if ( $moretag ) {
+
+	// Optionally include the featured image.
+	$image_content = memberlite_loop_image();
+
+	// Adjust the format of the excerpt and content, insert block image if set in theme options.
+	if ( ! empty( $moretag ) ) {
 		$morespan = $matches[0];
 		$morespan_pos = strpos( $content, $morespan );
 		$leadcontent = substr( $content, 0, $morespan_pos );
-
-		$memberlite_loop_images = get_theme_mod( 'memberlite_loop_images', $memberlite_defaults['memberlite_loop_images'] );
-		if ( $memberlite_loop_images == 'show_block' ) {
-			$leadcontent .= get_the_post_thumbnail( null, 'large' );
-		}
 
 		/**
 		 * Filter to turn off the enlarged/enhanced excerpt text for a single post.
@@ -271,13 +273,26 @@ function memberlite_the_content( $content ) {
 		 */
 		$memberlite_excerpt_larger = apply_filters( 'memberlite_excerpt_larger', true);
 		if ( ! empty( $memberlite_excerpt_larger ) ) {
-			$leadcontent = '<div class="lead">' . $leadcontent . '</div><hr />';
+			$leadcontent = '<div class="lead">' . $leadcontent . '</div>';
 		}
+
+		// Add the block image between the "excerpt" and the rest of the content.
+		if ( ! empty( $image_content ) ) {
+			$leadcontent .= $image_content;
+		}
+
+		// Add the content after the $more tag to the $content.
 		$newcontent = substr( $content, $morespan_pos + strlen( $morespan ), strlen( $content ) - strlen( $morespan ) );
-		return $leadcontent . $newcontent;
-	} else {
-		return $content;
+
+		// The new $content variable.
+		$content = $leadcontent . $newcontent;
+	} elseif ( ! empty( $image_content ) && is_singular() ) {
+		// No excerpt. Add the block image before the content if theme mod is set to show_block.
+		$content = $image_content . $content;
 	}
+
+	// The returned, reformatted $content.
+	return $content;
 }
 add_filter( 'the_content', 'memberlite_the_content' );
 
@@ -296,6 +311,12 @@ function memberlite_the_excerpt() {
 		// There is an excerpt designated by the <!--more--> tag, show that.
 		echo wp_kses_post( apply_filters( 'the_content', $content_arr['main'] ) );
 	}
+
+	// Optionally include the featured image.
+	$image_content = memberlite_loop_image();
+	if ( ! empty ( $image_content ) ) {
+		echo $image_content;
+	}
 }
 
 /**
@@ -308,6 +329,41 @@ function memberlite_more_content() {
 	global $more;
 	$more = 1;
 	the_content();
+}
+
+/**
+ * Get the featured block image to insert into the post content.
+ * 
+ */
+function memberlite_loop_image() {
+	global $memberlite_defaults;
+
+	// Get the theme setting for loop images.
+	$memberlite_loop_images = get_theme_mod( 'memberlite_loop_images', $memberlite_defaults['memberlite_loop_images'] );
+
+	// Return if the theme mod isn't set to show block images.
+	if ( $memberlite_loop_images != 'show_block' ) {
+		return false;
+	}
+
+	/**
+	 * Filter to specify what post types to include a block image for based on theme setting.
+	 *
+	 * @since 4.5.4
+	 *
+	 * @param array $memberlite_loop_images_post_types An array of post types to include a featured image for based on theme setting.
+	 * @return array $memberlite_loop_images_post_types
+	 *
+	 */
+	$memberlite_loop_images_post_types = apply_filters( 'memberlite_loop_images_post_types', array( 'post') );
+
+	// Check if the current post's post_type should show an image.
+	if ( ! empty( $memberlite_loop_images_post_types ) && ( ! in_array( get_post_type(), $memberlite_loop_images_post_types ) ) ) {
+		return false;
+	} else {
+		$image_content = get_the_post_thumbnail( null, 'large' );
+	}
+	return $image_content;
 }
 
 function memberlite_page_title( $echo = true ) {
