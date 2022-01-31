@@ -875,6 +875,7 @@ class Memberlite_Customize {
 		$hover_brightness = $memberlite_defaults['hover_brightness'];
 		$color_white = $memberlite_defaults['color_white'];
 		$color_text = $memberlite_defaults['color_text'];
+		$color_borders = $memberlite_defaults['color_borders'];
 		?>
 		<!--Customizer CSS-->
 		<style id="memberlite-customizer-css" type="text/css">
@@ -897,6 +898,7 @@ class Memberlite_Customize {
 				--memberlite-hover-brightness: <?php echo esc_attr( $hover_brightness ); ?>;
 				--memberlite-color-white: <?php echo esc_attr( $color_white ); ?>;
 				--memberlite-color-text: <?php echo esc_attr( $color_text ); ?>;
+				--memberlite-color-borders: <?php echo esc_attr( $color_borders ); ?>;
 			}
 		</style>
 		<!--/Customizer CSS-->
