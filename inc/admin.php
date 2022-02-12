@@ -65,10 +65,10 @@ function memberlite_support() {
 					</div>
 					<div class="col">
 						<h3><span class="dashicons dashicons-lightbulb"></span> <?php esc_html_e( 'Theme Demo, Docs and Support', 'memberlite' ); ?></h3>
-						<p><?php esc_html_e( 'We offer a simple annual support membership if you need additional help with your Memberlite-powered WordPress site.', 'memberlite' ); ?></p>
+						<p><?php esc_html_e( 'Register for a free account to browse documentation and get additional help with your Memberlite-powered WordPress site.', 'memberlite' ); ?></p>
 						<p>
 							<a href="https://demo.memberlitetheme.com" target="_blank"><?php esc_html_e( 'View Theme Demo', 'memberlite' ); ?></a><br />
-							<a href="https://memberlitetheme.com" target="_blank"><?php esc_html_e( 'View All Docs and Get Support', 'memberlite' ); ?></a>
+							<a href="https://memberlitetheme.com" target="_blank"><?php esc_html_e( 'View All Docs', 'memberlite' ); ?></a>
 						</p>
 					</div>
 				</div> <!-- end memberlite-feature-section -->
