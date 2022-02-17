@@ -1478,6 +1478,10 @@ a:active {
 	min-height: initial;
 	padding: 5.8rem 0 2.9rem 0;
 }
+.wp-block-cover-image a:not(.has-text-color),
+.wp-block-cover a:not(.has-text-color) {
+	color: inherit;
+}
 .text-center {
 	text-align: center;
 }
@@ -2276,7 +2280,7 @@ a:active {
 	justify-content: flex-start;
 	margin-bottom: 2rem;
 }
-.grid-list article {
+.grid-list > * {
 	background-color: var(--memberlite-color-white);
 	border: 1px solid var(--memberlite-color-borders);
 	display: flex;
@@ -2351,7 +2355,7 @@ a:active {
 	.grid-list {
 		flex-direction: row;
 	}
-	.grid-list article {
+	.grid-list > * {
 		-webkit-box-flex: 0;
 		flex-grow: 0;
 		flex-shrink: 1;
@@ -2362,7 +2366,7 @@ a:active {
 	.grid-list {
 		flex-direction: row;
 	}
-	.grid-list article {
+	.grid-list > * {
 		-webkit-box-flex: 0;
 		flex-grow: 0;
 		flex-shrink: 1;
