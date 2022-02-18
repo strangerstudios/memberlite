@@ -251,7 +251,6 @@ blockquote.quote,
 .testimonials-widget blockquote,
 .wp-block-quote {
 	background: none;
-	color: #666;
 	border: none;
 	padding: 0 0 0 3.7rem;
 	position: relative;
@@ -260,7 +259,7 @@ blockquote.quote:before,
 .wp-block-quote:before {
 	content: "\f10d";
 	font-family: 'Font Awesome 5 Free';
-	font-weight: 700;
+	font-weight: 900;
 	color: var(--memberlite-color-secondary);
 	font-size: 2.9rem;
 	left: 0rem;
@@ -279,7 +278,6 @@ blockquote cite,
 	margin-top: .5rem;
 	text-align: right;
 	font-style: italic;
-	color: #AAA;
 }
 .wp-block-quote cite,
 .wp-block-pullquote cite {
@@ -288,19 +286,18 @@ blockquote cite,
 blockquote cite a,
 .testimonials-widget blockquote .credit a,
 .wp-block-quote cite a {
-	color: #AAA;
 	text-decoration: none;
 }
 @media only screen and (min-width: 768px) {
 	.entry-content blockquote.alignleft,
-.entry-content blockquote.alignright {
+	.entry-content blockquote.alignright {
 		width: 50%;
 	}
 }
 .testimonials-widget-testimonial .open-quote:before {
 	content: "\f10d";
 	font-family: 'Font Awesome 5 Free';
-	font-weight: 700;
+	font-weight: 900;
 	color: var(--memberlite-color-secondary);
 	font-size: 2.9rem;
 	padding-right: 1rem;
@@ -308,10 +305,11 @@ blockquote cite a,
 .testimonials-widget-testimonial .close-quote:after {
 	content: "\f10e";
 	font-family: 'Font Awesome 5 Free';
-	font-weight: 700;
+	font-weight: 900;
 	color: var(--memberlite-color-secondary);
 	font-size: 2.9rem;
 	padding-left: 1rem;
+	vertical-align: sub;
 }
 .footer-widgets .testimonials-widget blockquote {
 	color: var(--memberlite-color-white);
@@ -3171,7 +3169,6 @@ form.pmpro_form .pmpro_payment-expiration select {
 11.2 Testimonials Widget: https://wordpress.org/plugins/testimonials-widget/
 --------------------------------------------------------------*/
 .testimonials-widget-testimonial span.image {
-	border-radius: 50%;
 	margin: 0 2rem 0 1rem;
 }
 .testimonials-widget-testimonial span.image img {
@@ -3180,8 +3177,6 @@ form.pmpro_form .pmpro_payment-expiration select {
 	border: none;
 	display: inline-block;
 	padding: 0;
-	transition: transform 0.5s ease;
-	transform: scale(0.8);
 }
 #secondary .testimonials-widget-testimonial {
 	text-align: center;
