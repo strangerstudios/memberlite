@@ -767,10 +767,10 @@ function memberlite_getBreadcrumbs() {
 						esc_html_e( 'Chats', 'memberlite' );
 
 					elseif ( is_tax( ) ) :
-						esc_html_e( single_term_title() );
+						echo esc_html( single_term_title() );
 
 					else :
-						esc_html_e( single_term_title() );
+						esc_html_e( 'Archives', 'memberlite' );
 
 					endif;
 				?>
