@@ -526,7 +526,7 @@ function memberlite_nav_menu_submenu() {
 		 *
 		 * @return string $pagemenuid The top level page to build the child menu from.
 		 */
-		$pagemenuid = apply_filters( 'memberlite_nav_menu_submenu_depth', $pagemenuid, $ancestors );
+		$pagemenuid = apply_filters( 'memberlite_nav_menu_submenu_pagemenuid', $pagemenuid, $ancestors );
 		$children   = wp_list_pages( 'title_li=&child_of=' . $pagemenuid . '&exclude=' . $exclude . '&echo=0&sort_column=menu_order,post_title' );
 		$titlenamer = get_the_title( $pagemenuid );
 		$titlelink  = get_permalink( $pagemenuid );
