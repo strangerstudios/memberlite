@@ -519,6 +519,13 @@ function memberlite_nav_menu_submenu() {
 		} else {
 			$pagemenuid = $current_post->ID;
 		}
+		/**
+		 * Filter to set the top level page to generate the submenu.
+		 *
+		 * @param string $pagemenuid The post ID of the page used to generate the submenu. Defaults to the post's oldest ancestor.
+		 * @param array $ancestors An array of post IDs for the ancestors of the current post.
+		 */
+		$pagemenuid = apply_filters( 'memberlite_nav_menu_submenu_pagemenuid', $pagemenuid, $ancestors );
 		$children   = wp_list_pages( 'title_li=&child_of=' . $pagemenuid . '&exclude=' . $exclude . '&echo=0&sort_column=menu_order,post_title' );
 		$titlenamer = get_the_title( $pagemenuid );
 		$titlelink  = get_permalink( $pagemenuid );
@@ -672,9 +679,7 @@ function memberlite_getBreadcrumbs() {
 				?>
 				<?php the_title(); ?>
 			</nav>
-			<?php
-} elseif ( is_post_type_archive() && '' != $archive_breadcrumbs ) {
-?>
+		<?php } elseif ( is_post_type_archive() && '' != $archive_breadcrumbs ) { ?>
 			<nav class="memberlite-breadcrumb" itemprop="breadcrumb">
 				<?php if ( empty( $memberlite_hide_home_breadcrumb ) ) { ?>
 					<a href="<?php echo esc_url( home_url() ); ?>"><?php esc_html_e( 'Home', 'memberlite' ); ?></a>
@@ -703,17 +708,15 @@ function memberlite_getBreadcrumbs() {
 					<a href="<?php echo esc_url( get_post_type_archive_link( $taxonomy->object_type[0] ) ); ?>"><?php echo esc_html( $post_type->labels->name ); ?></a>
 						<span class="sep"><?php echo esc_html( $memberlite_delimiter ); ?></span>
 						<?php
-				} elseif ( get_option( 'page_for_posts' ) ) {
-				?>
+				} elseif ( get_option( 'page_for_posts' ) ) { ?>
 						<a href="<?php echo esc_url( get_permalink( get_option( 'page_for_posts' ) ) ); ?>"><?php echo esc_html( get_the_title( get_option( 'page_for_posts' ) ) ); ?></a>
 						<span class="sep"><?php echo esc_html( $memberlite_delimiter ); ?></span>
 						<?php
-				}
-				?>
+				} ?>
 
 				<?php
-				if ( is_category() ) :
-					single_cat_title();
+					if ( is_category() ) :
+						single_cat_title();
 
 					elseif ( is_tag() ) :
 						$current_tag = single_tag_title( '', false );
@@ -762,6 +765,9 @@ function memberlite_getBreadcrumbs() {
 
 					elseif ( is_tax( 'post_format', 'post-format-chat' ) ) :
 						esc_html_e( 'Chats', 'memberlite' );
+
+					elseif ( is_tax( ) ) :
+						echo esc_html( single_term_title() );
 
 					else :
 						esc_html_e( 'Archives', 'memberlite' );
