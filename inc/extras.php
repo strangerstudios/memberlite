@@ -520,11 +520,10 @@ function memberlite_nav_menu_submenu() {
 			$pagemenuid = $current_post->ID;
 		}
 		/**
-		 * Filter to adjust how deep into the ancestry to go for page submenu.
+		 * Filter to set the top level page to generate the submenu.
 		 *
-		 * @param string $pagemenuid The end of the post ancestors to build the child page list from.
-		 *
-		 * @return string $pagemenuid The top level page to build the child menu from.
+		 * @param string $pagemenuid The post ID of the page used to generate the submenu. Defaults to the post's oldest ancestor.
+		 * @param array $ancestors An array of post IDs for the ancestors of the current post.
 		 */
 		$pagemenuid = apply_filters( 'memberlite_nav_menu_submenu_pagemenuid', $pagemenuid, $ancestors );
 		$children   = wp_list_pages( 'title_li=&child_of=' . $pagemenuid . '&exclude=' . $exclude . '&echo=0&sort_column=menu_order,post_title' );
