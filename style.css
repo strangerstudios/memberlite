@@ -1572,11 +1572,10 @@ a:active {
 #secondary .widget {
 	margin-bottom: 2.9rem;
 }
-.widget-area .widget a:not(.btn),
-.widget-area .widget a:link:not(.btn) {
+.widget-area .widget a:not(.btn) {
 	border-bottom: 1px dotted var(--memberlite-color-white);
 	text-decoration: none;
-	color: #777;
+	color: var(--memberlite-color-text);
 }
 .widget-area .widget a:hover:not(.btn) {
 	color: var(--memberlite-color-primary);
@@ -1629,14 +1628,13 @@ a:active {
 	margin: 0;
 	padding: 1.45rem;
 }
+#secondary .widget-title a {
+	text-decoration: none;
+}
 .widget_calendar #wp-calendar caption {
 	background-color: #EFEFEF;
 	border-top: 1px solid var(--memberlite-color-borders);
 	padding: .7rem 1.45rem;
-}
-#secondary .widget-title a {
-	text-decoration: none;
-	color: #777;
 }
 #secondary select {
 	margin: 1.45rem;
