@@ -1222,7 +1222,7 @@ a:active {
 .header-right .widget_nav_menu ul ul li:first-child a {
 	padding-left: 1.5rem;
 }
-#site-navigation .search-form {
+#site-navigation li.menu-item-search {
 	float: right;
 	position: relative;
 }

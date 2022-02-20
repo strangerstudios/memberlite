@@ -434,7 +434,7 @@ function memberlite_menus( $items, $args ) {
 	if ( $args->theme_location == 'primary' || ( substr( $args->theme_location, -strlen( '-primary' ) ) === '-primary' ) ) {
 		$nav_menu_search = get_theme_mod( 'nav_menu_search', false );
 		if ( ! empty( $nav_menu_search ) ) {
-			$items .= get_search_form( false );
+			$items .= '<li class="menu-item-search">' . get_search_form( false ) . '</li>';
 		}
 	}
 	return $items;
