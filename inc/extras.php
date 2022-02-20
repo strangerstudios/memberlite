@@ -649,7 +649,7 @@ function memberlite_getBreadcrumbs() {
 					echo wp_kses_post( $crumb );
 				}
 				?>
-				<?php the_title(); ?>
+				<span class="current_page_item"><?php the_title(); ?></span>
 			</nav>
 		<?php } elseif ( is_page() && ! is_front_page() && ! is_attachment() && '' != $page_breadcrumbs ) { ?>
 			<nav class="memberlite-breadcrumb" itemprop="breadcrumb">
@@ -677,7 +677,7 @@ function memberlite_getBreadcrumbs() {
 					<?php
 				}
 				?>
-				<?php the_title(); ?>
+				<span class="current_page_item"><?php the_title(); ?></span>
 			</nav>
 		<?php } elseif ( is_post_type_archive() && '' != $archive_breadcrumbs ) { ?>
 			<nav class="memberlite-breadcrumb" itemprop="breadcrumb">
@@ -687,7 +687,7 @@ function memberlite_getBreadcrumbs() {
 				<?php } ?>
 				<?php
 				$post_type = get_post_type_object( get_query_var( 'post_type' ) );
-				echo esc_html( $post_type->labels->name );
+				echo '<span class="current_page_item">' . esc_html( $post_type->labels->name ) . '</span>';
 			?>
 			</nav>
 		<?php } elseif ( ( ( is_author() || is_tag() || is_archive() ) ) && '' != $archive_breadcrumbs ) { ?>
@@ -716,64 +716,64 @@ function memberlite_getBreadcrumbs() {
 
 				<?php
 					if ( is_category() ) :
-						single_cat_title();
+						echo '<span class="current_page_item">' . single_cat_title( '', false ) . '</span>';
 
 					elseif ( is_tag() ) :
 						$current_tag = single_tag_title( '', false );
 						/* translators: %s: current tag archive's single title */
-						printf( esc_html__( 'Posts Tagged: %s', 'memberlite' ), '<span>' . esc_html( $current_tag ) . '</span>' );
+						printf( esc_html__( 'Posts Tagged: %s', 'memberlite' ), '<span class="current_page_item">' . esc_html( $current_tag ) . '</span>' );
 
 					elseif ( is_author() ) :
 						/* translators: %s: current author archive's name */
-						printf( esc_html__( 'Author: %s', 'memberlite' ), '<span class="vcard">' . get_the_author() . '</span>' );
+						printf( esc_html__( 'Author: %s', 'memberlite' ), '<span class="vcard current_page_item">' . get_the_author() . '</span>' );
 
 					elseif ( is_day() ) :
 						/* translators: %s: day for the viewed archive */
-						printf( esc_html__( 'Day: %s', 'memberlite' ), '<span>' . get_the_date() . '</span>' );
+						printf( esc_html__( 'Day: %s', 'memberlite' ), '<span class="current_page_item">' . get_the_date() . '</span>' );
 
 					elseif ( is_month() ) :
 						/* translators: %s: month for the viewed archive */
-						printf( esc_html__( 'Month: %s', 'memberlite' ), '<span>' . get_the_date( _x( 'F Y', 'monthly archives date format', 'memberlite' ) ) . '</span>' );
+						printf( esc_html__( 'Month: %s', 'memberlite' ), '<span class="current_page_item">' . get_the_date( _x( 'F Y', 'monthly archives date format', 'memberlite' ) ) . '</span>' );
 
 					elseif ( is_year() ) :
 						/* translators: %s: year for the viewed archive */
-						printf( esc_html__( 'Year: %s', 'memberlite' ), '<span>' . get_the_date( _x( 'Y', 'yearly archives date format', 'memberlite' ) ) . '</span>' );
+						printf( esc_html__( 'Year: %s', 'memberlite' ), '<span class="current_page_item">' . get_the_date( _x( 'Y', 'yearly archives date format', 'memberlite' ) ) . '</span>' );
 
 					elseif ( is_tax( 'post_format', 'post-format-aside' ) ) :
-						esc_html_e( 'Asides', 'memberlite' );
+						echo '<span class="current_page_item">' . esc_html__( 'Asides', 'memberlite' ) . '</span>';
 
 					elseif ( is_tax( 'post_format', 'post-format-gallery' ) ) :
-						esc_html_e( 'Galleries', 'memberlite' );
+						echo '<span class="current_page_item">' . esc_html__( 'Galleries', 'memberlite' ) . '</span>';
 
 					elseif ( is_tax( 'post_format', 'post-format-image' ) ) :
-						esc_html_e( 'Images', 'memberlite' );
+						echo '<span class="current_page_item">' . esc_html__( 'Images', 'memberlite' ) . '</span>';
 
 					elseif ( is_tax( 'post_format', 'post-format-video' ) ) :
-						esc_html_e( 'Videos', 'memberlite' );
+						echo '<span class="current_page_item">' . esc_html__( 'Videos', 'memberlite' ) . '</span>';
 
 					elseif ( is_tax( 'post_format', 'post-format-quote' ) ) :
-						esc_html_e( 'Quotes', 'memberlite' );
+						echo '<span class="current_page_item">' . esc_html__( 'Quotes', 'memberlite' ) . '</span>';
 
 					elseif ( is_tax( 'post_format', 'post-format-link' ) ) :
-						esc_html_e( 'Links', 'memberlite' );
+						echo '<span class="current_page_item">' . esc_html__( 'Links', 'memberlite' ) . '</span>';
 
 					elseif ( is_tax( 'post_format', 'post-format-status' ) ) :
-						esc_html_e( 'Statuses', 'memberlite' );
+						echo '<span class="current_page_item">' . esc_html__( 'Statuses', 'memberlite' ) . '</span>';
 
 					elseif ( is_tax( 'post_format', 'post-format-audio' ) ) :
-						esc_html_e( 'Audios', 'memberlite' );
+						echo '<span class="current_page_item">' . esc_html__( 'Audios', 'memberlite' ) . '</span>';
 
 					elseif ( is_tax( 'post_format', 'post-format-chat' ) ) :
-						esc_html_e( 'Chats', 'memberlite' );
+						echo '<span class="current_page_item">' . esc_html__( 'Chats', 'memberlite' ) . '</span>';
 
 					elseif ( is_tax( ) ) :
-						echo esc_html( single_term_title() );
+						echo '<span class="current_page_item">' . esc_html( single_term_title( '', false ) ) . '</span>';
 
 					else :
-						esc_html_e( 'Archives', 'memberlite' );
+						echo '<span class="current_page_item">' . esc_html__( 'Archives', 'memberlite' ) . '</span>';
 
 					endif;
-				?>
+				?></span>
 			</nav>
 		<?php } elseif ( is_singular( array( 'post' ) ) && '' != $post_breadcrumbs ) { ?>
 			<nav class="memberlite-breadcrumb" itemprop="breadcrumb">

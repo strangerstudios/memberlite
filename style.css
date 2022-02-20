@@ -1350,9 +1350,10 @@ a:active {
 .memberlite-breadcrumb a:hover {
 	font-weight: 400;
 }
-.masthead-banner .masthead .memberlite-breadcrumb {
-
+.memberlite-breadcrumb .current_page_item {
+	font-weight: 700;
 }
+
 /*--------------------------------------------------------------
 5.4 Prev/Next Navigation
 --------------------------------------------------------------*/
@@ -1985,7 +1986,8 @@ a:active {
 .page.sidebar-none #content .masthead h1.page-title,
 .blog.sidebar-blog-none #content .masthead h1.page-title,
 .archive.sidebar-blog-none #content .masthead h1.page-title,
-.search.sidebar-blog-none #content .masthead h1.page-title {
+.search.sidebar-blog-none #content .masthead h1.page-title,
+.archive.sidebar-blog-none .masthead .taxonomy-description {
 	text-align: center;
 }
 .masthead h1 a,
@@ -1998,6 +2000,10 @@ a:active {
 .masthead-banner .masthead .masthead-post-byline h1,
 .masthead-banner .masthead .masthead-post-byline .post_author_avatar {
 	margin-top: 0;
+}
+.archive.sidebar-blog-none .masthead .taxonomy-description p {
+	font-size: 2.2rem;
+	line-height: 3.5rem;
 }
 .masthead p:last-child {
 	margin: 0;
@@ -2018,12 +2024,6 @@ a:active {
 	color: var(--memberlite-color-white);
 	text-decoration: none;
 	border-bottom: 1px dotted var(--memberlite-color-white);
-	filter: alpha(opacity=80);
-	opacity: 0.8;
-}
-.masthead p a:hover {
-	filter: alpha(opacity=100);
-	opacity: 1.0;
 }
 .masthead .btn  {
 	filter: alpha(opacity=100);
