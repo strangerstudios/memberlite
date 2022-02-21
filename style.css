@@ -2274,6 +2274,7 @@ a:active {
 	letter-spacing: -.2px;
 	line-height: 2.9rem;
 	margin: 0;
+	word-break: break-word;
 }
 .grid-list h1 a,
 .grid-list h2 a {
