@@ -150,7 +150,6 @@ button,
 input,
 select,
 textarea,
-.btn,
 #main div.em-search-main button.em-search-submit {
 	color: var(--memberlite-color-text);
 	font-weight: 400;
@@ -556,13 +555,10 @@ input[type=button],
 input[type=reset],
 input[type=submit],
 .btn,
-.btn:link,
 a.pmpro_btn,
 .pmpro_content_message a,
-.pmpro_content_message a:link,
-.pmpro_content_message a:visited,
 a.comment-reply-link,
-a.comment-reply-link:link,
+a.comment-reply-link,
 input[type=submit].pmpro_btn,
 input[type=button].pmpro_btn,
 #loginform input[type=submit].button.button-primary,
@@ -573,7 +569,7 @@ input[type=button].pmpro_btn,
 	border-radius: 6px;
 	box-shadow: 1px 2px 4px rgba(0,0,0,0.2);
 	color: var(--memberlite-color-white);
-	cursor: pointer; /* Improves usability and consistency of cursor style between image-type 'input' and others */
+	cursor: pointer;
 	-webkit-appearance: none;
 	font-size: 1.8rem;
 	font-style: normal;
@@ -605,18 +601,12 @@ input[type=submit].inline-form-button {
 	padding-bottom: .5rem;
 }
 .pmpro_content_message a,
-.pmpro_content_message a:link,
 a.comment-reply-link,
-a.comment-reply-link:link,
 a.btn.skip-link {
 	padding: .7rem 1.45rem;
 }
 a.pmpro_btn,
-a.pmpro_btn:link,
-a.pmpro_btn:visited,
 .pmpro_content_message a,
-.pmpro_content_message a:link,
-.pmpro_content_message a:visited,
 input[type=submit].pmpro_btn,
 input[type=button].pmpro_btn,
 #loginform input[type=submit].button.button-primary {
@@ -670,20 +660,16 @@ a.comment-reply-link:hover {
 	text-shadow: none;
 	transform: translateY(-1px);
 }
-.btn_info,
-.btn_info:link {
+.btn_info {
 	background-color: #5bc0de;
 }
-.btn_success,
-.btn_success:link {
+.btn_success {
 	background-color: #5cb85c;
 }
-.btn_error,
-.btn_error:link {
+.btn_error {
 	background-color: #d9534f;
 }
-.btn_alert,
-.btn_alert:link {
+.btn_alert {
 	background-color: #f0ad4e;
 }
 .btn_info:hover {
@@ -699,22 +685,18 @@ a.comment-reply-link:hover {
 	background-color: #ec971f;
 }
 .btn_primary,
-.btn_primary:link,
 .menu-toggle {
 	background-color: var(--memberlite-color-primary);
 }
-.btn_secondary,
-.btn_secondary:link {
+.btn_secondary {
 	background-color: var(--memberlite-color-secondary);
 	color: var(--memberlite-color-white);
 }
-.btn_action,
-.btn_action:link {
+.btn_action {
 	background-color: var(--memberlite-color-action);
 	color: var(--memberlite-color-white);
 }
-.btn_block,
-.btn_block:link {
+.btn_block {
 	display: block; width: 100%;
 }
 .btn .fa,
@@ -727,7 +709,7 @@ a.comment-reply-link:hover {
 .btn_link .fas {
 	padding: 0 .5rem;
 }
-
+/*
 .content-area a.btn,
 .content-area a.btn:link,
 .content-area a.comment-reply-link,
@@ -742,7 +724,7 @@ a.comment-reply-link:hover {
 .content-area a.comment-reply-link:hover,
 .content-area .pmpro_content_message a:hover {
 	color: var(--memberlite-color-white);
-}
+}*/
 
 /* Link-style button */
 .btn_link {
@@ -988,6 +970,9 @@ a:active {
 .action,
 .has-text-color.has-color-action-color {
 	color: var(--memberlite-color-action);
+}
+.has-text-color a {
+	color: inherit;
 }
 .info {
 	color: #5bc0de;
@@ -1476,10 +1461,6 @@ a:active {
 .wp-block-cover-image {
 	min-height: initial;
 	padding: 5.8rem 0 2.9rem 0;
-}
-.wp-block-cover-image a:not(.has-text-color),
-.wp-block-cover a:not(.has-text-color) {
-	color: inherit;
 }
 .text-center {
 	text-align: center;
