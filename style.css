@@ -1999,11 +1999,6 @@ a:active {
 	text-decoration: none;
 	border-bottom: 1px dotted var(--memberlite-color-white);
 }
-.masthead .btn  {
-	filter: alpha(opacity=100);
-	opacity: 1.0;
-	border: none;
-}
 .masthead .post_author_avatar {
 	border-radius: 50%;
 	grid-area: avatar;
@@ -2031,8 +2026,14 @@ a:active {
 10.3 Interstitial Page
 --------------------------------------------------------------*/
 .interstitial .site-branding,
-.interstitial .masthead {text-align: center; }
-.interstitial .masthead .btn {position: absolute; top: 0; right: 0; }
+.interstitial .masthead {
+	text-align: center;
+}
+.interstitial .masthead .btn {
+	position: absolute;
+	top: 0;
+	right: 0;
+}
 
 /*--------------------------------------------------------------
 10.4 Posts and Pages
@@ -3440,7 +3441,7 @@ object {
 		padding-bottom: 5.8rem;
 	}
 	.footer-widgets .widget:nth-child(even) {
-		background-color: rgba(255,255,255,0.2);
+		background-color: rgba( 0, 0, 0,0.2);
 	}
 	.site-footer .site-info .skip-link {
 		margin-top: 1.45rem;
