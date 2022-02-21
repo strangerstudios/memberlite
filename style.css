@@ -1712,13 +1712,6 @@ a:active {
 	border-radius: 50%;
 	margin: 0;
 }
-/*
-#secondary .widget_recent_entries_thumbnails .widget_post_thumbnail:hover,
-.footer-widgets .widget_post_thumbnail:hover {
-	border: none;
-}
-*/
-
 .widget_recent_entries_thumbnails .widget_post_thumbnail .fa {
 	font-size: 40px;
 	margin: 20px;
@@ -3375,6 +3368,9 @@ object {
 	form.pmpro_form .input[type=text],
 	form.pmpro_form select {
 		width: 93%;
+	}
+	form.pmpro_form .pmpro_checkout-field-checkbox label {
+		display: inline;
 	}
 	form.pmpro_form #CVV,
 	form.pmpro_form select#ExpirationMonth,
