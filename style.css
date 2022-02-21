@@ -3372,7 +3372,7 @@ object {
 	form.pmpro_form .pmpro_select_payment_method span {
 		display: block;
 	}
-	form.pmpro_form .input,
+	form.pmpro_form .input[type=text],
 	form.pmpro_form select {
 		width: 93%;
 	}
