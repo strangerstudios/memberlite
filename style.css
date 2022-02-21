@@ -2191,7 +2191,7 @@ a:active {
 	border-bottom: 1px dotted #777;
 }
 .entry-author {
-	background-color: #EFEFEF;
+	background-color: #F1F1F1;
 	display: flex;
 	flex: auto;
 	flex-wrap: nowrap;
@@ -2239,13 +2239,12 @@ a:active {
 .post .entry-footer {
 	border-bottom: 1px dotted var(--memberlite-color-borders);
 	background-color: #FAFAFA;
-	color: #AAA;
+	color: #666;
 	font-style: italic;
 	padding: 1.45rem;
 }
 #primary .entry-footer a {
-	border-bottom: 1px dotted #FAFAFA;
-	color: #777;
+	color: var(--memberlite-color-text);
 	text-decoration: none;
 }
 .entry-footer a:hover {
