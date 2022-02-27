@@ -2134,7 +2134,7 @@ a:active {
 	padding-right: 10px;
 }
 .pmpro-level-required.pmpro-has-access h1.entry-title a:before,
-.pmpro-body-level-required.pmpro-body-has-access h1.entry-title a:before {
+.pmpro-body-level-required.pmpro-body-has-access h1.entry-title:before {
 	content: "";
 	font-family: 'Font Awesome 5 Free';
 	padding-right: 0;
