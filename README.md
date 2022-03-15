@@ -73,5 +73,4 @@ There are various **ways to help the development** of Memberlite:
 Here are some ways for **non-developers to contribute** to Memberlite:
 
 1. Translate Memberlite into your own language.
-2. [Purchase a Memberlite Support membership](https://memberlitetheme.com/pricing) to help fund ongoing development and bug fixes.
-3. Leave an honest review for [Memberlite](https://wordpress.org/support/theme/memberlite/reviews/).
+2. Leave an honest review for [Memberlite](https://wordpress.org/support/theme/memberlite/reviews/).

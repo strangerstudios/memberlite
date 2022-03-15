@@ -31,7 +31,7 @@ if ( ! empty( $memberlite_get_banner_image_src ) ) {
 	?>
 
 	<header class="entry-header">
-		<?php if ( 'post' == get_post_type() ) : ?>
+		<?php if ( 'post' == get_post_type() && ! is_search() ) : ?>
 			<?php
 				$memberlite_avatar_size = apply_filters( 'memberlite_avatar_size', 80 );
 			?>

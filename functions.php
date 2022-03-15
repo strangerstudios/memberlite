@@ -4,7 +4,7 @@
  *
  * @package Memberlite
  */
-define( 'MEMBERLITE_VERSION', '4.5.3' );
+define( 'MEMBERLITE_VERSION', '4.5.4.1.91' );
 
 // get default values for options/etc
 require_once get_template_directory() . '/inc/defaults.php';
@@ -21,7 +21,7 @@ function memberlite_init_styles() {
 	}
 	wp_enqueue_style( 'memberlite_print_style', get_template_directory_uri() . '/css/print.css', array(), MEMBERLITE_VERSION, 'print' );
 	wp_enqueue_script( 'memberlite-script', get_template_directory_uri() . '/js/memberlite.js', array( 'jquery' ), MEMBERLITE_VERSION, true );
-	wp_enqueue_style( 'font-awesome', get_template_directory_uri() . '/font-awesome/css/all.min.css', array(), '5.15.1' );
+	wp_enqueue_style( 'font-awesome', get_template_directory_uri() . '/font-awesome/css/all.min.css', array(), '5.15.4' );
 
 	// load dark.css for dark/inverted backgrounds
 	$memberlite_darkcss = get_theme_mod( 'memberlite_darkcss', $memberlite_defaults['memberlite_darkcss'], false );
@@ -434,7 +434,7 @@ function memberlite_menus( $items, $args ) {
 	if ( $args->theme_location == 'primary' || ( substr( $args->theme_location, -strlen( '-primary' ) ) === '-primary' ) ) {
 		$nav_menu_search = get_theme_mod( 'nav_menu_search', false );
 		if ( ! empty( $nav_menu_search ) ) {
-			$items .= get_search_form( false );
+			$items .= '<li class="menu-item-search">' . get_search_form( false ) . '</li>';
 		}
 	}
 	return $items;

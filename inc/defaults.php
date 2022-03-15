@@ -51,4 +51,5 @@ $memberlite_defaults = apply_filters( 'memberlite_defaults', array(
 	'hover_brightness'							=> '1.1',
 	'color_white'								=> '#FFFFFF',
 	'color_text'								=> '#444444',
+	'color_borders'								=> '#CCCCCC',
 ) );

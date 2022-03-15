@@ -4,7 +4,7 @@ Memberlite is a theme for membership sites on WordPress. Contributions of all ki
 
 When contributing, please follow these guidelines to ensure things work as smoothly as possible.
 
-__Please Note:__ GitHub is for bug reports and contributions only. If you have a support or customization question, go to our [Member Support Page](https://memberlitetheme.com/) instead.
+__Please Note:__ GitHub is for bug reports and contributions only. If you have a support or customization question, go to our [website](https://memberlitetheme.com/) instead.
 
 ## Getting Started
 
