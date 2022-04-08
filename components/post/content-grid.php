@@ -12,9 +12,11 @@
 
 <article id="post-<?php the_ID(); ?>" <?php post_class( ); ?>>
 	<a class="post-thumbnail-link" href="<?php echo esc_url( get_permalink() ); ?>">
-		<?php 
-			if ( has_post_thumbnail() && ! empty( get_the_post_thumbnail() ) ) {
-				the_post_thumbnail( 'large', array( 'class' => 'aligncenter' ) );
+		<?php
+			$attachment_id = get_post_thumbnail_id( get_the_ID() );
+			$memberlite_get_banner_image = memberlite_get_banner_image( $attachment_id, 'large', '', array( 'class' => 'aligncenter' ), get_the_ID() );
+			if ( ! empty( $memberlite_get_banner_image ) ) {
+				echo $memberlite_get_banner_image;
 			} else { ?>
 				<div class="post-thumbnail-empty"><i class="fas fa-file-alt"></i></div>
 			<?php }

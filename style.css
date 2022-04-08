@@ -1250,8 +1250,7 @@ a:active {
 #mobile-navigation .search-form {
 	padding: 1.45rem
 }
-#mobile-navigation .widget.widget_nav_menu,
-#mobile-navigation .widget.widget_search {
+#mobile-navigation .widget.widget_nav_menu {
 	padding: 0;
 }
 #mobile-navigation .widget h3 {
@@ -1924,35 +1923,29 @@ a:active {
 	padding-bottom: 0;
 }
 .masthead-post-byline {
-	display: grid;
-	grid-template-columns: 1fr .25fr 11fr 2fr;
-	grid-template-areas:
-    "avatar . title ."
-    "avatar . meta .";
-    margin: 1.45rem 0 0 0;
+	display: flex;
+	margin-top: 4.35rem;
 }
 .single-post.sidebar-blog-none .masthead-post-byline {
-	grid-template-columns: 1fr;
-	grid-template-areas:
-	"avatar"
-	"title"
-	"meta";
-	margin: 0;
+	margin-top: 2.9rem;
+	flex-direction: column;
 	text-align: center;
 }
 .masthead-banner .masthead-post-byline {
-	background-color: rgba(0,0,0,.6);
+	background-color: rgba( 0, 0, 0, 0.6 );
 	margin: 16rem 0 0 0;
 	padding: 1.45rem;
 }
 .masthead h1 {
-	grid-area: title;
 	-webkit-hyphens: auto;
 	-moz-hyphens: auto;
 	hyphens: auto;
 	margin: 2.9rem 0 0 0;
 	word-wrap: break-word;
 	overflow-wrap: break-word;
+}
+.single-post .masthead-post-byline h1 {
+	margin-top: 0;
 }
 .single-post.sidebar-blog-none .masthead-post-byline h1 {
 	margin-top: 1.45rem;
@@ -1986,11 +1979,9 @@ a:active {
 	margin: 2rem 0 0 0;
 }
 .masthead .masthead-post-byline p.entry-meta {
-	grid-area: meta;
 	margin: 0;
 }
 .masthead-banner .masthead-post-byline p.entry-meta {
-	grid-area: meta;
 	margin: 0;
 }
 .masthead p a,
@@ -2001,10 +1992,11 @@ a:active {
 }
 .masthead .post_author_avatar {
 	border-radius: 50%;
-	grid-area: avatar;
-	height: auto;
-	margin-top: 2.9rem;
-	width: 100%;
+	flex-shrink: 0;
+	margin-right: 1.45rem;
+}
+.single-post.sidebar-blog-none .masthead-post-byline .post_author_avatar {
+	margin-right: 0;
 }
 .masthead .post_author_avatar img {
 	border-radius: 50%;
@@ -2044,56 +2036,50 @@ a:active {
 .page-template-blank .hentry {
 	margin:  0;
 }
-.columns .hentry.memberlite_subpagelist_item {margin: 0; }
+.columns .hentry.memberlite_subpagelist_item {
+	margin: 0;
+}
 .hentry .entry-banner {
 	background-position: center center;
 	background-repeat: no-repeat;
 	background-size: cover;
-	height: 200px;
 	position: relative;
-	margin: 0 0 1.5rem;
+	margin: 0 0 2.9rem 0;
 	border-top: 1px dotted var(--memberlite-color-borders);
 	border-bottom: 1px dotted var(--memberlite-color-borders);
 }
 .hentry .entry-banner .entry-header {
 	background-color: rgba(0,0,0,0.6);
 	width: 100%;
-	position: absolute;
 	bottom: 0;
-	margin: 0;
-	padding: 1rem;
+	margin: 11.6rem 0 0 0;
+	padding: 1.45rem;
 }
 #primary .hentry .entry-banner .entry-header a {
 	color: var(--memberlite-color-white);
 }
 .entry-header-grid .entry-header {
-	display: grid;
-	grid-template-columns: 1fr .25fr 9fr;
-	grid-template-areas:
-    "avatar . title"
-    "avatar . meta";
-    margin-bottom: 2.9rem;
+	display: flex;
 }
-.entry-header-grid .entry-banner .entry-header {
+.entry-header-grid .entry-header-content {
+	margin-bottom: 2.9rem;
+}
+.entry-header-grid .entry-banner .entry-header-content {
 	margin-bottom: 0;
 }
 .entry-header-grid .entry-header .entry-title {
 	margin: 0 0 .7rem 0;
-	grid-area: title;
 	-webkit-hyphens: auto;
 	-moz-hyphens: auto;
 	hyphens: auto;
 	word-wrap: break-word;
 	overflow-wrap: break-word;
 }
-.entry-header-grid .entry-header .entry-meta {
-	grid-area: meta;
-}
 .entry-header-grid .entry-header .post_author_avatar {
 	border-radius: 50%;
-	grid-area: avatar;
+	flex-shrink: 0;
 	height: auto;
-	width: 100%;
+	margin-right: 1.45rem;
 }
 .hentry .post_author_avatar img {
 	border-radius: 50%;
@@ -2313,11 +2299,12 @@ a:active {
 	font-size: 8rem;
 }
 .grid-list .entry-header {
-	margin-top: -1.45rem;
+	margin-top: 2.9rem;
 	z-index: 1;
 }
 .grid-list .entry-header .avatar {
 	border: 2px solid var(--memberlite-color-white);
+	margin-top: -4.35rem;
 }
 .grid-list .entry-content {
 	border-bottom: none;

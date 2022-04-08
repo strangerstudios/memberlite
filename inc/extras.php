@@ -443,23 +443,22 @@ function memberlite_page_title( $echo = true ) {
 			?>
 		</h1>
 		<?php
-	} elseif ( is_singular( 'post' ) ) {
-		$author = get_userdata( $post->post_author );
-		$memberlite_avatar_size = apply_filters( 'memberlite_avatar_size', 80 );
-		?>
+	} elseif ( is_singular( 'post' ) ) { ?>
 		<div class="masthead-post-byline">
-			<div class="post_author_avatar"><?php echo get_avatar( $author->ID, $memberlite_avatar_size, '', $author->display_name ); ?></div>
-			<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
-			<?php
-				$memberlite_get_entry_meta_before = memberlite_get_entry_meta( $post, 'before' );
-			if ( ! empty( $memberlite_get_entry_meta_before ) ) {
+			<?php echo memberlite_get_author_avatar( $post->post_author ); ?>
+			<div class="entry-header-content">
+				<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
+				<?php
+					$memberlite_get_entry_meta_before = memberlite_get_entry_meta( $post, 'before' );
+				if ( ! empty( $memberlite_get_entry_meta_before ) ) {
+					?>
+					<p class="entry-meta">
+						<?php echo Memberlite_Customize::sanitize_text_with_links( memberlite_get_entry_meta( $post, 'before' ) ); ?>
+						</p><!-- .entry-meta -->
+						<?php
+				}
 				?>
-				<p class="entry-meta">
-					<?php echo Memberlite_Customize::sanitize_text_with_links( memberlite_get_entry_meta( $post, 'before' ) ); ?>
-					</p><!-- .entry-meta -->
-					<?php
-			}
-			?>
+			</div> <!-- .entry-header-content -->
 		</div>
 		<?php
 	} elseif ( is_home() ) {
@@ -853,6 +852,29 @@ function memberlite_should_show_banner_image( $post_id = null ) {
 	return $r;
 }
 
+/**
+ * Get the post thumbnail image src and allow filtering.
+ * Used to swap in the banner for loop/single posts with Memberlite Elements.
+ */
+function memberlite_get_banner_image( $attachment_id, $size = 'banner', $icon = false, $attr = '', $post_id ) {
+	// default to global post
+	if ( empty( $attachment_id ) ) {
+		global $post;
+		$post_id = $post->ID;
+		$attachment_id = get_post_thumbnail_id( $post_id );
+	}
+
+	$memberlite_banner_image = wp_get_attachment_image( $attachment_id, $size, $icon, $attr );
+
+	$memberlite_banner_image = apply_filters( 'memberlite_get_banner_image', $memberlite_banner_image, $attachment_id, $size, $icon, $attr, $post_id );
+
+	return $memberlite_banner_image;
+}
+
+/**
+ * Get the post thumbnail image src and allow filtering.
+ * Used to swap in the banner for loop/single posts with Memberlite Elements.
+ */
 function memberlite_get_banner_image_src( $post_id = null, $size = 'banner' ) {
 	// default to global post
 	if ( empty( $post_id ) ) {
@@ -862,7 +884,7 @@ function memberlite_get_banner_image_src( $post_id = null, $size = 'banner' ) {
 
 	$memberlite_banner_image_src = wp_get_attachment_image_src( get_post_thumbnail_id( $post_id ), $size );
 
-	$memberlite_banner_image_src = apply_filters( 'memberlite_banner_image_src', $memberlite_banner_image_src, $size );
+	$memberlite_banner_image_src = apply_filters( 'memberlite_banner_image_src', $memberlite_banner_image_src, $size, $post_id );
 
 	return $memberlite_banner_image_src;
 }

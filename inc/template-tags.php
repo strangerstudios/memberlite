@@ -161,6 +161,46 @@ function memberlite_get_entry_meta( $post = null, $location = 'before' ) {
 	return $meta;
 }
 
+
+/**
+ * Function to return the author avatar for display on posts.
+ *
+ */
+function memberlite_get_author_avatar( $author_id ) {
+	/**
+	 * Filter to hide avatars in the post entry header.
+	 *
+	 * @param $memberlite_show_author_avatar mixed Show avatars in the header for specific post types or hide everywhere.
+	 *
+	 * @return $memberlite_show_author_avatar mixed The post types or a bool value to show avatars.
+	 */
+	$memberlite_show_author_avatar = apply_filters( 'memberlite_show_author_avatar', array( 'post' ) );
+
+	// Bail if false.
+	if ( empty( $memberlite_show_author_avatar ) ) {
+		return;
+	}
+
+	// Show avatars if always set or for a specific post type.
+	if ( ! empty( $memberlite_show_author_avatar ) ) {
+		if ( is_array( $memberlite_show_author_avatar ) && ! in_array( get_post_type(), $memberlite_show_author_avatar ) ) {
+			// Set to false if this post_type should not show avatars.
+			$memberlite_show_author_avatar = false;
+		}
+	}
+
+	// The return variable
+	$memberlite_author_avatar = '';
+
+	// If we get here, we know it is either true or set for this post type.
+	if ( ! empty( $memberlite_show_author_avatar ) ) :
+		$memberlite_avatar_size = apply_filters( 'memberlite_avatar_size', 80 );
+		$memberlite_author_avatar = '<div class="post_author_avatar">' . get_avatar( $author_id, $memberlite_avatar_size, '', get_the_author_meta( 'display_name', $author_id ) ) . '</div>';
+	endif;
+
+	return $memberlite_author_avatar;
+}
+
 /**
  * Returns true if a blog has more than 1 category.
  *
