@@ -171,6 +171,7 @@ add_action( 'wp', 'memberlite_adjusted_content_width' );
 if ( ! function_exists( 'memberlite_setup' ) ) :
 	/* Sets up theme defaults and registers support for various WordPress features. */
 	function memberlite_setup() {
+		global $memberlite_defaults;
 		/*
 		 * Make theme available for translation.
 		 * If you're building a theme based on Memberlite, use a find and replace
@@ -251,73 +252,107 @@ if ( ! function_exists( 'memberlite_setup' ) ) :
 		
 		// Build unique array of Color Scheme values to include in Block Editor
 		$color_scheme = array();
-		$color_scheme['color_primary'] = get_theme_mod( 'color_primary' ); // Primary Color
-		$color_scheme['color_secondary'] = get_theme_mod( 'color_secondary' ); // Secondary Color
-		$color_scheme['color_action'] = get_theme_mod( 'color_action' ); // Action Color
 
-		// Add header_textcolor if set.
-		$header_textcolor = get_theme_mod( 'header_textcolor' );
-		if ( $header_textcolor != 'blank' ) {
-			$color_scheme['header_textcolor'] = '#' . $header_textcolor; // Site Title & Tagline Color
-		}
+		// Primary Color
+		$color_scheme[] = array(
+			'name' => __( 'Primary', 'memberlite' ),
+			'slug' => 'color-primary',
+			'color' => get_theme_mod( 'color_primary', $memberlite_defaults['color_primary'] )
+		);
 
-		$color_scheme['background_color'] = get_theme_mod( 'background_color' ); // Background Color
-		$color_scheme['bgcolor_site_navigation'] = get_theme_mod( 'bgcolor_site_navigation' );  // Primary Navigation Background Color
-		$color_scheme['color_site_navigation'] = get_theme_mod( 'color_site_navigation' );  // Primary Navigation Color
-		$color_scheme['color_link'] = get_theme_mod( 'color_link' ); // Link Color
-		$color_scheme['color_meta_link'] = get_theme_mod( 'color_meta_link' ); // Meta Link Color
-		
+		// Secondary Color
+		$color_scheme[] = array(
+			'name' => __( 'Secondary', 'memberlite' ),
+			'slug' => 'color-secondary',
+			'color' => get_theme_mod( 'color_secondary', $memberlite_defaults['color_secondary'] )
+		);
+
+		// Action Color
+		$color_scheme[] = array(
+			'name' => __( 'Action', 'memberlite' ),
+			'slug' => 'color-action',
+			'color' => get_theme_mod( 'color_action', $memberlite_defaults['color_action'] )
+		);
+
+		// Background Color
+		$color_scheme[] = array(
+			'name' => __( 'Background', 'memberlite' ),
+			'slug' => 'site-background',
+			'color' => get_theme_mod( 'background_color', $memberlite_defaults['background_color'] )
+		);
+
+		// Primary Navigation Background Color
+		$color_scheme[] = array(
+			'name' => __( 'Navigation Background', 'memberlite' ),
+			'slug' => 'site-navigation-background',
+			'color' => get_theme_mod( 'bgcolor_site_navigation', $memberlite_defaults['bgcolor_site_navigation'] )
+		);
+
+		// Link Color
+		$color_scheme[] = array(
+			'name' => __( 'Links', 'memberlite' ),
+			'slug' => 'link',
+			'color' => get_theme_mod( 'color_link', $memberlite_defaults['color_link'] )
+		);
+
+		// Primary Navigation Color
+		$color_scheme[] = array(
+			'name' => __( 'Navigation Links', 'memberlite' ),
+			'slug' => 'site-navigation-link',
+			'color' => get_theme_mod( 'color_site_navigation', $memberlite_defaults['color_site_navigation'] )
+		);
+
+		// Meta Link Color
+		$color_scheme[] = array(
+			'name' => __( 'Meta Links ', 'memberlite' ),
+			'slug' => 'meta-link',
+			'color' => get_theme_mod( 'color_meta_link', $memberlite_defaults['color_meta_link'] )
+		);
+
+		// Button Color
+		$color_scheme[] = array(
+			'name' => __( 'Buttons', 'memberlite' ),
+			'slug' => 'buttons',
+			'color' => get_theme_mod( 'color_button', $memberlite_defaults['color_button'] )
+		);
+
+		// White Color
+		$color_scheme[] = array(
+			'name' => __( 'White', 'memberlite' ),
+			'slug' => 'white',
+			'color' => get_theme_mod( 'color_white', $memberlite_defaults['color_white'] )
+		);
+
+		// Text Color
+		$color_scheme[] = array(
+			'name' => __( 'Text', 'memberlite' ),
+			'slug' => 'body-text',
+			'color' => get_theme_mod( 'color_text', $memberlite_defaults['color_text'] )
+		);
+
+		// Borders Color
+		$color_scheme[] = array(
+			'name' => __( 'Borders', 'memberlite' ),
+			'slug' => 'borders',
+			'color' => get_theme_mod( 'color_borders', $memberlite_defaults['color_borders'] )
+		);
+
 		// Get all unique color values.
-		$color_scheme = array_unique( $color_scheme, SORT_STRING );
-		
+		$color_scheme_temp = array_unique( array_column( $color_scheme, 'color' ) );
+		$color_scheme = array_intersect_key( $color_scheme, $color_scheme_temp );
+
 		// Build colors array for palette.
 		$colors = array();
-		foreach( $color_scheme as $slug => $color ) {
+		foreach( $color_scheme as $color ) {
 			$colors[] = array(
-				'name' => $slug,	// can use a lookup array instead
-				'slug' => $slug,
-				'color' => $color,
+				'name' => $color['name'],
+				'slug' => $color['slug'],
+				'color' => $color['color'],
 			);
 		}
-		
+
 		// Add color values to Block Editor
 		add_theme_support( 'editor-color-palette', $colors );
-
-		// Adds custom theme colors to the Gutenberg editor palette.
-		global $memberlite_defaults;
-		$color_primary = get_theme_mod( 'color_primary' );
-		if ( empty( $color_primary ) ) {
-			$color_primary = $memberlite_defaults['color_primary'];
-		}
-		$color_secondary = get_theme_mod( 'color_secondary' );
-		if ( empty( $color_secondary ) ) {
-			$color_secondary = $memberlite_defaults['color_secondary'];
-		}
-		$color_action = get_theme_mod( 'color_action' );
-		if ( empty( $color_action ) ) {
-			$color_action = $memberlite_defaults['color_action'];
-		}
-
-		add_theme_support( 'editor-color-palette', array(
-		    array(
-		        'name' => __( 'Primary Color', 'memberlite' ),
-		        'slug' => 'color-primary',
-		        'color' => $color_primary,
-		    ),
-		    array(
-		        'name' => __( 'Secondary Color', 'memberlite' ),
-		        'slug' => 'color-secondary',
-		        'color' => $color_secondary,
-		    ),
-		    array(
-		        'name' => __( 'Action Color', 'memberlite' ),
-		        'slug' => 'color-action',
-		        'color' => $color_action,
-		    ),
-		) );
-		
-		// Styles the visual editor to resemble the theme style
-		add_editor_style( array( 'css/editor-style.css' ) );
 
 		// Indicate widget sidebars can use selective refresh in the Customizer.
 		add_theme_support( 'customize-selective-refresh-widgets' );

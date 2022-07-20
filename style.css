@@ -23,6 +23,7 @@ Memberlite is distributed under the terms of the GNU GPL.
 1.0 - Reset
 2.0 - Typography
 3.0 - Elements
+	3.1 - Block Editor Elements
 4.0 - Forms
 	4.1 - Buttons
 	4.2 - Form Elements
@@ -532,6 +533,45 @@ dd {
 dl dt:first-child {
 	border-top: none;
 }
+
+/*--------------------------------------------------------------
+3.1 Block Editor Elements
+--------------------------------------------------------------*/
+.wp-block-group.has-background,
+.wp-block-columns.has-background {
+	margin-bottom: 2.9rem;
+	padding: 2.9rem;
+}
+.wp-block-column.has-background {
+	padding-bottom: 2.9rem;
+}
+.wp-block-column.has-background > * {
+	margin-left: 2.9rem;
+	margin-right: 2.9rem;
+}
+.wp-block-column.has-background > *:first-child {
+	margin-top: 2.9rem;
+}
+.wp-block-group.has-background *:last-child,
+.wp-block-columns.has-background .wp-block-column *:last-child,
+.wp-block-column.has-background *:last-child {
+	margin-bottom: 0;
+}
+.wp-block-cover-image {
+	padding: 5.8rem 0 2.9rem 0;
+}
+.wp-block-cover {
+	min-height: initial;
+}
+.wp-block-cover .wp-block-cover__inner-container {
+	padding: 2.9rem;
+}
+.wp-block-cover .wp-block-cover__inner-container > *:last-child {
+	margin-bottom: 0;
+}
+.wp-block-buttons {
+	margin-bottom: 2.9rem;
+}
 /*--------------------------------------------------------------
 4.0 Forms
 --------------------------------------------------------------*/
@@ -709,22 +749,6 @@ a.comment-reply-link:hover {
 .btn_link .fas {
 	padding: 0 .5rem;
 }
-/*
-.content-area a.btn,
-.content-area a.btn:link,
-.content-area a.comment-reply-link,
-.content-area a.pmpro_btn,
-.content-area a.pmpro_btn:link,
-.content-area a.pmpro_btn:visited,
-.content-area a.btn:hover,
-.content-area a.btn:active,
-.content-area a.btn:focus,
-.content-area a.comment-reply-link:focus,
-.content-area a.comment-reply-link:active,
-.content-area a.comment-reply-link:hover,
-.content-area .pmpro_content_message a:hover {
-	color: var(--memberlite-color-white);
-}*/
 
 /* Link-style button */
 .btn_link {
@@ -971,6 +995,33 @@ a:active {
 .has-text-color.has-color-action-color {
 	color: var(--memberlite-color-action);
 }
+.has-text-color.has-site-background-color {
+	color: var(--memberlite-color-site-background);
+}
+.has-text-color.has-site-navigation-background-color {
+	color: var(--memberlite-color-site-navigation-background);
+}
+.has-text-color.has-link-color {
+	color: var(--memberlite-color-link);
+}
+.has-text-color.has-site-navigation-link-color {
+	color: var(--memberlite-color-site-navigation);
+}
+.has-text-color.has-meta-link-color {
+	color: var(--memberlite-color-meta-link);
+}
+.has-text-color.has-buttons-color {
+	color: var(--memberlite-color-button);
+}
+.has-text-color.has-white-color {
+	color: var(--memberlite-color-white);
+}
+.has-text-color.has-body-text-color {
+	color: var(--memberlite-color-text);
+}
+.has-text-color.has-borders-color {
+	color: var(--memberlite-color-borders);
+}
 .has-text-color a {
 	color: inherit;
 }
@@ -1001,7 +1052,33 @@ a:active {
 .has-color-action-background-color {
 	background-color: var(--memberlite-color-action);
 }
-
+.has-site-background-background-color {
+	background-color: var(--memberlite-color-site-background);
+}
+.has-site-navigation-background-background-color {
+	background-color: var(--memberlite-color-site-navigation-background);
+}
+.has-link-background-color {
+	background-color: var(--memberlite-color-link);
+}
+.has-site-navigation-link-background-color {
+	background-color: var(--memberlite-color-site-navigation);
+}
+.has-meta-link-background-color {
+	background-color: var(--memberlite-color-meta-link);
+}
+.has-buttons-background-color {
+	background-color: var(--memberlite-color-button);
+}
+.has-white-background-color {
+	background-color: var(--memberlite-color-white);
+}
+.has-body-text-background-color {
+	background-color: var(--memberlite-color-text);
+}
+.has-borders-background-color {
+	background-color: var(--memberlite-color-borders);
+}
 /*--------------------------------------------------------------
 5.2 Menus
 --------------------------------------------------------------*/
@@ -1455,11 +1532,6 @@ a:active {
 .wp-block-image.alignwide,
 .wp-block-image.alignfull {
 	text-align: center;
-}
-.wp-block-cover,
-.wp-block-cover-image {
-	min-height: initial;
-	padding: 5.8rem 0 2.9rem 0;
 }
 .text-center {
 	text-align: center;
