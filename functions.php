@@ -278,63 +278,63 @@ if ( ! function_exists( 'memberlite_setup' ) ) :
 		// Background Color
 		$color_scheme[] = array(
 			'name' => __( 'Background', 'memberlite' ),
-			'slug' => 'background-color',
+			'slug' => 'site-background',
 			'color' => get_theme_mod( 'background_color', $memberlite_defaults['background_color'] )
 		);
 
 		// Primary Navigation Background Color
 		$color_scheme[] = array(
 			'name' => __( 'Navigation Background', 'memberlite' ),
-			'slug' => 'bgcolor-site-navigation',
+			'slug' => 'site-navigation-background',
 			'color' => get_theme_mod( 'bgcolor_site_navigation', $memberlite_defaults['bgcolor_site_navigation'] )
 		);
 
 		// Link Color
 		$color_scheme[] = array(
 			'name' => __( 'Links', 'memberlite' ),
-			'slug' => 'color-link',
+			'slug' => 'link',
 			'color' => get_theme_mod( 'color_link', $memberlite_defaults['color_link'] )
 		);
 
 		// Primary Navigation Color
 		$color_scheme[] = array(
 			'name' => __( 'Navigation Links', 'memberlite' ),
-			'slug' => 'color-site-navigation',
+			'slug' => 'site-navigation-link',
 			'color' => get_theme_mod( 'color_site_navigation', $memberlite_defaults['color_site_navigation'] )
 		);
 
 		// Meta Link Color
 		$color_scheme[] = array(
 			'name' => __( 'Meta Links ', 'memberlite' ),
-			'slug' => 'color-meta-link',
+			'slug' => 'meta-link',
 			'color' => get_theme_mod( 'color_meta_link', $memberlite_defaults['color_meta_link'] )
 		);
 
 		// Button Color
 		$color_scheme[] = array(
 			'name' => __( 'Buttons', 'memberlite' ),
-			'slug' => 'color-button',
+			'slug' => 'buttons',
 			'color' => get_theme_mod( 'color_button', $memberlite_defaults['color_button'] )
 		);
 
 		// White Color
 		$color_scheme[] = array(
 			'name' => __( 'White', 'memberlite' ),
-			'slug' => 'color-white',
+			'slug' => 'white',
 			'color' => get_theme_mod( 'color_white', $memberlite_defaults['color_white'] )
 		);
 
 		// Text Color
 		$color_scheme[] = array(
 			'name' => __( 'Text', 'memberlite' ),
-			'slug' => 'color-text',
+			'slug' => 'body-text',
 			'color' => get_theme_mod( 'color_text', $memberlite_defaults['color_text'] )
 		);
 
 		// Borders Color
 		$color_scheme[] = array(
 			'name' => __( 'Borders', 'memberlite' ),
-			'slug' => 'color-borders',
+			'slug' => 'borders',
 			'color' => get_theme_mod( 'color_borders', $memberlite_defaults['color_borders'] )
 		);
 
