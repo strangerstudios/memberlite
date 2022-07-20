@@ -67,11 +67,23 @@
 
 				<?php memberlite_the_custom_logo(); ?>
 
-				<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
+				<?php
+					/**
+					 * Accessible and search-optimized page title HTML markup.
+					 * Use h1 if this is the front page of the site and
+					 * p if on an interior page.
+					 */
+					if ( is_front_page() ) {
+						$site_title_html_tag = 'h1';
+					} else {
+						$site_title_html_tag = 'p';
+					}
+				?>
+				<<?php echo esc_attr( $site_title_html_tag ); ?> class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></<?php echo esc_attr( $site_title_html_tag ); ?>>
 
-				<span class="site-description"><?php bloginfo( 'description' ); ?></span>
+				<p class="site-description"><?php bloginfo( 'description' ); ?></p>
 
-			</div><!-- .column4 -->
+			</div><!-- .site-branding -->
 
 			<?php if ( ! empty( $show_header_right ) ) { ?>
 				<div class="medium-<?php echo esc_attr( memberlite_getColumnsRatio( 'header-right' ) ); ?> columns header-right<?php if ( $meta_login == false ) { ?> no-meta-menu<?php } ?>">
