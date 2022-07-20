@@ -86,7 +86,7 @@ class Memberlite_Widget_Recent_Posts_Thumbnails extends WP_Widget {
 					<?php } elseif ( 'video' == get_post_format() ) { ?>
 						<a class="widget_post_thumbnail" href="<?php the_permalink(); ?>"><i class="fa fa-video"></i></a>
 					<?php } else { ?>
-						<a class="widget_post_thumbnail" href="<?php the_permalink(); ?>"><?php echo get_avatar( get_the_author_meta( 'ID' ), 80, '', get_the_author_meta( 'display_name' ) ); ?></a>
+						<a class="widget_post_thumbnail" href="<?php the_permalink(); ?>"><?php echo get_avatar( get_the_author_meta( 'ID' ), 80, false, get_the_author_meta( 'display_name' ) ); ?></a>
 					<?php } ?>
 					<div class="entry-title"><a href="<?php the_permalink(); ?>"><?php get_the_title() ? the_title() : the_ID(); ?></a></div>
 					<?php if ( $show_date ) : ?>
