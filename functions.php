@@ -257,7 +257,6 @@ if ( ! function_exists( 'memberlite_setup' ) ) :
 		$color_scheme[] = array(
 			'name' => __( 'Primary', 'memberlite' ),
 			'slug' => 'color-primary',
-			'slug' => 'color-primary',
 			'color' => get_theme_mod( 'color_primary', $memberlite_defaults['color_primary'] )
 		);
 
