@@ -1763,7 +1763,11 @@ a:active {
 	max-height: 100px;
 	width: auto;
 }
-.site-branding .site-title {
+.site-branding h1.site-title,
+.site-branding p.site-title {
+	font-size: 3.2rem;
+	font-family: var(--memberlite-header-font);
+	line-height: 4.4rem;
 	margin: 0;
 }
 .site-branding .site-title a {
@@ -1775,6 +1779,7 @@ a:active {
 	color: var(--memberlite-color-header-text);
 	display: block;
 	font-style: italic;
+	margin: 0;
 }
 .header-right {
 	text-align: right;
