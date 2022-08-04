@@ -3137,7 +3137,11 @@ form.pmpro_form .pmpro_payment-expiration select {
 .pmpro_login_wrap h2,
 .pmpro_lost_password_wrap h2,
 .pmpro_reset_password_wrap h2,
-.pmpro_member_profile_edit_wrap h2 {
+.pmpro_member_profile_edit_wrap h2,
+.pmpro_login_wrap h3,
+.pmpro_lost_password_wrap h3,
+.pmpro_reset_password_wrap h3,
+.pmpro_member_profile_edit_wrap h3 {
 	margin-top: 0;
 }
 .pmpro_login_wrap p.pmpro_actions_nav,
