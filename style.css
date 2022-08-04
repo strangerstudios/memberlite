@@ -3163,29 +3163,31 @@ form.pmpro_form .pmpro_payment-expiration select {
 }
 
 /* Member Log In / Log Out Widget */
-#secondary .widget_pmpro_member_login .pmpro_login_wrap,
-#secondary .widget_pmpro_member_login .pmpro_logged_in_welcome_wrap {
+#secondary .pmpro_login_wrap,
+#secondary .pmpro_logged_in_welcome_wrap {
 	background-color: #FAFAFA;
 	border: 1px solid var(--memberlite-color-borders);
 	padding: 1.45rem;
 }
-.widget_pmpro_member_login h3 {
+.widget .pmpro_logged_in_welcome_wrap h3 {
 	background: none;
 	border: none;
 	margin: 0 0 .9rem 0;
 	padding: 0;
 }
-.widget_pmpro_member_login p.pmpro_actions_nav {
+.widget .pmpro_login_wrap p.pmpro_actions_nav,
+.widget .pmpro_logged_in_welcome_wrap p.pmpro_actions_nav {
 	margin: 0;
 	text-align: left;
 }
-.widget_pmpro_member_login hr {
+.widget .pmpro_login_wrap hr,
+.widget .pmpro_logged_in_welcome_wrap hr {
 	margin: 1.45rem 0;
 }
-.widget.widget_pmpro_member_login ul li,
-.widget.widget_pmpro_member_login ul.menu li,
-#secondary .widget.widget_pmpro_member_login ul li,
-#secondary .widget.widget_pmpro_member_login ul.menu li {
+.widget .pmpro_login_wrap ul li,
+.widget .pmpro_login_wrap ul.menu li,
+.widget .pmpro_logged_in_welcome_wrap ul li,
+.widget .pmpro_logged_in_welcome_wrap ul.menu li {
 	border: none;
 	margin: 0;
 	padding: 0;
