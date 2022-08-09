@@ -945,24 +945,38 @@ p.success {
 .pmpro_content_message h2,
 .pmpro_content_message h3,
 .pmpro_content_message h4,
-.pmpro_content_message h5 {margin-top: 1rem; }
-.pmpro_content_message a {margin: 5px 5px 0 0; }
+.pmpro_content_message h5 {
+	margin-top: 1rem;
+}
 .pmpro_message a {
 	color: #245269;
 	text-decoration: underline;
 }
-.pmpro_success a {color: #2b542c; }
-.pmpro_error a {color: #843534; }
+.pmpro_success a {
+	color: #2b542c;
+}
+.pmpro_error a {
+	color: #843534;
+}
 .pmpro_alert a,
-.pmpro_content_message a,
-.pmpro_bbp_membership_msg a {color: #66512c; }
+.pmpro_bbp_membership_msg a {
+	color: #66512c;
+}
 
-input.pmpro_error {background-image: none;}
-select.pmpro_error {background-image: none;}
+input.pmpro_error {
+	background-image: none;
+}
+select.pmpro_error {
+	background-image: none;
+}
 
-.pmpro_content_message p:last-child {margin-bottom: 0; }
+.pmpro_content_message p:last-child {
+	margin-bottom: 0;
+}
 
-.pmpro_bbp_membership_msg {clear: both; }
+.pmpro_bbp_membership_msg {
+	clear: both;
+}
 
 #pmpro_account_loggedin {
 	margin: 2rem 0;
