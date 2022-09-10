@@ -274,13 +274,6 @@ if ( ! function_exists( 'memberlite_setup' ) ) :
 			'color' => get_theme_mod( 'color_action', $memberlite_defaults['color_action'] )
 		);
 
-		// Background Color
-		$color_scheme[] = array(
-			'name' => __( 'Background', 'memberlite' ),
-			'slug' => 'site-background',
-			'color' => get_theme_mod( 'background_color', $memberlite_defaults['background_color'] )
-		);
-
 		// Primary Navigation Background Color
 		$color_scheme[] = array(
 			'name' => __( 'Navigation Background', 'memberlite' ),
