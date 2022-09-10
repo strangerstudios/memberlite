@@ -58,50 +58,46 @@ function memberlite_get_font( $font_type, $nicename = NULL ) {
 	return $r;
 }
 
-function memberlite_google_fonts_url() {
+// deprecate? memberlite_google_fonts_weights
+
+/**
+ * Enqueue locally hosted Google fonts used in site.
+ */
+function memberlite_load_local_webfonts() {
 	global $memberlite_defaults;
 
+	// Get the selected fonts from theme options.
+	$header_font = memberlite_get_font( 'header_font' );
+	$body_font = memberlite_get_font( 'body_font' );
+
+	// If the header and body fonts are the same, just load the body font.
+	if ( $body_font === $header_font ) {
+		$header_font = false;
+	}
+
+	// Needs rework - how to check if these local web fonts exist?
 	// Get the selected fonts from theme options.
 	$fonts_string = get_theme_mod( 'memberlite_webfonts', $memberlite_defaults['memberlite_webfonts'] );
 
 	// Check if custom font is a Google Font.
 	if ( ! in_array( $fonts_string, array_keys( Memberlite_Customize::get_google_fonts() ) ) ) {
-		return null;
+		return;
 	} else {
-		// Build the encoded Google fonts URL.
-		$fonts_url = '';
-
-		// Filter to modify which font weights are enqueued.
-		$font_weights = apply_filters( 'memberlite_google_fonts_weights', '400,700' );
-
-		// Build the array of font families to return.
-		$font_families = array();
-		$font_families[] = memberlite_get_font( 'header_font', true ) . ':' . $font_weights;
-		$font_families[] = memberlite_get_font( 'body_font', true ) . ':' . $font_weights;
-
-		$query_args = array(
-			'family' => urlencode( implode( '|', $font_families ) ),
-			'subset' => urlencode( 'latin,latin-ext' ),
-		);
-
-		$fonts_url = add_query_arg( $query_args, '//fonts.googleapis.com/css' );
-
-		return esc_url_raw( $fonts_url );
+		// Enqueue the body font.
+		if ( ! empty( $body_font ) )  {
+			foreach ( glob( get_template_directory() . '/assets/fonts/' . $body_font . '/*' ) as $font_file ) {
+				wp_enqueue_style( $font_file, get_template_directory_uri() . '/assets/fonts/' . $font_file, array(), MEMBERLITE_VERSION );
+			}
+		}
+		// Enqueue the header font.
+		if ( ! empty( $header_font ) )  {
+			foreach ( glob( get_template_directory() . '/assets/fonts/' . $header_font . '*' ) as $font_file ) {
+				wp_enqueue_style( $font_file, get_template_directory_uri() . '/assets/fonts/' . $font_file, array(), MEMBERLITE_VERSION );
+			}
+		}
 	}
 }
-
-/**
- * Enqueue fonts via Google API
- */
-function memberlite_load_google_fonts() {
-	// Get the encoded URL of the Google Fonts (if set).
-	$fonts_url = memberlite_google_fonts_url();
-
-	if ( ! empty( $fonts_url ) ) {
-		wp_enqueue_style( 'memberlite-google-fonts', $fonts_url, array(), MEMBERLITE_VERSION );
-	}
-}
-add_action( 'wp_enqueue_scripts', 'memberlite_load_google_fonts' );
+add_action( 'wp_enqueue_scripts', 'memberlite_load_local_webfonts' );
 
 /**
  * Set the content width in pixels, based on the theme's design and stylesheet.
