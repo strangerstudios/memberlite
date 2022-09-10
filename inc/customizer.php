@@ -816,6 +816,7 @@ class Memberlite_Customize {
 	public static function header_output() {
 		global $memberlite_defaults;
 
+		$content_width = $GLOBALS['content_width'] . 'px';
 		$header_font = memberlite_get_font( 'header_font', true );
 		$body_font = memberlite_get_font( 'body_font', true );
 		$header_textcolor = get_theme_mod( 'header_textcolor' );
@@ -880,6 +881,7 @@ class Memberlite_Customize {
 		<!--Customizer CSS-->
 		<style id="memberlite-customizer-css" type="text/css">
 			:root {
+				--memberlite-content-width: <?php echo esc_html( $content_width ); ?>;
 				--memberlite-body-font: <?php echo esc_html( $body_font ); ?>, sans-serif;
 				--memberlite-header-font: <?php echo esc_html( $header_font ); ?>, sans-serif;
 				<?php if ( $header_textcolor != 'blank' ) { ?>

@@ -85,8 +85,8 @@ html {
 *:before,
 *:after { /* apply a natural box layout model to all elements; see http://www.paulirish.com/2012/box-sizing-border-box-ftw/ */
 	-webkit-box-sizing: border-box; /* Not needed for modern webkit but still used by Blackberry Browser 7.0; see http://caniuse.com/#search=box-sizing */
-	-moz-box-sizing:    border-box; /* Still needed for Firefox 28; see http://caniuse.com/#search=box-sizing */
-	box-sizing:         border-box;
+	-moz-box-sizing: border-box; /* Still needed for Firefox 28; see http://caniuse.com/#search=box-sizing */
+	box-sizing: border-box;
 }
 body {
 	background-color: var(--memberlite-color-site-background); /* Fallback for when there is no custom background color defined. */
@@ -783,11 +783,11 @@ a.pmpro_cancel:link,
 .content-area .pmpro_btn.pmpro_btn-cancel,
 .content-area .pmpro_btn.pmpro_btn-cancel:link,
 .content-area .pmpro_btn.pmpro_btn-cancel:visited {
-    background: none;
-    border: none;
-    box-shadow: none;
+	background: none;
+	border: none;
+	box-shadow: none;
 	color: #666;
-    text-decoration: underline;
+	text-decoration: underline;
 }
 .pmpro_btn.pmpro_btn-cancel:hover,
 .pmpro_btn.pmpro_nolink:hover,
@@ -814,8 +814,8 @@ input[type=radio] {
 input[type=search] {
 	-webkit-appearance: textfield; /* Addresses appearance set to searchfield in S5, Chrome */
 	-webkit-box-sizing: content-box; /* Addresses box sizing set to border-box in S5, Chrome (include -moz to future-proof) */
-	-moz-box-sizing:    content-box;
-	box-sizing:         content-box;
+	-moz-box-sizing: content-box;
+	box-sizing: content-box;
 }
 input[type=search]::-webkit-search-decoration { /* Corrects inner padding displayed oddly in S5, Chrome on OSX */
 	-webkit-appearance: none;
@@ -1516,9 +1516,9 @@ a:active {
 .page-template-narrow-width .alignwide,
 .page-template-blank .alignwide {
 	margin-left: calc(50% - 45vw);
-    margin-right: calc(50% - 45vw);
-    max-width: 1000%;
-    width: auto;
+	margin-right: calc(50% - 45vw);
+	max-width: 1000%;
+	width: auto;
 }
 .wp-block-image.alignwide {
 	text-align: center;
@@ -1531,10 +1531,10 @@ a:active {
 .page-template-fluid-width .alignfull,
 .page-template-narrow-width .alignfull,
 .page-template-blank .alignfull {
-    margin-left: calc(50% - 50vw);
-    margin-right: calc(50% - 50vw);
-    max-width: 1000%;
-    width: auto;
+	margin-left: calc(50% - 50vw);
+	margin-right: calc(50% - 50vw);
+	max-width: 1000%;
+	width: auto;
 }
 .wp-block-image.alignfull {
 	text-align: center;
@@ -1755,8 +1755,8 @@ a:active {
 	display: grid;
 	grid-template-columns: 80px 1.45rem auto;
 	grid-template-areas:
-    "thumbnail . title"
-    "thumbnail . date";
+	"thumbnail . title"
+	"thumbnail . date";
 	margin-bottom: 1.45rem;
 }
 .widget_recent_entries_thumbnails .entry-title {
@@ -2491,8 +2491,8 @@ a:active {
 	font-size: 2.1rem;
 }
 .bypostauthor {
-    border-left-width: 10px;
-    border-style: solid;
+	border-left-width: 10px;
+	border-style: solid;
 }
 .bypostauthor .comment-meta .comment-author.vcard .fn:after {
 	content: "\f007";
@@ -3328,7 +3328,9 @@ object {
 13.0 Responsive Styles
 --------------------------------------------------------------*/
 @media only screen and (min-width: 1160px) {
-	.hide-screen {display: none; }
+	.hide-screen {
+		display: none;
+	}
 }
 
 @media only screen and (min-width: 960px) and (max-width: 1160px) {
@@ -3389,6 +3391,15 @@ object {
 		float: none;
 		margin: 0;
 		text-align: center;
+	}
+	.single.sidebar-blog-none .alignwide,
+	.page-template-default.sidebar-none .alignwide,
+	.page-template-full-width .alignwide,
+	.page-template-fluid-width .alignwide,
+	.page-template-narrow-width .alignwide,
+	.page-template-blank .alignwide {
+		margin-left: 0;
+		margin-right: 0;
 	}
 	img.alignleft,
 	img.alignright,
