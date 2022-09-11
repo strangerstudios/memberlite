@@ -21,18 +21,45 @@ hr {
 .meta-navigation ul li,
 .header-right .widget_nav_menu ul li,
 .footer-navigation ul li,
+.entry-content,
+.post .entry-footer,
+.page .entry-content .entry-content,
 .pmpro_content_message,
 #secondary .widget-title,
 .widget_calendar #wp-calendar caption,
 #secondary .widget a,
 #secondary .widget a:link,
 #secondary .widget_pmpro_member_login .pmpro_login_wrap,
-#secondary .widget_pmpro_member_login .pmpro_logged_in_welcome_wrap {
+#secondary .widget_pmpro_member_login .pmpro_logged_in_welcome_wrap,
+#pmpro_levels .post h2,
+thead th,
+td,
+.main-navigation ul.sub-menu a,
+.meta-navigation ul.sub-menu a,
+.header-right .widget_nav_menu ul.sub-menu a {
 	border-color: rgba(255,255,255,0.3);
 }
+#primary .hentry .entry-meta,
+.post .entry-footer,
 #secondary .widget a,
-#secondary .widget a:link {
+#secondary .widget a:link,
+.wp-block-image figcaption,
+form.pmpro_form .lite,
+.pmpro_btn-cancel,
+.pmpro_nolink,
+.pmpro_nolink:link,
+.pmpro_cancel,
+.pmpro_cancel:link,
+a.pmpro_cancel:link,
+.content-area .pmpro_btn.pmpro_cancel,
+.content-area .pmpro_btn.pmpro_btn-cancel,
+.content-area .pmpro_btn.pmpro_btn-cancel:link,
+.content-area .pmpro_btn.pmpro_btn-cancel:visited {
 	color: #AAA;
+}
+#primary .hentry .entry-meta a,
+#primary .entry-footer a {
+	color: #CCC;	
 }
 blockquote,
 .pre,
@@ -46,7 +73,11 @@ tbody tr:nth-child(even) td,
 .pmpro_content_message,
 #bbpress-forums li.bbp-header,
 #secondary .widget_pmpro_member_login .pmpro_login_wrap,
-#secondary .widget_pmpro_member_login .pmpro_logged_in_welcome_wrap {
+#secondary .widget_pmpro_member_login .pmpro_logged_in_welcome_wrap,
+.entry-author,
+.main-navigation ul.sub-menu li:hover > a,
+.meta-navigation ul.sub-menu li:hover > a,
+.header-right .widget_nav_menu ul.sub-menu li:hover > a {
 	background: rgba(255,255,255,0.1);
 }
 .comment,
@@ -86,7 +117,7 @@ mark,
 #mobile-navigation input[type=password] {
 	color: #FFF;
 	background: none;
-	border-color: rgba(255,255,255,0.3);
+	border-color: rgba(255,255,255,0.5);
 }
 
 /* Comments */
