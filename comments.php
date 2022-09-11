@@ -45,7 +45,8 @@ if ( post_password_required() ) {
 			);
 		?>
 
-		<?php if ( count( $memberlite_trackbacks ) == 0 && count( $memberlite_pingbacks ) == 0 ) { ?>
+		<?php
+			if ( count( $memberlite_trackbacks ) == 0 && count( $memberlite_pingbacks ) == 0 ) { ?>
 				<h2>
 					<?php
 						/* translators: %s: number of comments */

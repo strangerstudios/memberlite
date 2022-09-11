@@ -4,6 +4,7 @@
  *
  * @package Memberlite
  */
+
 ?>
 
 <?php do_action( 'memberlite_before_footer_widgets' ); ?>
