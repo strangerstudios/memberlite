@@ -315,7 +315,20 @@ function memberlite_the_excerpt() {
 	// Optionally include the featured image.
 	$image_content = memberlite_loop_image();
 	if ( ! empty ( $image_content ) ) {
-		echo $image_content;
+		$loop_image_allowed_html = array(
+			'img' => array(
+				'alt' => array(),
+				'class' => array(),
+				'height' => array(),
+				'loading' => array(),
+				'sizes' => array(),
+				'src' => array(),
+				'srcset' => array(),
+				'title' => array(),
+				'width' => array()
+			)
+		);
+		echo wp_kses( $image_content, $loop_image_allowed_html );
 	}
 }
 
@@ -445,7 +458,23 @@ function memberlite_page_title( $echo = true ) {
 		<?php
 	} elseif ( is_singular( 'post' ) ) { ?>
 		<div class="masthead-post-byline">
-			<?php echo memberlite_get_author_avatar( $post->post_author ); ?>
+			<?php
+				$author_avatar_allowed_html = array(
+					'div' => array(
+						'class' => array(),
+					),
+					'img' => array(
+						'alt' => array(),
+						'class' => array(),
+						'height' => array(),
+						'loading' => array(),
+						'src' => array(),
+						'title' => array(),
+						'width' => array()
+					)
+				);
+				echo wp_kses( memberlite_get_author_avatar( $post->post_author ), $author_avatar_allowed_html );
+			?>
 			<div class="entry-header-content">
 				<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
 				<?php

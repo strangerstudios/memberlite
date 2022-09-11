@@ -731,7 +731,7 @@ class Memberlite_Customize {
 				'memberlite_color_action',
 				array(
 					'label'    => __( 'Action Color', 'memberlite' ),
-					'description' => __( 'Also used for CTA buttons' ),
+					'description' => __( 'Also used for CTA buttons', 'memberlite' ),
 					'section'  => 'colors',
 					'settings' => 'color_action',
 					'priority' => 80,
