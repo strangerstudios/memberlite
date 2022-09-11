@@ -382,7 +382,7 @@ function memberlite_admin_init_notifications() {
 	global $wpdb;
 
 	// we want to avoid notices on some screens
-	$script           = basename( $_SERVER['SCRIPT_NAME'] );
+	$script           = esc_url( basename( $_SERVER['SCRIPT_NAME'] ) );
 	$maybe_installing = $script == 'update.php' || $script == 'plugins.php';
 
 	// 1. Show link to the welcome page the first time the theme is activated
@@ -400,7 +400,7 @@ function memberlite_wp_ajax_dismiss_notice() {
 	$notices = array( 'welcome_link' );
 
 	// get and check notice
-	$notice = $_REQUEST['notice'];
+	$notice = sanitize_title( $_REQUEST['notice'] );
 	if ( ! in_array( $notice, $notices ) ) {
 		wp_die( 'Invalid notice.' );
 	}

@@ -481,7 +481,7 @@ add_action( 'widgets_init', 'memberlite_widgets_init' );
 /* Get the redirect_to URL to use for "Log In" links. */
 function memberlite_login_redirect_to() {
 	if ( isset( $_SERVER['REQUEST_URI'] ) ) {
-		$redirect_to = home_url( $_SERVER['REQUEST_URI'] );
+		$redirect_to = home_url( esc_url( $_SERVER['REQUEST_URI'] ) );
 	} else {
 		$redirect_to = home_url();
 	}
