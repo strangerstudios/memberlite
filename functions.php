@@ -58,8 +58,6 @@ function memberlite_get_font( $font_type, $nicename = NULL ) {
 	return $r;
 }
 
-// deprecate? memberlite_google_fonts_weights
-
 /**
  * Load locally hosted Google fonts used in site.
  */
@@ -75,7 +73,6 @@ function memberlite_load_local_webfonts() {
 		$header_font = false;
 	}
 
-	// Needs rework - how to check if these local web fonts exist?
 	// Get the selected fonts from theme options.
 	$fonts_string = get_theme_mod( 'memberlite_webfonts', $memberlite_defaults['memberlite_webfonts'] );
 
