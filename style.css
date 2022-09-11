@@ -724,8 +724,7 @@ a.comment-reply-link:hover {
 .btn_alert:hover {
 	background-color: #ec971f;
 }
-.btn_primary,
-.menu-toggle {
+.btn_primary {
 	background-color: var(--memberlite-color-primary);
 }
 .btn_secondary {
@@ -1151,8 +1150,19 @@ a:active {
 }
 /* Small menu */
 .menu-toggle {
-	display: none;
-	padding: .25rem .75rem;
+	display: none; /* Shown with media queries at bottom of file */
+	background-color: transparent;
+	box-shadow: none;
+	color: var(--memberlite-color-primary);
+	font-size: 2.3rem;
+	padding: .9rem 1.45rem;
+}
+.menu-toggle:active,
+.menu-toggle:focus,
+.menu-toggle:hover {
+	background-color: transparent;
+	box-shadow: none;
+	color: var(--memberlite-color-primary);
 }
 .member-navigation,
 .meta-navigation,
@@ -2684,10 +2694,6 @@ a:active {
 	color: #AAA;
 	margin: 0;
 }
-/*.site-footer .site-info .large-2 a {
-	text-decoration: none;
-}
-*/
 #banner_bottom {
 	background-color: var(--memberlite-color-secondary);
 	color: var(--memberlite-color-white);
@@ -3367,13 +3373,6 @@ object {
 }
 
 @media only screen and (max-width: 767px) {
-	.menu-toggle,
-	.main-navigation.toggled .nav-menu {
-		display: block;
-	}
-	.main-navigation ul {
-		display: none;
-	}
 	.hide-mobile {
 		display: none;
 	}
@@ -3388,25 +3387,34 @@ object {
 	.site-header .row {
 		align-items: center;
 		display: grid;
-		grid-column-gap: .9rem;
-		grid-template-columns: 1fr auto;
+		grid-column-gap: 0.9rem;
+		grid-template-columns: 6fr 1fr;
 		grid-template-areas: "site-branding menu-toggle";
 	}
 	.site-header .site-branding {
 		grid-area: site-branding;
-		margin: .9rem 0;
+		margin: 1.45rem 0;
 		padding: 0;
 		width: 100%;
 	}
 	.site-header .mobile-navigation-bar {
 		grid-area: menu-toggle;
+		text-align: right;
 	}
 	.site-title a {
 		width: 100%;
 		height: auto;
 		background-size: contain;
 	}
-	.menu-toggle {display: block; }
+	.main-navigation.toggled .nav-menu {
+		display: block;
+	}
+	.main-navigation ul {
+		display: none;
+	}
+	.menu-toggle {
+		display: inline-block;
+	}
 	.testimonials-widget-testimonial span.image	{
 		display: block;
 		float: none;
