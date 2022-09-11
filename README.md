@@ -1,4 +1,4 @@
-![Memberlite Theme](https://github.com/strangerstudios/memberlite/blob/dev/images/memberlite-banner.jpg)
+![Memberlite Theme](https://github.com/strangerstudios/memberlite/blob/dev/assets/images/memberlite-banner.jpg)
 
 # Memberlite: An Easy to Customize Theme for Membership Sites
 
