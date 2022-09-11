@@ -61,14 +61,14 @@ function memberlite_get_font( $font_type, $nicename = NULL ) {
 // deprecate? memberlite_google_fonts_weights
 
 /**
- * Enqueue locally hosted Google fonts used in site.
+ * Load locally hosted Google fonts used in site.
  */
 function memberlite_load_local_webfonts() {
 	global $memberlite_defaults;
 
 	// Get the selected fonts from theme options.
-	$header_font = memberlite_get_font( 'header_font' );
-	$body_font = memberlite_get_font( 'body_font' );
+	$header_font = strtolower( memberlite_get_font( 'header_font' ) );
+	$body_font = strtolower( memberlite_get_font( 'body_font' ) );
 
 	// If the header and body fonts are the same, just load the body font.
 	if ( $body_font === $header_font ) {
@@ -79,25 +79,67 @@ function memberlite_load_local_webfonts() {
 	// Get the selected fonts from theme options.
 	$fonts_string = get_theme_mod( 'memberlite_webfonts', $memberlite_defaults['memberlite_webfonts'] );
 
+	// Fonts that do not have a bold (700 weight) font family.
+	$no_bold_font = array( 'abril-fatface', 'fjalla-one', 'pathway-gothic-one', 'pt-mono' );
+
 	// Check if custom font is a Google Font.
 	if ( ! in_array( $fonts_string, array_keys( Memberlite_Customize::get_google_fonts() ) ) ) {
 		return;
 	} else {
+		// Wrapper style tag for CSS.
+		echo '<style id="memberlite-webfonts-inline-css" type="text/css">';
+
 		// Enqueue the body font.
-		if ( ! empty( $body_font ) )  {
-			foreach ( glob( get_template_directory() . '/assets/fonts/' . $body_font . '/*' ) as $font_file ) {
-				wp_enqueue_style( $font_file, get_template_directory_uri() . '/assets/fonts/' . $font_file, array(), MEMBERLITE_VERSION );
+		if ( ! empty( $body_font ) ) { ?>@font-face {
+	font-family: <?php echo memberlite_get_font( 'body_font', true ); ?>;
+	font-style:normal;
+	src: url('<?php echo get_template_directory_uri() . '/assets/fonts/' . $body_font . '/' . $body_font . '.woff2'; ?>') format('woff2');
+	font-weight: normal;
+	font-display: fallback;
+	font-stretch: normal;
+}<?php if ( ! in_array( $body_font, $no_bold_font ) ) { ?>@font-face {
+	font-family: <?php echo memberlite_get_font( 'body_font', true ); ?>;
+	font-style:normal;
+	src: url('<?php echo get_template_directory_uri() . '/assets/fonts/' . $body_font . '/' . $body_font . '-bold.woff2'; ?>') format('woff2');
+	font-weight: bold;
+	font-display: fallback;
+	font-stretch: normal;
+}<?php
 			}
 		}
 		// Enqueue the header font.
-		if ( ! empty( $header_font ) )  {
-			foreach ( glob( get_template_directory() . '/assets/fonts/' . $header_font . '*' ) as $font_file ) {
-				wp_enqueue_style( $font_file, get_template_directory_uri() . '/assets/fonts/' . $font_file, array(), MEMBERLITE_VERSION );
+		if ( ! empty( $header_font ) ) { ?>@font-face {
+	font-family: <?php echo memberlite_get_font( 'header_font', true ); ?>;
+	font-style:normal;
+	src: url('<?php echo get_template_directory_uri() . '/assets/fonts/' . $header_font . '/' . $header_font . '.woff2'; ?>') format('woff2');
+	font-weight: normal;
+	font-display: fallback;
+	font-stretch: normal;
+}<?php if ( ! in_array( $header_font, $no_bold_font ) ) { ?>@font-face {
+	font-family: <?php echo memberlite_get_font( 'header_font', true ); ?>;
+	font-style:normal;
+	src: url('<?php echo get_template_directory_uri() . '/assets/fonts/' . $header_font . '/' . $header_font . '-bold.woff2'; ?>') format('woff2');
+	font-weight: bold;
+	font-display: fallback;
+	font-stretch: normal;
+}<?php
 			}
 		}
+
+		if ( ! empty( $header_font ) )  {
+			foreach ( glob( get_template_directory() . '/assets/fonts/' . $header_font . '/*' ) as $font_file ) {
+				$font_file = str_replace( get_template_directory(), '', $font_file );
+				?>@font-face {
+	font-family: <?php echo memberlite_get_font( 'header_font', true ); ?>;
+	src: url('<?php echo get_template_directory_uri() . $font_file; ?>') format('woff');
+}<?php
+			}
+		}
+
+		echo '</style>';
 	}
 }
-add_action( 'wp_enqueue_scripts', 'memberlite_load_local_webfonts' );
+add_action( 'wp_head', 'memberlite_load_local_webfonts' );
 
 /**
  * Set the content width in pixels, based on the theme's design and stylesheet.
