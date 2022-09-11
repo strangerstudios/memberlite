@@ -16,6 +16,7 @@
 			$attachment_id = get_post_thumbnail_id( get_the_ID() );
 			$memberlite_get_banner_image = memberlite_get_banner_image( $attachment_id, 'large', '', array( 'class' => 'aligncenter' ), get_the_ID() );
 			if ( ! empty( $memberlite_get_banner_image ) ) {
+				// NOTE: The HTML is generated and escaped by the wp_get_attachment_image() function /inc/extras.php.
 				echo $memberlite_get_banner_image;
 			} else { ?>
 				<div class="post-thumbnail-empty"><i class="fas fa-file-alt"></i></div>

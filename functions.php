@@ -91,16 +91,16 @@ function memberlite_load_local_webfonts() {
 
 		// Enqueue the body font.
 		if ( ! empty( $body_font ) ) { ?>@font-face {
-	font-family: <?php echo memberlite_get_font( 'body_font', true ); ?>;
+	font-family: <?php echo esc_html( memberlite_get_font( 'body_font', true ) ); ?>;
 	font-style:normal;
-	src: url('<?php echo get_template_directory_uri() . '/assets/fonts/' . $body_font . '/' . $body_font . '.woff2'; ?>') format('woff2');
+	src: url('<?php echo esc_url( get_template_directory_uri() ) . '/assets/fonts/' . esc_html( $body_font ) . '/' . esc_html( $body_font ) . '.woff2'; ?>') format('woff2');
 	font-weight: normal;
 	font-display: fallback;
 	font-stretch: normal;
 }<?php if ( ! in_array( $body_font, $no_bold_font ) ) { ?>@font-face {
-	font-family: <?php echo memberlite_get_font( 'body_font', true ); ?>;
+	font-family: <?php echo esc_html( memberlite_get_font( 'body_font', true ) ); ?>;
 	font-style:normal;
-	src: url('<?php echo get_template_directory_uri() . '/assets/fonts/' . $body_font . '/' . $body_font . '-bold.woff2'; ?>') format('woff2');
+	src: url('<?php echo esc_url( get_template_directory_uri() ) . '/assets/fonts/' . esc_html( $body_font ) . '/' . esc_html( $body_font ) . '-bold.woff2'; ?>') format('woff2');
 	font-weight: bold;
 	font-display: fallback;
 	font-stretch: normal;
@@ -109,29 +109,19 @@ function memberlite_load_local_webfonts() {
 		}
 		// Enqueue the header font.
 		if ( ! empty( $header_font ) ) { ?>@font-face {
-	font-family: <?php echo memberlite_get_font( 'header_font', true ); ?>;
+	font-family: <?php echo esc_html( memberlite_get_font( 'header_font', true ) ); ?>;
 	font-style:normal;
-	src: url('<?php echo get_template_directory_uri() . '/assets/fonts/' . $header_font . '/' . $header_font . '.woff2'; ?>') format('woff2');
+	src: url('<?php echo esc_url( get_template_directory_uri() ) . '/assets/fonts/' . esc_html( $header_font ) . '/' . esc_html( $header_font ) . '.woff2'; ?>') format('woff2');
 	font-weight: normal;
 	font-display: fallback;
 	font-stretch: normal;
 }<?php if ( ! in_array( $header_font, $no_bold_font ) ) { ?>@font-face {
-	font-family: <?php echo memberlite_get_font( 'header_font', true ); ?>;
+	font-family: <?php echo esc_html( memberlite_get_font( 'header_font', true ) ); ?>;
 	font-style:normal;
-	src: url('<?php echo get_template_directory_uri() . '/assets/fonts/' . $header_font . '/' . $header_font . '-bold.woff2'; ?>') format('woff2');
+	src: url('<?php echo esc_url( get_template_directory_uri() ) . '/assets/fonts/' . esc_html( $header_font ) . '/' . esc_html( $header_font ) . '-bold.woff2'; ?>') format('woff2');
 	font-weight: bold;
 	font-display: fallback;
 	font-stretch: normal;
-}<?php
-			}
-		}
-
-		if ( ! empty( $header_font ) )  {
-			foreach ( glob( get_template_directory() . '/assets/fonts/' . $header_font . '/*' ) as $font_file ) {
-				$font_file = str_replace( get_template_directory(), '', $font_file );
-				?>@font-face {
-	font-family: <?php echo memberlite_get_font( 'header_font', true ); ?>;
-	src: url('<?php echo get_template_directory_uri() . $font_file; ?>') format('woff');
 }<?php
 			}
 		}
@@ -224,15 +214,16 @@ if ( ! function_exists( 'memberlite_setup' ) ) :
 		add_theme_support( 'title-tag' );
 
 		// Add logo upload support via Customizer
-		add_theme_support(
-			'custom-logo', array(
-				'height'      => 200,
-				'width'       => 720,
-				'flex-height'  => true,
-				'flex-width'  => true,
-				'header-text' => array( 'site-title', 'site-description' ),
-			)
+		$logo_defaults = array(
+			'height'      => 200,
+			'width'       => 720,
+			'flex-height'  => true,
+			'flex-width'  => true,
+			'header-text' => array( 'site-title', 'site-description' ),
+			'unlink-homepage-logo' => false, 
 		);
+
+		add_theme_support( 'custom-logo', $logo_defaults );
 
 		// Enable support for Post Thumbnails on posts and pages.
 		add_theme_support( 'post-thumbnails' );
@@ -242,8 +233,28 @@ if ( ! function_exists( 'memberlite_setup' ) ) :
 		add_image_size( 'memberlite-fullwidth', 1170, 1200, false, array( 'center', 'center' ) );
 		add_image_size( 'memberlite-masthead', 1600, 300, true, array( 'center', 'center' ) );
 
+		// Add support for Block Styles.
+		add_theme_support( 'wp-block-styles' );
+
 		// Enable support for "wide" or "full" alignment Gutenberg blocks.
 		add_theme_support( 'align-wide' );
+
+		// Enable support for responsive embeds.
+		add_theme_support( 'responsive-embeds' );
+
+		// Switch default core markup for search form, comment form, and comments to output valid HTML5.
+		add_theme_support(
+			'html5',
+			array(
+				'comment-form',
+				'comment-list',
+				'gallery',
+				'caption',
+				'style',
+				'script',
+				'navigation-widgets',
+			)
+		);
 
 		// This theme uses wp_nav_menu() in five locations.
 		register_nav_menus(
@@ -257,15 +268,14 @@ if ( ! function_exists( 'memberlite_setup' ) ) :
 		);
 
 		// Switch default core markup for search form, comment form, and comments to output valid HTML5.
-		add_theme_support(
-			'html5', array(
-				'search-form',
-				'comment-form',
-				'comment-list',
-				'gallery',
-				'caption',
-			)
+		$html5_support_types = array(
+			'search-form',
+			'comment-form',
+			'comment-list',
+			'gallery',
+			'caption',
 		);
+		add_theme_support( 'html5', $html5_support_types );
 
 		// Enables support for Post Formats.
 		add_theme_support(
@@ -472,7 +482,17 @@ add_action( 'widgets_init', 'memberlite_widgets_init' );
 
 /* Get the redirect_to URL to use for "Log In" links. */
 function memberlite_login_redirect_to() {
-	return apply_filters(  'memberlite_login_redirect_to', site_url( $_SERVER['REQUEST_URI'] ) );
+	if ( isset( $_SERVER['REQUEST_URI'] ) ) {
+		$redirect_to = home_url( $_SERVER['REQUEST_URI'] );
+	} else {
+		$redirect_to = home_url();
+	}
+	return apply_filters( 'memberlite_login_redirect_to', esc_url( $redirect_to ) );
+}
+
+/* Get the redirect_to URL to use for "Log Our" links. */
+function memberlite_logout_redirect_to() {
+	return apply_filters(  'memberlite_logout_redirect_to', home_url() );
 }
 
 /* Adds a Log Out link in member menu */
@@ -481,10 +501,10 @@ function memberlite_menus( $items, $args ) {
 	if ( $args->theme_location == 'member' || $args->theme_location == 'member-logged-out' || ( substr( $args->theme_location, -strlen( '-member' ) ) === '-member' ) ) {
 		if ( is_user_logged_in() && defined( 'PMPRO_VERSION' ) && pmpro_hasMembershipLevel() ) {
 			// user is logged in and has a membership level
-			$items .= '<li><a href="' . esc_url( wp_logout_url() ) . '">' . esc_html__( 'Log Out', 'memberlite' ) . '</a></li>';
+			$items .= '<li><a href="' . esc_url( wp_logout_url( memberlite_logout_redirect_to() ) ) . '">' . esc_html__( 'Log Out', 'memberlite' ) . '</a></li>';
 		} elseif ( is_user_logged_in() ) {
 			// user is logged in and does not have a membership level
-			$items = '<li><a href="' . esc_url( wp_logout_url() ) . '">' . esc_html__( 'Log Out', 'memberlite' ) . '</a></li>';
+			$items = '<li><a href="' . esc_url( wp_logout_url( memberlite_logout_redirect_to() ) ) . '">' . esc_html__( 'Log Out', 'memberlite' ) . '</a></li>';
 		} else {
 			// not logged in
 			$items .= '<li><a href="' . esc_url( wp_login_url( memberlite_login_redirect_to() ) ) . '">' . esc_html__( 'Log In', 'memberlite' ) . '</a></li>';
@@ -516,7 +536,7 @@ function memberlite_member_menu_cb( $args ) {
 		$link_after = '</li>';
 	}
 	if ( is_user_logged_in() ) {
-		$link = $link_before . '<a href="' . esc_url( wp_logout_url() ) . '">' . $before . esc_html__( 'Log Out', 'memberlite' ) . $after . '</a>';
+		$link = $link_before . '<a href="' . esc_url( wp_logout_url( memberlite_logout_redirect_to() ) ) . '">' . $before . esc_html__( 'Log Out', 'memberlite' ) . $after . '</a>';
 	} else {
 		// not logged in
 		$link = $link_before . '<a href="' . esc_url( wp_login_url( memberlite_login_redirect_to() ) ) . '">' . $before . esc_html__( 'Log In', 'memberlite' ) . $after . '</a>';
@@ -532,7 +552,7 @@ function memberlite_member_menu_cb( $args ) {
 		$output = "<$container class='$container_class' id='$container_id'>$output</$container>";
 	}
 	if ( $echo ) {
-		echo $output;
+		echo wp_kses( $output, 'post' );
 	}
 	return $output;
 }
