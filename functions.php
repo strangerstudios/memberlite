@@ -58,14 +58,20 @@ function memberlite_get_font( $font_type, $nicename = NULL ) {
 	return $r;
 }
 
-// deprecate? memberlite_google_fonts_weights
-
 /**
  * Load locally hosted Google fonts used in site.
  */
 function memberlite_load_local_webfonts() {
 	global $memberlite_defaults;
 
+	// Get the selected fonts from theme options.
+	$fonts_string = get_theme_mod( 'memberlite_webfonts', $memberlite_defaults['memberlite_webfonts'] );
+	
+	// If it's not a Google font, ignore.
+	if ( ! in_array( $fonts_string, array_keys( Memberlite_Customize::get_google_fonts() ) ) ) {
+		return;
+	}
+	
 	// Get the selected fonts from theme options.
 	$header_font = strtolower( memberlite_get_font( 'header_font' ) );
 	$body_font = strtolower( memberlite_get_font( 'body_font' ) );
@@ -75,59 +81,51 @@ function memberlite_load_local_webfonts() {
 		$header_font = false;
 	}
 
-	// Needs rework - how to check if these local web fonts exist?
-	// Get the selected fonts from theme options.
-	$fonts_string = get_theme_mod( 'memberlite_webfonts', $memberlite_defaults['memberlite_webfonts'] );
-
 	// Fonts that do not have a bold (700 weight) font family.
 	$no_bold_font = array( 'abril-fatface', 'fjalla-one', 'pathway-gothic-one', 'pt-mono' );
 
-	// Check if custom font is a Google Font.
-	if ( ! in_array( $fonts_string, array_keys( Memberlite_Customize::get_google_fonts() ) ) ) {
-		return;
-	} else {
-		// Wrapper style tag for CSS.
-		echo '<style id="memberlite-webfonts-inline-css" type="text/css">';
+	// Wrapper style tag for CSS.
+	echo '<style id="memberlite-webfonts-inline-css" type="text/css">';
 
-		// Enqueue the body font.
-		if ( ! empty( $body_font ) ) { ?>@font-face {
-	font-family: <?php echo esc_html( memberlite_get_font( 'body_font', true ) ); ?>;
-	font-style:normal;
-	src: url('<?php echo esc_url( get_template_directory_uri() ) . '/assets/fonts/' . esc_html( $body_font ) . '/' . esc_html( $body_font ) . '.woff2'; ?>') format('woff2');
-	font-weight: normal;
-	font-display: fallback;
-	font-stretch: normal;
+	// Enqueue the body font.
+	if ( ! empty( $body_font ) ) { ?>@font-face {
+font-family: <?php echo esc_html( memberlite_get_font( 'body_font', true ) ); ?>;
+font-style:normal;
+src: url('<?php echo esc_url( get_template_directory_uri() ) . '/assets/fonts/' . esc_html( $body_font ) . '/' . esc_html( $body_font ) . '.woff2'; ?>') format('woff2');
+font-weight: normal;
+font-display: fallback;
+font-stretch: normal;
 }<?php if ( ! in_array( $body_font, $no_bold_font ) ) { ?>@font-face {
-	font-family: <?php echo esc_html( memberlite_get_font( 'body_font', true ) ); ?>;
-	font-style:normal;
-	src: url('<?php echo esc_url( get_template_directory_uri() ) . '/assets/fonts/' . esc_html( $body_font ) . '/' . esc_html( $body_font ) . '-bold.woff2'; ?>') format('woff2');
-	font-weight: bold;
-	font-display: fallback;
-	font-stretch: normal;
+font-family: <?php echo esc_html( memberlite_get_font( 'body_font', true ) ); ?>;
+font-style:normal;
+src: url('<?php echo esc_url( get_template_directory_uri() ) . '/assets/fonts/' . esc_html( $body_font ) . '/' . esc_html( $body_font ) . '-bold.woff2'; ?>') format('woff2');
+font-weight: bold;
+font-display: fallback;
+font-stretch: normal;
 }<?php
-			}
 		}
-		// Enqueue the header font.
-		if ( ! empty( $header_font ) ) { ?>@font-face {
-	font-family: <?php echo esc_html( memberlite_get_font( 'header_font', true ) ); ?>;
-	font-style:normal;
-	src: url('<?php echo esc_url( get_template_directory_uri() ) . '/assets/fonts/' . esc_html( $header_font ) . '/' . esc_html( $header_font ) . '.woff2'; ?>') format('woff2');
-	font-weight: normal;
-	font-display: fallback;
-	font-stretch: normal;
-}<?php if ( ! in_array( $header_font, $no_bold_font ) ) { ?>@font-face {
-	font-family: <?php echo esc_html( memberlite_get_font( 'header_font', true ) ); ?>;
-	font-style:normal;
-	src: url('<?php echo esc_url( get_template_directory_uri() ) . '/assets/fonts/' . esc_html( $header_font ) . '/' . esc_html( $header_font ) . '-bold.woff2'; ?>') format('woff2');
-	font-weight: bold;
-	font-display: fallback;
-	font-stretch: normal;
-}<?php
-			}
-		}
-
-		echo '</style>';
 	}
+	
+	// Enqueue the header font.
+	if ( ! empty( $header_font ) ) { ?>@font-face {
+font-family: <?php echo esc_html( memberlite_get_font( 'header_font', true ) ); ?>;
+font-style:normal;
+src: url('<?php echo esc_url( get_template_directory_uri() ) . '/assets/fonts/' . esc_html( $header_font ) . '/' . esc_html( $header_font ) . '.woff2'; ?>') format('woff2');
+font-weight: normal;
+font-display: fallback;
+font-stretch: normal;
+}<?php if ( ! in_array( $header_font, $no_bold_font ) ) { ?>@font-face {
+font-family: <?php echo esc_html( memberlite_get_font( 'header_font', true ) ); ?>;
+font-style:normal;
+src: url('<?php echo esc_url( get_template_directory_uri() ) . '/assets/fonts/' . esc_html( $header_font ) . '/' . esc_html( $header_font ) . '-bold.woff2'; ?>') format('woff2');
+font-weight: bold;
+font-display: fallback;
+font-stretch: normal;
+}<?php
+		}
+	}
+
+	echo '</style>';
 }
 add_action( 'wp_head', 'memberlite_load_local_webfonts' );
 
