@@ -1,9 +1,9 @@
 === Memberlite ===
 Contributors: kimannwall, strangerstudios
-Requires at least: 4.4
-Tested up to: 5.7
+Requires at least: 5.3
+Tested up to: 6.0
 Requires PHP: 5.6
-Stable tag: 4.5.3
+Stable tag: 4.5.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: one-column, two-columns, left-sidebar, right-sidebar, flexible-header, custom-background, custom-colors, custom-header, custom-menu, custom-logo, editor-style, featured-images, footer-widgets, full-width-template, post-formats, theme-options, threaded-comments, translation-ready, e-commerce
@@ -57,10 +57,6 @@ The Events Manager icon
 License: GPLv3
 Source: https://eventsmanagerpro.com/terms-conditions/
 
-MarketPress template
-License: GPLv2
-Source: https://wordpress.org/plugins/wordpress-ecommerce/
-
 CSS grid based on Foundation by Zurb
 License: MIT License
 Source: https://foundation.zurb.com/get-involved/faq.html
@@ -107,6 +103,21 @@ We highly recommend using these plugins for every site running Memberlite:
 [Install Multiple Post Thumbnails »](https://wordpress.org/plugins/multiple-post-thumbnails/)
 
 == Changelog ==
+
+= 4.5.4 - 2022-09-11 =
+* FEATURE: Added grid layout for blog.
+* FEATURE: Added block image option for showing post thumbnails in the loop and single post.
+* ENHANCEMENT: Added author block customizer setting for posts.
+* ENHANCEMENT: Now loading all webfonts locally.
+* ENHANCEMENT: Moved all colors to root variables to improve 
+* ENHANCEMENT: Added all unique colors in theme to editor color palette.
+* ENHANCEMENT: Updated to Font Awesome version 6.2.
+* ENHANCEMENT: Improved compatibility with WordPress Block Editor styling options and core blocks.
+* ENHANCEMENT: Added filter `memberlite_show_author_avatar` to optionally disable author avatar on posts.
+* ENHANCEMENT: Added filter `memberlite_logout_redirect_to` to allow filtering the logout URL redirect.
+* ENHANCEMENT: Added filter `memberlite_nav_menu_submenu_pagemenuid` to set the top level page to generate the submenu on pages.
+* ENHANCEMENT: Added filter `memberlite_excerpt_larger` to turn off the enlarged/enhanced excerpt text for a single post.
+* BUG FIX/ENHANCEMENT: Removed h1 tag from logo on all pages except `home_url`.
 
 = 4.5.3 - 2021-03-13 =
 * ENHANCEMENT: Now showing member welcome/links in mobile menu if no other widgets defined.
