@@ -117,6 +117,7 @@ We highly recommend using these plugins for every site running Memberlite:
 * ENHANCEMENT: Added filter `memberlite_logout_redirect_to` to allow filtering the logout URL redirect.
 * ENHANCEMENT: Added filter `memberlite_nav_menu_submenu_pagemenuid` to set the top level page to generate the submenu on pages.
 * ENHANCEMENT: Added filter `memberlite_excerpt_larger` to turn off the enlarged/enhanced excerpt text for a single post.
+* BUG FIX/ENHANCEMENT: Improved dark background handling for various frontend elements.
 * BUG FIX/ENHANCEMENT: Removed h1 tag from logo on all pages except `home_url`.
 
 = 4.5.3 - 2021-03-13 =
