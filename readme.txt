@@ -107,7 +107,7 @@ We highly recommend using these plugins for every site running Memberlite:
 = 4.5.4 - 2022-09-11 =
 * FEATURE: Added grid layout for blog.
 * FEATURE: Added block image option for showing post thumbnails in the loop and single post.
-* ENHANCEMENT: Added author block customizer setting for posts.
+* FEATURE: Added author block customizer setting for posts.
 * ENHANCEMENT: Now loading all webfonts locally.
 * ENHANCEMENT: Moved all colors to root variables to improve 
 * ENHANCEMENT: Added all unique colors in theme to editor color palette.
