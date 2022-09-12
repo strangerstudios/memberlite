@@ -488,9 +488,14 @@ function memberlite_login_redirect_to() {
 	return apply_filters( 'memberlite_login_redirect_to', esc_url( $redirect_to ) );
 }
 
-/* Get the redirect_to URL to use for "Log Our" links. */
+/* Get the redirect_to URL to use for "Log Out" links. */
 function memberlite_logout_redirect_to() {
-	return apply_filters(  'memberlite_logout_redirect_to', home_url() );
+	if ( isset( $_SERVER['REQUEST_URI'] ) ) {
+		$redirect_to = home_url( esc_url( $_SERVER['REQUEST_URI'] ) );
+	} else {
+		$redirect_to = home_url();
+	}
+	return apply_filters(  'memberlite_logout_redirect_to', esc_url( $redirect_to ) );
 }
 
 /* Adds a Log Out link in member menu */
