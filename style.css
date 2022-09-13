@@ -2280,6 +2280,9 @@ a:active {
 	font-weight: bold;
 	margin: 0;
 }
+.hentry .entry-content .lead .wp-post-image {
+	margin-bottom: 0;
+}
 .entry-content,
 .entry-summary {
 	margin: 0;
