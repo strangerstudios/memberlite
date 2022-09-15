@@ -646,6 +646,7 @@ a.btn.skip-link {
 	padding: .7rem 1.45rem;
 }
 a.pmpro_btn,
+a.pmpro_btn:link,
 .pmpro_content_message a,
 input[type=submit].pmpro_btn,
 input[type=button].pmpro_btn,
@@ -1656,7 +1657,7 @@ a:active {
 #secondary .widget {
 	margin-bottom: 2.9rem;
 }
-.widget-area .widget a:not(.btn) {
+.widget-area .widget a:not(.btn):not(.pmpro_btn) {
 	border-bottom: 1px dotted var(--memberlite-color-white);
 	text-decoration: none;
 	color: var(--memberlite-color-text);
