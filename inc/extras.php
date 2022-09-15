@@ -262,8 +262,13 @@ function memberlite_the_content( $content ) {
 		$morespan_pos = strpos( $content, $morespan );
 		$leadcontent = substr( $content, 0, $morespan_pos );
 
+		// Add the block image between the "excerpt" and the rest of the content.
+		if ( ! empty( $image_content ) ) {
+			$leadcontent .= $image_content;
+		}
+
 		/**
-		 * Filter to turn off the enlarged/enhanced excerpt text for a single post.
+		 * Filter to turn off the enlarged/enhanced excerpt text for a single post with a separator.
 		 *
 		 * @since 4.5.4
 		 *
@@ -273,12 +278,7 @@ function memberlite_the_content( $content ) {
 		 */
 		$memberlite_excerpt_larger = apply_filters( 'memberlite_excerpt_larger', true);
 		if ( ! empty( $memberlite_excerpt_larger ) ) {
-			$leadcontent = '<div class="lead">' . $leadcontent . '</div>';
-		}
-
-		// Add the block image between the "excerpt" and the rest of the content.
-		if ( ! empty( $image_content ) ) {
-			$leadcontent .= $image_content;
+			$leadcontent = '<div class="lead">' . $leadcontent . '<hr /></div>';
 		}
 
 		// Add the content after the $more tag to the $content.
