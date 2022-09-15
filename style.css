@@ -1661,7 +1661,7 @@ a:active {
 	text-decoration: none;
 	color: var(--memberlite-color-text);
 }
-.widget-area .widget a:hover:not(.btn) {
+.widget-area .widget a:hover:not(.btn):not(.pmpro_btn) {
 	color: var(--memberlite-color-primary);
 	border-bottom-color: #777;
 }
