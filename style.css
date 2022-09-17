@@ -1208,7 +1208,7 @@ a:active {
 }
 .meta-navigation .menu-item-has-children a:hover,
 .header-right .widget_nav_menu .menu-item-has-children a:hover {
-	border-bottom: none;
+	border-bottom-color: transparent;
 }
 .meta-navigation li:last-child,
 .header-right .widget_nav_menu li:last-child,
@@ -1274,16 +1274,10 @@ a:active {
 	border-left: none;
 	border-top: 1px dotted #EEE;
 }
-.main-navigation li:hover {
-	filter: brightness(var(--memberlite-hover-brightness));
-}
-.main-navigation li:hover > a {
-	filter: brightness(var(--memberlite-hover-brightness));
-}
 .main-navigation ul.sub-menu li:hover > a,
 .meta-navigation ul.sub-menu li:hover > a,
 .header-right .widget_nav_menu ul.sub-menu li:hover > a  {
-	background-color: rgba(0,0,0,0.1);
+	background-color: rgba( 0, 0, 0, 0.05 );
 }
 .main-navigation ul li:hover > ul {
 	left: auto;
