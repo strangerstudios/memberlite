@@ -494,27 +494,41 @@ table {
 	margin: 2.9rem 0;
 	width: 100%;
 }
-th {
+.wp-block-table thead {
+	border: none;
+}
+th,
+.wp-block-table th {
 	font-family: var(--memberlite-header-font);
 	font-weight: 400;
 	padding: 1.45rem;
 }
-thead th {
+thead th,
+.wp-block-table thead th {
 	background-color: #FAFAFA;
-	border-top: 1px solid var(--memberlite-color-borders);
-	border-bottom: 1px solid var(--memberlite-color-borders);
+	border-color: var(--memberlite-color-borders);
+	border-style: solid;
+	border-width: 1px 0;
 	padding: 1.45rem;
 }
-tbody th {
-	border-bottom: 1px dotted var(--memberlite-color-borders);
+tbody th,
+.wp-block-table tbody th {
+	border-color: var(--memberlite-color-borders);
+	border-style: dotted;
+	border-width: 0 0 1px 0;
 }
-td {
-	border-bottom: 1px dotted var(--memberlite-color-borders);
+td,
+.wp-block-table td {
+	border-color: var(--memberlite-color-borders);
+	border-style: solid;
+	border-width: 0 0 1px 0;
 	padding: 1.45rem;
 	vertical-align: top;
 }
 tbody tr:nth-child(even) th,
-tbody tr:nth-child(even) td {
+tbody tr:nth-child(even) td,
+.wp-block-table tbody tr:nth-child(even) th,
+.wp-block-table tbody tr:nth-child(even) td {
 	background-color: #FDFDFD;
 }
 dl {
@@ -611,6 +625,7 @@ input[type=button].pmpro_btn,
 	color: var(--memberlite-color-white);
 	cursor: pointer;
 	-webkit-appearance: none;
+	font-family: var(--memberlite-header-font);
 	font-size: 1.8rem;
 	font-style: normal;
 	font-weight: normal;
@@ -653,6 +668,7 @@ input[type=button].pmpro_btn,
 #loginform input[type=submit].button.button-primary {
 	background-color: var(--memberlite-color-action);
 	border: none;
+	border-radius: 6px;
 	box-shadow: 1px 2px 4px rgba(0,0,0,0.2);
 	color: var(--memberlite-color-white);
 	font-size: 1.8rem;
@@ -901,7 +917,7 @@ textarea {
 #sitewide-notice p,
 p.success {
 	background-color: #d9edf7;
-	border-radius: 5px;
+	border-radius: 6px;
 	border: 1px solid #bce8f1;
 	color: #31708f;
 	font-size: 1.8rem;
@@ -2089,7 +2105,7 @@ a:active {
 .masthead-banner .masthead-post-byline p.entry-meta {
 	margin: 0;
 }
-.masthead p a,
+.masthead p a:not(.btn),
 .masthead .memberlite-breadcrumb a {
 	color: var(--memberlite-color-white);
 	text-decoration: none;
