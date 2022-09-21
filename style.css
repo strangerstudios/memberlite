@@ -265,23 +265,18 @@ blockquote.quote:before,
 	left: 0rem;
 	top: 0rem;
 	position: absolute;
-	z-index: -1;
 }
-blockquote.quote p:last-child,
-.wp-block-quote p:last-child {
+blockquote.quote p:last-of-type,
+.wp-block-quote p:last-of-type {
 	margin-bottom: 0;
 }
 blockquote cite,
 .testimonials-widget blockquote .credit,
 .wp-block-quote cite {
 	display: block;
-	margin-top: .5rem;
+	margin-top: .9rem;
 	text-align: right;
 	font-style: italic;
-}
-.wp-block-quote cite,
-.wp-block-pullquote cite {
-	margin-bottom: 2.9rem;
 }
 blockquote cite a,
 .testimonials-widget blockquote .credit a,
