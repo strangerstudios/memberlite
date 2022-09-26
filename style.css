@@ -2209,7 +2209,7 @@ a:active {
 .single-format-link .masthead-post-byline h1.entry-title:before,
 .single-format-video .masthead-post-byline h1.entry-title:before {
 	font-family: 'Font Awesome 5 Free';
-	font-weight: 700;
+	font-weight: 900;
 	padding-right: 10px;
 }
 .hentry.format-audio h1.entry-title a:before,
