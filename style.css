@@ -328,7 +328,7 @@ details > summary:before {
 	content: "\f078";
 	float: right;
 	font-family: 'Font Awesome 5 Free';
-	font-weight: 700;
+	font-weight: 900;
 	margin: 0 1.45rem;
 }
 details[open] > summary:before {
@@ -2232,7 +2232,7 @@ a:active {
 .pmpro-body-level-required .masthead-post-byline h1.entry-title:before {
 	content: "\f023";
 	font-family: 'Font Awesome 5 Free';
-	font-weight: 700;
+	font-weight: 900;
 	padding-right: 10px;
 }
 .pmpro-level-required.pmpro-has-access h1.entry-title a:before,
@@ -2533,7 +2533,7 @@ a:active {
 	content: "\f007";
 	font-family: 'Font Awesome 5 Free';
 	font-size: 1.2rem;
-	font-weight: 700;
+	font-weight: 900;
 	margin-left: 5px;
 	margin-top: -2px;
 }
