@@ -14,7 +14,7 @@
 	<?php
 		global $memberlite_defaults;
 		$memberlite_loop_images = get_theme_mod( 'memberlite_loop_images', $memberlite_defaults['memberlite_loop_images'] );
-	if ( $memberlite_loop_images == 'show_both' || $memberlite_loop_images == 'show_thumbnail' ) {
+	if ( ( $memberlite_loop_images == 'show_both' && defined( 'MEMBERLITE_ELEMENTS_VERSION' ) ) || $memberlite_loop_images == 'show_thumbnail' ) {
 		the_post_thumbnail(
 			'medium',
 			array(
