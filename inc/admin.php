@@ -91,6 +91,12 @@ function memberlite_support() {
 			</div>
 
 			<?php
+				$memberlite_plugin_action_button_allowed_html = array(
+					'a' => array(
+						'class' => array(),
+						'href' => array(),
+					),
+				);
 				$memberlite_plugins_recommended = apply_filters( 'memberlite_plugins_recommended', array( 'memberlite-elements', 'memberlite-shortcodes', 'paid-memberships-pro', 'sitewide-sales' ) );
 				if ( ! empty( $memberlite_plugins_recommended ) ) { ?>
 					<hr />
@@ -113,11 +119,9 @@ function memberlite_support() {
 									<div class="action-links">
 										<ul class="plugin-action-buttons">
 											<li>
-												<?php if ( is_plugin_active( 'memberlite-elements/memberlite-elements.php' ) ) { ?>
-													<a class="button button-disabled"><?php esc_html_e( 'Installed', 'memberlite' ); ?></a>
-												<?php } else { ?>
-													<a class="install-now button" href="<?php echo esc_url( admin_url( 'plugin-install.php?tab=search&s=memberlite+elements' ) ); ?>"><?php esc_html_e( 'Install Now', 'memberlite' ); ?></a>
-												<?php } ?>
+												<?php
+													echo wp_kses( memberlite_plugin_action_button( 'memberlite-elements', 'memberlite-elements/memberlite-elements.php' ), $memberlite_plugin_action_button_allowed_html );
+												?>
 											</li>
 											<li><a href="https://wordpress.org/plugins/memberlite-elements/" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'More Details', 'memberlite' ); ?></a></li>
 										</ul>
@@ -140,11 +144,9 @@ function memberlite_support() {
 									<div class="action-links">
 										<ul class="plugin-action-buttons">
 											<li>
-												<?php if ( is_plugin_active( 'memberlite-shortcodes/memberlite-shortcodes.php' ) ) { ?>
-													<a class="button button-disabled"><?php esc_html_e( 'Installed', 'memberlite' ); ?></a>
-												<?php } else { ?>
-													<a class="install-now button" href="<?php echo esc_url( admin_url( 'plugin-install.php?tab=search&s=memberlite+shortcodes' ) ); ?>"><?php esc_html_e( 'Install Now', 'memberlite' ); ?></a>
-												<?php } ?>
+												<?php
+													echo wp_kses( memberlite_plugin_action_button( 'memberlite-shortcodes', 'memberlite-shortcodes/memberlite-shortcodes.php' ), $memberlite_plugin_action_button_allowed_html );
+												?>
 											</li>
 											<li><a href="https://wordpress.org/plugins/memberlite-shortcodes/" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'More Details', 'memberlite' ); ?></a></li>
 										</ul>
@@ -167,11 +169,9 @@ function memberlite_support() {
 									<div class="action-links">
 										<ul class="plugin-action-buttons">
 											<li>
-												<?php if ( is_plugin_active( 'paid-memberships-pro/paid-memberships-pro.php' ) ) { ?>
-													<a class="button button-disabled"><?php esc_html_e( 'Installed', 'memberlite' ); ?></a>
-												<?php } else { ?>
-													<a class="install-now button" href="<?php echo esc_url( admin_url( 'plugin-install.php?tab=search&s=paid+memberships+pro' ) ); ?>"><?php esc_html_e( 'Install Now', 'memberlite' ); ?></a>
-												<?php } ?>
+												<?php
+													echo wp_kses( memberlite_plugin_action_button( 'paid-memberships-pro', 'paid-memberships-pro/paid-memberships-pro.php' ), $memberlite_plugin_action_button_allowed_html );
+												?>
 											</li>
 											<li><a href="https://www.paidmembershipspro.com/?utm_source=memberlite-theme&utm_medium=memberlite-guide&utm_campaign=homepage" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'More Details', 'memberlite' ); ?></a></li>
 										</ul>
@@ -194,11 +194,9 @@ function memberlite_support() {
 									<div class="action-links">
 										<ul class="plugin-action-buttons">
 											<li>
-												<?php if ( is_plugin_active( 'sitewide-sales/sitewide-sales.php' ) ) { ?>
-													<a class="button button-disabled"><?php esc_html_e( 'Installed', 'memberlite' ); ?></a>
-												<?php } else { ?>
-													<a class="install-now button" href="https://sitewidesales.com/pricing/?utm_source=memberlite-theme&utm_medium=memberlite-guide&utm_campaign=homepage"><?php esc_html_e( 'Install Now', 'memberlite' ); ?></a>
-												<?php } ?>
+												<?php
+													echo wp_kses( memberlite_plugin_action_button( 'sitewide-sales', 'sitewide-sales/sitewide-sales.php' ), $memberlite_plugin_action_button_allowed_html );
+												?>
 											</li>
 											<li><a href="https://sitewidesales.com/?utm_source=memberlite-theme&utm_medium=memberlite-guide&utm_campaign=homepage" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'More Details', 'memberlite' ); ?></a></li>
 										</ul>
@@ -238,7 +236,11 @@ function memberlite_support() {
 								</div>
 								<div class="action-links">
 									<ul class="plugin-action-buttons">
-										<li><a class="install-now button" href="<?php echo esc_url( admin_url( 'plugin-install.php?tab=search&s=bbpress' ) ); ?>"><?php esc_html_e( 'Install Now', 'memberlite' ); ?></a></li>
+										<li>
+											<?php
+												echo wp_kses( memberlite_plugin_action_button( 'bbpress', 'bbpress/bbpress.php' ), $memberlite_plugin_action_button_allowed_html );
+											?>
+										</li>
 										<li><a href="https://wordpress.org/plugins/bbpress/" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'More Details', 'memberlite' ); ?></a></li>
 									</ul>
 								</div>
@@ -260,7 +262,11 @@ function memberlite_support() {
 								</div>
 								<div class="action-links">
 									<ul class="plugin-action-buttons">
-										<li><a class="install-now button" href="<?php echo esc_url( admin_url( 'plugin-install.php?tab=search&s=events+manager' ) ); ?>"><?php esc_html_e( 'Install Now', 'memberlite' ); ?></a></li>
+										<li>
+											<?php
+												echo wp_kses( memberlite_plugin_action_button( 'events-manager', 'events-manager/events-manager.php' ), $memberlite_plugin_action_button_allowed_html );
+											?>
+										</li>
 										<li><a href="https://wordpress.org/plugins/events-manager/" target="_blank"><?php esc_html_e( 'More Details', 'memberlite' ); ?></a></li>
 									</ul>
 								</div>
@@ -282,11 +288,9 @@ function memberlite_support() {
 									<div class="action-links">
 										<ul class="plugin-action-buttons">
 											<li>
-												<?php if ( is_plugin_active( 'multiple-post-thumbnails/multiple-post-thumbnails.php' ) ) { ?>
-													<a class="button button-disabled"><?php esc_html_e( 'Installed', 'memberlite' ); ?></a>
-												<?php } else { ?>
-													<a class="install-now button" href="<?php echo esc_url( admin_url( 'plugin-install.php?tab=search&s=multiple+post+thumbnails' ) ); ?>"><?php esc_html_e( 'Install Now', 'memberlite' ); ?></a>
-												<?php } ?>
+												<?php
+													echo wp_kses( memberlite_plugin_action_button( 'multiple-post-thumbnails/', 'multiple-post-thumbnails/multi-post-thumbnails.php' ), $memberlite_plugin_action_button_allowed_html );
+												?>
 											</li>
 											<li><a href="https://wordpress.org/plugins/multiple-post-thumbnails/" target="_blank"><?php esc_html_e( 'More Details', 'memberlite' ); ?></a></li>
 										</ul>
@@ -308,7 +312,11 @@ function memberlite_support() {
 								</div>
 								<div class="action-links">
 									<ul class="plugin-action-buttons">
-										<li><a class="install-now button" href="<?php echo esc_url( admin_url( 'plugin-install.php?tab=search&s=paid+memberships+pro' ) ); ?>"><?php esc_html_e( 'Install Now', 'memberlite' ); ?></a></li>
+										<li>
+											<?php
+												echo wp_kses( memberlite_plugin_action_button( 'paid-memberships-pro', 'paid-memberships-pro/paid-memberships-pro.php' ), $memberlite_plugin_action_button_allowed_html );
+											?>
+										</li>
 										<li><a href="https://www.paidmembershipspro.com/?utm_source=memberlite-theme&utm_medium=memberlite-guide&utm_campaign=homepage" target="_blank"><?php esc_html_e( 'More Details', 'memberlite' ); ?></a></li>
 									</ul>
 								</div>
@@ -329,7 +337,11 @@ function memberlite_support() {
 								</div>
 								<div class="action-links">
 									<ul class="plugin-action-buttons">
-										<li><a class="install-now button" href="<?php echo esc_url( admin_url( 'plugin-install.php?tab=search&s=testimonials+widget' ) ); ?>"><?php esc_html_e( 'Install Now', 'memberlite' ); ?></a></li>
+										<li>
+											<?php
+												echo wp_kses( memberlite_plugin_action_button( 'testimonials-widget', 'testimonials-widget/testimonials-widget.php' ), $memberlite_plugin_action_button_allowed_html );
+											?>
+										</li>
 										<li><a href="https://wordpress.org/plugins/testimonials-widget/" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'More Details', 'memberlite' ); ?></a></li>
 									</ul>
 								</div>
@@ -351,7 +363,11 @@ function memberlite_support() {
 								</div>
 								<div class="action-links">
 									<ul class="plugin-action-buttons">
-										<li><a class="install-now button" href="<?php echo esc_url( admin_url( 'plugin-install.php?tab=search&s=woocommerce' ) ); ?>"><?php esc_html_e( 'Install Now', 'memberlite' ); ?></a></li>
+										<li>
+											<?php
+												echo wp_kses( memberlite_plugin_action_button( 'woocommerce', 'woocommerce/woocommerce.php' ), $memberlite_plugin_action_button_allowed_html );
+											?>
+										</li>
 										<li><a href="https://wordpress.org/plugins/woocommerce/" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'More Details', 'memberlite' ); ?></a></li>
 									</ul>
 								</div>
@@ -370,6 +386,34 @@ function memberlite_support() {
 		</div> <!-- end about-wrap -->
 	</div> <!-- end wpbody-content -->
 	<?php
+}
+
+/**
+ * Show an action button for the specified plugin
+ */
+function memberlite_plugin_action_button( $slug, $plugin_file ) {
+	$plugin_file_abs = ABSPATH . 'wp-content/plugins/' . $plugin_file;
+	if ( is_plugin_active( $plugin_file ) ) {
+		$status = 'active';
+	} elseif ( file_exists( $plugin_file_abs ) ) {
+		$status = 'inactive';
+	} else {
+		$status = 'uninstalled';
+	}
+
+	if ( $status === 'active' ) {
+		$r = '<a class="button button-disabled">' . __( 'Active', 'memberlite' ) . '</a>';
+	} elseif ( $status === 'inactive' ) {
+		$r = '<a class="install-now button" href="' . esc_url( add_query_arg( array( 's' => $slug ), admin_url( 'plugins.php' ) ) ) . '">' . __( 'Activate', 'memberlite' ) . '</a>';
+	} else {
+		if ( is_multisite() ) {
+			// This is a network install.
+			$r = '<a class="install-now button" href="' . esc_url( add_query_arg( array( 's' => $slug, 'tab' => 'search' ), network_admin_url( 'plugin-install.php' ) ) ) . '">' . __( 'Install', 'memberlite' ) . '</a>';
+		} else {
+			$r = '<a class="install-now button" href="' . esc_url( add_query_arg( array( 's' => $slug, 'tab' => 'search' ), admin_url( 'plugin-install.php' ) ) ) . '">' . __( 'Install', 'memberlite' ) . '</a>';
+		}
+	}
+	return $r;
 }
 
 /*
