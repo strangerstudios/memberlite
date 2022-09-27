@@ -3,7 +3,7 @@ Contributors: kimannwall, strangerstudios
 Requires at least: 5.3
 Tested up to: 6.0
 Requires PHP: 5.6
-Stable tag: 4.5.4
+Stable tag: 4.5.4.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: one-column, two-columns, left-sidebar, right-sidebar, flexible-header, custom-background, custom-colors, custom-header, custom-menu, custom-logo, editor-style, featured-images, footer-widgets, full-width-template, post-formats, theme-options, threaded-comments, translation-ready, e-commerce
@@ -103,6 +103,16 @@ We highly recommend using these plugins for every site running Memberlite:
 [Install Multiple Post Thumbnails »](https://wordpress.org/plugins/multiple-post-thumbnails/)
 
 == Changelog ==
+
+= 4.5.4.1 - 2022-09-27 =
+* ENHANCEMENT: Improved core WP block styling for tables and quotes.
+* BUG FIX: Fixed links to install and activate recommended plugins when using a WordPress multisite environment.
+* BUG FIX: Updated Font Awesome icon weights for Elementor compatibility for post titles on protected content, post types.
+* BUG FIX: Added code to prevent a duplicate featured image showing as banner and thumbnail on archives.
+* BUG FIX: Added missing Non Sans local font file.
+* BUG FIX: Fixed dropdowns in primary navigation that could be behind row two if your primary menu wraps.
+* BUG FIX: Improvements to button colors on default PMPro levels page, footer skip link, and sidebars.
+* BUG FIX: Replaced lost separator for sites that show the larger "excerpt" content on loop and single posts.
 
 = 4.5.4 - 2022-09-11 =
 * FEATURE: Added grid layout for blog.
