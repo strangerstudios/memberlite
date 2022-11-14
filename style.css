@@ -1253,7 +1253,6 @@ a:active {
 .main-navigation ul.sub-menu,
 .meta-navigation ul.sub-menu,
 .header-right .widget_nav_menu ul.sub-menu {
-	background-color: var(--memberlite-color-site-navigation-background);
 	box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
 	float: left;
 	position: absolute;
@@ -1262,6 +1261,15 @@ a:active {
 	z-index: 99999;
 	margin: 0;
 	text-align: left;
+}
+.main-navigation ul.sub-menu {
+	background-color: var(--memberlite-color-site-navigation-background);
+}
+.meta-navigation ul.sub-menu,
+.header-right .widget_nav_menu ul.sub-menu {
+	background-color: var(--memberlite-color-header-background);
+	left: -9999em;
+	top: 0;
 }
 .meta-navigation ul.sub-menu ul.sub-menu,
 .header-right .widget_nav_menu ul.sub-menu ul.sub-menu {
@@ -1275,7 +1283,7 @@ a:active {
 	display: block;
 	float: none;
 	padding: 0;
-	position: unset;
+	position: relative;
 }
 .main-navigation ul.sub-menu a,
 .meta-navigation ul.sub-menu a,
@@ -1294,7 +1302,7 @@ a:active {
 	left: auto;
 }
 .main-navigation ul li:first-child:hover > ul {
-	left: -1.5rem;
+	left: 0;
 }
 .main-navigation ul li:hover > ul li:hover > ul {
 	left: 100%;
