@@ -885,7 +885,7 @@ function memberlite_should_show_banner_image( $post_id = null ) {
  * Get the post thumbnail image src and allow filtering.
  * Used to swap in the banner for loop/single posts with Memberlite Elements.
  */
-function memberlite_get_banner_image( $attachment_id, $size = 'banner', $icon = false, $attr = '', $post_id ) {
+function memberlite_get_banner_image( $attachment_id = 0, $size = 'banner', $icon = false, $attr = '', $post_id = 0 ) {
 	// default to global post
 	if ( empty( $attachment_id ) ) {
 		global $post;
