@@ -29,7 +29,7 @@ if ( ! function_exists( 'memberlite_paging_nav' ) ) :
 		}
 		?>
 		<nav class="navigation paging-navigation" role="navigation">
-		<h1 class="screen-reader-text"><?php esc_html_e( 'Posts navigation', 'memberlite' ); ?></h1>
+		<span class="screen-reader-text"><?php esc_html_e( 'Posts navigation', 'memberlite' ); ?></span>
 		<div class="nav-links">
 
 			<?php if ( get_next_posts_link() ) : ?>
@@ -60,7 +60,7 @@ if ( ! function_exists( 'memberlite_post_nav' ) ) :
 		}
 		?>
 		<nav class="navigation post-navigation" role="navigation">
-		<h1 class="screen-reader-text"><?php esc_html_e( 'Post navigation', 'memberlite' ); ?></h1>
+		<span class="screen-reader-text"><?php esc_html_e( 'Post navigation', 'memberlite' ); ?></span>
 		<div class="nav-links">
 			<?php
 				previous_post_link( '<div class="nav-previous">%link</div>', _x( '<span class="meta-nav">&larr;</span> %title', 'Previous post link', 'memberlite' ) );
@@ -131,7 +131,7 @@ if ( ! function_exists( 'memberlite_page_nav' ) ) :
 		// HTML
 		?>
 		<nav class="navigation page-navigation" role="navigation">
-		<h1 class="screen-reader-text"><?php esc_html_e( 'Page navigation', 'memberlite' ); ?></h1>
+		<span class="screen-reader-text"><?php esc_html_e( 'Page navigation', 'memberlite' ); ?></span>
 		<div class="nav-links">
 			<?php if ( ! empty( $previousID ) && ( $previousID != $post->ID ) ) { ?>
 				<div class="nav-previous"><a href="<?php echo esc_url( get_permalink( $previousID ) ); ?>" rel="prev"><span class="meta-nav">&larr;</span> <?php echo esc_html( get_the_title( $previousID ) ); ?></a></div>
