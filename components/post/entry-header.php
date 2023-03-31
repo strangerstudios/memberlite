@@ -47,7 +47,8 @@
 					'src' => array(),
 					'title' => array(),
 					'width' => array()
-				)
+				),
+				'noscript' => array()
 			);
 			echo wp_kses( memberlite_get_author_avatar( $post->post_author ), $author_avatar_allowed_html );
 		?>
