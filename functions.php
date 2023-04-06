@@ -391,7 +391,7 @@ if ( ! function_exists( 'memberlite_setup' ) ) :
 		}
 
 		// Add color values to Block Editor
-		add_theme_support( 'editor-color-palette', $colors );
+		add_theme_support( 'editor-color-palette', apply_filters( 'memberlite_editor_color_palette', $colors ) );
 
 		// Indicate widget sidebars can use selective refresh in the Customizer.
 		add_theme_support( 'customize-selective-refresh-widgets' );
