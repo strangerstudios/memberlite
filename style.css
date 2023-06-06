@@ -3078,19 +3078,23 @@ form.pmpro_form label,
 #loginform label {
 	font-weight: 400;
 }
+form#pmpro_form .pmpro_checkout h2,
 form#pmpro_form .pmpro_checkout h3 {
 	background-color: #FAFAFA;
 	border-top: 1px solid var(--memberlite-color-borders);
 	border-bottom: 1px solid var(--memberlite-color-borders);
 	padding: 1.45rem;
 }
+form#pmpro_form .pmpro_checkout h2 span.pmpro_checkout-h2-name,
 form#pmpro_form .pmpro_checkout h3 span.pmpro_checkout-h3-name {
 	font-weight: 700;
 	margin: 0;
 }
+form#pmpro_form .pmpro_checkout h2 span.pmpro_checkout-h2-msg,
 form#pmpro_form .pmpro_checkout h3 span.pmpro_checkout-h3-msg {
 	float: right;
 }
+form#pmpro_form .pmpro_checkout h2 span.pmpro_checkout-h2-msg a,
 form#pmpro_form .pmpro_checkout h3 span.pmpro_checkout-h3-msg a {
 	text-decoration: underline;
 }
