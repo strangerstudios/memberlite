@@ -114,7 +114,7 @@
 				// show the mobile menu toggle button
 				if ( is_active_sidebar( 'sidebar-5' ) || has_nav_menu( 'primary' ) ) { ?>
 					<div class="mobile-navigation-bar">
-					<button class="menu-toggle"><i class="fa fa-bars"></i></button>
+					<button class="menu-toggle"><i class="fa fa-bars"></i> <span class="screen-reader-text"><?php esc_html_e( 'Toggle Mobile Menu', 'memberlite' ); ?></span></button>
 					</div>
 				<?php }
 			?>
