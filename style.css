@@ -3083,6 +3083,8 @@ form#pmpro_form .pmpro_checkout h3 {
 	background-color: #FAFAFA;
 	border-top: 1px solid var(--memberlite-color-borders);
 	border-bottom: 1px solid var(--memberlite-color-borders);
+	font-size: 2.3rem;
+	line-height: 3.7rem;
 	padding: 1.45rem;
 }
 form#pmpro_form .pmpro_checkout h2 span.pmpro_checkout-h2-name,
