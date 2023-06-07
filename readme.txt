@@ -1,7 +1,7 @@
 === Memberlite ===
 Contributors: kimannwall, strangerstudios
 Requires at least: 5.3
-Tested up to: 6.0
+Tested up to: 6.2
 Requires PHP: 5.6
 Stable tag: 4.5.5
 License: GPLv2 or later
