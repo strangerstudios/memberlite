@@ -108,6 +108,8 @@ We highly recommend using these plugins for every site running Memberlite:
 * ENHANCEMENT/BUG FIX: Updating screen reader text shown with page navigation to not use the H1 tag for SEO and page structure.
 * ENHANCEMENT/BUG FIX: Accessibility improvements for the Mobile Menu toggle.
 * ENHANCEMENT/BUG FIX: Checkout heading updates for accessibility improvements in PMPro v2.11.
+* ENHANCEMENT/BUG FIX: Improved appearance of third level dropdown items in primary and meta menu locations.
+* BUG FIX: Allow `noscript` tag in the escaped output of author avatar image for Jetpack compatibility.
 * BUG FIX: Fixed PHP 8 deprecated notices.
 
 = 4.5.4.1 - 2022-09-27 =
