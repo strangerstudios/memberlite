@@ -3,7 +3,7 @@ Contributors: kimannwall, strangerstudios
 Requires at least: 5.3
 Tested up to: 6.0
 Requires PHP: 5.6
-Stable tag: 4.5.4.1
+Stable tag: 4.5.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: one-column, two-columns, left-sidebar, right-sidebar, flexible-header, custom-background, custom-colors, custom-header, custom-menu, custom-logo, editor-style, featured-images, footer-widgets, full-width-template, post-formats, theme-options, threaded-comments, translation-ready, e-commerce
@@ -103,6 +103,12 @@ We highly recommend using these plugins for every site running Memberlite:
 [Install Multiple Post Thumbnails »](https://wordpress.org/plugins/multiple-post-thumbnails/)
 
 == Changelog ==
+= 4.5.5 - 2023-06-07 =
+* ENHANCEMENT: Added the `memberlite_editor_color_palette` filter to adjust the editor color palette.
+* ENHANCEMENT/BUG FIX: Updating screen reader text shown with page navigation to not use the H1 tag for SEO and page structure.
+* ENHANCEMENT/BUG FIX: Accessibility improvements for the Mobile Menu toggle.
+* ENHANCEMENT/BUG FIX: Checkout heading updates for accessibility improvements in PMPro v2.11.
+* BUG FIX: Fixed PHP 8 deprecated notices.
 
 = 4.5.4.1 - 2022-09-27 =
 * ENHANCEMENT: Improved core WP block styling for tables and quotes.
