@@ -177,10 +177,10 @@ h2,
 	margin-top: 0;
 }
 
-.entry-content h1,
+.entry-content h1:not(.wp-block-heading),
 .entry-content .h1 {
 	font-size: 4.7rem;
-	line-height: 7.5rem;
+	line-height: 6.5rem;
 }
 h3,
 .h3 {
