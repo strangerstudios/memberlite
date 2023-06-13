@@ -162,7 +162,8 @@ h4,
 h5,
 h6 {
 	font-family: var(--memberlite-header-font);
-	margin: 2.9rem 0;
+	font-weight: 700;
+	margin: 4.25rem 0 1.45rem 0;
 }
 h1,
 h2,
@@ -170,8 +171,12 @@ h2,
 .h2 {
 	font-size: 3.2rem;
 	line-height: 4.4rem;
-	margin: 2.9rem 0;
+	margin: 4.25rem 0 1.45rem 0;
 }
+#main *:first-child .entry-header-content h2 {
+	margin-top: 0;
+}
+
 .entry-content h1,
 .entry-content .h1 {
 	font-size: 4.7rem;
@@ -212,7 +217,7 @@ h4 a:hover,
 h5 a:hover,
 h6 a:hover,
 .navigation a {
-	border-bottom: 1px dotted #777;
+	border-bottom: 1px solid #777;
 }
 p {
 	margin-bottom: 2.9rem;
@@ -243,7 +248,7 @@ i {
 }
 blockquote {
 	margin: 2.9rem 0;
-	background-color: #FAFAFA;
+	background-color: #F9FAFB;
 	padding: 2.9rem 2.9rem 1px 2.9rem;
 	border-left: 5px solid var(--memberlite-color-borders);
 }
@@ -401,6 +406,7 @@ big {
 }
 label {
 	font-family: var(--memberlite-header-font);
+	font-weight: 700;
 }
 .required {
 	color: #B00000;
@@ -437,7 +443,7 @@ hr {
 	background-color: var(--memberlite-color-borders);
 	border: 0;
 	height: 1px;
-	margin: 2.9rem 0;
+	margin: 4.35rem 0;
 }
 hr.wp-block-separator {
 	margin-left: auto;
@@ -500,7 +506,7 @@ th,
 }
 thead th,
 .wp-block-table thead th {
-	background-color: #FAFAFA;
+	background-color: #F9FAFB;
 	border-color: var(--memberlite-color-borders);
 	border-style: solid;
 	border-width: 1px 0;
@@ -606,6 +612,7 @@ input[type=submit],
 .btn,
 a.pmpro_btn,
 .pmpro_content_message a,
+.pmpro_content_message a:link,
 a.comment-reply-link,
 a.comment-reply-link,
 input[type=submit].pmpro_btn,
@@ -623,7 +630,7 @@ input[type=button].pmpro_btn,
 	font-family: var(--memberlite-header-font);
 	font-size: 1.8rem;
 	font-style: normal;
-	font-weight: normal;
+	font-weight: 700;
 	display: inline-block;
 	line-height: 2.9rem;
 	padding: 1.45rem 2.9rem;
@@ -651,6 +658,7 @@ input[type=submit].inline-form-button {
 	padding-bottom: .5rem;
 }
 .pmpro_content_message a,
+.pmpro_content_message a:link,
 a.comment-reply-link,
 a.btn.skip-link {
 	padding: .7rem 1.45rem;
@@ -911,10 +919,10 @@ textarea {
 .pmpro_bbp_membership_msg,
 #sitewide-notice p,
 p.success {
-	background-color: #d9edf7;
-	border-radius: 6px;
-	border: 1px solid #bce8f1;
-	color: #31708f;
+	background-color: #EBF5FF;
+	border-radius: 8px;
+	border: 1px solid #1E429F11;
+	color: #1E429F;
 	font-size: 1.8rem;
 	font-weight: 400;
 	line-height: 2.9rem;
@@ -928,26 +936,26 @@ p.success {
 .pmpro_message.pmpro_default,
 .pmpro_content_message,
 #sitewide-notice p {
-	background-color: #FAFAFA;
-	border-color: var(--memberlite-color-borders);
-	color: #777;
+	background-color: #F9FAFB;
+	border-color: #1F293711;
+	color: #1F2937;
 }
 .pmpro_success,
 p.success {
-	background-color: #dff0d8;
-	border-color: #d6e9c6;
-	color: #3c763d;
+	background-color: #F3FAF7;
+	border-color: #03543F11;
+	color: #03543F;
 }
 .pmpro_error {
-	background-color: #f2dede;
-	border-color: #ebccd1;
-	color: #a94442;
+	background-color: #FDF2F2;
+	border-color: #9B1C1C11;
+	color: #9B1C1C;
 }
 .pmpro_alert,
 .pmpro_bbp_membership_msg {
-	background-color: #fcf8e3;
-	border-color: #faebcc;
-	color: #8a6d3b;
+	background-color: #FDFDEA;
+	border-color: #723B1311;
+	color: #723B13;
 }
 .pmpro_message h2,
 .pmpro_message h3,
@@ -960,18 +968,18 @@ p.success {
 	margin-top: 1rem;
 }
 .pmpro_message a {
-	color: #245269;
+	color: #1E429F;
 	text-decoration: underline;
 }
 .pmpro_success a {
-	color: #2b542c;
+	color: #03543F;
 }
 .pmpro_error a {
-	color: #843534;
+	color: #9B1C1C;
 }
 .pmpro_alert a,
 .pmpro_bbp_membership_msg a {
-	color: #66512c;
+	color: #723B13;
 }
 
 input.pmpro_error {
@@ -1329,7 +1337,7 @@ a:active {
 	position: relative;
 }
 #site-navigation .search-form input[type=search] {
-	width: 100%;
+	min-width: 150px;
 }
 #site-navigation .search-form input[type=submit].search-submit {
 	background: none;
@@ -1720,10 +1728,11 @@ a:active {
 	line-height: 3.7rem;
 	text-align: center;
 }
-#secondary .widget-title {
-	background-color: #FAFAFA;
+#secondary .widget-title,
+#secondary .widget h3.wp-block-heading {
+	background-color: #F9FAFB;
 	border-top: 1px solid var(--memberlite-color-borders);
-	border-bottom: 1px dotted var(--memberlite-color-borders);
+	border-bottom: 1px solid var(--memberlite-color-borders);
 	line-height: 2.9rem;
 	margin: 0;
 	padding: 1.45rem;
@@ -1781,8 +1790,6 @@ a:active {
 .widget_recent_comments ul li a,
 .widget_recent_entries ul li a,
 .widget_recent_entries_thumbnails ul li a {
-	-webkit-hyphens: auto;
-	-moz-hyphens: auto;
 	hyphens: auto;
 	word-wrap: break-word;
 	overflow-wrap: break-word;
@@ -1886,6 +1893,7 @@ a:active {
 .site-branding p.site-title {
 	font-size: 3.2rem;
 	font-family: var(--memberlite-header-font);
+	font-weight: 700;
 	line-height: 4.4rem;
 	margin: 0;
 }
@@ -2061,8 +2069,6 @@ a:active {
 	padding: 1.45rem;
 }
 .masthead h1 {
-	-webkit-hyphens: auto;
-	-moz-hyphens: auto;
 	hyphens: auto;
 	margin: 2.9rem 0 0 0;
 	word-wrap: break-word;
@@ -2193,8 +2199,6 @@ a:active {
 }
 .entry-header-grid .entry-header .entry-title {
 	margin: 0 0 .7rem 0;
-	-webkit-hyphens: auto;
-	-moz-hyphens: auto;
 	hyphens: auto;
 	word-wrap: break-word;
 	overflow-wrap: break-word;
@@ -2302,7 +2306,6 @@ a:active {
 .entry-content,
 .entry-summary {
 	margin: 0;
-	border-bottom: 1px dotted var(--memberlite-color-borders);
 }
 .entry-content > :first-child {
 	margin-top: 0;
@@ -2325,18 +2328,20 @@ a:active {
 	border-bottom: none;
 }
 .post .entry-footer {
-	border-bottom: 1px dotted var(--memberlite-color-borders);
-	background-color: #FAFAFA;
+	background-color: #F9FAFB;
+	border-top: 1px solid var(--memberlite-color-borders);
+	border-bottom: 1px solid var(--memberlite-color-borders);
 	color: #666;
 	font-style: italic;
-	padding: 1.45rem;
+	margin-top: 2.9rem;
+	padding: 2.175rem;
 }
 #primary .entry-footer a {
-	color: var(--memberlite-color-text);
-	text-decoration: none;
+	color: var(--memberlite-color-link);
+	text-decoration: underline;
 }
-.entry-footer a:hover {
-	border-bottom: 1px dotted #777;
+#primary .entry-footer a:hover {
+	color: var(--memberlite-color-text);
 }
 #primary .entry-footer a.pmpro_btn,
 .entry-footer a.pmpro_btn:hover {border: none; }
@@ -2486,21 +2491,19 @@ a:active {
 .comment,
 .pingback.even,
 .trackback.event {
-	background-color: #FAFAFA;
+	background-color: #F9FAFB;
 }
 .comment.depth-1.thread-alt,
 .comment .comment.alt {
 	background-color: var(--memberlite-color-white);
 }
 .comment.even .child-comments .comment {
-	background-color: #FAFAFA;
+	background-color: #F9FAFB;
 }
 .comment.odd .child-comments .comment {
 	background-color: var(--memberlite-color-white);
 }
 .comment {
-	-webkit-hyphens: auto;
-	-moz-hyphens: auto;
 	hyphens: auto;
 	margin: 0 2.9rem 2.9rem 2.9rem;
 	overflow-wrap: break-word;
@@ -2870,7 +2873,7 @@ a:active {
 #pmpro_levels .post h2,
 .memberlite_signup h2,
 .pmpro_signup_form h2 {
-	background-color: #FAFAFA;
+	background-color: #F9FAFB;
 	color: var(--memberlite-color-primary);
 	border-top: 1px solid var(--memberlite-color-borders);
 	border-bottom: 1px dotted var(--memberlite-color-borders);
@@ -3074,18 +3077,18 @@ form.pmpro_form .input {
 form.pmpro_form textarea {
 	width:90%;
 }
-form.pmpro_form label,
-#loginform label {
-	font-weight: 400;
-}
 form#pmpro_form .pmpro_checkout h2,
 form#pmpro_form .pmpro_checkout h3 {
-	background-color: #FAFAFA;
+	background-color: #F9FAFB;
 	border-top: 1px solid var(--memberlite-color-borders);
 	border-bottom: 1px solid var(--memberlite-color-borders);
 	font-size: 2.3rem;
 	line-height: 3.7rem;
 	padding: 1.45rem;
+}
+form#pmpro_form .pmpro_checkout h2:first-of-type,
+form#pmpro_form .pmpro_checkout h3:first-of-type {
+	margin-top: 0;
 }
 form#pmpro_form .pmpro_checkout h2 span.pmpro_checkout-h2-name,
 form#pmpro_form .pmpro_checkout h3 span.pmpro_checkout-h3-name {
@@ -3101,7 +3104,10 @@ form#pmpro_form .pmpro_checkout h3 span.pmpro_checkout-h3-msg a {
 	text-decoration: underline;
 }
 form#pmpro_form .pmpro_checkout-fields {
-	padding: 1.45rem;
+	padding: 2.9rem 1.45rem;
+}
+form#pmpro_form .pmpro_checkout-fields div {
+	margin-bottom: 2.9rem;
 }
 form#pmpro_form #pmpro_payment_information_fields .pmpro_checkout-fields {
 	padding-bottom: 0;
@@ -3203,7 +3209,7 @@ form.pmpro_form .pmpro_payment-expiration select {
 	text-align: left;
 }
 .pmpro_member_profile_edit_wrap h3 {
-	background-color: #FAFAFA;
+	background-color: #F9FAFB;
 	border-top: 1px solid var(--memberlite-color-borders);
 	border-bottom: 1px solid var(--memberlite-color-borders);
 	padding: 1.45rem;
@@ -3216,13 +3222,16 @@ form.pmpro_form .pmpro_payment-expiration select {
 .pmpro_member_profile_edit_wrap .pmpro_checkout_box-user .pmpro_member_profile_edit-fields {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
-	grid-column-gap: 1.45rem;
+	grid-column-gap: 2.9rem;
+}
+form.pmpro_form .pmpro_member_profile_edit-fields > div {
+	margin: 0 0 2.9rem 0;
 }
 
 /* Member Log In / Log Out Widget */
 #secondary .pmpro_login_wrap,
 #secondary .pmpro_logged_in_welcome_wrap {
-	background-color: #FAFAFA;
+	background-color: #F9FAFB;
 	border: 1px solid var(--memberlite-color-borders);
 	padding: 1.45rem;
 }
@@ -3261,6 +3270,11 @@ form.pmpro_form .pmpro_payment-expiration select {
 	max-width: 100%;
 	width: 100%;
 }
+.widget .pmpro_logged_in_welcome_wrap .pmpro_member_log_out {
+	display: block;
+	padding: 1.45rem;
+}
+
 /*--------------------------------------------------------------
 11.2 Testimonials Widget: https://wordpress.org/plugins/testimonials-widget/
 --------------------------------------------------------------*/
@@ -3345,7 +3359,7 @@ object {
 	width: 100%;
 }
 .gallery-item img {
-	background-color: #FAFAFA;
+	background-color: #F9FAFB;
 	padding: .25rem;
 	border-top: 1px dotted var(--memberlite-color-borders);
 	border-bottom: 1px dotted var(--memberlite-color-borders);
@@ -3488,7 +3502,7 @@ object {
 	}
 	form#pmpro_form .pmpro_checkout-fields,
 	form#pmpro_form #pmpro_payment_information_fields .pmpro_checkout-field-payment-request-button {
-		padding: 1.45rem 0;
+		padding: 2.9rem 0;
 	}
 	form#pmpro_form .pmpro_checkout h3 {
 		padding: 1.45rem .9rem .9rem .9rem;
@@ -3546,16 +3560,12 @@ object {
 	}
 	#primary .hentry .entry-header .entry-title {
 		margin-top: 1.45rem;
-		-webkit-hyphens: none;
-		-moz-hyphens: none;
 		hyphens: none;
 		word-wrap: normal;
 		overflow-wrap: normal;
 	}
 	.masthead h1 {
-		 margin-top: 1.45rem;
-		-webkit-hyphens: none;
-		-moz-hyphens: none;
+		margin-top: 1.45rem;
 		hyphens: none;
 	}
 	#primary .hentry .entry-header .post_author_avatar {
