@@ -153,41 +153,41 @@ function memberlite_adjusted_content_width() {
 	$memberlite_columns_ratio_primary = memberlite_getColumnsRatio();
 
 	if ( is_page_template( 'templates/full-width.php' ) || is_page_template( 'templates/fluid-width.php' ) ) {
-		$content_width = 1170; /* pixels */
+		$content_width = 1230; /* pixels */
 	} else {
 		switch ( $memberlite_columns_ratio_primary ) {
 			case 1:
-				$content_width = 61; /* pixels */
+				$content_width = 106; /* pixels */
 				break;
 			case 2:
-				$content_width = 159; /* pixels */
+				$content_width = 213; /* pixels */
 				break;
 			case 3:
-				$content_width = 257; /* pixels */
+				$content_width = 319; /* pixels */
 				break;
 			case 4:
-				$content_width = 354; /* pixels */
+				$content_width = 425; /* pixels */
 				break;
 			case 5:
-				$content_width = 452; /* pixels */
+				$content_width = 532; /* pixels */
 				break;
 			case 6:
-				$content_width = 549; /* pixels */
+				$content_width = 639; /* pixels */
 				break;
 			case 7:
-				$content_width = 646; /* pixels */
+				$content_width = 754; /* pixels */
 				break;
 			case 8:
-				$content_width = 744; /* pixels */
+				$content_width = 852; /* pixels */
 				break;
 			case 9:
-				$content_width = 842; /* pixels */
+				$content_width = 958; /* pixels */
 				break;
 			case 10:
-				$content_width = 939; /* pixels */
+				$content_width = 1064; /* pixels */
 				break;
 			case 11:
-				$content_width = 1037; /* pixels */
+				$content_width = 1171; /* pixels */
 				break;
 		}
 	} // End if().
