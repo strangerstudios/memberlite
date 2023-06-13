@@ -5,7 +5,7 @@
   margin-right: auto;
   margin-top: 0;
   margin-bottom: 0;
-  max-width: 65em; }
+  max-width: 71em; }
   .row:before, .row:after {
 	content: " ";
 	display: table; }
@@ -20,8 +20,8 @@
 	margin-right: 0; }
   .row .row {
 	width: auto;
-	margin-left: -1em;
-	margin-right: -1em;
+	margin-left: -2.35rem;
+	margin-right: -2.35rem;
 	margin-top: 0;
 	margin-bottom: 0;
 	max-width: none; }
@@ -42,8 +42,8 @@
 
 .column,
 .columns {
-  padding-left: 1em;
-  padding-right: 1em;
+  padding-left: 2.35rem;
+  padding-right: 2.35rem;
   width: 100%;
   float: left; }
 
@@ -177,8 +177,8 @@
   .column,
   .columns {
 	position: relative;
-	padding-left: 1em;
-	padding-right: 1em;
+	padding-left: 2.35rem;
+	padding-right: 2.35rem;
 	float: left; }
 
   .small-1 {
@@ -407,8 +407,8 @@
   .column,
   .columns {
 	position: relative;
-	padding-left: 1em;
-	padding-right: 1em;
+	padding-left: 2.35rem;
+	padding-right: 2.35rem;
 	float: left; }
 
   .medium-1 {
@@ -757,8 +757,8 @@
   .column,
   .columns {
 	position: relative;
-	padding-left: 1em;
-	padding-right: 1em;
+	padding-left: 2.35rem;
+	padding-right: 2.35rem;
 	float: left; }
 
   .large-1 {
