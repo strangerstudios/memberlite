@@ -699,9 +699,9 @@ function memberlite_getBreadcrumbs() {
 				}
 				?>
 				<?php
-				if ( function_exists( 'pmpro_getOption' ) && is_page( array( pmpro_getOption( 'cancel_page_id' ), pmpro_getOption( 'billing_page_id' ), pmpro_getOption( 'confirmation_page_id' ), pmpro_getOption( 'invoice_page_id' ) ) ) && ! in_array( pmpro_getOption( 'account_page_id' ), get_post_ancestors( $post->ID ) ) ) {
+				if ( is_page( array( get_option( 'pmpro_cancel_page_id' ), get_option( 'pmpro_billing_page_id' ), get_option( 'pmpro_confirmation_page_id' ), get_option( 'pmpro_invoice_page_id' ) ) ) && ! in_array( get_option( 'pmpro_account_page_id' ), get_post_ancestors( $post->ID ) ) ) {
 				?>
-					<a href="<?php echo esc_url( get_permalink( pmpro_getOption( 'account_page_id' ) ) ); ?>"><?php echo esc_html( get_the_title( pmpro_getOption( 'account_page_id' ) ) ); ?></a>
+					<a href="<?php echo esc_url( get_permalink( get_option( 'pmpro_account_page_id' ) ) ); ?>"><?php echo esc_html( get_the_title( get_option( 'pmpro_account_page_id' ) ) ); ?></a>
 					<span class="sep"><?php echo esc_html( $memberlite_delimiter ); ?></span>
 					<?php
 				}
