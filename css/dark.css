@@ -9,8 +9,25 @@ div.lead p,
 .pmpro_content_message {
 	color: #FFF;
 }
+.site-footer .site-info p,
+.site-footer .site-info .columns:first-child a {
+	color: #FFFFFF99;
+}
+h1 a:hover,
+h2 a:hover,
+h3 a:hover,
+h4 a:hover,
+h5 a:hover,
+h6 a:hover,
+.navigation a {
+	border-bottom-color: inherit;
+}
 hr {
-	background-color: #666;
+	background-color: #FFFFFF99;
+}
+.wp-caption,
+.wp-caption-text {
+	color: var(--memberlite-color-action);
 }
 #site-navigation {
 	border-top: none;
@@ -36,13 +53,16 @@ thead th,
 td,
 .main-navigation ul.sub-menu a,
 .meta-navigation ul.sub-menu a,
-.header-right .widget_nav_menu ul.sub-menu a {
-	border-color: rgba(255,255,255,0.3);
+.header-right .widget_nav_menu ul.sub-menu a,
+.site-main .page-navigation,
+.site-main .page-links {
+	border-color: #00000066;
 }
 #primary .hentry .entry-meta,
 .post .entry-footer,
 #secondary .widget a,
 #secondary .widget a:link,
+#secondary .widget h3.wp-block-heading,
 .wp-block-image figcaption,
 form.pmpro_form .lite,
 .pmpro_btn-cancel,
@@ -55,15 +75,49 @@ a.pmpro_cancel:link,
 .content-area .pmpro_btn.pmpro_btn-cancel,
 .content-area .pmpro_btn.pmpro_btn-cancel:link,
 .content-area .pmpro_btn.pmpro_btn-cancel:visited {
-	color: #AAA;
+	color: #FFFFFFCC;
+}
+#primary .hentry .entry-meta,
+.post .entry-footer,
+#secondary .widget a,
+#secondary .widget a:link,
+#secondary .widget h3.wp-block-heading,
+.wp-block-image figcaption,
+form.pmpro_form .lite,
+.pmpro_btn-cancel,
+.pmpro_nolink,
+.pmpro_nolink:link,
+.pmpro_cancel,
+.pmpro_cancel:link,
+a.pmpro_cancel:link,
+.content-area .pmpro_btn.pmpro_cancel,
+.content-area .pmpro_btn.pmpro_btn-cancel,
+.content-area .pmpro_btn.pmpro_btn-cancel:link,
+.content-area .pmpro_btn.pmpro_btn-cancel:visited
+.widget-area .widget a:not(.btn):not(.pmpro_btn) {
+	border-bottom: none;
+}
+#secondary .widget a:hover,
+.pmpro_btn.pmpro_btn-cancel:hover,
+.pmpro_nolink:hover,
+.pmpro_cancel:hover,
+a.pmpro_cancel:hover,
+.content-area .pmpro_btn.pmpro_cancel:hover,
+.entry-content a.pmpro_btn.pmpro_btn-cancel:hover {
+	color: #FFF;
 }
 #primary .hentry .entry-meta a,
 #primary .entry-footer a {
-	color: #CCC;	
+	color: #FFFFFFCC;
+}
+#primary .hentry .entry-meta a:hover,
+#primary .entry-footer a:hover {
+	color: #FFFFFF;
 }
 blockquote,
 .pre,
 #secondary .widget-title,
+#secondary .widget h3.wp-block-heading,
 .post .entry-footer,
 #your-profile h3,
 #primary .tml-action-links,
@@ -78,7 +132,22 @@ tbody tr:nth-child(even) td,
 .main-navigation ul.sub-menu li:hover > a,
 .meta-navigation ul.sub-menu li:hover > a,
 .header-right .widget_nav_menu ul.sub-menu li:hover > a {
-	background: rgba(255,255,255,0.1);
+	background: #FFFFFF11;
+}
+.grid-list > * {
+	background-color: #FFFFFF11;
+	border-color: #000000CC;
+}
+.grid-list h1 a,
+.grid-list h2 a {
+	color: #FFFFFFCC;
+}
+.grid-list h1 a:hover,
+.grid-list h2 a:hover {
+	color: #FFF;
+}
+.grid-list a.post-thumbnail-link .post-thumbnail-empty {
+	background-color: rgba( 0, 0, 0, 0.2)
 }
 .comment,
 .comment.depth-1.thread-alt,
@@ -92,8 +161,8 @@ mark,
 }
 .search-form input[type=search],
 #mobile-navigation .search-form input[type=search] {
-	background: none;
-	color: rgba(255,255,255,0.8);
+	background: #FFFFFF11;
+	color: #FFFFFFCC;
 }
 .content-area input[type=text],
 .content-area input[type=email],
@@ -157,7 +226,12 @@ Paid Memberships Pro Integrated Styles
 #pmpro_levels .post h2,
 .memberlite_signup h2,
 .pmpro_signup_form h2 {
-	background: rgba(255,255,255,0.2);
+	background: #FFFFFF11;
+}
+#pmpro_levels .post h2,
+.memberlite_signup h2,
+.pmpro_signup_form h2 {
+	color: #FFFFFF;
 }
 #pmpro_levels_table {
 	background: none;
@@ -177,9 +251,10 @@ Paid Memberships Pro Integrated Styles
 	border-left: none;
 	border-right: none;
 }
+form#pmpro_form .pmpro_checkout h2,
 form#pmpro_form .pmpro_checkout h3 {
-	background: rgba(255,255,255,0.1);
-	border-color: rgba(255,255,255,0.3);
+	background: #FFFFFF11;
+	border-color: #00000066;
 }
 .pmpro_checkout_gateway-stripe form.pmpro_form #pmpro_payment_information_fields div#AccountNumber,
 .pmpro_checkout_gateway-stripe form.pmpro_form #pmpro_payment_information_fields div#Expiry,
