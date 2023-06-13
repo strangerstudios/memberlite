@@ -147,7 +147,7 @@ tbody tr:nth-child(even) td,
 	color: #FFF;
 }
 .grid-list a.post-thumbnail-link .post-thumbnail-empty {
-	background-color: rgba( 0, 0, 0, 0.2)
+	background-color: #00000033;
 }
 .comment,
 .comment.depth-1.thread-alt,
@@ -186,14 +186,14 @@ mark,
 #mobile-navigation input[type=password] {
 	color: #FFF;
 	background: none;
-	border-color: rgba(255,255,255,0.5);
+	border-color: #FFFFFF80;
 }
 
 /* Comments */
 .comment,
 .pingback,
 .trackback {
-	border-color: rgba(255,255,255,0.1);
+	border-color: #FFFFFF19;
 }
 .comment,
 .pingback.even,
@@ -202,22 +202,22 @@ mark,
 }
 .comment.depth-1.thread-alt,
 .comment .comment.alt {
-	background: rgba(255,255,255,0.1);
+	background: #FFFFFF19;
 }
 .comment.even .child-comments .comment {
 	background: none;
 }
 .comment.odd .child-comments .comment {
-	background: rgba(255,255,255,0.1);
+	background: #FFFFFF19;
 }
 .comment-meta .comment-author.vcard {
 	color: #FFF;
 }
 .comment-meta .comment-metadata .edit-link {
-	border-left-color: rgba(255,255,255,0.3);
+	border-left-color: #FFFFFF4C;
 }
 .comment-respond .comment-notes, .comment-respond .form-allowed-tags {
-	color: #AAA;
+	color: #FFFFFFCC;
 }
 
 /*--------------------------------------------------------------
@@ -247,7 +247,7 @@ Paid Memberships Pro Integrated Styles
 #pmpro_levels.pmpro_levels-4col .pmpro_level-highlight,
 .memberlite_signup,
 .pmpro_signup_form {
-	background: rgba(255,255,255,0.1);
+	background: #FFFFFF19;
 	border-left: none;
 	border-right: none;
 }
@@ -264,7 +264,7 @@ form#pmpro_form .pmpro_checkout h3 {
 .pmpro_billing_gateway-stripe form.pmpro_form #pmpro_payment_information_fields div#CVV {
 	color: #FFF;
 	background: none;
-	border-color: rgba(255,255,255,0.3);
+	border-color: #FFFFFF4C;
 }
 
 /*--------------------------------------------------------------
