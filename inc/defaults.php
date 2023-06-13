@@ -18,7 +18,7 @@ $memberlite_defaults = apply_filters( 'memberlite_defaults', array(
 	'memberlite_darkcss'						=> false,
 	'background_color'							=> '#FFFFFF',
 	'bgcolor_header'							=> '',
-	'bgcolor_site_navigation'					=> '#FAFAFA',
+	'bgcolor_site_navigation'					=> '#F9FAFB',
 	'color_site_navigation'						=> '#777777',
 	'color_link'								=> '#2C3E50',
 	'color_meta_link'							=> '#2C3E50',
@@ -51,5 +51,5 @@ $memberlite_defaults = apply_filters( 'memberlite_defaults', array(
 	'hover_brightness'							=> '1.1',
 	'color_white'								=> '#FFFFFF',
 	'color_text'								=> '#444444',
-	'color_borders'								=> '#CCCCCC',
+	'color_borders'								=> '#03543F21',
 ) );
