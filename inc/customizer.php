@@ -927,6 +927,9 @@ class Memberlite_Customize {
 	public static function get_google_fonts() {
 		return array(
 			'Lato_Lato'                          => __( 'Lato', 'memberlite' ),
+			'Poppins_Open-Sans'                  => __( 'Poppins and Open Sans', 'memberlite' ),
+			'Figtree_DM-Sans'                    => __( 'Figtree and DM Sans', 'memberlite' ),
+			'Inter_Open-Sans'                    => __( 'Inter and Open Sans', 'memberlite' ),
 			'PT-Sans_PT-Serif'                   => __( 'PT Sans and PT Serif', 'memberlite' ),
 			'Fjalla-One_Noto-Sans'               => __( 'Fjalla One and Noto Sans', 'memberlite' ),
 			'Pathway-Gothic-One_Source-Sans-Pro' => __( 'Pathway Gothic One and Source Sans Pro', 'memberlite' ),
