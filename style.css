@@ -246,7 +246,7 @@ em,
 i {
 	font-style: italic;
 }
-blockquote {
+blockquote:not(.wp-block-pullquote blockquote):not(.wp-block-quote) {
 	margin: 2.9rem 0;
 	background-color: #F9FAFB;
 	padding: 2.9rem 2.9rem 1px 2.9rem;
@@ -275,7 +275,7 @@ blockquote.quote p:last-of-type,
 .wp-block-quote p:last-of-type {
 	margin-bottom: 0;
 }
-blockquote cite,
+blockquote:not(.wp-block-pullquote blockquote):not(.wp-block-quote) cite,
 .testimonials-widget blockquote .credit,
 .wp-block-quote cite {
 	display: block;
@@ -554,7 +554,6 @@ dl dt:first-child {
 --------------------------------------------------------------*/
 .wp-block-group.has-background,
 .wp-block-columns.has-background {
-	margin-bottom: 2.9rem;
 	padding: 2.9rem;
 }
 .wp-block-column.has-background {
@@ -1577,6 +1576,7 @@ a:active {
 
 /* Align Full */
 .single.sidebar-blog-none .alignfull,
+.home.page-template-default .alignfull,
 .page-template-default.sidebar-none .alignfull,
 .page-template-full-width .alignfull,
 .page-template-fluid-width .alignfull,
