@@ -21,7 +21,7 @@ function memberlite_init_styles() {
 	}
 	wp_enqueue_style( 'memberlite_print_style', get_template_directory_uri() . '/css/print.css', array(), MEMBERLITE_VERSION, 'print' );
 	wp_enqueue_script( 'memberlite-script', get_template_directory_uri() . '/js/memberlite.js', array( 'jquery' ), MEMBERLITE_VERSION, true );
-	wp_enqueue_style( 'font-awesome', get_template_directory_uri() . '/font-awesome/css/all.min.css', array(), '6.2 ' );
+	wp_enqueue_style( 'font-awesome', get_template_directory_uri() . '/font-awesome/css/all.min.css', array(), '6.4' );
 
 	// load dark.css for dark/inverted backgrounds
 	$memberlite_darkcss = get_theme_mod( 'memberlite_darkcss', $memberlite_defaults['memberlite_darkcss'], false );
