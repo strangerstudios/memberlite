@@ -116,7 +116,7 @@ function memberlite_sidebar_location_none_columns_ratio( $r, $location ) {
 	} elseif ( memberlite_is_blog() || is_search() ) {
 		$sidebar_location = get_theme_mod( 'sidebar_location_blog', $memberlite_defaults['sidebar_location_blog'] );
 		$content_archives = get_theme_mod( 'content_archives', $memberlite_defaults['content_archives'] );
-		if ( $content_archives === 'grid' && ! is_singular() ) {
+		if ( $content_archives === 'grid' && ! is_singular() && ! is_search() ) {
 			$r = '12';
 		} elseif ( $sidebar_location === 'sidebar-blog-none' ) {
 			$r = '8 medium-offset-2';
