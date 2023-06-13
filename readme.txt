@@ -103,13 +103,24 @@ We highly recommend using these plugins for every site running Memberlite:
 [Install Multiple Post Thumbnails »](https://wordpress.org/plugins/multiple-post-thumbnails/)
 
 == Changelog ==
-= 4.5.5 - 2023-06-07 =
+
+= 4.5.5 - 2023-06-13 =
+* ENHANCEMENT: General updates to styles across the theme.
+* ENHANCEMENT: Added addition Google Fonts: DM Sans, Figtree, Poppins, and Inter
 * ENHANCEMENT: Added the `memberlite_editor_color_palette` filter to adjust the editor color palette.
+* ENHANCEMENT: Updated to Font Awesome version 6.4.
+* ENHANCEMENT: Reducing calls made to `get_option()` from `pmpro_getOption()`.
+* ENHANCEMENT: Enlarged overall max site width and grid spacing to modern standards.
+* ENHANCEMENT: Updated Content Width for new larger grid.
+* ENHANCEMENT/BUG FIX: Improved the format of the "Log Out" link in PMPro Login Widget
+* ENHANCEMENT/BUG FIX: Fixed heading level to h2 for loop items vs. single posts (h1).
 * ENHANCEMENT/BUG FIX: Updating screen reader text shown with page navigation to not use the H1 tag for SEO and page structure.
 * ENHANCEMENT/BUG FIX: Accessibility improvements for the Mobile Menu toggle.
 * ENHANCEMENT/BUG FIX: Checkout heading updates for accessibility improvements in PMPro v2.11.
 * ENHANCEMENT/BUG FIX: Improved appearance of third level dropdown items in primary and meta menu locations.
+* BUG FIX/ENHANCEMENT: Improved dark background handling for various frontend elements.
 * BUG FIX: Allow `noscript` tag in the escaped output of author avatar image for Jetpack compatibility.
+* BUG FIX: Fixing issue with columns layout on search results when blog grid display is enabled.
 * BUG FIX: Fixed PHP 8 deprecated notices.
 
 = 4.5.4.1 - 2022-09-27 =
