@@ -663,6 +663,9 @@ a.comment-reply-link,
 a.btn.skip-link {
 	padding: .7rem 1.45rem;
 }
+a.btn.skip-link {
+	font-size: 1.4rem;
+}
 a.pmpro_btn,
 a.pmpro_btn:link,
 .pmpro_content_message a,
@@ -1479,7 +1482,7 @@ a:active {
 }
 .site-main .page-navigation,
 .site-main .page-links {
-	border-top: 1px solid #ccc;
+	border-top: 1px solid var(--memberlite-color-borders);
 	clear: both;
 	padding-top: 2.9rem;
 }
@@ -2877,7 +2880,7 @@ a:active {
 	color: var(--memberlite-color-primary);
 	border-top: 1px solid var(--memberlite-color-borders);
 	border-bottom: 1px dotted var(--memberlite-color-borders);
-	padding: .5rem;
+	padding: .9rem;
 	margin: 0 0 1rem 0;
 }
 #pmpro_levels .medium-4 .pmpro_btn,
@@ -2910,7 +2913,11 @@ a:active {
 #pmpro_levels.pmpro_levels-4col .pmpro_level-highlight {
 	margin-top: -1.5rem;
 }
-
+#pmpro_levels.pmpro_levels-2col .entry-content,
+#pmpro_levels.pmpro_levels-3col .entry-content,
+#pmpro_levels.pmpro_levels-4col .entry-content {
+	padding: 1.45rem 0;
+}
 #pmpro_levels_table td,
 #pmpro_levels.pmpro_levels-table td {
 	vertical-align: middle;
