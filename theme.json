@@ -8,6 +8,10 @@
 				"radius": "6px"
 			}
 		},
+		"layout": {
+			"contentSize": "805px",
+			"wideSize": "1230px"
+		},
 		"spacing": {
 			"spacingScale": {
 				"steps": 7
