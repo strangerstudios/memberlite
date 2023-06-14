@@ -846,8 +846,8 @@ input::-moz-focus-inner { /* Corrects inner padding and border displayed oddly i
 .content-area input[type=password],
 .content-area input[type=search],
 .content-area textarea {
-	color: #666;
-	border: 1px solid var(--memberlite-color-borders);
+	color: #444;
+	border: 1px solid #CCC;
 	border-radius: 3px;
 	padding: 1.45rem;
 	word-break: normal;
@@ -856,8 +856,8 @@ input::-moz-focus-inner { /* Corrects inner padding and border displayed oddly i
 	-webkit-appearance: none;
 	-moz-appearance: none;
 	appearance: none;
-	color: #666;
-	border: 1px solid var(--memberlite-color-borders);
+	color: #444;
+	border: 1px solid #CCC;
 	border-radius: 3px;
 	padding: 1.45rem;
 }
@@ -888,9 +888,11 @@ input[type=email]:focus,
 input[type=url]:focus,
 input[type=password]:focus,
 input[type=search]:focus,
+.content-area select:focus,
 textarea:focus {
 	color: #111;
-	box-shadow: 0px 0px 3px 0px rgba( 0, 0, 0, 0.1 );
+	border-color: #80BDFF;
+	box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
 	outline: none;
 	word-break: initial;
 }
@@ -1163,7 +1165,7 @@ a:active {
 	font-family: 'Font Awesome 5 Free';
 	font-size: 1.4rem;
 	font-weight: 900;
-    margin-left: 5px;
+	margin-left: 5px;
 }
 .main-navigation ul.sub-menu > .menu-item-has-children > a::after {
 	content: "\f105";
@@ -1171,7 +1173,7 @@ a:active {
 	font-family: 'Font Awesome 5 Free';
 	font-size: 1.4rem;
 	font-weight: 900;
-    margin-left: 5px;
+	margin-left: 5px;
 }
 
 .main-navigation li:first-child a {
