@@ -1148,13 +1148,33 @@ a:active {
 }
 .main-navigation a {
 	color: var(--memberlite-color-site-navigation);
-	border-left: 1px dotted var(--memberlite-color-borders);
 	display: block;
-	padding: .7rem 1.45rem;
+	padding: .9rem 1.45rem;
 	text-decoration: none;
 }
+.main-navigation ul > .menu-item-has-children > a {
+	align-items: center;
+	display: flex;
+	flex-wrap: nowrap;
+}
+.main-navigation ul.columns > .menu-item-has-children > a::after {
+	content: "\f107";
+	display: block;
+	font-family: 'Font Awesome 5 Free';
+	font-size: 1.4rem;
+	font-weight: 900;
+    margin-left: 5px;
+}
+.main-navigation ul.sub-menu > .menu-item-has-children > a::after {
+	content: "\f105";
+	display: block;
+	font-family: 'Font Awesome 5 Free';
+	font-size: 1.4rem;
+	font-weight: 900;
+    margin-left: 5px;
+}
+
 .main-navigation li:first-child a {
-	border-left: none;
 	padding-left: 0;
 }
 .main-navigation .current_page_item a,
@@ -1225,7 +1245,6 @@ a:active {
 .meta-navigation li:last-child,
 .header-right .widget_nav_menu li:last-child,
 .footer-navigation li:last-child {
-	border-right: none;
 	padding-right: 0;
 }
 .footer-navigation ul {
@@ -1914,14 +1933,16 @@ a:active {
 	border-bottom-right-radius: 3px;
 	border-bottom-left-radius: 3px;
 	color: var(--memberlite-color-white);
-	font-size: 1.4rem;
+	font-size: 1.5rem;
 	margin: 0 0 1.45rem 0;
 	padding: .7rem;
 }
 .header-right #meta-member .user {
-	border-right: 1px solid #DDD;
 	font-family: var(--memberlite-header-font);
 	padding: 0 .7rem;
+}
+.header-right #meta-member .user a {
+	font-weight: 700;
 }
 .header-right #meta-member a {
 	color: var(--memberlite-color-white);
@@ -1929,7 +1950,9 @@ a:active {
 	text-decoration: none;
 }
 .header-right #meta-member a:hover {
+	border: none;
 	color: var(--memberlite-color-white);
+	text-decoration: underline;
 }
 .header-right #meta-member span.user a {
 	margin: 0;
@@ -1942,7 +1965,6 @@ a:active {
 	z-index: 10;
 }
 .header-right #meta-member .member-navigation li {
-	border-right: 1px solid #DDD;
 	display: inline-block;
 	margin: 0;
 	position: relative;
@@ -2706,8 +2728,7 @@ a:active {
 }
 .site-footer .site-info p,
 .site-footer .site-info .columns:first-child a {
-	font-style: italic;
-	color: #AAA;
+	color: var(--memberlite-color-button);
 	margin: 0;
 }
 #banner_bottom {
