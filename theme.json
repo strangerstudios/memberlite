@@ -1086,11 +1086,6 @@
 				"typography": {
 					"fontSize": "var(--wp--preset--font-size--16)"
 				}
-			},
-			"link": {
-				"color": {
-					"text": "var(--wp--preset--color--color-primary)"
-				}
 			}
 		},
 		"spacing": {
