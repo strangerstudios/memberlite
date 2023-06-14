@@ -1036,9 +1036,6 @@ a:active {
 .has-text-color.has-site-navigation-background-color {
 	color: var(--memberlite-color-site-navigation-background);
 }
-.has-text-color.has-link-color {
-	color: var(--memberlite-color-link);
-}
 .has-text-color.has-site-navigation-link-color {
 	color: var(--memberlite-color-site-navigation);
 }
