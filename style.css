@@ -305,7 +305,7 @@ blockquote cite a,
 	vertical-align: sub;
 }
 .footer-widgets .testimonials-widget blockquote {
-	color: var(--memberlite-color-white);
+	color: inherit;
 	font-size: 100%;
 }
 blockquote.contact-form-submission {color: #404040; }
@@ -840,10 +840,10 @@ input::-moz-focus-inner { /* Corrects inner padding and border displayed oddly i
 .footer-widgets textarea,
 #mobile-navigation input[type=text],
 #mobile-navigation input[type=password] {
-	color: #666;
-	border: 1px solid var(--memberlite-color-borders);
+	color: #444;
+	border: 1px solid #CCC;
 	border-radius: 3px;
-	padding: .7rem;
+	padding: .9rem;
 }
 input[type=text]:focus,
 input[type=email]:focus,
@@ -1423,20 +1423,25 @@ a:active {
 5.3 Breadcrumbs
 --------------------------------------------------------------*/
 .memberlite-breadcrumb {
-	color: var(--memberlite-color-white);
+	color: var(--memberlite-color-page-masthead);
 	font-size: 1.2rem;
 	line-height: 2.2rem;
 	margin: 0;
 	padding: 0;
 }
 .memberlite-breadcrumb a {
-	color: var(--memberlite-color-white);
+	color: var(--memberlite-color-page-masthead);
 }
 .memberlite-breadcrumb a:hover {
 	font-weight: 400;
 }
 .memberlite-breadcrumb .current_page_item {
 	font-weight: 700;
+}
+.masthead .memberlite-breadcrumb a {
+	color: var(--memberlite-color-page-masthead);
+	text-decoration-line: underline;
+	text-underline-offset: 2px;
 }
 
 /*--------------------------------------------------------------
@@ -1794,7 +1799,7 @@ a:active {
 	grid-area: date;
 }
 .footer-widgets .widget_recent_entries_thumbnails .post-date {
-	color: #DDD;
+	opacity: 0.8;
 }
 .widget_recent_entries_thumbnails a.widget_post_thumbnail,
 #secondary .widget_recent_entries_thumbnails a.widget_post_thumbnail {
@@ -2006,10 +2011,15 @@ a:active {
 	position: relative;
 }
 .masthead {
-	background-color: var(--memberlite-color-primary);
-	color: var(--memberlite-color-white);
+	background-color: var(--memberlite-color-page-masthead-background);
+	color: var(--memberlite-color-page-masthead);
 	padding: 2.9rem 0 5.8rem 0;
 	margin-bottom: 5.8rem;
+}
+.masthead p a:not(.btn) {
+	color: var(--memberlite-color-page-masthead);
+	text-decoration-line: underline;
+	text-underline-offset: 2px;
 }
 .page-template-fluid-width .masthead {
 	margin: 0;
@@ -2044,7 +2054,7 @@ a:active {
 	text-align: center;
 }
 .masthead-banner .masthead-post-byline {
-	background-color: rgba( 0, 0, 0, 0.6 );
+	background-color:  rgba( 0, 0, 0, 0.6 );
 	margin: 16rem 0 0 0;
 	padding: 1.45rem;
 }
@@ -2070,9 +2080,9 @@ a:active {
 .masthead h1 a,
 .masthead h2 a,
 .masthead h3 a {
-	color: var(--memberlite-color-white);
-	text-decoration: none;
-	border-bottom: 1px dotted var(--memberlite-color-white);
+	color: var(--memberlite-color-page-masthead);
+	text-decoration-line: underline;
+	text-underline-offset: 2px;
 }
 .masthead-banner .masthead .masthead-post-byline h1,
 .masthead-banner .masthead .masthead-post-byline .post_author_avatar {
@@ -2094,12 +2104,6 @@ a:active {
 .masthead-banner .masthead-post-byline p.entry-meta {
 	margin: 0;
 }
-.masthead p a:not(.btn),
-.masthead .memberlite-breadcrumb a {
-	color: var(--memberlite-color-white);
-	text-decoration: none;
-	border-bottom: 1px dotted var(--memberlite-color-white);
-}
 .masthead .post_author_avatar {
 	border-radius: 50%;
 	flex-shrink: 0;
@@ -2110,6 +2114,10 @@ a:active {
 }
 .masthead .post_author_avatar img {
 	border-radius: 50%;
+}
+.single-post .masthead-banner .masthead-post-byline,
+.single-post .masthead-banner .masthead p a:not(.btn) {
+	color: var(--memberlite-color-white);
 }
 /*--------------------------------------------------------------
 10.2 Front Page
@@ -2619,8 +2627,8 @@ a:active {
 10.7 Footer
 --------------------------------------------------------------*/
 .footer-widgets {
-	background-color: var(--memberlite-color-primary);
-	color: var(--memberlite-color-white);
+	background-color: var(--memberlite-color-footer-widgets-background);
+	color: var(--memberlite-color-footer-widgets);
 	padding: 5.8rem 0;
 }
 .footer-widgets h3 {
@@ -2631,7 +2639,7 @@ a:active {
 	margin: .7rem 0 0 0;
 }
 .footer-widgets a {
-	color: var(--memberlite-color-white);
+	color: var(--memberlite-color-footer-widgets);
 	text-decoration: none;
 	filter: alpha(opacity=90);
 	opacity: 0.9;
@@ -2642,10 +2650,10 @@ a:active {
 	transition: opacity .15s ease-in-out;
 }
 .footer-widgets a:hover {
-	color: var(--memberlite-color-white);
+	color: var(--memberlite-color-footer-widgets);
 	filter: alpha(opacity=100);
 	opacity: 1.0;
-	border-bottom: 1px dotted var(--memberlite-color-white);
+	text-decoration: underline;
 }
 .footer-widgets a.btn {
 	border: none;

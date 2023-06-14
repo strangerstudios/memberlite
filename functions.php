@@ -376,6 +376,34 @@ if ( ! function_exists( 'memberlite_setup' ) ) :
 			'color' => get_theme_mod( 'color_borders', $memberlite_defaults['color_borders'] )
 		);
 
+		// Page Masthead Background Color
+		$color_scheme[] = array(
+			'name' => __( 'Page Masthead Background Color', 'memberlite' ),
+			'slug' => 'page-masthead-background',
+			'color' => get_theme_mod( 'bgcolor_page_masthead', $memberlite_defaults['bgcolor_page_masthead'] )
+		);
+
+		// Page Masthead Color
+		$color_scheme[] = array(
+			'name' => __( 'Page Masthead Color', 'memberlite' ),
+			'slug' => 'page-masthead',
+			'color' => get_theme_mod( 'color_page_masthead', $memberlite_defaults['color_page_masthead'] )
+		);
+
+		// Footer Widgets Background Color
+		$color_scheme[] = array(
+			'name' => __( 'Footer Widgets Background Color', 'memberlite' ),
+			'slug' => 'footer-widgets-background',
+			'color' => get_theme_mod( 'bgcolor_footer_widgets', $memberlite_defaults['bgcolor_footer_widgets'] )
+		);
+
+		// Footer Widgets Color
+		$color_scheme[] = array(
+			'name' => __( 'Footer Widgets Color', 'memberlite' ),
+			'slug' => 'footer-widgets',
+			'color' => get_theme_mod( 'color_footer_widgets', $memberlite_defaults['color_footer_widgets'] )
+		);
+
 		// Get all unique color values.
 		$color_scheme_temp = array_unique( array_column( $color_scheme, 'color' ) );
 		$color_scheme = array_intersect_key( $color_scheme, $color_scheme_temp );

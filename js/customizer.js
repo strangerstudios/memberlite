@@ -166,6 +166,46 @@
 			);
 		}
 	);
+	// Page Masthead Background Color.
+	wp.customize(
+		'bgcolor_page_masthead', function( setting ) {
+			setting.bind(
+				function( value ) {
+					document.documentElement.style.setProperty('--memberlite-color-page-masthead-background', value );
+				}
+			);
+		}
+	);
+	// Footer Widgets Color.
+	wp.customize(
+		'color_page_masthead', function( setting ) {
+			setting.bind(
+				function( value ) {
+					document.documentElement.style.setProperty('--memberlite-color-page-masthead', value );
+				}
+			);
+		}
+	);
+	// Footer Widgets Background Color.
+	wp.customize(
+		'bgcolor_footer_widgets', function( setting ) {
+			setting.bind(
+				function( value ) {
+					document.documentElement.style.setProperty('--memberlite-color-footer-widgets-background', value );
+				}
+			);
+		}
+	);
+	// Footer Widgets Color.
+	wp.customize(
+		'color_footer_widgets', function( setting ) {
+			setting.bind(
+				function( value ) {
+					document.documentElement.style.setProperty('--memberlite-color-footer-widgets', value );
+				}
+			);
+		}
+	);
 	wp.customize(
 		'delimiter', function( setting ) {
 			setting.bind(

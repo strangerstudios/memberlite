@@ -762,6 +762,97 @@ class Memberlite_Customize {
 			)
 		);
 
+		$wp_customize->add_setting(
+			'bgcolor_page_masthead',
+			array(
+				'default'              => $memberlite_defaults['bgcolor_page_masthead'],
+				'sanitize_callback'    => 'sanitize_hex_color',
+				'sanitize_js_callback' => 'maybe_hash_hex_color',
+				'transport'            => 'postMessage',
+			)
+		);
+
+		$wp_customize->add_control(
+			new WP_Customize_Color_Control(
+				$wp_customize,
+				'memberlite_bgcolor_page_masthead',
+				array(
+					'label'    => __( 'Page Masthead Background Color', 'memberlite' ),
+					'section'  => 'colors',
+					'settings' => 'bgcolor_page_masthead',
+					'priority' => 100,
+				)
+			)
+		);
+
+		$wp_customize->add_setting(
+			'color_page_masthead',
+			array(
+				'default'              => $memberlite_defaults['color_page_masthead'],
+				'sanitize_callback'    => 'sanitize_hex_color',
+				'sanitize_js_callback' => 'maybe_hash_hex_color',
+				'transport'            => 'postMessage',
+			)
+		);
+
+		$wp_customize->add_control(
+			new WP_Customize_Color_Control(
+				$wp_customize,
+				'memberlite_color_page_masthead',
+				array(
+					'label'    => __( 'Page Masthead Text Color', 'memberlite' ),
+					'section'  => 'colors',
+					'settings' => 'color_page_masthead',
+					'priority' => 110,
+				)
+			)
+		);
+
+		$wp_customize->add_setting(
+			'bgcolor_footer_widgets',
+			array(
+				'default'              => $memberlite_defaults['bgcolor_footer_widgets'],
+				'sanitize_callback'    => 'sanitize_hex_color',
+				'sanitize_js_callback' => 'maybe_hash_hex_color',
+				'transport'            => 'postMessage',
+			)
+		);
+
+		$wp_customize->add_control(
+			new WP_Customize_Color_Control(
+				$wp_customize,
+				'memberlite_bgcolor_footer_widgets',
+				array(
+					'label'    => __( 'Footer Widgets Background Color', 'memberlite' ),
+					'section'  => 'colors',
+					'settings' => 'bgcolor_footer_widgets',
+					'priority' => 120,
+				)
+			)
+		);
+
+		$wp_customize->add_setting(
+			'color_footer_widgets',
+			array(
+				'default'              => $memberlite_defaults['color_footer_widgets'],
+				'sanitize_callback'    => 'sanitize_hex_color',
+				'sanitize_js_callback' => 'maybe_hash_hex_color',
+				'transport'            => 'postMessage',
+			)
+		);
+
+		$wp_customize->add_control(
+			new WP_Customize_Color_Control(
+				$wp_customize,
+				'memberlite_color_footer_widgets',
+				array(
+					'label'    => __( 'Footer Widgets Text Color', 'memberlite' ),
+					'section'  => 'colors',
+					'settings' => 'color_footer_widgets',
+					'priority' => 130,
+				)
+			)
+		);
 
 		$wp_customize->get_setting( 'blogname' )->transport        = 'postMessage';
 
@@ -872,6 +963,26 @@ class Memberlite_Customize {
 			$color_site_navigation = $memberlite_defaults['color_site_navigation'];
 		}
 
+		$color_page_masthead_background = get_theme_mod( 'bgcolor_page_masthead' );
+		if ( empty( $color_page_masthead_background ) ) {
+			$color_page_masthead_background = $memberlite_defaults['bgcolor_page_masthead'];
+		}
+
+		$color_page_masthead = get_theme_mod( 'color_page_masthead' );
+		if ( empty( $color_page_masthead ) ) {
+			$color_page_masthead = $memberlite_defaults['color_page_masthead'];
+		}
+
+		$color_footer_widgets_background = get_theme_mod( 'bgcolor_footer_widgets' );
+		if ( empty( $color_footer_widgets_background ) ) {
+			$color_footer_widgets_background = $memberlite_defaults['bgcolor_footer_widgets'];
+		}
+
+		$color_footer_widgets = get_theme_mod( 'color_footer_widgets' );
+		if ( empty( $color_footer_widgets ) ) {
+			$color_footer_widgets = $memberlite_defaults['color_footer_widgets'];
+		}
+
 		// Get theme settings from defaults.
 		$hover_brightness = $memberlite_defaults['hover_brightness'];
 		$color_white = $memberlite_defaults['color_white'];
@@ -901,6 +1012,10 @@ class Memberlite_Customize {
 				--memberlite-color-white: <?php echo esc_attr( $color_white ); ?>;
 				--memberlite-color-text: <?php echo esc_attr( $color_text ); ?>;
 				--memberlite-color-borders: <?php echo esc_attr( $color_borders ); ?>;
+				--memberlite-color-page-masthead-background: <?php echo esc_attr( $color_page_masthead_background ); ?>;
+				--memberlite-color-page-masthead: <?php echo esc_attr( $color_page_masthead ); ?>;
+				--memberlite-color-footer-widgets-background: <?php echo esc_attr( $color_footer_widgets_background ); ?>;
+				--memberlite-color-footer-widgets: <?php echo esc_attr( $color_footer_widgets ); ?>;
 			}
 		</style>
 		<!--/Customizer CSS-->
@@ -913,7 +1028,7 @@ class Memberlite_Customize {
 			'Memberlite_Customizer',
 			get_template_directory_uri() . '/js/customizer.js',
 			array( 'jquery', 'customize-preview' ),
-			'20140902',
+			MEMBERLITE_VERSION,
 			true
 		);
 		// Localize the script with new data
@@ -990,8 +1105,10 @@ class Memberlite_Customize {
 	 * 9. Secondary Color
 	 * 10. Action Color
 	 * 11. Default Button Color
+	 * 12. Footer Widgets Text Color
+	 * 13. Footer Widgets Background Color
 	 *
-	 * @since Twenty Fifteen 1.0
+	 * @since Memberlite 1.0
 	 *
 	 * @return array An associative array of color scheme options.
 	 */
@@ -1012,6 +1129,10 @@ class Memberlite_Customize {
 						'#00A59D',
 						'#E87102',
 						'#3C4B5A',
+						'#011935',
+						'#FFFFFF',
+						'#F9FAFB',
+						'#444444',
 					),
 				),
 				'legacy_default'        => array(
@@ -1027,7 +1148,11 @@ class Memberlite_Customize {
 						'#2C3E50',
 						'#18BC9C',
 						'#F39C12',
+						'#798D8F',
 						'#2C3E50',
+						'#FFFFFF',
+						'#2C3E50',
+						'#FFFFFF',
 					),
 				),
 				'education'      => array(
@@ -1044,6 +1169,10 @@ class Memberlite_Customize {
 						'#EB7260',
 						'#29ABA4',
 						'#798D8F',
+						'#354458',
+						'#FFFFFF',
+						'#354458',
+						'#FFFFFF',
 					),
 				),
 				'modern_teal'    => array(
@@ -1060,6 +1189,10 @@ class Memberlite_Customize {
 						'#424242',
 						'#FFD900',
 						'#798D8F',
+						'#00CCD6',
+						'#FFFFFF',
+						'#00CCD6',
+						'#FFFFFF',
 					),
 				),
 				'mono_blue'      => array(
@@ -1076,6 +1209,10 @@ class Memberlite_Customize {
 						'#555555',
 						'#00AEEF',
 						'#798D8F',
+						'#333333',
+						'#FFFFFF',
+						'#333333',
+						'#FFFFFF',
 					),
 				),
 				'mono_green'     => array(
@@ -1092,6 +1229,10 @@ class Memberlite_Customize {
 						'#555555',
 						'#00A651',
 						'#798D8F',
+						'#333333',
+						'#FFFFFF',
+						'#333333',
+						'#FFFFFF',
 					),
 				),
 				'mono_orange'    => array(
@@ -1108,6 +1249,10 @@ class Memberlite_Customize {
 						'#555555',
 						'#F39C12',
 						'#798D8F',
+						'#333333',
+						'#FFFFFF',
+						'#333333',
+						'#FFFFFF',
 					),
 				),
 				'mono_pink'      => array(
@@ -1124,6 +1269,10 @@ class Memberlite_Customize {
 						'#555555',
 						'#ED0977',
 						'#798D8F',
+						'#333333',
+						'#FFFFFF',
+						'#333333',
+						'#FFFFFF',
 					),
 				),
 				'pop'            => array(
@@ -1140,6 +1289,10 @@ class Memberlite_Customize {
 						'#FFAC00',
 						'#FF85CB',
 						'#798D8F',
+						'#53BBF4',
+						'#FFFFFF',
+						'#53BBF4',
+						'#FFFFFF',
 					),
 				),
 				'primary'        => array(
@@ -1156,6 +1309,10 @@ class Memberlite_Customize {
 						'#FB6964',
 						'#FFD464',
 						'#798D8F',
+						'#1352A2',
+						'#FFFFFF',
+						'#1352A2',
+						'#FFFFFF',
 					),
 				),
 				'raspberry_lime' => array(
@@ -1172,6 +1329,10 @@ class Memberlite_Customize {
 						'#009D97',
 						'#BCC747',
 						'#798D8F',
+						'#AA2159',
+						'#FFFFFF',
+						'#AA2159',
+						'#FFFFFF',
 					),
 				),
 				'slate_blue'     => array(
@@ -1188,6 +1349,10 @@ class Memberlite_Customize {
 						'#6991AC',
 						'#D75C37',
 						'#798D8F',
+						'#67727A',
+						'#FFFFFF',
+						'#67727A',
+						'#FFFFFF',
 					),
 				),
 				'watermelon'     => array(
@@ -1204,6 +1369,10 @@ class Memberlite_Customize {
 						'#363635',
 						'#F15D58',
 						'#798D8F',
+						'#83BF17',
+						'#FFFFFF',
+						'#83BF17',
+						'#FFFFFF',
 					),
 				),
 			)
