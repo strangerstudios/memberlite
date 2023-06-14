@@ -330,7 +330,7 @@ if ( ! function_exists( 'memberlite_setup' ) ) :
 		// Link Color
 		$color_scheme[] = array(
 			'name' => __( 'Links', 'memberlite' ),
-			'slug' => 'link',
+			'slug' => 'memberlite-links',
 			'color' => get_theme_mod( 'color_link', $memberlite_defaults['color_link'] )
 		);
 

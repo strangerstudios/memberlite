@@ -144,7 +144,6 @@ a img {
 body {
 	font-family: var(--memberlite-body-font);
 	font-size: 1.8rem;
-	line-height: 2.9rem;
 }
 body,
 button,
@@ -221,11 +220,6 @@ h6 a:hover,
 }
 p {
 	margin-bottom: 2.9rem;
-}
-.has-medium-font-size,
-.has-large-font-size,
-.has-huge-font-size {
-	line-height: 1.8;
 }
 div.lead p,
 p.lead {
