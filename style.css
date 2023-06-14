@@ -23,7 +23,6 @@ Memberlite is distributed under the terms of the GNU GPL.
 1.0 - Reset
 2.0 - Typography
 3.0 - Elements
-	3.1 - Block Editor Elements
 4.0 - Forms
 	4.1 - Buttons
 	4.2 - Form Elements
@@ -223,7 +222,7 @@ p {
 }
 div.lead p,
 p.lead {
-	color: #666;
+	color: #444;
 	font-size: 2.3rem;
 	line-height: 3.7rem;
 }
@@ -543,43 +542,6 @@ dl dt:first-child {
 	border-top: none;
 }
 
-/*--------------------------------------------------------------
-3.1 Block Editor Elements
---------------------------------------------------------------*/
-.wp-block-group.has-background,
-.wp-block-columns.has-background {
-	padding: 2.9rem;
-}
-.wp-block-column.has-background {
-	padding-bottom: 2.9rem;
-}
-.wp-block-column.has-background > * {
-	margin-left: 2.9rem;
-	margin-right: 2.9rem;
-}
-.wp-block-column.has-background > *:first-child {
-	margin-top: 2.9rem;
-}
-.wp-block-group.has-background *:last-child,
-.wp-block-columns.has-background .wp-block-column *:last-child,
-.wp-block-column.has-background *:last-child {
-	margin-bottom: 0;
-}
-.wp-block-cover-image {
-	padding: 5.8rem 0 2.9rem 0;
-}
-.wp-block-cover {
-	min-height: initial;
-}
-.wp-block-cover .wp-block-cover__inner-container {
-	padding: 2.9rem;
-}
-.wp-block-cover .wp-block-cover__inner-container > *:last-child {
-	margin-bottom: 0;
-}
-.wp-block-buttons {
-	margin-bottom: 2.9rem;
-}
 /*--------------------------------------------------------------
 4.0 Forms
 --------------------------------------------------------------*/
