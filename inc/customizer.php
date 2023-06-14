@@ -1014,6 +1014,22 @@ class Memberlite_Customize {
 						'#3C4B5A',
 					),
 				),
+				'legacy_default'        => array(
+					'label'  => __( 'Default (Legacy)', 'memberlite' ),
+					'colors' => array(
+						'#2C3E50',
+						'#FFFFFF',
+						'#FFFFFF',
+						'#FAFAFA',
+						'#777777',
+						'#2C3E50',
+						'#2C3E50',
+						'#2C3E50',
+						'#18BC9C',
+						'#F39C12',
+						'#2C3E50',
+					),
+				),
 				'education'      => array(
 					'label'  => __( 'Education', 'memberlite' ),
 					'colors' => array(

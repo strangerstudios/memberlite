@@ -711,6 +711,11 @@
 					"lineHeight": "0"
 				}
 			},
+			"core/buttons": {
+				"spacing": {
+					"blockGap": "var(--wp--preset--spacing--10)"
+				}
+			},
 			"core/button": {
 				"spacing": {
 					"blockGap": "var(--wp--preset--spacing--10)"
@@ -1020,7 +1025,7 @@
 					"fontFamily": "var(--memberlite-header-font)",
 					"fontSize": "var(--wp--preset--font-size--18)",
 					"fontWeight": "700",
-					"lineHeight": "2.9rem"
+					"lineHeight": "var(--wp--custom--line-height--body)"
 				},
 				":hover": {
 					"color": {
