@@ -1010,7 +1010,7 @@
 					"radius": "var(--wp--custom--border--radius)"
 				},
 				"color": {
-					"background": "var(--wp--preset--color--color-primary)",
+					"background": "var(--wp--preset--color--buttons)",
 					"text": "var(--wp--preset--color--white)"
 				},
 				"spacing": {
@@ -1038,6 +1038,11 @@
 						"background": "var(--wp--preset--color--color-secondary)",
 						"text": "var(--wp--preset--color--white)"
 					}
+				}
+			},
+			"caption": {
+				"typography": {
+					"fontSize": "var(--wp--preset--font-size--16)"
 				}
 			},
 			"heading": {
