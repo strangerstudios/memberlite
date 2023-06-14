@@ -1,9 +1,9 @@
 === Memberlite ===
 Contributors: kimannwall, strangerstudios
 Requires at least: 5.3
-Tested up to: 6.2
+Tested up to: 6.2.2
 Requires PHP: 5.6
-Stable tag: 4.5.5
+Stable tag: 4.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: one-column, two-columns, left-sidebar, right-sidebar, flexible-header, custom-background, custom-colors, custom-header, custom-menu, custom-logo, editor-style, featured-images, footer-widgets, full-width-template, post-formats, theme-options, threaded-comments, translation-ready, e-commerce
@@ -104,7 +104,11 @@ We highly recommend using these plugins for every site running Memberlite:
 
 == Changelog ==
 
-= 4.5.5 - 2023-06-13 =
+= 4.6 - 2023-06-13 =
+* FEATURE: Added hybrid theme features for tighter compatibility with the WordPress Block Editor.
+* ENHANCEMENT: Improved default color scheme. Existing sites can choose Legacy Default scheme for previous palette.
+* ENHANCEMENT: Added ability to customize masthead and footer background colors and text colors via Customizer.
+* ENHANCEMENT: Added caret icon to show when primary navigation menu has children.
 * ENHANCEMENT: General updates to styles across the theme.
 * ENHANCEMENT: Added addition Google Fonts: DM Sans, Figtree, Poppins, and Inter
 * ENHANCEMENT: Added the `memberlite_editor_color_palette` filter to adjust the editor color palette.
