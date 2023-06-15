@@ -377,50 +377,42 @@ if ( ! function_exists( 'memberlite_setup' ) ) :
 		);
 
 		// v4.6 added four new colors.
-		// For this reason, we need to get the color scheme from scheme defaults and theme mods.
+		// For this reason, we need to set the fallback colors if they are using a built in scheme.
 		$memberlite_color_schemes = Memberlite_Customize::get_color_schemes();
 		$this_color_scheme = get_theme_mod( 'memberlite_color_scheme' );
-
-		// If custom, unset custom scheme so empty colors fall back to defaults.
-		if ( $this_color_scheme === 'custom' ) {
-			$this_color_scheme = null;
-		}
-
-		// Set up the fallback colors array.
-		if ( empty ( $this_color_scheme ) ) {
-			$fallback_color_scheme_values = $memberlite_defaults;
-		} else {
-			$fallback_color_scheme_values = $memberlite_color_schemes[$this_color_scheme]['colors'];
-			$keys = array( 'header_textcolor', 'background_color', 'bgcolor_header', 'bgcolor_site_navigation', 'color_site_navigation', 'color_link', 'color_meta_link', 'color_primary', 'color_secondary', 'color_action', 'color_button', 'color_page_masthead', 'bgcolor_page_masthead', 'color_footer_widgets', 'bgcolor_footer_widgets' );
-			$fallback_color_scheme_values = array_combine( $keys, $fallback_color_scheme_values );
+		if ( $this_color_scheme != 'default_v4.6' ) {
+			$memberlite_defaults['bgcolor_page_masthead'] = $this_color_scheme[8];
+			$memberlite_defaults['color_page_masthead'] = $memberlite_defaults['color_white'];
+			$memberlite_defaults['bgcolor_page_masthead'] = $this_color_scheme[8];
+			$memberlite_defaults['bgcolor_footer_widgets'] = $memberlite_defaults['color_white'];
 		}
 
 		// Page Masthead Background Color
 		$color_scheme[] = array(
 			'name' => __( 'Page Masthead Background Color', 'memberlite' ),
 			'slug' => 'page-masthead-background',
-			'color' => get_theme_mod( 'bgcolor_page_masthead', $fallback_color_scheme_values['bgcolor_page_masthead'] )
+			'color' => get_theme_mod( 'bgcolor_page_masthead', $memberlite_defaults['bgcolor_page_masthead'] )
 		);
 
 		// Page Masthead Color
 		$color_scheme[] = array(
 			'name' => __( 'Page Masthead Color', 'memberlite' ),
 			'slug' => 'page-masthead',
-			'color' => get_theme_mod( 'color_page_masthead', $fallback_color_scheme_values['color_page_masthead'] )
+			'color' => get_theme_mod( 'color_page_masthead', $memberlite_defaults['color_page_masthead'] )
 		);
 
 		// Footer Widgets Background Color
 		$color_scheme[] = array(
 			'name' => __( 'Footer Widgets Background Color', 'memberlite' ),
 			'slug' => 'footer-widgets-background',
-			'color' => get_theme_mod( 'bgcolor_footer_widgets', $fallback_color_scheme_values['bgcolor_footer_widgets'] )
+			'color' => get_theme_mod( 'bgcolor_footer_widgets', $memberlite_defaults['bgcolor_footer_widgets'] )
 		);
 
 		// Footer Widgets Color
 		$color_scheme[] = array(
 			'name' => __( 'Footer Widgets Color', 'memberlite' ),
 			'slug' => 'footer-widgets',
-			'color' => get_theme_mod( 'color_footer_widgets', $fallback_color_scheme_values['color_footer_widgets'] )
+			'color' => get_theme_mod( 'color_footer_widgets', $memberlite_defaults['color_footer_widgets'] )
 		);
 
 		// Get all unique color values.
