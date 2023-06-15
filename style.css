@@ -2983,8 +2983,17 @@ t,
 #pmpro_levels_table td {
 	vertical-align: middle;
 }
+#pmpro_levels.pmpro_advanced_levels-table th,
+#pmpro_levels.pmpro_advanced_levels-table td {
+	padding-top: 2.9rem;
+	padding-bottom: 2.9rem;
+}
 #pmpro_levels.pmpro_advanced_levels-table td *:last-child {
 	margin-bottom: 0;
+}
+#pmpro_levels.pmpro_advanced_levels-table th:first-child,
+#pmpro_levels.pmpro_advanced_levels-table td:first-child {
+	border-left: 1.45rem solid transparent;
 }
 #pmpro_levels.pmpro_advanced_levels-table .pmpro_level-highlight td:first-child {
 	border-left: 1.45rem solid var(--memberlite-color-secondary);
