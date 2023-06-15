@@ -3231,7 +3231,7 @@ form.pmpro_form .pmpro_member_profile_edit-fields > div {
 	border: 1px solid var(--memberlite-color-borders);
 	padding: 1.45rem;
 }
-.widget .pmpro_logged_in_welcome_wrap h3 {
+.pmpro_logged_in_welcome_wrap h3 {
 	background: none;
 	border: none;
 	margin: 0 0 .9rem 0;
