@@ -1115,7 +1115,7 @@ class Memberlite_Customize {
 	public static function get_color_schemes() {
 		return apply_filters(
 			'memberlite_color_schemes', array(
-				'default'        => array(
+				'default_v4.6'        => array(
 					'label'  => __( 'Default', 'memberlite' ),
 					'colors' => array(
 						'#011935',
@@ -1135,7 +1135,7 @@ class Memberlite_Customize {
 						'#444444',
 					),
 				),
-				'legacy_default'        => array(
+				'default'        => array(
 					'label'  => __( 'Default (Legacy)', 'memberlite' ),
 					'colors' => array(
 						'#2C3E50',
