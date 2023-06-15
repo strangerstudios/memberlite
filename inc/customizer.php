@@ -965,13 +965,12 @@ class Memberlite_Customize {
 
 		// v4.6 added four new colors.
 		// For this reason, we need to set the fallback colors if they are using a built in scheme.
-		$memberlite_color_schemes = Memberlite_Customize::get_color_schemes();
 		$this_color_scheme = get_theme_mod( 'memberlite_color_scheme' );
-		if ( ! in_array( $this_color_scheme, array( 'custom', 'default_v4.6' ) {
-			$memberlite_defaults['bgcolor_page_masthead'] = $this_color_scheme[8];
+		if ( ! in_array( $this_color_scheme, array( 'custom', 'default_v4.6' ) ) ) {
+			$memberlite_defaults['bgcolor_page_masthead'] = $this_color_scheme[7];
 			$memberlite_defaults['color_page_masthead'] = $memberlite_defaults['color_white'];
-			$memberlite_defaults['bgcolor_page_masthead'] = $this_color_scheme[8];
-			$memberlite_defaults['bgcolor_footer_widgets'] = $memberlite_defaults['color_white'];
+			$memberlite_defaults['bgcolor_footer_widgets'] = $this_color_scheme[7];
+			$memberlite_defaults['color_footer_widgets'] = $memberlite_defaults['color_white'];
 		}
 
 		$color_page_masthead_background = get_theme_mod( 'bgcolor_page_masthead' );
