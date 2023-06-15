@@ -969,9 +969,9 @@ class Memberlite_Customize {
 
 		// Set the defaults to the primary color from the current scheme if it isn't the new default.
 		if ( $this_color_scheme != 'default_v4.6' ) {
-			$memberlite_defaults['bgcolor_page_masthead'] = $color_scheme['color-primary'];
+			$memberlite_defaults['bgcolor_page_masthead'] = $color_primary;
 			$memberlite_defaults['color_page_masthead'] = $memberlite_defaults['color_white'];
-			$memberlite_defaults['bgcolor_footer_widgets'] = $color_scheme['color-primary'];
+			$memberlite_defaults['bgcolor_footer_widgets'] = $color_primary;
 			$memberlite_defaults['color_footer_widgets'] = $memberlite_defaults['color_white'];
 		}
 
