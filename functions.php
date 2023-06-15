@@ -380,7 +380,7 @@ if ( ! function_exists( 'memberlite_setup' ) ) :
 		// For this reason, we need to set the fallback colors if they are using a built in scheme.
 		$memberlite_color_schemes = Memberlite_Customize::get_color_schemes();
 		$this_color_scheme = get_theme_mod( 'memberlite_color_scheme' );
-		if ( $this_color_scheme != 'default_v4.6' ) {
+		if ( ! in_array( $this_color_scheme, array( 'custom', 'default_v4.6' ) {
 			$memberlite_defaults['bgcolor_page_masthead'] = $this_color_scheme[8];
 			$memberlite_defaults['color_page_masthead'] = $memberlite_defaults['color_white'];
 			$memberlite_defaults['bgcolor_page_masthead'] = $this_color_scheme[8];
