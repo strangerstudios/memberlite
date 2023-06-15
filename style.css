@@ -1821,8 +1821,11 @@ a:active {
 	border: none;
 }
 .widget_recent_entries_thumbnails .widget_post_thumbnail img {
+	aspect-ratio: 1 / 1;
 	border-radius: 50%;
 	margin: 0;
+	object-fit: cover;
+	object-position: center center;
 }
 .widget_recent_entries_thumbnails .widget_post_thumbnail .fa {
 	font-size: 40px;
