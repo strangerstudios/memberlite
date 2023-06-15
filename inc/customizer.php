@@ -963,24 +963,36 @@ class Memberlite_Customize {
 			$color_site_navigation = $memberlite_defaults['color_site_navigation'];
 		}
 
+		// v4.6 added four new colors.
+		// For this reason, we need to get the color scheme from scheme defaults and theme mods.
+		$memberlite_color_schemes = Memberlite_Customize::get_color_schemes();
+		$this_color_scheme = get_theme_mod( 'memberlite_color_scheme' );
+		if ( empty ( $this_color_scheme ) ) {
+			$fallback_color_scheme_values = $memberlite_defaults;
+		} else {
+			$fallback_color_scheme_values = $memberlite_color_schemes[$this_color_scheme]['colors'];
+			$keys = array( 'header_textcolor', 'background_color', 'bgcolor_header', 'bgcolor_site_navigation', 'color_site_navigation', 'color_link', 'color_meta_link', 'color_primary', 'color_secondary', 'color_action', 'color_button', 'color_page_masthead', 'bgcolor_page_masthead', 'color_footer_widgets', 'bgcolor_footer_widgets' );
+			$fallback_color_scheme_values = array_combine( $keys, $fallback_color_scheme_values );
+		}
+
 		$color_page_masthead_background = get_theme_mod( 'bgcolor_page_masthead' );
 		if ( empty( $color_page_masthead_background ) ) {
-			$color_page_masthead_background = $memberlite_defaults['bgcolor_page_masthead'];
+			$color_page_masthead_background = $fallback_color_scheme_values['bgcolor_page_masthead'];
 		}
 
 		$color_page_masthead = get_theme_mod( 'color_page_masthead' );
 		if ( empty( $color_page_masthead ) ) {
-			$color_page_masthead = $memberlite_defaults['color_page_masthead'];
+			$color_page_masthead = $fallback_color_scheme_values['color_page_masthead'];
 		}
 
 		$color_footer_widgets_background = get_theme_mod( 'bgcolor_footer_widgets' );
 		if ( empty( $color_footer_widgets_background ) ) {
-			$color_footer_widgets_background = $memberlite_defaults['bgcolor_footer_widgets'];
+			$color_footer_widgets_background = $fallback_color_scheme_values['bgcolor_footer_widgets'];
 		}
 
 		$color_footer_widgets = get_theme_mod( 'color_footer_widgets' );
 		if ( empty( $color_footer_widgets ) ) {
-			$color_footer_widgets = $memberlite_defaults['color_footer_widgets'];
+			$color_footer_widgets = $fallback_color_scheme_values['color_footer_widgets'];
 		}
 
 		// Get theme settings from defaults.
@@ -1105,8 +1117,10 @@ class Memberlite_Customize {
 	 * 9. Secondary Color
 	 * 10. Action Color
 	 * 11. Default Button Color
-	 * 12. Footer Widgets Text Color
-	 * 13. Footer Widgets Background Color
+	 * 12. Page Masthead Text Color
+	 * 13. Page Masthead Background Color
+	 * 14. Footer Widgets Text Color
+	 * 15. Footer Widgets Background Color
 	 *
 	 * @since Memberlite 1.0
 	 *
