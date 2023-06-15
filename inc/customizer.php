@@ -963,13 +963,15 @@ class Memberlite_Customize {
 			$color_site_navigation = $memberlite_defaults['color_site_navigation'];
 		}
 
-		// v4.6 added four new colors.
-		// For this reason, we need to set the fallback colors if they are using a built in scheme.
+		// v4.6 added four new colors. For this reason, we need to set the fallback colors if they are using a built in scheme.
+		// Get the current color scheme
 		$this_color_scheme = get_theme_mod( 'memberlite_color_scheme' );
-		if ( ! in_array( $this_color_scheme, array( 'custom', 'default_v4.6' ) ) ) {
-			$memberlite_defaults['bgcolor_page_masthead'] = $this_color_scheme[7];
+
+		// Set the defaults to the primary color from the current scheme if it isn't the new default.
+		if ( $this_color_scheme != 'default_v4.6' ) {
+			$memberlite_defaults['bgcolor_page_masthead'] = $color_scheme['color-primary'];
 			$memberlite_defaults['color_page_masthead'] = $memberlite_defaults['color_white'];
-			$memberlite_defaults['bgcolor_footer_widgets'] = $this_color_scheme[7];
+			$memberlite_defaults['bgcolor_footer_widgets'] = $color_scheme['color-primary'];
 			$memberlite_defaults['color_footer_widgets'] = $memberlite_defaults['color_white'];
 		}
 
