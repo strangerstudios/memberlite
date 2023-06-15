@@ -380,6 +380,13 @@ if ( ! function_exists( 'memberlite_setup' ) ) :
 		// For this reason, we need to get the color scheme from scheme defaults and theme mods.
 		$memberlite_color_schemes = Memberlite_Customize::get_color_schemes();
 		$this_color_scheme = get_theme_mod( 'memberlite_color_scheme' );
+
+		// If custom, unset custom scheme so empty colors fall back to defaults.
+		if ( $this_color_scheme === 'custom' ) {
+			$this_color_scheme = null;
+		}
+
+		// Set up the fallback colors array.
 		if ( empty ( $this_color_scheme ) ) {
 			$fallback_color_scheme_values = $memberlite_defaults;
 		} else {
