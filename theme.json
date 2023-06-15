@@ -1077,8 +1077,7 @@
 					}
 				},
 				"typography": {
-					"fontSize": "var(--wp--preset--font-size--36)",
-					"fontWeight": "900"
+					"fontSize": "var(--wp--preset--font-size--36)"
 				}
 			},
 			"h3": {
