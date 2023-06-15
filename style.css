@@ -58,7 +58,28 @@ Memberlite is distributed under the terms of the GNU GPL.
 /*--------------------------------------------------------------
 1.0 - Reset
 --------------------------------------------------------------*/
-input, textarea, select, button { font-family:inherit; }
+applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+	border: 0;
+	font-size: 100%;
+	font-style: inherit;
+	font-weight: inherit;
+	margin: 0;
+	outline: 0;
+	padding: 0;
+	vertical-align: baseline;
+}
+
+input, textarea, select, button {
+	font-family:inherit;
+}
+
 html {
 	font-size: 62.5%; /* Corrects text resizing oddly in IE6/7 when body font-size is set using em units http://clagnut.com/blog/348/#c790 */
 	-webkit-text-size-adjust: 100%; /* Prevents iOS text size adjust after orientation change, without disabling user zoom */
@@ -198,7 +219,8 @@ h4 a:hover,
 h5 a:hover,
 h6 a:hover,
 .navigation a {
-	border-bottom: 1px solid #777;
+	text-decoration-line: underline;
+	text-underline-offset: 2px;
 }
 p {
 	margin-bottom: 2.9rem;
@@ -2619,7 +2641,7 @@ a:active {
 	margin: 0 0 1.45rem 0;
 }
 .footer-widgets p {
-	margin: .7rem 0 0 0;
+	margin: 1.45rem 0 0 0;
 }
 .footer-widgets a {
 	color: var(--memberlite-color-footer-widgets);
