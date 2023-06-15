@@ -1035,45 +1035,16 @@ a:active {
 .muted {
 	color: #AAA;
 }
-.bg_primary,
-.has-color-primary-background-color {
+.bg_primary {
 	background-color: var(--memberlite-color-primary);
 }
-.bg_secondary,
-.has-color-secondary-background-color {
+.bg_secondary {
 	background-color: var(--memberlite-color-secondary);
 }
-.bg_action,
-.has-color-action-background-color {
+.bg_action {
 	background-color: var(--memberlite-color-action);
 }
-.has-site-background-background-color {
-	background-color: var(--memberlite-color-site-background);
-}
-.has-site-navigation-background-background-color {
-	background-color: var(--memberlite-color-site-navigation-background);
-}
-.has-link-background-color {
-	background-color: var(--memberlite-color-link);
-}
-.has-site-navigation-link-background-color {
-	background-color: var(--memberlite-color-site-navigation);
-}
-.has-meta-link-background-color {
-	background-color: var(--memberlite-color-meta-link);
-}
-.has-buttons-background-color {
-	background-color: var(--memberlite-color-button);
-}
-.has-white-background-color {
-	background-color: var(--memberlite-color-white);
-}
-.has-body-text-background-color {
-	background-color: var(--memberlite-color-text);
-}
-.has-borders-background-color {
-	background-color: var(--memberlite-color-borders);
-}
+
 /*--------------------------------------------------------------
 5.2 Menus
 --------------------------------------------------------------*/
@@ -1468,6 +1439,11 @@ a:active {
 	border-top: 1px solid var(--memberlite-color-borders);
 	clear: both;
 	padding-top: 2.9rem;
+}
+#nav-below::after {
+	content: "";
+	clear: both;
+	display: table;
 }
 .comment-navigation .nav-previous,
 .paging-navigation .nav-previous,
@@ -2265,7 +2241,7 @@ a:active {
 	padding-left: 0;
 }
 #primary .hentry .entry-meta {
-	color: #AAA;
+	color: #666;
 	font-style: italic;
 }
 #primary .hentry .entry-meta a {
@@ -2854,25 +2830,14 @@ a:active {
 --------------------------------------------------------------*/
 
 /* Membership Levels and Advanced Levels Page Shortcode */
+body.pmpro-levels .entry-content #nav-below {
+	margin-bottom: 5.8rem;
+}
 #pmpro_levels {
-	margin-top: 2rem;
-	margin-bottom: 2rem;
+	clear: both
 }
-#pmpro_levels .medium-4,
-#pmpro_levels .medium-3 {
-	text-align: center;
-}
-#pmpro_levels .row .post {
-	padding: 0 1rem;
-}
-#pmpro_levels .post h2 {
-	background-color: #F9FAFB;
-	color: var(--memberlite-color-primary);
-	border-top: 1px solid var(--memberlite-color-borders);
-	border-bottom: 1px dotted var(--memberlite-color-borders);
-	padding: .9rem;
-	margin: 0 0 1rem 0;
-}
+
+/* Buttons */
 #pmpro_levels .medium-4 .pmpro_btn,
 #pmpro_levels .medium-3 .pmpro_btn,
 .pmpro_levels-table .pmpro_btn,
@@ -2883,54 +2848,173 @@ a:active {
 #primary #pmpro_levels .entry-footer .pmpro_btn {
 	color: var(--memberlite-color-white);
 }
+
+/* General div levels styles */
+#pmpro_levels.pmpro_advanced_levels-div .post {
+	padding: 0;
+}
+#pmpro_levels.pmpro_advanced_levels-div .post .entry-content {
+	border: none;
+	padding: 0 2.9rem;
+}
+#pmpro_levels.pmpro_advanced_levels-div .entry-footer {
+	padding: 1.45rem 0;
+}
+#pmpro_levels.pmpro_advanced_levels-div .post .entry-meta {
+	color: var(--memberlite-color-text);
+	font-style: normal;
+}
+#pmpro_levels.pmpro_advanced_levels-div .post .entry-meta .pmpro_level-price {
+	font-weight: 700;
+}
+
+/* Single Column Levels Layout */
+#pmpro_levels.pmpro_levels-div .pmpro_level {
+	margin-bottom: 4.35rem;
+}
+#pmpro_levels .post h2 {
+	background-color: #F9FAFB;
+	color: var(--memberlite-color-primary);
+	border-top: 1px solid var(--memberlite-color-borders);
+	border-bottom: 1px dotted var(--memberlite-color-borders);
+	padding: .9rem;
+	margin: 0;
+}
+.pmpro_levels-div .pmpro_btn-select {
+	margin-left: 2.9rem;
+}
+.pmpro_levels-div .pmpro_level-price,
+.pmpro_levels-div .pmpro_level-expiration {
+	display: inline;
+	margin: 0;
+}
+#pmpro_levels.pmpro_levels-div .post h2,
+#pmpro_levels.pmpro_levels-div .post .entry-content,
+#pmpro_levels.pmpro_levels-div .entry-footer {
+	padding: 1.45rem 2.9rem;
+}
+#pmpro_levels.pmpro_levels-div .post .entry-content *:first-child {
+	margin-top: 1.45rem;
+}
+#pmpro_levels.pmpro_levels-div .post .entry-content *:last-child {
+	margin-bottom: 0;
+}
+#pmpro_levels.pmpro_levels-div .entry-footer {
+	border-top: none;
+}
+#pmpro_levels.pmpro_levels-div .entry-footer:not(#pmpro_levels.pmpro_levels-div .pmpro_level-highlight .entry-footer) {
+	padding-bottom: 2.9rem;
+}
+#pmpro_levels.pmpro_levels-div .entry-footer .pmpro_btn {
+	margin-top: -1.45rem;
+}
+
+/* 2 Column Levels Layout */
+#pmpro_levels.pmpro_levels-2col .pmpro_level {
+	margin-bottom: 4.35rem;
+}
+#pmpro_levels.pmpro_levels-2col .post h2,
+#pmpro_levels.pmpro_levels-2col .post .entry-content,
+#pmpro_levels.pmpro_levels-2col .entry-footer {
+	padding: 1.45rem 2.9rem;
+}
+#pmpro_levels.pmpro_levels-2col .post .entry-content *:first-child {
+	margin-top: 1.45rem;
+}
+#pmpro_levels.pmpro_levels-2col .post .entry-content *:last-child {
+	margin-bottom: 0;
+}
+#pmpro_levels.pmpro_levels-2col .entry-footer {
+	border-top: none;
+}
+#pmpro_levels.pmpro_levels-2col .entry-footer:not(#pmpro_levels.pmpro_levels-2col .pmpro_level-highlight .entry-footer) {
+	padding-bottom: 2.9rem;
+}
+#pmpro_levels.pmpro_levels-2col .entry-footer .pmpro_btn {
+	margin-top: -1.45rem;
+}
+.pmpro_levels-2col .pmpro_btn-select {
+	margin-left: 2.9rem;
+}
+.pmpro_levels-2col .pmpro_level-price,
+.pmpro_levels-2col .pmpro_level-expiration {
+	display: inline;
+	margin: 0;
+}
+
+/* 3 and 4 Column Levels Layouts */
+#pmpro_levels.pmpro_levels-3col .pmpro_level,
+#pmpro_levels.pmpro_levels-4col .pmpro_level {
+	margin-bottom: 4.35rem;
+	text-align: center;
+}
+#pmpro_levels.pmpro_levels-3col .post .entry-content {
+	padding-top: 2.9rem;
+}
+t,
+#pmpro_levels.pmpro_levels-4col .post .entry-content {
+	padding: 2.9rem 1.45rem 0 1.45rem;
+}
+#pmpro_levels.pmpro_levels-3col .pmpro_level-price,
+#pmpro_levels.pmpro_levels-4col .pmpro_level-price {
+	font-size: var(--wp--preset--font-size--24);
+}
+
+/* Level Highlight Styles */
 #pmpro_levels.pmpro_levels-table.pmpro_level-highlight,
 #pmpro_levels.pmpro_levels-div .pmpro_level-highlight,
 #pmpro_levels.pmpro_levels-2col .pmpro_level-highlight,
 #pmpro_levels.pmpro_levels-3col .pmpro_level-highlight,
 #pmpro_levels.pmpro_levels-4col .pmpro_level-highlight {
-	padding: 1rem;
 	background-color: var(--memberlite-color-white);
 	z-index: 100;
-	border-top: .5rem solid var(--memberlite-color-secondary);
-	border-bottom: 1.5rem solid var(--memberlite-color-secondary);
+	border-top: .9rem solid var(--memberlite-color-secondary);
+	border-bottom: 1.45rem solid var(--memberlite-color-secondary);
 	border-left: 1px solid var(--memberlite-color-borders);
 	border-right: 1px solid var(--memberlite-color-borders);
 }
 #pmpro_levels.pmpro_levels-2col .pmpro_level-highlight,
 #pmpro_levels.pmpro_levels-3col .pmpro_level-highlight,
 #pmpro_levels.pmpro_levels-4col .pmpro_level-highlight {
-	margin-top: -1.5rem;
+	margin-top: -1.4rem;
 }
-#pmpro_levels.pmpro_levels-2col .entry-content,
-#pmpro_levels.pmpro_levels-3col .entry-content,
-#pmpro_levels.pmpro_levels-4col .entry-content {
-	padding: 1.45rem 0;
-}
-#pmpro_levels_table td,
-#pmpro_levels.pmpro_levels-table td {
+
+/* Table and Compare Table Level Layout */
+#pmpro_levels_table td {
 	vertical-align: middle;
 }
-
-#pmpro_levels.pmpro_levels-table .pmpro_level-highlight td:first-child {
-	border-left: 15px solid var(--memberlite-color-secondary);
+#pmpro_levels.pmpro_advanced_levels-table td *:last-child {
+	margin-bottom: 0;
 }
-#pmpro_levels.pmpro_levels-table .pmpro_level-highlight td:last-child {
-	border-right: 15px solid var(--memberlite-color-secondary);
+#pmpro_levels.pmpro_advanced_levels-table .pmpro_level-highlight td:first-child {
+	border-left: 1.45rem solid var(--memberlite-color-secondary);
 }
-
 #pmpro_levels.pmpro_advanced_levels-compare_table {
+	line-height: 1.4;
+	margin-bottom: 4.35rem;
 	overflow: hidden;
+}
+#pmpro_levels.pmpro_advanced_levels-compare_table .pmpro_level-price {
+	font-size: var(--wp--preset--font-size--24);
+	font-weight: 700;
 }
 #pmpro_levels.pmpro_advanced_levels-compare_table th,
 #pmpro_levels.pmpro_advanced_levels-compare_table td {
-	padding: 1rem 2rem;
+	padding: 1.45rem 2.35rem;
 	position: relative;
 	text-align: center;
 }
 #pmpro_levels.pmpro_advanced_levels-compare_table thead th {
 	border: none;
-	padding-top: 0;
+	padding-top: .9rem;
+	padding-bottom: 0;
 	text-align: center;
+}
+#pmpro_levels.pmpro_advanced_levels-compare_table thead tr:first-child th {
+	border-top: .9rem solid transparent;
+}
+#pmpro_levels.pmpro_advanced_levels-compare_table thead tr:last-child th {
+	padding-bottom: 2.35rem;
 }
 #pmpro_levels.pmpro_advanced_levels-compare_table thead th h2 {
 	margin-bottom: 0;
@@ -2943,7 +3027,7 @@ a:active {
 	width: 20%;
 }
 #pmpro_levels.pmpro_advanced_levels-compare_table thead tr th:nth-child(even) {
-	background-color: rgba(0,0,0,0.1);
+	background-color: rgba(0,0,0,0.05);
 }
 #pmpro_levels.pmpro_advanced_levels-compare_table tbody td {
 	vertical-align: middle;
@@ -2960,11 +3044,11 @@ a:active {
 #pmpro_levels.pmpro_advanced_levels-compare_table thead th.pmpro_level-highlight,
 #pmpro_levels.pmpro_advanced_levels-compare_table tbody td.pmpro_level-highlight,
 #pmpro_levels.pmpro_advanced_levels-compare_table tfoot td.pmpro_level-highlight {
-	border-left: 1rem solid var(--memberlite-color-secondary);
-	border-right: 1rem solid var(--memberlite-color-secondary);
+	border-left: .9rem solid var(--memberlite-color-secondary);
+	border-right: .9rem solid var(--memberlite-color-secondary);
 }
 #pmpro_levels.pmpro_advanced_levels-compare_table thead tr:first-child th.pmpro_level-highlight {
-	border-top: 1rem solid var(--memberlite-color-secondary);
+	border-top: .9rem solid var(--memberlite-color-secondary);
 }
 #pmpro_levels.pmpro_advanced_levels-compare_table thead tr:last-child th.pmpro_level-highlight,
 #pmpro_levels.pmpro_advanced_levels-compare_table tbody tr td.pmpro_level-highlight,
@@ -2972,7 +3056,7 @@ a:active {
 	border-bottom: none;
 }
 #pmpro_levels.pmpro_advanced_levels-compare_table tfoot tr:last-child td.pmpro_level-highlight {
-	border-bottom: 1rem solid var(--memberlite-color-secondary);
+	border-bottom: .9rem solid var(--memberlite-color-secondary);
 }
 
 #pmpro_levels.pmpro_advanced_levels-compare_table_responsive {
@@ -2982,12 +3066,11 @@ a:active {
 	text-align: center;
 }
 #pmpro_levels.pmpro_advanced_levels-compare_table_responsive .pmpro_level-highlight {
-	border-top: .5rem solid var(--memberlite-color-secondary);
-	border-bottom: 1.5rem solid var(--memberlite-color-secondary);
+	border-top: .9rem solid var(--memberlite-color-secondary);
+	border-bottom: 1.45rem solid var(--memberlite-color-secondary);
 	border-left: 1px solid var(--memberlite-color-borders);
 	border-right: 1px solid var(--memberlite-color-borders);
 }
-
 #pmpro_levels.pmpro_advanced_levels-compare_table:hover tbody tr:nth-child(even) td {
 	background: none !important;
 }
@@ -3006,41 +3089,7 @@ a:active {
   z-index: -1;
 }
 
-.pmpro_levels-3col .pmpro_level-price,
-.pmpro_levels-4col .pmpro_level-price {
-	font-size: 24px; font-size: 2.4rem;
-}
-.pmpro_levels-3col .pmpro_level-subprice,
-.pmpro_levels-4col .pmpro_level-subprice {
-	display: block;
-	font-size: 14px;
-	font-size: 1.4rem;
-	line-height: 2rem;
-}
-.pmpro_levels-3col .pmpro_level-trialprice,
-.pmpro_levels-4col .pmpro_level-trialprice {
-	display: block;
-	font-size: 14px;
-	font-size: 1.4rem;
-	line-height: 2rem;
-	margin: 1rem;
-}
-.pmpro_levels-div .pmpro_level-subprice,
-.pmpro_levels-table .pmpro_level-subprice { }
-.pmpro_levels-3col .pmpro_level-expiration,
-.pmpro_levels-4col .pmpro_level-expiration { }
-
-.pmpro_levels-div .pmpro_btn-select,
-.pmpro_levels-2col .pmpro_btn-select {
-	margin-left: 3rem;
-}
-.pmpro_levels-div .pmpro_level-price,
-.pmpro_levels-2col .pmpro_level-price,
-.pmpro_levels-div .pmpro_level-expiration,
-.pmpro_levels-2col .pmpro_level-expiration {
-	display: inline;
-	margin: 0;
-}
+/* Membership Signup Forms */
 .memberlite_signup,
 .pmpro_signup_form {
 	padding: 1.9rem;
