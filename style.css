@@ -2865,9 +2865,7 @@ a:active {
 #pmpro_levels .row .post {
 	padding: 0 1rem;
 }
-#pmpro_levels .post h2,
-.memberlite_signup h2,
-.pmpro_signup_form h2 {
+#pmpro_levels .post h2 {
 	background-color: #F9FAFB;
 	color: var(--memberlite-color-primary);
 	border-top: 1px solid var(--memberlite-color-borders);
@@ -2889,9 +2887,7 @@ a:active {
 #pmpro_levels.pmpro_levels-div .pmpro_level-highlight,
 #pmpro_levels.pmpro_levels-2col .pmpro_level-highlight,
 #pmpro_levels.pmpro_levels-3col .pmpro_level-highlight,
-#pmpro_levels.pmpro_levels-4col .pmpro_level-highlight,
-.memberlite_signup,
-.pmpro_signup_form {
+#pmpro_levels.pmpro_levels-4col .pmpro_level-highlight {
 	padding: 1rem;
 	background-color: var(--memberlite-color-white);
 	z-index: 100;
@@ -3045,9 +3041,30 @@ a:active {
 	display: inline;
 	margin: 0;
 }
+.memberlite_signup,
+.pmpro_signup_form {
+	padding: 1.9rem;
+	background-color: var(--memberlite-color-white);
+	z-index: 100;
+	border-top: .9rem solid var(--memberlite-color-secondary);
+	border-bottom: 2.35rem solid var(--memberlite-color-secondary);
+	border-left: 1px solid var(--memberlite-color-borders);
+	border-right: 1px solid var(--memberlite-color-borders);
+}
 .memberlite_signup-fixed {
 	position: fixed;
 	top: 0;
+}
+.pmpro_form.memberlite_signup h2,
+.pmpro_signup_form h2 {
+	background-color: transparent;
+	border: none;
+	color: var(--memberlite-color-primary);
+	padding: 0;
+	margin: 1.45rem 0 2.9rem 0;
+}
+.pmpro_form.memberlite_signup div {
+	margin: 0 0 2.9rem 0
 }
 
 /* Special Fields */
