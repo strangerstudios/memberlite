@@ -1092,6 +1092,11 @@ a:active {
 	padding: .9rem 1.45rem;
 	text-decoration: none;
 }
+.main-navigation a:hover:not(.main-navigation .menu-item-has-children > a:hover) {
+	text-decoration-color: #00000033;
+	text-decoration-line: underline;
+	text-underline-offset: 4px;
+}
 .main-navigation ul > .menu-item-has-children > a {
 	align-items: center;
 	display: flex;
@@ -1213,7 +1218,7 @@ a:active {
 .main-navigation ul.sub-menu,
 .meta-navigation ul.sub-menu,
 .header-right .widget_nav_menu ul.sub-menu {
-	box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+	box-shadow: 0 16px 24px 2px rgba(29,17,51,.04), 0 6px 32px 4px rgba(9,32,77,.12), 0 8px 12px -5px rgba(29,17,51,.12);
 	float: left;
 	position: absolute;
 	top: 3.75rem;
@@ -1251,7 +1256,6 @@ a:active {
 	width: 200px;
 	padding: .7rem 1.45rem;
 	border-left: none;
-	border-top: 1px dotted #EEE;
 }
 .main-navigation ul.sub-menu li:hover > a,
 .meta-navigation ul.sub-menu li:hover > a,
@@ -1321,7 +1325,8 @@ a:active {
 	text-decoration: none;
 }
 #mobile-navigation a:hover {
-	text-decoration: underline;
+	text-decoration-line: underline;
+	text-underline-offset: 2px;
 }
 #mobile-navigation .widget,
 #mobile-navigation .search-form {
@@ -1912,7 +1917,7 @@ a:active {
 }
 .header-right #meta-member .member-navigation,
 .header-right #meta-member .member-navigation ul {
-	display: inline-block;
+	display: inline;
 	list-style: none;
 	margin: 0;
 	z-index: 10;
