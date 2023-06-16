@@ -1109,9 +1109,9 @@
 		"spacing": {
 			"blockGap": "var(--wp--preset--spacing--30)",
 			"padding": {
-				"top": "0",
+				"top": "var(--wp--preset--spacing--30)",
 				"right": "var(--wp--preset--spacing--30)",
-				"bottom": "0",
+				"bottom": "var(--wp--preset--spacing--30)",
 				"left": "var(--wp--preset--spacing--30)"
 			}
 		},
