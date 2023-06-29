@@ -244,7 +244,7 @@ em,
 i {
 	font-style: italic;
 }
-blockquote:not(.wp-block-pullquote blockquote):not(.wp-block-quote) {
+blockquote:not(.wp-block-pullquote blockquote):not(.wp-block-quote):not(.testimonials-widget-testimonial blockquote) {
 	margin: 2.9rem 0;
 	background-color: #F9FAFB;
 	padding: 2.9rem 2.9rem 1px 2.9rem;
@@ -1524,17 +1524,6 @@ a:active {
 }
 
 /* Align Wide */
-.single.sidebar-blog-none .alignwide,
-.page-template-default.sidebar-none .alignwide,
-.page-template-full-width .alignwide,
-.page-template-fluid-width .alignwide,
-.page-template-narrow-width .alignwide,
-.page-template-blank .alignwide {
-	margin-left: calc(50% - 45vw);
-	margin-right: calc(50% - 45vw);
-	max-width: 1000%;
-	width: auto;
-}
 .wp-block-image.alignwide {
 	text-align: center;
 }
@@ -2078,8 +2067,7 @@ a:active {
 	margin-top: 0;
 }
 .archive.sidebar-blog-none .masthead .taxonomy-description p {
-	font-size: 2.2rem;
-	line-height: 3.5rem;
+	font-size: var(--wp--preset--font-size--21);
 }
 .masthead p:last-child {
 	margin: 0;

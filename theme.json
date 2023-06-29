@@ -738,6 +738,21 @@
 					}
 				}
 			},
+			"core/image": {
+				"variations": {
+					"rounded" : {
+						"border": {
+						"radius": "var(--wp--custom--border--radius)"
+						}
+					}
+				},
+				"spacing": {
+					"margin": {
+						"top": "var(--wp--preset--spacing--30)",
+						"bottom": "var(--wp--preset--spacing--30)"
+					}
+				}
+			},
 			"core/navigation": {
 				"elements": {
 					"link": {
