@@ -3464,11 +3464,35 @@ object {
 	.hide-screen {
 		display: none;
 	}
+	.single.sidebar-blog-none .alignwide,
+	.home.page-template-default .alignwide,
+	.page-template-default.sidebar-none .alignwide,
+	.page-template-full-width .alignwide,
+	.page-template-fluid-width .alignwide,
+	.page-template-narrow-width .alignwide,
+	.page-template-blank .alignwide {
+		margin-left: calc(50% - var(--wp--style--global--wide-size) / 2 );
+		margin-right: calc(50% - var(--wp--style--global--wide-size) / 2 );
+		max-width: var(--wp--style--global--wide-size);
+		width: auto;
+	}
 }
 
 @media only screen and (min-width: 960px) and (max-width: 1160px) {
 	.hide-screen {
 		display: none;
+	}
+	.single.sidebar-blog-none .alignwide,
+	.home.page-template-default .alignwide,
+	.page-template-default.sidebar-none .alignwide,
+	.page-template-full-width .alignwide,
+	.page-template-fluid-width .alignwide,
+	.page-template-narrow-width .alignwide,
+	.page-template-blank .alignwide {
+		margin-left: calc(50% - 50vw);
+		margin-right: calc(50% - 50vw);
+		max-width: 1000%;
+		width: auto;
 	}
 }
 
@@ -3476,11 +3500,39 @@ object {
 	.hide-mobile {
 		display: none;
 	}
+	.single.sidebar-blog-none .alignwide,
+	.home.page-template-default .alignwide,
+	.page-template-default.sidebar-none .alignwide,
+	.page-template-full-width .alignwide,
+	.page-template-fluid-width .alignwide,
+	.page-template-narrow-width .alignwide,
+	.page-template-blank .alignwide {
+		margin-left: calc(50% - 50vw);
+		margin-right: calc(50% - 50vw);
+		max-width: 1000%;
+		width: auto;
+	}
 }
 
 @media only screen and (max-width: 767px) {
 	.hide-mobile {
 		display: none;
+	}
+	.single.sidebar-blog-none .alignwide,
+	.home.page-template-default .alignwide,
+	.page-template-default.sidebar-none .alignwide,
+	.page-template-full-width .alignwide,
+	.page-template-fluid-width .alignwide,
+	.page-template-narrow-width .alignwide,
+	.page-template-blank .alignwide {
+		margin-left: calc(50% - 50vw);
+		margin-right: calc(50% - 50vw);
+		max-width: 1000%;
+		width: auto;
+	}
+	.alignfull {
+		margin-right: -2.35rem;
+		margin-left: -2.35rem;
 	}
 	.header-right,
 	.site-navigation-sticky-wrapper,
@@ -3526,15 +3578,6 @@ object {
 		float: none;
 		margin: 0;
 		text-align: center;
-	}
-	.single.sidebar-blog-none .alignwide,
-	.page-template-default.sidebar-none .alignwide,
-	.page-template-full-width .alignwide,
-	.page-template-fluid-width .alignwide,
-	.page-template-narrow-width .alignwide,
-	.page-template-blank .alignwide {
-		margin-left: 0;
-		margin-right: 0;
 	}
 	img.alignleft,
 	img.alignright,
