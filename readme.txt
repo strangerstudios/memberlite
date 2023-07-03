@@ -1,9 +1,9 @@
 === Memberlite ===
 Contributors: kimannwall, strangerstudios
-Requires at least: 5.3
+Requires at least: 6.0
 Tested up to: 6.2.2
 Requires PHP: 5.6
-Stable tag: 4.6
+Stable tag: 5.0.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: one-column, two-columns, left-sidebar, right-sidebar, flexible-header, custom-background, custom-colors, custom-header, custom-menu, custom-logo, editor-style, featured-images, footer-widgets, full-width-template, post-formats, theme-options, threaded-comments, translation-ready, e-commerce
@@ -14,7 +14,7 @@ Memberlite is the ideal theme for your membership site - packed with integration
 
 == Copyright ==
 
-Memberlite WordPress Theme, Copyright (C) 2018 Stranger Studios, LLC and other contributors
+Memberlite WordPress Theme, Copyright (C) 2018 - 2023 Stranger Studios, LLC and other contributors
 Memberlite is distributed under the terms of the GNU GPL
 
 This program is free software: you can redistribute it and/or modify
@@ -104,7 +104,7 @@ We highly recommend using these plugins for every site running Memberlite:
 
 == Changelog ==
 
-= 4.6 - 2023-06-13 =
+= 5.0.0 - 2023-07-03 =
 * FEATURE: Added hybrid theme features for tighter compatibility with the WordPress Block Editor.
 * ENHANCEMENT: Improved default color scheme. Existing sites can choose Legacy Default scheme for previous palette.
 * ENHANCEMENT: Added ability to customize masthead and footer background colors and text colors via Customizer.
