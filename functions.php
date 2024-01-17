@@ -693,3 +693,68 @@ function memberlite_frontpage_template_hierarchy( $templates ) {
 	return $templates;
 }
 add_filter( 'frontpage_template_hierarchy', 'memberlite_frontpage_template_hierarchy', 5 );
+
+/**
+ * Formats custom property to be used in CSS.
+ *
+ * @param string $property The property name.
+ * @return string
+ */
+function memberlite_format_custom_property( string $property ): string {
+	if ( ! str_contains( $property, 'var:' ) ) {
+		return $property;
+	}
+
+	return str_replace(
+		[ 'var:', '|' ],
+		[ 'var(--wp--', '--' ],
+		$property
+	) . ')';
+}
+
+/**
+ * Generate custom properties from global styles.
+ *
+ * @return string
+ */
+function memberlite_get_custom_properties(): string {
+	$custom_properties  = [];
+	$custom_properties[ "--memberlite-header-font" ] = memberlite_get_font( 'header_font', true );
+	$custom_properties[ "--memberlite-body-font" ] = memberlite_get_font( 'body_font', true );
+
+	if ( is_array( $custom_properties ) ) {
+		$css = [];
+
+		foreach ( $custom_properties as $key => $value ) {
+			$css[] = $key . ':' . memberlite_format_custom_property( $value ) . ';';
+		}
+
+		return 'body{' . implode( '', $css ) . '}';
+	}
+
+	return '';
+}
+
+/**
+ * Enqueue block editor styles.
+ *
+ * @since TBD
+ *
+ * @return void
+ */
+function memberlite_enqueue_block_assets() {
+   // Enqueue the editor stylesheet to attach the inline styles to.
+	wp_enqueue_style(
+		'memberlite-block-editor-style',
+		get_template_directory_uri() . '/css/editor.css',
+		[],
+		MEMBERLITE_VERSION
+	);
+
+	// Add custom inline styles to the block editor.
+	wp_add_inline_style(
+		'memberlite-block-editor-style',
+		memberlite_get_custom_properties()
+	);
+}
+add_action( 'enqueue_block_assets', 'memberlite_enqueue_block_assets' );
