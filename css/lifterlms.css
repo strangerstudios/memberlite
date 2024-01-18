@@ -1,0 +1,547 @@
+/**
+ * LifterLMS specific CSS
+ *
+ */
+
+.fa-heart-o:before {
+	font-weight: 400;
+}
+
+ /* buttons */
+.llms-button-action,
+.llms-button-danger,
+.llms-button-primary,
+.llms-button-secondary {
+	border: none;
+	border-radius: 6px;
+	box-shadow: 1px 2px 4px rgba(0,0,0,0.2);
+	color: var(--memberlite-color-white);
+	cursor: pointer;
+	-webkit-appearance: none;
+	font-family: var(--memberlite-header-font);
+	font-size: 1.8rem;
+	font-style: normal;
+	font-weight: 700;
+	display: inline-block;
+	line-height: 2.9rem;
+	padding: 1.45rem 2.9rem;
+	position: relative;
+	text-align: center;
+	text-decoration: none;
+	text-shadow: none;
+	-webkit-transform: translateZ(0);
+	transform: translateZ(0);
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
+	-moz-osx-font-smoothing: grayscale;
+	overflow: hidden;
+	-webkit-transition-duration: 0.3s;
+	transition-duration: 0.3s;
+	-webkit-transition-property: transform, filter linear;
+	transition-property: transform, filter linear;
+}
+
+ /* primary buttons */
+.llms-button-primary,
+.llms-button-primary:hover {
+	background: var(--memberlite-color-primary);
+	color: var(--memberlite-color-white);
+}
+
+/* secondary buttons */
+.llms-button-secondary,
+.llms-button-secondary:hover {
+	background: var(--memberlite-color-secondary);
+	color: var(--memberlite-color-white);
+}
+
+/* action buttons */
+.llms-button-action {
+	background: var(--memberlite-color-action);
+	color: var(--memberlite-color-white);
+}
+
+.llms-form-field.type-reset button:not(.auto),
+.llms-form-field.type-button button:not(.auto),
+.llms-form-field.type-submit button:not(.auto) {
+	width: auto;
+}
+
+.llms-form-field #llms_login_button {
+	width: 100%;
+}
+
+.llms-form-field.type-submit {
+	margin-bottom: 0;
+}
+
+/* blocks */
+.wp-block-llms-course-continue-button {
+	margin: 2.9rem 0;
+}
+
+.llms-lesson-button-wrapper {
+	background-color: var(--memberlite-color-site-navigation-background);
+	border: 1px solid var(--memberlite-color-borders);
+	border-radius: 6px;
+	font-family: var(--memberlite-header-font);
+	margin: 2.9rem 0;
+	padding: 2.9rem;
+}
+
+.llms-lesson-button-wrapper form {
+	margin-top: 1.45rem;
+}
+
+.llms-video-wrapper {
+	margin-bottom: 5.8rem;
+}
+
+/* loop items */
+.llms-loop-item-content {
+	background: var(--memberlite-color-site-navigation-background);
+	border: 1px solid var(--memberlite-color-borders);
+	border-radius: 6px;
+	overflow: hidden;
+}
+
+.llms-loop-item-content:hover {
+	background-color: var(--memberlite-color-site-navigation-background);
+}
+
+.llms-loop-link {
+	text-decoration: none;
+}
+
+.llms-loop-item-content .llms-loop-title {
+	margin: 0;
+	padding: 1.45rem 2.9rem;
+}
+
+.is-enrolled .llms-loop-item-content .llms-progress {
+	margin-top: 2.9rem;
+	padding: 1.45rem 2.9rem;
+}
+
+.llms-loop-item-footer {
+	display: grid;
+	grid-gap: 1.45rem;
+	grid-template-columns: 1fr 1fr;
+	padding: 1.45rem 2.9rem;
+}
+
+.llms-loop-item-content .llms-meta,
+.llms-loop-item-content .llms-author {
+	margin: 0;
+	padding: 0;
+}
+
+.llms-loop-item-footer .llms-author {
+	align-items: center;
+	display: flex;
+}
+
+/* pricing tables */
+.llms-access-plan-title,
+.llms-access-plan .stamp {
+	background: var(--memberlite-color-primary);
+	color: var(--memberlite-color-white);
+}
+
+.llms-access-plan-title {
+	border-top-left-radius: 6px;
+	border-top-right-radius: 6px;
+	margin: 0;
+	padding: 1.45rem .9rem;
+}
+
+.llms-access-plan-content .llms-access-plan-pricing {
+	padding-top: 2.9rem;
+}
+
+.llms-access-plan .llms-access-plan-footer,
+.llms-access-plan .llms-access-plan-content {
+	background: var(--memberlite-color-site-navigation-background);
+	border-left: 1px solid var(--memberlite-color-borders);
+	border-right: 1px solid var(--memberlite-color-borders);
+}
+
+.llms-access-plan.on-sale .price-regular .lifterlms-price {
+	font-weight: 400;
+}
+
+.llms-access-plan-footer {
+	border-bottom: 1px solid var(--memberlite-color-borders);
+	border-bottom-left-radius: 6px;
+	border-bottom-right-radius: 6px;
+	padding: 0 2.9rem 2.9rem;
+}
+
+.llms-access-plan.featured .llms-access-plan-featured {
+	background: var(--memberlite-color-secondary);
+	border-top-left-radius: 6px;
+	border-top-right-radius: 6px;
+	color: var(--memberlite-color-white);
+	font-weight: 700;
+}
+
+.llms-access-plan.featured .llms-access-plan-title {
+	border-radius: 0;
+	background: var(--memberlite-color-secondary);
+}
+
+.llms-access-plan.featured .llms-access-plan-content,
+.llms-access-plan.featured .llms-access-plan-footer {
+	border-left: 5px solid var(--memberlite-color-secondary);
+	border-right: 5px solid var(--memberlite-color-secondary);
+}
+
+.llms-access-plan.featured .llms-access-plan-footer {
+	border-bottom: 5px solid var(--memberlite-color-secondary);
+}
+
+.llms-access-plan-restrictions a {
+	color: var(--memberlite-color-action);
+}
+
+/* checkout and other forms */
+.llms-form-field {
+	margin-bottom: 2.9rem;
+	padding-bottom: 0;
+}
+
+.llms-checkout-wrapper .llms-form-heading {
+	background: transparent;
+	color: var(--memberlite-color-primary);
+	margin: 0 0 2.9rem 0;
+	padding: 0 0 0 10px;
+}
+.llms-checkout-section,
+.llms-checkout-wrapper form.llms-login {
+	border: 1px solid var(--memberlite-color-borders);
+	border-radius: 6px;
+	margin-bottom: 5.8rem;
+	padding: 2.9rem 2.9rem 1.45rem;
+}
+
+.llms-checkout-section.payment-details {
+	background: var(--memberlite-color-site-navigation-background);
+	border: 1px solid var(--memberlite-color-borders);
+	border-radius: 6px;
+}
+
+.llms-form-field.type-radio input[type=radio]:checked+label:before {
+	background-image: -webkit-radial-gradient(center,ellipse,var(--memberlite-color-primary) 0,var(--memberlite-color-primary) 40%,#fafafa 45%);
+	background-image: radial-gradient(ellipse at center,var(--memberlite-color-primary) 0,var(--memberlite-color-primary) 40%,#fafafa 45%);
+}
+
+/* notices */
+.llms-notice {
+	background: #EBF5FF;
+	border: 1px solid #1E429F11;
+	border-radius: 8px;
+	color: #1E429F;
+	font-size: 1.8rem;
+	font-weight: 400;
+	line-height: 2.9rem;
+	margin: 2.9rem 0;
+	padding: 1.45rem;
+}
+
+.entry-content .llms-notice {
+	margin-bottom: 2.9rem;
+}
+
+.llms-notice.llms-error {
+	background: #FDF2F2;
+	border-color: #9B1C1C11;
+	color: #9B1C1C;
+}
+
+.llms-notice.llms-success {
+	background: #F3FAF7;
+	border-color: #03543F11;
+	color: #03543F;
+}
+
+/* notifications */
+.llms-notification {
+	border-top-color: var(--memberlite-color-primary);
+}
+
+/* progress bar */
+.llms-progress {
+	display: flex;
+	flex-direction: row-reverse;
+	gap: 1.45rem;
+	height: 2.9rem;
+	margin: 2.9rem 0;
+}
+
+.not-enrolled .llms-loop-item-content .llms-progress .llms-progress-bar {
+	display: none;
+}
+
+.is-enrolled .llms-loop-item-content .llms-progress .llms-progress-bar,
+.llms-progress .llms-progress-bar {
+	align-self: center;
+	background-color: var(--memberlite-color-borders);
+	border-radius: 6px;
+	height: 2.9rem;
+	position: relative;
+	top: 0;
+	overflow: hidden;
+	width: 100%;
+}
+
+.llms-progress .progress-bar-complete {
+	background-color: var(--memberlite-color-action);
+	height: 100%;
+}
+
+.progress__indicator {
+	align-self: center;
+	color: var(--memberlite-color-primary);
+	height: 2.9rem;
+	line-height: 2.9rem;
+	white-space: nowrap;
+}
+
+/* icons */
+.llms-widget-syllabus .lesson-complete-placeholder.done,
+.llms-widget-syllabus .llms-lesson-complete.done,
+.llms-lesson-preview.is-complete .llms-lesson-complete,
+.llms-lesson-preview.is-free .llms-lesson-complete {
+	color: var(--memberlite-color-action);
+}
+.llms-lesson-preview .llms-icon-free {
+	background: var(--memberlite-color-action);
+}
+
+/* syllabus */
+.llms-syllabus-wrapper,
+.llms-widget-syllabus {
+	background: var(--memberlite-color-site-navigation-background);
+	border: 1px solid var(--memberlite-color-borders);
+	border-radius: 6px;
+	margin: 5.8rem 0;
+	padding: 2.9rem;
+	text-align: left;
+}
+
+.llms-syllabus-wrapper .llms-section-title {
+	margin: 0 0 2.35rem 0;
+}
+
+.llms-syllabus-wrapper .llms-section-title:not(.llms-syllabus-wrapper .llms-section-title:first-child) {
+	border-top: 1px solid var(--memberlite-color-borders);
+	padding-top: 5.8rem;
+}
+.llms-lesson-preview {
+	background: transparent;
+	border-top: 1px solid var(--memberlite-color-borders);
+	display: block;
+	margin-top: 0;
+	width: auto;
+}
+
+.llms-lesson-preview .llms-lesson-link {
+	background: transparent;
+	color: var(--memberlite-color-link);
+	padding: 2.35rem .9rem;
+}
+
+.llms-lesson-preview .llms-lesson-link:hover {
+	background-color: rgba( 0, 0, 0, 0.03 );
+}
+
+.llms-lesson-preview .llms-lesson-title {
+	margin: 0;
+}
+
+.llms-lesson-preview .llms-lesson-link .llms-extra {
+	align-items: center;
+	display: flex;
+	flex-direction: row-reverse;
+	gap: 1.45rem;
+}
+
+.llms-lesson-preview .llms-lesson-counter,
+.llms-lesson-preview .llms-free-lesson-svg,
+.llms-lesson-preview .llms-lesson-complete,
+.llms-lesson-preview .llms-lesson-complete-placeholder {
+	margin-bottom: 0;
+}
+
+.llms-lesson-preview .llms-lesson-complete {
+	font-size: 20px;
+}
+
+.llms-widget-syllabus ul {
+	margin-bottom: 0;
+	padding-left: 0;
+}
+
+#secondary .llms-syllabus-wrapper,
+#secondary .llms-widget-syllabus {
+	margin-top: 0;
+}
+
+#secondary .llms-lesson-preview a.llms-lesson-link {
+	border-bottom: none;
+}
+
+#secondary .llms-lesson-preview .llms-extra {
+	flex-direction: column;
+	gap: .9rem;
+}
+
+/* course navigation */
+.llms-course-navigation .llms-lesson-preview .llms-lesson-link {
+	background: var(--memberlite-color-site-navigation-background);
+	border: 1px solid var(--memberlite-color-borders);
+	border-radius: 6px;
+	margin: 5.8rem 0;
+	padding: 2.9rem;
+}
+
+.llms-course-navigation .llms-next-lesson .llms-lesson-preview .llms-pre-text,
+.llms-course-navigation .llms-next-lesson .llms-lesson-preview .llms-lesson-title {
+	text-align: right;
+}
+
+.llms-course-navigation h5 {
+	text-decoration: underline;
+}
+
+.llms-course-navigation h6 {
+	font-weight: 400;
+	margin: 0;
+}
+
+.llms-course-navigation .llms-lesson-preview .llms-lesson-link:hover,
+.llms-course-navigation .llms-lesson-preview .llms-lesson-link:focus,
+.llms-course-navigation .llms-lesson-preview .llms-lesson-link:active {
+	filter: brightness( 98% );
+}
+
+/* instructors */
+.llms-instructor-info .llms-instructors .llms-author {
+	background: var(--memberlite-color-site-navigation-background);
+	border: 1px solid var(--memberlite-color-borders);
+	border-radius: 6px;
+	margin-top: 0;
+	padding: 2.9rem;
+}
+
+.llms-instructor-info .llms-instructors .llms-author .avatar {
+	background: var(--memberlite-color-borders);
+	border: 1px solid var(--memberlite-color-borders);
+	margin-top: 0;
+}
+
+/* quizzes */
+.llms-question-wrapper ol.llms-question-choices li.llms-choice input:checked+.llms-marker {
+	background: var(--memberlite-color-action);
+}
+
+.single-llms_quiz .llms-quiz-buttons form {
+    align-items: top;
+    display: flex;
+    flex-direction: row;
+	gap: 2.9rem;
+    margin-top: 2.9rem;
+}
+
+.single-llms_quiz .llms-quiz-results .llms-donut.passing {
+	color: #03543F;
+}
+
+.single-llms_quiz .llms-quiz-results .llms-donut.passing svg path {
+	stroke: #03543F;
+}
+
+.single-llms_quiz .llms-quiz-results .llms-donut.failing {
+	color: #9B1C1C;
+}
+
+.single-llms_quiz .llms-quiz-results .llms-donut.failing svg path {
+	stroke: #9B1C1C;
+}
+
+.single-llms_quiz #llms-quiz-wrapper .llms-quiz-attempt-results .llms-quiz-attempt-question .llms-question-title {
+	font-family: var(--memberlite-body-font);
+	font-size: 1.8rem;
+	font-weight: 400;
+	line-height: 1.5;
+}
+
+.single-llms_quiz #llms-quiz-wrapper .llms-quiz-attempt-results .llms-quiz-attempt-question.status--graded.correct {
+	background: #F3FAF7;
+}
+
+.single-llms_quiz #llms-quiz-wrapper .llms-quiz-attempt-results .llms-quiz-attempt-question.status--graded.correct .llms-status-icon {
+	background-color: #03543F;
+	color: var(--memberlite-color-white);
+}
+
+.single-llms_quiz #llms-quiz-wrapper .llms-quiz-attempt-results .llms-quiz-attempt-question.status--graded.incorrect {
+	background: #FDF2F2;
+}
+
+.single-llms_quiz #llms-quiz-wrapper .llms-quiz-attempt-results .llms-quiz-attempt-question.status--graded.incorrect .llms-status-icon {
+	background-color: #9B1C1C;
+	color: var(--memberlite-color-white);
+}
+
+/* advanced quizzes */
+.llms-quiz-ui .llms-aq-scale .llms-aq-scale-range .llms-aq-scale-radio input[type="radio"]:checked + .llms-aq-scale-button {
+	background: var(--memberlite-color-action);
+}
+.llms-quiz-ui input.llms-aq-blank {
+	color: var(--memberlite-color-primary);
+}
+.llms-quiz-ui input.llms-aq-blank:focus,
+.llms-quiz-ui input.llms-aq-blank:valid {
+	border-bottom-color: var(--memberlite-color-borders);
+}
+.llms-quiz-ui .llms-aq-uploader.dragover {
+	border-color: var(--memberlite-color-borders);
+}
+.llms-quiz-ui ol.llms-question-choices.llms-aq-reorder-list.dragging {
+	box-shadow: 0 0 0 3px var(--memberlite-color-action);
+}
+.llms-quiz-ui ol.llms-question-choices.llms-aq-reorder-list .llms-aq-reorder-item.llms-aq-placeholder {
+	border-color: var(--memberlite-color-borders);
+}
+.llms-quiz-ui ol.llms-question-choices.llms-aq-reorder-list .llms-aq-reorder-item.llms-aq-placeholder:last-child {
+	border-bottom-color: var(--memberlite-color-borders);
+}
+
+/* student dashboard */
+.llms-sd-section:not(.llms-sd-section.llms-my-favorites) {
+	background-color: var(--memberlite-color-site-background);
+	border: 1px solid var(--memberlite-color-borders);
+	border-radius: 6px;
+	font-family: var(--memberlite-header-font);
+	margin: 2.9rem 0;
+	padding: 2.9rem;
+}
+
+.llms-sd-section > *:last-child {
+	margin-bottom: 0;
+}
+
+.llms-sd-section .llms-sd-section-title {
+	margin: 0 0 2.35rem 0;
+}
+
+.llms-student-dashboard .llms-status.llms-active,
+.llms-student-dashboard .llms-status.llms-completed,
+.llms-student-dashboard .llms-status.llms-pass,
+.llms-student-dashboard .llms-status.llms-txn-succeeded {
+	background: #F3FAF7;
+	border: 1px solid #03543F11;
+	color: #03543F;
+}
+
