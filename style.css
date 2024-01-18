@@ -458,7 +458,8 @@ hr.wp-block-separator.is-style-wide {
 }
 ul,
 ol {
-	margin: 0 0 2.9rem 3.2rem;
+	margin: 0 0 2.9rem 0;
+	padding-left: 3.2rem;
 }
 ul {
 	list-style: disc;
@@ -808,6 +809,7 @@ input::-moz-focus-inner { /* Corrects inner padding and border displayed oddly i
 	padding: 0;
 }
 .content-area input[type=text],
+.content-area input[type=tel],
 .content-area input[type=email],
 .content-area input[type=url],
 .content-area input[type=password],
