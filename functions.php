@@ -4,7 +4,7 @@
  *
  * @package Memberlite
  */
-define( 'MEMBERLITE_VERSION', '5.0.0' );
+define( 'MEMBERLITE_VERSION', '5.1.0' );
 
 // get default values for options/etc
 require_once get_template_directory() . '/inc/defaults.php';
@@ -743,7 +743,7 @@ function memberlite_get_custom_properties(): string {
 /**
  * Enqueue block editor styles.
  *
- * @since TBD
+ * @since 5.1.0
  *
  * @return void
  */

@@ -3,18 +3,18 @@ Contributors: kimannwall, strangerstudios
 Requires at least: 6.0
 Tested up to: 6.2.2
 Requires PHP: 5.6
-Stable tag: 5.0.0
+Stable tag: 5.1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: one-column, two-columns, left-sidebar, right-sidebar, flexible-header, custom-background, custom-colors, custom-header, custom-menu, custom-logo, editor-style, featured-images, footer-widgets, full-width-template, post-formats, theme-options, threaded-comments, translation-ready, e-commerce
 
 == Description ==
 =Build a Professional WordPress Membership Site=
-Memberlite is the ideal theme for your membership site - packed with integration for top membership site plugins including Paid Memberships Pro. It's fully customizable with your logo, colors, fonts, and more global layout settings. Extend the site appearance further with the Memberlite Elements and Memberlite Shortcodes plugins. Memberlite is responsive, clean and minimal.
+Memberlite is the ideal theme for your membership site - packed with integration for top plugins including Paid Memberships Pro and LifterLMS. It's fully customizable with your logo, colors, fonts, and more global layout settings. Extend the site appearance further with the Memberlite Elements and Memberlite Shortcodes plugins. Memberlite is responsive, clean and minimal.
 
 == Copyright ==
 
-Memberlite WordPress Theme, Copyright (C) 2018 - 2023 Stranger Studios, LLC and other contributors
+Memberlite WordPress Theme, Copyright (C) 2018 - 2024 Stranger Studios, LLC and other contributors
 Memberlite is distributed under the terms of the GNU GPL
 
 This program is free software: you can redistribute it and/or modify
@@ -103,6 +103,13 @@ We highly recommend using these plugins for every site running Memberlite:
 [Install Multiple Post Thumbnails »](https://wordpress.org/plugins/multiple-post-thumbnails/)
 
 == Changelog ==
+
+= 5.1.0 - TBD =
+* FEATURE: Now includes support for frontend styling of courses with LifterLMS.
+* ENHANCEMENT: Added support for LifterLMS sidebars.
+* ENHANCEMENT: Now loading the correct named font families in the Block Editor for body and header font.
+* ENHANCEMENT: Updated to Font Awesome version 6.5.1.
+* BUG FIX/ENHANCEMENT: Styles now updated to be compatible with PMPro Advanced Levels Page v1.0
 
 = 5.0.0 - 2023-07-03 =
 * FEATURE: Added hybrid theme features for tighter compatibility with the WordPress Block Editor.
