@@ -1,7 +1,7 @@
 === Memberlite ===
 Contributors: kimannwall, strangerstudios
 Requires at least: 6.0
-Tested up to: 6.2.2
+Tested up to: 6.4.2
 Requires PHP: 5.6
 Stable tag: 5.1.0
 License: GPLv2 or later
@@ -104,7 +104,7 @@ We highly recommend using these plugins for every site running Memberlite:
 
 == Changelog ==
 
-= 5.1.0 - TBD =
+= 5.1.0 - 2024-01-25 =
 * FEATURE: Now includes support for frontend styling of courses with LifterLMS.
 * ENHANCEMENT: Added support for LifterLMS sidebars.
 * ENHANCEMENT: Now loading the correct named font families in the Block Editor for body and header font.
