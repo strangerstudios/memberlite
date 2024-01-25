@@ -2905,6 +2905,16 @@ a:active {
 	margin-top: .55rem;
 }
 
+.pmpro_levels-div .pmpro_level-highlight,
+.pmpro_levels-2col .pmpro_level-highlight {
+	padding: 0;
+}
+
+.pmpro_levels-div .pmpro_level-highlight .pmpro_level-meta,
+.pmpro_levels-2col .pmpro_level-highlight .pmpro_level-meta {
+	border-bottom: none;
+}
+
 .pmpro_advanced_levels-div.pmpro_levels-3col .pmpro_level-highlight,
 .pmpro_advanced_levels-div.pmpro_levels-4col .pmpro_level-highlight {
 	padding: 0;
