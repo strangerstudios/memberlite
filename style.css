@@ -459,6 +459,9 @@ hr.wp-block-separator.is-style-wide {
 ul,
 ol {
 	margin: 0 0 2.9rem 0;
+}
+.entry-content ul,
+.entry-content ol {
 	padding-left: 3.2rem;
 }
 ul {
@@ -1159,7 +1162,6 @@ a:active {
 .footer-navigation ul {
 	list-style: none;
 	margin: 0 0 1.45rem 0;
-	padding-left: 0;
 }
 .meta-navigation ul li,
 .header-right .widget_nav_menu ul li,
@@ -1199,12 +1201,10 @@ a:active {
 	margin: 0;
 	padding-top: 2.9rem;
 	padding-bottom: 2.9rem;
-	padding-left: 0;
 }
 .footer-navigation.footer-widgets-empty ul {
 	border-top: 1px solid var(--memberlite-color-borders);
 	margin-top: 2.9rem;
-	padding-left: 0;
 }
 .footer-navigation ul ul {
 	display: none;
@@ -1224,7 +1224,6 @@ a:active {
 .header-right .widget_nav_menu ul.sub-menu {
 	box-shadow: 0 16px 24px 2px rgba(29,17,51,.04), 0 6px 32px 4px rgba(9,32,77,.12), 0 8px 12px -5px rgba(29,17,51,.12);
 	float: left;
-	padding-left: 0;
 	position: absolute;
 	top: 3.75rem;
 	left: -9999em;
@@ -1914,7 +1913,6 @@ a:active {
 	display: inline;
 	list-style: none;
 	margin: 0;
-	padding-left: 0;
 	z-index: 10;
 }
 .header-right #meta-member .member-navigation li {
