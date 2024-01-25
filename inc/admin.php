@@ -215,7 +215,7 @@ function memberlite_support() {
 			?>
 			<br class="clear" />
 			<?php
-				$memberlite_plugins_integrated = apply_filters( 'memberlite_plugins_integrated', array( 'bbpress', 'events-manager', 'multiple-post-thumbnails', 'paid-memberships-pro', 'testimonials-widget', 'woocommerce' ) );
+				$memberlite_plugins_integrated = apply_filters( 'memberlite_plugins_integrated', array( 'bbpress', 'events-manager', 'lifterlms', 'multiple-post-thumbnails', 'paid-memberships-pro', 'testimonials-widget' ) );
 				if ( ! empty( $memberlite_plugins_integrated ) ) { ?>
 				<hr />
 				<h2>
@@ -276,6 +276,31 @@ function memberlite_support() {
 								</div>
 							</div>
 						</div> <!-- end plugin-card-events-manager -->
+						<?php } ?>
+
+						<?php if ( in_array( 'lifterlms', $memberlite_plugins_integrated ) ) { ?>
+							<div class="plugin-card plugin-card-lifterlms">
+								<div class="plugin-card-top">
+									<div class="name column-name">
+										<h3><a href="https://wordpress.org/plugins/lifterlms/" target="_blank"><?php esc_html_e( 'LifterLMS', 'memberlite' ); ?></a></h3>
+										<img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/lifterlms-icon-256x256.png" class="plugin-icon" alt="<?php echo esc_attr( 'LifterLMS', 'memberlite' ); ?>">
+									</div>
+									<div class="action-links">
+										<ul class="plugin-action-buttons">
+											<li>
+												<?php
+													echo wp_kses( memberlite_plugin_action_button( 'lifterlms/', 'lifterlms/lifterlms.php' ), $memberlite_plugin_action_button_allowed_html );
+												?>
+											</li>
+											<li><a href="https://wordpress.org/plugins/lifterlms/" target="_blank"><?php esc_html_e( 'More Details', 'memberlite' ); ?></a></li>
+										</ul>
+									</div>
+									<div class="desc column-description">
+										<p><?php esc_html_e( 'LifterLMS is a secure easy-to-use WordPress LMS plugin packed with features to easily create & sell courses online.', 'memberlite' ); ?></p>
+										<p class="authors"><cite><?php esc_html_e( 'By', 'memberlite' ); ?> <?php esc_html_e( 'LifterLMS', 'memberlite' ); ?></cite></p>
+									</div>
+								</div>
+							</div> <!-- end plugin-card-lifterlms -->
 						<?php } ?>
 
 						<?php if ( in_array( 'multiple-post-thumbnails', $memberlite_plugins_integrated ) ) { ?>
@@ -354,31 +379,6 @@ function memberlite_support() {
 						</div> <!-- end plugin-card-testimonials-widget -->
 						<?php } ?>
 
-						<?php if ( in_array( 'woocommerce', $memberlite_plugins_integrated ) ) { ?>
-						<div class="plugin-card plugin-card-woocommerce">
-							<div class="plugin-card-top">
-								<div class="name column-name">
-									<h3><a href="https://wordpress.org/plugins/woocommerce/" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'WooCommerce', 'memberlite' ); ?></a></h3>
-									<img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/woocommerce-icon-256x256.png" class="plugin-icon" alt="<?php echo esc_attr( 'WooCommerce', 'memberlite' ); ?>">
-								</div>
-								<div class="action-links">
-									<ul class="plugin-action-buttons">
-										<li>
-											<?php
-												echo wp_kses( memberlite_plugin_action_button( 'woocommerce', 'woocommerce/woocommerce.php' ), $memberlite_plugin_action_button_allowed_html );
-											?>
-										</li>
-										<li><a href="https://wordpress.org/plugins/woocommerce/" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'More Details', 'memberlite' ); ?></a></li>
-									</ul>
-								</div>
-								<div class="desc column-description">
-									<p><?php esc_html_e( 'WooCommerce is a powerful, extendable eCommerce plugin that helps you sell anything. Beautifully.', 'memberlite' ); ?></p>
-									<p><a href="<?php echo esc_url( admin_url( 'plugin-install.php?tab=search&type=term&s=Paid+Memberships+Pro+-+WooCommerce+Add+On' ) ); ?>"><?php esc_html_e( 'Install Paid Memberships Pro - WooCommerce Add On', 'memberlite' ); ?></a></p>
-									<p class="authors"><cite><?php esc_html_e( 'By', 'memberlite' ); ?> <a href="https://profiles.wordpress.org/automattic/" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Automattic', 'memberlite' ); ?></a></cite></p>
-								</div>
-							</div>
-						</div> <!-- end plugin-card-woocommerce -->
-						<?php } ?>
 						<?php do_action( 'memberlite_plugins_integrated_additional' ); ?>
 					</div> <!-- end the-list -->
 				</div> <!-- end plugin-install -->

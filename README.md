@@ -5,7 +5,9 @@
 ## Description
 
 **Build a Professional WordPress Membership Site**
-Memberlite is the ideal theme for your membership site - packed with integration for top membership site plugins including Paid Memberships Pro. It's fully customizable with your logo, colors, fonts, and more global layout settings. Extend the site appearance further with the Memberlite Elements and Memberlite Shortcodes plugins. Memberlite is responsive, clean and minimal.
+Memberlite is the ideal theme for your membership site - packed with integration for top membership site plugins including Paid Memberships Pro and eLearning plugins like LifterLMS.
+
+Memberlite is  fully customizable with your logo, colors, fonts, and more global layout settings. Extend the site appearance further with the Memberlite Elements and Memberlite Shortcodes plugins. Memberlite is responsive, clean and minimal.
 
 ## Getting Started
 
@@ -31,6 +33,9 @@ Memberlite includes formatting for use with:
 
 **Paid Memberships Pro**
 [Install Paid Memberships Pro »](http://www.paidmembershipspro.com/documentation/download/)
+
+**LifterLMS**
+[Install LifterLMS »](https://wordpress.org/plugins/lifterlms/)
 
 **WooCommerce**
 [Install WooCommerce »](https://wordpress.org/plugins/woocommerce/) | [Install Paid Memberships Pro - WooCommerce Add On »](https://wordpress.org/plugins/pmpro-woocommerce/)

@@ -49,7 +49,7 @@ BuddyPress CSS and templates
 License: GPLv2
 Source: https://buddypress.org/about/gpl/
 
-WooCommerce icon, CSS and templates
+WooCommerce CSS and templates
 License: GPLv3
 Source: https://github.com/woocommerce/woocommerce/blob/master/license.txt
 
@@ -85,11 +85,11 @@ Memberlite includes formatting for use with:
 = Paid Memberships Pro =
 [Install Paid Memberships Pro »](http://www.paidmembershipspro.com/documentation/download/)
 
-= WooCommerce =
-[Install WooCommerce »](https://wordpress.org/plugins/woocommerce/) | [Install Paid Memberships Pro - WooCommerce Add On »](https://wordpress.org/plugins/pmpro-woocommerce/)
-
 = bbPress =
 [Install bbPress »](https://wordpress.org/plugins/bbpress/) | [Install Paid Memberships Pro - bbPress Add On »](https://wordpress.org/plugins/pmpro-bbpress/)
+
+= LifterLMS =
+[Install LifterLMS »](https://wordpress.org/plugins/lifterlms/)
 
 = Events Manager =
 [Install Events Manager »](https://wordpress.org/plugins/events-manager/)

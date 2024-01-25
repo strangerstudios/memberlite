@@ -41,7 +41,14 @@
 	transition-property: transform, filter linear;
 }
 
- /* primary buttons */
+.llms-button-action.small,
+.llms-button-danger.small,
+.llms-button-primary.small,
+.llms-button-secondary.small {
+	line-height: 1.5;
+}
+
+/* primary buttons */
 .llms-button-primary,
 .llms-button-primary:hover {
 	background: var(--memberlite-color-primary);
@@ -73,6 +80,28 @@
 
 .llms-form-field.type-submit {
 	margin-bottom: 0;
+}
+
+/* forms and tables */
+.llms-table-sort select {
+	font-size: 1.4rem;
+	padding: .45rem .9rem;
+}
+
+.llms-table .llms-donut.mini {
+	margin: 0 auto;
+}
+
+.llms-table th,
+.llms-table td {
+	padding: 1.45rem;
+}
+
+.llms-table .llms-progress,
+.llms-sd-grades .llms-table .llms-progress {
+	display: flex;
+	flex-direction: column-reverse;
+	gap: 0;
 }
 
 /* blocks */
@@ -269,12 +298,34 @@
 	border-top-color: var(--memberlite-color-primary);
 }
 
+.llms-notification h2 {
+	margin: 0;
+}
+
+.llms-notification img {
+	max-width: 100px;
+}
+
+/* achievements */
+.llms-achievement {
+	background: var(--memberlite-color-site-navigation-background);
+	border: 1px solid var(--memberlite-color-borders);
+	border-radius: 6px;
+	padding: 2.9rem;
+}
+
+
+.llms-achievement .llms-achievement-img {
+	margin: 0 auto;
+	max-width: 100px;
+}
+
 /* progress bar */
 .llms-progress {
 	display: flex;
 	flex-direction: row-reverse;
 	gap: 1.45rem;
-	height: 2.9rem;
+	height: auto;
 	margin: 2.9rem 0;
 }
 
@@ -329,6 +380,24 @@
 	text-align: left;
 }
 
+.widget_course_syllabus .widget-title,
+#secondary .widget_course_syllabus .widget-title {
+	background: var(--memberlite-color-site-navigation-background);
+	border-color: var(--memberlite-color-borders);
+	border-style: solid;
+	border-width: 1px 1px 0;
+	border-top-right-radius: 6px;
+	border-top-left-radius: 6px;
+	padding: 2.9rem;
+}
+
+.widget_course_syllabus .widget-title + .llms-widget-syllabus {
+	border-top: none;
+	border-top-right-radius: 0;
+	border-top-left-radius: 0;
+	padding-top: 0;
+}
+
 .llms-syllabus-wrapper .llms-section-title {
 	margin: 0 0 2.35rem 0;
 }
@@ -355,8 +424,13 @@
 	background-color: rgba( 0, 0, 0, 0.03 );
 }
 
-.llms-lesson-preview .llms-lesson-title {
-	margin: 0;
+.llms-lesson-preview .llms-lesson-link-locked {
+	box-shadow: none;
+	-webkit-box-shadow: none;
+}
+
+.llms-lesson-preview .llms-lesson-link-locked .llms-main {
+	opacity: .5;
 }
 
 .llms-lesson-preview .llms-lesson-link .llms-extra {
@@ -380,6 +454,14 @@
 .llms-widget-syllabus ul {
 	margin-bottom: 0;
 	padding-left: 0;
+}
+
+.llms-widget-syllabus ul .llms-section {
+	margin-bottom: 2.9rem;
+}
+
+.llms-widget-syllabus .llms-course-outline > *:last-child {
+	margin-bottom: 0;
 }
 
 #secondary .llms-syllabus-wrapper,
@@ -519,12 +601,48 @@
 }
 
 /* student dashboard */
-.llms-sd-section:not(.llms-sd-section.llms-my-favorites) {
+.llms-student-dashboard {
+	display: grid;
+	gap: 2.9rem;
+	grid-template-columns: 1fr 3fr;
+}
+
+.llms-student-dashboard .llms-sd-header {
+	display: flex;
+	flex-direction: column-reverse;
+	justify-content: flex-end;
+}
+
+.llms-student-dashboard .llms-sd-title {
+	margin: 0;
+	min-height: 5.8rem;
+}
+
+.llms-student-dashboard .llms-sd-header .llms-sd-nav {
+	background: var(--memberlite-color-site-navigation-background);
+	border: 1px solid var(--memberlite-color-borders);
+	border-radius: 6px;
+	margin: 0;
+	padding: .45rem 2.9rem 2.9rem;
+}
+
+.llms-student-dashboard .llms-sd-header .llms-sd-nav ul {
+	display: flex;
+	flex-direction: column;
+	gap: 2.35rem;
+}
+
+.llms-student-dashboard .llms-sd-header .llms-sd-nav .llms-sep {
+	display: none;
+}
+
+.llms-sd-section:not(.llms-sd-section.llms-my-favorites),
+.llms-student-dashboard.redeem-voucher form {
 	background-color: var(--memberlite-color-site-background);
 	border: 1px solid var(--memberlite-color-borders);
 	border-radius: 6px;
 	font-family: var(--memberlite-header-font);
-	margin: 2.9rem 0;
+	margin: 5.8rem 0 0 0;
 	padding: 2.9rem;
 }
 
@@ -544,4 +662,3 @@
 	border: 1px solid #03543F11;
 	color: #03543F;
 }
-
