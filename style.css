@@ -573,6 +573,7 @@ button,
 input[type=button],
 input[type=reset],
 input[type=submit],
+.btn,
 a.comment-reply-link,
 a.comment-reply-link,
 #main div.em-search-main button.em-search-submit,
@@ -624,6 +625,9 @@ button:active,
 input[type=button]:active,
 input[type=reset]:active,
 input[type=submit]:active,
+.btn:hover,
+.btn:active,
+.btn:focus,
 a.comment-reply-link:hover,
 #main div.em-search-main button.em-search-submit:hover {
 	filter: brightness(var(--memberlite-hover-brightness));
@@ -732,13 +736,13 @@ input::-moz-focus-inner { /* Corrects inner padding and border displayed oddly i
 	border: 0;
 	padding: 0;
 }
-.content-area input[type=text],
-.content-area input[type=tel],
-.content-area input[type=email],
-.content-area input[type=url],
-.content-area input[type=password],
-.content-area input[type=search],
-.content-area textarea {
+input[type=text],
+input[type=tel],
+input[type=email],
+input[type=url],
+input[type=password],
+input[type=search],
+textarea {
 	background-color: var(--memberlite-color-white);
 	border: 1px solid var(--memberlite-color-borders);
 	border-radius: 3px;
@@ -754,21 +758,17 @@ input::-moz-focus-inner { /* Corrects inner padding and border displayed oddly i
 	padding: 1.45rem;
 	word-break: normal;
 }
-.content-area select {
+select {
 	appearance: none;
 	color: var(--memberlite-color-text);
-	border: 1px solid var(--memberlite-color-borders)
+	border: 1px solid var(--memberlite-color-borders);
 	border-radius: 3px;
 	padding: 1.45rem;
 }
-.content-area select:focus {
+select:focus {
 	outline: none;
 }
-#secondary input[type=text],
-#secondary input[type=email],
-#secondary input[type=url],
-#secondary input[type=password],
-#secondary input[type=search],
+#secondary input,
 #secondary textarea,
 .footer-widgets input[type=text],
 .footer-widgets input[type=email],
@@ -860,9 +860,9 @@ p.success {
 a {
 	color: var(--memberlite-color-link);
 }
-a:hover,
-a:focus,
-a:active {
+a:hover:not(.pmpro_btn:hover),
+a:focus:not(.pmpro_btn:focus),
+a:active:not(.pmpro_btn:active) {
 	filter: brightness(var(--memberlite-hover-brightness));
 }
 .primary,
