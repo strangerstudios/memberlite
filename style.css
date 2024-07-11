@@ -580,7 +580,7 @@ a.comment-reply-link,
 .wp-block-search .wp-block-search__button {
 	background-color: var(--memberlite-color-button);
 	border: none;
-	border-radius: 6px;
+	border-radius: 8px;
 	box-shadow: 1px 2px 4px rgba(0,0,0,0.2);
 	color: var(--memberlite-color-white);
 	cursor: pointer;
@@ -745,7 +745,7 @@ input[type=search],
 textarea {
 	background-color: var(--memberlite-color-white);
 	border: 1px solid var(--memberlite-color-borders);
-	border-radius: 3px;
+	border-radius: 8px;
 	box-shadow: none;
 	box-sizing: border-box;
 	color: var(--memberlite-color-text);
@@ -762,7 +762,7 @@ select {
 	appearance: none;
 	color: var(--memberlite-color-text);
 	border: 1px solid var(--memberlite-color-borders);
-	border-radius: 3px;
+	border-radius: 8px;
 	padding: 1.45rem;
 }
 select:focus {
@@ -780,7 +780,7 @@ select:focus {
 #mobile-navigation input[type=password] {
 	color: var (--memberlite-color-text);
 	border: 1px solid var(--memberlite-color-borders);
-	border-radius: 3px;
+	border-radius: 8px;
 	padding: .9rem;
 }
 input[type=text]:focus,
@@ -804,7 +804,7 @@ textarea {
 }
 .search-form input[type=search] {
 	border: 1px solid var(--memberlite-color-borders);
-	border-radius: 3px;
+	border-radius: 8px;
 	color: var(--memberlite-color-text);
 	font-size: 1.6rem;
 	padding: .7rem;
