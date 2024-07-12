@@ -1282,6 +1282,22 @@ a:active:not(.pmpro_btn:active) {
 	position: absolute;
 	text-indent: -9999em;
 }
+#mobile-navigation .pmpro_card {
+	background-color: transparent;
+	box-shadow: none;
+	color: var(--memberlite-color-white);
+}
+#mobile-navigation .pmpro_card_title,
+#mobile-navigation .pmpro_card_content {
+	padding: 0;
+}
+#mobile-navigation .pmpro_card_actions {
+	background-color: transparent;
+	border: none;
+}
+#mobile-navigation #loginform .login-submit .button {
+	background-color: var(--memberlite-color-action);
+}
 
 /*--------------------------------------------------------------
 5.3 Breadcrumbs
