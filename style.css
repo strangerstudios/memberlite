@@ -1295,6 +1295,8 @@ a:active:not(.pmpro_btn:active) {
 #mobile-navigation .pmpro_card_actions {
 	background-color: transparent;
 	border: none;
+	padding-right: 0;
+	padding-left: 0;
 }
 #mobile-navigation .pmpro_form_field-password-toggle button {
 	color: var(--memberlite-color-white);
