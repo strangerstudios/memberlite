@@ -2734,6 +2734,17 @@ a:active:not(.pmpro_btn:active) {
 		box-shadow: none;
 		font-weight: 400;
 	}
+
+	.pmpro_card,
+	.pmpro_card_actions,
+	.pmpro_card_content + .pmpro_card_actions {
+		border-color: var(--memberlite-color-borders);
+	}
+
+	.pmpro_card_actions {
+		background-color: #F9FAFB;
+	}
+
 	/* Membership Levels and Advanced Levels Page Shortcode */
 	.pmpro_level-description {
 		font-family: var(--memberlite-body-font);
@@ -2928,6 +2939,10 @@ a:active:not(.pmpro_btn:active) {
 #secondary .pmpro_login_wrap,
 #secondary .pmpro_logged_in_welcome_wrap {
 	background-color: #F9FAFB;
+}
+#secondary .pmpro_login_wrap .pmpro_card_actions,
+#secondary .pmpro_logged_in_welcome_wrap .pmpro_card_actions {
+	background-color: transparent;
 }
 .widget .pmpro_login_wrap hr,
 .widget .pmpro_logged_in_welcome_wrap hr {
