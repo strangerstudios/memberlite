@@ -601,24 +601,24 @@
 }
 
 /* student dashboard */
-.llms-student-dashboard {
+.logged-in .llms-student-dashboard {
 	display: grid;
 	gap: 2.9rem;
 	grid-template-columns: 1fr 3fr;
 }
 
-.llms-student-dashboard .llms-sd-header {
+.logged-in .llms-student-dashboard .llms-sd-header {
 	display: flex;
 	flex-direction: column-reverse;
 	justify-content: flex-end;
 }
 
-.llms-student-dashboard .llms-sd-title {
+.logged-in .llms-student-dashboard .llms-sd-title {
 	margin: 0;
 	min-height: 5.8rem;
 }
 
-.llms-student-dashboard .llms-sd-header .llms-sd-nav {
+.logged-in .llms-student-dashboard .llms-sd-header .llms-sd-nav {
 	background: var(--memberlite-color-site-navigation-background);
 	border: 1px solid var(--memberlite-color-borders);
 	border-radius: 6px;
@@ -626,18 +626,18 @@
 	padding: .45rem 2.9rem 2.9rem;
 }
 
-.llms-student-dashboard .llms-sd-header .llms-sd-nav ul {
+.logged-in .llms-student-dashboard .llms-sd-header .llms-sd-nav ul {
 	display: flex;
 	flex-direction: column;
 	gap: 2.35rem;
 }
 
-.llms-student-dashboard .llms-sd-header .llms-sd-nav .llms-sep {
+.logged-in .llms-student-dashboard .llms-sd-header .llms-sd-nav .llms-sep {
 	display: none;
 }
 
-.llms-sd-section:not(.llms-sd-section.llms-my-favorites),
-.llms-student-dashboard.redeem-voucher form {
+.logged-in .llms-sd-section:not(.llms-sd-section.llms-my-favorites),
+.logged-in .llms-student-dashboard.redeem-voucher form {
 	background-color: var(--memberlite-color-site-background);
 	border: 1px solid var(--memberlite-color-borders);
 	border-radius: 6px;
@@ -646,11 +646,11 @@
 	padding: 2.9rem;
 }
 
-.llms-sd-section > *:last-child {
+.logged-in .llms-sd-section > *:last-child {
 	margin-bottom: 0;
 }
 
-.llms-sd-section .llms-sd-section-title {
+.logged-in .llms-sd-section .llms-sd-section-title {
 	margin: 0 0 2.35rem 0;
 }
 
@@ -661,4 +661,9 @@
 	background: #F3FAF7;
 	border: 1px solid #03543F11;
 	color: #03543F;
+}
+
+.llms-student-dashboard .llms-login,
+.llms-student-dashboard .llms-lost-password-form {
+	max-width: 805px;
 }
