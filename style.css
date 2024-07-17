@@ -613,15 +613,15 @@ a.btn.skip-link {
 a.btn.skip-link {
 	font-size: 1.4rem;
 }
-button:hover,
+button:hover:not(button.pmpro_btn:hover),
 input[type=button]:hover,
 input[type=reset]:hover,
 input[type=submit]:hover,
-button:focus,
+button:focus:not(button.pmpro_btn:focus),
 input[type=button]:focus,
 input[type=reset]:focus,
 input[type=submit]:focus,
-button:active,
+button:active:not(button.pmpro_btn:active),
 input[type=button]:active,
 input[type=reset]:active,
 input[type=submit]:active,
