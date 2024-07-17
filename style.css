@@ -4,9 +4,9 @@ Theme URI: https://memberlitetheme.com/
 Author: Stranger Studios
 Author URI: https://www.strangerstudios.com
 Description: Memberlite is the ideal theme for your membership site - packed with integration for top plugins including Paid Memberships Pro and LifterLMS. It's fully customizable with your logo, colors, fonts, custom sidebars and more global layout settings. Extend the site appearance further with icons, masthead banners, post formats, and additional settings for your site's pages. Memberlite is responsive, clean and minimal.
-Version: 5.1.0
+Version: 5.2
 Requires at least: 6.0
-Tested up to: 6.4.2
+Tested up to: 6.6
 Requires PHP: 5.6
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -246,7 +246,7 @@ i {
 }
 blockquote:not(.wp-block-pullquote blockquote):not(.wp-block-quote):not(.testimonials-widget-testimonial blockquote) {
 	margin: 2.9rem 0;
-	background-color: #F9FAFB;
+	background-color: var(--memberlite-color-site-navigation-background);
 	padding: 2.9rem 2.9rem 1px 2.9rem;
 	border-left: 5px solid var(--memberlite-color-borders);
 }
@@ -508,7 +508,7 @@ th,
 }
 thead th,
 .wp-block-table thead th {
-	background-color: #F9FAFB;
+	background-color: var(--memberlite-color-site-navigation-background);
 	border-color: var(--memberlite-color-borders);
 	border-style: solid;
 	border-width: 1px 0;
@@ -574,23 +574,16 @@ input[type=button],
 input[type=reset],
 input[type=submit],
 .btn,
-a.pmpro_btn,
-.pmpro_content_message a,
-.pmpro_content_message a:link,
 a.comment-reply-link,
 a.comment-reply-link,
-input[type=submit].pmpro_btn,
-input[type=button].pmpro_btn,
-#loginform input[type=submit].button.button-primary,
 #main div.em-search-main button.em-search-submit,
 .wp-block-search .wp-block-search__button {
 	background-color: var(--memberlite-color-button);
 	border: none;
-	border-radius: 6px;
+	border-radius: 8px;
 	box-shadow: 1px 2px 4px rgba(0,0,0,0.2);
 	color: var(--memberlite-color-white);
 	cursor: pointer;
-	-webkit-appearance: none;
 	font-family: var(--memberlite-header-font);
 	font-size: 1.8rem;
 	font-style: normal;
@@ -601,16 +594,8 @@ input[type=button].pmpro_btn,
 	text-align: center;
 	text-decoration: none;
 	text-shadow: none;
-	-webkit-transform: translateZ(0);
-	transform: translateZ(0);
-	-webkit-backface-visibility: hidden;
 	backface-visibility: hidden;
-	-moz-osx-font-smoothing: grayscale;
 	overflow: hidden;
-	-webkit-transition-duration: 0.3s;
-	transition-duration: 0.3s;
-	-webkit-transition-property: transform, filter linear;
-	transition-property: transform, filter linear;
 }
 button.inline-form-button,
 input[type=button].inline-form-button,
@@ -621,8 +606,6 @@ input[type=submit].inline-form-button {
 #main div.em-search-main button.em-search-submit {
 	padding-bottom: .5rem;
 }
-.pmpro_content_message a,
-.pmpro_content_message a:link,
 a.comment-reply-link,
 a.btn.skip-link {
 	padding: .7rem 1.45rem;
@@ -630,62 +613,33 @@ a.btn.skip-link {
 a.btn.skip-link {
 	font-size: 1.4rem;
 }
-a.pmpro_btn,
-a.pmpro_btn:link,
-.pmpro_content_message a,
-input[type=submit].pmpro_btn,
-input[type=button].pmpro_btn,
-#loginform input[type=submit].button.button-primary {
-	background-color: var(--memberlite-color-action);
-	border: none;
-	border-radius: 6px;
-	box-shadow: 1px 2px 4px rgba(0,0,0,0.2);
-	color: var(--memberlite-color-white);
-	font-size: 1.8rem;
-	padding: 1.45rem 2.9rem;
-	text-shadow: none;
-}
-button:hover,
+button:hover:not(button.pmpro_btn:hover),
 input[type=button]:hover,
 input[type=reset]:hover,
 input[type=submit]:hover,
-button:focus,
+button:focus:not(button.pmpro_btn:focus),
 input[type=button]:focus,
 input[type=reset]:focus,
 input[type=submit]:focus,
-button:active,
+button:active:not(button.pmpro_btn:active),
 input[type=button]:active,
 input[type=reset]:active,
 input[type=submit]:active,
 .btn:hover,
 .btn:active,
 .btn:focus,
-a.pmpro_btn:active,
 a.comment-reply-link:hover,
 #main div.em-search-main button.em-search-submit:hover {
 	filter: brightness(var(--memberlite-hover-brightness));
 	box-shadow: 1px 2px 4px rgba(0,0,0,0.4);
 	color: var(--memberlite-color-white);
-	transform: translateY(-1px);
 }
-.pmpro_btn:hover,
-.pmpro_btn:focus,
-a.pmpro_btn:hover,
-.content-area .pmpro_btn:hover,
-.entry-content a.pmpro_btn:hover,
-input[type=submit].pmpro_btn:hover,
-#loginform input[type=submit].button.button-primary:hover,
-.pmpro_checkout .pmpro_btn:hover,
-.pmpro_checkout .pmpro_btn:focus,
-.pmpro_content_message a:focus,
-.pmpro_content_message a:hover,
 a.comment-reply-link:focus,
 a.comment-reply-link:hover {
 	border: none;
 	box-shadow: 1px 2px 4px rgba(0,0,0,0.4);
 	color: var(--memberlite-color-white);
 	text-shadow: none;
-	transform: translateY(-1px);
 }
 .btn_info {
 	background-color: #5bc0de;
@@ -754,36 +708,7 @@ a.comment-reply-link:hover {
 .btn_link:hover {
 	background-color: none;
 	box-shadow: none;
-	transform: none;
 	text-decoration: underline;
-}
-
-/* Cancel-style button */
-.pmpro_btn-cancel,
-.pmpro_nolink,
-.pmpro_nolink:link,
-.pmpro_cancel,
-.pmpro_cancel:link,
-a.pmpro_cancel:link,
-.content-area .pmpro_btn.pmpro_cancel,
-.content-area .pmpro_btn.pmpro_btn-cancel,
-.content-area .pmpro_btn.pmpro_btn-cancel:link,
-.content-area .pmpro_btn.pmpro_btn-cancel:visited {
-	background: none;
-	border: none;
-	box-shadow: none;
-	color: #666;
-	text-decoration: underline;
-}
-.pmpro_btn.pmpro_btn-cancel:hover,
-.pmpro_btn.pmpro_nolink:hover,
-.pmpro_btn.pmpro_cancel:hover,
-a.pmpro_btn.pmpro_cancel:hover,
-.content-area .pmpro_btn.pmpro_cancel:hover,
-.content-area .pmpro_btn.pmpro_btn-cancel:hover {
-	background: none;
-	box-shadow: none;
-	transform: none;
 }
 
 .wp-block-search .wp-block-search__button {
@@ -811,36 +736,39 @@ input::-moz-focus-inner { /* Corrects inner padding and border displayed oddly i
 	border: 0;
 	padding: 0;
 }
-.content-area input[type=text],
-.content-area input[type=tel],
-.content-area input[type=email],
-.content-area input[type=url],
-.content-area input[type=password],
-.content-area input[type=search],
-.content-area textarea {
-	color: #444;
-	border: 1px solid #CCC;
-	border-radius: 3px;
+input[type=text],
+input[type=tel],
+input[type=email],
+input[type=url],
+input[type=password],
+input[type=search],
+textarea {
+	background-color: var(--memberlite-color-white);
+	border: 1px solid var(--memberlite-color-borders);
+	border-radius: 8px;
+	box-shadow: none;
+	box-sizing: border-box;
+	color: var(--memberlite-color-text);
+	font-size: 16px;
+	height: auto;
+	line-height: 1.5;
+	margin: 0;
+	min-height: auto;
+	outline: none;
 	padding: 1.45rem;
 	word-break: normal;
 }
-.content-area select {
-	-webkit-appearance: none;
-	-moz-appearance: none;
+select {
 	appearance: none;
-	color: #444;
-	border: 1px solid #CCC;
-	border-radius: 3px;
+	color: var(--memberlite-color-text);
+	border: 1px solid var(--memberlite-color-borders);
+	border-radius: 8px;
 	padding: 1.45rem;
 }
-.content-area select:focus {
+select:focus {
 	outline: none;
 }
-#secondary input[type=text],
-#secondary input[type=email],
-#secondary input[type=url],
-#secondary input[type=password],
-#secondary input[type=search],
+#secondary input,
 #secondary textarea,
 .footer-widgets input[type=text],
 .footer-widgets input[type=email],
@@ -850,9 +778,9 @@ input::-moz-focus-inner { /* Corrects inner padding and border displayed oddly i
 .footer-widgets textarea,
 #mobile-navigation input[type=text],
 #mobile-navigation input[type=password] {
-	color: #444;
-	border: 1px solid #CCC;
-	border-radius: 3px;
+	color: var (--memberlite-color-text);
+	border: 1px solid var(--memberlite-color-borders);
+	border-radius: 8px;
 	padding: .9rem;
 }
 input[type=text]:focus,
@@ -862,7 +790,7 @@ input[type=password]:focus,
 input[type=search]:focus,
 .content-area select:focus,
 textarea:focus {
-	color: #111;
+	background-color: var(--memberlite-color-white);
 	border-color: #80BDFF;
 	box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
 	outline: none;
@@ -876,101 +804,52 @@ textarea {
 }
 .search-form input[type=search] {
 	border: 1px solid var(--memberlite-color-borders);
-	border-radius: 3px;
-	color: #666;
+	border-radius: 8px;
+	color: var(--memberlite-color-text);
 	font-size: 1.6rem;
 	padding: .7rem;
 }
+
 /*--------------------------------------------------------------
 4.3 Messages - Success, Error, Alert
 --------------------------------------------------------------*/
-.pmpro_message,
-.pmpro_content_message,
 .pmpro_bbp_membership_msg,
 #sitewide-notice p,
 p.success {
 	background-color: #EBF5FF;
-	border-radius: 8px;
 	border: 1px solid #1E429F11;
+	border-radius: 8px;
+	box-shadow: 2px 2px 7px rgba( 0, 0, 0, 0.07 );
 	color: #1E429F;
 	font-size: 1.8rem;
 	font-weight: 400;
 	line-height: 2.9rem;
 	margin: 2.9rem 0;
 	padding: 1.45rem;
+	text-align: left;
 }
-#pmpro_form .pmpro_message {
-	margin-top: 0;
-}
-#pmpro_form .pmpro_checkout-field .pmpro_message {margin-top: .7rem; }
-.pmpro_message.pmpro_default,
-.pmpro_content_message,
 #sitewide-notice p {
-	background-color: #F9FAFB;
+	background-color: var(--memberlite-color-site-navigation-background);
 	border-color: #1F293711;
 	color: #1F2937;
 }
-.pmpro_success,
 p.success {
 	background-color: #F3FAF7;
 	border-color: #03543F11;
 	color: #03543F;
 }
-.pmpro_error {
-	background-color: #FDF2F2;
-	border-color: #9B1C1C11;
-	color: #9B1C1C;
-}
-.pmpro_alert,
 .pmpro_bbp_membership_msg {
 	background-color: #FDFDEA;
 	border-color: #723B1311;
 	color: #723B13;
 }
-.pmpro_message h2,
-.pmpro_message h3,
-.pmpro_message h4,
-.pmpro_message h5,
-.pmpro_content_message h2,
-.pmpro_content_message h3,
-.pmpro_content_message h4,
-.pmpro_content_message h5 {
-	margin-top: 1rem;
-}
-.pmpro_message a {
-	color: #1E429F;
-	text-decoration: underline;
-}
-.pmpro_success a {
-	color: #03543F;
-}
-.pmpro_error a {
-	color: #9B1C1C;
-}
-.pmpro_alert a,
 .pmpro_bbp_membership_msg a {
 	color: #723B13;
 }
-
-input.pmpro_error {
-	background-image: none;
-}
-select.pmpro_error {
-	background-image: none;
-}
-
-.pmpro_content_message p:last-child {
-	margin-bottom: 0;
-}
-
 .pmpro_bbp_membership_msg {
 	clear: both;
 }
 
-#pmpro_account_loggedin {
-	margin: 2rem 0;
-	width: 100%;
-}
 /*--------------------------------------------------------------
 5.0 Navigation
 --------------------------------------------------------------*/
@@ -981,9 +860,9 @@ select.pmpro_error {
 a {
 	color: var(--memberlite-color-link);
 }
-a:hover,
-a:focus,
-a:active {
+a:hover:not(.pmpro_btn:hover),
+a:focus:not(.pmpro_btn:focus),
+a:active:not(.pmpro_btn:active) {
 	filter: brightness(var(--memberlite-hover-brightness));
 }
 .primary,
@@ -1403,6 +1282,31 @@ a:active {
 	position: absolute;
 	text-indent: -9999em;
 }
+#mobile-navigation .pmpro_card {
+	background-color: transparent;
+	box-shadow: none;
+	color: var(--memberlite-color-white);
+}
+#mobile-navigation .pmpro_card_title,
+#mobile-navigation .pmpro_card_content {
+	color: var(--memberlite-color-white);
+	padding: 0;
+}
+#mobile-navigation .pmpro_card_actions {
+	background-color: transparent;
+	border: none;
+	padding-right: 0;
+	padding-left: 0;
+}
+#mobile-navigation .pmpro_form_field-password-toggle button {
+	color: var(--memberlite-color-white);
+}
+#mobile-navigation .pmpro_form_field-password-toggle button svg {
+	stroke: var(--memberlite-color-white);
+}
+#mobile-navigation #loginform .login-submit .button {
+	background-color: var(--memberlite-color-action);
+}
 
 /*--------------------------------------------------------------
 5.3 Breadcrumbs
@@ -1489,8 +1393,6 @@ a:active {
 .screen-reader-text:active,
 .screen-reader-text:focus {
 	background-color: #f1f1f1;
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
 	border-radius: 3px;
 	box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
 	clip: auto !important;
@@ -1691,7 +1593,7 @@ a:active {
 }
 #secondary .widget-title,
 #secondary .widget h3.wp-block-heading {
-	background-color: #F9FAFB;
+	background-color: var(--memberlite-color-site-navigation-background);
 	border-top: 1px solid var(--memberlite-color-borders);
 	border-bottom: 1px solid var(--memberlite-color-borders);
 	line-height: 2.9rem;
@@ -2297,7 +2199,7 @@ a:active {
 	border-bottom: none;
 }
 .post .entry-footer {
-	background-color: #F9FAFB;
+	background-color: var(--memberlite-color-site-navigation-background);
 	border-top: 1px solid var(--memberlite-color-borders);
 	border-bottom: 1px solid var(--memberlite-color-borders);
 	color: #666;
@@ -2460,14 +2362,14 @@ a:active {
 .comment,
 .pingback.even,
 .trackback.event {
-	background-color: #F9FAFB;
+	background-color: var(--memberlite-color-site-navigation-background);
 }
 .comment.depth-1.thread-alt,
 .comment .comment.alt {
 	background-color: var(--memberlite-color-white);
 }
 .comment.even .child-comments .comment {
-	background-color: #F9FAFB;
+	background-color: var(--memberlite-color-site-navigation-background);
 }
 .comment.odd .child-comments .comment {
 	background-color: var(--memberlite-color-white);
@@ -2624,10 +2526,6 @@ a:active {
 	text-decoration: none;
 	filter: alpha(opacity=90);
 	opacity: 0.9;
-	-webkit-transition: opacity .15s ease-in-out;
-	-moz-transition: opacity .15s ease-in-out;
-	-ms-transition: opacity .15s ease-in-out;
-	-o-transition: opacity .15s ease-in-out;
 	transition: opacity .15s ease-in-out;
 }
 .footer-widgets a:hover {
@@ -2826,200 +2724,178 @@ a:active {
 11.1 Paid Memberships Pro Integrated Styles
 --------------------------------------------------------------*/
 
-/* Membership Levels and Advanced Levels Page Shortcode */
-.pmpro_advanced_levels-div h2 {
-	background-color: #F9FAFB;
-	color: var(--memberlite-color-primary);
-	border-top: 1px solid var(--memberlite-color-borders);
-	border-bottom: 1px dotted var(--memberlite-color-borders);
-	padding: 1.45rem;
-	margin: 0;
+.pmpro {
+
+	.pmpro_btn {
+		font-family: var(--memberlite-header-font);
+	}
+
+	button[type="button"]#other_discount_code_toggle,
+	button[type="button"]#other_discount_code_toggle:hover,
+	button[type="button"]#other_discount_code_toggle:focus {
+		box-shadow: none;
+		font-weight: 400;
+	}
+
+	.pmpro_card,
+	.pmpro_card_actions,
+	.pmpro_card_content + .pmpro_card_actions {
+		border-color: var(--memberlite-color-borders);
+	}
+
+	/* Membership Levels and Advanced Levels Page Shortcode */
+	.pmpro_level-description {
+		font-family: var(--memberlite-body-font);
+	}
+
+	/* General div and 2-column levels styles */
+	.pmpro_advanced_levels-div .pmpro_level-meta .pmpro_level-price {
+		font-weight: 700;
+	}
+
+	/* 3 and 4 Column Levels Layouts */
+	.pmpro_levels-3col .pmpro_level-description,
+	.pmpro_levels-4col .pmpro_level-description {
+		margin-top: 2.9rem;
+	}
+
+	.pmpro_levels-3col .pmpro_level-price,
+	.pmpro_levels-4col .pmpro_level-price {
+		font-size: var(--wp--preset--font-size--24);
+	}
+
+	/* Level Highlight Styles */
+	.pmpro_levels-div .pmpro_level-highlight .pmpro_card,
+	.pmpro_levels-2col .pmpro_level-highlight .pmpro_card,
+	.pmpro_levels-3col .pmpro_level-highlight .pmpro_card,
+	.pmpro_levels-4col .pmpro_level-highlight .pmpro_card {
+		background-color: var(--memberlite-color-site-background);
+		z-index: 100;
+		border-top: .9rem solid var(--memberlite-color-secondary);
+		border-bottom: 1.45rem solid var(--memberlite-color-secondary);
+	}
+
+	.pmpro_levels-2col .pmpro_level-highlight,
+	.pmpro_levels-3col .pmpro_level-highlight,
+	.pmpro_levels-4col .pmpro_level-highlight {
+		margin-top: .55rem;
+	}
+
+	.pmpro_advanced_levels-div.pmpro_levels-3col .pmpro_level-highlight,
+	.pmpro_advanced_levels-div.pmpro_levels-4col .pmpro_level-highlight {
+		padding-top: 0;
+		padding-bottom: 0;
+	}
+
+	.pmpro_advanced_levels-table .pmpro_level-highlight th:first-child {
+		border-left: .9rem solid var(--memberlite-color-secondary);
+		padding-left: 1.9rem;
+	}
+
+	/* Table and Compare Table Level Layout */
+	.pmpro_advanced_levels-table tbody th,
+	.pmpro_advanced_levels-table tbody td {
+		padding-top: 2.35rem;
+		padding-bottom: 2.35rem;
+	}
+
+	.pmpro_advanced_levels-table th:first-child {
+		padding-left: 2.35rem;
+	}
+
+	.pmpro_advanced_levels-compare_table {
+		overflow: hidden;
+	}
+
+	.pmpro_advanced_levels-compare_table .pmpro_level-price {
+		font-size: var(--wp--preset--font-size--24);
+		font-weight: 700;
+	}
+
+	.pmpro_advanced_levels-compare_table th,
+	.pmpro_advanced_levels-compare_table td {
+		border-color: var(--memberlite-color-borders);
+		position: relative;
+	}
+
+	.pmpro_advanced_levels-compare_table thead tr:first-child th:not(.pmpro_advanced_levels-compare_table thead tr:first-child th:first-child) {
+		padding-top: 2.9rem;
+	}
+
+	.pmpro_advanced_levels-compare_table thead tr:last-child th {
+		padding-bottom: 2.35rem;
+	}
+
+	.pmpro_advanced_levels-compare_table thead tr th:first-child,
+	.pmpro_advanced_levels-compare_table tbody tr td:first-child,
+	.pmpro_advanced_levels-compare_table thead tr th:nth-child(even),
+	.pmpro_advanced_levels-compare_table tbody tr td:nth-child(even) {
+		background-color: transparent;
+	}
+
+	.pmpro_advanced_levels-compare_table tbody tr:last-child td {
+		border-bottom: .5rem solid var(--memberlite-color-borders);
+	}
+
+	.pmpro_advanced_levels-compare_table thead tr:last-child th {
+		border-bottom: .5rem solid var(--memberlite-color-borders);
+	}
+
+	.pmpro_advanced_levels-compare_table thead th.pmpro_level-highlight,
+	.pmpro_advanced_levels-compare_table tbody td.pmpro_level-highlight,
+	.pmpro_advanced_levels-compare_table tfoot td.pmpro_level-highlight {
+		border-left: .9rem solid var(--memberlite-color-secondary);
+		border-right: .9rem solid var(--memberlite-color-secondary);
+	}
+
+	#pmpro_levels.pmpro_advanced_levels-compare_table thead tr:first-child th.pmpro_level-highlight {
+		border-top: .9rem solid var(--memberlite-color-secondary);
+		padding-top: 2rem;
+	}
+
+	.pmpro_advanced_levels-compare_table thead tr:last-child th.pmpro_level-highlight,
+	.pmpro_advanced_levels-compare_table tbody tr td.pmpro_level-highlight,
+	.pmpro_advanced_levels-compare_table tfoot tr td.pmpro_level-highlight {
+		border-bottom: none;
+	}
+
+	#pmpro_levels.pmpro_advanced_levels-compare_table tfoot tr:last-child td.pmpro_level-highlight {
+		border-bottom: .9rem solid var(--memberlite-color-secondary);
+	}
+
+	.pmpro_advanced_levels-compare_table tbody tr:hover {
+		background-color: rgba(252,248,227,0.8);
+	}
+
+	.pmpro_advanced_levels-compare_table tbody td:hover::after,
+	.pmpro_advanced_levels-compare_table tbody th:hover::after {
+		background-color: rgba(252,248,227,0.3);
+		content: "";
+		height: 10000px;
+		left: 0;
+		position: absolute;
+		top: -5000px;
+		width: 100%;
+		z-index: -1;
+	}
+
+	.pmpro_advanced_levels-compare_table_responsive .pmpro_level-highlight {
+		border-top: .9rem solid var(--memberlite-color-secondary);
+		border-bottom: 1.45rem solid var(--memberlite-color-secondary);
+		border-left: 1px solid var(--memberlite-color-borders);
+		border-right: 1px solid var(--memberlite-color-borders);
+	}
 }
 
-/* General div and 2-column levels styles */
-.pmpro_advanced_levels-div .pmpro_level-description {
-	padding: 0 1.45rem;
+/* Design variation specific adjustments for PMPro */
+.pmpro-variation_1 {
+
+	.pmpro_card_actions {
+		background-color: var(--memberlite-color-site-navigation-background);
+	}
+
 }
 
-.pmpro_advanced_levels-div .pmpro_level-meta {
-	border-bottom: 1px solid var(--memberlite-color-borders);
-	color: var(--memberlite-color-text);
-	font-style: normal;
-	padding: 0 1.45rem 1.45rem 1.45rem;
-}
-
-.pmpro_advanced_levels-div .pmpro_level-meta:not(.pmpro_advanced_levels-div .pmpro_level-highlight .pmpro_level-meta) {
-	padding-bottom: 2.9rem;
-}
-
-.pmpro_advanced_levels-div .pmpro_level-meta .pmpro_level-price {
-	font-weight: 700;
-}
-
-/* 3 and 4 Column Levels Layouts */
-.pmpro_advanced_levels-div.pmpro_levels-3col .pmpro_level,
-.pmpro_advanced_levels-div.pmpro_levels-4col .pmpro_level {
-	padding: 1.45rem;
-}
-
-.pmpro_levels-3col .pmpro_level-price,
-.pmpro_levels-4col .pmpro_level-price {
-	font-size: var(--wp--preset--font-size--24);
-	padding: 0 1.45rem;
-}
-
-.pmpro_levels-3col .pmpro_level-select,
-.pmpro_levels-4col .pmpro_level-select {
-	margin: 0 1.45rem;
-}
-
-.pmpro_levels-3col .pmpro_level-expiration,
-.pmpro_levels-4col .pmpro_level-expiration {
-	border-top: 1px solid var(--memberlite-color-borders);
-	border-bottom: 1px solid var(--memberlite-color-borders);
-	color: #666;
-	font-style: italic;
-	margin-top: auto;
-	padding: 1.45rem 0;
-	position: relative;
-}
-
-/* Level Highlight Styles */
-.pmpro_levels-div .pmpro_level-highlight,
-.pmpro_levels-2col .pmpro_level-highlight,
-.pmpro_levels-3col .pmpro_level-highlight,
-.pmpro_levels-4col .pmpro_level-highlight {
-	background-color: var(--memberlite-color-site-background);
-	z-index: 100;
-	border-top: .9rem solid var(--memberlite-color-secondary);
-	border-bottom: 1.45rem solid var(--memberlite-color-secondary);
-	border-left: 1px solid var(--memberlite-color-borders);
-	border-right: 1px solid var(--memberlite-color-borders);
-}
-
-.pmpro_levels-2col .pmpro_level-highlight,
-.pmpro_levels-3col .pmpro_level-highlight,
-.pmpro_levels-4col .pmpro_level-highlight {
-	margin-top: .55rem;
-}
-
-.pmpro_levels-div .pmpro_level-highlight,
-.pmpro_levels-2col .pmpro_level-highlight {
-	padding: 0;
-}
-
-.pmpro_levels-div .pmpro_level-highlight .pmpro_level-meta,
-.pmpro_levels-2col .pmpro_level-highlight .pmpro_level-meta {
-	border-bottom: none;
-}
-
-.pmpro_advanced_levels-div.pmpro_levels-3col .pmpro_level-highlight,
-.pmpro_advanced_levels-div.pmpro_levels-4col .pmpro_level-highlight {
-	padding: 0;
-}
-
-.pmpro_levels-3col .pmpro_level-highlight .pmpro_level-select,
-.pmpro_levels-4col .pmpro_level-highlight .pmpro_level-select {
-	margin: 0 2.9rem;
-}
-
-.pmpro_advanced_levels-table .pmpro_level-highlight th:first-child {
-	border-left: 1.45rem solid var(--memberlite-color-secondary);
-}
-
-/* Table and Compare Table Level Layout */
-.pmpro_advanced_levels-table tbody th,
-.pmpro_advanced_levels-table tbody td {
-	padding-top: 2.35rem;
-	padding-bottom: 2.35rem;
-}
-
-.pmpro_advanced_levels-table th:first-child {
-	padding-left: 2.35rem;
-}
-
-.pmpro_advanced_levels-compare_table {
-	overflow: hidden;
-}
-
-.pmpro_advanced_levels-compare_table .pmpro_level-price {
-	font-size: var(--wp--preset--font-size--24);
-	font-weight: 700;
-}
-
-.pmpro_advanced_levels-compare_table th,
-.pmpro_advanced_levels-compare_table td {
-	border-color: var(--memberlite-color-borders);
-	position: relative;
-}
-
-.pmpro_advanced_levels-compare_table thead tr:first-child th:not(.pmpro_advanced_levels-compare_table thead tr:first-child th:first-child) {
-	padding-top: 2.9rem;
-}
-
-.pmpro_advanced_levels-compare_table thead tr:last-child th {
-	padding-bottom: 2.35rem;
-}
-
-.pmpro_advanced_levels-compare_table thead tr th:first-child,
-.pmpro_advanced_levels-compare_table tbody tr td:first-child,
-.pmpro_advanced_levels-compare_table thead tr th:nth-child(even),
-.pmpro_advanced_levels-compare_table tbody tr td:nth-child(even) {
-	background-color: transparent;
-}
-
-.pmpro_advanced_levels-compare_table tbody tr:last-child td {
-	border-bottom: .5rem solid var(--memberlite-color-borders);
-}
-
-.pmpro_advanced_levels-compare_table thead tr:last-child th {
-	border-bottom: .5rem solid var(--memberlite-color-borders);
-}
-
-.pmpro_advanced_levels-compare_table thead th.pmpro_level-highlight,
-.pmpro_advanced_levels-compare_table tbody td.pmpro_level-highlight,
-.pmpro_advanced_levels-compare_table tfoot td.pmpro_level-highlight {
-	border-left: .9rem solid var(--memberlite-color-secondary);
-	border-right: .9rem solid var(--memberlite-color-secondary);
-}
-
-#pmpro_levels.pmpro_advanced_levels-compare_table thead tr:first-child th.pmpro_level-highlight {
-	border-top: .9rem solid var(--memberlite-color-secondary);
-	padding-top: 2rem;
-}
-
-.pmpro_advanced_levels-compare_table thead tr:last-child th.pmpro_level-highlight,
-.pmpro_advanced_levels-compare_table tbody tr td.pmpro_level-highlight,
-.pmpro_advanced_levels-compare_table tfoot tr td.pmpro_level-highlight {
-	border-bottom: none;
-}
-
-#pmpro_levels.pmpro_advanced_levels-compare_table tfoot tr:last-child td.pmpro_level-highlight {
-	border-bottom: .9rem solid var(--memberlite-color-secondary);
-}
-
-.pmpro_advanced_levels-compare_table tbody tr:hover {
-	background-color: rgba(252,248,227,0.8);
-}
-
-.pmpro_advanced_levels-compare_table tbody td:hover::after,
-.pmpro_advanced_levels-compare_table tbody th:hover::after {
-	background-color: rgba(252,248,227,0.3);
-	content: "";
-	height: 10000px;
-	left: 0;
-	position: absolute;
-	top: -5000px;
-	width: 100%;
-	z-index: -1;
-}
-
-.pmpro_advanced_levels-compare_table_responsive .pmpro_level-highlight {
-	border-top: .9rem solid var(--memberlite-color-secondary);
-	border-bottom: 1.45rem solid var(--memberlite-color-secondary);
-	border-left: 1px solid var(--memberlite-color-borders);
-	border-right: 1px solid var(--memberlite-color-borders);
-}
 
 /* Membership Signup Forms */
 .memberlite_signup,
@@ -3048,132 +2924,13 @@ a:active {
 	margin: 0 0 2.9rem 0
 }
 
-/* Special Fields */
-.pmpro_checkout-field-date select,
-.pmpro_checkout-field-date input {
-	margin-right: .9rem;
-}
-
 /* Membership Checkout */
-.pmpro_asterisk {
-	color: #C00;
-}
-.pmpro_asterisk abbr {
-	border: none;
-	text-decoration: none;
-}
-form.pmpro_form p {
-	margin-bottom: 1.45rem;
-}
-form.pmpro_form hr {
-	margin: 0 0 2.9rem 0;
-}
-form.pmpro_form .input {
-	max-width: 90%;
-}
-form.pmpro_form textarea {
-	width:90%;
-}
-form#pmpro_form .pmpro_checkout h2,
-form#pmpro_form .pmpro_checkout h3 {
-	background-color: #F9FAFB;
-	border-top: 1px solid var(--memberlite-color-borders);
-	border-bottom: 1px solid var(--memberlite-color-borders);
-	font-size: 2.3rem;
-	line-height: 3.7rem;
-	padding: 1.45rem;
-}
-form#pmpro_form .pmpro_checkout h2:first-of-type,
-form#pmpro_form .pmpro_checkout h3:first-of-type {
-	margin-top: 0;
-}
-form#pmpro_form .pmpro_checkout h2 span.pmpro_checkout-h2-name,
-form#pmpro_form .pmpro_checkout h3 span.pmpro_checkout-h3-name {
-	font-weight: 700;
-	margin: 0;
-}
-form#pmpro_form .pmpro_checkout h2 span.pmpro_checkout-h2-msg,
-form#pmpro_form .pmpro_checkout h3 span.pmpro_checkout-h3-msg {
-	float: right;
-}
-form#pmpro_form .pmpro_checkout h2 span.pmpro_checkout-h2-msg a,
-form#pmpro_form .pmpro_checkout h3 span.pmpro_checkout-h3-msg a {
-	text-decoration: underline;
-}
-form#pmpro_form .pmpro_checkout-fields {
-	padding: 2.9rem 1.45rem;
-}
-form#pmpro_form .pmpro_checkout-fields div {
-	margin-bottom: 2.9rem;
-}
-form#pmpro_form #pmpro_payment_information_fields .pmpro_checkout-fields {
-	padding-bottom: 0;
-}
-form#pmpro_form #pmpro_payment_information_fields .pmpro_checkout-field-payment-request-button {
-	padding: 1.45rem 1.45rem 0 1.45rem;
-}
-form#pmpro_form #pmpro_payment_information_fields .pmpro_checkout-field-payment-request-button h4 {
-	margin-bottom: 0;
-}
-form#pmpro_form .pmpro_sslseal {
-	padding: 1.45rem 1.45rem 1.45rem 0;
-}
-form.pmpro_form .pmpro_checkout #other_discount_code_p,
-form.pmpro_form .pmpro_checkout #other_discount_code_div {
-	border-top: 1px dotted var(--memberlite-color-borders);
-	margin: 1.45rem 0 0 0;
-	padding: 1.45rem 0 0 0;
-}
-form.pmpro_form .pmpro_checkout #other_discount_code_div input[type=button],
-#other_discount_code_button,
-#discount_code_button,
-#vat_number_validation_button {
-}
-form.pmpro_form #pmpro_pricing_fields.pmpro_checkout h3 {
-	margin-top: 0;
-}
-form.pmpro_form .pmpro_payment-expiration select {
-	margin: 0 .5rem;
-}
 #secondary form.pmpro_form .pmpro_submit {
 	text-align: center;
 }
 #secondary form.pmpro_form .pmpro_submit .pmpro_btn {
 	display: block;
 	width: 100%;
-}
-
-/* Membership Account */
-#pmpro_account .pmpro_box {
-	border: none;
-	padding: 0;
-	margin: 0 0 5.8rem;
-}
-#pmpro_account #pmpro_account-membership .pmpro_actionlinks,
-#pmpro_account #pmpro_account-invoices .pmpro_actionlinks {
-	text-align: center;
-}
-#pmpro_account #pmpro_account-membership table .pmpro_actionlinks {
-	text-align: left;
-}
-#pmpro_account .pmpro_box ul li {
-	margin-bottom: 0;
-}
-#pmpro_account .pmpro_actionlinks a {
-	text-decoration: underline;
-}
-
-/* Membership Invoice */
-.pmpro_invoice_wrap h3 {
-	margin-top: 0;
-}
-.pmpro_invoice_wrap .pmpro_invoice_details p {
-	margin-bottom: 0;
-}
-
-/* Membership Cancel */
-.pmpro_cancel_wrap h2 {
-	margin-top: 0;
 }
 
 /* Member Directory and Profiles */
@@ -3186,62 +2943,14 @@ form.pmpro_form .pmpro_payment-expiration select {
 	padding: .45rem 1.45rem;
 }
 
-/* Log In / Change Password / Profiles */
-.pmpro_reset_password_wrap {
-	margin-bottom: 2.9rem;
-}
-.pmpro_login_wrap h2,
-.pmpro_lost_password_wrap h2,
-.pmpro_reset_password_wrap h2,
-.pmpro_member_profile_edit_wrap h2,
-.pmpro_login_wrap h3,
-.pmpro_lost_password_wrap h3,
-.pmpro_reset_password_wrap h3,
-.pmpro_member_profile_edit_wrap h3 {
-	margin-top: 0;
-}
-.pmpro_login_wrap p.pmpro_actions_nav,
-.pmpro_lost_password_wrap p.pmpro_actions_nav,
-.pmpro_reset_password_wrap p.pmpro_actions_nav {
-	text-align: left;
-}
-.pmpro_member_profile_edit_wrap h3 {
-	background-color: #F9FAFB;
-	border-top: 1px solid var(--memberlite-color-borders);
-	border-bottom: 1px solid var(--memberlite-color-borders);
-	padding: 1.45rem;
-}
-.pmpro_member_profile_edit_wrap .input[type=text],
-.pmpro_member_profile_edit_wrap .input[type=email],
-.pmpro_member_profile_edit_wrap .input[type=password] {
-	width: 80%;
-}
-.pmpro_member_profile_edit_wrap .pmpro_checkout_box-user .pmpro_member_profile_edit-fields {
-	display: grid;
-	grid-template-columns: 1fr 1fr;
-	grid-column-gap: 2.9rem;
-}
-form.pmpro_form .pmpro_member_profile_edit-fields > div {
-	margin: 0 0 2.9rem 0;
-}
-
 /* Member Log In / Log Out Widget */
 #secondary .pmpro_login_wrap,
 #secondary .pmpro_logged_in_welcome_wrap {
-	background-color: #F9FAFB;
-	border: 1px solid var(--memberlite-color-borders);
-	padding: 1.45rem;
+	background-color: var(--memberlite-color-site-navigation-background);
 }
-.pmpro_logged_in_welcome_wrap h3 {
-	background: none;
-	border: none;
-	margin: 0 0 .9rem 0;
-	padding: 0;
-}
-.widget .pmpro_login_wrap p.pmpro_actions_nav,
-.widget .pmpro_logged_in_welcome_wrap p.pmpro_actions_nav {
-	margin: 0;
-	text-align: left;
+#secondary .pmpro_login_wrap .pmpro_card_actions,
+#secondary .pmpro_logged_in_welcome_wrap .pmpro_card_actions {
+	background-color: transparent;
 }
 .widget .pmpro_login_wrap hr,
 .widget .pmpro_logged_in_welcome_wrap hr {
@@ -3356,7 +3065,7 @@ object {
 	width: 100%;
 }
 .gallery-item img {
-	background-color: #F9FAFB;
+	background-color: var(--memberlite-color-site-navigation-background);
 	padding: .25rem;
 	border-top: 1px dotted var(--memberlite-color-borders);
 	border-bottom: 1px dotted var(--memberlite-color-borders);
