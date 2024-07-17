@@ -246,7 +246,7 @@ i {
 }
 blockquote:not(.wp-block-pullquote blockquote):not(.wp-block-quote):not(.testimonials-widget-testimonial blockquote) {
 	margin: 2.9rem 0;
-	background-color: #F9FAFB;
+	background-color: var(--memberlite-color-site-navigation-background);
 	padding: 2.9rem 2.9rem 1px 2.9rem;
 	border-left: 5px solid var(--memberlite-color-borders);
 }
@@ -508,7 +508,7 @@ th,
 }
 thead th,
 .wp-block-table thead th {
-	background-color: #F9FAFB;
+	background-color: var(--memberlite-color-site-navigation-background);
 	border-color: var(--memberlite-color-borders);
 	border-style: solid;
 	border-width: 1px 0;
@@ -829,7 +829,7 @@ p.success {
 	text-align: left;
 }
 #sitewide-notice p {
-	background-color: #F9FAFB;
+	background-color: var(--memberlite-color-site-navigation-background);
 	border-color: #1F293711;
 	color: #1F2937;
 }
@@ -1593,7 +1593,7 @@ a:active:not(.pmpro_btn:active) {
 }
 #secondary .widget-title,
 #secondary .widget h3.wp-block-heading {
-	background-color: #F9FAFB;
+	background-color: var(--memberlite-color-site-navigation-background);
 	border-top: 1px solid var(--memberlite-color-borders);
 	border-bottom: 1px solid var(--memberlite-color-borders);
 	line-height: 2.9rem;
@@ -2199,7 +2199,7 @@ a:active:not(.pmpro_btn:active) {
 	border-bottom: none;
 }
 .post .entry-footer {
-	background-color: #F9FAFB;
+	background-color: var(--memberlite-color-site-navigation-background);
 	border-top: 1px solid var(--memberlite-color-borders);
 	border-bottom: 1px solid var(--memberlite-color-borders);
 	color: #666;
@@ -2362,14 +2362,14 @@ a:active:not(.pmpro_btn:active) {
 .comment,
 .pingback.even,
 .trackback.event {
-	background-color: #F9FAFB;
+	background-color: var(--memberlite-color-site-navigation-background);
 }
 .comment.depth-1.thread-alt,
 .comment .comment.alt {
 	background-color: var(--memberlite-color-white);
 }
 .comment.even .child-comments .comment {
-	background-color: #F9FAFB;
+	background-color: var(--memberlite-color-site-navigation-background);
 }
 .comment.odd .child-comments .comment {
 	background-color: var(--memberlite-color-white);
@@ -2743,10 +2743,6 @@ a:active:not(.pmpro_btn:active) {
 		border-color: var(--memberlite-color-borders);
 	}
 
-	.pmpro_card_actions {
-		background-color: #F9FAFB;
-	}
-
 	/* Membership Levels and Advanced Levels Page Shortcode */
 	.pmpro_level-description {
 		font-family: var(--memberlite-body-font);
@@ -2891,6 +2887,16 @@ a:active:not(.pmpro_btn:active) {
 	}
 }
 
+/* Design variation specific adjustments for PMPro */
+.pmpro-variation_1 {
+
+	.pmpro_card_actions {
+		background-color: var(--memberlite-color-site-navigation-background);
+	}
+
+}
+
+
 /* Membership Signup Forms */
 .memberlite_signup,
 .pmpro_signup_form {
@@ -2940,7 +2946,7 @@ a:active:not(.pmpro_btn:active) {
 /* Member Log In / Log Out Widget */
 #secondary .pmpro_login_wrap,
 #secondary .pmpro_logged_in_welcome_wrap {
-	background-color: #F9FAFB;
+	background-color: var(--memberlite-color-site-navigation-background);
 }
 #secondary .pmpro_login_wrap .pmpro_card_actions,
 #secondary .pmpro_logged_in_welcome_wrap .pmpro_card_actions {
@@ -3059,7 +3065,7 @@ object {
 	width: 100%;
 }
 .gallery-item img {
-	background-color: #F9FAFB;
+	background-color: var(--memberlite-color-site-navigation-background);
 	padding: .25rem;
 	border-top: 1px dotted var(--memberlite-color-borders);
 	border-bottom: 1px dotted var(--memberlite-color-borders);
