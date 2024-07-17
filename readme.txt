@@ -1,9 +1,9 @@
 === Memberlite ===
 Contributors: kimannwall, strangerstudios
 Requires at least: 6.0
-Tested up to: 6.4.2
+Tested up to: 6.6
 Requires PHP: 5.6
-Stable tag: 5.1.0
+Stable tag: 5.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: one-column, two-columns, left-sidebar, right-sidebar, flexible-header, custom-background, custom-colors, custom-header, custom-menu, custom-logo, editor-style, featured-images, footer-widgets, full-width-template, post-formats, theme-options, threaded-comments, translation-ready, e-commerce
@@ -103,6 +103,9 @@ We highly recommend using these plugins for every site running Memberlite:
 [Install Multiple Post Thumbnails »](https://wordpress.org/plugins/multiple-post-thumbnails/)
 
 == Changelog ==
+
+= 5.2.0 - 2024-07-17 =
+* ENHANCEMENT: Updated to fully support for PMPro v3.1+ and frontend design updates in core.
 
 = 5.1.0 - 2024-01-25 =
 * FEATURE: Now includes support for frontend styling of courses with LifterLMS.
