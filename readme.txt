@@ -106,6 +106,8 @@ We highly recommend using these plugins for every site running Memberlite:
 
 = 5.2.0 - 2024-07-17 =
 * ENHANCEMENT: Updated to fully support for PMPro v3.1+ and frontend design updates in core.
+* ENHANCEMENT: Updated to Font Awesome version 6.6.0.
+* BUG FIX: Fixed the LifterLMS Student Dashboard Log In and Password Reset views.
 
 = 5.1.0 - 2024-01-25 =
 * FEATURE: Now includes support for frontend styling of courses with LifterLMS.
