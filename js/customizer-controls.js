@@ -6,6 +6,7 @@
 		'memberlite_bgcolor_header',
 		'memberlite_bgcolor_site_navigation',
 		'memberlite_color_site_navigation',
+		'memberlite_color_text',
 		'memberlite_color_link',
 		'memberlite_color_meta_link',
 		'memberlite_color_primary',

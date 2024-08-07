@@ -1016,7 +1016,7 @@
 			}
 		},
 		"color": {
-			"background": "var(--wp--preset--color--white)",
+			"background": "var(--wp--preset--color--base)",
 			"text": "var(--wp--preset--color--body-text)"
 		},
 		"elements": {
