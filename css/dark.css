@@ -1,14 +1,6 @@
 /*--------------------------------------------------------------
 Inverted Color Profiles for Dark Backgrounds
 --------------------------------------------------------------*/
-body,
-blockquote.quote,
-.q,
-.lead,
-div.lead p,
-.pmpro_content_message {
-	color: #FFF;
-}
 .site-footer .site-info p,
 .site-footer .site-info .columns:first-child a {
 	color: #FFFFFF99;

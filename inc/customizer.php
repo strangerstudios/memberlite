@@ -624,6 +624,29 @@ class Memberlite_Customize {
 		);
 
 		$wp_customize->add_setting(
+			'color_text',
+			array(
+				'default'              => $memberlite_defaults['color_text'],
+				'sanitize_callback'    => 'sanitize_hex_color',
+				'sanitize_js_callback' => 'maybe_hash_hex_color',
+				'transport'            => 'postMessage',
+			)
+		);
+
+		$wp_customize->add_control(
+			new WP_Customize_Color_Control(
+				$wp_customize,
+				'memberlite_color_text',
+				array(
+					'label'    => __( 'Text Color', 'memberlite' ),
+					'section'  => 'colors',
+					'settings' => 'color_text',
+					'priority' => 40,
+				)
+			)
+		);
+
+		$wp_customize->add_setting(
 			'color_link',
 			array(
 				'default'              => $memberlite_defaults['color_link'],
@@ -943,6 +966,11 @@ class Memberlite_Customize {
 			$color_button = $memberlite_defaults['color_button'];
 		}
 
+		$color_text = get_theme_mod( 'color_text' );
+		if ( empty( $color_text ) ) {
+			$color_text = $memberlite_defaults['color_text'];
+		}
+
 		$color_link = get_theme_mod( 'color_link' );
 		if ( empty( $color_link ) ) {
 			$color_link = $memberlite_defaults['color_link'];
@@ -998,7 +1026,6 @@ class Memberlite_Customize {
 		// Get theme settings from defaults.
 		$hover_brightness = $memberlite_defaults['hover_brightness'];
 		$color_white = $memberlite_defaults['color_white'];
-		$color_text = $memberlite_defaults['color_text'];
 		$color_borders = $memberlite_defaults['color_borders'];
 		?>
 		<!--Customizer CSS-->
@@ -1014,6 +1041,7 @@ class Memberlite_Customize {
 				--memberlite-color-header-background: <?php echo esc_attr( $color_header_background ); ?>;
 				--memberlite-color-site-navigation-background: <?php echo esc_attr( $color_site_navigation_background ); ?>;
 				--memberlite-color-site-navigation: <?php echo esc_attr( $color_site_navigation ); ?>;
+				--memberlite-color-text: <?php echo esc_attr( $color_text ); ?>;
 				--memberlite-color-link: <?php echo esc_attr( $color_link ); ?>;
 				--memberlite-color-meta-link: <?php echo esc_attr( $color_meta_link ); ?>;
 				--memberlite-color-primary: <?php echo esc_attr( $color_primary ); ?>;
