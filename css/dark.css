@@ -69,33 +69,13 @@ a.pmpro_cancel:link,
 .content-area .pmpro_btn.pmpro_btn-cancel:visited {
 	color: #FFFFFFCC;
 }
-#primary .hentry .entry-meta,
 .post .entry-footer,
-#secondary .widget a,
-#secondary .widget a:link,
-#secondary .widget h3.wp-block-heading,
-.wp-block-image figcaption,
-form.pmpro_form .lite,
-.pmpro_btn-cancel,
-.pmpro_nolink,
-.pmpro_nolink:link,
-.pmpro_cancel,
-.pmpro_cancel:link,
-a.pmpro_cancel:link,
-.content-area .pmpro_btn.pmpro_cancel,
-.content-area .pmpro_btn.pmpro_btn-cancel,
-.content-area .pmpro_btn.pmpro_btn-cancel:link,
-.content-area .pmpro_btn.pmpro_btn-cancel:visited
-.widget-area .widget a:not(.btn):not(.pmpro_btn) {
+.widget-area .widget a:not(.btn):not(.pmpro_btn) ,
+#secondary .widget-title,
+#secondary .widget h3.wp-block-heading {
 	border-bottom: none;
 }
-#secondary .widget a:hover,
-.pmpro_btn.pmpro_btn-cancel:hover,
-.pmpro_nolink:hover,
-.pmpro_cancel:hover,
-a.pmpro_cancel:hover,
-.content-area .pmpro_btn.pmpro_cancel:hover,
-.entry-content a.pmpro_btn.pmpro_btn-cancel:hover {
+.widget-area .widget a:hover:not(.btn):not(.pmpro_btn) {
 	color: #FFF;
 }
 #primary .hentry .entry-meta a,
