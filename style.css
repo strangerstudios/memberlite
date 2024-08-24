@@ -3249,40 +3249,14 @@ object {
 	.comment-respond .form-submit input[type=submit] {
 		width: 100%;
 	}
-	form#pmpro_form .pmpro_checkout-fields,
-	form#pmpro_form #pmpro_payment_information_fields .pmpro_checkout-field-payment-request-button {
-		padding: 2.9rem 0;
-	}
-	form#pmpro_form .pmpro_checkout h3 {
-		padding: 1.45rem .9rem .9rem .9rem;
-		line-height: 3.2rem;
-	}
-	form#pmpro_form .pmpro_checkout h3 span.pmpro_checkout-h3-msg {
-		display: block;
-		float: none;
-		margin: 0;
-	}
-	form.pmpro_form .pmpro_select_payment_method span {
-		display: block;
-	}
-	form.pmpro_form .input[type=text],
-	form.pmpro_form select {
-		width: 93%;
-	}
-	form.pmpro_form .pmpro_checkout-field-checkbox label {
-		display: inline;
-	}
-	form.pmpro_form #CVV,
-	form.pmpro_form select#ExpirationMonth,
-	form.pmpro_form select#ExpirationYear {
-		width: 43%;
-	}
 	.pmpro_levels-div {
 		text-align: center;
 	}
 	.pmpro_levels-div .entry-footer .alignright,
 	.pmpro_levels-2col .entry-footer .alignright {
-		float: none; margin: 0 0 1.5rem 0; display: block;
+		display: block;
+		float: none;
+		margin: 0 0 1.5rem 0;
 	}
 	#pmpro_levels.pmpro_advanced_levels-compare_table {
 		display: none;
