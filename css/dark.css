@@ -21,6 +21,10 @@ hr {
 .wp-caption-text {
 	color: var(--memberlite-color-action);
 }
+div.lead p,
+p.lead {
+	color: inherit;
+}
 #site-navigation {
 	border-top: none;
 }
