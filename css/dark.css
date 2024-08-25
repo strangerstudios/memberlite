@@ -128,7 +128,7 @@ tbody tr:nth-child(even) td,
 	background: none;
 }
 mark,
-.ins {
+ins {
 	color: #000;
 }
 .search-form input[type=search],
@@ -190,53 +190,6 @@ mark,
 }
 .comment-respond .comment-notes, .comment-respond .form-allowed-tags {
 	color: #FFFFFFCC;
-}
-
-/*--------------------------------------------------------------
-Paid Memberships Pro Integrated Styles
---------------------------------------------------------------*/
-#pmpro_levels .post h2,
-.memberlite_signup h2,
-.pmpro_signup_form h2 {
-	background: #FFFFFF11;
-}
-#pmpro_levels .post h2,
-.memberlite_signup h2,
-.pmpro_signup_form h2 {
-	color: #FFFFFF;
-}
-#pmpro_levels_table {
-	background: none;
-}
-#pmpro_levels_table.pmpro_checkout thead th,
-#pmpro_form .pmpro_checkout thead th {
-	color: #FFF;
-}
-#pmpro_levels.pmpro_levels-table.pmpro_level-highlight,
-#pmpro_levels.pmpro_levels-div .pmpro_level-highlight,
-#pmpro_levels.pmpro_levels-2col .pmpro_level-highlight,
-#pmpro_levels.pmpro_levels-3col .pmpro_level-highlight,
-#pmpro_levels.pmpro_levels-4col .pmpro_level-highlight,
-.memberlite_signup,
-.pmpro_signup_form {
-	background: #FFFFFF19;
-	border-left: none;
-	border-right: none;
-}
-form#pmpro_form .pmpro_checkout h2,
-form#pmpro_form .pmpro_checkout h3 {
-	background: #FFFFFF11;
-	border-color: #00000066;
-}
-.pmpro_checkout_gateway-stripe form.pmpro_form #pmpro_payment_information_fields div#AccountNumber,
-.pmpro_checkout_gateway-stripe form.pmpro_form #pmpro_payment_information_fields div#Expiry,
-.pmpro_checkout_gateway-stripe form.pmpro_form #pmpro_payment_information_fields div#CVV,
-.pmpro_billing_gateway-stripe form.pmpro_form #pmpro_payment_information_fields div#AccountNumber,
-.pmpro_billing_gateway-stripe form.pmpro_form #pmpro_payment_information_fields div#Expiry,
-.pmpro_billing_gateway-stripe form.pmpro_form #pmpro_payment_information_fields div#CVV {
-	color: #FFF;
-	background: none;
-	border-color: #FFFFFF4C;
 }
 
 /*--------------------------------------------------------------

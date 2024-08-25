@@ -1073,6 +1073,7 @@ a:active:not(.pmpro_btn:active) {
 .meta-navigation li:last-child,
 .header-right .widget_nav_menu li:last-child,
 .footer-navigation li:last-child {
+	border-right: none;
 	padding-right: 0;
 }
 .footer-navigation ul {
@@ -2769,7 +2770,6 @@ a:active:not(.pmpro_btn:active) {
 	.pmpro_levels-2col .pmpro_level-highlight .pmpro_card,
 	.pmpro_levels-3col .pmpro_level-highlight .pmpro_card,
 	.pmpro_levels-4col .pmpro_level-highlight .pmpro_card {
-		background-color: var(--memberlite-color-site-background);
 		z-index: 100;
 		border-top: .9rem solid var(--memberlite-color-secondary);
 		border-bottom: 1.45rem solid var(--memberlite-color-secondary);
