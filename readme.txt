@@ -104,7 +104,7 @@ We highly recommend using these plugins for every site running Memberlite:
 
 == Changelog ==
 
-= 5.2.1 - TBD =
+= 5.2.1 - 2024-08-25 =
 * ENHANCEMENT: Now supporting a color setting for text color.
 * ENHANCEMENT: Added body class `is-style-dark` or `is-style-light` if dark mode is active.
 * BUG FIX/ENHANCEMENT: Additional fixes to support sites using a dark background / inverted scheme.
