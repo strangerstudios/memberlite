@@ -362,13 +362,6 @@ if ( ! function_exists( 'memberlite_setup' ) ) :
 			'color' => get_theme_mod( 'color_white', $memberlite_defaults['color_white'] )
 		);
 
-		// Text Color
-		$color_scheme[] = array(
-			'name' => __( 'Text', 'memberlite' ),
-			'slug' => 'body-text',
-			'color' => get_theme_mod( 'color_text', $memberlite_defaults['color_text'] )
-		);
-
 		// Borders Color
 		$color_scheme[] = array(
 			'name' => __( 'Borders', 'memberlite' ),
@@ -419,6 +412,25 @@ if ( ! function_exists( 'memberlite_setup' ) ) :
 		// Get all unique color values.
 		$color_scheme_temp = array_unique( array_column( $color_scheme, 'color' ) );
 		$color_scheme = array_intersect_key( $color_scheme, $color_scheme_temp );
+
+		// Always ensure the body text color is set.
+		$color_scheme[] = array(
+			'name' => __( 'Text', 'memberlite' ),
+			'slug' => 'body-text',
+			'color' => get_theme_mod( 'color_text', $memberlite_defaults['color_text'] )
+		);
+
+		// Always ensure the base color is set.
+		$base_color = get_theme_mod( 'background_color', $memberlite_defaults['background_color'] );
+		// Add a # if it's missing.
+		if ( strpos( $base_color, '#' ) === false ) {
+			$base_color = '#' . $base_color;
+		}
+		$color_scheme[] = array(
+			'name' => __( 'Base', 'memberlite' ),
+			'slug' => 'base',
+			'color' => esc_attr( $base_color )
+		);
 
 		// Build colors array for palette.
 		$colors = array();

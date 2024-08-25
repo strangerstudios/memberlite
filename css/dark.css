@@ -1,14 +1,6 @@
 /*--------------------------------------------------------------
 Inverted Color Profiles for Dark Backgrounds
 --------------------------------------------------------------*/
-body,
-blockquote.quote,
-.q,
-.lead,
-div.lead p,
-.pmpro_content_message {
-	color: #FFF;
-}
 .site-footer .site-info p,
 .site-footer .site-info .columns:first-child a {
 	color: #FFFFFF99;
@@ -28,6 +20,10 @@ hr {
 .wp-caption,
 .wp-caption-text {
 	color: var(--memberlite-color-action);
+}
+div.lead p,
+p.lead {
+	color: inherit;
 }
 #site-navigation {
 	border-top: none;
@@ -77,33 +73,13 @@ a.pmpro_cancel:link,
 .content-area .pmpro_btn.pmpro_btn-cancel:visited {
 	color: #FFFFFFCC;
 }
-#primary .hentry .entry-meta,
 .post .entry-footer,
-#secondary .widget a,
-#secondary .widget a:link,
-#secondary .widget h3.wp-block-heading,
-.wp-block-image figcaption,
-form.pmpro_form .lite,
-.pmpro_btn-cancel,
-.pmpro_nolink,
-.pmpro_nolink:link,
-.pmpro_cancel,
-.pmpro_cancel:link,
-a.pmpro_cancel:link,
-.content-area .pmpro_btn.pmpro_cancel,
-.content-area .pmpro_btn.pmpro_btn-cancel,
-.content-area .pmpro_btn.pmpro_btn-cancel:link,
-.content-area .pmpro_btn.pmpro_btn-cancel:visited
-.widget-area .widget a:not(.btn):not(.pmpro_btn) {
+.widget-area .widget a:not(.btn):not(.pmpro_btn) ,
+#secondary .widget-title,
+#secondary .widget h3.wp-block-heading {
 	border-bottom: none;
 }
-#secondary .widget a:hover,
-.pmpro_btn.pmpro_btn-cancel:hover,
-.pmpro_nolink:hover,
-.pmpro_cancel:hover,
-a.pmpro_cancel:hover,
-.content-area .pmpro_btn.pmpro_cancel:hover,
-.entry-content a.pmpro_btn.pmpro_btn-cancel:hover {
+.widget-area .widget a:hover:not(.btn):not(.pmpro_btn) {
 	color: #FFF;
 }
 #primary .hentry .entry-meta a,
@@ -156,7 +132,7 @@ tbody tr:nth-child(even) td,
 	background: none;
 }
 mark,
-.ins {
+ins {
 	color: #000;
 }
 .search-form input[type=search],
@@ -218,53 +194,6 @@ mark,
 }
 .comment-respond .comment-notes, .comment-respond .form-allowed-tags {
 	color: #FFFFFFCC;
-}
-
-/*--------------------------------------------------------------
-Paid Memberships Pro Integrated Styles
---------------------------------------------------------------*/
-#pmpro_levels .post h2,
-.memberlite_signup h2,
-.pmpro_signup_form h2 {
-	background: #FFFFFF11;
-}
-#pmpro_levels .post h2,
-.memberlite_signup h2,
-.pmpro_signup_form h2 {
-	color: #FFFFFF;
-}
-#pmpro_levels_table {
-	background: none;
-}
-#pmpro_levels_table.pmpro_checkout thead th,
-#pmpro_form .pmpro_checkout thead th {
-	color: #FFF;
-}
-#pmpro_levels.pmpro_levels-table.pmpro_level-highlight,
-#pmpro_levels.pmpro_levels-div .pmpro_level-highlight,
-#pmpro_levels.pmpro_levels-2col .pmpro_level-highlight,
-#pmpro_levels.pmpro_levels-3col .pmpro_level-highlight,
-#pmpro_levels.pmpro_levels-4col .pmpro_level-highlight,
-.memberlite_signup,
-.pmpro_signup_form {
-	background: #FFFFFF19;
-	border-left: none;
-	border-right: none;
-}
-form#pmpro_form .pmpro_checkout h2,
-form#pmpro_form .pmpro_checkout h3 {
-	background: #FFFFFF11;
-	border-color: #00000066;
-}
-.pmpro_checkout_gateway-stripe form.pmpro_form #pmpro_payment_information_fields div#AccountNumber,
-.pmpro_checkout_gateway-stripe form.pmpro_form #pmpro_payment_information_fields div#Expiry,
-.pmpro_checkout_gateway-stripe form.pmpro_form #pmpro_payment_information_fields div#CVV,
-.pmpro_billing_gateway-stripe form.pmpro_form #pmpro_payment_information_fields div#AccountNumber,
-.pmpro_billing_gateway-stripe form.pmpro_form #pmpro_payment_information_fields div#Expiry,
-.pmpro_billing_gateway-stripe form.pmpro_form #pmpro_payment_information_fields div#CVV {
-	color: #FFF;
-	background: none;
-	border-color: #FFFFFF4C;
 }
 
 /*--------------------------------------------------------------

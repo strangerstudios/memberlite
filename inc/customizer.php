@@ -624,6 +624,29 @@ class Memberlite_Customize {
 		);
 
 		$wp_customize->add_setting(
+			'color_text',
+			array(
+				'default'              => $memberlite_defaults['color_text'],
+				'sanitize_callback'    => 'sanitize_hex_color',
+				'sanitize_js_callback' => 'maybe_hash_hex_color',
+				'transport'            => 'postMessage',
+			)
+		);
+
+		$wp_customize->add_control(
+			new WP_Customize_Color_Control(
+				$wp_customize,
+				'memberlite_color_text',
+				array(
+					'label'    => __( 'Text Color', 'memberlite' ),
+					'section'  => 'colors',
+					'settings' => 'color_text',
+					'priority' => 40,
+				)
+			)
+		);
+
+		$wp_customize->add_setting(
 			'color_link',
 			array(
 				'default'              => $memberlite_defaults['color_link'],
@@ -943,6 +966,11 @@ class Memberlite_Customize {
 			$color_button = $memberlite_defaults['color_button'];
 		}
 
+		$color_text = get_theme_mod( 'color_text' );
+		if ( empty( $color_text ) ) {
+			$color_text = $memberlite_defaults['color_text'];
+		}
+
 		$color_link = get_theme_mod( 'color_link' );
 		if ( empty( $color_link ) ) {
 			$color_link = $memberlite_defaults['color_link'];
@@ -998,7 +1026,6 @@ class Memberlite_Customize {
 		// Get theme settings from defaults.
 		$hover_brightness = $memberlite_defaults['hover_brightness'];
 		$color_white = $memberlite_defaults['color_white'];
-		$color_text = $memberlite_defaults['color_text'];
 		$color_borders = $memberlite_defaults['color_borders'];
 		?>
 		<!--Customizer CSS-->
@@ -1014,6 +1041,7 @@ class Memberlite_Customize {
 				--memberlite-color-header-background: <?php echo esc_attr( $color_header_background ); ?>;
 				--memberlite-color-site-navigation-background: <?php echo esc_attr( $color_site_navigation_background ); ?>;
 				--memberlite-color-site-navigation: <?php echo esc_attr( $color_site_navigation ); ?>;
+				--memberlite-color-text: <?php echo esc_attr( $color_text ); ?>;
 				--memberlite-color-link: <?php echo esc_attr( $color_link ); ?>;
 				--memberlite-color-meta-link: <?php echo esc_attr( $color_meta_link ); ?>;
 				--memberlite-color-primary: <?php echo esc_attr( $color_primary ); ?>;
@@ -1111,16 +1139,17 @@ class Memberlite_Customize {
 	 * 3. Header Background Color
 	 * 4. Primary Navigation Background Color
 	 * 5. Primary Navigation Link Color
-	 * 6. Link Color
-	 * 7. Meta Link Color
-	 * 8. Primary Color
-	 * 9. Secondary Color
-	 * 10. Action Color
-	 * 11. Default Button Color
-	 * 12. Page Masthead Text Color
-	 * 13. Page Masthead Background Color
-	 * 14. Footer Widgets Text Color
-	 * 15. Footer Widgets Background Color
+	 * 6. Text Color
+	 * 7. Link Color
+	 * 8. Meta Link Color
+	 * 9. Primary Color
+	 * 10. Secondary Color
+	 * 11. Action Color
+	 * 12. Default Button Color
+	 * 13. Page Masthead Text Color
+	 * 14. Page Masthead Background Color
+	 * 15. Footer Widgets Text Color
+	 * 16. Footer Widgets Background Color
 	 *
 	 * @since Memberlite 1.0
 	 *
@@ -1137,6 +1166,7 @@ class Memberlite_Customize {
 						'#FFFFFF',
 						'#F9FAFB',
 						'#444444',
+						'#222222',
 						'#011935',
 						'#011935',
 						'#011935',
@@ -1157,6 +1187,7 @@ class Memberlite_Customize {
 						'#FFFFFF',
 						'#FAFAFA',
 						'#777777',
+						'#222222',
 						'#2C3E50',
 						'#2C3E50',
 						'#2C3E50',
@@ -1177,6 +1208,7 @@ class Memberlite_Customize {
 						'#F4EFEA',
 						'#E2DED9',
 						'#354458',
+						'#222222',
 						'#3A9AD9',
 						'#3A9AD9',
 						'#354458',
@@ -1197,6 +1229,7 @@ class Memberlite_Customize {
 						'#EFEFEF',
 						'#424242',
 						'#EFEFEF',
+						'#222222',
 						'#00CCD6',
 						'#00CCD6',
 						'#00CCD6',
@@ -1217,6 +1250,7 @@ class Memberlite_Customize {
 						'#FFFFFF',
 						'#00AEEF',
 						'#FFFFFF',
+						'#222222',
 						'#00AEEF',
 						'#00AEEF',
 						'#333333',
@@ -1237,6 +1271,7 @@ class Memberlite_Customize {
 						'#FFFFFF',
 						'#00A651',
 						'#FFFFFF',
+						'#222222',
 						'#00A651',
 						'#00A651',
 						'#333333',
@@ -1257,6 +1292,7 @@ class Memberlite_Customize {
 						'#FFFFFF',
 						'#F39C12',
 						'#FFFFFF',
+						'#222222',
 						'#F39C12',
 						'#F39C12',
 						'#333333',
@@ -1277,6 +1313,7 @@ class Memberlite_Customize {
 						'#FFFFFF',
 						'#ED0977',
 						'#FFFFFF',
+						'#222222',
 						'#ED0977',
 						'#ED0977',
 						'#333333',
@@ -1297,6 +1334,7 @@ class Memberlite_Customize {
 						'#FFFFFF',
 						'#B1EB00',
 						'#666666',
+						'#222222',
 						'#B1EB00',
 						'#B1EB00',
 						'#53BBF4',
@@ -1317,6 +1355,7 @@ class Memberlite_Customize {
 						'#F0F1EE',
 						'#FFFFFF',
 						'#555555',
+						'#222222',
 						'#FB6964',
 						'#FB6964',
 						'#1352A2',
@@ -1337,6 +1376,7 @@ class Memberlite_Customize {
 						'#FFFFFF',
 						'#700035',
 						'#EFEFEF',
+						'#222222',
 						'#009D97',
 						'#AA2159',
 						'#AA2159',
@@ -1357,6 +1397,7 @@ class Memberlite_Customize {
 						'#F5F5F5',
 						'#FFFFFF',
 						'#67727A',
+						'#222222',
 						'#6991AC',
 						'#6991AC',
 						'#67727A',
@@ -1377,6 +1418,7 @@ class Memberlite_Customize {
 						'#F9F9F7',
 						'#363635',
 						'#FFFFFF',
+						'#222222',
 						'#83BF17',
 						'#83BF17',
 						'#83BF17',

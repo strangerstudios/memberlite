@@ -1073,6 +1073,7 @@ a:active:not(.pmpro_btn:active) {
 .meta-navigation li:last-child,
 .header-right .widget_nav_menu li:last-child,
 .footer-navigation li:last-child {
+	border-right: none;
 	padding-right: 0;
 }
 .footer-navigation ul {
@@ -2769,7 +2770,6 @@ a:active:not(.pmpro_btn:active) {
 	.pmpro_levels-2col .pmpro_level-highlight .pmpro_card,
 	.pmpro_levels-3col .pmpro_level-highlight .pmpro_card,
 	.pmpro_levels-4col .pmpro_level-highlight .pmpro_card {
-		background-color: var(--memberlite-color-site-background);
 		z-index: 100;
 		border-top: .9rem solid var(--memberlite-color-secondary);
 		border-bottom: 1.45rem solid var(--memberlite-color-secondary);
@@ -2887,16 +2887,6 @@ a:active:not(.pmpro_btn:active) {
 	}
 }
 
-/* Design variation specific adjustments for PMPro */
-.pmpro-variation_1 {
-
-	.pmpro_card_actions {
-		background-color: var(--memberlite-color-site-navigation-background);
-	}
-
-}
-
-
 /* Membership Signup Forms */
 .memberlite_signup,
 .pmpro_signup_form {
@@ -2944,14 +2934,6 @@ a:active:not(.pmpro_btn:active) {
 }
 
 /* Member Log In / Log Out Widget */
-#secondary .pmpro_login_wrap,
-#secondary .pmpro_logged_in_welcome_wrap {
-	background-color: var(--memberlite-color-site-navigation-background);
-}
-#secondary .pmpro_login_wrap .pmpro_card_actions,
-#secondary .pmpro_logged_in_welcome_wrap .pmpro_card_actions {
-	background-color: transparent;
-}
 .widget .pmpro_login_wrap hr,
 .widget .pmpro_logged_in_welcome_wrap hr {
 	margin: 1.45rem 0;
@@ -3249,40 +3231,14 @@ object {
 	.comment-respond .form-submit input[type=submit] {
 		width: 100%;
 	}
-	form#pmpro_form .pmpro_checkout-fields,
-	form#pmpro_form #pmpro_payment_information_fields .pmpro_checkout-field-payment-request-button {
-		padding: 2.9rem 0;
-	}
-	form#pmpro_form .pmpro_checkout h3 {
-		padding: 1.45rem .9rem .9rem .9rem;
-		line-height: 3.2rem;
-	}
-	form#pmpro_form .pmpro_checkout h3 span.pmpro_checkout-h3-msg {
-		display: block;
-		float: none;
-		margin: 0;
-	}
-	form.pmpro_form .pmpro_select_payment_method span {
-		display: block;
-	}
-	form.pmpro_form .input[type=text],
-	form.pmpro_form select {
-		width: 93%;
-	}
-	form.pmpro_form .pmpro_checkout-field-checkbox label {
-		display: inline;
-	}
-	form.pmpro_form #CVV,
-	form.pmpro_form select#ExpirationMonth,
-	form.pmpro_form select#ExpirationYear {
-		width: 43%;
-	}
 	.pmpro_levels-div {
 		text-align: center;
 	}
 	.pmpro_levels-div .entry-footer .alignright,
 	.pmpro_levels-2col .entry-footer .alignright {
-		float: none; margin: 0 0 1.5rem 0; display: block;
+		display: block;
+		float: none;
+		margin: 0 0 1.5rem 0;
 	}
 	#pmpro_levels.pmpro_advanced_levels-compare_table {
 		display: none;

@@ -46,6 +46,13 @@ function memberlite_body_classes( $classes ) {
 	// color scheme class
 	$classes[] = 'scheme_' . get_theme_mod( 'memberlite_color_scheme', $memberlite_defaults['memberlite_color_scheme'] );
 
+	// dark mode class
+	if ( get_theme_mod( 'memberlite_darkcss', $memberlite_defaults['memberlite_darkcss'] ) ) {
+		$classes[] = 'is-style-dark';
+	} else {
+		$classes[] = 'is-style-light';
+	}
+
 	// other classes
 	if ( is_multi_author() ) {
 		$classes[] = 'group-blog';
