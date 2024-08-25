@@ -2887,16 +2887,6 @@ a:active:not(.pmpro_btn:active) {
 	}
 }
 
-/* Design variation specific adjustments for PMPro */
-.pmpro-variation_1 {
-
-	.pmpro_card_actions {
-		background-color: var(--memberlite-color-site-navigation-background);
-	}
-
-}
-
-
 /* Membership Signup Forms */
 .memberlite_signup,
 .pmpro_signup_form {
@@ -2944,14 +2934,6 @@ a:active:not(.pmpro_btn:active) {
 }
 
 /* Member Log In / Log Out Widget */
-#secondary .pmpro_login_wrap,
-#secondary .pmpro_logged_in_welcome_wrap {
-	background-color: var(--memberlite-color-site-navigation-background);
-}
-#secondary .pmpro_login_wrap .pmpro_card_actions,
-#secondary .pmpro_logged_in_welcome_wrap .pmpro_card_actions {
-	background-color: transparent;
-}
 .widget .pmpro_login_wrap hr,
 .widget .pmpro_logged_in_welcome_wrap hr {
 	margin: 1.45rem 0;

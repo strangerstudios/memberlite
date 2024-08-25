@@ -1139,16 +1139,17 @@ class Memberlite_Customize {
 	 * 3. Header Background Color
 	 * 4. Primary Navigation Background Color
 	 * 5. Primary Navigation Link Color
-	 * 6. Link Color
-	 * 7. Meta Link Color
-	 * 8. Primary Color
-	 * 9. Secondary Color
-	 * 10. Action Color
-	 * 11. Default Button Color
-	 * 12. Page Masthead Text Color
-	 * 13. Page Masthead Background Color
-	 * 14. Footer Widgets Text Color
-	 * 15. Footer Widgets Background Color
+	 * 6. Text Color
+	 * 7. Link Color
+	 * 8. Meta Link Color
+	 * 9. Primary Color
+	 * 10. Secondary Color
+	 * 11. Action Color
+	 * 12. Default Button Color
+	 * 13. Page Masthead Text Color
+	 * 14. Page Masthead Background Color
+	 * 15. Footer Widgets Text Color
+	 * 16. Footer Widgets Background Color
 	 *
 	 * @since Memberlite 1.0
 	 *
@@ -1165,6 +1166,7 @@ class Memberlite_Customize {
 						'#FFFFFF',
 						'#F9FAFB',
 						'#444444',
+						'#222222',
 						'#011935',
 						'#011935',
 						'#011935',
@@ -1185,6 +1187,7 @@ class Memberlite_Customize {
 						'#FFFFFF',
 						'#FAFAFA',
 						'#777777',
+						'#222222',
 						'#2C3E50',
 						'#2C3E50',
 						'#2C3E50',
@@ -1205,6 +1208,7 @@ class Memberlite_Customize {
 						'#F4EFEA',
 						'#E2DED9',
 						'#354458',
+						'#222222',
 						'#3A9AD9',
 						'#3A9AD9',
 						'#354458',
@@ -1225,6 +1229,7 @@ class Memberlite_Customize {
 						'#EFEFEF',
 						'#424242',
 						'#EFEFEF',
+						'#222222',
 						'#00CCD6',
 						'#00CCD6',
 						'#00CCD6',
@@ -1245,6 +1250,7 @@ class Memberlite_Customize {
 						'#FFFFFF',
 						'#00AEEF',
 						'#FFFFFF',
+						'#222222',
 						'#00AEEF',
 						'#00AEEF',
 						'#333333',
@@ -1265,6 +1271,7 @@ class Memberlite_Customize {
 						'#FFFFFF',
 						'#00A651',
 						'#FFFFFF',
+						'#222222',
 						'#00A651',
 						'#00A651',
 						'#333333',
@@ -1285,6 +1292,7 @@ class Memberlite_Customize {
 						'#FFFFFF',
 						'#F39C12',
 						'#FFFFFF',
+						'#222222',
 						'#F39C12',
 						'#F39C12',
 						'#333333',
@@ -1305,6 +1313,7 @@ class Memberlite_Customize {
 						'#FFFFFF',
 						'#ED0977',
 						'#FFFFFF',
+						'#222222',
 						'#ED0977',
 						'#ED0977',
 						'#333333',
@@ -1325,6 +1334,7 @@ class Memberlite_Customize {
 						'#FFFFFF',
 						'#B1EB00',
 						'#666666',
+						'#222222',
 						'#B1EB00',
 						'#B1EB00',
 						'#53BBF4',
@@ -1345,6 +1355,7 @@ class Memberlite_Customize {
 						'#F0F1EE',
 						'#FFFFFF',
 						'#555555',
+						'#222222',
 						'#FB6964',
 						'#FB6964',
 						'#1352A2',
@@ -1365,6 +1376,7 @@ class Memberlite_Customize {
 						'#FFFFFF',
 						'#700035',
 						'#EFEFEF',
+						'#222222',
 						'#009D97',
 						'#AA2159',
 						'#AA2159',
@@ -1385,6 +1397,7 @@ class Memberlite_Customize {
 						'#F5F5F5',
 						'#FFFFFF',
 						'#67727A',
+						'#222222',
 						'#6991AC',
 						'#6991AC',
 						'#67727A',
@@ -1405,6 +1418,7 @@ class Memberlite_Customize {
 						'#F9F9F7',
 						'#363635',
 						'#FFFFFF',
+						'#222222',
 						'#83BF17',
 						'#83BF17',
 						'#83BF17',
