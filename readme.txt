@@ -3,7 +3,7 @@ Contributors: kimannwall, strangerstudios
 Requires at least: 6.0
 Tested up to: 6.6
 Requires PHP: 5.6
-Stable tag: 5.2
+Stable tag: 5.2.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: one-column, two-columns, left-sidebar, right-sidebar, flexible-header, custom-background, custom-colors, custom-header, custom-menu, custom-logo, editor-style, featured-images, footer-widgets, full-width-template, post-formats, theme-options, threaded-comments, translation-ready, e-commerce
@@ -103,6 +103,12 @@ We highly recommend using these plugins for every site running Memberlite:
 [Install Multiple Post Thumbnails »](https://wordpress.org/plugins/multiple-post-thumbnails/)
 
 == Changelog ==
+
+= 5.2.1 - TBD =
+* ENHANCEMENT: Now supporting a color setting for text color.
+* ENHANCEMENT: Added body class `is-style-dark` or `is-style-light` if dark mode is active.
+* BUG FIX/ENHANCEMENT: Additional fixes to support sites using a dark background / inverted scheme.
+* BUG FIX: Fixed priority of color palette setup so that font and body background colors are always named.
 
 = 5.2.0 - 2024-07-17 =
 * ENHANCEMENT: Updated to fully support for PMPro v3.1+ and frontend design updates in core.
