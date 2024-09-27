@@ -137,7 +137,7 @@ add_action( 'wp_head', 'memberlite_load_local_webfonts' );
  * @global int $content_width
  */
 function memberlite_content_width() {
-	$GLOBALS['content_width'] = apply_filters( 'memberlite_content_width', 744 );
+	$GLOBALS['content_width'] = apply_filters( 'memberlite_content_width', 805 );
 }
 add_action( 'after_setup_theme', 'memberlite_content_width', 0 );
 
