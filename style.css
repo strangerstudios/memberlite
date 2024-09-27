@@ -2888,13 +2888,12 @@ a:active:not(.pmpro_btn:active) {
 }
 
 /* Membership Signup Forms */
-.memberlite_signup,
-.pmpro_signup_form {
+.memberlite_signup {
 	padding: 1.9rem;
 	background-color: var(--memberlite-color-white);
 	z-index: 100;
 	border-top: .9rem solid var(--memberlite-color-secondary);
-	border-bottom: 2.35rem solid var(--memberlite-color-secondary);
+	border-bottom: 1.45rem solid var(--memberlite-color-secondary);
 	border-left: 1px solid var(--memberlite-color-borders);
 	border-right: 1px solid var(--memberlite-color-borders);
 }
@@ -2902,8 +2901,7 @@ a:active:not(.pmpro_btn:active) {
 	position: fixed;
 	top: 0;
 }
-.pmpro_form.memberlite_signup h2,
-.pmpro_signup_form h2 {
+.pmpro_form.memberlite_signup h2 {
 	background-color: transparent;
 	border: none;
 	color: var(--memberlite-color-primary);
@@ -2912,6 +2910,10 @@ a:active:not(.pmpro_btn:active) {
 }
 .pmpro_form.memberlite_signup div {
 	margin: 0 0 2.9rem 0
+}
+.pmpro .pmpro_signup_form .pmpro_card {
+	border-top: .9rem solid var(--memberlite-color-secondary);
+	border-bottom: 1.45rem solid var(--memberlite-color-secondary);
 }
 
 /* Membership Checkout */
