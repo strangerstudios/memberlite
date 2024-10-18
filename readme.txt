@@ -10,7 +10,7 @@ Tags: one-column, two-columns, left-sidebar, right-sidebar, flexible-header, cus
 
 == Description ==
 =Build a Professional WordPress Membership Site=
-Memberlite is the ideal theme for your membership site - packed with integration for top plugins including Paid Memberships Pro and LifterLMS. It's fully customizable with your logo, colors, fonts, and more global layout settings. Extend the site appearance further with the Memberlite Elements and Memberlite Shortcodes plugins. Memberlite is responsive, clean and minimal.
+Memberlite is the ideal theme for your membership site - packed with integration for top plugins including Paid Memberships Pro and LifterLMS. It's fully customizable with your logo, colors, fonts, and more global layout settings. Memberlite is responsive, clean and minimal.
 
 == Copyright ==
 
@@ -315,7 +315,7 @@ We highly recommend using these plugins for every site running Memberlite:
 * BUG FIX: Fixed styles for some BuddyPress buttons that were invisible.
 * BUG FIX/ENHANCEMENT: Fixed blockquotes styling. (Thanks, Justin Tadlock and Sakin Shrestha)
 * BUG FIX/ENHANCEMENT: Prefixing all hooks with theme slug. Adding deprecated file for old hook names.
-* ENHANCEMENT: Some banner, widget, and sidebar features were moved into a separate plugin Memberlite Elements, available from the wp.org repository here https://wordpress.org/plugins/memberlite-elements/.
+* ENHANCEMENT: Some banner, widget, and sidebar features were moved into a separate plugin Memberlite Elements.
 * ENHANCEMENT: Improving print styles for better output
 * ENHANCEMENT: Updating to version 5.2 of Font Awesome.
 * ENHANCEMENT: Adding WooCommerce page template 3.x support

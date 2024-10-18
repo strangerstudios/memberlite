@@ -97,7 +97,7 @@ function memberlite_support() {
 						'href' => array(),
 					),
 				);
-				$memberlite_plugins_recommended = apply_filters( 'memberlite_plugins_recommended', array( 'memberlite-elements', 'memberlite-shortcodes', 'paid-memberships-pro', 'sitewide-sales' ) );
+				$memberlite_plugins_recommended = apply_filters( 'memberlite_plugins_recommended', array( 'paid-memberships-pro', 'sitewide-sales' ) );
 				if ( ! empty( $memberlite_plugins_recommended ) ) { ?>
 					<hr />
 					<h2>
@@ -109,56 +109,6 @@ function memberlite_support() {
 					<div class="wp-list-table widefat plugin-install">
 						<h2 class="screen-reader-text"><?php esc_html_e( 'Plugins list', 'memberlite' );?></h2>
 						<div id="the-list">
-							<?php if ( in_array( 'memberlite-elements', $memberlite_plugins_recommended ) ) { ?>
-							<div class="plugin-card plugin-card-memberlite-elements">
-								<div class="plugin-card-top">
-									<div class="name column-name">
-										<h3><a href="https://wordpress.org/plugins/memberlite-elements/" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Memberlite Elements', 'memberlite' ); ?></a></h3>
-										<img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/memberlite-elements-icon-256x256.png" class="plugin-icon" alt="<?php echo esc_attr( 'Memberlite Elements', 'memberlite' ); ?>" />
-									</div>
-									<div class="action-links">
-										<ul class="plugin-action-buttons">
-											<li>
-												<?php
-													echo wp_kses( memberlite_plugin_action_button( 'memberlite-elements', 'memberlite-elements/memberlite-elements.php' ), $memberlite_plugin_action_button_allowed_html );
-												?>
-											</li>
-											<li><a href="https://wordpress.org/plugins/memberlite-elements/" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'More Details', 'memberlite' ); ?></a></li>
-										</ul>
-									</div>
-									<div class="desc column-description">
-										<p><?php esc_html_e( 'Improved features and control for your Memberlite banners, sidebars, and landing pages.', 'memberlite' ); ?></p>
-										<p class="authors"><cite><?php esc_html_e( 'By', 'memberlite' ); ?> <a href="https://www.strangerstudios.com" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Stranger Studios', 'memberlite' ); ?></a></cite></p>
-									</div>
-								</div>
-							</div> <!-- end plugin-card-memberlite-elements -->
-							<?php } ?>
-
-							<?php if ( in_array( 'memberlite-shortcodes', $memberlite_plugins_recommended ) ) { ?>
-							<div class="plugin-card plugin-card-memberlite-shortcodes">
-								<div class="plugin-card-top">
-									<div class="name column-name">
-										<h3><a href="https://wordpress.org/plugins/memberlite-shortcodes/" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Memberlite Shortcodes', 'memberlite' ); ?></a></h3>
-										<img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/memberlite-shortcodes-icon-256x256.png" class="plugin-icon" alt="<?php echo esc_attr( 'Memberlite Shortcodes', 'memberlite' ); ?>">
-									</div>
-									<div class="action-links">
-										<ul class="plugin-action-buttons">
-											<li>
-												<?php
-													echo wp_kses( memberlite_plugin_action_button( 'memberlite-shortcodes', 'memberlite-shortcodes/memberlite-shortcodes.php' ), $memberlite_plugin_action_button_allowed_html );
-												?>
-											</li>
-											<li><a href="https://wordpress.org/plugins/memberlite-shortcodes/" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'More Details', 'memberlite' ); ?></a></li>
-										</ul>
-									</div>
-									<div class="desc column-description">
-										<p><?php esc_html_e( 'Enhance content with shortcodes for Accordions, Banners, Buttons, Columns, Icons, Messages, and Recent Posts.', 'memberlite' ); ?></p>
-										<p class="authors"><cite><?php esc_html_e( 'By', 'memberlite' ); ?> <a href="https://www.strangerstudios.com" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Stranger Studios', 'memberlite' ); ?></a></cite></p>
-									</div>
-								</div>
-							</div> <!-- end plugin-card-memberlite-shortcodes -->
-							<?php } ?>
-
 							<?php if ( in_array( 'paid-memberships-pro', $memberlite_plugins_recommended ) ) { ?>
 							<div class="plugin-card plugin-card-paid-memberships-pro">
 								<div class="plugin-card-top">

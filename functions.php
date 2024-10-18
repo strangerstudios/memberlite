@@ -33,6 +33,38 @@ function memberlite_init_styles() {
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
+
+	// Conditionally load styles for shortcodes.
+	global $post, $page;
+	$shortcodes = array(
+		'memberlite_accordion',
+		'memberlite_banner',
+		'memberlite_btn',
+		'row',
+		'row_row',
+		'row_row_row',
+		'row_row_row_your_boat',
+		'fa',
+		'memberlite_msg',
+		'memberlite_recent_posts',
+		'memberlite_signup',
+		'memberlite_subpagelist',
+		'memberlite_tab',
+	);
+
+	$should_exit = true;
+
+	foreach ( $shortcodes as $sc ) {
+		if ( ( isset( $post->post_content ) && has_shortcode( $post->post_content, $sc ) ) || ( isset( $page->post_content ) && has_shortcode( $page->post_content, $sc ) ) ) {
+			$should_exit = false;
+		}
+	}
+
+	// Only load / enqueue resources if a shortcode is present on the post/page.
+	if ( false === $should_exit ) {
+		wp_enqueue_script( 'memberlite-js-cookie', get_template_directory_uri() . '/js/js.cookie.min.js', array(), MEMBERLITE_VERSION, true );
+		wp_enqueue_script( 'memberlite_js', get_template_directory_uri() . '/js/memberlite-shortcodes.js', array( 'jquery' ), MEMBERLITE_VERSION, true );
+	}
 }
 add_action( 'wp_enqueue_scripts', 'memberlite_init_styles' );
 
@@ -666,6 +698,15 @@ require_once get_template_directory() . '/inc/font-awesome.php';
 /* Load Jetpack compatibility file. */
 require_once get_template_directory() . '/inc/jetpack.php';
 
+/* Custom landing page element code. */
+require_once get_template_directory() . '/inc/landing_page.php';
+
+/* Custom page banner element code. */
+require_once get_template_directory() . '/inc/page_banners.php';
+
+/* Custom sidebars. */
+require_once get_template_directory() . '/inc/sidebars.php';
+
 /* Custom template tags. */
 require_once get_template_directory() . '/inc/template-tags.php';
 
@@ -697,6 +738,21 @@ if ( function_exists( 'is_woocommerce' ) ) {
 	require_once get_template_directory() . '/inc/integrations/woocommerce.php';
 }
 
+/**
+ * Load all the shortcodes.
+ */
+require_once get_template_directory() . '/shortcodes/accordion.php';
+require_once get_template_directory() . '/shortcodes/banners.php';
+require_once get_template_directory() . '/shortcodes/buttons.php';
+require_once get_template_directory() . '/shortcodes/columns.php';
+require_once get_template_directory() . '/shortcodes/font-awesome.php';
+require_once get_template_directory() . '/shortcodes/messages.php';
+require_once get_template_directory() . '/shortcodes/recent_posts.php';
+require_once get_template_directory() . '/shortcodes/signup.php';
+require_once get_template_directory() . '/shortcodes/subpagelist.php';
+require_once get_template_directory() . '/shortcodes/tabs.php';
+
+/* Filter the template hierarchy for the front page. */
 function memberlite_frontpage_template_hierarchy( $templates ) {
 	$templates = array();
 	if ( ! is_home() ) {
