@@ -1499,11 +1499,12 @@ a:active:not(.pmpro_btn:active) {
 #secondary tbody td {
 	padding: .7rem 1.45rem;
 }
-.widget { }
+
 /* Make sure select elements fit in widgets */
 .widget select {
 	max-width: 100%;
 }
+
 /* Search widget */
 .widget_search .search-submit,
 .widget_product_search input[type=submit] {
