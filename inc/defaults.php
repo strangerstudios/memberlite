@@ -12,7 +12,7 @@ $memberlite_defaults = apply_filters( 'memberlite_defaults', array(
 	'posts_entry_meta_after'					=> __( 'This entry was posted in {post_categories} and tagged {post_tags}. Bookmark the {post_permalink}.', 'memberlite' ),
 	'author_block'								=> false,
 	'memberlite_footerwidgets'					=> '4',
-	'copyright_textbox'							=> '<a href="http://wordpress.org/" rel="license">' . __( 'Proudly powered by WordPress', 'memberlite' ) . '</a><span class="sep"> | </span><a href="http://memberlitetheme.com" rel="license">' . __( 'Theme: Memberlite by Kim Coleman', 'memberlite' ) . '</a>',
+	'copyright_textbox'							=> '<a href="http://memberlitetheme.com" rel="license">' . __( 'Theme: Memberlite by Kim Coleman', 'memberlite' ) . '</a>',
 	'memberlite_back_to_top'					=> true,
 	'memberlite_color_scheme'					=> 'Default',
 	'memberlite_darkcss'						=> false,
