@@ -32,7 +32,7 @@ function memberlite_settings_add_meta_box() {
 add_action('add_meta_boxes', 'memberlite_settings_add_meta_box');
 
 /* Meta box for Memberlite settings */
-function memberlite_esettings_meta_box_callback( $post ) {
+function memberlite_settings_meta_box_callback( $post ) {
 	// Get the array of all possible Font Awesome icons.
 	$font_awesome_icons = memberlite_get_font_awesome_icons( );
 
