@@ -349,7 +349,7 @@ details > summary::-webkit-details-marker {
 	line-height: 2.2rem;
 }
 pre {
-	background-color: #EEE;
+	background-color: #eee;
 	font-family: "Courier 10 Pitch", Courier, monospace;
 	margin: 2.9rem 0;
 	max-width: 100%;
@@ -364,14 +364,14 @@ kbd,
 tt,
 var {
 	background-color: #eee;
-	color: #d14;
+	color: #c9302c;
 	padding: 2px 4px;
 }
 code,
 kbd,
 tt,
 var {
-	font: 15px Monaco, Consolas, "Andale Mono", "DejaVu Sans Mono", monospace;
+	font-family: "Courier 10 Pitch", Courier, monospace;
 }
 abbr,
 acronym {
