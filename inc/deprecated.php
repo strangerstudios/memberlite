@@ -128,8 +128,9 @@ function memberlite_check_for_deprecated_plugins() {
 
 	// If any deprecated add ons are active, show warning.
 	if ( ! empty( $deprecated_active ) && is_array( $deprecated_active ) ) {
-		// Only show on certain pages.
-		if ( ! isset( $_REQUEST['page'] ) || strpos( sanitize_text_field( $_REQUEST['page'] ), 'pmpro' ) === false  ) {
+		// Only show on the Themes or Plugins pages.
+		global $pagenow;
+		if ( ! in_array( $pagenow, array( 'themes.php', 'plugins.php' ) ) ) {
 			return;
 		}
 		?>
