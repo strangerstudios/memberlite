@@ -1027,7 +1027,7 @@ add_filter( 'widget_text', 'do_shortcode' );
  * Add a Banner Image as a secondary thumbnail
  */
 function memberlite_banner_image_setup() {
-	if ( ! class_exists('MultiPostThumbnails' ) ) {
+	if ( ! class_exists('MemberliteMultiPostThumbnails' ) ) {
 		return;
 	}
 
@@ -1036,7 +1036,7 @@ function memberlite_banner_image_setup() {
 		if( in_array( $screen, array('reply','topic' ) ) ) {
 			continue;
 		} else {
-			new MultiPostThumbnails(
+			new MemberliteMultiPostThumbnails(
 				array(
 					'label' => __( 'Banner Image', 'memberlite' ),
 					'id' => 'memberlite_banner_image' . $screen,

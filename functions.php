@@ -701,6 +701,9 @@ require_once get_template_directory() . '/inc/jetpack.php';
 /* Custom landing page element code. */
 require_once get_template_directory() . '/inc/landing_page.php';
 
+/* Multiple post thumbanils support. */
+require_once get_template_directory() . '/inc/multi-post-thumbnails.php';
+
 /* Custom page banner element code. */
 require_once get_template_directory() . '/inc/page_banners.php';
 

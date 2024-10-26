@@ -289,7 +289,7 @@ function memberlite_featured_image_meta( $content, $post_id ) {
 		$id = '_memberlite_show_image_banner';
 		$value = esc_attr( get_post_meta( $post_id, $id, true ) );
 		$label = '<hr /><label for="' . $id . '" class="selectit"><input name="' . esc_attr( $id ) . '" type="checkbox" id="' . esc_attr( $id ) . '" value="' . esc_attr( $value ) . ' "'. checked( $value, 1, false) .'>' . esc_html__('Show as Banner Image', 'memberlite') . '</label>';
-		if ( class_exists( 'MultiPostThumbnails' ) ) {
+		if ( class_exists( 'MemberliteMultiPostThumbnails' ) ) {
 			$label .= '<p class="howto">' . esc_html__( 'If a banner image is set below, it will override this setting.', 'memberlite' ) . '</p>';
 		}
 		return $content .= $label;
@@ -542,13 +542,13 @@ function memberlite_maybe_customize_masthead_content( $content ) {
 add_filter( 'memberlite_masthead_content', 'memberlite_maybe_customize_masthead_content' );
 
 /**
- * Filter to get the banner image from MultiPostThumbnails if it exists.
+ * Filter to get the banner image from MemberliteMultiPostThumbnails if it exists.
  */
 function memberlite_maybe_get_custom_banner_image( $memberlite_banner_image, $attachment_id, $size = 'banner', $icon = false, $attr = '', $post_id ) {
-	if ( class_exists( 'MultiPostThumbnails') && ! empty( $post_id ) ) {
+	if ( class_exists( 'MemberliteMultiPostThumbnails') && ! empty( $post_id ) ) {
 		$post_type = get_post_type( $post_id );
 		if ( ! empty( $post_type ) ) {
-			$memberlite_banner_image_id = MultiPostThumbnails::get_post_thumbnail_id(
+			$memberlite_banner_image_id = MemberliteMultiPostThumbnails::get_post_thumbnail_id(
 				$post_type,
 				'memberlite_banner_image' . $post_type,
 				$post_id
@@ -565,13 +565,13 @@ function memberlite_maybe_get_custom_banner_image( $memberlite_banner_image, $at
 add_filter( 'memberlite_get_banner_image', 'memberlite_maybe_get_custom_banner_image', 10, 6 );
 
 /**
- * Filter to get the banner image src from MultiPostThumbnails if it exists
+ * Filter to get the banner image src from MemberliteMultiPostThumbnails if it exists
  */
 function memberlite_maybe_change_banner_image_src( $memberlite_banner_image_src, $size, $post_id = null ) {
-	if ( class_exists( 'MultiPostThumbnails') && ! empty( $post_id ) ) {
+	if ( class_exists( 'MemberliteMultiPostThumbnails') && ! empty( $post_id ) ) {
 		$post_type = get_post_type( $post_id );
 		if ( ! empty( $post_type ) ) {
-			$memberlite_banner_image_id = MultiPostThumbnails::get_post_thumbnail_id(
+			$memberlite_banner_image_id = MemberliteMultiPostThumbnails::get_post_thumbnail_id(
 				$post_type,
 				'memberlite_banner_image' . $post_type,
 				$post_id
