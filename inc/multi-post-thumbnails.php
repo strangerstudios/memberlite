@@ -19,26 +19,19 @@ if (!class_exists('MemberliteMultiPostThumbnails')) {
 		 */
 		protected static $statics_enqueued = false;
 
+		// Declare all instance properties used in this class
+		public $label;
+		public $id;
+		public $post_type;
+		public $priority;
+		public $context;
+
 		public function __construct($args = array()) {
 			$this->register($args);
 		}
 
 		/**
 		 * Register a new post thumbnail.
-		 *
-		 * Required $args contents:
-		 *
-		 * label - The name of the post thumbnail to display in the admin metabox
-		 *
-		 * id - Used to build the CSS class for the admin meta box. Needs to be unique and valid in a CSS class selector.
-		 *
-		 * Optional $args contents:
-		 *
-		 * post_type - The post type to register this thumbnail for. Defaults to post.
-		 *
-		 * priority - The admin metabox priority. Defaults to 'low'.
-		 * 
-		 * context - The admin metabox context. Defaults to 'side'.
 		 *
 		 * @param array|string $args See above description.
 		 * @return void
@@ -47,33 +40,42 @@ if (!class_exists('MemberliteMultiPostThumbnails')) {
 			global $wp_version;
 			
 			$defaults = array(
-				'label' => null,
-				'id' => null,
+				'label'     => null,
+				'id'        => null,
 				'post_type' => 'post',
-				'priority' => 'low',
-				'context' => 'side',
+				'priority'  => 'low',
+				'context'   => 'side',
 			);
 
 			$args = wp_parse_args($args, $defaults);
 
-			// Create and set properties
-			foreach($args as $k => $v) {
-				$this->$k = $v;
+			// Assign properties only if they exist in the class
+			foreach ($args as $k => $v) {
+				if (property_exists($this, $k)) {
+					$this->$k = $v;
+				}
 			}
 
-			// Need these args to be set at a minimum
+			// Validate the required args
 			if (null === $this->label || null === $this->id) {
 				if (WP_DEBUG) {
-					trigger_error(sprintf(__("The 'label' and 'id' values of the 'args' parameter of '%s::%s()' are required", 'multiple-post-thumbnails'), __CLASS__, __FUNCTION__));
+					trigger_error(
+						sprintf(
+							__("The 'label' and 'id' values of the 'args' parameter of '%s::%s()' are required", 'multiple-post-thumbnails'),
+							__CLASS__,
+							__FUNCTION__
+						)
+					);
 				}
 				return;
 			}
 
-			// add theme support if not already added
-			if ( ! current_theme_supports('post-thumbnails') ) {
-				add_theme_support( 'post-thumbnails' );
+			// Add theme support if not already added
+			if (!current_theme_supports('post-thumbnails')) {
+				add_theme_support('post-thumbnails');
 			}
 
+			// Hook actions and filters
 			add_action('add_meta_boxes', array($this, 'add_metabox'));
 			add_action('admin_enqueue_scripts', array($this, 'enqueue_admin_scripts'));
 			add_action('admin_print_scripts-post.php', array($this, 'admin_header_scripts'));
