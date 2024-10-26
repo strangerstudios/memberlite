@@ -159,13 +159,13 @@ function memberlite_esettings_meta_box_callback( $post ) {
 }
 
 /* Save custom sidebar selection */
-function memberlite_elements_settings_save_meta_box_data( $post_id ) {
+function memberlite_settings_save_meta_box_data( $post_id ) {
 	global $allowedposttags;
 
-	if(!isset($_POST['memberlite_elements_settings_meta_box_nonce'])) {
+	if(!isset($_POST['memberlite_settings_meta_box_nonce'])) {
 		return;
 	}
-	if(!wp_verify_nonce($_POST['memberlite_elements_settings_meta_box_nonce'], 'memberlite_elements_settings_meta_box')) {
+	if(!wp_verify_nonce($_POST['memberlite_settings_meta_box_nonce'], 'memberlite_settings_meta_box')) {
 		return;
 	}
 	if ( defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
@@ -280,7 +280,7 @@ function memberlite_elements_settings_save_meta_box_data( $post_id ) {
 		update_post_meta($post_id, '_memberlite_landing_page_upsell', $memberlite_landing_page_upsell);
 	}
 }
-add_action('save_post', 'memberlite_elements_settings_save_meta_box_data');
+add_action('save_post', 'memberlite_settings_save_meta_box_data');
 
 /* Add Banner Image Setting meta box */
 function memberlite_featured_image_meta( $content, $post_id ) {
