@@ -16,5 +16,4 @@ Usage docs can be found here: https://memberlitetheme.com/documentation/
 Submit a ticket on our website by visiting https://memberlitetheme.com/
 
 **General usage and development questions**
-- WordPress.org Forums: https://wordpress.org/support/theme/memberlite/
 - Website: https://memberlitetheme.com/contact/

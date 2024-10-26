@@ -77,7 +77,7 @@ Use the Customize > Memberlite Options screen to modify theme layout, logo, font
 == Using Child Themes ==
 If you need to customize the theme beyond theme settings, use a child theme.
 
-[Memberlite Child Theme Downloads »](https://memberlitetheme.com/themes/) | [About Child Themes (WordPress Codex) »](https://developer.wordpress.org/themes/advanced-topics/child-themes/)
+[Memberlite Child Theme Downloads »](https://memberlitetheme.com/themes/) | [About Child Themes (WordPress Developer Handbook) »](https://developer.wordpress.org/themes/advanced-topics/child-themes/)
 
 == Integrated Plugins ==
 Memberlite includes formatting for use with:
@@ -86,21 +86,13 @@ Memberlite includes formatting for use with:
 [Install Paid Memberships Pro »](http://www.paidmembershipspro.com/documentation/download/)
 
 = bbPress =
-[Install bbPress »](https://wordpress.org/plugins/bbpress/) | [Install Paid Memberships Pro - bbPress Add On »](https://wordpress.org/plugins/pmpro-bbpress/)
+[Install bbPress »](https://wordpress.org/plugins/bbpress/) | [Install Paid Memberships Pro - bbPress Add On »](https://www.paidmembershipspro.com/add-ons/pmpro-bbpress/)
 
 = LifterLMS =
 [Install LifterLMS »](https://wordpress.org/plugins/lifterlms/)
 
 = Events Manager =
 [Install Events Manager »](https://wordpress.org/plugins/events-manager/)
-
-= Testimonials Widget =
-[Install Testimonials Widget »](https://wordpress.org/plugins/testimonials-widget/)
-
-We highly recommend using these plugins for every site running Memberlite:
-
-= Multiple Post Thumbnails =
-[Install Multiple Post Thumbnails »](https://wordpress.org/plugins/multiple-post-thumbnails/)
 
 == Changelog ==
 
