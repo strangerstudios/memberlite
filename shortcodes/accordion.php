@@ -10,8 +10,15 @@ function memberlite_accordion_shortcode( $atts, $content = null ) {
 		'class' => '',
 	), $atts ) );
 
+	// Build the classes.
+	$classes = array( 'memberlite_accordion' );
+	if ( ! empty( $class ) ) {
+		$classes[] = $class;
+	}
+	$class = implode( ' ', $classes );
+
 	// Build accordion wrapper.
-	$result = '<div class="memberlite_accordion ' . $class . '">';
+	$result = '<div class="' . esc_attr( $class ) . '">';
 	$content = str_replace( ']<br />', ']', $content );
 	$content = str_replace( '<br />\n[', '[', $content );
 	$result .= do_shortcode( $content );
@@ -32,10 +39,17 @@ function memberlite_accordion_item_shortcode( $atts, $content = null ) {
 		'title' => '',
 	), $atts ) );
 
+	// Build the classes.
+	$classes = array( 'memberlite_accordion-item' );
+	if ( ! empty( $class ) ) {
+		$classes[] = $class;
+	}
+	$class = implode( ' ', $classes );
+
 	// Build the accordion items.
 	static $count = 0;
 	$count++;
-	$result = '<div id="memberlite_accordion-item_' . $count . '" class="memberlite_accordion-item ' . $class . '">';
+	$result = '<div id="memberlite_accordion-item_' . esc_attr( $count ) . '" class="memberlite_accordion-item ' . esc_attr( $class ) . '">';
 	$result .= '<h2>' . wp_kses_post( $title ) . '</h2>';
 	$result .= '<div class="memberlite_accordion-item-content">';
 	$result .= do_shortcode( $content );
