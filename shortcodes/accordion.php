@@ -49,7 +49,7 @@ function memberlite_accordion_item_shortcode( $atts, $content = null ) {
 	// Build the accordion items.
 	static $count = 0;
 	$count++;
-	$result = '<div id="memberlite_accordion-item_' . esc_attr( $count ) . '" class="memberlite_accordion-item ' . esc_attr( $class ) . '">';
+	$result = '<div id="memberlite_accordion-item_' . esc_attr( $count ) . '" class="' . esc_attr( $class ) . '">';
 	$result .= '<h2>' . wp_kses_post( $title ) . '</h2>';
 	$result .= '<div class="memberlite_accordion-item-content">';
 	$result .= do_shortcode( $content );
