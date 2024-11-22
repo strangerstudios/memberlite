@@ -32,10 +32,14 @@ function memberlite_recent_posts_shortcode_handler($atts, $content=null, $code="
 	);
 
 	// check to see if post type is not empty and the post type exists.
-	if( !empty($post_type) && post_type_exists( $post_type ) ) {
+	if ( ! empty( $post_type ) && post_type_exists( $post_type ) ) {
 		$query_args['post_type'] = $post_type;
-	}else{
-		return _e( "There was a problem fetching content for the post type '$post_type'. Please ensure this exists.", "memberlite-shortcodes" );
+	} else {
+		return sprintf(
+			/* translators: %s: post type */
+			__( "There was a problem fetching content for the post type '%s'. Please ensure this exists.", "memberlite" ),
+			esc_html( $post_type )
+		);
 	}
 
 	if($show_avatar == "0" || $show_avatar == "false" || $show_avatar == "no"){

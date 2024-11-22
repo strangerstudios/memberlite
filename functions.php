@@ -47,7 +47,6 @@ function memberlite_init_styles() {
 		'fa',
 		'memberlite_msg',
 		'memberlite_recent_posts',
-		'memberlite_signup',
 		'memberlite_subpagelist',
 		'memberlite_tab',
 	);
@@ -751,7 +750,6 @@ require_once get_template_directory() . '/shortcodes/columns.php';
 require_once get_template_directory() . '/shortcodes/font-awesome.php';
 require_once get_template_directory() . '/shortcodes/messages.php';
 require_once get_template_directory() . '/shortcodes/recent_posts.php';
-require_once get_template_directory() . '/shortcodes/signup.php';
 require_once get_template_directory() . '/shortcodes/subpagelist.php';
 require_once get_template_directory() . '/shortcodes/tabs.php';
 

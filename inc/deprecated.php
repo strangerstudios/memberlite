@@ -67,6 +67,19 @@ function memberlite_maybe_show_deprecated_hook_message( $new, $old ) {
 }
 
 /**
+ * Deprecate the memberlite_signup shortcode.
+ */
+function memberlite_signup_shortcode($atts, $content=null, $code="") {
+	_doing_it_wrong( __FUNCTION__, esc_html__( 'The [memberlite_signup] shortcode is now deprecated. Please use the Signup Shortcode Add On for Paid Memberships Pro instead.', 'memberlite' ), 'TBD' );
+
+	// Show a message to admins that the shortcode is deprecated.
+	if ( current_user_can ( 'manage_options' ) ) {
+		return '<div class="pmpro_message pmpro_error">' . esc_html__( 'Admin only message: The Memberlite Signup shortcode is deprecated. Please update your content.', 'memberlite' ) . '</div>';
+	}
+}
+add_shortcode( 'memberlite_signup', 'memberlite_signup_shortcode' );
+
+/**
  * Get a list of deprecated or no longer needed plugins.
  *
  * @since TBD

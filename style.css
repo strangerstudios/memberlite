@@ -2891,29 +2891,6 @@ a:active:not(.pmpro_btn:active) {
 }
 
 /* Membership Signup Forms */
-.memberlite_signup {
-	padding: 1.9rem;
-	background-color: var(--memberlite-color-white);
-	z-index: 100;
-	border-top: .9rem solid var(--memberlite-color-secondary);
-	border-bottom: 1.45rem solid var(--memberlite-color-secondary);
-	border-left: 1px solid var(--memberlite-color-borders);
-	border-right: 1px solid var(--memberlite-color-borders);
-}
-.memberlite_signup-fixed {
-	position: fixed;
-	top: 0;
-}
-.pmpro_form.memberlite_signup h2 {
-	background-color: transparent;
-	border: none;
-	color: var(--memberlite-color-primary);
-	padding: 0;
-	margin: 1.45rem 0 2.9rem 0;
-}
-.pmpro_form.memberlite_signup div {
-	margin: 0 0 2.9rem 0
-}
 .pmpro .pmpro_signup_form .pmpro_card {
 	border-top: .9rem solid var(--memberlite-color-secondary);
 	border-bottom: 1.45rem solid var(--memberlite-color-secondary);
@@ -3112,9 +3089,6 @@ body.memberlite-banner-hidden .entry-content > .banner:first-child {
 	display: block;
 	font-size: 1.8rem;
 }
-.page-template-landing #secondary .pmpro_form.memberlite_signup {
-	margin-bottom: 2.9rem;
-}
 
 /*--------------------------------------------------------------
 14.0 Memberlite Shortcodes Styles
@@ -3226,21 +3200,6 @@ body.memberlite-banner-hidden .entry-content > .banner:first-child {
 }
 #widget_memberlite_recent_posts .hentry.format-video h4.entry-title:before {
 	content: "\f03d";
-}
-
-/* [memberlite_signup] Shortcode */
-form.memberlite_signup div {
-	margin: .5em 0;
-}
-form.memberlite_signup input[type=text],
-form.memberlite_signup input[type=email],
-form.memberlite_signup input[type=password] {
-	max-width: 100%;
-	width: 100%;
-}
-form.memberlite_signup .pmpro_btn {
-	display: block;
-	width: 100%;
 }
 
 /* [memberlite_subpagelist] Shortcode */
