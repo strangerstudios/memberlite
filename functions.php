@@ -947,3 +947,32 @@ function memberlite_enqueue_block_assets() {
 	);
 }
 add_action( 'enqueue_block_assets', 'memberlite_enqueue_block_assets' );
+
+/**
+ * Filter the footer copyright text to allow dynamic variables.
+ */
+function memberlite_theme_mod_copyright_textbox( $copyright_text ) {
+	// Don't filter the text in the admin.
+	if ( is_admin() ) {
+        return $copyright_text;
+    }
+
+	// Return if the text is not a string.
+	if ( ! is_string( $copyright_text ) ) {
+		return $copyright_text;
+	}
+
+	$data = array(
+        'current_year' => date( 'Y' ),
+        'site_title'   => (string) get_option( 'blogname' ),
+        'site_url'     => (string) get_option( 'siteurl' ),
+        'tagline'      => (string) get_option( 'blogdescription' ),
+    );
+
+    foreach ( $data as $key => $value ) {
+        $copyright_text = str_replace( "!!" . $key . "!!", $value, $copyright_text );
+    }
+
+    return $copyright_text;
+}
+add_filter( 'theme_mod_copyright_textbox', 'memberlite_theme_mod_copyright_textbox' );
