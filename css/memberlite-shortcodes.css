@@ -1,0 +1,115 @@
+@charset "UTF-8";
+/* CSS Document */
+
+/* [memberlite_banner] Shortcode */
+.banner {
+	padding: 5.8rem 0;
+}
+.banner .text-center {
+	text-align: center;
+}
+.banner .text-right {
+	text-align: right;
+}
+.banner .text-left {
+	text-align: left;
+}
+.banner.banner_background-image {
+	background-repeat: no-repeat; 
+	background-size: cover;
+}
+
+/* [memberlite_accordion] Shortcode */
+.memberlite_accordion {}
+.memberlite_accordion h2,
+.entry-content .memberlite_accordion h2 {
+	border-top: 1px solid #CCC;
+	cursor: pointer;
+	margin: 0;
+	padding: 1.45rem;
+}
+.memberlite_accordion h2:before {
+	content: "\f078";
+	float: right;
+	font-family: 'Font Awesome 5 Free';
+	font-weight: 700;
+	margin: 0 1.45rem;
+}
+.memberlite_accordion-item.memberlite_accordion-active h2:before {
+	content: "\f077";
+}
+.memberlite_accordion .memberlite_accordion-item-content {
+	display: none;
+	margin: 0;
+	padding: 0 1.45rem 1.45rem 1.45rem;
+}
+.memberlite_accordion-item:first-child .memberlite_accordion-item-content {
+	display: block;
+}
+
+/* [memberlite_recent_posts] Shortcode */
+#widget_memberlite_recent_posts .post.hentry {
+	margin-bottom: 0;
+}
+#widget_memberlite_recent_posts .widget_has_thumbnail .post.hentry .entry-header {
+	display: grid;
+	grid-template-columns: 80px 1.45rem auto;
+	grid-template-areas:
+	"thumbnail . title"
+	"thumbnail . date";
+	margin-bottom: 1.45rem;
+}
+#widget_memberlite_recent_posts .widget_no_thumbnail .post.hentry .entry-header {
+	margin-bottom: 1.45rem;
+}
+#widget_memberlite_recent_posts .post.hentry .entry-header .entry-title {
+	margin: 0;
+}
+#widget_memberlite_recent_posts .widget_has_thumbnail .post.hentry .entry-header .entry-title {
+	align-self: end;
+	grid-area: title;
+}
+#widget_memberlite_recent_posts .post.hentry .entry-header .post-date {
+	color: #AAA;
+}
+.banner #widget_memberlite_recent_posts .widget_has_thumbnail .post.hentry .entry-header .post-date {
+	color: #EEE;
+}
+#widget_memberlite_recent_posts .widget_has_thumbnail .post.hentry .entry-header .post-date {
+	align-self: start;
+	grid-area: date;
+}
+#widget_memberlite_recent_posts .widget_has_thumbnail .post.hentry .entry-header .widget_post_thumbnail {
+	border-radius: 50%;
+	grid-area: thumbnail;
+	height: auto;
+	width: 100%;
+}
+#widget_memberlite_recent_posts .widget_has_thumbnail .post.hentry .entry-header .widget_post_thumbnail img {
+	border-radius: 50%;
+	margin: 0;
+}
+#widget_memberlite_recent_posts .hentry.format-audio h4.entry-title:before,
+#widget_memberlite_recent_posts .hentry.format-image h4.entry-title:before,
+#widget_memberlite_recent_posts .hentry.format-link h4.entry-title:before,
+#widget_memberlite_recent_posts .hentry.format-video h4.entry-title:before {
+	font-family: 'Font Awesome 5 Free';
+	padding-right: 10px;
+}
+#widget_memberlite_recent_posts .hentry.format-audio h4.entry-title:before {
+	content: "\f025";
+}
+#widget_memberlite_recent_posts .hentry.format-image h4.entry-title:before {
+	content: "\f1c5";
+}
+#widget_memberlite_recent_posts .hentry.format-link h4.entry-title:before {
+	content: "\f08e";
+}
+#widget_memberlite_recent_posts .hentry.format-video h4.entry-title:before {
+	content: "\f03d";
+}
+
+/* [memberlite_subpagelist] Shortcode */
+.page .entry-content .memberlite_subpagelist_item .entry-content {
+	border-bottom: none;
+}

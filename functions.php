@@ -33,6 +33,37 @@ function memberlite_init_styles() {
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
+
+	// Conditionally load styles for shortcodes.
+	global $post, $page;
+	$shortcodes = array(
+		'memberlite_accordion',
+		'memberlite_banner',
+		'memberlite_btn',
+		'row',
+		'row_row',
+		'row_row_row',
+		'row_row_row_your_boat',
+		'fa',
+		'memberlite_msg',
+		'memberlite_recent_posts',
+		'memberlite_subpagelist',
+		'memberlite_tab',
+	);
+
+	$should_exit = true;
+
+	foreach ( $shortcodes as $sc ) {
+		if ( ( isset( $post->post_content ) && has_shortcode( $post->post_content, $sc ) ) || ( isset( $page->post_content ) && has_shortcode( $page->post_content, $sc ) ) ) {
+			$should_exit = false;
+		}
+	}
+
+	// Only load / enqueue resources if a shortcode is present on the post/page.
+	if ( false === $should_exit ) {
+		wp_enqueue_script( 'memberlite-js-cookie', get_template_directory_uri() . '/js/js.cookie.min.js', array(), MEMBERLITE_VERSION, true );
+		wp_enqueue_script( 'memberlite_js', get_template_directory_uri() . '/js/memberlite-shortcodes.js', array( 'jquery' ), MEMBERLITE_VERSION, true );
+	}
 }
 add_action( 'wp_enqueue_scripts', 'memberlite_init_styles' );
 
@@ -615,6 +646,121 @@ function memberlite_member_menu_cb( $args ) {
 /* Allow the use of shortcodes in menus */
 add_filter( 'wp_nav_menu', 'do_shortcode', 11 );
 
+/**
+ * Create an accessible HTML list of nav menu items.
+ */
+class Memberlite_Aria_Walker_Nav_Menu extends Walker_Nav_Menu {
+	/**
+	 * Start the element output.
+	 */
+	public function start_el( &$output, $item, $depth = 0, $args = array(), $id = 0 ) {
+		$indent = ( $depth ) ? str_repeat( "\t", $depth ) : '';
+
+		$classes = empty( $item->classes ) ? array() : (array) $item->classes;
+		$classes[] = 'menu-item-' . $item->ID;
+
+		/**
+		 * Filter the arguments for a single nav menu item.
+		 *
+		 * @param array  $args  An array of arguments.
+		 * @param object $item  Menu item data object.
+		 * @param int    $depth Depth of menu item. Used for padding.
+		 */
+		$args = apply_filters( 'nav_menu_item_args', $args, $item, $depth );
+
+		/**
+		 * Filter the CSS class(es) applied to a menu item's list item element.
+		 *
+		 * @param array  $classes The CSS classes that are applied to the menu item's `<li>` element.
+		 * @param object $item    The current menu item.
+		 * @param array  $args    An array of {@see wp_nav_menu()} arguments.
+		 * @param int    $depth   Depth of menu item. Used for padding.
+		 */
+		$class_names = join( ' ', apply_filters( 'nav_menu_css_class', array_filter( $classes ), $item, $args, $depth ) );
+		$class_names = $class_names ? ' class="' . esc_attr( $class_names ) . '"' : '';
+
+		/**
+		 * Filter the ID applied to a menu item's list item element.
+		 *
+		 * @param string $menu_id The ID that is applied to the menu item's `<li>` element.
+		 * @param object $item    The current menu item.
+		 * @param array  $args    An array of {@see wp_nav_menu()} arguments.
+		 * @param int    $depth   Depth of menu item. Used for padding.
+		 */
+		$id = apply_filters( 'nav_menu_item_id', 'menu-item-'. $item->ID, $item, $args, $depth );
+		$id = $id ? ' id="' . esc_attr( $id ) . '"' : '';
+
+		$output .= sprintf( '%s<li%s%s%s>',
+			$indent,
+			$id,
+			$class_names,
+			in_array( 'menu-item-has-children', $item->classes ) ? ' aria-haspopup="true" aria-expanded="false" tabindex="0"' : ''
+		);
+
+		$atts = array();
+		$atts['title']  = ! empty( $item->attr_title ) ? $item->attr_title : '';
+		$atts['target'] = ! empty( $item->target )     ? $item->target     : '';
+		$atts['rel']    = ! empty( $item->xfn )        ? $item->xfn        : '';
+		$atts['href']   = ! empty( $item->url )        ? $item->url        : '';
+
+		/**
+		 * Filter the HTML attributes applied to a menu item's anchor element.
+		 *
+		 * @param array $atts {
+		 *     The HTML attributes applied to the menu item's `<a>` element, empty strings are ignored.
+		 *
+		 *     @type string $title  Title attribute.
+		 *     @type string $target Target attribute.
+		 *     @type string $rel    The rel attribute.
+		 *     @type string $href   The href attribute.
+		 * }
+		 * @param object $item  The current menu item.
+		 * @param array  $args  An array of {@see wp_nav_menu()} arguments.
+		 * @param int    $depth Depth of menu item. Used for padding.
+		 */
+		$atts = apply_filters( 'nav_menu_link_attributes', $atts, $item, $args, $depth );
+
+		$attributes = '';
+		foreach ( $atts as $attr => $value ) {
+			if ( ! empty( $value ) ) {
+				$value = ( 'href' === $attr ) ? esc_url( $value ) : esc_attr( $value );
+				$attributes .= ' ' . $attr . '="' . $value . '"';
+			}
+		}
+
+		/** This filter is documented in wp-includes/post-template.php */
+		$title = apply_filters( 'the_title', $item->title, $item->ID );
+
+		/**
+		 * Filter a menu item's title.
+		 *
+		 * @param string $title The menu item's title.
+		 * @param object $item  The current menu item.
+		 * @param array  $args  An array of {@see wp_nav_menu()} arguments.
+		 * @param int    $depth Depth of menu item. Used for padding.
+		 */
+		$title = apply_filters( 'nav_menu_item_title', $title, $item, $args, $depth );
+
+		$item_output = $args->before;
+		$item_output .= '<a'. $attributes .'>';
+		$item_output .= $args->link_before . $title . $args->link_after;
+		$item_output .= '</a>';
+		$item_output .= $args->after;
+
+		/**
+		 * Filter a menu item's starting output.
+		 *
+		 * @param string $item_output The menu item's starting HTML output.
+		 * @param object $item        Menu item data object.
+		 * @param int    $depth       Depth of menu item. Used for padding.
+		 * @param array  $args        An array of {@see wp_nav_menu()} arguments.
+		 */
+		$output .= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
+	}
+
+}
+
+
 /* Exclude pings and trackbacks from the number of comments on a post. */
 function memberlite_comment_count( $count ) {
 	global $id;
@@ -666,6 +812,18 @@ require_once get_template_directory() . '/inc/font-awesome.php';
 /* Load Jetpack compatibility file. */
 require_once get_template_directory() . '/inc/jetpack.php';
 
+/* Custom landing page element code. */
+require_once get_template_directory() . '/inc/landing_page.php';
+
+/* Multiple post thumbanils support. */
+require_once get_template_directory() . '/inc/multi-post-thumbnails.php';
+
+/* Custom page banner element code. */
+require_once get_template_directory() . '/inc/page_banners.php';
+
+/* Custom sidebars. */
+require_once get_template_directory() . '/inc/sidebars.php';
+
 /* Custom template tags. */
 require_once get_template_directory() . '/inc/template-tags.php';
 
@@ -697,6 +855,20 @@ if ( function_exists( 'is_woocommerce' ) ) {
 	require_once get_template_directory() . '/inc/integrations/woocommerce.php';
 }
 
+/**
+ * Load all the shortcodes.
+ */
+require_once get_template_directory() . '/shortcodes/accordion.php';
+require_once get_template_directory() . '/shortcodes/banners.php';
+require_once get_template_directory() . '/shortcodes/buttons.php';
+require_once get_template_directory() . '/shortcodes/columns.php';
+require_once get_template_directory() . '/shortcodes/font-awesome.php';
+require_once get_template_directory() . '/shortcodes/messages.php';
+require_once get_template_directory() . '/shortcodes/recent_posts.php';
+require_once get_template_directory() . '/shortcodes/subpagelist.php';
+require_once get_template_directory() . '/shortcodes/tabs.php';
+
+/* Filter the template hierarchy for the front page. */
 function memberlite_frontpage_template_hierarchy( $templates ) {
 	$templates = array();
 	if ( ! is_home() ) {
@@ -775,3 +947,32 @@ function memberlite_enqueue_block_assets() {
 	);
 }
 add_action( 'enqueue_block_assets', 'memberlite_enqueue_block_assets' );
+
+/**
+ * Filter the footer copyright text to allow dynamic variables.
+ */
+function memberlite_theme_mod_copyright_textbox( $copyright_text ) {
+	// Don't filter the text in the admin.
+	if ( is_admin() ) {
+        return $copyright_text;
+    }
+
+	// Return if the text is not a string.
+	if ( ! is_string( $copyright_text ) ) {
+		return $copyright_text;
+	}
+
+	$data = array(
+        'current_year' => date( 'Y' ),
+        'site_title'   => (string) get_option( 'blogname' ),
+        'site_url'     => (string) get_option( 'siteurl' ),
+        'tagline'      => (string) get_option( 'blogdescription' ),
+    );
+
+    foreach ( $data as $key => $value ) {
+        $copyright_text = str_replace( "!!" . $key . "!!", $value, $copyright_text );
+    }
+
+    return $copyright_text;
+}
+add_filter( 'theme_mod_copyright_textbox', 'memberlite_theme_mod_copyright_textbox' );

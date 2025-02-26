@@ -11,14 +11,13 @@ get_header(); ?>
 		<?php do_action( 'memberlite_before_loop' ); ?>
 		<?php
 		while ( have_posts() ) :
-			the_post();
-?>
+			the_post(); ?>
 			<?php get_template_part( 'components/post/content', 'single' ); ?>
 			<?php
 				$theme_mod = get_theme_mod( 'memberlite_post_nav', 1 );
-			if ( ! empty( $theme_mod ) ) {
-				memberlite_post_nav();
-			}
+				if ( ! empty( $theme_mod ) ) {
+					memberlite_post_nav();
+				}
 			?>
 			<?php
 				// If comments are open or we have at least one comment, load up the comment template

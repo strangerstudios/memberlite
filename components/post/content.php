@@ -2,7 +2,7 @@
 /**
  * Template part for displaying posts
  *
- * @link https://codex.wordpress.org/Template_Hierarchy
+ * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
  * @package Memberlite
  */
@@ -23,8 +23,7 @@
 		<?php do_action( 'memberlite_before_content_post' ); ?>
 		<?php
 			$memberlite_loop_images = get_theme_mod( 'memberlite_loop_images', $memberlite_defaults['memberlite_loop_images'] );
-			// Only show the thumbnail in post loop if Memberlite Elements is active. This prevents double images where only a featured image is set.
-			if ( $memberlite_loop_images == 'show_both' && defined( 'MEMBERLITE_ELEMENTS_VERSION' ) ) {
+			if ( $memberlite_loop_images == 'show_both' ) {
 				the_post_thumbnail(
 					'medium',
 					array(

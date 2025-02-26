@@ -7,7 +7,7 @@
 **Build a Professional WordPress Membership Site**
 Memberlite is the ideal theme for your membership site - packed with integration for top membership site plugins including Paid Memberships Pro and eLearning plugins like LifterLMS.
 
-Memberlite is  fully customizable with your logo, colors, fonts, and more global layout settings. Extend the site appearance further with the Memberlite Elements and Memberlite Shortcodes plugins. Memberlite is responsive, clean and minimal.
+Memberlite is fully customizable with your logo, colors, fonts, and more global layout settings. Memberlite is responsive, clean and minimal.
 
 ## Getting Started
 
@@ -26,7 +26,7 @@ Use the Customize > Memberlite Options screen to modify theme layout, logo, font
 ### Using Child Themes
 If you need to customize the theme beyond theme settings, use a child theme.
 
-[Memberlite Child Theme Downloads »](https://memberlitetheme.com/themes/) | [About Child Themes (WordPress Codex) »](https://developer.wordpress.org/themes/advanced-topics/child-themes/)
+[Memberlite Child Theme Downloads »](https://memberlitetheme.com/themes/) | [About Child Themes (WordPress Developer Handbook) »](https://developer.wordpress.org/themes/advanced-topics/child-themes/)
 
 ### Integrated Plugins
 Memberlite includes formatting for use with:
@@ -37,22 +37,11 @@ Memberlite includes formatting for use with:
 **LifterLMS**
 [Install LifterLMS »](https://wordpress.org/plugins/lifterlms/)
 
-**WooCommerce**
-[Install WooCommerce »](https://wordpress.org/plugins/woocommerce/) | [Install Paid Memberships Pro - WooCommerce Add On »](https://wordpress.org/plugins/pmpro-woocommerce/)
-
 **bbPress**
-[Install bbPress »](https://wordpress.org/plugins/bbpress/) | [Install Paid Memberships Pro - bbPress Add On »](https://wordpress.org/plugins/pmpro-bbpress/)
+[Install bbPress »](https://wordpress.org/plugins/bbpress/) | [Install Paid Memberships Pro - bbPress Add On »](https://www.paidmembershipspro.com/add-ons/pmpro-bbpress/)
 
 **Events Manager**
 [Install Events Manager »](https://wordpress.org/plugins/events-manager/)
-
-**Testimonials Widget**
-[Install Testimonials Widget »](https://wordpress.org/plugins/testimonials-widget/)
-
-We highly recommend using this plugins for every site running Memberlite:
-
-**Multiple Post Thumbnails**
-[Install Multiple Post Thumbnails »](https://wordpress.org/plugins/multiple-post-thumbnails/)
 
 ## Installation ##
 For detailed installation steps, visit the [documentation on installing the theme](https://memberlitetheme.com/documentation/).
@@ -74,8 +63,3 @@ There are various **ways to help the development** of Memberlite:
 
 1. Report [bugs/issues](https://github.com/strangerstudios/memberlite/issues/new/choose) on GitHub.
 2. Work on any issues by submitting a Pull Request.
-
-Here are some ways for **non-developers to contribute** to Memberlite:
-
-1. Translate Memberlite into your own language.
-2. Leave an honest review for [Memberlite](https://wordpress.org/support/theme/memberlite/reviews/).
