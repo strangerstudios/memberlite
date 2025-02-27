@@ -2909,11 +2909,6 @@ a:active:not(.pmpro_btn:active) {
 	width: 100%;
 }
 
-/* Member Directory and Profiles */
-.pmpro_member_directory h3 {
-	margin-top: 0;
-}
-
 /* Sitewide Sales */
 #pmpro_sws_banner_top span.pmpro_sws_banner-button .pmpro_btn {
 	padding: .45rem 1.45rem;
