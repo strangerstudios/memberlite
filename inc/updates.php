@@ -100,9 +100,7 @@ function memberlite_update_themes_filter( $value ) {
 		return $value;
 	}
 
-	//get data for theme
-	$theme_file_abs = ABSPATH . 'wp-content/themes/' . $update_info['Slug'];
-	$theme_file = $theme_file_abs . "/style.css";
+	//get data for memberlite. This will always return data.
 	$theme_data = wp_get_theme( $update_info['Slug'] );
 	
 	//compare versions
