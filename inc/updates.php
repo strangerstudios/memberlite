@@ -18,12 +18,16 @@ function memberlite_checkForUpdates() {
 
 /**
  * Setup themes api filters
- *
- * @since 2.0
+ * @since TBD
 */
 function memberlite_setup_update_info() {
+	// Only run this code if Update Manager isn't installed and above version 0.1
+	if ( defined( 'PMPROUM_VERSION' ) && version_compare( PMPROUM_VERSION, '0.1', '>' ) ) {
+		return;
+	}
+
 	if ( ! defined( 'PMPRO_LICENSE_SERVER' ) ) {
-		define('PMPRO_LICENSE_SERVER', 'https://license.paidmembershipspro.com/v2/' );
+		define( 'PMPRO_LICENSE_SERVER', 'https://license.paidmembershipspro.com/v2/' );
 	}
 
 	add_filter( 'pre_set_site_transient_update_themes', 'memberlite_update_themes_filter' );
@@ -49,7 +53,7 @@ function memberlite_get_update_info() {
          * @param int $timeout The number of seconds before the request times out
          */
         $timeout = apply_filters( 'memberlite_get_update_info_timeout', 5 );
-		$remote_info = wp_remote_get( PMPRO_LICENSE_SERVER . 'themes.json', $timeout );
+		$remote_info = wp_remote_get( PMPRO_LICENSE_SERVER . 'themes/', $timeout );
 
 		// Test response.
         if ( is_wp_error( $remote_info ) || empty( $remote_info['response'] ) || $remote_info['response']['code'] != '200' ) {
