@@ -590,7 +590,7 @@ add_filter( 'memberlite_masthead_content', 'memberlite_maybe_customize_masthead_
 /**
  * Filter to get the banner image from MemberliteMultiPostThumbnails if it exists.
  */
-function memberlite_maybe_get_custom_banner_image( $memberlite_banner_image, $attachment_id, $size = 'banner', $icon = false, $attr = '', $post_id ) {
+function memberlite_maybe_get_custom_banner_image( $memberlite_banner_image, $attachment_id, $size = 'banner', $icon = false, $attr = '', $post_id = 0 ) {
 	if ( class_exists( 'MemberliteMultiPostThumbnails') && ! empty( $post_id ) ) {
 		$post_type = get_post_type( $post_id );
 		if ( ! empty( $post_type ) ) {
