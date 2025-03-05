@@ -482,6 +482,34 @@ if ( ! function_exists( 'memberlite_setup' ) ) :
 endif; // memberlite_setup
 add_action( 'after_setup_theme', 'memberlite_setup' );
 
+/**
+ * Custom function, do not override this when updating the traduttore-registry source code.
+ * Load custom translations from our own server: translate.strangerstudios.com
+ * 
+ * @since TBD
+ */
+function memberlite_check_for_updated_translations() {
+
+	// If the library isn't loaded, bail.
+	if ( ! function_exists( 'Memberlite\Required\Traduttore_Registry\add_project' ) ) {
+		return;
+	}     
+	
+	// Only check for updates when on the update page, plugins, themes page, or the Memberlite support page
+    $is_update_or_plugins_page = strpos( $_SERVER['REQUEST_URI'], 'update-core.php' ) !== false || strpos( $_SERVER['REQUEST_URI'], 'plugins.php' ) !== false || strpos( $_SERVER['REQUEST_URI'], 'themes.php' ) !== false;
+    $is_memberlite_admin_page = isset( $_REQUEST['page'] ) && $_REQUEST['page'] === 'memberlite-support';
+
+    if ( $is_memberlite_admin_page || $is_update_or_plugins_page ) {
+        Memberlite\Required\Traduttore_Registry\add_project(
+            'theme',
+            'memberlite',
+            'https://translate.strangerstudios.com/api/translations/memberlite'
+        );
+    }
+}
+add_action( 'admin_init', 'memberlite_check_for_updated_translations' );
+
+
 function memberlite_wp_head() {
 	if ( is_singular() && pings_open() ) {
 		printf( '<link rel="pingback" href="%s">' . "\n", esc_url( get_bloginfo( 'pingback_url' ) ) );
@@ -814,6 +842,9 @@ require_once get_template_directory() . '/inc/jetpack.php';
 
 /* Custom landing page element code. */
 require_once get_template_directory() . '/inc/landing_page.php';
+
+/* Custom translation server logic. */
+require_once get_template_directory() . '/inc/localization.php';
 
 /* Multiple post thumbanils support. */
 require_once get_template_directory() . '/inc/multi-post-thumbnails.php';
