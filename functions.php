@@ -483,7 +483,6 @@ endif; // memberlite_setup
 add_action( 'after_setup_theme', 'memberlite_setup' );
 
 /**
- * Custom function, do not override this when updating the traduttore-registry source code.
  * Load custom translations from our own server: translate.strangerstudios.com
  * 
  * @since TBD
