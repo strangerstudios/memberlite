@@ -6,9 +6,6 @@
  */
 define( 'MEMBERLITE_VERSION', '5.2.1' );
 
-// get default values for options/etc
-require_once get_template_directory() . '/inc/defaults.php';
-
 // enqueue additional stylesheets and javascript
 function memberlite_init_styles() {
 	global $memberlite_defaults;
@@ -228,6 +225,8 @@ add_action( 'wp', 'memberlite_adjusted_content_width' );
 if ( ! function_exists( 'memberlite_setup' ) ) :
 	/* Sets up theme defaults and registers support for various WordPress features. */
 	function memberlite_setup() {
+		require_once get_template_directory() . '/inc/defaults.php';
+
 		global $memberlite_defaults;
 		/*
 		 * Make theme available for translation.
