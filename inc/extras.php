@@ -498,7 +498,7 @@ function memberlite_page_title( $echo = true ) {
 				if ( ! empty( $memberlite_get_entry_meta_before ) ) {
 					?>
 					<p class="entry-meta">
-						<?php echo Memberlite_Customize::sanitize_text_with_links( memberlite_get_entry_meta( $post, 'before' ) ); ?>
+						<?php echo Memberlite_Customize::sanitize_text_with_links( memberlite_get_entry_meta( $post, 'before' ) ); // WPCS: xss ok. ?>
 						</p><!-- .entry-meta -->
 						<?php
 				}

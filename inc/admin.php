@@ -324,9 +324,10 @@ function memberlite_plugin_action_button( $slug, $plugin_file ) {
 function memberlite_admin_init_notifications() {
 	global $wpdb;
 
-	// we want to avoid notices on some screens
-	$script           = esc_url( basename( $_SERVER['SCRIPT_NAME'] ) );
-	$maybe_installing = $script == 'update.php' || $script == 'plugins.php';
+	// Avoid notices on some screens.
+	$script_name = isset( $_SERVER['SCRIPT_NAME'] ) ? sanitize_text_field( wp_unslash( $_SERVER['SCRIPT_NAME'] ) ) : '';
+	$script = esc_html( wp_basename( $script_name ) );
+	$maybe_installing = in_array( $script, array( 'update.php', 'plugins.php' ), true );
 
 	// 1. Show link to the welcome page the first time the theme is activated
 	$welcome_link_dismissed = get_option( 'memberlite_notice_welcome_link_dismissed', false );
@@ -342,10 +343,10 @@ function memberlite_wp_ajax_dismiss_notice() {
 	// whitelist of notices
 	$notices = array( 'welcome_link' );
 
-	// get and check notice
-	$notice = sanitize_title( $_REQUEST['notice'] );
-	if ( ! in_array( $notice, $notices ) ) {
-		wp_die( 'Invalid notice.' );
+	// Get and validate the notice.
+	$notice = sanitize_key( wp_unslash( $_REQUEST['notice'] ?? '' ) );
+	if ( ! in_array( $notice, $notices, true ) ) {
+		wp_die( esc_html__( 'Invalid notice.', 'text-domain' ) );
 	}
 
 	// update option and leave

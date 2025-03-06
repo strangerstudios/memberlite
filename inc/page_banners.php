@@ -135,7 +135,13 @@ function memberlite_settings_meta_box_callback( $post ) {
 			$membership_levels = pmpro_getAllLevels();
 			if ( empty( $membership_levels ) ) {
 				?>
-				<div class="inline notice error"><p><a href="<?php echo admin_url( 'admin.php?page=pmpro-membershiplevels' ); ?>"><?php esc_html_e( 'Add a Membership Level to Use These Landing Page Features &raquo;', 'memberlite' ); ?></a></p></div>
+				<div class="inline notice error">
+					<p>
+						<a href="<?php echo esc_url( add_query_arg( 'page', 'pmpro-membershiplevels', admin_url( 'admin.php' ) ) ); ?>">
+							<?php esc_html_e( 'Add a Membership Level to Use These Landing Page Features »', 'memberlite' ); ?>
+						</a>
+					</p>
+				</div>
 				<?php
 			} else {
 				?>
