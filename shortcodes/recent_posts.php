@@ -53,7 +53,7 @@ function memberlite_recent_posts_shortcode_handler($atts, $content=null, $code="
 		global $current_user;
 
 		if( empty( $current_user->ID) ) {
-			return __( 'There was a problem fetching posts for the current user. Please try again later.', 'memberlite-shortcodes' );
+			return __( 'There was a problem fetching posts for the current user. Please try again later.', 'memberlite' );
 		}else{
 			$query_args['author'] = $current_user->ID;
 		}
@@ -66,7 +66,7 @@ function memberlite_recent_posts_shortcode_handler($atts, $content=null, $code="
 		$author_id = $user->ID;
 
 		if( empty( $author_id ) ) {
-			return __( "No posts found for this user. Please ensure the author's name/ID is correct.", "memberlite-shortcodes" );
+			return __( "No posts found for this user. Please ensure the author's name/ID is correct.", "memberlite" );
 		}else{
 			$query_args['author'] = $author_id;
 		}
