@@ -84,6 +84,11 @@ if ( ! function_exists( 'memberlite_page_nav' ) ) :
 			return;
 		}
 
+		// Return early if this page is set to hide the navigation.
+		if ( get_post_meta( $post->ID, '_memberlite_hide_page_nav', true ) ) {
+			return;
+		}
+
 		// check if subpage
 		if ( ! empty( $post->post_parent ) ) {
 			$post_ancestors = get_post_ancestors( $post );
