@@ -61,7 +61,7 @@
 			<?php } ?>
 			<?php if ( 'post' == get_post_type() ) : ?>
 			<div class="entry-meta">
-				<?php echo Memberlite_Customize::sanitize_text_with_links( memberlite_get_entry_meta( $post, 'before' ) ); ?>
+				<?php echo Memberlite_Customize::sanitize_text_with_links( memberlite_get_entry_meta( $post, 'before' ) );  // WPCS: xss ok. ?>
 			</div><!-- .entry-meta -->
 			<?php endif; ?>
 		</div> <!-- .entry-header-content -->

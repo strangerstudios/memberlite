@@ -21,7 +21,7 @@
 			<span class="user">
 				<?php
 					/* translators: a generated link to the user's account or profile page */
-					echo Memberlite_Customize::sanitize_text_with_links( sprintf( __( 'Welcome, %s', 'memberlite' ), $user_account_link ) );
+					echo Memberlite_Customize::sanitize_text_with_links( sprintf( __( 'Welcome, %s', 'memberlite' ), $user_account_link ) ); // WPCS: xss ok.
 				?>
 			</span>
 			<?php

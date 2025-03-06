@@ -564,7 +564,7 @@ add_action( 'widgets_init', 'memberlite_widgets_init' );
 /* Get the redirect_to URL to use for "Log In" links. */
 function memberlite_login_redirect_to() {
 	if ( isset( $_SERVER['REQUEST_URI'] ) ) {
-		$redirect_to = home_url( esc_url( $_SERVER['REQUEST_URI'] ) );
+		$redirect_to = home_url( esc_url( sanitize_text_field( wp_unslash( $_SERVER['REQUEST_URI'] ) ) ) );
 	} else {
 		$redirect_to = home_url();
 	}
@@ -574,7 +574,7 @@ function memberlite_login_redirect_to() {
 /* Get the redirect_to URL to use for "Log Out" links. */
 function memberlite_logout_redirect_to() {
 	if ( isset( $_SERVER['REQUEST_URI'] ) ) {
-		$redirect_to = home_url( esc_url( $_SERVER['REQUEST_URI'] ) );
+		$redirect_to = home_url( esc_url( sanitize_text_field( wp_unslash( $_SERVER['REQUEST_URI'] ) ) ) );
 	} else {
 		$redirect_to = home_url();
 	}

@@ -54,7 +54,7 @@ function memberlite_support() {
 						<p><?php esc_html_e( 'Use the Customize > Site Identity screen to add a custom logo and update or toggle the display of your Site Title and Tagline.', 'memberlite' ); ?></p>
 						<p>
 							<a href="<?php echo esc_url( wp_customize_url() ); ?>"><?php esc_html_e( 'Add Your Logo', 'memberlite' ); ?></a><br />
-							<a href="https://memberlitetheme.com/documentation/site-branding/" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Docs: Site Branding in Memberlite', 'memberlite' ); ?></a>
+							<a href="https://www.paidmembershipspro.com/documentation/memberlite/site-branding/" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Docs: Site Branding in Memberlite', 'memberlite' ); ?></a>
 						</p>
 					</div>
 					<div class="col">
@@ -62,7 +62,7 @@ function memberlite_support() {
 						<p><?php esc_html_e( 'Use the Customize > Memberlite Options screen to modify theme layout, logo, fonts, colors, copyright message and more.', 'memberlite' ); ?></p>
 						<p>
 							<a href="<?php echo esc_url( wp_customize_url() ); ?>"><?php esc_html_e( 'Customize Your Theme', 'memberlite' ); ?></a><br />
-							<a href="https://memberlitetheme.com/documentation/customize/" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Docs: Customizing Memberlite', 'memberlite' ); ?></a>
+							<a href="https://www.paidmembershipspro.com/documentation/memberlite/customize/" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Docs: Customizing Memberlite', 'memberlite' ); ?></a>
 						</p>
 					</div>
 					<div class="col">
@@ -70,7 +70,7 @@ function memberlite_support() {
 						<p><?php esc_html_e( 'Register for a free account to browse documentation and get additional help with your Memberlite-powered WordPress site.', 'memberlite' ); ?></p>
 						<p>
 							<a href="https://demo.memberlitetheme.com" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'View Theme Demo', 'memberlite' ); ?></a><br />
-							<a href="https://memberlitetheme.com" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'View All Docs', 'memberlite' ); ?></a>
+							<a href="https://www.paidmembershipspro.com/documentation/memberlite/" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'View All Docs', 'memberlite' ); ?></a>
 						</p>
 					</div>
 				</div> <!-- end memberlite-feature-section -->
@@ -85,7 +85,7 @@ function memberlite_support() {
 					<?php } else { ?>
 						<h1><?php esc_html_e( 'Using Child Themes', 'memberlite' ); ?></h1>
 						<p><?php esc_html_e( 'If you need to customize the theme beyond the settings in Appearance > Customize, use a child theme. Child themes allow you to change the appearance of your site, while preseving the ability to update the primary "parent" theme.', 'memberlite' ); ?> <a href="https://developer.wordpress.org/themes/advanced-topics/child-themes/" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Learn more about child themes in the WordPress Theme Handbook', 'memberlite' ); ?></a></p>
-						<a class="button button-hero button-primary" href="https://memberlitetheme.com/themes/custom-child-theme/" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Download a Blank Child Theme', 'memberlite' ); ?></a>
+						<a class="button button-hero button-primary" href="https://www.paidmembershipspro.com/documentation/download/" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Download a Blank Child Theme', 'memberlite' ); ?></a>
 					<?php } ?>
 				</div>
 			</div>

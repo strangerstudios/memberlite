@@ -46,7 +46,7 @@
 			<div class="entry-meta">
 				<?php if ( 'post' == get_post_type() ) : ?>
 						<a href="<?php the_permalink(); ?>" rel="bookmark"><i class="fa fa-link"></i></a> |
-						<?php echo Memberlite_Customize::sanitize_text_with_links( $memberlite_get_entry_meta_after ); ?>
+						<?php echo Memberlite_Customize::sanitize_text_with_links( $memberlite_get_entry_meta_after ); // WPCS: xss ok. ?>
 					<?php endif; ?>
 				<?php edit_post_link( esc_html__( 'Edit', 'memberlite' ), '<span class="edit-link">', '</span>' ); ?>
 			</div><!-- .entry-meta -->
