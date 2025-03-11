@@ -738,6 +738,11 @@
 					}
 				}
 			},
+			"core/columns": {
+				"spacing": {
+					"blockGap": "4.7rem"
+				}
+			},
 			"core/image": {
 				"variations": {
 					"rounded" : {
