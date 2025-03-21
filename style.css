@@ -1727,18 +1727,18 @@ a:active:not(.pmpro_btn:active) {
 .archive.sidebar-blog-left #primary,
 .search.sidebar-blog-left #primary,
 .single.sidebar-blog-left #primary {
-	float: right;
+	order: 2;
 }
 .page.content-sidebar #primary,
 .blog.sidebar-blog-right #primary,
 .archive.sidebar-blog-right #primary,
 .search.sidebar-blog-right #primary,
 .single.sidebar-blog-right #primary {
-	float: left;
+	order: unset;
 }
 .page.page-template-full-width #primary,
 .page.page-template-narrow-width #primary {
-	float: none;
+	order: unset;
 }
 /*--------------------------------------------------------------
 10.1 Header and Member Meta
