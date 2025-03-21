@@ -191,6 +191,11 @@ function memberlite_getPostThumbnailWidth( $post_id = null ) {
 function memberlite_excerpt_more( $more ) {
 	global $post;
 
+	// Return early if no post ID is set.
+	if ( empty( $post->ID ) ) {
+		return $more;
+	}
+
 	if ( ! is_admin() ) {
 		$more = ' <a href="' . esc_url( get_permalink( $post->ID ) ) . '" rel="nofollow">' . esc_html( __( '(more...)', 'memberlite' ) ) . '</a>';
 	}
