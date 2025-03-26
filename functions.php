@@ -68,19 +68,28 @@ function memberlite_get_font( $font_type, $nicename = NULL ) {
 	global $memberlite_defaults;
 
 	// Get the selected fonts from theme options.
-	$fonts_string = get_theme_mod( 'memberlite_webfonts', $memberlite_defaults['memberlite_webfonts'] );
+	$fonts_string = get_theme_mod( 'memberlite_webfonts' );
 
-	// Break the theme mod for custom fonts into two parts.
-	$fonts_string_parts = explode( '_', $fonts_string );
+	/**
+	 * If we found a font, this site is using the legacy setting.
+	 * We need to convert it to the new format.
+	 */
+	if ( ! empty( $fonts_string ) ) {
 
-	if ( $font_type === 'header_font' ) {
-		$r = $fonts_string_parts[0];
+		// Break the theme mod for custom fonts into two parts.
+		$fonts_string_parts = explode( '_', $fonts_string );
+
+		if ( $font_type === 'header_font' ) {
+			$r = $fonts_string_parts[0];
+		} else {
+			$r = $fonts_string_parts[1];
+		}
+
+		if ( ! empty( $nicename ) ) {
+			$r = str_replace( '-', ' ', $r );
+		}
 	} else {
-		$r = $fonts_string_parts[1];
-	}
-
-	if ( ! empty( $nicename ) ) {
-		$r = str_replace( '-', ' ', $r );
+		$r = get_theme_mod( 'memberlite_' . $font_type, $memberlite_defaults[ 'memberlite_' . $font_type ] );
 	}
 
 	return $r;
@@ -93,16 +102,14 @@ function memberlite_load_local_webfonts() {
 	global $memberlite_defaults;
 
 	// Get the selected fonts from theme options.
-	$fonts_string = get_theme_mod( 'memberlite_webfonts', $memberlite_defaults['memberlite_webfonts'] );
-	
+	$header_font = strtolower( memberlite_get_font( 'header_font' ) );
+	$body_font = strtolower( memberlite_get_font( 'body_font' ) );
+
 	// If it's not a Google font, ignore.
+	$fonts_string = $header_font . '_' . $body_font;
 	if ( ! in_array( $fonts_string, array_keys( Memberlite_Customize::get_google_fonts() ) ) ) {
 		return;
 	}
-	
-	// Get the selected fonts from theme options.
-	$header_font = strtolower( memberlite_get_font( 'header_font' ) );
-	$body_font = strtolower( memberlite_get_font( 'body_font' ) );
 
 	// If the header and body fonts are the same, just load the body font.
 	if ( $body_font === $header_font ) {
