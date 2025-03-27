@@ -486,8 +486,13 @@ add_action( 'after_setup_theme', 'memberlite_setup' );
  * 
  * @since TBD
  */
-function memberlite_check_for_updated_translations() {
+function memberlite_check_for_translations() {
 
+	// if Update Manager is installed, we can bail.
+	if ( function_exists( 'pmproum_check_for_translations' ) ) {
+		return;
+	}
+	
 	// If the library isn't loaded, bail.
 	if ( ! function_exists( 'Memberlite\Required\Traduttore_Registry\add_project' ) ) {
 		return;
@@ -505,7 +510,7 @@ function memberlite_check_for_updated_translations() {
 		);
 	}
 }
-add_action( 'admin_init', 'memberlite_check_for_updated_translations' );
+add_action( 'admin_init', 'memberlite_check_for_translations' );
 
 
 function memberlite_wp_head() {
