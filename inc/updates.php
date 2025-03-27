@@ -8,7 +8,7 @@
  */
 function memberlite_checkForUpdates() {
 	$memberlite_db_version = get_option('memberlite_db_version', 0);
-	
+
 	// default DB version for Memberlite 4.0
 	if ( empty( $memberlite_db_version ) ) {
 		$memberlite_db_version = '2018080101';
