@@ -68,28 +68,11 @@ function memberlite_get_font( $font_type, $nicename = NULL ) {
 	global $memberlite_defaults;
 
 	// Get the selected fonts from theme options.
-	$fonts_string = get_theme_mod( 'memberlite_webfonts' );
+	$r = get_theme_mod( 'memberlite_' . $font_type, $memberlite_defaults[ 'memberlite_' . $font_type ] );
 
-	/**
-	 * If we found a font, this site is using the legacy setting.
-	 * We need to convert it to the new format.
-	 */
-	if ( ! empty( $fonts_string ) ) {
-
-		// Break the theme mod for custom fonts into two parts.
-		$fonts_string_parts = explode( '_', $fonts_string );
-
-		if ( $font_type === 'header_font' ) {
-			$r = $fonts_string_parts[0];
-		} else {
-			$r = $fonts_string_parts[1];
-		}
-
-		if ( ! empty( $nicename ) ) {
-			$r = str_replace( '-', ' ', $r );
-		}
-	} else {
-		$r = get_theme_mod( 'memberlite_' . $font_type, $memberlite_defaults[ 'memberlite_' . $font_type ] );
+	// If we're returning the font name, convert the slug to a human-readable name.
+	if ( ! empty( $nicename ) ) {
+		$r = str_replace( '-', ' ', $r );
 	}
 
 	return $r;
