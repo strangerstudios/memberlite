@@ -9,7 +9,7 @@ function memberlite_row_shortcode($atts, $content = null) {
     extract(shortcode_atts(array(
         'class' => ''
     ), $atts));
-    $result = '<div class="row ' . $class . '">';
+    $result = '<div class="row ' . esc_attr( $class ) . '">';
     $content = str_replace("]<br />", ']', $content);
     $content = str_replace("<br />\n[", '[', $content);
     $result .= do_shortcode($content);

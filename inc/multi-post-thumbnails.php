@@ -59,9 +59,10 @@ if (!class_exists('MemberliteMultiPostThumbnails')) {
 			// Validate the required args
 			if (null === $this->label || null === $this->id) {
 				if (WP_DEBUG) {
+					/* translators: 1: class name, 2: function name */
 					trigger_error(
 						sprintf(
-							__("The 'label' and 'id' values of the 'args' parameter of '%s::%s()' are required", 'multiple-post-thumbnails'),
+							esc_html__("The 'label' and 'id' values of the 'args' parameter of '%1$s::%2$s()' are required", 'memberlite'),
 							__CLASS__,
 							__FUNCTION__
 						)
@@ -377,8 +378,10 @@ if (!class_exists('MemberliteMultiPostThumbnails')) {
 			);
 
 			$format_string = '<p class="hide-if-no-js"><a title="%1$s" href="%2$s" id="set-%3$s-%4$s-thumbnail" class="%5$s" data-thumbnail_id="%7$s" data-uploader_title="%1$s" data-uploader_button_text="%1$s">%%s</a></p>';
-			$set_thumbnail_link = sprintf( $format_string, sprintf( esc_attr__( "Set %s" , 'multiple-post-thumbnails' ), $this->label ), esc_url($image_library_url), $this->post_type, $this->id, $url_class, $this->label, $thumbnail_id );
-			$content = sprintf( $set_thumbnail_link, sprintf( esc_html__( "Set %s", 'multiple-post-thumbnails' ), $this->label ) );
+			/* translators: %s is the Banner Image label. */
+			$set_thumbnail_link = sprintf( $format_string, sprintf( esc_attr__( "Set %s" , 'memberlite' ), $this->label ), esc_url($image_library_url), $this->post_type, $this->id, $url_class, $this->label, $thumbnail_id );
+			/* translators: %s is the Banner Image label. */
+			$content = sprintf( $set_thumbnail_link, sprintf( esc_html__( "Set %s", 'memberlite' ), $this->label ) );
 
 			if ($thumbnail_id && get_post($thumbnail_id)) {
 				$old_content_width = $content_width;
@@ -394,7 +397,8 @@ if (!class_exists('MemberliteMultiPostThumbnails')) {
 				if (!empty($thumbnail_html)) {
 					$content = sprintf($set_thumbnail_link, $thumbnail_html);
 					$format_string = '<p class="hide-if-no-js"><a href="#" id="remove-%1$s-%2$s-thumbnail" onclick="MemberliteMultiPostThumbnails.removeThumbnail(\'%2$s\', \'%1$s\', \'%4$s\');return false;">%3$s</a></p>';
-					$content .= sprintf( $format_string, $this->post_type, $this->id, sprintf( esc_html__( "Remove %s", 'multiple-post-thumbnails' ), $this->label ), $ajax_nonce );
+					// translators: %s is the Banner Image label.
+					$content .= sprintf( $format_string, $this->post_type, $this->id, sprintf( esc_html__( "Remove %s", 'memberlite' ), $this->label ), $ajax_nonce );
 				}
 				$content_width = $old_content_width;
 			}

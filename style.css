@@ -1,6 +1,6 @@
 /*
 Theme Name: Memberlite
-Theme URI: https://memberlitetheme.com/
+Theme URI: https://www.paidmembershipspro.com/
 Author: Stranger Studios
 Author URI: https://www.strangerstudios.com
 Description: Memberlite is the ideal theme for your membership site - packed with integration for top plugins including Paid Memberships Pro and LifterLMS. It's fully customizable with your logo, colors, fonts, custom sidebars and more global layout settings. Extend the site appearance further with icons, masthead banners, post formats, and additional settings for your site's pages. Memberlite is responsive, clean and minimal.
@@ -940,7 +940,63 @@ a:active:not(.pmpro_btn:active) {
 #site-navigation {
 	background-color: var(--memberlite-color-site-navigation-background);
 	border-top: 1px solid #DADADA;
+	clear: both;
+	display: block;
+	padding-top: 1.45rem;
+	padding-bottom: 1.45rem;
 }
+#site-navigation ul {
+	list-style: none;
+}
+#site-navigation ul.menu {
+	align-items: center;
+	display: flex;
+	margin: 0 auto;
+	max-width: 71em;
+	padding: 0 2.35rem;
+	z-index: 10;
+}
+#site-navigation li {
+	margin: 0;
+	position: relative;
+}
+#site-navigation a {
+	color: var(--memberlite-color-site-navigation);
+	display: block;
+	padding: .9rem 1.45rem;
+	text-decoration: none;
+}
+#site-navigation a:hover:not(#site-navigation .menu-item-has-children > a:hover) {
+	text-decoration-color: #00000033;
+	text-decoration-line: underline;
+	text-underline-offset: 4px;
+}
+#site-navigation ul > .menu-item-has-children > a {
+	align-items: center;
+	display: flex;
+	flex-wrap: nowrap;
+}
+#site-navigation ul.menu > .menu-item-has-children > a::after {
+	content: "\f107";
+	display: block;
+	font-family: 'Font Awesome 5 Free';
+	font-size: 1.4rem;
+	font-weight: 900;
+	margin-left: 5px;
+}
+#site-navigation ul.sub-menu > .menu-item-has-children > a::after {
+	content: "\f105";
+	display: block;
+	font-family: 'Font Awesome 5 Free';
+	font-size: 1.4rem;
+	font-weight: 900;
+	margin-left: 5px;
+}
+#site-navigation li:first-child a {
+	padding-left: 0;
+}
+
+/* Sticky Primary Navigation */
 .site-navigation-sticky-wrapper #site-navigation {
 	height: 80px;
 }
@@ -952,65 +1008,10 @@ a:active:not(.pmpro_btn:active) {
 	width: 100%;
 	z-index: 99999;
 }
-/* Admin Bar adjustment */
 .admin-bar #site-navigation.site-navigation-sticky {
 	top: 32px;
 }
-.main-navigation {
-	clear: both;
-	display: block;
-	padding-top: 1.45rem;
-	padding-bottom: 1.45rem;
-}
-.main-navigation ul {
-	list-style: none;
-	margin-left: 0;
-	margin-bottom: 0;
-	z-index: 10;
-}
-.main-navigation li {
-	float: left;
-	margin: 0;
-}
-.main-navigation a {
-	color: var(--memberlite-color-site-navigation);
-	display: block;
-	padding: .9rem 1.45rem;
-	text-decoration: none;
-}
-.main-navigation a:hover:not(.main-navigation .menu-item-has-children > a:hover) {
-	text-decoration-color: #00000033;
-	text-decoration-line: underline;
-	text-underline-offset: 4px;
-}
-.main-navigation ul > .menu-item-has-children > a {
-	align-items: center;
-	display: flex;
-	flex-wrap: nowrap;
-}
-.main-navigation ul.columns > .menu-item-has-children > a::after {
-	content: "\f107";
-	display: block;
-	font-family: 'Font Awesome 5 Free';
-	font-size: 1.4rem;
-	font-weight: 900;
-	margin-left: 5px;
-}
-.main-navigation ul.sub-menu > .menu-item-has-children > a::after {
-	content: "\f105";
-	display: block;
-	font-family: 'Font Awesome 5 Free';
-	font-size: 1.4rem;
-	font-weight: 900;
-	margin-left: 5px;
-}
 
-.main-navigation li:first-child a {
-	padding-left: 0;
-}
-.main-navigation .current_page_item a,
-.main-navigation .current-menu-item a {
-}
 /* Small menu */
 .menu-toggle {
 	display: none; /* Shown with media queries at bottom of file */
@@ -1101,11 +1102,12 @@ a:active:not(.pmpro_btn:active) {
 }
 
 /* Dropdown Menu */
-.main-navigation ul.sub-menu,
+#site-navigation ul.sub-menu,
 .meta-navigation ul.sub-menu,
 .header-right .widget_nav_menu ul.sub-menu {
 	box-shadow: 0 16px 24px 2px rgba(29,17,51,.04), 0 6px 32px 4px rgba(9,32,77,.12), 0 8px 12px -5px rgba(29,17,51,.12);
-	float: left;
+	display: flex;
+	flex-direction: column;
 	position: absolute;
 	top: 3.75rem;
 	left: -9999em;
@@ -1113,7 +1115,7 @@ a:active:not(.pmpro_btn:active) {
 	margin: 0;
 	text-align: left;
 }
-.main-navigation ul.sub-menu {
+#site-navigation ul.sub-menu {
 	background-color: var(--memberlite-color-site-navigation-background);
 }
 .meta-navigation ul.sub-menu,
@@ -1127,56 +1129,58 @@ a:active:not(.pmpro_btn:active) {
 	left: -9999em;
 	top: 0;
 }
-.main-navigation ul.sub-menu li,
+#site-navigation ul.sub-menu li,
 .meta-navigation ul.sub-menu li,
 .header-right .widget_nav_menu ul.sub-menu li {
 	border: none;
-	display: block;
-	float: none;
 	padding: 0;
 	position: relative;
 }
-.main-navigation ul.sub-menu a,
+#site-navigation ul.sub-menu a,
 .meta-navigation ul.sub-menu a,
 .header-right .widget_nav_menu ul.sub-menu a {
 	width: 200px;
 	padding: .7rem 1.45rem;
 	border-left: none;
 }
-.main-navigation ul.sub-menu li:hover > a,
+#site-navigation ul.sub-menu li:hover > a,
 .meta-navigation ul.sub-menu li:hover > a,
 .header-right .widget_nav_menu ul.sub-menu li:hover > a  {
 	background-color: rgba( 0, 0, 0, 0.05 );
 }
-.main-navigation ul li:hover > ul {
+#site-navigation ul.menu > li:hover > ul.sub-menu,
+#site-navigation ul.menu > li[aria-expanded="true"] > ul.sub-menu {
 	left: auto;
 }
-.main-navigation ul li:first-child:hover > ul {
+#site-navigation ul.menu li:first-child:hover > ul.sub-menu {
 	left: 0;
 }
-.main-navigation ul li:hover > ul li:hover > ul {
+#site-navigation ul.menu li:hover > ul.sub-menu li:hover > ul.sub-menu,
+#site-navigation ul.sub-menu > li[aria-expanded="true"] > ul.sub-menu {
 	left: 100%;
 	top: 0;
 }
-.meta-navigation ul li:hover > ul,
-.header-right .widget_nav_menu ul li:hover > ul {
+.meta-navigation ul.menu > li:hover > ul.sub-menu,
+.meta-navigation ul.menu > li[aria-expanded="true"] > ul.sub-menu,
+.header-right .widget_nav_menu ul.menu > li:hover > ul.sub-menu
+.header-right .widget_nav_menu ul.menu > li[aria-expanded="true"] > ul.sub-menu {
 	left: 0;
 	top: 2.75rem;
 }
-.main-navigation ul ul li:hover > ul,
-.meta-navigation ul ul li:hover > ul,
-.header-right .widget_nav_menu  ul ul li:hover > ul {
+.meta-navigation ul.menu li:hover > ul.sub-menu li:hover > ul.sub-menu,
+.meta-navigation ul.sub-menu > li[aria-expanded="true"] > ul.sub-menu,
+.header-right .widget_nav_menu ul.menu li:hover > ul.sub-menu li:hover > ul.sub-menu,
+.header-right .widget_nav_menu ul.sub-menu > li[aria-expanded="true"] > ul.sub-menu {
 	left: 100%;
 }
-.main-navigation ul ul li:first-child a,
-.main-navigation ul li:first-child ul li a,
+#site-navigation ul ul li:first-child a,
+#site-navigation ul li:first-child ul li a,
 .meta-navigation ul ul li:first-child a,
 .header-right .widget_nav_menu ul ul li:first-child a {
 	padding-left: 1.5rem;
 }
 #site-navigation li.menu-item-search {
-	float: right;
-	position: relative;
+	margin-left: auto;
 }
 #site-navigation .search-form input[type=search] {
 	min-width: 150px;
@@ -1723,18 +1727,18 @@ a:active:not(.pmpro_btn:active) {
 .archive.sidebar-blog-left #primary,
 .search.sidebar-blog-left #primary,
 .single.sidebar-blog-left #primary {
-	float: right;
+	order: 2;
 }
 .page.content-sidebar #primary,
 .blog.sidebar-blog-right #primary,
 .archive.sidebar-blog-right #primary,
 .search.sidebar-blog-right #primary,
 .single.sidebar-blog-right #primary {
-	float: left;
+	order: unset;
 }
 .page.page-template-full-width #primary,
 .page.page-template-narrow-width #primary {
-	float: none;
+	order: unset;
 }
 /*--------------------------------------------------------------
 10.1 Header and Member Meta
@@ -2891,29 +2895,6 @@ a:active:not(.pmpro_btn:active) {
 }
 
 /* Membership Signup Forms */
-.memberlite_signup {
-	padding: 1.9rem;
-	background-color: var(--memberlite-color-white);
-	z-index: 100;
-	border-top: .9rem solid var(--memberlite-color-secondary);
-	border-bottom: 1.45rem solid var(--memberlite-color-secondary);
-	border-left: 1px solid var(--memberlite-color-borders);
-	border-right: 1px solid var(--memberlite-color-borders);
-}
-.memberlite_signup-fixed {
-	position: fixed;
-	top: 0;
-}
-.pmpro_form.memberlite_signup h2 {
-	background-color: transparent;
-	border: none;
-	color: var(--memberlite-color-primary);
-	padding: 0;
-	margin: 1.45rem 0 2.9rem 0;
-}
-.pmpro_form.memberlite_signup div {
-	margin: 0 0 2.9rem 0
-}
 .pmpro .pmpro_signup_form .pmpro_card {
 	border-top: .9rem solid var(--memberlite-color-secondary);
 	border-bottom: 1.45rem solid var(--memberlite-color-secondary);
@@ -2926,11 +2907,6 @@ a:active:not(.pmpro_btn:active) {
 #secondary form.pmpro_form .pmpro_submit .pmpro_btn {
 	display: block;
 	width: 100%;
-}
-
-/* Member Directory and Profiles */
-.pmpro_member_directory h3 {
-	margin-top: 0;
 }
 
 /* Sitewide Sales */
@@ -3112,9 +3088,6 @@ body.memberlite-banner-hidden .entry-content > .banner:first-child {
 	display: block;
 	font-size: 1.8rem;
 }
-.page-template-landing #secondary .pmpro_form.memberlite_signup {
-	margin-bottom: 2.9rem;
-}
 
 /*--------------------------------------------------------------
 14.0 Memberlite Shortcodes Styles
@@ -3226,21 +3199,6 @@ body.memberlite-banner-hidden .entry-content > .banner:first-child {
 }
 #widget_memberlite_recent_posts .hentry.format-video h4.entry-title:before {
 	content: "\f03d";
-}
-
-/* [memberlite_signup] Shortcode */
-form.memberlite_signup div {
-	margin: .5em 0;
-}
-form.memberlite_signup input[type=text],
-form.memberlite_signup input[type=email],
-form.memberlite_signup input[type=password] {
-	max-width: 100%;
-	width: 100%;
-}
-form.memberlite_signup .pmpro_btn {
-	display: block;
-	width: 100%;
 }
 
 /* [memberlite_subpagelist] Shortcode */

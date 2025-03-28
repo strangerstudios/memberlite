@@ -109,21 +109,6 @@
 	content: "\f03d";
 }
 
-/* [memberlite_signup] Shortcode */
-form.memberlite_signup div {
-	margin: .5em 0;
-}
-form.memberlite_signup input[type=text],
-form.memberlite_signup input[type=email],
-form.memberlite_signup input[type=password] {
-	max-width: 100%;
-	width: 100%;
-}
-form.memberlite_signup .pmpro_btn {
-	display: block;
-	width: 100%;
-}
-
 /* [memberlite_subpagelist] Shortcode */
 .page .entry-content .memberlite_subpagelist_item .entry-content {
 	border-bottom: none;

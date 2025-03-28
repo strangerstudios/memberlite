@@ -56,7 +56,7 @@
 
 	<footer class="entry-footer">
 		<?php if ( 'post' == get_post_type() ) : // Hide meta text for pages on Search ?>
-			<?php echo Memberlite_Customize::sanitize_text_with_links( memberlite_get_entry_meta( $post, 'after' ) ); ?>
+			<?php echo Memberlite_Customize::sanitize_text_with_links( memberlite_get_entry_meta( $post, 'after' ) ); // WPCS: xss ok. ?>
 		<?php endif; // End if 'post' == get_post_type() ?>
 
 		<?php edit_post_link( esc_html__( 'Edit', 'memberlite' ), '<span class="edit-link">', '</span>' ); ?>

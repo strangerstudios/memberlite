@@ -125,13 +125,13 @@ function memberlite_custom_sidebars() {
 			<br class="clear" />
 			<div id="memberlite-custom-sidebars">
 				<div class="postbox">
-					<h2 class="hndle"><?php _e('Add New Sidebar', 'memberlite');?></h2>
+					<h2 class="hndle"><?php esc_html_e('Add New Sidebar', 'memberlite');?></h2>
 					<div class="inside">
 						<form id="memberlite_add_sidebar_form" method="post" action="<?php echo admin_url("themes.php?page=memberlite-custom-sidebars");?>">
 							<label for="memberlite_custom_sidebar_name"><?php esc_html_e('Sidebar Name','memberlite'); ?></label>
 							<input type="text" name="memberlite_custom_sidebar_name" id="memberlite_custom_sidebar_name" value="" size="30">
 							<?php wp_nonce_field('memberlite_add_custom_sidebar'); ?>
-							<?php submit_button( __( 'Add Sidebar', 'memberlite' ), 'primary', 'memberlite_add_sidebar_submit', false ); ?>
+							<?php submit_button( esc_html__( 'Add Sidebar', 'memberlite' ), 'primary', 'memberlite_add_sidebar_submit', false ); ?>
 						</form>
 					</div> <!-- end inside -->
 				</div> <!-- end postbox -->
@@ -228,7 +228,7 @@ function memberlite_custom_sidebars() {
 							</table>
 							<?php wp_nonce_field('memberlite_cpt_sidebar'); ?>
 							<input type="hidden" name="memberlite_cpt_sidebar" value="1" />
-							<p><?php submit_button( __( 'Save CPT Sidebar Selections', 'memberlite' ), 'primary', 'memberlite_cpt_sidebar_submit', false ); ?></p>
+							<p><?php submit_button( esc_html__( 'Save CPT Sidebar Selections', 'memberlite' ), 'primary', 'memberlite_cpt_sidebar_submit', false ); ?></p>
 						</form>
 						<?php
 					}
@@ -331,7 +331,7 @@ function memberlite_sidebar_add_meta_box() {
 		{
 			add_meta_box(
 				'memberlite_sidebar_section',
-				__('Custom Sidebar', 'memberlite'),
+				esc_html__('Custom Sidebar', 'memberlite'),
 				'memberlite_sidebar_meta_box_callback',
 				$screen,
 				'side',
@@ -386,23 +386,23 @@ function memberlite_sidebar_meta_box_callback($post) {
 			$disable_hide_children_setting = ! empty( $pmpro_pages['account'] ) && $pmpro_pages['account'] == $toplevelpost;
 		}
 		if ( ! empty( $disable_hide_children_setting ) ) {
-			echo '<label for="memberlite_hide_children" class="selectit"><input name="memberlite_hide_children" type="checkbox" id="memberlite_hide_children" value="1" checked="checked" disabled="disabled">' . __('Hide Page Children Menu in Sidebar', 'memberlite') . '</label>';
-			echo '<p class="description"><br />' . __('The Membership Account page and its children do not display this menu.', 'memberlite') . '</p>';
+			echo '<label for="memberlite_hide_children" class="selectit"><input name="memberlite_hide_children" type="checkbox" id="memberlite_hide_children" value="1" checked="checked" disabled="disabled">' . esc_html__('Hide Page Children Menu in Sidebar', 'memberlite') . '</label>';
+			echo '<p class="description"><br />' . esc_html__('The Membership Account page and its children do not display this menu.', 'memberlite') . '</p>';
 		} else {
-			echo '<label for="memberlite_hide_children" class="selectit"><input name="memberlite_hide_children" type="checkbox" id="memberlite_hide_children" value="1" '. checked( $memberlite_hide_children, 1, false) .'>' . __('Hide Page Children Menu in Sidebar', 'memberlite') . '</label>';
+			echo '<label for="memberlite_hide_children" class="selectit"><input name="memberlite_hide_children" type="checkbox" id="memberlite_hide_children" value="1" '. checked( $memberlite_hide_children, 1, false) .'>' . esc_html__('Hide Page Children Menu in Sidebar', 'memberlite') . '</label>';
 		}
 		echo '<hr />';
 	}
 	if( $memberlite_cpt_sidebar_id != 'memberlite_sidebar_blank')
 	{
-		echo '<p>' . sprintf( __('The current default sidebar is <strong>%s</strong>.', 'memberlite' ), $memberlite_cpt_sidebar_name);
+		echo '<p>' . sprintf( esc_html__('The current default sidebar is %s.', 'memberlite' ), '<strong>' . esc_html( $memberlite_cpt_sidebar_name ) . '</strong>' );
 	}
 	else
 	{
-		echo '<p>' . __('The current default sidebar is <strong>hidden</strong>.', 'memberlite' );
+		echo '<p>' . esc_html__('The current default sidebar is <strong>hidden</strong>.', 'memberlite' );
 	}
-	echo ' <a href="' . admin_url( 'themes.php?page=memberlite-custom-sidebars') . '">' . __('Manage Custom Sidebars','memberlite') . '</a></p><hr />';
-	echo '<p><strong>' . __('Select Custom Sidebar', 'memberlite') . '</strong></p>';
+	echo ' <a href="' . admin_url( 'themes.php?page=memberlite-custom-sidebars') . '">' . esc_html__('Manage Custom Sidebars','memberlite') . '</a></p><hr />';
+	echo '<p><strong>' . esc_html__('Select Custom Sidebar', 'memberlite') . '</strong></p>';
 	echo '<label class="screen-reader-text" for="memberlite_custom_sidebar">';
 	_e('Select Sidebar', 'memberlite');
 	echo '</label>';
@@ -419,14 +419,14 @@ function memberlite_sidebar_meta_box_callback($post) {
 	if( $memberlite_cpt_sidebar_id != 'memberlite_sidebar_blank')
 	{
 		echo '<hr />';
-		echo '<p><strong>' . __('Default Sidebar Behavior', 'memberlite') . '</strong></p>';
+		echo '<p><strong>' . esc_html__('Default Sidebar Behavior', 'memberlite') . '</strong></p>';
 		echo '<label class="screen-reader-text" for="memberlite_default_sidebar">';
-		_e('Default Sidebar', 'memberlite');
+		esc_html_e('Default Sidebar', 'memberlite');
 		echo '</label>';
 		echo '<select id="memberlite_default_sidebar" name="memberlite_default_sidebar">';
-		echo '<option value="default_sidebar_above"' . selected( $memberlite_default_sidebar, 'default_sidebar_above' ) . '>' . __('Show Default Sidebar Above', 'memberlite') . '</option>';
-		echo '<option value="default_sidebar_below"' . selected( $memberlite_default_sidebar, 'default_sidebar_below' ) . '>' . __('Show Default Sidebar Below', 'memberlite') . '</option>';
-		echo '<option value="default_sidebar_hide"' . selected( $memberlite_default_sidebar, 'default_sidebar_hide' ) . '>' . __('Hide Default Sidebar', 'memberlite') . '</option>';
+		echo '<option value="default_sidebar_above"' . selected( $memberlite_default_sidebar, 'default_sidebar_above' ) . '>' . esc_html__('Show Default Sidebar Above', 'memberlite') . '</option>';
+		echo '<option value="default_sidebar_below"' . selected( $memberlite_default_sidebar, 'default_sidebar_below' ) . '>' . esc_html__('Show Default Sidebar Below', 'memberlite') . '</option>';
+		echo '<option value="default_sidebar_hide"' . selected( $memberlite_default_sidebar, 'default_sidebar_hide' ) . '>' . esc_html__('Hide Default Sidebar', 'memberlite') . '</option>';
 		echo '</select>';
 	}
 }

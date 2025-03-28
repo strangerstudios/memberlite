@@ -32,10 +32,14 @@ function memberlite_recent_posts_shortcode_handler($atts, $content=null, $code="
 	);
 
 	// check to see if post type is not empty and the post type exists.
-	if( !empty($post_type) && post_type_exists( $post_type ) ) {
+	if ( ! empty( $post_type ) && post_type_exists( $post_type ) ) {
 		$query_args['post_type'] = $post_type;
-	}else{
-		return _e( "There was a problem fetching content for the post type '$post_type'. Please ensure this exists.", "memberlite-shortcodes" );
+	} else {
+		return sprintf(
+			/* translators: %s: post type */
+			__( "There was a problem fetching content for the post type '%s'. Please ensure this exists.", "memberlite" ),
+			esc_html( $post_type )
+		);
 	}
 
 	if($show_avatar == "0" || $show_avatar == "false" || $show_avatar == "no"){
@@ -49,7 +53,7 @@ function memberlite_recent_posts_shortcode_handler($atts, $content=null, $code="
 		global $current_user;
 
 		if( empty( $current_user->ID) ) {
-			return __( 'There was a problem fetching posts for the current user. Please try again later.', 'memberlite-shortcodes' );
+			return __( 'There was a problem fetching posts for the current user. Please try again later.', 'memberlite' );
 		}else{
 			$query_args['author'] = $current_user->ID;
 		}
@@ -62,7 +66,7 @@ function memberlite_recent_posts_shortcode_handler($atts, $content=null, $code="
 		$author_id = $user->ID;
 
 		if( empty( $author_id ) ) {
-			return __( "No posts found for this user. Please ensure the author's name/ID is correct.", "memberlite-shortcodes" );
+			return __( "No posts found for this user. Please ensure the author's name/ID is correct.", "memberlite" );
 		}else{
 			$query_args['author'] = $author_id;
 		}

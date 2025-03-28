@@ -325,10 +325,10 @@ textarea{
     border-top-right-radius: 3px;
     border-top-left-radius: 3px;
 }
-#pmpro_levels .post h2, .memberlite_signup h2, .pmpro_signup_form h2{
+#pmpro_levels .post h2, .pmpro_signup_form h2{
     margin: 0 0 1rem 0 ;
 }
-#pmpro_levels.pmpro_levels-table.pmpro_level-highlight, #pmpro_levels.pmpro_levels-div .pmpro_level-highlight, #pmpro_levels.pmpro_levels-2col .pmpro_level-highlight, #pmpro_levels.pmpro_levels-3col .pmpro_level-highlight, #pmpro_levels.pmpro_levels-4col .pmpro_level-highlight, .memberlite_signup, .pmpro_signup_form{
+#pmpro_levels.pmpro_levels-table.pmpro_level-highlight, #pmpro_levels.pmpro_levels-div .pmpro_level-highlight, #pmpro_levels.pmpro_levels-2col .pmpro_level-highlight, #pmpro_levels.pmpro_levels-3col .pmpro_level-highlight, #pmpro_levels.pmpro_levels-4col .pmpro_level-highlight {
     border-right: 1px solid #CCC;
     border-left: 1px solid #CCC;
 }

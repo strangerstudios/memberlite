@@ -31,19 +31,3 @@ function memberlite_landing_page_after_content_page( ) {
 	}
 }
 add_action( 'memberlite_after_content_page', 'memberlite_landing_page_after_content_page' );
-
-function memberlite_landing_page_before_sidebar_widgets( ) {
-	global $post;
-
-	//Show the landing page level checkout button and upsell
-	if( is_page_template( 'templates/landing.php' ) && defined( 'PMPRO_VERSION' ) && shortcode_exists( 'memberlite_signup' ) ) {
-		$pmproal_landing_page_level = get_post_meta($post->ID,'_pmproal_landing_page_level',true);
-		if ( ! empty( $pmproal_landing_page_level ) ) { ?>
-			<aside class="widget widget_memberlite_signup">
-				<?php echo do_shortcode('[memberlite_signup level="' . esc_attr( $pmproal_landing_page_level ) . '" short="true" title="' . str_replace('"', '', esc_html__('Sign Up Now', 'memberlite')) . '"]'); ?>
-			</aside>
-			<?php
-		}
-	}
-}
-add_action( 'memberlite_before_sidebar_widgets' , 'memberlite_landing_page_before_sidebar_widgets' );

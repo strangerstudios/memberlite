@@ -191,6 +191,11 @@ function memberlite_getPostThumbnailWidth( $post_id = null ) {
 function memberlite_excerpt_more( $more ) {
 	global $post;
 
+	// Return early if no post ID is set.
+	if ( empty( $post->ID ) ) {
+		return $more;
+	}
+
 	if ( ! is_admin() ) {
 		$more = ' <a href="' . esc_url( get_permalink( $post->ID ) ) . '" rel="nofollow">' . esc_html( __( '(more...)', 'memberlite' ) ) . '</a>';
 	}
@@ -498,7 +503,7 @@ function memberlite_page_title( $echo = true ) {
 				if ( ! empty( $memberlite_get_entry_meta_before ) ) {
 					?>
 					<p class="entry-meta">
-						<?php echo Memberlite_Customize::sanitize_text_with_links( memberlite_get_entry_meta( $post, 'before' ) ); ?>
+						<?php echo Memberlite_Customize::sanitize_text_with_links( memberlite_get_entry_meta( $post, 'before' ) ); // WPCS: xss ok. ?>
 						</p><!-- .entry-meta -->
 						<?php
 				}

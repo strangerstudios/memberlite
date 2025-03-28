@@ -54,7 +54,7 @@ function memberlite_support() {
 						<p><?php esc_html_e( 'Use the Customize > Site Identity screen to add a custom logo and update or toggle the display of your Site Title and Tagline.', 'memberlite' ); ?></p>
 						<p>
 							<a href="<?php echo esc_url( wp_customize_url() ); ?>"><?php esc_html_e( 'Add Your Logo', 'memberlite' ); ?></a><br />
-							<a href="https://memberlitetheme.com/documentation/site-branding/" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Docs: Site Branding in Memberlite', 'memberlite' ); ?></a>
+							<a href="https://www.paidmembershipspro.com/documentation/memberlite/site-branding/" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Docs: Site Branding in Memberlite', 'memberlite' ); ?></a>
 						</p>
 					</div>
 					<div class="col">
@@ -62,7 +62,7 @@ function memberlite_support() {
 						<p><?php esc_html_e( 'Use the Customize > Memberlite Options screen to modify theme layout, logo, fonts, colors, copyright message and more.', 'memberlite' ); ?></p>
 						<p>
 							<a href="<?php echo esc_url( wp_customize_url() ); ?>"><?php esc_html_e( 'Customize Your Theme', 'memberlite' ); ?></a><br />
-							<a href="https://memberlitetheme.com/documentation/customize/" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Docs: Customizing Memberlite', 'memberlite' ); ?></a>
+							<a href="https://www.paidmembershipspro.com/documentation/memberlite/customize/" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Docs: Customizing Memberlite', 'memberlite' ); ?></a>
 						</p>
 					</div>
 					<div class="col">
@@ -70,7 +70,7 @@ function memberlite_support() {
 						<p><?php esc_html_e( 'Register for a free account to browse documentation and get additional help with your Memberlite-powered WordPress site.', 'memberlite' ); ?></p>
 						<p>
 							<a href="https://demo.memberlitetheme.com" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'View Theme Demo', 'memberlite' ); ?></a><br />
-							<a href="https://memberlitetheme.com" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'View All Docs', 'memberlite' ); ?></a>
+							<a href="https://www.paidmembershipspro.com/documentation/memberlite/" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'View All Docs', 'memberlite' ); ?></a>
 						</p>
 					</div>
 				</div> <!-- end memberlite-feature-section -->
@@ -85,7 +85,7 @@ function memberlite_support() {
 					<?php } else { ?>
 						<h1><?php esc_html_e( 'Using Child Themes', 'memberlite' ); ?></h1>
 						<p><?php esc_html_e( 'If you need to customize the theme beyond the settings in Appearance > Customize, use a child theme. Child themes allow you to change the appearance of your site, while preseving the ability to update the primary "parent" theme.', 'memberlite' ); ?> <a href="https://developer.wordpress.org/themes/advanced-topics/child-themes/" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Learn more about child themes in the WordPress Theme Handbook', 'memberlite' ); ?></a></p>
-						<a class="button button-hero button-primary" href="https://memberlitetheme.com/themes/custom-child-theme/" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Download a Blank Child Theme', 'memberlite' ); ?></a>
+						<a class="button button-hero button-primary" href="https://www.paidmembershipspro.com/documentation/download/" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Download a Blank Child Theme', 'memberlite' ); ?></a>
 					<?php } ?>
 				</div>
 			</div>
@@ -324,9 +324,10 @@ function memberlite_plugin_action_button( $slug, $plugin_file ) {
 function memberlite_admin_init_notifications() {
 	global $wpdb;
 
-	// we want to avoid notices on some screens
-	$script           = esc_url( basename( $_SERVER['SCRIPT_NAME'] ) );
-	$maybe_installing = $script == 'update.php' || $script == 'plugins.php';
+	// Avoid notices on some screens.
+	$script_name = isset( $_SERVER['SCRIPT_NAME'] ) ? sanitize_text_field( wp_unslash( $_SERVER['SCRIPT_NAME'] ) ) : '';
+	$script = esc_html( wp_basename( $script_name ) );
+	$maybe_installing = in_array( $script, array( 'update.php', 'plugins.php' ), true );
 
 	// 1. Show link to the welcome page the first time the theme is activated
 	$welcome_link_dismissed = get_option( 'memberlite_notice_welcome_link_dismissed', false );
@@ -342,10 +343,10 @@ function memberlite_wp_ajax_dismiss_notice() {
 	// whitelist of notices
 	$notices = array( 'welcome_link' );
 
-	// get and check notice
-	$notice = sanitize_title( $_REQUEST['notice'] );
-	if ( ! in_array( $notice, $notices ) ) {
-		wp_die( 'Invalid notice.' );
+	// Get and validate the notice.
+	$notice = sanitize_key( wp_unslash( $_REQUEST['notice'] ?? '' ) );
+	if ( ! in_array( $notice, $notices, true ) ) {
+		wp_die( esc_html__( 'Invalid notice.', 'text-domain' ) );
 	}
 
 	// update option and leave

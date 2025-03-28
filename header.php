@@ -99,6 +99,7 @@
 									'container_id'    => 'meta-navigation',
 									'container_class' => 'meta-navigation',
 									'fallback_cb'     => false,
+									'walker'          => new Memberlite_Aria_Walker_Nav_Menu(),
 								)
 							);
 						}
@@ -130,15 +131,16 @@
 				<div class="site-navigation-sticky-wrapper">
 			<?php }
 		?>
-		<nav id="site-navigation">
+		<nav id="site-navigation" role="navigation" aria-label="<?php esc_attr_e( 'Main Menu', 'memberlite' ); ?>">
 		<?php
 		if ( has_nav_menu( 'primary' ) ) {
 			$primary_defaults = array(
 				'theme_location'  => 'primary',
-				'container'       => 'div',
-				'container_class' => 'main-navigation row',
-				'menu_class'      => 'menu large-12 columns',
+				'container'       => false,
 				'fallback_cb'     => false,
+				'items_wrap'      => '<ul id="%1$s" class="%2$s" role="menubar">%3$s</ul>',
+				'menu_class'      => 'menu',
+				'walker'          => new Memberlite_Aria_Walker_Nav_Menu(),
 			);
 			wp_nav_menu( $primary_defaults );
 		}
