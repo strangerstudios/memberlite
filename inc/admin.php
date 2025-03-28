@@ -95,9 +95,10 @@ function memberlite_support() {
 					'a' => array(
 						'class' => array(),
 						'href' => array(),
+						'target' => array()
 					),
 				);
-				$memberlite_plugins_recommended = apply_filters( 'memberlite_plugins_recommended', array( 'paid-memberships-pro', 'sitewide-sales' ) );
+				$memberlite_plugins_recommended = apply_filters( 'memberlite_plugins_recommended', array( 'paid-memberships-pro', 'sitewide-sales'  ) );
 				if ( ! empty( $memberlite_plugins_recommended ) ) { ?>
 					<hr />
 					<h2>
@@ -120,7 +121,7 @@ function memberlite_support() {
 										<ul class="plugin-action-buttons">
 											<li>
 												<?php
-													echo wp_kses( memberlite_plugin_action_button( 'paid-memberships-pro', 'paid-memberships-pro/paid-memberships-pro.php' ), $memberlite_plugin_action_button_allowed_html );
+													echo wp_kses( memberlite_plugin_action_button( 'paid-memberships-pro', 'paid-memberships-pro/paid-memberships-pro.php', 'https://www.paidmembershipspro.com/documentation/download/?utm_source=memberlite-theme&utm_medium=memberlite-guide&utm_campaign=homepage' ), $memberlite_plugin_action_button_allowed_html );
 												?>
 											</li>
 											<li><a href="https://www.paidmembershipspro.com/?utm_source=memberlite-theme&utm_medium=memberlite-guide&utm_campaign=homepage" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'More Details', 'memberlite' ); ?></a></li>
@@ -145,7 +146,7 @@ function memberlite_support() {
 										<ul class="plugin-action-buttons">
 											<li>
 												<?php
-													echo wp_kses( memberlite_plugin_action_button( 'sitewide-sales', 'sitewide-sales/sitewide-sales.php' ), $memberlite_plugin_action_button_allowed_html );
+													echo wp_kses( memberlite_plugin_action_button( 'sitewide-sales', 'sitewide-sales/sitewide-sales.php', 'https://www.strangerstudios.com/wordpress-plugins/sitewide-sales/?utm_source=memberlite-theme&utm_medium=memberlite-guide&utm_campaign=homepage' ), $memberlite_plugin_action_button_allowed_html );
 												?>
 											</li>
 											<li><a href="https://sitewidesales.com/?utm_source=memberlite-theme&utm_medium=memberlite-guide&utm_campaign=homepage" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'More Details', 'memberlite' ); ?></a></li>
@@ -264,7 +265,7 @@ function memberlite_support() {
 									<ul class="plugin-action-buttons">
 										<li>
 											<?php
-												echo wp_kses( memberlite_plugin_action_button( 'paid-memberships-pro', 'paid-memberships-pro/paid-memberships-pro.php' ), $memberlite_plugin_action_button_allowed_html );
+												echo wp_kses( memberlite_plugin_action_button( 'paid-memberships-pro', 'paid-memberships-pro/paid-memberships-pro.php', 'https://www.paidmembershipspro.com/documentation/download/?utm_source=memberlite-theme&utm_medium=memberlite-guide&utm_campaign=homepage' ), $memberlite_plugin_action_button_allowed_html );
 											?>
 										</li>
 										<li><a href="https://www.paidmembershipspro.com/?utm_source=memberlite-theme&utm_medium=memberlite-guide&utm_campaign=homepage" target="_blank"><?php esc_html_e( 'More Details', 'memberlite' ); ?></a></li>
@@ -289,8 +290,11 @@ function memberlite_support() {
 
 /**
  * Show an action button for the specified plugin
+ * @param string $slug The plugin slug
+ * @param string $plugin_file The plugin file (includes slug/plugin.php)
+ * @param string $download_link Get the download link for the plugin. If 'org' is set assume it's on WordPress.org and search in the WP dashboard for the plugin.
  */
-function memberlite_plugin_action_button( $slug, $plugin_file ) {
+function memberlite_plugin_action_button( $slug, $plugin_file, $download_link = 'org' ) {
 	$plugin_file_abs = ABSPATH . 'wp-content/plugins/' . $plugin_file;
 	if ( is_plugin_active( $plugin_file ) ) {
 		$status = 'active';
@@ -305,12 +309,17 @@ function memberlite_plugin_action_button( $slug, $plugin_file ) {
 	} elseif ( $status === 'inactive' ) {
 		$r = '<a class="install-now button" href="' . esc_url( add_query_arg( array( 's' => $slug ), admin_url( 'plugins.php' ) ) ) . '">' . __( 'Activate', 'memberlite' ) . '</a>';
 	} else {
-		if ( is_multisite() ) {
-			// This is a network install.
-			$r = '<a class="install-now button" href="' . esc_url( add_query_arg( array( 's' => $slug, 'tab' => 'search' ), network_admin_url( 'plugin-install.php' ) ) ) . '">' . __( 'Install', 'memberlite' ) . '</a>';
+		// Adjust the download link based on the download_link that is passed in.
+		if ( $download_link === 'org' ) {
+			$plugin_url = is_multisite() ? add_query_arg( array( 's' => $slug, 'tab' => 'search' ), network_admin_url( 'plugin-install.php' ) ) : add_query_arg( array( 's' => $slug, 'tab' => 'search' ), admin_url( 'plugin-install.php' ) );
+			$target = '';
 		} else {
-			$r = '<a class="install-now button" href="' . esc_url( add_query_arg( array( 's' => $slug, 'tab' => 'search' ), admin_url( 'plugin-install.php' ) ) ) . '">' . __( 'Install', 'memberlite' ) . '</a>';
+			$plugin_url = $download_link;
+			$target = ' target=_blank'; // esc_attr is wrapping the values in between quotes when outputting so we can ommit them here.
 		}
+
+		$r = '<a href="' . esc_url( $plugin_url ) . '" class="install-now button" aria-label="' . esc_attr__( 'Install', 'memberlite' ) . '"' . esc_attr( $target ) . '>' . __( 'Install', 'memberlite' ) . '</a>';
+		
 	}
 	return $r;
 }
