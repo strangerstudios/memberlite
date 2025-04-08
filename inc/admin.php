@@ -488,23 +488,29 @@ function memberlite_admin_notice_welcome_link() {
  * @since TBD
  */
 function memberlite_admin_notice_wp_org() {
-    // Get the current screen object
-    $screen = get_current_screen();
+	// Get the current screen object
+	$screen = get_current_screen();
 
-    // Only show notice on the Themes or Updates admin page
-    if ( $screen && in_array( $screen->id, array( 'themes', 'update-core' ) ) ) {
+	// Only show notice on the Themes or Updates admin page
+	if ( $screen && in_array( $screen->id, array( 'themes', 'update-core' ) ) ) {
 		if ( ! is_plugin_active( 'pmpro-update-manager/pmpro-update-manager.php' ) ) {
-			$title = '⚠️ ' . __( 'Action Needed For Memberlite: Update Manager Required for Future Updates', 'memberlite' );
-			$message = '<p>' . __( 'The PMPro Update Manager is a required plugin to ensure all updates come directly from the official Paid Memberships Pro license server. To continue to receive updates for Memberlite, please install the PMPro Update Manager plugin.', 'memberlite' ) . '</p><p><a class="button button-hero button-primary" href="https://www.paidmembershipspro.com/wp-content/uploads/plugins/pmpro-update-manager.zip?utm_source=plugin&utm_medium=memberlite-guide&utm_campaign=add-ons&utm_content=memberlite">' . __( 'Install PMPro Update Manager', 'memberlite' ) . '</a>';
+			$title = __( 'Your Memberlite Theme Needs an Update: Install Update Manager', 'memberlite' );
+			$message = '<p>' . __( 'The PMPro Update Manager is a required plugin to ensure all updates come directly from the official Paid Memberships Pro license server. Navigate to Memberships > Add Ons to install and activate the PMPro Update Manager.', 'memberlite' );
+			$message .= ' <a href="https://www.paidmembershipspro.com/add-ons/update-manager/" target="_blank" rel="noopener noreferrer">' . __( 'Learn more about the Update Manager Add On here', 'memberlite' ) . '</a>.</p>';
 		} else {
-			$title = '⚠️ '. __( 'Memberlite is out of date.', 'memberlite' );
-			$message = '<p>' . __( 'We noticed that your Memberlite version is out of date. Please update to the latest version to receive bug fixes and new features.', 'memberlite' ) . '</p><p><a class="button button-hero button-primary" href="' . esc_url( admin_url( 'update-core.php' ) ) . '">' . __( 'Update Memberlite', 'memberlite' ) . '</a>';
+			$title =  __( 'Your Memberlite Theme Needs an Update', 'memberlite' );
+			$message = '<p>' . __( 'You are using an older version of the Memberlite theme. To get the latest features, improvements, and bug fixes, please update to the newest version.', 'memberlite' ) . '</p>';
+			if ( in_array( $screen->id, array( 'themes' ) ) ) {
+				$message  .= '<p><a class="button button-primary" href="' . esc_url( admin_url( 'update-core.php' ) ) . '">' . __( 'Update Memberlite', 'memberlite' ) . '</a></p>';
+			} else {
+				$message .= '<p>' . __( 'You can update Memberlite from the Themes section at the bottom of this screen.', 'memberlite' ) . '</p>';
+			}
 		}
 		?>
-        <div id="memberlite-admin-notice-org_notice" class="notice notice-error is-dismissible memberlite-notice">
-			<p style="font-size:20px;font-weight:bold"><?php echo esc_html( $title ); ?></p>
-            <p><?php echo wp_kses_post( $message ); ?></p>
-        </div>
-        <?php
-    }
+		<div id="memberlite-admin-notice-org_notice" class="notice notice-large notice-error is-dismissible memberlite-notice">
+			<span class="notice-title"><strong><?php echo esc_html( $title ); ?></strong></span>
+			<?php echo wp_kses_post( $message ); ?>
+		</div>
+		<?php
+	}
 }
