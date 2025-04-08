@@ -435,13 +435,20 @@ function memberlite_admin_init_notifications() {
 		wp_enqueue_script( 'memberlite-admin-dismiss-notice', get_template_directory_uri() . '/js/admin-dismiss-notice.js', array( 'jquery' ), MEMBERLITE_VERSION, true );
 		add_action( 'admin_notices', 'memberlite_admin_notice_welcome_link' );
 	}
+
+	// 2. Show notice for .org final release.
+	$org_notice_dismissed = get_option( 'memberlite_notice_org_notice_dismissed', false );
+	if ( ! $org_notice_dismissed ) {
+		wp_enqueue_script( 'memberlite-admin-dismiss-notice', get_template_directory_uri() . '/js/admin-dismiss-notice.js', array( 'jquery' ), MEMBERLITE_VERSION, true );
+		add_action( 'admin_notices', 'memberlite_admin_notice_wp_org' );
+	}
 }
 add_action( 'admin_init', 'memberlite_admin_init_notifications' );
 
 // AJAX to handle notice dismissal
 function memberlite_wp_ajax_dismiss_notice() {
 	// whitelist of notices
-	$notices = array( 'welcome_link' );
+	$notices = array( 'welcome_link', 'org_notice' );
 
 	// get and check notice
 	$notice = sanitize_title( $_REQUEST['notice'] );
@@ -472,4 +479,32 @@ function memberlite_admin_notice_welcome_link() {
 		</p>
 	</div>
 	<?php
+}
+
+/**
+ * Show notice for .org final release.
+ * This is only available for this version.
+ * 
+ * @since TBD
+ */
+function memberlite_admin_notice_wp_org() {
+    // Get the current screen object
+    $screen = get_current_screen();
+
+    // Only show notice on the Themes or Updates admin page
+    if ( $screen && in_array( $screen->id, array( 'themes', 'update-core' ) ) ) {
+		if ( ! is_plugin_active( 'pmpro-update-manager/pmpro-update-manager.php' ) ) {
+			$title = '⚠️ ' . __( 'Action Needed For Memberlite: Update Manager Required for Future Updates', 'memberlite' );
+			$message = '<p>' . __( 'The PMPro Update Manager is a required plugin to ensure all updates come directly from the official Paid Memberships Pro license server. To continue to receive updates for Memberlite, please install the PMPro Update Manager plugin.', 'memberlite' ) . '</p><p><a class="button button-hero button-primary" href="https://www.paidmembershipspro.com/wp-content/uploads/plugins/pmpro-update-manager.zip?utm_source=plugin&utm_medium=memberlite-guide&utm_campaign=add-ons&utm_content=memberlite">' . __( 'Install PMPro Update Manager', 'memberlite' ) . '</a>';
+		} else {
+			$title = '⚠️ '. __( 'Memberlite is out of date.', 'memberlite' );
+			$message = '<p>' . __( 'We noticed that your Memberlite version is out of date. Please update to the latest version to receive bug fixes and new features.', 'memberlite' ) . '</p><p><a class="button button-hero button-primary" href="' . esc_url( admin_url( 'update-core.php' ) ) . '">' . __( 'Update Memberlite', 'memberlite' ) . '</a>';
+		}
+		?>
+        <div id="memberlite-admin-notice-org_notice" class="notice notice-error is-dismissible memberlite-notice">
+			<p style="font-size:20px;font-weight:bold"><?php echo esc_html( $title ); ?></p>
+            <p><?php echo wp_kses_post( $message ); ?></p>
+        </div>
+        <?php
+    }
 }
