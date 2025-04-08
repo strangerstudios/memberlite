@@ -63,12 +63,9 @@
 }
 
 .site-branding {
+	flex-direction: column;
+	gap: .9rem;
 	text-align: center;
-	
-	a.custom-logo-link {
-		float: none;
-	}
-
 }
 
 #site-navigation {
@@ -79,8 +76,17 @@
 	}
 }
 
+.home {
+
+	.site-content {
+		margin-top: 2.9rem;
+	}
+
+}
+
 .masthead {
-	margin-bottom: 0;
+	margin-bottom: 2.9rem;
+	padding-bottom: 2.9rem;
 
 	.masthead-post-byline {
 		margin-top: 0;
@@ -88,6 +94,27 @@
 
 }
 
+#primary {
+
+	.hentry {
+
+		.entry-title {
+			margin-bottom: 0;
+		}
+
+		.entry-meta {
+			color: var(--memberlite-color-text);
+			font-style: normal;
+
+			a {
+				color: var(--memberlite-color-text);
+			}
+
+		}
+
+	}
+
+}
 .post .entry-footer {
 	background-color: transparent;
 	border: none;
