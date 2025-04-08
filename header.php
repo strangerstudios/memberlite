@@ -66,21 +66,23 @@
 
 				<?php memberlite_the_custom_logo(); ?>
 
-				<?php
-					/**
-					 * Accessible and search-optimized page title HTML markup.
-					 * Use h1 if this is the front page of the site and
-					 * p if on an interior page.
-					 */
-					if ( is_front_page() ) {
-						$site_title_html_tag = 'h1';
-					} else {
-						$site_title_html_tag = 'p';
-					}
-				?>
-				<<?php echo esc_attr( $site_title_html_tag ); ?> class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></<?php echo esc_attr( $site_title_html_tag ); ?>>
+				<div class="site-identity">
+					<?php
+						/**
+						 * Accessible and search-optimized page title HTML markup.
+						 * Use h1 if this is the front page of the site and
+						 * span if on an interior page.
+						 */
+						if ( is_front_page() ) {
+							$site_title_html_tag = 'h1';
+						} else {
+							$site_title_html_tag = 'span';
+						}
+					?>
+					<<?php echo esc_attr( $site_title_html_tag ); ?> class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></<?php echo esc_attr( $site_title_html_tag ); ?>>
 
-				<p class="site-description"><?php bloginfo( 'description' ); ?></p>
+					<span class="site-description"><?php bloginfo( 'description' ); ?></span>
+				</div>
 
 			</div><!-- .site-branding -->
 

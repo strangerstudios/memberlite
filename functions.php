@@ -111,17 +111,9 @@ function memberlite_get_font( $font_type, $nicename = NULL ) {
 	global $memberlite_defaults;
 
 	// Get the selected fonts from theme options.
-	$fonts_string = get_theme_mod( 'memberlite_webfonts', $memberlite_defaults['memberlite_webfonts'] );
+	$r = get_theme_mod( 'memberlite_' . $font_type, $memberlite_defaults[ 'memberlite_' . $font_type ] );
 
-	// Break the theme mod for custom fonts into two parts.
-	$fonts_string_parts = explode( '_', $fonts_string );
-
-	if ( $font_type === 'header_font' ) {
-		$r = $fonts_string_parts[0];
-	} else {
-		$r = $fonts_string_parts[1];
-	}
-
+	// If we're returning the font name, convert the slug to a human-readable name.
 	if ( ! empty( $nicename ) ) {
 		$r = str_replace( '-', ' ', $r );
 	}
@@ -136,16 +128,14 @@ function memberlite_load_local_webfonts() {
 	global $memberlite_defaults;
 
 	// Get the selected fonts from theme options.
-	$fonts_string = get_theme_mod( 'memberlite_webfonts', $memberlite_defaults['memberlite_webfonts'] );
-	
+	$header_font = strtolower( memberlite_get_font( 'header_font' ) );
+	$body_font = strtolower( memberlite_get_font( 'body_font' ) );
+
 	// If it's not a Google font, ignore.
+	$fonts_string = $header_font . '_' . $body_font;
 	if ( ! in_array( $fonts_string, array_keys( Memberlite_Customize::get_google_fonts() ) ) ) {
 		return;
 	}
-	
-	// Get the selected fonts from theme options.
-	$header_font = strtolower( memberlite_get_font( 'header_font' ) );
-	$body_font = strtolower( memberlite_get_font( 'body_font' ) );
 
 	// If the header and body fonts are the same, just load the body font.
 	if ( $body_font === $header_font ) {
@@ -529,8 +519,13 @@ add_action( 'after_setup_theme', 'memberlite_setup' );
  * 
  * @since TBD
  */
-function memberlite_check_for_updated_translations() {
+function memberlite_check_for_translations() {
 
+	// if Update Manager is installed, we can bail.
+	if ( function_exists( 'pmproum_check_for_translations' ) ) {
+		return;
+	}
+	
 	// If the library isn't loaded, bail.
 	if ( ! function_exists( 'Memberlite\Required\Traduttore_Registry\add_project' ) ) {
 		return;
@@ -548,7 +543,7 @@ function memberlite_check_for_updated_translations() {
 		);
 	}
 }
-add_action( 'admin_init', 'memberlite_check_for_updated_translations' );
+add_action( 'admin_init', 'memberlite_check_for_translations' );
 
 function memberlite_wp_head() {
 	if ( is_singular() && pings_open() ) {

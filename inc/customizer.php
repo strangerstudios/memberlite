@@ -47,22 +47,42 @@ class Memberlite_Customize {
 		);
 
 		$wp_customize->add_setting(
-			'memberlite_webfonts',
+			'memberlite_header_font',
 			array(
-				'default'              => $memberlite_defaults['memberlite_webfonts'],
+				'default'              => $memberlite_defaults['memberlite_header_font'],
 				'sanitize_callback'    => array( 'Memberlite_Customize', 'sanitize_select' ),
 				'sanitize_js_callback' => array( 'Memberlite_Customize', 'sanitize_js_callback' ),
 			)
 		);
 
 		$wp_customize->add_control(
-			'memberlite_webfonts',
+			'memberlite_header_font',
 			array(
-				'label'    => __( 'Font', 'memberlite' ),
+				'label'    => __( 'Header Font', 'memberlite' ),
 				'section'  => 'memberlite_theme_options',
 				'type'     => 'select',
 				'choices'  => Memberlite_Customize::get_all_fonts(),
 				'priority' => 10,
+			)
+		);
+
+		$wp_customize->add_setting(
+			'memberlite_body_font',
+			array(
+				'default'              => $memberlite_defaults['memberlite_body_font'],
+				'sanitize_callback'    => array( 'Memberlite_Customize', 'sanitize_select' ),
+				'sanitize_js_callback' => array( 'Memberlite_Customize', 'sanitize_js_callback' ),
+			)
+		);
+
+		$wp_customize->add_control(
+			'memberlite_body_font',
+			array(
+				'label'    => __( 'Body Font', 'memberlite' ),
+				'section'  => 'memberlite_theme_options',
+				'type'     => 'select',
+				'choices'  => Memberlite_Customize::get_all_fonts(),
+				'priority' => 11,
 			)
 		);
 
@@ -1105,23 +1125,29 @@ class Memberlite_Customize {
 	 */
 	public static function get_google_fonts() {
 		return array(
-			'Lato_Lato'                          => __( 'Lato', 'memberlite' ),
-			'Poppins_Open-Sans'                  => __( 'Poppins and Open Sans', 'memberlite' ),
-			'Figtree_DM-Sans'                    => __( 'Figtree and DM Sans', 'memberlite' ),
-			'Inter_Open-Sans'                    => __( 'Inter and Open Sans', 'memberlite' ),
-			'PT-Sans_PT-Serif'                   => __( 'PT Sans and PT Serif', 'memberlite' ),
-			'Fjalla-One_Noto-Sans'               => __( 'Fjalla One and Noto Sans', 'memberlite' ),
-			'Pathway-Gothic-One_Source-Sans-Pro' => __( 'Pathway Gothic One and Source Sans Pro', 'memberlite' ),
-			'Oswald_Lato'                        => __( 'Oswald and Lato', 'memberlite' ),
-			'Ubuntu_Open-Sans'                   => __( 'Ubuntu and Open Sans', 'memberlite' ),
-			'Lato_Source-Sans-Pro'               => __( 'Lato and Source Sans Pro', 'memberlite' ),
-			'Roboto-Slab_Roboto'                 => __( 'Roboto Slab and Roboto', 'memberlite' ),
-			'Lato_Merriweather'                  => __( 'Lato and Merriweather', 'memberlite' ),
-			'Playfair-Display_Open-Sans'         => __( 'Playfair Display and Open Sans', 'memberlite' ),
-			'Oswald_Quattrocento'                => __( 'Oswald and Quattrocento', 'memberlite' ),
-			'Abril-Fatface_Open-Sans'            => __( 'Abril Fatface and Open Sans', 'memberlite' ),
-			'Open-Sans_Gentium-Book-Basic'       => __( 'Open Sans and Gentium Book Basic', 'memberlite' ),
-			'Oswald_PT-Mono'                     => __( 'Oswald and PT Mono', 'memberlite' ),
+			'Abril-Fatface'           => __( 'Abril Fatface', 'memberlite' ),
+			'DM-Sans'                 => __( 'DM Sans', 'memberlite' ),
+			'Figtree'                 => __( 'Figtree', 'memberlite' ),
+			'Fjalla-One'              => __( 'Fjalla One', 'memberlite' ),
+			'Gentium-Book-Basic'      => __( 'Gentium Book Basic', 'memberlite' ),
+			'Inter'                   => __( 'Inter', 'memberlite' ),
+			'Lato'                    => __( 'Lato', 'memberlite' ),
+			'Merriweather'            => __( 'Merriweather', 'memberlite' ),
+			'Montserrat'              => __( 'Montserrat', 'memberlite' ),
+			'Noto-Sans'               => __( 'Noto Sans', 'memberlite' ),
+			'Open-Sans'               => __( 'Open Sans', 'memberlite' ),
+			'Oswald'                  => __( 'Oswald', 'memberlite' ),
+			'Pathway-Gothic-One'      => __( 'Pathway Gothic One', 'memberlite' ),
+			'Playfair-Display'        => __( 'Playfair Display', 'memberlite' ),
+			'Poppins'                 => __( 'Poppins', 'memberlite' ),
+			'PT-Mono'                 => __( 'PT Mono', 'memberlite' ),
+			'PT-Sans'                 => __( 'PT Sans', 'memberlite' ),
+			'PT-Serif'                => __( 'PT Serif', 'memberlite' ),
+			'Quattrocento'            => __( 'Quattrocento', 'memberlite' ),
+			'Roboto'                  => __( 'Roboto', 'memberlite' ),
+			'Roboto-Slab'             => __( 'Roboto Slab', 'memberlite' ),
+			'Source-Sans-Pro'         => __( 'Source Sans Pro', 'memberlite' ),
+			'Ubuntu'                  => __( 'Ubuntu', 'memberlite' ),
 		);
 	}
 
@@ -1130,18 +1156,18 @@ class Memberlite_Customize {
 	 */
 	public static function get_web_safe_fonts() {
 		return array(
-			'Arial_Arial'						 => __( 'Arial', 'memberlite' ),
-			'Bookman_Bookman'					 => __( 'Bookman', 'memberlite' ),
-			'Courier_Courier'					 => __( 'Courier', 'memberlite' ),
-			'Courier-New_Courier-New'			 => __( 'Courier New', 'memberlite' ),
-			'Garamond_Garamond'					 => __( 'Garamond', 'memberlite' ),
-			'Georgia_Georgia'					 => __( 'Georgia', 'memberlite' ),
-			'Helvetica_Helvetica'				 => __( 'Helvetica', 'memberlite' ),
-			'Times_Times'						 => __( 'Times', 'memberlite' ),
-			'Times-New-Roman_Times-New-Roman'	 => __( 'Times New Roman', 'memberlite' ),
-			'Trebuchet-MS_Trebuchet-MS'			 => __( 'Trebuchet MS', 'memberlite' ),
-			'Verdana_Verdana'					 => __( 'Verdana', 'memberlite' ),
-		);
+			'Arial'             => __( 'Arial', 'memberlite' ),
+			'Bookman'           => __( 'Bookman', 'memberlite' ),
+			'Courier'           => __( 'Courier', 'memberlite' ),
+			'Courier-New'       => __( 'Courier New', 'memberlite' ),
+			'Garamond'          => __( 'Garamond', 'memberlite' ),
+			'Georgia'           => __( 'Georgia', 'memberlite' ),
+			'Helvetica'         => __( 'Helvetica', 'memberlite' ),
+			'Times'             => __( 'Times', 'memberlite' ),
+			'Times-New-Roman'   => __( 'Times New Roman', 'memberlite' ),
+			'Trebuchet-MS'      => __( 'Trebuchet MS', 'memberlite' ),
+			'Verdana'           => __( 'Verdana', 'memberlite' ),
+		);	
 	}
 
 	/**
