@@ -2758,12 +2758,6 @@ a:active:not(.pmpro_btn:active) {
 		font-weight: 400;
 	}
 
-	.pmpro_card,
-	.pmpro_card_actions,
-	.pmpro_card_content + .pmpro_card_actions {
-		border-color: var(--memberlite-color-borders);
-	}
-
 	/* Membership Levels and Advanced Levels Page Shortcode */
 	.pmpro_level-description {
 		font-family: var(--memberlite-body-font);
@@ -2905,6 +2899,16 @@ a:active:not(.pmpro_btn:active) {
 		border-left: 1px solid var(--memberlite-color-borders);
 		border-right: 1px solid var(--memberlite-color-borders);
 	}
+}
+
+.pmpro-variation_1 {
+
+	.pmpro_card,
+	.pmpro_card_actions,
+	.pmpro_card_content + .pmpro_card_actions {
+		border-color: var(--memberlite-color-borders);
+	}
+
 }
 
 /* Membership Signup Forms */
