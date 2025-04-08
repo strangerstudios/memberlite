@@ -98,7 +98,7 @@ function memberlite_support() {
 						'target' => array()
 					),
 				);
-				$memberlite_plugins_recommended = apply_filters( 'memberlite_plugins_recommended', array( 'paid-memberships-pro', 'sitewide-sales'  ) );
+				$memberlite_plugins_recommended = apply_filters( 'memberlite_plugins_recommended', array( 'paid-memberships-pro', 'sitewide-sales' ) );
 				if ( ! empty( $memberlite_plugins_recommended ) ) { ?>
 					<hr />
 					<h2>
@@ -146,7 +146,7 @@ function memberlite_support() {
 										<ul class="plugin-action-buttons">
 											<li>
 												<?php
-													echo wp_kses( memberlite_plugin_action_button( 'sitewide-sales', 'sitewide-sales/sitewide-sales.php', 'https://www.strangerstudios.com/wordpress-plugins/sitewide-sales/?utm_source=memberlite-theme&utm_medium=memberlite-guide&utm_campaign=homepage' ), $memberlite_plugin_action_button_allowed_html );
+													echo wp_kses( memberlite_plugin_action_button( 'sitewide-sales', 'sitewide-sales/sitewide-sales.php', 'https://sitewidesales.com/?utm_source=memberlite-theme&utm_medium=memberlite-guide&utm_campaign=homepage' ), $memberlite_plugin_action_button_allowed_html );
 												?>
 											</li>
 											<li><a href="https://sitewidesales.com/?utm_source=memberlite-theme&utm_medium=memberlite-guide&utm_campaign=homepage" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'More Details', 'memberlite' ); ?></a></li>
@@ -154,7 +154,7 @@ function memberlite_support() {
 									</div>
 									<div class="desc column-description">
 										<p><?php esc_html_e( 'All-in-one flash sales plugin for WordPress. Set up a sale from a single settings page: select the start and end date, choose a template, pick your banner, and assign the discount.', 'memberlite' ); ?></p>
-										<p class="authors"><cite><?php esc_html_e( 'By', 'memberlite' ); ?> <?php esc_html_e( 'Stranger Studios', 'memberlite' ); ?></cite></p>
+										<p class="authors"><cite><?php esc_html_e( 'By', 'memberlite' ); ?> <a href="https://www.strangerstudios.com/?utm_source=memberlite-theme&utm_medium=memberlite-guide&utm_campaign=homepage" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Stranger Studios', 'memberlite' ); ?></a></cite></p>
 									</div>
 								</div>
 							</div> <!-- end plugin-card-sitewide-sales -->
