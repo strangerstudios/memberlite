@@ -28,6 +28,9 @@ add_filter( 'wp_page_menu_args', 'memberlite_page_menu_args' );
 function memberlite_body_classes( $classes ) {
 	global $memberlite_defaults, $post;
 
+	// variation class
+	$classes[] = 'memberlite-variation-' . memberlite_get_active_variation();
+
 	// sidebar classes
 	if ( ! is_page_template( 'templates/fluid-width.php' ) && ! memberlite_is_blog() ) {
 		$classes[] = get_theme_mod( 'sidebar_location', $memberlite_defaults['sidebar_location'] );

@@ -34,7 +34,7 @@
 						memberlite_color_controls_listener_flag = false;
 						header_logo                             = $( '#customize-control-display_header_text' ).find( 'input:checked' );
 
-						for (i = 0; i < 15; i++) {
+						for (i = 0; i < memberlite_color_controls.length; i++) {
 							if (header_logo.length || i > 0) {
 								$( '#customize-control-' + memberlite_color_controls[i] ).find( '.color-picker-hex' ).wpColorPicker( 'color', colors[i] );
 							}
@@ -47,7 +47,7 @@
 	);
 
 	// Set color scheme to custom when a color is changed specifically
-	for (i = 0; i < 15; i++) {
+	for (i = 0; i < memberlite_color_controls.length; i++) {
 		wp.customize(
 			memberlite_color_controls[i].replace( /memberlite_/, '' ), function( value ) {
 				value.bind(

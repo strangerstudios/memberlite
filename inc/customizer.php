@@ -22,6 +22,30 @@ class Memberlite_Customize {
 			)
 		);
 
+		// Add select for theme variation that includes default and words.
+		$wp_customize->add_setting(
+			'memberlite_variation',
+			array(
+				'default'              => $memberlite_defaults['memberlite_variation'],
+				'sanitize_callback'    => array( 'Memberlite_Customize', 'sanitize_select' ),
+				'sanitize_js_callback' => array( 'Memberlite_Customize', 'sanitize_js_callback' ),
+			)
+		);
+
+		$wp_customize->add_control(
+			'memberlite_variation',
+			array(
+				'label'    => __( 'Theme Variation', 'memberlite' ),
+				'section'  => 'memberlite_theme_options',
+				'type'     => 'select',
+				'choices'  => array(
+					'default' => __( 'Default', 'memberlite' ),
+					'words'   => __( 'Words', 'memberlite' ),
+				),
+				'priority' => 5,
+			)
+		);
+
 		$wp_customize->add_setting(
 			'memberlite_webfonts',
 			array(

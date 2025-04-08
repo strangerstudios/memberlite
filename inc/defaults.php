@@ -1,6 +1,7 @@
 <?php
 global $memberlite_defaults;
 $memberlite_defaults = apply_filters( 'memberlite_defaults', array(
+	'memberlite_variation'						=> 'default',
 	'memberlite_webfonts'						=> 'Lato_Lato',
 	'columns_ratio'								=> '8-4',
 	'columns_ratio_header'						=> '4-8',

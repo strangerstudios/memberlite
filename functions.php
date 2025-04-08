@@ -64,6 +64,49 @@ function memberlite_init_styles() {
 }
 add_action( 'wp_enqueue_scripts', 'memberlite_init_styles' );
 
+/**
+ * Get the active Memberlite variation.
+ *
+ * @since TBD
+ *
+ * @return string The active Memberlite variation.
+ */
+function memberlite_get_active_variation() {
+	global $memberlite_defaults;
+
+	// Get the selected variation from theme options.
+	$memberlite_variation = get_theme_mod( 'memberlite_variation', 'default' );
+
+	/**
+	 * Filter the active Memberlite variation.
+	 *
+	 * @since TBD
+	 *
+	 * @param string $memberlite_variation The active Memberlite variation. 
+	 */
+	return apply_filters( 'memberlite_active_variation', $memberlite_variation );
+}
+
+/**
+ * Get the supported Memberlite elements.
+ *
+ * @since TBD
+ *
+ * @return array The supported Memberlite elements.
+ */
+function memberlite_get_supported_elements() {
+	$memberlite_supported_elements = array( 'landing_page', 'page_banners', 'sidebars' );
+
+	/**
+	 * Filter the supported Memberlite elements.
+	 *
+	 * @since TBD
+	 *
+	 * @param array $memberlite_supported_elements The supported Memberlite elements.
+	 */
+	return apply_filters( 'memberlite_supported_elements', $memberlite_supported_elements );
+}
+
 function memberlite_get_font( $font_type, $nicename = NULL ) {
 	global $memberlite_defaults;
 
@@ -507,7 +550,6 @@ function memberlite_check_for_updated_translations() {
 }
 add_action( 'admin_init', 'memberlite_check_for_updated_translations' );
 
-
 function memberlite_wp_head() {
 	if ( is_singular() && pings_open() ) {
 		printf( '<link rel="pingback" href="%s">' . "\n", esc_url( get_bloginfo( 'pingback_url' ) ) );
@@ -786,7 +828,6 @@ class Memberlite_Aria_Walker_Nav_Menu extends Walker_Nav_Menu {
 
 }
 
-
 /* Exclude pings and trackbacks from the number of comments on a post. */
 function memberlite_comment_count( $count ) {
 	global $id;
@@ -838,26 +879,49 @@ require_once get_template_directory() . '/inc/font-awesome.php';
 /* Load Jetpack compatibility file. */
 require_once get_template_directory() . '/inc/jetpack.php';
 
-/* Custom landing page element code. */
-require_once get_template_directory() . '/inc/landing_page.php';
-
 /* Custom translation server logic. */
 require_once get_template_directory() . '/inc/localization.php';
 
 /* Multiple post thumbanils support. */
 require_once get_template_directory() . '/inc/multi-post-thumbnails.php';
 
-/* Custom page banner element code. */
-require_once get_template_directory() . '/inc/page_banners.php';
-
-/* Custom sidebars. */
-require_once get_template_directory() . '/inc/sidebars.php';
-
 /* Custom template tags. */
 require_once get_template_directory() . '/inc/template-tags.php';
 
 /* Custom widgets that act independently of the theme templates. */
 require_once get_template_directory() . '/inc/widgets.php';
+
+/* Custom page banner element code. */
+if ( in_array( 'page_banners', memberlite_get_supported_elements() ) ) {
+	require_once get_template_directory() . '/inc/page_banners.php';
+}
+
+/* Custom sidebars. */
+if ( in_array( 'sidebars', memberlite_get_supported_elements() ) ) {
+	require_once get_template_directory() . '/inc/sidebars.php';
+}
+
+/* Custom landing page element code. */
+if ( in_array( 'landing_page', memberlite_get_supported_elements() ) ) {
+	require_once get_template_directory() . '/inc/landing_page.php';
+}
+
+/**
+ * Load the theme variation file if it exists.
+ *
+ * @since TBD
+ *
+ * @return void
+ */
+if ( memberlite_get_active_variation() !== 'default' ) {
+	// We have a variation, load the variation file.
+	$variation_name = sanitize_file_name( memberlite_get_active_variation() );
+	$variation_file = get_template_directory() . '/variations/' . $variation_name . '/' . $variation_name . '.php';
+
+	if ( file_exists( $variation_file ) ) {
+		require_once $variation_file;
+	}
+}
 
 /* Integration for Paid Memberships Pro. */
 if ( defined( 'PMPRO_VERSION' ) ) {

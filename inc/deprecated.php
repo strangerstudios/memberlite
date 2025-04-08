@@ -41,6 +41,7 @@ $memberlite_map_deprecated_hooks = array(
 	'memberlite_after_footer_widgets'   => 'after_footer_widgets',
 	'memberlite_before_site_info'       => 'before_site_info',
 	'memberlite_after_site_info'        => 'after_site_info',
+	'memberlite_supported_elements'     => 'memberlite_elements_supported_elements',
 );
 
 // anonymous function used below is only supported in php 5.3+
