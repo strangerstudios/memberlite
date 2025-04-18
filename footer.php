@@ -55,6 +55,9 @@
 
 <?php do_action( 'memberlite_after_page' ); ?>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+          <script id="qualiphy-script" type="text/javascript"  src="https://www.app.qualiphy.me/scripts/quidget_disclosure.js" data-formsrc='https://www.app.qualiphy.me/qualiphy-widget?clinic=Qualiphy Demo Clinic&clinicId=37&first_name=&last_name=&email=&phone_number=&gender=&exams=selectable&tele_state_required=true&token=0f2938b862eacaed4992804e4318ce133e4966c7' data-timezone='-8' data-examhours='[{"SUN":{"FROM":"00:00","TO":"23:59","isDaySelected":true}},{"MON":{"FROM":"00:00","TO":"23:59","isDaySelected":true}},{"TUE":{"FROM":"00:00","TO":"23:59","isDaySelected":true}},{"WED":{"FROM":"00:00","TO":"23:59","isDaySelected":true}},{"THU":{"FROM":"00:00","TO":"23:59","isDaySelected":true}},{"FRI":{"FROM":"00:00","TO":"23:59","isDaySelected":true}},{"SAT":{"FROM":"00:00","TO":"23:59","isDaySelected":true}}]'></script>
+
 <?php wp_footer(); ?>
 
 </body>

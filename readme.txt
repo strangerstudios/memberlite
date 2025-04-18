@@ -3,7 +3,7 @@ Contributors: kimannwall, strangerstudios
 Requires at least: 6.0
 Tested up to: 6.6
 Requires PHP: 5.6
-Stable tag: 5.2.1
+Stable tag: 6.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: one-column, two-columns, left-sidebar, right-sidebar, flexible-header, custom-background, custom-colors, custom-header, custom-menu, custom-logo, editor-style, featured-images, footer-widgets, full-width-template, post-formats, theme-options, threaded-comments, translation-ready, e-commerce
@@ -77,7 +77,7 @@ Use the Customize > Memberlite Options screen to modify theme layout, logo, font
 == Using Child Themes ==
 If you need to customize the theme beyond theme settings, use a child theme.
 
-[Memberlite Child Theme Downloads »](https://memberlitetheme.com/themes/) | [About Child Themes (WordPress Codex) »](https://developer.wordpress.org/themes/advanced-topics/child-themes/)
+[Memberlite Child Theme Downloads »](https://memberlitetheme.com/themes/) | [Create a Child Theme for Memberlite »](https://www.paidmembershipspro.com/memberlite-child-theme/)
 
 == Integrated Plugins ==
 Memberlite includes formatting for use with:
@@ -103,6 +103,14 @@ We highly recommend using these plugins for every site running Memberlite:
 [Install Multiple Post Thumbnails »](https://wordpress.org/plugins/multiple-post-thumbnails/)
 
 == Changelog ==
+
+= 6.0 - 2025-04-21 =
+* FEATURE: Added logic to update memberlite from the Paid Memberships Pro license server. #180 (@andrewlimaza)
+* FEATURE: The Memberlite Elements and Memberlite Shortcodes plugins have been merged into the theme. #178 (@andrewlimaza)
+* FEATURE: Now updating translations from translate.strangerstudios.com. #181 (@andrewlimaza)
+* ENHANCEMENT: Added setting to hide the prev/next page navigation on pages. #179 (@kimcoleman)
+* ENHANCEMENT: The header and body font are now 2 separate settings. #182 (@kimcoleman)
+* ENHANCEMENT: Added logic to the Memberlite Guide page to support products privately hosted (not on .org). #183 (@andrewlimaza)
 
 = 5.2.1 - 2024-08-25 =
 * ENHANCEMENT: Now supporting a color setting for text color.
