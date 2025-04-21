@@ -10,7 +10,7 @@ Tags: one-column, two-columns, left-sidebar, right-sidebar, flexible-header, cus
 
 == Description ==
 =Build a Professional WordPress Membership Site=
-Memberlite is the ideal theme for your membership site - packed with integration for top plugins including Paid Memberships Pro and LifterLMS. It's fully customizable with your logo, colors, fonts, and more global layout settings. Extend the site appearance further with the Memberlite Elements and Memberlite Shortcodes plugins. Memberlite is responsive, clean and minimal.
+Memberlite is the ideal theme for your membership site - packed with integration for top plugins including Paid Memberships Pro and LifterLMS. It's fully customizable with your logo, colors, fonts, and more global layout settings. Memberlite is responsive, clean and minimal.
 
 == Copyright ==
 
@@ -57,27 +57,23 @@ The Events Manager icon
 License: GPLv3
 Source: https://eventsmanagerpro.com/terms-conditions/
 
-CSS grid based on Foundation by Zurb
-License: MIT License
-Source: https://foundation.zurb.com/get-involved/faq.html
-
 == Getting Started ==
 Memberlite makes it easy to customize the appearance and layout of your site using the Theme Customization Screen (Appearance > Customize).
 
 == Adding Your Logo ==
 Use the Customize > Site Identity screen to add a custom logo (formatted for retina display), update your Site Title and Tagline, and toggle the display of your Site Title & Tagline.
 
-[Explore Documentation on Custom Headers in Memberlite](http://www.memberlitetheme.com/documentation/site-branding/)
+[Explore Documentation on Custom Headers in Memberlite](https://www.paidmembershipspro.com/documentation/memberlite/site-branding/)
 
 == Customize the Theme ==
 Use the Customize > Memberlite Options screen to modify theme layout, logo, fonts, colors, copyright message and more.
 
-[Explore Documentation on Customizing Memberlite »](http://memberlitetheme.com/documentation/customize/)
+[Explore Documentation on Customizing Memberlite »](https://www.paidmembershipspro.com/documentation/memberlite/customize/)
 
 == Using Child Themes ==
 If you need to customize the theme beyond theme settings, use a child theme.
 
-[Memberlite Child Theme Downloads »](https://memberlitetheme.com/themes/) | [Create a Child Theme for Memberlite »](https://www.paidmembershipspro.com/memberlite-child-theme/)
+[Memberlite Child Theme Downloads »](https://www.paidmembershipspro.com/documentation/download/) | [Create a Child Theme for Memberlite »](https://www.paidmembershipspro.com/memberlite-child-theme/)
 
 == Integrated Plugins ==
 Memberlite includes formatting for use with:
@@ -86,21 +82,13 @@ Memberlite includes formatting for use with:
 [Install Paid Memberships Pro »](http://www.paidmembershipspro.com/documentation/download/)
 
 = bbPress =
-[Install bbPress »](https://wordpress.org/plugins/bbpress/) | [Install Paid Memberships Pro - bbPress Add On »](https://wordpress.org/plugins/pmpro-bbpress/)
+[Install bbPress »](https://wordpress.org/plugins/bbpress/) | [Install Paid Memberships Pro - bbPress Add On »](https://www.paidmembershipspro.com/add-ons/pmpro-bbpress/)
 
 = LifterLMS =
 [Install LifterLMS »](https://wordpress.org/plugins/lifterlms/)
 
 = Events Manager =
 [Install Events Manager »](https://wordpress.org/plugins/events-manager/)
-
-= Testimonials Widget =
-[Install Testimonials Widget »](https://wordpress.org/plugins/testimonials-widget/)
-
-We highly recommend using these plugins for every site running Memberlite:
-
-= Multiple Post Thumbnails =
-[Install Multiple Post Thumbnails »](https://wordpress.org/plugins/multiple-post-thumbnails/)
 
 == Changelog ==
 
@@ -323,7 +311,7 @@ We highly recommend using these plugins for every site running Memberlite:
 * BUG FIX: Fixed styles for some BuddyPress buttons that were invisible.
 * BUG FIX/ENHANCEMENT: Fixed blockquotes styling. (Thanks, Justin Tadlock and Sakin Shrestha)
 * BUG FIX/ENHANCEMENT: Prefixing all hooks with theme slug. Adding deprecated file for old hook names.
-* ENHANCEMENT: Some banner, widget, and sidebar features were moved into a separate plugin Memberlite Elements, available from the wp.org repository here https://wordpress.org/plugins/memberlite-elements/.
+* ENHANCEMENT: Some banner, widget, and sidebar features were moved into a separate plugin Memberlite Elements.
 * ENHANCEMENT: Improving print styles for better output
 * ENHANCEMENT: Updating to version 5.2 of Font Awesome.
 * ENHANCEMENT: Adding WooCommerce page template 3.x support

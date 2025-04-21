@@ -26,7 +26,7 @@ add_filter( 'wp_page_menu_args', 'memberlite_page_menu_args' );
  * @return array
  */
 function memberlite_body_classes( $classes ) {
-	global $memberlite_defaults;
+	global $memberlite_defaults, $post;
 
 	// sidebar classes
 	if ( ! is_page_template( 'templates/fluid-width.php' ) && ! memberlite_is_blog() ) {
@@ -62,6 +62,13 @@ function memberlite_body_classes( $classes ) {
 	}
 	if ( is_page_template( 'templates/interstitial.php' ) ) {
 		$classes[] = 'interstitial';
+	}
+
+	if ( ! empty( $post ) && is_page() ) {
+		$memberlite_banner_show = get_post_meta( $post->ID, '_memberlite_banner_show', true );
+		if ( $memberlite_banner_show === '0' ) {
+			$classes[] = 'memberlite-banner-hidden';
+		}
 	}
 
 	return $classes;
@@ -183,6 +190,11 @@ function memberlite_getPostThumbnailWidth( $post_id = null ) {
  */
 function memberlite_excerpt_more( $more ) {
 	global $post;
+
+	// Return early if no post ID is set.
+	if ( empty( $post->ID ) ) {
+		return $more;
+	}
 
 	if ( ! is_admin() ) {
 		$more = ' <a href="' . esc_url( get_permalink( $post->ID ) ) . '" rel="nofollow">' . esc_html( __( '(more...)', 'memberlite' ) ) . '</a>';
@@ -481,7 +493,8 @@ function memberlite_page_title( $echo = true ) {
 					),
 					'noscript' => array()
 				);
-				echo wp_kses( memberlite_get_author_avatar( $post->post_author ), $author_avatar_allowed_html );
+				$author_avatar = memberlite_get_author_avatar( $post->post_author );
+				echo empty( $author_avatar ) ? '' : wp_kses( $author_avatar, $author_avatar_allowed_html );
 			?>
 			<div class="entry-header-content">
 				<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
@@ -490,7 +503,7 @@ function memberlite_page_title( $echo = true ) {
 				if ( ! empty( $memberlite_get_entry_meta_before ) ) {
 					?>
 					<p class="entry-meta">
-						<?php echo Memberlite_Customize::sanitize_text_with_links( memberlite_get_entry_meta( $post, 'before' ) ); ?>
+						<?php echo Memberlite_Customize::sanitize_text_with_links( memberlite_get_entry_meta( $post, 'before' ) ); // WPCS: xss ok. ?>
 						</p><!-- .entry-meta -->
 						<?php
 				}
@@ -587,32 +600,6 @@ function memberlite_nav_menu_submenu() {
 		</aside> <!-- end widget -->
 	<?php
 	}
-}
-
-function memberlite_get_widget_areas() {
-	$widget_areas = array();
-
-	if ( is_page() ) {
-		// Add the submenu widget to the sidebar on Pages (not a real widget area; handled in memberlite_nav_menu_submenu() )
-		$widget_areas[] = 'memberlite_nav_menu_submenu';
-
-		// Add the 'Pages' sidebar
-		$widget_areas[] = 'sidebar-1';
-	} elseif ( memberlite_is_blog() ) {
-		// Add the submenu widget to the sidebar (not a real widget area; handled in memberlite_nav_menu_submenu() )
-		$widget_areas[] = 'memberlite_nav_menu_submenu';
-
-		// Add the 'Posts and Archives' sidebar
-		$widget_areas[] = 'sidebar-2';
-	} else {
-		// Add the 'Posts and Archives' sidebar
-		$widget_areas[] = 'sidebar-2';
-	}
-
-	// Filter to allow customization of the array of widget areas
-	$widget_areas = apply_filters( 'memberlite_get_widget_areas', $widget_areas );
-
-	return $widget_areas;
 }
 
 /* Customizes the bbp_breadcrumb output */
@@ -890,7 +877,7 @@ function memberlite_should_show_banner_image( $post_id = null ) {
 
 /**
  * Get the post thumbnail image src and allow filtering.
- * Used to swap in the banner for loop/single posts with Memberlite Elements.
+ * Used to swap in the banner for loop/single posts.
  */
 function memberlite_get_banner_image( $attachment_id = 0, $size = 'banner', $icon = false, $attr = '', $post_id = 0 ) {
 	// default to global post
@@ -909,7 +896,7 @@ function memberlite_get_banner_image( $attachment_id = 0, $size = 'banner', $ico
 
 /**
  * Get the post thumbnail image src and allow filtering.
- * Used to swap in the banner for loop/single posts with Memberlite Elements.
+ * Used to swap in the banner for loop/single posts.
  */
 function memberlite_get_banner_image_src( $post_id = null, $size = 'banner' ) {
 	// default to global post
@@ -1036,3 +1023,33 @@ function memberlite_parse_tags( $meta, $post = null ) {
 	$meta = str_replace( $searches, $replacements, $meta );
 	return $meta;
 }
+
+/**
+ * Enable the use of shortcodes in text widgets.
+ */
+add_filter( 'widget_text', 'do_shortcode' );
+
+/**
+ * Add a Banner Image as a secondary thumbnail
+ */
+function memberlite_banner_image_setup() {
+	if ( ! class_exists('MemberliteMultiPostThumbnails' ) ) {
+		return;
+	}
+
+	$screens = get_post_types( array('public' => true), 'names' );
+	foreach ( $screens as $screen ) {
+		if( in_array( $screen, array('reply','topic' ) ) ) {
+			continue;
+		} else {
+			new MemberliteMultiPostThumbnails(
+				array(
+					'label' => __( 'Banner Image', 'memberlite' ),
+					'id' => 'memberlite_banner_image' . $screen,
+					'post_type' => $screen,
+				)
+			);
+		}
+	}
+}
+add_action( 'wp_loaded', 'memberlite_banner_image_setup' );

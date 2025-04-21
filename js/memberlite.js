@@ -3,6 +3,16 @@
  */
 jQuery( document ).ready(
 	function() {
+		// Focus styles for menus when using keyboard navigation
+		// Properly update the ARIA states on focus (keyboard) and mouse over events
+		jQuery( 'nav > ul' ).on( 'focus.wparia mouseenter.wparia', '[aria-haspopup="true"]', function ( ev ) {
+			jQuery( ev.currentTarget ).attr( 'aria-expanded', true );
+		} );
+
+		// Properly update the ARIA states on blur (keyboard) and mouse out events
+		jQuery( 'nav > ul' ).on( 'blur.wparia mouseleave.wparia', '[aria-haspopup="true"]', function ( ev ) {
+			jQuery( ev.currentTarget ).attr( 'aria-expanded', false );
+		} );
 
 		// scroll to target links in page
 		jQuery( 'a[href*="#"]:not(.memberlite_tabs a)' ).on(

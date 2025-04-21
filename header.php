@@ -66,21 +66,23 @@
 
 				<?php memberlite_the_custom_logo(); ?>
 
-				<?php
-					/**
-					 * Accessible and search-optimized page title HTML markup.
-					 * Use h1 if this is the front page of the site and
-					 * p if on an interior page.
-					 */
-					if ( is_front_page() ) {
-						$site_title_html_tag = 'h1';
-					} else {
-						$site_title_html_tag = 'p';
-					}
-				?>
-				<<?php echo esc_attr( $site_title_html_tag ); ?> class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></<?php echo esc_attr( $site_title_html_tag ); ?>>
+				<div class="site-identity">
+					<?php
+						/**
+						 * Accessible and search-optimized page title HTML markup.
+						 * Use h1 if this is the front page of the site and
+						 * span if on an interior page.
+						 */
+						if ( is_front_page() ) {
+							$site_title_html_tag = 'h1';
+						} else {
+							$site_title_html_tag = 'span';
+						}
+					?>
+					<<?php echo esc_attr( $site_title_html_tag ); ?> class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></<?php echo esc_attr( $site_title_html_tag ); ?>>
 
-				<p class="site-description"><?php bloginfo( 'description' ); ?></p>
+					<span class="site-description"><?php bloginfo( 'description' ); ?></span>
+				</div>
 
 			</div><!-- .site-branding -->
 
@@ -99,6 +101,7 @@
 									'container_id'    => 'meta-navigation',
 									'container_class' => 'meta-navigation',
 									'fallback_cb'     => false,
+									'walker'          => new Memberlite_Aria_Walker_Nav_Menu(),
 								)
 							);
 						}
@@ -130,15 +133,16 @@
 				<div class="site-navigation-sticky-wrapper">
 			<?php }
 		?>
-		<nav id="site-navigation">
+		<nav id="site-navigation" role="navigation" aria-label="<?php esc_attr_e( 'Main Menu', 'memberlite' ); ?>">
 		<?php
 		if ( has_nav_menu( 'primary' ) ) {
 			$primary_defaults = array(
 				'theme_location'  => 'primary',
-				'container'       => 'div',
-				'container_class' => 'main-navigation row',
-				'menu_class'      => 'menu large-12 columns',
+				'container'       => false,
 				'fallback_cb'     => false,
+				'items_wrap'      => '<ul id="%1$s" class="%2$s" role="menubar">%3$s</ul>',
+				'menu_class'      => 'menu',
+				'walker'          => new Memberlite_Aria_Walker_Nav_Menu(),
 			);
 			wp_nav_menu( $primary_defaults );
 		}

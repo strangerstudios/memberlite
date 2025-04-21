@@ -65,3 +65,159 @@ function memberlite_maybe_show_deprecated_hook_message( $new, $old ) {
 		do_action( $old );
 	}
 }
+
+/**
+ * Deprecate the memberlite_signup shortcode.
+ */
+function memberlite_signup_shortcode($atts, $content=null, $code="") {
+	_doing_it_wrong( __FUNCTION__, esc_html__( 'The [memberlite_signup] shortcode is now deprecated. Please use the Signup Shortcode Add On for Paid Memberships Pro instead.', 'memberlite' ), 'TBD' );
+
+	// Show a message to admins that the shortcode is deprecated.
+	if ( current_user_can ( 'manage_options' ) ) {
+		return '<div class="pmpro_message pmpro_error">' . esc_html__( 'Admin only message: The Memberlite Signup shortcode is deprecated. Please update your content.', 'memberlite' ) . '</div>';
+	}
+}
+add_shortcode( 'memberlite_signup', 'memberlite_signup_shortcode' );
+
+/**
+ * Get a list of deprecated or no longer needed plugins.
+ *
+ * @since TBD
+ *
+ * @return array Plugins that are deprecated.
+ */
+function memberlite_get_deprecated_plugins() {
+	global $wpdb;
+
+	// Set the array of deprecated plugins.
+	$deprecated = array(
+		'memberlite-elements' => array(
+			'file' => 'memberlite-elements.php',
+			'label' => 'Memberlite Elements'
+		),
+		'memberlite-shortcodes' => array(
+			'file' => 'memberlite-shortcodes.php',
+			'label' => 'Memberlite Shortcodes'
+		),
+		'multiple-post-thumbnails' => array(
+			'file' => 'multi-post-thumbnails.php',
+			'label' => 'Multiple Post Thumbnails'
+		),
+	);
+
+	$deprecated = apply_filters( 'pmpro_deprecated_add_ons_list', $deprecated );
+
+	// If the list is empty or not an array, just bail.
+	if ( empty( $deprecated ) || ! is_array( $deprecated ) ) {
+		return array();
+	}
+
+	return $deprecated;
+}
+
+/**
+ * Check for deprecated plugins and show a notice if they are active.
+ *
+ * @since TBD
+ */
+function memberlite_check_for_deprecated_plugins() {
+	$deprecated = memberlite_get_deprecated_plugins();
+	$deprecated_active = array();
+	$has_messages = false;
+	foreach( $deprecated as $key => $values ) {
+		$path = '/' . $key . '/' . $values['file'];
+		if ( file_exists( WP_PLUGIN_DIR . $path ) ) {
+			$deprecated_active[] = $values;
+			if ( ! empty( $values['message'] ) ) {
+				$has_messages = true;
+			}
+
+			// Try to deactivate it if it's enabled.
+			if ( is_plugin_active( plugin_basename( $path ) ) ) {
+				deactivate_plugins( $path );
+			}
+		}
+	}
+
+	// If any deprecated add ons are active, show warning.
+	if ( ! empty( $deprecated_active ) && is_array( $deprecated_active ) ) {
+		// Only show on the Themes or Plugins pages.
+		global $pagenow;
+		if ( ! in_array( $pagenow, array( 'themes.php', 'plugins.php' ) ) ) {
+			return;
+		}
+		?>
+		<div class="notice notice-warning">
+		<p>
+			<?php
+				// translators: %s: The list of deprecated plugins that are active.
+				echo wp_kses(
+					sprintf(
+						__( 'Some plugins are now merged into the Memberlite theme. The features of the following plugins are now included by default. You should <strong>delete these unnecessary plugins</strong> from your site: <em><strong>%s</strong></em>.', 'memberlite' ),
+						implode( ', ', wp_list_pluck( $deprecated_active, 'label' ) )
+					),
+					array(
+						'strong' => array(),
+						'em' => array(),
+					)
+				);
+			?>
+		</p>
+		<?php
+		// If there are any messages, show them.
+		if ( $has_messages ) {
+			?>
+			<ul>
+				<?php
+				foreach( $deprecated_active as $deprecated ) {
+					if ( empty( $deprecated['message'] ) ) {
+						continue;
+					}
+					?>
+					<li>
+						<strong><?php echo esc_html( $deprecated['label'] ); ?></strong>:
+						<?php
+						echo wp_kses(
+							$deprecated['message'],
+							array(
+								'a' => array(
+								'href' => array(),
+								'target' => array(),
+							) )
+						);
+						?>
+					</li>
+					<?php
+				}
+				?>
+			</ul>
+			<?php
+		}
+		?>
+		</div>
+		<?php
+	}
+}
+add_action( 'admin_notices', 'memberlite_check_for_deprecated_plugins' );
+
+/**
+ * Remove the "Activate" link on the plugins page for deprecated plugins.
+ *
+ * @since TBD
+ *
+ * @param array  $actions An array of plugin action links.
+ * @param string $plugin_file Path to the plugin file relative to the plugins directory.
+ * @return array $actions An array of plugin action links.
+ */
+ function memberlite_deprecated_plugins_action_links( $actions, $plugin_file ) {
+	$deprecated = memberlite_get_deprecated_plugins();
+
+	foreach( $deprecated as $key => $values ) {
+		if ( $plugin_file == $key . '/' . $values['file'] ) {
+			$actions['activate'] = esc_html__( 'Deprecated', 'memberlite' );
+		}
+	}
+
+	return $actions;
+}
+add_filter( 'plugin_action_links', 'memberlite_deprecated_plugins_action_links', 10, 2 );

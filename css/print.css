@@ -1,28 +1,71 @@
 /**
- * The sidebar containing the main widget area.
+ * The print styles.
  *
  * @package Memberlite
  */
-
-/* =Print Styles
--------------------------------------------------------------- */
-@media print {
-body {background:white; font-size:10pt; margin:0 }
-#masthead .site-branding {width: 100%; text-align: left; }
-#page a { text-decoration:underline; border: none; }
-#site-navigation, #masthead .header-right, .masthead .memberlite-breadcrumb, .post-navigation, #respond, #secondary, #banner_bottom, .site-footer .footer-widgets, #footer-navigation, .site-info .skip-link { display:none }
-#footer, .ad, #nav-below { display:none }
-.masthead {padding: 0; margin: 0; }
-.site-footer .site-info {padding-bottom: 0; padding-top: 0; }
-.post-edit-link {display: none; }
-h1, h2, h3, h4, h5, h6 { page-break-after:avoid; page-break-inside:avoid }
-h3 { margin-left:10px; margin-bottom:0px; padding-bottom:0px }
-blockquote, table, pre { page-break-inside:avoid }
-ul, ol, dl  { page-break-before:avoid }
-img.centered { display: block; margin-left: auto; margin-right: auto; }
-img.right { padding: 4px; margin: 0 0 2px 7px; display: inline; }
-img.left { padding: 4px; margin: 0 7px 2px 0; display: inline; }
-.right { float: right; }
-.left { float: left }
-img { page-break-inside:avoid; page-break-after:avoid; }
+ @media print {
+	body {
+		background:white;
+		font-size: 10pt;
+		margin: 0;
+	}
+	#masthead .site-branding {
+		width: 100%;
+		text-align: left;
+	}
+	#page a {
+		text-decoration: underline;
+		border: none;
+	}
+	#site-navigation, #masthead .header-right, .masthead .memberlite-breadcrumb, .post-navigation, #respond, .pmpro_actions_nav, #secondary, #banner_bottom, .site-footer .footer-widgets, #footer-navigation, .site-info .skip-link, #footer, .ad, #nav-below, .post-edit-link {
+		display: none;
+	}
+	.masthead {
+		padding: 0;
+		margin: 0;
+	}
+	.site-footer .site-info {
+		padding-bottom: 0;
+		padding-top: 0;
+	}
+	h1, h2, h3, h4, h5, h6 {
+		page-break-after: avoid;
+		page-break-inside: avoid;
+	}
+	h3 {
+		margin-left: 10px;
+		margin-bottom: 0px;
+		padding-bottom: 0px;
+	}
+	blockquote, table, pre {
+		page-break-inside: avoid;
+	}
+	ul, ol, dl {
+		page-break-before: avoid;
+	}
+	img.centered {
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	img.right {
+		padding: 4px;
+		margin: 0 0 2px 7px;
+		display: inline;
+	}
+	img.left {
+		padding: 4px;
+		margin: 0 7px 2px 0;
+		display: inline;
+	}
+	.right {
+		float: right;
+	}
+	.left {
+		float: left;
+	}
+	img {
+		page-break-inside: avoid;
+		page-break-after: avoid;
+	}
 }

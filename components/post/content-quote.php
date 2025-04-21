@@ -2,7 +2,7 @@
 /**
  * Template part for displaying quote posts
  *
- * @link https://codex.wordpress.org/Template_Hierarchy
+ * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
  * @package Memberlite
  */
@@ -14,7 +14,7 @@
 	<?php
 		global $memberlite_defaults;
 		$memberlite_loop_images = get_theme_mod( 'memberlite_loop_images', $memberlite_defaults['memberlite_loop_images'] );
-	if ( ( $memberlite_loop_images == 'show_both' && defined( 'MEMBERLITE_ELEMENTS_VERSION' ) ) || $memberlite_loop_images == 'show_thumbnail' ) {
+	if ( $memberlite_loop_images == 'show_both' || $memberlite_loop_images == 'show_thumbnail' ) {
 		the_post_thumbnail(
 			'medium',
 			array(
@@ -46,7 +46,7 @@
 			<div class="entry-meta">
 				<?php if ( 'post' == get_post_type() ) : ?>
 						<a href="<?php the_permalink(); ?>" rel="bookmark"><i class="fa fa-link"></i></a> |
-						<?php echo Memberlite_Customize::sanitize_text_with_links( $memberlite_get_entry_meta_after ); ?>
+						<?php echo Memberlite_Customize::sanitize_text_with_links( $memberlite_get_entry_meta_after ); // WPCS: xss ok. ?>
 					<?php endif; ?>
 				<?php edit_post_link( esc_html__( 'Edit', 'memberlite' ), '<span class="edit-link">', '</span>' ); ?>
 			</div><!-- .entry-meta -->

@@ -50,7 +50,8 @@
 				),
 				'noscript' => array()
 			);
-			echo wp_kses( memberlite_get_author_avatar( $post->post_author ), $author_avatar_allowed_html );
+			$author_avatar = memberlite_get_author_avatar( $post->post_author );
+			echo empty( $author_avatar ) ? '' : wp_kses( $author_avatar, $author_avatar_allowed_html );
 		?>
 		<div class="entry-header-content">
 			<?php if ( is_single() ) { ?>
@@ -60,7 +61,7 @@
 			<?php } ?>
 			<?php if ( 'post' == get_post_type() ) : ?>
 			<div class="entry-meta">
-				<?php echo Memberlite_Customize::sanitize_text_with_links( memberlite_get_entry_meta( $post, 'before' ) ); ?>
+				<?php echo Memberlite_Customize::sanitize_text_with_links( memberlite_get_entry_meta( $post, 'before' ) );  // WPCS: xss ok. ?>
 			</div><!-- .entry-meta -->
 			<?php endif; ?>
 		</div> <!-- .entry-header-content -->

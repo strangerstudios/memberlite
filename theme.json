@@ -118,7 +118,7 @@
 					"fontFace": [
 						{
 							"fontDisplay": "block",
-							"fontFamily": "Fjalla One",
+							"fontFamily": " One",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
 							"fontWeight": "400",
@@ -238,6 +238,33 @@
 					"fontFamily": "\"Merriweather\", serif",
 					"name": "Merriweather",
 					"slug": "merriweather"
+				},
+				{
+					"fontFace": [
+						{
+							"fontDisplay": "block",
+							"fontFamily": "Montserrat",
+							"fontStretch": "normal",
+							"fontStyle": "normal",
+							"fontWeight": "400",
+							"src": [
+								"file:./assets/fonts/montserrat/montserrat.woff2"
+							]
+						},
+						{
+							"fontDisplay": "block",
+							"fontFamily": "Montserrat",
+							"fontStretch": "normal",
+							"fontStyle": "normal",
+							"fontWeight": "700",
+							"src": [
+								"file:./assets/fonts/montserrat/montserrat-bold.woff2"
+							]
+						}
+					],
+					"fontFamily": "\"Montserrat\", sans-serif",
+					"name": "Montserrat",
+					"slug": "montserrat"
 				},
 				{
 					"fontFace": [
@@ -736,6 +763,11 @@
 							}
 						}
 					}
+				}
+			},
+			"core/columns": {
+				"spacing": {
+					"blockGap": "4.7rem"
 				}
 			},
 			"core/image": {

@@ -10,11 +10,10 @@ assignees: ''
 We don't offer technical support on GitHub so we recommend using the following:
 
 **Reading our documentation**
-Usage docs can be found here: https://memberlitetheme.com/documentation/
+Usage docs can be found here: https://www.paidmembershipspro.com/documentation/memberlite/
 
 **Technical support for child themes or Memberlite**
-Submit a ticket on our website by visiting https://memberlitetheme.com/
+Submit a ticket on our website by visiting https://www.paidmembershipspro.com/
 
 **General usage and development questions**
-- WordPress.org Forums: https://wordpress.org/support/theme/memberlite/
-- Website: https://memberlitetheme.com/contact/
+- Website: https://www.paidmembershipspro.com/contact/

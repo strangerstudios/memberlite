@@ -2,7 +2,7 @@
 /**
  * Template part for displaying audio posts
  *
- * @link https://codex.wordpress.org/Template_Hierarchy
+ * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
  * @package Memberlite
  */
@@ -40,7 +40,7 @@
 		<footer class="entry-footer">
 			<?php
 			if ( 'post' == get_post_type() ) :
-				echo Memberlite_Customize::sanitize_text_with_links( $memberlite_get_entry_meta_after );
+				echo Memberlite_Customize::sanitize_text_with_links( $memberlite_get_entry_meta_after ); // WPCS: xss ok.
 				endif;
 				?>
 				<?php edit_post_link( esc_html__( 'Edit', 'memberlite' ), '<span class="edit-link">', '</span>' ); ?>

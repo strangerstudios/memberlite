@@ -11,7 +11,11 @@
 .llms-button-action,
 .llms-button-danger,
 .llms-button-primary,
-.llms-button-secondary {
+.llms-button-secondary,
+a.llms-button-action,
+a.llms-button-danger,
+a.llms-button-primary,
+a.llms-button-secondary {
 	border: none;
 	border-radius: 6px;
 	box-shadow: 1px 2px 4px rgba(0,0,0,0.2);
@@ -80,6 +84,21 @@
 
 .llms-form-field.type-submit {
 	margin-bottom: 0;
+}
+
+/* favorite button */
+.llms-favorite-wrapper button.llms-favorite-btn,
+.llms-favorite-wrapper button.llms-favorite-btn:hover,
+.llms-favorite-wrapper button.llms-favorite-btn:focus,
+.llms-favorite-wrapper button.llms-favorite-btn:active,
+.llms-favorite-wrapper button.llms-unfavorite-btn,
+.llms-favorite-wrapper button.llms-unfavorite-btn:hover,
+.llms-favorite-wrapper button.llms-unfavorite-btn:focus,
+.llms-favorite-wrapper button.llms-unfavorite-btn:active {
+	background-color: transparent;
+	border-radius: 0;
+	box-shadow: none !important;
+	color: inherit !important;
 }
 
 /* forms and tables */
@@ -193,6 +212,10 @@
 	background: var(--memberlite-color-site-navigation-background);
 	border-left: 1px solid var(--memberlite-color-borders);
 	border-right: 1px solid var(--memberlite-color-borders);
+}
+
+.llms-access-plan .llms-access-plan-footer {
+	padding-top: 2.9rem;
 }
 
 .llms-access-plan.on-sale .price-regular .lifterlms-price {
@@ -380,6 +403,10 @@
 	text-align: left;
 }
 
+.llms-syllabus-wrapper > * {
+	border-color: var(--memberlite-color-borders);
+}
+
 .widget_course_syllabus .widget-title,
 #secondary .widget_course_syllabus .widget-title {
 	background: var(--memberlite-color-site-navigation-background);
@@ -417,11 +444,14 @@
 .llms-lesson-preview .llms-lesson-link {
 	background: transparent;
 	color: var(--memberlite-color-link);
-	padding: 2.35rem .9rem;
 }
 
-.llms-lesson-preview .llms-lesson-link:hover {
-	background-color: rgba( 0, 0, 0, 0.03 );
+.llms-lesson-preview a.llms-lesson-link:hover {
+	filter: none;
+}
+
+.llms-lesson-preview section:hover {
+	background-color: transparent;
 }
 
 .llms-lesson-preview .llms-lesson-link-locked {
@@ -479,6 +509,10 @@
 }
 
 /* course navigation */
+.llms-course-navigation .llms-lesson-preview {
+	border: none;
+}
+
 .llms-course-navigation .llms-lesson-preview .llms-lesson-link {
 	background: var(--memberlite-color-site-navigation-background);
 	border: 1px solid var(--memberlite-color-borders);
