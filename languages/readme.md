@@ -8,7 +8,7 @@ While the `.pot` (Portable Object Template) file is generated from this theme's 
 
 [translate.strangerstudios.com/projects/memberlite/](https://translate.strangerstudios.com/projects/memberlite/)
 
-> Note: `.po` and `.mo` files included here are optional/local backups or references. The primary and up-to-date source of translations is GlotPress.
+> Note: `.po` and `.mo` files included here are optional/local backups or references. The primary and up-to-date source of translations is on our translation server.
 
 ## Contributing Translations
 
