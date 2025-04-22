@@ -1,7 +1,7 @@
 === Memberlite ===
 Contributors: kimannwall, strangerstudios
 Requires at least: 6.0
-Tested up to: 6.6
+Tested up to: 6.8
 Requires PHP: 5.6
 Stable tag: 6.0
 License: GPLv2 or later
@@ -14,7 +14,7 @@ Memberlite is the ideal theme for your membership site - packed with integration
 
 == Copyright ==
 
-Memberlite WordPress Theme, Copyright (C) 2018 - 2024 Stranger Studios, LLC and other contributors
+Memberlite WordPress Theme, Copyright (C) 2018 - 2025 Stranger Studios, LLC and other contributors
 Memberlite is distributed under the terms of the GNU GPL
 
 This program is free software: you can redistribute it and/or modify
