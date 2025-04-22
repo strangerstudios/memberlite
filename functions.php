@@ -4,7 +4,7 @@
  *
  * @package Memberlite
  */
-define( 'MEMBERLITE_VERSION', '5.3' );
+define( 'MEMBERLITE_VERSION', '6.0' );
 
 // enqueue additional stylesheets and javascript
 function memberlite_init_styles() {
