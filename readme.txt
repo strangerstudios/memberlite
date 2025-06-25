@@ -3,7 +3,7 @@ Contributors: kimannwall, strangerstudios
 Requires at least: 6.0
 Tested up to: 6.8
 Requires PHP: 5.6
-Stable tag: 6.0
+Stable tag: 6.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: one-column, two-columns, left-sidebar, right-sidebar, flexible-header, custom-background, custom-colors, custom-header, custom-menu, custom-logo, editor-style, featured-images, footer-widgets, full-width-template, post-formats, theme-options, threaded-comments, translation-ready, e-commerce
@@ -91,6 +91,9 @@ Memberlite includes formatting for use with:
 [Install Events Manager »](https://wordpress.org/plugins/events-manager/)
 
 == Changelog ==
+= 6.0.1 - 2025-06-25 =
+* BUG FIX: Remove test leftover test code from the footer. (@ideadude)
+* ENHANCEMENT: Improved translation support for Memberlite and WordPress 6.7+ (@dalemugford)
 
 = 6.0 - 2025-04-21 =
 * FEATURE: Added logic to update memberlite from the Paid Memberships Pro license server. #180 (@andrewlimaza)
