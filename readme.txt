@@ -92,8 +92,8 @@ Memberlite includes formatting for use with:
 
 == Changelog ==
 = 6.0.1 - 2025-06-25 =
-* BUG FIX: Remove test leftover test code from the footer. (@ideadude)
 * ENHANCEMENT: Improved translation support for Memberlite and WordPress 6.7+ (@dalemugford)
+* BUG FIX: Remove test leftover test code from the footer. (@ideadude)
 
 = 6.0 - 2025-04-21 =
 * FEATURE: Added logic to update memberlite from the Paid Memberships Pro license server. #180 (@andrewlimaza)
