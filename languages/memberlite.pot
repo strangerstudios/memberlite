@@ -2,16 +2,16 @@
 # This file is distributed under the GNU General Public License v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Memberlite 6.0\n"
+"Project-Id-Version: Memberlite 6.0.1\n"
 "Report-Msgid-Bugs-To: info@paidmembershipspro.com\n"
 "Last-Translator: Paid Memberships Pro <info@paidmembershipspro.com>\n"
 "Language-Team: Paid Memberships Pro <info@paidmembershipspro.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-04-22T07:10:23+00:00\n"
+"POT-Creation-Date: 2025-06-25T13:14:00+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.11.0\n"
+"X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: memberlite\n"
 
 #. Theme Name of the theme
@@ -52,6 +52,7 @@ msgstr ""
 #. translators: %s: number of comments
 #: comments.php:53
 #: comments.php:80
+#, php-format
 msgid "Comments (%s)"
 msgstr ""
 
@@ -62,11 +63,13 @@ msgstr ""
 
 #. translators: %s: number of trackbacks
 #: comments.php:89
+#, php-format
 msgid "Trackbacks (%s)"
 msgstr ""
 
 #. translators: number of pingbacks
 #: comments.php:98
+#, php-format
 msgid "Pingbacks (%s)"
 msgstr ""
 
@@ -80,6 +83,7 @@ msgstr ""
 
 #. translators: a generated link to the user's account or profile page
 #: components/header/meta-member.php:24
+#, php-format
 msgid "Welcome, %s"
 msgstr ""
 
@@ -113,6 +117,7 @@ msgstr ""
 
 #. translators: a link shown to users with the publish_posts capability to create a new post in the dashboard
 #: components/post/content-none.php:21
+#, php-format
 msgid "Ready to publish your first post? <a href=\"%1$s\">Get started here</a>."
 msgstr ""
 
@@ -132,127 +137,128 @@ msgstr ""
 #. translators: %s: current author archive's name
 #: components/post/entry-author-block.php:20
 #: inc/extras.php:751
+#, php-format
 msgid "Author: %s"
 msgstr ""
 
-#: functions.php:280
-#: functions.php:324
+#: functions.php:274
+#: functions.php:318
 msgid "Primary"
 msgstr ""
 
-#: functions.php:281
+#: functions.php:275
 msgid "Member"
 msgstr ""
 
-#: functions.php:282
+#: functions.php:276
 msgid "Member - Logged Out"
 msgstr ""
 
-#: functions.php:283
+#: functions.php:277
 msgid "Meta"
 msgstr ""
 
-#: functions.php:284
+#: functions.php:278
 msgid "Footer"
 msgstr ""
 
-#: functions.php:331
+#: functions.php:325
 msgid "Secondary"
 msgstr ""
 
-#: functions.php:338
+#: functions.php:332
 msgid "Action"
 msgstr ""
 
-#: functions.php:345
+#: functions.php:339
 msgid "Navigation Background"
 msgstr ""
 
-#: functions.php:352
+#: functions.php:346
 #: inc/extras.php:781
 msgid "Links"
 msgstr ""
 
-#: functions.php:359
+#: functions.php:353
 msgid "Navigation Links"
 msgstr ""
 
-#: functions.php:366
+#: functions.php:360
 msgid "Meta Links "
 msgstr ""
 
-#: functions.php:373
+#: functions.php:367
 msgid "Buttons"
 msgstr ""
 
-#: functions.php:380
+#: functions.php:374
 msgid "White"
 msgstr ""
 
-#: functions.php:387
+#: functions.php:381
 msgid "Borders"
 msgstr ""
 
-#: functions.php:406
+#: functions.php:400
 #: inc/customizer.php:823
 msgid "Page Masthead Background Color"
 msgstr ""
 
-#: functions.php:413
+#: functions.php:407
 msgid "Page Masthead Color"
 msgstr ""
 
-#: functions.php:420
+#: functions.php:414
 #: inc/customizer.php:869
 msgid "Footer Widgets Background Color"
 msgstr ""
 
-#: functions.php:427
+#: functions.php:421
 msgid "Footer Widgets Color"
 msgstr ""
 
-#: functions.php:438
+#: functions.php:432
 msgid "Text"
 msgstr ""
 
-#: functions.php:450
+#: functions.php:444
 msgid "Base"
 msgstr ""
 
-#: functions.php:518
+#: functions.php:523
 msgid "Posts and Archives"
 msgstr ""
 
-#: functions.php:529
+#: functions.php:534
 msgid "Pages"
 msgstr ""
 
-#: functions.php:540
+#: functions.php:545
 msgid "Header Right"
 msgstr ""
 
-#: functions.php:562
+#: functions.php:567
 #: inc/customizer.php:460
 msgid "Footer Widgets"
 msgstr ""
 
-#: functions.php:573
+#: functions.php:578
 msgid "Mobile Menu Widgets"
 msgstr ""
 
-#: functions.php:611
-#: functions.php:614
-#: functions.php:646
+#: functions.php:616
+#: functions.php:619
+#: functions.php:651
 msgid "Log Out"
-msgstr ""
-
-#: functions.php:617
-#: functions.php:649
-msgid "Log In"
 msgstr ""
 
 #: functions.php:622
 #: functions.php:654
+msgid "Log In"
+msgstr ""
+
+#: functions.php:627
+#: functions.php:659
 msgid "Register"
 msgstr ""
 
@@ -290,6 +296,7 @@ msgstr ""
 
 #. translators: Memberlite version number
 #: inc/admin.php:48
+#, php-format
 msgid "Version %s"
 msgstr ""
 
@@ -359,6 +366,7 @@ msgstr ""
 
 #. translators: Active theme name
 #: inc/admin.php:107
+#, php-format
 msgid "We highly recommend using these plugins for every site running %s:"
 msgstr ""
 
@@ -406,6 +414,7 @@ msgstr ""
 
 #. translators: Active theme name
 #: inc/admin.php:175
+#, php-format
 msgid "%s offers integration for these plugins:"
 msgstr ""
 
@@ -923,6 +932,7 @@ msgstr ""
 
 #. translators: 1: the old hook name, 2: the new or replacement hook name
 #: inc/deprecated.php:64
+#, php-format
 msgid "The %1$s hook has been deprecated since version 3.1 of Memberlite. Please use the %2$s hook instead."
 msgstr ""
 
@@ -935,6 +945,7 @@ msgid "Admin only message: The Memberlite Signup shortcode is deprecated. Please
 msgstr ""
 
 #: inc/deprecated.php:156
+#, php-format
 msgid "Some plugins are now merged into the Memberlite theme. The features of the following plugins are now included by default. You should <strong>delete these unnecessary plugins</strong> from your site: <em><strong>%s</strong></em>."
 msgstr ""
 
@@ -948,6 +959,7 @@ msgstr ""
 
 #. translators: %s: bbPress forum search terms
 #: inc/extras.php:437
+#, php-format
 msgid "Forum Search Results for: %s"
 msgstr ""
 
@@ -957,6 +969,7 @@ msgstr ""
 
 #. translators: %s: bbPress user profile display name
 #: inc/extras.php:444
+#, php-format
 msgid "%s's Profile"
 msgstr ""
 
@@ -966,6 +979,7 @@ msgstr ""
 
 #. translators: %s: search keywords
 #: inc/extras.php:474
+#, php-format
 msgid "Search Results for: %s"
 msgstr ""
 
@@ -986,16 +1000,19 @@ msgstr ""
 
 #. translators: %s: current tag archive's single title
 #: inc/extras.php:747
+#, php-format
 msgid "Posts Tagged: %s"
 msgstr ""
 
 #. translators: %s: day for the viewed archive
 #: inc/extras.php:755
+#, php-format
 msgid "Day: %s"
 msgstr ""
 
 #. translators: %s: month for the viewed archive
 #: inc/extras.php:759
+#, php-format
 msgid "Month: %s"
 msgstr ""
 
@@ -1007,6 +1024,7 @@ msgstr ""
 
 #. translators: %s: year for the viewed archive
 #: inc/extras.php:763
+#, php-format
 msgid "Year: %s"
 msgstr ""
 
@@ -1071,6 +1089,7 @@ msgstr ""
 
 #. translators: %s: number of comments
 #: inc/extras.php:974
+#, php-format
 msgid "%s Comments"
 msgstr ""
 
@@ -1103,17 +1122,20 @@ msgid "Reset Password"
 msgstr ""
 
 #: inc/multi-post-thumbnails.php:149
+#, php-format
 msgid "Set as %3$s"
 msgstr ""
 
 #. translators: %s is the Banner Image label.
 #: inc/multi-post-thumbnails.php:382
 #: inc/multi-post-thumbnails.php:384
+#, php-format
 msgid "Set %s"
 msgstr ""
 
 #. translators: %s is the Banner Image label.
 #: inc/multi-post-thumbnails.php:401
+#, php-format
 msgid "Remove %s"
 msgstr ""
 
@@ -1231,6 +1253,7 @@ msgid "Membership Level Upsell"
 msgstr ""
 
 #: inc/page_banners.php:181
+#, php-format
 msgid "Optional: You must install and activate the <a href=\"%s\" title=\"Paid Memberships Pro - Advanced Levels Page Add On\" target=\"_blank\">Advanced Levels Page Add On</a> to use this landing page feature."
 msgstr ""
 
@@ -1337,6 +1360,7 @@ msgid "The Membership Account page and its children do not display this menu."
 msgstr ""
 
 #: inc/sidebars.php:398
+#, php-format
 msgid "The current default sidebar is %s."
 msgstr ""
 
@@ -1424,6 +1448,7 @@ msgstr ""
 
 #. translators: %s: post type
 #: shortcodes/recent_posts.php:40
+#, php-format
 msgid "There was a problem fetching content for the post type '%s'. Please ensure this exists."
 msgstr ""
 
