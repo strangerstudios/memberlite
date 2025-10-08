@@ -105,12 +105,16 @@ function memberlite_subpagelist_shortcode_handler( $atts, $content = null, $code
 	// Get posts.
 	$memberlite_subpageposts = get_posts( $args );
 
-	$layout_cols = preg_replace( '/[^0-9]/', '', $layout );
-	if ( ! empty( $layout_cols ) ) {
-		$memberlite_subpageposts_chunks = array_chunk( $memberlite_subpageposts, $layout_cols );
-	} else {
-		$memberlite_subpageposts_chunks = array_chunk( $memberlite_subpageposts, '1' );
+	// Chunk posts into rows based on layout.
+	$layout_cols = 1;
+	if ( ! empty( $layout ) ) {
+		$layout_cols = preg_replace( '/[^0-9]/', '', $layout );
+		if ( empty( $layout_cols ) ) {
+			$layout_cols = 1;
+		}
 	}
+	$layout_cols = (int) $layout_cols;
+	$memberlite_subpageposts_chunks = array_chunk( $memberlite_subpageposts, $layout_cols );
 
 	// To show excerpts. save the old value to revert.
 	global $more;
