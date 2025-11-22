@@ -7,7 +7,7 @@
 
 // Enqueue additional stylesheets and javascript
 function memberlite_lifterlms_init_styles() {
-	wp_enqueue_style( 'memberlite_lifterlms', get_template_directory_uri() . '/css/lifterlms.css', array(), MEMBERLITE_VERSION );
+	wp_enqueue_style( 'memberlite_lifterlms', MEMBERLITE_URL . '/css/lifterlms.css', array(), MEMBERLITE_VERSION );
 }
 add_action( 'wp_enqueue_scripts', 'memberlite_lifterlms_init_styles' );
 

@@ -171,8 +171,8 @@ if (!class_exists('MemberliteMultiPostThumbnails')) {
 				return;
 
 			wp_enqueue_media( array( 'post' => ( $post_ID ? $post_ID : null ) ) );
-			wp_enqueue_script( "mpt-featured-image", get_template_directory_uri() . '/js/multi-post-thumbnails-admin.js', array( 'jquery', 'set-post-thumbnail' ) );
-			wp_enqueue_script( "mpt-featured-image-modal", get_template_directory_uri() . '/js/media-modal.js', array( 'jquery', 'media-models' ) );
+			wp_enqueue_script( "memberlite-featured-image", MEMBERLITE_URL . '/js/multi-post-thumbnails-admin.js', array( 'jquery', 'set-post-thumbnail' ) );
+			wp_enqueue_script( "memberlite-featured-image-modal", MEMBERLITE_URL . '/js/media-modal.js', array( 'jquery', 'media-models' ) );
 
 			self::$statics_enqueued = true;
 		}

@@ -8,9 +8,8 @@
 /* Load JS on the edit post page in the admin. */
 function memberlite_admin_enqueue_scripts_for_page_banners() {
 	$screen = get_current_screen();
-
-	if ( $screen->base == 'post' && ! empty( $_REQUEST['action'] ) && $_REQUEST['action'] == 'edit' ) {
-		wp_enqueue_script( 'memberlite-admin-page_banners', get_template_directory_uri() . '/js/admin-page_banners.js', array( 'jquery' ), MEMBERLITE_VERSION, true );
+	if ( $screen->base == 'post' && $screen->post_type == 'page' ) {
+		wp_enqueue_script( 'memberlite-admin-page_banners', MEMBERLITE_URL . '/js/admin-page_banners.js', array( 'jquery' ), MEMBERLITE_VERSION, true );
 	}
 }
 add_action( 'admin_enqueue_scripts', 'memberlite_admin_enqueue_scripts_for_page_banners' );
