@@ -18,7 +18,7 @@ class Memberlite_Customize {
 			array(
 				'title'       => __( 'Memberlite Options', 'memberlite' ),
 				'priority'    => 35,
-				'description' => __( 'Allows you to customize settings for Memberlite.', 'memberlite' ),
+				'description' => sprintf( __( 'Customize settings for Memberlite. Visit the <a href="%s" target="_blank">Memberlite Tools</a> screen to import, export, or reset theme customizations.', 'memberlite' ), admin_url( 'admin.php?page=memberlite-tools' ) ),
 			)
 		);
 
