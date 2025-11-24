@@ -2917,6 +2917,11 @@ a:active:not(.pmpro_btn:active) {
 	border-bottom: 1.45rem solid var(--memberlite-color-secondary);
 }
 
+.pmpro .pmpro_signup_form .pmpro_card .pmpro_card {
+	border-top: none;
+	border-bottom: none;
+}
+
 /* Membership Checkout */
 #secondary form.pmpro_form .pmpro_submit {
 	text-align: center;
