@@ -319,29 +319,6 @@ blockquote.contact-form-submission {color: #404040; }
 address {
 	margin: 0 0 2.9rem;
 }
-details {
-	border-top: 1px solid var(--memberlite-color-borders);
-	cursor: pointer;
-	margin: 0;
-	padding: 1.45rem;
-}
-details > summary {
-	list-style: none;
-	outline:none;
-}
-details > summary:before {
-	content: "\f078";
-	float: right;
-	font-family: 'Font Awesome 5 Free';
-	font-weight: 900;
-	margin: 0 1.45rem;
-}
-details[open] > summary:before {
-	content: "\f077";
-}
-details > summary::-webkit-details-marker {
-	display: none;
-}
 .wp-block-image figcaption,
 .wp-block-gallery .blocks-gallery-image figcaption,
 .wp-block-gallery .blocks-gallery-item figcaption {
@@ -618,15 +595,15 @@ a.btn.skip-link {
 a.btn.skip-link {
 	font-size: 1.4rem;
 }
-button:hover:not(button.pmpro_btn:hover):not(button.pmpro_btn-plain:hover):not(button.menu-toggle:hover),
+button:hover:not(button.pmpro_btn:hover):not(button.pmpro_btn-plain:hover):not(button.menu-toggle:hover):not(.wp-block-accordion-heading__toggle:hover),
 input[type=button]:hover,
 input[type=reset]:hover,
 input[type=submit]:hover,
-button:focus:not(button.pmpro_btn:focus):not(button.pmpro_btn-plain:focus):not(button.menu-toggle:focus),
+button:focus:not(button.pmpro_btn:focus):not(button.pmpro_btn-plain:focus):not(button.menu-toggle:focus):not(.wp-block-accordion-heading__toggle:focus),
 input[type=button]:focus,
 input[type=reset]:focus,
 input[type=submit]:focus,
-button:active:not(button.pmpro_btn:active):not(button.pmpro_btn-plain:active):not(button.menu-toggle:active),
+button:active:not(button.pmpro_btn:active):not(button.pmpro_btn-plain:active):not(button.menu-toggle:active):not(.wp-block-accordion-heading__toggle:active),
 input[type=button]:active,
 input[type=reset]:active,
 input[type=submit]:active,
@@ -3128,30 +3105,94 @@ body.memberlite-banner-hidden .entry-content > .banner:first-child {
 	background-size: cover;
 }
 
-/* [memberlite_accordion] Shortcode */
-.memberlite_accordion {}
-.memberlite_accordion h2,
-.entry-content .memberlite_accordion h2 {
-	border-top: 1px solid #CCC;
-	cursor: pointer;
-	margin: 0;
+/* [memberlite_accordion] Shortcode, details block, accordion block */
+:is(
+	details,
+	.memberlite_accordion h2,
+	.entry-content .memberlite_accordion h2,
+	.wp-block-accordion-item .wp-block-accordion-heading
+) {
+	border-top: 1px solid var(--memberlite-color-borders);
 	padding: 1.45rem;
 }
-.memberlite_accordion h2:before {
+
+:is(
+	details > summary,
+	.memberlite_accordion h2,
+	.entry-content .memberlite_accordion h2,
+	.wp-block-accordion-item .wp-block-accordion-heading
+) {
+	cursor: pointer;
+	font-family: var(--memberlite-header-font);
+	font-size: inherit;
+	font-weight: 700;
+	line-height: inherit;
+	margin: 0;
+}
+
+details > summary {
+	list-style: none;
+	outline: none;
+}
+details > summary::-webkit-details-marker {
+	display: none;
+}
+
+details > p:first-of-type {
+	margin-block-start: 1.45rem;
+}
+
+.wp-block-accordion-item .wp-block-accordion-heading__toggle {
+	background: none;
+	border: 0;
+	box-shadow: none;
+	padding: 0;
+	text-align: left;
+}
+
+:is(
+	details > summary,
+	.memberlite_accordion h2,
+	.entry-content .memberlite_accordion h2,
+	.wp-block-accordion-item .wp-block-accordion-heading__toggle-title
+):hover {
+	text-decoration: underline;
+}
+
+:is(
+	details > summary,
+	.memberlite_accordion h2
+)::before {
 	content: "\f078";
 	float: right;
-	font-family: 'Font Awesome 5 Free';
-	font-weight: 700;
-	margin: 0 1.45rem;
+	font-family: "Font Awesome 5 Free";
+	font-weight: 900;
+	margin-left: 1.45rem;
 }
-.memberlite_accordion-item.memberlite_accordion-active h2:before {
+
+:is(
+	details[open] > summary,
+	.memberlite_accordion-item.memberlite_accordion-active h2
+)::before {
 	content: "\f077";
 }
+
+.wp-block-accordion-item {
+	margin-block-start: 0;
+}
+
+:is(
+	.wp-block-accordion-panel,
+	.memberlite_accordion .memberlite_accordion-item-content
+) {
+	margin-block-start: 0;
+	padding: 0 1.45rem 1.45rem;
+}
+
 .memberlite_accordion .memberlite_accordion-item-content {
 	display: none;
-	margin: 0;
-	padding: 0 1.45rem 1.45rem 1.45rem;
 }
+
 .memberlite_accordion-item:first-child .memberlite_accordion-item-content {
 	display: block;
 }
