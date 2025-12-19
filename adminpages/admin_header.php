@@ -8,7 +8,7 @@
 // Get the current view.
 $view = '';
 if ( isset( $_REQUEST['page'] ) ) {
-	$view = sanitize_text_field($_REQUEST['page']);
+	$view = sanitize_text_field( wp_unslash( $_REQUEST['page'] ) );
 }
 ?>
 <div class="wrap memberlite_admin <?php echo ! empty( $view ) ? 'memberlite_admin-' . esc_attr( $view ) : ''; ?>">
