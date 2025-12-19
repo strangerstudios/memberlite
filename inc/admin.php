@@ -203,7 +203,7 @@ function memberlite_hide_non_memberlite_notices() {
 	// Handle notices added through these hooks.
 	$hooks = ['admin_notices', 'all_admin_notices'];
 
-	foreach ($hooks as $hook) {
+	foreach ( $hooks as $hook ) {
 		// If no callbacks are registered, skip.
 		if ( ! isset( $wp_filter[$hook] ) ) {
 			continue;
