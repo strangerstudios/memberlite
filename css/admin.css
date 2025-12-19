@@ -1,0 +1,577 @@
+/**
+ * Admin CSS
+ *
+ * @since TBD
+ */
+
+/**
+ * Root variables
+ */
+:root {
+	--memberlite--border--color: #E5E7EB;
+	--memberlite--border--radius: 6px;
+	--memberlite--box-shadow: 1px 2px 3px #12196110;
+	--memberlite--color--blue-lightest: #F5F8FA;
+	--memberlite--color--blue-medium-transparent: #E2E8F099;
+	--memberlite--color--blue-medium: #E2E8F0;
+	--memberlite--color--blue-darkest-transparent: #C3D0E099;
+	--memberlite--color--blue-darkest: #C3D0E0;
+	--memberlite--color--almost-black: #0F172A;
+	--memberlite--color--error-text: #721c24;
+	--memberlite--spacing--medium: 30px;
+	--memberlite--spacing--small: 10px;
+}
+
+/**
+ * Admin Banner Area
+ */
+.memberlite_banner {
+	background-color: #FFF;
+	box-shadow: var(--memberlite--box-shadow);
+	margin-left: -20px;
+	padding: var(--memberlite--spacing--medium) 0 calc( var(--memberlite--spacing--medium) / 2 ) 0;
+}
+
+.memberlite_banner .memberlite_banner_wrapper {
+	padding: 0 var(--memberlite--spacing--medium);
+}
+
+.memberlite_banner .memberlite_logo {
+	align-items: center;
+	display: flex;
+	justify-content: center;
+	gap: var(--memberlite--spacing--small);
+}
+
+.memberlite_banner .memberlite_logo h1 {
+	margin: 0;
+}
+
+.memberlite_banner .memberlite_logo a {
+	display: block;
+	width: 280px;
+}
+
+.memberlite_banner .memberlite_logo img {
+	height: auto;
+	max-width: 280px;
+}
+
+.memberlite_banner .memberlite_meta {
+	font-size: 16px;
+	line-height: 1.5;
+	text-align: center;
+	width: 100%;
+}
+
+.memberlite_banner .memberlite_version {
+	background: var(--memberlite--color--blue-medium);
+	color: var(--memberlite--color--almost-black);
+	border-radius: 999px;
+	font-size: 14px;
+	font-weight: bold;
+	padding: 6px 12px;
+}
+
+.memberlite_banner .memberlite_meta a {
+	display: inline-block;
+	margin: 0 0 0 10px;
+}
+
+@media only screen and (min-width: 782px) {
+	.memberlite_banner .memberlite_banner_wrapper {
+		align-items: center;
+		display: flex;
+		gap: calc( var(--memberlite--spacing--medium) / 2 );
+	}
+
+	.memberlite_banner .memberlite_meta {
+		text-align: right;
+	}
+}
+
+@media only screen and (max-width: 782px) {
+	.memberlite_banner {
+		margin-left: -30px;
+	}
+}
+
+/**
+ * Other Admin Area Styles
+ */
+body[class*="memberlite_page_memberlite-"],
+body[class*="toplevel_page_memberlite-"] {
+	background: var(--memberlite--color--blue-lightest);
+}
+
+@media only screen and (min-width: 1200px) {
+	body[class*="memberlite_page_memberlite-"] .wrap,
+	body[class*="toplevel_page_memberlite-"] .wrap {
+		padding-left: 10px;
+	}
+}
+
+.wrap.memberlite_admin {
+	margin: var(--memberlite--spacing--medium) var(--memberlite--spacing--medium) var(--memberlite--spacing--medium) 0;
+}
+
+@media only screen and (max-width: 782px) {
+	.wrap.memberlite_admin {
+		margin-right: calc( var(--memberlite--spacing--small) * 2 );
+		margin-left: var(--memberlite--spacing--small);
+	}
+}
+
+.memberlite_admin .memberlite-nav-primary ul {
+	border-bottom: 1px solid var(--memberlite--color--blue-darkest);
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--memberlite--spacing--small);
+	padding: 0 var(--memberlite--spacing--small);
+	width: 100%;
+}
+
+.memberlite_admin .memberlite-nav-primary ul li {
+	margin: 0;
+}
+
+.memberlite_admin .memberlite-nav-primary a {
+	background-color: var(--memberlite--color--blue-medium-transparent);
+	border-color: var(--memberlite--color--blue-darkest);
+	border-style: solid;
+	border-width: 1px 1px 0 1px;
+	border-top-right-radius: var(--memberlite--border--radius);
+	border-top-left-radius: var(--memberlite--border--radius);
+	color: var(--memberlite--color--almost-black);
+	display: block;
+	font-size: 14px;
+	float: none;
+	line-height: 1.5;
+	font-weight: 500;
+	margin: 0;
+	padding: var(--memberlite--spacing--small) calc( var(--memberlite--spacing--medium) / 2 );
+	text-decoration: none;
+}
+
+.memberlite_admin .memberlite-nav-primary a.current {
+	background-color: var(--memberlite--color--blue-lightest);
+	border-bottom: 1px solid var(--memberlite--color--blue-lightest);
+	margin-bottom: -1px;
+}
+
+.memberlite_admin .memberlite-nav-primary ul li a:hover:not(.memberlite_admin .memberlite-nav-primary a.current:hover),
+.memberlite_admin .memberlite-nav-primary ul li a:focus:not(.memberlite_admin .memberlite-nav-primary a.current:hover) {
+	background-color: #FFF;
+}
+
+.memberlite_admin hr:not(hr.wp-header-end) {
+	background-color: var(--memberlite--border--color);
+	margin: var(--memberlite--spacing--medium) 0;
+}
+
+.memberlite_admin #editorcontainer #description {
+	width: 100%;
+	height: 180px;
+}
+
+.memberlite_admin h1 {
+	font-size: 32px;
+	font-weight: 700;
+	line-height: 1.5;
+	margin-top: var(--memberlite--spacing--medium);
+	padding: 0;
+}
+
+.memberlite_admin h1.wp-heading-inline {
+	margin-right: var(--memberlite--spacing--small);
+}
+
+.memberlite_admin h2 {
+	font-size: 24px;
+	font-weight: 600;
+	line-height: 1.5;
+}
+
+.memberlite_admin h3 {
+	font-size: 18px;
+	font-weight: 600;
+	line-height: 1.5;
+}
+
+.memberlite_admin h4 {
+	font-size: 16px;
+	font-weight: 600;
+	line-height: 1.5;
+}
+
+.memberlite_admin p {
+	font-size: 14px;
+	line-height: 1.5;
+	margin: var(--memberlite--spacing--small) 0;
+}
+
+.memberlite_admin ul,
+.memberlite_admin ol {
+	font-size: 14px;
+	line-height: 1.5;
+}
+
+.memberlite_admin small {
+	font-size: 13px;
+}
+
+.memberlite_admin .page-title-action {
+	margin: 0 calc( var(--memberlite--spacing--small) / 2 );
+}
+
+.wp-core-ui .memberlite_admin .button-primary:hover {
+	background: #135e96;
+}
+
+.wp-core-ui .memberlite_admin .button.memberlite-button-danger {
+	border-color: var(--memberlite--color--error-text);
+	color: var(--memberlite--color--error-text);
+}
+
+@media only screen and (max-width: 782px) {
+	.memberlite_admin .memberlite-nav-primary ul {
+		border-bottom: none;
+		justify-content: center;
+		padding-left: 0;
+	}
+
+	.memberlite_admin .memberlite-nav-primary ul li a {
+		border-bottom-width: 1px;
+		border-radius: var(--memberlite--border--radius);
+	}
+
+	.memberlite_admin .memberlite-nav-primary ul li a.current {
+		border-bottom-color: var(--memberlite--color--blue-darkest);
+		margin-bottom: 0;
+	}
+
+	.memberlite_admin .memberlite-nav-secondary ul {
+		justify-content: center;
+	}
+}
+
+.memberlite_admin hr.wp-header-end {
+	margin-top: 0;
+}
+
+/* Footer */
+body[class*="memberlite_page_memberlite-"] #footer-left a,
+body[class*="toplevel_page_memberlite-"] #footer-left a {
+	font-weight: bold;
+}
+
+/**
+ * Boxes
+ */
+.memberlite_box {
+	background: var(--memberlite--color--blue-lightest);
+	border-radius: 10px;
+	border: 1px solid var(--memberlite--border--color);
+	padding: var(--memberlite--spacing--medium);
+	position: relative;
+}
+
+.memberlite_box .memberlite_box-title {
+	display: block;
+	font-size: 18px;
+	font-weight: 700;
+	margin-bottom: calc( var(--memberlite--spacing--small) / 2 );
+}
+
+.memberlite_box .memberlite_box-title-has-icon {
+	align-items: center;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	gap: var(--memberlite--spacing--small);
+}
+
+.memberlite_box .memberlite_box-title-has-icon img {
+	height: 20px;
+	width: 20px;
+}
+
+.memberlite_box .memberlite_box-description {
+	color: var(--memberlite--color--almost-black);
+	font-weight: 400;
+	margin: 0;
+}
+
+.memberlite_box .memberlite_box-description p:last-child {
+	margin-bottom: 0;
+}
+
+/* General admin-area tables styles */
+.memberlite_admin table.widefat {
+	border-color: var(--memberlite--border--color);
+	box-shadow: var(--memberlite--box-shadow);
+	border-radius: 6px;
+}
+
+.memberlite_admin table.widefat thead th:first-child {
+	border-top-left-radius: 6px;
+}
+
+.memberlite_admin table.widefat thead th:last-child {
+	border-top-right-radius: 6px;
+}
+
+.memberlite_admin table.widefat thead td,
+.memberlite_admin table.widefat thead th {
+	border-bottom-color: var(--memberlite--border--color);
+}
+
+.memberlite_admin table.striped tbody td,
+.memberlite_admin table.striped tbody th {
+	border-bottom: 1px solid var(--memberlite--border--color);
+}
+
+.memberlite_admin table.widefat tfoot td,
+.memberlite_admin table.widefat tfoot th {
+	border-top-color: var(--memberlite--border--color);
+}
+
+.memberlite_admin table.widefat td,
+.memberlite_admin table.widefat td ol,
+.memberlite_admin table.widefat td p,
+.memberlite_admin table.widefat td ul {
+	font-size: 14px;
+	line-height: 1.5;
+}
+
+.memberlite_admin table.striped tfoot td,
+.memberlite_admin table.striped tfoot th {
+	border-top: none;
+}
+
+.memberlite_admin .alternate,
+.memberlite_admin .striped > tbody > :nth-child(odd),
+.memberlite_admin ul.striped > :nth-child(odd) {
+	background-color: var(--memberlite--color--blue-lightest);
+}
+
+.memberlite_admin table.wp-list-table thead th.sortable,
+.memberlite_admin table.wp-list-table thead th.sorted,
+.memberlite_admin table.wp-list-table tfoot th.sortable,
+.memberlite_admin table.wp-list-table tfoot th.sorted {
+	padding-left: .65em;
+	padding-right: .65em;
+}
+
+.memberlite_admin table.wp-list-table thead th.sortable a,
+.memberlite_admin table.wp-list-table thead th.sorted a {
+	padding-left: 0.5em;
+	padding-right: 0.5em;
+}
+.memberlite_admin table.wp-list-table .row-actions {
+	color: #999;
+}
+@media only screen and (min-width: 1200px) {
+	.memberlite_admin table.wp-list-table thead th,
+	.memberlite_admin table.wp-list-table tfoot th {
+		padding-left: calc( var(--memberlite--spacing--medium) / 2 );
+		padding-right: calc( var(--memberlite--spacing--medium) / 2 );
+	}
+	.memberlite_admin table.wp-list-table tbody td {
+		padding: calc( var(--memberlite--spacing--medium) / 2 );
+	}
+}
+
+/**
+ * Two column admin screen layouts
+ */
+.memberlite_admin .memberlite_two_col {
+	align-items: start;
+	display: grid;
+	gap: var(--memberlite--spacing--medium);
+}
+
+.memberlite_admin .memberlite_two_col-left {
+	grid-template-areas: "sidebar main";
+	grid-template-columns:
+		minmax( 220px, 1fr )
+		minmax( 0, 3fr );
+}
+
+.memberlite_admin .memberlite_two_col-right {
+	grid-template-areas: "main sidebar";
+	grid-template-columns:
+		minmax( 0, 3fr )
+		minmax( 220px, 1fr );
+}
+
+.memberlite_admin .memberlite_main {
+	grid-area: main;
+	min-width: 0;
+}
+
+.memberlite_admin .memberlite_sidebar {
+	grid-area: sidebar;
+	min-width: 0;
+}
+
+@media (max-width: 782px) {
+	.memberlite_admin .memberlite_two_col-left,
+	.memberlite_admin .memberlite_two_col-right {
+		grid-template-columns: 1fr;
+		grid-template-areas:
+			"main"
+			"sidebar";
+	}
+}
+
+/**
+ * Settings pages sections styles
+ */
+.memberlite_admin .memberlite_section {
+	background-color: #FFF;
+	border: 1px solid var(--memberlite--border--color);
+	border-radius: var(--memberlite--border--radius);
+	box-shadow: var(--memberlite--box-shadow);
+	clear: both;
+	margin: var(--memberlite--spacing--medium) 0;
+}
+
+.memberlite_admin .memberlite_section .memberlite_section_toggle {
+	border-bottom: 1px solid var(--memberlite--border--color);
+	border-top-right-radius: var(--memberlite--border--radius);
+	border-top-left-radius: var(--memberlite--border--radius);
+	margin: 0;
+}
+
+.memberlite_admin .memberlite_section .memberlite_section_toggle {
+	display: flex;
+}
+.memberlite_admin .memberlite_section .memberlite_section_toggle:hover,
+.memberlite_admin .memberlite_section .memberlite_section_toggle:focus-within {
+	background-color: var(--memberlite--color--blue-medium-transparent);
+}
+.memberlite_admin .memberlite_section .memberlite_section_toggle button.memberlite_section-toggle-button {
+	align-items: center;
+	-webkit-appearance: none;
+	background: none;
+	border: none;
+	box-shadow: none;
+	box-sizing: border-box;
+	color: var(--memberlite--color--almost-black);
+	cursor: pointer;
+	display: flex;
+	flex-grow: 1;
+	font-size: 18px;
+	font-weight: 500;
+	height: auto;
+	justify-content: space-between;
+	margin: 0;
+	outline: none;
+	padding: calc( var(--memberlite--spacing--medium) / 2 ) calc( var(--memberlite--spacing--medium) * 2 ) calc( var(--memberlite--spacing--medium) / 2 ) calc( var(--memberlite--spacing--medium) / 2 );
+	position: relative;
+	text-align: left;
+	text-decoration: none;
+}
+
+.memberlite_admin .memberlite_section .memberlite_section_toggle button.memberlite_section-toggle-button:focus {
+	box-shadow: inset 0 0 0 2px var(--memberlite--color--blue-darkest-transparent);
+}
+
+.memberlite_admin .memberlite_section .memberlite_section_toggle button.memberlite_section-toggle-button .dashicons {
+	position: absolute;
+	right: 16px;
+	top: 50%;
+	transform: translateY(-50%);
+	color: var(--memberlite--color--almost-black);
+	fill: currentColor;
+	transition: color .1s ease-in-out;
+}
+
+.memberlite_admin .memberlite_section .memberlite_section-sort {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+	padding: 14px 0 14px 16px;
+}
+
+.memberlite_admin .memberlite_section .memberlite_section-sort .memberlite_section-sort-button {
+	background: 0 0;
+	border: 0;
+	cursor: pointer;
+	flex-shrink: 0;
+	margin: 0;
+	padding: 0;
+}
+
+.memberlite_admin .memberlite_section .memberlite_section-sort .memberlite_section-sort-button .dashicons {
+	font-size: 14px;
+	height: 14px;
+	width: 14px;
+}
+
+.memberlite_admin .memberlite_section .memberlite_section-sort .memberlite_section-sort-button:disabled {
+	color: #AAA;
+}
+
+.memberlite_admin .memberlite_section .memberlite_section-sort .memberlite_section-sort-button-description {
+	display: none;
+}
+
+.memberlite_admin .memberlite_section .memberlite_section_inside {
+	border-bottom: 1px solid var(--memberlite--border--color);
+	padding: calc( var(--memberlite--spacing--medium) / 2 );
+}
+
+.memberlite_admin .memberlite_section .memberlite_section_inside > *:first-child {
+	margin-top: 0;
+}
+
+.memberlite_admin .memberlite_section .memberlite_section_inside.bleed > * {
+	margin-right: 16px;
+	margin-left: 16px;
+}
+.memberlite_admin .memberlite_section .memberlite_section_inside.bleed > *:first-child {
+	margin-top: 16px;
+}
+
+.memberlite_admin .memberlite_section .memberlite_section_inside .form-table {
+	margin-top: 0;
+}
+
+.memberlite_admin .memberlite_section .memberlite_section_actions {
+	align-items: center;
+	background-color: var(--memberlite--color--blue-medium-transparent);
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--memberlite--spacing--small);
+	margin: var(--memberlite--spacing--medium) calc( ( var(--memberlite--spacing--medium) / 2 ) * -1 ) calc( ( var(--memberlite--spacing--medium) / 2 ) * -1 ) calc( ( var(--memberlite--spacing--medium) / 2 ) * -1 );
+	padding: var(--memberlite--spacing--small);
+}
+
+/**
+ * General Admin Styles
+ */
+.memberlite_admin p.text-center {
+	text-align: center;
+}
+
+.memberlite_admin p.text-right {
+	text-align: right;
+}
+
+/**
+ * Dashboard
+ */
+.memberlite_admin .memberlite-feature-section {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: var(--memberlite--spacing--medium);
+	margin-top: var(--memberlite--spacing--medium);
+}
+
+@media screen and (max-width: 782px) {
+	.memberlite_admin .memberlite-feature-section {
+		display: block;
+	}
+}

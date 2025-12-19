@@ -18,7 +18,7 @@ class Memberlite_Customize {
 			array(
 				'title'       => __( 'Memberlite Options', 'memberlite' ),
 				'priority'    => 35,
-				'description' => __( 'Allows you to customize settings for Memberlite.', 'memberlite' ),
+				'description' => sprintf( __( 'Customize settings for Memberlite. Visit the <a href="%s" target="_blank">Memberlite Tools</a> screen to import, export, or reset theme customizations.', 'memberlite' ), admin_url( 'admin.php?page=memberlite-tools' ) ),
 			)
 		);
 
@@ -1086,7 +1086,7 @@ class Memberlite_Customize {
 		global $memberlite_defaults;
 		wp_register_script(
 			'Memberlite_Customizer',
-			get_template_directory_uri() . '/js/customizer.js',
+			MEMBERLITE_URL . '/js/customizer.js',
 			array( 'jquery', 'customize-preview' ),
 			MEMBERLITE_VERSION,
 			true
@@ -1608,7 +1608,7 @@ class Memberlite_Customize {
 	 * @since Twenty Fifteen 1.0
 	 */
 	public static function customizer_controls_js() {
-		wp_enqueue_script( 'Memberlite_Customizer-controls', get_template_directory_uri() . '/js/customizer-controls.js', array( 'customize-controls', 'iris', 'underscore', 'wp-util' ), MEMBERLITE_VERSION, true );
+		wp_enqueue_script( 'Memberlite_Customizer-controls', MEMBERLITE_URL . '/js/customizer-controls.js', array( 'customize-controls', 'iris', 'underscore', 'wp-util' ), MEMBERLITE_VERSION, true );
 		wp_localize_script( 'Memberlite_Customizer-controls', 'colorSchemes', Memberlite_Customize::get_color_schemes() );
 	}
 
