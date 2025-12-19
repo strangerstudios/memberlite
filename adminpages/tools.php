@@ -111,7 +111,15 @@ function memberlite_export_theme_settings() {
 		$mods = array();
 	}
 
-	// Extra options we care about.
+	/**
+	 * Filter the option keys to export when exporting Memberlite theme settings.
+	 * By default, we export the site icon, custom sidebars, and sidebar assignments for custom post types.
+	 *
+	 * Note: This same filter is used for resetting options in memberlite_reset_theme_settings().
+	 * 
+	 * @since TBD
+	 * @param array $option_keys Array of option keys to export.
+	 */
 	$option_keys = apply_filters(
 		'memberlite_export_option_keys',
 		array(
@@ -146,7 +154,7 @@ function memberlite_export_theme_settings() {
 		wp_die( esc_html__( 'Error encoding export data.', 'memberlite' ) );
 	}
 
-	$filename = 'memberlite-theme-settings-' . date( 'Y-m-d' ) . '.json';
+	$filename = 'memberlite-theme-settings-' . wp_date( 'Y-m-d' ) . '.json';
 
 	nocache_headers();
 	header( 'Content-Type: application/json; charset=utf-8' );

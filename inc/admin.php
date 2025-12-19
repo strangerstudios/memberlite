@@ -203,24 +203,24 @@ function memberlite_hide_non_memberlite_notices() {
 	// Handle notices added through these hooks.
 	$hooks = ['admin_notices', 'all_admin_notices'];
 
-	foreach ($hooks as $hook) {
+	foreach ( $hooks as $hook ) {
 		// If no callbacks are registered, skip.
 		if ( ! isset( $wp_filter[$hook] ) ) {
 			continue;
 		}
 
 		// Loop through the callbacks and remove any that aren't Memberlite.
-		foreach ($wp_filter[$hook]->callbacks as $priority => $callbacks) {
-			foreach ($callbacks as $key => $callback) {				
+		foreach ( $wp_filter[$hook]->callbacks as $priority => $callbacks ) {
+			foreach ( $callbacks as $key => $callback ) {
 				if ( is_string( $callback['function' ] ) ) {
 					// Check the function name.
 					// Ex. add_action( 'admin_notices', 'memberlite_admin_notice' );
 					$name_to_check = $callback['function'];
-				} elseif ( is_array( $callback['function' ] ) && is_string( $callback['function'][0] ) ) {
+				} elseif ( is_array( $callback['function'] ) && is_string( $callback['function'][0] ) ) {
 					// Check the class name for the static method.
 					// Ex. add_action( 'admin_notices', array( 'Memberlite_Admin', 'admin_notice' ) );
 					$name_to_check = $callback['function'][0];
-				} elseif ( is_array( $callback['function' ] ) && is_object( $callback['function'][0] ) ) {
+				} elseif ( is_array( $callback['function'] ) && is_object( $callback['function'][0] ) ) {
 					// Check the class name for the non-static method.
 					// Ex. add_action( 'admin_notices', array( $some_object, 'admin_notice' ) );
 					$name_to_check = get_class( $callback['function'][0] );
