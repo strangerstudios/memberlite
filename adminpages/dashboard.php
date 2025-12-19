@@ -29,19 +29,19 @@ function memberlite_dashboard() {
 
 		<div class="memberlite_main">
 
-			<?php echo memberlite_dashboard_welcome_callback(); ?>
+			<?php memberlite_dashboard_welcome_callback(); ?>
 
 		</div>
 
 		<div class="memberlite_sidebar">
 
-			<?php echo memberlite_dashboard_child_theme_callback(); ?>
+			<?php memberlite_dashboard_child_theme_callback(); ?>
 
 		</div>
 
 	</div>
 
-	<?php echo memberlite_dashboard_recommended_plugins_callback(); ?>
+	<?php memberlite_dashboard_recommended_plugins_callback(); ?>
 
 	<?php
 	/**
