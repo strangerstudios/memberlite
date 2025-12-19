@@ -93,10 +93,10 @@ function memberlite_custom_sidebars() {
 				// Save option.
 				update_option( 'memberlite_custom_sidebars', $memberlite_custom_sidebars, 'no' );
 
-				$message = esc_html__( 'Custom sidebar deleted.', 'memberlite' );
+				$message = __( 'Custom sidebar deleted.', 'memberlite' );
 				$class   = 'notice-success';
 			} else {
-				$message = esc_html__( 'Could not find custom sidebar. Maybe it was already deleted.', 'memberlite' );
+				$message = __( 'Could not find custom sidebar. Maybe it was already deleted.', 'memberlite' );
 				$class   = 'notice-error';
 			}
 		}
@@ -132,7 +132,7 @@ function memberlite_custom_sidebars() {
 			// Update option.
 			update_option( 'memberlite_cpt_sidebars', $memberlite_cpt_sidebars, 'no' );
 
-			$message = esc_html__( 'Custom sidebar settings updated.', 'memberlite' );
+			$message = __( 'Custom sidebar settings updated.', 'memberlite' );
 			$class   = 'notice-success';
 		}
 	}
