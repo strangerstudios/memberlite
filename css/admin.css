@@ -579,13 +579,12 @@ body[class*="toplevel_page_memberlite-"] #footer-left a {
 /**
  * Recommended Add Ons Box
  */
- #the-list {
+.memberlite_admin #the-list {
 	display: flex;
 	flex-wrap: wrap;
-	align-items: stretch;
 }
 
-.plugin-card {
+.memberlite_admin .plugin-card {
 	display: flex;
 	flex-direction: column;
 }
