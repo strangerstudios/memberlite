@@ -2,14 +2,14 @@
 # This file is distributed under the GNU General Public License v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Memberlite 6.0.1\n"
+"Project-Id-Version: Memberlite 6.1\n"
 "Report-Msgid-Bugs-To: info@paidmembershipspro.com\n"
 "Last-Translator: Paid Memberships Pro <info@paidmembershipspro.com>\n"
 "Language-Team: Paid Memberships Pro <info@paidmembershipspro.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-06-25T13:14:00+00:00\n"
+"POT-Creation-Date: 2025-12-22T13:21:13+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: memberlite\n"
@@ -17,6 +17,9 @@ msgstr ""
 #. Theme Name of the theme
 #: style.css
 #: inc/admin.php:374
+#: inc/admin.php:13
+#: inc/admin.php:107
+#: inc/admin.php:140
 msgid "Memberlite"
 msgstr ""
 
@@ -33,6 +36,7 @@ msgstr ""
 #. Author of the theme
 #: style.css
 #: inc/admin.php:157
+#: adminpages/dashboard.php:231
 msgid "Stranger Studios"
 msgstr ""
 
@@ -145,130 +149,156 @@ msgstr ""
 #: functions.php:324
 #: functions.php:274
 #: functions.php:318
+#: functions.php:291
+#: functions.php:335
 msgid "Primary"
 msgstr ""
 
 #: functions.php:281
 #: functions.php:275
+#: functions.php:292
 msgid "Member"
 msgstr ""
 
 #: functions.php:282
 #: functions.php:276
+#: functions.php:293
 msgid "Member - Logged Out"
 msgstr ""
 
 #: functions.php:283
 #: functions.php:277
+#: functions.php:294
 msgid "Meta"
 msgstr ""
 
 #: functions.php:284
 #: functions.php:278
+#: functions.php:295
 msgid "Footer"
 msgstr ""
 
 #: functions.php:331
 #: functions.php:325
+#: functions.php:342
 msgid "Secondary"
 msgstr ""
 
 #: functions.php:338
 #: functions.php:332
+#: functions.php:349
 msgid "Action"
 msgstr ""
 
 #: functions.php:345
 #: functions.php:339
+#: functions.php:356
 msgid "Navigation Background"
 msgstr ""
 
 #: functions.php:352
 #: inc/extras.php:781
 #: functions.php:346
+#: functions.php:363
 msgid "Links"
 msgstr ""
 
 #: functions.php:359
 #: functions.php:353
+#: functions.php:370
 msgid "Navigation Links"
 msgstr ""
 
 #: functions.php:366
 #: functions.php:360
+#: functions.php:377
 msgid "Meta Links "
 msgstr ""
 
 #: functions.php:373
 #: functions.php:367
+#: functions.php:384
 msgid "Buttons"
 msgstr ""
 
 #: functions.php:380
 #: functions.php:374
+#: functions.php:391
 msgid "White"
 msgstr ""
 
 #: functions.php:387
 #: functions.php:381
+#: functions.php:398
 msgid "Borders"
 msgstr ""
 
 #: functions.php:406
 #: inc/customizer.php:823
 #: functions.php:400
+#: functions.php:417
 msgid "Page Masthead Background Color"
 msgstr ""
 
 #: functions.php:413
 #: functions.php:407
+#: functions.php:424
 msgid "Page Masthead Color"
 msgstr ""
 
 #: functions.php:420
 #: inc/customizer.php:869
 #: functions.php:414
+#: functions.php:431
 msgid "Footer Widgets Background Color"
 msgstr ""
 
 #: functions.php:427
 #: functions.php:421
+#: functions.php:438
 msgid "Footer Widgets Color"
 msgstr ""
 
 #: functions.php:438
 #: functions.php:432
+#: functions.php:449
 msgid "Text"
 msgstr ""
 
 #: functions.php:450
 #: functions.php:444
+#: functions.php:461
 msgid "Base"
 msgstr ""
 
 #: functions.php:518
 #: functions.php:523
+#: functions.php:540
 msgid "Posts and Archives"
 msgstr ""
 
 #: functions.php:529
 #: functions.php:534
+#: functions.php:551
 msgid "Pages"
 msgstr ""
 
 #: functions.php:540
 #: functions.php:545
+#: functions.php:562
 msgid "Header Right"
 msgstr ""
 
 #: functions.php:562
 #: inc/customizer.php:460
 #: functions.php:567
+#: functions.php:584
 msgid "Footer Widgets"
 msgstr ""
 
 #: functions.php:573
 #: functions.php:578
+#: functions.php:595
 msgid "Mobile Menu Widgets"
 msgstr ""
 
@@ -278,6 +308,9 @@ msgstr ""
 #: functions.php:616
 #: functions.php:619
 #: functions.php:651
+#: functions.php:633
+#: functions.php:636
+#: functions.php:668
 msgid "Log Out"
 msgstr ""
 
@@ -285,6 +318,8 @@ msgstr ""
 #: functions.php:649
 #: functions.php:622
 #: functions.php:654
+#: functions.php:639
+#: functions.php:671
 msgid "Log In"
 msgstr ""
 
@@ -292,6 +327,8 @@ msgstr ""
 #: functions.php:654
 #: functions.php:627
 #: functions.php:659
+#: functions.php:644
+#: functions.php:676
 msgid "Register"
 msgstr ""
 
@@ -320,10 +357,12 @@ msgid "Main content"
 msgstr ""
 
 #: inc/admin.php:43
+#: adminpages/dashboard.php:62
 msgid "Welcome to the Memberlite Theme"
 msgstr ""
 
 #: inc/admin.php:44
+#: adminpages/dashboard.php:66
 msgid "Memberlite is the ideal theme for your membership site - packed with integration for top membership site plugins including Paid Memberships Pro. It's fully customizable with your logo, colors, fonts, custom sidebars and more global layout settings."
 msgstr ""
 
@@ -334,76 +373,95 @@ msgid "Version %s"
 msgstr ""
 
 #: inc/admin.php:53
+#: adminpages/dashboard.php:72
 msgid "Adding Your Logo"
 msgstr ""
 
 #: inc/admin.php:54
+#: adminpages/dashboard.php:75
 msgid "Use the Customize > Site Identity screen to add a custom logo and update or toggle the display of your Site Title and Tagline."
 msgstr ""
 
 #: inc/admin.php:56
+#: adminpages/dashboard.php:76
 msgid "Add Your Logo"
 msgstr ""
 
 #: inc/admin.php:57
+#: adminpages/dashboard.php:77
 msgid "Docs: Site Branding in Memberlite"
 msgstr ""
 
 #: inc/admin.php:61
+#: adminpages/dashboard.php:83
 msgid "Customize the Theme"
 msgstr ""
 
 #: inc/admin.php:62
+#: adminpages/dashboard.php:86
 msgid "Use the Customize > Memberlite Options screen to modify theme layout, logo, fonts, colors, copyright message and more."
 msgstr ""
 
 #: inc/admin.php:64
+#: adminpages/dashboard.php:87
 msgid "Customize Your Theme"
 msgstr ""
 
 #: inc/admin.php:65
+#: adminpages/dashboard.php:88
 msgid "Docs: Customizing Memberlite"
 msgstr ""
 
 #: inc/admin.php:69
+#: adminpages/dashboard.php:94
 msgid "Theme Demo, Docs and Support"
 msgstr ""
 
 #: inc/admin.php:70
+#: adminpages/dashboard.php:97
 msgid "Register for a free account to browse documentation and get additional help with your Memberlite-powered WordPress site."
 msgstr ""
 
 #: inc/admin.php:72
+#: adminpages/dashboard.php:98
 msgid "View Theme Demo"
 msgstr ""
 
 #: inc/admin.php:73
+#: adminpages/dashboard.php:99
 msgid "View All Docs"
 msgstr ""
 
 #: inc/admin.php:86
+#: adminpages/dashboard.php:117
 msgid "Using Child Themes"
 msgstr ""
 
 #: inc/admin.php:87
+#: adminpages/dashboard.php:125
 msgid "If you need to customize the theme beyond the settings in Appearance > Customize, use a child theme. Child themes allow you to change the appearance of your site, while preseving the ability to update the primary \"parent\" theme."
 msgstr ""
 
 #: inc/admin.php:87
+#: adminpages/dashboard.php:127
 msgid "Learn more about child themes in the WordPress Theme Handbook"
 msgstr ""
 
 #: inc/admin.php:88
+#: adminpages/dashboard.php:128
 msgid "Download a Blank Child Theme"
 msgstr ""
 
 #. translators: Active theme name
 #: inc/admin.php:107
+#: adminpages/dashboard.php:167
 #, php-format
 msgid "We highly recommend using these plugins for every site running %s:"
 msgstr ""
 
 #: inc/admin.php:111
+#: adminpages/dashboard.php:171
+#: adminpages/dashboard.php:254
 msgid "Plugins list"
 msgstr ""
 
@@ -411,6 +469,10 @@ msgstr ""
 #: inc/admin.php:132
 #: inc/admin.php:261
 #: inc/admin.php:276
+#: adminpages/dashboard.php:177
+#: adminpages/dashboard.php:199
+#: adminpages/dashboard.php:345
+#: adminpages/dashboard.php:367
 msgid "Paid Memberships Pro"
 msgstr ""
 
@@ -420,11 +482,19 @@ msgstr ""
 #: inc/admin.php:221
 #: inc/admin.php:246
 #: inc/admin.php:271
+#: adminpages/dashboard.php:194
+#: adminpages/dashboard.php:226
+#: adminpages/dashboard.php:273
+#: adminpages/dashboard.php:302
+#: adminpages/dashboard.php:330
+#: adminpages/dashboard.php:362
 msgid "More Details"
 msgstr ""
 
 #: inc/admin.php:131
 #: inc/admin.php:275
+#: adminpages/dashboard.php:198
+#: adminpages/dashboard.php:366
 msgid "Paid Memberships Pro allows anyone to build a membership site—for free. Restrict content, accept payment, & manage subscriptions right from your WordPress admin."
 msgstr ""
 
@@ -434,77 +504,101 @@ msgstr ""
 #: inc/admin.php:226
 #: inc/admin.php:251
 #: inc/admin.php:276
+#: adminpages/dashboard.php:199
+#: adminpages/dashboard.php:231
+#: adminpages/dashboard.php:279
+#: adminpages/dashboard.php:307
+#: adminpages/dashboard.php:335
+#: adminpages/dashboard.php:367
 msgid "By"
 msgstr ""
 
 #: inc/admin.php:142
+#: adminpages/dashboard.php:209
 msgid "Sitewide Sales"
 msgstr ""
 
 #: inc/admin.php:156
+#: adminpages/dashboard.php:230
 msgid "All-in-one flash sales plugin for WordPress. Set up a sale from a single settings page: select the start and end date, choose a template, pick your banner, and assign the discount."
 msgstr ""
 
 #. translators: Active theme name
 #: inc/admin.php:175
+#: adminpages/dashboard.php:250
 #, php-format
 msgid "%s offers integration for these plugins:"
 msgstr ""
 
 #: inc/admin.php:185
+#: adminpages/dashboard.php:260
 msgid "bbPress"
 msgstr ""
 
 #: inc/admin.php:199
+#: adminpages/dashboard.php:277
 msgid "bbPress is forum software, made the WordPress way."
 msgstr ""
 
 #: inc/admin.php:200
+#: adminpages/dashboard.php:278
 msgid "Install Paid Memberships Pro - bbPress Add On"
 msgstr ""
 
 #: inc/admin.php:201
+#: adminpages/dashboard.php:279
 msgid "The bbPress Contributors"
 msgstr ""
 
 #: inc/admin.php:211
+#: adminpages/dashboard.php:289
 msgid "Events Manager"
 msgstr ""
 
 #: inc/admin.php:225
+#: adminpages/dashboard.php:306
 msgid "Fully featured event registration management including recurring events, locations management, calendar, Google map integration, booking management"
 msgstr ""
 
 #: inc/admin.php:226
+#: adminpages/dashboard.php:307
 msgid "Pixelite"
 msgstr ""
 
 #: inc/admin.php:236
 #: inc/admin.php:251
+#: adminpages/dashboard.php:317
+#: adminpages/dashboard.php:335
 msgid "LifterLMS"
 msgstr ""
 
 #: inc/admin.php:250
+#: adminpages/dashboard.php:334
 msgid "LifterLMS is a secure easy-to-use WordPress LMS plugin packed with features to easily create & sell courses online."
 msgstr ""
 
 #: inc/admin.php:308
+#: inc/admin.php:41
 msgid "Active"
 msgstr ""
 
 #: inc/admin.php:310
+#: inc/admin.php:43
 msgid "Activate"
 msgstr ""
 
 #: inc/admin.php:321
+#: inc/admin.php:54
 msgid "Install"
 msgstr ""
 
 #: inc/admin.php:376
+#: inc/admin.php:109
 msgid "We have documentation and recommended plugins to help you get started with Memberlite Theme."
 msgstr ""
 
 #: inc/admin.php:378
+#: inc/admin.php:111
 msgid "Click here to view the Memberlite welcome page."
 msgstr ""
 
@@ -1173,136 +1267,173 @@ msgid "Remove %s"
 msgstr ""
 
 #: inc/page_banners.php:24
+#: inc/page_banners.php:23
 msgid "Memberlite Settings"
 msgstr ""
 
 #: inc/page_banners.php:60
+#: inc/page_banners.php:59
 msgid "Page Banner Settings"
 msgstr ""
 
 #: inc/page_banners.php:61
 #: inc/page_banners.php:63
+#: inc/page_banners.php:60
+#: inc/page_banners.php:62
 msgid "Show Page Banner"
 msgstr ""
 
 #: inc/page_banners.php:61
+#: inc/page_banners.php:60
 msgid "Disable the entire page banner for this content."
 msgstr ""
 
 #: inc/page_banners.php:65
+#: inc/page_banners.php:64
 msgid "Yes"
 msgstr ""
 
 #: inc/page_banners.php:67
+#: inc/page_banners.php:66
 msgid "No"
 msgstr ""
 
 #: inc/page_banners.php:71
 #: inc/page_banners.php:77
+#: inc/page_banners.php:70
+#: inc/page_banners.php:76
 msgid "Banner Description"
 msgstr ""
 
 #: inc/page_banners.php:71
+#: inc/page_banners.php:70
 msgid "Shown in the masthead banner below the page title."
 msgstr ""
 
 #: inc/page_banners.php:73
+#: inc/page_banners.php:72
 msgid "Leave blank to show landing page level description as banner description."
 msgstr ""
 
 #: inc/page_banners.php:82
+#: inc/page_banners.php:81
 msgid "Hide Page Title on Single View"
 msgstr ""
 
 #: inc/page_banners.php:87
+#: inc/page_banners.php:86
 msgid "Hide Breadcrumbs"
 msgstr ""
 
 #: inc/page_banners.php:92
+#: inc/page_banners.php:91
 msgid "Add Extra Banner Padding"
 msgstr ""
 
 #: inc/page_banners.php:98
 #: inc/page_banners.php:100
+#: inc/page_banners.php:97
+#: inc/page_banners.php:99
 msgid "Page Bottom Banner"
 msgstr ""
 
 #: inc/page_banners.php:98
+#: inc/page_banners.php:97
 msgid "Banner shown above footer on pages. (i.e. call to action)"
 msgstr ""
 
 #: inc/page_banners.php:106
+#: inc/page_banners.php:105
 msgid "Page Icon"
 msgstr ""
 
 #: inc/page_banners.php:108
+#: inc/page_banners.php:107
 msgid "Select Icon"
 msgstr ""
 
 #: inc/page_banners.php:111
 #: inc/page_banners.php:154
+#: inc/page_banners.php:110
+#: inc/page_banners.php:153
 msgid "- Select -"
 msgstr ""
 
 #: inc/page_banners.php:117
+#: inc/page_banners.php:116
 msgid "Show Icon in Banner Title"
 msgstr ""
 
 #: inc/page_banners.php:125
+#: inc/page_banners.php:124
 msgid "Page Navigation"
 msgstr ""
 
 #: inc/page_banners.php:126
+#: inc/page_banners.php:125
 msgid "Hide the Prev/Next Navigation on this Page"
 msgstr ""
 
 #: inc/page_banners.php:133
+#: inc/page_banners.php:132
 msgid "Landing Page Settings"
 msgstr ""
 
 #: inc/page_banners.php:141
+#: inc/page_banners.php:140
 msgid "Add a Membership Level to Use These Landing Page Features »"
 msgstr ""
 
 #: inc/page_banners.php:150
+#: inc/page_banners.php:149
 msgid "Membership Level"
 msgstr ""
 
 #: inc/page_banners.php:152
+#: inc/page_banners.php:151
 msgid "Landing Page Membership Level"
 msgstr ""
 
 #: inc/page_banners.php:162
 #: inc/page_banners.php:164
+#: inc/page_banners.php:161
+#: inc/page_banners.php:163
 msgid "Checkout Button Text"
 msgstr ""
 
 #: inc/page_banners.php:165
+#: inc/page_banners.php:164
 msgid "(default: \"Select\")"
 msgstr ""
 
 #: inc/page_banners.php:169
+#: inc/page_banners.php:168
 msgid "Membership Level Upsell"
 msgstr ""
 
 #: inc/page_banners.php:181
+#: inc/page_banners.php:180
 #, php-format
 msgid "Optional: You must install and activate the <a href=\"%s\" title=\"Paid Memberships Pro - Advanced Levels Page Add On\" target=\"_blank\">Advanced Levels Page Add On</a> to use this landing page feature."
 msgstr ""
 
 #: inc/page_banners.php:183
+#: inc/page_banners.php:182
 msgid "Landing Page Membership Level Upsell"
 msgstr ""
 
 #: inc/page_banners.php:343
+#: inc/page_banners.php:342
 msgid "Show as Banner Image"
 msgstr ""
 
 #: inc/page_banners.php:345
+#: inc/page_banners.php:344
 msgid "If a banner image is set below, it will override this setting."
 msgstr ""
 
 #: inc/sidebars.php:38
+#: adminpages/sidebars.php:51
 msgid "Please enter a valid sidebar name."
 msgstr ""
 
@@ -1311,54 +1442,67 @@ msgid "Sidebar id or name already used. Try another name."
 msgstr ""
 
 #: inc/sidebars.php:60
+#: adminpages/sidebars.php:69
 msgid "Sidebar added."
 msgstr ""
 
 #: inc/sidebars.php:86
+#: adminpages/sidebars.php:96
 msgid "Custom sidebar deleted."
 msgstr ""
 
 #: inc/sidebars.php:91
+#: adminpages/sidebars.php:99
 msgid "Could not find custom sidebar. Maybe it was already deleted."
 msgstr ""
 
 #: inc/sidebars.php:124
+#: adminpages/sidebars.php:150
 msgid "Memberlite Custom Sidebars"
 msgstr ""
 
 #: inc/sidebars.php:128
+#: adminpages/sidebars.php:161
 msgid "Add New Sidebar"
 msgstr ""
 
 #: inc/sidebars.php:131
+#: adminpages/sidebars.php:170
 msgid "Sidebar Name"
 msgstr ""
 
 #: inc/sidebars.php:134
+#: adminpages/sidebars.php:181
 msgid "Add Sidebar"
 msgstr ""
 
 #: inc/sidebars.php:141
+#: adminpages/sidebars.php:198
 msgid "ID"
 msgstr ""
 
 #: inc/sidebars.php:142
+#: adminpages/sidebars.php:199
 msgid "Name"
 msgstr ""
 
 #: inc/sidebars.php:143
+#: adminpages/sidebars.php:200
 msgid "Actions"
 msgstr ""
 
 #: inc/sidebars.php:162
+#: adminpages/sidebars.php:233
 msgid "Delete"
 msgstr ""
 
 #: inc/sidebars.php:168
+#: adminpages/sidebars.php:238
 msgid "Not a custom sidebar."
 msgstr ""
 
 #: inc/sidebars.php:180
+#: adminpages/sidebars.php:256
 msgid "Assign Sidebars to Custom Post Types"
 msgstr ""
 
@@ -1367,65 +1511,83 @@ msgid "For each detected CPT below, select the sidebar you would like to display
 msgstr ""
 
 #: inc/sidebars.php:190
+#: adminpages/sidebars.php:268
 msgid "Custom Post Type"
 msgstr ""
 
 #: inc/sidebars.php:191
 #: inc/sidebars.php:407
+#: adminpages/sidebars.php:269
+#: inc/sidebars.php:203
 msgid "Select Sidebar"
 msgstr ""
 
 #: inc/sidebars.php:231
+#: adminpages/sidebars.php:308
 msgid "Save CPT Sidebar Selections"
 msgstr ""
 
 #: inc/sidebars.php:334
+#: inc/sidebars.php:114
 msgid "Custom Sidebar"
 msgstr ""
 
 #: inc/sidebars.php:389
 #: inc/sidebars.php:392
+#: inc/sidebars.php:180
+#: inc/sidebars.php:183
 msgid "Hide Page Children Menu in Sidebar"
 msgstr ""
 
 #: inc/sidebars.php:390
+#: inc/sidebars.php:181
 msgid "The Membership Account page and its children do not display this menu."
 msgstr ""
 
 #: inc/sidebars.php:398
+#: inc/sidebars.php:191
 #, php-format
 msgid "The current default sidebar is %s."
 msgstr ""
 
 #: inc/sidebars.php:402
+#: inc/sidebars.php:195
 msgid "The current default sidebar is <strong>hidden</strong>."
 msgstr ""
 
 #: inc/sidebars.php:404
+#: inc/sidebars.php:198
 msgid "Manage Custom Sidebars"
 msgstr ""
 
 #: inc/sidebars.php:405
+#: inc/sidebars.php:201
 msgid "Select Custom Sidebar"
 msgstr ""
 
 #: inc/sidebars.php:422
+#: inc/sidebars.php:222
 msgid "Default Sidebar Behavior"
 msgstr ""
 
 #: inc/sidebars.php:424
+#: adminpages/sidebars.php:288
+#: inc/sidebars.php:224
 msgid "Default Sidebar"
 msgstr ""
 
 #: inc/sidebars.php:427
+#: inc/sidebars.php:227
 msgid "Show Default Sidebar Above"
 msgstr ""
 
 #: inc/sidebars.php:428
+#: inc/sidebars.php:228
 msgid "Show Default Sidebar Below"
 msgstr ""
 
 #: inc/sidebars.php:429
+#: inc/sidebars.php:229
 msgid "Hide Default Sidebar"
 msgstr ""
 
@@ -1732,4 +1894,226 @@ msgstr ""
 #: theme.json
 msgctxt "Font size name"
 msgid "Inherit"
+msgstr ""
+
+#: adminpages/admin_header.php:24
+msgid "Memberlite Area Menu"
+msgstr ""
+
+#: adminpages/admin_header.php:26
+#: inc/admin.php:16
+msgid "Dashboard"
+msgstr ""
+
+#: adminpages/admin_header.php:27
+#: inc/admin.php:18
+msgid "Custom Sidebars"
+msgstr ""
+
+#: adminpages/admin_header.php:28
+#: inc/admin.php:20
+msgid "Tools"
+msgstr ""
+
+#: adminpages/dashboard.php:156
+msgid "Recommended Plugins"
+msgstr ""
+
+#: adminpages/dashboard.php:162
+msgid "No recommended plugins found."
+msgstr ""
+
+#: adminpages/sidebars.php:54
+msgid "Sidebar ID or name already used. Try another name."
+msgstr ""
+
+#: adminpages/sidebars.php:135
+msgid "Custom sidebar settings updated."
+msgstr ""
+
+#: adminpages/sidebars.php:152
+msgid "Create and manage custom sidebars for your Memberlite theme. You can also assign these sidebars to custom post types."
+msgstr ""
+
+#: adminpages/sidebars.php:154
+msgid "Learn more about custom sidebars in Memberlite"
+msgstr ""
+
+#: adminpages/sidebars.php:174
+msgid "Enter a name for your new custom sidebar."
+msgstr ""
+
+#: adminpages/sidebars.php:191
+msgid "Existing Sidebars"
+msgstr ""
+
+#. translators: %s: sidebar name
+#: adminpages/sidebars.php:218
+#, php-format
+msgid "Are you sure that you want to delete the %s sidebar?"
+msgstr ""
+
+#: adminpages/sidebars.php:260
+msgid "For each detected custom post type below, select the sidebar you would like to display."
+msgstr ""
+
+#: adminpages/sidebars.php:294
+msgid "Hide Sidebar"
+msgstr ""
+
+#: adminpages/sidebars.php:313
+msgid "No custom post types found."
+msgstr ""
+
+#: adminpages/tools.php:25
+msgid "Memberlite Tools"
+msgstr ""
+
+#: adminpages/tools.php:27
+msgid "Import, export, or reset your Memberlite theme settings using the tools below."
+msgstr ""
+
+#: adminpages/tools.php:29
+msgid "Learn more about tools in Memberlite"
+msgstr ""
+
+#: adminpages/tools.php:44
+msgid "No file was uploaded. Please choose a settings file to import."
+msgstr ""
+
+#: adminpages/tools.php:47
+msgid "There was a problem reading the uploaded file."
+msgstr ""
+
+#: adminpages/tools.php:50
+msgid "The uploaded file does not appear to be a valid Memberlite theme settings export."
+msgstr ""
+
+#: adminpages/tools.php:53
+msgid "The settings file does not match the currently active theme."
+msgstr ""
+
+#: adminpages/tools.php:56
+msgid "Memberlite theme settings were imported successfully."
+msgstr ""
+
+#: adminpages/tools.php:66
+msgid "Memberlite theme settings have been reset to their defaults."
+msgstr ""
+
+#: adminpages/tools.php:101
+msgid "You are not allowed to export theme settings."
+msgstr ""
+
+#: adminpages/tools.php:154
+msgid "Error encoding export data."
+msgstr ""
+
+#: adminpages/tools.php:176
+msgid "You are not allowed to import theme settings."
+msgstr ""
+
+#: adminpages/tools.php:181
+msgid "Invalid import request."
+msgstr ""
+
+#: adminpages/tools.php:263
+msgid "You are not allowed to reset theme settings."
+msgstr ""
+
+#: adminpages/tools.php:267
+msgid "Invalid reset request."
+msgstr ""
+
+#: adminpages/tools/export-settings.php:16
+msgid "Export Theme Settings"
+msgstr ""
+
+#: adminpages/tools/export-settings.php:20
+msgid "Use the tool below to export Memberlite theme settings to a file. You can keep this as a backup or use it to apply the same settings to another Memberlite site."
+msgstr ""
+
+#: adminpages/tools/export-settings.php:23
+msgid "Download Theme Settings"
+msgstr ""
+
+#: adminpages/tools/export-settings.php:27
+msgid "To export WordPress content such as posts, pages, and media, use the built-in WordPress tools located at Tools > Export in the WordPress admin."
+msgstr ""
+
+#: adminpages/tools/import-settings.php:16
+#: adminpages/tools/import-settings.php:41
+msgid "Import Theme Settings"
+msgstr ""
+
+#: adminpages/tools/import-settings.php:20
+msgid "Use the tool below to import Memberlite theme settings from a previously exported settings file."
+msgstr ""
+
+#: adminpages/tools/import-settings.php:20
+#: adminpages/tools/reset.php:20
+msgid "This will overwrite your current Memberlite theme settings."
+msgstr ""
+
+#: adminpages/tools/import-settings.php:21
+msgid "The import will apply Customizer settings (logo, colors, typography, backgrounds, etc.), related Memberlite options (such as custom sidebars), and Additional CSS if present in the file."
+msgstr ""
+
+#: adminpages/tools/import-settings.php:27
+msgid "Import File"
+msgstr ""
+
+#: adminpages/tools/import-settings.php:32
+msgid "Select a Memberlite theme settings file (.json) to import."
+msgstr ""
+
+#: adminpages/tools/import-settings.php:45
+msgid "To import WordPress content such as posts, pages, and media, use the built-in WordPress tools located at Tools > Import in the WordPress admin."
+msgstr ""
+
+#: adminpages/tools/reset.php:16
+msgid "Reset Theme"
+msgstr ""
+
+#: adminpages/tools/reset.php:20
+msgid "Use this tool to reset Memberlite theme settings to their default values."
+msgstr ""
+
+#: adminpages/tools/reset.php:21
+msgid "The reset will clear Memberlite Customizer settings (including logo, colors, typography, and layouts), Memberlite sidebar settings, the site icon, and any Additional CSS for the current theme."
+msgstr ""
+
+#: adminpages/tools/reset.php:21
+msgid "It will not delete any posts, pages, or media."
+msgstr ""
+
+#: adminpages/tools/reset.php:27
+msgid "Reset Memberlite Theme Settings"
+msgstr ""
+
+#: adminpages/tools/reset.php:37
+msgid "Are you sure you want to reset Memberlite theme settings to their default values? This cannot be undone."
+msgstr ""
+
+#: inc/admin.php:146
+msgid "Documentation"
+msgstr ""
+
+#: inc/admin.php:147
+msgid "Get Support"
+msgstr ""
+
+#. translators: $1$s - Memberlite theme name; $2$s - testimonial link; $3$s - Paid Memberships Pro
+#: inc/admin.php:170
+#, php-format
+msgid "Please <a href=\"%1$s\" target=\"_blank\" rel=\"noopener noreferrer\">submit a testimonial</a> to help others find %2$s. Thank you from the %3$s team!"
+msgstr ""
+
+#: inc/customizer.php:21
+#, php-format
+msgid "Customize settings for Memberlite. Visit the <a href=\"%s\" target=\"_blank\">Memberlite Tools</a> screen to import, export, or reset theme customizations."
+msgstr ""
+
+#: inc/sidebars.php:206
+msgid "Select"
 msgstr ""
