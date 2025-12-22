@@ -237,7 +237,6 @@ function memberlite_dashboard_recommended_plugins_callback() {
 							<?php do_action( 'memberlite_plugins_recommended_additional' ); ?>
 						</div> <!-- end the-list -->
 					</div> <!-- end plugin-install -->
-					<br class="clear" />
 				<?php }
 			?>
 
@@ -374,7 +373,6 @@ function memberlite_dashboard_recommended_plugins_callback() {
 							<?php do_action( 'memberlite_plugins_integrated_additional' ); ?>
 						</div> <!-- end the-list -->
 					</div> <!-- end plugin-install -->
-					<br class="clear" />
 				<?php }
 			?>
 		</div> <!-- end memberlite_section_inside -->

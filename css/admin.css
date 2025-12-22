@@ -575,3 +575,16 @@ body[class*="toplevel_page_memberlite-"] #footer-left a {
 		display: block;
 	}
 }
+
+/**
+ * Recommended Add Ons Box
+ */
+.memberlite_admin #the-list {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.memberlite_admin .plugin-card {
+	display: flex;
+	flex-direction: column;
+}
