@@ -4,26 +4,27 @@
  *
  * @package Memberlite
  */
-define( 'MEMBERLITE_VERSION', '5.2.1' );
+define( 'MEMBERLITE_VERSION', '6.0.1' );
+define( 'MEMBERLITE_URL', get_template_directory_uri() );
 
 // enqueue additional stylesheets and javascript
 function memberlite_init_styles() {
 	global $memberlite_defaults;
 
 	// framework stuff
-	wp_enqueue_style( 'memberlite_grid', get_template_directory_uri() . '/css/grid.css', array(), MEMBERLITE_VERSION );
+	wp_enqueue_style( 'memberlite_grid', MEMBERLITE_URL . '/css/grid.css', array(), MEMBERLITE_VERSION );
 	wp_enqueue_style( 'memberlite_style', get_stylesheet_uri(), array(), MEMBERLITE_VERSION );
 	if ( is_rtl() ) {
-		wp_enqueue_style( 'memberlite_rtl', get_template_directory_uri() . '/css/rtl.css', array( 'memberlite_style' ), MEMBERLITE_VERSION );
+		wp_enqueue_style( 'memberlite_rtl', MEMBERLITE_URL . '/css/rtl.css', array( 'memberlite_style' ), MEMBERLITE_VERSION );
 	}
-	wp_enqueue_style( 'memberlite_print_style', get_template_directory_uri() . '/css/print.css', array(), MEMBERLITE_VERSION, 'print' );
-	wp_enqueue_script( 'memberlite-script', get_template_directory_uri() . '/js/memberlite.js', array( 'jquery' ), MEMBERLITE_VERSION, true );
-	wp_enqueue_style( 'font-awesome', get_template_directory_uri() . '/font-awesome/css/all.min.css', array(), '6.6.0' );
+	wp_enqueue_style( 'memberlite_print_style', MEMBERLITE_URL . '/css/print.css', array(), MEMBERLITE_VERSION, 'print' );
+	wp_enqueue_script( 'memberlite-script', MEMBERLITE_URL . '/js/memberlite.js', array( 'jquery' ), MEMBERLITE_VERSION, true );
+	wp_enqueue_style( 'font-awesome', MEMBERLITE_URL . '/font-awesome/css/all.min.css', array(), '6.6.0' );
 
 	// load dark.css for dark/inverted backgrounds
 	$memberlite_darkcss = get_theme_mod( 'memberlite_darkcss', $memberlite_defaults['memberlite_darkcss'], false );
 	if ( ! empty( $memberlite_darkcss ) ) {
-		wp_enqueue_style( 'memberlite_darkcss', get_template_directory_uri() . '/css/dark.css', array(), MEMBERLITE_VERSION );
+		wp_enqueue_style( 'memberlite_darkcss', MEMBERLITE_URL . '/css/dark.css', array(), MEMBERLITE_VERSION );
 	}
 
 	// comments JS on single pages only
@@ -58,8 +59,8 @@ function memberlite_init_styles() {
 
 	// Only load / enqueue resources if a shortcode is present on the post/page.
 	if ( false === $should_exit ) {
-		wp_enqueue_script( 'memberlite-js-cookie', get_template_directory_uri() . '/js/js.cookie.min.js', array(), MEMBERLITE_VERSION, true );
-		wp_enqueue_script( 'memberlite_js', get_template_directory_uri() . '/js/memberlite-shortcodes.js', array( 'jquery' ), MEMBERLITE_VERSION, true );
+		wp_enqueue_script( 'memberlite-js-cookie', MEMBERLITE_URL . '/js/js.cookie.min.js', array(), MEMBERLITE_VERSION, true );
+		wp_enqueue_script( 'memberlite_js', MEMBERLITE_URL . '/js/memberlite-shortcodes.js', array( 'jquery' ), MEMBERLITE_VERSION, true );
 	}
 }
 add_action( 'wp_enqueue_scripts', 'memberlite_init_styles' );
@@ -107,6 +108,22 @@ function memberlite_get_supported_elements() {
 	return apply_filters( 'memberlite_supported_elements', $memberlite_supported_elements );
 }
 
+/**
+ * Enqueue admin JavaScript and CSS
+ *
+ * @since TBD
+ */
+function memberlite_admin_enqueue_scripts() {
+	if ( ! empty( $_GET['page'] ) && strpos( $_GET['page'], 'memberlite-' ) === 0 ) {
+		wp_register_style( 'memberlite_admin', MEMBERLITE_URL . '/css/admin.css', [], MEMBERLITE_VERSION, 'screen' );
+		wp_enqueue_style( 'memberlite_admin' );
+
+		wp_register_script( 'memberlite_admin_js', MEMBERLITE_URL . '/js/admin.js', [ 'jquery' ], MEMBERLITE_VERSION, true );
+		wp_enqueue_script( 'memberlite_admin_js' );
+	}
+}
+add_action( 'admin_enqueue_scripts', 'memberlite_admin_enqueue_scripts' );
+
 function memberlite_get_font( $font_type, $nicename = NULL ) {
 	global $memberlite_defaults;
 
@@ -152,14 +169,14 @@ function memberlite_load_local_webfonts() {
 	if ( ! empty( $body_font ) ) { ?>@font-face {
 font-family: <?php echo esc_html( memberlite_get_font( 'body_font', true ) ); ?>;
 font-style:normal;
-src: url('<?php echo esc_url( get_template_directory_uri() ) . '/assets/fonts/' . esc_html( $body_font ) . '/' . esc_html( $body_font ) . '.woff2'; ?>') format('woff2');
+src: url('<?php echo esc_url( MEMBERLITE_URL ) . '/assets/fonts/' . esc_html( $body_font ) . '/' . esc_html( $body_font ) . '.woff2'; ?>') format('woff2');
 font-weight: normal;
 font-display: fallback;
 font-stretch: normal;
 }<?php if ( ! in_array( $body_font, $no_bold_font ) ) { ?>@font-face {
 font-family: <?php echo esc_html( memberlite_get_font( 'body_font', true ) ); ?>;
 font-style:normal;
-src: url('<?php echo esc_url( get_template_directory_uri() ) . '/assets/fonts/' . esc_html( $body_font ) . '/' . esc_html( $body_font ) . '-bold.woff2'; ?>') format('woff2');
+src: url('<?php echo esc_url( MEMBERLITE_URL ) . '/assets/fonts/' . esc_html( $body_font ) . '/' . esc_html( $body_font ) . '-bold.woff2'; ?>') format('woff2');
 font-weight: bold;
 font-display: fallback;
 font-stretch: normal;
@@ -171,14 +188,14 @@ font-stretch: normal;
 	if ( ! empty( $header_font ) ) { ?>@font-face {
 font-family: <?php echo esc_html( memberlite_get_font( 'header_font', true ) ); ?>;
 font-style:normal;
-src: url('<?php echo esc_url( get_template_directory_uri() ) . '/assets/fonts/' . esc_html( $header_font ) . '/' . esc_html( $header_font ) . '.woff2'; ?>') format('woff2');
+src: url('<?php echo esc_url( MEMBERLITE_URL ) . '/assets/fonts/' . esc_html( $header_font ) . '/' . esc_html( $header_font ) . '.woff2'; ?>') format('woff2');
 font-weight: normal;
 font-display: fallback;
 font-stretch: normal;
 }<?php if ( ! in_array( $header_font, $no_bold_font ) ) { ?>@font-face {
 font-family: <?php echo esc_html( memberlite_get_font( 'header_font', true ) ); ?>;
 font-style:normal;
-src: url('<?php echo esc_url( get_template_directory_uri() ) . '/assets/fonts/' . esc_html( $header_font ) . '/' . esc_html( $header_font ) . '-bold.woff2'; ?>') format('woff2');
+src: url('<?php echo esc_url( MEMBERLITE_URL ) . '/assets/fonts/' . esc_html( $header_font ) . '/' . esc_html( $header_font ) . '-bold.woff2'; ?>') format('woff2');
 font-weight: bold;
 font-display: fallback;
 font-stretch: normal;
@@ -261,12 +278,6 @@ if ( ! function_exists( 'memberlite_setup' ) ) :
 		require_once get_template_directory() . '/inc/defaults.php';
 
 		global $memberlite_defaults;
-		/*
-		 * Make theme available for translation.
-		 * If you're building a theme based on Memberlite, use a find and replace
-		 * to change 'memberlite' to the name of your theme in all the template files
-		 */
-		load_theme_textdomain( 'memberlite' );
 
 		// Add default posts and comments RSS feed links to head.
 		add_theme_support( 'automatic-feed-links' );
@@ -513,6 +524,17 @@ if ( ! function_exists( 'memberlite_setup' ) ) :
 	}
 endif; // memberlite_setup
 add_action( 'after_setup_theme', 'memberlite_setup' );
+
+/**
+ * Load the Memberlite theme textdomain on init (WP 6.7+ requirement).
+ * 
+ * If you're building a theme based on Memberlite, use a find and replace
+ * to change 'memberlite' to the name of your theme in all the template files.
+ */
+function memberlite_load_textdomain() {
+    load_theme_textdomain( 'memberlite', get_template_directory() . '/languages' );
+}
+add_action( 'init', 'memberlite_load_textdomain' );
 
 /**
  * Load custom translations from our own server: translate.strangerstudios.com
@@ -880,6 +902,9 @@ require_once get_template_directory() . '/inc/localization.php';
 /* Multiple post thumbanils support. */
 require_once get_template_directory() . '/inc/multi-post-thumbnails.php';
 
+/* Custom page banner element code. */
+require_once get_template_directory() . '/inc/page_banners.php';
+
 /* Custom template tags. */
 require_once get_template_directory() . '/inc/template-tags.php';
 
@@ -900,6 +925,16 @@ if ( in_array( 'sidebars', memberlite_get_supported_elements() ) ) {
 if ( in_array( 'landing_page', memberlite_get_supported_elements() ) ) {
 	require_once get_template_directory() . '/inc/landing_page.php';
 }
+
+/* Dashboard. */
+require_once get_template_directory() . '/adminpages/dashboard.php';
+
+/* Custom sidebars. */
+require_once get_template_directory() . '/inc/sidebars.php';
+require_once get_template_directory() . '/adminpages/sidebars.php';
+
+/* Tools */
+require_once get_template_directory() . '/adminpages/tools.php';
 
 /**
  * Load the theme variation file if it exists.
@@ -1023,7 +1058,7 @@ function memberlite_enqueue_block_assets() {
    // Enqueue the editor stylesheet to attach the inline styles to.
 	wp_enqueue_style(
 		'memberlite-block-editor-style',
-		get_template_directory_uri() . '/css/editor.css',
+		MEMBERLITE_URL . '/css/editor.css',
 		[],
 		MEMBERLITE_VERSION
 	);

@@ -7,7 +7,7 @@
 
 // Enqueue additional stylesheets and javascript
 function memberlite_woocommerce_init_styles() {
-	wp_enqueue_style( 'memberlite_woocommerce', get_template_directory_uri() . '/css/woocommerce.css', array(), MEMBERLITE_VERSION );
+	wp_enqueue_style( 'memberlite_woocommerce', MEMBERLITE_URL . '/css/woocommerce.css', array(), MEMBERLITE_VERSION );
 }
 add_action( 'wp_enqueue_scripts', 'memberlite_woocommerce_init_styles' );
 

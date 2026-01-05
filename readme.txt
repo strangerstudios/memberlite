@@ -1,9 +1,9 @@
 === Memberlite ===
 Contributors: kimannwall, strangerstudios
 Requires at least: 6.0
-Tested up to: 6.6
+Tested up to: 6.8
 Requires PHP: 5.6
-Stable tag: 5.2.1
+Stable tag: 6.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: one-column, two-columns, left-sidebar, right-sidebar, flexible-header, custom-background, custom-colors, custom-header, custom-menu, custom-logo, editor-style, featured-images, footer-widgets, full-width-template, post-formats, theme-options, threaded-comments, translation-ready, e-commerce
@@ -14,7 +14,7 @@ Memberlite is the ideal theme for your membership site - packed with integration
 
 == Copyright ==
 
-Memberlite WordPress Theme, Copyright (C) 2018 - 2024 Stranger Studios, LLC and other contributors
+Memberlite WordPress Theme, Copyright (C) 2018 - 2025 Stranger Studios, LLC and other contributors
 Memberlite is distributed under the terms of the GNU GPL
 
 This program is free software: you can redistribute it and/or modify
@@ -73,7 +73,7 @@ Use the Customize > Memberlite Options screen to modify theme layout, logo, font
 == Using Child Themes ==
 If you need to customize the theme beyond theme settings, use a child theme.
 
-[Memberlite Child Theme Downloads »](https://www.paidmembershipspro.com/documentation/download/) | [About Child Themes (WordPress Developer Handbook) »](https://developer.wordpress.org/themes/advanced-topics/child-themes/)
+[Memberlite Child Theme Downloads »](https://www.paidmembershipspro.com/documentation/download/) | [Create a Child Theme for Memberlite »](https://www.paidmembershipspro.com/memberlite-child-theme/)
 
 == Integrated Plugins ==
 Memberlite includes formatting for use with:
@@ -91,6 +91,17 @@ Memberlite includes formatting for use with:
 [Install Events Manager »](https://wordpress.org/plugins/events-manager/)
 
 == Changelog ==
+= 6.0.1 - 2025-06-25 =
+* ENHANCEMENT: Improved translation support for Memberlite and WordPress 6.7+ (@dalemugford)
+* BUG FIX: Remove leftover test code from the footer. (@ideadude)
+
+= 6.0 - 2025-04-21 =
+* FEATURE: Added logic to update memberlite from the Paid Memberships Pro license server. #180 (@andrewlimaza)
+* FEATURE: The Memberlite Elements and Memberlite Shortcodes plugins have been merged into the theme. #178 (@andrewlimaza)
+* FEATURE: Now updating translations from translate.strangerstudios.com. #181 (@andrewlimaza)
+* ENHANCEMENT: Added setting to hide the prev/next page navigation on pages. #179 (@kimcoleman)
+* ENHANCEMENT: The header and body font are now 2 separate settings. #182 (@kimcoleman)
+* ENHANCEMENT: Added logic to the Memberlite Guide page to support products privately hosted (not on .org). #183 (@andrewlimaza)
 
 = 5.2.1 - 2024-08-25 =
 * ENHANCEMENT: Now supporting a color setting for text color.
