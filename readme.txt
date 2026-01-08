@@ -91,6 +91,12 @@ Memberlite includes formatting for use with:
 [Install Events Manager »](https://wordpress.org/plugins/events-manager/)
 
 == Changelog ==
+= 6.1 - 2025-12-22 =
+* FEATURE: Export and import tools for Memberlite theme settings (Customizer options, custom sidebars, CPT sidebar assignments, custom CSS, site logo, and site icon). #186 (@kimcoleman)
+* FEATURE: Theme Reset tool that restores all Memberlite settings to defaults, with confirmation prompt. #186 (@kimcoleman)
+* ENHANCEMENT: Reorganized Memberlite admin area to main admin menu section 'Memberlite' with subpages. #186 (@kimcoleman)
+* BUG FIX: Fix display of Signup Shortcode borders when there is a nested pmpro_card. #187 (@kimcoleman)
+
 = 6.0.1 - 2025-06-25 =
 * ENHANCEMENT: Improved translation support for Memberlite and WordPress 6.7+ (@dalemugford)
 * BUG FIX: Remove leftover test code from the footer. (@ideadude)
