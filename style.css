@@ -2575,11 +2575,26 @@ a:active:not(.pmpro_btn:active) {
 	padding-top: 2.9rem;
 	padding-bottom: 2.9rem;
 }
-.site-footer .site-info p,
-.site-footer .site-info .columns:first-child a {
+
+/* For default variation only; needs prefixing for other variations */
+.site-info .columns {
+	align-items: center;
+	display: flex;
+  	gap: 2.9rem;
+	justify-content: space-between;
+}
+
+.site-info .skip-link {
+	flex: 0 0 auto;
+}
+/* end for default variation only */
+
+.site-footer p.site-info-copyright-text,
+.site-footer p.site-info-copyright-text a {
 	color: var(--memberlite-color-button);
 	margin: 0;
 }
+
 #banner_bottom {
 	background-color: var(--memberlite-color-secondary);
 	color: var(--memberlite-color-white);
