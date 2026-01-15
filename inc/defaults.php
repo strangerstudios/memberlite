@@ -1,11 +1,4 @@
 <?php
-// Fonts for the default preset
-$memberlite_fonts = array(
-    'webfonts' => 'Lato_Lato',
-    'heading' => 'Lato',
-    'body' => 'Lato',
-);
-
 // Colors for the default preset
 $memberlite_colors = array(
     'heading' => '#011935',
@@ -24,13 +17,6 @@ $memberlite_colors = array(
     'footer_bg' => '#FFFFFF',
     'footer_text' => '#F9FAFB',
     'delimiter' => '#444444',
-);
-
-// Fonts for the news author preset
-$memberlite_news_fonts = array(
-    'webfonts' => '', //Do we need this for new schemes/variations?
-    'heading' => 'Times New Roman',
-    'body' => 'Times New Roman',
 );
 
 // Colors for the news author preset
@@ -53,14 +39,15 @@ $memberlite_news_colors = array(
     'delimiter'       => '#FFFFFF',
 );
 
-
 function memberlite_get_defaults()
 {
-    global $memberlite_fonts, $memberlite_colors;
+    global $memberlite_colors;
+    var_dump($memberlite_colors); die();
+
     $defaults = array(
-        'memberlite_webfonts'      => $memberlite_fonts['webfonts'],
-        'memberlite_header_font'   => $memberlite_fonts['heading'],
-        'memberlite_body_font'     => $memberlite_fonts['body'],
+        'memberlite_webfonts'      => 'Lato_Lato',
+        'memberlite_header_font'   => 'Lato',
+        'memberlite_body_font'     => 'Lato',
         'columns_ratio'            => '8-4',
         'columns_ratio_header'     => '4-8',
         'sidebar_location'         => 'sidebar-right',
@@ -101,11 +88,11 @@ function memberlite_get_defaults()
 
 function memberlite_get_defaults_news()
 {
-    global $memberlite_news_fonts, $memberlite_news_colors;
+    global $memberlite_news_colors;
     $defaults = array(
-        'memberlite_webfonts'      => $memberlite_news_fonts['webfonts'],
-        'memberlite_header_font'   => $memberlite_news_fonts['heading'],
-        'memberlite_body_font'     => $memberlite_news_fonts['body'],
+        'memberlite_webfonts'      => '',
+        'memberlite_header_font'   => 'Times New Roman',
+        'memberlite_body_font'     => 'Times New Roman',
         'columns_ratio'            => '8-4',
         'columns_ratio_header'     => '4-8',
         'sidebar_location'         => 'sidebar-right',
