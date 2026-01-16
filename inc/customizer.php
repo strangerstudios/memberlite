@@ -16,6 +16,55 @@ class Memberlite_Customize
 {
     public static function register($wp_customize)
     {
+        //Panels & Sections
+        self::set_customizer_panels_sections($wp_customize);
+
+        //Global Settings
+        self::set_customizer_general_settings($wp_customize);
+
+        //Header Settings
+        self::set_customizer_header_settings($wp_customize);
+
+        //Archives, Posts & Pages
+        self::set_customizer_post_settings($wp_customize);
+
+        //Footer Settings
+        self::set_customizer_footer_settings($wp_customize);
+
+        $wp_customize->get_setting('blogname')->transport = 'postMessage';
+        $wp_customize->get_setting('blogdescription')->transport = 'postMessage';
+
+        $wp_customize->selective_refresh->add_partial(
+                'blogname', array(
+                        'selector' => '.site-title a',
+                        'render_callback' => array('Memberlite_Customize', 'bloginfo_name'),
+                )
+        );
+        $wp_customize->selective_refresh->add_partial(
+                'blogdescription', array(
+                        'selector' => '.site-description',
+                        'render_callback' => array('Memberlite_Customize', 'bloginfo_description'),
+                )
+        );
+
+        $wp_customize->get_setting('header_textcolor')->transport = 'postMessage';
+        $wp_customize->get_setting('background_color')->transport = 'postMessage';
+        $wp_customize->get_setting('posts_entry_meta_before')->transport = 'postMessage';
+        $wp_customize->get_setting('posts_entry_meta_after')->transport = 'postMessage';
+        $wp_customize->get_setting('delimiter')->transport = 'postMessage';
+
+        // Rename the label to "Site Title & Tagline Color".
+        $wp_customize->get_control('header_textcolor')->label = __('Site Title &amp; Tagline Color', 'memberlite');
+
+        // Rename the label to "Display Site Title & Tagline" for clarity.
+        $wp_customize->get_control('display_header_text')->label = __('Display Site Title &amp; Tagline', 'memberlite');
+    }
+
+    /**
+     * @param $wp_customize
+     * @return void
+     */
+    public static function set_customizer_panels_sections( $wp_customize ) {
         // Add Memberlite Options Panel
         $wp_customize->add_panel(
                 'memberlite_panel',
@@ -58,7 +107,13 @@ class Memberlite_Customize
                         'panel' => 'memberlite_panel'
                 )
         );
+    }
 
+    /**
+     * @param $wp_customize
+     * @return void
+     */
+    public static function set_customizer_general_settings( $wp_customize ) {
         // GENERAL: Color Scheme ================
         self::add_memberlite_setting_control($wp_customize, 'memberlite_color_scheme', 'Memberlite Color Scheme', 'memberlite_theme_options', array(
                 'type' => 'select',
@@ -170,7 +225,13 @@ class Memberlite_Customize
                 'default' => true,
                 'sanitize_callback' => array('Memberlite_Customize', 'sanitize_checkbox'),
         ));
+    }
 
+    /**
+     * @param $wp_customize
+     * @return void
+     */
+    public static function set_customizer_header_settings($wp_customize) {
         // HEADER: Columns Ratio ================
         self::add_memberlite_setting_control($wp_customize, 'columns_ratio_header', 'Columns Ratio', 'memberlite_header_options', array(
                 'type' => 'select',
@@ -227,7 +288,13 @@ class Memberlite_Customize
 
         // Add heading for pagination related settings
         self::add_memberlite_heading($wp_customize, 'memberlite_pagination_heading', 'Pagination Settings', 'memberlite_post_page_options');
+    }
 
+    /**
+     * @param $wp_customize
+     * @return void
+     */
+    public static function set_customizer_post_settings($wp_customize) {
         // POST & PAGE: (prev/next links) Post Nav ================
         self::add_memberlite_setting_control($wp_customize, 'memberlite_post_nav', 'Show Prev/Next on Single Posts', 'memberlite_post_page_options', array(
                 'type' => 'checkbox',
@@ -281,7 +348,13 @@ class Memberlite_Customize
                 'transport' => 'postMessage',
                 'sanitize_callback' => 'sanitize_text_field',
         ));
+    }
 
+    /**
+     * @param $wp_customize
+     * @return void
+     */
+    public static function set_customizer_footer_settings($wp_customize){
         // FOOTER: Footer Widgets ================
         self::add_memberlite_setting_control($wp_customize, 'memberlite_footerwidgets', 'Footer Widgets', 'memberlite_footer_options', array(
                 'type' => 'select',
@@ -294,37 +367,6 @@ class Memberlite_Customize
                 'transport' => 'postMessage',
                 'sanitize_callback' => array('Memberlite_Customize', 'sanitize_text_with_links'),
         ));
-
-        $wp_customize->get_setting('blogname')->transport = 'postMessage';
-
-        $wp_customize->get_setting('blogdescription')->transport = 'postMessage';
-
-        $wp_customize->selective_refresh->add_partial(
-                'blogname', array(
-                        'selector' => '.site-title a',
-                        'render_callback' => array('Memberlite_Customize', 'bloginfo_name'),
-                )
-        );
-
-        $wp_customize->selective_refresh->add_partial(
-                'blogdescription', array(
-                        'selector' => '.site-description',
-                        'render_callback' => array('Memberlite_Customize', 'bloginfo_description'),
-                )
-        );
-
-        $wp_customize->get_setting('header_textcolor')->transport = 'postMessage';
-        $wp_customize->get_setting('background_color')->transport = 'postMessage';
-        $wp_customize->get_setting('posts_entry_meta_before')->transport = 'postMessage';
-        $wp_customize->get_setting('posts_entry_meta_after')->transport = 'postMessage';
-        $wp_customize->get_setting('delimiter')->transport = 'postMessage';
-
-        // Rename the label to "Site Title & Tagline Color".
-        $wp_customize->get_control('header_textcolor')->label = __('Site Title &amp; Tagline Color', 'memberlite');
-
-        // Rename the label to "Display Site Title & Tagline" for clarity.
-        $wp_customize->get_control('display_header_text')->label = __('Display Site Title &amp; Tagline', 'memberlite');
-
     }
 
     /**
@@ -1155,7 +1197,6 @@ class Memberlite_Customize
         wp_enqueue_script('Memberlite_Customizer-controls', MEMBERLITE_URL . '/js/customizer-controls.js', array('customize-controls', 'iris', 'underscore', 'wp-util'), MEMBERLITE_VERSION, true);
         wp_localize_script('Memberlite_Customizer-controls', 'colorSchemes', Memberlite_Customize::get_color_schemes());
     }
-
 }
 
 /**
