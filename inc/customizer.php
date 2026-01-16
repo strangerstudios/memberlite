@@ -59,6 +59,9 @@ class Memberlite_Customize {
 
         // Rename the label to "Display Site Title & Tagline" for clarity.
         $wp_customize->get_control( 'display_header_text' )->label = __( 'Display Site Title &amp; Tagline', 'memberlite' );
+
+        // Rename the label to "Background Color".
+        $wp_customize->get_control( 'background_color' )->label = __( 'Site Background Color', 'memberlite' );
     }
 
     /**
@@ -241,16 +244,21 @@ class Memberlite_Customize {
      * @return void
      */
     public static function set_customizer_color_settings( $wp_customize ) {
-        // Color controls in the Colors section
+        //Heading for header colors
+        self::add_memberlite_heading( $wp_customize, 'memberlite_header_colors', 'Header Colors', 'colors' );
+
         self::add_memberlite_color_control( $wp_customize, 'memberlite_bgcolor_header', 'Header Background Color', 'bgcolor_header' );
 
         self::add_memberlite_color_control( $wp_customize, 'memberlite_bgcolor_site_navigation', 'Primary Navigation Background Color', 'bgcolor_site_navigation' );
 
-        self::add_memberlite_color_control( $wp_customize, 'memberlite_color_site_navigation', 'Primary Navigation Color', 'color_site_navigation' );
+        self::add_memberlite_color_control( $wp_customize, 'memberlite_color_site_navigation', 'Primary Navigation Link Color', 'color_site_navigation' );
 
-        self::add_memberlite_color_control( $wp_customize, 'memberlite_color_text', 'Text Color', 'color_text' );
+        //heading for site-related colors that are not header/footer specific
+        self::add_memberlite_heading( $wp_customize, 'memberlite_body_colors', 'Site Colors', 'colors' );
 
-        self::add_memberlite_color_control( $wp_customize, 'memberlite_color_link', 'Link Color', 'color_link' );
+        self::add_memberlite_color_control( $wp_customize, 'memberlite_color_text', 'Default Text Color', 'color_text' );
+
+        self::add_memberlite_color_control( $wp_customize, 'memberlite_color_link', 'Default Link Color', 'color_link' );
 
         self::add_memberlite_color_control( $wp_customize, 'memberlite_color_meta_link', 'Meta Link Color', 'color_meta_link' );
 
@@ -264,9 +272,15 @@ class Memberlite_Customize {
 
         self::add_memberlite_color_control( $wp_customize, 'memberlite_color_button', 'Default Button Color', 'color_button' );
 
+        //heading for masthead colors
+        self::add_memberlite_heading( $wp_customize, 'memberlite_masthead_colors', 'Masthead Colors', 'colors' );
+
         self::add_memberlite_color_control( $wp_customize, 'memberlite_bgcolor_page_masthead', 'Page Masthead Background Color', 'bgcolor_page_masthead' );
 
         self::add_memberlite_color_control( $wp_customize, 'memberlite_color_page_masthead', 'Page Masthead Text Color', 'color_page_masthead' );
+
+        //heading for footer colors
+        self::add_memberlite_heading( $wp_customize, 'memberlite_footer_colors', 'Footer Colors', 'colors' );
 
         self::add_memberlite_color_control( $wp_customize, 'memberlite_bgcolor_footer_widgets', 'Footer Widgets Background Color', 'bgcolor_footer_widgets' );
 
@@ -1282,7 +1296,7 @@ class Memberlite_Customize {
 if ( class_exists( 'WP_Customize_Control' ) ) {
     class Memberlite_Customize_Header_Control extends WP_Customize_Control {
         public function render_content() {
-            echo '<span class="customize-control-title" style="margin: 8px 0 -6px;">' . esc_html( $this->label ) . '</span>';
+            echo '<span class="customize-control-title" style="margin-top: 8px; padding-bottom: 5px; border-bottom: 1px solid #ccc;">' . esc_html( $this->label ) . '</span>';
         }
     }
 }
