@@ -16,6 +16,8 @@ class Memberlite_Customize
 {
     public static function register($wp_customize)
     {
+        global $memberlite_defaults;
+        
         //Panels & Sections
         self::set_customizer_panels_sections($wp_customize);
 
@@ -30,6 +32,329 @@ class Memberlite_Customize
 
         //Footer Settings
         self::set_customizer_footer_settings($wp_customize);
+
+        $wp_customize->add_setting(
+                'bgcolor_header',
+                array(
+                        'default'              => $memberlite_defaults['bgcolor_header'],
+                        'sanitize_callback'    => 'sanitize_hex_color',
+                        'sanitize_js_callback' => 'maybe_hash_hex_color',
+                        'transport'            => 'postMessage',
+                )
+        );
+
+        $wp_customize->add_control(
+                new WP_Customize_Color_Control(
+                        $wp_customize,
+                        'memberlite_bgcolor_header',
+                        array(
+                                'label'    => __( 'Header Background Color', 'memberlite' ),
+                                'section'  => 'colors',
+                                'settings' => 'bgcolor_header',
+                                'priority' => 10,
+                        )
+                )
+        );
+
+        $wp_customize->add_setting(
+                'bgcolor_site_navigation',
+                array(
+                        'default'              => $memberlite_defaults['bgcolor_site_navigation'],
+                        'sanitize_callback'    => 'sanitize_hex_color',
+                        'sanitize_js_callback' => 'maybe_hash_hex_color',
+                        'transport'            => 'postMessage',
+                )
+        );
+
+        $wp_customize->add_control(
+                new WP_Customize_Color_Control(
+                        $wp_customize,
+                        'memberlite_bgcolor_site_navigation',
+                        array(
+                                'label'    => __( 'Primary Navigation Background Color', 'memberlite' ),
+                                'section'  => 'colors',
+                                'settings' => 'bgcolor_site_navigation',
+                                'priority' => 20,
+                        )
+                )
+        );
+
+        $wp_customize->add_setting(
+                'color_site_navigation',
+                array(
+                        'default'              => $memberlite_defaults['color_site_navigation'],
+                        'sanitize_callback'    => 'sanitize_hex_color',
+                        'sanitize_js_callback' => 'maybe_hash_hex_color',
+                        'transport'            => 'postMessage',
+                )
+        );
+
+        $wp_customize->add_control(
+                new WP_Customize_Color_Control(
+                        $wp_customize,
+                        'memberlite_color_site_navigation',
+                        array(
+                                'label'    => __( 'Primary Navigation Color', 'memberlite' ),
+                                'section'  => 'colors',
+                                'settings' => 'color_site_navigation',
+                                'priority' => 30,
+                        )
+                )
+        );
+
+        $wp_customize->add_setting(
+                'color_text',
+                array(
+                        'default'              => $memberlite_defaults['color_text'],
+                        'sanitize_callback'    => 'sanitize_hex_color',
+                        'sanitize_js_callback' => 'maybe_hash_hex_color',
+                        'transport'            => 'postMessage',
+                )
+        );
+
+        $wp_customize->add_control(
+                new WP_Customize_Color_Control(
+                        $wp_customize,
+                        'memberlite_color_text',
+                        array(
+                                'label'    => __( 'Text Color', 'memberlite' ),
+                                'section'  => 'colors',
+                                'settings' => 'color_text',
+                                'priority' => 40,
+                        )
+                )
+        );
+
+        $wp_customize->add_setting(
+                'color_link',
+                array(
+                        'default'              => $memberlite_defaults['color_link'],
+                        'sanitize_callback'    => 'sanitize_hex_color',
+                        'sanitize_js_callback' => 'maybe_hash_hex_color',
+                        'transport'            => 'postMessage',
+                )
+        );
+
+        $wp_customize->add_control(
+                new WP_Customize_Color_Control(
+                        $wp_customize,
+                        'memberlite_color_link',
+                        array(
+                                'label'    => __( 'Link Color', 'memberlite' ),
+                                'section'  => 'colors',
+                                'settings' => 'color_link',
+                                'priority' => 40,
+                        )
+                )
+        );
+
+        $wp_customize->add_setting(
+                'color_meta_link',
+                array(
+                        'default'              => $memberlite_defaults['color_meta_link'],
+                        'sanitize_callback'    => 'sanitize_hex_color',
+                        'sanitize_js_callback' => 'maybe_hash_hex_color',
+                        'transport'            => 'postMessage',
+                )
+        );
+
+        $wp_customize->add_control(
+                new WP_Customize_Color_Control(
+                        $wp_customize,
+                        'memberlite_color_meta_link',
+                        array(
+                                'label'    => __( 'Meta Link Color', 'memberlite' ),
+                                'section'  => 'colors',
+                                'settings' => 'color_meta_link',
+                                'priority' => 50,
+                        )
+                )
+        );
+
+        $wp_customize->add_setting(
+                'color_primary',
+                array(
+                        'default'              => $memberlite_defaults['color_primary'],
+                        'sanitize_callback'    => 'sanitize_hex_color',
+                        'sanitize_js_callback' => 'maybe_hash_hex_color',
+                        'transport'            => 'postMessage',
+                )
+        );
+
+        $wp_customize->add_control(
+                new WP_Customize_Color_Control(
+                        $wp_customize,
+                        'memberlite_color_primary',
+                        array(
+                                'label'    => __( 'Primary Color', 'memberlite' ),
+                                'section'  => 'colors',
+                                'settings' => 'color_primary',
+                                'priority' => 60,
+                        )
+                )
+        );
+
+        $wp_customize->add_setting(
+                'color_secondary',
+                array(
+                        'default'              => $memberlite_defaults['color_secondary'],
+                        'sanitize_callback'    => 'sanitize_hex_color',
+                        'sanitize_js_callback' => 'maybe_hash_hex_color',
+                        'transport'            => 'postMessage',
+                )
+        );
+
+        $wp_customize->add_control(
+                new WP_Customize_Color_Control(
+                        $wp_customize,
+                        'memberlite_color_secondary',
+                        array(
+                                'label'    => __( 'Secondary Color', 'memberlite' ),
+                                'section'  => 'colors',
+                                'settings' => 'color_secondary',
+                                'priority' => 70,
+                        )
+                )
+        );
+
+        $wp_customize->add_setting(
+                'color_action',
+                array(
+                        'default'              => $memberlite_defaults['color_action'],
+                        'sanitize_callback'    => 'sanitize_hex_color',
+                        'sanitize_js_callback' => 'maybe_hash_hex_color',
+                        'transport'            => 'postMessage',
+                )
+        );
+
+        $wp_customize->add_control(
+                new WP_Customize_Color_Control(
+                        $wp_customize,
+                        'memberlite_color_action',
+                        array(
+                                'label'    => __( 'Action Color', 'memberlite' ),
+                                'description' => __( 'Also used for CTA buttons', 'memberlite' ),
+                                'section'  => 'colors',
+                                'settings' => 'color_action',
+                                'priority' => 80,
+                        )
+                )
+        );
+
+        $wp_customize->add_setting(
+                'color_button',
+                array(
+                        'default'              => $memberlite_defaults['color_button'],
+                        'sanitize_callback'    => 'sanitize_hex_color',
+                        'sanitize_js_callback' => 'maybe_hash_hex_color',
+                        'transport'            => 'postMessage',
+                )
+        );
+
+        $wp_customize->add_control(
+                new WP_Customize_Color_Control(
+                        $wp_customize,
+                        'memberlite_color_button',
+                        array(
+                                'label'    => __( 'Default Button Color', 'memberlite' ),
+                                'section'  => 'colors',
+                                'settings' => 'color_button',
+                                'priority' => 90,
+                        )
+                )
+        );
+
+        $wp_customize->add_setting(
+                'bgcolor_page_masthead',
+                array(
+                        'default'              => $memberlite_defaults['bgcolor_page_masthead'],
+                        'sanitize_callback'    => 'sanitize_hex_color',
+                        'sanitize_js_callback' => 'maybe_hash_hex_color',
+                        'transport'            => 'postMessage',
+                )
+        );
+
+        $wp_customize->add_control(
+                new WP_Customize_Color_Control(
+                        $wp_customize,
+                        'memberlite_bgcolor_page_masthead',
+                        array(
+                                'label'    => __( 'Page Masthead Background Color', 'memberlite' ),
+                                'section'  => 'colors',
+                                'settings' => 'bgcolor_page_masthead',
+                                'priority' => 100,
+                        )
+                )
+        );
+
+        $wp_customize->add_setting(
+                'color_page_masthead',
+                array(
+                        'default'              => $memberlite_defaults['color_page_masthead'],
+                        'sanitize_callback'    => 'sanitize_hex_color',
+                        'sanitize_js_callback' => 'maybe_hash_hex_color',
+                        'transport'            => 'postMessage',
+                )
+        );
+
+        $wp_customize->add_control(
+                new WP_Customize_Color_Control(
+                        $wp_customize,
+                        'memberlite_color_page_masthead',
+                        array(
+                                'label'    => __( 'Page Masthead Text Color', 'memberlite' ),
+                                'section'  => 'colors',
+                                'settings' => 'color_page_masthead',
+                                'priority' => 110,
+                        )
+                )
+        );
+
+        $wp_customize->add_setting(
+                'bgcolor_footer_widgets',
+                array(
+                        'default'              => $memberlite_defaults['bgcolor_footer_widgets'],
+                        'sanitize_callback'    => 'sanitize_hex_color',
+                        'sanitize_js_callback' => 'maybe_hash_hex_color',
+                        'transport'            => 'postMessage',
+                )
+        );
+
+        $wp_customize->add_control(
+                new WP_Customize_Color_Control(
+                        $wp_customize,
+                        'memberlite_bgcolor_footer_widgets',
+                        array(
+                                'label'    => __( 'Footer Widgets Background Color', 'memberlite' ),
+                                'section'  => 'colors',
+                                'settings' => 'bgcolor_footer_widgets',
+                                'priority' => 120,
+                        )
+                )
+        );
+
+        $wp_customize->add_setting(
+                'color_footer_widgets',
+                array(
+                        'default'              => $memberlite_defaults['color_footer_widgets'],
+                        'sanitize_callback'    => 'sanitize_hex_color',
+                        'sanitize_js_callback' => 'maybe_hash_hex_color',
+                        'transport'            => 'postMessage',
+                )
+        );
+
+        $wp_customize->add_control(
+                new WP_Customize_Color_Control(
+                        $wp_customize,
+                        'memberlite_color_footer_widgets',
+                        array(
+                                'label'    => __( 'Footer Widgets Text Color', 'memberlite' ),
+                                'section'  => 'colors',
+                                'settings' => 'color_footer_widgets',
+                                'priority' => 130,
+                        )
+                )
+        );
 
         $wp_customize->get_setting('blogname')->transport = 'postMessage';
         $wp_customize->get_setting('blogdescription')->transport = 'postMessage';
@@ -264,7 +589,13 @@ class Memberlite_Customize
                 'description' => 'On scroll, the header menu will stick to the top of the screen.',
                 'sanitize_callback' => array('Memberlite_Customize', 'sanitize_checkbox'),
         ));
+    }
 
+    /**
+     * @param $wp_customize
+     * @return void
+     */
+    public static function set_customizer_post_settings($wp_customize) {
         //POST & PAGE: Sidebar Location ================
         self::add_memberlite_setting_control($wp_customize, 'sidebar_location_blog', 'Sidebar Placement for Blog, Archives, Posts', 'memberlite_post_page_options', array(
                 'type' => 'radio',
@@ -288,13 +619,7 @@ class Memberlite_Customize
 
         // Add heading for pagination related settings
         self::add_memberlite_heading($wp_customize, 'memberlite_pagination_heading', 'Pagination Settings', 'memberlite_post_page_options');
-    }
 
-    /**
-     * @param $wp_customize
-     * @return void
-     */
-    public static function set_customizer_post_settings($wp_customize) {
         // POST & PAGE: (prev/next links) Post Nav ================
         self::add_memberlite_setting_control($wp_customize, 'memberlite_post_nav', 'Show Prev/Next on Single Posts', 'memberlite_post_page_options', array(
                 'type' => 'checkbox',
