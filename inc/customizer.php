@@ -9,11 +9,15 @@
  * Add postMessage support for site title and description for the Theme Customizer.
  *
  * @param WP_Customize_Manager $wp_customize Theme Customizer object.
- *
- * //@todo: potential to separate related settings/controls into their own functions
  */
 class Memberlite_Customize {
-    public static function register( $wp_customize ) {
+    /**
+     * Sets and gets customizer settings and controls for Memberlite
+     *
+     * @param WP_Customize_Manager $wp_customize
+     * @return void
+     */
+    public static function register( WP_Customize_Manager $wp_customize ) {
         //Panels & Sections
         self::set_customizer_panels_sections( $wp_customize );
 
@@ -65,11 +69,12 @@ class Memberlite_Customize {
     }
 
     /**
-     * @param $wp_customize
+     * Sets panels and sections in customizer
      *
+     * @param WP_Customize_Manager $wp_customize
      * @return void
      */
-    public static function set_customizer_panels_sections( $wp_customize ) {
+    public static function set_customizer_panels_sections( WP_Customize_Manager $wp_customize ) {
         // Add Memberlite Options Panel
         $wp_customize->add_panel(
                 'memberlite_panel',
@@ -115,19 +120,22 @@ class Memberlite_Customize {
     }
 
     /**
-     * @param $wp_customize
+     * Sets general/global customizer settings
      *
+     * @param WP_Customize_Manager $wp_customize
      * @return void
      */
-    public static function set_customizer_general_settings( $wp_customize ) {
+    public static function set_customizer_general_settings( WP_Customize_Manager $wp_customize ) {
         // GENERAL: Color Scheme ================
         self::add_memberlite_setting_control( $wp_customize, 'memberlite_color_scheme', 'Memberlite Color Scheme', 'memberlite_theme_options', array(
-                'type'        => 'select',
-                'choices'     => array_merge(
-                        Memberlite_Customize::get_color_scheme_choices(),
-                        array(
-                                'custom' => 'Custom',
-                        )
+                'type'                  => 'select',
+                'sanitize_callback'     => array( 'Memberlite_Customize', 'sanitize_color_scheme' ),
+                'sanitize_js_callback'  => array( 'Memberlite_Customize', 'sanitize_js_color_scheme' ),
+                'choices'               => array_merge(
+                    Memberlite_Customize::get_color_scheme_choices(),
+                    array(
+                            'custom' => 'Custom',
+                    )
                 ),
                 'description' => 'Preset by Theme Variation. Customize here or in the "Colors" section.',
         ) );
@@ -159,7 +167,6 @@ class Memberlite_Customize {
                 'transport'   => 'refresh',
                 'description' => 'Controls how wide your main content area is compared to your sidebar. For example, "8-4" makes content 8 units wide and the sidebar 4 units wide.',
                 'choices'     => array(
-                        'none' => 'None',
                         '6-6'  => '6x6',
                         '7-5'  => '7x5',
                         '8-4'  => '8x4',
@@ -171,7 +178,7 @@ class Memberlite_Customize {
 
         // GENERAL: Sidebar Location ================
         //@todo: Is this redundant with the sidebar location setting in the post/page section?
-        /* self::add_memberlite_setting_control($wp_customize, 'sidebar_location', 'Sidebar Placement', 'memberlite_theme_options', array(
+        self::add_memberlite_setting_control($wp_customize, 'sidebar_location', 'Sidebar Placement', 'memberlite_theme_options', array(
             'type' => 'radio',
             'description' => 'By default, sidebars will display on archives (not for grid style) and single posts.',
             'choices' => array(
@@ -179,7 +186,7 @@ class Memberlite_Customize {
                     'sidebar-left' => 'Left Sidebar',
                     'sidebar-none' => 'No Sidebar',
             ),
-        )); */
+        ));
 
         // GENERAL: Breadcrumb Locations ================
         $memberlite_breadcrumbs = array(
@@ -239,11 +246,12 @@ class Memberlite_Customize {
     }
 
     /**
-     * @param $wp_customize
+     * Sets color-related customizer settings
      *
+     * @param WP_Customize_Manager $wp_customize
      * @return void
      */
-    public static function set_customizer_color_settings( $wp_customize ) {
+    public static function set_customizer_color_settings( WP_Customize_Manager $wp_customize ) {
         //Heading for header colors
         self::add_memberlite_heading( $wp_customize, 'memberlite_header_colors', 'Header Colors', 'colors' );
 
@@ -288,11 +296,12 @@ class Memberlite_Customize {
     }
 
     /**
-     * @param $wp_customize
+     * Sets header-related customizer settings
      *
+     * @param WP_Customize_Manager $wp_customize
      * @return void
      */
-    public static function set_customizer_header_settings( $wp_customize ) {
+    public static function set_customizer_header_settings( WP_Customize_Manager $wp_customize ) {
         // HEADER: Columns Ratio ================
         self::add_memberlite_setting_control( $wp_customize, 'columns_ratio_header', 'Columns Ratio', 'memberlite_header_options', array(
                 'type'        => 'select',
@@ -337,11 +346,12 @@ class Memberlite_Customize {
     }
 
     /**
-     * @param $wp_customize
+     * Sets post, page, and archive related customizer settings
      *
+     * @param WP_Customize_Manager $wp_customize
      * @return void
      */
-    public static function set_customizer_post_settings( $wp_customize ) {
+    public static function set_customizer_post_settings( WP_Customize_Manager $wp_customize ) {
         //POST & PAGE: Sidebar Location ================
         self::add_memberlite_setting_control( $wp_customize, 'sidebar_location_blog', 'Sidebar Placement for Blog, Archives, Posts', 'memberlite_post_page_options', array(
                 'type'    => 'radio',
@@ -422,11 +432,12 @@ class Memberlite_Customize {
     }
 
     /**
-     * @param $wp_customize
+     * Sets footer-related customizer settings
      *
+     * @param WP_Customize_Manager $wp_customize
      * @return void
      */
-    public static function set_customizer_footer_settings( $wp_customize ) {
+    public static function set_customizer_footer_settings( WP_Customize_Manager $wp_customize ) {
         // FOOTER: Footer Widgets ================
         self::add_memberlite_setting_control( $wp_customize, 'memberlite_footerwidgets', 'Footer Widgets', 'memberlite_footer_options', array(
                 'type'              => 'select',
@@ -438,6 +449,7 @@ class Memberlite_Customize {
         self::add_memberlite_setting_control( $wp_customize, 'copyright_textbox', 'Copyright Text', 'memberlite_footer_options', array(
                 'transport'         => 'postMessage',
                 'sanitize_callback' => array( 'Memberlite_Customize', 'sanitize_text_with_links' ),
+                'sanitize_js_callback' => array( 'Memberlite_Customize', 'sanitize_js_text_with_links' ),
         ) );
     }
 
@@ -451,7 +463,7 @@ class Memberlite_Customize {
      *
      * @return void
      */
-    public static function add_memberlite_heading( object $wp_customize, string $id, string $label, string $section ): void {
+    public static function add_memberlite_heading( WP_Customize_Manager $wp_customize, string $id, string $label, string $section ): void {
         $wp_customize->add_setting(
                 $id,
                 array(
@@ -481,7 +493,7 @@ class Memberlite_Customize {
      *
      * @return void
      */
-    public static function add_memberlite_color_control( object $wp_customize, string $id, string $label, string $setting_id, $args = array() ): void {
+    public static function add_memberlite_color_control( WP_Customize_Manager $wp_customize, string $id, string $label, string $setting_id, $args = array() ): void {
         global $memberlite_defaults;
 
         // Define default arguments
@@ -538,7 +550,7 @@ class Memberlite_Customize {
      *
      * @return void
      */
-    public static function add_memberlite_setting_control( object $wp_customize, string $id, string $label, string $section, $args = array() ): void {
+    public static function add_memberlite_setting_control( WP_Customize_Manager $wp_customize, string $id, string $label, string $section, $args = array() ): void {
         global $memberlite_defaults;
 
         // Define default arguments for the setting and control
@@ -611,6 +623,11 @@ class Memberlite_Customize {
         bloginfo( 'description' );
     }
 
+    /**
+     * Convert colors from customizer into CSS variables that output in the header
+     *
+     * @return void
+     */
     public static function header_output() {
         global $memberlite_defaults;
 
@@ -744,6 +761,11 @@ class Memberlite_Customize {
         <?php
     }
 
+    /**
+     * Localize $memberlite_defaults for use in the customizer live preview JS
+     *
+     * @return void
+     */
     public static function live_preview() {
         global $memberlite_defaults;
         wp_register_script(
@@ -1277,6 +1299,8 @@ class Memberlite_Customize {
      *
      * Passes color scheme data as colorScheme global.
      *
+     * Also enqueue stylesheet for customizer setting controls.
+     *
      * @since Twenty Fifteen 1.0
      */
     public static function customizer_controls_js() {
@@ -1287,6 +1311,13 @@ class Memberlite_Customize {
                 'wp-util'
         ), MEMBERLITE_VERSION, true );
         wp_localize_script( 'Memberlite_Customizer-controls', 'colorSchemes', Memberlite_Customize::get_color_schemes() );
+
+        wp_enqueue_style(
+                'memberlite-customizer-css',
+                get_template_directory_uri() . '/css/customizer.css',
+                array(),
+                MEMBERLITE_VERSION
+        );
     }
 }
 
@@ -1296,7 +1327,7 @@ class Memberlite_Customize {
 if ( class_exists( 'WP_Customize_Control' ) ) {
     class Memberlite_Customize_Header_Control extends WP_Customize_Control {
         public function render_content() {
-            echo '<span class="customize-control-title" style="margin-top: 8px; padding-bottom: 5px; border-bottom: 1px solid #ccc;">' . esc_html( $this->label ) . '</span>';
+            echo '<span class="customize-control-title settings-heading">' . esc_html( $this->label ) . '</span>';
         }
     }
 }
