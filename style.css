@@ -46,6 +46,7 @@ Memberlite is distributed under the terms of the GNU GPL.
 	10.7 - Footer
 	10.8 - Memberlite Shortcodes
 	10.9 - No Results/404 Not Found
+	10.10 - Block Styles
 11.0 - Third Party Plugin Integrated Styles
 	11.1 - Paid Memberships Pro Integrated Styles
 	11.2 - Testimonials Widget
@@ -246,7 +247,7 @@ em,
 i {
 	font-style: italic;
 }
-blockquote:not(.wp-block-pullquote blockquote):not(.wp-block-quote):not(.testimonials-widget-testimonial blockquote) {
+blockquote:not(:is(.wp-block-quote, .wp-block-pullquote blockquote, .testimonials-widget-testimonial blockquote)) {
 	margin: 2.9rem 0;
 	background-color: var(--memberlite-color-site-navigation-background);
 	padding: 2.9rem 2.9rem 1px 2.9rem;
@@ -254,14 +255,17 @@ blockquote:not(.wp-block-pullquote blockquote):not(.wp-block-quote):not(.testimo
 }
 blockquote.quote,
 .testimonials-widget blockquote,
-.wp-block-quote {
+.wp-block-quote:not(.is-style-plain) {
 	background: none;
 	border: none;
 	padding: 0 0 0 3.7rem;
 	position: relative;
 }
+.wp-block-quote.is-style-plain {
+	padding: 0;
+}
 blockquote.quote:before,
-.wp-block-quote:before {
+.wp-block-quote:not(.is-style-plain):before {
 	content: "\f10d";
 	font-family: 'Font Awesome 5 Free';
 	font-weight: 900;
@@ -272,10 +276,10 @@ blockquote.quote:before,
 	position: absolute;
 }
 blockquote.quote p:last-of-type,
-.wp-block-quote p:last-of-type {
+.wp-block-quote:not(.is-style-plain) p:last-of-type {
 	margin-bottom: 0;
 }
-blockquote:not(.wp-block-pullquote blockquote):not(.wp-block-quote) cite,
+blockquote:not(:is(.wp-block-quote, .wp-block-pullquote blockquote)) cite,
 .testimonials-widget blockquote .credit,
 .wp-block-quote cite {
 	display: block;
@@ -2715,6 +2719,18 @@ a:active:not(.pmpro_btn:active) {
 }
 
 /*--------------------------------------------------------------
+10.10 Block Styles
+--------------------------------------------------------------*/
+.is-style-pmpro-card {
+	background-color: var(--memberlite-color-white);
+	border-style: solid;
+	border-width: 1px;
+	box-shadow: var(--pmpro--box-shadow);
+	padding: 2.9rem;
+}
+
+
+/*--------------------------------------------------------------
 11.0 Third Party Plugin Integrated Styles
 --------------------------------------------------------------*/
 
@@ -2882,10 +2898,14 @@ a:active:not(.pmpro_btn:active) {
 
 	.pmpro_card,
 	.pmpro_card_actions,
-	.pmpro_card_content + .pmpro_card_actions {
+	.pmpro_card_content + .pmpro_card_actions,
+	.is-style-pmpro-card {
 		border-color: var(--memberlite-color-borders);
 	}
 
+	.is-style-pmpro-card {
+		border-radius: var(--pmpro--base--border-radius);
+	}
 }
 
 /* Membership Signup Forms */

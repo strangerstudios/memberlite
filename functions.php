@@ -840,6 +840,12 @@ if ( is_admin() ) {
 /* Implement the Custom Header feature. */
 require_once get_template_directory() . '/inc/custom-header.php';
 
+/* Block styles. */
+require_once get_template_directory() . '/inc/block-styles.php';
+
+/* Patterns. */
+require_once get_template_directory() . '/classes/class-memberlite-patterns.php';
+
 /* Customizer additions. */
 require_once get_template_directory() . '/inc/customizer.php';
 
