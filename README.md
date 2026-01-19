@@ -21,7 +21,7 @@ Use the Customize > Site Identity screen to add a custom logo (formatted for ret
 ### Customize the Theme
 Use the Customize > Memberlite Options screen to modify theme layout, logo, fonts, colors, copyright message and more.
 
-[Explore Documentation on Customizing Memberlite »](https://www.paidmembershipspro.com/documentation/memberlite/customize/)
+[Explore Documentation on Customizing Memberlite »](https://www.paidmembershipspro.com/documentation/memberlite/memberlite-theme-customization)
 
 ### Using Child Themes
 If you need to customize the theme beyond theme settings, use a child theme.
