@@ -91,6 +91,53 @@
 					"fontFace": [
 						{
 							"fontDisplay": "block",
+							"fontFamily": "DM Sans",
+							"fontStretch": "normal",
+							"fontStyle": "normal",
+							"fontWeight": "400",
+							"src": [
+								"file:./assets/fonts/dm-sans/dm-sans.woff2"
+							]
+						},
+						{
+							"fontDisplay": "block",
+							"fontFamily": "DM Sans",
+							"fontStretch": "normal",
+							"fontStyle": "normal",
+							"fontWeight": "700",
+							"src": [
+								"file:./assets/fonts/dm-sans/dm-sans-bold.woff2"
+							]
+						},
+						{
+							"fontDisplay": "block",
+							"fontFamily": "DM Sans",
+							"fontStretch": "normal",
+							"fontStyle": "italic",
+							"fontWeight": "400",
+							"src": [
+								"file:./assets/fonts/dm-sans/dm-sans-italic.woff2"
+							]
+						},
+						{
+							"fontDisplay": "block",
+							"fontFamily": "DM Sans",
+							"fontStretch": "normal",
+							"fontStyle": "italic",
+							"fontWeight": "700",
+							"src": [
+								"file:./assets/fonts/dm-sans/dm-sans-bold-italic.woff2"
+							]
+						}
+					],
+					"fontFamily": "\"DM Sans\", sans-serif",
+					"name": "DM Sans",
+					"slug": "dm-sans"
+				},
+				{
+					"fontFace": [
+						{
+							"fontDisplay": "block",
 							"fontFamily": "Figtree",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
@@ -118,7 +165,7 @@
 					"fontFace": [
 						{
 							"fontDisplay": "block",
-							"fontFamily": " One",
+							"fontFamily": "Fjalla One",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
 							"fontWeight": "400",
@@ -259,6 +306,26 @@
 							"fontWeight": "700",
 							"src": [
 								"file:./assets/fonts/montserrat/montserrat-bold.woff2"
+							]
+						},
+						{
+							"fontDisplay": "block",
+							"fontFamily": "Montserrat",
+							"fontStretch": "normal",
+							"fontStyle": "normal",
+							"fontWeight": "900",
+							"src": [
+								"file:./assets/fonts/montserrat/montserrat-heavy.woff2"
+							]
+						},
+						{
+							"fontDisplay": "block",
+							"fontFamily": "Montserrat",
+							"fontStretch": "normal",
+							"fontStyle": "italic",
+							"fontWeight": "400",
+							"src": [
+								"file:./assets/fonts/montserrat/montserrat-italic.woff2"
 							]
 						}
 					],
@@ -411,6 +478,16 @@
 							"fontWeight": "700",
 							"src": [
 								"file:./assets/fonts/poppins/poppins-bold.woff2"
+							]
+						},
+						{
+							"fontDisplay": "block",
+							"fontFamily": "Poppins",
+							"fontStretch": "normal",
+							"fontStyle": "italic",
+							"fontWeight": "700",
+							"src": [
+								"file:./assets/fonts/poppins/poppins-bold-italic.woff2"
 							]
 						}
 					],
