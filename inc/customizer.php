@@ -82,44 +82,12 @@ class Memberlite_Customize {
      */
     public static function set_customizer_panels_sections( WP_Customize_Manager $wp_customize ) {
 
-        /* Header -------------------------------- */
-        $wp_customize->add_panel(
-                'memberlite_header_panel',
-                array(
-                        'title'       => __( 'Header', 'memberlite' ),
-                        'capability'  => 'edit_theme_options',
-                )
-        );
-
-        $wp_customize->add_section(
-                'memberlite_header_layout_options',
-                array(
-                        'title' => __( 'Header Layout', 'memberlite' ),
-                        'panel' => 'memberlite_header_panel'
-                )
-        );
-
-        $wp_customize->add_section(
-                'memberlite_header_feature_options',
-                array(
-                        'title' => __( 'Header Features', 'memberlite' ),
-                        'panel' => 'memberlite_header_panel'
-                )
-        );
-
-        // Move core Header Image into our custom panel
-        $section = $wp_customize->get_section( 'header_image' );
-        if ( $section ) {
-            $section->panel    = 'memberlite_header_panel';
-            $section->priority = 10;
-        }
-
         /* General -------------------------------- */
         $wp_customize->add_panel(
                 'memberlite_general_panel',
                 array(
                         'title'       => __( 'General', 'memberlite' ),
-                        'priority'    => 10,
+                        'priority'    => 1,
                 )
         );
 
@@ -151,7 +119,52 @@ class Memberlite_Customize {
                 'memberlite_typography_options',
                 array(
                         'title' => __( 'Typography', 'memberlite' ),
-                        'priority'    => 11,
+                        'priority'    => 2,
+                )
+        );
+
+        /* Colors -------------------------------- */
+        $wp_customize->get_section('colors')->priority = 3;
+
+        /* Header -------------------------------- */
+        $wp_customize->add_panel(
+                'memberlite_header_panel',
+                array(
+                        'title'       => __( 'Header', 'memberlite' ),
+                        'capability'  => 'edit_theme_options',
+                        'priority' => 4,
+                )
+        );
+
+        $wp_customize->add_section(
+                'memberlite_header_layout_options',
+                array(
+                        'title' => __( 'Header Layout', 'memberlite' ),
+                        'panel' => 'memberlite_header_panel'
+                )
+        );
+
+        $wp_customize->add_section(
+                'memberlite_header_feature_options',
+                array(
+                        'title' => __( 'Header Features', 'memberlite' ),
+                        'panel' => 'memberlite_header_panel'
+                )
+        );
+
+        // Move core Header Image into our custom panel
+        $section = $wp_customize->get_section( 'header_image' );
+        if ( $section ) {
+            $section->panel    = 'memberlite_header_panel';
+            $section->priority = 10;
+        }
+
+        /* Footer -------------------------------- */
+        $wp_customize->add_section(
+                'memberlite_footer_options',
+                array(
+                        'title' => __( 'Footer', 'memberlite' ),
+                        'priority' => 5,
                 )
         );
 
@@ -160,6 +173,7 @@ class Memberlite_Customize {
                 'memberlite_post_archive_options',
                 array(
                         'title' => __( 'Post & Archives', 'memberlite' ),
+                        'priority' => 6,
                 )
         );
 
@@ -168,16 +182,10 @@ class Memberlite_Customize {
                 'memberlite_page_options',
                 array(
                         'title' => __( 'Pages', 'memberlite' ),
+                        'priority' => 7,
                 )
         );
 
-        /* Footer -------------------------------- */
-        $wp_customize->add_section(
-                'memberlite_footer_options',
-                array(
-                        'title' => __( 'Footer', 'memberlite' ),
-                )
-        );
     }
 
     /**
@@ -225,9 +233,6 @@ class Memberlite_Customize {
 
         );
 
-        // Heading before the breadcrumb options
-//        self::add_memberlite_heading( $wp_customize, 'memberlite_breadcrumbs_heading', 'Breadcrumb', 'memberlite_breadcrumbs_options' );
-
         foreach ( $memberlite_breadcrumbs as $breadcrumb_slug => $memberlite_breadcrumb ) {
             self::add_memberlite_setting_control(
                     $wp_customize,
@@ -246,16 +251,6 @@ class Memberlite_Customize {
         self::add_memberlite_setting_control( $wp_customize, 'delimiter', 'Breadcrumb Delimiter', 'memberlite_breadcrumbs_options', array(
                 'transport'         => 'postMessage',
                 'sanitize_callback' => 'sanitize_text_field',
-        ) );
-
-        // Heading before the global links options
-        self::add_memberlite_heading( $wp_customize, 'memberlite_links_heading', 'Global Links', 'memberlite_general_panel' );
-
-        // GENERAL: Back to Top
-        self::add_memberlite_setting_control( $wp_customize, 'memberlite_back_to_top', 'Show Back to Top Link', 'memberlite_general_panel', array(
-                'type'              => 'checkbox',
-                'default'           => true,
-                'sanitize_callback' => array( 'Memberlite_Customize', 'sanitize_checkbox' ),
         ) );
     }
 
@@ -293,7 +288,6 @@ class Memberlite_Customize {
                                 'custom' => 'Custom',
                         )
                 ),
-                'description' => 'Preset by Theme Variation. Customize here or in the "Colors" section.',
                 'priority' => 0,
         ) );
 
@@ -512,6 +506,14 @@ class Memberlite_Customize {
                 'transport'         => 'postMessage',
                 'sanitize_callback' => array( 'Memberlite_Customize', 'sanitize_text_with_links' ),
                 'sanitize_js_callback' => array( 'Memberlite_Customize', 'sanitize_js_text_with_links' ),
+        ) );
+
+        // FOOTER: Back to Top
+        self::add_memberlite_heading( $wp_customize, 'memberlite_back_to_top_heading', 'Back to Top', 'memberlite_footer_options' );
+        self::add_memberlite_setting_control( $wp_customize, 'memberlite_back_to_top', 'Show Back to Top Link', 'memberlite_footer_options', array(
+                'type'              => 'checkbox',
+                'default'           => true,
+                'sanitize_callback' => array( 'Memberlite_Customize', 'sanitize_checkbox' ),
         ) );
     }
 
