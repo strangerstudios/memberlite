@@ -6,6 +6,7 @@ $memberlite_defaults = apply_filters( 'memberlite_defaults', array(
 	'memberlite_body_font'						=> 'Lato',
 	'columns_ratio'								=> '8-4',
 	'columns_ratio_header'						=> '4-8',
+	'columns_ratio_blog'						=> '8-4',
 	'sidebar_location'							=> 'sidebar-right',
 	'sidebar_location_blog'						=> 'sidebar-blog-right',
 	'content_archives'							=> 'content',
@@ -62,4 +63,5 @@ $memberlite_defaults = apply_filters( 'memberlite_defaults', array(
 	'color_white'								=> '#FFFFFF',
 	'color_text'								=> '#222222',
 	'color_borders'								=> '#03543F21',
+	'header_textcolor'							=> '#222222',
 ) );
