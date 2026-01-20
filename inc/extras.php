@@ -81,6 +81,10 @@ function memberlite_getColumnsRatio( $location = null ) {
 
 	// Get the values as set in customizer.
 	$columns_ratio              = get_theme_mod( 'columns_ratio', $memberlite_defaults['columns_ratio'] );
+	if ( ! is_page() ) {
+		// Get the setting for posts and archives, fall back to page setting.
+		$columns_ratio          = get_theme_mod( 'columns_ratio_blog', $columns_ratio );
+	}
 	$columns_ratio_header       = get_theme_mod( 'columns_ratio_header', $memberlite_defaults['columns_ratio_header'] );
 	$columns_ratio_array        = explode( '-', $columns_ratio );
 	$columns_ratio_header_array = explode( '-', $columns_ratio_header );
@@ -143,6 +147,7 @@ add_filter( 'memberlite_columns_ratio', 'memberlite_sidebar_location_none_column
 
 /**
  * Hide the sidebar if the theme option is set to none.
+ * Hide the sidebar for grid archives.
  *
  */
 function memberlite_sidebar_none_get_sidebar( $name ) {
@@ -156,6 +161,12 @@ function memberlite_sidebar_none_get_sidebar( $name ) {
 	} elseif ( memberlite_is_blog() || is_search() ) {
 		$sidebar_location = get_theme_mod( 'sidebar_location_blog', $memberlite_defaults['sidebar_location_blog'] );
 		if ( $sidebar_location === 'sidebar-blog-none' ) {
+			$name = false;
+		}
+
+		// Hide the sidebar for grid archives.
+		$content_archives = get_theme_mod( 'content_archives', $memberlite_defaults['content_archives'] );
+		if ( $content_archives === 'grid' && ! is_singular() && ! is_search() ) {
 			$name = false;
 		}
 	}
