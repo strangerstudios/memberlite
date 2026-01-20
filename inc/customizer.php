@@ -478,6 +478,16 @@ class Memberlite_Customize {
 	}
 
 	public static function set_customizer_page_settings( WP_Customize_Manager $wp_customize ) {
+		// PAGE: Sidebar Location ================
+		self::add_memberlite_setting_control($wp_customize, 'sidebar_location', 'Sidebar Location', 'memberlite_page_options', array(
+			'type' => 'radio',
+			'choices' => array(
+				'sidebar-right' => 'Right Sidebar',
+				'sidebar-left' => 'Left Sidebar',
+				'sidebar-none' => 'No Sidebar',
+			),
+		));
+
 		// PAGE: Columns Ratio ================
 		self::add_memberlite_setting_control( $wp_customize, 'columns_ratio', 'Columns Ratio', 'memberlite_page_options', array(
 			'type'        => 'select',
@@ -492,16 +502,6 @@ class Memberlite_Customize {
 				'11-1' => '11x1',
 			),
 		) );
-
-		// PAGE: Sidebar Location ================
-		self::add_memberlite_setting_control($wp_customize, 'sidebar_location', 'Sidebar Location', 'memberlite_page_options', array(
-			'type' => 'radio',
-			'choices' => array(
-				'sidebar-right' => 'Right Sidebar',
-				'sidebar-left' => 'Left Sidebar',
-				'sidebar-none' => 'No Sidebar',
-			),
-		));
 
 		// Add heading for navigation related settings
 		self::add_memberlite_heading( $wp_customize, 'memberlite_navigation_pages_heading', 'Navigation Settings', 'memberlite_page_options' );
