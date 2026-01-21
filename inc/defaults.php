@@ -42,7 +42,6 @@ $memberlite_news_colors = array(
 function memberlite_get_defaults()
 {
     global $memberlite_colors;
-    var_dump($memberlite_colors); die();
 
     $defaults = array(
         'memberlite_webfonts'      => 'Lato_Lato',
