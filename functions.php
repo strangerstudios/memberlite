@@ -140,7 +140,7 @@ font-stretch: normal;
 }<?php
 		}
 	}
-	
+
 	// Enqueue the header font.
 	if ( ! empty( $header_font ) ) { ?>@font-face {
 font-family: <?php echo esc_html( memberlite_get_font( 'header_font', true ) ); ?>;
@@ -249,7 +249,7 @@ if ( ! function_exists( 'memberlite_setup' ) ) :
 			'flex-height'  => true,
 			'flex-width'  => true,
 			'header-text' => array( 'site-title', 'site-description' ),
-			'unlink-homepage-logo' => false, 
+			'unlink-homepage-logo' => false,
 		);
 
 		add_theme_support( 'custom-logo', $logo_defaults );
@@ -318,15 +318,6 @@ if ( ! function_exists( 'memberlite_setup' ) ) :
 			)
 		);
 
-		// Setup the WordPress core custom background feature.
-		$custom_background = apply_filters(
-			'memberlite_custom_background_args', array(
-				'default-color' => 'FFFFFF',
-				'default-image' => '',
-			)
-		);
-		add_theme_support( 'custom-background', $custom_background );
-		
 		// Build unique array of Color Scheme values to include in Block Editor
 		$color_scheme = array();
 
@@ -484,7 +475,7 @@ add_action( 'after_setup_theme', 'memberlite_setup' );
 
 /**
  * Load the Memberlite theme textdomain on init (WP 6.7+ requirement).
- * 
+ *
  * If you're building a theme based on Memberlite, use a find and replace
  * to change 'memberlite' to the name of your theme in all the template files.
  */
@@ -495,7 +486,7 @@ add_action( 'init', 'memberlite_load_textdomain' );
 
 /**
  * Load custom translations from our own server: translate.strangerstudios.com
- * 
+ *
  * @since TBD
  */
 function memberlite_check_for_translations() {
@@ -504,12 +495,12 @@ function memberlite_check_for_translations() {
 	if ( function_exists( 'pmproum_check_for_translations' ) ) {
 		return;
 	}
-	
+
 	// If the library isn't loaded, bail.
 	if ( ! function_exists( 'Memberlite\Required\Traduttore_Registry\add_project' ) ) {
 		return;
 	}
-	
+
 	// Only check for updates when on the update page, plugins, themes page, or the Memberlite support page
 	$is_update_or_plugins_page = strpos( $_SERVER['REQUEST_URI'], 'update-core.php' ) !== false || strpos( $_SERVER['REQUEST_URI'], 'plugins.php' ) !== false || strpos( $_SERVER['REQUEST_URI'], 'themes.php' ) !== false;
 	$is_memberlite_admin_page = isset( $_REQUEST['page'] ) && $_REQUEST['page'] === 'memberlite-support';
@@ -836,9 +827,6 @@ if ( is_admin() ) {
 if ( is_admin() ) {
 	require_once get_template_directory() . '/inc/admin.php';
 }
-
-/* Implement the Custom Header feature. */
-require_once get_template_directory() . '/inc/custom-header.php';
 
 /* Customizer additions. */
 require_once get_template_directory() . '/inc/customizer.php';

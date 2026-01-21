@@ -81,6 +81,8 @@ class Memberlite_Customize {
 	 * @return void
 	 */
 	public static function set_customizer_panels_sections( WP_Customize_Manager $wp_customize ) {
+        /* Site Identity -------------------------------- */
+        $wp_customize->get_section('title_tagline')->priority = 0;
 
 		/* General -------------------------------- */
 		$wp_customize->add_panel(
@@ -91,7 +93,6 @@ class Memberlite_Customize {
 			)
 		);
 
-
 		$wp_customize->add_section(
 			'memberlite_layout_options',
 			array(
@@ -99,12 +100,6 @@ class Memberlite_Customize {
 				'panel' => 'memberlite_general_panel'
 			)
 		);
-
-		// Move core Background Image into our custom panel
-		$section = $wp_customize->get_section( 'background_image' );
-		if ( $section ) {
-			$section->panel    = 'memberlite_general_panel';
-		}
 
 		$wp_customize->add_section(
 			'memberlite_breadcrumbs_options',
@@ -151,13 +146,6 @@ class Memberlite_Customize {
 				'panel' => 'memberlite_header_panel'
 			)
 		);
-
-		// Move core Header Image into our custom panel
-		$section = $wp_customize->get_section( 'header_image' );
-		if ( $section ) {
-			$section->panel    = 'memberlite_header_panel';
-			$section->priority = 10;
-		}
 
 		/* Footer -------------------------------- */
 		$wp_customize->add_section(
