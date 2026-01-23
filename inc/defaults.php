@@ -1,85 +1,99 @@
 <?php
 /**
- * Define color array functions
- *
- * @return array<string, string>
+ * Core color arrays for each scheme
  */
 function memberlite_get_colors(): array {
 	return array(
-		'heading' => '#011935',
-		'background' => '#FFFFFF',
-		'masthead_bg' => '#FFFFFF',
-		'nav_bg' => '#F9FAFB',
-		'nav_text' => '#444444',
-		'body_text' => '#222222',
-		'primary' => '#011935',
-		'primary_hover' => '#011935',
-		'secondary' => '#011935',
-		'action' => '#00A59D',
-		'button' => '#E87102',
-		'border' => '#3C4B5A',
-		'masthead_text' => '#011935',
-		'footer_bg' => '#FFFFFF',
-		'footer_text' => '#F9FAFB',
-		'delimiter' => '#444444',
+		'contrast'     => '#222222',
+		'base'         => '#FFFFFF',
+		'masthead_bg'  => '#FFFFFF',
+		'masthead_text'=> '#011935',
+		'primary'      => '#011935',
+		'secondary'    => '#011935',
+		'border'       => '#3C4B5A',
 	);
 }
 
-/**
- * Define News Author color array
- *
- * @return array<string, string>
- */
 function memberlite_get_news_colors(): array {
 	return array(
-		'heading'         => '#1A1A1A',
-		'background'      => '#FFFFFF', //base
-		'masthead_bg'     => '#FFFFFF',
-		'nav_bg'          => '#F9FAFB',
-		'nav_text'        => '#444444',
-		'body_text'       => '#222222', //contrast
-		'primary'         => '#011935',
-		'primary_hover'   => '#011935',
-		'secondary'       => '#00A59D',
-		'action'          => '#FF6719', //accent
-		'button'          => '#FF6719',
-		'border'          => '#E0E0E0',
-		'masthead_text'   => '#FFFFFF',
-		'footer_bg'       => '#F9FAFB',
-		'footer_text'     => '#444444',
-		'delimiter'       => '#FFFFFF',
+		'contrast'     => '#222222',
+		'base'         => '#FFFFFF',
+		'masthead_bg'  => '#e8b500',
+		'masthead_text'=> '#FFFFFF',
+		'primary'      => '#e8b500',
+		'secondary'    => '#868787',
+		'border'       => '#e6e6e6',
 	);
 }
 
 /**
- * Get default theme settings
- *
- * @return array<string, mixed>
+ * Legacy color array (16 colors) - for backward compatibility
  */
-function memberlite_get_defaults(): array
-{
-	$colors = memberlite_get_colors();
+function memberlite_get_legacy_colors(): array {
+	return array(
+		'heading'       => '#011935',
+		'background'    => '#FFFFFF',
+		'masthead_bg'   => '#FFFFFF',
+		'nav_bg'        => '#F9FAFB',
+		'nav_text'      => '#444444',
+		'body_text'     => '#222222',
+		'primary'       => '#011935',
+		'primary_hover' => '#011935',
+		'secondary'     => '#011935',
+		'action'        => '#00A59D',
+		'button'        => '#E87102',
+		'border'        => '#3C4B5A',
+		'masthead_text' => '#011935',
+		'footer_bg'     => '#FFFFFF',
+		'footer_text'   => '#F9FAFB',
+		'delimiter'     => '#444444',
+	);
+}
 
-	$defaults = array(
-		'memberlite_webfonts'      => 'Lato_Lato',
-		'memberlite_header_font'   => 'Lato',
-		'memberlite_body_font'     => 'Lato',
-		'columns_ratio'            => '8-4',
-		'columns_ratio_header'     => '4-8',
-		'sidebar_location'         => 'sidebar-right',
-		'sidebar_location_blog'    => 'sidebar-blog-right',
-		'content_archives'         => 'content',
-		'memberlite_loop_images'   => 'show_none',
-		'posts_entry_meta_before'  => __('Posted on {post_date} by {post_author_posts_link}', 'memberlite'),
-		'posts_entry_meta_after'   => __('This entry was posted in {post_categories} and tagged {post_tags}. Bookmark the {post_permalink}.', 'memberlite'),
-		'author_block'             => false,
-		'memberlite_footerwidgets' => '4',
-		'copyright_textbox'        => '&copy; !!current_year!! !!site_title!!',
-		'memberlite_back_to_top'   => true,
-		'memberlite_color_scheme'  => 'Default',
-		'memberlite_darkcss'       => false,
+/**
+ * Map new 7-color scheme to full Customizer settings
+ * This is the key function that expands the simplified color scheme
+ */
+function memberlite_map_colors_to_settings(array $colors): array {
+	return array(
+		// New simplified colors
+		'color_text'               => $colors['contrast'],
+		'background_color'         => $colors['base'],
+		'bgcolor_header'           => $colors['masthead_bg'],
+		'color_page_masthead'      => $colors['masthead_text'],
+		'color_primary'            => $colors['primary'],
+		'color_secondary'          => $colors['secondary'],
+		'color_borders'            => $colors['border'],
+
+		// Derived/calculated colors based on the 7 core colors
+		'memberlite_heading_color' => $colors['masthead_text'],
+		'color_link'               => $colors['primary'],
+		'color_meta_link'          => $colors['primary'],
+		'color_button'             => $colors['primary'],
+		'color_action'             => $colors['primary'],
+		'bgcolor_page_masthead'    => $colors['primary'],
+
+		// Navigation - derive from masthead or set sensible defaults
+		'bgcolor_site_navigation'  => $colors['base'], // or derive
+		'color_site_navigation'    => $colors['contrast'],
+
+		// Footer - derive from base colors
+		'bgcolor_footer_widgets'   => $colors['base'],
+		'color_footer_widgets'     => $colors['contrast'],
+
+		// Other elements
+		'delimiter'                => $colors['border'],
+		'color_white'              => '#FFFFFF',
+	);
+}
+
+/**
+ * Map legacy 16-color scheme to full Customizer settings
+ */
+function memberlite_map_legacy_colors_to_settings(array $colors): array {
+	return array(
 		'background_color'         => $colors['background'],
-		'bgcolor_header'           => '',
+		'bgcolor_header'           => $colors['masthead_bg'],
 		'bgcolor_site_navigation'  => $colors['nav_bg'],
 		'color_site_navigation'    => $colors['nav_text'],
 		'color_link'               => $colors['primary'],
@@ -93,74 +107,182 @@ function memberlite_get_defaults(): array
 		'bgcolor_footer_widgets'   => $colors['footer_bg'],
 		'color_footer_widgets'     => $colors['footer_text'],
 		'delimiter'                => $colors['delimiter'],
-		'hover_brightness'         => '1.1',
 		'color_white'              => '#FFFFFF',
 		'color_text'               => $colors['body_text'],
 		'color_borders'            => $colors['border'],
 		'memberlite_heading_color' => $colors['heading'],
 	);
+}
+
+/**
+ * Get default theme settings (4.7+ with new 7-color scheme)
+ */
+function memberlite_get_defaults(): array {
+	$colors = memberlite_get_colors();
+	$color_settings = memberlite_map_colors_to_settings($colors);
+
+	$defaults = array_merge(
+		array(
+			'memberlite_webfonts'      => 'Lato_Lato',
+			'memberlite_header_font'   => 'Lato',
+			'memberlite_body_font'     => 'Lato',
+			'columns_ratio'            => '8-4',
+			'columns_ratio_header'     => '4-8',
+			'sidebar_location'         => 'sidebar-right',
+			'sidebar_location_blog'    => 'sidebar-blog-right',
+			'content_archives'         => 'content',
+			'memberlite_loop_images'   => 'show_none',
+			'posts_entry_meta_before'  => __('Posted on {post_date} by {post_author_posts_link}', 'memberlite'),
+			'posts_entry_meta_after'   => __('This entry was posted in {post_categories} and tagged {post_tags}. Bookmark the {post_permalink}.', 'memberlite'),
+			'author_block'             => false,
+			'memberlite_footerwidgets' => '4',
+			'copyright_textbox'        => '&copy; !!current_year!! !!site_title!!',
+			'memberlite_back_to_top'   => true,
+			'memberlite_color_scheme'  => 'default_2026',
+			'memberlite_darkcss'       => false,
+			'hover_brightness'         => '1.1',
+		),
+		$color_settings
+	);
+
 	return apply_filters('memberlite_defaults', $defaults);
 }
 
 /**
- * Get News Author theme variation settings
- *
- * @return array<string, mixed>
+ * Get News Author theme variation settings (4.7+ with new 7-color scheme)
  */
-function memberlite_get_defaults_news(): array
-{
+function memberlite_get_defaults_news(): array {
 	$colors = memberlite_get_news_colors();
+	$color_settings = memberlite_map_colors_to_settings($colors);
 
-	$defaults = array(
-		'memberlite_webfonts'      => '',
-		'memberlite_header_font'   => 'Times New Roman',
-		'memberlite_body_font'     => 'Times New Roman',
-		'columns_ratio'            => '8-4',
-		'columns_ratio_header'     => '4-8',
-		'sidebar_location'         => 'sidebar-right',
-		'sidebar_location_blog'    => 'sidebar-blog-right',
-		'content_archives'         => 'content',
-		'memberlite_loop_images'   => 'show_none',
-		'posts_entry_meta_before'  => __('Posted on {post_date} by {post_author_posts_link}', 'memberlite'),
-		'posts_entry_meta_after'   => __('This entry was posted in {post_categories} and tagged {post_tags}. Bookmark the {post_permalink}.', 'memberlite'),
-		'author_block'             => false,
-		'memberlite_footerwidgets' => '4',
-		'copyright_textbox'        => '&copy; !!current_year!! !!site_title!!',
-		'memberlite_back_to_top'   => true,
-		'memberlite_color_scheme'  => 'News',
-		'memberlite_darkcss'       => false,
-		'background_color'         => $colors['background'],
-		'bgcolor_header'           => $colors['masthead_bg'],
-		'bgcolor_site_navigation'  => $colors['nav_bg'],
-		'color_site_navigation'    => $colors['nav_text'],
-		'color_link'               => $colors['primary'],
-		'color_meta_link'          => $colors['primary'],
-		'color_primary'            => $colors['primary'],
-		'color_secondary'          => $colors['secondary'],
-		'color_action'             => $colors['action'],
-		'color_button'             => $colors['button'],
-		'bgcolor_page_masthead'    => $colors['primary'],
-		'color_page_masthead'      => $colors['masthead_text'],
-		'bgcolor_footer_widgets'   => $colors['footer_bg'],
-		'color_footer_widgets'     => $colors['footer_text'],
-		'delimiter'                => $colors['delimiter'],
-		'hover_brightness'         => '1.1',
-		'color_white'              => '#FFFFFF',
-		'color_text'               => $colors['body_text'],
-		'color_borders'            => $colors['border'],
-		'memberlite_heading_color' => $colors['heading'],
+	$defaults = array_merge(
+		array(
+			'memberlite_webfonts'      => 'Roboto',
+			'memberlite_header_font'   => 'Roboto',
+			'memberlite_body_font'     => 'Roboto',
+			'columns_ratio'            => '8-4',
+			'columns_ratio_header'     => '4-8',
+			'sidebar_location'         => 'sidebar-right',
+			'sidebar_location_blog'    => 'sidebar-none',
+			'content_archives'         => 'excerpt',
+			'memberlite_loop_images'   => 'show_none',
+			'posts_entry_meta_before'  => __('{post_author_posts_link} &#13; {post_date}', 'memberlite'),
+			'posts_entry_meta_after'   => __('This entry was posted in {post_categories} and tagged {post_tags}. Bookmark the {post_permalink}.', 'memberlite'),
+			'author_block'             => false,
+			'memberlite_footerwidgets' => '1',
+			'copyright_textbox'        => '&copy; !!current_year!! !!site_title!!',
+			'memberlite_back_to_top'   => true,
+			'memberlite_color_scheme'  => 'news',
+			'memberlite_darkcss'       => false,
+			'hover_brightness'         => '1.1',
+		),
+		$color_settings
 	);
 
 	return apply_filters('memberlite_defaults_news', $defaults);
 }
 
 /**
- * Color schemes from Memberlite versions prior to 4.6
+ * Get legacy default settings (pre-4.7 with 16-color scheme)
+ * Used when 'default_v4.6' legacy scheme is selected
+ */
+function memberlite_get_defaults_legacy(): array {
+	$colors = memberlite_get_legacy_colors();
+	$color_settings = memberlite_map_legacy_colors_to_settings($colors);
+
+	$defaults = array_merge(
+		array(
+			'memberlite_webfonts'      => 'Lato_Lato',
+			'memberlite_header_font'   => 'Lato',
+			'memberlite_body_font'     => 'Lato',
+			'columns_ratio'            => '8-4',
+			'columns_ratio_header'     => '4-8',
+			'sidebar_location'         => 'sidebar-right',
+			'sidebar_location_blog'    => 'sidebar-blog-right',
+			'content_archives'         => 'content',
+			'memberlite_loop_images'   => 'show_none',
+			'posts_entry_meta_before'  => __('Posted on {post_date} by {post_author_posts_link}', 'memberlite'),
+			'posts_entry_meta_after'   => __('This entry was posted in {post_categories} and tagged {post_tags}. Bookmark the {post_permalink}.', 'memberlite'),
+			'author_block'             => false,
+			'memberlite_footerwidgets' => '4',
+			'copyright_textbox'        => '&copy; !!current_year!! !!site_title!!',
+			'memberlite_back_to_top'   => true,
+			'memberlite_color_scheme'  => 'default_v4.6',
+			'memberlite_darkcss'       => false,
+			'hover_brightness'         => '1.1',
+		),
+		$color_settings
+	);
+
+	return apply_filters('memberlite_defaults_legacy', $defaults);
+}
+
+/**
+ * New color schemes (4.7+) - 7 colors each
+ */
+function memberlite_get_color_schemes(): array {
+	$colors = memberlite_get_colors();
+	$news_colors = memberlite_get_news_colors();
+
+	$schemes = array(
+		'default_2026' => array(
+			'label' => __('Default', 'memberlite'),
+			'colors' => array(
+				$colors['contrast'],
+				$colors['base'],
+				$colors['masthead_bg'],
+				$colors['masthead_text'],
+				$colors['primary'],
+				$colors['secondary'],
+				$colors['border'],
+			),
+		),
+		'news' => array(
+			'label' => __('News Author', 'memberlite'),
+			'colors' => array(
+				$news_colors['contrast'],
+				$news_colors['base'],
+				$news_colors['masthead_bg'],
+				$news_colors['masthead_text'],
+				$news_colors['primary'],
+				$news_colors['secondary'],
+				$news_colors['border'],
+			),
+		),
+	);
+
+	return apply_filters('memberlite_color_schemes', $schemes);
+}
+
+/**
+ * Color schemes from Memberlite versions up to 4.6 w/ 16 colors each for backward compatibility
  *
  * @return array<string, array<string, mixed>>
  */
 function memberlite_get_legacy_color_schemes(): array {
+	$legacy_colors = memberlite_get_legacy_colors();
 	return array(
+		'default_v4.6' => array(
+			'label' => __('Default V4.6', 'memberlite'),
+			'colors' => array(
+				$legacy_colors['heading'],
+				$legacy_colors['background'],
+				$legacy_colors['masthead_bg'],
+				$legacy_colors['nav_bg'],
+				$legacy_colors['nav_text'],
+				$legacy_colors['body_text'],
+				$legacy_colors['primary'],
+				$legacy_colors['primary_hover'],
+				$legacy_colors['secondary'],
+				$legacy_colors['action'],
+				$legacy_colors['button'],
+				$legacy_colors['border'],
+				$legacy_colors['masthead_text'],
+				$legacy_colors['footer_bg'],
+				$legacy_colors['footer_text'],
+				$legacy_colors['delimiter'],
+			),
+		),
 		'default' => array(
 			'label' => __('Default (Legacy)', 'memberlite'),
 			'colors' => array(
@@ -416,85 +538,12 @@ function memberlite_get_legacy_color_schemes(): array {
 	);
 }
 
-/**
- * Default Memberlite and Theme Variation Color Schemes
- *
- * @return array<string, array<string, mixed>>
- */
-function memberlite_get_color_schemes(): array
-{
-	$colors = memberlite_get_colors();
-	$news_colors = memberlite_get_news_colors();
+// Globals
+global $memberlite_defaults, $memberlite_defaults_news, $memberlite_defaults_legacy;
+global $memberlite_color_schemes, $memberlite_legacy_color_schemes;
 
-	// Define new/current color schemes
-	$schemes = array(
-		'default_v4.6' => array(
-			'label' => __('Default', 'memberlite'),
-			'colors' => array(
-				$colors['heading'],        // 1. Heading Text Color
-				$colors['background'],     // 2. Background Color
-				$colors['masthead_bg'],    // 3. Masthead Background Color
-				$colors['nav_bg'],         // 4. Site Navigation Background Color
-				$colors['nav_text'],       // 5. Site Navigation Text Color
-				$colors['body_text'],      // 6. Body Text Color
-				$colors['primary'],        // 7. Primary Color
-				$colors['primary_hover'],  // 8. Primary Color Hover
-				$colors['secondary'],      // 9. Secondary Color
-				$colors['action'],         // 10. Action Color
-				$colors['button'],         // 11. Button Color
-				$colors['border'],         // 12. Border Color
-				$colors['masthead_text'],  // 13. Masthead Text Color
-				$colors['footer_bg'],      // 14. Footer Widgets Background Color
-				$colors['footer_text'],    // 15. Footer Widgets Text Color
-				$colors['delimiter'],      // 16. Delimiter Color
-			),
-		),
-		'news' => array(
-			'label' => __('News Author', 'memberlite'),
-			'colors' => array(
-				$news_colors['heading'],         // 1. Heading Text Color
-				$news_colors['background'],      // 2. Background Color
-				$news_colors['masthead_bg'],     // 3. Masthead Background Color
-				$news_colors['nav_bg'],          // 4. Site Navigation Background Color
-				$news_colors['nav_text'],        // 5. Site Navigation Text Color
-				$news_colors['body_text'],       // 6. Body Text Color
-				$news_colors['primary'],         // 7. Primary Color
-				$news_colors['primary_hover'],   // 8. Primary Color Hover
-				$news_colors['secondary'],       // 9. Secondary Color
-				$news_colors['action'],          // 10. Action Color
-				$news_colors['button'],          // 11. Button Color
-				$news_colors['border'],          // 12. Border Color
-				$news_colors['masthead_text'],   // 13. Masthead Text Color
-				$news_colors['footer_bg'],       // 14. Footer Widgets Background Color
-				$news_colors['footer_text'],     // 15. Footer Widgets Text Color
-				$news_colors['delimiter'],       // 16. Delimiter Color
-			),
-		),
-	);
-
-	// Merge with legacy schemes
-	$legacy_schemes = memberlite_get_legacy_color_schemes();
-	$schemes = array_merge($schemes, $legacy_schemes);
-
-	return apply_filters('memberlite_color_schemes', $schemes);
-}
-
-// For the Default Memberlite Colors
-global $memberlite_colors;
-$memberlite_colors = memberlite_get_colors();
-
-// Colors for Theme Variation "News Author"
-global $memberlite_news_colors;
-$memberlite_news_colors = memberlite_get_news_colors();
-
-// Presets for Default Theme Variation
-global $memberlite_defaults;
 $memberlite_defaults = memberlite_get_defaults();
-
-// Presets for "News Author" Theme Variation
-global $memberlite_defaults_news;
 $memberlite_defaults_news = memberlite_get_defaults_news();
-
-// Available Color Schemes
-global $memberlite_color_schemes;
+$memberlite_defaults_legacy = memberlite_get_defaults_legacy();
 $memberlite_color_schemes = memberlite_get_color_schemes();
+$memberlite_legacy_color_schemes = memberlite_get_legacy_color_schemes();

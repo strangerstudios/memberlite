@@ -261,8 +261,20 @@ class Memberlite_Customize {
 	 * @return void
 	 */
 	public static function set_customizer_color_settings( WP_Customize_Manager $wp_customize ) {
-		// COLORS: Color Scheme ================
-		self::add_memberlite_setting_control( $wp_customize, 'memberlite_color_scheme', 'Memberlite Color Scheme', 'colors', array(
+		// COLORS: Color Scheme (New and Legacy) ================
+		self::add_memberlite_setting_control( $wp_customize, 'memberlite_variation_color_scheme', 'Memberlite Color Scheme', 'colors', array(
+			'type'                  => 'select',
+			'sanitize_callback'     => array( 'Memberlite_Customize', 'sanitize_color_scheme' ),
+			'sanitize_js_callback'  => array( 'Memberlite_Customize', 'sanitize_js_color_scheme' ),
+			'choices'               => array_merge(
+				Memberlite_Customize::get_color_scheme_choices(),
+				array(
+					'custom' => 'Custom',
+				)
+			),
+			'priority' => 1,
+		) );
+		self::add_memberlite_setting_control( $wp_customize, 'memberlite_color_scheme', 'Legacy Memberlite Color Scheme', 'colors', array(
 			'type'                  => 'select',
 			'sanitize_callback'     => array( 'Memberlite_Customize', 'sanitize_color_scheme' ),
 			'sanitize_js_callback'  => array( 'Memberlite_Customize', 'sanitize_js_color_scheme' ),
