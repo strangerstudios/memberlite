@@ -41,6 +41,8 @@ $memberlite_map_deprecated_hooks = array(
 	'memberlite_after_footer_widgets'   => 'after_footer_widgets',
 	'memberlite_before_site_info'       => 'before_site_info',
 	'memberlite_after_site_info'        => 'after_site_info',
+	'memberlite_custom_background_args' => null,
+	'memberlite_custom_header_args'	    => null,
 );
 
 // anonymous function used below is only supported in php 5.3+
@@ -221,3 +223,123 @@ add_action( 'admin_notices', 'memberlite_check_for_deprecated_plugins' );
 	return $actions;
 }
 add_filter( 'plugin_action_links', 'memberlite_deprecated_plugins_action_links', 10, 2 );
+
+/**
+ * Deprecated Custom Background and Custom Header Support
+ *
+ * These features are deprecated as of Memberlite TBD. For backward compatibility,
+ * sites that already have a background image or header image set will continue to
+ * have the feature enabled, but will see an admin notice encouraging migration
+ * to a custom CSS solution.
+ *
+ * @since TBD
+ */
+
+/**
+ * Check if the site is using a deprecated custom background image.
+ *
+ * @since TBD
+ *
+ * @return bool True if a background image is set.
+ */
+function memberlite_is_using_custom_background() {
+	$background_image = get_theme_mod( 'background_image', '' );
+	return ! empty( $background_image );
+}
+
+/**
+ * Check if the site is using a deprecated custom header image.
+ *
+ * @since TBD
+ *
+ * @return bool True if a header image is set.
+ */
+function memberlite_is_using_custom_header() {
+	$header_image = get_theme_mod( 'header_image', '' );
+	// WordPress uses 'remove-header' as a special value to indicate no header.
+	return ! empty( $header_image ) && $header_image !== 'remove-header';
+}
+
+/**
+ * Conditionally register deprecated theme supports for backward compatibility.
+ *
+ * This function runs early on after_setup_theme to detect if the site is using
+ * custom background or custom header features, and only registers theme support
+ * if they are actively being used.
+ *
+ * @since TBD
+ */
+function memberlite_maybe_register_deprecated_theme_supports() {
+	// Check for custom background usage.
+	if ( memberlite_is_using_custom_background() ) {
+		$custom_background = apply_filters(
+			'memberlite_custom_background_args',
+			array(
+				'default-color' => 'FFFFFF',
+				'default-image' => '',
+			)
+		);
+		add_theme_support( 'custom-background', $custom_background );
+	}
+
+	// Check for custom header usage.
+	if ( memberlite_is_using_custom_header() ) {
+		$custom_header = apply_filters(
+			'memberlite_custom_header_args',
+			array(
+				'default-text-color' => '2c3e50',
+				'height'             => 110,
+				'width'              => 1440,
+				'flex-height'        => true,
+				'flex-width'         => true,
+				'wp-head-callback'   => 'memberlite_header_style',
+			)
+		);
+		add_theme_support( 'custom-header', $custom_header );
+	}
+}
+add_action( 'after_setup_theme', 'memberlite_maybe_register_deprecated_theme_supports', 5 );
+
+/**
+ * Styles the header image and text displayed on the blog.
+ *
+ * This is the wp-head-callback for the deprecated custom-header feature.
+ *
+ * @since TBD Moved from inc/custom-header.php for backward compatibility.
+ */
+function memberlite_header_style() {
+	$header_image = get_header_image();
+
+	// If no custom options for text are set, let's bail.
+	if ( empty( $header_image ) && display_header_text() ) {
+		return;
+	}
+
+	// If we get this far, we have custom styles. Let's do this.
+	?>
+	<style type="text/css">
+	<?php
+		// Has a Custom Header been added?
+		if ( ! empty( $header_image ) ) {
+		?>
+		.site-header {
+			background-image: url(<?php header_image(); ?>);
+			background-repeat: repeat;
+			background-position: center center;
+		}
+		<?php
+		}
+		// Has the text been hidden?
+		if ( ! display_header_text() ) {
+		?>
+		.site-title,
+		.site-description {
+			clip: rect(1px, 1px, 1px, 1px);
+			position: absolute;
+		}
+		<?php
+		}
+	?>
+	</style>
+	<?php
+}
