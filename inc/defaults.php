@@ -540,6 +540,89 @@ function memberlite_get_legacy_color_schemes(): array {
 	return apply_filters('memberlite_color_schemes', $schemes);
 }
 
+function memberlite_get_active_colors() {
+	global $memberlite_defaults;
+
+	$variation_scheme = get_theme_mod('memberlite_variation_color_scheme', 'default_2026');
+
+	// Check if using legacy scheme
+	if ( $variation_scheme === 'legacy' ) {
+		$legacy_scheme = get_theme_mod('memberlite_color_scheme', 'default_v4.6');
+		$legacy_color_schemes = memberlite_get_legacy_color_schemes();
+
+		if ( isset( $legacy_color_schemes[$legacy_scheme] ) && $legacy_scheme !== 'modern' && $legacy_scheme !== 'custom' ) {
+			// Map the 16-color array from legacy scheme to settings keys
+			$colors = $legacy_color_schemes[$legacy_scheme]['colors'];
+
+			return array(
+				'memberlite_heading_color' => $colors[0],
+				'background_color'         => $colors[1],
+				'bgcolor_header'           => $colors[2],
+				'bgcolor_site_navigation'  => $colors[3],
+				'color_site_navigation'    => $colors[4],
+				'color_text'               => $colors[5],
+				'color_link'               => $colors[6],
+				'color_meta_link'          => $colors[7],
+				'color_primary'            => $colors[8],
+				'color_secondary'          => $colors[9],
+				'color_action'             => $colors[10],
+				'color_button'             => $colors[11],
+				'color_borders'            => $colors[12],
+				'bgcolor_page_masthead'    => isset($colors[13]) ? $colors[13] : $colors[0],
+				'color_page_masthead'      => isset($colors[14]) ? $colors[14] : $colors[1],
+				'bgcolor_footer_widgets'   => isset($colors[15]) ? $colors[15] : $colors[1],
+				'color_footer_widgets'     => isset($colors[16]) ? $colors[16] : $colors[5],
+			);
+		}
+	}
+
+	// Check if using a new variation scheme (not custom, not legacy)
+	if ( $variation_scheme !== 'custom' && $variation_scheme !== 'legacy' ) {
+		$color_schemes = memberlite_get_color_schemes();
+
+		if ( isset( $color_schemes[$variation_scheme] ) ) {
+			// Get the appropriate color array
+			if ( $variation_scheme === 'news' ) {
+				$color_array = memberlite_get_news_colors();
+			} else {
+				$color_array = memberlite_get_colors();
+			}
+
+			// Map to settings
+			return memberlite_map_colors_to_settings( $color_array );
+		}
+	}
+
+	// Custom mode: Get individual saved colors from database
+	$colors = array();
+	$color_keys = array(
+		'background_color',
+		'bgcolor_header',
+		'bgcolor_site_navigation',
+		'color_site_navigation',
+		'color_text',
+		'color_link',
+		'color_meta_link',
+		'color_primary',
+		'color_secondary',
+		'color_action',
+		'color_button',
+		'bgcolor_page_masthead',
+		'color_page_masthead',
+		'bgcolor_footer_widgets',
+		'color_footer_widgets',
+		'color_borders',
+		'memberlite_heading_color',
+	);
+
+	foreach ( $color_keys as $key ) {
+		$value = get_theme_mod( $key );
+		$colors[$key] = ! empty( $value ) ? $value : $memberlite_defaults[$key];
+	}
+
+	return $colors;
+}
+
 // Globals
 global $memberlite_defaults, $memberlite_defaults_news, $memberlite_defaults_legacy;
 global $memberlite_color_schemes, $memberlite_legacy_color_schemes;

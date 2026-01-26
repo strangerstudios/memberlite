@@ -140,7 +140,7 @@ font-stretch: normal;
 }<?php
 		}
 	}
-	
+
 	// Enqueue the header font.
 	if ( ! empty( $header_font ) ) { ?>@font-face {
 font-family: <?php echo esc_html( memberlite_get_font( 'header_font', true ) ); ?>;
@@ -249,7 +249,7 @@ if ( ! function_exists( 'memberlite_setup' ) ) :
 			'flex-height'  => true,
 			'flex-width'  => true,
 			'header-text' => array( 'site-title', 'site-description' ),
-			'unlink-homepage-logo' => false, 
+			'unlink-homepage-logo' => false,
 		);
 
 		add_theme_support( 'custom-logo', $logo_defaults );
@@ -326,7 +326,7 @@ if ( ! function_exists( 'memberlite_setup' ) ) :
 			)
 		);
 		add_theme_support( 'custom-background', $custom_background );
-		
+
 		// Build unique array of Color Scheme values to include in Block Editor
 		$color_scheme = array();
 
@@ -484,7 +484,7 @@ add_action( 'after_setup_theme', 'memberlite_setup' );
 
 /**
  * Load the Memberlite theme textdomain on init (WP 6.7+ requirement).
- * 
+ *
  * If you're building a theme based on Memberlite, use a find and replace
  * to change 'memberlite' to the name of your theme in all the template files.
  */
@@ -495,7 +495,7 @@ add_action( 'init', 'memberlite_load_textdomain' );
 
 /**
  * Load custom translations from our own server: translate.strangerstudios.com
- * 
+ *
  * @since TBD
  */
 function memberlite_check_for_translations() {
@@ -504,12 +504,12 @@ function memberlite_check_for_translations() {
 	if ( function_exists( 'pmproum_check_for_translations' ) ) {
 		return;
 	}
-	
+
 	// If the library isn't loaded, bail.
 	if ( ! function_exists( 'Memberlite\Required\Traduttore_Registry\add_project' ) ) {
 		return;
 	}
-	
+
 	// Only check for updates when on the update page, plugins, themes page, or the Memberlite support page
 	$is_update_or_plugins_page = strpos( $_SERVER['REQUEST_URI'], 'update-core.php' ) !== false || strpos( $_SERVER['REQUEST_URI'], 'plugins.php' ) !== false || strpos( $_SERVER['REQUEST_URI'], 'themes.php' ) !== false;
 	$is_memberlite_admin_page = isset( $_REQUEST['page'] ) && $_REQUEST['page'] === 'memberlite-support';
@@ -1029,3 +1029,31 @@ function memberlite_theme_mod_copyright_textbox( $copyright_text ) {
     return $copyright_text;
 }
 add_filter( 'theme_mod_copyright_textbox', 'memberlite_theme_mod_copyright_textbox' );
+
+/**
+ * Migrate existing sites to new color scheme structure
+ */
+function memberlite_migrate_to_variation_color_schemes() {
+    if ( get_option('memberlite_variation_scheme_migrated') ) {
+        return;
+    }
+
+    // Get existing legacy color scheme
+    $legacy_scheme = get_theme_mod('memberlite_color_scheme');
+
+    // If they have a legacy scheme set (and it's not empty)
+    if ( $legacy_scheme && $legacy_scheme !== '' ) {
+        // Set variation scheme to 'legacy' mode
+        set_theme_mod('memberlite_variation_color_scheme', 'legacy');
+
+        // Their existing memberlite_color_scheme value stays as-is
+        // (e.g., 'default_v4.6', 'mono_pink', etc.)
+    } else {
+        // New installation - use modern default
+        set_theme_mod('memberlite_variation_color_scheme', 'default_2026');
+    }
+
+    update_option('memberlite_variation_scheme_migrated', true);
+}
+//@todo: Ask Kim if she's fine with this approach?
+add_action('after_setup_theme', 'memberlite_migrate_to_variation_color_schemes');

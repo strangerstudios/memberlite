@@ -269,8 +269,8 @@ class Memberlite_Customize {
 			'choices'               => array_merge(
 				Memberlite_Customize::get_color_scheme_choices(),
 				array(
-					'legacy' => 'Legacy',
-					'custom' => 'Custom',
+					'legacy' => 'Use Legacy Color Scheme →',
+					'custom' => 'Custom Colors',
 				)
 			),
             'default' => 'default_2026',
@@ -279,19 +279,20 @@ class Memberlite_Customize {
 
 		self::add_memberlite_setting_control( $wp_customize, 'memberlite_color_scheme', 'Legacy Memberlite Color Scheme', 'colors', array(
 			'type'                  => 'select',
-			'sanitize_callback'     => array( 'Memberlite_Customize', 'sanitize_color_scheme' ),
-			'sanitize_js_callback'  => array( 'Memberlite_Customize', 'sanitize_js_color_scheme' ),
+			'sanitize_callback'     => array( 'Memberlite_Customize', 'sanitize_legacy_color_scheme' ),
+			'sanitize_js_callback'  => array( 'Memberlite_Customize', 'sanitize_js_legacy_color_scheme' ),
 			'choices'               => array_merge(
 				Memberlite_Customize::get_legacy_color_scheme_choices(),
 				array(
-					'custom' => 'Custom',
+					'modern' => '← Back to Modern Schemes',
+                    'custom' => 'Custom Legacy Colors',
 				)
 			),
             'default' => 'default_v4.6',
 			'priority' => 1,
-//            'active_callback'      => function() use ( $wp_customize ) {
-//                return $wp_customize->get_setting( 'memberlite_variation_color_scheme' )->value() === 'legacy';
-//            },
+            'active_callback' => function() {
+                return get_theme_mod('memberlite_variation_color_scheme') === 'legacy';
+            },
 		) );
 
 		// COLORS: Dark Mode ================
@@ -631,8 +632,6 @@ class Memberlite_Customize {
 			$args['description'] = __( $args['description'], 'memberlite' );
 		}
 
-        error_log('Color Control Default ' . $args['default']);
-
 		// Add Setting
 		$wp_customize->add_setting(
 			$setting_id,
@@ -688,6 +687,7 @@ class Memberlite_Customize {
 			'sanitize_callback' => array( 'Memberlite_Customize', 'sanitize_select' ), // Default to select/text
 			'transport'         => 'refresh',
 			'description'       => '',
+            'active_callback'   => null,
 		);
 
 		// Merge passed args with defaults
@@ -708,8 +708,6 @@ class Memberlite_Customize {
 			}, $args['choices'] );
 		}
 
-        error_log('Setting Control Default ' . $args['default']);
-
 		// 1. Add Setting
 		$wp_customize->add_setting(
 			$id,
@@ -721,17 +719,21 @@ class Memberlite_Customize {
 			)
 		);
 
-		// 2. Add Control
-		$wp_customize->add_control(
-			$id,
-			array(
-				'label'       => $label,
-				'section'     => $section,
-				'type'        => $args['type'],
-				'choices'     => $args['choices'],
-				'description' => $args['description'],
-			)
-		);
+        // 2. Add Control
+        $control_args = array(
+                'label'       => $label,
+                'section'     => $section,
+                'type'        => $args['type'],
+                'choices'     => $args['choices'],
+                'description' => $args['description'],
+        );
+
+        // Add active_callback if provided
+        if ( $args['active_callback'] !== null ) {
+            $control_args['active_callback'] = $args['active_callback'];
+        }
+
+        $wp_customize->add_control( $id, $control_args );
 	}
 
 	/**
@@ -861,6 +863,8 @@ class Memberlite_Customize {
 		$hover_brightness = $memberlite_defaults['hover_brightness'];
 		$color_white      = $memberlite_defaults['color_white'];
 		$color_borders    = $memberlite_defaults['color_borders'];
+
+        $active_colors = memberlite_get_active_colors();
 		?>
 		<!--Customizer CSS-->
 		<style id="memberlite-customizer-css" type="text/css">
@@ -895,23 +899,45 @@ class Memberlite_Customize {
 		<?php
 	}
 
+    /**
+     * Get a specific active color value
+     *
+     * @param string $color_key The color key to retrieve
+     * @return string The color value
+     */
+    function memberlite_get_color( $color_key ) {
+        static $active_colors = null;
+
+        // Cache the result so we only calculate once per page load
+        if ( $active_colors === null ) {
+            $active_colors = memberlite_get_active_colors();
+        }
+
+        return isset( $active_colors[ $color_key ] ) ? $active_colors[ $color_key ] : '';
+    }
+
 	/**
 	 * Localize $memberlite_defaults for use in the customizer live preview JS
 	 *
 	 * @return void
 	 */
 	public static function live_preview() {
-		global $memberlite_defaults;
-		wp_register_script(
-			'Memberlite_Customizer',
-			MEMBERLITE_URL . '/js/customizer.js',
-			array( 'jquery', 'customize-preview' ),
-			MEMBERLITE_VERSION,
-			true
-		);
-		// Localize the script with new data
-		wp_localize_script( 'Memberlite_Customizer', 'memberlite_defaults', $memberlite_defaults );
-		wp_enqueue_script( 'Memberlite_Customizer' );
+        //@todo: Do we need this?
+//		global $memberlite_defaults;
+//        global $memberlite_defaults_legacy;
+//		wp_register_script(
+//			'Memberlite_Customizer',
+//			MEMBERLITE_URL . '/js/customizer.js',
+//			array( 'jquery', 'customize-preview' ),
+//			MEMBERLITE_VERSION,
+//			true
+//		);
+//		// Localize the script with new data
+//		wp_localize_script( 'Memberlite_Customizer', 'memberlite_defaults', array(
+//                'new' => $memberlite_defaults,
+//                'legacy' => $memberlite_defaults_legacy,
+//        ) );
+//		wp_enqueue_script( 'Memberlite_Customizer' );
 	}
 
 	/**
@@ -1016,15 +1042,14 @@ class Memberlite_Customize {
 	 * @since Memberlite 2.0
 	 *
 	 */
-	public static function get_color_scheme_choices() {
-		$color_schemes                = memberlite_get_color_schemes();
-		$color_scheme_control_options = array();
-		foreach ( $color_schemes as $color_scheme => $value ) {
-			$color_scheme_control_options[ $color_scheme ] = $value['label'];
-		}
-
-		return $color_scheme_control_options;
-	}
+    public static function get_color_scheme_choices() {
+        $color_schemes = memberlite_get_color_schemes(); // Call global function from defaults.php
+        $color_scheme_control_options = array();
+        foreach ( $color_schemes as $color_scheme => $value ) {
+            $color_scheme_control_options[ $color_scheme ] = $value['label'];
+        }
+        return $color_scheme_control_options;
+    }
 
 	/**
 	 * Returns an array of legacy (4.6 and earlier) color scheme choices registered for Memberlite.
@@ -1033,15 +1058,14 @@ class Memberlite_Customize {
 	 * @since Memberlite 2.0
 	 *
 	 */
-	public static function get_legacy_color_scheme_choices() {
-		$color_schemes                = memberlite_get_legacy_color_schemes();
-		$color_scheme_control_options = array();
-		foreach ( $color_schemes as $color_scheme => $value ) {
-			$color_scheme_control_options[ $color_scheme ] = $value['label'];
-		}
-
-		return $color_scheme_control_options;
-	}
+    public static function get_legacy_color_scheme_choices() {
+        $color_schemes = memberlite_get_legacy_color_schemes(); // Call global function from defaults.php
+        $color_scheme_control_options = array();
+        foreach ( $color_schemes as $color_scheme => $value ) {
+            $color_scheme_control_options[ $color_scheme ] = $value['label'];
+        }
+        return $color_scheme_control_options;
+    }
 
 	/**
 	 * Sanitize Checkbox input values
@@ -1134,6 +1158,32 @@ class Memberlite_Customize {
 
 		return esc_js( $value );
 	}
+
+    public static function sanitize_legacy_color_scheme( $value ) {
+        $color_schemes = array_merge(
+                Memberlite_Customize::get_legacy_color_scheme_choices(),
+                array(
+                        'custom' => 'Custom',
+                )
+        );
+        if ( ! array_key_exists( $value, $color_schemes ) ) {
+            $value = 'default_v4.6'; // Use legacy default
+        }
+        return $value;
+    }
+
+    public static function sanitize_js_legacy_color_scheme( $value ) {
+        $color_schemes = array_merge(
+                Memberlite_Customize::get_legacy_color_scheme_choices(),
+                array(
+                        'custom' => 'Custom',
+                )
+        );
+        if ( ! array_key_exists( $value, $color_schemes ) ) {
+            $value = 'default_v4.6';
+        }
+        return esc_js( $value );
+    }
 
 	/**
 	 * Sanitization callback text that may contain links
