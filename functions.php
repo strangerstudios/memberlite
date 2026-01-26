@@ -1057,3 +1057,77 @@ function memberlite_migrate_to_variation_color_schemes() {
 }
 //@todo: Ask Kim if she's fine with this approach?
 add_action('after_setup_theme', 'memberlite_migrate_to_variation_color_schemes');
+
+/**
+ * Filter theme.json data to inject Customizer colors
+ * This makes Customizer colors available in the block editor
+ */
+function memberlite_filter_theme_json( $theme_json ) {
+    $active_colors = memberlite_get_active_colors();
+
+    // Build the color palette from active colors
+    $color_palette = array(
+            array(
+                    'slug'  => 'heading',
+                    'color' => $active_colors['memberlite_heading_color'],
+                    'name'  => __( 'Heading', 'memberlite' ),
+            ),
+            array(
+                    'slug'  => 'base',
+                    'color' => $active_colors['background_color'],
+                    'name'  => __( 'Base', 'memberlite' ),
+            ),
+            array(
+                    'slug'  => 'body-text',
+                    'color' => $active_colors['color_text'],
+                    'name'  => __( 'Body Text', 'memberlite' ),
+            ),
+            array(
+                    'slug'  => 'color-primary',
+                    'color' => $active_colors['color_primary'],
+                    'name'  => __( 'Primary', 'memberlite' ),
+            ),
+            array(
+                    'slug'  => 'color-secondary',
+                    'color' => $active_colors['color_secondary'],
+                    'name'  => __( 'Secondary', 'memberlite' ),
+            ),
+            array(
+                    'slug'  => 'buttons',
+                    'color' => $active_colors['color_button'],
+                    'name'  => __( 'Buttons', 'memberlite' ),
+            ),
+            array(
+                    'slug'  => 'border',
+                    'color' => $active_colors['color_borders'],
+                    'name'  => __( 'Border', 'memberlite' ),
+            ),
+            array(
+                    'slug'  => 'action',
+                    'color' => $active_colors['color_action'],
+                    'name'  => __( 'Action', 'memberlite' ),
+            ),
+            array(
+                    'slug'  => 'white',
+                    'color' => '#FFFFFF',
+                    'name'  => __( 'White', 'memberlite' ),
+            ),
+    );
+
+    // Merge with existing theme.json data
+    $theme_json_data = $theme_json->get_data();
+
+    // Update the color palette
+    if ( ! isset( $theme_json_data['settings'] ) ) {
+        $theme_json_data['settings'] = array();
+    }
+    if ( ! isset( $theme_json_data['settings']['color'] ) ) {
+        $theme_json_data['settings']['color'] = array();
+    }
+
+    $theme_json_data['settings']['color']['palette'] = $color_palette;
+
+    // Update the theme.json object
+    return $theme_json->update_with( $theme_json_data );
+}
+add_filter( 'wp_theme_json_data_theme', 'memberlite_filter_theme_json' );
