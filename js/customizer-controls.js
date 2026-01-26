@@ -78,7 +78,7 @@
 
                         for (i = 0; i < 15; i++) {
                             if (header_logo.length || i > 0) {
-                                $( '#customize-control-' + memberlite_color_controls[i] ).find( '.color-picker-hex' ).wpColorPicker( 'color', colors[i] );
+                                $( '#customize-control-' + memberlite_variation_color_controls[i] ).find( '.color-picker-hex' ).wpColorPicker( 'color', colors[i] );
                             }
                         }
                         memberlite_variation_color_controls_listener_flag = true;

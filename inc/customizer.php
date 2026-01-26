@@ -269,11 +269,14 @@ class Memberlite_Customize {
 			'choices'               => array_merge(
 				Memberlite_Customize::get_color_scheme_choices(),
 				array(
+					'legacy' => 'Legacy',
 					'custom' => 'Custom',
 				)
 			),
-			'priority' => 1,
+            'default' => 'default_2026',
+			'priority' => 1
 		) );
+
 		self::add_memberlite_setting_control( $wp_customize, 'memberlite_color_scheme', 'Legacy Memberlite Color Scheme', 'colors', array(
 			'type'                  => 'select',
 			'sanitize_callback'     => array( 'Memberlite_Customize', 'sanitize_color_scheme' ),
@@ -284,7 +287,11 @@ class Memberlite_Customize {
 					'custom' => 'Custom',
 				)
 			),
+            'default' => 'default_v4.6',
 			'priority' => 1,
+//            'active_callback'      => function() use ( $wp_customize ) {
+//                return $wp_customize->get_setting( 'memberlite_variation_color_scheme' )->value() === 'legacy';
+//            },
 		) );
 
 		// COLORS: Dark Mode ================
@@ -599,13 +606,19 @@ class Memberlite_Customize {
 	 * @return void
 	 */
 	public static function add_memberlite_color_control( WP_Customize_Manager $wp_customize, string $id, string $label, string $setting_id, $args = array() ): void {
-		global $memberlite_defaults;
+		global $memberlite_defaults, $memberlite_defaults_legacy;
 
-		// Define default arguments
-		$defaults = array(
-			'default'     => isset( $memberlite_defaults[ $setting_id ] ) ? $memberlite_defaults[ $setting_id ] : '',
-			'description' => '',
-		);
+        // Determine which defaults array to use
+        if ( $setting_id === 'memberlite_color_scheme' ) {
+            $defaults_array = $memberlite_defaults_legacy;
+        } else {
+            $defaults_array = $memberlite_defaults;
+        }
+
+        $defaults = array(
+                'default'     => isset( $defaults_array[ $setting_id ] ) ? $defaults_array[ $setting_id ] : '',
+                'description' => '',
+        );
 
 		// Merge passed args with defaults
 		$args = wp_parse_args( $args, $defaults );
@@ -617,6 +630,8 @@ class Memberlite_Customize {
 		if ( ! empty( $args['description'] ) ) {
 			$args['description'] = __( $args['description'], 'memberlite' );
 		}
+
+        error_log('Color Control Default ' . $args['default']);
 
 		// Add Setting
 		$wp_customize->add_setting(
@@ -656,11 +671,18 @@ class Memberlite_Customize {
 	 * @return void
 	 */
 	public static function add_memberlite_setting_control( WP_Customize_Manager $wp_customize, string $id, string $label, string $section, $args = array() ): void {
-		global $memberlite_defaults;
+		global $memberlite_defaults, $memberlite_defaults_legacy;
+
+        // Determine which defaults array to use
+        if ( $id === 'memberlite_color_scheme' ) {
+            $defaults_array = $memberlite_defaults_legacy;
+        } else {
+            $defaults_array = $memberlite_defaults;
+        }
 
 		// Define default arguments for the setting and control
 		$defaults = array(
-			'default'           => isset( $memberlite_defaults[ $id ] ) ? $memberlite_defaults[ $id ] : false,
+			'default'           => isset( $defaults_array[ $id ] ) ? $defaults_array[ $id ] : false,
 			'type'              => 'text',
 			'choices'           => array(),
 			'sanitize_callback' => array( 'Memberlite_Customize', 'sanitize_select' ), // Default to select/text
@@ -685,6 +707,8 @@ class Memberlite_Customize {
 				return __( $choice, 'memberlite' );
 			}, $args['choices'] );
 		}
+
+        error_log('Setting Control Default ' . $args['default']);
 
 		// 1. Add Setting
 		$wp_customize->add_setting(
@@ -947,40 +971,40 @@ class Memberlite_Customize {
 		return array_merge( Memberlite_Customize::get_google_fonts(), Memberlite_Customize::get_web_safe_fonts() );
 	}
 
-	/**
-	 * Register color schemes for Memberlite.
-	 * Based on code from the Twentyfifteen theme. (https://themes.svn.wordpress.org/twentyfifteen/1.2/inc/customizer.php)
-	 *
-	 * Can be filtered with {@see 'memberlite_color_schemes'}.
-	 *
-	 * The order of colors in a colors array:
-	 * 1. Heading Text Color
-	 * 2. Background Color
-	 * 3. Site Header Background Color
-	 * 4. Primary Navigation Background Color
-	 * 5. Primary Navigation Link Color
-	 * 6. Text Color
-	 * 7. Link Color
-	 * 8. Meta Link Color
-	 * 9. Primary Color
-	 * 10. Secondary Color
-	 * 11. Action Color
-	 * 12. Default Button Color
-	 * 13. Page Masthead Text Color
-	 * 14. Page Masthead Background Color
-	 * 15. Footer Widgets Text Color
-	 * 16. Footer Widgets Background Color
-	 *
-	 * @return array An associative array of color scheme options.
-	 * @since Memberlite 1.0
-	 *
-	 */
 	public static function get_color_schemes() {
 		global $memberlite_color_schemes;
 		return $memberlite_color_schemes;
 	}
 
-	public static function get_legacy_color_schemes() {
+    /**
+     * Register color schemes for Memberlite.
+     * Based on code from the Twentyfifteen theme. (https://themes.svn.wordpress.org/twentyfifteen/1.2/inc/customizer.php)
+     *
+     * Can be filtered with {@see 'memberlite_color_schemes'}.
+     *
+     * The order of colors in a colors array:
+     * 1. Heading Text Color
+     * 2. Background Color
+     * 3. Site Header Background Color
+     * 4. Primary Navigation Background Color
+     * 5. Primary Navigation Link Color
+     * 6. Text Color
+     * 7. Link Color
+     * 8. Meta Link Color
+     * 9. Primary Color
+     * 10. Secondary Color
+     * 11. Action Color
+     * 12. Default Button Color
+     * 13. Page Masthead Text Color
+     * 14. Page Masthead Background Color
+     * 15. Footer Widgets Text Color
+     * 16. Footer Widgets Background Color
+     *
+     * @return array An associative array of color scheme options.
+     * @since Memberlite 1.0
+     *
+     */
+    public static function get_legacy_color_schemes() {
 		global $memberlite_legacy_color_schemes;
 		return $memberlite_legacy_color_schemes;
 	}

@@ -145,7 +145,7 @@ function memberlite_get_defaults(): array {
 		$color_settings
 	);
 
-	return apply_filters('memberlite_defaults', $defaults);
+	return apply_filters('memberlite_variation_defaults', $defaults);
 }
 
 /**
@@ -214,7 +214,7 @@ function memberlite_get_defaults_legacy(): array {
 		$color_settings
 	);
 
-	return apply_filters('memberlite_defaults_legacy', $defaults);
+	return apply_filters('memberlite_defaults', $defaults);
 }
 
 /**
@@ -251,7 +251,7 @@ function memberlite_get_color_schemes(): array {
 		),
 	);
 
-	return apply_filters('memberlite_new_color_schemes', $schemes);
+	return apply_filters('memberlite_variation_color_schemes', $schemes);
 }
 
 /**
