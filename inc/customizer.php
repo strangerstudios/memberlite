@@ -976,14 +976,14 @@ class Memberlite_Customize {
 	 *
 	 */
 	public static function get_color_schemes() {
-        global $memberlite_color_schemes;
-        return $memberlite_color_schemes;
+		global $memberlite_color_schemes;
+		return $memberlite_color_schemes;
 	}
 
-    public static function get_legacy_color_schemes() {
-        global $memberlite_legacy_color_schemes;
-        return $memberlite_legacy_color_schemes;
-    }
+	public static function get_legacy_color_schemes() {
+		global $memberlite_legacy_color_schemes;
+		return $memberlite_legacy_color_schemes;
+	}
 
 	/**
 	 * Returns an array of color scheme choices (4.7 and later) registered for Memberlite.
@@ -993,7 +993,7 @@ class Memberlite_Customize {
 	 *
 	 */
 	public static function get_color_scheme_choices() {
-		$color_schemes                = Memberlite_Customize::memberlite_get_colors();
+		$color_schemes                = memberlite_get_color_schemes();
 		$color_scheme_control_options = array();
 		foreach ( $color_schemes as $color_scheme => $value ) {
 			$color_scheme_control_options[ $color_scheme ] = $value['label'];
@@ -1002,22 +1002,22 @@ class Memberlite_Customize {
 		return $color_scheme_control_options;
 	}
 
-    /**
-     * Returns an array of legacy (4.6 and earlier) color scheme choices registered for Memberlite.
-     *
-     * @return array Array of color schemes.
-     * @since Memberlite 2.0
-     *
-     */
-    public static function get_legacy_color_scheme_choices() {
-        $color_schemes                = Memberlite_Customize::memberlite_get_legacy_colors();
-        $color_scheme_control_options = array();
-        foreach ( $color_schemes as $color_scheme => $value ) {
-            $color_scheme_control_options[ $color_scheme ] = $value['label'];
-        }
+	/**
+	 * Returns an array of legacy (4.6 and earlier) color scheme choices registered for Memberlite.
+	 *
+	 * @return array Array of color schemes.
+	 * @since Memberlite 2.0
+	 *
+	 */
+	public static function get_legacy_color_scheme_choices() {
+		$color_schemes                = memberlite_get_legacy_color_schemes();
+		$color_scheme_control_options = array();
+		foreach ( $color_schemes as $color_scheme => $value ) {
+			$color_scheme_control_options[ $color_scheme ] = $value['label'];
+		}
 
-        return $color_scheme_control_options;
-    }
+		return $color_scheme_control_options;
+	}
 
 	/**
 	 * Sanitize Checkbox input values
@@ -1161,21 +1161,28 @@ class Memberlite_Customize {
 	 * @since Twenty Fifteen 1.0
 	 */
 	public static function customizer_controls_js() {
-		wp_enqueue_script( 'Memberlite_Customizer-controls', MEMBERLITE_URL . '/js/customizer-controls.js', array(
-			'customize-controls',
-			'iris',
-			'underscore',
-			'wp-util'
-		), MEMBERLITE_VERSION, true );
-		wp_localize_script( 'Memberlite_Customizer-controls', 'colorSchemes', Memberlite_Customize::get_color_schemes() );
+		wp_enqueue_script(
+				'Memberlite_Customizer-controls',
+				MEMBERLITE_URL . '/js/customizer-controls.js',
+				array(
+					'customize-controls',
+					'iris',
+					'underscore',
+					'wp-util'
+				),
+				MEMBERLITE_VERSION,
+				true
+		);
 
-        wp_enqueue_script( 'Memberlite_Customizer-controls-legacy', MEMBERLITE_URL . '/js/customizer-controls.js', array(
-                'customize-controls',
-                'iris',
-                'underscore',
-                'wp-util'
-        ), MEMBERLITE_VERSION, true );
-        wp_localize_script( 'Memberlite_Customizer-controls-legacy', 'colorSchemes', Memberlite_Customize::get_legacy_color_schemes() );
+		// Pass BOTH new and legacy color schemes to the same script
+		wp_localize_script(
+				'Memberlite_Customizer-controls',
+				'memberliteColorSchemes',
+				array(
+					'new' => Memberlite_Customize::get_color_schemes(),
+					'legacy' => Memberlite_Customize::get_legacy_color_schemes(),
+				)
+		);
 
 		wp_enqueue_style(
 			'memberlite-customizer-css',
