@@ -251,7 +251,7 @@ function memberlite_get_color_schemes(): array {
 		),
 	);
 
-	return apply_filters('memberlite_color_schemes', $schemes);
+	return apply_filters('memberlite_new_color_schemes', $schemes);
 }
 
 /**
@@ -261,7 +261,7 @@ function memberlite_get_color_schemes(): array {
  */
 function memberlite_get_legacy_color_schemes(): array {
 	$legacy_colors = memberlite_get_legacy_colors();
-	return array(
+	$schemes = array(
 		'default_v4.6' => array(
 			'label' => __('Default V4.6', 'memberlite'),
 			'colors' => array(
@@ -536,6 +536,8 @@ function memberlite_get_legacy_color_schemes(): array {
 			),
 		),
 	);
+
+	return apply_filters('memberlite_color_schemes', $schemes);
 }
 
 // Globals
