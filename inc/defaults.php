@@ -3,7 +3,7 @@
  * Core color arrays for each scheme
  */
 
-//Default color palette
+//Default color palette (inspired by legacy default 4.6)
 function memberlite_get_colors(): array {
 	return array(
 		'contrast'      => '#222222',
@@ -26,6 +26,19 @@ function memberlite_get_news_colors(): array {
 		'primary'       => '#e8b500',
 		'secondary'     => '#868787',
 		'border'        => '#e6e6e6',
+	);
+}
+
+//WP Tavern Color Palette
+function memberlite_get_wptavern_colors(): array {
+	return array(
+		'contrast'      => '#000000',
+		'base'          => '#FFFFFF',
+		'masthead_bg'   => '#d33939',
+		'masthead_text' => '#FFFFFF',
+		'primary'       => '#d33939',
+		'secondary'     => '#32373c',
+		'border'        => '#cecece',
 	);
 }
 
@@ -186,6 +199,38 @@ function memberlite_get_defaults_news(): array {
 	return apply_filters( 'memberlite_defaults_news', $defaults );
 }
 
+//@todo: can probably refactor to repeat mapping per variation color scheme without multiple functions
+function memberlite_get_defaults_wptavern(): array {
+	$colors         = memberlite_get_wptavern_colors();
+	$color_settings = memberlite_map_colors_to_settings( $colors );
+
+	$defaults = array_merge(
+		array(
+			'memberlite_webfonts'      => 'Times New Roman',
+			'memberlite_header_font'   => 'Times New Roman',
+			'memberlite_body_font'     => 'Lato',
+			'columns_ratio'            => '8-4',
+			'columns_ratio_header'     => '4-8',
+			'sidebar_location'         => 'sidebar-right',
+			'sidebar_location_blog'    => 'sidebar-none',
+			'content_archives'         => 'excerpt',
+			'memberlite_loop_images'   => 'show_none',
+			'posts_entry_meta_before'  => __( '{post_date} by {post_author_posts_link}', 'memberlite' ),
+			'posts_entry_meta_after'   => __( '{post_tags}', 'memberlite' ),
+			'author_block'             => false,
+			'memberlite_footerwidgets' => '1',
+			'copyright_textbox'        => '&copy; All Rights Reserved. Powered by WordPress, hosted by Pressable.',
+			'memberlite_back_to_top'   => true,
+			'memberlite_color_scheme'  => 'wptavern',
+			'memberlite_darkcss'       => false,
+			'hover_brightness'         => '1.1',
+		),
+		$color_settings
+	);
+
+	return apply_filters( 'memberlite_defaults_wptavern', $defaults );
+}
+
 /**
  * Get legacy default settings (pre-6.6.1 with 16-color scheme)
  * Used when 'default_v4.6' legacy scheme is selected
@@ -223,10 +268,12 @@ function memberlite_get_defaults_legacy(): array {
 
 /**
  * New color schemes (6.6.1+) - 7 colors each
+ * @todo: refactor scheme arrays into a helper function to avoid repetition
  */
 function memberlite_get_color_schemes(): array {
 	$colors      = memberlite_get_colors();
 	$news_colors = memberlite_get_news_colors();
+	$wptavern_colors = memberlite_get_wptavern_colors();
 
 	$schemes = array(
 		'default_2026' => array(
@@ -251,6 +298,18 @@ function memberlite_get_color_schemes(): array {
 				$news_colors['primary'],
 				$news_colors['secondary'],
 				$news_colors['border'],
+			),
+		),
+		'wptavern'         => array(
+			'label'  => __( 'WP Tavern', 'memberlite' ),
+			'colors' => array(
+				$wptavern_colors['contrast'],
+				$wptavern_colors['base'],
+				$wptavern_colors['masthead_bg'],
+				$wptavern_colors['masthead_text'],
+				$wptavern_colors['primary'],
+				$wptavern_colors['secondary'],
+				$wptavern_colors['border'],
 			),
 		),
 	);
@@ -582,6 +641,8 @@ function memberlite_get_active_colors() {
 		// It's a new scheme - use new color mapping
 		if ( $variation_scheme === 'news' ) {
 			$color_array = memberlite_get_news_colors();
+		} else if( $variation_scheme === 'wptavern' ) {
+			$color_array = memberlite_get_wptavern_colors();
 		} else {
 			$color_array = memberlite_get_colors();
 		}
@@ -625,6 +686,7 @@ global $memberlite_color_schemes, $memberlite_legacy_color_schemes;
 
 $memberlite_defaults             = memberlite_get_defaults();
 $memberlite_defaults_news        = memberlite_get_defaults_news();
+$memberlite_defaults_wptavern    = memberlite_get_defaults_wptavern();
 $memberlite_defaults_legacy      = memberlite_get_defaults_legacy();
 $memberlite_color_schemes        = memberlite_get_color_schemes();
 $memberlite_legacy_color_schemes = memberlite_get_legacy_color_schemes();
