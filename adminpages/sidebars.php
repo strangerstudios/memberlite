@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Settings page for Memberlite > Custom Sidebars
  *
- * @since TBD
+ * @since 6.1
  */
 function memberlite_custom_sidebars() {
 	/**

@@ -1,7 +1,7 @@
 /**
  * Admin JS for Memberlite Theme
  *
- * @since TBD
+ * @since 6.1
  */
 
 jQuery(document).ready(function () {
@@ -12,7 +12,8 @@ jQuery(document).ready(function () {
 function memberlite_admin_prep_click_events() {
 	/*
 	 * Toggle content within the settings sections boxes.
-	 * @since 2.9
+	 *
+	 * @since 6.1
 	 */
 	jQuery('button.memberlite_section-toggle-button').on('click', function (event) {
 		event.preventDefault();

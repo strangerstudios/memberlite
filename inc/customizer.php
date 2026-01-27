@@ -6,7 +6,7 @@
  */
 
 /**
- * Add postMessage support for site title and description for the Theme Customizer.
+ * Memberlite Theme Customizer Class
  *
  * @param WP_Customize_Manager $wp_customize Theme Customizer object.
  */
@@ -74,14 +74,16 @@ class Memberlite_Customize {
 	/**
 	 * Sets panels and sections in customizer
 	 *
+	 * @since 6.1.1
+	 *
 	 * @param WP_Customize_Manager $wp_customize
 	 * @return void
 	 */
 	public static function set_customizer_panels_sections( WP_Customize_Manager $wp_customize ) {
-		/* Site Identity -------------------------------- */
+		/* Site Identity --------------------------------- */
         $wp_customize->get_section('title_tagline')->priority = 0;
 
-		/* Typography -------------------------------- */
+		/* Typography ------------------------------------ */
 		$wp_customize->add_section(
 			'memberlite_typography_options',
 			array(
@@ -90,7 +92,7 @@ class Memberlite_Customize {
 			)
 		);
 
-		/* Breadcrumbs -------------------------------- */
+		/* Breadcrumbs ----------------------------------- */
 		$wp_customize->add_section(
 			'memberlite_breadcrumbs_options',
 			array(
@@ -99,10 +101,10 @@ class Memberlite_Customize {
 			)
 		);
 
-		/* Colors -------------------------------- */
+		/* Colors ---------------------------------------- */
 		$wp_customize->get_section('colors')->priority = 3;
 
-		/* Header -------------------------------- */
+		/* Header ---------------------------------------- */
 		$wp_customize->add_section(
 			'memberlite_header_options',
 			array(
@@ -111,7 +113,7 @@ class Memberlite_Customize {
 			)
 		);
 
-		/* Footer -------------------------------- */
+		/* Footer ---------------------------------------- */
 		$wp_customize->add_section(
 			'memberlite_footer_options',
 			array(
@@ -120,7 +122,7 @@ class Memberlite_Customize {
 			)
 		);
 
-		/* Posts & Archives -------------------------------- */
+		/* Posts & Archives ------------------------------ */
 		$wp_customize->add_section(
 			'memberlite_post_archive_options',
 			array(
@@ -129,7 +131,7 @@ class Memberlite_Customize {
 			)
 		);
 
-		/* Pages -------------------------------- */
+		/* Pages ----------------------------------------- */
 		$wp_customize->add_section(
 			'memberlite_page_options',
 			array(
@@ -143,11 +145,13 @@ class Memberlite_Customize {
 	/**
 	 * Sets typography-related customizer settings
 	 *
+	 * @since 6.1.1
+	 *
 	 * @param WP_Customize_Manager $wp_customize
 	 * @return void
 	 */
 	public static function set_typography_settings( WP_Customize_Manager $wp_customize ) {
-		// TYPOGRAPHY: Heading Font ================
+		// TYPOGRAPHY: Heading Font =============
 		self::add_memberlite_setting_control( $wp_customize, 'memberlite_header_font', 'Heading Font', 'memberlite_typography_options', array(
 			'type'        => 'select',
 			'choices'     => self::get_all_fonts(),
@@ -165,11 +169,13 @@ class Memberlite_Customize {
 	/**
 	 * Sets color-related customizer settings
 	 *
+	 * @since 6.1.1
+	 *
 	 * @param WP_Customize_Manager $wp_customize
 	 * @return void
 	 */
 	public static function set_customizer_color_settings( WP_Customize_Manager $wp_customize ) {
-		// COLORS: Color Scheme ================
+		// COLORS: Color Scheme =================
 		self::add_memberlite_setting_control( $wp_customize, 'memberlite_color_scheme', 'Memberlite Color Scheme', 'colors', array(
 			'type'                  => 'select',
 			'sanitize_callback'     => array( 'Memberlite_Customize', 'sanitize_color_scheme' ),
@@ -183,7 +189,7 @@ class Memberlite_Customize {
 			'priority' => 1,
 		) );
 
-		// COLORS: Dark Mode ================
+		// COLORS: Dark Mode ====================
 		self::add_memberlite_setting_control( $wp_customize, 'memberlite_darkcss', 'Use Dark Mode Colors', 'colors', array(
 			'type'              => 'checkbox',
 			'sanitize_callback' => array( 'Memberlite_Customize', 'sanitize_checkbox' ),
@@ -191,7 +197,7 @@ class Memberlite_Customize {
 			'priority' => 2,
 		) );
 
-		// COLORS: Header Colors ================
+		// COLORS: Header Colors Heading ========
 		self::add_memberlite_heading( $wp_customize, 'memberlite_header_colors', 'Header Colors', 'colors' );
 
 		self::add_memberlite_color_control( $wp_customize, 'memberlite_bgcolor_header', 'Header Background Color', 'bgcolor_header' );
@@ -200,21 +206,21 @@ class Memberlite_Customize {
 
 		self::add_memberlite_color_control( $wp_customize, 'memberlite_color_site_navigation', 'Primary Navigation Link Color', 'color_site_navigation' );
 
-		// COLORS: Footer Colors ================
+		// COLORS: Footer Colors Heading ========
 		self::add_memberlite_heading( $wp_customize, 'memberlite_footer_colors', 'Footer Colors', 'colors' );
 
 		self::add_memberlite_color_control( $wp_customize, 'memberlite_bgcolor_footer_widgets', 'Footer Widgets Background Color', 'bgcolor_footer_widgets' );
 
 		self::add_memberlite_color_control( $wp_customize, 'memberlite_color_footer_widgets', 'Footer Widgets Text Color', 'color_footer_widgets' );
 
-		// COLORS: Masthead Colors ================
+		// COLORS: Masthead Colors Heading ======
 		self::add_memberlite_heading( $wp_customize, 'memberlite_masthead_colors', 'Masthead Colors', 'colors' );
 
 		self::add_memberlite_color_control( $wp_customize, 'memberlite_bgcolor_page_masthead', 'Page Masthead Background Color', 'bgcolor_page_masthead' );
 
 		self::add_memberlite_color_control( $wp_customize, 'memberlite_color_page_masthead', 'Page Masthead Text Color', 'color_page_masthead' );
 
-		// COLORS: Site Colors ================
+		// COLORS: Site Colors Heading ==========
 		self::add_memberlite_heading( $wp_customize, 'memberlite_body_colors', 'Site Colors', 'colors' );
 
 		// Move core controls down in the Colors section
@@ -248,11 +254,13 @@ class Memberlite_Customize {
 	/**
 	 * Sets breadcrumb-related customizer settings
 	 *
+	 * @since 6.1.1
+	 *
 	 * @param WP_Customize_Manager $wp_customize
 	 * @return void
 	 */
 	public static function set_customizer_breadcrumb_settings( WP_Customize_Manager $wp_customize ) {
-		// BREADCRUMBS: Breadcrumb Locations ================
+		// BREADCRUMBS: Breadcrumb Locations ====
 		$memberlite_breadcrumbs = array(
 			'page_breadcrumbs'       => array(
 				'label' => 'Breadcrumbs on Pages',
@@ -288,7 +296,7 @@ class Memberlite_Customize {
 			);
 		};
 
-		// BREADCRUMBS: Breadcrumb Delimiter ================
+		// BREADCRUMBS: Breadcrumb Delimiter ====
 		self::add_memberlite_setting_control( $wp_customize, 'delimiter', 'Breadcrumb Delimiter', 'memberlite_breadcrumbs_options', array(
 			'transport'         => 'postMessage',
 			'sanitize_callback' => 'sanitize_text_field',
@@ -297,6 +305,8 @@ class Memberlite_Customize {
 
 	/**
 	 * Sets header-related customizer settings
+	 *
+	 * @since 6.1.1
 	 *
 	 * @param WP_Customize_Manager $wp_customize
 	 * @return void
@@ -322,22 +332,22 @@ class Memberlite_Customize {
 			),
 		) );
 
-		// Heading for other header settings
+		// HEADER: Other Settings Heading =======
 		self::add_memberlite_heading( $wp_customize, 'memberlite_header_heading', 'Other Settings', 'memberlite_header_options' );
 
-		// HEADER: Show Login/Member Info ================
+		// HEADER: Show Login/Member Info =======
 		self::add_memberlite_setting_control( $wp_customize, 'meta_login', 'Show Login/Member Info in Header', 'memberlite_header_options', array(
 			'type'              => 'checkbox',
 			'sanitize_callback' => array( 'Memberlite_Customize', 'sanitize_checkbox' ),
 		) );
 
-		// HEADER: Show search form ================
+		// HEADER: Show search form =============
 		self::add_memberlite_setting_control( $wp_customize, 'nav_menu_search', 'Show Search Form After Main Nav', 'memberlite_header_options', array(
 			'type'              => 'checkbox',
 			'sanitize_callback' => array( 'Memberlite_Customize', 'sanitize_checkbox' ),
 		) );
 
-		// HEADER: Enable sticky header ================
+		// HEADER: Enable sticky header =========
 		self::add_memberlite_setting_control( $wp_customize, 'sticky_nav', 'Enable Sticky Header', 'memberlite_header_options', array(
 			'type'              => 'checkbox',
 			'description'       => 'On scroll, the header menu will stick to the top of the screen.',
@@ -348,26 +358,30 @@ class Memberlite_Customize {
 	/**
 	 * Sets footer-related customizer settings
 	 *
+	 * @since 6.1.1
+	 *
 	 * @param WP_Customize_Manager $wp_customize
 	 * @return void
 	 */
 	public static function set_customizer_footer_settings( WP_Customize_Manager $wp_customize ) {
-		// FOOTER: Footer Widgets ================
+		// FOOTER: Footer Widgets ===============
 		self::add_memberlite_setting_control( $wp_customize, 'memberlite_footerwidgets', 'Footer Widget Columns', 'memberlite_footer_options', array(
 			'type'              => 'select',
 			'sanitize_callback' => 'absint',
 			'choices'           => array( '2' => '2', '3' => '3', '4' => '4', '6' => '6' ),
 		) );
 
-		// FOOTER: Copyright Text ================
+		// FOOTER: Copyright Text ===============
 		self::add_memberlite_setting_control( $wp_customize, 'copyright_textbox', 'Copyright Text', 'memberlite_footer_options', array(
 			'transport'         => 'postMessage',
 			'sanitize_callback' => array( 'Memberlite_Customize', 'sanitize_text_with_links' ),
 			'sanitize_js_callback' => array( 'Memberlite_Customize', 'sanitize_js_text_with_links' ),
 		) );
 
-		// FOOTER: Back to Top
+		// FOOTER: Back to Top Heading ==========
 		self::add_memberlite_heading( $wp_customize, 'memberlite_back_to_top_heading', 'Back to Top', 'memberlite_footer_options' );
+
+		// FOOTER: Back to Top Link =============
 		self::add_memberlite_setting_control( $wp_customize, 'memberlite_back_to_top', 'Show Back to Top Link', 'memberlite_footer_options', array(
 			'type'              => 'checkbox',
 			'default'           => true,
@@ -378,11 +392,13 @@ class Memberlite_Customize {
 	/**
 	 * Sets post, page, and archive related customizer settings
 	 *
+	 * @since 6.1.1
+	 *
 	 * @param WP_Customize_Manager $wp_customize
 	 * @return void
 	 */
 	public static function set_customizer_post_settings( WP_Customize_Manager $wp_customize ) {
-		// POST: Content Archives ================
+		// POST: Content Archives ===============
 		self::add_memberlite_setting_control( $wp_customize, 'content_archives', 'Archive Layout', 'memberlite_post_archive_options', array(
 			'type'        => 'radio',
 			'description' => 'Choose how posts are displayed on blog and archive pages.',
@@ -393,7 +409,7 @@ class Memberlite_Customize {
 			),
 		) );
 
-		// POST: Sidebar Location ================
+		// POST: Sidebar Location ===============
 		self::add_memberlite_setting_control( $wp_customize, 'sidebar_location_blog', 'Sidebar Location', 'memberlite_post_archive_options', array(
 			'type'    => 'radio',
 			'choices' => array(
@@ -403,7 +419,7 @@ class Memberlite_Customize {
 			),
 		) );
 
-		// POST: Columns Ratio ================
+		// POST: Columns Ratio ==================
 		self::add_memberlite_setting_control( $wp_customize, 'columns_ratio_blog', 'Columns Ratio', 'memberlite_post_archive_options', array(
 			'type'        => 'select',
 			'transport'   => 'refresh',
@@ -418,26 +434,26 @@ class Memberlite_Customize {
 			),
 		) );
 
-		// Add heading for navigation related settings
+		// POST: Navigation Settings Heading ====
 		self::add_memberlite_heading( $wp_customize, 'memberlite_navigation_post_archive_heading', 'Navigation Settings', 'memberlite_post_archive_options' );
 
-		// POST: (prev/next links) Post Nav ================
+		// POST: (prev/next links) Post Nav =====
 		self::add_memberlite_setting_control( $wp_customize, 'memberlite_post_nav', 'Show Prev/Next on Single Posts', 'memberlite_post_archive_options', array(
 			'type'              => 'checkbox',
 			'default'           => true,
 			'sanitize_callback' => array( 'Memberlite_Customize', 'sanitize_checkbox' ),
 		) );
 
-		// Heading for other post settings
+		// POST: Other Settings Heading =========
 		self::add_memberlite_heading( $wp_customize, 'memberlite_post_heading', 'Other Settings', 'memberlite_post_archive_options' );
 
-		// POST: Author Block ================
+		// POST: Author Block ===================
 		self::add_memberlite_setting_control( $wp_customize, 'author_block', 'Show Author Block on Posts', 'memberlite_post_archive_options', array(
 			'type'              => 'checkbox',
 			'sanitize_callback' => array( 'Memberlite_Customize', 'sanitize_checkbox' ),
 		) );
 
-		// POST: Banner & Thumbnail Options ================
+		// POST: Banner & Thumbnail Options =====
 		$memberlite_loop_images_choices = array(
 			'show_none'      => 'Do Not Show Featured Images',
 			'show_banner'    => 'Show Banner Only',
@@ -455,7 +471,7 @@ class Memberlite_Customize {
 			'choices'   => $memberlite_loop_images_choices,
 		) );
 
-		// POST: Post Meta Before ================
+		// POST: Post Meta Before ===============
 		self::add_memberlite_setting_control( $wp_customize, 'posts_entry_meta_before', 'Post Entry Meta (before)', 'memberlite_post_archive_options', array(
 			'transport'         => 'postMessage',
 			'sanitize_callback' => 'sanitize_text_field',
@@ -471,11 +487,13 @@ class Memberlite_Customize {
 	/**
 	 * Sets page-related customizer settings
 	 *
+	 * @since 6.1.1
+	 *
 	 * @param WP_Customize_Manager $wp_customize
 	 * @return void
 	 */
 	public static function set_customizer_page_settings( WP_Customize_Manager $wp_customize ) {
-		// PAGE: Sidebar Location ================
+		// PAGE: Sidebar Location ===============
 		self::add_memberlite_setting_control($wp_customize, 'sidebar_location', 'Sidebar Location', 'memberlite_page_options', array(
 			'type' => 'radio',
 			'choices' => array(
@@ -485,7 +503,7 @@ class Memberlite_Customize {
 			),
 		));
 
-		// PAGE: Columns Ratio ================
+		// PAGE: Columns Ratio ==================
 		self::add_memberlite_setting_control( $wp_customize, 'columns_ratio', 'Columns Ratio', 'memberlite_page_options', array(
 			'type'        => 'select',
 			'transport'   => 'refresh',
@@ -500,10 +518,10 @@ class Memberlite_Customize {
 			),
 		) );
 
-		// Add heading for navigation related settings
+		// PAGE: Navigation Settings Heading ====
 		self::add_memberlite_heading( $wp_customize, 'memberlite_navigation_pages_heading', 'Navigation Settings', 'memberlite_page_options' );
 
-		// PAGE: (prev/next links) Page Nav ================
+		// PAGE: (prev/next links) Page Nav =====
 		self::add_memberlite_setting_control( $wp_customize, 'memberlite_page_nav', 'Show Prev/Next on Single Pages', 'memberlite_page_options', array(
 			'type'              => 'checkbox',
 			'default'           => true,
@@ -514,6 +532,8 @@ class Memberlite_Customize {
 
 	/**
 	 * Helper to add headings for organizational purposes
+	 *
+	 * @since 6.1.1
 	 *
 	 * @param object $wp_customize
 	 * @param string $id
@@ -544,6 +564,8 @@ class Memberlite_Customize {
 
 	/**
 	 * Helper to add setting/control pairs for colors
+	 *
+	 * @since 6.1.1
 	 *
 	 * @param object $wp_customize
 	 * @param string $id
@@ -601,6 +623,8 @@ class Memberlite_Customize {
 
 	/**
 	 * Helper to add_setting/control pairs for customizer fields
+	 *
+	 * @since 6.1.1
 	 *
 	 * @param object $wp_customize
 	 * @param string $id
@@ -668,6 +692,7 @@ class Memberlite_Customize {
 	/**
 	 * Call bloginfo to echo the site name.
 	 * For use in a customizer callback above.
+	 *
 	 * @since 3.1
 	 */
 	public static function bloginfo_name() {
@@ -677,6 +702,7 @@ class Memberlite_Customize {
 	/**
 	 * Call bloginfo to echo the site description.
 	 * For use in a customizer callback above.
+	 *
 	 * @since 3.1
 	 */
 	public static function bloginfo_description() {
@@ -1388,6 +1414,8 @@ class Memberlite_Customize {
 
 /**
  * Custom Control for displaying a header within a Customizer Section
+ *
+ * @since 6.1.1
  */
 if ( class_exists( 'WP_Customize_Control' ) ) {
 	class Memberlite_Customize_Header_Control extends WP_Customize_Control {

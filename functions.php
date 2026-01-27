@@ -68,7 +68,7 @@ add_action( 'wp_enqueue_scripts', 'memberlite_init_styles' );
 /**
  * Enqueue admin JavaScript and CSS
  *
- * @since TBD
+ * @since 6.1
  */
 function memberlite_admin_enqueue_scripts() {
 	if ( ! empty( $_GET['page'] ) && strpos( $_GET['page'], 'memberlite-' ) === 0 ) {
@@ -496,7 +496,7 @@ add_action( 'init', 'memberlite_load_textdomain' );
 /**
  * Load custom translations from our own server: translate.strangerstudios.com
  * 
- * @since TBD
+ * @since 6.1
  */
 function memberlite_check_for_translations() {
 
