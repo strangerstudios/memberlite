@@ -1,9 +1,9 @@
 === Memberlite ===
 Contributors: kimannwall, strangerstudios
 Requires at least: 6.0
-Tested up to: 6.8
+Tested up to: 6.9
 Requires PHP: 5.6
-Stable tag: 6.0.1
+Stable tag: 6.1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: one-column, two-columns, left-sidebar, right-sidebar, flexible-header, custom-background, custom-colors, custom-header, custom-menu, custom-logo, editor-style, featured-images, footer-widgets, full-width-template, post-formats, theme-options, threaded-comments, translation-ready, e-commerce
@@ -91,6 +91,17 @@ Memberlite includes formatting for use with:
 [Install Events Manager »](https://wordpress.org/plugins/events-manager/)
 
 == Changelog ==
+= 6.1.1 - 2026-01-27 =
+* ENHANCEMENT: Replacing webfonts with latin-extended versions for broader language support.
+* ENHANCEMENT: Added a separate column ratio setting for posts and blog (inherits from pages setting by default).
+* ENHANCEMENT: Reorganized Customizer with new sections, panels, and improved settings organization for better usability.
+* ENHANCEMENT: Added new helper functions for Customizer settings and controls for better code management.
+* ENHANCEMENT: Added dedicated stylesheet for Customizer preview.
+* ENHANCEMENT: Simplified helper method to no longer require translate function when adding settings/controls.
+* BUG FIX: Fixed a dead link in the readme that was returning a 404.
+* REFACTOR: Separated Customizer settings and controls into individual helper functions.
+* REFACTOR: Code cleanup and formatting improvements for WordPress coding standards.
+
 = 6.1 - 2025-12-22 =
 * FEATURE: Export and import tools for Memberlite theme settings (Customizer options, custom sidebars, CPT sidebar assignments, custom CSS, site logo, and site icon). #186 (@kimcoleman)
 * FEATURE: Theme Reset tool that restores all Memberlite settings to defaults, with confirmation prompt. #186 (@kimcoleman)
