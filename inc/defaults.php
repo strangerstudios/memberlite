@@ -545,55 +545,47 @@ function memberlite_get_active_colors() {
 
 	$variation_scheme = get_theme_mod('memberlite_variation_color_scheme', 'default_2026');
 
-	// Check if using legacy scheme
-	if ( $variation_scheme === 'legacy' ) {
-		$legacy_scheme = get_theme_mod('memberlite_color_scheme', 'default_v4.6');
-		$legacy_color_schemes = memberlite_get_legacy_color_schemes();
+	// Check if it's a legacy scheme (by checking if it exists in legacy schemes)
+	$legacy_schemes = memberlite_get_legacy_color_schemes();
+	if ( isset($legacy_schemes[$variation_scheme]) ) {
+		// It's a legacy scheme - use legacy color mapping
+		$colors = $legacy_schemes[$variation_scheme]['colors'];
 
-		if ( isset( $legacy_color_schemes[$legacy_scheme] ) && $legacy_scheme !== 'modern' && $legacy_scheme !== 'custom' ) {
-			// Map the 16-color array from legacy scheme to settings keys
-			$colors = $legacy_color_schemes[$legacy_scheme]['colors'];
-
-			return array(
-				'memberlite_heading_color' => $colors[0],
-				'background_color'         => $colors[1],
-				'bgcolor_header'           => $colors[2],
-				'bgcolor_site_navigation'  => $colors[3],
-				'color_site_navigation'    => $colors[4],
-				'color_text'               => $colors[5],
-				'color_link'               => $colors[6],
-				'color_meta_link'          => $colors[7],
-				'color_primary'            => $colors[8],
-				'color_secondary'          => $colors[9],
-				'color_action'             => $colors[10],
-				'color_button'             => $colors[11],
-				'color_borders'            => $colors[12],
-				'bgcolor_page_masthead'    => isset($colors[13]) ? $colors[13] : $colors[0],
-				'color_page_masthead'      => isset($colors[14]) ? $colors[14] : $colors[1],
-				'bgcolor_footer_widgets'   => isset($colors[15]) ? $colors[15] : $colors[1],
-				'color_footer_widgets'     => isset($colors[16]) ? $colors[16] : $colors[5],
-			);
-		}
+		return array(
+			'memberlite_heading_color' => $colors[0],
+			'background_color'         => $colors[1],
+			'bgcolor_header'           => $colors[2],
+			'bgcolor_site_navigation'  => $colors[3],
+			'color_site_navigation'    => $colors[4],
+			'color_text'               => $colors[5],
+			'color_link'               => isset($colors[6]) ? $colors[6] : $colors[5],
+			'color_meta_link'          => isset($colors[7]) ? $colors[7] : $colors[6],
+			'color_primary'            => isset($colors[8]) ? $colors[8] : $colors[0],
+			'color_secondary'          => isset($colors[9]) ? $colors[9] : $colors[0],
+			'color_action'             => isset($colors[10]) ? $colors[10] : $colors[8],
+			'color_button'             => isset($colors[11]) ? $colors[11] : $colors[8],
+			'color_borders'            => isset($colors[12]) ? $colors[12] : '#cccccc',
+			'bgcolor_page_masthead'    => isset($colors[13]) ? $colors[13] : $colors[0],
+			'color_page_masthead'      => isset($colors[14]) ? $colors[14] : $colors[1],
+			'bgcolor_footer_widgets'   => isset($colors[15]) ? $colors[15] : $colors[1],
+			'color_footer_widgets'     => isset($colors[16]) ? $colors[16] : $colors[5],
+		);
 	}
 
-	// Check if using a new variation scheme (not custom, not legacy)
-	if ( $variation_scheme !== 'custom' && $variation_scheme !== 'legacy' ) {
-		$color_schemes = memberlite_get_color_schemes();
-
-		if ( isset( $color_schemes[$variation_scheme] ) ) {
-			// Get the appropriate color array
-			if ( $variation_scheme === 'news' ) {
-				$color_array = memberlite_get_news_colors();
-			} else {
-				$color_array = memberlite_get_colors();
-			}
-
-			// Map to settings
-			return memberlite_map_colors_to_settings( $color_array );
+	// Check if it's a new variation scheme
+	$new_schemes = memberlite_get_color_schemes();
+	if ( isset($new_schemes[$variation_scheme]) ) {
+		// It's a new scheme - use new color mapping
+		if ( $variation_scheme === 'news' ) {
+			$color_array = memberlite_get_news_colors();
+		} else {
+			$color_array = memberlite_get_colors();
 		}
+
+		return memberlite_map_colors_to_settings( $color_array );
 	}
 
-	// Custom mode: Get individual saved colors from database
+	// Custom mode - get individual saved colors
 	$colors = array();
 	$color_keys = array(
 		'background_color',
@@ -617,7 +609,7 @@ function memberlite_get_active_colors() {
 
 	foreach ( $color_keys as $key ) {
 		$value = get_theme_mod( $key );
-		$colors[$key] = ! empty( $value ) ? $value : $memberlite_defaults[$key];
+		$colors[$key] = ! empty( $value ) ? $value : ( isset($memberlite_defaults[$key]) ? $memberlite_defaults[$key] : '' );
 	}
 
 	return $colors;

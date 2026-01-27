@@ -261,39 +261,49 @@ class Memberlite_Customize {
 	 * @return void
 	 */
 	public static function set_customizer_color_settings( WP_Customize_Manager $wp_customize ) {
-		// COLORS: Color Scheme (New and Legacy) ================
-		self::add_memberlite_setting_control( $wp_customize, 'memberlite_variation_color_scheme', 'Memberlite Color Scheme', 'colors', array(
-			'type'                  => 'select',
-			'sanitize_callback'     => array( 'Memberlite_Customize', 'sanitize_color_scheme' ),
-			'sanitize_js_callback'  => array( 'Memberlite_Customize', 'sanitize_js_color_scheme' ),
-			'choices'               => array_merge(
-				Memberlite_Customize::get_color_scheme_choices(),
-				array(
-					'legacy' => 'Use Legacy Color Scheme →',
-					'custom' => 'Custom Colors',
-				)
-			),
-            'default' => 'default_2026',
-			'priority' => 1
-		) );
+        // In your control registration
+        $description = 'Choose a color scheme for your site.';
 
-		self::add_memberlite_setting_control( $wp_customize, 'memberlite_color_scheme', 'Legacy Memberlite Color Scheme', 'colors', array(
-			'type'                  => 'select',
-			'sanitize_callback'     => array( 'Memberlite_Customize', 'sanitize_legacy_color_scheme' ),
-			'sanitize_js_callback'  => array( 'Memberlite_Customize', 'sanitize_js_legacy_color_scheme' ),
-			'choices'               => array_merge(
-				Memberlite_Customize::get_legacy_color_scheme_choices(),
-				array(
-					'modern' => '← Back to Modern Schemes',
-                    'custom' => 'Custom Legacy Colors',
-				)
-			),
-            'default' => 'default_v4.6',
-			'priority' => 1,
-            'active_callback' => function() {
-                return get_theme_mod('memberlite_variation_color_scheme') === 'legacy';
-            },
-		) );
+        // Check if they're currently on a legacy scheme
+        $current_scheme = get_theme_mod('memberlite_variation_color_scheme', '');
+        $legacy_schemes = memberlite_get_legacy_color_schemes();
+        if ( isset($legacy_schemes[$current_scheme]) ) {
+            $description .= ' <strong>You are using a legacy scheme.</strong> Consider switching to a modern scheme for better performance.';
+        }
+
+		// COLORS: Color Scheme (New and Legacy) ================
+        self::add_memberlite_setting_control(
+                $wp_customize,
+                'memberlite_variation_color_scheme',
+                'Color Scheme',
+                'colors',
+                array(
+                        'type' => 'select',
+                        'description' => $description,
+                        'sanitize_callback' => array( 'Memberlite_Customize', 'sanitize_dynamic_color_scheme' ),
+                        'sanitize_js_callback' => array( 'Memberlite_Customize', 'sanitize_js_color_scheme' ),
+                        'choices' => Memberlite_Customize::get_dynamic_color_scheme_choices(),
+                        'priority' => 1,
+                )
+        );
+
+//		self::add_memberlite_setting_control( $wp_customize, 'memberlite_color_scheme', 'Legacy Memberlite Color Scheme', 'colors', array(
+//			'type'                  => 'select',
+//			'sanitize_callback'     => array( 'Memberlite_Customize', 'sanitize_legacy_color_scheme' ),
+//			'sanitize_js_callback'  => array( 'Memberlite_Customize', 'sanitize_js_legacy_color_scheme' ),
+//			'choices'               => array_merge(
+//				Memberlite_Customize::get_legacy_color_scheme_choices(),
+//				array(
+//					'modern' => '← Back to Modern Schemes',
+//                    'custom' => 'Custom Legacy Colors',
+//				)
+//			),
+//            'default' => 'default_v4.6',
+//			'priority' => 1,
+//            'active_callback' => function() {
+//                return get_theme_mod('memberlite_variation_color_scheme') === 'legacy';
+//            },
+//		) );
 
 		// COLORS: Dark Mode ================
 		self::add_memberlite_setting_control( $wp_customize, 'memberlite_darkcss', 'Use Dark Mode Colors', 'colors', array(
@@ -736,6 +746,35 @@ class Memberlite_Customize {
         $wp_customize->add_control( $id, $control_args );
 	}
 
+    /**
+     * Get color scheme choices including user's legacy scheme if applicable
+     *
+     * @return array Color scheme choices for dropdown
+     */
+    public static function get_dynamic_color_scheme_choices() {
+        // Start with new modern schemes
+        $choices = Memberlite_Customize::get_color_scheme_choices();
+
+        // Check if user has a legacy scheme active
+        $legacy_scheme = get_theme_mod('memberlite_color_scheme', '');
+
+        // If they have a legacy scheme that isn't empty or custom
+        if ( !empty($legacy_scheme) && $legacy_scheme !== 'custom' && $legacy_scheme !== '' ) {
+            $legacy_schemes = memberlite_get_legacy_color_schemes();
+
+            // If this legacy scheme exists in our definitions
+            if ( isset($legacy_schemes[$legacy_scheme]) ) {
+                // Add their specific legacy scheme to choices with a marker
+                $choices[$legacy_scheme] = $legacy_schemes[$legacy_scheme]['label'];
+            }
+        }
+
+        // Always include custom option
+        $choices['custom'] = 'Custom Colors';
+
+        return $choices;
+    }
+
 	/**
 	 * Call bloginfo to echo the site name.
 	 * For use in a customizer callback above.
@@ -1038,7 +1077,21 @@ class Memberlite_Customize {
 		return ( array_key_exists( $input, $choices ) ? $input : $setting->default );
 	}
 
-	/**
+    /**
+     * Sanitization callback for color schemes (including dynamic legacy)
+     */
+    public static function sanitize_dynamic_color_scheme( $value ) {
+        // Get all valid schemes (new + user's legacy if applicable)
+        $valid_schemes = array_keys( Memberlite_Customize::get_dynamic_color_scheme_choices() );
+
+        if ( ! in_array( $value, $valid_schemes ) ) {
+            $value = 'default_2026';
+        }
+
+        return $value;
+    }
+
+    /**
 	 * Sanitization callback for color schemes.
 	 *
 	 * @param string $value Color scheme name value.

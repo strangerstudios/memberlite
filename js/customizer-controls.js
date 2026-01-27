@@ -36,70 +36,80 @@
     ];
     memberlite_variation_color_controls_listener_flag = true;
 
-    // Update colors when NEW/VARIATION color scheme changes (Memberlite 4.7+)
+    // Update colors when color scheme changes
     wp.customize('memberlite_variation_color_scheme', function(value) {
         value.bind(function(to) {
-            // ignore "custom" and "legacy"
-            if (to !== 'custom' && to !== 'legacy') {
-                // update colors
-                var colors = memberliteColorSchemes.new[to].colors;
-                memberlite_variation_color_controls_listener_flag = false;
+            // Ignore custom
+            if (to === 'custom') {
+                return;
+            }
 
-                for (i = 0; i < 7; i++) {  // Only 7 colors for new schemes
+            // Check if it's a new scheme or legacy scheme
+            var colors, isLegacy = false;
+
+            // Try to find in new schemes first
+            if (memberliteColorSchemes.new[to]) {
+                colors = memberliteColorSchemes.new[to].colors;
+                isLegacy = false;
+            }
+            // Check legacy schemes
+            else if (memberliteColorSchemes.legacy[to]) {
+                colors = memberliteColorSchemes.legacy[to].colors;
+                isLegacy = true;
+            } else {
+                return; // Unknown scheme
+            }
+
+            memberlite_variation_color_controls_listener_flag = false;
+
+            if (isLegacy) {
+                // Legacy scheme - update all 16 color controls
+                var legacyControls = [
+                    'header_textcolor',
+                    'background_color',
+                    'bgcolor_header',
+                    'bgcolor_site_navigation',
+                    'color_site_navigation',
+                    'color_text',
+                    'color_link',
+                    'color_meta_link',
+                    'color_primary',
+                    'color_secondary',
+                    'color_action',
+                    'color_button',
+                    'color_borders',
+                    'bgcolor_page_masthead',
+                    'color_page_masthead',
+                    'bgcolor_footer_widgets',
+                    'color_footer_widgets',
+                ];
+
+                for (i = 0; i < colors.length && i < legacyControls.length; i++) {
+                    $('#customize-control-' + legacyControls[i])
+                        .find('.color-picker-hex')
+                        .wpColorPicker('color', colors[i]);
+                }
+            } else {
+                // New scheme - update 7 color controls
+                for (i = 0; i < 7; i++) {
                     $('#customize-control-' + memberlite_variation_color_controls[i])
                         .find('.color-picker-hex')
                         .wpColorPicker('color', colors[i]);
                 }
-
-                memberlite_variation_color_controls_listener_flag = true;
             }
+
+            memberlite_variation_color_controls_listener_flag = true;
         });
     });
 
-// Update colors when LEGACY color scheme changes (Memberlite < 4.7)
-    wp.customize('memberlite_color_scheme', function(value) {
-        value.bind(function(to) {
-            // ignore "custom" and "modern"
-            if (to !== 'custom' && to !== 'modern') {
-                var colors = memberliteColorSchemes.legacy[to].colors;
-                memberlite_color_controls_listener_flag = false;
-
-                for (i = 0; i < 16; i++) {  // 16 colors for legacy schemes
-                    $('#customize-control-' + memberlite_color_controls[i])
-                        .find('.color-picker-hex')
-                        .wpColorPicker('color', colors[i]);
-                }
-
-                memberlite_color_controls_listener_flag = true;
-            } else if (to === 'modern') {
-                // Switch back to new schemes
-                wp.customize('memberlite_variation_color_scheme').set('default_2026');
-            }
-        });
-    });
-
-// Set variation scheme to custom when a color is manually changed
+// When any color is manually changed, set to custom
     for (i = 0; i < memberlite_variation_color_controls.length; i++) {
         wp.customize(memberlite_variation_color_controls[i], function(value) {
             value.bind(function(to) {
                 if (memberlite_variation_color_controls_listener_flag) {
                     var currentScheme = wp.customize('memberlite_variation_color_scheme')();
-                    if (currentScheme !== 'custom' && currentScheme !== 'legacy') {
+                    if (currentScheme !== 'custom') {
                         wp.customize('memberlite_variation_color_scheme').set('custom');
-                    }
-                }
-            });
-        });
-    }
-
-// Set legacy scheme to custom when a color is manually changed
-    for (i = 0; i < memberlite_color_controls.length; i++) {
-        wp.customize(memberlite_color_controls[i].replace(/memberlite_/, ''), function(value) {
-            value.bind(function(to) {
-                if (memberlite_color_controls_listener_flag) {
-                    var currentVariationScheme = wp.customize('memberlite_variation_color_scheme')();
-                    if (currentVariationScheme === 'legacy') {
-                        wp.customize('memberlite_color_scheme').set('custom');
                     }
                 }
             });
