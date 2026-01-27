@@ -92,14 +92,14 @@ Memberlite includes formatting for use with:
 
 == Changelog ==
 = 6.1.1 - 2026-01-27 =
-* ENHANCEMENT: Replacing webfonts with latin-extended versions for broader language support.
-* ENHANCEMENT: Added a separate column ratio setting for posts and blog (inherits from pages setting by default).
-* ENHANCEMENT: Reorganized Customizer with new sections, panels, and improved settings organization for better usability.
-* ENHANCEMENT: Added new helper functions for Customizer settings and controls for better code management.
-* ENHANCEMENT: Added dedicated stylesheet for Customizer preview.
-* ENHANCEMENT: Simplified helper method to no longer require translate function when adding settings/controls.
-* BUG FIX: Fixed a dead link in the readme that was returning a 404.
-* REFACTOR: Separated Customizer settings and controls into individual helper functions.
+* ENHANCEMENT: Replacing webfonts with latin-extended versions for broader language support. #190 (@kimcoleman)
+* ENHANCEMENT: Added a separate column ratio setting for posts and blog (inherits from pages setting by default). #192 (@kimcoleman)
+* ENHANCEMENT: Reorganized Customizer with new sections, panels, and improved settings organization for better usability. #192 (@RachelRVasquez)
+* ENHANCEMENT: Added new helper functions for Customizer settings and controls for better code management. #192 (@RachelRVasquez)
+* ENHANCEMENT: Added dedicated stylesheet for Customizer preview. #192 (@RachelRVasquez)
+* ENHANCEMENT: Simplified helper method to no longer require translate function when adding settings/controls. #192 (@RachelRVasquez)
+* BUG FIX: Fixed a dead link in the readme that was returning a 404. #193 (@RachelRVasquez)
+* REFACTOR: Separated Customizer settings and controls into individual helper functions. #192 (@RachelRVasquez)
 * REFACTOR: Code cleanup and formatting improvements for WordPress coding standards.
 
 = 6.1 - 2025-12-22 =
