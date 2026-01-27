@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-01-23T18:59:36+00:00\n"
+"POT-Creation-Date: 2026-01-27T14:33:53+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: memberlite\n"
@@ -177,6 +177,7 @@ msgstr ""
 #: functions.php:278
 #: functions.php:295
 #: inc/customizer.php:118
+#: inc/customizer.php:120
 msgid "Footer"
 msgstr ""
 
@@ -284,6 +285,7 @@ msgstr ""
 #: functions.php:534
 #: functions.php:551
 #: inc/customizer.php:136
+#: inc/customizer.php:138
 msgid "Pages"
 msgstr ""
 
@@ -867,236 +869,283 @@ msgstr ""
 
 #: inc/customizer.php:1104
 #: inc/customizer.php:853
+#: inc/customizer.php:879
 msgid "Abril Fatface"
 msgstr ""
 
 #: inc/customizer.php:1105
 #: inc/customizer.php:854
+#: inc/customizer.php:880
 msgid "DM Sans"
 msgstr ""
 
 #: inc/customizer.php:1106
 #: inc/customizer.php:855
+#: inc/customizer.php:881
 msgid "Figtree"
 msgstr ""
 
 #: inc/customizer.php:1107
 #: inc/customizer.php:856
+#: inc/customizer.php:882
 msgid "Fjalla One"
 msgstr ""
 
 #: inc/customizer.php:1108
 #: inc/customizer.php:857
+#: inc/customizer.php:883
 msgid "Gentium Book Basic"
 msgstr ""
 
 #: inc/customizer.php:1109
 #: inc/customizer.php:858
+#: inc/customizer.php:884
 msgid "Inter"
 msgstr ""
 
 #: inc/customizer.php:1110
 #: inc/customizer.php:859
+#: inc/customizer.php:885
 msgid "Lato"
 msgstr ""
 
 #: inc/customizer.php:1111
 #: inc/customizer.php:860
+#: inc/customizer.php:886
 msgid "Merriweather"
 msgstr ""
 
 #: inc/customizer.php:1112
 #: inc/customizer.php:861
+#: inc/customizer.php:887
 msgid "Montserrat"
 msgstr ""
 
 #: inc/customizer.php:1113
 #: inc/customizer.php:862
+#: inc/customizer.php:888
 msgid "Noto Sans"
 msgstr ""
 
 #: inc/customizer.php:1114
 #: inc/customizer.php:863
+#: inc/customizer.php:889
 msgid "Open Sans"
 msgstr ""
 
 #: inc/customizer.php:1115
 #: inc/customizer.php:864
+#: inc/customizer.php:890
 msgid "Oswald"
 msgstr ""
 
 #: inc/customizer.php:1116
 #: inc/customizer.php:865
+#: inc/customizer.php:891
 msgid "Pathway Gothic One"
 msgstr ""
 
 #: inc/customizer.php:1117
 #: inc/customizer.php:866
+#: inc/customizer.php:892
 msgid "Playfair Display"
 msgstr ""
 
 #: inc/customizer.php:1118
 #: inc/customizer.php:867
+#: inc/customizer.php:893
 msgid "Poppins"
 msgstr ""
 
 #: inc/customizer.php:1119
 #: inc/customizer.php:868
+#: inc/customizer.php:894
 msgid "PT Mono"
 msgstr ""
 
 #: inc/customizer.php:1120
 #: inc/customizer.php:869
+#: inc/customizer.php:895
 msgid "PT Sans"
 msgstr ""
 
 #: inc/customizer.php:1121
 #: inc/customizer.php:870
+#: inc/customizer.php:896
 msgid "PT Serif"
 msgstr ""
 
 #: inc/customizer.php:1122
 #: inc/customizer.php:871
+#: inc/customizer.php:897
 msgid "Quattrocento"
 msgstr ""
 
 #: inc/customizer.php:1123
 #: inc/customizer.php:872
+#: inc/customizer.php:898
 msgid "Roboto"
 msgstr ""
 
 #: inc/customizer.php:1124
 #: inc/customizer.php:873
+#: inc/customizer.php:899
 msgid "Roboto Slab"
 msgstr ""
 
 #: inc/customizer.php:1125
 #: inc/customizer.php:874
+#: inc/customizer.php:900
 msgid "Source Sans Pro"
 msgstr ""
 
 #: inc/customizer.php:1126
 #: inc/customizer.php:875
+#: inc/customizer.php:901
 msgid "Ubuntu"
 msgstr ""
 
 #: inc/customizer.php:1135
 #: inc/customizer.php:884
+#: inc/customizer.php:910
 msgid "Arial"
 msgstr ""
 
 #: inc/customizer.php:1136
 #: inc/customizer.php:885
+#: inc/customizer.php:911
 msgid "Bookman"
 msgstr ""
 
 #: inc/customizer.php:1137
 #: inc/customizer.php:886
+#: inc/customizer.php:912
 msgid "Courier"
 msgstr ""
 
 #: inc/customizer.php:1138
 #: inc/customizer.php:887
+#: inc/customizer.php:913
 msgid "Courier New"
 msgstr ""
 
 #: inc/customizer.php:1139
 #: inc/customizer.php:888
+#: inc/customizer.php:914
 msgid "Garamond"
 msgstr ""
 
 #: inc/customizer.php:1140
 #: inc/customizer.php:889
+#: inc/customizer.php:915
 msgid "Georgia"
 msgstr ""
 
 #: inc/customizer.php:1141
 #: inc/customizer.php:890
+#: inc/customizer.php:916
 msgid "Helvetica"
 msgstr ""
 
 #: inc/customizer.php:1142
 #: inc/customizer.php:891
+#: inc/customizer.php:917
 msgid "Times"
 msgstr ""
 
 #: inc/customizer.php:1143
 #: inc/customizer.php:892
+#: inc/customizer.php:918
 msgid "Times New Roman"
 msgstr ""
 
 #: inc/customizer.php:1144
 #: inc/customizer.php:893
+#: inc/customizer.php:919
 msgid "Trebuchet MS"
 msgstr ""
 
 #: inc/customizer.php:1145
 #: inc/customizer.php:894
+#: inc/customizer.php:920
 msgid "Verdana"
 msgstr ""
 
 #: inc/customizer.php:1188
 #: inc/customizer.php:937
+#: inc/customizer.php:963
 msgid "Default"
 msgstr ""
 
 #: inc/customizer.php:1209
 #: inc/customizer.php:958
+#: inc/customizer.php:984
 msgid "Default (Legacy)"
 msgstr ""
 
 #: inc/customizer.php:1230
 #: inc/customizer.php:979
+#: inc/customizer.php:1005
 msgid "Education"
 msgstr ""
 
 #: inc/customizer.php:1251
 #: inc/customizer.php:1000
+#: inc/customizer.php:1026
 msgid "Modern Teal"
 msgstr ""
 
 #: inc/customizer.php:1272
 #: inc/customizer.php:1021
+#: inc/customizer.php:1047
 msgid "Mono Blue"
 msgstr ""
 
 #: inc/customizer.php:1293
 #: inc/customizer.php:1042
+#: inc/customizer.php:1068
 msgid "Mono Green"
 msgstr ""
 
 #: inc/customizer.php:1314
 #: inc/customizer.php:1063
+#: inc/customizer.php:1089
 msgid "Mono Orange"
 msgstr ""
 
 #: inc/customizer.php:1335
 #: inc/customizer.php:1084
+#: inc/customizer.php:1110
 msgid "Mono Pink"
 msgstr ""
 
 #: inc/customizer.php:1356
 #: inc/customizer.php:1105
+#: inc/customizer.php:1131
 msgid "Pop!"
 msgstr ""
 
 #: inc/customizer.php:1377
 #: inc/customizer.php:1126
+#: inc/customizer.php:1152
 msgid "Not So Primary"
 msgstr ""
 
 #: inc/customizer.php:1398
 #: inc/customizer.php:1147
+#: inc/customizer.php:1173
 msgid "Raspberry Lime"
 msgstr ""
 
 #: inc/customizer.php:1419
 #: inc/customizer.php:1168
+#: inc/customizer.php:1194
 msgid "Slate Blue"
 msgstr ""
 
 #: inc/customizer.php:1440
 #: inc/customizer.php:1189
+#: inc/customizer.php:1215
 msgid "Watermelon Seed"
 msgstr ""
 
@@ -1117,19 +1166,23 @@ msgid "The %1$s hook has been deprecated since version 3.1 of Memberlite. Please
 msgstr ""
 
 #: inc/deprecated.php:73
+#: inc/deprecated.php:75
 msgid "The [memberlite_signup] shortcode is now deprecated. Please use the Signup Shortcode Add On for Paid Memberships Pro instead."
 msgstr ""
 
 #: inc/deprecated.php:77
+#: inc/deprecated.php:79
 msgid "Admin only message: The Memberlite Signup shortcode is deprecated. Please update your content."
 msgstr ""
 
 #: inc/deprecated.php:156
+#: inc/deprecated.php:158
 #, php-format
 msgid "Some plugins are now merged into the Memberlite theme. The features of the following plugins are now included by default. You should <strong>delete these unnecessary plugins</strong> from your site: <em><strong>%s</strong></em>."
 msgstr ""
 
 #: inc/deprecated.php:217
+#: inc/deprecated.php:219
 msgid "Deprecated"
 msgstr ""
 
@@ -2219,18 +2272,22 @@ msgid "Site Background Color"
 msgstr ""
 
 #: inc/customizer.php:88
+#: inc/customizer.php:90
 msgid "Typography"
 msgstr ""
 
 #: inc/customizer.php:97
+#: inc/customizer.php:99
 msgid "Breadcrumbs"
 msgstr ""
 
 #: inc/customizer.php:109
+#: inc/customizer.php:111
 msgid "Header"
 msgstr ""
 
 #: inc/customizer.php:127
+#: inc/customizer.php:129
 msgid "Posts & Archives"
 msgstr ""
 
