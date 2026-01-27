@@ -281,29 +281,11 @@ class Memberlite_Customize {
                         'type' => 'select',
                         'description' => $description,
                         'sanitize_callback' => array( 'Memberlite_Customize', 'sanitize_dynamic_color_scheme' ),
-                        'sanitize_js_callback' => array( 'Memberlite_Customize', 'sanitize_js_color_scheme' ),
+                        'sanitize_js_callback' => array( 'Memberlite_Customize', 'sanitize_dynamic_color_scheme' ),
                         'choices' => Memberlite_Customize::get_dynamic_color_scheme_choices(),
                         'priority' => 1,
                 )
         );
-
-//		self::add_memberlite_setting_control( $wp_customize, 'memberlite_color_scheme', 'Legacy Memberlite Color Scheme', 'colors', array(
-//			'type'                  => 'select',
-//			'sanitize_callback'     => array( 'Memberlite_Customize', 'sanitize_legacy_color_scheme' ),
-//			'sanitize_js_callback'  => array( 'Memberlite_Customize', 'sanitize_js_legacy_color_scheme' ),
-//			'choices'               => array_merge(
-//				Memberlite_Customize::get_legacy_color_scheme_choices(),
-//				array(
-//					'modern' => '← Back to Modern Schemes',
-//                    'custom' => 'Custom Legacy Colors',
-//				)
-//			),
-//            'default' => 'default_v4.6',
-//			'priority' => 1,
-//            'active_callback' => function() {
-//                return get_theme_mod('memberlite_variation_color_scheme') === 'legacy';
-//            },
-//		) );
 
 		// COLORS: Dark Mode ================
 		self::add_memberlite_setting_control( $wp_customize, 'memberlite_darkcss', 'Use Dark Mode Colors', 'colors', array(
@@ -872,30 +854,6 @@ class Memberlite_Customize {
     }
 
 	/**
-	 * Localize $memberlite_defaults for use in the customizer live preview JS
-	 *
-	 * @return void
-	 */
-	public static function live_preview() {
-        //@todo: Do we need this?
-//		global $memberlite_defaults;
-//        global $memberlite_defaults_legacy;
-//		wp_register_script(
-//			'Memberlite_Customizer',
-//			MEMBERLITE_URL . '/js/customizer.js',
-//			array( 'jquery', 'customize-preview' ),
-//			MEMBERLITE_VERSION,
-//			true
-//		);
-//		// Localize the script with new data
-//		wp_localize_script( 'Memberlite_Customizer', 'memberlite_defaults', array(
-//                'new' => $memberlite_defaults,
-//                'legacy' => $memberlite_defaults_legacy,
-//        ) );
-//		wp_enqueue_script( 'Memberlite_Customizer' );
-	}
-
-	/**
 	 * Get Google fonts
 	 */
 	public static function get_google_fonts() {
@@ -991,10 +949,10 @@ class Memberlite_Customize {
 	}
 
 	/**
-	 * Returns an array of color scheme choices (4.7 and later) registered for Memberlite.
+	 * Returns an array of color scheme choices (6.6.1 and later) registered for Memberlite.
 	 *
 	 * @return array Array of color schemes.
-	 * @since Memberlite 2.0
+	 * @since Memberlite 6.6.2
 	 *
 	 */
     public static function get_color_scheme_choices() {
@@ -1088,68 +1046,16 @@ class Memberlite_Customize {
             $value = 'default_2026';
         }
 
-        return $value;
+        return esc_js( $value );
     }
 
-    /**
-	 * Sanitization callback for color schemes.
-	 *
-	 * @param string $value Color scheme name value.
-	 *
-	 * @return string Color scheme name.
-	 * @since Memberlite 2.0
-	 *
-	 */
-	public static function sanitize_color_scheme( $value ) {
-		$color_schemes = array_merge(
-			Memberlite_Customize::get_color_scheme_choices(),
-			array(
-				'custom' => 'Custom',
-			)
-		);
-		if ( ! array_key_exists( $value, $color_schemes ) ) {
-			$value = 'default';
-		}
-
-		return $value;
-	}
-
-	public static function sanitize_js_color_scheme( $value ) {
-		$color_schemes = array_merge(
-			Memberlite_Customize::get_color_scheme_choices(),
-			array(
-				'custom' => 'Custom',
-			)
-		);
-		if ( ! array_key_exists( $value, $color_schemes ) ) {
-			$value = 'default';
-		}
-
-		return esc_js( $value );
-	}
-
-    public static function sanitize_legacy_color_scheme( $value ) {
+    public static function sanitize_js_color_scheme( $value ) {
         $color_schemes = array_merge(
-                Memberlite_Customize::get_legacy_color_scheme_choices(),
-                array(
-                        'custom' => 'Custom',
-                )
+                Memberlite_Customize::get_color_scheme_choices(),
+                array('custom' => 'Custom',)
         );
         if ( ! array_key_exists( $value, $color_schemes ) ) {
-            $value = 'default_v4.6'; // Use legacy default
-        }
-        return $value;
-    }
-
-    public static function sanitize_js_legacy_color_scheme( $value ) {
-        $color_schemes = array_merge(
-                Memberlite_Customize::get_legacy_color_scheme_choices(),
-                array(
-                        'custom' => 'Custom',
-                )
-        );
-        if ( ! array_key_exists( $value, $color_schemes ) ) {
-            $value = 'default_v4.6';
+            $value = 'default';
         }
         return esc_js( $value );
     }
@@ -1253,6 +1159,3 @@ add_action( 'customize_controls_enqueue_scripts', array( 'Memberlite_Customize',
 
 // Output custom CSS to live site
 add_action( 'wp_head', array( 'Memberlite_Customize', 'header_output' ) );
-
-// Enqueue live preview javascript in Theme Customizer admin screen
-add_action( 'customize_preview_init', array( 'Memberlite_Customize', 'live_preview' ) );
