@@ -14,7 +14,7 @@ Memberlite is the ideal theme for your membership site - packed with integration
 
 == Copyright ==
 
-Memberlite WordPress Theme, Copyright (C) 2018 - 2025 Stranger Studios, LLC and other contributors
+Memberlite WordPress Theme, Copyright (C) 2018 - 2026 Stranger Studios, LLC and other contributors
 Memberlite is distributed under the terms of the GNU GPL
 
 This program is free software: you can redistribute it and/or modify
