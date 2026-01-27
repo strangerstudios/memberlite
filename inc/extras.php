@@ -44,7 +44,7 @@ function memberlite_body_classes( $classes ) {
 	}
 
 	// color scheme class
-	$classes[] = 'scheme_' . get_theme_mod( 'memberlite_color_scheme', $memberlite_defaults['memberlite_color_scheme'] );
+	$classes[] = 'scheme_' . get_theme_mod( 'memberlite_variation_color_scheme', $memberlite_defaults['memberlite_variation_color_scheme'] );
 
 	// dark mode class
 	if ( get_theme_mod( 'memberlite_darkcss', $memberlite_defaults['memberlite_darkcss'] ) ) {
@@ -376,7 +376,7 @@ function memberlite_more_content() {
 
 /**
  * Get the featured block image to insert into the post content.
- * 
+ *
  */
 function memberlite_loop_image() {
 	global $memberlite_defaults;
@@ -967,7 +967,7 @@ function memberlite_parse_tags( $meta, $post = null ) {
 
 	if ( strpos( $meta, '{post_comments}' ) !== false ) {
 		$searches[]     = '{post_comments}';
-		
+
 		// Get comments count (exclude Trackbacks and Pingbacks).
 		$comment_args = array(
 			'post_id'	=> $post->ID,

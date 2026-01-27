@@ -853,6 +853,20 @@ class Memberlite_Customize {
         <?php
     }
 
+    public static function live_preview() {
+        //@todo: Do we need this?
+		global $memberlite_defaults;
+		wp_register_script(
+			'Memberlite_Customizer',
+			MEMBERLITE_URL . '/js/customizer.js',
+			array( 'jquery', 'customize-preview' ),
+			MEMBERLITE_VERSION,
+			true
+		);
+
+		wp_enqueue_script( 'Memberlite_Customizer' );
+    }
+
 	/**
 	 * Get Google fonts
 	 */
@@ -1124,14 +1138,14 @@ class Memberlite_Customize {
 		);
 
 		// Pass BOTH new and legacy color schemes to the same script
-		wp_localize_script(
-				'Memberlite_Customizer-controls',
-				'memberliteColorSchemes',
-				array(
-					'new' => Memberlite_Customize::get_color_schemes(),
-					'legacy' => Memberlite_Customize::get_legacy_color_schemes(),
-				)
-		);
+        wp_localize_script(
+                'Memberlite_Customizer-controls',
+                'memberliteColorSchemes',
+                array(
+                        'new' => Memberlite_Customize::get_color_schemes(),
+                        'legacy' => Memberlite_Customize::get_legacy_color_schemes(),
+                )
+        );
 
 		wp_enqueue_style(
 			'memberlite-customizer-css',
@@ -1159,3 +1173,6 @@ add_action( 'customize_controls_enqueue_scripts', array( 'Memberlite_Customize',
 
 // Output custom CSS to live site
 add_action( 'wp_head', array( 'Memberlite_Customize', 'header_output' ) );
+
+// Enqueue live preview javascript in Theme Customizer admin screen
+add_action( 'customize_preview_init', array( 'Memberlite_Customize', 'live_preview' ) );

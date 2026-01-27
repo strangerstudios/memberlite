@@ -2,6 +2,8 @@
 /**
  * Core color arrays for each scheme
  */
+
+//Default color palette
 function memberlite_get_colors(): array {
 	return array(
 		'contrast'      => '#222222',
@@ -14,6 +16,7 @@ function memberlite_get_colors(): array {
 	);
 }
 
+//New Author Color Palette
 function memberlite_get_news_colors(): array {
 	return array(
 		'contrast'      => '#222222',
@@ -27,7 +30,7 @@ function memberlite_get_news_colors(): array {
 }
 
 /**
- * Legacy color array (16 colors) - for backward compatibility
+ * Legacy color array (16 colors - default 4.6) - for backward compatibility
  */
 function memberlite_get_legacy_colors(): array {
 	return array(
@@ -64,6 +67,7 @@ function memberlite_map_colors_to_settings( array $colors ): array {
 		'color_primary'            => $colors['primary'],
 		'color_secondary'          => $colors['secondary'],
 		'color_borders'            => $colors['border'],
+		'header_textcolor'         => $colors['contrast'],
 
 		// Derived/calculated colors based on the 7 core colors
 		'memberlite_heading_color' => $colors['masthead_text'],
@@ -263,7 +267,7 @@ function memberlite_get_legacy_color_schemes(): array {
 	$legacy_colors = memberlite_get_legacy_colors();
 	$schemes       = array(
 		'default_v4.6'   => array(
-			'label'  => __( 'Default V4.6', 'memberlite' ),
+			'label'  => __( 'Default V4.6 (Legacy)', 'memberlite' ),
 			'colors' => array(
 				$legacy_colors['heading'],
 				$legacy_colors['background'],
