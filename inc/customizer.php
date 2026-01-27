@@ -288,12 +288,17 @@ class Memberlite_Customize {
         );
 
 		// COLORS: Dark Mode ================
-		self::add_memberlite_setting_control( $wp_customize, 'memberlite_darkcss', 'Use Dark Mode Colors', 'colors', array(
-			'type'              => 'checkbox',
-			'sanitize_callback' => array( 'Memberlite_Customize', 'sanitize_checkbox' ),
-			'description'       => 'Check this box if you have chosen a dark background color and light default text color for your site.',
-			'priority' => 2,
-		) );
+        $memberlite_darkcss = get_theme_mod( 'memberlite_darkcss');
+
+        if ( ! empty( $memberlite_darkcss ) ) {
+            //Only adds this "dark mode" version if the user already had it enabled (will be deprecated in the future)
+            self::add_memberlite_setting_control( $wp_customize, 'memberlite_darkcss', 'Use Dark Mode Colors', 'colors', array(
+                    'type'              => 'checkbox',
+                    'sanitize_callback' => array( 'Memberlite_Customize', 'sanitize_checkbox' ),
+                    'description'       => 'Check this box if you have chosen a dark background color and light default text color for your site.',
+                    'priority'          => 2,
+            ) );
+        }
 
 		// COLORS: Header Colors ================
 		self::add_memberlite_heading( $wp_customize, 'memberlite_header_colors', 'Header Colors', 'colors' );
