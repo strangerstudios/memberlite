@@ -1185,7 +1185,7 @@
 					}
 				},
 				"typography": {
-					"fontFamily": "var(--memberlite-header-font)",
+					"fontFamily": "var(--memberlite-body-font)",
 					"fontSize": "var(--wp--preset--font-size--18)",
 					"fontWeight": "700",
 					"lineHeight": "var(--wp--custom--line-height--body)"
