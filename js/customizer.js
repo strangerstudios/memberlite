@@ -72,7 +72,7 @@
 			setting.bind(
 				function( value ) {
 					document.documentElement.style.setProperty('--memberlite-color-site-background', value );
-					$( '#memberlite-customizer-css' ).append( 'body { --wp--preset--color--color-site-background:' + value + '; }' );
+					$( '#memberlite-customizer-css' ).append( 'body { --memberlite---color-site-background:' + value + '; }' );
 				}
 			);
 		}
@@ -83,7 +83,7 @@
 			setting.bind(
 				function( value ) {
 					document.documentElement.style.setProperty('--memberlite-color-header-background', value );
-					$( '#memberlite-customizer-css' ).append( 'body { --wp--preset--color--color-header-background:' + value + '; }' );
+					$( '#memberlite-customizer-css' ).append( 'body { --memberlite---color-header-background:' + value + '; }' );
 				}
 			);
 		}
@@ -94,7 +94,7 @@
 			setting.bind(
 				function( value ) {
 					document.documentElement.style.setProperty('--memberlite-color-site-navigation-background', value );
-					$( '#memberlite-customizer-css' ).append( 'body { --wp--preset--color--bgcolor-site-navigation:' + value + '; }' );
+					$( '#memberlite-customizer-css' ).append( 'body { --memberlite---bgcolor-site-navigation:' + value + '; }' );
 				}
 			);
 		}
@@ -105,7 +105,7 @@
 			setting.bind(
 				function( value ) {
 					document.documentElement.style.setProperty('--memberlite-color-site-navigation', value );
-					$( '#memberlite-customizer-css' ).append( 'body { --wp--preset--color--color-site-navigation:' + value + '; }' );
+					$( '#memberlite-customizer-css' ).append( 'body { --memberlite---color-site-navigation:' + value + '; }' );
 				}
 			);
 		}
@@ -116,7 +116,7 @@
 			setting.bind(
 				function( value ) {
 					document.documentElement.style.setProperty('--memberlite-color-link', value );
-					$( '#memberlite-customizer-css' ).append( 'body { --wp--preset--color--color-link:' + value + '; }' );
+					$( '#memberlite-customizer-css' ).append( 'body { --memberlite---color-link:' + value + '; }' );
 				}
 			);
 		}
@@ -127,7 +127,7 @@
 			setting.bind(
 				function( value ) {
 					document.documentElement.style.setProperty('--memberlite-color-meta-link', value );
-					$( '#memberlite-customizer-css' ).append( 'body { --wp--preset--color--color-meta-link:' + value + '; }' );
+					$( '#memberlite-customizer-css' ).append( 'body { --memberlite---color-meta-link:' + value + '; }' );
 				}
 			);
 		}
@@ -138,7 +138,7 @@
 			setting.bind(
 				function( value ) {
 					document.documentElement.style.setProperty('--memberlite-color-primary', value );
-					$( '#memberlite-customizer-css' ).append( 'body { --wp--preset--color--color-primary:' + value + '; }' );
+					$( '#memberlite-customizer-css' ).append( 'body { --memberlite---color-primary:' + value + '; }' );
 				}
 			);
 		}
@@ -149,7 +149,7 @@
 			setting.bind(
 				function( value ) {
 					document.documentElement.style.setProperty('--memberlite-color-secondary', value );
-					$( '#memberlite-customizer-css' ).append( 'body { --wp--preset--color--color-secondary:' + value + '; }' );
+					$( '#memberlite-customizer-css' ).append( 'body { --memberlite---color-secondary:' + value + '; }' );
 				}
 			);
 		}
@@ -160,7 +160,7 @@
 			setting.bind(
 				function( value ) {
 					document.documentElement.style.setProperty('--memberlite-color-action', value );
-					$( '#memberlite-customizer-css' ).append( 'body { --wp--preset--color--color-action:' + value + '; }' );
+					$( '#memberlite-customizer-css' ).append( 'body { --memberlite---color-action:' + value + '; }' );
 				}
 			);
 		}
@@ -171,7 +171,7 @@
 			setting.bind(
 				function( value ) {
 					document.documentElement.style.setProperty('--memberlite-color-button', value );
-					$( '#memberlite-customizer-css' ).append( 'body { --wp--preset--color--color-button:' + value + '; }' );
+					$( '#memberlite-customizer-css' ).append( 'body { --memberlite---color-button:' + value + '; }' );
 				}
 			);
 		}
@@ -182,7 +182,7 @@
 			setting.bind(
 				function( value ) {
 					document.documentElement.style.setProperty('--memberlite-color-page-masthead-background', value );
-					$( '#memberlite-customizer-css' ).append( 'body { --wp--preset--color--bgcolor-page-masthead:' + value + '; }' );
+					$( '#memberlite-customizer-css' ).append( 'body { --memberlite---bgcolor-page-masthead:' + value + '; }' );
 				}
 			);
 		}
@@ -193,7 +193,7 @@
 			setting.bind(
 				function( value ) {
 					document.documentElement.style.setProperty('--memberlite-color-page-masthead', value );
-					$( '#memberlite-customizer-css' ).append( 'body { --wp--preset--color--color-page-masthead:' + value + '; }' );
+					$( '#memberlite-customizer-css' ).append( 'body { --memberlite---color-page-masthead:' + value + '; }' );
 				}
 			);
 		}
@@ -204,7 +204,7 @@
 			setting.bind(
 				function( value ) {
 					document.documentElement.style.setProperty('--memberlite-color-footer-widgets-background', value );
-					$( '#memberlite-customizer-css' ).append( 'body { --wp--preset--color--bgcolor-footer-widgets:' + value + '; }' );
+					$( '#memberlite-customizer-css' ).append( 'body { --memberlite---bgcolor-footer-widgets:' + value + '; }' );
 				}
 			);
 		}
@@ -215,7 +215,7 @@
 			setting.bind(
 				function( value ) {
 					document.documentElement.style.setProperty('--memberlite-color-footer-widgets', value );
-					$( '#memberlite-customizer-css' ).append( 'body { --wp--preset--color--color-footer-widgets:' + value + '; }' );
+					$( '#memberlite-customizer-css' ).append( 'body { --memberlite---color-footer-widgets:' + value + '; }' );
 				}
 			);
 		}

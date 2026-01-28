@@ -668,12 +668,11 @@ function memberlite_get_active_colors() {
 }
 
 // Globals
-global $memberlite_defaults;
-global $memberlite_color_schemes, $memberlite_legacy_color_schemes;
+global $memberlite_defaults, $memberlite_color_schemes, $memberlite_legacy_color_schemes, $memberlite_defaults_news, $memberlite_defaults_wptavern;
 
 $memberlite_defaults             = memberlite_get_defaults();
-//$memberlite_defaults_news        = memberlite_get_defaults_news();
-//$memberlite_defaults_wptavern    = memberlite_get_defaults_wptavern();
-//$memberlite_defaults_legacy      = memberlite_get_defaults_legacy();
+$memberlite_defaults_news        = memberlite_get_defaults_news();
+$memberlite_defaults_wptavern    = memberlite_get_defaults_wptavern();
+$memberlite_defaults_legacy      = memberlite_get_defaults_legacy();
 $memberlite_color_schemes        = memberlite_get_color_schemes();
 $memberlite_legacy_color_schemes = memberlite_get_legacy_color_schemes();
