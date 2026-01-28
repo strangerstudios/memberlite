@@ -300,6 +300,13 @@ class Memberlite_Customize {
             ) );
         }
 
+        self::add_memberlite_setting_control( $wp_customize, ' ', 'Override PMPro Colors', 'colors', array(
+                'type'              => 'checkbox',
+                'sanitize_callback' => array( 'Memberlite_Customize', 'sanitize_checkbox' ),
+                'description'       => 'By default, PMPro will use colors <a href="' . admin_url( 'admin.php?page=pmpro-designsettings' ) .'" target="_blank">from its own settings</a>. Check this box to have PMPro use the base color, contrast color, and accent color you have chosen here instead.',
+                'priority'          => 2,
+        ) );
+
 		// COLORS: Header Colors ================
 		self::add_memberlite_heading( $wp_customize, 'memberlite_header_colors', 'Header Colors', 'colors' );
 
@@ -801,6 +808,8 @@ class Memberlite_Customize {
             $header_textcolor = $memberlite_defaults['header_textcolor'];
         }
 
+        $override_pmpro_colors = get_theme_mod('memberlite_pmpro_override');
+
         $hover_brightness = $memberlite_defaults['hover_brightness'];
         $color_white      = '#FFFFFF';
 
@@ -852,6 +861,14 @@ class Memberlite_Customize {
 				--wp--preset--color--footer-bg: <?php echo esc_attr( $active_colors['bgcolor_footer_widgets'] ); ?>;
 				--wp--preset--color--footer-text: <?php echo esc_attr( $active_colors['color_footer_widgets'] ); ?>;
 				--wp--preset--color--white: <?php echo esc_attr( $color_white ); ?>;
+
+                <?php if ( $override_pmpro_colors )  : ?>
+                    /* PMPro color vars */
+                    --pmpro--color--accent: <?php echo esc_attr( $active_colors['color_primary'] ); ?>;
+                    --pmpro--color--accent--variation: <?php echo esc_attr( $active_colors['color_secondary'] ); ?>;
+                    --pmpro--color--base: <?php echo esc_attr( $active_colors['background_color'] ); ?>;
+                    --pmpro--color--contrast: <?php echo esc_attr( $active_colors['color_text'] ); ?>;
+                <?php endif; ?>
 			}
         </style>
         <!--/Customizer CSS-->

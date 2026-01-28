@@ -268,55 +268,42 @@ function memberlite_get_defaults_legacy(): array {
 
 /**
  * New color schemes (6.6.1+) - 7 colors each
- * @todo: refactor scheme arrays into a helper function to avoid repetition
  */
 function memberlite_get_color_schemes(): array {
-	$colors      = memberlite_get_colors();
-	$news_colors = memberlite_get_news_colors();
-	$wptavern_colors = memberlite_get_wptavern_colors();
-
 	$schemes = array(
 		'default_2026' => array(
 			'label'  => __( 'Default', 'memberlite' ),
-			'colors' => array(
-				$colors['contrast'],
-				$colors['base'],
-				$colors['masthead_bg'],
-				$colors['masthead_text'],
-				$colors['primary'],
-				$colors['secondary'],
-				$colors['border'],
-			),
+			'colors' => memberlite_get_colors(),
 		),
-		'news'         => array(
+		'news' => array(
 			'label'  => __( 'News Author', 'memberlite' ),
-			'colors' => array(
-				$news_colors['contrast'],
-				$news_colors['base'],
-				$news_colors['masthead_bg'],
-				$news_colors['masthead_text'],
-				$news_colors['primary'],
-				$news_colors['secondary'],
-				$news_colors['border'],
-			),
+			'colors' => memberlite_get_news_colors(),
 		),
-		'wptavern'         => array(
+		'wptavern' => array(
 			'label'  => __( 'WP Tavern', 'memberlite' ),
-			'colors' => array(
-				$wptavern_colors['contrast'],
-				$wptavern_colors['base'],
-				$wptavern_colors['masthead_bg'],
-				$wptavern_colors['masthead_text'],
-				$wptavern_colors['primary'],
-				$wptavern_colors['secondary'],
-				$wptavern_colors['border'],
-			),
+			'colors' => memberlite_get_wptavern_colors(),
 		),
 	);
+
+	// Loop through and format colors as array for theme.json
+	foreach ( $schemes as $scheme ) {
+		$scheme['colors'] = memberlite_format_scheme_colors( $scheme['colors'] );
+	}
 
 	return apply_filters( 'memberlite_variation_color_schemes', $schemes );
 }
 
+function memberlite_format_scheme_colors( array $color_defs ) : array {
+	return array(
+		$color_defs['contrast'],
+		$color_defs['base'],
+		$color_defs['masthead_bg'],
+		$color_defs['masthead_text'],
+		$color_defs['primary'],
+		$color_defs['secondary'],
+		$color_defs['border'],
+	);
+}
 /**
  * Color schemes from Memberlite versions up to 4.6 w/ 16 colors each for backward compatibility
  *
@@ -681,12 +668,12 @@ function memberlite_get_active_colors() {
 }
 
 // Globals
-global $memberlite_defaults, $memberlite_defaults_news, $memberlite_defaults_legacy;
+global $memberlite_defaults;
 global $memberlite_color_schemes, $memberlite_legacy_color_schemes;
 
 $memberlite_defaults             = memberlite_get_defaults();
-$memberlite_defaults_news        = memberlite_get_defaults_news();
-$memberlite_defaults_wptavern    = memberlite_get_defaults_wptavern();
-$memberlite_defaults_legacy      = memberlite_get_defaults_legacy();
+//$memberlite_defaults_news        = memberlite_get_defaults_news();
+//$memberlite_defaults_wptavern    = memberlite_get_defaults_wptavern();
+//$memberlite_defaults_legacy      = memberlite_get_defaults_legacy();
 $memberlite_color_schemes        = memberlite_get_color_schemes();
 $memberlite_legacy_color_schemes = memberlite_get_legacy_color_schemes();

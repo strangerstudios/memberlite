@@ -868,7 +868,7 @@
 						"border": {
 							"color": "currentColor",
 							"style": "solid",
-							"width": "1px"
+							"width": "2px"
 						},
 						"spacing": {
 							"padding": {
@@ -1179,9 +1179,9 @@
 				"spacing": {
 					"padding": {
 						"top": "calc( var(--wp--preset--spacing--10) / 1.5)",
-						"right": "var(--wp--preset--spacing--20)",
+						"right": "var(--wp--preset--spacing--50)",
 						"bottom": "calc( var(--wp--preset--spacing--10) / 1.5)",
-						"left": "var(--wp--preset--spacing--20)"
+						"left": "var(--wp--preset--spacing--50)"
 					}
 				},
 				"typography": {
