@@ -133,6 +133,8 @@ function memberlite_map_legacy_colors_to_settings( array $colors ): array {
 
 /**
  * Get default theme settings (6.6.1+ with new 7-color scheme)
+ *
+ * @return array
  */
 function memberlite_get_defaults(): array {
 	$colors         = memberlite_get_colors();
@@ -167,6 +169,8 @@ function memberlite_get_defaults(): array {
 
 /**
  * Get News Author theme variation settings (6.6.1+ with new 7-color scheme)
+ *
+ * @return array
  */
 function memberlite_get_defaults_news(): array {
 	$colors         = memberlite_get_news_colors();
@@ -199,7 +203,11 @@ function memberlite_get_defaults_news(): array {
 	return apply_filters( 'memberlite_defaults_news', $defaults );
 }
 
-//@todo: can probably refactor to repeat mapping per variation color scheme without multiple functions
+/**
+ * Get WP Tavern theme variation settings (6.6.1+ with new 7-color scheme)
+ *
+ * @return array
+ */
 function memberlite_get_defaults_wptavern(): array {
 	$colors         = memberlite_get_wptavern_colors();
 	$color_settings = memberlite_map_colors_to_settings( $colors );
@@ -275,11 +283,11 @@ function memberlite_get_color_schemes(): array {
 			'label'  => __( 'Default', 'memberlite' ),
 			'colors' => memberlite_get_colors(),
 		),
-		'news' => array(
+		'news'         => array(
 			'label'  => __( 'News Author', 'memberlite' ),
 			'colors' => memberlite_get_news_colors(),
 		),
-		'wptavern' => array(
+		'wptavern'     => array(
 			'label'  => __( 'WP Tavern', 'memberlite' ),
 			'colors' => memberlite_get_wptavern_colors(),
 		),
@@ -293,7 +301,14 @@ function memberlite_get_color_schemes(): array {
 	return apply_filters( 'memberlite_variation_color_schemes', $schemes );
 }
 
-function memberlite_format_scheme_colors( array $color_defs ) : array {
+/**
+ * Format color schemes for theme.json
+ *
+ * @param array $color_defs
+ *
+ * @return array
+ */
+function memberlite_format_scheme_colors( array $color_defs ): array {
 	return array(
 		$color_defs['contrast'],
 		$color_defs['base'],
@@ -304,8 +319,9 @@ function memberlite_format_scheme_colors( array $color_defs ) : array {
 		$color_defs['border'],
 	);
 }
+
 /**
- * Color schemes from Memberlite versions up to 4.6 w/ 16 colors each for backward compatibility
+ * Color schemes from Memberlite versions up to 6.6.1 w/ 16 colors each for backward compatibility
  *
  * @return array<string, array<string, mixed>>
  */
@@ -590,6 +606,12 @@ function memberlite_get_legacy_color_schemes(): array {
 	return apply_filters( 'memberlite_color_schemes', $schemes );
 }
 
+
+/**
+ * Used to fetch active default colors based on the selected color scheme
+ *
+ * @return array
+ */
 function memberlite_get_active_colors() {
 	global $memberlite_defaults;
 
@@ -624,13 +646,19 @@ function memberlite_get_active_colors() {
 
 	// Check if it's a new variation scheme
 	$new_schemes = memberlite_get_color_schemes();
+
+	error_log( print_r( $new_schemes[ $variation_scheme ], true ) ); // Debug line to check new schemes
+
 	if ( isset( $new_schemes[ $variation_scheme ] ) ) {
 		// It's a new scheme - use new color mapping
 		if ( $variation_scheme === 'news' ) {
+			error_log( 'A' ); // Debug line
 			$color_array = memberlite_get_news_colors();
-		} else if( $variation_scheme === 'wptavern' ) {
+		} else if ( $variation_scheme === 'wptavern' ) {
+			error_log( 'B' ); // Debug line
 			$color_array = memberlite_get_wptavern_colors();
 		} else {
+			error_log( 'C' ); // Debug line
 			$color_array = memberlite_get_colors();
 		}
 

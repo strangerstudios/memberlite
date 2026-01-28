@@ -15,6 +15,7 @@ class Memberlite_Customize {
 	 * Sets and gets customizer settings and controls for Memberlite
 	 *
 	 * @param WP_Customize_Manager $wp_customize
+	 *
 	 * @return void
 	 */
 	public static function register( WP_Customize_Manager $wp_customize ) {
@@ -47,14 +48,14 @@ class Memberlite_Customize {
 
 		$wp_customize->selective_refresh->add_partial(
 			'blogname', array(
-				'selector'        => '.site-title a',
-				'render_callback' => array( 'Memberlite_Customize', 'bloginfo_name' ),
+					'selector'        => '.site-title a',
+					'render_callback' => array( 'Memberlite_Customize', 'bloginfo_name' ),
 			)
 		);
 		$wp_customize->selective_refresh->add_partial(
 			'blogdescription', array(
-				'selector'        => '.site-description',
-				'render_callback' => array( 'Memberlite_Customize', 'bloginfo_description' ),
+					'selector'        => '.site-description',
+					'render_callback' => array( 'Memberlite_Customize', 'bloginfo_description' ),
 			)
 		);
 
@@ -78,6 +79,7 @@ class Memberlite_Customize {
 	 * Sets panels and sections in customizer
 	 *
 	 * @param WP_Customize_Manager $wp_customize
+	 *
 	 * @return void
 	 */
 	public static function set_customizer_panels_sections( WP_Customize_Manager $wp_customize ) {
@@ -86,8 +88,8 @@ class Memberlite_Customize {
 		$wp_customize->add_panel(
 			'memberlite_general_panel',
 			array(
-				'title'       => __( 'General', 'memberlite' ),
-				'priority'    => 1,
+				'title'    => __( 'General', 'memberlite' ),
+				'priority' => 1,
 			)
 		);
 
@@ -103,7 +105,7 @@ class Memberlite_Customize {
 		// Move core Background Image into our custom panel
 		$section = $wp_customize->get_section( 'background_image' );
 		if ( $section ) {
-			$section->panel    = 'memberlite_general_panel';
+			$section->panel = 'memberlite_general_panel';
 		}
 
 		$wp_customize->add_section(
@@ -118,21 +120,21 @@ class Memberlite_Customize {
 		$wp_customize->add_section(
 			'memberlite_typography_options',
 			array(
-				'title' => __( 'Typography', 'memberlite' ),
-				'priority'    => 2,
+				'title'    => __( 'Typography', 'memberlite' ),
+				'priority' => 2,
 			)
 		);
 
 		/* Colors -------------------------------- */
-		$wp_customize->get_section('colors')->priority = 3;
+		$wp_customize->get_section( 'colors' )->priority = 3;
 
 		/* Header -------------------------------- */
 		$wp_customize->add_panel(
 			'memberlite_header_panel',
 			array(
-				'title'       => __( 'Header', 'memberlite' ),
-				'capability'  => 'edit_theme_options',
-				'priority' => 4,
+				'title'      => __( 'Header', 'memberlite' ),
+				'capability' => 'edit_theme_options',
+				'priority'   => 4,
 			)
 		);
 
@@ -163,7 +165,7 @@ class Memberlite_Customize {
 		$wp_customize->add_section(
 			'memberlite_footer_options',
 			array(
-				'title' => __( 'Footer', 'memberlite' ),
+				'title'    => __( 'Footer', 'memberlite' ),
 				'priority' => 5,
 			)
 		);
@@ -172,7 +174,7 @@ class Memberlite_Customize {
 		$wp_customize->add_section(
 			'memberlite_post_archive_options',
 			array(
-				'title' => __( 'Posts & Archives', 'memberlite' ),
+				'title'    => __( 'Posts & Archives', 'memberlite' ),
 				'priority' => 6,
 			)
 		);
@@ -181,7 +183,7 @@ class Memberlite_Customize {
 		$wp_customize->add_section(
 			'memberlite_page_options',
 			array(
-				'title' => __( 'Pages', 'memberlite' ),
+				'title'    => __( 'Pages', 'memberlite' ),
 				'priority' => 7,
 			)
 		);
@@ -192,6 +194,7 @@ class Memberlite_Customize {
 	 * Sets general/global customizer settings
 	 *
 	 * @param WP_Customize_Manager $wp_customize
+	 *
 	 * @return void
 	 */
 	public static function set_customizer_general_settings( WP_Customize_Manager $wp_customize ) {
@@ -258,6 +261,7 @@ class Memberlite_Customize {
 	 * Sets color-related customizer settings
 	 *
 	 * @param WP_Customize_Manager $wp_customize
+	 *
 	 * @return void
 	 */
 	public static function set_customizer_color_settings( WP_Customize_Manager $wp_customize ) {
@@ -265,48 +269,49 @@ class Memberlite_Customize {
 		$description = 'Choose a color scheme for your site.';
 
 		// Check if they're currently on a legacy scheme
-		$current_scheme = get_theme_mod('memberlite_variation_color_scheme', '');
+		$current_scheme = get_theme_mod( 'memberlite_variation_color_scheme', '' );
 		$legacy_schemes = memberlite_get_legacy_color_schemes();
-		if ( isset($legacy_schemes[$current_scheme]) ) {
+
+		if ( isset( $legacy_schemes[ $current_scheme ] ) ) {
 			$description .= ' <strong>You are using a legacy scheme.</strong> Consider switching to a modern scheme for better performance.';
 		}
 
 		// COLORS: Color Scheme (New and Legacy) ================
 		self::add_memberlite_setting_control(
-				$wp_customize,
-				'memberlite_variation_color_scheme',
-				'Color Scheme',
-				'colors',
-				array(
-						'type' => 'select',
-						'description' => $description,
-						'sanitize_callback' => array( 'Memberlite_Customize', 'sanitize_dynamic_color_scheme' ),
-						'sanitize_js_callback' => array( 'Memberlite_Customize', 'sanitize_dynamic_color_scheme' ),
-						'choices' => Memberlite_Customize::get_dynamic_color_scheme_choices(),
-						'priority' => 1,
-				)
+			$wp_customize,
+			'memberlite_variation_color_scheme',
+			'Color Scheme',
+			'colors',
+			array(
+				'type'                 => 'select',
+				'description'          => $description,
+				'sanitize_callback'    => array( 'Memberlite_Customize', 'sanitize_dynamic_color_scheme' ),
+				'sanitize_js_callback' => array( 'Memberlite_Customize', 'sanitize_dynamic_color_scheme' ),
+				'choices'              => Memberlite_Customize::get_dynamic_color_scheme_choices(),
+				'priority'             => 1,
+			)
 		);
 
 		// COLORS: Dark Mode ================
-		$memberlite_darkcss = get_theme_mod( 'memberlite_darkcss');
+		$memberlite_darkcss = get_theme_mod( 'memberlite_darkcss' );
 
 		if ( ! empty( $memberlite_darkcss ) ) {
 			//Only adds this "dark mode" version if the user already had it enabled (will be deprecated in the future)
 			self::add_memberlite_setting_control( $wp_customize, 'memberlite_darkcss', 'Use Dark Mode Colors', 'colors', array(
-					'type'              => 'checkbox',
-					'sanitize_callback' => array( 'Memberlite_Customize', 'sanitize_checkbox' ),
-					'description'       => 'Check this box if you have chosen a dark background color and light default text color for your site.',
-					'priority'          => 2,
+				'type'              => 'checkbox',
+				'sanitize_callback' => array( 'Memberlite_Customize', 'sanitize_checkbox' ),
+				'description'       => 'Check this box if you have chosen a dark background color and light default text color for your site.',
+				'priority'          => 2,
 			) );
 		}
 
 		if ( is_pmpro_active() ) {
 			//Include override option if PMPro is active
 			self::add_memberlite_setting_control( $wp_customize, 'memberlite_pmpro_color_override', 'Override PMPro Colors', 'colors', array(
-					'type'              => 'checkbox',
-					'sanitize_callback' => array( 'Memberlite_Customize', 'sanitize_checkbox' ),
-					'description'       => 'By default, PMPro will use colors <a href="' . admin_url( 'admin.php?page=pmpro-designsettings' ) . '" target="_blank">from its own settings</a>. Check this box to have PMPro use the base color, contrast color, and accent color you have chosen here instead.',
-					'priority'          => 2,
+				'type'              => 'checkbox',
+				'sanitize_callback' => array( 'Memberlite_Customize', 'sanitize_checkbox' ),
+				'description'       => 'By default, PMPro will use colors <a href="' . admin_url( 'admin.php?page=pmpro-designsettings' ) . '" target="_blank">from its own settings</a>. Check this box to have PMPro use the base color, contrast color, and accent color you have chosen here instead.',
+				'priority'          => 2,
 			) );
 		}
 
@@ -368,6 +373,7 @@ class Memberlite_Customize {
 	 * Sets header-related customizer settings
 	 *
 	 * @param WP_Customize_Manager $wp_customize
+	 *
 	 * @return void
 	 */
 	public static function set_customizer_header_settings( WP_Customize_Manager $wp_customize ) {
@@ -415,6 +421,7 @@ class Memberlite_Customize {
 	 * Sets post, page, and archive related customizer settings
 	 *
 	 * @param WP_Customize_Manager $wp_customize
+	 *
 	 * @return void
 	 */
 	public static function set_customizer_post_settings( WP_Customize_Manager $wp_customize ) {
@@ -457,7 +464,7 @@ class Memberlite_Customize {
 		// Add heading for navigation related settings
 		self::add_memberlite_heading( $wp_customize, 'memberlite_navigation_post_archive_heading', 'Navigation Settings', 'memberlite_post_archive_options' );
 
-	// POST: (prev/next links) Post Nav ================
+		// POST: (prev/next links) Post Nav ================
 		self::add_memberlite_setting_control( $wp_customize, 'memberlite_post_nav', 'Show Prev/Next on Single Posts', 'memberlite_post_archive_options', array(
 			'type'              => 'checkbox',
 			'default'           => true,
@@ -506,14 +513,14 @@ class Memberlite_Customize {
 
 	public static function set_customizer_page_settings( WP_Customize_Manager $wp_customize ) {
 		// PAGE: Sidebar Location ================
-		self::add_memberlite_setting_control($wp_customize, 'sidebar_location', 'Sidebar Location', 'memberlite_page_options', array(
-			'type' => 'radio',
-			'choices' => array(
-				'sidebar-right' => 'Right Sidebar',
-				'sidebar-left' => 'Left Sidebar',
-				'sidebar-none' => 'No Sidebar',
-			),
-		));
+		self::add_memberlite_setting_control( $wp_customize, 'sidebar_location', 'Sidebar Location', 'memberlite_page_options', array(
+				'type'    => 'radio',
+				'choices' => array(
+					'sidebar-right' => 'Right Sidebar',
+					'sidebar-left'  => 'Left Sidebar',
+					'sidebar-none'  => 'No Sidebar',
+				),
+		) );
 
 		// PAGE: Columns Ratio ================
 		self::add_memberlite_setting_control( $wp_customize, 'columns_ratio', 'Columns Ratio', 'memberlite_page_options', array(
@@ -546,6 +553,7 @@ class Memberlite_Customize {
 	 * Sets footer-related customizer settings
 	 *
 	 * @param WP_Customize_Manager $wp_customize
+	 *
 	 * @return void
 	 */
 	public static function set_customizer_footer_settings( WP_Customize_Manager $wp_customize ) {
@@ -558,8 +566,8 @@ class Memberlite_Customize {
 
 		// FOOTER: Copyright Text ================
 		self::add_memberlite_setting_control( $wp_customize, 'copyright_textbox', 'Copyright Text', 'memberlite_footer_options', array(
-			'transport'         => 'postMessage',
-			'sanitize_callback' => array( 'Memberlite_Customize', 'sanitize_text_with_links' ),
+			'transport'            => 'postMessage',
+			'sanitize_callback'    => array( 'Memberlite_Customize', 'sanitize_text_with_links' ),
 			'sanitize_js_callback' => array( 'Memberlite_Customize', 'sanitize_js_text_with_links' ),
 		) );
 
@@ -594,9 +602,9 @@ class Memberlite_Customize {
 				$wp_customize,
 				$id,
 				array(
-					'label'   => $label,
-					'section' => $section,
-					'priority'=> $args['priority'] ?? 10,
+					'label'    => $label,
+					'section'  => $section,
+					'priority' => $args['priority'] ?? 10,
 				)
 			)
 		);
@@ -624,8 +632,8 @@ class Memberlite_Customize {
 		}
 
 		$defaults = array(
-				'default'     => isset( $defaults_array[ $setting_id ] ) ? $defaults_array[ $setting_id ] : '',
-				'description' => '',
+			'default'     => isset( $defaults_array[ $setting_id ] ) ? $defaults_array[ $setting_id ] : '',
+			'description' => '',
 		);
 
 		// Merge passed args with defaults
@@ -653,14 +661,14 @@ class Memberlite_Customize {
 		// Add Control
 		$wp_customize->add_control(
 			new WP_Customize_Color_Control(
-				$wp_customize,
-				$id,
-				array(
-					'label'       => $label,
-					'description' => $args['description'],
-					'section'     => 'colors',
-					'settings'    => $setting_id,
-				)
+					$wp_customize,
+					$id,
+					array(
+						'label'       => $label,
+						'description' => $args['description'],
+						'section'     => 'colors',
+						'settings'    => $setting_id,
+					)
 			)
 		);
 	}
@@ -728,11 +736,11 @@ class Memberlite_Customize {
 
 		// 2. Add Control
 		$control_args = array(
-				'label'       => $label,
-				'section'     => $section,
-				'type'        => $args['type'],
-				'choices'     => $args['choices'],
-				'description' => $args['description'],
+			'label'       => $label,
+			'section'     => $section,
+			'type'        => $args['type'],
+			'choices'     => $args['choices'],
+			'description' => $args['description'],
 		);
 
 		// Add active_callback if provided
@@ -753,16 +761,16 @@ class Memberlite_Customize {
 		$choices = Memberlite_Customize::get_color_scheme_choices();
 
 		// Check if user has a legacy scheme active
-		$legacy_scheme = get_theme_mod('memberlite_color_scheme', '');
+		$legacy_scheme = get_theme_mod( 'memberlite_color_scheme', '' );
 
 		// If they have a legacy scheme that isn't empty or custom
-		if ( !empty($legacy_scheme) && $legacy_scheme !== 'custom' && $legacy_scheme !== '' ) {
+		if ( ! empty( $legacy_scheme ) && $legacy_scheme !== 'custom' && $legacy_scheme !== '' ) {
 			$legacy_schemes = memberlite_get_legacy_color_schemes();
 
 			// If this legacy scheme exists in our definitions
-			if ( isset($legacy_schemes[$legacy_scheme]) ) {
+			if ( isset( $legacy_schemes[ $legacy_scheme ] ) ) {
 				// Add their specific legacy scheme to choices with a marker
-				$choices[$legacy_scheme] = $legacy_schemes[$legacy_scheme]['label'];
+				$choices[ $legacy_scheme ] = $legacy_schemes[ $legacy_scheme ]['label'];
 			}
 		}
 
@@ -811,7 +819,7 @@ class Memberlite_Customize {
 			$header_textcolor = $memberlite_defaults['header_textcolor'];
 		}
 
-		$override_pmpro_colors = get_theme_mod('memberlite_pmpro_color_override');
+		$override_pmpro_colors = get_theme_mod( 'memberlite_pmpro_color_override' );
 
 		$hover_brightness = $memberlite_defaults['hover_brightness'];
 		$color_white      = '#FFFFFF';
@@ -826,10 +834,8 @@ class Memberlite_Customize {
 				--memberlite-header-font: <?php echo esc_html( $header_font ); ?>, sans-serif;
 
 				/* Memberlite-specific color variables (your existing system) */
-			<?php if ( $header_textcolor != 'blank' ) : ?>
-				--memberlite-color-header-text: <?php echo '#' . esc_attr( $header_textcolor ); ?>;
-			<?php endif; ?>
-				--memberlite-color-site-background: <?php echo esc_attr( $active_colors['background_color'] ); ?>;
+			<?php if ( $header_textcolor != 'blank' ) : ?> --memberlite-color-header-text: <?php echo '#' . esc_attr( $header_textcolor ); ?>;
+			<?php endif; ?> --memberlite-color-site-background: <?php echo esc_attr( $active_colors['background_color'] ); ?>;
 				--memberlite-color-header-background: <?php echo esc_attr( $active_colors['bgcolor_header'] ); ?>;
 				--memberlite-color-site-navigation-background: <?php echo esc_attr( $active_colors['bgcolor_site_navigation'] ); ?>;
 				--memberlite-color-site-navigation: <?php echo esc_attr( $active_colors['color_site_navigation'] ); ?>;
@@ -865,13 +871,13 @@ class Memberlite_Customize {
 				--wp--preset--color--footer-text: <?php echo esc_attr( $active_colors['color_footer_widgets'] ); ?>;
 				--wp--preset--color--white: <?php echo esc_attr( $color_white ); ?>;
 
-				<?php if ( $override_pmpro_colors && is_pmpro_active() )  : ?>
-					/* PMPro color vars */
-					--pmpro--color--accent: <?php echo esc_attr( $active_colors['color_primary'] ); ?>;
-					--pmpro--color--accent--variation: <?php echo esc_attr( $active_colors['color_secondary'] ); ?>;
-					--pmpro--color--base: <?php echo esc_attr( $active_colors['background_color'] ); ?>;
-					--pmpro--color--contrast: <?php echo esc_attr( $active_colors['color_text'] ); ?>;
-				<?php endif; ?>
+			<?php if ( $override_pmpro_colors && is_pmpro_active() )  : ?>
+				/* PMPro color vars */
+				--pmpro--color--accent: <?php echo esc_attr( $active_colors['color_primary'] ); ?>;
+				--pmpro--color--accent--variation: <?php echo esc_attr( $active_colors['color_secondary'] ); ?>;
+				--pmpro--color--base: <?php echo esc_attr( $active_colors['background_color'] ); ?>;
+				--pmpro--color--contrast: <?php echo esc_attr( $active_colors['color_text'] ); ?>;
+			<?php endif; ?>
 			}
 		</style>
 		<!--/Customizer CSS-->
@@ -888,12 +894,12 @@ class Memberlite_Customize {
 		);
 
 		wp_localize_script(
-				'Memberlite_Customizer',
-				'memberliteCustomizerPreview',
-				array(
-					'activeColors' => memberlite_get_active_colors(),
-					'isPmproActive' => is_pmpro_active(),
-				)
+			'Memberlite_Customizer',
+			'memberliteCustomizerPreview',
+			array(
+				'activeColors'  => memberlite_get_active_colors(),
+				'isPmproActive' => is_pmpro_active(),
+			)
 		);
 
 		wp_enqueue_script( 'Memberlite_Customizer' );
@@ -935,17 +941,17 @@ class Memberlite_Customize {
 	 */
 	public static function get_web_safe_fonts() {
 		return array(
-			'Arial'             => __( 'Arial', 'memberlite' ),
-			'Bookman'           => __( 'Bookman', 'memberlite' ),
-			'Courier'           => __( 'Courier', 'memberlite' ),
-			'Courier-New'       => __( 'Courier New', 'memberlite' ),
-			'Garamond'          => __( 'Garamond', 'memberlite' ),
-			'Georgia'           => __( 'Georgia', 'memberlite' ),
-			'Helvetica'         => __( 'Helvetica', 'memberlite' ),
-			'Times'             => __( 'Times', 'memberlite' ),
-			'Times-New-Roman'   => __( 'Times New Roman', 'memberlite' ),
-			'Trebuchet-MS'      => __( 'Trebuchet MS', 'memberlite' ),
-			'Verdana'           => __( 'Verdana', 'memberlite' ),
+			'Arial'           => __( 'Arial', 'memberlite' ),
+			'Bookman'         => __( 'Bookman', 'memberlite' ),
+			'Courier'         => __( 'Courier', 'memberlite' ),
+			'Courier-New'     => __( 'Courier New', 'memberlite' ),
+			'Garamond'        => __( 'Garamond', 'memberlite' ),
+			'Georgia'         => __( 'Georgia', 'memberlite' ),
+			'Helvetica'       => __( 'Helvetica', 'memberlite' ),
+			'Times'           => __( 'Times', 'memberlite' ),
+			'Times-New-Roman' => __( 'Times New Roman', 'memberlite' ),
+			'Trebuchet-MS'    => __( 'Trebuchet MS', 'memberlite' ),
+			'Verdana'         => __( 'Verdana', 'memberlite' ),
 		);
 	}
 
@@ -958,6 +964,7 @@ class Memberlite_Customize {
 
 	public static function get_color_schemes() {
 		global $memberlite_color_schemes;
+
 		return $memberlite_color_schemes;
 	}
 
@@ -991,6 +998,7 @@ class Memberlite_Customize {
 	 */
 	public static function get_legacy_color_schemes() {
 		global $memberlite_legacy_color_schemes;
+
 		return $memberlite_legacy_color_schemes;
 	}
 
@@ -1002,11 +1010,13 @@ class Memberlite_Customize {
 	 *
 	 */
 	public static function get_color_scheme_choices() {
-		$color_schemes = memberlite_get_color_schemes(); // Call global function from defaults.php
+		$color_schemes                = memberlite_get_color_schemes(); // Call global function from defaults.php
 		$color_scheme_control_options = array();
+
 		foreach ( $color_schemes as $color_scheme => $value ) {
 			$color_scheme_control_options[ $color_scheme ] = $value['label'];
 		}
+
 		return $color_scheme_control_options;
 	}
 
@@ -1018,11 +1028,13 @@ class Memberlite_Customize {
 	 *
 	 */
 	public static function get_legacy_color_scheme_choices() {
-		$color_schemes = memberlite_get_legacy_color_schemes(); // Call global function from defaults.php
+		$color_schemes                = memberlite_get_legacy_color_schemes(); // Call global function from defaults.php
 		$color_scheme_control_options = array();
+
 		foreach ( $color_schemes as $color_scheme => $value ) {
 			$color_scheme_control_options[ $color_scheme ] = $value['label'];
 		}
+
 		return $color_scheme_control_options;
 	}
 
@@ -1097,12 +1109,14 @@ class Memberlite_Customize {
 
 	public static function sanitize_js_color_scheme( $value ) {
 		$color_schemes = array_merge(
-				Memberlite_Customize::get_color_scheme_choices(),
-				array('custom' => 'Custom',)
+			Memberlite_Customize::get_color_scheme_choices(),
+			array( 'custom' => 'Custom', )
 		);
+
 		if ( ! array_key_exists( $value, $color_schemes ) ) {
 			$value = 'default';
 		}
+
 		return esc_js( $value );
 	}
 
@@ -1157,26 +1171,26 @@ class Memberlite_Customize {
 	 */
 	public static function customizer_controls_js() {
 		wp_enqueue_script(
-				'Memberlite_Customizer-controls',
-				MEMBERLITE_URL . '/js/customizer-controls.js',
-				array(
-					'customize-controls',
-					'iris',
-					'underscore',
-					'wp-util'
-				),
-				MEMBERLITE_VERSION,
-				true
+			'Memberlite_Customizer-controls',
+			MEMBERLITE_URL . '/js/customizer-controls.js',
+			array(
+				'customize-controls',
+				'iris',
+				'underscore',
+				'wp-util'
+			),
+			MEMBERLITE_VERSION,
+			true
 		);
 
 		// Pass BOTH new and legacy color schemes to the same script
 		wp_localize_script(
-				'Memberlite_Customizer-controls',
-				'memberliteColorSchemes',
-				array(
-						'new' => Memberlite_Customize::get_color_schemes(),
-						'legacy' => Memberlite_Customize::get_legacy_color_schemes(),
-				)
+			'Memberlite_Customizer-controls',
+			'memberliteColorSchemes',
+			array(
+				'new'    => Memberlite_Customize::get_color_schemes(),
+				'legacy' => Memberlite_Customize::get_legacy_color_schemes(),
+			)
 		);
 
 		wp_enqueue_style(
