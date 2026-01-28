@@ -651,15 +651,18 @@ function memberlite_get_active_colors() {
 
 	if ( isset( $new_schemes[ $variation_scheme ] ) ) {
 		// It's a new scheme - use new color mapping
-		if ( $variation_scheme === 'news' ) {
-			error_log( 'A' ); // Debug line
-			$color_array = memberlite_get_news_colors();
-		} else if ( $variation_scheme === 'wptavern' ) {
-			error_log( 'B' ); // Debug line
-			$color_array = memberlite_get_wptavern_colors();
-		} else {
-			error_log( 'C' ); // Debug line
+		// Build the function name dynamically
+		if ( $variation_scheme === 'default_2026' ) {
 			$color_array = memberlite_get_colors();
+		} else {
+			// Dynamically call the appropriate function: memberlite_get_{scheme}_colors()
+			$function_name = 'memberlite_get_' . $variation_scheme . '_colors';
+			if ( function_exists( $function_name ) ) {
+				$color_array = call_user_func( $function_name );
+			} else {
+				// Fallback to default if function doesn't exist
+				$color_array = memberlite_get_colors();
+			}
 		}
 
 		return memberlite_map_colors_to_settings( $color_array );
