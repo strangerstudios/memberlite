@@ -891,17 +891,23 @@ function memberlite_sync_legacy_to_variation_scheme() {
         return;
     }
 
-    $legacy_scheme = get_theme_mod('memberlite_color_scheme', '');
-    $variation_scheme = get_theme_mod('memberlite_variation_color_scheme', '');
+    error_log('syncing happening');
+
+    $legacy_scheme = get_theme_mod('memberlite_color_scheme', 'default_2026');
+    $variation_scheme = get_theme_mod('memberlite_variation_color_scheme', 'default_v4.6');
 
     // If they have a legacy scheme but no variation scheme
     if ( !empty($legacy_scheme) && $legacy_scheme !== '' && empty($variation_scheme) ) {
         // Set variation scheme to their legacy scheme
         // This makes it show up in the new dropdown
         set_theme_mod('memberlite_variation_color_scheme', $legacy_scheme);
+        //set old setting to empty (not visible on the front-end)
+        remove_theme_mod('memberlite_color_scheme');
     } elseif ( empty($variation_scheme) ) {
         // New install - use modern default
         set_theme_mod('memberlite_variation_color_scheme', 'default_2026');
+        //set old setting to empty (not visible on the front-end)
+        remove_theme_mod('memberlite_color_scheme');
     }
 
     update_option('memberlite_scheme_synced', true);
@@ -919,7 +925,7 @@ function memberlite_filter_theme_json( $theme_json ) {
     $color_palette = array(
             array(
                     'slug'  => 'heading',
-                    'color' => $active_colors['memberlite_heading_color'],
+                    'color' => $active_colors['heading_color'],
                     'name'  => __( 'Heading', 'memberlite' ),
             ),
             array(

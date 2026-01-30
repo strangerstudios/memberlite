@@ -855,7 +855,7 @@ class Memberlite_Customize {
 				--memberlite-color-white: <?php echo esc_attr( $color_white ); ?>;
 
 				/* WordPress theme.json color aliases (map to Customizer colors) */
-				--wp--preset--color--heading: <?php echo esc_attr( $active_colors['memberlite_heading_color'] ); ?>;
+				--wp--preset--color--heading: <?php echo esc_attr( $active_colors['heading_color'] ); ?>;
 				--wp--preset--color--base: <?php echo esc_attr( $active_colors['background_color'] ); ?>;
 				--wp--preset--color--body-text: <?php echo esc_attr( $active_colors['color_text'] ); ?>;
 				--wp--preset--color--color-primary: <?php echo esc_attr( $active_colors['color_primary'] ); ?>;
@@ -864,7 +864,7 @@ class Memberlite_Customize {
 				--wp--preset--color--border: <?php echo esc_attr( $active_colors['color_borders'] ); ?>;
 				--wp--preset--color--action: <?php echo esc_attr( $active_colors['color_action'] ); ?>;
 				--wp--preset--color--masthead-bg: <?php echo esc_attr( $active_colors['bgcolor_header'] ); ?>;
-				--wp--preset--color--masthead-text: <?php echo esc_attr( $active_colors['memberlite_heading_color'] ); ?>;
+				--wp--preset--color--masthead-text: <?php echo esc_attr( $active_colors['heading_color'] ); ?>;
 				--wp--preset--color--nav-bg: <?php echo esc_attr( $active_colors['bgcolor_site_navigation'] ); ?>;
 				--wp--preset--color--nav-text: <?php echo esc_attr( $active_colors['color_site_navigation'] ); ?>;
 				--wp--preset--color--footer-bg: <?php echo esc_attr( $active_colors['bgcolor_footer_widgets'] ); ?>;
@@ -1190,8 +1190,8 @@ class Memberlite_Customize {
 			array(
 				'new'    => Memberlite_Customize::get_color_schemes(),
 				'legacy' => Memberlite_Customize::get_legacy_color_schemes(),
-			)
-		);
+                'get_legacy_theme_mod' => get_theme_mod( 'memberlite_color_scheme'),
+		));
 
 		wp_enqueue_style(
 			'memberlite-customizer-css',

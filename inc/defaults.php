@@ -83,7 +83,7 @@ function memberlite_map_colors_to_settings( array $colors ): array {
 		'header_textcolor'         => $colors['contrast'],
 
 		// Derived/calculated colors based on the 7 core colors
-		'memberlite_heading_color' => $colors['masthead_text'],
+		'heading_color' => $colors['masthead_text'],
 		'color_link'               => $colors['primary'],
 		'color_meta_link'          => $colors['primary'],
 		'color_button'             => $colors['primary'],
@@ -127,7 +127,7 @@ function memberlite_map_legacy_colors_to_settings( array $colors ): array {
 		'color_white'              => '#FFFFFF',
 		'color_text'               => $colors['body_text'],
 		'color_borders'            => $colors['border'],
-		'memberlite_heading_color' => $colors['heading'],
+		'heading_color' => $colors['heading'],
 	);
 }
 
@@ -624,7 +624,7 @@ function memberlite_get_active_colors() {
 		$colors = $legacy_schemes[ $variation_scheme ]['colors'];
 
 		return array(
-			'memberlite_heading_color' => $colors[0],
+			'heading_color' => $colors[0],
 			'background_color'         => $colors[1],
 			'bgcolor_header'           => $colors[2],
 			'bgcolor_site_navigation'  => $colors[3],
@@ -647,7 +647,7 @@ function memberlite_get_active_colors() {
 	// Check if it's a new variation scheme
 	$new_schemes = memberlite_get_color_schemes();
 
-	error_log( print_r( $new_schemes[ $variation_scheme ], true ) ); // Debug line to check new schemes
+	//error_log( print_r( $new_schemes[ $variation_scheme ], true ) ); // Debug line to check new schemes
 
 	if ( isset( $new_schemes[ $variation_scheme ] ) ) {
 		// It's a new scheme - use new color mapping
@@ -687,7 +687,7 @@ function memberlite_get_active_colors() {
 		'bgcolor_footer_widgets',
 		'color_footer_widgets',
 		'color_borders',
-		'memberlite_heading_color',
+		'heading_color',
 	);
 
 	foreach ( $color_keys as $key ) {
