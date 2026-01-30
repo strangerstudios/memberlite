@@ -3,12 +3,14 @@
 
 	let isLegacy = false;
 
-	let legacy_colors_active = memberliteColorSchemes.get_legacy_theme_mod;
+	let legacyColorsActive = memberliteColorSchemes.isLegacy;
 
-	if (legacy_colors_active) {
-		$( '#customize-control-memberlite_variation_color_scheme' ).find( 'select' ).val( memberliteColorSchemes.get_legacy_theme_mod ).change();
+	if (legacyColorsActive) {
+		$( '#customize-control-memberlite_variation_color_scheme' ).find( 'select' ).val( memberliteColorSchemes.activeColorScheme ).change();
 		isLegacy = true;
 	}
+
+	return;
 
     //Memberlite 4.7+ (Variation) - 7 core colors
     let memberlite_variation_color_controls, memberlite_variation_color_controls_listener_flag;

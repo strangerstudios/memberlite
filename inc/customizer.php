@@ -1183,14 +1183,23 @@ class Memberlite_Customize {
 			true
 		);
 
-		// Pass BOTH new and legacy color schemes to the same script
+        $get_modern_scheme_theme_mod = get_theme_mod( 'memberlite_variation_color_scheme');
+        $all_legacy_schemes = Memberlite_Customize::get_legacy_color_schemes();
+        $is_current_scheme_legacy = isset($all_legacy_schemes[$get_modern_scheme_theme_mod]);
+
+		error_log(print_r($get_modern_scheme_theme_mod, true));
+//		error_log(print_r(Memberlite_Customize::get_legacy_color_schemes(), true));
+//		error_log(print_r($is_current_scheme_legacy, true));
+
+        // Pass BOTH new and legacy color schemes to the same script
 		wp_localize_script(
 			'Memberlite_Customizer-controls',
 			'memberliteColorSchemes',
 			array(
-				'new'    => Memberlite_Customize::get_color_schemes(),
-				'legacy' => Memberlite_Customize::get_legacy_color_schemes(),
-                'get_legacy_theme_mod' => get_theme_mod( 'memberlite_color_scheme'),
+				'allColorSchemes'    => Memberlite_Customize::get_color_schemes(),
+				'allLegacyColorSchemes' => Memberlite_Customize::get_legacy_color_schemes(),
+                'activeColorScheme' => get_theme_mod( 'memberlite_variation_color_scheme'),
+                'isLegacy' => $is_current_scheme_legacy,
 		));
 
 		wp_enqueue_style(
