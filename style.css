@@ -229,7 +229,7 @@ p {
 }
 div.lead p,
 p.lead {
-	color: #444;
+	color: var(--memberlite-color-text);
 	font-size: 2.3rem;
 	line-height: 3.7rem;
 }
@@ -315,7 +315,7 @@ blockquote cite a,
 	color: inherit;
 	font-size: 100%;
 }
-blockquote.contact-form-submission {color: #404040; }
+blockquote.contact-form-submission {color: var(--memberlite-color-text); }
 address {
 	margin: 0 0 2.9rem;
 }
@@ -326,7 +326,7 @@ address {
 	line-height: 2.2rem;
 }
 pre {
-	background-color: #eee;
+	background-color: var(--memberlite-color-site-navigation-background);
 	font-family: "Courier 10 Pitch", Courier, monospace;
 	margin: 2.9rem 0;
 	max-width: 100%;
@@ -340,8 +340,8 @@ code,
 kbd,
 tt,
 var {
-	background-color: #eee;
-	color: #c9302c;
+	background-color: var(--memberlite-color-site-navigation-background);
+	color: var(--memberlite-color-action);
 	padding: 2px 4px;
 }
 code,
@@ -352,7 +352,7 @@ var {
 }
 abbr,
 acronym {
-	border-bottom: 1px dotted #666;
+	border-bottom: 1px dotted;
 	cursor: help;
 }
 mark,
@@ -514,7 +514,7 @@ tbody tr:nth-child(even) th,
 tbody tr:nth-child(even) td,
 .wp-block-table tbody tr:nth-child(even) th,
 .wp-block-table tbody tr:nth-child(even) td {
-	background-color: #FDFDFD;
+	background-color: var(--memberlite-color-site-navigation-background);
 }
 dl {
 	margin: 2.9rem 0;
@@ -899,7 +899,7 @@ a:active:not(.pmpro_btn:active) {
 	color: #f0ad4e;
 }
 .muted {
-	color: #AAA;
+	opacity: .6;
 }
 .bg_primary {
 	background-color: var(--memberlite-color-primary);
@@ -919,7 +919,7 @@ a:active:not(.pmpro_btn:active) {
 }
 #site-navigation {
 	background-color: var(--memberlite-color-site-navigation-background);
-	border-top: 1px solid #DADADA;
+	border-top: 1px solid var(--memberlite-color-borders);
 	clear: both;
 	display: block;
 	padding-top: 1.45rem;
@@ -981,7 +981,7 @@ a:active:not(.pmpro_btn:active) {
 	height: 80px;
 }
 #site-navigation.site-navigation-sticky {
-	border-bottom: 1px solid #DADADA;
+	border-bottom: 1px solid var(--memberlite-color-borders);
 	box-shadow: 0px 0px 5px rgba( 0, 0, 0, 0.1 );
 	position: fixed;
 	top: 0;
@@ -1046,7 +1046,7 @@ a:active:not(.pmpro_btn:active) {
 .meta-navigation a:hover,
 .header-right .widget_nav_menu a:hover,
 .header-right .menu a:hover {
-	border-bottom: 1px dotted #AAA;
+	border-bottom: 1px dotted;
 	filter: brightness(var(--memberlite-hover-brightness));
 }
 .meta-navigation .menu-item-has-children a:hover,
@@ -1379,11 +1379,11 @@ a:active:not(.pmpro_btn:active) {
 .screen-reader-text:hover,
 .screen-reader-text:active,
 .screen-reader-text:focus {
-	background-color: #f1f1f1;
+	background-color: var(--memberlite-color-site-navigation-background);
 	border-radius: 3px;
 	box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
 	clip: auto !important;
-	color: #21759b;
+	color: var(--memberlite-color-link);
 	display: block;
 	font-size: 14px;
 	font-weight: bold;
@@ -1515,7 +1515,6 @@ a:active:not(.pmpro_btn:active) {
 
 /* Other widgets */
 .widget_tag_cloud .tag-link-count {
-	color: #AAA;
 	font-size: 1.4rem;
 }
 .widget_tag_cloud .tagcloud a:link {
@@ -1532,13 +1531,8 @@ a:active:not(.pmpro_btn:active) {
 	margin-bottom: 2.9rem;
 }
 .widget-area .widget a:not(.btn):not(.pmpro_btn) {
-	border-bottom: 1px dotted var(--memberlite-color-white);
+	border-bottom: 1px dotted;
 	text-decoration: none;
-	color: var(--memberlite-color-text);
-}
-.widget-area .widget a:hover:not(.btn):not(.pmpro_btn) {
-	color: var(--memberlite-color-primary);
-	border-bottom-color: #777;
 }
 #secondary .widget ul.menu,
 #secondary .widget_archive ul,
@@ -1592,7 +1586,7 @@ a:active:not(.pmpro_btn:active) {
 	text-decoration: none;
 }
 .widget_calendar #wp-calendar caption {
-	background-color: #EFEFEF;
+	background-color: var(--memberlite-color-site-navigation-background);
 	border-top: 1px solid var(--memberlite-color-borders);
 	padding: .7rem 1.45rem;
 }
@@ -1619,9 +1613,6 @@ a:active:not(.pmpro_btn:active) {
 #secondary .widget.widget_categories {
 	font-size: 1.4rem;
 }
-#secondary .widget.widget_categories li {
-	color: #AAA;
-}
 #secondary .widget_categories .cat-item a {
 	font-size: 1.8rem;
 }
@@ -1634,9 +1625,6 @@ a:active:not(.pmpro_btn:active) {
 }
 #secondary .widget_calendar #wp-calendar tfoot td#next {
 	text-align: right;
-}
-#secondary .widget.widget_recent_comments #recentcomments {
-	color: #AAA;
 }
 .widget_recent_comments ul li a,
 .widget_recent_entries ul li a,
@@ -1664,7 +1652,6 @@ a:active:not(.pmpro_btn:active) {
 }
 .widget_recent_entries_thumbnails .post-date {
 	align-self: start;
-	color: #AAA;
 	grid-area: date;
 }
 .footer-widgets .widget_recent_entries_thumbnails .post-date {
@@ -1907,7 +1894,7 @@ a:active:not(.pmpro_btn:active) {
 	margin: 0;
 }
 .masthead-inv {
-	background-color: #FDFDFD;
+	background-color: var(--memberlite-color-site-navigation-background);
 	padding: 4rem 0;
 	margin-bottom: 4rem;
 }
@@ -2004,12 +1991,6 @@ a:active:not(.pmpro_btn:active) {
 10.2 Front Page
 --------------------------------------------------------------*/
 .home .home-content h1 {
-	text-align: center;
-}
-.home .home-content p.subtitle {
-	color: #AAA;
-	font-size: 22px; font-size: 2.2rem;
-	margin: 0 0 3rem 0;
 	text-align: center;
 }
 
@@ -2137,19 +2118,14 @@ a:active:not(.pmpro_btn:active) {
 	padding-right: 0;
 	padding-left: 0;
 }
-#primary .hentry .entry-meta {
-	color: #666;
-	font-style: italic;
-}
 #primary .hentry .entry-meta a {
-	color: #777;
 	text-decoration: none;
 }
 .hentry .entry-meta a:hover {
-	border-bottom: 1px dotted #777;
+	border-bottom: 1px dotted;
 }
 .entry-author {
-	background-color: #F1F1F1;
+	background-color: var(--memberlite-color-borders);
 	display: flex;
 	flex: auto;
 	flex-wrap: nowrap;
@@ -2197,11 +2173,8 @@ a:active:not(.pmpro_btn:active) {
 	border-bottom: none;
 }
 .post .entry-footer {
-	background-color: var(--memberlite-color-site-navigation-background);
 	border-top: 1px solid var(--memberlite-color-borders);
 	border-bottom: 1px solid var(--memberlite-color-borders);
-	color: #666;
-	font-style: italic;
 	margin-top: 2.9rem;
 	padding: 2.175rem;
 }
@@ -2388,9 +2361,6 @@ a:active:not(.pmpro_btn:active) {
 .content-area .logged-in-as a {
 	text-decoration: none;
 }
-.comment-meta .comment-author.vcard {
-	color: #777;
-}
 .comment .comment-meta .comment-author.vcard {
 	display: grid;
 	line-height: 3.4rem;
@@ -2443,7 +2413,6 @@ a:active:not(.pmpro_btn:active) {
 }
 .comment-respond .comment-notes,
 .comment-respond .form-allowed-tags {
-	color: #AAA;
 	font-style: italic;
 }
 .comment-respond label {
@@ -2565,7 +2534,7 @@ a:active:not(.pmpro_btn:active) {
 .footer-widgets .widget_calendar table thead th,
 .footer-widgets .widget_calendar table tbody td {
 	padding: .3rem;
-	color: #999;
+	color: var(--memberlite-color-borders);
 	text-align: center;
 }
 .footer-widgets .widget_calendar table tfoot td {
@@ -2666,7 +2635,6 @@ a:active:not(.pmpro_btn:active) {
 	border-top-left-radius: 3px;
 	border-top-right-radius: 3px;
 	border-bottom: none;
-	color: #777777;
 	display: inline-block;
 	float: none;
 	outline: none;
@@ -2674,7 +2642,7 @@ a:active:not(.pmpro_btn:active) {
 	text-decoration: none;
 }
 .memberlite_tabbable ul.memberlite_tabs li > a:hover {
-	background-color: #EFEFEF;
+	background-color: var(--memberlite-color-site-navigation-background);
 }
 .memberlite_tabbable ul.memberlite_tabs li.memberlite_active a {
 	background-color: var(--memberlite-color-secondary);
@@ -2992,14 +2960,12 @@ object {
 	margin-bottom: 1.45rem;
 	max-width: 100%;
 	font-style: italic;
-	color: #AAA;
 }
 .wp-caption a {
-	color: #777;
 	text-decoration: none;
 }
 .wp-caption a:hover {
-	border-bottom: 1px dotted #777;
+	border-bottom: 1px dotted;
 }
 .wp-caption img[class*="wp-image-"] {
 	display: block;
@@ -3062,7 +3028,7 @@ object {
 13.0 Memberlite Elements styles
 --------------------------------------------------------------*/
 body.memberlite-banner-hidden #site-navigation {
-	border-bottom: 1px solid #DADADA;
+	border-bottom: 1px solid var(--memberlite-color-borders);
 }
 body.memberlite-banner-hidden .entry-content > .banner:first-child {
 	margin-top: 0;
@@ -3223,12 +3189,6 @@ details > p:first-of-type {
 #widget_memberlite_recent_posts .widget_has_thumbnail .post.hentry .entry-header .entry-title {
 	align-self: end;
 	grid-area: title;
-}
-#widget_memberlite_recent_posts .post.hentry .entry-header .post-date {
-	color: #AAA;
-}
-.banner #widget_memberlite_recent_posts .widget_has_thumbnail .post.hentry .entry-header .post-date {
-	color: #EEE;
 }
 #widget_memberlite_recent_posts .widget_has_thumbnail .post.hentry .entry-header .post-date {
 	align-self: start;
