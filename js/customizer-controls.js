@@ -10,6 +10,7 @@
 		isLegacy = true;
 	}
 
+	console.log('returning for now');
 	return;
 
     //Memberlite 4.7+ (Variation) - 7 core colors

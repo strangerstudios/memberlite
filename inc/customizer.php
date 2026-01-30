@@ -684,74 +684,70 @@ class Memberlite_Customize {
 	 *
 	 * @return void
 	 */
-	public static function add_memberlite_setting_control( WP_Customize_Manager $wp_customize, string $id, string $label, string $section, $args = array() ): void {
-		global $memberlite_defaults;
+    public static function add_memberlite_setting_control( WP_Customize_Manager $wp_customize, string $id, string $label, string $section, $args = array() ): void {
+        global $memberlite_defaults;
 
-        //Shouldn't I check if we're passing a default via the helper too?
+        // Define default arguments for the setting and control
+        $defaults = array(
+                'type'              => 'text',
+                'choices'           => array(),
+                'sanitize_callback' => array( 'Memberlite_Customize', 'sanitize_select' ), // Default to select/text
+                'transport'         => 'refresh',
+                'description'       => '',
+                'active_callback'   => null,
+                'default'           => false, // Base default
+        );
 
-        // Before adding the setting in add_memberlite_setting_control:
-        $current_value = get_theme_mod($id, null);
-        if ($current_value !== null) {
-            $args['default'] = $current_value;
-        } else {
-            $args['default'] = isset($memberlite_defaults[$id]) ? $memberlite_defaults[$id] : false;
+        // Merge passed args with defaults
+        $args = wp_parse_args( $args, $defaults );
+
+        // If no default was explicitly passed in $args, check $memberlite_defaults
+        if ( $args['default'] === false && isset( $memberlite_defaults[$id] ) ) {
+            $args['default'] = $memberlite_defaults[$id];
         }
 
-		// Define default arguments for the setting and control
-		$defaults = array(
-			'type'              => 'text',
-			'choices'           => array(),
-			'sanitize_callback' => array( 'Memberlite_Customize', 'sanitize_select' ), // Default to select/text
-			'transport'         => 'refresh',
-			'description'       => '',
-			'active_callback'   => null,
-		);
+        // Translate label if it's a plain string
+        $label = __( $label, 'memberlite' );
 
-		// Merge passed args with defaults
-		$args = wp_parse_args( $args, $defaults );
+        // Translate description if it's a plain string
+        if ( ! empty( $args['description'] ) ) {
+            $args['description'] = __( $args['description'], 'memberlite' );
+        }
 
-		// Translate label if it's a plain string
-		$label = __( $label, 'memberlite' );
+        // Translate choice values
+        if ( ! empty( $args['choices'] ) && is_array( $args['choices'] ) ) {
+            $args['choices'] = array_map( function ( $choice ) {
+                return __( $choice, 'memberlite' );
+            }, $args['choices'] );
+        }
 
-		// Translate description if it's a plain string
-		if ( ! empty( $args['description'] ) ) {
-			$args['description'] = __( $args['description'], 'memberlite' );
-		}
+        // 1. Add Setting
+        $wp_customize->add_setting(
+                $id,
+                array(
+                        'default'              => $args['default'],
+                        'sanitize_callback'    => $args['sanitize_callback'],
+                        'sanitize_js_callback' => array( 'Memberlite_Customize', 'sanitize_js_callback' ),
+                        'transport'            => $args['transport'],
+                )
+        );
 
-		// Translate choice values
-		if ( ! empty( $args['choices'] ) && is_array( $args['choices'] ) ) {
-			$args['choices'] = array_map( function ( $choice ) {
-				return __( $choice, 'memberlite' );
-			}, $args['choices'] );
-		}
+        // 2. Add Control
+        $control_args = array(
+                'label'       => $label,
+                'section'     => $section,
+                'type'        => $args['type'],
+                'choices'     => $args['choices'],
+                'description' => $args['description'],
+        );
 
-		// 1. Add Setting
-		$wp_customize->add_setting(
-			$id,
-			array(
-				'default'              => $args['default'],
-				'sanitize_callback'    => $args['sanitize_callback'],
-				'sanitize_js_callback' => array( 'Memberlite_Customize', 'sanitize_js_callback' ),
-				'transport'            => $args['transport'],
-			)
-		);
+        // Add active_callback if provided
+        if ( $args['active_callback'] !== null ) {
+            $control_args['active_callback'] = $args['active_callback'];
+        }
 
-		// 2. Add Control
-		$control_args = array(
-			'label'       => $label,
-			'section'     => $section,
-			'type'        => $args['type'],
-			'choices'     => $args['choices'],
-			'description' => $args['description'],
-		);
-
-		// Add active_callback if provided
-		if ( $args['active_callback'] !== null ) {
-			$control_args['active_callback'] = $args['active_callback'];
-		}
-
-		$wp_customize->add_control( $id, $control_args );
-	}
+        $wp_customize->add_control( $id, $control_args );
+    }
 
 	/**
 	 * Get color scheme choices including user's legacy scheme if applicable
