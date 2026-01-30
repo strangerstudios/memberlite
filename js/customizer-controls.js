@@ -6,24 +6,16 @@
 	let legacyColorsActive = memberliteColorSchemes.isLegacy;
 
 	if (legacyColorsActive) {
-		$( '#customize-control-memberlite_variation_color_scheme' ).find( 'select' ).val( memberliteColorSchemes.activeColorScheme ).change();
 		isLegacy = true;
+		// Wait for the control to be ready
+		wp.customize.control('memberlite_variation_color_scheme', function(control) {
+			control.setting.set(memberliteColorSchemes.activeColorScheme);
+		});
 	}
 
-	console.log('returning for now');
-	return;
-
     //Memberlite 4.7+ (Variation) - 7 core colors
-    let memberlite_variation_color_controls, memberlite_variation_color_controls_listener_flag;
-    memberlite_variation_color_controls = [
-        'memberlite_color_text',
-        'background_color',
-        'memberlite_bgcolor_header',
-        'memberlite_color_page_masthead',
-        'memberlite_color_primary',
-        'memberlite_color_secondary',
-        'memberlite_color_borders',
-    ];
+    let memberlite_variation_color_controls_listener_flag;
+
     memberlite_variation_color_controls_listener_flag = true;
 
     // Update colors when color scheme changes
@@ -39,19 +31,7 @@
 
 			return;
 
-            // Check if it's a new scheme or legacy scheme
             var colors = false;
-
-            // Try to find in new schemes first
-            // if (memberliteColorSchemes.new[to]) {
-            //     colors = memberliteColorSchemes.new[to].colors;
-            //     isLegacy = false;
-            // }
-            // // Check legacy schemes
-            // else if (memberliteColorSchemes.legacy[to]) {
-            //     colors = memberliteColorSchemes.legacy[to].colors;
-            //     isLegacy = true;
-            // }
 
             memberlite_variation_color_controls_listener_flag = false;
 
@@ -87,13 +67,6 @@
 
 				memberlite_variation_color_controls_listener_flag = true;
             } else {
-                // New scheme - update 7 color controls
-                // for (var i = 0; i < 7 && i < colors.length; i++) {
-                //     $('#customize-control-' + memberlite_variation_color_controls[i])
-                //         .find('.color-picker-hex')
-                //         .wpColorPicker('color', colors[i]);
-                // }
-
                 // Also update derived colors based on the 7-color mapping
                 // These match memberlite_map_colors_to_settings() in defaults.php
                 var derivedColors = {

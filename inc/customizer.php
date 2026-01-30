@@ -754,29 +754,26 @@ class Memberlite_Customize {
 	 *
 	 * @return array Color scheme choices for dropdown
 	 */
-	public static function get_dynamic_color_scheme_choices() {
-		// Start with new modern schemes
-		$choices = Memberlite_Customize::get_color_scheme_choices();
+    public static function get_dynamic_color_scheme_choices() {
+        // Start with new modern schemes
+        $choices = Memberlite_Customize::get_color_scheme_choices();
 
-		// Check if user has a legacy scheme active
-		$legacy_scheme = get_theme_mod( 'memberlite_color_scheme', '' );
+        // Check if user has a legacy scheme active in the NEW setting
+        $current_scheme = get_theme_mod( 'memberlite_variation_color_scheme', '' );
 
-		// If they have a legacy scheme that isn't empty or custom
-		if ( ! empty( $legacy_scheme ) && $legacy_scheme !== 'custom' && $legacy_scheme !== '' ) {
-			$legacy_schemes = memberlite_get_legacy_color_schemes();
+        // Check if the current scheme is a legacy one
+        $legacy_schemes = memberlite_get_legacy_color_schemes();
 
-			// If this legacy scheme exists in our definitions
-			if ( isset( $legacy_schemes[ $legacy_scheme ] ) ) {
-				// Add their specific legacy scheme to choices with a marker
-				$choices[ $legacy_scheme ] = $legacy_schemes[ $legacy_scheme ]['label'];
-			}
-		}
+        if ( ! empty( $current_scheme ) && isset( $legacy_schemes[ $current_scheme ] ) ) {
+            // Add their specific legacy scheme to choices
+            $choices[ $current_scheme ] = $legacy_schemes[ $current_scheme ]['label'];
+        }
 
-		// Always include custom option
-		$choices['custom'] = 'Custom Colors';
+        // Always include custom option
+        $choices['custom'] = 'Custom Colors';
 
-		return $choices;
-	}
+        return $choices;
+    }
 
 	/**
 	 * Call bloginfo to echo the site name.
@@ -861,6 +858,7 @@ class Memberlite_Customize {
 				--wp--preset--color--buttons: <?php echo esc_attr( $active_colors['color_button'] ); ?>;
 				--wp--preset--color--border: <?php echo esc_attr( $active_colors['color_borders'] ); ?>;
 				--wp--preset--color--action: <?php echo esc_attr( $active_colors['color_action'] ); ?>;
+                --wp--preset--color--color-action: <?php echo esc_attr( $active_colors['color_action'] ); ?>;
 				--wp--preset--color--masthead-bg: <?php echo esc_attr( $active_colors['bgcolor_header'] ); ?>;
 				--wp--preset--color--masthead-text: <?php echo esc_attr( $active_colors['heading_color'] ); ?>;
 				--wp--preset--color--nav-bg: <?php echo esc_attr( $active_colors['bgcolor_site_navigation'] ); ?>;
