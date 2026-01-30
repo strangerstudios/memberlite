@@ -47,7 +47,7 @@ function memberlite_get_wptavern_colors(): array {
  */
 function memberlite_get_legacy_colors(): array {
 	return array(
-		'heading'       => '#011935',
+		'heading'       => '#011935', //@todo: Fix, wrong key name
 		'background'    => '#FFFFFF',
 		'masthead_bg'   => '#FFFFFF',
 		'nav_bg'        => '#F9FAFB',
@@ -291,6 +291,32 @@ function memberlite_get_color_schemes(): array {
 			'label'  => __( 'WP Tavern', 'memberlite' ),
 			'colors' => memberlite_get_wptavern_colors(),
 		),
+//		'pop' =>  array(
+//			'label'  => __( 'Pop (Legacy)', 'memberlite' ),
+//			'colors' => array(
+//				'pop'            => array(
+//					'label'  => __( 'Pop! (Legacy)', 'memberlite' ),
+//					'colors' => array(
+//						'#53BBF4', // 1. Heading Text Color
+//						'#FFFFFF', // 2. Background Color
+//						'#FFFFFF', // 3. Masthead Background Color
+//						'#B1EB00', // 4. Site Navigation Background Color
+//						'#666666', // 5. Site Navigation Text Color
+//						'#222222', // 6. Body Text Color
+//						'#B1EB00', // 7. Primary Color
+//						'#B1EB00', // 8. Primary Color Hover
+//						'#53BBF4', // 9. Secondary Color
+//						'#FFAC00', // 10. Action Color
+//						'#FF85CB', // 11. Button Color
+//						'#798D8F', // 12. Border Color
+//						'#53BBF4', // 13. Masthead Text Color
+//						'#FFFFFF', // 14. Footer Widgets Background Color
+//						'#53BBF4', // 15. Footer Widgets Text Color
+//						'#FFFFFF', // 16. Delimiter Color
+//					),
+//				),
+//			),
+//		),
 	);
 
 	// Loop through and format colors as array for theme.json
