@@ -685,18 +685,20 @@ class Memberlite_Customize {
 	 * @return void
 	 */
 	public static function add_memberlite_setting_control( WP_Customize_Manager $wp_customize, string $id, string $label, string $section, $args = array() ): void {
-		global $memberlite_defaults, $memberlite_defaults_legacy;
+		global $memberlite_defaults;
 
-		// Determine which defaults array to use
-		if ( $id === 'memberlite_color_scheme' ) {
-			$defaults_array = $memberlite_defaults_legacy;
-		} else {
-			$defaults_array = $memberlite_defaults;
-		}
+        //Shouldn't I check if we're passing a default via the helper too?
+
+        // Before adding the setting in add_memberlite_setting_control:
+        $current_value = get_theme_mod($id, null);
+        if ($current_value !== null) {
+            $args['default'] = $current_value;
+        } else {
+            $args['default'] = isset($memberlite_defaults[$id]) ? $memberlite_defaults[$id] : false;
+        }
 
 		// Define default arguments for the setting and control
 		$defaults = array(
-			'default'           => isset( $defaults_array[ $id ] ) ? $defaults_array[ $id ] : false,
 			'type'              => 'text',
 			'choices'           => array(),
 			'sanitize_callback' => array( 'Memberlite_Customize', 'sanitize_select' ), // Default to select/text

@@ -913,8 +913,8 @@ function memberlite_sync_legacy_to_variation_scheme() {
 
     update_option('memberlite_scheme_synced', true);
 }
-add_action('after_setup_theme', 'memberlite_sync_legacy_to_variation_scheme');
-add_action('customize_register', 'memberlite_sync_legacy_to_variation_scheme');
+add_action('setup_theme', 'memberlite_sync_legacy_to_variation_scheme');
+//add_action('customize_register', 'memberlite_sync_legacy_to_variation_scheme');
 
 /**
  * Filter theme.json data to inject Customizer colors
