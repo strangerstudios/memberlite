@@ -903,16 +903,18 @@ function memberlite_sync_legacy_to_variation_scheme() {
         set_theme_mod('memberlite_variation_color_scheme', $legacy_scheme);
         //set old setting to empty (not visible on the front-end)
         remove_theme_mod('memberlite_color_scheme');
-    } elseif ( empty($variation_scheme) ) {
+    }
+    /* elseif ( empty($variation_scheme) ) {
         // New install - use modern default
         set_theme_mod('memberlite_variation_color_scheme', 'default_2026');
         //set old setting to empty (not visible on the front-end)
         remove_theme_mod('memberlite_color_scheme');
-    }
+    } */
 
     update_option('memberlite_scheme_synced', true);
 }
 add_action('after_setup_theme', 'memberlite_sync_legacy_to_variation_scheme');
+add_action('customize_register', 'memberlite_sync_legacy_to_variation_scheme');
 
 /**
  * Filter theme.json data to inject Customizer colors
