@@ -5,11 +5,11 @@
 		"appearanceTools": true,
 		"custom": {
 			"border": {
-				"radius": "6px"
+				"radius": "8px"
 			},
 			"lineHeight": {
 				"body": 1.7,
-				"heading": 1.1
+				"heading": 1.4
 			}
 		},
 		"layout": {
@@ -37,24 +37,29 @@
 					"name": "3 (Outer)"
 				},
 				{
-					"size": "clamp(40px, 6vw, 50px)",
+					"size": "clamp(40px, 5vw, 50px)",
 					"slug": "40",
 					"name": "4"
 				},
 				{
-					"size": "clamp(50px, 10vw, 60px)",
+					"size": "clamp(50px, 6vw, 60px)",
 					"slug": "50",
 					"name": "5"
 				},
 				{
-					"size": "clamp(60px, 12vw, 70px)",
+					"size": "clamp(60px, 7vw, 70px)",
 					"slug": "60",
 					"name": "6"
 				},
 				{
-					"size": "clamp(70px, 14vw, 80px)",
+					"size": "clamp(70px, 8vw, 80px)",
 					"slug": "70",
 					"name": "7"
+				},
+				{
+					"size": "clamp(80px, 9vw, 90px)",
+					"slug": "80",
+					"name": "8"
 				}
 			],
 			"units": [
@@ -720,7 +725,7 @@
 				{
 					"name": "54px",
 					"slug": "54",
-					"size": "clamp(42px,6vw,54px)",
+					"size": "clamp(42px,5.4vw,54px)",
 					"fluid": {
 						"min": "42px",
 						"max": "54px"
@@ -765,18 +770,18 @@
 				{
 					"name": "21px",
 					"slug": "21",
-					"size": "clamp(20px,2.2vw,21px)",
+					"size": "clamp(19px,2.1vw,21px)",
 					"fluid": {
-						"min": "20px",
+						"min": "19px",
 						"max": "21px"
 					}
 				},
 				{
 					"name": "18px",
 					"slug": "18",
-					"size": "clamp(17px,1.8vw,18px)",
+					"size": "clamp(16px,1.8vw,18px)",
 					"fluid": {
-						"min": "17px",
+						"min": "16px",
 						"max": "18px"
 					}
 				},
@@ -785,7 +790,7 @@
 					"slug": "16",
 					"size": "clamp(14px,1.6vw,16px)",
 					"fluid": {
-						"min": "15px",
+						"min": "14px",
 						"max": "16px"
 					}
 				},
@@ -844,7 +849,7 @@
 			},
 			"core/columns": {
 				"spacing": {
-					"blockGap": "4.7rem"
+					"blockGap": "var(--wp--preset--spacing--40)"
 				}
 			},
 			"core/image": {
