@@ -15,8 +15,7 @@ function memberlite_add_pages() {
 	// Memberlite admin subpages.
 	add_submenu_page( 'memberlite-dashboard', __( 'Dashboard', 'memberlite' ), __( 'Dashboard', 'memberlite' ), 'edit_theme_options', 'memberlite-dashboard', 'memberlite_dashboard' );
 
-	add_submenu_page( 'memberlite-dashboard', __( 'Custom Menus', 'memberlite' ), __( 'Custom Menus', 'memberlite' ), 'edit_theme_options', 'memberlite-custom-menus', 'memberlite_custom_menus'
-	);
+	add_submenu_page( 'memberlite-dashboard', __( 'Custom Menus', 'memberlite' ), __( 'Custom Menus', 'memberlite' ), 'edit_theme_options', 'memberlite-custom-menus', 'memberlite_custom_menus' );
 
 	add_submenu_page( 'memberlite-dashboard', __( 'Custom Sidebars', 'memberlite' ), __( 'Custom Sidebars', 'memberlite' ), 'edit_theme_options', 'memberlite-custom-sidebars', 'memberlite_custom_sidebars' );
 
