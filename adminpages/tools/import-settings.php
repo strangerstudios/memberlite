@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	</div>
 	<div class="memberlite_section_inside">
 		<p><?php esc_html_e( 'Use the tool below to import Memberlite theme settings from a previously exported settings file.', 'memberlite' ); ?> <strong><?php esc_html_e( 'This will overwrite your current Memberlite theme settings.', 'memberlite' ); ?></strong></p>
-		<p><?php esc_html_e( 'The import will apply Customizer settings (logo, colors, typography, backgrounds, etc.), related Memberlite options (such as custom sidebars), and Additional CSS if present in the file.', 'memberlite' ); ?></p>
+		<p><?php esc_html_e( 'The import will apply Customizer settings (logo, colors, typography, backgrounds, etc.), related Memberlite options (such as custom sidebars), Additional CSS, and navigation menus if present in the file.', 'memberlite' ); ?></p>
 		<form method="post" enctype="multipart/form-data" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
 			<table class="form-table">
 					<tbody>
