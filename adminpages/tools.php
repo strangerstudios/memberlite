@@ -162,6 +162,18 @@ function memberlite_export_theme_settings() {
 		$menu_ids = array_map( 'intval', $_POST['memberlite_export_menu_ids'] );
 		$menus_data = array();
 
+		// Get current menu location assignments to export with menus.
+		$menu_locations = get_nav_menu_locations();
+		$menu_id_to_locations = array();
+		foreach ( $menu_locations as $location => $assigned_menu_id ) {
+			if ( ! empty( $assigned_menu_id ) ) {
+				if ( ! isset( $menu_id_to_locations[ $assigned_menu_id ] ) ) {
+					$menu_id_to_locations[ $assigned_menu_id ] = array();
+				}
+				$menu_id_to_locations[ $assigned_menu_id ][] = $location;
+			}
+		}
+
 		foreach ( $menu_ids as $menu_id ) {
 			$menu = wp_get_nav_menu_object( $menu_id );
 			if ( ! $menu ) {
@@ -209,10 +221,17 @@ function memberlite_export_theme_settings() {
 				}
 			}
 
-			$menus_data[] = array(
+			$menu_export_data = array(
 				'name'  => $menu->name,
 				'items' => $items_data,
 			);
+
+			// Include location assignments for this menu.
+			if ( isset( $menu_id_to_locations[ $menu_id ] ) ) {
+				$menu_export_data['locations'] = $menu_id_to_locations[ $menu_id ];
+			}
+
+			$menus_data[] = $menu_export_data;
 		}
 
 		if ( ! empty( $menus_data ) ) {
@@ -305,6 +324,12 @@ function memberlite_import_theme_settings() {
 
 	// Import navigation menus if present.
 	if ( ! empty( $data['menus'] ) && is_array( $data['menus'] ) ) {
+		// Track location assignments to apply after all menus are created.
+		$location_assignments = array();
+
+		// Check if user wants to replace existing menus.
+		$replace_existing = ! empty( $_POST['memberlite_replace_existing_menus'] );
+
 		foreach ( $data['menus'] as $menu_data ) {
 			if ( empty( $menu_data['name'] ) ) {
 				continue;
@@ -312,22 +337,58 @@ function memberlite_import_theme_settings() {
 
 			$menu_name = sanitize_text_field( $menu_data['name'] );
 
-			// Check if menu name already exists, append number if needed.
-			$final_menu_name = $menu_name;
-			$counter = 1;
-			while ( wp_get_nav_menu_object( $final_menu_name ) ) {
-				$counter++;
-				$final_menu_name = $menu_name . ' (' . $counter . ')';
+			// Check if a menu with this exact name already exists.
+			$existing_menu = wp_get_nav_menu_object( $menu_name );
+
+			if ( $existing_menu ) {
+				if ( $replace_existing ) {
+					// Replace mode: Delete existing menu items and import new ones into existing menu.
+					$menu_id = $existing_menu->term_id;
+					$location_menu_id = $menu_id;
+
+					$existing_items = wp_get_nav_menu_items( $menu_id );
+					if ( ! empty( $existing_items ) ) {
+						foreach ( $existing_items as $item ) {
+							wp_delete_post( $item->db_id, true );
+						}
+					}
+				} else {
+					// Non-replace mode: Create duplicate menu, but assign original to locations.
+					$location_menu_id = $existing_menu->term_id;
+
+					// Create duplicate with numbered name.
+					$duplicate_name = $menu_name;
+					$counter = 1;
+					while ( wp_get_nav_menu_object( $duplicate_name ) ) {
+						$counter++;
+						$duplicate_name = $menu_name . ' (' . $counter . ')';
+					}
+
+					$menu_id = wp_create_nav_menu( $duplicate_name );
+
+					if ( is_wp_error( $menu_id ) ) {
+						continue;
+					}
+				}
+			} else {
+				// Menu doesn't exist - create it and use it for locations.
+				$menu_id = wp_create_nav_menu( $menu_name );
+
+				if ( is_wp_error( $menu_id ) ) {
+					continue;
+				}
+
+				$location_menu_id = $menu_id;
 			}
 
-			// Create the menu.
-			$new_menu_id = wp_create_nav_menu( $final_menu_name );
-
-			if ( is_wp_error( $new_menu_id ) ) {
-				continue;
+			// Track location assignments using the appropriate menu ID.
+			if ( ! empty( $menu_data['locations'] ) && is_array( $menu_data['locations'] ) ) {
+				foreach ( $menu_data['locations'] as $location ) {
+					$location_assignments[ sanitize_key( $location ) ] = $location_menu_id;
+				}
 			}
 
-			// Import menu items if present.
+			// Import menu items.
 			if ( ! empty( $menu_data['items'] ) && is_array( $menu_data['items'] ) ) {
 				// Map of old index to new menu item ID for parent relationships.
 				$index_to_new_id = array();
@@ -384,13 +445,22 @@ function memberlite_import_theme_settings() {
 					}
 
 					// Insert the menu item.
-					$new_item_id = wp_update_nav_menu_item( $new_menu_id, 0, $menu_item_data );
+					$new_item_id = wp_update_nav_menu_item( $menu_id, 0, $menu_item_data );
 
 					if ( ! is_wp_error( $new_item_id ) ) {
 						$index_to_new_id[ $index ] = $new_item_id;
 					}
 				}
 			}
+		}
+
+		// Apply menu location assignments after all menus are created.
+		if ( ! empty( $location_assignments ) ) {
+			$current_locations = get_nav_menu_locations();
+			foreach ( $location_assignments as $location => $menu_id ) {
+				$current_locations[ $location ] = $menu_id;
+			}
+			set_theme_mod( 'nav_menu_locations', $current_locations );
 		}
 	}
 
