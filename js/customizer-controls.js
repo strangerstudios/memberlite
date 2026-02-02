@@ -32,7 +32,9 @@
             memberlite_variation_color_controls_listener_flag = false;
 
             if ( currentlySelectedScheme && (currentlySelectedScheme in legacyColorSchemes) ) {
-				let legacyScheme = legacyColorSchemes[currentlySelectedScheme];
+				let legacyScheme = legacyColorSchemes[currentlySelectedScheme]['colors'];
+
+				console.log(legacyScheme);
 
                 // Legacy scheme - update ALL color controls from the 16-color array
                 // Map legacy colors to all Customizer settings
@@ -48,6 +50,8 @@
 					'memberlite_color_secondary': legacyScheme[8],            // Secondary
 					'memberlite_color_action': legacyScheme[9],              // Action
 					'memberlite_color_button': legacyScheme[10],              // Button
+					'memberlite_color_link': modernScheme[6],              // Link
+					'memberlite_color_meta_link': modernScheme[6], //meta link
 					//Skip border color bc we don't have a setting to update
 					'memberlite_color_page_masthead': legacyScheme[12],       //Masthead Text
 					'memberlite_bgcolor_footer_widgets': legacyScheme[13],    //Footer Widgets BG
@@ -56,8 +60,6 @@
                 };
 
                 $.each(legacyColorMap, function(controlId, color) {
-					console.log('legacy control id ', controlId);
-					console.log('legacy color ', color);
                         $('#customize-control-' + controlId)
                             .find('.color-picker-hex')
                             .wpColorPicker('color', color);
@@ -73,7 +75,9 @@
 
 				memberlite_variation_color_controls_listener_flag = true;
             } else {
-				let modernScheme = modernSchemes[currentlySelectedScheme];
+				let modernScheme = modernSchemes[currentlySelectedScheme]['colors'];
+
+				console.log(modernScheme);
                 // Also update derived colors based on the 7-color mapping
                 // These match memberlite_map_colors_to_settings() in defaults.php
                 let modernColorMap = {
@@ -88,6 +92,8 @@
 					'memberlite_color_secondary': modernScheme['secondary'],            // Secondary
 					'memberlite_color_action': modernScheme['primary'],              // Action
 					'memberlite_color_button': modernScheme['primary'],              // Button
+					'memberlite_color_link': modernScheme['primary'],              // Link
+					'memberlite_color_meta_link': modernScheme['primary'],              // Meta Link
 					//Skip border color bc we don't have a setting to update
 					'memberlite_color_page_masthead': modernScheme['masthead_text'],       //Masthead Text
 					'memberlite_bgcolor_footer_widgets': modernScheme['base'],    //Footer Widgets BG
@@ -96,8 +102,6 @@
                 };
 
                 $.each(modernColorMap, function(controlId, color) {
-					console.log('modern control id ', controlId);
-					console.log('modern color ', color);
                     $('#customize-control-' + controlId)
                         .find('.color-picker-hex')
                         .wpColorPicker('color', color);
