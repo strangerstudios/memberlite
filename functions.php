@@ -340,7 +340,7 @@ add_action( 'after_setup_theme', 'memberlite_setup' );
  * to change 'memberlite' to the name of your theme in all the template files.
  */
 function memberlite_load_textdomain() {
-    load_theme_textdomain( 'memberlite', get_template_directory() . '/languages' );
+	load_theme_textdomain( 'memberlite', get_template_directory() . '/languages' );
 }
 add_action( 'init', 'memberlite_load_textdomain' );
 
@@ -858,8 +858,8 @@ add_action( 'enqueue_block_assets', 'memberlite_enqueue_block_assets' );
 function memberlite_theme_mod_copyright_textbox( $copyright_text ) {
 	// Don't filter the text in the admin.
 	if ( is_admin() ) {
-        return $copyright_text;
-    }
+		return $copyright_text;
+	}
 
 	// Return if the text is not a string.
 	if ( ! is_string( $copyright_text ) ) {
@@ -867,17 +867,17 @@ function memberlite_theme_mod_copyright_textbox( $copyright_text ) {
 	}
 
 	$data = array(
-        'current_year' => date( 'Y' ),
-        'site_title'   => (string) get_option( 'blogname' ),
-        'site_url'     => (string) get_option( 'siteurl' ),
-        'tagline'      => (string) get_option( 'blogdescription' ),
-    );
+		'current_year' => date( 'Y' ),
+		'site_title'   => (string) get_option( 'blogname' ),
+		'site_url'     => (string) get_option( 'siteurl' ),
+		'tagline'      => (string) get_option( 'blogdescription' ),
+	);
 
-    foreach ( $data as $key => $value ) {
-        $copyright_text = str_replace( "!!" . $key . "!!", $value, $copyright_text );
-    }
+	foreach ( $data as $key => $value ) {
+		$copyright_text = str_replace( "!!" . $key . "!!", $value, $copyright_text );
+	}
 
-    return $copyright_text;
+	return $copyright_text;
 }
 add_filter( 'theme_mod_copyright_textbox', 'memberlite_theme_mod_copyright_textbox' );
 
@@ -886,28 +886,26 @@ add_filter( 'theme_mod_copyright_textbox', 'memberlite_theme_mod_copyright_textb
  * This ensures their legacy scheme appears in the new dropdown
  */
 function memberlite_sync_legacy_to_variation_scheme() {
-    // Only run once
-    if ( get_option('memberlite_scheme_synced') ) {
-        return;
-    }
+	// Only run once
+	if ( get_option('memberlite_scheme_synced') ) {
+		return;
+	}
 
-    error_log('syncing happening');
+	$legacy_scheme = get_theme_mod('memberlite_color_scheme');
 
-    $legacy_scheme = get_theme_mod('memberlite_color_scheme');
+	// If they have a legacy scheme but no variation scheme
+	if ( !empty($legacy_scheme) ) {
+		// Set variation scheme to their legacy scheme
+		// This makes it show up in the new dropdown
+		set_theme_mod('memberlite_variation_color_scheme', $legacy_scheme);
+		// IMPORTANT: Store which legacy scheme they had permanently
+		// This way it always shows in their dropdown
+		update_option('memberlite_user_legacy_scheme', $legacy_scheme);
+		// Delete old setting
+		remove_theme_mod('memberlite_color_scheme');
+	}
 
-    // If they have a legacy scheme but no variation scheme
-    if ( !empty($legacy_scheme) ) {
-        // Set variation scheme to their legacy scheme
-        // This makes it show up in the new dropdown
-        set_theme_mod('memberlite_variation_color_scheme', $legacy_scheme);
-        // IMPORTANT: Store which legacy scheme they had permanently
-        // This way it always shows in their dropdown
-        update_option('memberlite_user_legacy_scheme', $legacy_scheme);
-        // Delete old setting
-        remove_theme_mod('memberlite_color_scheme');
-    }
-
-    update_option('memberlite_scheme_synced', true);
+	update_option('memberlite_scheme_synced', true);
 }
 add_action('after_setup_theme', 'memberlite_sync_legacy_to_variation_scheme');
 
@@ -920,71 +918,71 @@ add_action('after_setup_theme', 'memberlite_sync_legacy_to_variation_scheme');
  * @return mixed
  */
 function memberlite_filter_theme_json( $theme_json ) {
-    $active_colors = memberlite_get_active_colors();
+	$active_colors = memberlite_get_active_colors();
 
-    // Build the color palette from active colors
-    $color_palette = array(
-            array(
-                    'slug'  => 'heading',
-                    'color' => $active_colors['color_heading'],
-                    'name'  => __( 'Heading', 'memberlite' ),
-            ),
-            array(
-                    'slug'  => 'base',
-                    'color' => $active_colors['background_color'],
-                    'name'  => __( 'Base', 'memberlite' ),
-            ),
-            array(
-                    'slug'  => 'body-text',
-                    'color' => $active_colors['color_text'],
-                    'name'  => __( 'Body Text', 'memberlite' ),
-            ),
-            array(
-                    'slug'  => 'color-primary',
-                    'color' => $active_colors['color_primary'],
-                    'name'  => __( 'Primary', 'memberlite' ),
-            ),
-            array(
-                    'slug'  => 'color-secondary',
-                    'color' => $active_colors['color_secondary'],
-                    'name'  => __( 'Secondary', 'memberlite' ),
-            ),
-            array(
-                    'slug'  => 'buttons',
-                    'color' => $active_colors['color_button'],
-                    'name'  => __( 'Buttons', 'memberlite' ),
-            ),
-            array(
-                    'slug'  => 'border',
-                    'color' => $active_colors['color_borders'],
-                    'name'  => __( 'Border', 'memberlite' ),
-            ),
-            array(
-                    'slug'  => 'action',
-                    'color' => $active_colors['color_action'],
-                    'name'  => __( 'Action', 'memberlite' ),
-            ),
-            array(
-                    'slug'  => 'white',
-                    'color' => '#FFFFFF',
-                    'name'  => __( 'White', 'memberlite' ),
-            ),
-    );
+	// Build the color palette from active colors
+	$color_palette = array(
+			array(
+					'slug'  => 'heading',
+					'color' => $active_colors['color_heading'],
+					'name'  => __( 'Heading', 'memberlite' ),
+			),
+			array(
+					'slug'  => 'base',
+					'color' => $active_colors['background_color'],
+					'name'  => __( 'Base', 'memberlite' ),
+			),
+			array(
+					'slug'  => 'body-text',
+					'color' => $active_colors['color_text'],
+					'name'  => __( 'Body Text', 'memberlite' ),
+			),
+			array(
+					'slug'  => 'color-primary',
+					'color' => $active_colors['color_primary'],
+					'name'  => __( 'Primary', 'memberlite' ),
+			),
+			array(
+					'slug'  => 'color-secondary',
+					'color' => $active_colors['color_secondary'],
+					'name'  => __( 'Secondary', 'memberlite' ),
+			),
+			array(
+					'slug'  => 'buttons',
+					'color' => $active_colors['color_button'],
+					'name'  => __( 'Buttons', 'memberlite' ),
+			),
+			array(
+					'slug'  => 'border',
+					'color' => $active_colors['color_borders'],
+					'name'  => __( 'Border', 'memberlite' ),
+			),
+			array(
+					'slug'  => 'action',
+					'color' => $active_colors['color_action'],
+					'name'  => __( 'Action', 'memberlite' ),
+			),
+			array(
+					'slug'  => 'white',
+					'color' => '#FFFFFF',
+					'name'  => __( 'White', 'memberlite' ),
+			),
+	);
 
-    // Merge with existing theme.json data
-    $theme_json_data = $theme_json->get_data();
+	// Merge with existing theme.json data
+	$theme_json_data = $theme_json->get_data();
 
-    // Update the color palette
-    if ( ! isset( $theme_json_data['settings'] ) ) {
-        $theme_json_data['settings'] = array();
-    }
-    if ( ! isset( $theme_json_data['settings']['color'] ) ) {
-        $theme_json_data['settings']['color'] = array();
-    }
+	// Update the color palette
+	if ( ! isset( $theme_json_data['settings'] ) ) {
+		$theme_json_data['settings'] = array();
+	}
+	if ( ! isset( $theme_json_data['settings']['color'] ) ) {
+		$theme_json_data['settings']['color'] = array();
+	}
 
-    $theme_json_data['settings']['color']['palette'] = $color_palette;
+	$theme_json_data['settings']['color']['palette'] = $color_palette;
 
-    // Update the theme.json object
-    return $theme_json->update_with( $theme_json_data );
+	// Update the theme.json object
+	return $theme_json->update_with( $theme_json_data );
 }
 add_filter( 'wp_theme_json_data_theme', 'memberlite_filter_theme_json' );
