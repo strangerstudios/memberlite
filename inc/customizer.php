@@ -1200,10 +1200,6 @@ class Memberlite_Customize {
         $all_legacy_schemes = Memberlite_Customize::get_legacy_color_schemes();
         $is_current_scheme_legacy = isset($all_legacy_schemes[$get_modern_scheme_theme_mod]);
 
-        error_log(print_r($get_modern_scheme_theme_mod, true));
-//		error_log(print_r(Memberlite_Customize::get_legacy_color_schemes(), true));
-//		error_log(print_r($is_current_scheme_legacy, true));
-
         // Pass BOTH new and legacy color schemes to the same script
         wp_localize_script(
                 'Memberlite_Customizer_Controls',
