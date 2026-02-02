@@ -50,13 +50,15 @@
 					'memberlite_color_secondary': legacyScheme[8],            // Secondary
 					'memberlite_color_action': legacyScheme[9],              // Action
 					'memberlite_color_button': legacyScheme[10],              // Button
-					'memberlite_color_link': modernScheme[6],              // Link
-					'memberlite_color_meta_link': modernScheme[6], //meta link
+					'memberlite_color_link': legacyScheme[6],              // Link
+					'memberlite_color_meta_link': legacyScheme[6], //meta link
 					//Skip border color bc we don't have a setting to update
 					'memberlite_color_page_masthead': legacyScheme[12],       //Masthead Text
 					'memberlite_bgcolor_footer_widgets': legacyScheme[13],    //Footer Widgets BG
 					'memberlite_color_footer_widgets': legacyScheme[14],    //Footer Widgets Text
 					//Skip delimiter bc there's no setting to update
+					//Site title & tagline adds hash
+					'header_textcolor': '#' + legacyScheme[5],
                 };
 
                 $.each(legacyColorMap, function(controlId, color) {
@@ -67,11 +69,11 @@
                 });
 
 				// Handle header_textcolor (Site Title & Tagline) specially (WordPress core control, no # needed)
-				let headerTextColor = legacyScheme[5]; //body text color
-				if (headerTextColor && headerTextColor.charAt(0) === '#') {
-					headerTextColor = headerTextColor.substring(1); // Remove # for WordPress core
-				}
-				wp.customize('header_textcolor').set(headerTextColor);
+				// let headerTextColor = legacyScheme[5]; //body text color
+				// if (headerTextColor && headerTextColor.charAt(0) === '#') {
+				// 	headerTextColor = headerTextColor.substring(1); // Remove # for WordPress core
+				// }
+				// wp.customize('header_textcolor').set(headerTextColor);
 
 				memberlite_variation_color_controls_listener_flag = true;
             } else {
@@ -99,6 +101,8 @@
 					'memberlite_bgcolor_footer_widgets': modernScheme['base'],    //Footer Widgets BG
 					'memberlite_color_footer_widgets': modernScheme['contrast'],    //Footer Widgets Text
 					//Skip delimiter bc there's no setting to update
+					//Site title & tagline adds hash
+					'header_textcolor': '#' + modernScheme['contrast'],
                 };
 
                 $.each(modernColorMap, function(controlId, color) {
@@ -108,11 +112,11 @@
                 });
 
                 // Handle header_textcolor (Site Title & Tagline) specially (WordPress core control, no # needed)
-                let headerTextColor = modernScheme['contrast']; // contrast
-                if (headerTextColor && headerTextColor.charAt(0) === '#') {
-                    headerTextColor = headerTextColor.substring(1); // Remove # for WordPress core
-                }
-                wp.customize('header_textcolor').set(headerTextColor);
+                // let headerTextColor = modernScheme['contrast']; // contrast
+                // if (headerTextColor && headerTextColor.charAt(0) === '#') {
+                //     headerTextColor = headerTextColor.substring(1); // Remove # for WordPress core
+                // }
+                // wp.customize('header_textcolor').set(headerTextColor);
             }
 
             memberlite_variation_color_controls_listener_flag = true;
