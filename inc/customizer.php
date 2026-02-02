@@ -290,7 +290,7 @@ class Memberlite_Customize {
                         'description'          => $description,
                         'sanitize_callback'    => array( 'Memberlite_Customize', 'sanitize_dynamic_color_scheme' ),
                         'sanitize_js_callback' => array( 'Memberlite_Customize', 'sanitize_dynamic_color_scheme' ),
-                        'choices'              => Memberlite_Customize::get_dynamic_color_scheme_choices( $current_scheme ),
+                        'choices'              => Memberlite_Customize::get_dynamic_color_scheme_choices(),
                         'priority'             => 1,
                 )
         );
@@ -759,21 +759,22 @@ class Memberlite_Customize {
      *                                    uses the safe helper function to avoid recursion.
      * @return array Color scheme choices for dropdown
      */
-    public static function get_dynamic_color_scheme_choices( $current_scheme = null ) {
+    public static function get_dynamic_color_scheme_choices() {
         // Start with new modern schemes
         $choices = Memberlite_Customize::get_color_scheme_choices();
 
-        // Get current scheme safely if not passed in
-        if ( $current_scheme === null ) {
-            $current_scheme = memberlite_get_variation_scheme_value();
-        }
+        // Check if user has EVER had a legacy scheme (stored permanently)
+        $user_legacy_scheme = get_option('memberlite_user_legacy_scheme', '');
 
-        // Check if the current scheme is a legacy one
-        $legacy_schemes = memberlite_get_legacy_color_schemes();
+        // If they have a legacy scheme stored
+        if ( !empty($user_legacy_scheme) ) {
+            $legacy_schemes = memberlite_get_legacy_color_schemes();
 
-        if ( ! empty( $current_scheme ) && isset( $legacy_schemes[ $current_scheme ] ) ) {
-            // Add their specific legacy scheme to choices
-            $choices[ $current_scheme ] = $legacy_schemes[ $current_scheme ]['label'];
+            // If this legacy scheme exists in our definitions
+            if ( isset($legacy_schemes[$user_legacy_scheme]) ) {
+                // Add their specific legacy scheme to choices
+                $choices[$user_legacy_scheme] = $legacy_schemes[$user_legacy_scheme]['label'];
+            }
         }
 
         // Always include custom option
@@ -1182,8 +1183,8 @@ class Memberlite_Customize {
      * @since Twenty Fifteen 1.0
      */
     public static function customizer_controls_js() {
-        wp_enqueue_script(
-                'Memberlite_Customizer-controls',
+        wp_register_script(
+                'Memberlite_Customizer_Controls',
                 MEMBERLITE_URL . '/js/customizer-controls.js',
                 array(
                         'customize-controls',
@@ -1205,7 +1206,7 @@ class Memberlite_Customize {
 
         // Pass BOTH new and legacy color schemes to the same script
         wp_localize_script(
-                'Memberlite_Customizer-controls',
+                'Memberlite_Customizer_Controls',
                 'memberliteColorSchemes',
                 array(
                         'allColorSchemes'    => Memberlite_Customize::get_color_schemes(),
@@ -1213,6 +1214,8 @@ class Memberlite_Customize {
                         'activeColorScheme' => get_theme_mod( 'memberlite_variation_color_scheme'),
                         'isLegacy' => $is_current_scheme_legacy,
                 ));
+
+        wp_enqueue_script( 'Memberlite_Customizer_Controls' );
 
         wp_enqueue_style(
                 'memberlite-customizer-css',

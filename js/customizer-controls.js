@@ -13,6 +13,8 @@
 		});
 	}
 
+	return;
+
     //Memberlite 4.7+ (Variation) - 7 core colors
     let memberlite_variation_color_controls_listener_flag;
 
@@ -26,16 +28,17 @@
                 return;
             }
 
-			console.log(memberliteColorSchemes.new);
-			console.log(memberliteColorSchemes.legacy);
-
-			return;
-
             var colors = false;
 
             memberlite_variation_color_controls_listener_flag = false;
 
-            if (isLegacy) {
+			console.log(activeColorScheme);
+			console.log(activeColorScheme in memberliteColorSchemes.allLegacyColorSchemes);
+			console.log(isLegacy);
+
+			return;
+
+            if (isLegacy && activeColorScheme in memberliteColorSchemes.allLegacyColorSchemes ) {
                 // Legacy scheme - update ALL color controls from the 16-color array
                 // Map legacy colors to all Customizer settings
                 var legacyColorMap = {
