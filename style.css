@@ -1724,7 +1724,7 @@ a:active:not(.pmpro_btn:active) {
 10.1 Header and Member Meta
 --------------------------------------------------------------*/
 #masthead {
-	background-color: var(--memberlite-color-header-background);
+	background-color: var(--memberlite-color-page-masthead-background);
 }
 .site-header .row {
 	margin-bottom: 0;
@@ -2343,7 +2343,7 @@ a:active:not(.pmpro_btn:active) {
 /*--------------------------------------------------------------
 10.6 Comments
 --------------------------------------------------------------*/
-#comments { 
+#comments {
 	margin-bottom:  2.9rem;
 }
 
@@ -2928,7 +2928,7 @@ a:active:not(.pmpro_btn:active) {
 }
 #secondary .widget.widget_pmpro_member_login ul.menu ul.sub-menu {
 	margin-top: 0;
-} 
+}
 #secondary .widget.widget_pmpro_member_login .pmpro_logged_in_welcome_wrap .menu {
 	list-style: none;
 	margin-left: 0;
@@ -3106,7 +3106,7 @@ body.memberlite-banner-hidden .entry-content > .banner:first-child {
 	text-align: left;
 }
 .banner.banner_background-image {
-	background-repeat: no-repeat; 
+	background-repeat: no-repeat;
 	background-size: cover;
 }
 
