@@ -150,7 +150,7 @@ function memberlite_get_legacy_colors(): array {
 		'footer_bg'     => '#FFFFFF',
 		'footer_text'   => '#F9FAFB',
 		'delimiter'     => '#444444',
-		'heading_color' => '#222222',
+		'color_heading' => '#222222',
 	);
 }
 
@@ -173,7 +173,7 @@ function memberlite_map_colors_to_settings( array $colors ): array {
 		'color_secondary'         => $colors['secondary'],
 		'color_borders'           => $colors['border'],
 		'header_textcolor'        => $colors['contrast'],
-		'heading_color'           => $colors['secondary'],
+		'color_heading'           => $colors['secondary'],
 		'color_link'              => $colors['primary'],
 		'color_meta_link'         => $colors['primary'],
 		'color_button'            => $colors['primary'],
@@ -214,7 +214,7 @@ function memberlite_map_legacy_colors_to_settings( array $colors ): array {
 		'color_white'             => '#FFFFFF',
 		'color_text'              => $colors['body_text'],
 		'color_borders'           => $colors['border'],
-		'heading_color'           => $colors['secondary'],
+		'color_heading'           => $colors['secondary'],
 	);
 }
 
@@ -370,11 +370,11 @@ function memberlite_format_scheme_colors( array $color_defs ): array {
 function memberlite_get_legacy_color_schemes(): array {
 	$legacy_colors = memberlite_get_legacy_colors();
 
-	$schemes       = array(
+	$schemes = array(
 		'default_v4.6'   => array(
 			'label'  => __( 'Default V4.6 (Legacy)', 'memberlite' ),
 			'colors' => array(
-				$legacy_colors['heading_color'],
+				$legacy_colors['color_heading'],
 				$legacy_colors['background'],
 				$legacy_colors['masthead_bg'],
 				$legacy_colors['nav_bg'],
@@ -666,10 +666,8 @@ function memberlite_get_active_colors() {
 		// It's a legacy scheme - use legacy color mapping
 		$colors = $legacy_schemes[ $variation_scheme ]['colors'];
 
-//		error_log(print_r($colors, true)); die();
-
 		return array(
-			'heading_color'           => $colors[0],
+			'color_heading'           => $colors[0],
 			'background_color'        => $colors[1],
 			'bgcolor_header'          => $colors[2],
 			'bgcolor_site_navigation' => $colors[3],
@@ -686,13 +684,12 @@ function memberlite_get_active_colors() {
 			'color_page_masthead'     => isset( $colors[14] ) ? $colors[14] : $colors[1],
 			'bgcolor_footer_widgets'  => isset( $colors[15] ) ? $colors[15] : $colors[1],
 			'color_footer_widgets'    => isset( $colors[16] ) ? $colors[16] : $colors[5],
+			'header_textcolor'        => $colors[5],
 		);
 	}
 
 	// Check if it's a new variation scheme
 	$new_schemes = memberlite_get_color_schemes();
-
-	//error_log( print_r( $new_schemes[ $variation_scheme ], true ) ); // Debug line to check new schemes
 
 	if ( isset( $new_schemes[ $variation_scheme ] ) ) {
 		// It's a new scheme - use new color mapping
@@ -732,7 +729,8 @@ function memberlite_get_active_colors() {
 		'bgcolor_footer_widgets',
 		'color_footer_widgets',
 		'color_borders',
-		'heading_color',
+		'color_heading',
+		'header_textcolor'
 	);
 
 	foreach ( $color_keys as $key ) {

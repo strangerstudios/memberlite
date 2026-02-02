@@ -357,6 +357,8 @@ class Memberlite_Customize {
 
         self::add_memberlite_color_control( $wp_customize, 'memberlite_color_text', 'Default Text Color', 'color_text' );
 
+        self::add_memberlite_color_control( $wp_customize, 'memberlite_color_text', 'Default Heading Color', 'color_heading' );
+
         self::add_memberlite_color_control( $wp_customize, 'memberlite_color_link', 'Default Link Color', 'color_link' );
 
         self::add_memberlite_color_control( $wp_customize, 'memberlite_color_meta_link', 'Post Meta Link Color', 'color_meta_link' );
@@ -858,7 +860,7 @@ class Memberlite_Customize {
                 --memberlite-color-white: <?php echo esc_attr( $color_white ); ?>;
 
                 /* WordPress theme.json color aliases (map to Customizer colors) */
-                --wp--preset--color--heading: <?php echo esc_attr( $active_colors['heading_color'] ); ?>;
+                --wp--preset--color--heading: <?php echo esc_attr( $active_colors['color_heading'] ); ?>;
                 --wp--preset--color--base: <?php echo esc_attr( $active_colors['background_color'] ); ?>;
                 --wp--preset--color--body-text: <?php echo esc_attr( $active_colors['color_text'] ); ?>;
                 --wp--preset--color--color-primary: <?php echo esc_attr( $active_colors['color_primary'] ); ?>;
@@ -867,8 +869,8 @@ class Memberlite_Customize {
                 --wp--preset--color--border: <?php echo esc_attr( $active_colors['color_borders'] ); ?>;
                 --wp--preset--color--action: <?php echo esc_attr( $active_colors['color_action'] ); ?>;
                 --wp--preset--color--color-action: <?php echo esc_attr( $active_colors['color_action'] ); ?>;
-                --wp--preset--color--masthead-bg: <?php echo esc_attr( $active_colors['bgcolor_header'] ); ?>;
-                --wp--preset--color--masthead-text: <?php echo esc_attr( $active_colors['heading_color'] ); ?>;
+                --wp--preset--color--masthead-bg: <?php echo esc_attr( $active_colors['bgcolor_page_masthead'] ); ?>;
+                --wp--preset--color--masthead-text: <?php echo esc_attr( $active_colors['color_page_masthead'] ); ?>;
                 --wp--preset--color--nav-bg: <?php echo esc_attr( $active_colors['bgcolor_site_navigation'] ); ?>;
                 --wp--preset--color--nav-text: <?php echo esc_attr( $active_colors['color_site_navigation'] ); ?>;
                 --wp--preset--color--footer-bg: <?php echo esc_attr( $active_colors['bgcolor_footer_widgets'] ); ?>;
@@ -1025,24 +1027,6 @@ class Memberlite_Customize {
     }
 
     /**
-     * Returns an array of legacy (4.6 and earlier) color scheme choices registered for Memberlite.
-     *
-     * @return array Array of color schemes.
-     * @since Memberlite 2.0
-     *
-     */
-    public static function get_legacy_color_scheme_choices() {
-        $color_schemes                = memberlite_get_legacy_color_schemes(); // Call global function from defaults.php
-        $color_scheme_control_options = array();
-
-        foreach ( $color_schemes as $color_scheme => $value ) {
-            $color_scheme_control_options[ $color_scheme ] = $value['label'];
-        }
-
-        return $color_scheme_control_options;
-    }
-
-    /**
      * Sanitize Checkbox input values
      *
      * @since Memberlite 3.0
@@ -1118,19 +1102,6 @@ class Memberlite_Customize {
         }
 
         return $value;
-    }
-
-    public static function sanitize_js_color_scheme( $value ) {
-        $color_schemes = array_merge(
-                Memberlite_Customize::get_color_scheme_choices(),
-                array( 'custom' => 'Custom', )
-        );
-
-        if ( ! array_key_exists( $value, $color_schemes ) ) {
-            $value = 'default';
-        }
-
-        return esc_js( $value );
     }
 
     /**

@@ -914,6 +914,10 @@ add_action('after_setup_theme', 'memberlite_sync_legacy_to_variation_scheme');
 /**
  * Filter theme.json data to inject Customizer colors
  * This makes Customizer colors available in the block editor
+ *
+ * @param $theme_json
+ *
+ * @return mixed
  */
 function memberlite_filter_theme_json( $theme_json ) {
     $active_colors = memberlite_get_active_colors();
@@ -922,7 +926,7 @@ function memberlite_filter_theme_json( $theme_json ) {
     $color_palette = array(
             array(
                     'slug'  => 'heading',
-                    'color' => $active_colors['heading_color'],
+                    'color' => $active_colors['color_heading'],
                     'name'  => __( 'Heading', 'memberlite' ),
             ),
             array(
