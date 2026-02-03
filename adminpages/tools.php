@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Settings page for Memberlite > Tools
  *
- * @since TBD
+ * @since 6.1
  */
 function memberlite_tools() {
 	/**
@@ -94,7 +94,7 @@ function memberlite_tools() {
 /**
  * Exports theme settings as a JSON file.
  *
- * @since TBD
+ * @since 6.1
  */
 function memberlite_export_theme_settings() {
 	if ( ! current_user_can( 'edit_theme_options' ) ) {
@@ -117,7 +117,7 @@ function memberlite_export_theme_settings() {
 	 *
 	 * Note: This same filter is used for resetting options in memberlite_reset_theme_settings().
 	 * 
-	 * @since TBD
+	 * @since 6.1
 	 * @param array $option_keys Array of option keys to export.
 	 */
 	$option_keys = apply_filters(
@@ -169,7 +169,7 @@ add_action( 'admin_post_memberlite_export_theme_settings', 'memberlite_export_th
 /**
  * Handle Memberlite theme settings import.
  *
- * @since TBD
+ * @since 6.1
  */
 function memberlite_import_theme_settings() {
 	if ( ! current_user_can( 'edit_theme_options' ) ) {
@@ -236,7 +236,7 @@ add_action( 'admin_post_memberlite_import_theme_settings', 'memberlite_import_th
 /**
  * Helper: redirect back to the Tools page with a status flag.
  *
- * @since TBD
+ * @since 6.1
  *
  * @param string $code
  */
@@ -256,7 +256,7 @@ function memberlite_import_settings_redirect( $code ) {
 /**
  * Handle Memberlite theme settings reset.
  *
- * @since TBD
+ * @since 6.1
  */
 function memberlite_reset_theme_settings() {
 	if ( ! current_user_can( 'edit_theme_options' ) ) {
@@ -276,7 +276,7 @@ function memberlite_reset_theme_settings() {
 	 * Filter the option keys to reset when resetting Memberlite theme settings.
 	 * By default, we reset the site icon, custom sidebars, and sidebar assignments for custom post types.
 	 *
-	 * @since TBD
+	 * @since 6.1
 	 * @param array $option_keys Array of option keys to reset.
 	 */
 	$option_keys = apply_filters(

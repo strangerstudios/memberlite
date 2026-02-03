@@ -34,8 +34,9 @@ function memberlite_checkForUpdates() {
 
 /**
  * Setup themes api filters
- * @since TBD
-*/
+ *
+ * @since 6.0
+ */
 function memberlite_setup_update_info() {
 	// Only run this code if Update Manager isn't installed and above version 0.1
 	if ( defined( 'PMPROUM_VERSION' ) && version_compare( PMPROUM_VERSION, '0.1', '>' ) ) {
@@ -54,7 +55,8 @@ add_action( 'admin_init', 'memberlite_setup_update_info' );
 
 /**
  * Get theme update information from the PMPro server.
- * @since  TBD
+ *
+ * @since  6.0
  */
 function memberlite_get_update_info() {
 	// Check if forcing a pull from the server.
@@ -65,7 +67,8 @@ function memberlite_get_update_info() {
 	if ( empty( $update_info ) || ! empty( $_REQUEST['force-check'] ) || current_time('timestamp') > $update_info_timestamp + 86400 ) {
 		/**
          * Filter to change the timeout for this wp_remote_get() request for updates.
-         * @since TBD
+         * @since 6.0
+		 *
          * @param int $timeout The number of seconds before the request times out
          */
         $timeout = apply_filters( 'memberlite_get_update_info_timeout', 5 );
@@ -91,11 +94,12 @@ function memberlite_get_update_info() {
 }
 
 /**
-* Infuse theme update details when WordPress runs its update checker.
-* @since TBD
-* @param object $value  The WordPress update object.
-* @return object $value Amended WordPress update object on success, default if object is empty.
-*/
+ * Infuse theme update details when WordPress runs its update checker.
+ * @since 6.0
+ *
+ * @param object $value  The WordPress update object.
+ * @return object $value Amended WordPress update object on success, default if object is empty.
+ */
 function memberlite_update_themes_filter( $value ) {
 
 	// If no update object exists, return early.
@@ -140,7 +144,7 @@ function memberlite_update_themes_filter( $value ) {
 /**
  * Disables SSL verification to prevent download package failures.
  *
- * @since TBD
+ * @since 6.0
  *
  * @param array $args  Array of request args.
  * @param string $url  The URL to be pinged.

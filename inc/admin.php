@@ -119,7 +119,7 @@ function memberlite_admin_notice_welcome_link() {
 /**
  * Adds the Memberlite admin header to Memberlite admin pages.
  *
- * @since TBD
+ * @since 6.1
  */
 function memberlite_admin_header() {
 	// Assume we should not show our header.
@@ -189,7 +189,7 @@ add_filter( 'admin_footer_text', 'memberlite_admin_footer_text' );
 /**
  * Hide non-Memberlite notices from Memberlite dashboard pages.
  *
- * @since TBD
+ * @since 6.1
  */
 function memberlite_hide_non_memberlite_notices() {
 	global $wp_filter;

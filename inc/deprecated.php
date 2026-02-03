@@ -68,9 +68,11 @@ function memberlite_maybe_show_deprecated_hook_message( $new, $old ) {
 
 /**
  * Deprecate the memberlite_signup shortcode.
+ *
+ * @since 6.0
  */
 function memberlite_signup_shortcode($atts, $content=null, $code="") {
-	_doing_it_wrong( __FUNCTION__, esc_html__( 'The [memberlite_signup] shortcode is now deprecated. Please use the Signup Shortcode Add On for Paid Memberships Pro instead.', 'memberlite' ), 'TBD' );
+	_doing_it_wrong( __FUNCTION__, esc_html__( 'The [memberlite_signup] shortcode is now deprecated. Please use the Signup Shortcode Add On for Paid Memberships Pro instead.', 'memberlite' ), '6.0' );
 
 	// Show a message to admins that the shortcode is deprecated.
 	if ( current_user_can ( 'manage_options' ) ) {
@@ -82,7 +84,7 @@ add_shortcode( 'memberlite_signup', 'memberlite_signup_shortcode' );
 /**
  * Get a list of deprecated or no longer needed plugins.
  *
- * @since TBD
+ * @since 6.0
  *
  * @return array Plugins that are deprecated.
  */
@@ -118,7 +120,7 @@ function memberlite_get_deprecated_plugins() {
 /**
  * Check for deprecated plugins and show a notice if they are active.
  *
- * @since TBD
+ * @since 6.0
  */
 function memberlite_check_for_deprecated_plugins() {
 	$deprecated = memberlite_get_deprecated_plugins();
@@ -203,7 +205,7 @@ add_action( 'admin_notices', 'memberlite_check_for_deprecated_plugins' );
 /**
  * Remove the "Activate" link on the plugins page for deprecated plugins.
  *
- * @since TBD
+ * @since 6.0
  *
  * @param array  $actions An array of plugin action links.
  * @param string $plugin_file Path to the plugin file relative to the plugins directory.

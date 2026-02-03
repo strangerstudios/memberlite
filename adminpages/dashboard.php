@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Informational page for Memberlite > Dashboard
  *
- * @since TBD
+ * @since 6.1
  */
 function memberlite_dashboard() {
 	$memberlite_theme       = wp_get_theme();

@@ -2,7 +2,7 @@
 /**
  * Admin Header for Memberlite Theme Admin Pages
  *
- * @since TBD
+ * @since 6.1
  */
 
 // Get the current view.

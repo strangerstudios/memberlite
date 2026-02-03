@@ -665,6 +665,7 @@ function memberlite_get_active_colors() {
 	if ( isset( $legacy_schemes[ $variation_scheme ] ) ) {
 		// It's a legacy scheme - use legacy color mapping
 		$colors = $legacy_schemes[ $variation_scheme ]['colors'];
+		var_dump( $colors );
 
 		return array(
 			'color_heading'           => $colors[0],
