@@ -33,12 +33,13 @@
 				// Legacy scheme - update ALL color controls from the 16-color array
 				// Map legacy colors to all Customizer settings
 				let legacyColorMap = {
-					'memberlite_bgcolor_header': legacyScheme[0],             // Header BG
+					'memberlite_bgcolor_header': legacyScheme[1],             // Header BG
 					'background_color': legacyScheme[1],                     // Body BG
 					'memberlite_bgcolor_page_masthead': legacyScheme[2], //Masthead BG
 					'memberlite_bgcolor_site_navigation': legacyScheme[3],    // Nav BG
 					'memberlite_color_site_navigation': legacyScheme[4],      // Nav Text
 					'memberlite_color_text': legacyScheme[5],                 // Body Text
+					'memberlite_color_heading': legacyScheme[16],              // Heading Text (h1-h6)
 					'memberlite_color_primary': legacyScheme[6],              // Primary
 					//Skip primary hover bc we don't have setting to update
 					'memberlite_color_secondary': legacyScheme[8],            // Secondary
@@ -51,8 +52,6 @@
 					'memberlite_bgcolor_footer_widgets': legacyScheme[13],    //Footer Widgets BG
 					'memberlite_color_footer_widgets': legacyScheme[14],    //Footer Widgets Text
 					//Skip delimiter bc there's no setting to update
-					//Site title & tagline adds hash
-					'header_textcolor': '#' + legacyScheme[5],
 				};
 
 				$.each(legacyColorMap, function (controlId, color) {
@@ -61,6 +60,13 @@
 						.wpColorPicker('color', color);
 
 				});
+
+				// Handle header_textcolor separately (WordPress core control)
+				let headerColor = legacyScheme[5]; // Body text color
+				if (headerColor && headerColor.charAt(0) === '#') {
+					headerColor = headerColor.substring(1); // Remove # for WordPress core
+				}
+				wp.customize('header_textcolor').set(headerColor);
 
 				memberlite_variation_color_controls_listener_flag = true;
 			} else {
@@ -75,6 +81,7 @@
 					'memberlite_bgcolor_site_navigation': modernScheme['base'],    // Nav BG
 					'memberlite_color_site_navigation': modernScheme['contrast'],      // Nav Text
 					'memberlite_color_text': modernScheme['contrast'],                 // Body Text
+					'memberlite_color_heading': modernScheme['contrast'],              // Heading Text (h1-h6)
 					'memberlite_color_primary': modernScheme['primary'],              // Primary
 					//Skip primary hover bc we don't have setting to update
 					'memberlite_color_secondary': modernScheme['secondary'],            // Secondary
@@ -87,8 +94,6 @@
 					'memberlite_bgcolor_footer_widgets': modernScheme['base'],    //Footer Widgets BG
 					'memberlite_color_footer_widgets': modernScheme['contrast'],    //Footer Widgets Text
 					//Skip delimiter bc there's no setting to update
-					//Site title & tagline adds hash
-					'header_textcolor': '#' + modernScheme['contrast'],
 				};
 
 				$.each(modernColorMap, function (controlId, color) {
@@ -96,6 +101,13 @@
 						.find('.color-picker-hex')
 						.wpColorPicker('color', color);
 				});
+
+				// Handle header_textcolor separately (WordPress core control)
+				let headerColor = modernScheme['contrast'];
+				if (headerColor && headerColor.charAt(0) === '#') {
+					headerColor = headerColor.substring(1); // Remove # for WordPress core
+				}
+				wp.customize('header_textcolor').set(headerColor);
 
 				memberlite_variation_color_controls_listener_flag = true;
 			}
@@ -113,6 +125,7 @@
 		'memberlite_bgcolor_site_navigation',    // Nav BG
 		'memberlite_color_site_navigation',      // Nav Text
 		'memberlite_color_text',                 // Body Text
+		'memberlite_color_heading',              // Heading Text (h1-h6)
 		'memberlite_color_primary',              // Primary
 		'memberlite_color_secondary',            // Secondary
 		'memberlite_color_action',              // Action

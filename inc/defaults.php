@@ -6,6 +6,7 @@
 //Default color palette (inspired by legacy default 4.6)
 function memberlite_get_colors(): array {
 	return array(
+		'heading'       => '#222222',
 		'contrast'      => '#222222',
 		'base'          => '#FFFFFF',
 		'masthead_bg'   => '#FFFFFF',
@@ -19,6 +20,7 @@ function memberlite_get_colors(): array {
 // Evergreen
 function memberlite_get_evergreen_colors(): array {
 	return array(
+		'heading'       => '#0F0F0F',  // heading
 		'contrast'      => '#0F0F0F',  // text
 		'base'          => '#FFFFFF',  // body/nav/footer bg
 		'masthead_bg'   => '#174B49',  // header bg
@@ -33,6 +35,7 @@ function memberlite_get_evergreen_colors(): array {
 // Seaside Linen (Tan/Blue/Yellow)
 function memberlite_get_seaside_linen_colors(): array {
 	return array(
+		'heading'       => '#25292B',  // heading
 		'contrast'      => '#25292B',  // text
 		'base'          => '#ECEBE3',  // background
 		'masthead_bg'   => '#1F3A4A',  // header bg
@@ -47,6 +50,7 @@ function memberlite_get_seaside_linen_colors(): array {
 // Deep Harbor (Blue/White)
 function memberlite_get_deep_harbor_colors(): array {
 	return array(
+		'heading'       => '#2A2F36',  // heading
 		'contrast'      => '#2A2F36',  // text
 		'base'          => '#F7F9FC',  // background
 		'masthead_bg'   => '#1F3A5F',  // header bg
@@ -61,11 +65,12 @@ function memberlite_get_deep_harbor_colors(): array {
 // Midnight Violet (Dark Background with Purple)
 function memberlite_get_midnight_violet_colors(): array {
 	return array(
+		'heading'       => '#F2F2F3',  // heading
 		'contrast'      => '#F2F2F3',  // text
 		'base'          => '#0B0B0D',  // background
 		'masthead_bg'   => '#0B0B0D',  // header bg
 		'masthead_text' => '#F2F2F3',  // header/masthead text
-		'primary'       => '#F2F2F3',  // primary (light on dark)
+		'primary'       => '#7C4DFF',  // primary (light on dark)
 		'secondary'     => '#9A9AA0',  // secondary
 		'action'        => '#7C4DFF',  // action/cta
 		'border'        => '#1C1D21',  // soft accent
@@ -75,6 +80,7 @@ function memberlite_get_midnight_violet_colors(): array {
 // Cedar Spice (Brown/Orange)
 function memberlite_get_cedar_spice_colors(): array {
 	return array(
+		'heading'       => '#1F1B18',  // heading
 		'contrast'      => '#1F1B18',  // text
 		'base'          => '#FFFFFF',  // background
 		'masthead_bg'   => '#2E2623',  // header bg
@@ -89,6 +95,7 @@ function memberlite_get_cedar_spice_colors(): array {
 // Fresh Spruce (Green/Grey)
 function memberlite_get_fresh_spruce_colors(): array {
 	return array(
+		'heading'       => '#2B2E2D',  // heading
 		'contrast'      => '#2B2E2D',  // text
 		'base'          => '#FFFFFF',  // background
 		'masthead_bg'   => '#1DBF73',  // header bg
@@ -103,6 +110,7 @@ function memberlite_get_fresh_spruce_colors(): array {
 // Iron Ember (Rust/Grey)
 function memberlite_get_iron_ember_colors(): array {
 	return array(
+		'heading'       => '#1F252B',  // heading
 		'contrast'      => '#1F252B',  // text
 		'base'          => '#F6F7F6',  // background
 		'masthead_bg'   => '#1F252B',  // header bg
@@ -117,6 +125,7 @@ function memberlite_get_iron_ember_colors(): array {
 // Slate Harbor (Charcoal/Blue/Rust)
 function memberlite_get_slate_harbor_colors(): array {
 	return array(
+		'heading'       => '#111827',  // heading
 		'contrast'      => '#111827',  // text
 		'base'          => '#FFFFFF',  // background
 		'masthead_bg'   => '#0B1233',  // header bg
@@ -173,7 +182,7 @@ function memberlite_map_colors_to_settings( array $colors ): array {
 		'color_secondary'         => $colors['secondary'],
 		'color_borders'           => $colors['border'],
 		'header_textcolor'        => $colors['contrast'],
-		'color_heading'           => $colors['secondary'],
+		'color_heading'           => $colors['contrast'],
 		'color_link'              => $colors['primary'],
 		'color_meta_link'         => $colors['primary'],
 		'color_button'            => $colors['primary'],
@@ -214,7 +223,7 @@ function memberlite_map_legacy_colors_to_settings( array $colors ): array {
 		'color_white'             => '#FFFFFF',
 		'color_text'              => $colors['body_text'],
 		'color_borders'           => $colors['border'],
-		'color_heading'           => $colors['secondary'],
+		'color_heading'           => $colors['color_heading'],
 	);
 }
 
@@ -668,7 +677,7 @@ function memberlite_get_active_colors() {
 		var_dump( $colors );
 
 		return array(
-			'color_heading'           => $colors[0],
+			'color_heading'           => $colors[5],
 			'background_color'        => $colors[1],
 			'bgcolor_header'          => $colors[2],
 			'bgcolor_site_navigation' => $colors[3],
@@ -731,7 +740,7 @@ function memberlite_get_active_colors() {
 		'color_footer_widgets',
 		'color_borders',
 		'color_heading',
-		'header_textcolor'
+		'header_textcolor',
 	);
 
 	foreach ( $color_keys as $key ) {

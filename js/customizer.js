@@ -46,21 +46,6 @@
 								'text-indent': '0',
 							}
 						);
-
-						$( '.site-title, .site-description' ).css(
-							{
-								'clip': 'auto',
-								'color': value,
-								'position': 'static'
-							}
-						);
-
-						$( '.site-title a' ).css(
-							{
-								'color': value
-							}
-						);
-
 					}
 				}
 			);
