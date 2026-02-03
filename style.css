@@ -89,8 +89,6 @@ html {
 *,
 *:before,
 *:after { /* apply a natural box layout model to all elements; see http://www.paulirish.com/2012/box-sizing-border-box-ftw/ */
-	-webkit-box-sizing: border-box; /* Not needed for modern webkit but still used by Blackberry Browser 7.0; see http://caniuse.com/#search=box-sizing */
-	-moz-box-sizing: border-box; /* Still needed for Firefox 28; see http://caniuse.com/#search=box-sizing */
 	box-sizing: border-box;
 }
 body {
@@ -147,7 +145,7 @@ a img {
 2.0 Typography
 --------------------------------------------------------------*/
 body {
-	font-family: var(--memberlite-body-font);
+    font-family: var(--memberlite-body-font), ui-sans-serif;
 	font-size: 1.8rem;
 }
 body,
@@ -383,7 +381,7 @@ big {
 	font-size: 125%;
 }
 label {
-	font-family: var(--memberlite-header-font);
+	font-family: var(--memberlite-header-font), ui-sans-serif;
 	font-weight: 700;
 }
 .required {
@@ -485,7 +483,7 @@ table {
 }
 th,
 .wp-block-table th {
-	font-family: var(--memberlite-header-font);
+	font-family: var(--memberlite-header-font), ui-sans-serif;
 	font-weight: 400;
 	padding: 1.45rem;
 }
@@ -567,7 +565,7 @@ a.comment-reply-link,
 	box-shadow: 1px 2px 4px rgba(0,0,0,0.2);
 	color: var(--memberlite-color-white);
 	cursor: pointer;
-	font-family: var(--memberlite-header-font);
+	font-family: var(--memberlite-header-font), ui-sans-serif;
 	font-size: 1.8rem;
 	font-style: normal;
 	font-weight: 700;
@@ -675,7 +673,7 @@ a.comment-reply-link:hover {
 
 /* Link-style button */
 .btn_link {
-	background-color: none;
+	background-color: transparent;
 	border: none;
 	box-shadow: none;
 	color: var(--memberlite-color-link);
@@ -689,7 +687,7 @@ a.comment-reply-link:hover {
 	text-shadow: none;
 }
 .btn_link:hover {
-	background-color: none;
+	background-color: transparent;
 	box-shadow: none;
 	text-decoration: underline;
 }
@@ -707,8 +705,6 @@ input[type=radio] {
 }
 input[type=search] {
 	-webkit-appearance: textfield; /* Addresses appearance set to searchfield in S5, Chrome */
-	-webkit-box-sizing: content-box; /* Addresses box sizing set to border-box in S5, Chrome (include -moz to future-proof) */
-	-moz-box-sizing: content-box;
 	box-sizing: content-box;
 }
 input[type=search]::-webkit-search-decoration { /* Corrects inner padding displayed oddly in S5, Chrome on OSX */
@@ -761,7 +757,7 @@ select:focus {
 .footer-widgets textarea,
 #mobile-navigation input[type=text],
 #mobile-navigation input[type=password] {
-	color: var (--memberlite-color-text);
+	color: var(--memberlite-color-text);
 	border: 1px solid var(--memberlite-color-borders);
 	border-radius: 8px;
 	padding: .9rem;
@@ -983,7 +979,7 @@ a:active:not(.pmpro_btn:active) {
 }
 #site-navigation.site-navigation-sticky {
 	border-bottom: 1px solid #DADADA;
-	box-shadow: 0px 0px 5px rgba( 0, 0, 0, 0.1 );
+	box-shadow: 0 0 5px rgba( 0, 0, 0, 0.1 );
 	position: fixed;
 	top: 0;
 	width: 100%;
@@ -1143,7 +1139,7 @@ a:active:not(.pmpro_btn:active) {
 }
 .meta-navigation ul.menu > li:hover > ul.sub-menu,
 .meta-navigation ul.menu > li[aria-expanded="true"] > ul.sub-menu,
-.header-right .widget_nav_menu ul.menu > li:hover > ul.sub-menu
+.header-right .widget_nav_menu ul.menu > li:hover > ul.sub-menu,
 .header-right .widget_nav_menu ul.menu > li[aria-expanded="true"] > ul.sub-menu {
 	left: 0;
 	top: 2.75rem;
@@ -1567,7 +1563,6 @@ a:active:not(.pmpro_btn:active) {
 }
 #secondary .widget ul.menu li ul li a {
 	font-size: 1.2rem;
-	font-size: 12px;
 }
 #secondary .widget ul.menu li ul.children ul.children li {
 	padding: 0;
@@ -1750,7 +1745,7 @@ a:active:not(.pmpro_btn:active) {
 	width: auto;
 }
 .site-branding .site-identity {
-	align-items: left;
+	align-items: flex-start;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -1830,7 +1825,7 @@ a:active:not(.pmpro_btn:active) {
 /* Dropdown Menu */
 .header-right #meta-member .member-navigation .sub-menu {
 	background-color: var(--memberlite-color-secondary);
-	box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.2);
+	box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.2);
 	display: none;
 	left: -9999em;
 	line-height: 1.9rem;
@@ -1914,7 +1909,6 @@ a:active:not(.pmpro_btn:active) {
 }
 .home .masthead p {
 	font-size: 2rem;
-	font-size: 20px;
 	line-height: 3.3rem;
 }
 .masthead-banner .masthead {
@@ -2009,7 +2003,7 @@ a:active:not(.pmpro_btn:active) {
 }
 .home .home-content p.subtitle {
 	color: #AAA;
-	font-size: 22px; font-size: 2.2rem;
+	font-size: 2.2rem;
 	margin: 0 0 3rem 0;
 	text-align: center;
 }
@@ -2244,7 +2238,7 @@ a:active:not(.pmpro_btn:active) {
 	display: flex;
 	flex-direction: column;
 	flex-wrap: wrap;
-	justify-content: top;
+	justify-content: start;
 	margin: 0;
 	padding: 1.45rem;
 	text-align: center;
@@ -2588,7 +2582,6 @@ a:active:not(.pmpro_btn:active) {
 }
 #banner_bottom p {
 	font-size: 2rem;
-	font-size: 20px;
 	line-height: 3.3rem;
 }
 #banner_bottom h1,
@@ -2726,7 +2719,7 @@ a:active:not(.pmpro_btn:active) {
 .pmpro {
 
 	.pmpro_btn {
-		font-family: var(--memberlite-header-font);
+		font-family: var(--memberlite-header-font), ui-sans-serif;
 	}
 
 	button[type="button"]#other_discount_code_toggle,
@@ -2738,7 +2731,7 @@ a:active:not(.pmpro_btn:active) {
 
 	/* Membership Levels and Advanced Levels Page Shortcode */
 	.pmpro_level-description {
-		font-family: var(--memberlite-body-font);
+		font-family: var(--memberlite-body-font), ui-sans-serif;
 	}
 
 	/* General div and 2-column levels styles */
@@ -3129,7 +3122,7 @@ body.memberlite-banner-hidden .entry-content > .banner:first-child {
 	.wp-block-accordion-item .wp-block-accordion-heading
 ) {
 	cursor: pointer;
-	font-family: var(--memberlite-header-font);
+	font-family: var(--memberlite-header-font), ui-sans-serif;
 	font-size: inherit;
 	font-weight: 700;
 	line-height: inherit;
