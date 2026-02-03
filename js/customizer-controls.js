@@ -33,12 +33,13 @@
 				// Legacy scheme - update ALL color controls from the 16-color array
 				// Map legacy colors to all Customizer settings
 				let legacyColorMap = {
-					'memberlite_bgcolor_header': legacyScheme[0],             // Header BG
+					'memberlite_bgcolor_header': legacyScheme[1],             // Header BG
 					'background_color': legacyScheme[1],                     // Body BG
 					'memberlite_bgcolor_page_masthead': legacyScheme[2], //Masthead BG
 					'memberlite_bgcolor_site_navigation': legacyScheme[3],    // Nav BG
 					'memberlite_color_site_navigation': legacyScheme[4],      // Nav Text
 					'memberlite_color_text': legacyScheme[5],                 // Body Text
+					'memberlite_color_heading': legacyScheme[16],              // Heading Text (h1-h6)
 					'memberlite_color_primary': legacyScheme[6],              // Primary
 					//Skip primary hover bc we don't have setting to update
 					'memberlite_color_secondary': legacyScheme[8],            // Secondary
@@ -80,6 +81,7 @@
 					'memberlite_bgcolor_site_navigation': modernScheme['base'],    // Nav BG
 					'memberlite_color_site_navigation': modernScheme['contrast'],      // Nav Text
 					'memberlite_color_text': modernScheme['contrast'],                 // Body Text
+					'memberlite_color_heading': modernScheme['contrast'],              // Heading Text (h1-h6)
 					'memberlite_color_primary': modernScheme['primary'],              // Primary
 					//Skip primary hover bc we don't have setting to update
 					'memberlite_color_secondary': modernScheme['secondary'],            // Secondary
@@ -123,6 +125,7 @@
 		'memberlite_bgcolor_site_navigation',    // Nav BG
 		'memberlite_color_site_navigation',      // Nav Text
 		'memberlite_color_text',                 // Body Text
+		'memberlite_color_heading',              // Heading Text (h1-h6)
 		'memberlite_color_primary',              // Primary
 		'memberlite_color_secondary',            // Secondary
 		'memberlite_color_action',              // Action
