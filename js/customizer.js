@@ -1,9 +1,51 @@
 /**
  * Theme Customizer enhancements for a better user experience.
  *
- * Contains handlers to make Theme Customizer preview reload changes asynchronously.
+ * This functionality runs in the site preview panel of Theme Customizer.
  */
 ( function( $ ) {
+	// Mapping of customizer settings to CSS variable names
+	var colorSettingsToCssVars = {
+		'header_textcolor': '--memberlite-color-header-text',
+		'background_color': '--memberlite-color-site-background',
+		'bgcolor_header': '--memberlite-color-header-background',
+		'bgcolor_site_navigation': '--memberlite-color-site-navigation-background',
+		'color_site_navigation': '--memberlite-color-site-navigation',
+		'color_text': '--memberlite-color-text',
+		'color_link': '--memberlite-color-link',
+		'color_meta_link': '--memberlite-color-meta-link',
+		'color_primary': '--memberlite-color-primary',
+		'color_secondary': '--memberlite-color-secondary',
+		'color_action': '--memberlite-color-action',
+		'color_button': '--memberlite-color-button',
+		'color_borders': '--memberlite-color-borders',
+		'bgcolor_page_masthead': '--memberlite-color-page-masthead-background',
+		'color_page_masthead': '--memberlite-color-page-masthead',
+		'bgcolor_footer_widgets': '--memberlite-color-footer-widgets-background',
+		'color_footer_widgets': '--memberlite-color-footer-widgets'
+	};
+
+	/**
+	 * Update a CSS variable in the #memberlite-customizer-css style tag
+	 */
+	function updateCssVariable( varName, value ) {
+		var styleEl = document.getElementById( 'memberlite-customizer-css' );
+		if ( ! styleEl ) {
+			return;
+		}
+
+		var css = styleEl.textContent;
+		// Build regex to find and replace the variable declaration
+		var regex = new RegExp( varName.replace( /[-]/g, '\\-' ) + ':\\s*[^;]+;' );
+
+		if ( regex.test( css ) ) {
+			// Replace existing variable
+			css = css.replace( regex, varName + ': ' + value + ';' );
+		}
+
+		styleEl.textContent = css;
+	}
+
 	// Site title and description.
 	wp.customize(
 		'blogname', function( setting ) {
@@ -23,165 +65,40 @@
 			);
 		}
 	);
-	// Header text color.
+
+	// Header text color (special handling for 'blank' value).
 	wp.customize(
 		'header_textcolor', function( setting ) {
 			setting.bind(
 				function( value ) {
 					if ( 'blank' === value ) {
-						$( '.site-title' ).css(
-							{
-								'text-indent': '-9999em',
-							}
-						);
-						$( '.site-description' ).css(
-							{
-								'clip': 'rect(1px, 1px, 1px, 1px)',
-								'position': 'absolute'
-							}
-						);
+						$( '.site-title' ).css( { 'text-indent': '-9999em' } );
+						$( '.site-description' ).css( { 'clip': 'rect(1px, 1px, 1px, 1px)', 'position': 'absolute' } );
 					} else {
-						$( '.site-title' ).css(
-							{
-								'text-indent': '0',
-							}
-						);
-						$( '.site-description' ).css(
-							{
-								'clip': 'auto',
-								'position': 'static'
-							}
-						);
-						// Update CSS variable for site title and tagline color
+						$( '.site-title' ).css( { 'text-indent': '0' } );
+						$( '.site-description' ).css( { 'clip': 'auto', 'position': 'static' } );
 						// WordPress stores header_textcolor without the # prefix
 						var colorValue = value.charAt(0) === '#' ? value : '#' + value;
-						document.documentElement.style.setProperty('--memberlite-color-header-text', colorValue );
+						updateCssVariable( '--memberlite-color-header-text', colorValue );
 					}
 				}
 			);
 		}
 	);
-	// Body Background Color.
-	wp.customize(
-		'background_color', function( setting ) {
-			setting.bind(
-				function( value ) {
-					document.documentElement.style.setProperty('--memberlite-color-site-background', value );
-					$( '#memberlite-customizer-css' ).append( 'body { --memberlite---color-site-background:' + value + '; }' );
-				}
-			);
+
+	// Register all color settings to update their CSS variables
+	$.each( colorSettingsToCssVars, function( settingKey, cssVar ) {
+		// Skip header_textcolor as it has special handling above
+		if ( settingKey === 'header_textcolor' ) {
+			return;
 		}
-	);
-	// Link Color.
-	wp.customize(
-		'color_link', function( setting ) {
-			setting.bind(
-				function( value ) {
-					document.documentElement.style.setProperty('--memberlite-color-link', value );
-					$( '#memberlite-customizer-css' ).append( 'body { --memberlite---color-link:' + value + '; }' );
-				}
-			);
-		}
-	);
-	// Meta Link Color.
-	wp.customize(
-		'color_meta_link', function( setting ) {
-			setting.bind(
-				function( value ) {
-					document.documentElement.style.setProperty('--memberlite-color-meta-link', value );
-					$( '#memberlite-customizer-css' ).append( 'body { --memberlite---color-meta-link:' + value + '; }' );
-				}
-			);
-		}
-	);
-	// Primary Color.
-	wp.customize(
-		'color_primary', function( setting ) {
-			setting.bind(
-				function( value ) {
-					document.documentElement.style.setProperty('--memberlite-color-primary', value );
-					$( '#memberlite-customizer-css' ).append( 'body { --memberlite---color-primary:' + value + '; }' );
-				}
-			);
-		}
-	);
-	// Secondary Color.
-	wp.customize(
-		'color_secondary', function( setting ) {
-			setting.bind(
-				function( value ) {
-					document.documentElement.style.setProperty('--memberlite-color-secondary', value );
-					$( '#memberlite-customizer-css' ).append( 'body { --memberlite---color-secondary:' + value + '; }' );
-				}
-			);
-		}
-	);
-	// Action Color.
-	wp.customize(
-		'color_action', function( setting ) {
-			setting.bind(
-				function( value ) {
-					document.documentElement.style.setProperty('--memberlite-color-action', value );
-					$( '#memberlite-customizer-css' ).append( 'body { --memberlite---color-action:' + value + '; }' );
-				}
-			);
-		}
-	);
-	// Button Color.
-		wp.customize(
-		'color_button', function( setting ) {
-			setting.bind(
-				function( value ) {
-					document.documentElement.style.setProperty('--memberlite-color-button', value );
-					$( '#memberlite-customizer-css' ).append( 'body { --memberlite---color-button:' + value + '; }' );
-				}
-			);
-		}
-	);
-	// Page Masthead Background Color.
-	wp.customize(
-		'bgcolor_page_masthead', function( setting ) {
-			setting.bind(
-				function( value ) {
-					document.documentElement.style.setProperty('--memberlite-color-page-masthead-background', value );
-					$( '#memberlite-customizer-css' ).append( 'body { --memberlite---bgcolor-page-masthead:' + value + '; }' );
-				}
-			);
-		}
-	);
-	// Footer Widgets Color.
-	wp.customize(
-		'color_page_masthead', function( setting ) {
-			setting.bind(
-				function( value ) {
-					document.documentElement.style.setProperty('--memberlite-color-page-masthead', value );
-					$( '#memberlite-customizer-css' ).append( 'body { --memberlite---color-page-masthead:' + value + '; }' );
-				}
-			);
-		}
-	);
-	// Footer Widgets Background Color.
-	wp.customize(
-		'bgcolor_footer_widgets', function( setting ) {
-			setting.bind(
-				function( value ) {
-					document.documentElement.style.setProperty('--memberlite-color-footer-widgets-background', value );
-					$( '#memberlite-customizer-css' ).append( 'body { --memberlite---bgcolor-footer-widgets:' + value + '; }' );
-				}
-			);
-		}
-	);
-	// Footer Widgets Color.
-	wp.customize(
-		'color_footer_widgets', function( setting ) {
-			setting.bind(
-				function( value ) {
-					document.documentElement.style.setProperty('--memberlite-color-footer-widgets', value );
-					$( '#memberlite-customizer-css' ).append( 'body { --memberlite---color-footer-widgets:' + value + '; }' );
-				}
-			);
-		}
-	);
+
+		wp.customize( settingKey, function( setting ) {
+			setting.bind( function( value ) {
+				updateCssVariable( cssVar, value );
+			});
+		});
+	});
 	wp.customize(
 		'delimiter', function( setting ) {
 			setting.bind(
