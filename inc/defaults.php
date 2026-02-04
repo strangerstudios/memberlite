@@ -207,23 +207,23 @@ function memberlite_get_midnight_violet_colors(): array {
 }
 
 /**
- * Cedar Spice color scheme
+ * Cocoa Ash color scheme
  *
  * Warm browns with orange accent.
  *
  * @since TBD
  * @return array 17-color associative array.
  */
-function memberlite_get_cedar_spice_colors(): array {
+function memberlite_get_cocoa_ash_colors(): array {
 	return array(
-		'header_textcolor'        => '#FFFFFF',
+		'header_textcolor'        => '#DDD7CF',
 		'background_color'        => '#FFFFFF',
 		'bgcolor_header'          => '#1F1B18',
 		'bgcolor_site_navigation' => '#A8A29A',
 		'color_site_navigation'   => '#1F1B18',
 		'color_text'              => '#1F1B18',
 		'color_link'              => '#2E2623',
-		'color_meta_link'         => '#6F6A66',
+		'color_meta_link'         => '#DDD7CF',
 		'color_primary'           => '#2E2623',
 		'color_secondary'         => '#6F6A66',
 		'color_action'            => '#D89A5A',
@@ -231,38 +231,38 @@ function memberlite_get_cedar_spice_colors(): array {
 		'bgcolor_page_masthead'   => '#A8A29A',
 		'color_page_masthead'     => '#1F1B18',
 		'bgcolor_footer_widgets'  => '#2E2623',
-		'color_footer_widgets'    => '#FFFFFF',
-		'color_borders'           => '#E0E0E0',
+		'color_footer_widgets'    => '#DDD7CF',
+		'color_borders'           => '#A8A29A',
 	);
 }
 
 /**
- * Fresh Spruce color scheme
+ * Soft Spruce color scheme
  *
- * Bright green with clean grays.
+ * Clean grays with restrained green accents.
  *
  * @since TBD
  * @return array 17-color associative array.
  */
-function memberlite_get_fresh_spruce_colors(): array {
+function memberlite_get_soft_spruce_colors(): array {
 	return array(
-		'header_textcolor'        => '#FFFFFF',
+		'header_textcolor'        => '#2B2E2D',
 		'background_color'        => '#FFFFFF',
-		'bgcolor_header'          => '#1DBF73',
-		'bgcolor_site_navigation' => '#1DBF73',
-		'color_site_navigation'   => '#FFFFFF',
+		'bgcolor_header'          => '#FFFFFF',
+		'bgcolor_site_navigation' => '#F5F7F6',
+		'color_site_navigation'   => '#2B2E2D',
 		'color_text'              => '#2B2E2D',
-		'color_link'              => '#1DBF73',
+		'color_link'              => '#0E7A49',
 		'color_meta_link'         => '#7A7F7C',
-		'color_primary'           => '#1DBF73',
+		'color_primary'           => '#0E7A49',
 		'color_secondary'         => '#7A7F7C',
-		'color_action'            => '#1DBF73',
-		'color_button'            => '#1DBF73',
-		'bgcolor_page_masthead'   => '#1DBF73',
-		'color_page_masthead'     => '#FFFFFF',
-		'bgcolor_footer_widgets'  => '#1DBF73',
-		'color_footer_widgets'    => '#FFFFFF',
-		'color_borders'           => '#E0E0E0',
+		'color_action'            => '#D18A3A',
+		'color_button'            => '#0E7A49',
+		'bgcolor_page_masthead'   => '#F5F7F6',
+		'color_page_masthead'     => '#2B2E2D',
+		'bgcolor_footer_widgets'  => '#F5F7F6',
+		'color_footer_widgets'    => '#2B2E2D',
+		'color_borders'           => '#E3E6E4',
 	);
 }
 
@@ -276,11 +276,11 @@ function memberlite_get_fresh_spruce_colors(): array {
  */
 function memberlite_get_iron_ember_colors(): array {
 	return array(
-		'header_textcolor'        => '#FFFFFF',
+		'header_textcolor'        => '#1F252B',
 		'background_color'        => '#F6F7F6',
-		'bgcolor_header'          => '#1F252B',
-		'bgcolor_site_navigation' => '#1F252B',
-		'color_site_navigation'   => '#FFFFFF',
+		'bgcolor_header'          => '#F6F7F6',
+		'bgcolor_site_navigation' => '#E9ECEA',
+		'color_site_navigation'   => '#1F252B',
 		'color_text'              => '#1F252B',
 		'color_link'              => '#1F252B',
 		'color_meta_link'         => '#4A5A6A',
@@ -306,11 +306,11 @@ function memberlite_get_iron_ember_colors(): array {
  */
 function memberlite_get_slate_harbor_colors(): array {
 	return array(
-		'header_textcolor'        => '#FFFFFF',
+		'header_textcolor'        => '#0B1233',
 		'background_color'        => '#FFFFFF',
-		'bgcolor_header'          => '#0B1233',
-		'bgcolor_site_navigation' => '#0B1233',
-		'color_site_navigation'   => '#FFFFFF',
+		'bgcolor_header'          => '#FFFFFF',
+		'bgcolor_site_navigation' => '#EEF2F6',
+		'color_site_navigation'   => '#0B1233',
 		'color_text'              => '#111827',
 		'color_link'              => '#0B1233',
 		'color_meta_link'         => '#0F6E7A',
@@ -322,7 +322,7 @@ function memberlite_get_slate_harbor_colors(): array {
 		'color_page_masthead'     => '#FFFFFF',
 		'bgcolor_footer_widgets'  => '#0B1233',
 		'color_footer_widgets'    => '#FFFFFF',
-		'color_borders'           => '#E0E0E0',
+		'color_borders'           => '#E4E9F0',
 	);
 }
 
@@ -414,13 +414,13 @@ function memberlite_get_color_schemes(): array {
 			'label'  => __( 'Midnight Violet', 'memberlite' ),
 			'colors' => memberlite_get_midnight_violet_colors(),
 		),
-		'cedar_spice'     => array(
-			'label'  => __( 'Cedar Spice', 'memberlite' ),
-			'colors' => memberlite_get_cedar_spice_colors(),
+		'cocoa_ash'     => array(
+			'label'  => __( 'Cocoa Ash', 'memberlite' ),
+			'colors' => memberlite_get_cocoa_ash_colors(),
 		),
-		'fresh_spruce'    => array(
-			'label'  => __( 'Fresh Spruce', 'memberlite' ),
-			'colors' => memberlite_get_fresh_spruce_colors(),
+		'soft_spruce'    => array(
+			'label'  => __( 'Soft Spruce', 'memberlite' ),
+			'colors' => memberlite_get_soft_spruce_colors(),
 		),
 		'iron_ember'      => array(
 			'label'  => __( 'Iron Ember', 'memberlite' ),
