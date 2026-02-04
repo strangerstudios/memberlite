@@ -96,14 +96,14 @@ function memberlite_get_default_colors(): array {
  */
 function memberlite_get_evergreen_colors(): array {
 	return array(
-		'header_textcolor'        => '#FFFFFF',
+		'header_textcolor'        => '#174B49',
 		'background_color'        => '#FFFFFF',
-		'bgcolor_header'          => '#174B49',
-		'bgcolor_site_navigation' => '#174B49',
-		'color_site_navigation'   => '#FFFFFF',
+		'bgcolor_header'          => '#FFFFFF',
+		'bgcolor_site_navigation' => '#F9FAFB',
+		'color_site_navigation'   => '#0F0F0F',
 		'color_text'              => '#0F0F0F',
 		'color_link'              => '#174B49',
-		'color_meta_link'         => '#2E7061',
+		'color_meta_link'         => '#174B49',
 		'color_primary'           => '#174B49',
 		'color_secondary'         => '#2E7061',
 		'color_action'            => '#F83773',
@@ -126,22 +126,22 @@ function memberlite_get_evergreen_colors(): array {
  */
 function memberlite_get_seaside_linen_colors(): array {
 	return array(
-		'header_textcolor'        => '#FFFFFF',
+		'header_textcolor'        => '#1F3A4A',
 		'background_color'        => '#ECEBE3',
-		'bgcolor_header'          => '#1F3A4A',
-		'bgcolor_site_navigation' => '#1F3A4A',
-		'color_site_navigation'   => '#FFFFFF',
+		'bgcolor_header'          => '#ECEBE3',
+		'bgcolor_site_navigation' => '#ECEBE3',
+		'color_site_navigation'   => '#25292B',
 		'color_text'              => '#25292B',
 		'color_link'              => '#1F3A4A',
-		'color_meta_link'         => '#4E6A78',
+		'color_meta_link'         => '#1F3A4A',
 		'color_primary'           => '#1F3A4A',
 		'color_secondary'         => '#4E6A78',
 		'color_action'            => '#EBF9A8',
 		'color_button'            => '#1F3A4A',
 		'bgcolor_page_masthead'   => '#1F3A4A',
 		'color_page_masthead'     => '#FFFFFF',
-		'bgcolor_footer_widgets'  => '#1F3A4A',
-		'color_footer_widgets'    => '#FFFFFF',
+		'bgcolor_footer_widgets'  => '#ECEBE3',
+		'color_footer_widgets'    => '#25292B',
 		'color_borders'           => '#E0E0E0',
 	);
 }
@@ -156,11 +156,11 @@ function memberlite_get_seaside_linen_colors(): array {
  */
 function memberlite_get_deep_harbor_colors(): array {
 	return array(
-		'header_textcolor'        => '#FFFFFF',
+		'header_textcolor'        => '#2A2F36',
 		'background_color'        => '#F7F9FC',
-		'bgcolor_header'          => '#1F3A5F',
-		'bgcolor_site_navigation' => '#1F3A5F',
-		'color_site_navigation'   => '#FFFFFF',
+		'bgcolor_header'          => '#F7F9FC',
+		'bgcolor_site_navigation' => '#F7F9FC',
+		'color_site_navigation'   => '#2A2F36',
 		'color_text'              => '#2A2F36',
 		'color_link'              => '#1F3A5F',
 		'color_meta_link'         => '#2F5F8F',
@@ -169,9 +169,9 @@ function memberlite_get_deep_harbor_colors(): array {
 		'color_action'            => '#8FAEA0',
 		'color_button'            => '#1F3A5F',
 		'bgcolor_page_masthead'   => '#1F3A5F',
-		'color_page_masthead'     => '#FFFFFF',
-		'bgcolor_footer_widgets'  => '#1F3A5F',
-		'color_footer_widgets'    => '#FFFFFF',
+		'color_page_masthead'     => '#F7F9FC',
+		'bgcolor_footer_widgets'  => '#F7F9FC',
+		'color_footer_widgets'    => '#2A2F36',
 		'color_borders'           => '#E0E0E0',
 	);
 }
@@ -218,9 +218,9 @@ function memberlite_get_cedar_spice_colors(): array {
 	return array(
 		'header_textcolor'        => '#FFFFFF',
 		'background_color'        => '#FFFFFF',
-		'bgcolor_header'          => '#2E2623',
-		'bgcolor_site_navigation' => '#2E2623',
-		'color_site_navigation'   => '#FFFFFF',
+		'bgcolor_header'          => '#1F1B18',
+		'bgcolor_site_navigation' => '#A8A29A',
+		'color_site_navigation'   => '#1F1B18',
 		'color_text'              => '#1F1B18',
 		'color_link'              => '#2E2623',
 		'color_meta_link'         => '#6F6A66',
@@ -228,8 +228,8 @@ function memberlite_get_cedar_spice_colors(): array {
 		'color_secondary'         => '#6F6A66',
 		'color_action'            => '#D89A5A',
 		'color_button'            => '#2E2623',
-		'bgcolor_page_masthead'   => '#2E2623',
-		'color_page_masthead'     => '#FFFFFF',
+		'bgcolor_page_masthead'   => '#A8A29A',
+		'color_page_masthead'     => '#1F1B18',
 		'bgcolor_footer_widgets'  => '#2E2623',
 		'color_footer_widgets'    => '#FFFFFF',
 		'color_borders'           => '#E0E0E0',
