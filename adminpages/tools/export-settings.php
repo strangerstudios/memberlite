@@ -106,7 +106,7 @@ $menus = wp_get_nav_menus();
 										// Make the entire row clickable.
 										menuList.querySelectorAll('.memberlite_clickable').forEach(function(row) {
 											row.addEventListener('click', function(e) {
-												if (e.target.tagName !== 'INPUT') {
+												if (e.target.tagName !== 'INPUT' && e.target.tagName !== 'LABEL') {
 													var checkbox = row.querySelector('input[type="checkbox"]');
 													checkbox.checked = !checkbox.checked;
 													checkbox.dispatchEvent(new Event('change'));
