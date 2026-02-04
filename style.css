@@ -2277,7 +2277,7 @@ a:where(:not(.pmpro_btn)):active {
 10.4 Posts and Pages
 --------------------------------------------------------------*/
 .hentry {
-	margin: 0 0 var(--wp--preset--spacing--50);
+	margin: 0 0 var(--wp--preset--spacing--80);
 }
 
 .entry-title {
