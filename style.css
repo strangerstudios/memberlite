@@ -2513,7 +2513,7 @@ a:where(:not(.pmpro_btn)):active {
 	flex-wrap: wrap;
 	gap: var(--wp--preset--spacing--20);
 	justify-content: flex-start;
-	margin-bottom: 2rem;
+	margin-bottom: var(--wp--preset--spacing--50);
 }
 
 .grid-list > * {
@@ -2606,7 +2606,7 @@ a:where(:not(.pmpro_btn)):active {
 	}
 
 	.grid-list > * {
-		flex: 0 1 calc(33.333% - 1.94rem);
+		flex: 0 1 calc(33.333% - var(--wp--preset--spacing--10));
 	}
 
 }
@@ -3778,8 +3778,8 @@ details > p:first-of-type {
 	}
 
 	.footer-widgets .widget {
-		padding-top: var(--wp--preset--spacing--50);
-		padding-bottom: var(--wp--preset--spacing--50);
+		padding-top: var(--wp--preset--spacing--30);
+		padding-bottom: var(--wp--preset--spacing--30);
 	}
 
 	.site-footer .site-info .skip-link {
