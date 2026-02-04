@@ -788,47 +788,6 @@ function memberlite_frontpage_template_hierarchy( $templates ) {
 add_filter( 'frontpage_template_hierarchy', 'memberlite_frontpage_template_hierarchy', 5 );
 
 /**
- * Formats custom property to be used in CSS.
- *
- * @param string $property The property name.
- * @return string
- */
-function memberlite_format_custom_property( string $property ): string {
-	if ( ! str_contains( $property, 'var:' ) ) {
-		return $property;
-	}
-
-	return str_replace(
-		[ 'var:', '|' ],
-		[ 'var(--wp--', '--' ],
-		$property
-	) . ')';
-}
-
-/**
- * Generate custom properties from global styles.
- *
- * @return string
- */
-function memberlite_get_custom_properties(): string {
-	$custom_properties  = [];
-	$custom_properties[ "--memberlite-header-font" ] = memberlite_get_font( 'header_font', true );
-	$custom_properties[ "--memberlite-body-font" ] = memberlite_get_font( 'body_font', true );
-
-	if ( is_array( $custom_properties ) ) {
-		$css = [];
-
-		foreach ( $custom_properties as $key => $value ) {
-			$css[] = $key . ':' . memberlite_format_custom_property( $value ) . ';';
-		}
-
-		return 'body{' . implode( '', $css ) . '}';
-	}
-
-	return '';
-}
-
-/**
  * Enqueue block editor styles.
  *
  * @since 5.1.0
@@ -836,18 +795,11 @@ function memberlite_get_custom_properties(): string {
  * @return void
  */
 function memberlite_enqueue_block_assets() {
-   // Enqueue the editor stylesheet to attach the inline styles to.
 	wp_enqueue_style(
 		'memberlite-block-editor-style',
 		MEMBERLITE_URL . '/css/editor.css',
 		[],
 		MEMBERLITE_VERSION
-	);
-
-	// Add custom inline styles to the block editor.
-	wp_add_inline_style(
-		'memberlite-block-editor-style',
-		memberlite_get_custom_properties()
 	);
 }
 add_action( 'enqueue_block_assets', 'memberlite_enqueue_block_assets' );
@@ -997,6 +949,20 @@ function memberlite_filter_theme_json( $theme_json ) {
 	}
 
 	$theme_json_data['settings']['color']['palette'] = $color_palette;
+
+	// Add font family custom properties.
+	if ( ! isset( $theme_json_data['settings']['custom'] ) ) {
+		$theme_json_data['settings']['custom'] = array();
+	}
+	if ( ! isset( $theme_json_data['settings']['custom']['heading'] ) ) {
+		$theme_json_data['settings']['custom']['heading'] = array();
+	}
+	if ( ! isset( $theme_json_data['settings']['custom']['body'] ) ) {
+		$theme_json_data['settings']['custom']['body'] = array();
+	}
+
+	$theme_json_data['settings']['custom']['heading']['fontFamily'] = memberlite_get_font( 'header_font', true );
+	$theme_json_data['settings']['custom']['body']['fontFamily'] = memberlite_get_font( 'body_font', true );
 
 	// Update the theme.json object.
 	return $theme_json->update_with( $theme_json_data );
