@@ -1071,5 +1071,5 @@ add_action( 'wp_loaded', 'memberlite_banner_image_setup' );
  * @return bool
  */
 function is_pmpro_active() : bool {
-    return is_plugin_active('paid-memberships-pro/paid-memberships-pro.php' );
+	return is_plugin_active('paid-memberships-pro/paid-memberships-pro.php' );
 }

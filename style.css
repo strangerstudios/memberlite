@@ -145,7 +145,7 @@ a img {
 2.0 Typography
 --------------------------------------------------------------*/
 body {
-    font-family: var(--memberlite-body-font), ui-sans-serif;
+	font-family: var(--memberlite-body-font), ui-sans-serif;
 	font-size: 1.8rem;
 }
 body,

@@ -120,8 +120,8 @@
 	display: grid;
 	grid-template-columns: 80px auto;
 	grid-template-areas:
-    "avatar user-links"
-    "avatar nav";
+	"avatar user-links"
+	"avatar nav";
 }
 .tml.tml-user-panel .tml-user-avatar {
 	grid-area: avatar;

@@ -171,16 +171,16 @@ function memberlite_get_update_info() {
 	// Query the server if we do not have the local $update_info or we force checking for an update.
 	if ( empty( $update_info ) || ! empty( $_REQUEST['force-check'] ) || current_time('timestamp') > $update_info_timestamp + 86400 ) {
 		/**
-         * Filter to change the timeout for this wp_remote_get() request for updates.
-         * @since 6.0
+		 * Filter to change the timeout for this wp_remote_get() request for updates.
+		 * @since 6.0
 		 *
-         * @param int $timeout The number of seconds before the request times out
-         */
-        $timeout = apply_filters( 'memberlite_get_update_info_timeout', 5 );
+		 * @param int $timeout The number of seconds before the request times out
+		 */
+		$timeout = apply_filters( 'memberlite_get_update_info_timeout', 5 );
 		$remote_info = wp_remote_get( PMPRO_LICENSE_SERVER . 'themes/', $timeout );
 
 		// Test response.
-        if ( is_wp_error( $remote_info ) || empty( $remote_info['response'] ) || $remote_info['response']['code'] != '200' ) {
+		if ( is_wp_error( $remote_info ) || empty( $remote_info['response'] ) || $remote_info['response']['code'] != '200' ) {
 			// Error.
 			return new WP_Error( 'connection_error', 'Could not connect to the PMPro License Server to get update information. Try again later.' );
 		} else {
