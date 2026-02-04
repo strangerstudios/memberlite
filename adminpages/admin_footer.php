@@ -2,7 +2,7 @@
 /**
  * Admin Footer for Memberlite Theme Admin Pages
  *
- * @since TBD
+ * @since 6.1
  */
 ?>
 	<div class="clear"></div>

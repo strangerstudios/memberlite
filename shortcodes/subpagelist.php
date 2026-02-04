@@ -158,9 +158,9 @@ function memberlite_subpagelist_shortcode_handler( $atts, $content = null, $code
 				$font_awesome_icons_brands = memberlite_get_font_awesome_icons( 'brand' );
 
 				// Check if the icon is a "brand" icon and set the appropriate icon class.
-			    if ( in_array( $memberlite_page_icon, $font_awesome_icons_brands ) ) {
-			        $memberlite_page_icon_class = 'fab';
-			    } else {
+				if ( in_array( $memberlite_page_icon, $font_awesome_icons_brands ) ) {
+					$memberlite_page_icon_class = 'fab';
+				} else {
 					$memberlite_page_icon_class = 'fa';
 				}
 

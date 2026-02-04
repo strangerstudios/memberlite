@@ -2,7 +2,7 @@
 /**
  * Export Tool for Memberlite Theme
  *
- * @since TBD
+ * @since 6.1
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

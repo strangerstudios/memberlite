@@ -4,7 +4,7 @@
  *
  * @package Memberlite
  */
-define( 'MEMBERLITE_VERSION', '6.0.1' );
+define( 'MEMBERLITE_VERSION', '6.1.1' );
 define( 'MEMBERLITE_URL', get_template_directory_uri() );
 
 // enqueue additional stylesheets and javascript
@@ -68,7 +68,7 @@ add_action( 'wp_enqueue_scripts', 'memberlite_init_styles' );
 /**
  * Enqueue admin JavaScript and CSS
  *
- * @since TBD
+ * @since 6.1
  */
 function memberlite_admin_enqueue_scripts() {
 	if ( ! empty( $_GET['page'] ) && strpos( $_GET['page'], 'memberlite-' ) === 0 ) {
@@ -140,7 +140,7 @@ font-stretch: normal;
 }<?php
 		}
 	}
-	
+
 	// Enqueue the header font.
 	if ( ! empty( $header_font ) ) { ?>@font-face {
 font-family: <?php echo esc_html( memberlite_get_font( 'header_font', true ) ); ?>;
@@ -249,7 +249,7 @@ if ( ! function_exists( 'memberlite_setup' ) ) :
 			'flex-height'  => true,
 			'flex-width'  => true,
 			'header-text' => array( 'site-title', 'site-description' ),
-			'unlink-homepage-logo' => false, 
+			'unlink-homepage-logo' => false,
 		);
 
 		add_theme_support( 'custom-logo', $logo_defaults );
@@ -326,155 +326,6 @@ if ( ! function_exists( 'memberlite_setup' ) ) :
 			)
 		);
 		add_theme_support( 'custom-background', $custom_background );
-		
-		// Build unique array of Color Scheme values to include in Block Editor
-		$color_scheme = array();
-
-		// Primary Color
-		$color_scheme[] = array(
-			'name' => __( 'Primary', 'memberlite' ),
-			'slug' => 'color-primary',
-			'color' => get_theme_mod( 'color_primary', $memberlite_defaults['color_primary'] )
-		);
-
-		// Secondary Color
-		$color_scheme[] = array(
-			'name' => __( 'Secondary', 'memberlite' ),
-			'slug' => 'color-secondary',
-			'color' => get_theme_mod( 'color_secondary', $memberlite_defaults['color_secondary'] )
-		);
-
-		// Action Color
-		$color_scheme[] = array(
-			'name' => __( 'Action', 'memberlite' ),
-			'slug' => 'color-action',
-			'color' => get_theme_mod( 'color_action', $memberlite_defaults['color_action'] )
-		);
-
-		// Primary Navigation Background Color
-		$color_scheme[] = array(
-			'name' => __( 'Navigation Background', 'memberlite' ),
-			'slug' => 'site-navigation-background',
-			'color' => get_theme_mod( 'bgcolor_site_navigation', $memberlite_defaults['bgcolor_site_navigation'] )
-		);
-
-		// Link Color
-		$color_scheme[] = array(
-			'name' => __( 'Links', 'memberlite' ),
-			'slug' => 'memberlite-links',
-			'color' => get_theme_mod( 'color_link', $memberlite_defaults['color_link'] )
-		);
-
-		// Primary Navigation Color
-		$color_scheme[] = array(
-			'name' => __( 'Navigation Links', 'memberlite' ),
-			'slug' => 'site-navigation-link',
-			'color' => get_theme_mod( 'color_site_navigation', $memberlite_defaults['color_site_navigation'] )
-		);
-
-		// Meta Link Color
-		$color_scheme[] = array(
-			'name' => __( 'Meta Links ', 'memberlite' ),
-			'slug' => 'meta-link',
-			'color' => get_theme_mod( 'color_meta_link', $memberlite_defaults['color_meta_link'] )
-		);
-
-		// Button Color
-		$color_scheme[] = array(
-			'name' => __( 'Buttons', 'memberlite' ),
-			'slug' => 'buttons',
-			'color' => get_theme_mod( 'color_button', $memberlite_defaults['color_button'] )
-		);
-
-		// White Color
-		$color_scheme[] = array(
-			'name' => __( 'White', 'memberlite' ),
-			'slug' => 'white',
-			'color' => get_theme_mod( 'color_white', $memberlite_defaults['color_white'] )
-		);
-
-		// Borders Color
-		$color_scheme[] = array(
-			'name' => __( 'Borders', 'memberlite' ),
-			'slug' => 'borders',
-			'color' => get_theme_mod( 'color_borders', $memberlite_defaults['color_borders'] )
-		);
-
-		// v4.6 added four new colors. For this reason, we need to set the fallback colors if they are using a built in scheme.
-		// Get the current color scheme
-		$this_color_scheme = get_theme_mod( 'memberlite_color_scheme' );
-
-		// Set the defaults to the primary color from the current scheme if it isn't the new default.
-		if ( $this_color_scheme != 'default_v4.6' ) {
-			$memberlite_defaults['bgcolor_page_masthead'] = $color_scheme[0]['color'];
-			$memberlite_defaults['color_page_masthead'] = $memberlite_defaults['color_white'];
-			$memberlite_defaults['bgcolor_footer_widgets'] = $color_scheme[0]['color'];
-			$memberlite_defaults['color_footer_widgets'] = $memberlite_defaults['color_white'];
-		}
-
-		// Page Masthead Background Color
-		$color_scheme[] = array(
-			'name' => __( 'Page Masthead Background Color', 'memberlite' ),
-			'slug' => 'page-masthead-background',
-			'color' => get_theme_mod( 'bgcolor_page_masthead', $memberlite_defaults['bgcolor_page_masthead'] )
-		);
-
-		// Page Masthead Color
-		$color_scheme[] = array(
-			'name' => __( 'Page Masthead Color', 'memberlite' ),
-			'slug' => 'page-masthead',
-			'color' => get_theme_mod( 'color_page_masthead', $memberlite_defaults['color_page_masthead'] )
-		);
-
-		// Footer Widgets Background Color
-		$color_scheme[] = array(
-			'name' => __( 'Footer Widgets Background Color', 'memberlite' ),
-			'slug' => 'footer-widgets-background',
-			'color' => get_theme_mod( 'bgcolor_footer_widgets', $memberlite_defaults['bgcolor_footer_widgets'] )
-		);
-
-		// Footer Widgets Color
-		$color_scheme[] = array(
-			'name' => __( 'Footer Widgets Color', 'memberlite' ),
-			'slug' => 'footer-widgets',
-			'color' => get_theme_mod( 'color_footer_widgets', $memberlite_defaults['color_footer_widgets'] )
-		);
-
-		// Get all unique color values.
-		$color_scheme_temp = array_unique( array_column( $color_scheme, 'color' ) );
-		$color_scheme = array_intersect_key( $color_scheme, $color_scheme_temp );
-
-		// Always ensure the body text color is set.
-		$color_scheme[] = array(
-			'name' => __( 'Text', 'memberlite' ),
-			'slug' => 'body-text',
-			'color' => get_theme_mod( 'color_text', $memberlite_defaults['color_text'] )
-		);
-
-		// Always ensure the base color is set.
-		$base_color = get_theme_mod( 'background_color', $memberlite_defaults['background_color'] );
-		// Add a # if it's missing.
-		if ( strpos( $base_color, '#' ) === false ) {
-			$base_color = '#' . $base_color;
-		}
-		$color_scheme[] = array(
-			'name' => __( 'Base', 'memberlite' ),
-			'slug' => 'base',
-			'color' => esc_attr( $base_color )
-		);
-
-		// Build colors array for palette.
-		$colors = array();
-		foreach( $color_scheme as $color ) {
-			$colors[] = array(
-				'name' => $color['name'],
-				'slug' => $color['slug'],
-				'color' => $color['color'],
-			);
-		}
-
-		// Add color values to Block Editor
-		add_theme_support( 'editor-color-palette', apply_filters( 'memberlite_editor_color_palette', $colors ) );
 
 		// Indicate widget sidebars can use selective refresh in the Customizer.
 		add_theme_support( 'customize-selective-refresh-widgets' );
@@ -484,19 +335,19 @@ add_action( 'after_setup_theme', 'memberlite_setup' );
 
 /**
  * Load the Memberlite theme textdomain on init (WP 6.7+ requirement).
- * 
+ *
  * If you're building a theme based on Memberlite, use a find and replace
  * to change 'memberlite' to the name of your theme in all the template files.
  */
 function memberlite_load_textdomain() {
-    load_theme_textdomain( 'memberlite', get_template_directory() . '/languages' );
+	load_theme_textdomain( 'memberlite', get_template_directory() . '/languages' );
 }
 add_action( 'init', 'memberlite_load_textdomain' );
 
 /**
  * Load custom translations from our own server: translate.strangerstudios.com
  * 
- * @since TBD
+ * @since 6.1
  */
 function memberlite_check_for_translations() {
 
@@ -504,12 +355,12 @@ function memberlite_check_for_translations() {
 	if ( function_exists( 'pmproum_check_for_translations' ) ) {
 		return;
 	}
-	
+
 	// If the library isn't loaded, bail.
 	if ( ! function_exists( 'Memberlite\Required\Traduttore_Registry\add_project' ) ) {
 		return;
 	}
-	
+
 	// Only check for updates when on the update page, plugins, themes page, or the Memberlite support page
 	$is_update_or_plugins_page = strpos( $_SERVER['REQUEST_URI'], 'update-core.php' ) !== false || strpos( $_SERVER['REQUEST_URI'], 'plugins.php' ) !== false || strpos( $_SERVER['REQUEST_URI'], 'themes.php' ) !== false;
 	$is_memberlite_admin_page = isset( $_REQUEST['page'] ) && $_REQUEST['page'] === 'memberlite-support';
@@ -943,47 +794,6 @@ function memberlite_frontpage_template_hierarchy( $templates ) {
 add_filter( 'frontpage_template_hierarchy', 'memberlite_frontpage_template_hierarchy', 5 );
 
 /**
- * Formats custom property to be used in CSS.
- *
- * @param string $property The property name.
- * @return string
- */
-function memberlite_format_custom_property( string $property ): string {
-	if ( ! str_contains( $property, 'var:' ) ) {
-		return $property;
-	}
-
-	return str_replace(
-		[ 'var:', '|' ],
-		[ 'var(--wp--', '--' ],
-		$property
-	) . ')';
-}
-
-/**
- * Generate custom properties from global styles.
- *
- * @return string
- */
-function memberlite_get_custom_properties(): string {
-	$custom_properties  = [];
-	$custom_properties[ "--memberlite-header-font" ] = memberlite_get_font( 'header_font', true );
-	$custom_properties[ "--memberlite-body-font" ] = memberlite_get_font( 'body_font', true );
-
-	if ( is_array( $custom_properties ) ) {
-		$css = [];
-
-		foreach ( $custom_properties as $key => $value ) {
-			$css[] = $key . ':' . memberlite_format_custom_property( $value ) . ';';
-		}
-
-		return 'body{' . implode( '', $css ) . '}';
-	}
-
-	return '';
-}
-
-/**
  * Enqueue block editor styles.
  *
  * @since 5.1.0
@@ -991,18 +801,11 @@ function memberlite_get_custom_properties(): string {
  * @return void
  */
 function memberlite_enqueue_block_assets() {
-   // Enqueue the editor stylesheet to attach the inline styles to.
 	wp_enqueue_style(
 		'memberlite-block-editor-style',
 		MEMBERLITE_URL . '/css/editor.css',
 		[],
 		MEMBERLITE_VERSION
-	);
-
-	// Add custom inline styles to the block editor.
-	wp_add_inline_style(
-		'memberlite-block-editor-style',
-		memberlite_get_custom_properties()
 	);
 }
 add_action( 'enqueue_block_assets', 'memberlite_enqueue_block_assets' );
@@ -1013,8 +816,8 @@ add_action( 'enqueue_block_assets', 'memberlite_enqueue_block_assets' );
 function memberlite_theme_mod_copyright_textbox( $copyright_text ) {
 	// Don't filter the text in the admin.
 	if ( is_admin() ) {
-        return $copyright_text;
-    }
+		return $copyright_text;
+	}
 
 	// Return if the text is not a string.
 	if ( ! is_string( $copyright_text ) ) {
@@ -1022,16 +825,152 @@ function memberlite_theme_mod_copyright_textbox( $copyright_text ) {
 	}
 
 	$data = array(
-        'current_year' => date( 'Y' ),
-        'site_title'   => (string) get_option( 'blogname' ),
-        'site_url'     => (string) get_option( 'siteurl' ),
-        'tagline'      => (string) get_option( 'blogdescription' ),
-    );
+		'current_year' => date( 'Y' ),
+		'site_title'   => (string) get_option( 'blogname' ),
+		'site_url'     => (string) get_option( 'siteurl' ),
+		'tagline'      => (string) get_option( 'blogdescription' ),
+	);
 
-    foreach ( $data as $key => $value ) {
-        $copyright_text = str_replace( "!!" . $key . "!!", $value, $copyright_text );
-    }
+	foreach ( $data as $key => $value ) {
+		$copyright_text = str_replace( "!!" . $key . "!!", $value, $copyright_text );
+	}
 
-    return $copyright_text;
+	return $copyright_text;
 }
 add_filter( 'theme_mod_copyright_textbox', 'memberlite_theme_mod_copyright_textbox' );
+
+/**
+ * Filter theme.json data to inject Customizer colors
+ * This makes Customizer colors available in the block editor
+ *
+ * @since TBD
+ *
+ * @param $theme_json
+ *
+ * @return mixed
+ */
+function memberlite_filter_theme_json( $theme_json ) {
+	$active_colors = memberlite_get_active_colors();
+
+	// Build the color palette.
+	// These colors will be deduplicated (first occurrence wins).
+	$color_scheme = array(
+		array(
+			'slug'  => 'color-primary',
+			'color' => $active_colors['color_primary'],
+			'name'  => __( 'Primary', 'memberlite' ),
+		),
+		array(
+			'slug'  => 'color-secondary',
+			'color' => $active_colors['color_secondary'],
+			'name'  => __( 'Secondary', 'memberlite' ),
+		),
+		array(
+			'slug'  => 'action',
+			'color' => $active_colors['color_action'],
+			'name'  => __( 'Action', 'memberlite' ),
+		),
+		array(
+			'slug'  => 'memberlite-links',
+			'color' => $active_colors['color_link'],
+			'name'  => __( 'Links', 'memberlite' ),
+		),
+		array(
+			'slug'  => 'meta-link',
+			'color' => $active_colors['color_meta_link'],
+			'name'  => __( 'Meta Links', 'memberlite' ),
+		),
+		array(
+			'slug'  => 'buttons',
+			'color' => $active_colors['color_button'],
+			'name'  => __( 'Buttons', 'memberlite' ),
+		),
+		array(
+			'slug'  => 'white',
+			'color' => '#FFFFFF',
+			'name'  => __( 'White', 'memberlite' ),
+		),
+		array(
+			'slug'  => 'borders',
+			'color' => $active_colors['color_borders'],
+			'name'  => __( 'Borders', 'memberlite' ),
+		),
+		array(
+			'slug'  => 'page-masthead-background',
+			'color' => $active_colors['bgcolor_page_masthead'],
+			'name'  => __( 'Page Masthead Background', 'memberlite' ),
+		),
+		array(
+			'slug'  => 'page-masthead',
+			'color' => $active_colors['color_page_masthead'],
+			'name'  => __( 'Page Masthead', 'memberlite' ),
+		),
+		array(
+			'slug'  => 'footer-widgets-background',
+			'color' => $active_colors['bgcolor_footer_widgets'],
+			'name'  => __( 'Footer Widgets Background', 'memberlite' ),
+		),
+		array(
+			'slug'  => 'footer-widgets',
+			'color' => $active_colors['color_footer_widgets'],
+			'name'  => __( 'Footer Widgets', 'memberlite' ),
+		),
+	);
+
+	// Deduplicate: keep first occurrence of each unique color value.
+	$color_scheme_temp = array_unique( array_column( $color_scheme, 'color' ) );
+	$color_scheme = array_intersect_key( $color_scheme, $color_scheme_temp );
+
+	// Always ensure the body text color is included (added after deduplication).
+	$color_scheme[] = array(
+		'slug'  => 'body-text',
+		'color' => $active_colors['color_text'],
+		'name'  => __( 'Text', 'memberlite' ),
+	);
+
+	// Always ensure the base/background color is included (added after deduplication).
+	$base_color = $active_colors['background_color'];
+	// Add a # if it's missing.
+	if ( strpos( $base_color, '#' ) === false ) {
+		$base_color = '#' . $base_color;
+	}
+	$color_scheme[] = array(
+		'slug'  => 'base',
+		'color' => esc_attr( $base_color ),
+		'name'  => __( 'Base', 'memberlite' ),
+	);
+
+	// Reindex the array to ensure sequential keys.
+	$color_palette = array_values( $color_scheme );
+
+	// Merge with existing theme.json data.
+	$theme_json_data = $theme_json->get_data();
+
+	// Update the color palette.
+	if ( ! isset( $theme_json_data['settings'] ) ) {
+		$theme_json_data['settings'] = array();
+	}
+	if ( ! isset( $theme_json_data['settings']['color'] ) ) {
+		$theme_json_data['settings']['color'] = array();
+	}
+
+	$theme_json_data['settings']['color']['palette'] = $color_palette;
+
+	// Add font family custom properties.
+	if ( ! isset( $theme_json_data['settings']['custom'] ) ) {
+		$theme_json_data['settings']['custom'] = array();
+	}
+	if ( ! isset( $theme_json_data['settings']['custom']['heading'] ) ) {
+		$theme_json_data['settings']['custom']['heading'] = array();
+	}
+	if ( ! isset( $theme_json_data['settings']['custom']['body'] ) ) {
+		$theme_json_data['settings']['custom']['body'] = array();
+	}
+
+	$theme_json_data['settings']['custom']['heading']['fontFamily'] = memberlite_get_font( 'header_font', true );
+	$theme_json_data['settings']['custom']['body']['fontFamily'] = memberlite_get_font( 'body_font', true );
+
+	// Update the theme.json object.
+	return $theme_json->update_with( $theme_json_data );
+}
+add_filter( 'wp_theme_json_data_theme', 'memberlite_filter_theme_json' );

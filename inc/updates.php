@@ -5,37 +5,143 @@
  * After running an update, sets memberlite_db_version to the version of the last update run.
  * Update versions are based on the date they were released. YYYYMMDD01, YYYYMMDD02.
  * Hopefully we don't release more than 99 updates in any given day.
+ *
+ * @package Memberlite
+ * @since 4.0
+ */
+
+// Ensure defaults.php and deprecated.php are loaded for color migration functions.
+require_once get_template_directory() . '/inc/defaults.php';
+require_once get_template_directory() . '/inc/deprecated.php';
+
+/**
+ * Check for updates and run migration scripts.
+ *
+ * @since 4.0
  */
 function memberlite_checkForUpdates() {
-	$memberlite_db_version = get_option('memberlite_db_version', 0);
+	$memberlite_db_version = get_option( 'memberlite_db_version', 0 );
 
-	// default DB version for Memberlite 4.0
+	// Default DB version for Memberlite 4.0
 	if ( empty( $memberlite_db_version ) ) {
 		$memberlite_db_version = '2018080101';
-		update_option('memberlite_db_version', $memberlite_db_version, 'no');
+		update_option( 'memberlite_db_version', $memberlite_db_version, 'no' );
 	}
 
 	// Migrate the theme_mod for webfonts to single properties.
-	// Update the database version to 2025032601
 	if ( $memberlite_db_version < '2025032601' ) {
 		$memberlite_webfonts = get_theme_mod( 'memberlite_webfonts' );
 		if ( ! empty( $memberlite_webfonts ) ) {
-			// Break the theme mod for custom fonts into two parts.
-			$fonts_string_parts = explode( '_', $memberlite_webfonts );
+			$fonts_string_parts     = explode( '_', $memberlite_webfonts );
 			$memberlite_header_font = $fonts_string_parts[0];
-			$memberlite_body_font = $fonts_string_parts[1];
+			$memberlite_body_font   = $fonts_string_parts[1];
 			set_theme_mod( 'memberlite_header_font', $memberlite_header_font );
 			set_theme_mod( 'memberlite_body_font', $memberlite_body_font );
 			remove_theme_mod( 'memberlite_webfonts' );
 		}
 		update_option( 'memberlite_db_version', '2025032601', 'no' );
 	}
+
+	// Migrate color scheme to individual theme_mods.
+	if ( $memberlite_db_version < '2026020401' ) {
+		memberlite_migrate_colors_to_theme_mods();
+		update_option( 'memberlite_db_version', '2026020401', 'no' );
+	}
+}
+
+/**
+ * Migrate color scheme to individual theme_mods.
+ *
+ * This migration handles three scenarios:
+ * 1. User has a legacy scheme selected (from deprecated.php) → expand to 18 theme_mods, set scheme to 'custom'
+ * 2. User has a new scheme selected → expand to 18 theme_mods, keep scheme setting
+ * 3. User has custom colors already → preserve them, set scheme to 'custom'
+ *
+ * After migration, the 18 individual color theme_mods are the single source of truth.
+ *
+ * @since 6.2
+ */
+function memberlite_migrate_colors_to_theme_mods() {
+	$color_keys = memberlite_get_color_setting_keys();
+
+	// Check for old scheme theme_mods (could be 'memberlite_color_scheme' or 'memberlite_variation_color_scheme')
+	$current_scheme = get_theme_mod( 'memberlite_color_scheme', '' );
+	if ( empty( $current_scheme ) ) {
+		$current_scheme = get_theme_mod( 'memberlite_variation_color_scheme', '' );
+	}
+
+	$colors       = array();
+	$final_scheme = 'default';
+
+	// Try to get colors from a scheme
+	if ( ! empty( $current_scheme ) && 'custom' !== $current_scheme ) {
+		// First check if it's a modern scheme
+		$modern_schemes = memberlite_get_color_schemes();
+
+		if ( isset( $modern_schemes[ $current_scheme ] ) ) {
+			$colors       = $modern_schemes[ $current_scheme ]['colors'];
+			$final_scheme = $current_scheme;
+		} else {
+			// Check if it's a legacy scheme
+			$legacy_definitions = memberlite_get_legacy_color_scheme_definitions();
+
+			if ( isset( $legacy_definitions[ $current_scheme ] ) ) {
+				$colors       = $legacy_definitions[ $current_scheme ]['colors'];
+				$final_scheme = 'custom'; // Legacy schemes become custom
+			}
+		}
+	}
+
+	// If no scheme colors found, use default
+	if ( empty( $colors ) ) {
+		$default_colors = memberlite_get_default_colors();
+		$colors         = $default_colors;
+		$final_scheme   = 'default';
+	}
+
+	// Check if user has any custom color overrides
+	$has_custom_colors = false;
+	foreach ( $color_keys as $key ) {
+		$existing = get_theme_mod( $key, '' );
+		if ( ! empty( $existing ) ) {
+			$has_custom_colors = true;
+			break;
+		}
+	}
+
+	// Save all 18 colors as individual theme_mods
+	foreach ( $color_keys as $key ) {
+		$existing_value = get_theme_mod( $key, '' );
+
+		// If user already has a custom value for this color, preserve it
+		if ( ! empty( $existing_value ) ) {
+			continue;
+		}
+
+		// Otherwise, save the scheme's color value
+		if ( isset( $colors[ $key ] ) ) {
+			set_theme_mod( $key, $colors[ $key ] );
+		}
+	}
+
+	// Set the scheme - if they had custom colors, mark as custom
+	if ( $has_custom_colors ) {
+		$final_scheme = 'custom';
+	}
+
+	set_theme_mod( 'memberlite_color_scheme', $final_scheme );
+
+	// Clean up old theme_mods and options
+	remove_theme_mod( 'memberlite_variation_color_scheme' );
+	delete_option( 'memberlite_scheme_synced' );
+	delete_option( 'memberlite_user_legacy_scheme' );
 }
 
 /**
  * Setup themes api filters
- * @since TBD
-*/
+ *
+ * @since 6.0
+ */
 function memberlite_setup_update_info() {
 	// Only run this code if Update Manager isn't installed and above version 0.1
 	if ( defined( 'PMPROUM_VERSION' ) && version_compare( PMPROUM_VERSION, '0.1', '>' ) ) {
@@ -54,7 +160,8 @@ add_action( 'admin_init', 'memberlite_setup_update_info' );
 
 /**
  * Get theme update information from the PMPro server.
- * @since  TBD
+ *
+ * @since  6.0
  */
 function memberlite_get_update_info() {
 	// Check if forcing a pull from the server.
@@ -64,15 +171,16 @@ function memberlite_get_update_info() {
 	// Query the server if we do not have the local $update_info or we force checking for an update.
 	if ( empty( $update_info ) || ! empty( $_REQUEST['force-check'] ) || current_time('timestamp') > $update_info_timestamp + 86400 ) {
 		/**
-         * Filter to change the timeout for this wp_remote_get() request for updates.
-         * @since TBD
-         * @param int $timeout The number of seconds before the request times out
-         */
-        $timeout = apply_filters( 'memberlite_get_update_info_timeout', 5 );
+		 * Filter to change the timeout for this wp_remote_get() request for updates.
+		 * @since 6.0
+		 *
+		 * @param int $timeout The number of seconds before the request times out
+		 */
+		$timeout = apply_filters( 'memberlite_get_update_info_timeout', 5 );
 		$remote_info = wp_remote_get( PMPRO_LICENSE_SERVER . 'themes/', $timeout );
 
 		// Test response.
-        if ( is_wp_error( $remote_info ) || empty( $remote_info['response'] ) || $remote_info['response']['code'] != '200' ) {
+		if ( is_wp_error( $remote_info ) || empty( $remote_info['response'] ) || $remote_info['response']['code'] != '200' ) {
 			// Error.
 			return new WP_Error( 'connection_error', 'Could not connect to the PMPro License Server to get update information. Try again later.' );
 		} else {
@@ -91,11 +199,12 @@ function memberlite_get_update_info() {
 }
 
 /**
-* Infuse theme update details when WordPress runs its update checker.
-* @since TBD
-* @param object $value  The WordPress update object.
-* @return object $value Amended WordPress update object on success, default if object is empty.
-*/
+ * Infuse theme update details when WordPress runs its update checker.
+ * @since 6.0
+ *
+ * @param object $value  The WordPress update object.
+ * @return object $value Amended WordPress update object on success, default if object is empty.
+ */
 function memberlite_update_themes_filter( $value ) {
 
 	// If no update object exists, return early.
@@ -140,7 +249,7 @@ function memberlite_update_themes_filter( $value ) {
 /**
  * Disables SSL verification to prevent download package failures.
  *
- * @since TBD
+ * @since 6.0
  *
  * @param array $args  Array of request args.
  * @param string $url  The URL to be pinged.

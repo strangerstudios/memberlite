@@ -1,9 +1,9 @@
 === Memberlite ===
 Contributors: kimannwall, strangerstudios
 Requires at least: 6.0
-Tested up to: 6.8
+Tested up to: 6.9
 Requires PHP: 5.6
-Stable tag: 6.0.1
+Stable tag: 6.1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: one-column, two-columns, left-sidebar, right-sidebar, flexible-header, custom-background, custom-colors, custom-header, custom-menu, custom-logo, editor-style, featured-images, footer-widgets, full-width-template, post-formats, theme-options, threaded-comments, translation-ready, e-commerce
@@ -14,7 +14,7 @@ Memberlite is the ideal theme for your membership site - packed with integration
 
 == Copyright ==
 
-Memberlite WordPress Theme, Copyright (C) 2018 - 2025 Stranger Studios, LLC and other contributors
+Memberlite WordPress Theme, Copyright (C) 2018 - 2026 Stranger Studios, LLC and other contributors
 Memberlite is distributed under the terms of the GNU GPL
 
 This program is free software: you can redistribute it and/or modify
@@ -91,6 +91,17 @@ Memberlite includes formatting for use with:
 [Install Events Manager »](https://wordpress.org/plugins/events-manager/)
 
 == Changelog ==
+= 6.1.1 - 2026-01-27 =
+* ENHANCEMENT: Replacing webfonts with latin-extended versions for broader language support. #190 (@kimcoleman)
+* ENHANCEMENT: Added a separate column ratio setting for posts and blog (inherits from pages setting by default). #192 (@kimcoleman)
+* ENHANCEMENT: Reorganized Customizer with new sections, panels, and improved settings organization for better usability. #192 (@RachelRVasquez)
+* ENHANCEMENT: Added new helper functions for Customizer settings and controls for better code management. #192 (@RachelRVasquez)
+* ENHANCEMENT: Added dedicated stylesheet for Customizer preview. #192 (@RachelRVasquez)
+* ENHANCEMENT: Simplified helper method to no longer require translate function when adding settings/controls. #192 (@RachelRVasquez)
+* BUG FIX: Fixed a dead link in the readme that was returning a 404. #193 (@RachelRVasquez)
+* REFACTOR: Separated Customizer settings and controls into individual helper functions. #192 (@RachelRVasquez)
+* REFACTOR: Code cleanup and formatting improvements for WordPress coding standards.
+
 = 6.1 - 2025-12-22 =
 * FEATURE: Export and import tools for Memberlite theme settings (Customizer options, custom sidebars, CPT sidebar assignments, custom CSS, site logo, and site icon). #186 (@kimcoleman)
 * FEATURE: Theme Reset tool that restores all Memberlite settings to defaults, with confirmation prompt. #186 (@kimcoleman)
