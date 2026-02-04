@@ -62,39 +62,6 @@
 			);
 		}
 	);
-	// Header Background Color.
-	wp.customize(
-		'bgcolor_header', function( setting ) {
-			setting.bind(
-				function( value ) {
-					document.documentElement.style.setProperty('--memberlite-color-header-background', value );
-					$( '#memberlite-customizer-css' ).append( 'body { --memberlite---color-header-background:' + value + '; }' );
-				}
-			);
-		}
-	);
-	// Primary Navigation Background Color.
-	wp.customize(
-		'bgcolor_site_navigation', function( setting ) {
-			setting.bind(
-				function( value ) {
-					document.documentElement.style.setProperty('--memberlite-color-site-navigation-background', value );
-					$( '#memberlite-customizer-css' ).append( 'body { --memberlite---bgcolor-site-navigation:' + value + '; }' );
-				}
-			);
-		}
-	);
-	// Primary Navigation Color.
-	wp.customize(
-		'color_site_navigation', function( setting ) {
-			setting.bind(
-				function( value ) {
-					document.documentElement.style.setProperty('--memberlite-color-site-navigation', value );
-					$( '#memberlite-customizer-css' ).append( 'body { --memberlite---color-site-navigation:' + value + '; }' );
-				}
-			);
-		}
-	);
 	// Link Color.
 	wp.customize(
 		'color_link', function( setting ) {

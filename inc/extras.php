@@ -44,7 +44,7 @@ function memberlite_body_classes( $classes ) {
 	}
 
 	// color scheme class
-	$classes[] = 'scheme_' . get_theme_mod( 'memberlite_variation_color_scheme', $memberlite_defaults['memberlite_variation_color_scheme'] );
+	$classes[] = 'scheme_' . get_theme_mod( 'memberlite_color_scheme', $memberlite_defaults['memberlite_color_scheme'] );
 
 	// dark mode class
 	if ( get_theme_mod( 'memberlite_darkcss', $memberlite_defaults['memberlite_darkcss'] ) ) {

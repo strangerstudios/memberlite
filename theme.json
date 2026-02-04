@@ -4,48 +4,7 @@
   "settings": {
 	"appearanceTools": true,
 	"color": {
-	  "palette": [
-        {
-          "slug": "heading",
-          "color": "#222222",
-          "name": "Heading"
-        },
-		{
-		  "slug": "base",
-		  "color": "#FFFFFF",
-		  "name": "Base"
-		},
-		{
-		  "slug": "contrast",
-		  "color": "#222222",
-		  "name": "Contrast"
-		},
-		{
-		  "slug": "masthead_bg",
-		  "color": "#FFFFFF",
-		  "name": "Masthead Background"
-		},
-		{
-		  "slug": "masthead_text",
-		  "color": "#011935",
-		  "name": "Masthead Text"
-		},
-		{
-		  "slug": "primary",
-		  "color": "#011935",
-		  "name": "Primary"
-		},
-		{
-		  "slug": "secondary",
-		  "color": "#011935",
-		  "name": "Secondary"
-		},
-		{
-		  "slug": "border",
-		  "color": "#3C4B5A",
-		  "name": "Border"
-		}
-	  ]
+	  "defaultPalette": false
 	},
 	"custom": {
 	  "border": {
