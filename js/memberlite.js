@@ -59,9 +59,9 @@ jQuery( document ).ready(
 
 				// update the URL
 				if(history.pushState) {
-				    history.pushState( null, null, '#' + tab );
+					history.pushState( null, null, '#' + tab );
 				} else {
-				    location.hash = '#' + tab;
+					location.hash = '#' + tab;
 				}
 			}
 		);

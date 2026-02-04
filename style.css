@@ -159,7 +159,7 @@ a img {
 2.0 Typography
 --------------------------------------------------------------*/
 body {
-	font-family: var(--memberlite-body-font);
+	font-family: var(--memberlite-body-font), ui-sans-serif;
 	font-size: var(--wp--preset--font-size--18);
 }
 
@@ -379,7 +379,7 @@ big {
 }
 
 label {
-	font-family: var(--memberlite-header-font);
+	font-family: var(--memberlite-header-font), ui-sans-serif;
 	font-weight: 700;
 }
 
@@ -502,7 +502,7 @@ table {
 
 th,
 .wp-block-table th {
-	font-family: var(--memberlite-header-font);
+	font-family: var(--memberlite-header-font), ui-sans-serif;
 	font-weight: 400;
 	padding: var(--wp--preset--spacing--10);
 }
@@ -592,7 +592,7 @@ a.comment-reply-link,
 	box-shadow: 1px 2px 4px rgba(0,0,0,0.2);
 	color: var(--memberlite-color-white);
 	cursor: pointer;
-	font-family: var(--memberlite-header-font);
+	font-family: var(--memberlite-header-font), ui-sans-serif;
 	font-size: var(--wp--preset--font-size--18);
 	font-style: normal;
 	font-weight: 700;
@@ -720,7 +720,7 @@ a.comment-reply-link:hover {
 
 /* Link-style button */
 .btn_link {
-	background: none;
+	background-color: transparent;
 	border: none;
 	box-shadow: none;
 	color: var(--memberlite-color-link);
@@ -735,7 +735,7 @@ a.comment-reply-link:hover {
 }
 
 .btn_link:hover {
-	background: none;
+	background-color: transparent;
 	box-shadow: none;
 	text-decoration: underline;
 }
@@ -1285,7 +1285,7 @@ a:where(:not(.pmpro_btn)):active {
 
 .meta-navigation ul.menu > li:hover > ul.sub-menu,
 .meta-navigation ul.menu > li[aria-expanded="true"] > ul.sub-menu,
-.header-right .widget_nav_menu ul.menu > li:hover > ul.sub-menu
+.header-right .widget_nav_menu ul.menu > li:hover > ul.sub-menu,
 .header-right .widget_nav_menu ul.menu > li[aria-expanded="true"] > ul.sub-menu {
 	left: 0;
 	top: 2.75rem;
@@ -1950,7 +1950,7 @@ a:where(:not(.pmpro_btn)):active {
 }
 
 .site-branding .site-identity {
-	align-items: left;
+	align-items: flex-start;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -2045,7 +2045,7 @@ a:where(:not(.pmpro_btn)):active {
 /* Dropdown Menu */
 .header-right #meta-member .member-navigation .sub-menu {
 	background-color: var(--memberlite-color-secondary);
-	box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.2);
+	box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.2);
 	display: none;
 	left: -9999em;
 	margin: 0;
@@ -2522,7 +2522,7 @@ a:where(:not(.pmpro_btn)):active {
 	display: flex;
 	flex-direction: column;
 	flex-wrap: wrap;
-	justify-content: top;
+	justify-content: start;
 	margin: 0;
 	padding: var(--wp--preset--spacing--10);
 	text-align: center;
@@ -3065,7 +3065,7 @@ a:where(:not(.pmpro_btn)):active {
 .pmpro {
 
 	.pmpro_btn {
-		font-family: var(--memberlite-header-font);
+		font-family: var(--memberlite-header-font), ui-sans-serif;
 	}
 
 	button[type="button"]#other_discount_code_toggle,
@@ -3077,7 +3077,7 @@ a:where(:not(.pmpro_btn)):active {
 
 	/* Membership Levels and Advanced Levels Page Shortcode */
 	.pmpro_level-description {
-		font-family: var(--memberlite-body-font);
+		font-family: var(--memberlite-body-font), ui-sans-serif;
 	}
 
 	/* General div and 2-column levels styles */
@@ -3272,7 +3272,7 @@ a:where(:not(.pmpro_btn)):active {
 
 #secondary .widget.widget_pmpro_member_login ul.menu ul.sub-menu {
 	margin-top: 0;
-} 
+}
 #secondary .widget.widget_pmpro_member_login .pmpro_logged_in_welcome_wrap .menu {
 	list-style: none;
 	margin-left: 0;
@@ -3366,7 +3366,7 @@ body.memberlite-banner-hidden .entry-content > .banner:first-child {
 }
 
 .banner.banner_background-image {
-	background-repeat: no-repeat; 
+	background-repeat: no-repeat;
 	background-size: cover;
 }
 
@@ -3388,7 +3388,7 @@ body.memberlite-banner-hidden .entry-content > .banner:first-child {
 	.wp-block-accordion-item .wp-block-accordion-heading
 ) {
 	cursor: pointer;
-	font-family: var(--memberlite-header-font);
+	font-family: var(--memberlite-header-font), ui-sans-serif;
 	font-size: inherit;
 	font-weight: 700;
 	line-height: inherit;
