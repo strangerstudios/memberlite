@@ -103,7 +103,7 @@ function memberlite_export_theme_settings() {
 
 	check_admin_referer( 'memberlite_export_theme_settings' );
 
-	$template = get_option( 'stylesheet' );
+	$template = get_option( 'template' );
 
 	// All theme mods = all Customizer settings for the active theme.
 	$mods = get_theme_mods();
@@ -200,10 +200,12 @@ function memberlite_import_theme_settings() {
 		memberlite_import_settings_redirect( 'invalid_file' );
 	}
 
-	$current_template = get_option( 'stylesheet' );
+	$current_template   = get_option( 'template' );
+	$current_stylesheet = get_option( 'stylesheet' );
 
-	// Ensure the file is for this theme.
-	if ( $data['template'] !== $current_template ) {
+	// Ensure the file is for this theme (or a child of the same parent theme).
+	// Check against both template and stylesheet for backwards compatibility with older exports.
+	if ( $data['template'] !== $current_template && $data['template'] !== $current_stylesheet ) {
 		memberlite_import_settings_redirect( 'wrong_theme' );
 	}
 
