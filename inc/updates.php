@@ -59,7 +59,7 @@ function memberlite_checkForUpdates() {
  *
  * After migration, the all individual color theme_mods are the single source of truth.
  *
- * @since 6.2
+ * @since TBD
  */
 function memberlite_migrate_colors_to_theme_mods() {
 	$color_keys = memberlite_get_color_setting_keys();
