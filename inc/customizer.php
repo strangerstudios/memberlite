@@ -1137,8 +1137,12 @@ function memberlite_save_scheme_colors( WP_Customize_Manager $wp_customize ) {
 		return;
 	}
 
-	// Save all 18 colors to theme_mods
+	// Save all colors to theme_mods
 	foreach ( $scheme_colors as $key => $value ) {
+		// Skip header_textcolor if currently 'blank' (user chose to hide site title/tagline)
+		if ( 'header_textcolor' === $key && 'blank' === get_theme_mod( 'header_textcolor' ) ) {
+			continue;
+		}
 		set_theme_mod( $key, $value );
 	}
 }

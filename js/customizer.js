@@ -46,6 +46,16 @@
 								'text-indent': '0',
 							}
 						);
+						$( '.site-description' ).css(
+							{
+								'clip': 'auto',
+								'position': 'static'
+							}
+						);
+						// Update CSS variable for site title and tagline color
+						// WordPress stores header_textcolor without the # prefix
+						var colorValue = value.charAt(0) === '#' ? value : '#' + value;
+						document.documentElement.style.setProperty('--memberlite-color-header-text', colorValue );
 					}
 				}
 			);

@@ -44,6 +44,10 @@
 
 				// Handle header_textcolor and background_color differently (WordPress core)
 				if (colorKey === 'header_textcolor' || colorKey === 'background_color') {
+					// Skip header_textcolor if currently set to 'blank' (user chose to hide site title/tagline)
+					if (colorKey === 'header_textcolor' && wp.customize(controlId)() === 'blank') {
+						return true; // continue to next iteration
+					}
 					// WordPress stores these without the # prefix
 					if (colorValue && colorValue.charAt(0) === '#') {
 						colorValue = colorValue.substring(1);
@@ -94,6 +98,10 @@
 				let currentValue = '';
 				if (colorKey === 'header_textcolor' || colorKey === 'background_color') {
 					currentValue = wp.customize(colorKey)();
+					// Skip header_textcolor comparison if set to 'blank' (hidden site title)
+					if (colorKey === 'header_textcolor' && currentValue === 'blank') {
+						continue;
+					}
 					// Add # if missing for comparison
 					if (currentValue && currentValue.charAt(0) !== '#') {
 						currentValue = '#' + currentValue;

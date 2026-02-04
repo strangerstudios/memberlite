@@ -485,6 +485,11 @@ function memberlite_detect_current_scheme(): string {
 	foreach ( $schemes as $scheme_key => $scheme ) {
 		$match = true;
 		foreach ( $color_keys as $key ) {
+			// Skip header_textcolor comparison if set to 'blank' (hidden site title)
+			if ( 'header_textcolor' === $key && 'blank' === get_theme_mod( 'header_textcolor' ) ) {
+				continue;
+			}
+
 			$scheme_color  = strtoupper( $scheme['colors'][ $key ] ?? '' );
 			$current_color = $current_colors[ $key ];
 
