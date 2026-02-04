@@ -991,7 +991,8 @@ class Memberlite_Customize {
 	/**
 	 * Sanitization callback for color schemes.
 	 *
-	 * @since 6.2
+	 * @since TBD
+	 *
 	 * @param string $value Color scheme name value.
 	 * @return string Color scheme name.
 	 */
@@ -1050,7 +1051,7 @@ class Memberlite_Customize {
 	 *
 	 * Passes color scheme data as colorSchemes global.
 	 *
-	 * @since 6.2
+	 * @since TBD
 	 */
 	public static function customizer_controls_js() {
 		wp_enqueue_script(
@@ -1108,11 +1109,11 @@ add_action( 'wp_head', array( 'Memberlite_Customize', 'header_output' ) );
 add_action( 'customize_preview_init', array( 'Memberlite_Customize', 'live_preview' ) );
 
 /**
- * When the color scheme changes, save all 18 colors to theme_mods.
+ * When the color scheme changes, save all colors to theme_mods.
  *
  * This ensures the individual color settings are always the source of truth.
  *
- * @since 6.2
+ * @since TBD
  */
 add_action( 'customize_save_after', 'memberlite_save_scheme_colors' );
 
