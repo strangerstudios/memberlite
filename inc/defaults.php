@@ -75,13 +75,13 @@ function memberlite_get_default_colors(): array {
 		'color_link'              => '#011935',
 		'color_meta_link'         => '#011935',
 		'color_primary'           => '#011935',
-		'color_secondary'         => '#3C4B5A',
-		'color_action'            => '#00A59D',
-		'color_button'            => '#011935',
+		'color_secondary'         => '#00A59D',
+		'color_action'            => '#E87102',
+		'color_button'            => '#3C4B5A',
 		'bgcolor_page_masthead'   => '#011935',
 		'color_page_masthead'     => '#FFFFFF',
-		'bgcolor_footer_widgets'  => '#011935',
-		'color_footer_widgets'    => '#FFFFFF',
+		'bgcolor_footer_widgets'  => '#F9FAFB',
+		'color_footer_widgets'    => '#222222',
 		'color_borders'           => '#E0E0E0',
 	);
 }
