@@ -15,8 +15,13 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @since TBD
  */
 function memberlite_process_menu_actions() {
-	// Only process on our page.
-	if ( ! isset( $_GET['page'] ) || $_GET['page'] !== 'memberlite-custom-menus' ) {
+	// Only process on our custom menus admin page.
+	if ( ! isset( $_GET['page'] ) ) {
+		return;
+	}
+
+	$page = sanitize_key( wp_unslash( $_GET['page'] ) );
+	if ( $page !== 'memberlite-custom-menus' ) {
 		return;
 	}
 
@@ -63,7 +68,8 @@ function memberlite_process_menu_actions() {
 	}
 
 	// Check for duplicate action.
-	if ( isset( $_GET['action'] ) && $_GET['action'] === 'duplicate' && isset( $_GET['menu'] ) ) {
+	$action = isset( $_GET['action'] ) ? sanitize_key( wp_unslash( $_GET['action'] ) ) : '';
+	if ( $action === 'duplicate' && isset( $_GET['menu'] ) ) {
 		// Verify nonce.
 		if ( ! isset( $_GET['_wpnonce'] ) || ! wp_verify_nonce( $_GET['_wpnonce'], 'memberlite_duplicate_menu_' . intval( $_GET['menu'] ) ) ) {
 			wp_die( esc_html__( 'Security check failed.', 'memberlite' ) );
@@ -93,7 +99,7 @@ function memberlite_process_menu_actions() {
 	}
 
 	// Check for delete action.
-	if ( isset( $_GET['action'] ) && $_GET['action'] === 'delete' && isset( $_GET['menu'] ) ) {
+	if ( $action === 'delete' && isset( $_GET['menu'] ) ) {
 		// Verify nonce.
 		if ( ! isset( $_GET['_wpnonce'] ) || ! wp_verify_nonce( $_GET['_wpnonce'], 'memberlite_delete_menu_' . intval( $_GET['menu'] ) ) ) {
 			wp_die( esc_html__( 'Security check failed.', 'memberlite' ) );
@@ -210,7 +216,8 @@ function memberlite_custom_menus() {
 		$message = __( 'Menu deleted successfully.', 'memberlite' );
 		$class = 'notice-success';
 	} elseif ( isset( $_GET['error'] ) ) {
-		switch ( $_GET['error'] ) {
+		$error = sanitize_key( wp_unslash( $_GET['error'] ) );
+		switch ( $error ) {
 			case 'duplicate':
 				$message = __( 'There was an error duplicating the menu.', 'memberlite' );
 				break;
