@@ -1,67 +1,552 @@
 <?php
+/**
+ * Memberlite Color Scheme Definitions
+ *
+ * All schemes use the 17-color format that maps directly to theme_mods.
+ * These are the authoritative color definitions - no mapping needed.
+ *
+ * The 17 color keys:
+ * - header_textcolor: Site title and tagline color
+ * - background_color: Site background color
+ * - bgcolor_header: Header background color
+ * - bgcolor_site_navigation: Primary navigation background
+ * - color_site_navigation: Primary navigation link color
+ * - color_text: Default body text color
+ * - color_link: Default link color
+ * - color_meta_link: Post meta link color
+ * - color_primary: Primary brand color
+ * - color_secondary: Secondary brand color
+ * - color_action: CTA/action color
+ * - color_button: Default button color
+ * - bgcolor_page_masthead: Page masthead background
+ * - color_page_masthead: Page masthead text color
+ * - bgcolor_footer_widgets: Footer widgets background
+ * - color_footer_widgets: Footer widgets text color
+ * - color_borders: Border color
+ *
+ * @package Memberlite
+ * @since TBD
+ */
+
+/**
+ * Get the 17 color setting keys used by the theme.
+ *
+ * @since TBD
+ * @return array List of color setting keys.
+ */
+function memberlite_get_color_setting_keys(): array {
+	return array(
+		'header_textcolor',
+		'background_color',
+		'bgcolor_header',
+		'bgcolor_site_navigation',
+		'color_site_navigation',
+		'color_text',
+		'color_link',
+		'color_meta_link',
+		'color_primary',
+		'color_secondary',
+		'color_action',
+		'color_button',
+		'bgcolor_page_masthead',
+		'color_page_masthead',
+		'bgcolor_footer_widgets',
+		'color_footer_widgets',
+		'color_borders',
+	);
+}
+
+/**
+ * Default color scheme (2026)
+ *
+ * Clean, professional look with navy primary.
+ *
+ * @since TBD
+ * @return array 17-color associative array.
+ */
+function memberlite_get_default_colors(): array {
+	return array(
+		'header_textcolor'        => '#011935',
+		'background_color'        => '#FFFFFF',
+		'bgcolor_header'          => '#FFFFFF',
+		'bgcolor_site_navigation' => '#F9FAFB',
+		'color_site_navigation'   => '#222222',
+		'color_text'              => '#222222',
+		'color_link'              => '#011935',
+		'color_meta_link'         => '#011935',
+		'color_primary'           => '#011935',
+		'color_secondary'         => '#3C4B5A',
+		'color_action'            => '#00A59D',
+		'color_button'            => '#011935',
+		'bgcolor_page_masthead'   => '#011935',
+		'color_page_masthead'     => '#FFFFFF',
+		'bgcolor_footer_widgets'  => '#011935',
+		'color_footer_widgets'    => '#FFFFFF',
+		'color_borders'           => '#E0E0E0',
+	);
+}
+
+/**
+ * Evergreen color scheme
+ *
+ * Rich forest greens with a vibrant pink accent.
+ *
+ * @since TBD
+ * @return array 17-color associative array.
+ */
+function memberlite_get_evergreen_colors(): array {
+	return array(
+		'header_textcolor'        => '#174B49',
+		'background_color'        => '#FFFFFF',
+		'bgcolor_header'          => '#FFFFFF',
+		'bgcolor_site_navigation' => '#F9FAFB',
+		'color_site_navigation'   => '#0F0F0F',
+		'color_text'              => '#0F0F0F',
+		'color_link'              => '#174B49',
+		'color_meta_link'         => '#174B49',
+		'color_primary'           => '#174B49',
+		'color_secondary'         => '#2E7061',
+		'color_action'            => '#F83773',
+		'color_button'            => '#174B49',
+		'bgcolor_page_masthead'   => '#174B49',
+		'color_page_masthead'     => '#FFFFFF',
+		'bgcolor_footer_widgets'  => '#174B49',
+		'color_footer_widgets'    => '#FFFFFF',
+		'color_borders'           => '#E0E0E0',
+	);
+}
+
+/**
+ * Seaside Linen color scheme
+ *
+ * Warm tan background with deep blue and chartreuse accent.
+ *
+ * @since TBD
+ * @return array 17-color associative array.
+ */
+function memberlite_get_seaside_linen_colors(): array {
+	return array(
+		'header_textcolor'        => '#1F3A4A',
+		'background_color'        => '#ECEBE3',
+		'bgcolor_header'          => '#ECEBE3',
+		'bgcolor_site_navigation' => '#ECEBE3',
+		'color_site_navigation'   => '#25292B',
+		'color_text'              => '#25292B',
+		'color_link'              => '#1F3A4A',
+		'color_meta_link'         => '#1F3A4A',
+		'color_primary'           => '#1F3A4A',
+		'color_secondary'         => '#4E6A78',
+		'color_action'            => '#EBF9A8',
+		'color_button'            => '#1F3A4A',
+		'bgcolor_page_masthead'   => '#1F3A4A',
+		'color_page_masthead'     => '#FFFFFF',
+		'bgcolor_footer_widgets'  => '#ECEBE3',
+		'color_footer_widgets'    => '#25292B',
+		'color_borders'           => '#E0E0E0',
+	);
+}
+
+/**
+ * Deep Harbor color scheme
+ *
+ * Cool blue tones with sage green accent.
+ *
+ * @since TBD
+ * @return array 17-color associative array.
+ */
+function memberlite_get_deep_harbor_colors(): array {
+	return array(
+		'header_textcolor'        => '#2A2F36',
+		'background_color'        => '#F7F9FC',
+		'bgcolor_header'          => '#F7F9FC',
+		'bgcolor_site_navigation' => '#F7F9FC',
+		'color_site_navigation'   => '#2A2F36',
+		'color_text'              => '#2A2F36',
+		'color_link'              => '#1F3A5F',
+		'color_meta_link'         => '#2F5F8F',
+		'color_primary'           => '#1F3A5F',
+		'color_secondary'         => '#2F5F8F',
+		'color_action'            => '#8FAEA0',
+		'color_button'            => '#1F3A5F',
+		'bgcolor_page_masthead'   => '#1F3A5F',
+		'color_page_masthead'     => '#F7F9FC',
+		'bgcolor_footer_widgets'  => '#F7F9FC',
+		'color_footer_widgets'    => '#2A2F36',
+		'color_borders'           => '#E0E0E0',
+	);
+}
+
+/**
+ * Midnight Violet color scheme
+ *
+ * Dark mode with purple accents.
+ *
+ * @since TBD
+ * @return array 17-color associative array.
+ */
+function memberlite_get_midnight_violet_colors(): array {
+	return array(
+		'header_textcolor'        => '#F2F2F3',
+		'background_color'        => '#0B0B0D',
+		'bgcolor_header'          => '#0B0B0D',
+		'bgcolor_site_navigation' => '#1C1D21',
+		'color_site_navigation'   => '#F2F2F3',
+		'color_text'              => '#F2F2F3',
+		'color_link'              => '#7C4DFF',
+		'color_meta_link'         => '#9A9AA0',
+		'color_primary'           => '#7C4DFF',
+		'color_secondary'         => '#9A9AA0',
+		'color_action'            => '#7C4DFF',
+		'color_button'            => '#7C4DFF',
+		'bgcolor_page_masthead'   => '#1C1D21',
+		'color_page_masthead'     => '#F2F2F3',
+		'bgcolor_footer_widgets'  => '#1C1D21',
+		'color_footer_widgets'    => '#F2F2F3',
+		'color_borders'           => '#1C1D21',
+	);
+}
+
+/**
+ * Cocoa Ash color scheme
+ *
+ * Warm browns with orange accent.
+ *
+ * @since TBD
+ * @return array 17-color associative array.
+ */
+function memberlite_get_cocoa_ash_colors(): array {
+	return array(
+		'header_textcolor'        => '#DDD7CF',
+		'background_color'        => '#FFFFFF',
+		'bgcolor_header'          => '#1F1B18',
+		'bgcolor_site_navigation' => '#A8A29A',
+		'color_site_navigation'   => '#1F1B18',
+		'color_text'              => '#1F1B18',
+		'color_link'              => '#2E2623',
+		'color_meta_link'         => '#DDD7CF',
+		'color_primary'           => '#2E2623',
+		'color_secondary'         => '#6F6A66',
+		'color_action'            => '#D89A5A',
+		'color_button'            => '#2E2623',
+		'bgcolor_page_masthead'   => '#A8A29A',
+		'color_page_masthead'     => '#1F1B18',
+		'bgcolor_footer_widgets'  => '#2E2623',
+		'color_footer_widgets'    => '#DDD7CF',
+		'color_borders'           => '#A8A29A',
+	);
+}
+
+/**
+ * Soft Spruce color scheme
+ *
+ * Clean grays with restrained green accents.
+ *
+ * @since TBD
+ * @return array 17-color associative array.
+ */
+function memberlite_get_soft_spruce_colors(): array {
+	return array(
+		'header_textcolor'        => '#2B2E2D',
+		'background_color'        => '#FFFFFF',
+		'bgcolor_header'          => '#FFFFFF',
+		'bgcolor_site_navigation' => '#F5F7F6',
+		'color_site_navigation'   => '#2B2E2D',
+		'color_text'              => '#2B2E2D',
+		'color_link'              => '#0E7A49',
+		'color_meta_link'         => '#7A7F7C',
+		'color_primary'           => '#0E7A49',
+		'color_secondary'         => '#7A7F7C',
+		'color_action'            => '#D18A3A',
+		'color_button'            => '#0E7A49',
+		'bgcolor_page_masthead'   => '#F5F7F6',
+		'color_page_masthead'     => '#2B2E2D',
+		'bgcolor_footer_widgets'  => '#F5F7F6',
+		'color_footer_widgets'    => '#2B2E2D',
+		'color_borders'           => '#E3E6E4',
+	);
+}
+
+/**
+ * Iron Ember color scheme
+ *
+ * Dark charcoal with rust orange accent.
+ *
+ * @since TBD
+ * @return array 17-color associative array.
+ */
+function memberlite_get_iron_ember_colors(): array {
+	return array(
+		'header_textcolor'        => '#1F252B',
+		'background_color'        => '#F6F7F6',
+		'bgcolor_header'          => '#F6F7F6',
+		'bgcolor_site_navigation' => '#E9ECEA',
+		'color_site_navigation'   => '#1F252B',
+		'color_text'              => '#1F252B',
+		'color_link'              => '#1F252B',
+		'color_meta_link'         => '#4A5A6A',
+		'color_primary'           => '#1F252B',
+		'color_secondary'         => '#4A5A6A',
+		'color_action'            => '#C84F1A',
+		'color_button'            => '#1F252B',
+		'bgcolor_page_masthead'   => '#1F252B',
+		'color_page_masthead'     => '#FFFFFF',
+		'bgcolor_footer_widgets'  => '#1F252B',
+		'color_footer_widgets'    => '#FFFFFF',
+		'color_borders'           => '#E0E0E0',
+	);
+}
+
+/**
+ * Slate Harbor color scheme
+ *
+ * Deep navy with teal and coral accents.
+ *
+ * @since TBD
+ * @return array 17-color associative array.
+ */
+function memberlite_get_slate_harbor_colors(): array {
+	return array(
+		'header_textcolor'        => '#0B1233',
+		'background_color'        => '#FFFFFF',
+		'bgcolor_header'          => '#FFFFFF',
+		'bgcolor_site_navigation' => '#EEF2F6',
+		'color_site_navigation'   => '#0B1233',
+		'color_text'              => '#111827',
+		'color_link'              => '#0B1233',
+		'color_meta_link'         => '#0F6E7A',
+		'color_primary'           => '#0B1233',
+		'color_secondary'         => '#0F6E7A',
+		'color_action'            => '#F26B3A',
+		'color_button'            => '#0B1233',
+		'bgcolor_page_masthead'   => '#0B1233',
+		'color_page_masthead'     => '#FFFFFF',
+		'bgcolor_footer_widgets'  => '#0B1233',
+		'color_footer_widgets'    => '#FFFFFF',
+		'color_borders'           => '#E4E9F0',
+	);
+}
+
+/**
+ * Get default theme settings
+ *
+ * Merges non-color defaults with the default color scheme.
+ *
+ * @since TBD
+ * @return array
+ */
+function memberlite_get_defaults(): array {
+	$defaults = array(
+		// Typography
+		'memberlite_header_font'            => 'Lato',
+		'memberlite_body_font'              => 'Lato',
+
+		// Layout
+		'columns_ratio'                     => '8-4',
+		'columns_ratio_blog'                => '8-4',
+		'columns_ratio_header'              => '4-8',
+		'sidebar_location'                  => 'sidebar-right',
+		'sidebar_location_blog'             => 'sidebar-blog-right',
+
+		// Archives
+		'content_archives'                  => 'content',
+		'memberlite_loop_images'            => 'show_none',
+
+		// Post Meta
+		'posts_entry_meta_before'           => __( 'Posted on {post_date} by {post_author_posts_link}', 'memberlite' ),
+		'posts_entry_meta_after'            => __( 'This entry was posted in {post_categories} and tagged {post_tags}. Bookmark the {post_permalink}.', 'memberlite' ),
+		'author_block'                      => false,
+
+		// Footer
+		'memberlite_footerwidgets'          => '4',
+		'copyright_textbox'                 => '&copy; !!current_year!! !!site_title!!',
+		'memberlite_back_to_top'            => true,
+
+		// Color Scheme
+		'memberlite_color_scheme'           => 'default',
+
+		// Other
+		'delimiter'							=> '&nbsp;&#47;&nbsp;',
+		'memberlite_darkcss'                => false,
+		'hover_brightness'                  => '1.1',
+		'color_white'                       => '#FFFFFF',
+	);
+
+	// Merge with default color scheme
+	$defaults = array_merge( $defaults, memberlite_get_default_colors() );
+
+	/**
+	 * Filter Memberlite default settings.
+	 *
+	 * @since TBD
+	 * @param array $defaults Associative array of default settings.
+	 */
+	return apply_filters( 'memberlite_defaults', $defaults );
+}
+
+/**
+ * Get all available color schemes.
+ *
+ * Each scheme contains a label and the full 17-color associative array.
+ * The 'custom' scheme is a special case handled separately in the customizer.
+ *
+ * @since TBD
+ * @return array Associative array of color schemes.
+ */
+function memberlite_get_color_schemes(): array {
+	$schemes = array(
+		'default'         => array(
+			'label'  => __( 'Default', 'memberlite' ),
+			'colors' => memberlite_get_default_colors(),
+		),
+		'evergreen'       => array(
+			'label'  => __( 'Evergreen', 'memberlite' ),
+			'colors' => memberlite_get_evergreen_colors(),
+		),
+		'seaside_linen'   => array(
+			'label'  => __( 'Seaside Linen', 'memberlite' ),
+			'colors' => memberlite_get_seaside_linen_colors(),
+		),
+		'deep_harbor'     => array(
+			'label'  => __( 'Deep Harbor', 'memberlite' ),
+			'colors' => memberlite_get_deep_harbor_colors(),
+		),
+		'midnight_violet' => array(
+			'label'  => __( 'Midnight Violet', 'memberlite' ),
+			'colors' => memberlite_get_midnight_violet_colors(),
+		),
+		'cocoa_ash'     => array(
+			'label'  => __( 'Cocoa Ash', 'memberlite' ),
+			'colors' => memberlite_get_cocoa_ash_colors(),
+		),
+		'soft_spruce'    => array(
+			'label'  => __( 'Soft Spruce', 'memberlite' ),
+			'colors' => memberlite_get_soft_spruce_colors(),
+		),
+		'iron_ember'      => array(
+			'label'  => __( 'Iron Ember', 'memberlite' ),
+			'colors' => memberlite_get_iron_ember_colors(),
+		),
+		'slate_harbor'    => array(
+			'label'  => __( 'Slate Harbor', 'memberlite' ),
+			'colors' => memberlite_get_slate_harbor_colors(),
+		),
+	);
+
+	/**
+	 * Filter Memberlite color schemes.
+	 *
+	 * @since TBD
+	 * @param array $schemes Associative array of color schemes.
+	 */
+	return apply_filters( 'memberlite_color_schemes', $schemes );
+}
+
+/**
+ * Get color scheme choices for the customizer dropdown.
+ *
+ * Returns scheme keys and labels, plus 'custom' option.
+ *
+ * @since TBD
+ * @return array Associative array of scheme_key => label.
+ */
+function memberlite_get_color_scheme_choices(): array {
+	$schemes = memberlite_get_color_schemes();
+	$choices = array();
+
+	foreach ( $schemes as $key => $scheme ) {
+		$choices[ $key ] = $scheme['label'];
+	}
+
+	// Add custom option at the end
+	$choices['custom'] = __( 'Custom', 'memberlite' );
+
+	return $choices;
+}
+
+/**
+ * Detect which color scheme (if any) matches the current theme_mod colors.
+ *
+ * Compares all 17 color values. Returns 'custom' if no exact match.
+ *
+ * @since TBD
+ * @return string Scheme key or 'custom'.
+ */
+function memberlite_detect_current_scheme(): string {
+	$schemes    = memberlite_get_color_schemes();
+	$color_keys = memberlite_get_color_setting_keys();
+
+	// Get current colors from theme_mods
+	$current_colors = array();
+	foreach ( $color_keys as $key ) {
+		$current_colors[ $key ] = strtoupper( get_theme_mod( $key, '' ) );
+	}
+
+	// Compare against each scheme
+	foreach ( $schemes as $scheme_key => $scheme ) {
+		$match = true;
+		foreach ( $color_keys as $key ) {
+			// Skip header_textcolor comparison if set to 'blank' (hidden site title)
+			if ( 'header_textcolor' === $key && 'blank' === get_theme_mod( 'header_textcolor' ) ) {
+				continue;
+			}
+
+			$scheme_color  = strtoupper( $scheme['colors'][ $key ] ?? '' );
+			$current_color = $current_colors[ $key ];
+
+			if ( $scheme_color !== $current_color ) {
+				$match = false;
+				break;
+			}
+		}
+
+		if ( $match ) {
+			return $scheme_key;
+		}
+	}
+
+	return 'custom';
+}
+
+/**
+ * Get all active colors from theme_mods.
+ *
+ * Returns the 17 color values currently saved in theme_mods,
+ * falling back to defaults for any missing values.
+ *
+ * @since TBD
+ * @return array Associative array of all 17 color values.
+ */
+function memberlite_get_active_colors(): array {
+	global $memberlite_defaults;
+
+	$color_keys = memberlite_get_color_setting_keys();
+	$colors     = array();
+
+	foreach ( $color_keys as $key ) {
+		$value          = get_theme_mod( $key, '' );
+		$colors[ $key ] = ! empty( $value ) ? $value : ( $memberlite_defaults[ $key ] ?? '' );
+	}
+
+	return $colors;
+}
+
+/**
+ * Get colors for a specific scheme by key.
+ *
+ * @since TBD
+ * @param string $scheme_key The scheme key (e.g., 'default', 'evergreen').
+ * @return array|null The 17-color array or null if not found.
+ */
+function memberlite_get_scheme_colors( string $scheme_key ): ?array {
+	$schemes = memberlite_get_color_schemes();
+
+	if ( isset( $schemes[ $scheme_key ] ) ) {
+		return $schemes[ $scheme_key ]['colors'];
+	}
+
+	return null;
+}
+
+// Initialize global defaults
 global $memberlite_defaults;
-$memberlite_defaults = apply_filters( 'memberlite_defaults', array(
-	'memberlite_webfonts'						=> 'Lato_Lato', // Unused property for backwards compatibility
-	'memberlite_header_font'					=> 'Lato',
-	'memberlite_body_font'						=> 'Lato',
-	'columns_ratio'								=> '8-4',
-	'columns_ratio_header'						=> '4-8',
-	'columns_ratio_blog'						=> '8-4',
-	'sidebar_location'							=> 'sidebar-right',
-	'sidebar_location_blog'						=> 'sidebar-blog-right',
-	'content_archives'							=> 'content',
-	'memberlite_loop_images'					=> 'show_none',
-	'posts_entry_meta_before'					=> __( 'Posted on {post_date} by {post_author_posts_link}', 'memberlite' ),
-	'posts_entry_meta_after'					=> __( 'This entry was posted in {post_categories} and tagged {post_tags}. Bookmark the {post_permalink}.', 'memberlite' ),
-	'author_block'								=> false,
-	'memberlite_footerwidgets'					=> '4',
-	'copyright_textbox'							=> '&copy; !!current_year!! !!site_title!!',
-	'memberlite_back_to_top'					=> true,
-	'memberlite_color_scheme'					=> 'Default',
-	'memberlite_darkcss'						=> false,
-	'background_color'							=> '#FFFFFF',
-	'bgcolor_header'							=> '',
-	'bgcolor_site_navigation'					=> '#F9FAFB',
-	'color_site_navigation'						=> '#444444',
-	'color_link'								=> '#011935',
-	'color_meta_link'							=> '#011935',
-	'color_primary'								=> '#011935',
-	'color_secondary'							=> '#00A59D',
-	'color_action'								=> '#E87102',
-	'color_button'								=> '#3C4B5A',
-	'bgcolor_page_masthead'						=> '#011935',
-	'color_page_masthead'						=> '#FFFFFF',
-	'bgcolor_footer_widgets'					=> '#F9FAFB',
-	'color_footer_widgets'						=> '#444444',
-	'bgcolor_header_elements'		  			=> '#masthead',
-	'bgcolor_site_navigation_elements'			=> '#site-navigation, .main-navigation ul.sub-menu',
-	'color_site_navigation_elements'			=> '.main-navigation a',
-	'color_site_navigation_hover_elements'		=> '.main-navigation li:hover, .main-navigation li:hover > a',
-	'color_link_color_elements'					=> '.content-area a:link:not(.wp-block-button__link), .content-area a:link:not(.btn), .content-area a:link:not(.comment-reply-link), .footer-navigation a, .site-info a',
-	'color_meta_link_color_elements'			=> '.header-right .menu a',
-	'color_primary_background_elements'			=> '#mobile-navigation, #mobile-navigation-height-col, .masthead, .footer-widgets, .btn_primary, .btn_primary:link, .menu-toggle, .bg_primary, .banner_primary, .has-color-primary-background-color',
-	'color_primary_background_hover_elements'	=> '.btn_primary:hover',
-	'color_primary_color_elements'				=> '#pmpro_levels .post h2, .pmpro_signup_form h2, .primary, .has-text-color.has-color-primary-color',
-	'color_secondary_background_elements'		=> '.header-right #meta-member .meta-member-inner, #meta-member .member-navigation .sub-menu, .btn_secondary, .btn_secondary:link, .memberlite_tabbable ul.memberlite_tabs li.memberlite_active a, .memberlite_tabbable ul.memberlite_tabs li.memberlite_active a:hover, .banner_secondary, #banner_bottom, .has-color-secondary-background-color',
-	'color_secondary_background_hover_elements'	=> '.btn_secondary:hover',
-	'color_secondary_border_elements'			=> '#pmpro_levels .pmpro_level-highlight, #pmpro_levels.pmpro_levels-2col .pmpro_level-highlight, #pmpro_levels.pmpro_levels-3col .pmpro_level-highlight, #pmpro_levels.pmpro_levels-4col .pmpro_level-highlight, #pmpro_levels.pmpro_levels-div .pmpro_level-highlight, #pmpro_levels.pmpro_advanced_levels-compare_table thead tr:first-child th.pmpro_level-highlight, #pmpro_levels.pmpro_advanced_levels-compare_table tfoot tr:last-child td.pmpro_level-highlight, .memberlite_tabbable ul.memberlite_tabs li.memberlite_active a, .memberlite_tabbable .memberlite_tab_content',
-	'color_secondary_border_left_elements'		=> '#pmpro_levels.pmpro_advanced_levels-compare_table thead th.pmpro_level-highlight, #pmpro_levels.pmpro_advanced_levels-compare_table tbody td.pmpro_level-highlight, #pmpro_levels.pmpro_advanced_levels-compare_table tfoot td.pmpro_level-highlight, #pmpro_levels.pmpro_levels-table .pmpro_level-highlight td:first-child, .memberlite_tabbable ul.memberlite_tabs li.memberlite_active a',
-	'color_secondary_border_right_elements'		=> '#pmpro_levels.pmpro_advanced_levels-compare_table thead th.pmpro_level-highlight, #pmpro_levels.pmpro_advanced_levels-compare_table tbody td.pmpro_level-highlight, #pmpro_levels.pmpro_advanced_levels-compare_table tfoot td.pmpro_level-highlight, #pmpro_levels.pmpro_levels-table .pmpro_level-highlight td:last-child, .memberlite_tabbable ul.memberlite_tabs li.memberlite_active a',
-	'color_secondary_color_elements'			=> 'blockquote.quote:before, q:before, .testimonials-widget-testimonial .open-quote::before, .testimonials-widget-testimonial .close-quote::after, .woocommerce ul.products li.product .price, .woocommerce-page ul.products li.product .price, .woocommerce #content div.product p.price, .woocommerce #content div.product span.price, .woocommerce div.product p.price, .woocommerce div.product span.price, .woocommerce-page #content div.product p.price, .woocommerce-page #content div.product span.price, .woocommerce-page div.product p.price, .woocommerce-page div.product span.price, .secondary, .has-text-color.has-color-secondary-color',
-	'color_action_background_elements'			=> '.btn_action, .btn_action:link, .pmpro_content_message a, .pmpro_content_message a:link, .pmpro_content_message a:visited, .pmpro_btn, .pmpro_btn:link, .pmpro_btn:visited, a.pmpro_btn, a.pmpro_btn:link, a.pmpro_btn:visited, input[type=button].pmpro_btn, input[type=submit].pmpro_btn, #loginform input[type=submit].button.button-primary, .woocommerce #content input.button.alt, .woocommerce #respond input#submit.alt, .woocommerce a.button.alt, .woocommerce button.button.alt, .woocommerce input.button.alt, .woocommerce-page #content input.button.alt, .woocommerce-page #respond input#submit.alt, .woocommerce-page a.button.alt, .woocommerce-page button.button.alt, .woocommerce-page input.button.alt, .bg_action, .banner_action, .has-color-action-background-color',
-	'color_action_background_hover_elements'	=> '.btn_action:hover, .pmpro_content_message a:hover, .pmpro_btn:hover, a.pmpro_btn:hover, input[type=button].pmpro_btn:hover, input[type=submit].pmpro_btn:hover, .woocommerce #content input.button.alt:hover, .woocommerce #respond input#submit.alt:hover, .woocommerce a.button.alt:hover, .woocommerce button.button.alt:hover, .woocommerce input.button.alt:hover, .woocommerce-page #content input.button.alt:hover, .woocommerce-page #respond input#submit.alt:hover, .woocommerce-page a.button.alt:hover, .woocommerce-page button.button.alt:hover, .woocommerce-page input.button.alt:hover',
-	'color_action_color_elements'				=> '.action, .has-text-color.has-color-action-color',
-	'color_button_background_elements'			=> 'button, input[type=button], input[type=reset], input[type=submit],.btn,.btn:link, a.comment-reply-link, a.comment-reply-link:link, #main div.em-search-main button.em-search-submit',
-	'color_button_background_hover_elements'	=> 'button:hover, input[type=button]:hover, input[type=reset]:hover, input[type=submit]:hover, button:focus, input[type=button]:focus, input[type=reset]:focus, input[type=submit]:focus, button:active, input[type=button]:active, input[type=reset]:active, input[type=submit]:active,.btn:hover,.btn:active,.btn:focus, #main div.em-search-main button.em-search-submit:hover',
-	'bgcolor_page_masthead_elements'			=> '.masthead',
-	'color_page_masthead_elements'				=> '.masthead, .masthead h1 a, .masthead h2 a, .masthead h3 a, .masthead p a:not(.btn), .memberlite-breadcrumb, .masthead .memberlite-breadcrumb a',
-	'bgcolor_footer_widgets_elements'			=> '.footer-widgets',
-	'color_footer_widgets_elements'				=> '.footer-widgets, .footer-widgets a, .footer-widgets a:hover',
-	'delimiter'									=> '&nbsp;&#47;&nbsp;',
-	'memberlite_darkcss'						=> false,
-	'hover_brightness'							=> '1.1',
-	'color_white'								=> '#FFFFFF',
-	'color_text'								=> '#222222',
-	'color_borders'								=> '#03543F21',
-	'header_textcolor'							=> '#222222',
-) );
+$memberlite_defaults = memberlite_get_defaults();

@@ -20,3 +20,11 @@
 	margin: 8px -12px 0;
 	padding: 10px;
 }
+
+.customize-control-description {
+	margin-bottom: 10px;
+}
+
+label + .customize-control-description {
+	margin-top: 5px;
+}

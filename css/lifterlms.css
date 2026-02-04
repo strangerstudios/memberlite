@@ -562,11 +562,11 @@ a.llms-button-secondary {
 }
 
 .single-llms_quiz .llms-quiz-buttons form {
-    align-items: top;
-    display: flex;
-    flex-direction: row;
+	align-items: top;
+	display: flex;
+	flex-direction: row;
 	gap: 2.9rem;
-    margin-top: 2.9rem;
+	margin-top: 2.9rem;
 }
 
 .single-llms_quiz .llms-quiz-results .llms-donut.passing {

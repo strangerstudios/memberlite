@@ -46,21 +46,16 @@
 								'text-indent': '0',
 							}
 						);
-
-						$( '.site-title, .site-description' ).css(
+						$( '.site-description' ).css(
 							{
 								'clip': 'auto',
-								'color': value,
 								'position': 'static'
 							}
 						);
-
-						$( '.site-title a' ).css(
-							{
-								'color': value
-							}
-						);
-
+						// Update CSS variable for site title and tagline color
+						// WordPress stores header_textcolor without the # prefix
+						var colorValue = value.charAt(0) === '#' ? value : '#' + value;
+						document.documentElement.style.setProperty('--memberlite-color-header-text', colorValue );
 					}
 				}
 			);
@@ -72,40 +67,7 @@
 			setting.bind(
 				function( value ) {
 					document.documentElement.style.setProperty('--memberlite-color-site-background', value );
-					$( '#memberlite-customizer-css' ).append( 'body { --wp--preset--color--color-site-background:' + value + '; }' );
-				}
-			);
-		}
-	);
-	// Header Background Color.
-	wp.customize(
-		'bgcolor_header', function( setting ) {
-			setting.bind(
-				function( value ) {
-					document.documentElement.style.setProperty('--memberlite-color-header-background', value );
-					$( '#memberlite-customizer-css' ).append( 'body { --wp--preset--color--color-header-background:' + value + '; }' );
-				}
-			);
-		}
-	);
-	// Primary Navigation Background Color.
-	wp.customize(
-		'bgcolor_site_navigation', function( setting ) {
-			setting.bind(
-				function( value ) {
-					document.documentElement.style.setProperty('--memberlite-color-site-navigation-background', value );
-					$( '#memberlite-customizer-css' ).append( 'body { --wp--preset--color--bgcolor-site-navigation:' + value + '; }' );
-				}
-			);
-		}
-	);
-	// Primary Navigation Color.
-	wp.customize(
-		'color_site_navigation', function( setting ) {
-			setting.bind(
-				function( value ) {
-					document.documentElement.style.setProperty('--memberlite-color-site-navigation', value );
-					$( '#memberlite-customizer-css' ).append( 'body { --wp--preset--color--color-site-navigation:' + value + '; }' );
+					$( '#memberlite-customizer-css' ).append( 'body { --memberlite---color-site-background:' + value + '; }' );
 				}
 			);
 		}
@@ -116,7 +78,7 @@
 			setting.bind(
 				function( value ) {
 					document.documentElement.style.setProperty('--memberlite-color-link', value );
-					$( '#memberlite-customizer-css' ).append( 'body { --wp--preset--color--color-link:' + value + '; }' );
+					$( '#memberlite-customizer-css' ).append( 'body { --memberlite---color-link:' + value + '; }' );
 				}
 			);
 		}
@@ -127,7 +89,7 @@
 			setting.bind(
 				function( value ) {
 					document.documentElement.style.setProperty('--memberlite-color-meta-link', value );
-					$( '#memberlite-customizer-css' ).append( 'body { --wp--preset--color--color-meta-link:' + value + '; }' );
+					$( '#memberlite-customizer-css' ).append( 'body { --memberlite---color-meta-link:' + value + '; }' );
 				}
 			);
 		}
@@ -138,7 +100,7 @@
 			setting.bind(
 				function( value ) {
 					document.documentElement.style.setProperty('--memberlite-color-primary', value );
-					$( '#memberlite-customizer-css' ).append( 'body { --wp--preset--color--color-primary:' + value + '; }' );
+					$( '#memberlite-customizer-css' ).append( 'body { --memberlite---color-primary:' + value + '; }' );
 				}
 			);
 		}
@@ -149,7 +111,7 @@
 			setting.bind(
 				function( value ) {
 					document.documentElement.style.setProperty('--memberlite-color-secondary', value );
-					$( '#memberlite-customizer-css' ).append( 'body { --wp--preset--color--color-secondary:' + value + '; }' );
+					$( '#memberlite-customizer-css' ).append( 'body { --memberlite---color-secondary:' + value + '; }' );
 				}
 			);
 		}
@@ -160,7 +122,7 @@
 			setting.bind(
 				function( value ) {
 					document.documentElement.style.setProperty('--memberlite-color-action', value );
-					$( '#memberlite-customizer-css' ).append( 'body { --wp--preset--color--color-action:' + value + '; }' );
+					$( '#memberlite-customizer-css' ).append( 'body { --memberlite---color-action:' + value + '; }' );
 				}
 			);
 		}
@@ -171,7 +133,7 @@
 			setting.bind(
 				function( value ) {
 					document.documentElement.style.setProperty('--memberlite-color-button', value );
-					$( '#memberlite-customizer-css' ).append( 'body { --wp--preset--color--color-button:' + value + '; }' );
+					$( '#memberlite-customizer-css' ).append( 'body { --memberlite---color-button:' + value + '; }' );
 				}
 			);
 		}
@@ -182,7 +144,7 @@
 			setting.bind(
 				function( value ) {
 					document.documentElement.style.setProperty('--memberlite-color-page-masthead-background', value );
-					$( '#memberlite-customizer-css' ).append( 'body { --wp--preset--color--bgcolor-page-masthead:' + value + '; }' );
+					$( '#memberlite-customizer-css' ).append( 'body { --memberlite---bgcolor-page-masthead:' + value + '; }' );
 				}
 			);
 		}
@@ -193,7 +155,7 @@
 			setting.bind(
 				function( value ) {
 					document.documentElement.style.setProperty('--memberlite-color-page-masthead', value );
-					$( '#memberlite-customizer-css' ).append( 'body { --wp--preset--color--color-page-masthead:' + value + '; }' );
+					$( '#memberlite-customizer-css' ).append( 'body { --memberlite---color-page-masthead:' + value + '; }' );
 				}
 			);
 		}
@@ -204,7 +166,7 @@
 			setting.bind(
 				function( value ) {
 					document.documentElement.style.setProperty('--memberlite-color-footer-widgets-background', value );
-					$( '#memberlite-customizer-css' ).append( 'body { --wp--preset--color--bgcolor-footer-widgets:' + value + '; }' );
+					$( '#memberlite-customizer-css' ).append( 'body { --memberlite---bgcolor-footer-widgets:' + value + '; }' );
 				}
 			);
 		}
@@ -215,7 +177,7 @@
 			setting.bind(
 				function( value ) {
 					document.documentElement.style.setProperty('--memberlite-color-footer-widgets', value );
-					$( '#memberlite-customizer-css' ).append( 'body { --wp--preset--color--color-footer-widgets:' + value + '; }' );
+					$( '#memberlite-customizer-css' ).append( 'body { --memberlite---color-footer-widgets:' + value + '; }' );
 				}
 			);
 		}
@@ -256,4 +218,38 @@
 			);
 		}
 	);
+
+	// Handle PMPro color override checkbox
+	wp.customize( 'memberlite_pmpro_color_override', function( value ) {
+		value.bind( function( isChecked ) {
+			if ( isChecked && memberliteCustomizerPreview.isPMProActive ) {
+				// Override PMPro colors with theme colors
+				updatePMProColors();
+			} else {
+				// Remove overrides (let PMPro plugin handle its own colors)
+				removePMProColorOverrides();
+			}
+		});
+	});
+
+	function updatePMProColors() {
+		var style = '<style id="memberlite-pmpro-color-override">';
+		style += ':root {';
+		style += '--pmpro--color--accent: ' + memberliteCustomizerPreview.activeColors.color_primary + ';';
+		style += '--pmpro--color--accent--variation: ' + memberliteCustomizerPreview.activeColors.color_secondary + ';';
+		style += '--pmpro--color--base: ' + memberliteCustomizerPreview.activeColors.background_color + ';';
+		style += '--pmpro--color--contrast: ' + memberliteCustomizerPreview.activeColors.color_text + ';';
+		style += '}';
+		style += '</style>';
+
+		// Remove existing override if present
+		$('#memberlite_pmpro_color_override').remove();
+		// Add new override
+		$('head').append( style );
+	}
+
+	function removePMProColorOverrides() {
+		$('#memberlite-pmpro-color-override').remove();
+	}
+
 } )( jQuery );
