@@ -1143,6 +1143,12 @@ function memberlite_save_scheme_colors( WP_Customize_Manager $wp_customize ) {
 		if ( 'header_textcolor' === $key && 'blank' === get_theme_mod( 'header_textcolor' ) ) {
 			continue;
 		}
+
+		// WordPress core stores header_textcolor and background_color without the # prefix
+		if ( 'header_textcolor' === $key || 'background_color' === $key ) {
+			$value = ltrim( $value, '#' );
+		}
+
 		set_theme_mod( $key, $value );
 	}
 }
