@@ -53,22 +53,19 @@ function memberlite_checkForUpdates() {
  * Migrate color scheme to individual theme_mods.
  *
  * This migration handles three scenarios:
- * 1. User has a legacy scheme selected (from deprecated.php) → expand to 18 theme_mods, set scheme to 'custom'
- * 2. User has a new scheme selected → expand to 18 theme_mods, keep scheme setting
+ * 1. User has a legacy scheme selected (from deprecated.php) → expand all to theme_mods, set scheme to 'custom'
+ * 2. User has a new scheme selected → expand all to theme_mods, keep scheme setting
  * 3. User has custom colors already → preserve them, set scheme to 'custom'
  *
- * After migration, the 18 individual color theme_mods are the single source of truth.
+ * After migration, the all individual color theme_mods are the single source of truth.
  *
- * @since 6.2
+ * @since TBD
  */
 function memberlite_migrate_colors_to_theme_mods() {
 	$color_keys = memberlite_get_color_setting_keys();
 
-	// Check for old scheme theme_mods (could be 'memberlite_color_scheme' or 'memberlite_variation_color_scheme')
+	// Check for old scheme theme_mods.
 	$current_scheme = get_theme_mod( 'memberlite_color_scheme', '' );
-	if ( empty( $current_scheme ) ) {
-		$current_scheme = get_theme_mod( 'memberlite_variation_color_scheme', '' );
-	}
 
 	$colors       = array();
 	$final_scheme = 'default';
@@ -109,7 +106,7 @@ function memberlite_migrate_colors_to_theme_mods() {
 		}
 	}
 
-	// Save all 18 colors as individual theme_mods
+	// Save all colors as individual theme_mods
 	foreach ( $color_keys as $key ) {
 		$existing_value = get_theme_mod( $key, '' );
 
@@ -131,10 +128,6 @@ function memberlite_migrate_colors_to_theme_mods() {
 
 	set_theme_mod( 'memberlite_color_scheme', $final_scheme );
 
-	// Clean up old theme_mods and options
-	remove_theme_mod( 'memberlite_variation_color_scheme' );
-	delete_option( 'memberlite_scheme_synced' );
-	delete_option( 'memberlite_user_legacy_scheme' );
 }
 
 /**
