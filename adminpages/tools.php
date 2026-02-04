@@ -204,7 +204,7 @@ function memberlite_import_theme_settings() {
 	$current_stylesheet = get_option( 'stylesheet' );
 
 	// Ensure the file is for this theme (or a child of the same parent theme).
-	// Check against both template and stylesheet for backwards compatibility with older exports.
+	// Check against both template and stylesheet for backwards compatibility with older exports from parent theme installations.
 	if ( $data['template'] !== $current_template && $data['template'] !== $current_stylesheet ) {
 		memberlite_import_settings_redirect( 'wrong_theme' );
 	}
