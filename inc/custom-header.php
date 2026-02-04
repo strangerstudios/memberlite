@@ -13,7 +13,7 @@
  * @uses memberlite_admin_header_image()
  */
 function memberlite_custom_header_setup() {
-    $custom_header = apply_filters(
+	$custom_header = apply_filters(
 		'memberlite_custom_header_args',
 		array(
 			'default-text-color' => '2c3e50',
@@ -23,18 +23,18 @@ function memberlite_custom_header_setup() {
 			'flex-height'        => true,
 			'wp-head-callback'   => 'memberlite_header_style',
 		)
-    );
-    add_theme_support( 'custom-header', $custom_header );
+	);
+	add_theme_support( 'custom-header', $custom_header );
 }
 add_action('after_setup_theme', 'memberlite_custom_header_setup');
 
 if ( ! function_exists( 'memberlite_header_style' ) ) :
-    /**
-     * Styles the header image and text displayed on the blog
-     *
-     * @see memberlite_custom_header_setup().
-     */
-    function memberlite_header_style() {
+	/**
+	 * Styles the header image and text displayed on the blog
+	 *
+	 * @see memberlite_custom_header_setup().
+	 */
+	function memberlite_header_style() {
 		$header_image = get_header_image();
 
 		// If no custom options for text are set, let's bail.

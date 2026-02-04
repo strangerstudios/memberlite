@@ -376,7 +376,7 @@ function memberlite_more_content() {
 
 /**
  * Get the featured block image to insert into the post content.
- * 
+ *
  */
 function memberlite_loop_image() {
 	global $memberlite_defaults;
@@ -967,7 +967,7 @@ function memberlite_parse_tags( $meta, $post = null ) {
 
 	if ( strpos( $meta, '{post_comments}' ) !== false ) {
 		$searches[]     = '{post_comments}';
-		
+
 		// Get comments count (exclude Trackbacks and Pingbacks).
 		$comment_args = array(
 			'post_id'	=> $post->ID,
@@ -1064,3 +1064,12 @@ function memberlite_banner_image_setup() {
 	}
 }
 add_action( 'wp_loaded', 'memberlite_banner_image_setup' );
+
+/**
+ * Check if Paid Memberships Pro is active
+ *
+ * @return bool
+ */
+function is_pmpro_active() : bool {
+	return is_plugin_active('paid-memberships-pro/paid-memberships-pro.php' );
+}

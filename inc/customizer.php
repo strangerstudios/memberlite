@@ -81,7 +81,7 @@ class Memberlite_Customize {
 	 */
 	public static function set_customizer_panels_sections( WP_Customize_Manager $wp_customize ) {
 		/* Site Identity --------------------------------- */
-        $wp_customize->get_section('title_tagline')->priority = 0;
+		$wp_customize->get_section('title_tagline')->priority = 0;
 
 		/* Typography ------------------------------------ */
 		$wp_customize->add_section(
@@ -169,35 +169,45 @@ class Memberlite_Customize {
 	/**
 	 * Sets color-related customizer settings
 	 *
-	 * @since 6.1.1
-	 *
 	 * @param WP_Customize_Manager $wp_customize
+	 *
 	 * @return void
 	 */
 	public static function set_customizer_color_settings( WP_Customize_Manager $wp_customize ) {
-		// COLORS: Color Scheme =================
-		self::add_memberlite_setting_control( $wp_customize, 'memberlite_color_scheme', 'Memberlite Color Scheme', 'colors', array(
-			'type'                  => 'select',
-			'sanitize_callback'     => array( 'Memberlite_Customize', 'sanitize_color_scheme' ),
-			'sanitize_js_callback'  => array( 'Memberlite_Customize', 'sanitize_js_color_scheme' ),
-			'choices'               => array_merge(
-				Memberlite_Customize::get_color_scheme_choices(),
-				array(
-					'custom' => 'Custom',
-				)
-			),
-			'priority' => 1,
-		) );
+		// COLORS: Color Scheme ================
+		self::add_memberlite_setting_control(
+			$wp_customize,
+			'memberlite_color_scheme',
+			'Color Scheme',
+			'colors',
+			array(
+				'type'              => 'select',
+				'description'       => 'Choose a color scheme preset. Individual colors below will update to match. Customize any color to switch to "Custom" mode.',
+				'sanitize_callback' => array( 'Memberlite_Customize', 'sanitize_color_scheme' ),
+				'choices'           => memberlite_get_color_scheme_choices(),
+				'priority'          => 1,
+			)
+		);
 
-		// COLORS: Dark Mode ====================
+		// COLORS: Dark Mode ================
 		self::add_memberlite_setting_control( $wp_customize, 'memberlite_darkcss', 'Use Dark Mode Colors', 'colors', array(
 			'type'              => 'checkbox',
 			'sanitize_callback' => array( 'Memberlite_Customize', 'sanitize_checkbox' ),
 			'description'       => 'Check this box if you have chosen a dark background color and light default text color for your site.',
-			'priority' => 2,
+			'priority'          => 2,
 		) );
 
-		// COLORS: Header Colors Heading ========
+		// COLORS: PMPro Override ================
+		if ( is_pmpro_active() ) {
+			self::add_memberlite_setting_control( $wp_customize, 'memberlite_pmpro_color_override', 'Override PMPro Colors', 'colors', array(
+				'type'              => 'checkbox',
+				'sanitize_callback' => array( 'Memberlite_Customize', 'sanitize_checkbox' ),
+				'description'       => 'By default, PMPro will use colors from its own settings. Check this box to have PMPro use the colors you have chosen here instead.',
+				'priority'          => 2,
+			) );
+		}
+
+		// COLORS: Header Colors ================
 		self::add_memberlite_heading( $wp_customize, 'memberlite_header_colors', 'Header Colors', 'colors' );
 
 		self::add_memberlite_color_control( $wp_customize, 'memberlite_bgcolor_header', 'Header Background Color', 'bgcolor_header' );
@@ -206,21 +216,21 @@ class Memberlite_Customize {
 
 		self::add_memberlite_color_control( $wp_customize, 'memberlite_color_site_navigation', 'Primary Navigation Link Color', 'color_site_navigation' );
 
-		// COLORS: Footer Colors Heading ========
+		// COLORS: Footer Colors ================
 		self::add_memberlite_heading( $wp_customize, 'memberlite_footer_colors', 'Footer Colors', 'colors' );
 
 		self::add_memberlite_color_control( $wp_customize, 'memberlite_bgcolor_footer_widgets', 'Footer Widgets Background Color', 'bgcolor_footer_widgets' );
 
 		self::add_memberlite_color_control( $wp_customize, 'memberlite_color_footer_widgets', 'Footer Widgets Text Color', 'color_footer_widgets' );
 
-		// COLORS: Masthead Colors Heading ======
+		// COLORS: Masthead Colors ================
 		self::add_memberlite_heading( $wp_customize, 'memberlite_masthead_colors', 'Masthead Colors', 'colors' );
 
 		self::add_memberlite_color_control( $wp_customize, 'memberlite_bgcolor_page_masthead', 'Page Masthead Background Color', 'bgcolor_page_masthead' );
 
 		self::add_memberlite_color_control( $wp_customize, 'memberlite_color_page_masthead', 'Page Masthead Text Color', 'color_page_masthead' );
 
-		// COLORS: Site Colors Heading ==========
+		// COLORS: Site Colors ================
 		self::add_memberlite_heading( $wp_customize, 'memberlite_body_colors', 'Site Colors', 'colors' );
 
 		// Move core controls down in the Colors section
@@ -245,11 +255,14 @@ class Memberlite_Customize {
 		self::add_memberlite_color_control( $wp_customize, 'memberlite_color_secondary', 'Secondary Color', 'color_secondary' );
 
 		self::add_memberlite_color_control( $wp_customize, 'memberlite_color_action', 'Action Color', 'color_action', array(
-			'description' => 'Used for CTA buttons and links.'
+			'description' => 'Used for CTA buttons and links.',
 		) );
 
 		self::add_memberlite_color_control( $wp_customize, 'memberlite_color_button', 'Default Button Color', 'color_button' );
+
+		self::add_memberlite_color_control( $wp_customize, 'memberlite_color_borders', 'Border Color', 'color_borders' );
 	}
+
 
 	/**
 	 * Sets breadcrumb-related customizer settings
@@ -782,18 +795,6 @@ class Memberlite_Customize {
 			$color_site_navigation = $memberlite_defaults['color_site_navigation'];
 		}
 
-		// v4.6 added four new colors. For this reason, we need to set the fallback colors if they are using a built in scheme.
-		// Get the current color scheme
-		$this_color_scheme = get_theme_mod( 'memberlite_color_scheme' );
-
-		// Set the defaults to the primary color from the current scheme if it isn't the new default.
-		if ( $this_color_scheme != 'default_v4.6' ) {
-			$memberlite_defaults['bgcolor_page_masthead']  = $color_primary;
-			$memberlite_defaults['color_page_masthead']    = $memberlite_defaults['color_white'];
-			$memberlite_defaults['bgcolor_footer_widgets'] = $color_primary;
-			$memberlite_defaults['color_footer_widgets']   = $memberlite_defaults['color_white'];
-		}
-
 		$color_page_masthead_background = get_theme_mod( 'bgcolor_page_masthead' );
 		if ( empty( $color_page_masthead_background ) ) {
 			$color_page_masthead_background = $memberlite_defaults['bgcolor_page_masthead'];
@@ -814,10 +815,14 @@ class Memberlite_Customize {
 			$color_footer_widgets = $memberlite_defaults['color_footer_widgets'];
 		}
 
+		$color_borders = get_theme_mod( 'color_borders' );
+		if ( empty( $color_borders ) ) {
+			$color_borders = $memberlite_defaults['color_borders'];
+		}
+
 		// Get theme settings from defaults.
 		$hover_brightness = $memberlite_defaults['hover_brightness'];
 		$color_white      = $memberlite_defaults['color_white'];
-		$color_borders    = $memberlite_defaults['color_borders'];
 		?>
 		<!--Customizer CSS-->
 		<style id="memberlite-customizer-css" type="text/css">
@@ -838,14 +843,13 @@ class Memberlite_Customize {
 				--memberlite-color-secondary: <?php echo esc_attr( $color_secondary ); ?>;
 				--memberlite-color-action: <?php echo esc_attr( $color_action ); ?>;
 				--memberlite-color-button: <?php echo esc_attr( $color_button ); ?>;
-				--memberlite-hover-brightness: <?php echo esc_attr( $hover_brightness ); ?>;
-				--memberlite-color-white: <?php echo esc_attr( $color_white ); ?>;
-				--memberlite-color-text: <?php echo esc_attr( $color_text ); ?>;
 				--memberlite-color-borders: <?php echo esc_attr( $color_borders ); ?>;
 				--memberlite-color-page-masthead-background: <?php echo esc_attr( $color_page_masthead_background ); ?>;
 				--memberlite-color-page-masthead: <?php echo esc_attr( $color_page_masthead ); ?>;
 				--memberlite-color-footer-widgets-background: <?php echo esc_attr( $color_footer_widgets_background ); ?>;
 				--memberlite-color-footer-widgets: <?php echo esc_attr( $color_footer_widgets ); ?>;
+				--memberlite-hover-brightness: <?php echo esc_attr( $hover_brightness ); ?>;
+				--memberlite-color-white: <?php echo esc_attr( $color_white ); ?>;
 			}
 		</style>
 		<!--/Customizer CSS-->
@@ -928,330 +932,6 @@ class Memberlite_Customize {
 		return array_merge( Memberlite_Customize::get_google_fonts(), Memberlite_Customize::get_web_safe_fonts() );
 	}
 
-	/**
-	 * Register color schemes for Memberlite.
-	 * Based on code from the Twentyfifteen theme. (https://themes.svn.wordpress.org/twentyfifteen/1.2/inc/customizer.php)
-	 *
-	 * Can be filtered with {@see 'memberlite_color_schemes'}.
-	 *
-	 * The order of colors in a colors array:
-	 * 1. Header Text Color
-	 * 2. Background Color
-	 * 3. Header Background Color
-	 * 4. Primary Navigation Background Color
-	 * 5. Primary Navigation Link Color
-	 * 6. Text Color
-	 * 7. Link Color
-	 * 8. Meta Link Color
-	 * 9. Primary Color
-	 * 10. Secondary Color
-	 * 11. Action Color
-	 * 12. Default Button Color
-	 * 13. Page Masthead Text Color
-	 * 14. Page Masthead Background Color
-	 * 15. Footer Widgets Text Color
-	 * 16. Footer Widgets Background Color
-	 *
-	 * @return array An associative array of color scheme options.
-	 * @since Memberlite 1.0
-	 *
-	 */
-	public static function get_color_schemes() {
-		return apply_filters(
-			'memberlite_color_schemes', array(
-				'default_v4.6'   => array(
-					'label'  => __( 'Default', 'memberlite' ),
-					'colors' => array(
-						'#011935',
-						'#FFFFFF',
-						'#FFFFFF',
-						'#F9FAFB',
-						'#444444',
-						'#222222',
-						'#011935',
-						'#011935',
-						'#011935',
-						'#00A59D',
-						'#E87102',
-						'#3C4B5A',
-						'#011935',
-						'#FFFFFF',
-						'#F9FAFB',
-						'#444444',
-					),
-				),
-				'default'        => array(
-					'label'  => __( 'Default (Legacy)', 'memberlite' ),
-					'colors' => array(
-						'#2C3E50',
-						'#FFFFFF',
-						'#FFFFFF',
-						'#FAFAFA',
-						'#777777',
-						'#222222',
-						'#2C3E50',
-						'#2C3E50',
-						'#2C3E50',
-						'#18BC9C',
-						'#F39C12',
-						'#798D8F',
-						'#2C3E50',
-						'#FFFFFF',
-						'#2C3E50',
-						'#FFFFFF',
-					),
-				),
-				'education'      => array(
-					'label'  => __( 'Education', 'memberlite' ),
-					'colors' => array(
-						'#3A9AD9',
-						'#F4EFEA',
-						'#F4EFEA',
-						'#E2DED9',
-						'#354458',
-						'#222222',
-						'#3A9AD9',
-						'#3A9AD9',
-						'#354458',
-						'#EB7260',
-						'#29ABA4',
-						'#798D8F',
-						'#354458',
-						'#FFFFFF',
-						'#354458',
-						'#FFFFFF',
-					),
-				),
-				'modern_teal'    => array(
-					'label'  => __( 'Modern Teal', 'memberlite' ),
-					'colors' => array(
-						'#424242',
-						'#EFEFEF',
-						'#EFEFEF',
-						'#424242',
-						'#EFEFEF',
-						'#222222',
-						'#00CCD6',
-						'#00CCD6',
-						'#00CCD6',
-						'#424242',
-						'#FFD900',
-						'#798D8F',
-						'#00CCD6',
-						'#FFFFFF',
-						'#00CCD6',
-						'#FFFFFF',
-					),
-				),
-				'mono_blue'      => array(
-					'label'  => __( 'Mono Blue', 'memberlite' ),
-					'colors' => array(
-						'#00AEEF',
-						'#FFFFFF',
-						'#FFFFFF',
-						'#00AEEF',
-						'#FFFFFF',
-						'#222222',
-						'#00AEEF',
-						'#00AEEF',
-						'#333333',
-						'#555555',
-						'#00AEEF',
-						'#798D8F',
-						'#333333',
-						'#FFFFFF',
-						'#333333',
-						'#FFFFFF',
-					),
-				),
-				'mono_green'     => array(
-					'label'  => __( 'Mono Green', 'memberlite' ),
-					'colors' => array(
-						'#00A651',
-						'#FFFFFF',
-						'#FFFFFF',
-						'#00A651',
-						'#FFFFFF',
-						'#222222',
-						'#00A651',
-						'#00A651',
-						'#333333',
-						'#555555',
-						'#00A651',
-						'#798D8F',
-						'#333333',
-						'#FFFFFF',
-						'#333333',
-						'#FFFFFF',
-					),
-				),
-				'mono_orange'    => array(
-					'label'  => __( 'Mono Orange', 'memberlite' ),
-					'colors' => array(
-						'#F39C12',
-						'#FFFFFF',
-						'#FFFFFF',
-						'#F39C12',
-						'#FFFFFF',
-						'#222222',
-						'#F39C12',
-						'#F39C12',
-						'#333333',
-						'#555555',
-						'#F39C12',
-						'#798D8F',
-						'#333333',
-						'#FFFFFF',
-						'#333333',
-						'#FFFFFF',
-					),
-				),
-				'mono_pink'      => array(
-					'label'  => __( 'Mono Pink', 'memberlite' ),
-					'colors' => array(
-						'#ED0977',
-						'#FFFFFF',
-						'#FFFFFF',
-						'#ED0977',
-						'#FFFFFF',
-						'#222222',
-						'#ED0977',
-						'#ED0977',
-						'#333333',
-						'#555555',
-						'#ED0977',
-						'#798D8F',
-						'#333333',
-						'#FFFFFF',
-						'#333333',
-						'#FFFFFF',
-					),
-				),
-				'pop'            => array(
-					'label'  => __( 'Pop!', 'memberlite' ),
-					'colors' => array(
-						'#53BBF4',
-						'#FFFFFF',
-						'#FFFFFF',
-						'#B1EB00',
-						'#666666',
-						'#222222',
-						'#B1EB00',
-						'#B1EB00',
-						'#53BBF4',
-						'#FFAC00',
-						'#FF85CB',
-						'#798D8F',
-						'#53BBF4',
-						'#FFFFFF',
-						'#53BBF4',
-						'#FFFFFF',
-					),
-				),
-				'primary'        => array(
-					'label'  => __( 'Not So Primary', 'memberlite' ),
-					'colors' => array(
-						'#1352A2',
-						'#F0F1EE',
-						'#F0F1EE',
-						'#FFFFFF',
-						'#555555',
-						'#222222',
-						'#FB6964',
-						'#FB6964',
-						'#1352A2',
-						'#FB6964',
-						'#FFD464',
-						'#798D8F',
-						'#1352A2',
-						'#FFFFFF',
-						'#1352A2',
-						'#FFFFFF',
-					),
-				),
-				'raspberry_lime' => array(
-					'label'  => __( 'Raspberry Lime', 'memberlite' ),
-					'colors' => array(
-						'#AA2159',
-						'#FFFFFF',
-						'#FFFFFF',
-						'#700035',
-						'#EFEFEF',
-						'#222222',
-						'#009D97',
-						'#AA2159',
-						'#AA2159',
-						'#009D97',
-						'#BCC747',
-						'#798D8F',
-						'#AA2159',
-						'#FFFFFF',
-						'#AA2159',
-						'#FFFFFF',
-					),
-				),
-				'slate_blue'     => array(
-					'label'  => __( 'Slate Blue', 'memberlite' ),
-					'colors' => array(
-						'#6991AC',
-						'#F5F5F5',
-						'#F5F5F5',
-						'#FFFFFF',
-						'#67727A',
-						'#222222',
-						'#6991AC',
-						'#6991AC',
-						'#67727A',
-						'#6991AC',
-						'#D75C37',
-						'#798D8F',
-						'#67727A',
-						'#FFFFFF',
-						'#67727A',
-						'#FFFFFF',
-					),
-				),
-				'watermelon'     => array(
-					'label'  => __( 'Watermelon Seed', 'memberlite' ),
-					'colors' => array(
-						'#363635',
-						'#F9F9F7',
-						'#F9F9F7',
-						'#363635',
-						'#FFFFFF',
-						'#222222',
-						'#83BF17',
-						'#83BF17',
-						'#83BF17',
-						'#363635',
-						'#F15D58',
-						'#798D8F',
-						'#83BF17',
-						'#FFFFFF',
-						'#83BF17',
-						'#FFFFFF',
-					),
-				),
-			)
-		);
-	}
-
-	/**
-	 * Returns an array of color scheme choices registered for Memberlite.
-	 *
-	 * @return array Array of color schemes.
-	 * @since Memberlite 2.0
-	 *
-	 */
-	public static function get_color_scheme_choices() {
-		$color_schemes                = Memberlite_Customize::get_color_schemes();
-		$color_scheme_control_options = array();
-		foreach ( $color_schemes as $color_scheme => $value ) {
-			$color_scheme_control_options[ $color_scheme ] = $value['label'];
-		}
-
-		return $color_scheme_control_options;
-	}
 
 	/**
 	 * Sanitize Checkbox input values
@@ -1311,38 +991,18 @@ class Memberlite_Customize {
 	/**
 	 * Sanitization callback for color schemes.
 	 *
+	 * @since 6.2
 	 * @param string $value Color scheme name value.
-	 *
 	 * @return string Color scheme name.
-	 * @since Memberlite 2.0
-	 *
 	 */
 	public static function sanitize_color_scheme( $value ) {
-		$color_schemes = array_merge(
-			Memberlite_Customize::get_color_scheme_choices(),
-			array(
-				'custom' => 'Custom',
-			)
-		);
+		$color_schemes = memberlite_get_color_scheme_choices();
+
 		if ( ! array_key_exists( $value, $color_schemes ) ) {
 			$value = 'default';
 		}
 
 		return $value;
-	}
-
-	public static function sanitize_js_color_scheme( $value ) {
-		$color_schemes = array_merge(
-			Memberlite_Customize::get_color_scheme_choices(),
-			array(
-				'custom' => 'Custom',
-			)
-		);
-		if ( ! array_key_exists( $value, $color_schemes ) ) {
-			$value = 'default';
-		}
-
-		return esc_js( $value );
 	}
 
 	/**
@@ -1388,20 +1048,32 @@ class Memberlite_Customize {
 	/**
 	 * Binds JS listener to make Customizer color_scheme control.
 	 *
-	 * Passes color scheme data as colorScheme global.
+	 * Passes color scheme data as colorSchemes global.
 	 *
-	 * Also enqueue stylesheet for customizer setting controls.
-	 *
-	 * @since Twenty Fifteen 1.0
+	 * @since 6.2
 	 */
 	public static function customizer_controls_js() {
-		wp_enqueue_script( 'Memberlite_Customizer-controls', MEMBERLITE_URL . '/js/customizer-controls.js', array(
-			'customize-controls',
-			'iris',
-			'underscore',
-			'wp-util'
-		), MEMBERLITE_VERSION, true );
-		wp_localize_script( 'Memberlite_Customizer-controls', 'colorSchemes', Memberlite_Customize::get_color_schemes() );
+		wp_enqueue_script(
+			'Memberlite_Customizer-controls',
+			MEMBERLITE_URL . '/js/customizer-controls.js',
+			array( 'customize-controls', 'iris', 'underscore', 'wp-util' ),
+			MEMBERLITE_VERSION,
+			true
+		);
+
+		// Pass color schemes to JS - convert to format JS expects
+		$schemes    = memberlite_get_color_schemes();
+		$js_schemes = array();
+
+		foreach ( $schemes as $key => $scheme ) {
+			$js_schemes[ $key ] = array(
+				'label'  => $scheme['label'],
+				'colors' => $scheme['colors'],
+			);
+		}
+
+		wp_localize_script( 'Memberlite_Customizer-controls', 'colorSchemes', $js_schemes );
+		wp_localize_script( 'Memberlite_Customizer-controls', 'colorSettingKeys', memberlite_get_color_setting_keys() );
 
 		wp_enqueue_style(
 			'memberlite-customizer-css',
@@ -1434,3 +1106,49 @@ add_action( 'wp_head', array( 'Memberlite_Customize', 'header_output' ) );
 
 // Enqueue live preview javascript in Theme Customizer admin screen
 add_action( 'customize_preview_init', array( 'Memberlite_Customize', 'live_preview' ) );
+
+/**
+ * When the color scheme changes, save all 18 colors to theme_mods.
+ *
+ * This ensures the individual color settings are always the source of truth.
+ *
+ * @since 6.2
+ */
+add_action( 'customize_save_after', 'memberlite_save_scheme_colors' );
+
+function memberlite_save_scheme_colors( WP_Customize_Manager $wp_customize ) {
+	$scheme_setting = $wp_customize->get_setting( 'memberlite_color_scheme' );
+
+	if ( ! $scheme_setting ) {
+		return;
+	}
+
+	$scheme_key = $scheme_setting->value();
+
+	// Don't save colors if it's custom mode
+	if ( 'custom' === $scheme_key ) {
+		return;
+	}
+
+	// Get the scheme colors
+	$scheme_colors = memberlite_get_scheme_colors( $scheme_key );
+
+	if ( ! $scheme_colors ) {
+		return;
+	}
+
+	// Save all colors to theme_mods
+	foreach ( $scheme_colors as $key => $value ) {
+		// Skip header_textcolor if currently 'blank' (user chose to hide site title/tagline)
+		if ( 'header_textcolor' === $key && 'blank' === get_theme_mod( 'header_textcolor' ) ) {
+			continue;
+		}
+
+		// WordPress core stores header_textcolor and background_color without the # prefix
+		if ( 'header_textcolor' === $key || 'background_color' === $key ) {
+			$value = ltrim( $value, '#' );
+		}
+
+		set_theme_mod( $key, $value );
+	}
+}
