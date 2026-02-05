@@ -745,6 +745,8 @@ class Memberlite_Customize {
 
 		$override_pmpro_colors = get_theme_mod( 'memberlite_pmpro_color_override' );
 
+        error_log('HOVER BRIGHTNESS: ' . $memberlite_defaults['hover_brightness']);
+
         $hover_brightness = $memberlite_defaults['hover_brightness'];
         $color_white      = 'FFFFFF';
 
@@ -773,8 +775,24 @@ class Memberlite_Customize {
                 --memberlite-color-page-masthead: <?php echo '#' . esc_attr( $active_colors['color_page_masthead'] ); ?>;
                 --memberlite-color-footer-widgets-background: <?php echo '#' . esc_attr( $active_colors['bgcolor_footer_widgets'] ); ?>;
                 --memberlite-color-footer-widgets: <?php echo '#' . esc_attr( $active_colors['color_footer_widgets'] ); ?>;
-                --memberlite-hover-brightness: <?php echo '#' . esc_attr( $hover_brightness ); ?>;
+                --memberlite-hover-brightness: <?php echo '1.1' ?>;
                 --memberlite-color-white: <?php echo '#' . esc_attr( $color_white ); ?>;
+
+                /* WordPress theme.json color aliases (map to Customizer colors) */
+                --wp--preset--color--body-text: <?php echo esc_attr( $active_colors['color_text'] ); ?>;
+                --wp--preset--color--primary: <?php echo esc_attr( $active_colors['color_primary'] ); ?>;
+                --wp--preset--color--secondary: <?php echo '#' . esc_attr( $active_colors['color_secondary'] ); ?>;
+                --wp--preset--color--action: <?php echo '#' . esc_attr( $active_colors['color_action'] ); ?>;
+                --wp--preset--color--link: <?php echo '#' . esc_attr( $active_colors['color_link'] ); ?>;
+                --wp--preset--color--meta_link: <?php echo '#' . esc_attr( $active_colors['color_meta_link'] ); ?>;
+                --wp--preset--color--buttons: <?php echo '#' . esc_attr( $active_colors['color_button'] ); ?>;
+                --wp--preset--color--white: <?php echo '#' . esc_attr( $color_white ); ?>;
+                --wp--preset--color--borders: <?php echo '#' . esc_attr( $active_colors['color_borders'] ); ?>;
+                --wp--preset--color--page-masthead-background: <?php echo '#' . esc_attr( $active_colors['bgcolor_page_masthead'] ); ?>;
+                --wp--preset--color--page-masthead: <?php echo '#' . esc_attr( $active_colors['color_page_masthead'] ); ?>;
+                --wp--preset--color--footer-widgets-background: <?php echo '#' . esc_attr( $active_colors['bgcolor_footer_widgets'] ); ?>;
+                --wp--preset--color--footer-widgets: <?php echo '#' . esc_attr( $active_colors['color_footer_widgets'] ); ?>;
+
 
             <?php
             if ( $override_pmpro_colors && is_pmpro_active() )  : ?>
