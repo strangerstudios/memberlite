@@ -136,37 +136,4 @@
 		}
 	);
 
-	// Handle PMPro color override checkbox
-	wp.customize( 'memberlite_pmpro_color_override', function( value ) {
-		value.bind( function( isChecked ) {
-			if ( isChecked && memberliteCustomizerPreview.isPMProActive ) {
-				// Override PMPro colors with theme colors
-				updatePMProColors();
-			} else {
-				// Remove overrides (let PMPro plugin handle its own colors)
-				removePMProColorOverrides();
-			}
-		});
-	});
-
-	function updatePMProColors() {
-		var style = '<style id="memberlite-pmpro-color-override">';
-		style += ':root {';
-		style += '--pmpro--color--accent: ' + memberliteCustomizerPreview.activeColors.color_primary + ';';
-		style += '--pmpro--color--accent--variation: ' + memberliteCustomizerPreview.activeColors.color_secondary + ';';
-		style += '--pmpro--color--base: ' + memberliteCustomizerPreview.activeColors.background_color + ';';
-		style += '--pmpro--color--contrast: ' + memberliteCustomizerPreview.activeColors.color_text + ';';
-		style += '}';
-		style += '</style>';
-
-		// Remove existing override if present
-		$('#memberlite_pmpro_color_override').remove();
-		// Add new override
-		$('head').append( style );
-	}
-
-	function removePMProColorOverrides() {
-		$('#memberlite-pmpro-color-override').remove();
-	}
-
 } )( jQuery );
