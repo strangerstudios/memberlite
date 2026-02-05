@@ -967,4 +967,4 @@ function memberlite_filter_theme_json( $theme_json ) {
 	// Update the theme.json object.
 	return $theme_json->update_with( $theme_json_data );
 }
-//add_filter( 'wp_theme_json_data_theme', 'memberlite_filter_theme_json' );
+add_filter( 'wp_theme_json_data_theme', 'memberlite_filter_theme_json' );
