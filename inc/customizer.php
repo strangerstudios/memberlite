@@ -734,21 +734,21 @@ class Memberlite_Customize {
 		$header_font      = memberlite_get_font( 'header_font', true );
 		$body_font        = memberlite_get_font( 'body_font', true );
 
-        // Get active colors based on selected scheme
-        $active_colors = memberlite_get_active_colors();
+		// Get active colors based on selected scheme
+		$active_colors = memberlite_get_active_colors();
 
-        // Get non-color settings
-        $header_textcolor = get_theme_mod( 'header_textcolor' );
-        if ( empty( $header_textcolor ) ) {
-            $header_textcolor = $memberlite_defaults['header_textcolor'];
-        }
+		// Get non-color settings
+		$header_textcolor = get_theme_mod( 'header_textcolor' );
+		if ( empty( $header_textcolor ) ) {
+			$header_textcolor = $memberlite_defaults['header_textcolor'];
+		}
 
-        $override_pmpro_colors = get_theme_mod( 'memberlite_pmpro_color_override' );
+		$override_pmpro_colors = get_theme_mod( 'memberlite_pmpro_color_override' );
 
-        $hover_brightness = $memberlite_defaults['hover_brightness'];
-        $color_white      = '#FFFFFF';
+		$hover_brightness = $memberlite_defaults['hover_brightness'];
+		$color_white      = '#FFFFFF';
 
-        ?>
+		?>
 		<!--Customizer CSS-->
 		<style id="memberlite-customizer-css" type="text/css">
 			:root {
@@ -758,33 +758,33 @@ class Memberlite_Customize {
 			<?php
 			if ( $header_textcolor != 'blank' ) { ?> --memberlite-color-header-text: <?php echo '#' . esc_attr( $header_textcolor ); ?>;
 			<?php } ?> --memberlite-color-site-background: <?php echo esc_attr( $active_colors['background_color'] ); ?>;
-                --memberlite-color-header-background: <?php echo esc_attr( $active_colors['bgcolor_header'] ); ?>;
-                --memberlite-color-site-navigation-background: <?php echo esc_attr( $active_colors['bgcolor_site_navigation'] ); ?>;
-                --memberlite-color-site-navigation: <?php echo esc_attr( $active_colors['color_site_navigation'] ); ?>;
-                --memberlite-color-text: <?php echo esc_attr( $active_colors['color_text'] ); ?>;
-                --memberlite-color-link: <?php echo esc_attr( $active_colors['color_link'] ); ?>;
-                --memberlite-color-meta-link: <?php echo esc_attr( $active_colors['color_meta_link'] ); ?>;
-                --memberlite-color-primary: <?php echo esc_attr( $active_colors['color_primary'] ); ?>;
-                --memberlite-color-secondary: <?php echo esc_attr( $active_colors['color_secondary'] ); ?>;
-                --memberlite-color-action: <?php echo esc_attr( $active_colors['color_action'] ); ?>;
-                --memberlite-color-button: <?php echo esc_attr( $active_colors['color_button'] ); ?>;
-                --memberlite-color-borders: <?php echo esc_attr( $active_colors['color_borders'] ); ?>;
-                --memberlite-color-page-masthead-background: <?php echo esc_attr( $active_colors['bgcolor_page_masthead'] ); ?>;
-                --memberlite-color-page-masthead: <?php echo esc_attr( $active_colors['color_page_masthead'] ); ?>;
-                --memberlite-color-footer-widgets-background: <?php echo esc_attr( $active_colors['bgcolor_footer_widgets'] ); ?>;
-                --memberlite-color-footer-widgets: <?php echo esc_attr( $active_colors['color_footer_widgets'] ); ?>;
-                --memberlite-hover-brightness: <?php echo esc_attr( $hover_brightness ); ?>;
-                --memberlite-color-white: <?php echo esc_attr( $color_white ); ?>;
+				--memberlite-color-header-background: <?php echo esc_attr( $active_colors['bgcolor_header'] ); ?>;
+				--memberlite-color-site-navigation-background: <?php echo esc_attr( $active_colors['bgcolor_site_navigation'] ); ?>;
+				--memberlite-color-site-navigation: <?php echo esc_attr( $active_colors['color_site_navigation'] ); ?>;
+				--memberlite-color-text: <?php echo esc_attr( $active_colors['color_text'] ); ?>;
+				--memberlite-color-link: <?php echo esc_attr( $active_colors['color_link'] ); ?>;
+				--memberlite-color-meta-link: <?php echo esc_attr( $active_colors['color_meta_link'] ); ?>;
+				--memberlite-color-primary: <?php echo esc_attr( $active_colors['color_primary'] ); ?>;
+				--memberlite-color-secondary: <?php echo esc_attr( $active_colors['color_secondary'] ); ?>;
+				--memberlite-color-action: <?php echo esc_attr( $active_colors['color_action'] ); ?>;
+				--memberlite-color-button: <?php echo esc_attr( $active_colors['color_button'] ); ?>;
+				--memberlite-color-borders: <?php echo esc_attr( $active_colors['color_borders'] ); ?>;
+				--memberlite-color-page-masthead-background: <?php echo esc_attr( $active_colors['bgcolor_page_masthead'] ); ?>;
+				--memberlite-color-page-masthead: <?php echo esc_attr( $active_colors['color_page_masthead'] ); ?>;
+				--memberlite-color-footer-widgets-background: <?php echo esc_attr( $active_colors['bgcolor_footer_widgets'] ); ?>;
+				--memberlite-color-footer-widgets: <?php echo esc_attr( $active_colors['color_footer_widgets'] ); ?>;
+				--memberlite-hover-brightness: <?php echo esc_attr( $hover_brightness ); ?>;
+				--memberlite-color-white: <?php echo esc_attr( $color_white ); ?>;
 
-            <?php if ( $override_pmpro_colors && is_pmpro_active() )  : ?>
-                /* PMPro color vars */
-                --pmpro--color--accent: <?php echo esc_attr( $active_colors['color_primary'] ); ?>;
-                --pmpro--color--accent--variation: <?php echo esc_attr( $active_colors['color_secondary'] ); ?>;
-                --pmpro--color--base: <?php echo esc_attr( $active_colors['background_color'] ); ?>;
-                --pmpro--color--contrast: <?php echo esc_attr( $active_colors['color_text'] ); ?>;
-            <?php endif; ?>
+			<?php if ( $override_pmpro_colors && is_pmpro_active() )  : ?>
+				/* PMPro color vars */
+				--pmpro--color--accent: <?php echo esc_attr( $active_colors['color_primary'] ); ?>;
+				--pmpro--color--accent--variation: <?php echo esc_attr( $active_colors['color_secondary'] ); ?>;
+				--pmpro--color--base: <?php echo esc_attr( $active_colors['background_color'] ); ?>;
+				--pmpro--color--contrast: <?php echo esc_attr( $active_colors['color_text'] ); ?>;
+			<?php endif; ?>
 
-            }
+			}
 		</style>
 		<!--/Customizer CSS-->
 		<?php
