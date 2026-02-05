@@ -48,7 +48,7 @@ $menus = wp_get_nav_menus();
 										<input type="checkbox" id="memberlite_export_menus_toggle" name="memberlite_export_menus" value="1" />
 										<?php esc_html_e( 'Include Navigation Menus', 'memberlite' ); ?>
 									</label>
-									<p class="description"><?php esc_html_e( 'Menu items are exported as custom links with their labels and full URLs for portability.', 'memberlite' ); ?></p>
+									<p class="description"><?php esc_html_e( 'Menu items are exported as custom links with their labels and relative URLs for portability across environments.', 'memberlite' ); ?></p>
 								</fieldset>
 								<?php
 									// Build the selectors for the checkbox list based on number of menus.
