@@ -46,6 +46,13 @@
 		styleEl.textContent = css;
 	}
 
+	wp.customize('memberlite_color_scheme', function(value) {
+		value.bind(function(newval) {
+			//refresh page
+			wp.customize.previewer.refresh();
+		});
+	});
+
 	// Site title and description.
 	wp.customize(
 		'blogname', function( setting ) {

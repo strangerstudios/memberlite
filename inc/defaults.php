@@ -527,8 +527,6 @@ function memberlite_get_active_colors(): array {
 		$colors[ $key ] = ! empty( $value ) ? $value : ( $memberlite_defaults[ $key ] ?? '' );
 	}
 
-	error_log(print_r($colors, true));
-
 	return $colors;
 }
 

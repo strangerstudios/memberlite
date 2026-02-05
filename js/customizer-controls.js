@@ -48,10 +48,6 @@
 					if (colorKey === 'header_textcolor' && wp.customize(controlId)() === 'blank') {
 						return true; // continue to next iteration
 					}
-					// WordPress stores these without the # prefix
-					// if (colorValue && colorValue.charAt(0) === '#') {
-					// 	colorValue = colorValue.substring(1);
-					// }
 					wp.customize(controlId).set(colorValue);
 				} else {
 					// Standard Memberlite color controls
@@ -62,6 +58,7 @@
 							$picker.wpColorPicker('color', colorValue);
 						}
 					}
+
 					// Also set the customize value directly
 					if (wp.customize(colorKey)) {
 						wp.customize(colorKey).set(colorValue);

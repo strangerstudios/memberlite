@@ -121,7 +121,7 @@ function memberlite_migrate_colors_to_theme_mods() {
 		// Otherwise, save the scheme's color value
 		if ( isset( $colors[ $key ] ) ) {
 			$trimmed_color = ltrim( $colors[ $key ], '#' );
-			set_theme_mod( $key, $colors[ $trimmed_color ] );
+			set_theme_mod( $key, $trimmed_color );
 		}
 	}
 

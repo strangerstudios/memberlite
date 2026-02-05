@@ -744,12 +744,8 @@ class Memberlite_Customize {
 		}
 
 		$override_pmpro_colors = get_theme_mod( 'memberlite_pmpro_color_override' );
-
-        error_log('HOVER BRIGHTNESS: ' . $memberlite_defaults['hover_brightness']);
-
         $hover_brightness = $memberlite_defaults['hover_brightness'];
         $color_white      = 'FFFFFF';
-
 		?>
 		<!--Customizer CSS-->
 		<style id="memberlite-customizer-css" type="text/css">
@@ -775,12 +771,12 @@ class Memberlite_Customize {
                 --memberlite-color-page-masthead: <?php echo '#' . esc_attr( $active_colors['color_page_masthead'] ); ?>;
                 --memberlite-color-footer-widgets-background: <?php echo '#' . esc_attr( $active_colors['bgcolor_footer_widgets'] ); ?>;
                 --memberlite-color-footer-widgets: <?php echo '#' . esc_attr( $active_colors['color_footer_widgets'] ); ?>;
-                --memberlite-hover-brightness: <?php echo '1.1' ?>;
+                --memberlite-hover-brightness: <?php echo esc_attr( $hover_brightness ) ?>;
                 --memberlite-color-white: <?php echo '#' . esc_attr( $color_white ); ?>;
 
                 /* WordPress theme.json color aliases (map to Customizer colors) */
-                --wp--preset--color--body-text: <?php echo esc_attr( $active_colors['color_text'] ); ?>;
-                --wp--preset--color--primary: <?php echo esc_attr( $active_colors['color_primary'] ); ?>;
+                --wp--preset--color--body-text: <?php echo '#' . esc_attr( $active_colors['color_text'] ); ?>;
+                --wp--preset--color--primary: <?php echo '#' . esc_attr( $active_colors['color_primary'] ); ?>;
                 --wp--preset--color--secondary: <?php echo '#' . esc_attr( $active_colors['color_secondary'] ); ?>;
                 --wp--preset--color--action: <?php echo '#' . esc_attr( $active_colors['color_action'] ); ?>;
                 --wp--preset--color--link: <?php echo '#' . esc_attr( $active_colors['color_link'] ); ?>;
@@ -816,6 +812,7 @@ class Memberlite_Customize {
 	 */
 	public static function live_preview() {
 		global $memberlite_defaults;
+
 		wp_register_script(
 			'Memberlite_Customizer',
 			MEMBERLITE_URL . '/js/customizer.js',
@@ -823,6 +820,7 @@ class Memberlite_Customize {
 			MEMBERLITE_VERSION,
 			true
 		);
+
 		// Localize the script with new data
 		wp_localize_script( 'Memberlite_Customizer', 'memberlite_defaults', $memberlite_defaults );
 		wp_enqueue_script( 'Memberlite_Customizer' );
@@ -1010,7 +1008,7 @@ class Memberlite_Customize {
 		wp_enqueue_script(
 			'Memberlite_Customizer-controls',
 			MEMBERLITE_URL . '/js/customizer-controls.js',
-			array( 'customize-controls', 'iris', 'underscore', 'wp-util' ),
+			array( 'customize-controls', 'iris', 'underscore', 'wp-util', 'wp-color-picker' ),
 			MEMBERLITE_VERSION,
 			true
 		);
