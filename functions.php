@@ -346,7 +346,7 @@ add_action( 'init', 'memberlite_load_textdomain' );
 
 /**
  * Load custom translations from our own server: translate.strangerstudios.com
- * 
+ *
  * @since 6.1
  */
 function memberlite_check_for_translations() {
@@ -967,4 +967,4 @@ function memberlite_filter_theme_json( $theme_json ) {
 	// Update the theme.json object.
 	return $theme_json->update_with( $theme_json_data );
 }
-add_filter( 'wp_theme_json_data_theme', 'memberlite_filter_theme_json' );
+//add_filter( 'wp_theme_json_data_theme', 'memberlite_filter_theme_json' );
