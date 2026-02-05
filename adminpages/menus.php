@@ -459,6 +459,11 @@ function memberlite_duplicate_menu( $menu_id, $new_name ) {
 		// Insert the new menu item.
 		$new_item_id = wp_insert_post( $args );
 
+		// Skip this item if insertion failed.
+		if ( is_wp_error( $new_item_id ) ) {
+			continue;
+		}
+
 		// Store the ID mapping.
 		$id_map[ $menu_item->db_id ] = $new_item_id;
 
