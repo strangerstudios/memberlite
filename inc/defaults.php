@@ -368,7 +368,7 @@ function memberlite_get_defaults(): array {
 		'delimiter'							=> '&nbsp;&#47;&nbsp;',
 		'memberlite_darkcss'                => false,
 		'hover_brightness'                  => '1.1',
-		'color_white'                       => '#FFFFFF',
+		'color_white'                       => 'FFFFFF',
 	);
 
 	// Merge with default color scheme

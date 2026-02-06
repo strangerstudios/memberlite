@@ -182,6 +182,7 @@ class Memberlite_Customize {
 			'colors',
 			array(
 				'type'              => 'select',
+                'transport'         => 'postMessage',
 				'description'       => 'Choose a color scheme preset. Individual colors below will update to match. Customize any color to switch to "Custom" mode.',
 				'sanitize_callback' => array( 'Memberlite_Customize', 'sanitize_color_scheme' ),
 				'choices'           => memberlite_get_color_scheme_choices(),
@@ -613,7 +614,7 @@ class Memberlite_Customize {
 			$setting_id,
 			array(
 				'default'              => $args['default'],
-				'sanitize_callback'    => 'sanitize_hex_color',
+				'sanitize_callback'    => 'sanitize_hex_color_no_hash',
 				'sanitize_js_callback' => 'maybe_hash_hex_color',
 				'transport'            => 'postMessage',
 			)
@@ -736,16 +737,7 @@ class Memberlite_Customize {
 
 		// Get active colors based on selected scheme
 		$active_colors = memberlite_get_active_colors();
-
-		// Get non-color settings
-		$header_textcolor = get_theme_mod( 'header_textcolor' );
-		if ( empty( $header_textcolor ) ) {
-			$header_textcolor = $memberlite_defaults['header_textcolor'];
-		}
-
 		$override_pmpro_colors = get_theme_mod( 'memberlite_pmpro_color_override' );
-        $hover_brightness = $memberlite_defaults['hover_brightness'];
-        $color_white      = 'FFFFFF';
 		?>
 		<!--Customizer CSS-->
 		<style id="memberlite-customizer-css" type="text/css">
@@ -753,9 +745,8 @@ class Memberlite_Customize {
 				--memberlite-content-width: <?php echo esc_html( $content_width ); ?>;
 				--memberlite-body-font: <?php echo esc_html( $body_font ); ?>, sans-serif;
 				--memberlite-header-font: <?php echo esc_html( $header_font ); ?>, sans-serif;
-			<?php
-			if ( $header_textcolor != 'blank' ) { ?> --memberlite-color-header-text: <?php echo '#' . esc_attr( $header_textcolor ); ?>;
-			<?php } ?> --memberlite-color-site-background: <?php echo '#' . esc_attr( $active_colors['background_color'] ); ?>;
+			    <?php echo ( $active_colors['header_textcolor'] != 'blank' ) ? '--memberlite-color-header-text: #' . esc_attr( $active_colors['header_textcolor'] ) . ';' : ''; ?>
+			    --memberlite-color-site-background: <?php echo '#' . esc_attr( $active_colors['background_color'] ); ?>;
                 --memberlite-color-header-background: <?php echo '#' . esc_attr( $active_colors['bgcolor_header'] ); ?>;
                 --memberlite-color-site-navigation-background: <?php echo '#' . esc_attr( $active_colors['bgcolor_site_navigation'] ); ?>;
                 --memberlite-color-site-navigation: <?php echo '#' . esc_attr( $active_colors['color_site_navigation'] ); ?>;
@@ -771,8 +762,8 @@ class Memberlite_Customize {
                 --memberlite-color-page-masthead: <?php echo '#' . esc_attr( $active_colors['color_page_masthead'] ); ?>;
                 --memberlite-color-footer-widgets-background: <?php echo '#' . esc_attr( $active_colors['bgcolor_footer_widgets'] ); ?>;
                 --memberlite-color-footer-widgets: <?php echo '#' . esc_attr( $active_colors['color_footer_widgets'] ); ?>;
-                --memberlite-hover-brightness: <?php echo esc_attr( $hover_brightness ) ?>;
-                --memberlite-color-white: <?php echo '#' . esc_attr( $color_white ); ?>;
+                --memberlite-hover-brightness: <?php echo esc_attr( $memberlite_defaults['hover_brightness'] ) ?>;
+                --memberlite-color-white: #FFFFFF;
 
                 /* WordPress theme.json color aliases (map to Customizer colors) */
                 --wp--preset--color--body-text: <?php echo '#' . esc_attr( $active_colors['color_text'] ); ?>;
@@ -1092,7 +1083,7 @@ function memberlite_save_scheme_colors( WP_Customize_Manager $wp_customize ) {
 	// Save all colors to theme_mods
 	foreach ( $scheme_colors as $key => $value ) {
 		// Skip header_textcolor if currently 'blank' (user chose to hide site title/tagline)
-		if ( 'header_textcolor' === $key && 'blank' === get_theme_mod( 'header_textcolor' ) ) {
+        if ( $key === 'header_textcolor' && get_theme_mod( 'header_textcolor' ) === 'blank' ) {
 			continue;
 		}
 
