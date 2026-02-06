@@ -115,8 +115,10 @@ function memberlite_migrate_colors_to_theme_mods() {
 			// Remove hash if present in custom value
 			$existing_trimmed_color = ltrim( $existing_value, '#' );
 			set_theme_mod( $key, $existing_trimmed_color );
-		} elseif ( isset( $colors[ $key ] ) ) {
-			// Otherwise, save the scheme's color value
+		}
+
+		// Otherwise, save the scheme's color value
+		if ( isset( $colors[ $key ] ) ) {
 			$trimmed_color = ltrim( $colors[ $key ], '#' );
 			set_theme_mod( $key, $trimmed_color );
 		}
