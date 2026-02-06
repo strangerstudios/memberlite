@@ -199,7 +199,7 @@ class Memberlite_Customize {
 		) );
 
 		// COLORS: PMPro Override ================
-		if ( is_pmpro_active() ) {
+		if ( defined( 'PMPRO_VERSION' ) ) {
 			self::add_memberlite_setting_control( $wp_customize, 'memberlite_pmpro_color_override', 'Override PMPro Colors', 'colors', array(
 				'type'              => 'checkbox',
 				'sanitize_callback' => array( 'Memberlite_Customize', 'sanitize_checkbox' ),
@@ -256,7 +256,7 @@ class Memberlite_Customize {
 		self::add_memberlite_color_control( $wp_customize, 'memberlite_color_secondary', 'Secondary Color', 'color_secondary' );
 
 		self::add_memberlite_color_control( $wp_customize, 'memberlite_color_action', 'Action Color', 'color_action', array(
-			'description' => 'Used for CTA buttons and links.',
+			'description' => 'Used as an accent color for CTAs and decorations.',
 		) );
 
 		self::add_memberlite_color_control( $wp_customize, 'memberlite_color_button', 'Default Button Color', 'color_button' );
@@ -766,7 +766,7 @@ class Memberlite_Customize {
                 --memberlite-color-white: #FFFFFF;
 
 			<?php
-			if ( $override_pmpro_colors && is_pmpro_active() )  : ?>
+			if ( $override_pmpro_colors && defined( 'PMPRO_VERSION' ) )  : ?>
                 /* PMPro color vars */
                 --pmpro--color--accent: <?php echo '#' . esc_attr( $active_colors['color_primary'] ); ?>;
                 --pmpro--color--accent--variation: <?php echo '#' . esc_attr( $active_colors['color_primary'] ); ?>;
