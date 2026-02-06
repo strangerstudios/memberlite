@@ -746,12 +746,12 @@ class Memberlite_Customize {
 <!--Customizer CSS-->
 <style id="memberlite-customizer-css" type="text/css">
 	:root {
-		--memberlite-content-width: <?php echo '#' . esc_html( $content_width ); ?>;
-		--memberlite-body-font: <?php echo '#' . esc_html( $body_font ); ?>, sans-serif;
-		--memberlite-header-font: <?php echo '#' . esc_html( $header_font ); ?>, sans-serif;
-		<?php echo ( $header_textcolor != 'blank' ) ? '--memberlite-color-header-text: #' . esc_attr( $header_textcolor ) . ';' : ''; ?>
+		--memberlite-content-width: <?php echo esc_html( $content_width ); ?>;
+		--memberlite-body-font: <?php echo esc_html( $body_font ); ?>, sans-serif;
+		--memberlite-header-font: <?php echo esc_html( $header_font ); ?>, sans-serif;
+		<?php echo ( $active_colors['header_textcolor'] != 'blank' ) ? '--memberlite-color-header-text: #' . esc_attr( $active_colors['header_textcolor'] ) . ';' : ''; ?>
 
-		--memberlite-color-site-background: <?php echo '#' . esc_attr( $background_color ); ?>;
+		--memberlite-color-site-background: <?php echo '#' . esc_attr( $active_colors['background_color'] ); ?>;
 		--memberlite-color-header-background: <?php echo '#' . esc_attr( $active_colors['bgcolor_header'] ); ?>;
 		--memberlite-color-site-navigation-background: <?php echo '#' . esc_attr( $active_colors['bgcolor_site_navigation'] ); ?>;
 		--memberlite-color-site-navigation: <?php echo '#' . esc_attr( $active_colors['color_site_navigation'] ); ?>;
@@ -771,7 +771,7 @@ class Memberlite_Customize {
 		--memberlite-color-white: #FFFFFF;
 		<?php if ( $override_pmpro_colors && defined( 'PMPRO_VERSION' ) ) { ?>--pmpro--color--accent: <?php echo '#' . esc_attr( $active_colors['color_primary'] ); ?>;
 		--pmpro--color--accent--variation: <?php echo '#' . esc_attr( $active_colors['color_secondary'] ); ?>;
-		--pmpro--color--base: <?php echo '#' . esc_attr( $background_color ); ?>;
+		--pmpro--color--base: <?php echo '#' . esc_attr( $active_colors['background_color'] ); ?>;
 		--pmpro--color--contrast: <?php echo '#' . esc_attr( $active_colors['color_text'] ); ?>;
 	<?php } ?>}
 </style>

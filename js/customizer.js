@@ -41,6 +41,12 @@
 		if ( regex.test( css ) ) {
 			// Replace existing variable
 			css = css.replace( regex, varName + ': ' + value + ';' );
+		} else {
+			// Variable doesn't exist yet (e.g., header_textcolor was 'blank'), add it to :root
+			var rootClose = css.lastIndexOf( '}' );
+			if ( rootClose !== -1 ) {
+				css = css.substring( 0, rootClose ) + '\t\t' + varName + ': ' + value + ';\n\t' + css.substring( rootClose );
+			}
 		}
 
 		styleEl.textContent = css;
@@ -72,10 +78,10 @@
 			setting.bind(
 				function( value ) {
 					if ( 'blank' === value ) {
-						$( '.site-title' ).css( { 'text-indent': '-9999em' } );
+						$( '.site-title' ).css( { 'clip': 'rect(1px, 1px, 1px, 1px)', 'position': 'absolute' } );
 						$( '.site-description' ).css( { 'clip': 'rect(1px, 1px, 1px, 1px)', 'position': 'absolute' } );
 					} else {
-						$( '.site-title' ).css( { 'text-indent': '0' } );
+						$( '.site-title' ).css( { 'clip': 'auto', 'position': 'static' } );
 						$( '.site-description' ).css( { 'clip': 'auto', 'position': 'static' } );
 						// WordPress stores header_textcolor without the # prefix
 						var colorValue = value.charAt(0) === '#' ? value : '#' + value;
