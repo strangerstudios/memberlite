@@ -174,7 +174,7 @@ class Memberlite_Customize {
 	 * @return void
 	 */
 	public static function set_customizer_color_settings( WP_Customize_Manager $wp_customize ) {
-		// COLORS: Color Scheme ================
+		// COLORS: Color Scheme  =================
 		self::add_memberlite_setting_control(
 			$wp_customize,
 			'memberlite_color_scheme',
@@ -190,7 +190,7 @@ class Memberlite_Customize {
 			)
 		);
 
-		// COLORS: Dark Mode ================
+		// COLORS: Dark Mode =====================
 		self::add_memberlite_setting_control( $wp_customize, 'memberlite_darkcss', 'Use Dark Mode Colors', 'colors', array(
 			'type'              => 'checkbox',
 			'sanitize_callback' => array( 'Memberlite_Customize', 'sanitize_checkbox' ),
@@ -208,7 +208,7 @@ class Memberlite_Customize {
 			) );
 		}
 
-		// COLORS: Header Colors ================
+		// COLORS: Header Colors =================
 		self::add_memberlite_heading( $wp_customize, 'memberlite_header_colors', 'Header Colors', 'colors' );
 
 		self::add_memberlite_color_control( $wp_customize, 'memberlite_bgcolor_header', 'Header Background Color', 'bgcolor_header' );
@@ -217,21 +217,21 @@ class Memberlite_Customize {
 
 		self::add_memberlite_color_control( $wp_customize, 'memberlite_color_site_navigation', 'Primary Navigation Link Color', 'color_site_navigation' );
 
-		// COLORS: Footer Colors ================
+		// COLORS: Footer Colors =================
 		self::add_memberlite_heading( $wp_customize, 'memberlite_footer_colors', 'Footer Colors', 'colors' );
 
 		self::add_memberlite_color_control( $wp_customize, 'memberlite_bgcolor_footer_widgets', 'Footer Widgets Background Color', 'bgcolor_footer_widgets' );
 
 		self::add_memberlite_color_control( $wp_customize, 'memberlite_color_footer_widgets', 'Footer Widgets Text Color', 'color_footer_widgets' );
 
-		// COLORS: Masthead Colors ================
+		// COLORS: Masthead Colors ===============
 		self::add_memberlite_heading( $wp_customize, 'memberlite_masthead_colors', 'Masthead Colors', 'colors' );
 
 		self::add_memberlite_color_control( $wp_customize, 'memberlite_bgcolor_page_masthead', 'Page Masthead Background Color', 'bgcolor_page_masthead' );
 
 		self::add_memberlite_color_control( $wp_customize, 'memberlite_color_page_masthead', 'Page Masthead Text Color', 'color_page_masthead' );
 
-		// COLORS: Site Colors ================
+		// COLORS: Site Colors ===================
 		self::add_memberlite_heading( $wp_customize, 'memberlite_body_colors', 'Site Colors', 'colors' );
 
 		// Move core controls down in the Colors section
