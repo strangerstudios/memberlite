@@ -741,40 +741,40 @@ class Memberlite_Customize {
 		?>
 		<!--Customizer CSS-->
 		<style id="memberlite-customizer-css" type="text/css">
-			:root {
-				--memberlite-content-width: <?php echo esc_html( $content_width ); ?>;
-				--memberlite-body-font: <?php echo esc_html( $body_font ); ?>, sans-serif;
-				--memberlite-header-font: <?php echo esc_html( $header_font ); ?>, sans-serif;
-				<?php echo ( $active_colors['header_textcolor'] != 'blank' ) ? '--memberlite-color-header-text: #' . esc_attr( $active_colors['header_textcolor'] ) . ';' : ''; ?>
-				--memberlite-color-site-background: <?php echo '#' . esc_attr( $active_colors['background_color'] ); ?>;
-				--memberlite-color-header-background: <?php echo '#' . esc_attr( $active_colors['bgcolor_header'] ); ?>;
-				--memberlite-color-site-navigation-background: <?php echo '#' . esc_attr( $active_colors['bgcolor_site_navigation'] ); ?>;
-				--memberlite-color-site-navigation: <?php echo '#' . esc_attr( $active_colors['color_site_navigation'] ); ?>;
-				--memberlite-color-text: <?php echo '#' . esc_attr( $active_colors['color_text'] ); ?>;
-				--memberlite-color-link: <?php echo '#' . esc_attr( $active_colors['color_link'] ); ?>;
-				--memberlite-color-meta-link: <?php echo '#' . esc_attr( $active_colors['color_meta_link'] ); ?>;
-				--memberlite-color-primary: <?php echo '#' . esc_attr( $active_colors['color_primary'] ); ?>;
-				--memberlite-color-secondary: <?php echo '#' . esc_attr( $active_colors['color_secondary'] ); ?>;
-				--memberlite-color-action: <?php echo '#' . esc_attr( $active_colors['color_action'] ); ?>;
-				--memberlite-color-button: <?php echo '#' . esc_attr( $active_colors['color_button'] ); ?>;
-				--memberlite-color-borders: <?php echo '#' . esc_attr( $active_colors['color_borders'] ); ?>;
-				--memberlite-color-page-masthead-background: <?php echo '#' . esc_attr( $active_colors['bgcolor_page_masthead'] ); ?>;
-				--memberlite-color-page-masthead: <?php echo '#' . esc_attr( $active_colors['color_page_masthead'] ); ?>;
-				--memberlite-color-footer-widgets-background: <?php echo '#' . esc_attr( $active_colors['bgcolor_footer_widgets'] ); ?>;
-				--memberlite-color-footer-widgets: <?php echo '#' . esc_attr( $active_colors['color_footer_widgets'] ); ?>;
-				--memberlite-hover-brightness: <?php echo esc_attr( $memberlite_defaults['hover_brightness'] ) ?>;
-				--memberlite-color-white: #FFFFFF;
+            :root {
+                --memberlite-content-width: <?php echo esc_html( $content_width ); ?>;
+                --memberlite-body-font: <?php echo esc_html( $body_font ); ?>, sans-serif;
+                --memberlite-header-font: <?php echo esc_html( $header_font ); ?>, sans-serif;
+			<?php echo ( $active_colors['header_textcolor'] != 'blank' ) ? '--memberlite-color-header-text: #' . esc_attr( $active_colors['header_textcolor'] ) . ';' : ''; ?>
+                --memberlite-color-site-background: <?php echo '#' . esc_attr( $active_colors['background_color'] ); ?>;
+                --memberlite-color-header-background: <?php echo '#' . esc_attr( $active_colors['bgcolor_header'] ); ?>;
+                --memberlite-color-site-navigation-background: <?php echo '#' . esc_attr( $active_colors['bgcolor_site_navigation'] ); ?>;
+                --memberlite-color-site-navigation: <?php echo '#' . esc_attr( $active_colors['color_site_navigation'] ); ?>;
+                --memberlite-color-text: <?php echo '#' . esc_attr( $active_colors['color_text'] ); ?>;
+                --memberlite-color-link: <?php echo '#' . esc_attr( $active_colors['color_link'] ); ?>;
+                --memberlite-color-meta-link: <?php echo '#' . esc_attr( $active_colors['color_meta_link'] ); ?>;
+                --memberlite-color-primary: <?php echo '#' . esc_attr( $active_colors['color_primary'] ); ?>;
+                --memberlite-color-secondary: <?php echo '#' . esc_attr( $active_colors['color_secondary'] ); ?>;
+                --memberlite-color-action: <?php echo '#' . esc_attr( $active_colors['color_action'] ); ?>;
+                --memberlite-color-button: <?php echo '#' . esc_attr( $active_colors['color_button'] ); ?>;
+                --memberlite-color-borders: <?php echo '#' . esc_attr( $active_colors['color_borders'] ); ?>;
+                --memberlite-color-page-masthead-background: <?php echo '#' . esc_attr( $active_colors['bgcolor_page_masthead'] ); ?>;
+                --memberlite-color-page-masthead: <?php echo '#' . esc_attr( $active_colors['color_page_masthead'] ); ?>;
+                --memberlite-color-footer-widgets-background: <?php echo '#' . esc_attr( $active_colors['bgcolor_footer_widgets'] ); ?>;
+                --memberlite-color-footer-widgets: <?php echo '#' . esc_attr( $active_colors['color_footer_widgets'] ); ?>;
+                --memberlite-hover-brightness: <?php echo esc_attr( $memberlite_defaults['hover_brightness'] ) ?>;
+                --memberlite-color-white: #FFFFFF;
 
 			<?php
 			if ( $override_pmpro_colors && is_pmpro_active() )  : ?>
-				/* PMPro color vars */
-				--pmpro--color--accent: <?php echo '#' . esc_attr( $active_colors['color_primary'] ); ?>;
-				--pmpro--color--accent--variation: <?php echo '#' . esc_attr( $active_colors['color_primary'] ); ?>;
-				--pmpro--color--base: <?php echo '#' . esc_attr( $active_colors['background_color'] ); ?>;
-				--pmpro--color--contrast: <?php echo '#' . esc_attr( $active_colors['color_text'] ); ?>;
+                /* PMPro color vars */
+                --pmpro--color--accent: <?php echo '#' . esc_attr( $active_colors['color_primary'] ); ?>;
+                --pmpro--color--accent--variation: <?php echo '#' . esc_attr( $active_colors['color_primary'] ); ?>;
+                --pmpro--color--base: <?php echo '#' . esc_attr( $active_colors['background_color'] ); ?>;
+                --pmpro--color--contrast: <?php echo '#' . esc_attr( $active_colors['color_text'] ); ?>;
 			<?php endif; ?>
 
-			}
+            }
 		</style>
 		<!--/Customizer CSS-->
 		<?php
