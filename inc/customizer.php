@@ -174,7 +174,7 @@ class Memberlite_Customize {
 	 * @return void
 	 */
 	public static function set_customizer_color_settings( WP_Customize_Manager $wp_customize ) {
-		// COLORS: Color Scheme  =================
+		// COLORS: Color Scheme ==================
 		self::add_memberlite_setting_control(
 			$wp_customize,
 			'memberlite_color_scheme',
