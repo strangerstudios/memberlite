@@ -95,7 +95,8 @@
 
 		wp.customize( settingKey, function( setting ) {
 			setting.bind( function( value ) {
-				updateCssVariable( cssVar, value );
+				var colorValue = value.charAt(0) === '#' ? value : '#' + value;
+				updateCssVariable( cssVar, colorValue );
 			});
 		});
 	});

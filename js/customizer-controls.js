@@ -41,6 +41,9 @@
 		$.each(colorControlMapping, function (colorKey, controlId) {
 			if (colors[colorKey]) {
 				let colorValue = colors[colorKey];
+				if (colorValue.charAt(0) !== '#') {
+					colorValue = '#' + colorValue;
+				}
 
 				// Handle header_textcolor and background_color differently (WordPress core)
 				if (colorKey === 'header_textcolor' || colorKey === 'background_color') {
