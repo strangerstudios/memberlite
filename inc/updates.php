@@ -112,12 +112,15 @@ function memberlite_migrate_colors_to_theme_mods() {
 
 		// If user already has a custom value for this color, preserve it
 		if ( ! empty( $existing_value ) ) {
-			continue;
+			// Remove hash if present in custom value
+			$existing_trimmed_color = ltrim( $existing_value, '#' );
+			set_theme_mod( $key, $existing_trimmed_color );
 		}
 
 		// Otherwise, save the scheme's color value
 		if ( isset( $colors[ $key ] ) ) {
-			set_theme_mod( $key, $colors[ $key ] );
+			$trimmed_color = ltrim( $colors[ $key ], '#' );
+			set_theme_mod( $key, $trimmed_color );
 		}
 	}
 
@@ -214,7 +217,7 @@ function memberlite_update_themes_filter( $value ) {
 
 	// Find the memberlite theme data in the update info array.
 	$find_theme = array_search( 'memberlite', array_column( $update_info, 'Slug' ) );
-	
+
 	// If the theme update data is found, adjust $update_info to be specifically for memberlite.
 	if ( $find_theme !== false ) {
 		$update_info = $update_info[$find_theme];
@@ -224,7 +227,7 @@ function memberlite_update_themes_filter( $value ) {
 
 	//get data for memberlite. This will always return data.
 	$theme_data = wp_get_theme( $update_info['Slug'] );
-	
+
 	//compare versions
 	if ( ! empty( $update_info['License'] ) && version_compare( $theme_data['Version'], $update_info['Version'], '<' ) ){
 		$value->response[$update_info['Slug']] = array(
