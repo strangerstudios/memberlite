@@ -2,7 +2,7 @@
 function memberlite_banner_shortcode($atts, $content = null) {
 	// $atts    ::= array of attributes
 	// $content ::= text within enclosing form of shortcode element
-	// examples: [memberlite_banner align="center" background="primary" color="#FFFFFF" title="Banner Title"]
+	// examples: [memberlite_banner align="center" background="primary" color="#ffffff" title="Banner Title"]
 	extract(shortcode_atts(array(
 		'align' => '',
 		'background' => 'primary',

@@ -65,7 +65,7 @@
 
 #bbpress-forums div.odd,
 #bbpress-forums ul.odd {
-	background-color: #FAFAFA;
+	background-color: #fafafa;
 }
 
 body.reply-edit .reply {
@@ -86,7 +86,7 @@ body.reply-edit .reply {
 }
 
 #bbpress-forums div.bbp-reply-header {
-	border-bottom: 1px solid #CCC;
+	border-bottom: 1px solid #ccc;
 }
 
 #bbpress-forums .status-trash.even,
@@ -147,12 +147,12 @@ body.reply-edit .reply {
 
 #bbpress-forums li.bbp-header,
 #bbpress-forums li.bbp-footer {
-	background: #EFEFEF;
-	border-top: 1px solid #CCC;
+	background: #efefef;
+	border-top: 1px solid #ccc;
 }
 
 #bbpress-forums li.bbp-footer {
-	border-bottom: 1px solid #CCC;
+	border-bottom: 1px solid #ccc;
 }
 
 #bbpress-forums li.bbp-header ul {
@@ -162,7 +162,7 @@ body.reply-edit .reply {
 #bbpress-forums .bbp-forums-list {
 	margin: 0 0 0 5px;
 	padding-left: 15px;
-	border-left: 1px solid #CCC;
+	border-left: 1px solid #ccc;
 }
 
 #bbpress-forums .bbp-forums-list .bbp-forum {
@@ -204,7 +204,7 @@ li.bbp-topic-freshness {
 
 #bbpress-forums li.bbp-body ul.forum,
 #bbpress-forums li.bbp-body ul.topic {
-	border-top: 1px solid #CCC;
+	border-top: 1px solid #ccc;
 	overflow: hidden;
 	padding: 1rem;
 }
@@ -312,7 +312,7 @@ li.bbp-body div.hentry {
 div.bbp-forum-header,
 div.bbp-topic-header,
 div.bbp-reply-header {
-	border-top: 1px solid #DDD;
+	border-top: 1px solid #ddd;
 	clear: both;
 }
 
@@ -741,7 +741,7 @@ td.bbp-topic-counts {
 }
 #bbpress-forums #bbp-your-profile fieldset.bbp-form {
 	border: none;
-	border-bottom: 1px dotted #CCC;
+	border-bottom: 1px dotted #ccc;
 	padding: 1.45rem;
 	margin: 0 0 4rem 0;
 }
@@ -914,7 +914,7 @@ p.form-allowed-tags {
 }
 
 .bbp-reply-form {
-	border-top: 1px solid #CCC;
+	border-top: 1px solid #ccc;
 	margin: 2.9rem 0 0 0;
 	padding: 2.9rem 0 0 0;
 }
@@ -1258,7 +1258,7 @@ div.bbp-template-notice li {
 #bbpress-forums .widget_display_replies img.avatar {
 	float: none;
 	vertical-align: middle;
-	border: 1px solid #CCC;
+	border: 1px solid #ccc;
 	max-height: 20px;
 	max-width: 20px;
 }
@@ -1294,9 +1294,9 @@ fieldset div.avatar {
 }
 
 #bbpress-forums #bbp-user-wrapper h2.entry-title {
-	background: #EFEFEF;
-	border-top: 1px solid #CCC;
-	border-bottom: 1px solid #CCC;
+	background: #efefef;
+	border-top: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
 	font-size: 2rem;
 	margin-bottom: 0;
 	padding: 1.45rem;
@@ -1324,15 +1324,15 @@ fieldset div.avatar {
 }
 
 #bbpress-forums #bbp-single-user-details #bbp-user-navigation li {
-	border-bottom: 1px dotted #CCC;
-	color: #AAA;
+	border-bottom: 1px dotted #ccc;
+	color: #aaa;
 	margin: 0;
 	padding: 1.45rem;
 }
 
 #bbpress-forums #bbp-single-user-details #bbp-user-navigation a:link,
 #bbpress-forums #bbp-single-user-details #bbp-user-navigation a:visited {
-	border-bottom: 1px dotted #FFF;
+	border-bottom: 1px dotted #fff;
 	color: #777;
 	text-decoration: none;
 }
@@ -1348,9 +1348,9 @@ fieldset div.avatar {
 }
 
 #bbpress-forums #bbp-user-body li.bbp-footer {
-	background: #EFEFEF;
-	border-bottom: 1px solid #CCC;
-	border-top: 1px solid #CCC;
+	background: #efefef;
+	border-bottom: 1px solid #ccc;
+	border-top: 1px solid #ccc;
 }
 body.my-account #bbpress-forums {
 	border-top: none;

@@ -8,7 +8,7 @@ caption, th, td{
 }
 blockquote{
 	padding: 2.9rem 2.9rem 1px 2.9rem ;
-	border-right: 5px solid #CCC;
+	border-right: 5px solid #ccc;
 	border-left: none;
 }
 blockquote.quote, .testimonials-widget blockquote{
@@ -55,7 +55,7 @@ textarea{
 	float: right;
 }
 .main-navigation a{
-	border-right: 1px dotted #CCC;
+	border-right: 1px dotted #ccc;
 	border-left: none;
 }
 .main-navigation li:first-child a{
@@ -68,7 +68,7 @@ textarea{
 	padding-right: 0;
 }
 .meta-navigation ul li, .header-right .widget_nav_menu ul li, .footer-navigation ul li{
-	border-left: 1px solid #CCC;
+	border-left: 1px solid #ccc;
 	border-right: none;
 }
 .meta-navigation li:last-child, .header-right .widget_nav_menu li:last-child, .footer-navigation li:last-child{
@@ -162,7 +162,7 @@ textarea{
 	text-align: left;
 }
 .site-header .widget_search{
-	border-right: 1px solid #CCC;
+	border-right: 1px solid #ccc;
 	border-left: none;
 	margin: 0 1.45rem 0 0 ;
 	padding: 0 1.45rem 0 0 ;
@@ -191,14 +191,14 @@ textarea{
 	margin: 0 0 1.45rem 0 ;
 }
 #meta-member .user{
-	border-left: 1px solid #DDD;
+	border-left: 1px solid #ddd;
 	border-right: none;
 }
 #meta-member .member-navigation, #meta-member .member-navigation ul {
 	float: left;
 }
 #meta-member .member-navigation li{
-	border-left: 1px solid #DDD;
+	border-left: 1px solid #ddd;
 	border-right: none;
 }
 #meta-member .member-navigation .sub-menu{
@@ -276,7 +276,7 @@ textarea{
 	margin-left: auto;
 }
 .comment-meta .comment-metadata .edit-link{
-	border-right: 1px solid #CCC;
+	border-right: 1px solid #ccc;
 	border-left: none;
 	margin: 0 .7rem 0 0 ;
 	padding: 0 .7rem 0 0 ;
@@ -329,8 +329,8 @@ textarea{
 	margin: 0 0 1rem 0 ;
 }
 #pmpro_levels.pmpro_levels-table.pmpro_level-highlight, #pmpro_levels.pmpro_levels-div .pmpro_level-highlight, #pmpro_levels.pmpro_levels-2col .pmpro_level-highlight, #pmpro_levels.pmpro_levels-3col .pmpro_level-highlight, #pmpro_levels.pmpro_levels-4col .pmpro_level-highlight {
-	border-right: 1px solid #CCC;
-	border-left: 1px solid #CCC;
+	border-right: 1px solid #ccc;
+	border-left: 1px solid #ccc;
 }
 #pmpro_levels.pmpro_levels-table .pmpro_level-highlight td:first-child{
 	border-right: 15px solid var(--memberlite-color-secondary);
@@ -348,8 +348,8 @@ textarea{
 	border-left: 1rem solid var(--memberlite-color-secondary);
 }
 #pmpro_levels.pmpro_advanced_levels-compare_table_responsive .pmpro_level-highlight{
-	border-right: 1px solid #CCC;
-	border-left: 1px solid #CCC;
+	border-right: 1px solid #ccc;
+	border-left: 1px solid #ccc;
 }
 #pmpro_levels.pmpro_advanced_levels-compare_table tbody td:hover::after, #pmpro_levels.pmpro_advanced_levels-compare_table tbody tr:nth-child(even) td:hover::after{
 	right: 0;

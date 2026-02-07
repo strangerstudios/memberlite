@@ -67,22 +67,22 @@ function memberlite_get_color_setting_keys(): array {
 function memberlite_get_default_colors(): array {
 	return array(
 		'header_textcolor'        => '011935',
-		'background_color'        => 'FFFFFF',
-		'bgcolor_header'          => 'FFFFFF',
-		'bgcolor_site_navigation' => 'F9FAFB',
+		'background_color'        => 'ffffff',
+		'bgcolor_header'          => 'ffffff',
+		'bgcolor_site_navigation' => 'f9fafb',
 		'color_site_navigation'   => '222222',
 		'color_text'              => '222222',
 		'color_link'              => '011935',
 		'color_meta_link'         => '011935',
 		'color_primary'           => '011935',
-		'color_secondary'         => '3C4B5A',
-		'color_action'            => '00A59D',
+		'color_secondary'         => '3c4b5a',
+		'color_action'            => '00a59d',
 		'color_button'            => '011935',
 		'bgcolor_page_masthead'   => '011935',
-		'color_page_masthead'     => 'FFFFFF',
+		'color_page_masthead'     => 'ffffff',
 		'bgcolor_footer_widgets'  => '011935',
-		'color_footer_widgets'    => 'FFFFFF',
-		'color_borders'           => 'E0E0E0',
+		'color_footer_widgets'    => 'ffffff',
+		'color_borders'           => 'e0e0e0',
 	);
 }
 
@@ -96,23 +96,23 @@ function memberlite_get_default_colors(): array {
  */
 function memberlite_get_evergreen_colors(): array {
 	return array(
-		'header_textcolor'        => '174B49',
-		'background_color'        => 'FFFFFF',
-		'bgcolor_header'          => 'FFFFFF',
-		'bgcolor_site_navigation' => 'F9FAFB',
-		'color_site_navigation'   => '0F0F0F',
-		'color_text'              => '0F0F0F',
-		'color_link'              => '174B49',
-		'color_meta_link'         => '174B49',
-		'color_primary'           => '174B49',
-		'color_secondary'         => '2E7061',
-		'color_action'            => 'F83773',
-		'color_button'            => '174B49',
-		'bgcolor_page_masthead'   => '174B49',
-		'color_page_masthead'     => 'FFFFFF',
-		'bgcolor_footer_widgets'  => '174B49',
-		'color_footer_widgets'    => 'FFFFFF',
-		'color_borders'           => 'E0E0E0',
+		'header_textcolor'        => '174b49',
+		'background_color'        => 'ffffff',
+		'bgcolor_header'          => 'ffffff',
+		'bgcolor_site_navigation' => 'f9fafb',
+		'color_site_navigation'   => '0f0f0f',
+		'color_text'              => '0f0f0f',
+		'color_link'              => '174b49',
+		'color_meta_link'         => '174b49',
+		'color_primary'           => '174b49',
+		'color_secondary'         => '2e7061',
+		'color_action'            => 'f83773',
+		'color_button'            => '174b49',
+		'bgcolor_page_masthead'   => '174b49',
+		'color_page_masthead'     => 'ffffff',
+		'bgcolor_footer_widgets'  => '174b49',
+		'color_footer_widgets'    => 'ffffff',
+		'color_borders'           => 'e0e0e0',
 	);
 }
 
@@ -126,23 +126,23 @@ function memberlite_get_evergreen_colors(): array {
  */
 function memberlite_get_seaside_linen_colors(): array {
 	return array(
-		'header_textcolor'        => '1F3A4A',
-		'background_color'        => 'ECEBE3',
-		'bgcolor_header'          => 'ECEBE3',
-		'bgcolor_site_navigation' => 'ECEBE3',
-		'color_site_navigation'   => '25292B',
-		'color_text'              => '25292B',
-		'color_link'              => '1F3A4A',
-		'color_meta_link'         => '1F3A4A',
-		'color_primary'           => '1F3A4A',
-		'color_secondary'         => '4E6A78',
-		'color_action'            => 'EBF9A8',
-		'color_button'            => '1F3A4A',
-		'bgcolor_page_masthead'   => '1F3A4A',
-		'color_page_masthead'     => 'FFFFFF',
-		'bgcolor_footer_widgets'  => 'ECEBE3',
-		'color_footer_widgets'    => '25292B',
-		'color_borders'           => 'E0E0E0',
+		'header_textcolor'        => '1f3a4a',
+		'background_color'        => 'ecebe3',
+		'bgcolor_header'          => 'ecebe3',
+		'bgcolor_site_navigation' => 'ecebe3',
+		'color_site_navigation'   => '25292b',
+		'color_text'              => '25292b',
+		'color_link'              => '1f3a4a',
+		'color_meta_link'         => '1f3a4a',
+		'color_primary'           => '1f3a4a',
+		'color_secondary'         => '4e6a78',
+		'color_action'            => 'ebf9a8',
+		'color_button'            => '1f3a4a',
+		'bgcolor_page_masthead'   => '1f3a4a',
+		'color_page_masthead'     => 'ffffff',
+		'bgcolor_footer_widgets'  => 'ecebe3',
+		'color_footer_widgets'    => '25292b',
+		'color_borders'           => 'e0e0e0',
 	);
 }
 
@@ -156,23 +156,23 @@ function memberlite_get_seaside_linen_colors(): array {
  */
 function memberlite_get_deep_harbor_colors(): array {
 	return array(
-		'header_textcolor'        => '2A2F36',
-		'background_color'        => 'F7F9FC',
-		'bgcolor_header'          => 'F7F9FC',
-		'bgcolor_site_navigation' => 'F7F9FC',
-		'color_site_navigation'   => '2A2F36',
-		'color_text'              => '2A2F36',
-		'color_link'              => '1F3A5F',
-		'color_meta_link'         => '2F5F8F',
-		'color_primary'           => '1F3A5F',
-		'color_secondary'         => '2F5F8F',
-		'color_action'            => '8FAEA0',
-		'color_button'            => '1F3A5F',
-		'bgcolor_page_masthead'   => '1F3A5F',
-		'color_page_masthead'     => 'F7F9FC',
-		'bgcolor_footer_widgets'  => 'F7F9FC',
-		'color_footer_widgets'    => '2A2F36',
-		'color_borders'           => 'E0E0E0',
+		'header_textcolor'        => '2a2f36',
+		'background_color'        => 'f7f9fc',
+		'bgcolor_header'          => 'f7f9fc',
+		'bgcolor_site_navigation' => 'f7f9fc',
+		'color_site_navigation'   => '2a2f36',
+		'color_text'              => '2a2f36',
+		'color_link'              => '1f3a5f',
+		'color_meta_link'         => '2f5f8f',
+		'color_primary'           => '1f3a5f',
+		'color_secondary'         => '2f5f8f',
+		'color_action'            => '8faea0',
+		'color_button'            => '1f3a5f',
+		'bgcolor_page_masthead'   => '1f3a5f',
+		'color_page_masthead'     => 'f7f9fc',
+		'bgcolor_footer_widgets'  => 'f7f9fc',
+		'color_footer_widgets'    => '2a2f36',
+		'color_borders'           => 'e0e0e0',
 	);
 }
 
@@ -186,23 +186,23 @@ function memberlite_get_deep_harbor_colors(): array {
  */
 function memberlite_get_midnight_violet_colors(): array {
 	return array(
-		'header_textcolor'        => 'F2F2F3',
-		'background_color'        => '0B0B0D',
-		'bgcolor_header'          => '0B0B0D',
-		'bgcolor_site_navigation' => '1C1D21',
-		'color_site_navigation'   => 'F2F2F3',
-		'color_text'              => 'F2F2F3',
-		'color_link'              => '7C4DFF',
-		'color_meta_link'         => '9A9AA0',
-		'color_primary'           => '7C4DFF',
-		'color_secondary'         => '9A9AA0',
-		'color_action'            => '7C4DFF',
-		'color_button'            => '7C4DFF',
-		'bgcolor_page_masthead'   => '1C1D21',
-		'color_page_masthead'     => 'F2F2F3',
-		'bgcolor_footer_widgets'  => '1C1D21',
-		'color_footer_widgets'    => 'F2F2F3',
-		'color_borders'           => '1C1D21',
+		'header_textcolor'        => 'f2f2f3',
+		'background_color'        => '0b0b0d',
+		'bgcolor_header'          => '0b0b0d',
+		'bgcolor_site_navigation' => '1c1d21',
+		'color_site_navigation'   => 'f2f2f3',
+		'color_text'              => 'f2f2f3',
+		'color_link'              => '7c4dff',
+		'color_meta_link'         => '9a9aa0',
+		'color_primary'           => '7c4dff',
+		'color_secondary'         => '9a9aa0',
+		'color_action'            => '7c4dff',
+		'color_button'            => '7c4dff',
+		'bgcolor_page_masthead'   => '1c1d21',
+		'color_page_masthead'     => 'f2f2f3',
+		'bgcolor_footer_widgets'  => '1c1d21',
+		'color_footer_widgets'    => 'f2f2f3',
+		'color_borders'           => '1c1d21',
 	);
 }
 
@@ -216,23 +216,23 @@ function memberlite_get_midnight_violet_colors(): array {
  */
 function memberlite_get_cocoa_ash_colors(): array {
 	return array(
-		'header_textcolor'        => 'DDD7CF',
-		'background_color'        => 'FFFFFF',
-		'bgcolor_header'          => '1F1B18',
-		'bgcolor_site_navigation' => 'A8A29A',
-		'color_site_navigation'   => '1F1B18',
-		'color_text'              => '1F1B18',
-		'color_link'              => '2E2623',
-		'color_meta_link'         => 'DDD7CF',
-		'color_primary'           => '2E2623',
-		'color_secondary'         => '6F6A66',
-		'color_action'            => 'D89A5A',
-		'color_button'            => '2E2623',
-		'bgcolor_page_masthead'   => 'A8A29A',
-		'color_page_masthead'     => '1F1B18',
-		'bgcolor_footer_widgets'  => '2E2623',
-		'color_footer_widgets'    => 'DDD7CF',
-		'color_borders'           => 'A8A29A',
+		'header_textcolor'        => 'ddd7cf',
+		'background_color'        => 'ffffff',
+		'bgcolor_header'          => '1f1b18',
+		'bgcolor_site_navigation' => 'a8a29a',
+		'color_site_navigation'   => '1f1b18',
+		'color_text'              => '1f1b18',
+		'color_link'              => '2e2623',
+		'color_meta_link'         => 'ddd7cf',
+		'color_primary'           => '2e2623',
+		'color_secondary'         => '6f6a66',
+		'color_action'            => 'd89a5a',
+		'color_button'            => '2e2623',
+		'bgcolor_page_masthead'   => 'a8a29a',
+		'color_page_masthead'     => '1f1b18',
+		'bgcolor_footer_widgets'  => '2e2623',
+		'color_footer_widgets'    => 'ddd7cf',
+		'color_borders'           => 'a8a29a',
 	);
 }
 
@@ -246,23 +246,23 @@ function memberlite_get_cocoa_ash_colors(): array {
  */
 function memberlite_get_soft_spruce_colors(): array {
 	return array(
-		'header_textcolor'        => '2B2E2D',
-		'background_color'        => 'FFFFFF',
-		'bgcolor_header'          => 'FFFFFF',
-		'bgcolor_site_navigation' => 'F5F7F6',
-		'color_site_navigation'   => '2B2E2D',
-		'color_text'              => '2B2E2D',
-		'color_link'              => '0E7A49',
-		'color_meta_link'         => '7A7F7C',
-		'color_primary'           => '0E7A49',
-		'color_secondary'         => '7A7F7C',
-		'color_action'            => 'D18A3A',
-		'color_button'            => '0E7A49',
-		'bgcolor_page_masthead'   => 'F5F7F6',
-		'color_page_masthead'     => '2B2E2D',
-		'bgcolor_footer_widgets'  => 'F5F7F6',
-		'color_footer_widgets'    => '2B2E2D',
-		'color_borders'           => 'E3E6E4',
+		'header_textcolor'        => '2b2e2d',
+		'background_color'        => 'ffffff',
+		'bgcolor_header'          => 'ffffff',
+		'bgcolor_site_navigation' => 'f5f7f6',
+		'color_site_navigation'   => '2b2e2d',
+		'color_text'              => '2b2e2d',
+		'color_link'              => '0e7a49',
+		'color_meta_link'         => '7a7f7c',
+		'color_primary'           => '0e7a49',
+		'color_secondary'         => '7a7f7c',
+		'color_action'            => 'd18a3a',
+		'color_button'            => '0e7a49',
+		'bgcolor_page_masthead'   => 'f5f7f6',
+		'color_page_masthead'     => '2b2e2d',
+		'bgcolor_footer_widgets'  => 'f5f7f6',
+		'color_footer_widgets'    => '2b2e2d',
+		'color_borders'           => 'e3e6e4',
 	);
 }
 
@@ -276,23 +276,23 @@ function memberlite_get_soft_spruce_colors(): array {
  */
 function memberlite_get_iron_ember_colors(): array {
 	return array(
-		'header_textcolor'        => '1F252B',
-		'background_color'        => 'F6F7F6',
-		'bgcolor_header'          => 'F6F7F6',
-		'bgcolor_site_navigation' => 'E9ECEA',
-		'color_site_navigation'   => '1F252B',
-		'color_text'              => '1F252B',
-		'color_link'              => '1F252B',
-		'color_meta_link'         => '4A5A6A',
-		'color_primary'           => '1F252B',
-		'color_secondary'         => '4A5A6A',
-		'color_action'            => 'C84F1A',
-		'color_button'            => '1F252B',
-		'bgcolor_page_masthead'   => '1F252B',
-		'color_page_masthead'     => 'FFFFFF',
-		'bgcolor_footer_widgets'  => '1F252B',
-		'color_footer_widgets'    => 'FFFFFF',
-		'color_borders'           => 'E0E0E0',
+		'header_textcolor'        => '1f252b',
+		'background_color'        => 'f6f7f6',
+		'bgcolor_header'          => 'f6f7f6',
+		'bgcolor_site_navigation' => 'e9ecea',
+		'color_site_navigation'   => '1f252b',
+		'color_text'              => '1f252b',
+		'color_link'              => '1f252b',
+		'color_meta_link'         => '4a5a6a',
+		'color_primary'           => '1f252b',
+		'color_secondary'         => '4a5a6a',
+		'color_action'            => 'c84f1a',
+		'color_button'            => '1f252b',
+		'bgcolor_page_masthead'   => '1f252b',
+		'color_page_masthead'     => 'ffffff',
+		'bgcolor_footer_widgets'  => '1f252b',
+		'color_footer_widgets'    => 'ffffff',
+		'color_borders'           => 'e0e0e0',
 	);
 }
 
@@ -306,23 +306,23 @@ function memberlite_get_iron_ember_colors(): array {
  */
 function memberlite_get_slate_harbor_colors(): array {
 	return array(
-		'header_textcolor'        => '0B1233',
-		'background_color'        => 'FFFFFF',
-		'bgcolor_header'          => 'FFFFFF',
-		'bgcolor_site_navigation' => 'EEF2F6',
-		'color_site_navigation'   => '0B1233',
+		'header_textcolor'        => '0b1233',
+		'background_color'        => 'ffffff',
+		'bgcolor_header'          => 'ffffff',
+		'bgcolor_site_navigation' => 'eef2f6',
+		'color_site_navigation'   => '0b1233',
 		'color_text'              => '111827',
-		'color_link'              => '0B1233',
-		'color_meta_link'         => '0F6E7A',
-		'color_primary'           => '0B1233',
-		'color_secondary'         => '0F6E7A',
-		'color_action'            => 'F26B3A',
-		'color_button'            => '0B1233',
-		'bgcolor_page_masthead'   => '0B1233',
-		'color_page_masthead'     => 'FFFFFF',
-		'bgcolor_footer_widgets'  => '0B1233',
-		'color_footer_widgets'    => 'FFFFFF',
-		'color_borders'           => 'E4E9F0',
+		'color_link'              => '0b1233',
+		'color_meta_link'         => '0f6e7a',
+		'color_primary'           => '0b1233',
+		'color_secondary'         => '0f6e7a',
+		'color_action'            => 'f26b3a',
+		'color_button'            => '0b1233',
+		'bgcolor_page_masthead'   => '0b1233',
+		'color_page_masthead'     => 'ffffff',
+		'bgcolor_footer_widgets'  => '0b1233',
+		'color_footer_widgets'    => 'ffffff',
+		'color_borders'           => 'e4e9f0',
 	);
 }
 
@@ -368,7 +368,7 @@ function memberlite_get_defaults(): array {
 		'delimiter'							=> '&nbsp;&#47;&nbsp;',
 		'memberlite_darkcss'                => false,
 		'hover_brightness'                  => '1.1',
-		'color_white'                       => 'FFFFFF',
+		'color_white'                       => 'ffffff',
 	);
 
 	// Merge with default color scheme
@@ -478,7 +478,7 @@ function memberlite_detect_current_scheme(): string {
 	// Get current colors from theme_mods
 	$current_colors = array();
 	foreach ( $color_keys as $key ) {
-		$current_colors[ $key ] = strtoupper( get_theme_mod( $key, '' ) );
+		$current_colors[ $key ] = strtolower( get_theme_mod( $key, '' ) );
 	}
 
 	// Compare against each scheme
@@ -490,7 +490,7 @@ function memberlite_detect_current_scheme(): string {
 				continue;
 			}
 
-			$scheme_color  = strtoupper( $scheme['colors'][ $key ] ?? '' );
+			$scheme_color  = strtolower( $scheme['colors'][ $key ] ?? '' );
 			$current_color = $current_colors[ $key ];
 
 			if ( $scheme_color !== $current_color ) {

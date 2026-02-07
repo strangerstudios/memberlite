@@ -23,7 +23,7 @@
 .memberlite_accordion {}
 .memberlite_accordion h2,
 .entry-content .memberlite_accordion h2 {
-	border-top: 1px solid #CCC;
+	border-top: 1px solid #ccc;
 	cursor: pointer;
 	margin: 0;
 	padding: 1.45rem;
@@ -70,10 +70,10 @@
 	grid-area: title;
 }
 #widget_memberlite_recent_posts .post.hentry .entry-header .post-date {
-	color: #AAA;
+	color: #aaa;
 }
 .banner #widget_memberlite_recent_posts .widget_has_thumbnail .post.hentry .entry-header .post-date {
-	color: #EEE;
+	color: #eee;
 }
 #widget_memberlite_recent_posts .widget_has_thumbnail .post.hentry .entry-header .post-date {
 	align-self: start;

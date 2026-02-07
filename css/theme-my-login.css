@@ -53,9 +53,9 @@
 	margin: 0 0 1.45rem 0;
 }
 .tml-profile h3 {
-	background: #FAFAFA;
-	border-top: 1px solid #CCC;
-	border-bottom: 1px dotted #CCC;
+	background: #fafafa;
+	border-top: 1px solid #ccc;
+	border-bottom: 1px dotted #ccc;
 	margin-bottom: 0;
 	margin-top: 0;
 	padding: .7rem 1.45rem;
@@ -100,8 +100,8 @@
 	text-align: right;
 }
 #secondary .widget_theme_my_login {
-	background: #FAFAFA;
-	border: 1px solid #CCC;
+	background: #fafafa;
+	border: 1px solid #ccc;
 	padding: 1.45rem;
 }
 #secondary .widget_theme_my_login h3.widget-title {
@@ -167,8 +167,8 @@
 	margin: 0;
 }
 .tml .tml-links {
-	border-top: 1px dotted #CCC;
-	color: #CCC;
+	border-top: 1px dotted #ccc;
+	color: #ccc;
 	display: block;
 	margin: 0;
 	padding-top: 1.45rem;
