@@ -478,7 +478,7 @@ function memberlite_detect_current_scheme(): string {
 	// Get current colors from theme_mods
 	$current_colors = array();
 	foreach ( $color_keys as $key ) {
-		$current_colors[ $key ] = strtolower( get_theme_mod( $key, '' ) );
+		$current_colors[ $key ] = strtolower( ltrim( get_theme_mod( $key, '' ), '#' ) );
 	}
 
 	// Compare against each scheme
