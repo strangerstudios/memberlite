@@ -844,16 +844,17 @@ add_filter( 'theme_mod_copyright_textbox', 'memberlite_theme_mod_copyright_textb
 function memberlite_filter_theme_json( $theme_json ) {
 	$active_colors = memberlite_get_active_colors();
 
-	// Make sure every color has a # in front of it for consistency.
+	// Make sure every color is a color and prepend a # in front of it.
 	foreach ( $active_colors as $key => $color ) {
-		if ( strpos( $color, '#' ) === false ) {
-			$active_colors[ $key ] = '#' . $color;
+		if ( sanitize_hex_color_no_hash( $color ) === NULL ) {
+			unset( $active_colors[ $key ] );
+			continue;
 		}
+		$active_colors[ $key ] = '#' . $color;
 	}
 
 	// Build the color palette.
 	$color_scheme = array(
-		array( 'slug' => 'header-textcolor', 'color' => $active_colors['header_textcolor'], 'name' => __( 'Header Text', 'memberlite' ) ),
 		array( 'slug' => 'background-color', 'color' => $active_colors['background_color'], 'name' => __( 'Site Background', 'memberlite' ) ),
 		array( 'slug' => 'bgcolor-header', 'color' => $active_colors['bgcolor_header'], 'name' => __( 'Header Background', 'memberlite' ) ),
 		array( 'slug' => 'bgcolor-site-navigation', 'color' => $active_colors['bgcolor_site_navigation'], 'name' => __( 'Site Navigation Background', 'memberlite' ) ),
@@ -874,6 +875,11 @@ function memberlite_filter_theme_json( $theme_json ) {
 		array( 'slug'  => 'body-text', 'color' => $active_colors['color_text'], 'name'  => __( 'Text', 'memberlite' ) ),
 		array( 'slug'  => 'base', 'color' => $active_colors['background_color'], 'name'  => __( 'Base', 'memberlite' ) ),
 	);
+
+	// Add header text color if it's set and valid.
+	if ( ! empty( $active_colors['header_textcolor'] ) ) {
+		$color_scheme[] = array( 'slug'  => 'header-textcolor', 'color' => $active_colors['header_textcolor'], 'name'  => __( 'Header Text', 'memberlite' ) );
+	}
 
 	// Reindex the array to ensure sequential keys.
 	$color_palette = array_values( $color_scheme );
