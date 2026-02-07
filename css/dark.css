@@ -3,7 +3,7 @@ Inverted Color Profiles for Dark Backgrounds
 --------------------------------------------------------------*/
 .site-footer .site-info p,
 .site-footer .site-info .columns:first-child a {
-	color: #FFFFFF99;
+	color: #ffffff99;
 }
 h1 a:hover,
 h2 a:hover,
@@ -15,7 +15,7 @@ h6 a:hover,
 	border-bottom-color: inherit;
 }
 hr {
-	background-color: #FFFFFF99;
+	background-color: #ffffff99;
 }
 .wp-caption,
 .wp-caption-text {
@@ -71,7 +71,7 @@ a.pmpro_cancel:link,
 .content-area .pmpro_btn.pmpro_btn-cancel,
 .content-area .pmpro_btn.pmpro_btn-cancel:link,
 .content-area .pmpro_btn.pmpro_btn-cancel:visited {
-	color: #FFFFFFCC;
+	color: #ffffffcc;
 }
 .post .entry-footer,
 .widget-area .widget a:not(.btn):not(.pmpro_btn) ,
@@ -80,15 +80,15 @@ a.pmpro_cancel:link,
 	border-bottom: none;
 }
 .widget-area .widget a:hover:not(.btn):not(.pmpro_btn) {
-	color: #FFF;
+	color: #fff;
 }
 #primary .hentry .entry-meta a,
 #primary .entry-footer a {
-	color: #FFFFFFCC;
+	color: #ffffffcc;
 }
 #primary .hentry .entry-meta a:hover,
 #primary .entry-footer a:hover {
-	color: #FFFFFF;
+	color: #ffffff;
 }
 blockquote,
 .pre,
@@ -108,19 +108,19 @@ tbody tr:nth-child(even) td,
 .main-navigation ul.sub-menu li:hover > a,
 .meta-navigation ul.sub-menu li:hover > a,
 .header-right .widget_nav_menu ul.sub-menu li:hover > a {
-	background: #FFFFFF11;
+	background: #ffffff11;
 }
 .grid-list > * {
-	background-color: #FFFFFF11;
-	border-color: #000000CC;
+	background-color: #ffffff11;
+	border-color: #000000cc;
 }
 .grid-list h1 a,
 .grid-list h2 a {
-	color: #FFFFFFCC;
+	color: #ffffffcc;
 }
 .grid-list h1 a:hover,
 .grid-list h2 a:hover {
-	color: #FFF;
+	color: #fff;
 }
 .grid-list a.post-thumbnail-link .post-thumbnail-empty {
 	background-color: #00000033;
@@ -137,8 +137,8 @@ ins {
 }
 .search-form input[type=search],
 #mobile-navigation .search-form input[type=search] {
-	background: #FFFFFF11;
-	color: #FFFFFFCC;
+	background: #ffffff11;
+	color: #ffffffcc;
 }
 .content-area input[type=text],
 .content-area input[type=email],
@@ -160,16 +160,16 @@ ins {
 .footer-widgets textarea,
 #mobile-navigation input[type=text],
 #mobile-navigation input[type=password] {
-	color: #FFF;
+	color: #fff;
 	background: none;
-	border-color: #FFFFFF80;
+	border-color: #ffffff80;
 }
 
 /* Comments */
 .comment,
 .pingback,
 .trackback {
-	border-color: #FFFFFF19;
+	border-color: #ffffff19;
 }
 .comment,
 .pingback.even,
@@ -178,29 +178,29 @@ ins {
 }
 .comment.depth-1.thread-alt,
 .comment .comment.alt {
-	background: #FFFFFF19;
+	background: #ffffff19;
 }
 .comment.even .child-comments .comment {
 	background: none;
 }
 .comment.odd .child-comments .comment {
-	background: #FFFFFF19;
+	background: #ffffff19;
 }
 .comment-meta .comment-author.vcard {
-	color: #FFF;
+	color: #fff;
 }
 .comment-meta .comment-metadata .edit-link {
-	border-left-color: #FFFFFF4C;
+	border-left-color: #ffffff4c;
 }
 .comment-respond .comment-notes, .comment-respond .form-allowed-tags {
-	color: #FFFFFFCC;
+	color: #ffffffcc;
 }
 
 /*--------------------------------------------------------------
 bbPress specific CSS
 --------------------------------------------------------------*/
 .bbp-pagination {
-	color: #AAA;
+	color: #aaa;
 }
 #bbpress-forums div.even,
 #bbpress-forums ul.odd,

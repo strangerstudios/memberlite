@@ -101,13 +101,13 @@
 }
 .woocommerce.single .product_meta {
 	padding: 1rem;
-	border-bottom: 1px dotted #CCC;
-	background: #FAFAFA;
+	border-bottom: 1px dotted #ccc;
+	background: #fafafa;
 	font-style: italic;
-	color: #AAA;
+	color: #aaa;
 }
 .woocommerce.single .product_meta {
-	border-top: 1px dotted #CCC;
+	border-top: 1px dotted #ccc;
 }
 .woocommerce.single .product_meta a {
 	color: #777;
@@ -124,10 +124,10 @@
 
 .woocommerce #content div.product div.thumbnails a, .woocommerce div.product div.thumbnails a, .woocommerce-page #content div.product div.thumbnails a, .woocommerce-page div.product div.thumbnails a {
 	width:auto;
-	background: #FAFAFA;
+	background: #fafafa;
 	padding: .25rem;
-	border-top: 1px dotted #CCC;
-	border-bottom: 1px dotted #CCC;
+	border-top: 1px dotted #ccc;
+	border-bottom: 1px dotted #ccc;
 	margin-bottom: 1.5rem;
 }
 .woocommerce .related ul li.product, .woocommerce .related ul.products li.product, .woocommerce .upsells.products ul li.product, .woocommerce .upsells.products ul.products li.product, .woocommerce-page .related ul li.product, .woocommerce-page .related ul.products li.product, .woocommerce-page .upsells.products ul li.product, .woocommerce-page .upsells.products ul.products li.product {

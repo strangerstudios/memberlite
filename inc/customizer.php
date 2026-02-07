@@ -763,7 +763,7 @@ class Memberlite_Customize {
 				--memberlite-color-footer-widgets-background: <?php echo '#' . esc_attr( $active_colors['bgcolor_footer_widgets'] ); ?>;
 				--memberlite-color-footer-widgets: <?php echo '#' . esc_attr( $active_colors['color_footer_widgets'] ); ?>;
 				--memberlite-hover-brightness: <?php echo esc_attr( $memberlite_defaults['hover_brightness'] ) ?>;
-				--memberlite-color-white: #FFFFFF;
+				--memberlite-color-white: #ffffff;
 
 			<?php
 			if ( $override_pmpro_colors && defined( 'PMPRO_VERSION' ) )  : ?>

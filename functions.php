@@ -321,7 +321,7 @@ if ( ! function_exists( 'memberlite_setup' ) ) :
 		// Setup the WordPress core custom background feature.
 		$custom_background = apply_filters(
 			'memberlite_custom_background_args', array(
-				'default-color' => 'FFFFFF',
+				'default-color' => 'ffffff',
 				'default-image' => '',
 			)
 		);
@@ -881,7 +881,7 @@ function memberlite_filter_theme_json( $theme_json ) {
 		),
 		array(
 			'slug'  => 'white',
-			'color' => '#FFFFFF',
+			'color' => '#ffffff',
 			'name'  => __( 'White', 'memberlite' ),
 		),
 		array(
