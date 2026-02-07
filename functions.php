@@ -846,6 +846,13 @@ add_filter( 'theme_mod_copyright_textbox', 'memberlite_theme_mod_copyright_textb
 function memberlite_filter_theme_json( $theme_json ) {
 	$active_colors = memberlite_get_active_colors();
 
+	// Make sure every color has a # in front of it for consistency.
+	foreach ( $active_colors as $key => $color ) {
+		if ( strpos( $color, '#' ) === false ) {
+			$active_colors[ $key ] = '#' . $color;
+		}
+	}
+
 	// Build the color palette.
 	// These colors will be deduplicated (first occurrence wins).
 	$color_scheme = array(
@@ -924,10 +931,6 @@ function memberlite_filter_theme_json( $theme_json ) {
 
 	// Always ensure the base/background color is included (added after deduplication).
 	$base_color = $active_colors['background_color'];
-	// Add a # if it's missing.
-	if ( strpos( $base_color, '#' ) === false ) {
-		$base_color = '#' . $base_color;
-	}
 	$color_scheme[] = array(
 		'slug'  => 'base',
 		'color' => esc_attr( $base_color ),
