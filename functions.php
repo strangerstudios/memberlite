@@ -971,3 +971,29 @@ function memberlite_filter_theme_json( $theme_json ) {
 	return $theme_json->update_with( $theme_json_data );
 }
 add_filter( 'wp_theme_json_data_theme', 'memberlite_filter_theme_json' );
+
+/**
+ * Enqueue editor styles with color variables.
+ * The wp_theme_json_data_theme filter doesn't generate color vars.
+ *
+ * @return void
+ */
+function memberlite_enqueue_editor_styles() {
+	$active_colors = memberlite_get_active_colors();
+
+	$custom_css = ':root {';
+	$custom_css .= '--wp--preset--color--color-primary: #' . esc_attr( $active_colors['color_primary'] ) . ';';
+	$custom_css .= '--wp--preset--color--color-secondary: #' . esc_attr( $active_colors['color_secondary'] ) . ';';
+	$custom_css .= '--wp--preset--color--action: #' . esc_attr( $active_colors['color_action'] ) . ';';
+	$custom_css .= '--wp--preset--color--buttons: #' . esc_attr( $active_colors['color_button'] ) . ';';
+	$custom_css .= '--wp--preset--color--body-text: #' . esc_attr( $active_colors['color_text'] ) . ';';
+	$custom_css .= '--wp--preset--color--base: #' . esc_attr( $active_colors['background_color'] ) . ';';
+	$custom_css .= '--wp--preset--color--memberlite-links: #' . esc_attr( $active_colors['color_link'] ) . ';';
+	$custom_css .= '--wp--preset--color--meta-link: #' . esc_attr( $active_colors['color_meta_link'] ) . ';';
+	$custom_css .= '--wp--preset--color--white: #FFFFFF;';
+	$custom_css .= '--wp--preset--color--borders: #' . esc_attr( $active_colors['color_borders'] ) . ';';
+	$custom_css .= '}';
+
+	wp_add_inline_style( 'wp-edit-blocks', $custom_css );
+}
+add_action( 'enqueue_block_editor_assets', 'memberlite_enqueue_editor_styles' );
