@@ -557,6 +557,8 @@ class Memberlite_Customize {
 	 * @return void
 	 */
 	public static function add_memberlite_heading( WP_Customize_Manager $wp_customize, string $id, string $label, string $section, $args = array() ): void {
+		$label = __( $label, 'memberlite' );
+
 		$wp_customize->add_setting(
 			$id,
 			array(
