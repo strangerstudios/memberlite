@@ -13,7 +13,7 @@
 		'header_textcolor': {
 			vars: [
 				{ styleId: 'memberlite-customizer-css', varName: '--memberlite-color-header-text' },
-				{ styleId: 'global-styles-inline-css',  varName: '--wp--preset--color--color-header-text' }
+				{ styleId: 'global-styles-inline-css',  varName: '--wp--preset--color--header-textcolor' }
 			],
 			// header_textcolor can be 'blank' and WP stores it without #.
 			normalize: function( value ) {
@@ -27,19 +27,19 @@
 		'background_color': {
 			vars: [
 				{ styleId: 'memberlite-customizer-css', varName: '--memberlite-color-site-background' },
-				{ styleId: 'global-styles-inline-css',  varName: '--wp--preset--color--color-site-background' }
+				{ styleId: 'global-styles-inline-css',  varName: '--wp--preset--color--background-color' }
 			]
 		},
 		'bgcolor_header': {
 			vars: [
 				{ styleId: 'memberlite-customizer-css', varName: '--memberlite-color-header-background' },
-				{ styleId: 'global-styles-inline-css',  varName: '--wp--preset--color--color-header-background' }
+				{ styleId: 'global-styles-inline-css',  varName: '--wp--preset--color--bgcolor-header' }
 			]
 		},
 		'bgcolor_site_navigation': {
 			vars: [
 				{ styleId: 'memberlite-customizer-css', varName: '--memberlite-color-site-navigation-background' },
-				{ styleId: 'global-styles-inline-css',  varName: '--wp--preset--color--color-site-navigation-background' }
+				{ styleId: 'global-styles-inline-css',  varName: '--wp--preset--color--bgcolor-site-navigation' }
 			]
 		},
 		'color_site_navigation': {
@@ -105,19 +105,19 @@
 		'color_page_masthead': {
 			vars: [
 				{ styleId: 'memberlite-customizer-css', varName: '--memberlite-color-page-masthead' },
-				{ styleId: 'global-styles-inline-css',  varName: '--wp--preset--color--color-page-masthead' }
+				{ styleId: 'global-styles-inline-css',  varName: '--wp--preset--color--page-masthead' }
 			]
 		},
 		'bgcolor_footer_widgets': {
 			vars: [
 				{ styleId: 'memberlite-customizer-css', varName: '--memberlite-color-footer-widgets-background' },
-				{ styleId: 'global-styles-inline-css',  varName: '--wp--preset--color--color-footer-widgets-background' }
+				{ styleId: 'global-styles-inline-css',  varName: '--wp--preset--color--footer-widgets-background' }
 			]
 		},
 		'color_footer_widgets': {
 			vars: [
 				{ styleId: 'memberlite-customizer-css', varName: '--memberlite-color-footer-widgets' },
-				{ styleId: 'global-styles-inline-css',  varName: '--wp--preset--color--color-footer-widgets' }
+				{ styleId: 'global-styles-inline-css',  varName: '--wp--preset--color--footer-widgets' }
 			]
 		}
 	};
