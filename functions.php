@@ -838,8 +838,8 @@ add_filter( 'theme_mod_copyright_textbox', 'memberlite_theme_mod_copyright_textb
  *
  * @since TBD
  *
- * @param $theme_json WP_Theme_JSON object.
- * @return mixed
+ * @param WP_Theme_JSON $theme_json Theme JSON object.
+ * @return WP_Theme_JSON Theme JSON object.
  */
 function memberlite_filter_theme_json( $theme_json ) {
 	$active_colors = memberlite_get_active_colors();
