@@ -112,14 +112,16 @@ function memberlite_migrate_colors_to_theme_mods() {
 
 		// If user already has a custom value for this color, preserve it
 		if ( ! empty( $existing_value ) ) {
-			// Remove hash if present in custom value
+			// Remove hash if present in custom value and lowercase the color
 			$existing_trimmed_color = ltrim( $existing_value, '#' );
+			$existing_trimmed_color = strtolower( $existing_trimmed_color );
 			set_theme_mod( $key, $existing_trimmed_color );
 		}
 
-		// Otherwise, save the scheme's color value
+		// Otherwise, save the scheme's color value.
 		if ( isset( $colors[ $key ] ) ) {
 			$trimmed_color = ltrim( $colors[ $key ], '#' );
+			$trimmed_color = strtolower( $trimmed_color );
 			set_theme_mod( $key, $trimmed_color );
 		}
 	}
