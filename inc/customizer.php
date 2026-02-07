@@ -174,7 +174,7 @@ class Memberlite_Customize {
 	 * @return void
 	 */
 	public static function set_customizer_color_settings( WP_Customize_Manager $wp_customize ) {
-		// COLORS: Color Scheme ==================
+		// COLORS: Color Scheme =================
 		self::add_memberlite_setting_control(
 			$wp_customize,
 			'memberlite_color_scheme',
@@ -183,14 +183,14 @@ class Memberlite_Customize {
 			array(
 				'type'              => 'select',
 				'transport'         => 'postMessage',
-				'description'       => 'Choose a color scheme preset. Individual colors below will update to match. Customize any color to switch to "Custom" mode.',
+				'description'       => 'Choose a color scheme preset. Individual colors below will update to match. Customize any color to switch to "Custom" scheme.',
 				'sanitize_callback' => array( 'Memberlite_Customize', 'sanitize_color_scheme' ),
 				'choices'           => memberlite_get_color_scheme_choices(),
 				'priority'          => 1,
 			)
 		);
 
-		// COLORS: Dark Mode =====================
+		// COLORS: Dark Mode ====================
 		self::add_memberlite_setting_control( $wp_customize, 'memberlite_darkcss', 'Use Dark Mode Colors', 'colors', array(
 			'type'              => 'checkbox',
 			'sanitize_callback' => array( 'Memberlite_Customize', 'sanitize_checkbox' ),
@@ -198,7 +198,7 @@ class Memberlite_Customize {
 			'priority'          => 2,
 		) );
 
-		// COLORS: PMPro Override ================
+		// COLORS: PMPro Override ===============
 		if ( defined( 'PMPRO_VERSION' ) ) {
 			self::add_memberlite_setting_control( $wp_customize, 'memberlite_pmpro_color_override', 'Override PMPro Colors', 'colors', array(
 				'type'              => 'checkbox',
@@ -208,7 +208,7 @@ class Memberlite_Customize {
 			) );
 		}
 
-		// COLORS: Header Colors =================
+		// COLORS: Header Colors ================
 		self::add_memberlite_heading( $wp_customize, 'memberlite_header_colors', 'Header Colors', 'colors' );
 
 		self::add_memberlite_color_control( $wp_customize, 'memberlite_bgcolor_header', 'Header Background Color', 'bgcolor_header' );
@@ -217,21 +217,21 @@ class Memberlite_Customize {
 
 		self::add_memberlite_color_control( $wp_customize, 'memberlite_color_site_navigation', 'Primary Navigation Link Color', 'color_site_navigation' );
 
-		// COLORS: Footer Colors =================
+		// COLORS: Footer Colors ================
 		self::add_memberlite_heading( $wp_customize, 'memberlite_footer_colors', 'Footer Colors', 'colors' );
 
 		self::add_memberlite_color_control( $wp_customize, 'memberlite_bgcolor_footer_widgets', 'Footer Widgets Background Color', 'bgcolor_footer_widgets' );
 
 		self::add_memberlite_color_control( $wp_customize, 'memberlite_color_footer_widgets', 'Footer Widgets Text Color', 'color_footer_widgets' );
 
-		// COLORS: Masthead Colors ===============
+		// COLORS: Masthead Colors ==============
 		self::add_memberlite_heading( $wp_customize, 'memberlite_masthead_colors', 'Masthead Colors', 'colors' );
 
 		self::add_memberlite_color_control( $wp_customize, 'memberlite_bgcolor_page_masthead', 'Page Masthead Background Color', 'bgcolor_page_masthead' );
 
 		self::add_memberlite_color_control( $wp_customize, 'memberlite_color_page_masthead', 'Page Masthead Text Color', 'color_page_masthead' );
 
-		// COLORS: Site Colors ===================
+		// COLORS: Site Colors ==================
 		self::add_memberlite_heading( $wp_customize, 'memberlite_body_colors', 'Site Colors', 'colors' );
 
 		// Move core controls down in the Colors section
@@ -741,40 +741,40 @@ class Memberlite_Customize {
 		?>
 		<!--Customizer CSS-->
 		<style id="memberlite-customizer-css" type="text/css">
-            :root {
-                --memberlite-content-width: <?php echo esc_html( $content_width ); ?>;
-                --memberlite-body-font: <?php echo esc_html( $body_font ); ?>, sans-serif;
-                --memberlite-header-font: <?php echo esc_html( $header_font ); ?>, sans-serif;
+			:root {
+				--memberlite-content-width: <?php echo esc_html( $content_width ); ?>;
+				--memberlite-body-font: <?php echo esc_html( $body_font ); ?>, sans-serif;
+				--memberlite-header-font: <?php echo esc_html( $header_font ); ?>, sans-serif;
 			<?php echo ( $active_colors['header_textcolor'] != 'blank' ) ? '--memberlite-color-header-text: #' . esc_attr( $active_colors['header_textcolor'] ) . ';' : ''; ?>
-                --memberlite-color-site-background: <?php echo '#' . esc_attr( $active_colors['background_color'] ); ?>;
-                --memberlite-color-header-background: <?php echo '#' . esc_attr( $active_colors['bgcolor_header'] ); ?>;
-                --memberlite-color-site-navigation-background: <?php echo '#' . esc_attr( $active_colors['bgcolor_site_navigation'] ); ?>;
-                --memberlite-color-site-navigation: <?php echo '#' . esc_attr( $active_colors['color_site_navigation'] ); ?>;
-                --memberlite-color-text: <?php echo '#' . esc_attr( $active_colors['color_text'] ); ?>;
-                --memberlite-color-link: <?php echo '#' . esc_attr( $active_colors['color_link'] ); ?>;
-                --memberlite-color-meta-link: <?php echo '#' . esc_attr( $active_colors['color_meta_link'] ); ?>;
-                --memberlite-color-primary: <?php echo '#' . esc_attr( $active_colors['color_primary'] ); ?>;
-                --memberlite-color-secondary: <?php echo '#' . esc_attr( $active_colors['color_secondary'] ); ?>;
-                --memberlite-color-action: <?php echo '#' . esc_attr( $active_colors['color_action'] ); ?>;
-                --memberlite-color-button: <?php echo '#' . esc_attr( $active_colors['color_button'] ); ?>;
-                --memberlite-color-borders: <?php echo '#' . esc_attr( $active_colors['color_borders'] ); ?>;
-                --memberlite-color-page-masthead-background: <?php echo '#' . esc_attr( $active_colors['bgcolor_page_masthead'] ); ?>;
-                --memberlite-color-page-masthead: <?php echo '#' . esc_attr( $active_colors['color_page_masthead'] ); ?>;
-                --memberlite-color-footer-widgets-background: <?php echo '#' . esc_attr( $active_colors['bgcolor_footer_widgets'] ); ?>;
-                --memberlite-color-footer-widgets: <?php echo '#' . esc_attr( $active_colors['color_footer_widgets'] ); ?>;
-                --memberlite-hover-brightness: <?php echo esc_attr( $memberlite_defaults['hover_brightness'] ) ?>;
-                --memberlite-color-white: #FFFFFF;
+				--memberlite-color-site-background: <?php echo '#' . esc_attr( $active_colors['background_color'] ); ?>;
+				--memberlite-color-header-background: <?php echo '#' . esc_attr( $active_colors['bgcolor_header'] ); ?>;
+				--memberlite-color-site-navigation-background: <?php echo '#' . esc_attr( $active_colors['bgcolor_site_navigation'] ); ?>;
+				--memberlite-color-site-navigation: <?php echo '#' . esc_attr( $active_colors['color_site_navigation'] ); ?>;
+				--memberlite-color-text: <?php echo '#' . esc_attr( $active_colors['color_text'] ); ?>;
+				--memberlite-color-link: <?php echo '#' . esc_attr( $active_colors['color_link'] ); ?>;
+				--memberlite-color-meta-link: <?php echo '#' . esc_attr( $active_colors['color_meta_link'] ); ?>;
+				--memberlite-color-primary: <?php echo '#' . esc_attr( $active_colors['color_primary'] ); ?>;
+				--memberlite-color-secondary: <?php echo '#' . esc_attr( $active_colors['color_secondary'] ); ?>;
+				--memberlite-color-action: <?php echo '#' . esc_attr( $active_colors['color_action'] ); ?>;
+				--memberlite-color-button: <?php echo '#' . esc_attr( $active_colors['color_button'] ); ?>;
+				--memberlite-color-borders: <?php echo '#' . esc_attr( $active_colors['color_borders'] ); ?>;
+				--memberlite-color-page-masthead-background: <?php echo '#' . esc_attr( $active_colors['bgcolor_page_masthead'] ); ?>;
+				--memberlite-color-page-masthead: <?php echo '#' . esc_attr( $active_colors['color_page_masthead'] ); ?>;
+				--memberlite-color-footer-widgets-background: <?php echo '#' . esc_attr( $active_colors['bgcolor_footer_widgets'] ); ?>;
+				--memberlite-color-footer-widgets: <?php echo '#' . esc_attr( $active_colors['color_footer_widgets'] ); ?>;
+				--memberlite-hover-brightness: <?php echo esc_attr( $memberlite_defaults['hover_brightness'] ) ?>;
+				--memberlite-color-white: #FFFFFF;
 
 			<?php
 			if ( $override_pmpro_colors && defined( 'PMPRO_VERSION' ) )  : ?>
-                /* PMPro color vars */
-                --pmpro--color--accent: <?php echo '#' . esc_attr( $active_colors['color_primary'] ); ?>;
-                --pmpro--color--accent--variation: <?php echo '#' . esc_attr( $active_colors['color_primary'] ); ?>;
-                --pmpro--color--base: <?php echo '#' . esc_attr( $active_colors['background_color'] ); ?>;
-                --pmpro--color--contrast: <?php echo '#' . esc_attr( $active_colors['color_text'] ); ?>;
+				/* PMPro color vars */
+				--pmpro--color--accent: <?php echo '#' . esc_attr( $active_colors['color_primary'] ); ?>;
+				--pmpro--color--accent--variation: <?php echo '#' . esc_attr( $active_colors['color_primary'] ); ?>;
+				--pmpro--color--base: <?php echo '#' . esc_attr( $active_colors['background_color'] ); ?>;
+				--pmpro--color--contrast: <?php echo '#' . esc_attr( $active_colors['color_text'] ); ?>;
 			<?php endif; ?>
 
-            }
+			}
 		</style>
 		<!--/Customizer CSS-->
 		<?php
