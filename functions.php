@@ -346,7 +346,7 @@ add_action( 'init', 'memberlite_load_textdomain' );
 
 /**
  * Load custom translations from our own server: translate.strangerstudios.com
- * 
+ *
  * @since 6.1
  */
 function memberlite_check_for_translations() {
