@@ -614,7 +614,7 @@ class Memberlite_Customize {
 			$setting_id,
 			array(
 				'default'              => $args['default'],
-				'sanitize_callback'    => 'sanitize_hex_color_no_hash',
+				'sanitize_callback'    => array( 'Memberlite_Customize', 'sanitize_hex_color_no_hash' ),
 				'sanitize_js_callback' => 'maybe_hash_hex_color',
 				'transport'            => 'postMessage',
 			)
@@ -915,6 +915,25 @@ class Memberlite_Customize {
 	}
 
 	/**
+	 * Sanitize a hex color without hash and lowercase it.
+	 *
+	 * Wraps sanitize_hex_color_no_hash() and ensures the
+	 * returned value is always lowercase.
+	 *
+	 * @since TBD
+	 *
+	 * @param string $color Hex color value without hash.
+	 * @return string|null Sanitized lowercase hex color or null.
+	 */
+	public static function sanitize_hex_color_no_hash( $color ) {
+		$color = sanitize_hex_color_no_hash( $color );
+		if ( $color ) {
+			$color = strtolower( $color );
+		}
+		return $color;
+	}
+
+	/**
 	 * Sanitization callback for color schemes.
 	 *
 	 * @since TBD
@@ -1071,7 +1090,7 @@ function memberlite_save_scheme_colors( WP_Customize_Manager $wp_customize ) {
 			continue;
 		}
 
-		$value = ltrim( $value, '#' );
+		$value = strtolower( ltrim( $value, '#' ) );
 
 		set_theme_mod( $key, $value );
 	}
