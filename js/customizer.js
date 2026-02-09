@@ -2,125 +2,59 @@
  * Theme Customizer enhancements for a better user experience.
  *
  * This functionality runs in the site preview panel of Theme Customizer.
+ *
+ * Color variable mappings are localized from PHP so both
+ * --memberlite-color-{css_var} and --wp--preset--color--{slug}
+ * var names are always in sync with memberlite_get_color_preset_map().
  */
 ( function( $ ) {
 
 	/**
-	 * Map Customizer setting > CSS variables to update.
-	 * Each setting can update one or more CSS custom properties.
+	 * Build the color setting map from localized PHP data.
+	 *
+	 * memberlite_css_vars (localized from PHP) maps setting keys to their
+	 * css_var suffix, e.g. { color_link: 'link', bgcolor_header: 'header-background' }.
+	 * We use this to build the --memberlite-color-{css_var} var names dynamically.
 	 */
-	var colorSettingMap = {
-		'header_textcolor': {
-			vars: [
-				{ styleId: 'memberlite-customizer-css', varName: '--memberlite-color-header-text' },
-				{ styleId: 'global-styles-inline-css',  varName: '--wp--preset--color--header-textcolor' }
-			],
-			// header_textcolor can be 'blank' and WP stores it without #.
-			normalize: function( value ) {
-				if ( 'blank' === value ) {
-					return value;
-				}
-				return value.charAt( 0 ) === '#' ? value : '#' + value;
-			}
-		},
+	var colorSettingMap = {};
 
-		'background_color': {
-			vars: [
-				{ styleId: 'memberlite-customizer-css', varName: '--memberlite-color-site-background' },
-				{ styleId: 'global-styles-inline-css',  varName: '--wp--preset--color--background-color' }
-			]
-		},
-		'bgcolor_header': {
-			vars: [
-				{ styleId: 'memberlite-customizer-css', varName: '--memberlite-color-header-background' },
-				{ styleId: 'global-styles-inline-css',  varName: '--wp--preset--color--bgcolor-header' }
-			]
-		},
-		'bgcolor_site_navigation': {
-			vars: [
-				{ styleId: 'memberlite-customizer-css', varName: '--memberlite-color-site-navigation-background' },
-				{ styleId: 'global-styles-inline-css',  varName: '--wp--preset--color--bgcolor-site-navigation' }
-			]
-		},
-		'color_site_navigation': {
-			vars: [
-				{ styleId: 'memberlite-customizer-css', varName: '--memberlite-color-site-navigation' },
-				{ styleId: 'global-styles-inline-css',  varName: '--wp--preset--color--color-site-navigation' }
-			]
-		},
-		'color_text': {
-			vars: [
-				{ styleId: 'memberlite-customizer-css', varName: '--memberlite-color-text' },
-				{ styleId: 'global-styles-inline-css',  varName: '--wp--preset--color--color-text' }
-			]
-		},
-		'color_link': {
-			vars: [
-				{ styleId: 'memberlite-customizer-css', varName: '--memberlite-color-link' },
-				{ styleId: 'global-styles-inline-css',  varName: '--wp--preset--color--color-link' }
-			]
-		},
-		'color_meta_link': {
-			vars: [
-				{ styleId: 'memberlite-customizer-css', varName: '--memberlite-color-meta-link' },
-				{ styleId: 'global-styles-inline-css',  varName: '--wp--preset--color--color-meta-link' }
-			]
-		},
-		'color_primary': {
-			vars: [
-				{ styleId: 'memberlite-customizer-css', varName: '--memberlite-color-primary' },
-				{ styleId: 'global-styles-inline-css',  varName: '--wp--preset--color--color-primary' }
-			]
-		},
-		'color_secondary': {
-			vars: [
-				{ styleId: 'memberlite-customizer-css', varName: '--memberlite-color-secondary' },
-				{ styleId: 'global-styles-inline-css',  varName: '--wp--preset--color--color-secondary' }
-			]
-		},
-		'color_action': {
-			vars: [
-				{ styleId: 'memberlite-customizer-css', varName: '--memberlite-color-action' },
-				{ styleId: 'global-styles-inline-css',  varName: '--wp--preset--color--color-action' }
-			]
-		},
-		'color_button': {
-			vars: [
-				{ styleId: 'memberlite-customizer-css', varName: '--memberlite-color-button' },
-				{ styleId: 'global-styles-inline-css',  varName: '--wp--preset--color--color-button' }
-			]
-		},
-		'color_borders': {
-			vars: [
-				{ styleId: 'memberlite-customizer-css', varName: '--memberlite-color-borders' },
-				{ styleId: 'global-styles-inline-css',  varName: '--wp--preset--color--color-borders' }
-			]
-		},
-		'bgcolor_page_masthead': {
-			vars: [
-				{ styleId: 'memberlite-customizer-css', varName: '--memberlite-color-page-masthead-background' },
-				{ styleId: 'global-styles-inline-css',  varName: '--wp--preset--color--page-masthead-background' }
-			]
-		},
-		'color_page_masthead': {
-			vars: [
-				{ styleId: 'memberlite-customizer-css', varName: '--memberlite-color-page-masthead' },
-				{ styleId: 'global-styles-inline-css',  varName: '--wp--preset--color--page-masthead' }
-			]
-		},
-		'bgcolor_footer_widgets': {
-			vars: [
-				{ styleId: 'memberlite-customizer-css', varName: '--memberlite-color-footer-widgets-background' },
-				{ styleId: 'global-styles-inline-css',  varName: '--wp--preset--color--footer-widgets-background' }
-			]
-		},
-		'color_footer_widgets': {
-			vars: [
-				{ styleId: 'memberlite-customizer-css', varName: '--memberlite-color-footer-widgets' },
-				{ styleId: 'global-styles-inline-css',  varName: '--wp--preset--color--footer-widgets' }
-			]
+	if ( typeof memberlite_css_vars !== 'undefined' ) {
+		Object.keys( memberlite_css_vars ).forEach( function( key ) {
+			colorSettingMap[ key ] = {
+				memberliteVar: '--memberlite-color-' + memberlite_css_vars[ key ]
+			};
+		} );
+	}
+
+	// header_textcolor can be 'blank' (WP stores it without #), so it needs a custom normalizer.
+	if ( colorSettingMap.header_textcolor ) {
+		colorSettingMap.header_textcolor.normalize = function( value ) {
+			if ( 'blank' === value ) {
+				return value;
+			}
+			return value.charAt( 0 ) === '#' ? value : '#' + value;
+		};
+	}
+
+	/**
+	 * Build the vars array for each setting from the static memberlite var
+	 * plus the WP preset slugs localized from PHP.
+	 */
+	Object.keys( colorSettingMap ).forEach( function( key ) {
+		var config = colorSettingMap[ key ];
+
+		config.vars = [
+			{ styleId: 'memberlite-customizer-css', varName: config.memberliteVar }
+		];
+
+		// Add WP preset var from the PHP-localized slug map.
+		if ( typeof memberlite_preset_slugs !== 'undefined' && memberlite_preset_slugs[ key ] ) {
+			config.vars.push( {
+				styleId: 'global-styles-inline-css',
+				varName: '--wp--preset--color--' + memberlite_preset_slugs[ key ]
+			} );
 		}
-	};
+	} );
 
 	/**
 	 * Default normalizer for colors (Customizer values are typically hex, sometimes without '#').

@@ -232,6 +232,7 @@ add_action( 'wp', 'memberlite_adjusted_content_width' );
 if ( ! function_exists( 'memberlite_setup' ) ) :
 	/* Sets up theme defaults and registers support for various WordPress features. */
 	function memberlite_setup() {
+		require_once get_template_directory() . '/inc/colors.php';
 		require_once get_template_directory() . '/inc/defaults.php';
 
 		global $memberlite_defaults;
@@ -843,6 +844,7 @@ add_filter( 'theme_mod_copyright_textbox', 'memberlite_theme_mod_copyright_textb
  */
 function memberlite_filter_theme_json( $theme_json ) {
 	$active_colors = memberlite_get_active_colors();
+	$preset_map = memberlite_get_color_preset_map();
 
 	// Make sure every color is a color and prepend a # in front of it.
 	foreach ( $active_colors as $key => $color ) {
@@ -853,33 +855,26 @@ function memberlite_filter_theme_json( $theme_json ) {
 		$active_colors[ $key ] = '#' . $color;
 	}
 
-	// Build the color palette.
-	$color_scheme = array(
-		array( 'slug' => 'background-color', 'color' => $active_colors['background_color'], 'name' => __( 'Site Background', 'memberlite' ) ),
-		array( 'slug' => 'bgcolor-header', 'color' => $active_colors['bgcolor_header'], 'name' => __( 'Header Background', 'memberlite' ) ),
-		array( 'slug' => 'site-navigation-background', 'color' => $active_colors['bgcolor_site_navigation'], 'name' => __( 'Site Navigation Background', 'memberlite' ) ),
-		array( 'slug' => 'site-navigation-link', 'color' => $active_colors['color_site_navigation'], 'name' => __( 'Site Navigation', 'memberlite' ) ),
-		array( 'slug' => 'color-text', 'color' => $active_colors['color_text'], 'name' => __( 'Text', 'memberlite' ) ),
-		array( 'slug' => 'memberlite-links', 'color' => $active_colors['color_link'], 'name' => __( 'Links', 'memberlite' ) ),
-		array( 'slug' => 'meta-link', 'color' => $active_colors['color_meta_link'], 'name' => __( 'Meta Links', 'memberlite' ) ),
-		array( 'slug' => 'color-primary', 'color' => $active_colors['color_primary'], 'name' => __( 'Primary', 'memberlite' ) ),
-		array( 'slug' => 'color-secondary', 'color' => $active_colors['color_secondary'], 'name' => __( 'Secondary', 'memberlite' ) ),
-		array( 'slug' => 'color-action', 'color' => $active_colors['color_action'], 'name' => __( 'Action', 'memberlite' ) ),
-		array( 'slug' => 'buttons', 'color' => $active_colors['color_button'], 'name' => __( 'Buttons', 'memberlite' ) ),
-		array( 'slug' => 'borders', 'color' => $active_colors['color_borders'], 'name' => __( 'Borders', 'memberlite' ) ),
-		array( 'slug' => 'page-masthead-background', 'color' => $active_colors['bgcolor_page_masthead'], 'name' => __( 'Page Masthead Background', 'memberlite' ) ),
-		array( 'slug' => 'page-masthead', 'color' => $active_colors['color_page_masthead'], 'name' => __( 'Page Masthead', 'memberlite' ) ),
-		array( 'slug' => 'footer-widgets-background', 'color' => $active_colors['bgcolor_footer_widgets'], 'name' => __( 'Footer Widgets Background', 'memberlite' ) ),
-		array( 'slug' => 'footer-widgets', 'color' => $active_colors['color_footer_widgets'], 'name' => __( 'Footer Widgets', 'memberlite' ) ),
-		array( 'slug' => 'white', 'color' => '#ffffff', 'name' => __( 'White', 'memberlite' ) ),
-		array( 'slug'  => 'body-text', 'color' => $active_colors['color_text'], 'name'  => __( 'Text', 'memberlite' ) ),
-		array( 'slug'  => 'base', 'color' => $active_colors['background_color'], 'name'  => __( 'Base', 'memberlite' ) ),
-	);
+	// Build the color palette from the canonical preset map.
+	$color_scheme = array();
+	foreach ( $preset_map as $setting_key => $preset ) {
+		if ( ! isset( $active_colors[ $setting_key ] ) ) {
+			continue;
+		}
 
-	// Add header text color if it's set and valid.
-	if ( ! empty( $active_colors['header_textcolor'] ) ) {
-		$color_scheme[] = array( 'slug'  => 'header-textcolor', 'color' => $active_colors['header_textcolor'], 'name'  => __( 'Header Text', 'memberlite' ) );
+		$color_scheme[] = array(
+			'slug'  => $preset['slug'],
+			'color' => $active_colors[ $setting_key ],
+			'name'  => $preset['label'],
+		);
 	}
+
+	// Static palette entry.
+	$color_scheme[] = array(
+		'slug' => 'white',
+		'color' => '#ffffff',
+		'name' => __( 'White', 'memberlite' )
+	);
 
 	// Reindex the array to ensure sequential keys.
 	$color_palette = array_values( $color_scheme );

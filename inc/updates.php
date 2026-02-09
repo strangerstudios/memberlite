@@ -10,7 +10,8 @@
  * @since 4.0
  */
 
-// Ensure defaults.php and deprecated.php are loaded for color migration functions.
+// Ensure files are loaded for color migration functions.
+require_once get_template_directory() . '/inc/colors.php';
 require_once get_template_directory() . '/inc/defaults.php';
 require_once get_template_directory() . '/inc/deprecated.php';
 
