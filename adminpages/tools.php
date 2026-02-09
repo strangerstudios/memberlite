@@ -116,7 +116,7 @@ function memberlite_export_theme_settings() {
 	 * By default, we export the site icon, custom sidebars, and sidebar assignments for custom post types.
 	 *
 	 * Note: This same filter is used for resetting options in memberlite_reset_theme_settings().
-	 * 
+	 *
 	 * @since 6.1
 	 * @param array $option_keys Array of option keys to export.
 	 */
@@ -209,11 +209,24 @@ function memberlite_import_theme_settings() {
 
 	// Overwrite current theme mods.
 	if ( isset( $data['mods'] ) && is_array( $data['mods'] ) ) {
+        error_log('data mods: '.print_r($data['mods'],true));
+
 		// Clear existing mods so we don't leave stale ones behind.
 		remove_theme_mods();
 
+		// Load defaults to get color setting keys
+//		require_once get_template_directory() . '/inc/defaults.php';
+		$color_keys = memberlite_get_color_setting_keys();
+
 		foreach ( $data['mods'] as $key => $value ) {
+			// Sanitize color values to remove # prefix
+			if ( in_array( $key, $color_keys, true ) && is_string( $value ) ) {
+				$value = ltrim( $value, '#' );
+			}
+
 			set_theme_mod( $key, $value );
+
+            error_log('set_theme_mod: '.$key.'='.$value);
 		}
 	}
 
