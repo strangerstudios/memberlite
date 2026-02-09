@@ -38,7 +38,7 @@
 		<div class="row">
 			<?php
 				$meta_login = get_theme_mod( 'meta_login', false );
-				if ( has_nav_menu( 'meta' ) || is_active_sidebar( 'sidebar-3' ) || ! empty( $meta_login ) ) {
+				if ( ! is_page_template( 'templates/interstitial.php' ) && ( ! empty( $meta_login ) || has_nav_menu( 'meta' ) || is_active_sidebar( 'sidebar-3' ) ) ) {
 					$show_header_right = true;
 				} else {
 					$show_header_right = false;
@@ -120,52 +120,11 @@
 				<?php }
 			?>
 		</div><!-- .row -->
+
+        <?php get_template_part( 'components/header/header', 'site-navigation' ); ?>
+
+       <?php } // End if() that checks it's not the Blank page template. ?>
 	</header><!-- #masthead -->
-
-	<?php do_action( 'memberlite_before_site_navigation' ); ?>
-
-	<?php if ( has_nav_menu( 'primary' ) ) { ?>
-		<?php
-			$sticky_nav = get_theme_mod( 'sticky_nav' );
-			if ( $sticky_nav == true ) { ?>
-				<div class="site-navigation-sticky-wrapper">
-			<?php }
-		?>
-		<nav id="site-navigation" role="navigation" aria-label="<?php esc_attr_e( 'Main Menu', 'memberlite' ); ?>">
-		<?php
-		if ( has_nav_menu( 'primary' ) ) {
-			$primary_defaults = array(
-				'theme_location'  => 'primary',
-				'container'       => false,
-				'fallback_cb'     => false,
-				'items_wrap'      => '<ul id="%1$s" class="%2$s" role="menubar">%3$s</ul>',
-				'menu_class'      => 'menu',
-				'walker'          => new Memberlite_Aria_Walker_Nav_Menu(),
-			);
-			wp_nav_menu( $primary_defaults );
-		}
-		?>
-		</nav><!-- #site-navigation -->
-		<?php
-			if ( $sticky_nav == true ) { ?>
-			</div> <!-- .site-navigation-sticky-wrapper -->
-			<script>
-				jQuery(document).ready(function ($) {
-					var s = $("#site-navigation");
-					var pos = s.position();
-					$(window).scroll(function() {
-						var windowpos = $(window).scrollTop();
-						if ( windowpos >= pos.top ) {
-							s.addClass("site-navigation-sticky");
-						} else {
-							s.removeClass("site-navigation-sticky");
-						}
-					});
-				});
-			</script>
-		<?php }
-		}
-	} // End if(). ?>
 
 	<?php do_action( 'memberlite_before_content' ); ?>
 
