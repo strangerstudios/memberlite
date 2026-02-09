@@ -209,10 +209,9 @@ function memberlite_import_theme_settings() {
 
 	// Overwrite current theme mods.
 	if ( isset( $data['mods'] ) && is_array( $data['mods'] ) ) {
-		error_log('data mods: '.print_r($data['mods'],true));
-
 		// Clear existing mods so we don't leave stale ones behind.
 		remove_theme_mods();
+
 		// Get all color setting keys.
 		$color_keys = memberlite_get_color_setting_keys();
 
@@ -223,8 +222,28 @@ function memberlite_import_theme_settings() {
 			}
 
 			set_theme_mod( $key, $value );
+		}
 
-			error_log('set_theme_mod: '.$key.'='.$value);
+		// Now detect if the imported color scheme is legacy or modern
+		$imported_scheme = isset( $data['mods']['memberlite_color_scheme'] ) ?? '';
+
+		if ( ! empty( $imported_scheme ) && $imported_scheme !== 'custom' ) {
+			// Check if it's a modern scheme
+			$modern_schemes = memberlite_get_color_schemes();
+
+			if ( isset( $modern_schemes[ $imported_scheme ] ) ) {
+				// It's a valid modern scheme, keep it as-is
+				set_theme_mod( 'memberlite_color_scheme', $imported_scheme );
+			} else {
+				// Check if it's a legacy scheme
+				$legacy_definitions = memberlite_get_legacy_color_scheme_definitions();
+
+				if ( isset( $legacy_definitions[ $imported_scheme ] ) ) {
+					// It's a legacy scheme, mark as custom
+					set_theme_mod( 'memberlite_color_scheme', 'custom' );
+				}
+				// If it's neither modern nor legacy, leave it as whatever was imported
+			}
 		}
 	}
 
