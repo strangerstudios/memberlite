@@ -225,7 +225,12 @@ function memberlite_import_theme_settings() {
 		}
 
 		// Now detect if the imported color scheme is legacy or modern
-		$imported_scheme = isset( $data['mods']['memberlite_color_scheme'] ) ?? '';
+		$imported_scheme = isset( $data['mods']['memberlite_color_scheme'] ) ? $data['mods']['memberlite_color_scheme'] : '';
+
+		// Type safety: ensure it's a string before using as array key
+		if ( ! is_string( $imported_scheme ) ) {
+			memberlite_import_settings_redirect( 'invalid_file' );
+		}
 
 		if ( ! empty( $imported_scheme ) && $imported_scheme !== 'custom' ) {
 			// Check if it's a modern scheme
