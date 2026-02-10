@@ -218,7 +218,15 @@ function memberlite_import_theme_settings() {
 		foreach ( $data['mods'] as $key => $value ) {
 			// Sanitize color values to remove # prefix
 			if ( in_array( $key, $color_keys, true ) && is_string( $value ) ) {
-				$value = ltrim( $value, '#' );
+				$value = sanitize_hex_color_no_hash( $value );
+
+				// Skip if sanitization failed (returns null for invalid colors)
+				if ( $value === null ) {
+					continue;
+				}
+
+				// Lowercase for consistency
+				$value = strtolower( $value );
 			}
 
 			set_theme_mod( $key, $value );
