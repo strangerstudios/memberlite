@@ -722,28 +722,20 @@ class Memberlite_Customize {
 				--memberlite-content-width: <?php echo esc_html( $content_width ); ?>;
 				--memberlite-body-font: <?php echo esc_html( $body_font ); ?>, sans-serif;
 				--memberlite-header-font: <?php echo esc_html( $header_font ); ?>, sans-serif;
-			<?php echo ( $active_colors['header_textcolor'] != 'blank' ) ? '--memberlite-color-header-text: #' . esc_attr( $active_colors['header_textcolor'] ) . ';' : ''; ?>
-				--memberlite-color-site-background: <?php echo '#' . esc_attr( $active_colors['background_color'] ); ?>;
-				--memberlite-color-header-background: <?php echo '#' . esc_attr( $active_colors['bgcolor_header'] ); ?>;
-				--memberlite-color-site-navigation-background: <?php echo '#' . esc_attr( $active_colors['bgcolor_site_navigation'] ); ?>;
-				--memberlite-color-site-navigation: <?php echo '#' . esc_attr( $active_colors['color_site_navigation'] ); ?>;
-				--memberlite-color-text: <?php echo '#' . esc_attr( $active_colors['color_text'] ); ?>;
-				--memberlite-color-link: <?php echo '#' . esc_attr( $active_colors['color_link'] ); ?>;
-				--memberlite-color-meta-link: <?php echo '#' . esc_attr( $active_colors['color_meta_link'] ); ?>;
-				--memberlite-color-primary: <?php echo '#' . esc_attr( $active_colors['color_primary'] ); ?>;
-				--memberlite-color-secondary: <?php echo '#' . esc_attr( $active_colors['color_secondary'] ); ?>;
-				--memberlite-color-action: <?php echo '#' . esc_attr( $active_colors['color_action'] ); ?>;
-				--memberlite-color-button: <?php echo '#' . esc_attr( $active_colors['color_button'] ); ?>;
-				--memberlite-color-borders: <?php echo '#' . esc_attr( $active_colors['color_borders'] ); ?>;
-				--memberlite-color-page-masthead-background: <?php echo '#' . esc_attr( $active_colors['bgcolor_page_masthead'] ); ?>;
-				--memberlite-color-page-masthead: <?php echo '#' . esc_attr( $active_colors['color_page_masthead'] ); ?>;
-				--memberlite-color-footer-widgets-background: <?php echo '#' . esc_attr( $active_colors['bgcolor_footer_widgets'] ); ?>;
-				--memberlite-color-footer-widgets: <?php echo '#' . esc_attr( $active_colors['color_footer_widgets'] ); ?>;
-				--memberlite-hover-brightness: <?php echo esc_attr( $memberlite_defaults['hover_brightness'] ) ?>;
+			<?php
+			$color_map = memberlite_get_color_preset_map();
+			foreach ( $color_map as $setting_key => $preset ) {
+				$value = $active_colors[ $setting_key ] ?? '';
+				if ( empty( $value ) || 'blank' === $value ) {
+					continue;
+				}
+				echo "\t\t\t\t--memberlite-color-" . esc_attr( $preset['css_var'] ) . ': #' . esc_attr( $value ) . ";\n";
+			}
+			?>
+				--memberlite-hover-brightness: <?php echo esc_attr( $memberlite_defaults['hover_brightness'] ); ?>;
 				--memberlite-color-white: #ffffff;
 
-			<?php
-			if ( $override_pmpro_colors && defined( 'PMPRO_VERSION' ) )  : ?>
+			<?php if ( $override_pmpro_colors && defined( 'PMPRO_VERSION' ) ) : ?>
 				/* PMPro color vars */
 				--pmpro--color--accent: <?php echo '#' . esc_attr( $active_colors['color_primary'] ); ?>;
 				--pmpro--color--accent--variation: <?php echo '#' . esc_attr( $active_colors['color_primary'] ); ?>;
@@ -775,6 +767,13 @@ class Memberlite_Customize {
 
 		// Localize the script with new data
 		wp_localize_script( 'Memberlite_Customizer', 'memberlite_defaults', $memberlite_defaults );
+
+		// Localize the WP preset slug map so JS can build --wp--preset--color--{slug} var names.
+		wp_localize_script( 'Memberlite_Customizer', 'memberlite_preset_slugs', memberlite_get_color_preset_slugs() );
+
+		// Localize the css_var suffixes so JS can build --memberlite-color-{css_var} var names.
+		wp_localize_script( 'Memberlite_Customizer', 'memberlite_css_vars', memberlite_get_color_css_vars() );
+
 		wp_enqueue_script( 'Memberlite_Customizer' );
 	}
 
@@ -997,6 +996,7 @@ class Memberlite_Customize {
 
 		wp_localize_script( 'Memberlite_Customizer-controls', 'colorSchemes', $js_schemes );
 		wp_localize_script( 'Memberlite_Customizer-controls', 'colorSettingKeys', memberlite_get_color_setting_keys() );
+		wp_localize_script( 'Memberlite_Customizer-controls', 'memberlite_preset_slugs', memberlite_get_color_preset_slugs() );
 
 		wp_enqueue_style(
 			'memberlite-customizer-css',

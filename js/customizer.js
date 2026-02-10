@@ -2,145 +2,167 @@
  * Theme Customizer enhancements for a better user experience.
  *
  * This functionality runs in the site preview panel of Theme Customizer.
+ *
+ * Color variable mappings are localized from PHP so both
+ * --memberlite-color-{css_var} and --wp--preset--color--{slug}
+ * var names are always in sync with memberlite_get_color_preset_map().
  */
 ( function( $ ) {
-	// Mapping of customizer settings to CSS variable names
-	var colorSettingsToCssVars = {
-		'header_textcolor': '--memberlite-color-header-text',
-		'background_color': '--memberlite-color-site-background',
-		'bgcolor_header': '--memberlite-color-header-background',
-		'bgcolor_site_navigation': '--memberlite-color-site-navigation-background',
-		'color_site_navigation': '--memberlite-color-site-navigation',
-		'color_text': '--memberlite-color-text',
-		'color_link': '--memberlite-color-link',
-		'color_meta_link': '--memberlite-color-meta-link',
-		'color_primary': '--memberlite-color-primary',
-		'color_secondary': '--memberlite-color-secondary',
-		'color_action': '--memberlite-color-action',
-		'color_button': '--memberlite-color-button',
-		'color_borders': '--memberlite-color-borders',
-		'bgcolor_page_masthead': '--memberlite-color-page-masthead-background',
-		'color_page_masthead': '--memberlite-color-page-masthead',
-		'bgcolor_footer_widgets': '--memberlite-color-footer-widgets-background',
-		'color_footer_widgets': '--memberlite-color-footer-widgets'
-	};
 
 	/**
-	 * Update a CSS variable in the #memberlite-customizer-css style tag
+	 * Build the color setting map from localized PHP data.
+	 *
+	 * memberlite_css_vars (localized from PHP) maps setting keys to their
+	 * css_var suffix, e.g. { color_link: 'link', bgcolor_header: 'header-background' }.
+	 * We use this to build the --memberlite-color-{css_var} var names dynamically.
 	 */
-	function updateCssVariable( varName, value ) {
-		var styleEl = document.getElementById( 'memberlite-customizer-css' );
+	var colorSettingMap = {};
+
+	if ( typeof memberlite_css_vars !== 'undefined' ) {
+		Object.keys( memberlite_css_vars ).forEach( function( key ) {
+			colorSettingMap[ key ] = {
+				memberliteVar: '--memberlite-color-' + memberlite_css_vars[ key ]
+			};
+		} );
+	}
+
+	// header_textcolor can be 'blank' (WP stores it without #), so it needs a custom normalizer.
+	if ( colorSettingMap.header_textcolor ) {
+		colorSettingMap.header_textcolor.normalize = function( value ) {
+			if ( 'blank' === value ) {
+				return value;
+			}
+			return value.charAt( 0 ) === '#' ? value : '#' + value;
+		};
+	}
+
+	/**
+	 * Build the vars array for each setting from the static memberlite var
+	 * plus the WP preset slugs localized from PHP.
+	 */
+	Object.keys( colorSettingMap ).forEach( function( key ) {
+		var config = colorSettingMap[ key ];
+
+		config.vars = [
+			{ styleId: 'memberlite-customizer-css', varName: config.memberliteVar }
+		];
+
+		// Add WP preset var from the PHP-localized slug map.
+		if ( typeof memberlite_preset_slugs !== 'undefined' && memberlite_preset_slugs[ key ] ) {
+			config.vars.push( {
+				styleId: 'global-styles-inline-css',
+				varName: '--wp--preset--color--' + memberlite_preset_slugs[ key ]
+			} );
+		}
+	} );
+
+	/**
+	 * Default normalizer for colors (Customizer values are typically hex, sometimes without '#').
+	 */
+	function normalizeColorValue( value ) {
+		if ( ! value ) {
+			return value;
+		}
+		return value.charAt( 0 ) === '#' ? value : '#' + value;
+	}
+
+	/**
+	 * Update a CSS variable inside a specific <style> tag by id.
+	 * If the variable doesn't exist yet, append a new :root block.
+	 */
+	function updateCssVarInStyleTag( styleId, varName, value ) {
+		var styleEl = document.getElementById( styleId );
 		if ( ! styleEl ) {
 			return;
 		}
 
-		var css = styleEl.textContent;
-		// Build regex to find and replace the variable declaration
-		var regex = new RegExp( varName.replace( /[-]/g, '\\-' ) + ':\\s*[^;]+;' );
+		var css   = styleEl.textContent || '';
+		var esc   = varName.replace( /[-]/g, '\\-' );
+		var regex = new RegExp( esc + ':\\s*[^;]+;' );
 
 		if ( regex.test( css ) ) {
-			// Replace existing variable
 			css = css.replace( regex, varName + ': ' + value + ';' );
 		} else {
-			// Variable doesn't exist yet (e.g., header_textcolor was 'blank'), add it to :root
-			var rootClose = css.lastIndexOf( '}' );
-			if ( rootClose !== -1 ) {
-				css = css.substring( 0, rootClose ) + '\t\t' + varName + ': ' + value + ';\n\t' + css.substring( rootClose );
-			}
+			css += '\n:root { ' + varName + ': ' + value + '; }';
 		}
 
 		styleEl.textContent = css;
 	}
 
-	// Site title and description.
-	wp.customize(
-		'blogname', function( setting ) {
-			setting.bind(
-				function( value ) {
-					$( '.site-title a' ).text( value );
-				}
-			);
-		}
-	);
-	wp.customize(
-		'blogdescription', function( setting ) {
-			setting.bind(
-				function( value ) {
-					$( '.site-description' ).text( value );
-				}
-			);
-		}
-	);
-
-	// Header text color (special handling for 'blank' value).
-	wp.customize(
-		'header_textcolor', function( setting ) {
-			setting.bind(
-				function( value ) {
-					if ( 'blank' === value ) {
-						$( '.site-title' ).css( { 'clip': 'rect(1px, 1px, 1px, 1px)', 'position': 'absolute' } );
-						$( '.site-description' ).css( { 'clip': 'rect(1px, 1px, 1px, 1px)', 'position': 'absolute' } );
-					} else {
-						$( '.site-title' ).css( { 'clip': 'auto', 'position': 'static' } );
-						$( '.site-description' ).css( { 'clip': 'auto', 'position': 'static' } );
-						// WordPress stores header_textcolor without the # prefix
-						var colorValue = value.charAt(0) === '#' ? value : '#' + value;
-						updateCssVariable( '--memberlite-color-header-text', colorValue );
-					}
-				}
-			);
-		}
-	);
-
-	// Register all color settings to update their CSS variables
-	$.each( colorSettingsToCssVars, function( settingKey, cssVar ) {
-		// Skip header_textcolor as it has special handling above
-		if ( settingKey === 'header_textcolor' ) {
-			return;
-		}
-
+	/**
+	 * Bind one Customizer color setting to update all mapped CSS vars.
+	 */
+	function bindColorSetting( settingKey, config ) {
 		wp.customize( settingKey, function( setting ) {
 			setting.bind( function( value ) {
-				var colorValue = value.charAt(0) === '#' ? value : '#' + value;
-				updateCssVariable( cssVar, colorValue );
-			});
-		});
-	});
-	wp.customize(
-		'delimiter', function( setting ) {
-			setting.bind(
-				function( value ) {
-					$( '.memberlite-breadcrumb .sep, .bbp-breadcrumb-sep, .woocommerce-breadcrumb .sep' ).text( value );
+				var normalized = ( config.normalize ? config.normalize( value ) : normalizeColorValue( value ) );
+
+				// Special case: header text can be hidden.
+				if ( settingKey === 'header_textcolor' ) {
+					if ( 'blank' === normalized ) {
+						$( '.site-title' ).css( { clip: 'rect(1px, 1px, 1px, 1px)', position: 'absolute' } );
+						$( '.site-description' ).css( { clip: 'rect(1px, 1px, 1px, 1px)', position: 'absolute' } );
+						return;
+					}
+
+					$( '.site-title' ).css( { clip: 'auto', position: 'static' } );
+					$( '.site-description' ).css( { clip: 'auto', position: 'static' } );
 				}
-			);
-		}
-	);
-	wp.customize(
-		'posts_entry_meta_before', function( setting ) {
-			setting.bind(
-				function( value ) {
-					$( 'header .entry-meta' ).text( value );
+
+				// Update each target var in its respective style tag.
+				if ( Array.isArray( config.vars ) ) {
+					config.vars.forEach( function( target ) {
+						updateCssVarInStyleTag( target.styleId, target.varName, normalized );
+					} );
 				}
-			);
-		}
-	);
-	wp.customize(
-		'posts_entry_meta_after', function( setting ) {
-			setting.bind(
-				function( value ) {
-					$( '.post .entry-footer' ).text( value );
-				}
-			);
-		}
-	);
-	wp.customize(
-		'copyright_textbox', function( setting ) {
-			setting.bind(
-				function( value ) {
-					$( '.site-info p' ).text( value );
-				}
-			);
-		}
-	);
+			} );
+		} );
+	}
+
+	/**
+	 * Register all color bindings
+	 */
+	Object.keys( colorSettingMap ).forEach( function( settingKey ) {
+		bindColorSetting( settingKey, colorSettingMap[ settingKey ] );
+	} );
+
+	/**
+	 * Bind non-color settings.
+	 */
+	wp.customize( 'blogname', function( setting ) {
+		setting.bind( function( value ) {
+			$( '.site-title a' ).text( value );
+		} );
+	} );
+
+	wp.customize( 'blogdescription', function( setting ) {
+		setting.bind( function( value ) {
+			$( '.site-description' ).text( value );
+		} );
+	} );
+
+	wp.customize( 'delimiter', function( setting ) {
+		setting.bind( function( value ) {
+			$( '.memberlite-breadcrumb .sep, .bbp-breadcrumb-sep, .woocommerce-breadcrumb .sep' ).text( value );
+		} );
+	} );
+
+	wp.customize( 'posts_entry_meta_before', function( setting ) {
+		setting.bind( function( value ) {
+			$( 'header .entry-meta' ).text( value );
+		} );
+	} );
+
+	wp.customize( 'posts_entry_meta_after', function( setting ) {
+		setting.bind( function( value ) {
+			$( '.post .entry-footer' ).text( value );
+		} );
+	} );
+
+	wp.customize( 'copyright_textbox', function( setting ) {
+		setting.bind( function( value ) {
+			$( '.site-info p' ).text( value );
+		} );
+	} );
 
 } )( jQuery );
