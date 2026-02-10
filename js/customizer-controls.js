@@ -153,10 +153,27 @@
 	// When any color is manually changed, check if it matches a scheme or set to custom
 	colorSettingKeys.forEach(function (settingId) {
 		wp.customize(settingId, function (value) {
-			value.bind(function () {
+			value.bind(function (newVal, oldVal) {
 				// Don't trigger if we're updating from a scheme selection
 				if (isUpdatingFromScheme) {
 					return;
+				}
+
+				// When header_textcolor transitions from 'blank' to a color
+				// and a non-custom scheme is active, use that scheme's color
+				// instead of the generic default.
+				if (settingId === 'header_textcolor' && oldVal === 'blank' && newVal !== 'blank') {
+					const currentScheme = wp.customize('memberlite_color_scheme')();
+					if (currentScheme !== 'custom' && typeof colorSchemes !== 'undefined' && colorSchemes[currentScheme]) {
+						let schemeColor = colorSchemes[currentScheme].colors.header_textcolor;
+						if (schemeColor && schemeColor.charAt(0) === '#') {
+							schemeColor = schemeColor.substring(1);
+						}
+						if (schemeColor && schemeColor.toLowerCase() !== newVal.toLowerCase()) {
+							wp.customize(settingId).set(schemeColor);
+							return;
+						}
+					}
 				}
 
 				// Check if the new color configuration matches any scheme

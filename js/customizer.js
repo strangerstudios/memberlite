@@ -68,7 +68,7 @@
 
 	/**
 	 * Update a CSS variable inside a specific <style> tag by id.
-	 * If the variable doesn't exist yet, insert it before the last '}'.
+	 * If the variable doesn't exist yet, append a new :root block.
 	 */
 	function updateCssVarInStyleTag( styleId, varName, value ) {
 		var styleEl = document.getElementById( styleId );
@@ -83,10 +83,7 @@
 		if ( regex.test( css ) ) {
 			css = css.replace( regex, varName + ': ' + value + ';' );
 		} else {
-			var closeIndex = css.lastIndexOf( '}' );
-			if ( closeIndex !== -1 ) {
-				css = css.substring( 0, closeIndex ) + '\t\t' + varName + ': ' + value + ';\n\t' + css.substring( closeIndex );
-			}
+			css += '\n:root { ' + varName + ': ' + value + '; }';
 		}
 
 		styleEl.textContent = css;
