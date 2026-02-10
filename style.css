@@ -1714,8 +1714,7 @@ a:where(:not(.pmpro_btn)):active {
 	text-align: center;
 }
 
-#secondary .widget-title,
-#secondary .widget h3.wp-block-heading {
+#secondary .widget-title {
 	border-top: 1px solid var(--memberlite-color-borders);
 	margin: 0;
 	padding: var(--wp--preset--spacing--20) 0 var(--wp--preset--spacing--10) 0;
@@ -1918,6 +1917,7 @@ a:where(:not(.pmpro_btn)):active {
 	font-size: var(--wp--preset--font-size--36);
 	font-family: var(--memberlite-header-font);
 	font-weight: 700;
+	line-height: var(--wp--custom--line-height--heading);
 	margin: 0;
 }
 
@@ -3262,10 +3262,6 @@ object {
 /*--------------------------------------------------------------
 13.0 Memberlite Elements styles
 --------------------------------------------------------------*/
-body.memberlite-banner-hidden #site-navigation {
-	border-bottom: 1px solid var(--memberlite-color-borders);
-}
-
 body.memberlite-banner-hidden .entry-content > .banner:first-child {
 	margin-top: 0;
 }

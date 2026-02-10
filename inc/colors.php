@@ -170,7 +170,7 @@ function memberlite_get_default_colors(): array {
 		'header_textcolor'        => '011935',
 		'background_color'        => 'ffffff',
 		'bgcolor_header'          => 'ffffff',
-		'bgcolor_site_navigation' => 'f9fafb',
+		'bgcolor_site_navigation' => 'ffffff',
 		'color_site_navigation'   => '222222',
 		'color_text'              => '222222',
 		'color_link'              => '011935',
