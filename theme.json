@@ -833,7 +833,7 @@
 					"blockGap": "var(--wp--preset--spacing--10)"
 				},
 				"variations": {
-					"outline" : {
+					"outline": {
 						"border": {
 							"color": "currentColor",
 							"style": "solid",
@@ -957,9 +957,6 @@
 							}
 						},
 						":active": {
-							"color": {
-								"text": "var(--wp--preset--color--color-secondary)"
-							},
 							"typography": {
 								"textDecoration": "none"
 							}
@@ -1143,33 +1140,27 @@
 				},
 				"color": {
 					"background": "var(--wp--preset--color--buttons)",
-					"text": "var(--wp--preset--color--white)"
+					"text": "var(--wp--preset--color--base)"
+				},
+				":focus": {
+					"outline": {
+					"color": "var(--wp--preset--color--body-text)",
+					"offset": "2px"
+					}
 				},
 				"spacing": {
 					"padding": {
-						"top": "calc( var(--wp--preset--spacing--10) / 1.5)",
-						"right": "var(--wp--preset--spacing--20)",
-						"bottom": "calc( var(--wp--preset--spacing--10) / 1.5)",
-						"left": "var(--wp--preset--spacing--20)"
+					"top": "calc( var(--wp--preset--spacing--10) / 1.5)",
+					"right": "var(--wp--preset--spacing--50)",
+					"bottom": "calc( var(--wp--preset--spacing--10) / 1.5)",
+					"left": "var(--wp--preset--spacing--50)"
 					}
 				},
 				"typography": {
 					"fontFamily": "var(--wp--custom--heading--font-family)",
 					"fontSize": "var(--wp--preset--font-size--18)",
 					"fontWeight": "700",
-					"lineHeight": "var(--wp--custom--line-height--body)"
-				},
-				":hover": {
-					"color": {
-						"background": "var(--wp--preset--color--body-text)",
-						"text": "var(--wp--preset--color--white)"
-					}
-				},
-				":active": {
-					"color": {
-						"background": "var(--wp--preset--color--color-secondary)",
-						"text": "var(--wp--preset--color--white)"
-					}
+					"lineHeight": "var(--wp--custom--line-height--heading)"
 				}
 			},
 			"caption": {
@@ -1185,7 +1176,7 @@
 					}
 				},
 				"typography": {
-					"fontFamily": "var(--memberlite-header-font)",
+					"fontFamily": "var(--wp--custom--heading--font-family)",
 					"fontWeight": "700",
 					"lineHeight": "var(--wp--custom--line-height--heading)"
 				}
@@ -1230,11 +1221,6 @@
 			"h6": {
 				"typography": {
 					"fontSize": "var(--wp--preset--font-size--16)"
-				}
-			},
-			"link": {
-				"color": {
-					"text": "var(--wp--preset--color--color-primary)"
 				}
 			}
 		},

@@ -232,6 +232,7 @@ add_action( 'wp', 'memberlite_adjusted_content_width' );
 if ( ! function_exists( 'memberlite_setup' ) ) :
 	/* Sets up theme defaults and registers support for various WordPress features. */
 	function memberlite_setup() {
+		require_once get_template_directory() . '/inc/colors.php';
 		require_once get_template_directory() . '/inc/defaults.php';
 
 		global $memberlite_defaults;
@@ -321,7 +322,7 @@ if ( ! function_exists( 'memberlite_setup' ) ) :
 		// Setup the WordPress core custom background feature.
 		$custom_background = apply_filters(
 			'memberlite_custom_background_args', array(
-				'default-color' => 'FFFFFF',
+				'default-color' => 'ffffff',
 				'default-image' => '',
 			)
 		);
@@ -346,7 +347,7 @@ add_action( 'init', 'memberlite_load_textdomain' );
 
 /**
  * Load custom translations from our own server: translate.strangerstudios.com
- * 
+ *
  * @since 6.1
  */
 function memberlite_check_for_translations() {
@@ -829,104 +830,45 @@ function memberlite_theme_mod_copyright_textbox( $copyright_text ) {
 add_filter( 'theme_mod_copyright_textbox', 'memberlite_theme_mod_copyright_textbox' );
 
 /**
- * Filter theme.json data to inject Customizer colors
- * This makes Customizer colors available in the block editor
+ * Filter theme.json data to add theme settings
  *
  * @since TBD
  *
- * @param $theme_json
- *
- * @return mixed
+ * @param WP_Theme_JSON $theme_json Theme JSON object.
+ * @return WP_Theme_JSON Theme JSON object.
  */
 function memberlite_filter_theme_json( $theme_json ) {
 	$active_colors = memberlite_get_active_colors();
+	$preset_map = memberlite_get_color_preset_map();
 
-	// Build the color palette.
-	// These colors will be deduplicated (first occurrence wins).
-	$color_scheme = array(
-		array(
-			'slug'  => 'color-primary',
-			'color' => $active_colors['color_primary'],
-			'name'  => __( 'Primary', 'memberlite' ),
-		),
-		array(
-			'slug'  => 'color-secondary',
-			'color' => $active_colors['color_secondary'],
-			'name'  => __( 'Secondary', 'memberlite' ),
-		),
-		array(
-			'slug'  => 'action',
-			'color' => $active_colors['color_action'],
-			'name'  => __( 'Action', 'memberlite' ),
-		),
-		array(
-			'slug'  => 'memberlite-links',
-			'color' => $active_colors['color_link'],
-			'name'  => __( 'Links', 'memberlite' ),
-		),
-		array(
-			'slug'  => 'meta-link',
-			'color' => $active_colors['color_meta_link'],
-			'name'  => __( 'Meta Links', 'memberlite' ),
-		),
-		array(
-			'slug'  => 'buttons',
-			'color' => $active_colors['color_button'],
-			'name'  => __( 'Buttons', 'memberlite' ),
-		),
-		array(
-			'slug'  => 'white',
-			'color' => '#FFFFFF',
-			'name'  => __( 'White', 'memberlite' ),
-		),
-		array(
-			'slug'  => 'borders',
-			'color' => $active_colors['color_borders'],
-			'name'  => __( 'Borders', 'memberlite' ),
-		),
-		array(
-			'slug'  => 'page-masthead-background',
-			'color' => $active_colors['bgcolor_page_masthead'],
-			'name'  => __( 'Page Masthead Background', 'memberlite' ),
-		),
-		array(
-			'slug'  => 'page-masthead',
-			'color' => $active_colors['color_page_masthead'],
-			'name'  => __( 'Page Masthead', 'memberlite' ),
-		),
-		array(
-			'slug'  => 'footer-widgets-background',
-			'color' => $active_colors['bgcolor_footer_widgets'],
-			'name'  => __( 'Footer Widgets Background', 'memberlite' ),
-		),
-		array(
-			'slug'  => 'footer-widgets',
-			'color' => $active_colors['color_footer_widgets'],
-			'name'  => __( 'Footer Widgets', 'memberlite' ),
-		),
-	);
-
-	// Deduplicate: keep first occurrence of each unique color value.
-	$color_scheme_temp = array_unique( array_column( $color_scheme, 'color' ) );
-	$color_scheme = array_intersect_key( $color_scheme, $color_scheme_temp );
-
-	// Always ensure the body text color is included (added after deduplication).
-	$color_scheme[] = array(
-		'slug'  => 'body-text',
-		'color' => $active_colors['color_text'],
-		'name'  => __( 'Text', 'memberlite' ),
-	);
-
-	// Always ensure the base/background color is included (added after deduplication).
-	$base_color = $active_colors['background_color'];
-	// Add a # if it's missing.
-	if ( strpos( $base_color, '#' ) === false ) {
-		$base_color = '#' . $base_color;
+	// Make sure every color is a color and prepend a # in front of it.
+	foreach ( $active_colors as $key => $color ) {
+		if ( sanitize_hex_color_no_hash( $color ) === NULL ) {
+			unset( $active_colors[ $key ] );
+			continue;
+		}
+		$active_colors[ $key ] = '#' . $color;
 	}
+
+	// Build the color palette from the canonical preset map.
+	$color_scheme = array();
+	foreach ( $preset_map as $setting_key => $preset ) {
+		if ( ! isset( $active_colors[ $setting_key ] ) ) {
+			continue;
+		}
+
+		$color_scheme[] = array(
+			'slug'  => $preset['slug'],
+			'color' => $active_colors[ $setting_key ],
+			'name'  => $preset['label'],
+		);
+	}
+
+	// Static palette entry.
 	$color_scheme[] = array(
-		'slug'  => 'base',
-		'color' => esc_attr( $base_color ),
-		'name'  => __( 'Base', 'memberlite' ),
+		'slug' => 'white',
+		'color' => '#ffffff',
+		'name' => __( 'White', 'memberlite' )
 	);
 
 	// Reindex the array to ensure sequential keys.
@@ -963,3 +905,92 @@ function memberlite_filter_theme_json( $theme_json ) {
 	return $theme_json->update_with( $theme_json_data );
 }
 add_filter( 'wp_theme_json_data_theme', 'memberlite_filter_theme_json' );
+
+/**
+ * Dedupe the full color palette for the editor color picker.
+ *
+ * @since TBD
+ *
+ * @param array $editor_settings Editor settings array.
+ * @param WP_Block_Editor_Context $context Editor context.
+ * @return array
+ */
+function memberlite_dedupe_editor_color_palette( $editor_settings, $context ) {
+	// Helper: return a deduped palette (first occurrence wins) by color value.
+	// but always keep 'body-text' and 'base' slugs.
+	$dedupe = static function( $palette ) {
+		if ( empty( $palette ) || ! is_array( $palette ) ) {
+			return $palette;
+		}
+
+		$seen   = array();
+		$result = array();
+
+		foreach ( $palette as $entry ) {
+			if ( ! is_array( $entry ) || empty( $entry['color'] ) ) {
+				continue;
+			}
+
+			$color = sanitize_hex_color( $entry['color'] );
+			if ( empty( $color ) ) {
+				continue;
+			}
+
+			$key = strtolower( $color );
+			$slug = isset( $entry['slug'] ) ? $entry['slug'] : '';
+
+			// Always keep 'body-text' and 'base' slugs, even if duplicate color.
+			if ( in_array( $slug, array( 'body-text', 'base' ), true ) ) {
+				$entry['color'] = $color;
+				$result[] = $entry;
+				continue;
+			}
+
+			if ( isset( $seen[ $key ] ) ) {
+				continue;
+			}
+
+			$seen[ $key ] = true;
+
+			// Keep the original entry shape (slug/name), but normalize color.
+			$entry['color'] = $color;
+			$result[]       = $entry;
+		}
+
+		return array_values( $result );
+	};
+
+	/*
+	 * WordPress stores palette data for the editor UI in slightly different
+	 * places depending on WP/Gutenberg versions.
+	 *
+	 * We try the most common paths and replace only the "theme" palette list
+	 * that powers the picker UI.
+	 */
+	$paths = array(
+		array( '__experimentalFeatures', 'color', 'palette', 'theme' ),
+		array( '__experimentalFeatures', 'settings', 'color', 'palette', 'theme' ),
+		array( 'settings', 'color', 'palette', 'theme' ),
+	);
+
+	foreach ( $paths as $path ) {
+		$ref = &$editor_settings;
+
+		$found = true;
+		foreach ( $path as $segment ) {
+			if ( ! is_array( $ref ) || ! array_key_exists( $segment, $ref ) ) {
+				$found = false;
+				break;
+			}
+			$ref = &$ref[ $segment ];
+		}
+
+		if ( $found && is_array( $ref ) ) {
+			$ref = $dedupe( $ref );
+			// Don’t break; multiple paths can exist in some setups.
+		}
+	}
+
+	return $editor_settings;
+}
+add_filter( 'block_editor_settings_all', 'memberlite_dedupe_editor_color_palette', 20, 2 );

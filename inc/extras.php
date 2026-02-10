@@ -298,15 +298,16 @@ function memberlite_the_content( $content ) {
 		}
 
 		/**
-		 * Filter to turn off the enlarged/enhanced excerpt text for a single post with a separator.
+		 * Filter to turn enlarge/enhance the excerpt text for a single post with a separator.
 		 *
 		 * @since 4.5.4
+		 * @since TBD Reversed filter default to `false` in TBD
 		 *
 		 * @param bool $memberlite_excerpt_larger Enlarge/enhance the excerpt text on a single post.
 		 * @return bool $memberlite_excerpt_larger
 		 *
 		 */
-		$memberlite_excerpt_larger = apply_filters( 'memberlite_excerpt_larger', true);
+		$memberlite_excerpt_larger = apply_filters( 'memberlite_excerpt_larger', false );
 		if ( ! empty( $memberlite_excerpt_larger ) ) {
 			$leadcontent = '<div class="lead">' . $leadcontent . '<hr /></div>';
 		}
