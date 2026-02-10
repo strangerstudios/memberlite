@@ -6,12 +6,9 @@
  *
  * @package Memberlite
  */
-
-// Hide header output for the Blank page template.
-$hide_header_footer = get_post_meta( get_the_ID(), '_memberlite_hide_header_footer', true );
 ?>
 
-		<?php if ( ! is_page_template( 'templates/fluid-width.php' )  && ! $hide_header_footer && ! is_404() ) { ?>
+		<?php if ( ! is_page_template( 'templates/fluid-width.php' )  && ! hide_page_header_footer() && ! is_404() ) { ?>
 			</div><!-- .row -->
 		<?php } ?>
 
@@ -21,7 +18,7 @@ $hide_header_footer = get_post_meta( get_the_ID(), '_memberlite_hide_header_foot
 
 	<?php do_action( 'memberlite_before_footer' ); ?>
 
-	<?php if ( ! is_page_template( 'templates/interstitial.php' ) && ! $hide_header_footer ) { ?>
+	<?php if ( ! is_page_template( 'templates/interstitial.php' ) && ! hide_page_header_footer() ) { ?>
 	<footer id="colophon" class="site-footer" role="contentinfo">
 
 		<?php get_template_part( 'components/footer/footer', 'widgets' ); ?>

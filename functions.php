@@ -1025,3 +1025,17 @@ function enqueue_memberlite_custom_editor_assets() : void {
 	);
 }
 add_action( 'enqueue_block_editor_assets', 'enqueue_memberlite_custom_editor_assets' );
+
+/**
+ * Hide header and footer on pages
+ *
+ * @return mixed|string
+ */
+function hide_page_header_footer() {
+	if ( get_post_type() !== 'page') {
+		return '';
+	}
+
+	return get_post_meta( get_the_ID(), '_memberlite_hide_header_footer', true );
+}
+add_filter( 'memberlite_hide_header_footer', 'hide_page_header_footer' );

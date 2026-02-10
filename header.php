@@ -27,10 +27,8 @@
 <div id="page" class="hfeed site">
 
 <?php
-	$hide_header_footer = get_post_meta( get_the_ID(), '_memberlite_hide_header_footer', true );
-
 	// Hide header output for the Blank page template.
-	if ( ! $hide_header_footer ) { ?>
+	if ( ! hide_page_header_footer() ) { ?>
 
 	<?php get_template_part( 'components/header/mobile', 'menu' ); ?>
 
