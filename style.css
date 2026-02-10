@@ -843,41 +843,14 @@ a:focus:not(.pmpro_btn:focus),
 a:active:not(.pmpro_btn:active) {
 	filter: brightness(var(--memberlite-hover-brightness));
 }
-.primary,
-.has-text-color.has-color-primary-color {
+.primary {
 	color: var(--memberlite-color-primary);
 }
-.secondary,
-.has-text-color.has-color-secondary-color {
+.secondary {
 	color: var(--memberlite-color-secondary);
 }
-.action,
-.has-text-color.has-color-action-color {
+.action {
 	color: var(--memberlite-color-action);
-}
-.has-text-color.has-site-background-color {
-	color: var(--memberlite-color-site-background);
-}
-.has-text-color.has-site-navigation-background-color {
-	color: var(--memberlite-color-site-navigation-background);
-}
-.has-text-color.has-site-navigation-link-color {
-	color: var(--memberlite-color-site-navigation);
-}
-.has-text-color.has-meta-link-color {
-	color: var(--memberlite-color-meta-link);
-}
-.has-text-color.has-buttons-color {
-	color: var(--memberlite-color-button);
-}
-.has-text-color.has-white-color {
-	color: var(--memberlite-color-white);
-}
-.has-text-color.has-body-text-color {
-	color: var(--memberlite-color-text);
-}
-.has-text-color.has-borders-color {
-	color: var(--memberlite-color-borders);
 }
 .has-text-color a {
 	color: inherit;
