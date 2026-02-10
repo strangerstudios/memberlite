@@ -226,30 +226,21 @@ function memberlite_import_theme_settings() {
 
 		// Now detect if the imported color scheme is legacy or modern
 		$imported_scheme = isset( $data['mods']['memberlite_color_scheme'] ) ? $data['mods']['memberlite_color_scheme'] : '';
+		$final_scheme = 'custom'; // Default to custom if we can't determine the color scheme
 
 		// Type safety: ensure it's a string before using as array key
-		if ( ! is_string( $imported_scheme ) ) {
-			memberlite_import_settings_redirect( 'invalid_file' );
-		}
-
-		if ( ! empty( $imported_scheme ) && $imported_scheme !== 'custom' ) {
+		if ( is_string( $imported_scheme ) && ! empty( $imported_scheme ) && $imported_scheme !== 'custom' ) {
 			// Check if it's a modern scheme
 			$modern_schemes = memberlite_get_color_schemes();
 
 			if ( isset( $modern_schemes[ $imported_scheme ] ) ) {
 				// It's a valid modern scheme, keep it as-is
-				set_theme_mod( 'memberlite_color_scheme', $imported_scheme );
-			} else {
-				// Check if it's a legacy scheme
-				$legacy_definitions = memberlite_get_legacy_color_scheme_definitions();
-
-				if ( isset( $legacy_definitions[ $imported_scheme ] ) ) {
-					// It's a legacy scheme, mark as custom
-					set_theme_mod( 'memberlite_color_scheme', 'custom' );
-				}
-				// If it's neither modern nor legacy, leave it as whatever was imported
+				$final_scheme = $imported_scheme;
 			}
 		}
+
+		// Anything legacy or a malformed color scheme will default to "custom"
+		set_theme_mod( 'memberlite_color_scheme', $final_scheme );
 	}
 
 	// Restore extra options (site_icon, sidebars, etc.), if present.
