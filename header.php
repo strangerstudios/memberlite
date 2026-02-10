@@ -15,20 +15,22 @@
 </head>
 
 <body <?php body_class(); ?>>
-<?php 
+<?php
 	do_action( 'memberlite_before_page' );
-	
+
 	if ( function_exists( 'wp_body_open' ) ) {
 		wp_body_open();
 	} else {
 		do_action( 'wp_body_open' );
-	} 
+	}
 ?>
 <div id="page" class="hfeed site">
 
 <?php
+	$hide_header_footer = get_post_meta( get_the_ID(), '_memberlite_hide_header_footer', true );
+
 	// Hide header output for the Blank page template.
-	if ( ! is_page_template( 'templates/blank.php' ) ) { ?>
+	if ( ! $hide_header_footer ) { ?>
 
 	<?php get_template_part( 'components/header/mobile', 'menu' ); ?>
 
@@ -175,6 +177,6 @@
 
 	<?php get_template_part( 'components/header/masthead' ); ?>
 
-	<?php if ( ! is_page_template( 'templates/fluid-width.php' )  && ! is_page_template( 'templates/blank.php' ) && ! is_404() ) { ?>
+	<?php if ( ! is_page_template( 'templates/fluid-width.php' )  && ! $hide_header_footer && ! is_404() ) { ?>
 		<div class="row">
 	<?php } ?>
