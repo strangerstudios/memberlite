@@ -297,6 +297,11 @@ function memberlite_set_blank_template_fallback(){
 		'templates/blank.php'
 	) );
 
+	// Return early if no results
+	if ( empty( $page_ids ) ) {
+		return;
+	}
+
 	// Set the page meta to hide the header and footer
 	foreach( $page_ids as $page_id ) {
 		update_post_meta( $page_id, '_memberlite_hide_header', true );
