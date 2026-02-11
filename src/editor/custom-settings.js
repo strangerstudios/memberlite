@@ -12,7 +12,8 @@ const MemberliteCustomSettings = () => {
 
 	const [ meta, setMeta ] = useEntityProp( 'postType', postType, 'meta' );
 
-	const yourCustomValue = meta?._memberlite_hide_header_footer || false;
+	const hideHeaderValue = meta?._memberlite_hide_header || false;
+	const hideFooterValue = meta?._memberlite_hide_footer || false;
 
 	return (
 		<PluginDocumentSettingPanel
@@ -20,10 +21,17 @@ const MemberliteCustomSettings = () => {
 			title="Template Settings"
 		>
 			<ToggleControl
-				label="Hide header and footer?"
-				checked={ yourCustomValue }
+				label="Hide Header"
+				checked={ hideHeaderValue }
 				onChange={ ( value ) => {
-					setMeta( { ...meta, _memberlite_hide_header_footer: value } );
+					setMeta( { ...meta, _memberlite_hide_header: value } );
+				} }
+			/>
+			<ToggleControl
+				label="Hide Footer"
+				checked={ hideFooterValue }
+				onChange={ ( value ) => {
+					setMeta( { ...meta, _memberlite_hide_footer: value } );
 				} }
 			/>
 		</PluginDocumentSettingPanel>

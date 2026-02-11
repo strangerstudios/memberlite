@@ -995,16 +995,27 @@ add_filter( 'block_editor_settings_all', 'memberlite_dedupe_editor_color_palette
  * @return void
  */
 function register_blank_template_post_meta() : void {
-	register_post_meta( 'page', '_memberlite_hide_header_footer', array(
+	register_post_meta( 'page', '_memberlite_hide_header', array(
 		'show_in_rest' => true, // Essential for the Gutenberg editor (REST API) to access it
 		'type'         => 'boolean',
 		'single'       => true, // Ensures it's stored as a single value
 		'default'      => false,
-		'label'        => __( 'Hide Header and Footer', 'memberlite' ),
+		'label'        => __( 'Hide Header', 'memberlite' ),
 		'auth_callback' => function() {
 			return current_user_can( 'edit_posts' );
 		}
 	) );
+
+    register_post_meta( 'page', '_memberlite_hide_footer', array(
+            'show_in_rest' => true, // Essential for the Gutenberg editor (REST API) to access it
+            'type'         => 'boolean',
+            'single'       => true, // Ensures it's stored as a single value
+            'default'      => false,
+            'label'        => __( 'Hide Footer', 'memberlite' ),
+            'auth_callback' => function() {
+                return current_user_can( 'edit_posts' );
+            }
+    ) );
 }
 add_action( 'init', 'register_blank_template_post_meta' );
 
@@ -1027,15 +1038,29 @@ function enqueue_memberlite_custom_editor_assets() : void {
 add_action( 'enqueue_block_editor_assets', 'enqueue_memberlite_custom_editor_assets' );
 
 /**
- * Hide header and footer on pages
+ * Hide header on pages
  *
  * @return mixed|string
  */
-function hide_page_header_footer() {
+function hide_page_header() {
 	if ( get_post_type() !== 'page') {
 		return '';
 	}
 
-	return get_post_meta( get_the_ID(), '_memberlite_hide_header_footer', true );
+	return get_post_meta( get_the_ID(), '_memberlite_hide_header', true );
 }
-add_filter( 'memberlite_hide_header_footer', 'hide_page_header_footer' );
+add_filter( 'memberlite_hide_header', 'hide_page_header' );
+
+/**
+ * Hide footer on pages
+ *
+ * @return mixed|string
+ */
+function hide_page_footer() {
+    if ( get_post_type() !== 'page') {
+        return '';
+    }
+
+    return get_post_meta( get_the_ID(), '_memberlite_hide_footer', true );
+}
+add_filter( 'memberlite_hide_footer', 'hide_page_footer' );

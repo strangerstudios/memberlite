@@ -1,0 +1,10 @@
+{
+"name": "memberlite",
+	"scripts": {
+		"build": "wp-scripts build",
+		"start": "wp-scripts start"
+	},
+	"devDependencies": {
+		"@wordpress/scripts": "^31.0.0"
+	}
+}

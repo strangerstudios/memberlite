@@ -21,7 +21,7 @@
 
 		<?php
 			$memberlite_page_nav = get_theme_mod( 'memberlite_page_nav', 1 );
-		if ( ! empty( $memberlite_page_nav ) && ! is_page_template( 'templates/fluid-width.php' ) && ! hide_page_header_footer() ) {
+		if ( ! empty( $memberlite_page_nav ) && ! is_page_template( 'templates/fluid-width.php' ) && ! hide_page_header() && ! hide_page_footer() ) {
 			memberlite_page_nav();
 		}
 		?>

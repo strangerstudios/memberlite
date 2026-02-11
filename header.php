@@ -28,7 +28,7 @@
 
 <?php
 	// Hide header output for the Blank page template.
-	if ( ! hide_page_header_footer() ) { ?>
+	if ( ! hide_page_header() ) { ?>
 
 	<?php get_template_part( 'components/header/mobile', 'menu' ); ?>
 
