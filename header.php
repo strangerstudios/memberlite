@@ -175,6 +175,6 @@
 
 	<?php get_template_part( 'components/header/masthead' ); ?>
 
-	<?php if ( ! is_page_template( 'templates/fluid-width.php' )  && ! $hide_header_footer && ! is_404() ) { ?>
+	<?php if ( ! is_page_template( 'templates/fluid-width.php' )  && ! hide_page_header() && ! hide_page_footer() && ! is_404() ) { ?>
 		<div class="row">
 	<?php } ?>

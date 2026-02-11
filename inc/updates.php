@@ -51,6 +51,16 @@ function memberlite_checkForUpdates() {
 		update_option( 'memberlite_db_version', '2026021001', 'no' );
 	}
 
+	// Set post meta for the deprecated blank page template
+	if ( $memberlite_db_version < '2026020401' ) {
+		memberlite_migrate_colors_to_theme_mods();
+		memberlite_set_blank_template_fallback();
+
+		update_option( 'memberlite_db_version', '2026020401', 'no' );
+	}
+
+	//move into conditional above, just testing here
+	memberlite_set_blank_template_fallback();
 }
 
 /**
@@ -265,4 +275,34 @@ function memberlite_http_request_args_for_update_info($args, $url)  {
 function memberlite_update_option_pmpro_license_key( $old_value, $value ) {
 	delete_option( 'memberlite_update_info_timestamp' );
 	delete_site_transient( 'update_themes' );
+}
+
+/**
+ * Deprecate the blank page template.
+ * Find any pages with this template and update post_meta for our new header/footer settings.
+ *
+ * @since TBD
+ *
+ * @return void
+ */
+function memberlite_set_blank_template_fallback(){
+	//Find any published pages that had the blank template set
+	global $wpdb;
+
+	$page_ids = $wpdb->get_col( $wpdb->prepare(
+		"SELECT p.ID 
+		FROM {$wpdb->posts} p
+		INNER JOIN {$wpdb->postmeta} pm ON p.ID = pm.post_id
+		WHERE p.post_type = 'page'
+		AND p.post_status = 'publish'
+		AND pm.meta_key = '_wp_page_template'
+		AND pm.meta_value = %s",
+		'templates/blank.php'
+	) );
+
+	// Set the page meta to hide the header and footer
+	foreach( $page_ids as $page_id ) {
+		update_post_meta( $page_id, '_memberlite_hide_header', true );
+		update_post_meta( $page_id, '_memberlite_hide_footer', true );
+	}
 }

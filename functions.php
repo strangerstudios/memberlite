@@ -1049,7 +1049,7 @@ function hide_page_header() {
 
 	return get_post_meta( get_the_ID(), '_memberlite_hide_header', true );
 }
-add_filter( 'memberlite_hide_header', 'hide_page_header' );
+add_filter( 'memberlite_hide_page_header', 'hide_page_header' );
 
 /**
  * Hide footer on pages
@@ -1057,10 +1057,10 @@ add_filter( 'memberlite_hide_header', 'hide_page_header' );
  * @return mixed|string
  */
 function hide_page_footer() {
-    if ( get_post_type() !== 'page') {
-        return '';
-    }
+	if ( get_post_type() !== 'page') {
+		return '';
+	}
 
-    return get_post_meta( get_the_ID(), '_memberlite_hide_footer', true );
+	return get_post_meta( get_the_ID(), '_memberlite_hide_footer', true );
 }
-add_filter( 'memberlite_hide_footer', 'hide_page_footer' );
+add_filter( 'memberlite_hide_page_footer', 'hide_page_footer' );
