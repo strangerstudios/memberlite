@@ -44,16 +44,13 @@ function memberlite_checkForUpdates() {
 	}
 
 	// Migrate color scheme to individual theme_mods.
-	if ( $memberlite_db_version < '2026020401' ) {
-		memberlite_migrate_colors_to_theme_mods();
-		update_option( 'memberlite_db_version', '2026020401', 'no' );
-	}
-
-	// Remove obsolete memberlite_darkcss setting (now auto-detected from background color).
+	// Remove the old memberlite_darkcss theme_mod which is no longer used.
 	if ( $memberlite_db_version < '2026021001' ) {
+		memberlite_migrate_colors_to_theme_mods();
 		remove_theme_mod( 'memberlite_darkcss' );
 		update_option( 'memberlite_db_version', '2026021001', 'no' );
 	}
+
 }
 
 /**
