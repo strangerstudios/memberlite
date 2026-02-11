@@ -1164,6 +1164,9 @@
 				}
 			},
 			"caption": {
+				"color": {
+					"text": "var(--wp--preset--color--body-text)"
+				},
 				"typography": {
 					"fontSize": "var(--wp--preset--font-size--16)"
 				}

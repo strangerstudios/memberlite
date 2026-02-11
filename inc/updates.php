@@ -48,6 +48,12 @@ function memberlite_checkForUpdates() {
 		memberlite_migrate_colors_to_theme_mods();
 		update_option( 'memberlite_db_version', '2026020401', 'no' );
 	}
+
+	// Remove obsolete memberlite_darkcss setting (now auto-detected from background color).
+	if ( $memberlite_db_version < '2026021001' ) {
+		remove_theme_mod( 'memberlite_darkcss' );
+		update_option( 'memberlite_db_version', '2026021001', 'no' );
+	}
 }
 
 /**

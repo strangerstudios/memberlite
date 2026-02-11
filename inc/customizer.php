@@ -190,14 +190,6 @@ class Memberlite_Customize {
 			)
 		);
 
-		// COLORS: Dark Mode ====================
-		self::add_memberlite_setting_control( $wp_customize, 'memberlite_darkcss', __( 'Use Dark Mode Colors', 'memberlite' ), 'colors', array(
-			'type'              => 'checkbox',
-			'sanitize_callback' => array( 'Memberlite_Customize', 'sanitize_checkbox' ),
-			'description'       => __( 'Check this box if you have chosen a dark background color and light default text color for your site.', 'memberlite' ),
-			'priority'          => 2,
-		) );
-
 		// COLORS: PMPro Override ===============
 		if ( defined( 'PMPRO_VERSION' ) ) {
 			self::add_memberlite_setting_control( $wp_customize, 'memberlite_pmpro_color_override', __( 'Override PMPro Colors', 'memberlite' ), 'colors', array(
@@ -719,6 +711,7 @@ class Memberlite_Customize {
 		<!--Customizer CSS-->
 		<style id="memberlite-customizer-css" type="text/css">
 			:root {
+				color-scheme: <?php echo memberlite_is_dark_color( $active_colors['background_color'] ) ? 'dark' : 'light'; ?>;
 				--memberlite-content-width: <?php echo esc_html( $content_width ); ?>;
 				--memberlite-body-font: <?php echo esc_html( $body_font ); ?>, sans-serif;
 				--memberlite-header-font: <?php echo esc_html( $header_font ); ?>, sans-serif;

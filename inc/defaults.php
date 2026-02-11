@@ -39,7 +39,6 @@ function memberlite_get_defaults(): array {
 
 		// Other
 		'delimiter'							=> '&nbsp;&#47;&nbsp;',
-		'memberlite_darkcss'                => false,
 		'hover_brightness'                  => '1.1',
 		'color_white'                       => 'ffffff',
 	);

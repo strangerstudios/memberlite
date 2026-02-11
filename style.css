@@ -241,7 +241,7 @@ h5 a:hover,
 h6 a:hover,
 .navigation a {
 	text-decoration-line: underline;
-	text-underline-offset: 2px;
+	text-underline-offset: 5px;
 }
 
 p {
@@ -311,12 +311,6 @@ address {
 	margin: 0 0 var(--wp--preset--spacing--20);
 }
 
-.wp-block-image figcaption,
-.wp-block-gallery .blocks-gallery-image figcaption,
-.wp-block-gallery .blocks-gallery-item figcaption {
-	font-size: var(--wp--preset--font-size--14);
-}
-
 pre {
 	background-color: var(--memberlite-color-borders);
 	font-family: "Courier 10 Pitch", Courier, monospace;
@@ -348,6 +342,7 @@ acronym {
 
 mark,
 ins {
+	color: var(--memberlite-color--alert-text);
 	background-color: var(--memberlite-color--alert-border);
 	padding: 2px 4px;
 	text-decoration: none;
@@ -774,7 +769,7 @@ input[type=url],
 input[type=password],
 input[type=search],
 textarea {
-	background-color: var(--memberlite-color-white);
+	background-color: var(--memberlite-color-site-background);
 	border: 1px solid var(--memberlite-color-borders);
 	border-radius: var(--wp--custom--border--radius);
 	box-shadow: none;
@@ -824,7 +819,7 @@ input[type=password]:focus,
 input[type=search]:focus,
 .content-area select:focus,
 textarea:focus {
-	background-color: var(--memberlite-color-white);
+	background-color: var(--memberlite-color-site-background);
 	border-color: var(--memberlite-color--info-border);
 	box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
 	outline: none;
@@ -1214,7 +1209,7 @@ a:where(:not(.pmpro_btn)):active {
 #site-navigation ul.sub-menu a,
 .meta-navigation ul.sub-menu a,
 .header-right .widget_nav_menu ul.sub-menu a {
-	width: 240px;
+	width: 210px;
 	padding: calc( var(--wp--preset--spacing--10) / 2 ) var(--wp--preset--spacing--10);
 	border-left: none;
 }
@@ -2468,7 +2463,7 @@ a:where(:not(.pmpro_btn)):active {
 }
 
 .grid-list > * {
-	background-color: var(--memberlite-color-white);
+	background-color: color-mix(in srgb, Canvas 10%, transparent);
 	border: 1px solid var(--memberlite-color-borders);
 	display: flex;
 	flex-direction: column;
@@ -2498,7 +2493,7 @@ a:where(:not(.pmpro_btn)):active {
 .grid-list h1 a:hover,
 .grid-list h2 a:hover {
 	border-bottom: none;
-	color: var(--memberlite-color-primary);
+	color: var(--memberlite-color-link);
 }
 
 .grid-list a.post-thumbnail-link {
@@ -2525,7 +2520,7 @@ a:where(:not(.pmpro_btn)):active {
 
 .grid-list a.post-thumbnail-link .post-thumbnail-empty {
 	align-items: center;
-	background-color: rgba( 0, 0, 0, 0.1);
+	background-color: color-mix(in srgb, Canvas 50%, transparent);
 	display: flex;
 	height: 180px;
 	justify-content: center;
@@ -2602,11 +2597,6 @@ a:where(:not(.pmpro_btn)):active {
 .pingback.even,
 .trackback.event {
 	background-color: var(--memberlite-color-borders);
-}
-
-.comment.depth-1.thread-alt,
-.comment .comment.alt {
-	background-color: var(--memberlite-color-white);
 }
 
 .comment.even .child-comments .comment {
