@@ -328,7 +328,7 @@ code,
 kbd,
 tt,
 var {
-	background-color: var(--memberlite-color-borders);
+	background-color: color-mix(in srgb, var(--memberlite-color-text) 7%, transparent);
 	color: var(--memberlite-color--error-text);
 	font-family: "Courier 10 Pitch", Courier, monospace;
 	padding: 2px 4px;
@@ -491,7 +491,8 @@ table {
 	width: 100%;
 }
 
-.wp-block-table thead {
+.wp-block-table thead,
+.wp-block-table.is-style-regular thead {
 	border: none;
 }
 
@@ -503,23 +504,28 @@ th,
 }
 
 thead th,
-.wp-block-table thead th {
-	background-color: var(--memberlite-color-borders);
+tbody th,
+.wp-block-table thead th,
+.wp-block-table tbody th {
 	border-color: var(--memberlite-color-borders);
+	padding: var(--wp--preset--spacing--10);
+}
+
+thead th,
+.wp-block-table thead th {
+	background-color: color-mix(in srgb, var(--memberlite-color-borders) 30%, transparent);
 	border-style: solid;
 	border-width: 1px 0;
-	padding: var(--wp--preset--spacing--10);
 }
 
 tbody th,
 .wp-block-table tbody th {
-	border-color: var(--memberlite-color-borders);
 	border-style: dotted;
 	border-width: 0 0 1px 0;
 }
 
-td,
-.wp-block-table td {
+tbody td,
+.wp-block-table tbody td {
 	border-color: var(--memberlite-color-borders);
 	border-style: solid;
 	border-width: 0 0 1px 0;
@@ -531,7 +537,7 @@ tbody tr:nth-child(even) th,
 tbody tr:nth-child(even) td,
 .wp-block-table tbody tr:nth-child(even) th,
 .wp-block-table tbody tr:nth-child(even) td {
-	background-color: var(--memberlite-color-borders);
+	background-color: color-mix(in srgb, var(--memberlite-color-borders) 30%, transparent);
 }
 
 dl {
@@ -924,11 +930,6 @@ a {
 	color: var(--memberlite-color-link);
 }
 
-a:where(:not(.pmpro_btn)):hover,
-a:where(:not(.pmpro_btn)):focus,
-a:where(:not(.pmpro_btn)):active {
-	filter: brightness(var(--memberlite-hover-brightness));
-}
 .primary {
 	color: var(--memberlite-color-primary);
 }
@@ -1216,7 +1217,7 @@ a:where(:not(.pmpro_btn)):active {
 
 #site-navigation ul.sub-menu li:hover > a,
 .meta-navigation ul.sub-menu li:hover > a,
-.header-right .widget_nav_menu ul.sub-menu li:hover > a  {
+.header-right .widget_nav_menu ul.sub-menu li:hover > a {
 	background-color: rgba( 0, 0, 0, 0.05 );
 }
 
@@ -1901,7 +1902,6 @@ a:where(:not(.pmpro_btn)):active {
 }
 
 .site-branding .site-identity {
-	align-items: flex-start;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -2118,7 +2118,7 @@ a:where(:not(.pmpro_btn)):active {
 }
 
 .masthead-banner .masthead-post-byline {
-	background-color:  rgba( 0, 0, 0, 0.6 );
+	background-color: rgba( 0, 0, 0, 0.6 );
 	margin: 16rem 0 0 0;
 	padding: var(--wp--preset--spacing--10);
 }
@@ -2232,7 +2232,7 @@ a:where(:not(.pmpro_btn)):active {
 }
 
 .page-template-blank .hentry {
-	margin:  0;
+	margin: 0;
 }
 
 .columns .hentry.memberlite_subpagelist_item {
@@ -2552,9 +2552,9 @@ a:where(:not(.pmpro_btn)):active {
 	}
 
 	.grid-list > * {
-		flex: 0 1 calc(33.333% - var(--wp--preset--spacing--10));
+		flex: 0 0 calc((100% - var(--wp--preset--spacing--20) * 2) / 3);
+		max-width: calc((100% - var(--wp--preset--spacing--20) * 2) / 3);
 	}
-
 }
 @media only screen and (min-width: 768px) and (max-width: 1160px) {
 	.grid-list {
@@ -2562,10 +2562,11 @@ a:where(:not(.pmpro_btn)):active {
 	}
 
 	.grid-list > * {
-		flex: 0 1 calc(50% - var(--wp--preset--spacing--10));
+		flex: 0 0 calc((100% - var(--wp--preset--spacing--20)) / 2);
+		max-width: calc((100% - var(--wp--preset--spacing--20)) / 2);
 	}
-
 }
+
 /*--------------------------------------------------------------
 10.5 Asides
 --------------------------------------------------------------*/
@@ -2578,7 +2579,7 @@ a:where(:not(.pmpro_btn)):active {
 10.6 Comments
 --------------------------------------------------------------*/
 #comments {
-	margin-bottom:  var(--wp--preset--spacing--20);
+	margin-bottom: var(--wp--preset--spacing--20);
 }
 
 .comment,
@@ -2752,7 +2753,7 @@ a:where(:not(.pmpro_btn)):active {
 }
 
 .pingback .comment-content p:last-child {
-	margin-bottom:  0;
+	margin-bottom: 0;
 }
 
 /*--------------------------------------------------------------
@@ -2931,7 +2932,7 @@ a:where(:not(.pmpro_btn)):active {
 .memberlite_tabbable ul.memberlite_tabs li {
 	float: left;
 	list-style: none;
-	margin: 0 .5rem 0 0;
+	margin: 0 calc( var(--wp--preset--spacing--10) / 2 ) 0 0;
 }
 
 .memberlite_tabbable ul.memberlite_tabs li > a {
@@ -2943,7 +2944,7 @@ a:where(:not(.pmpro_btn)):active {
 	display: inline-block;
 	float: none;
 	outline: none;
-	padding: var(--wp--preset--spacing--20) var(--wp--preset--spacing--30);
+	padding: calc( var(--wp--preset--spacing--10) / 2 ) var(--wp--preset--spacing--10);
 	text-decoration: none;
 }
 
@@ -2963,7 +2964,7 @@ a:where(:not(.pmpro_btn)):active {
 	border-top-style: solid;
 	border-top-color: var(--memberlite-color-secondary);
 	clear: both;
-	padding-top: 4rem;
+	padding-top: var(--wp--preset--spacing--30);
 }
 
 .memberlite_tabbable .memberlite_tab_pane {
