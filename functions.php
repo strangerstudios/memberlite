@@ -722,6 +722,9 @@ require_once get_template_directory() . '/inc/widgets.php';
 /* Dashboard. */
 require_once get_template_directory() . '/adminpages/dashboard.php';
 
+/* Editor Settings */
+require_once get_template_directory() . '/inc/editor-settings.php';
+
 /* Custom sidebars. */
 require_once get_template_directory() . '/inc/sidebars.php';
 require_once get_template_directory() . '/adminpages/sidebars.php';
@@ -988,79 +991,3 @@ function memberlite_dedupe_editor_color_palette( $editor_settings, $context ) {
 	return $editor_settings;
 }
 add_filter( 'block_editor_settings_all', 'memberlite_dedupe_editor_color_palette', 20, 2 );
-
-/**
- * Register custom document setting to hide header/footer (alternate to the blank page template)
- *
- * @return void
- */
-function register_blank_template_post_meta() : void {
-	register_post_meta( 'page', '_memberlite_hide_header', array(
-		'show_in_rest' => true, // Essential for the Gutenberg editor (REST API) to access it
-		'type'         => 'boolean',
-		'single'       => true, // Ensures it's stored as a single value
-		'default'      => false,
-		'label'        => __( 'Hide Header', 'memberlite' ),
-		'auth_callback' => function() {
-			return current_user_can( 'edit_posts' );
-		}
-	) );
-
-    register_post_meta( 'page', '_memberlite_hide_footer', array(
-            'show_in_rest' => true, // Essential for the Gutenberg editor (REST API) to access it
-            'type'         => 'boolean',
-            'single'       => true, // Ensures it's stored as a single value
-            'default'      => false,
-            'label'        => __( 'Hide Footer', 'memberlite' ),
-            'auth_callback' => function() {
-                return current_user_can( 'edit_posts' );
-            }
-    ) );
-}
-add_action( 'init', 'register_blank_template_post_meta' );
-
-/**
- * Enqueue JS for custom document settings in the editor
- *
- * @return void
- */
-function enqueue_memberlite_custom_editor_assets() : void {
-	$asset_file = include get_template_directory() . '/build/editor/custom-settings.asset.php';
-
-	wp_enqueue_script(
-		'memberlite-custom-settings',
-		get_template_directory_uri() . '/build/editor/custom-settings.js',
-		$asset_file['dependencies'],
-		$asset_file['version'],
-		true
-	);
-}
-add_action( 'enqueue_block_editor_assets', 'enqueue_memberlite_custom_editor_assets' );
-
-/**
- * Hide header on pages
- *
- * @return mixed|string
- */
-function hide_page_header() {
-	if ( get_post_type() !== 'page') {
-		return '';
-	}
-
-	return get_post_meta( get_the_ID(), '_memberlite_hide_header', true );
-}
-add_filter( 'memberlite_hide_page_header', 'hide_page_header' );
-
-/**
- * Hide footer on pages
- *
- * @return mixed|string
- */
-function hide_page_footer() {
-	if ( get_post_type() !== 'page') {
-		return '';
-	}
-
-	return get_post_meta( get_the_ID(), '_memberlite_hide_footer', true );
-}
-add_filter( 'memberlite_hide_page_footer', 'hide_page_footer' );

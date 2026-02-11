@@ -52,15 +52,12 @@ function memberlite_checkForUpdates() {
 	}
 
 	// Set post meta for the deprecated blank page template
-	if ( $memberlite_db_version < '2026020401' ) {
+	if ( $memberlite_db_version < '2026021101' ) {
 		memberlite_migrate_colors_to_theme_mods();
 		memberlite_set_blank_template_fallback();
 
-		update_option( 'memberlite_db_version', '2026020401', 'no' );
+		update_option( 'memberlite_db_version', '2026021101', 'no' );
 	}
-
-	//move into conditional above, just testing here
-	memberlite_set_blank_template_fallback();
 }
 
 /**
