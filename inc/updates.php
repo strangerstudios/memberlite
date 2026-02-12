@@ -67,76 +67,61 @@ function memberlite_checkForUpdates() {
  */
 function memberlite_migrate_colors_to_theme_mods() {
 	$color_keys = memberlite_get_color_setting_keys();
-
-	// Check for old scheme theme_mods.
 	$current_scheme = get_theme_mod( 'memberlite_color_scheme', '' );
-
-	$colors       = array();
-	$final_scheme = 'default';
-
-	// Try to get colors from a scheme
+	$scheme_colors  = array();
+	$final_scheme   = 'default';
 	if ( ! empty( $current_scheme ) && 'custom' !== $current_scheme ) {
-		// First check if it's a modern scheme
 		$modern_schemes = memberlite_get_color_schemes();
-
-		if ( isset( $modern_schemes[ $current_scheme ] ) ) {
-			$colors       = $modern_schemes[ $current_scheme ]['colors'];
-			$final_scheme = $current_scheme;
+		if ( isset( $modern_schemes[ $current_scheme ]['colors'] ) ) {
+			$scheme_colors = $modern_schemes[ $current_scheme ]['colors'];
+			$final_scheme  = $current_scheme;
 		} else {
-			// Check if it's a legacy scheme
 			$legacy_definitions = memberlite_get_legacy_color_scheme_definitions();
-
-			if ( isset( $legacy_definitions[ $current_scheme ] ) ) {
-				$colors       = $legacy_definitions[ $current_scheme ]['colors'];
-				$final_scheme = 'custom'; // Legacy schemes become custom
+			if ( isset( $legacy_definitions[ $current_scheme ]['colors'] ) ) {
+				$scheme_colors = $legacy_definitions[ $current_scheme ]['colors'];
+				$final_scheme  = 'custom';
 			}
 		}
 	}
-
-	// If no scheme colors found, use default
-	if ( empty( $colors ) ) {
-		$default_colors = memberlite_get_default_colors();
-		$colors         = $default_colors;
-		$final_scheme   = 'default';
-	}
-
-	// Check if user has any custom color overrides
+	$resolved          = array();
 	$has_custom_colors = false;
 	foreach ( $color_keys as $key ) {
+		$resolved[ $key ] = '';
 		$existing = get_theme_mod( $key, '' );
 		if ( ! empty( $existing ) ) {
-			$has_custom_colors = true;
-			break;
+			$sanitized = sanitize_hex_color_no_hash( '#' . ltrim( $existing, '#' ) );
+			if ( ! empty( $sanitized ) ) {
+				$has_custom_colors = true;
+				$resolved[ $key ]  = $sanitized;
+				continue;
+			}
+		}
+		if ( isset( $scheme_colors[ $key ] ) ) {
+			$resolved[ $key ] = sanitize_hex_color_no_hash( '#' . ltrim( $scheme_colors[ $key ], '#' ) );
 		}
 	}
-
-	// Save all colors as individual theme_mods
+	$primary = $resolved['color_primary'] ?? '';
+	if ( empty( $resolved['bgcolor_page_masthead'] ) && ! empty( $primary ) ) {
+		$resolved['bgcolor_page_masthead'] = $primary;
+	}
+	if ( empty( $resolved['bgcolor_footer_widgets'] ) && ! empty( $primary ) ) {
+		$resolved['bgcolor_footer_widgets'] = $primary;
+	}
+	$default_colors = memberlite_get_default_colors();
 	foreach ( $color_keys as $key ) {
-		$existing_value = get_theme_mod( $key, '' );
-
-		// If user already has a custom value for this color, preserve it
-		if ( ! empty( $existing_value ) ) {
-			// Remove hash if present in custom value and lowercase the color
-			$existing_trimmed_color = ltrim( $existing_value, '#' );
-			$existing_trimmed_color = strtolower( $existing_trimmed_color );
-			set_theme_mod( $key, $existing_trimmed_color );
-		}
-
-		// Otherwise, save the scheme's color value.
-		if ( isset( $colors[ $key ] ) ) {
-			$trimmed_color = ltrim( $colors[ $key ], '#' );
-			$trimmed_color = strtolower( $trimmed_color );
-			set_theme_mod( $key, $trimmed_color );
+		if ( empty( $resolved[ $key ] ) && isset( $default_colors[ $key ] ) ) {
+			$resolved[ $key ] = sanitize_hex_color_no_hash( '#' . ltrim( $default_colors[ $key ], '#' ) );
 		}
 	}
-
-	// Set the scheme - if they had custom colors, mark as custom
+	foreach ( $color_keys as $key ) {
+		if ( ! empty( $resolved[ $key ] ) ) {
+			set_theme_mod( $key, $resolved[ $key ] );
+		}
+	}
 	if ( $has_custom_colors ) {
 		$final_scheme = 'custom';
 	}
-
 	set_theme_mod( 'memberlite_color_scheme', $final_scheme );
-
 }
 
 /**
