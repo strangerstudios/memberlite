@@ -3573,7 +3573,7 @@ details > p:first-of-type {
 	.site-header .row {
 		align-items: center;
 		display: grid;
-		grid-column-gap: 0calc( var(--wp--preset--spacing--10) / 2 );
+		grid-column-gap: calc( var(--wp--preset--spacing--10) / 2 );
 		grid-template-columns: 6fr 1fr;
 		grid-template-areas: "site-branding menu-toggle";
 	}
