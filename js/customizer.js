@@ -120,10 +120,55 @@
 	}
 
 	/**
+	 * Check if a hex color is dark using WCAG relative luminance.
+	 */
+	function isDarkColor( hex ) {
+		hex = hex.replace( /^#/, '' );
+		if ( hex.length === 3 ) {
+			hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
+		}
+		var r = parseInt( hex.substr( 0, 2 ), 16 ) / 255;
+		var g = parseInt( hex.substr( 2, 2 ), 16 ) / 255;
+		var b = parseInt( hex.substr( 4, 2 ), 16 ) / 255;
+
+		r = ( r <= 0.03928 ) ? r / 12.92 : Math.pow( ( r + 0.055 ) / 1.055, 2.4 );
+		g = ( g <= 0.03928 ) ? g / 12.92 : Math.pow( ( g + 0.055 ) / 1.055, 2.4 );
+		b = ( b <= 0.03928 ) ? b / 12.92 : Math.pow( ( b + 0.055 ) / 1.055, 2.4 );
+
+		return ( 0.2126 * r + 0.7152 * g + 0.0722 * b ) <= 0.179;
+	}
+
+	/**
 	 * Register all color bindings
 	 */
 	Object.keys( colorSettingMap ).forEach( function( settingKey ) {
 		bindColorSetting( settingKey, colorSettingMap[ settingKey ] );
+	} );
+
+	/**
+	 * When background_color changes, toggle is-style-dark / is-style-light
+	 * body class and update the color-scheme property on :root.
+	 */
+	wp.customize( 'background_color', function( setting ) {
+		setting.bind( function( value ) {
+			var dark = isDarkColor( value );
+
+			$( 'body' ).toggleClass( 'is-style-dark', dark ).toggleClass( 'is-style-light', ! dark );
+
+			// Update color-scheme in the customizer style tag.
+			var styleEl = document.getElementById( 'memberlite-customizer-css' );
+			if ( styleEl ) {
+				var css = styleEl.textContent || '';
+				var schemeRegex = /color-scheme:\s*[^;]+;/;
+				var newScheme   = 'color-scheme: ' + ( dark ? 'dark' : 'light' ) + ';';
+				if ( schemeRegex.test( css ) ) {
+					css = css.replace( schemeRegex, newScheme );
+				} else {
+					css += '\n:root { ' + newScheme + ' }';
+				}
+				styleEl.textContent = css;
+			}
+		} );
 	} );
 
 	/**

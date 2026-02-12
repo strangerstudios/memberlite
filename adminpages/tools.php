@@ -215,7 +215,15 @@ function memberlite_import_theme_settings() {
 		// Get all color setting keys.
 		$color_keys = memberlite_get_color_setting_keys();
 
+		// Deprecated mods to skip on import.
+		$deprecated_mods = array( 'memberlite_darkcss' );
+
 		foreach ( $data['mods'] as $key => $value ) {
+			// Skip deprecated settings.
+			if ( in_array( $key, $deprecated_mods, true ) ) {
+				continue;
+			}
+
 			// Sanitize color values to remove # prefix
 			if ( in_array( $key, $color_keys, true ) && is_string( $value ) ) {
 				$value = sanitize_hex_color_no_hash( $value );
