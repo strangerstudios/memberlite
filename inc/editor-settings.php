@@ -68,7 +68,6 @@ function memberlite_hide_page_header() {
 
 	return (bool) get_post_meta( get_the_ID(), '_memberlite_hide_header', true );
 }
-add_filter( 'memberlite_hide_page_header', 'memberlite_hide_page_header' );
 
 /**
  * Hide footer on pages
@@ -82,4 +81,3 @@ function memberlite_hide_page_footer() {
 
 	return (bool) get_post_meta( get_the_ID(), '_memberlite_hide_footer', true );
 }
-add_filter( 'memberlite_hide_page_footer', 'memberlite_hide_page_footer' );

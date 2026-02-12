@@ -10,6 +10,11 @@ const MemberliteCustomSettings = () => {
 		[]
 	);
 
+	// Return null for non-page post types
+	if ( postType !== 'page' ) {
+		return null;
+	}
+
 	const [ meta, setMeta ] = useEntityProp( 'postType', postType, 'meta' );
 
 	const hideHeaderValue = meta?._memberlite_hide_header || false;

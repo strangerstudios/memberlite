@@ -24,7 +24,7 @@ Built assets are output to the `build/` directory (or appropriate destination de
    - For more detailed instructions, see the root `README.md`.
 2. Run `npm install` to install dependencies.
 3. Run `npm run build` to build blocks and editor settings.
-4. You can also run `npm run watch` to watch for changes and rebuild automatically.
+4. You can also run `npm run start` to watch for changes and rebuild automatically.
 
 ## Adding New Paths to the Webpack Config
 
@@ -32,7 +32,7 @@ Built assets are output to the `build/` directory (or appropriate destination de
    - You can create new subdirectories within `blocks/` to organize your blocks as needed. For example, you might have `src/blocks/my-new-block/` for a new block called "My New Block".
 2. Add the new block to the `entry` object in `webpack.config.js`.
     - Format: `'blocks/my-new-block/index': path.resolve( process.cwd(), 'src/blocks/my-new-block/index.js' ),`
-4. For new editor settings, you can use the existing `src/editor-settings.js` file. You do not need to add a new path to the Webpack config.
+4. For new editor settings, you can use the existing `src/editor/custom-settings.js` file. You do not need to add a new path to the Webpack config.
 
 **Note:** We do not commit files in the `build/` directory. These are generated files that should be built locally when developing or testing.
 
