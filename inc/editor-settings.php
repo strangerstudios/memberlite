@@ -13,7 +13,7 @@
  *
  * @return void
  */
-function memberlite_register_blank_template_post_meta() : void {
+function memberlite_register_editor_settings_post_meta() : void {
 	register_post_meta( 'page', '_memberlite_hide_header', array(
 		'show_in_rest' => true,
 		'type'         => 'boolean',
@@ -36,7 +36,7 @@ function memberlite_register_blank_template_post_meta() : void {
 		}
 	) );
 }
-add_action( 'init', 'memberlite_register_blank_template_post_meta' );
+add_action( 'init', 'memberlite_register_editor_settings_post_meta' );
 
 /**
  * Enqueue JS for custom document settings in the editor
