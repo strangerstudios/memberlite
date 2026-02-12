@@ -13,7 +13,7 @@
  *
  * @return void
  */
-function register_blank_template_post_meta() : void {
+function memberlite_register_blank_template_post_meta() : void {
 	register_post_meta( 'page', '_memberlite_hide_header', array(
 		'show_in_rest' => true,
 		'type'         => 'boolean',
@@ -36,14 +36,14 @@ function register_blank_template_post_meta() : void {
 		}
 	) );
 }
-add_action( 'init', 'register_blank_template_post_meta' );
+add_action( 'init', 'memberlite_register_blank_template_post_meta' );
 
 /**
  * Enqueue JS for custom document settings in the editor
  *
  * @return void
  */
-function enqueue_memberlite_custom_editor_assets() : void {
+function memberlite_enqueue_custom_editor_assets() : void {
 	$asset_file = include get_template_directory() . '/build/editor/custom-settings.asset.php';
 
 	wp_enqueue_script(
@@ -54,32 +54,32 @@ function enqueue_memberlite_custom_editor_assets() : void {
 		true
 	);
 }
-add_action( 'enqueue_block_editor_assets', 'enqueue_memberlite_custom_editor_assets' );
+add_action( 'enqueue_block_editor_assets', 'memberlite_enqueue_custom_editor_assets' );
 
 /**
  * Hide header on pages
  *
- * @return mixed|string
+ * @return bool
  */
-function hide_page_header() {
+function memberlite_hide_page_header() {
 	if ( get_post_type() !== 'page') {
-		return '';
+		return false;
 	}
 
-	return get_post_meta( get_the_ID(), '_memberlite_hide_header', true );
+	return (bool) get_post_meta( get_the_ID(), '_memberlite_hide_header', true );
 }
-add_filter( 'memberlite_hide_page_header', 'hide_page_header' );
+add_filter( 'memberlite_hide_page_header', 'memberlite_hide_page_header' );
 
 /**
  * Hide footer on pages
  *
- * @return mixed|string
+ * @return bool
  */
-function hide_page_footer() {
+function memberlite_hide_page_footer() {
 	if ( get_post_type() !== 'page') {
-		return '';
+		return false;
 	}
 
-	return get_post_meta( get_the_ID(), '_memberlite_hide_footer', true );
+	return (bool) get_post_meta( get_the_ID(), '_memberlite_hide_footer', true );
 }
-add_filter( 'memberlite_hide_page_footer', 'hide_page_footer' );
+add_filter( 'memberlite_hide_page_footer', 'memberlite_hide_page_footer' );

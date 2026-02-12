@@ -28,7 +28,7 @@
 
 <?php
 	// Hide header output for the Blank page template.
-	if ( ! hide_page_header() ) { ?>
+	if ( ! memberlite_hide_page_header() ) { ?>
 
 	<?php get_template_part( 'components/header/mobile', 'menu' ); ?>
 
@@ -175,6 +175,6 @@
 
 	<?php get_template_part( 'components/header/masthead' ); ?>
 
-	<?php if ( ! is_page_template( 'templates/fluid-width.php' )  && ! hide_page_header() && ! hide_page_footer() && ! is_404() ) { ?>
+	<?php if ( ! is_page_template( 'templates/fluid-width.php' )  && ! memberlite_hide_page_header() && ! memberlite_hide_page_footer() && ! is_404() ) { ?>
 		<div class="row">
 	<?php } ?>
