@@ -312,7 +312,7 @@ address {
 }
 
 pre {
-	background-color: var(--memberlite-color-borders);
+	background-color: color-mix(in srgb, var(--memberlite-color-text) 7%, transparent);
 	font-family: "Courier 10 Pitch", Courier, monospace;
 	margin: var(--wp--preset--spacing--20) 0;
 	max-width: 100%;
@@ -598,8 +598,8 @@ a.comment-reply-link,
 	font-style: normal;
 	font-weight: 700;
 	display: inline-block;
-	line-height: normal;
-	padding: var(--wp--preset--spacing--10) var(--wp--preset--spacing--20);
+	line-height: var(--wp--custom--line-height--body);
+	padding: calc( var(--wp--preset--spacing--10) / 1.5) var(--wp--preset--spacing--20);
 	text-align: center;
 	text-decoration: none;
 	text-shadow: none;
@@ -1304,8 +1304,7 @@ a {
 	text-underline-offset: 2px;
 }
 
-#mobile-navigation .widget,
-#mobile-navigation .search-form {
+#mobile-navigation .widget {
 	padding: var(--wp--preset--spacing--10)
 }
 
@@ -1320,7 +1319,8 @@ a {
 #mobile-navigation .widget ul,
 #mobile-navigation .widget ol,
 #mobile-navigation #menu-primary-menu {
-	margin: 0 0 0 var(--wp--preset--spacing--20);
+	list-style: none;
+	margin: 0;
 }
 
 #mobile-navigation .widget ul li,
@@ -1333,9 +1333,8 @@ a {
 #mobile-navigation .widget.widget_nav_menu ul.menu li,
 #mobile-navigation #menu-primary-menu,
 #mobile-navigation #menu-primary-menu li {
-	list-style: none;
-	padding: 0;
 	margin: 0;
+	padding: 0;
 }
 
 #mobile-navigation .widget.widget_nav_menu ul.menu ul.sub-menu,
@@ -1392,6 +1391,8 @@ a {
 
 #mobile-navigation .pmpro_card {
 	background-color: transparent;
+	border: none;
+	border-radius: 0;
 	box-shadow: none;
 	color: var(--memberlite-color-white);
 }
@@ -1419,6 +1420,10 @@ a {
 
 #mobile-navigation #loginform .login-submit .button {
 	background-color: var(--memberlite-color-action);
+}
+
+#mobile-navigation .pmpro-member-navigation li {
+	padding: calc( var(--wp--preset--spacing--10) / 2 ) 0;
 }
 
 /*--------------------------------------------------------------
