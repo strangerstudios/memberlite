@@ -103,9 +103,11 @@ function memberlite_migrate_colors_to_theme_mods() {
 	$primary = $resolved['color_primary'] ?? '';
 	if ( empty( $resolved['bgcolor_page_masthead'] ) && ! empty( $primary ) ) {
 		$resolved['bgcolor_page_masthead'] = $primary;
+		$resolved['color_page_masthead']   = 'ffffff';
 	}
 	if ( empty( $resolved['bgcolor_footer_widgets'] ) && ! empty( $primary ) ) {
 		$resolved['bgcolor_footer_widgets'] = $primary;
+		$resolved['color_footer_widgets']   = 'ffffff';
 	}
 	$default_colors = memberlite_get_default_colors();
 	foreach ( $color_keys as $key ) {
