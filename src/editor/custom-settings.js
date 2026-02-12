@@ -1,3 +1,4 @@
+import {__} from '@wordpress/i18n';
 import { registerPlugin } from '@wordpress/plugins';
 import { PluginDocumentSettingPanel } from '@wordpress/editor';
 import { ToggleControl } from '@wordpress/components';
@@ -20,20 +21,22 @@ const MemberliteCustomSettings = () => {
 	const hideHeaderValue = meta?._memberlite_hide_header || false;
 	const hideFooterValue = meta?._memberlite_hide_footer || false;
 
+	const textDomain = 'memberlite';
+
 	return (
 		<PluginDocumentSettingPanel
 			name="memberlite-custom-settings"
-			title="Template Settings"
+			title={__('Template Settings', textDomain)}
 		>
 			<ToggleControl
-				label="Hide Header"
+				label={__('Hide Header', textDomain)}
 				checked={ hideHeaderValue }
 				onChange={ ( value ) => {
 					setMeta( { ...meta, _memberlite_hide_header: value } );
 				} }
 			/>
 			<ToggleControl
-				label="Hide Footer"
+				label={__('Hide Footer', textDomain)}
 				checked={ hideFooterValue }
 				onChange={ ( value ) => {
 					setMeta( { ...meta, _memberlite_hide_footer: value } );

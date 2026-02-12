@@ -44,7 +44,18 @@ add_action( 'init', 'memberlite_register_blank_template_post_meta' );
  * @return void
  */
 function memberlite_enqueue_custom_editor_assets() : void {
-	$asset_file = include get_template_directory() . '/build/editor/custom-settings.asset.php';
+	$asset_path = get_template_directory() . '/build/editor/custom-settings.asset.php';
+
+	if ( ! file_exists( $asset_path ) ) {
+		if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
+			// Log in debug mode. See docs/build-process.md for more info on the build process.
+			error_log( 'Memberlite: Missing asset file at ' . $asset_path );
+		}
+
+		return;
+	}
+
+	$asset_file = include $asset_path;
 
 	wp_enqueue_script(
 		'memberlite-custom-settings',

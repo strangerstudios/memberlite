@@ -26,9 +26,7 @@
 ?>
 <div id="page" class="hfeed site">
 
-<?php
-	// Hide header output for the Blank page template.
-	if ( ! memberlite_hide_page_header() ) { ?>
+<?php if ( ! memberlite_hide_page_header() ) { ?>
 
 	<?php get_template_part( 'components/header/mobile', 'menu' ); ?>
 
