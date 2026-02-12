@@ -46,8 +46,9 @@ function memberlite_body_classes( $classes ) {
 	// color scheme class
 	$classes[] = 'scheme_' . get_theme_mod( 'memberlite_color_scheme', $memberlite_defaults['memberlite_color_scheme'] );
 
-	// dark mode class
-	if ( get_theme_mod( 'memberlite_darkcss', $memberlite_defaults['memberlite_darkcss'] ) ) {
+	// dark/light class based on background color luminance
+	$bg_color = get_theme_mod( 'background_color', $memberlite_defaults['background_color'] );
+	if ( memberlite_is_dark_color( $bg_color ) ) {
 		$classes[] = 'is-style-dark';
 	} else {
 		$classes[] = 'is-style-light';

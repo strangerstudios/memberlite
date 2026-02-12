@@ -294,7 +294,7 @@ function memberlite_get_legacy_color_scheme_definitions(): array {
 				'color_page_masthead'     => 'FFFFFF',
 				'bgcolor_footer_widgets'  => '2C3E50',
 				'color_footer_widgets'    => 'FFFFFF',
-				'color_borders'           => 'E0E0E0',
+				'color_borders'           => 'DBE6ED',
 			),
 		),
 		'education'      => array(
