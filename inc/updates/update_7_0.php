@@ -21,7 +21,7 @@ require_once get_template_directory() . '/inc/deprecated.php';
  *
  * After migration, the all individual color theme_mods are the single source of truth.
  *
- * @since TBD
+ * @since 7.0
  */
 function memberlite_migrate_colors_to_theme_mods() {
 	$color_keys = memberlite_get_color_setting_keys();
@@ -112,7 +112,7 @@ function memberlite_remove_darkcss_theme_mod(){
  * Deprecate the blank page template.
  * Find any pages with this template and update post_meta for our new header/footer settings.
  *
- * @since TBD
+ * @since 7.0
  *
  * @return void
  */
@@ -143,7 +143,42 @@ function memberlite_set_blank_template_fallback(){
 	}
 }
 
+/**
+ * Deprecate the interstitial page template.
+ * Find any pages with this template and update post_meta. No new setting.
+ *
+ * @since 7.0
+ *
+ * @return void
+ */
+function memberlite_set_interstitial_template_fallback(){
+	//Find any published pages that had the interstitial template set
+	global $wpdb;
+
+	$page_ids = $wpdb->get_col( $wpdb->prepare(
+		"SELECT p.ID 
+		FROM {$wpdb->posts} p
+		INNER JOIN {$wpdb->postmeta} pm ON p.ID = pm.post_id
+		WHERE p.post_type = 'page'
+		AND p.post_status = 'publish'
+		AND pm.meta_key = '_wp_page_template'
+		AND pm.meta_value = %s",
+		'templates/interstitial.php'
+	) );
+
+	// Return early if no results
+	if ( empty( $page_ids ) ) {
+		return;
+	}
+
+	// Set the page meta to show where this template was active
+	foreach( $page_ids as $page_id ) {
+		update_post_meta( $page_id, '_memberlite_is_interstitial', true );
+	}
+}
+
 // Run updates for Memberlite 7.0
 memberlite_migrate_colors_to_theme_mods();
 memberlite_remove_darkcss_theme_mod();
 memberlite_set_blank_template_fallback();
+memberlite_set_interstitial_template_fallback();
