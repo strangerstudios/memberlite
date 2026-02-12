@@ -38,7 +38,8 @@
 		<div class="row">
 			<?php
 				$meta_login = get_theme_mod( 'meta_login', false );
-				if ( ! is_page_template( 'templates/interstitial.php' ) && ( ! empty( $meta_login ) || has_nav_menu( 'meta' ) || is_active_sidebar( 'sidebar-3' ) ) ) {
+                //@todo: Confirm how this works, theme mod vs the nav menu/sidebar
+				if ( ! empty( $meta_login ) && ( has_nav_menu( 'meta' ) || is_active_sidebar( 'sidebar-3' ) ) ) {
 					$show_header_right = true;
 				} else {
 					$show_header_right = false;
@@ -55,7 +56,7 @@
 
 			<div class="
 			<?php
-			if ( is_page_template( 'templates/interstitial.php' ) || empty( $show_header_right ) ) {
+			if ( empty( $show_header_right ) ) {
 				echo 'large-12';
 			} else {
 				echo 'medium-' . esc_attr( memberlite_getColumnsRatio( 'header-left' ) ); }
@@ -124,7 +125,7 @@
 
 	<?php do_action( 'memberlite_before_site_navigation' ); ?>
 
-	<?php if ( ! is_page_template( 'templates/interstitial.php' ) && has_nav_menu( 'primary' ) ) { ?>
+	<?php if ( has_nav_menu( 'primary' ) ) { ?>
 		<?php
 			$sticky_nav = get_theme_mod( 'sticky_nav' );
 			if ( $sticky_nav == true ) { ?>

@@ -22,13 +22,6 @@ if ( ! empty( $memberlite_banner_show ) ) { ?>
 
 				<?php do_action( 'memberlite_before_masthead_inner' ); ?>
 
-				<?php
-				if ( is_page_template( 'templates/interstitial.php' ) ) {
-					$referrer = isset( $_GET['redirect_to'] ) ? esc_url_raw( wp_unslash( $_GET['redirect_to'] ) ) : null;
-					?>
-					<a class="btn" href="<?php echo esc_url( $referrer ); ?>"><?php esc_html_e( 'No Thanks &raquo;', 'memberlite' ); ?></a>
-				<?php } ?>
-
 				<?php memberlite_getBreadcrumbs(); ?>
 
 				<?php

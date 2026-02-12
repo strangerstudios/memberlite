@@ -39,7 +39,7 @@ Memberlite is distributed under the terms of the GNU GPL.
 10.0 - Content
 	10.1 - Header and Member Meta
 	10.2 - Front Page
-	10.3 - Interstitial Page
+	10.3 - Interstitial Page (Deprecated as of 7.0)
 	10.4 - Posts and pages
 	10.5 - Asides
 	10.6 - Comments
@@ -2211,7 +2211,7 @@ a {
 }
 
 /*--------------------------------------------------------------
-10.3 Interstitial Page
+10.3 Interstitial Page (Deprecated since 7.0)
 --------------------------------------------------------------*/
 .interstitial .site-branding,
 .interstitial .masthead {
