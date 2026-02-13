@@ -5,7 +5,7 @@
 
 do_action( 'memberlite_before_site_navigation' );
 
-if ( ! is_page_template( 'templates/interstitial.php' ) && has_nav_menu( 'primary' ) ) {
+if ( has_nav_menu( 'primary' ) ) {
 $sticky_nav = get_theme_mod( 'sticky_nav' );
 if ( $sticky_nav == true ) { ?>
 	<div class="site-navigation-sticky-wrapper">

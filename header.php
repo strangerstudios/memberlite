@@ -36,22 +36,7 @@
 
 	<header id="masthead" class="site-header" role="banner">
 		<div class="row">
-			<?php
-				$meta_login = get_theme_mod( 'meta_login', false );
-				if ( ! is_page_template( 'templates/interstitial.php' ) && ( ! empty( $meta_login ) || has_nav_menu( 'meta' ) || is_active_sidebar( 'sidebar-3' ) ) ) {
-					$show_header_right = true;
-				} else {
-					$show_header_right = false;
-				}
-				/**
-				 * Filter to hide or show the right column area of the header.
-				 *
-				 * @param bool $show_header_right True to show the header right, false to hide it.
-				 *
-				 * @return bool $show_header_right
-				 */
-				$show_header_right = apply_filters( 'memberlite_show_header_right', $show_header_right );
-			?>
+			<?php get_template_part( 'components/header/meta-member.php' );?>
 
 			<div class="
 			<?php
