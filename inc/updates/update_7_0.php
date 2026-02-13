@@ -100,7 +100,7 @@ function memberlite_migrate_colors_to_theme_mods() {
 /**
  * Remove the old memberlite_darkcss theme_mod which is no longer used.
  *
- * @since TBD
+ * @since 7.0
  *
  * @return void
  */
