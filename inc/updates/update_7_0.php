@@ -38,14 +38,14 @@ function memberlite_migrate_colors_to_theme_mods() {
 		$modern_schemes = memberlite_get_color_schemes();
 
 		if ( isset( $modern_schemes[ $current_scheme ] ) ) {
-			$colors       = $modern_schemes[ $current_scheme ]['colors'];
+			$colors       = $modern_schemes[ $current_scheme ][ 'colors' ];
 			$final_scheme = $current_scheme;
 		} else {
 			// Check if it's a legacy scheme
 			$legacy_definitions = memberlite_get_legacy_color_scheme_definitions();
 
 			if ( isset( $legacy_definitions[ $current_scheme ] ) ) {
-				$colors       = $legacy_definitions[ $current_scheme ]['colors'];
+				$colors       = $legacy_definitions[ $current_scheme ][ 'colors' ];
 				$final_scheme = 'custom'; // Legacy schemes become custom
 			}
 		}
@@ -100,26 +100,27 @@ function memberlite_migrate_colors_to_theme_mods() {
 /**
  * Remove the old memberlite_darkcss theme_mod which is no longer used.
  *
+ * @return void
  * @since 7.0
  *
- * @return void
  */
-function memberlite_remove_darkcss_theme_mod(){
+function memberlite_remove_darkcss_theme_mod() {
 	remove_theme_mod( 'memberlite_darkcss' );
 }
 
 /**
- * Deprecate the blank page template.
- * Find any pages with this template and update post_meta for our new header/footer settings.
+ * Deprecate a page template by finding pages using it and hiding header/footer elements.
  *
- * @since 7.0
+ * @param string $template_path The template path to deprecate (e.g., 'templates/blank.php')
  *
  * @return void
+ * @since 7.0
+ *
  */
-function memberlite_set_blank_template_fallback(){
-	//Find any published pages that had the blank template set
+function memberlite_deprecate_page_template( string $template_path ): void {
 	global $wpdb;
 
+	// Find any published pages that had this template set
 	$page_ids = $wpdb->get_col( $wpdb->prepare(
 		"SELECT p.ID 
 		FROM {$wpdb->posts} p
@@ -128,7 +129,7 @@ function memberlite_set_blank_template_fallback(){
 		AND p.post_status = 'publish'
 		AND pm.meta_key = '_wp_page_template'
 		AND pm.meta_value = %s",
-		'templates/blank.php'
+		$template_path
 	) );
 
 	// Return early if no results
@@ -136,49 +137,27 @@ function memberlite_set_blank_template_fallback(){
 		return;
 	}
 
-	// Set the page meta to hide the header and footer
-	foreach( $page_ids as $page_id ) {
-		update_post_meta( $page_id, '_memberlite_hide_header', true );
-		update_post_meta( $page_id, '_memberlite_hide_footer', true );
+	// Hide header, footer, and page navigation where this template was active
+	foreach ( $page_ids as $page_id ) {
+		memberlite_hide_elements_for_deprecated_templates( $page_id );
 	}
 }
 
 /**
- * Deprecate the interstitial page template.
- * Find any pages with this template and update post_meta. No new setting.
+ * Hide elements that were hidden when deprecated templates were active.
  *
- * @since 7.0
+ * @param int $page_id The page ID to update
  *
  * @return void
  */
-function memberlite_set_interstitial_template_fallback(){
-	//Find any published pages that had the interstitial template set
-	global $wpdb;
-
-	$page_ids = $wpdb->get_col( $wpdb->prepare(
-		"SELECT p.ID 
-		FROM {$wpdb->posts} p
-		INNER JOIN {$wpdb->postmeta} pm ON p.ID = pm.post_id
-		WHERE p.post_type = 'page'
-		AND p.post_status = 'publish'
-		AND pm.meta_key = '_wp_page_template'
-		AND pm.meta_value = %s",
-		'templates/interstitial.php'
-	) );
-
-	// Return early if no results
-	if ( empty( $page_ids ) ) {
-		return;
-	}
-
-	// Set the page meta to show where this template was active
-	foreach( $page_ids as $page_id ) {
-		update_post_meta( $page_id, '_memberlite_is_interstitial', true );
-	}
+function memberlite_hide_elements_for_deprecated_templates( int $page_id ): void {
+	update_post_meta( $page_id, '_memberlite_hide_header', true );
+	update_post_meta( $page_id, '_memberlite_hide_footer', true );
+	update_post_meta( $page_id, '_memberlite_hide_page_nav', true );
 }
 
 // Run updates for Memberlite 7.0
 memberlite_migrate_colors_to_theme_mods();
 memberlite_remove_darkcss_theme_mod();
-memberlite_set_blank_template_fallback();
-memberlite_set_interstitial_template_fallback();
+memberlite_deprecate_page_template( 'templates/blank.php' );
+memberlite_deprecate_page_template( 'templates/interstitial.php' );

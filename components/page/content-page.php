@@ -20,10 +20,11 @@
 		?>
 
 		<?php
-			$memberlite_page_nav = get_theme_mod( 'memberlite_page_nav', 1 );
-		if ( ! empty( $memberlite_page_nav ) && ! is_page_template( 'templates/fluid-width.php' ) && ( ! memberlite_hide_page_header() && ! memberlite_hide_page_footer() ) ) {
-			memberlite_page_nav();
-		}
+			$memberlite_show_page_nav_global   = get_theme_mod( 'memberlite_page_nav', 1 );
+			$memberlite_hide_page_nav_override = get_post_meta( $post->ID, '_memberlite_hide_page_nav', true );
+			if ( ! empty( $memberlite_show_page_nav_global ) && ! is_page_template( 'templates/fluid-width.php' && ! empty( $memberlite_hide_page_nav_override ) ) ) {
+				memberlite_page_nav();
+			}
 		?>
 
 		<?php do_action( 'memberlite_after_content_page' ); ?>
