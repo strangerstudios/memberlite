@@ -65,13 +65,13 @@ add_action( 'wp_enqueue_scripts', 'memberlite_init_styles' );
  * @since 6.1
  */
 function memberlite_admin_enqueue_scripts() {
-	if ( ! empty( $_GET['page'] ) && strpos( $_GET['page'], 'memberlite-' ) === 0 ) {
+//	if ( ! empty( $_GET['page'] ) && strpos( $_GET['page'], 'memberlite-' ) === 0 ) {
 		wp_register_style( 'memberlite_admin', MEMBERLITE_URL . '/css/admin.css', [], MEMBERLITE_VERSION, 'screen' );
 		wp_enqueue_style( 'memberlite_admin' );
 
 		wp_register_script( 'memberlite_admin_js', MEMBERLITE_URL . '/js/admin.js', [ 'jquery' ], MEMBERLITE_VERSION, true );
 		wp_enqueue_script( 'memberlite_admin_js' );
-	}
+//	}
 }
 add_action( 'admin_enqueue_scripts', 'memberlite_admin_enqueue_scripts' );
 
