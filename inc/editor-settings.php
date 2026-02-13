@@ -38,6 +38,10 @@ function memberlite_register_editor_settings_post_meta() : void {
 }
 add_action( 'init', 'memberlite_register_editor_settings_post_meta' );
 
+function memberlite_get_theme_mods_for_settings() {
+
+}
+
 /**
  * Enqueue JS for custom document settings in the editor
  *
@@ -64,6 +68,11 @@ function memberlite_enqueue_custom_editor_assets() : void {
 		$asset_file['version'],
 		true
 	);
+
+	// Get existing theme mods that we're moving into the settings
+	wp_localize_script( 'memberlite-custom-settings', 'memberlite_theme_mod_settings', array(
+		'showPrevNextSinglePages' => get_theme_mod( 'memberlite_page_nav', true)
+	) );
 }
 add_action( 'enqueue_block_editor_assets', 'memberlite_enqueue_custom_editor_assets' );
 

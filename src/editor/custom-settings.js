@@ -20,6 +20,10 @@ const MemberliteCustomSettings = () => {
 
 	const hideHeaderValue = meta?._memberlite_hide_header || false;
 	const hideFooterValue = meta?._memberlite_hide_footer || false;
+	const hidePageNavValue = meta?._memberlite_hide_page_nav || false;
+
+	// Check if the theme mod to show prev/next globally on pages is set to true
+	const showPrevNextGlobally = window.memberlite_theme_mod_settings?.showPrevNextSinglePages;
 
 	const textDomain = 'memberlite';
 
@@ -42,6 +46,15 @@ const MemberliteCustomSettings = () => {
 					setMeta( { ...meta, _memberlite_hide_footer: value } );
 				} }
 			/>
+			{ showPrevNextGlobally &&(
+				<ToggleControl
+					label={__('Hide Prev/Next Navigation', textDomain)}
+					checked={ hidePageNavValue }
+					onChange={ ( value ) => {
+						setMeta( { ...meta, _memberlite_hide_page_nav: value } );
+					} }
+				/>
+			)}
 		</PluginDocumentSettingPanel>
 	);
 };
