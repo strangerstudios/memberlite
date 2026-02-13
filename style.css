@@ -189,7 +189,7 @@ h1,
 h2,
 .h1,
 .h2 {
-	font-size: var(--wp--preset--font-size--36);
+	font-size: var(--wp--preset--font-size--32);
 	margin: var(--wp--preset--spacing--40) 0 var(--wp--preset--spacing--10) 0;
 }
 
@@ -268,6 +268,21 @@ cite,
 em,
 i {
 	font-style: italic;
+}
+
+blockquote {
+	margin: var(--wp--preset--spacing--20) 0;
+	background-color: color-mix(in srgb, var(--memberlite-color-text) 7%, transparent);
+	padding: var(--wp--preset--spacing--20);
+}
+
+blockquote > :last-child {
+	margin-bottom: 0;
+}
+
+.wp-block-pullquote blockquote,
+.wp-block-quote {
+	unset: all;
 }
 
 .wp-block-quote:not(.is-style-plain) {
@@ -384,7 +399,7 @@ label {
 }
 
 .text-2x {
-	font-size: var(--wp--preset--font-size--24);
+	font-size: var(--wp--preset--font-size--21);
 }
 
 .text-3x {
@@ -392,11 +407,11 @@ label {
 }
 
 .text-4x {
-	font-size: var(--wp--preset--font-size--24);
+	font-size: var(--wp--preset--font-size--30);
 }
 
 .text-5x {
-	font-size: var(--wp--preset--font-size--30);
+	font-size: var(--wp--preset--font-size--36);
 }
 
 .entry-content tbody td h1,
@@ -812,9 +827,6 @@ select:focus {
 .footer-widgets textarea,
 #mobile-navigation input[type=text],
 #mobile-navigation input[type=password] {
-	color: var(--memberlite-color-text);
-	border: 1px solid var(--memberlite-color-borders);
-	border-radius: var(--wp--custom--border--radius);
 	padding: calc( var(--wp--preset--spacing--10) / 2 );
 }
 
@@ -1344,7 +1356,7 @@ a {
 
 #mobile-navigation .widget.widget_nav_menu ul.menu ul a,
 #mobile-navigation #menu-primary-menu ul a {
-	font-size: .8em;
+	font-size: var(--wp--preset--font-size--14);
 }
 
 #mobile-navigation .widget.widget_nav_menu h3,
@@ -1681,7 +1693,7 @@ a {
 
 /* All widgets */
 #secondary .widget {
-	margin-bottom: var(--wp--preset--spacing--50);
+	margin-bottom: var(--wp--preset--spacing--20);
 }
 
 .widget-area .widget a:not(.btn):not(.pmpro_btn) {
@@ -3050,7 +3062,7 @@ a {
 	.pmpro_levels-4col .pmpro_level-highlight .pmpro_card {
 		z-index: 100;
 		border-top: calc( var(--wp--preset--spacing--10) / 2 ) solid var(--memberlite-color-secondary);
-		border-bottom: 1.45rem solid var(--memberlite-color-secondary);
+		border-bottom: var(--wp--preset--spacing--10) solid var(--memberlite-color-secondary);
 	}
 
 	.pmpro_levels-2col .pmpro_level-highlight,
@@ -3159,7 +3171,7 @@ a {
 
 	.pmpro_advanced_levels-compare_table_responsive .pmpro_level-highlight {
 		border-top: calc( var(--wp--preset--spacing--10) / 2 ) solid var(--memberlite-color-secondary);
-		border-bottom: 1.45rem solid var(--memberlite-color-secondary);
+		border-bottom: var(--wp--preset--spacing--10) solid var(--memberlite-color-secondary);
 		border-left: 1px solid var(--memberlite-color-borders);
 		border-right: 1px solid var(--memberlite-color-borders);
 	}
@@ -3179,7 +3191,7 @@ a {
 /* Membership Signup Forms */
 .pmpro .pmpro_signup_form .pmpro_card {
 	border-top: calc( var(--wp--preset--spacing--10) / 2 ) solid var(--memberlite-color-secondary);
-	border-bottom: 1.45rem solid var(--memberlite-color-secondary);
+	border-bottom: var(--wp--preset--spacing--10) solid var(--memberlite-color-secondary);
 }
 
 .pmpro .pmpro_signup_form .pmpro_card .pmpro_card {

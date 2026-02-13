@@ -712,15 +712,6 @@
 			],
 			"fontSizes": [
 				{
-					"name": "72px",
-					"slug": "72",
-					"size": "clamp(51px,7.2vw,72px)",
-					"fluid": {
-						"min": "51px",
-						"max": "72px"
-					}
-				},
-				{
 					"name": "54px",
 					"slug": "54",
 					"size": "clamp(42px,5.4vw,54px)",
@@ -745,6 +736,15 @@
 					"fluid": {
 						"min": "30px",
 						"max": "36px"
+					}
+				},
+				{
+					"name": "32px",
+					"slug": "32",
+					"size": "clamp(28px,3.2vw,32px)",
+					"fluid": {
+						"min": "28px",
+						"max": "32px"
 					}
 				},
 				{
