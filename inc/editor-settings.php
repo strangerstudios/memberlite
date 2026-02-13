@@ -4,7 +4,7 @@
  *
  * @package Memberlite
  *
- * @since TBD
+ * @since 7.0
  */
 
 /**
@@ -90,7 +90,7 @@ add_action( 'enqueue_block_editor_assets', 'memberlite_enqueue_custom_editor_ass
  * @return bool
  */
 function memberlite_hide_page_header() {
-	if ( get_post_type() !== 'page') {
+	if ( get_post_type() !== 'page' ) {
 		return false;
 	}
 

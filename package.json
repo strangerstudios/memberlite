@@ -1,5 +1,8 @@
 {
-"name": "memberlite",
+	"name": "memberlite",
+	"description": "Memberlite WordPress Theme",
+	"version": "1.0.0",
+	"private": true,
 	"scripts": {
 		"build": "wp-scripts build",
 		"start": "wp-scripts start"
