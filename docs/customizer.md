@@ -1,10 +1,20 @@
 # Customizer Documentation
 
+### TL;DR Version of the Overview
+
+Memberlite 7.0 changed how we save colors to the database, introduced new color schemes, layout settings, theme-variations, and added functionality to ensure
+backwards compatibility for users coming from previous versions.
+
 ## Overview
 
 Memberlite is a hybrid theme that supports both the classic WordPress customizer and block-editing (Gutenberg).
-In version 6.6.2, we have implemented a system to manage color schemes and variations that work seamlessly across both systems. Customizer
-serves as the "source of truth" for colors and fonts that are then converted to CSS variables in the `:root` of the
+In version 7.0, we implemented a system to manage color schemes that work seamlessly across both systems. We've also
+introduced new layout settings mainly for the header, footer, and single posts. These new settings all work with
+the theme variation setting we also introduced where users can preset multiple settings at once based on a variation. This
+is meant to be a "quick start" for users who want to quickly change the look and feel of their site without having to
+tweak every setting in the customizer.
+
+**Customizer serves as the "source of truth" for colors and fonts** that are then converted to CSS variables in the `:root` of the
 site in `inc/customizer.php` in the `header_output()` function. The color scheme with 7 colors also match what's defined
 in the `theme.json` file. In the `header_output()` function, we use Memberlite CSS variables as aliases to the variables that WordPress
 creates by default from the theme.json.
@@ -14,65 +24,51 @@ with `--memberlite-`.
 
 You can adjust editor styles in the `css/editor.css` file.
 
-## Customizer Presets (defaults)
+## Customizer Settings & Controls
 
 You can find most of the magic in `inc/customizer.php`, in the `register()` function.
 
+## Color Schemes
+
 ### What's the difference between a color scheme and a variation?
 
-Both are presets meant for customizer settings but a color scheme exists within the variation as a whole.
+Both are presets meant for customizer settings, but a color scheme exists within the variation as a whole.
 Variations include other settings outside of colors such as typography, layout, and more.
 
 ### Color Scheme History
 
-Memberlite version 6.6.1 and earlier included a color scheme of 16 colors including two "defaults" where one was legacy, and another for version 4.6.
-In version 6.6.2, we decided to refactor to make color schemes more manageable and introduce one source of truth in the theme
-for default colors. This was also a necessary step to prepare for full site editing compatibility in future versions. As a result,
-to support backwards compatibility, we kept the existing `memberlite_color_schemes` filter hook and presets as "legacy".
-We then introduced a new color scheme setting that would pull the smaller color scheme with new keys for Memberlite versions 6.6.2 and onward.
-The new color scheme would also sync with the theme.json file to ensure consistency across the board.
+Prior to Memberlite 7.0, we were saving Memberlite color hex values with the hashed symbols. We also did not have any automatic
+syncing between what was set in Customizer versus what was set in the `theme.json` file. We decided to make color schemes more 
+consistent, adhere to how WordPress saves hex colors in the database, and introduce one source of truth for default colors.
+
+This was also necessary so we can expand on what Memberlite offers in the block editor in future versions. 
+We kept the existing `memberlite_color_schemes` filter hook, created new color schemes in `inc/colors.php`, and 
+added legacy schemes to `inc/deprecated.php`.
+
+We also added a migration script to convert legacy color schemes to the new format in `inc/upgrade.php`. We've also
+added a migration script in Memberlite's "Import Theme Settings" tool to convert legacy color schemes to the new format.
+
+For Memberlite versions 7.0 >, when a user either updates to Memberlite 7.0 or imports legacy color schemes, the new color scheme
+will automatically be set to "custom."
+
+### The current flow
+
+
+### Helpful Files & Functions
 
 In `functions.php`:
 
-- `memberlite_sync_legacy_to_variation_scheme()` - Syncs legacy color scheme selection to the new variation scheme setting on theme update. This is so users don't lose their legacy color scheme when updating to Memberlite 6.6.2+.
-- `memberlite_filter_theme_json()` - Filters theme.json to set the color palette based on customizer selection.
 
 In `inc/defaults.php`:
 
-- `memberlite_get_colors()` - Returns 7 color values for default scheme. There are other functions for other color schemes named similarly.
-- `memberlite_map_colors_to_settings()` - Maps color values to customizer settings
-- `memberlite_map_legacy_colors_to_settings()` - Maps legacy color values to customizer settings (pre V6.6.2)
-- `memberlite_get_defaults()` - Returns default customizer settings for default scheme.
-- `memberlite_get_defaults_legacy()` - Returns default customizer settings for legacy scheme
-- `memberlite_get_color_schemes()` - Returns new color scheme presets
-- `memberlite_format_scheme_colors()` - Helper to format color scheme data for theme.json
-- `memberlite_get_legacy_color_schemes()` - Returns legacy color scheme presets (Pre V6.6.2)
-- `memberlite_get_active_colors()` - Returns active color values based on current scheme selection. This is where the `theme.json` pulls colors from.
-
 In `inc/customizer.php`:
-
-- `get_color_schemes()` - Returns full scheme data from globals (for JS)
-- `get_legacy_color_schemes()` - Returns full scheme data from globals (for JS)
-- `get_color_scheme_choices()` - Extracts just the labels for dropdown (new schemes)
 
 In `js/customizer.js`:
 
-This is where we handle the live preview in customizer.
-
 In `js/customizer-controls.js`:
-
-This is where we handle loading color schemes into their respective customizer settings.
 
 ### How to add a new color scheme preset (And variation)
 
-You can add a new color scheme and a new variation presets with in `inc/defaults.php`. For the sake
-of example, let's pretend we're calling our new color scheme/variation "hamburger".
-
-Here are the steps to add your new presets for "hamburger":
-
-- Add a new `memberlite_get_colors()` function for the new variation. The function name should keep the `memberlite_get_` prefix and end with `_colors()` due to the `memberlite_get_active_colors` relying on that naming convention.
-- If you're presetting customizer settings other than colors, add a new `memberlite_get_defaults_hamburger()` function. This function is responsible for setting the default values for several customizer settings, even the non-color related ones.
-  - Make sure the `apply_filters( 'memberlite_defaults_hamburger', $defaults )` is unique so others can customize the defaults with this hook if they want.
 
 ### Known Issues
 
@@ -88,7 +84,3 @@ In `inc/customizer.php`, we have two helper functions. Each with their own sanit
 
 - `add_memberlite_setting_control()` - For standard settings
 - `add_memberlite_color_setting_control()` - For color picker settings
-
-You do not need to include the translate functions in the label or description as they are handled within the helper functions.
-
-
