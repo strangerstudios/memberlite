@@ -22,6 +22,7 @@
 		<?php
 			$memberlite_show_page_nav_global   = get_theme_mod( 'memberlite_page_nav', 1 );
 			$memberlite_hide_page_nav_override = get_post_meta( $post->ID, '_memberlite_hide_page_nav', true );
+			// If theme mod is set to show nav globally and if the individual setting (post meta) is not "true," which would override and hide the nav.
 			if ( ! empty( $memberlite_show_page_nav_global ) && ! is_page_template( 'templates/fluid-width.php' && ! empty( $memberlite_hide_page_nav_override ) ) ) {
 				memberlite_page_nav();
 			}
