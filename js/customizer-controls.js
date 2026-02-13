@@ -1,34 +1,37 @@
 (function ($) {
 	'use strict';
 
-	// Get scheme data from localized script (passed from customizer.php)
+	// Localized data from customizer.php:
 	// colorSchemes: { scheme_key: { label: '...', colors: { key: value, ... } }, ... }
 	// colorSettingKeys: [ 'header_textcolor', 'background_color', ... ]
+	// memberlite_preset_slugs: { setting_key: slug, ... }
 
 	// Flag to prevent infinite loop when programmatically updating colors
 	let isUpdatingFromScheme = false;
 
-	// Mapping from theme_mod keys to Customizer control IDs
-	// Most controls use memberlite_ prefix, some are WordPress core
-	const colorControlMapping = {
-		'header_textcolor': 'header_textcolor',
-		'background_color': 'background_color',
-		'bgcolor_header': 'memberlite_bgcolor_header',
-		'bgcolor_site_navigation': 'memberlite_bgcolor_site_navigation',
-		'color_site_navigation': 'memberlite_color_site_navigation',
-		'color_text': 'memberlite_color_text',
-		'color_link': 'memberlite_color_link',
-		'color_meta_link': 'memberlite_color_meta_link',
-		'color_primary': 'memberlite_color_primary',
-		'color_secondary': 'memberlite_color_secondary',
-		'color_action': 'memberlite_color_action',
-		'color_button': 'memberlite_color_button',
-		'bgcolor_page_masthead': 'memberlite_bgcolor_page_masthead',
-		'color_page_masthead': 'memberlite_color_page_masthead',
-		'bgcolor_footer_widgets': 'memberlite_bgcolor_footer_widgets',
-		'color_footer_widgets': 'memberlite_color_footer_widgets',
-		'color_borders': 'memberlite_color_borders',
-	};
+	// WordPress core color settings use the key directly as the control ID.
+	// All Memberlite settings use 'memberlite_' + key.
+	const wpCoreSettings = ['header_textcolor', 'background_color'];
+
+	/**
+	 * Get the Customizer control ID for a color setting key.
+	 *
+	 * @param {string} key - The color setting key (e.g. 'color_link')
+	 * @returns {string} The control ID (e.g. 'memberlite_color_link')
+	 */
+	function getControlId(key) {
+		return wpCoreSettings.indexOf(key) !== -1 ? key : 'memberlite_' + key;
+	}
+
+	/**
+	 * Check if a color setting key is a WordPress core setting.
+	 *
+	 * @param {string} key - The color setting key
+	 * @returns {boolean}
+	 */
+	function isWpCoreSetting(key) {
+		return wpCoreSettings.indexOf(key) !== -1;
+	}
 
 	/**
 	 * Update all color picker controls from a scheme's colors
@@ -38,15 +41,20 @@
 	function updateColorPickersFromScheme(colors) {
 		isUpdatingFromScheme = true;
 
-		$.each(colorControlMapping, function (colorKey, controlId) {
+		colorSettingKeys.forEach(function (colorKey) {
 			if (colors[colorKey]) {
 				let colorValue = colors[colorKey];
+				if (colorValue.charAt(0) !== '#') {
+					colorValue = '#' + colorValue;
+				}
 
-				// Handle header_textcolor and background_color differently (WordPress core)
-				if (colorKey === 'header_textcolor' || colorKey === 'background_color') {
+				const controlId = getControlId(colorKey);
+
+				// Handle WordPress core color settings differently
+				if (isWpCoreSetting(colorKey)) {
 					// Skip header_textcolor if currently set to 'blank' (user chose to hide site title/tagline)
 					if (colorKey === 'header_textcolor' && wp.customize(controlId)() === 'blank') {
-						return true; // continue to next iteration
+						return; // continue to next iteration
 					}
 					// WordPress stores these without the # prefix
 					if (colorValue && colorValue.charAt(0) === '#') {
@@ -96,7 +104,7 @@
 				if (!schemeColors.hasOwnProperty(colorKey)) continue;
 
 				let currentValue = '';
-				if (colorKey === 'header_textcolor' || colorKey === 'background_color') {
+				if (isWpCoreSetting(colorKey)) {
 					currentValue = wp.customize(colorKey)();
 					// Skip header_textcolor comparison if set to 'blank' (hidden site title)
 					if (colorKey === 'header_textcolor' && currentValue === 'blank') {
@@ -143,32 +151,29 @@
 	});
 
 	// When any color is manually changed, check if it matches a scheme or set to custom
-	const allColorSettings = typeof colorSettingKeys !== 'undefined' ? colorSettingKeys : [
-		'header_textcolor',
-		'background_color',
-		'bgcolor_header',
-		'bgcolor_site_navigation',
-		'color_site_navigation',
-		'color_text',
-		'color_link',
-		'color_meta_link',
-		'color_primary',
-		'color_secondary',
-		'color_action',
-		'color_button',
-		'bgcolor_page_masthead',
-		'color_page_masthead',
-		'bgcolor_footer_widgets',
-		'color_footer_widgets',
-		'color_borders',
-	];
-
-	allColorSettings.forEach(function (settingId) {
+	colorSettingKeys.forEach(function (settingId) {
 		wp.customize(settingId, function (value) {
-			value.bind(function () {
+			value.bind(function (newVal, oldVal) {
 				// Don't trigger if we're updating from a scheme selection
 				if (isUpdatingFromScheme) {
 					return;
+				}
+
+				// When header_textcolor transitions from 'blank' to a color
+				// and a non-custom scheme is active, use that scheme's color
+				// instead of the generic default.
+				if (settingId === 'header_textcolor' && oldVal === 'blank' && newVal !== 'blank') {
+					const currentScheme = wp.customize('memberlite_color_scheme')();
+					if (currentScheme !== 'custom' && typeof colorSchemes !== 'undefined' && colorSchemes[currentScheme]) {
+						let schemeColor = colorSchemes[currentScheme].colors.header_textcolor;
+						if (schemeColor && schemeColor.charAt(0) === '#') {
+							schemeColor = schemeColor.substring(1);
+						}
+						if (schemeColor && schemeColor.toLowerCase() !== newVal.toLowerCase()) {
+							wp.customize(settingId).set(schemeColor);
+							return;
+						}
+					}
 				}
 
 				// Check if the new color configuration matches any scheme

@@ -289,10 +289,10 @@ a.llms-button-secondary {
 
 /* notices */
 .llms-notice {
-	background: #EBF5FF;
-	border: 1px solid #1E429F11;
+	background: #ebf5ff;
+	border: 1px solid #1e429f11;
 	border-radius: 8px;
-	color: #1E429F;
+	color: #1e429f;
 	font-size: 1.8rem;
 	font-weight: 400;
 	line-height: 2.9rem;
@@ -305,15 +305,15 @@ a.llms-button-secondary {
 }
 
 .llms-notice.llms-error {
-	background: #FDF2F2;
-	border-color: #9B1C1C11;
-	color: #9B1C1C;
+	background: #fdf2f2;
+	border-color: #9b1c1c11;
+	color: #9b1c1c;
 }
 
 .llms-notice.llms-success {
-	background: #F3FAF7;
-	border-color: #03543F11;
-	color: #03543F;
+	background: #f3faf7;
+	border-color: #03543f11;
+	color: #03543f;
 }
 
 /* notifications */
@@ -570,19 +570,19 @@ a.llms-button-secondary {
 }
 
 .single-llms_quiz .llms-quiz-results .llms-donut.passing {
-	color: #03543F;
+	color: #03543f;
 }
 
 .single-llms_quiz .llms-quiz-results .llms-donut.passing svg path {
-	stroke: #03543F;
+	stroke: #03543f;
 }
 
 .single-llms_quiz .llms-quiz-results .llms-donut.failing {
-	color: #9B1C1C;
+	color: #9b1c1c;
 }
 
 .single-llms_quiz .llms-quiz-results .llms-donut.failing svg path {
-	stroke: #9B1C1C;
+	stroke: #9b1c1c;
 }
 
 .single-llms_quiz #llms-quiz-wrapper .llms-quiz-attempt-results .llms-quiz-attempt-question .llms-question-title {
@@ -593,20 +593,20 @@ a.llms-button-secondary {
 }
 
 .single-llms_quiz #llms-quiz-wrapper .llms-quiz-attempt-results .llms-quiz-attempt-question.status--graded.correct {
-	background: #F3FAF7;
+	background: #f3faf7;
 }
 
 .single-llms_quiz #llms-quiz-wrapper .llms-quiz-attempt-results .llms-quiz-attempt-question.status--graded.correct .llms-status-icon {
-	background-color: #03543F;
+	background-color: #03543f;
 	color: var(--memberlite-color-white);
 }
 
 .single-llms_quiz #llms-quiz-wrapper .llms-quiz-attempt-results .llms-quiz-attempt-question.status--graded.incorrect {
-	background: #FDF2F2;
+	background: #fdf2f2;
 }
 
 .single-llms_quiz #llms-quiz-wrapper .llms-quiz-attempt-results .llms-quiz-attempt-question.status--graded.incorrect .llms-status-icon {
-	background-color: #9B1C1C;
+	background-color: #9b1c1c;
 	color: var(--memberlite-color-white);
 }
 
@@ -692,9 +692,9 @@ a.llms-button-secondary {
 .llms-student-dashboard .llms-status.llms-completed,
 .llms-student-dashboard .llms-status.llms-pass,
 .llms-student-dashboard .llms-status.llms-txn-succeeded {
-	background: #F3FAF7;
-	border: 1px solid #03543F11;
-	color: #03543F;
+	background: #f3faf7;
+	border: 1px solid #03543f11;
+	color: #03543f;
 }
 
 .llms-student-dashboard .llms-login,

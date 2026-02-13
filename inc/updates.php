@@ -10,7 +10,8 @@
  * @since 4.0
  */
 
-// Ensure defaults.php and deprecated.php are loaded for color migration functions.
+// Ensure files are loaded for color migration functions.
+require_once get_template_directory() . '/inc/colors.php';
 require_once get_template_directory() . '/inc/defaults.php';
 require_once get_template_directory() . '/inc/deprecated.php';
 
@@ -53,22 +54,19 @@ function memberlite_checkForUpdates() {
  * Migrate color scheme to individual theme_mods.
  *
  * This migration handles three scenarios:
- * 1. User has a legacy scheme selected (from deprecated.php) → expand to 18 theme_mods, set scheme to 'custom'
- * 2. User has a new scheme selected → expand to 18 theme_mods, keep scheme setting
+ * 1. User has a legacy scheme selected (from deprecated.php) → expand all to theme_mods, set scheme to 'custom'
+ * 2. User has a new scheme selected → expand all to theme_mods, keep scheme setting
  * 3. User has custom colors already → preserve them, set scheme to 'custom'
  *
- * After migration, the 18 individual color theme_mods are the single source of truth.
+ * After migration, the all individual color theme_mods are the single source of truth.
  *
- * @since 6.2
+ * @since TBD
  */
 function memberlite_migrate_colors_to_theme_mods() {
 	$color_keys = memberlite_get_color_setting_keys();
 
-	// Check for old scheme theme_mods (could be 'memberlite_color_scheme' or 'memberlite_variation_color_scheme')
+	// Check for old scheme theme_mods.
 	$current_scheme = get_theme_mod( 'memberlite_color_scheme', '' );
-	if ( empty( $current_scheme ) ) {
-		$current_scheme = get_theme_mod( 'memberlite_variation_color_scheme', '' );
-	}
 
 	$colors       = array();
 	$final_scheme = 'default';
@@ -109,18 +107,23 @@ function memberlite_migrate_colors_to_theme_mods() {
 		}
 	}
 
-	// Save all 18 colors as individual theme_mods
+	// Save all colors as individual theme_mods
 	foreach ( $color_keys as $key ) {
 		$existing_value = get_theme_mod( $key, '' );
 
 		// If user already has a custom value for this color, preserve it
 		if ( ! empty( $existing_value ) ) {
-			continue;
+			// Remove hash if present in custom value and lowercase the color
+			$existing_trimmed_color = ltrim( $existing_value, '#' );
+			$existing_trimmed_color = strtolower( $existing_trimmed_color );
+			set_theme_mod( $key, $existing_trimmed_color );
 		}
 
-		// Otherwise, save the scheme's color value
+		// Otherwise, save the scheme's color value.
 		if ( isset( $colors[ $key ] ) ) {
-			set_theme_mod( $key, $colors[ $key ] );
+			$trimmed_color = ltrim( $colors[ $key ], '#' );
+			$trimmed_color = strtolower( $trimmed_color );
+			set_theme_mod( $key, $trimmed_color );
 		}
 	}
 
@@ -131,10 +134,6 @@ function memberlite_migrate_colors_to_theme_mods() {
 
 	set_theme_mod( 'memberlite_color_scheme', $final_scheme );
 
-	// Clean up old theme_mods and options
-	remove_theme_mod( 'memberlite_variation_color_scheme' );
-	delete_option( 'memberlite_scheme_synced' );
-	delete_option( 'memberlite_user_legacy_scheme' );
 }
 
 /**
@@ -221,7 +220,7 @@ function memberlite_update_themes_filter( $value ) {
 
 	// Find the memberlite theme data in the update info array.
 	$find_theme = array_search( 'memberlite', array_column( $update_info, 'Slug' ) );
-	
+
 	// If the theme update data is found, adjust $update_info to be specifically for memberlite.
 	if ( $find_theme !== false ) {
 		$update_info = $update_info[$find_theme];
@@ -231,7 +230,7 @@ function memberlite_update_themes_filter( $value ) {
 
 	//get data for memberlite. This will always return data.
 	$theme_data = wp_get_theme( $update_info['Slug'] );
-	
+
 	//compare versions
 	if ( ! empty( $update_info['License'] ) && version_compare( $theme_data['Version'], $update_info['Version'], '<' ) ){
 		$value->response[$update_info['Slug']] = array(

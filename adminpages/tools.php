@@ -116,7 +116,7 @@ function memberlite_export_theme_settings() {
 	 * By default, we export the site icon, custom sidebars, and sidebar assignments for custom post types.
 	 *
 	 * Note: This same filter is used for resetting options in memberlite_reset_theme_settings().
-	 * 
+	 *
 	 * @since 6.1
 	 * @param array $option_keys Array of option keys to export.
 	 */
@@ -212,9 +212,43 @@ function memberlite_import_theme_settings() {
 		// Clear existing mods so we don't leave stale ones behind.
 		remove_theme_mods();
 
+		// Get all color setting keys.
+		$color_keys = memberlite_get_color_setting_keys();
+
 		foreach ( $data['mods'] as $key => $value ) {
+			// Sanitize color values to remove # prefix
+			if ( in_array( $key, $color_keys, true ) && is_string( $value ) ) {
+				$value = sanitize_hex_color_no_hash( $value );
+
+				// Skip if sanitization failed (returns null for invalid colors)
+				if ( $value === null ) {
+					continue;
+				}
+
+				// Lowercase for consistency
+				$value = strtolower( $value );
+			}
+
 			set_theme_mod( $key, $value );
 		}
+
+		// Now detect if the imported color scheme is legacy or modern
+		$imported_scheme = isset( $data['mods']['memberlite_color_scheme'] ) ? $data['mods']['memberlite_color_scheme'] : '';
+		$final_scheme = 'custom'; // Default to custom if we can't determine the color scheme
+
+		// Type safety: ensure it's a string before using as array key
+		if ( is_string( $imported_scheme ) && ! empty( $imported_scheme ) && $imported_scheme !== 'custom' ) {
+			// Check if it's a modern scheme
+			$modern_schemes = memberlite_get_color_schemes();
+
+			if ( isset( $modern_schemes[ $imported_scheme ] ) ) {
+				// It's a valid modern scheme, keep it as-is
+				$final_scheme = $imported_scheme;
+			}
+		}
+
+		// Anything legacy or a malformed color scheme will default to "custom"
+		set_theme_mod( 'memberlite_color_scheme', $final_scheme );
 	}
 
 	// Restore extra options (site_icon, sidebars, etc.), if present.
