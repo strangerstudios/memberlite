@@ -288,16 +288,6 @@ function memberlite_settings_save_meta_box_data( $post_id ) {
 		update_post_meta($post_id, '_memberlite_banner_icon', $memberlite_banner_icon);
 	}
 
-	// Hide page navigation checkbox.
-//	if(isset($_POST['memberlite_hide_page_nav_present'])) {
-//		if(!empty($_POST['memberlite_hide_page_nav']))
-//			$memberlite_hide_page_nav = 1;
-//		else
-//			$memberlite_hide_page_nav = 0;
-//
-//		update_post_meta($post_id, '_memberlite_hide_page_nav', $memberlite_hide_page_nav);
-//	}
-
 	//landing page level
 	if(isset($_POST['pmproal_landing_page_level'])) {
 		$pmproal_landing_page_level = intval($_POST['pmproal_landing_page_level']);

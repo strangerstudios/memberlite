@@ -38,7 +38,6 @@
 		<div class="row">
 			<?php
 				$meta_login = get_theme_mod( 'meta_login', false );
-                //@todo: Confirm how this works, theme mod vs the nav menu/sidebar
 				if ( ! empty( $meta_login ) && ( has_nav_menu( 'meta' ) || is_active_sidebar( 'sidebar-3' ) ) ) {
 					$show_header_right = true;
 				} else {

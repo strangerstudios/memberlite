@@ -8,9 +8,9 @@
  */
 
 /**
- * Register custom document setting to hide header/footer (alternate to the blank page template)
- * @note: See the memberlite_set_blank_template_fallback() function in inc/updates.php for more deprecation context
+ * Register custom document settings post meta
  *
+ * @since 7.0
  * @return void
  */
 function memberlite_register_editor_settings_post_meta() : void {
@@ -48,13 +48,10 @@ function memberlite_register_editor_settings_post_meta() : void {
 }
 add_action( 'init', 'memberlite_register_editor_settings_post_meta' );
 
-function memberlite_get_theme_mods_for_settings() {
-
-}
-
 /**
  * Enqueue JS for custom document settings in the editor
  *
+ * @since 7.0
  * @return void
  */
 function memberlite_enqueue_custom_editor_assets() : void {
@@ -89,6 +86,7 @@ add_action( 'enqueue_block_editor_assets', 'memberlite_enqueue_custom_editor_ass
 /**
  * Hide header on pages
  *
+ * @since 7.0
  * @return bool
  */
 function memberlite_hide_page_header() {
@@ -102,6 +100,7 @@ function memberlite_hide_page_header() {
 /**
  * Hide footer on pages
  *
+ * @since 7.0
  * @return bool
  */
 function memberlite_hide_page_footer() {
