@@ -283,7 +283,7 @@ blockquote > :last-child {
 
 .wp-block-pullquote blockquote,
 .wp-block-quote {
-	unset: all;
+	all: unset;
 }
 
 .wp-block-quote:not(.is-style-plain) {
