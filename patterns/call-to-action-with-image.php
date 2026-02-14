@@ -17,30 +17,25 @@ return [
 		__( 'promotion', 'memberlite' ),
 		__( 'lead magnet', 'memberlite' ),
 	],
-	'content'     => '<!-- wp:group {"align":"full","className":"is-style-pmpro-card","style":{"spacing":{"padding":{"top":"var:preset|spacing|30","bottom":"var:preset|spacing|30","left":"var:preset|spacing|30","right":"var:preset|spacing|30"},"margin":{"top":"0px","bottom":"0px"},"blockGap":"30px"}},"backgroundColor":"base","layout":{"type":"default"}} -->
-<div class="wp-block-group alignfull is-style-pmpro-card has-base-background-color has-background" style="margin-top:0px;margin-bottom:0px;padding-top:var(--wp--preset--spacing--30);padding-right:var(--wp--preset--spacing--30);padding-bottom:var(--wp--preset--spacing--30);padding-left:var(--wp--preset--spacing--30)">
-	<!-- wp:columns {"style":{"spacing":{"blockGap":{"left":"var:preset|spacing|30"}}}} -->
-	<div class="wp-block-columns">
-		<!-- wp:column {"verticalAlignment":"center","width":"30%"} -->
-		<div class="wp-block-column is-vertically-aligned-center" style="flex-basis:30%">
-			<!-- wp:image -->
-			<figure class="wp-block-image">
-				<img/>
-			</figure>
+	'content'     => '<!-- wp:group {"align":"wide","style":{"spacing":{"margin":{"top":"var:preset|spacing|70","bottom":"var:preset|spacing|70"},"padding":{"top":"var:preset|spacing|30","bottom":"var:preset|spacing|30"}}},"backgroundColor":"base","layout":{"type":"default"}} -->
+<div class="wp-block-group alignwide has-base-background-color has-background" style="margin-top:var(--wp--preset--spacing--70);margin-bottom:var(--wp--preset--spacing--70);padding-top:var(--wp--preset--spacing--30);padding-bottom:var(--wp--preset--spacing--30)">
+	<!-- wp:columns {"align":"wide","style":{"spacing":{"blockGap":{"left":"var:preset|spacing|30"}}}} -->
+	<div class="wp-block-columns alignwide">
+		<!-- wp:column {"verticalAlignment":"center","width":"35%"} -->
+		<div class="wp-block-column is-vertically-aligned-center" style="flex-basis:35%">
+			<!-- wp:image {"aspectRatio":"1","scale":"cover","sizeSlug":"full","linkDestination":"none"} -->
+			<figure class="wp-block-image size-full"><img src="' . esc_url( get_template_directory_uri() ) . '/assets/images/patterns/landscapes/oliver-spicer-NmPNw8w_a24-unsplash-md.jpg" alt="' . esc_attr__( 'Looking out from a wooden dock to water with trees and setting sun in the distance.', 'memberlite' ) . '" style="aspect-ratio:1;object-fit:cover"/></figure>
 			<!-- /wp:image -->
 		</div>
 		<!-- /wp:column -->
-
-		<!-- wp:column {"verticalAlignment":"center","width":"70%","style":{"spacing":{"blockGap":"var:preset|spacing|10"}}} -->
-		<div class="wp-block-column is-vertically-aligned-center" style="flex-basis:70%">
+		<!-- wp:column {"verticalAlignment":"center","width":"65%","style":{"spacing":{"blockGap":"var:preset|spacing|10"}}} -->
+		<div class="wp-block-column is-vertically-aligned-center" style="flex-basis:65%">
 			<!-- wp:heading -->
 			<h2 class="wp-block-heading">' . __( 'Join a Community Built for Your Success', 'memberlite' ) . '</h2>
 			<!-- /wp:heading -->
-
 			<!-- wp:paragraph -->
 			<p>' . __( 'Get access to exclusive resources, connect with members who share your goals, and grow at your own pace. Our membership is designed for people like you who want to build something real without breaking the bank.', 'memberlite' ) . '</p>
 			<!-- /wp:paragraph -->
-
 			<!-- wp:buttons -->
 			<div class="wp-block-buttons">
 				<!-- wp:button {"backgroundColor":"color-primary","className":"is-style-fill"} -->

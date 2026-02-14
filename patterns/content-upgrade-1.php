@@ -17,22 +17,20 @@ return [
 		__( 'promotion', 'memberlite' ),
 		__( 'lead magnet', 'memberlite' ),
 	],
-	'content'     => '<!-- wp:group {"align":"full","className":"is-style-pmpro-card","style":{"spacing":{"padding":{"top":"var:preset|spacing|30","bottom":"var:preset|spacing|30","left":"var:preset|spacing|30","right":"var:preset|spacing|30"},"margin":{"top":"0px","bottom":"0px"}}},"backgroundColor":"base","layout":{"type":"default"}} -->
-<div class="wp-block-group alignfull is-style-pmpro-card has-base-background-color has-background" style="margin-top:0px;margin-bottom:0px;padding-top:var(--wp--preset--spacing--30);padding-right:var(--wp--preset--spacing--30);padding-bottom:var(--wp--preset--spacing--30);padding-left:var(--wp--preset--spacing--30)">
-	<!-- wp:columns {"style":{"spacing":{"blockGap":{"left":"var:preset|spacing|30"}}}} -->
+	'content'     => '<!-- wp:group {"className":"is-style-pmpro-card","style":{"spacing":{"blockGap":"var:preset|spacing|10","padding":{"top":"var:preset|spacing|30","right":"var:preset|spacing|30","bottom":"var:preset|spacing|30","left":"var:preset|spacing|30"},"margin":{"top":"var:preset|spacing|70","bottom":"var:preset|spacing|70"}},"border":{"width":"1px","color":"#e0e0e0","radius":{"topLeft":"8px","topRight":"8px","bottomLeft":"8px","bottomRight":"8px"}}},"backgroundColor":"white","layout":{"type":"constrained"}} -->
+<div class="wp-block-group is-style-pmpro-card has-border-color has-white-background-color has-background" style="border-color:#e0e0e0;border-width:1px;border-top-left-radius:8px;border-top-right-radius:8px;border-bottom-left-radius:8px;border-bottom-right-radius:8px;margin-top:var(--wp--preset--spacing--70);margin-bottom:var(--wp--preset--spacing--70);padding-top:var(--wp--preset--spacing--30);padding-right:var(--wp--preset--spacing--30);padding-bottom:var(--wp--preset--spacing--30);padding-left:var(--wp--preset--spacing--30)">
+	<!-- wp:columns -->
 	<div class="wp-block-columns">
 		<!-- wp:column {"width":"70%","style":{"spacing":{"blockGap":"0"}}} -->
 		<div class="wp-block-column" style="flex-basis:70%">
 			<!-- wp:paragraph {"fontSize":"large"} -->
-			<p class="has-large-font-size"><strong>' . __( 'See What Membership Has to Offer', 'memberlite' ) . '</strong></p>
+			<p class="has-large-font-size"><strong>' . __( 'Get started for free.', 'memberlite' ) . '</strong></p>
 			<!-- /wp:paragraph -->
-
 			<!-- wp:paragraph -->
 			<p>' . __( 'Start with our free resources to see if this community is right for you. No commitment required.', 'memberlite' ) . '</p>
 			<!-- /wp:paragraph -->
 		</div>
 		<!-- /wp:column -->
-
 		<!-- wp:column {"verticalAlignment":"center","width":"30%"} -->
 		<div class="wp-block-column is-vertically-aligned-center" style="flex-basis:30%">
 			<!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center"}} -->
