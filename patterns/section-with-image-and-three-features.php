@@ -17,8 +17,8 @@ return [
 		__( 'homepage', 'memberlite' ),
 		__( 'membership', 'memberlite' ),
 	],
-	'content'     => '<!-- wp:group {"align":"full","style":{"color":{"background":"#ffffff"},"spacing":{"padding":{"top":"var:preset|spacing|70","bottom":"var:preset|spacing|70"}}},"layout":{"type":"constrained"}} -->
-<div class="wp-block-group alignfull has-background" style="background-color:#ffffff;padding-top:var(--wp--preset--spacing--70);padding-bottom:var(--wp--preset--spacing--70)">
+	'content'     => '<!-- wp:group {"align":"full","style":{"spacing":{"padding":{"top":"var:preset|spacing|70","bottom":"var:preset|spacing|70"}}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group alignfull" style="padding-top:var(--wp--preset--spacing--70);padding-bottom:var(--wp--preset--spacing--70)">
 	<!-- wp:heading {"textAlign":"center","fontSize":"42"} -->
 	<h2 class="wp-block-heading has-text-align-center has-42-font-size">' . __( 'Everything You Need to Succeed', 'memberlite' ) . '</h2>
 	<!-- /wp:heading -->
@@ -33,8 +33,8 @@ return [
 		<!-- /wp:column -->
 		<!-- wp:column {"verticalAlignment":"stretch","width":"50%"} -->
 		<div class="wp-block-column is-vertically-aligned-stretch" style="flex-basis:50%">
-			<!-- wp:group {"style":{"spacing":{"blockGap":"0","padding":{"top":"var:preset|spacing|10","bottom":"var:preset|spacing|10","left":"var:preset|spacing|20","right":"var:preset|spacing|20"}},"border":{"width":"1px","color":"#e0e0e0","radius":{"topLeft":"8px","topRight":"8px","bottomLeft":"8px","bottomRight":"8px"}}},"backgroundColor":"white","layout":{"type":"flex","orientation":"vertical"}} -->
-			<div class="wp-block-group has-border-color has-white-background-color has-background" style="border-color:#e0e0e0;border-width:1px;border-top-left-radius:8px;border-top-right-radius:8px;border-bottom-left-radius:8px;border-bottom-right-radius:8px;padding-top:var(--wp--preset--spacing--10);padding-right:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--10);padding-left:var(--wp--preset--spacing--20)">
+			<!-- wp:group {"style":{"spacing":{"blockGap":"0","padding":{"top":"var:preset|spacing|10","bottom":"var:preset|spacing|10","left":"var:preset|spacing|20","right":"var:preset|spacing|20"}},"border":{"width":"1px","radius":{"topLeft":"8px","topRight":"8px","bottomLeft":"8px","bottomRight":"8px"}}},"borderColor":"borders","backgroundColor":"white","layout":{"type":"flex","orientation":"vertical"}} -->
+			<div class="wp-block-group has-border-color has-borders-border-color has-white-background-color has-background" style="border-width:1px;border-top-left-radius:8px;border-top-right-radius:8px;border-bottom-left-radius:8px;border-bottom-right-radius:8px;padding-top:var(--wp--preset--spacing--10);padding-right:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--10);padding-left:var(--wp--preset--spacing--20)">
 				<!-- wp:heading {"level":3,"style":{"elements":{"link":{"color":{"text":"var:preset|color|color-secondary"}}}},"textColor":"color-secondary"} -->
 				<h3 class="wp-block-heading has-color-secondary-color has-text-color has-link-color">' . __( 'Exclusive Content', 'memberlite' ) . '</h3>
 				<!-- /wp:heading -->
@@ -43,8 +43,8 @@ return [
 				<!-- /wp:paragraph -->
 			</div>
 			<!-- /wp:group -->
-			<!-- wp:group {"style":{"spacing":{"blockGap":"0","padding":{"top":"var:preset|spacing|10","bottom":"var:preset|spacing|10","left":"var:preset|spacing|20","right":"var:preset|spacing|20"}},"border":{"width":"1px","color":"#e0e0e0","radius":{"topLeft":"8px","topRight":"8px","bottomLeft":"8px","bottomRight":"8px"}}},"backgroundColor":"white","layout":{"type":"flex","orientation":"vertical"}} -->
-			<div class="wp-block-group has-border-color has-white-background-color has-background" style="border-color:#e0e0e0;border-width:1px;border-top-left-radius:8px;border-top-right-radius:8px;border-bottom-left-radius:8px;border-bottom-right-radius:8px;padding-top:var(--wp--preset--spacing--10);padding-right:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--10);padding-left:var(--wp--preset--spacing--20)">
+			<!-- wp:group {"style":{"spacing":{"blockGap":"0","padding":{"top":"var:preset|spacing|10","bottom":"var:preset|spacing|10","left":"var:preset|spacing|20","right":"var:preset|spacing|20"}},"border":{"width":"1px","radius":{"topLeft":"8px","topRight":"8px","bottomLeft":"8px","bottomRight":"8px"}}},"borderColor":"borders","backgroundColor":"white","layout":{"type":"flex","orientation":"vertical"}} -->
+			<div class="wp-block-group has-border-color has-borders-border-color has-white-background-color has-background" style="border-width:1px;border-top-left-radius:8px;border-top-right-radius:8px;border-bottom-left-radius:8px;border-bottom-right-radius:8px;padding-top:var(--wp--preset--spacing--10);padding-right:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--10);padding-left:var(--wp--preset--spacing--20)">
 				<!-- wp:heading {"level":3,"style":{"elements":{"link":{"color":{"text":"var:preset|color|color-secondary"}}}},"textColor":"color-secondary"} -->
 				<h3 class="wp-block-heading has-color-secondary-color has-text-color has-link-color">' . __( 'Ongoing Support', 'memberlite' ) . '</h3>
 				<!-- /wp:heading -->
@@ -53,8 +53,8 @@ return [
 				<!-- /wp:paragraph -->
 			</div>
 			<!-- /wp:group -->
-			<!-- wp:group {"style":{"spacing":{"blockGap":"0","padding":{"top":"var:preset|spacing|10","bottom":"var:preset|spacing|10","left":"var:preset|spacing|20","right":"var:preset|spacing|20"}},"border":{"width":"1px","color":"#e0e0e0","radius":{"topLeft":"8px","topRight":"8px","bottomLeft":"8px","bottomRight":"8px"}}},"backgroundColor":"white","layout":{"type":"flex","orientation":"vertical"}} -->
-			<div class="wp-block-group has-border-color has-white-background-color has-background" style="border-color:#e0e0e0;border-width:1px;border-top-left-radius:8px;border-top-right-radius:8px;border-bottom-left-radius:8px;border-bottom-right-radius:8px;padding-top:var(--wp--preset--spacing--10);padding-right:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--10);padding-left:var(--wp--preset--spacing--20)">
+			<!-- wp:group {"style":{"spacing":{"blockGap":"0","padding":{"top":"var:preset|spacing|10","bottom":"var:preset|spacing|10","left":"var:preset|spacing|20","right":"var:preset|spacing|20"}},"border":{"width":"1px","radius":{"topLeft":"8px","topRight":"8px","bottomLeft":"8px","bottomRight":"8px"}}},"borderColor":"borders","backgroundColor":"white","layout":{"type":"flex","orientation":"vertical"}} -->
+			<div class="wp-block-group has-border-color has-borders-border-color has-white-background-color has-background" style="border-width:1px;border-top-left-radius:8px;border-top-right-radius:8px;border-bottom-left-radius:8px;border-bottom-right-radius:8px;padding-top:var(--wp--preset--spacing--10);padding-right:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--10);padding-left:var(--wp--preset--spacing--20)">
 				<!-- wp:heading {"level":3,"style":{"elements":{"link":{"color":{"text":"var:preset|color|color-secondary"}}}},"textColor":"color-secondary"} -->
 				<h3 class="wp-block-heading has-color-secondary-color has-text-color has-link-color">' . __( 'Member Community', 'memberlite' ) . '</h3>
 				<!-- /wp:heading -->
