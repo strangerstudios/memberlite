@@ -19,8 +19,10 @@ return [
 		__( 'team', 'memberlite' ),
 		__( 'people', 'memberlite' ),
 	],
-	'content'     => '<!-- wp:group {"align":"wide","className":"is-style-pmpro-card","style":{"spacing":{"padding":{"top":"var:preset|spacing|70","bottom":"var:preset|spacing|70"}}},"layout":{"type":"constrained"}} -->
-<div class="wp-block-group alignwide is-style-pmpro-card" style="padding-top:var(--wp--preset--spacing--70);padding-bottom:var(--wp--preset--spacing--70)">
+	'content'     => '<!-- wp:group {"align":"full","layout":{"type":"constrained"}} -->
+<div class="wp-block-group alignfull">
+	<!-- wp:group {"align":"wide","style":{"spacing":{"padding":{"top":"var:preset|spacing|20","bottom":"var:preset|spacing|20","left":"var:preset|spacing|20","right":"var:preset|spacing|20"}},"border":{"width":"1px","radius":"8px"}},"borderColor":"borders","backgroundColor":"white","layout":{"type":"constrained"}} -->
+	<div class="wp-block-group alignwide has-border-color has-borders-border-color has-white-background-color has-background" style="border-width:1px;border-radius:8px;padding-top:var(--wp--preset--spacing--20);padding-right:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--20);padding-left:var(--wp--preset--spacing--20)">
 	<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|10"}},"layout":{"type":"flex","orientation":"vertical","justifyContent":"center"}} -->
 	<div class="wp-block-group">
 		<!-- wp:heading {"textAlign":"center"} -->
@@ -95,6 +97,8 @@ return [
 		<!-- /wp:column -->
 	</div>
 	<!-- /wp:columns -->
+	</div>
+	<!-- /wp:group -->
 </div>
 <!-- /wp:group -->',
 ];

@@ -18,10 +18,12 @@ return [
 		__( 'people', 'memberlite' ),
 		__( 'testimonials', 'memberlite' ),
 	],
-	'content'     => '<!-- wp:group {"align":"wide","style":{"elements":{"link":{"color":{"text":"var:preset|color|base"}}},"spacing":{"padding":{"top":"var:preset|spacing|20","bottom":"var:preset|spacing|20","left":"var:preset|spacing|20","right":"var:preset|spacing|20"},"margin":{"top":"var:preset|spacing|70","bottom":"var:preset|spacing|70"}},"border":{"radius":{"topLeft":"8px","topRight":"8px","bottomLeft":"8px","bottomRight":"8px"}}},"backgroundColor":"color-primary","textColor":"base","layout":{"type":"default"}} -->
-<div class="wp-block-group alignwide has-text-color has-base-color has-color-primary-background-color has-background has-link-color" style="border-top-left-radius:8px;border-top-right-radius:8px;border-bottom-left-radius:8px;border-bottom-right-radius:8px;margin-top:var(--wp--preset--spacing--70);margin-bottom:var(--wp--preset--spacing--70);padding-top:var(--wp--preset--spacing--20);padding-right:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--20);padding-left:var(--wp--preset--spacing--20)">
-	<!-- wp:columns {"verticalAlignment":null} -->
-	<div class="wp-block-columns">
+	'content'     => '<!-- wp:group {"align":"full","layout":{"type":"constrained"}} -->
+<div class="wp-block-group alignfull">
+	<!-- wp:group {"metadata":{"categories":["memberlite-about"],"patternName":"memberlite/featured-box-with-photo-grid","name":"Featured Box With Photo Grid"},"align":"wide","style":{"elements":{"link":{"color":{"text":"var:preset|color|base"}}},"spacing":{"padding":{"top":"var:preset|spacing|20","bottom":"var:preset|spacing|20","left":"var:preset|spacing|20","right":"var:preset|spacing|20"},"margin":{"top":"var:preset|spacing|70","bottom":"var:preset|spacing|70"}},"border":{"radius":{"topLeft":"8px","topRight":"8px","bottomLeft":"8px","bottomRight":"8px"}}},"backgroundColor":"color-primary","textColor":"base","layout":{"type":"constrained"}} -->
+	<div class="wp-block-group alignwide has-base-color has-color-primary-background-color has-text-color has-background has-link-color" style="border-top-left-radius:8px;border-top-right-radius:8px;border-bottom-left-radius:8px;border-bottom-right-radius:8px;margin-top:var(--wp--preset--spacing--70);margin-bottom:var(--wp--preset--spacing--70);padding-top:var(--wp--preset--spacing--20);padding-right:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--20);padding-left:var(--wp--preset--spacing--20)">
+		<!-- wp:columns {"align":"wide"} -->
+		<div class="wp-block-columns alignwide">
 		<!-- wp:column {"verticalAlignment":"center","style":{"spacing":{"blockGap":"var:preset|spacing|20"}}} -->
 		<div class="wp-block-column is-vertically-aligned-center">
 			<!-- wp:heading {"level":3,"style":{"elements":{"link":{"color":{"text":"var:preset|color|base"}}}},"textColor":"base","fontSize":"30"} -->
@@ -109,6 +111,8 @@ return [
 		<!-- /wp:column -->
 	</div>
 	<!-- /wp:columns -->
+	</div>
+	<!-- /wp:group -->
 </div>
 <!-- /wp:group -->',
 ];

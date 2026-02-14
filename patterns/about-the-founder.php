@@ -18,10 +18,10 @@ return [
 		__( 'expert', 'memberlite' ),
 		__( 'people', 'memberlite' ),
 	],
-	'content'     => '<!-- wp:group {"align":"wide","style":{"spacing":{"margin":{"top":"var:preset|spacing|70","bottom":"var:preset|spacing|70"}}},"layout":{"type":"default"}} -->
-<div class="wp-block-group alignwide" style="margin-top:var(--wp--preset--spacing--70);margin-bottom:var(--wp--preset--spacing--70)">
-	<!-- wp:columns {"verticalAlignment":"center"} -->
-	<div class="wp-block-columns are-vertically-aligned-center">
+	'content'     => '<!-- wp:group {"align":"full","style":{"spacing":{"margin":{"top":"var:preset|spacing|70","bottom":"var:preset|spacing|70"}}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group alignfull" style="margin-top:var(--wp--preset--spacing--70);margin-bottom:var(--wp--preset--spacing--70)">
+	<!-- wp:columns {"verticalAlignment":"center","align":"wide"} -->
+	<div class="wp-block-columns alignwide are-vertically-aligned-center">
 		<!-- wp:column {"verticalAlignment":"center","width":"65%"} -->
 		<div class="wp-block-column is-vertically-aligned-center" style="flex-basis:65%">
 			<!-- wp:paragraph {"fontSize":"24"} -->

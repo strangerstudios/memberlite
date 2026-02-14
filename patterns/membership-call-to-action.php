@@ -18,8 +18,8 @@ return [
 		__( 'subscribe', 'memberlite' ),
 		__( 'membership', 'memberlite' ),
 	],
-	'content'     => '<!-- wp:group {"align":"full","className":"is-style-pmpro-card","style":{"spacing":{"padding":{"top":"var:preset|spacing|70","bottom":"var:preset|spacing|70"},"blockGap":"var:preset|spacing|20"}},"layout":{"type":"constrained"}} -->
-<div class="wp-block-group alignfull is-style-pmpro-card" style="padding-top:var(--wp--preset--spacing--70);padding-bottom:var(--wp--preset--spacing--70)">
+	'content'     => '<!-- wp:group {"align":"full","style":{"spacing":{"blockGap":"var:preset|spacing|20","padding":{"top":"var:preset|spacing|70","bottom":"var:preset|spacing|70"}}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group alignfull" style="padding-top:var(--wp--preset--spacing--70);padding-bottom:var(--wp--preset--spacing--70)">
 	<!-- wp:heading {"textAlign":"center","fontSize":"42"} -->
 	<h2 class="wp-block-heading has-text-align-center has-42-font-size">' . __( 'Start Your Membership Today', 'memberlite' ) . '</h2>
 	<!-- /wp:heading -->
