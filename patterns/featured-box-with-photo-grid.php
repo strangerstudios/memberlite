@@ -20,14 +20,14 @@ return [
 	],
 	'content'     => '<!-- wp:group {"align":"full","layout":{"type":"constrained"}} -->
 <div class="wp-block-group alignfull">
-	<!-- wp:group {"metadata":{"categories":["memberlite-about"],"patternName":"memberlite/featured-box-with-photo-grid","name":"Featured Box With Photo Grid"},"align":"wide","style":{"elements":{"link":{"color":{"text":"var:preset|color|base"}}},"spacing":{"padding":{"top":"var:preset|spacing|20","bottom":"var:preset|spacing|20","left":"var:preset|spacing|20","right":"var:preset|spacing|20"},"margin":{"top":"var:preset|spacing|70","bottom":"var:preset|spacing|70"}},"border":{"radius":{"topLeft":"8px","topRight":"8px","bottomLeft":"8px","bottomRight":"8px"}}},"backgroundColor":"color-primary","textColor":"base","layout":{"type":"constrained"}} -->
-	<div class="wp-block-group alignwide has-base-color has-color-primary-background-color has-text-color has-background has-link-color" style="border-top-left-radius:8px;border-top-right-radius:8px;border-bottom-left-radius:8px;border-bottom-right-radius:8px;margin-top:var(--wp--preset--spacing--70);margin-bottom:var(--wp--preset--spacing--70);padding-top:var(--wp--preset--spacing--20);padding-right:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--20);padding-left:var(--wp--preset--spacing--20)">
+	<!-- wp:group {"metadata":{"categories":["memberlite-about"],"patternName":"memberlite/featured-box-with-photo-grid","name":"Featured Box With Photo Grid"},"align":"wide","style":{"spacing":{"padding":{"top":"var:preset|spacing|20","bottom":"var:preset|spacing|20","left":"var:preset|spacing|20","right":"var:preset|spacing|20"},"margin":{"top":"var:preset|spacing|70","bottom":"var:preset|spacing|70"}},"border":{"radius":{"topLeft":"8px","topRight":"8px","bottomLeft":"8px","bottomRight":"8px"}}},"backgroundColor":"color-primary","textColor":"white","layout":{"type":"constrained"}} -->
+	<div class="wp-block-group alignwide has-white-color has-color-primary-background-color has-text-color has-background" style="border-top-left-radius:8px;border-top-right-radius:8px;border-bottom-left-radius:8px;border-bottom-right-radius:8px;margin-top:var(--wp--preset--spacing--70);margin-bottom:var(--wp--preset--spacing--70);padding-top:var(--wp--preset--spacing--20);padding-right:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--20);padding-left:var(--wp--preset--spacing--20)">
 		<!-- wp:columns {"align":"wide"} -->
 		<div class="wp-block-columns alignwide">
 		<!-- wp:column {"verticalAlignment":"center","style":{"spacing":{"blockGap":"var:preset|spacing|20"}}} -->
 		<div class="wp-block-column is-vertically-aligned-center">
-			<!-- wp:heading {"level":3,"style":{"elements":{"link":{"color":{"text":"var:preset|color|base"}}}},"textColor":"base","fontSize":"30"} -->
-			<h3 class="wp-block-heading has-base-color has-text-color has-link-color has-30-font-size">' . __( 'Join Our Member Community', 'memberlite' ) . '</h3>
+			<!-- wp:heading {"level":3,"fontSize":"30"} -->
+			<h3 class="wp-block-heading has-30-font-size">' . __( 'Join Our Member Community', 'memberlite' ) . '</h3>
 			<!-- /wp:heading -->
 			<!-- wp:paragraph -->
 			<p>' . __( 'Connect with members who share your goals. Get support, share wins, and grow together at your own pace.', 'memberlite' ) . '</p>

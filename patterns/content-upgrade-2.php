@@ -17,8 +17,8 @@ return [
 		__( 'promotion', 'memberlite' ),
 		__( 'lead magnet', 'memberlite' ),
 	],
-	'content'     => '<!-- wp:group {"style":{"spacing":{"padding":{"top":"var:preset|spacing|20","right":"var:preset|spacing|20","bottom":"var:preset|spacing|20","left":"var:preset|spacing|20"}},"border":{"width":"1px","radius":"8px"}},"borderColor":"borders","backgroundColor":"white","layout":{"type":"constrained"}} -->
-<div class="wp-block-group has-border-color has-borders-border-color has-white-background-color has-background" style="border-width:1px;border-radius:8px;padding-top:var(--wp--preset--spacing--20);padding-right:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--20);padding-left:var(--wp--preset--spacing--20)">
+	'content'     => '<!-- wp:group {"style":{"spacing":{"padding":{"top":"var:preset|spacing|20","right":"var:preset|spacing|20","bottom":"var:preset|spacing|20","left":"var:preset|spacing|20"}},"border":{"width":"1px","radius":"8px"}},"borderColor":"borders","layout":{"type":"constrained"}} -->
+<div class="wp-block-group has-border-color has-borders-border-color" style="border-width:1px;border-radius:8px;padding-top:var(--wp--preset--spacing--20);padding-right:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--20);padding-left:var(--wp--preset--spacing--20)">
 	<!-- wp:heading {"level":3} -->
 	<h3 class="wp-block-heading">' . __( 'Member Resources', 'memberlite' ) . '</h3>
 	<!-- /wp:heading -->
