@@ -30,7 +30,6 @@ final class Memberlite_Patterns {
 		'meet-the-team-2',
 		'membership-call-to-action',
 		'section-with-image-and-three-features',
-		'social-proof-trusted-by-logos',
 		'testimonials-grid-of-two',
 		'testimonials-grid-of-four',
 	);
@@ -41,13 +40,10 @@ final class Memberlite_Patterns {
 	 * @since TBD
 	 */
 	public static $categories = array(
-		'memberlite-featured'     => 'Memberlite - Featured',
+		'memberlite-about'        => 'Memberlite - About',
 		'memberlite-cta'          => 'Memberlite - Call to Action',
 		'memberlite-team'         => 'Memberlite - Team',
-		'memberlite-about'        => 'Memberlite - About',
-		'memberlite-hero'         => 'Memberlite - Hero',
 		'memberlite-testimonials' => 'Memberlite - Testimonials',
-		'memberlite-services'     => 'Memberlite - Services',
 	);
 
 	/**
