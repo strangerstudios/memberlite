@@ -8,7 +8,7 @@
 return [
 	'title'       => __( 'Features Grid With Icons', 'memberlite' ),
 	'description' => __( 'A four-feature grid with icons and a pair of call-to-action buttons.', 'memberlite' ),
-	'categories'  => [ __( 'memberlite-featured', 'memberlite' ) ],
+	'categories'  => [ __( 'memberlite-about', 'memberlite' ) ],
 	'keywords'    => [
 		__( 'features', 'memberlite' ),
 		__( 'grid', 'memberlite' ),

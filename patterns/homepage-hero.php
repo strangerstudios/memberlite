@@ -8,7 +8,7 @@
 return [
 	'title'       => __( 'Homepage Hero', 'memberlite' ),
 	'description' => __( 'Greet website visitors with a compelling message and primary call to action.', 'memberlite' ),
-	'categories'  => [ __( 'memberlite-hero', 'memberlite' ), __( 'memberlite-featured', 'memberlite' ) ],
+	'categories'  => [ __( 'memberlite-about', 'memberlite' ) ],
 	'keywords'    => [
 		__( 'hero', 'memberlite' ),
 		__( 'call to action', 'memberlite' ),

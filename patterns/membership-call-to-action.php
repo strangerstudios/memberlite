@@ -8,7 +8,7 @@
 return [
 	'title'       => __( 'Membership Call To Action', 'memberlite' ),
 	'description' => __( 'Promote your membership levels to increase signups.', 'memberlite' ),
-	'categories'  => [ __( 'memberlite-cta', 'memberlite' ), __( 'memberlite-featured', 'memberlite' ) ],
+	'categories'  => [ __( 'memberlite-cta', 'memberlite' ) ],
 	'keywords'    => [
 		__( 'marketing', 'memberlite' ),
 		__( 'call to action', 'memberlite' ),

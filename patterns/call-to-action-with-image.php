@@ -8,7 +8,7 @@
 return [
 	'title'       => __( 'Call To Action With Image', 'memberlite' ),
 	'description' => __( 'Encourage a specific call to action', 'memberlite' ),
-	'categories'  => [ __( 'memberlite-cta', 'memberlite' ), __( 'memberlite-featured', 'memberlite' ) ],
+	'categories'  => [ __( 'memberlite-cta', 'memberlite' ) ],
 	'keywords'    => [
 		__( 'marketing', 'memberlite' ),
 		__( 'call to action', 'memberlite' ),

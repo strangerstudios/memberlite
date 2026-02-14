@@ -8,7 +8,7 @@
 return [
 	'title'       => __( 'Meet the Team 1', 'memberlite' ),
 	'description' => __( 'Showcase the team with a compelling message and headshots.', 'memberlite' ),
-	'categories'  => [ __( 'memberlite-featured', 'memberlite' ), __( 'memberlite-team', 'memberlite' ) ],
+	'categories'  => [ __( 'memberlite-team', 'memberlite' ) ],
 	'keywords'    => [
 		__( 'about', 'memberlite' ),
 		__( 'bio', 'memberlite' ),

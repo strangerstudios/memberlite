@@ -8,7 +8,7 @@
 return [
 	'title'       => __( 'Content Upgrade 1', 'memberlite' ),
 	'description' => __( 'Simple text "content upgrade" call to action to build your email list or promote offers.', 'memberlite' ),
-	'categories'  => [ __( 'memberlite-cta', 'memberlite' ), __( 'memberlite-featured', 'memberlite' ) ],
+	'categories'  => [ __( 'memberlite-cta', 'memberlite' ) ],
 	'keywords'    => [
 		__( 'marketing', 'memberlite' ),
 		__( 'call to action', 'memberlite' ),

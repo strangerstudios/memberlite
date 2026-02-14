@@ -8,7 +8,7 @@
 return [
 	'title'       => __( 'Featured Testimonial', 'memberlite' ),
 	'description' => __( 'Highlight what 1 person is saying about your products and services with a beautiful testimonial.', 'memberlite' ),
-	'categories'  => [ __( 'memberlite-featured', 'memberlite' ), __( 'memberlite-testimonials', 'memberlite' ) ],
+	'categories'  => [ __( 'memberlite-testimonials', 'memberlite' ) ],
 	'keywords'    => [
 		__( 'logos', 'memberlite' ),
 		__( 'trusted by', 'memberlite' ),

@@ -8,7 +8,7 @@
 return [
 	'title'       => __( 'Section with Image and 3 Features', 'memberlite' ),
 	'description' => __( 'Highlight the elements of your program.', 'memberlite' ),
-	'categories'  => [ __( 'memberlite-services', 'memberlite' ), __( 'memberlite-about', 'memberlite' ) ],
+	'categories'  => [ __( 'memberlite-about', 'memberlite' ) ],
 	'keywords'    => [
 		__( 'about', 'memberlite' ),
 		__( 'coach', 'memberlite' ),
