@@ -4,7 +4,7 @@
  *
  * @package Memberlite
  */
-define( 'MEMBERLITE_VERSION', '6.1.1' );
+define( 'MEMBERLITE_VERSION', '6.1.1.0.21' );
 define( 'MEMBERLITE_URL', get_template_directory_uri() );
 
 // enqueue additional stylesheets and javascript
@@ -20,12 +20,6 @@ function memberlite_init_styles() {
 	wp_enqueue_style( 'memberlite_print_style', MEMBERLITE_URL . '/css/print.css', array(), MEMBERLITE_VERSION, 'print' );
 	wp_enqueue_script( 'memberlite-script', MEMBERLITE_URL . '/js/memberlite.js', array( 'jquery' ), MEMBERLITE_VERSION, true );
 	wp_enqueue_style( 'font-awesome', MEMBERLITE_URL . '/font-awesome/css/all.min.css', array(), '6.6.0' );
-
-	// load dark.css for dark/inverted backgrounds
-	$memberlite_darkcss = get_theme_mod( 'memberlite_darkcss', $memberlite_defaults['memberlite_darkcss'], false );
-	if ( ! empty( $memberlite_darkcss ) ) {
-		wp_enqueue_style( 'memberlite_darkcss', MEMBERLITE_URL . '/css/dark.css', array(), MEMBERLITE_VERSION );
-	}
 
 	// comments JS on single pages only
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
@@ -754,11 +748,6 @@ if ( function_exists( 'is_buddypress' ) ) {
 /* Integration for LifterLMS. */
 if ( class_exists( 'LifterLMS' ) ) {
 	require_once get_template_directory() . '/inc/integrations/lifterlms.php';
-}
-
-/* Integration for Theme My Login. */
-if ( function_exists( 'theme_my_login' ) ) {
-	require_once get_template_directory() . '/inc/integrations/theme-my-login.php';
 }
 
 /* Integration for WooCommerce. */
