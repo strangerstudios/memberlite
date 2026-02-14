@@ -46,7 +46,6 @@ Memberlite is distributed under the terms of the GNU GPL.
 	10.7 - Footer
 	10.8 - Memberlite Shortcodes
 	10.9 - No Results/404 Not Found
-	10.10 - Block Styles
 11.0 - Third Party Plugin Integrated Styles
 	11.1 - Paid Memberships Pro Integrated Styles
 12.0 - Media
@@ -3012,18 +3011,6 @@ a {
 .search-no-results #secondary .widget_search {
 	display: none;
 }
-
-/*--------------------------------------------------------------
-10.10 Block Styles
---------------------------------------------------------------*/
-.is-style-pmpro-card {
-	background-color: var(--memberlite-color-white);
-	border-style: solid;
-	border-width: 1px;
-	box-shadow: var(--pmpro--box-shadow);
-	padding: 2.9rem;
-}
-
 
 /*--------------------------------------------------------------
 11.0 Third Party Plugin Integrated Styles
