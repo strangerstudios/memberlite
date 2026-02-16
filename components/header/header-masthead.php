@@ -16,7 +16,7 @@ if ( ! empty( $memberlite_banner_show ) ) { ?>
 
 	<?php do_action( 'memberlite_before_masthead_outer' ); ?>
 
-	<header class="masthead">
+	<div class="masthead">
 		<div class="row">
 			<div class="medium-<?php echo esc_attr( memberlite_getColumnsRatio( 'masthead' ) ); ?> columns">
 
@@ -38,7 +38,7 @@ if ( ! empty( $memberlite_banner_show ) ) { ?>
 
 			</div><!--.columns-->
 		</div><!-- .row -->
-	</header><!-- .masthead -->
+	</div><!-- .masthead -->
 
 	<?php do_action( 'memberlite_after_masthead_outer' ); ?>
 

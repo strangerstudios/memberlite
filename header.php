@@ -31,7 +31,7 @@ if ( function_exists( 'wp_body_open' ) ) {
 	<?php if ( ! memberlite_hide_page_header() ) { ?>
 		<?php do_action( 'memberlite_before_site_header' ); ?>
 
-		<header id="masthead" class="site-header" role="banner">
+		<header class="site-header" role="banner">
 			<div class="row">
 				<?php
 				$should_show_header_right = memberlite_should_show_header_right();
@@ -90,8 +90,6 @@ if ( function_exists( 'wp_body_open' ) ) {
 
 	<div id="content" class="site-content">
 
-		<?php get_template_part( 'components/header/header', 'masthead' ); ?>
-
-		<?php if ( ! is_page_template( 'templates/fluid-width.php' ) && ( ! memberlite_hide_page_header() && ! memberlite_hide_page_footer() ) && ! is_404() ) { ?>
-		<div class="row">
-			<?php } ?>
+		<?php if ( ! is_single() ) {
+			get_template_part( 'components/header/header', 'masthead' );
+		} ?>

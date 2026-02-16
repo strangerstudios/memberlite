@@ -8,10 +8,6 @@
  */
 ?>
 
-		<?php if ( ! is_page_template( 'templates/fluid-width.php' )  && ! memberlite_hide_page_footer() && ! is_404() ) { ?>
-			</div><!-- .row -->
-		<?php } ?>
-
 <?php do_action( 'memberlite_after_content' ); ?>
 
 </div><!-- #content -->

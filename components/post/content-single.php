@@ -24,7 +24,7 @@
 			);
 		}
 		?>
-
+		<?php the_title( '<h2 class="entry-title">', '</h2>' ); ?>
 		<?php the_content(); ?>
 		<?php
 			wp_link_pages(

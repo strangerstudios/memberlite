@@ -6,7 +6,7 @@
  */
 
 get_header(); ?>
-
+<div class="row">
 	<section id="primary" class="medium-<?php echo esc_attr( memberlite_getColumnsRatio() ); ?> columns content-area">
 		<?php do_action( 'memberlite_before_main' ); ?>
 		<main id="main" class="site-main" role="main">
@@ -47,6 +47,7 @@ get_header(); ?>
 		<?php do_action( 'memberlite_after_main' ); ?>
 	</section><!-- #primary -->
 
-<?php memberlite_get_sidebar(); ?>
+	<?php memberlite_get_sidebar(); ?>
 
+</div>
 <?php get_footer(); ?>
