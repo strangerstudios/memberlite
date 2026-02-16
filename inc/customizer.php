@@ -318,6 +318,17 @@ class Memberlite_Customize {
 	 * @return void
 	 */
 	public static function set_customizer_header_settings( WP_Customize_Manager $wp_customize ) {
+		// HEADER: HEADER VARIATION STYLE
+		self::add_memberlite_setting_control( $wp_customize, 'memberlite_header_variation', __( 'Header Variation', 'memberlite' ), 'memberlite_header_options', array(
+			'type'              => 'select',
+			'default'           => 'default',
+			'description'       => __( 'This determines your header\'s layout and style.', 'memberlite' ),
+			'choices'           => array(
+				'default' => __( 'Default', 'memberlite' ),
+				'stacked' => __( 'Stacked', 'memberlite' ),
+			),
+		) );
+
 		// HEADER: Columns Ratio ================
 		self::add_memberlite_setting_control( $wp_customize, 'columns_ratio_header', __( 'Columns Ratio', 'memberlite' ), 'memberlite_header_options', array(
 			'type'        => 'select',
