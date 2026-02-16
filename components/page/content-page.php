@@ -20,10 +20,15 @@
 		?>
 
 		<?php
-			$memberlite_show_page_nav_global   = get_theme_mod( 'memberlite_page_nav', 1 );
-			$memberlite_hide_page_nav_override = get_post_meta( $post->ID, '_memberlite_hide_page_nav', true );
-			// If theme mod is set to show nav globally and if the individual setting (post meta) is not "true," which would override and hide the nav.
-			if ( ! empty( $memberlite_show_page_nav_global ) && ! is_page_template( 'templates/fluid-width.php' && ! empty( $memberlite_hide_page_nav_override ) ) ) {
+			// Start with global theme setting.
+			$show_page_nav = (bool) get_theme_mod( 'memberlite_page_nav', 1 );
+
+			// Check per-page override.
+			if ( (bool) get_post_meta( get_the_ID(), '_memberlite_hide_page_nav', true ) ) {
+				$show_page_nav = false;
+			}
+
+			if ( $show_page_nav ) {
 				memberlite_page_nav();
 			}
 		?>

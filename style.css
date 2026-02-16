@@ -39,13 +39,12 @@ Memberlite is distributed under the terms of the GNU GPL.
 10.0 - Content
 	10.1 - Header and Member Meta
 	10.2 - Front Page
-	10.3 - Interstitial Page (Deprecated as of 7.0)
-	10.4 - Posts and pages
-	10.5 - Asides
-	10.6 - Comments
-	10.7 - Footer
-	10.8 - Memberlite Shortcodes
-	10.9 - No Results/404 Not Found
+	10.3 - Posts and pages
+	10.4 - Asides
+	10.5 - Comments
+	10.6 - Footer
+	10.7 - Memberlite Shortcodes
+	10.8 - No Results/404 Not Found
 11.0 - Third Party Plugin Integrated Styles
 	11.1 - Paid Memberships Pro Integrated Styles
 12.0 - Media
@@ -2211,21 +2210,7 @@ a {
 }
 
 /*--------------------------------------------------------------
-10.3 Interstitial Page (Deprecated since 7.0)
---------------------------------------------------------------*/
-.interstitial .site-branding,
-.interstitial .masthead {
-	text-align: center;
-}
-
-.interstitial .masthead .btn {
-	position: absolute;
-	top: 0;
-	right: 0;
-}
-
-/*--------------------------------------------------------------
-10.4 Posts and Pages
+10.3 Posts and Pages
 --------------------------------------------------------------*/
 .hentry {
 	margin: 0 0 var(--wp--preset--spacing--80);
@@ -2573,7 +2558,7 @@ a {
 }
 
 /*--------------------------------------------------------------
-10.5 Asides
+10.4 Asides
 --------------------------------------------------------------*/
 .blog .format-aside .entry-title,
 .archive .format-aside .entry-title {
@@ -2581,7 +2566,7 @@ a {
 }
 
 /*--------------------------------------------------------------
-10.6 Comments
+10.5 Comments
 --------------------------------------------------------------*/
 #comments {
 	margin-bottom: var(--wp--preset--spacing--20);
@@ -2762,7 +2747,7 @@ a {
 }
 
 /*--------------------------------------------------------------
-10.7 Footer
+10.6 Footer
 --------------------------------------------------------------*/
 .footer-widgets {
 	background-color: var(--memberlite-color-footer-widgets-background);
@@ -2883,7 +2868,7 @@ a {
 }
 
 /*--------------------------------------------------------------
-10.8 Memberlite Shortcodes
+10.7 Memberlite Shortcodes
 --------------------------------------------------------------*/
 .banner_primary {
 	background-color: var(--memberlite-color-primary);
@@ -2985,7 +2970,7 @@ a {
 }
 
 /*--------------------------------------------------------------
-10.9 No Results/404 Not Found
+10.8 No Results/404 Not Found
 --------------------------------------------------------------*/
 .search-no-results .content-area .search-form {
 	margin-bottom: 8.7rem;
