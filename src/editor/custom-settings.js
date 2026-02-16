@@ -48,7 +48,7 @@ const MemberliteCustomSettings = () => {
 			/>
 			{ showPrevNextGlobally && (
 				<ToggleControl
-					label={__('Hide Prev/Next Navigation', textDomain)}
+					label={__('Hide Prev/Next Page Navigation', textDomain)}
 					checked={ hidePageNavValue }
 					onChange={ ( value ) => {
 						setMeta( { ...meta, _memberlite_hide_page_nav: value } );
