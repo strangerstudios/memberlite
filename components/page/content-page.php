@@ -19,12 +19,7 @@
 			);
 		?>
 
-		<?php
-			$memberlite_page_nav = get_theme_mod( 'memberlite_page_nav', 1 );
-		if ( ! empty( $memberlite_page_nav ) && ! is_page_template( 'templates/fluid-width.php' ) && ! is_page_template( 'templates/blank.php' ) ) {
-			memberlite_page_nav();
-		}
-		?>
+		<?php memberlite_page_nav(); ?>
 
 		<?php do_action( 'memberlite_after_content_page' ); ?>
 	</div><!-- .entry-content -->

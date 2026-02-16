@@ -115,18 +115,6 @@ function memberlite_settings_meta_box_callback( $post ) {
 	<input type="hidden" name="memberlite_banner_icon_present" value="1" />
 	<p style="margin: 1rem 0 0 0;"><label for="memberlite_banner_icon" class="selectit"><input name="memberlite_banner_icon" type="checkbox" id="memberlite_banner_icon" value="1" <?php checked( $memberlite_banner_icon, 1 ); ?>> <?php esc_html_e( 'Show Icon in Banner Title', 'memberlite' ); ?></label></p>
 
-	<?php
-		// Allow hiding the prev/next page navigation on this page if it is a child page.
-		$memberlite_page_nav = get_theme_mod( 'memberlite_page_nav', 1 );
-		if ( ! empty( $memberlite_page_nav ) ) {
-			?>
-			<input type="hidden" name="memberlite_hide_page_nav_present" value="1" />
-			<p style="margin: 1rem 0 0 0;"><strong><?php esc_html_e( 'Page Navigation', 'memberlite' ); ?></strong></p>
-			<p style="margin: 1rem 0 0 0;"><label for="memberlite_hide_page_nav" class="selectit"><input name="memberlite_hide_page_nav" type="checkbox" id="memberlite_hide_page_nav" value="1" <?php checked( $memberlite_hide_page_nav, 1 ); ?>> <?php esc_html_e( 'Hide the Prev/Next Navigation on this Page', 'memberlite' ); ?></label></p>
-			<?php
-		}
-	?>
-
 	<?php if ( ( $memberlite_page_template == 'templates/landing.php' ) && function_exists( 'pmpro_getAllLevels' ) ) { ?>
 		<hr />
 		<h2><?php esc_html_e( 'Landing Page Settings', 'memberlite' ); ?></h2>
@@ -300,16 +288,6 @@ function memberlite_settings_save_meta_box_data( $post_id ) {
 		update_post_meta($post_id, '_memberlite_banner_icon', $memberlite_banner_icon);
 	}
 
-	// Hide page navigation checkbox.
-	if(isset($_POST['memberlite_hide_page_nav_present'])) {
-		if(!empty($_POST['memberlite_hide_page_nav']))
-			$memberlite_hide_page_nav = 1;
-		else
-			$memberlite_hide_page_nav = 0;
-
-		update_post_meta($post_id, '_memberlite_hide_page_nav', $memberlite_hide_page_nav);
-	}
-
 	//landing page level
 	if(isset($_POST['pmproal_landing_page_level'])) {
 		$pmproal_landing_page_level = intval($_POST['pmproal_landing_page_level']);
@@ -398,7 +376,7 @@ function memberlite_maybe_show_page_banner( ) {
 	if ( ! empty( $queried_object->ID ) ) {
 		$post_id = $queried_object->ID;
 	}
-	
+
 	// If we don't have a post_id and we're on the "blog", set post_id to the page_for_posts.
 	if ( empty( $post_id ) && ( is_home() || is_post_type_archive( 'post' ) ) ) {
 		$post_id = get_option('page_for_posts');
@@ -426,12 +404,12 @@ function memberlite_maybe_show_breadcrumbs( ) {
 	if ( ! empty( $queried_object->ID ) ) {
 		$post_id = $queried_object->ID;
 	}
-	
+
 	// If we don't have a post_id and we're on the "blog", set post_id to the page_for_posts.
 	if ( empty( $post_id ) && ( is_home() || is_post_type_archive( 'post' ) ) ) {
 		$post_id = get_option('page_for_posts');
 	}
-	
+
 	if ( ! empty( $post_id ) ) {
 		$memberlite_banner_hide_breadcrumbs = get_post_meta( $post_id, '_memberlite_banner_hide_breadcrumbs', true );
 		if ( $memberlite_banner_hide_breadcrumbs === '1' ) {

@@ -18,13 +18,11 @@
 				)
 			);
 		?>
-		<?php
-			$memberlite_page_nav = get_theme_mod( 'memberlite_page_nav', 1 );
-		if ( ! empty( $memberlite_page_nav ) ) {
-			memberlite_page_nav();
-		}
-		?>
+
+		<?php memberlite_page_nav(); ?>
+
 		<?php do_action( 'memberlite_after_content_page' ); ?>
+
 	</div><!-- .entry-content -->
 	<?php if ( current_user_can( 'edit_post', $post->ID ) ) { ?>
 		<footer class="entry-footer">
