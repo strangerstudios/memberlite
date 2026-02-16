@@ -18,6 +18,34 @@ if ( ! function_exists( 'memberlite_the_custom_logo' ) ) :
 	}
 endif;
 
+if ( ! function_exists( 'memberlite_output_site_title' ) ) {
+	function memberlite_output_site_title() {
+		$site_url = esc_url( home_url( '/' ) );
+		$site_name = esc_html( get_bloginfo( 'name' ) );
+
+		if ( is_front_page() ) {
+			return '<h1 class="site-title">' . $site_name . '</h1>';
+		}
+
+		return '<h1 class="site-title"><a href="' . $site_url . '">' . $site_name . '</a></h1>';
+	}
+}
+
+if ( ! function_exists( 'memberlite_should_show_header_right' ) ) {
+	function memberlite_should_show_header_right() {
+		$meta_login  = get_theme_mod( 'meta_login', false );
+		$has_content = has_action( 'memberlite_after_member_info' ) || ! empty( $meta_login );
+
+		return apply_filters( 'memberlite_show_header_right', $has_content );
+	}
+}
+
+if ( ! function_exists( 'memberlite_is_meta_login_active' ) ) {
+	function memberlite_is_meta_login_active() {
+		return get_theme_mod( 'meta_login', false );
+	}
+}
+
 if ( ! function_exists( 'memberlite_paging_nav' ) ) :
 	/**
 	 * Display navigation to next/previous set of posts when applicable.
@@ -214,6 +242,7 @@ function memberlite_get_author_avatar( $author_id ) {
 /**
  * Returns true if a blog has more than 1 category.
  *
+ * @todo: Potentially remove
  * @return bool
  */
 function memberlite_categorized_blog() {
@@ -246,6 +275,7 @@ function memberlite_categorized_blog() {
 
 /**
  * Flush out the transients used in memberlite_categorized_blog.
+ * @todo: Potentially remove
  */
 function memberlite_category_transient_flusher() {
 	// Like, beat it. Dig?
