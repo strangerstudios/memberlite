@@ -24,6 +24,9 @@ vendor
 composer.js
 composer.lock
 
+# compiled
+build
+
 # Temporary files
 *~
 
