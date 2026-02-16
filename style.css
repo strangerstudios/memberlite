@@ -1284,25 +1284,30 @@ a {
 	text-indent: -9999em;
 }
 
+body.mobile-nav-open {
+	overflow: hidden;
+}
+
+.admin-bar #mobile-navigation{
+	padding-top: 46px;
+}
+
 #mobile-navigation {
-	position: absolute;
+	position: fixed;
+	top: 0;
 	left: -100%;
-	width: 75%;
+	width: 85vw;
+	height: 100vh;
 	background-color: var(--memberlite-color-primary);
 	z-index: 100;
 	color: var(--memberlite-color-white);
 	overflow: auto;
+	text-align: center;
+	transition: left .5s;
 }
 
-#mobile-navigation-height-col {
-	background-color: var(--memberlite-color-primary);
-	bottom: 0;
-	height: 100%;
-	left: -100%;
-	position: fixed;
-	top: 0;
-	width: 75%;
-	z-index: 99;
+#mobile-navigation.toggled {
+	left: 0;
 }
 
 #mobile-navigation a {

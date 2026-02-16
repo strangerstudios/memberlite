@@ -71,35 +71,10 @@ jQuery( document ).ready(
 
 		// mobile navigation
 		var mobilenav_trigger = jQuery( 'button.menu-toggle' );
-		jQuery( '#mobile-navigation' ).after( jQuery( '<div id="mobile-navigation-height-col"></div>' ) );
 		mobilenav_trigger.click(
 			function() {
-
+				jQuery( 'body' ).toggleClass( 'mobile-nav-open' );
 				jQuery( '#mobile-navigation' ).toggleClass( 'toggled' );
-
-				if (jQuery( '#mobile-navigation' ).hasClass( 'toggled' )) {
-					jQuery( '#mobile-navigation' ).animate(
-						{
-							left: '0px'
-						}
-					);
-					jQuery( '#mobile-navigation-height-col' ).animate(
-						{
-							left: '0px'
-						}
-					);
-				} else {
-					jQuery( '#mobile-navigation' ).animate(
-						{
-							left: '-100%'
-						}
-					);
-					jQuery( '#mobile-navigation-height-col' ).animate(
-						{
-							left: '-100%'
-						}
-					);
-				}
 			}
 		);
 

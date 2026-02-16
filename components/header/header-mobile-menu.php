@@ -15,9 +15,8 @@
 			if ( is_active_sidebar( 'sidebar-5' ) ) {
 				dynamic_sidebar( 'sidebar-5' );
 			} elseif ( has_nav_menu( 'primary' ) ) {
-				$meta_login = get_theme_mod( 'meta_login', false );
-				if ( ! empty( $meta_login ) ) {
-					get_template_part( 'components/header/meta', 'member' );
+				if ( ! empty( memberlite_is_meta_login_active() ) ) {
+					get_template_part( 'components/header/header', 'member-info' );
 				}
 				wp_nav_menu(
 					array(
