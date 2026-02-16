@@ -9,21 +9,19 @@ get_header(); ?>
 	<div id="primary" class="medium-<?php echo esc_attr( memberlite_getColumnsRatio() ); ?> columns content-area">
 		<?php do_action( 'memberlite_before_main' ); ?>
 		<main id="main" class="site-main" role="main">
-			<?php do_action( 'memberlite_before_loop' ); ?>
-			<?php while ( have_posts() ) : the_post();
-					get_template_part( 'components/post/content', 'single' );
+			<?php do_action( 'memberlite_before_loop' );
 
-					$theme_mod = get_theme_mod( 'memberlite_post_nav', 1 );
-					if ( ! empty( $theme_mod ) ) {
-						memberlite_post_nav();
-					}
+			while ( have_posts() ) : the_post();
+				get_template_part( 'components/post/content', 'single' );
 
-					// If comments are open or we have at least one comment, load up the comment template
-					if ( comments_open() || '0' != get_comments_number() ) :
-						comments_template();
-					endif;
-			endwhile; // end of the loop. ?>
-			<?php do_action( 'memberlite_after_loop' ); ?>
+				// Gets memberlite_post_nav
+				get_template_part( 'components/post/post', 'nav' );
+
+				// If comments are open or we have at least one comment, load up the comment template
+				get_template_part( 'components/post/post', 'comments' );
+			endwhile; // end of the loop.
+
+			do_action( 'memberlite_after_loop' ); ?>
 		</main><!-- #main -->
 		<?php do_action( 'memberlite_after_main' ); ?>
 	</div><!-- #primary -->

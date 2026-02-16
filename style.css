@@ -2411,10 +2411,6 @@ body.mobile-nav-open {
 	margin: 0;
 }
 
-.entry-content > :first-child {
-	margin-top: 0;
-}
-
 .entry-content .wp-audio-shortcode {
 	margin-bottom: var(--wp--preset--spacing--10);
 }
