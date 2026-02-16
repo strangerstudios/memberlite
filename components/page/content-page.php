@@ -19,19 +19,7 @@
 			);
 		?>
 
-		<?php
-			// Start with global theme setting.
-			$show_page_nav = (bool) get_theme_mod( 'memberlite_page_nav', 1 );
-
-			// Check per-page override.
-			if ( (bool) get_post_meta( get_the_ID(), '_memberlite_hide_page_nav', true ) ) {
-				$show_page_nav = false;
-			}
-
-			if ( $show_page_nav ) {
-				memberlite_page_nav();
-			}
-		?>
+		<?php memberlite_page_nav(); ?>
 
 		<?php do_action( 'memberlite_after_content_page' ); ?>
 	</div><!-- .entry-content -->

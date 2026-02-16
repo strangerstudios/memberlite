@@ -79,6 +79,11 @@ if ( ! function_exists( 'memberlite_page_nav' ) ) :
 	function memberlite_page_nav() {
 		global $post;
 
+		// Return early if the global theme setting is disabled.
+		if ( ! (bool) get_theme_mod( 'memberlite_page_nav', 1 ) ) {
+			return;
+		}
+
 		$post_type_object = get_post_type_object( get_post_type( $post ) );
 		if ( empty( $post_type_object ) ) {
 			return;
