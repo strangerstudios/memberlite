@@ -326,7 +326,7 @@ address {
 }
 
 pre {
-	background-color: color-mix(in srgb, var(--memberlite-color-text) 7%, transparent);
+	background-color: light-dark( color-mix(in srgb, var(--memberlite-color-text) 7%, transparent), color-mix(in srgb, var(--memberlite-color-text) 20%, transparent) );
 	font-family: "Courier 10 Pitch", Courier, monospace;
 	margin: var(--wp--preset--spacing--20) 0;
 	max-width: 100%;
@@ -342,8 +342,8 @@ code,
 kbd,
 tt,
 var {
-	background-color: color-mix(in srgb, var(--memberlite-color-text) 7%, transparent);
-	color: var(--memberlite-color--error-text);
+	background-color: light-dark( color-mix(in srgb, var(--memberlite-color-text) 7%, transparent), color-mix(in srgb, var(--memberlite-color-text) 20%, transparent) );
+	color: light-dark( var(--memberlite-color--error-text), var(--memberlite-color--error-background) );
 	font-family: "Courier 10 Pitch", Courier, monospace;
 	padding: 2px 4px;
 }

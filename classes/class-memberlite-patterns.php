@@ -18,20 +18,35 @@ final class Memberlite_Patterns {
 	 */
 	public static $patterns = array(
 		'about-the-founder',
+		'board-of-directors',
 		'call-to-action-with-image',
+		'category-feature-boxes',
+		'community-stats-banner',
+		'community-welcome',
 		'content-upgrade-1',
 		'content-upgrade-2',
 		'content-upgrade-3',
+		'course-curriculum',
+		'directory-browse-hero',
 		'featured-box-with-photo-grid',
 		'featured-testimonial',
 		'features-grid-with-icons',
 		'homepage-hero',
+		'instructor-profile',
+		'latest-posts-grid',
 		'meet-the-team-1',
 		'meet-the-team-2',
+		'member-spotlight',
 		'membership-call-to-action',
+		'newsletter-archive-preview',
+		'newsletter-subscribe',
+		'organization-stats',
+		'podcast-episode-feature',
+		'podcast-subscribe-banner',
 		'section-with-image-and-three-features',
 		'testimonials-grid-of-two',
 		'testimonials-grid-of-four',
+		'video-feature-section',
 	);
 
 	/**
@@ -41,7 +56,11 @@ final class Memberlite_Patterns {
 	 */
 	public static $categories = array(
 		'memberlite-about'        => 'Memberlite - About',
+		'memberlite-community'    => 'Memberlite - Community',
+		'memberlite-content'      => 'Memberlite - Content',
+		'memberlite-courses'      => 'Memberlite - Courses',
 		'memberlite-cta'          => 'Memberlite - Call to Action',
+		'memberlite-media'        => 'Memberlite - Media',
 		'memberlite-team'         => 'Memberlite - Team',
 		'memberlite-testimonials' => 'Memberlite - Testimonials',
 	);
@@ -115,7 +134,7 @@ final class Memberlite_Patterns {
 	 * @since TBD
 	 */
 	public static function get_pattern_data( $pattern ) {
-		return include_once get_template_directory() . '/patterns/' . $pattern . '.php';
+		return include_once get_template_directory() . '/components/patterns/' . $pattern . '.php';
 	}
 }
 
