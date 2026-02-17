@@ -146,4 +146,4 @@ In `inc/customizer.php`, use one of these helpers:
 
 - `add_memberlite_setting_control()`: Use for standard settings
 
-- `add_memberlite_color_setting_control()`: Use for color picker settings
+- `add_memberlite_color_control()`: Use for color picker settings
