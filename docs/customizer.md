@@ -73,7 +73,7 @@ We added:
 - New schemes in `inc/colors.php`
 - Legacy schemes in `inc/deprecated.php`
 
-We added migration logic in: `inc/upgrade.php`
+We added migration logic in: `inc/updates/update_7_0.php`
 
 We also updated the Import Theme Settings tool to convert legacy schemes.
 
