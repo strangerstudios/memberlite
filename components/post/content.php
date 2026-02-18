@@ -19,12 +19,16 @@ $post_class = get_post_type() === 'post' ? 'entry-header-grid' : '';
 		<?php do_action( 'memberlite_before_content_post' );
 		get_template_part( 'components/post/post', 'featured-image' );
 
-		$content_archives = get_theme_mod( 'content_archives', $memberlite_defaults[ 'content_archives' ] );
-		if ( $content_archives === 'excerpt' ) {
-			memberlite_the_excerpt();
+		if ( is_archive() ) {
+			$content_archives = get_theme_mod( 'content_archives', $memberlite_defaults[ 'content_archives' ] );
+			if ( $content_archives === 'excerpt' ) {
+				memberlite_the_excerpt();
+			} else {
+				memberlite_more_content();
+				get_template_part( 'components/post/post', 'author-block' );
+			}
 		} else {
-			memberlite_more_content();
-			get_template_part( 'components/post/post', 'author-block' );
+			the_content();
 		}
 
 		wp_link_pages(

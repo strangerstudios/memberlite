@@ -1891,6 +1891,10 @@ body.mobile-nav-open {
 	margin-top: var(--wp--preset--spacing--40);
 }
 
+.site-content > .row {
+	padding-top: var(--wp--preset--spacing--50);
+}
+
 /*--------------------------------------------------------------
 10.1 Header and Member Meta
 --------------------------------------------------------------*/
@@ -2101,7 +2105,6 @@ body.mobile-nav-open {
 	background-color: var(--memberlite-color-page-masthead-background);
 	color: var(--memberlite-color-page-masthead);
 	padding: var(--wp--preset--spacing--20) 0 var(--wp--preset--spacing--50) 0;
-	margin-bottom: var(--wp--preset--spacing--50);
 }
 
 .masthead p a:not(.btn) {

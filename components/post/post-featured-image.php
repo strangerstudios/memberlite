@@ -1,6 +1,6 @@
 <?php
 /**
- * Featured image for posts, for use within the loop
+ * Featured image for archives and single posts, for use within the loop
  */
 
 $args = get_post_format() === 'image' ? array(
