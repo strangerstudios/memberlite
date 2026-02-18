@@ -34,7 +34,7 @@ if ( ! function_exists( 'memberlite_output_site_title' ) ) {
 if ( ! function_exists( 'memberlite_should_show_header_right' ) ) {
 	function memberlite_should_show_header_right() {
 		$meta_login  = get_theme_mod( 'meta_login', false );
-		$has_content = has_action( 'memberlite_after_member_info' ) || ! empty( $meta_login );
+		$has_content = has_action( 'memberlite_after_member_info' ) || ! empty( $meta_login ) || is_active_sidebar( 'sidebar-3' );
 
 		return apply_filters( 'memberlite_show_header_right', $has_content );
 	}

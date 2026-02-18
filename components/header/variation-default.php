@@ -21,7 +21,7 @@
 	</div><!-- .site-branding -->
 
 	<?php if ( ! empty( $should_show_header_right ) ) {
-		$header_meta_menu_class = ! memberlite_is_meta_login_active() ? 'no-meta-menu' : '';
+		$header_meta_menu_class = ! memberlite_is_meta_login_active() ? ' no-meta-menu' : '';
 		?>
 		<div
 			class="columns header-right medium-<?php echo esc_attr( memberlite_getColumnsRatio( 'header-right' ) );
@@ -31,7 +31,22 @@
 			// Get Login Form/Member Profile Info
 			get_template_part( 'components/header/header', 'member-info' );
 
-			// Replaces where we were previously using the "meta" menu and sidebar-3
+			add_action( 'memberlite_meta_navigation', function() {
+				// If a menu was assigned to the deprecated 'meta' location, show it
+				if ( has_nav_menu( 'meta' ) ) {
+					wp_nav_menu( array(
+						'theme_location' => 'meta',
+						'container'      => 'nav',
+						'container_id'   => 'meta-navigation',
+						'fallback_cb'    => false,
+					) );
+				}
+			} );
+
+			// Get sidebar-3 for widget area in header right
+			get_template_part( 'components/header/header', 'widget-area' );
+
+			// Replaces where we were previously using the "meta" menu
 			do_action( 'memberlite_after_member_info' );
 			?>
 		</div><!-- .columns -->

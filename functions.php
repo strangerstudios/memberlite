@@ -391,6 +391,7 @@ function memberlite_widgets_init() {
 			'after_title'   => '</h3>',
 		)
 	);
+
 	register_sidebar(
 		array(
 			'name'          => __( 'Pages', 'memberlite' ),
@@ -403,9 +404,23 @@ function memberlite_widgets_init() {
 		)
 	);
 
+	register_sidebar(
+		array(
+			'name'          => __( 'Header Right', 'memberlite' ),
+			'id'            => 'sidebar-3',
+			'description'   => '',
+			'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+			'after_widget'  => '</aside>',
+			'before_title'  => '<h1 class="widget-title">',
+			'after_title'   => '</h1>',
+		)
+	);
+
 	$footer_widgets_count = get_theme_mod( 'memberlite_footerwidgets', $memberlite_defaults['memberlite_footerwidgets'] );
 	if ( $footer_widgets_count == '2' ) {
 		$footer_widgets_col_class = 'medium-6';
+	} elseif ( $footer_widgets_count == '3' ) {
+		$footer_widgets_col_class = 'medium-4';
 	} elseif ( $footer_widgets_count == '6' ) {
 		$footer_widgets_col_class = 'large-3';
 	} else {
