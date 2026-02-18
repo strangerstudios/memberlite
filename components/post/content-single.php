@@ -9,26 +9,11 @@
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-	<header>
-		<div class="entry-meta">
-			<?php
-			the_title( sprintf( '<h1 class="entry-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h1>' );
-
-			echo Memberlite_Customize::sanitize_text_with_links( memberlite_get_entry_meta( $post, 'before' ) );  // WPCS: xss ok.
-			?>
-		</div><!-- .entry-meta -->
-	</header>
+	<?php get_template_part( 'components/post/entry', 'header' ); ?>
 	<div class="entry-content">
-		<?php do_action( 'memberlite_before_content_single' );
+		<?php do_action( 'memberlite_before_content_single' ); ?>
 
-		if ( get_post_format() == 'image' ) {
-			the_post_thumbnail(
-				'memberlite-fullwidth',
-				array(
-					'class' => 'aligncenter',
-				)
-			);
-		}
+		<?php get_template_part( 'components/post/post', 'featured-image' );
 
 		the_content();
 		wp_link_pages(
@@ -38,7 +23,7 @@
 			)
 		);
 
-		get_template_part( 'components/post/entry', 'author-block' );
+		get_template_part( 'components/post/post', 'author-block' );
 
 		do_action( 'memberlite_after_content_single' ); ?>
 	</div><!-- .entry-content -->

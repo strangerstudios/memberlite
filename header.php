@@ -38,9 +38,9 @@ if ( function_exists( 'wp_body_open' ) ) {
 		?>
 		<header class="site-header <?php echo esc_attr( $header_class ); ?>" role="banner">
 			<?php if ( $is_default ) {
-				get_template_part( 'components/header/header', 'default' );
+				get_template_part( 'components/header/variation', 'default' );
 			} else {
-				get_template_part( 'components/header/header', $header_variation );
+				get_template_part( 'components/header/variation', $header_variation );
 			} ?>
 		</header><!-- #masthead -->
 	<?php } // End if memberlite_hide_page_header is false ?>

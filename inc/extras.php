@@ -628,7 +628,7 @@ add_filter( 'bbp_before_get_breadcrumb_parse_args', 'memberlite_bbp_breadcrumb' 
 /* Removes bbp_breadcrumb from bbpress templates */
 add_filter( 'bbp_no_breadcrumb', '__return_true' );
 
-function memberlite_getBreadcrumbs() {
+function memberlite_get_breadcrumbs() {
 	global $posts, $post, $memberlite_defaults;
 	$page_breadcrumbs       = get_theme_mod( 'page_breadcrumbs', false );
 	$post_breadcrumbs       = get_theme_mod( 'post_breadcrumbs', false );

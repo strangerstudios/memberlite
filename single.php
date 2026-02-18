@@ -12,7 +12,7 @@ get_header(); ?>
 			<?php do_action( 'memberlite_before_loop' );
 
 			while ( have_posts() ) : the_post();
-				get_template_part( 'components/post/content', 'single' );
+				get_template_part( 'components/post/content', 'content' );
 
 				// Gets memberlite_post_nav
 				get_template_part( 'components/post/post', 'nav' );

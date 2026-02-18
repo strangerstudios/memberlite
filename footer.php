@@ -21,9 +21,9 @@
 	?>
 	<footer id="colophon" class="site-footer <?php echo esc_attr( $footer_class ); ?>" role="contentinfo">
 		<?php if ( $is_default ) {
-			get_template_part( 'components/footer/footer', 'default' );
+			get_template_part( 'components/footer/variation', 'default' );
 		} else {
-			get_template_part( 'components/footer/footer', $footer_variation );
+			get_template_part( 'components/footer/variation', $footer_variation );
 		} ?>
 	</footer><!-- #colophon -->
 <?php } // End if(). ?>
