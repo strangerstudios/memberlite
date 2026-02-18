@@ -70,13 +70,20 @@ jQuery( document ).ready(
 		jQuery( 'a[data-toggle="tab"][href="' + window.location.hash + '"]' ).click();
 
 		// mobile navigation
-		var mobilenav_trigger = jQuery( 'button.menu-toggle' );
-		mobilenav_trigger.click(
+		let mobilenavTrigger = jQuery( '#expand-mobile-nav' ),
+			mobileNavClose = jQuery( '#close-mobile-nav' );
+
+		mobilenavTrigger.click(
 			function() {
-				jQuery( 'body' ).toggleClass( 'mobile-nav-open' );
-				jQuery( '#mobile-navigation' ).toggleClass( 'toggled' );
+				jQuery( 'body' ).addClass( 'mobile-nav-open' );
+				jQuery( '#mobile-navigation' ).addClass( 'open' );
 			}
 		);
+
+		mobileNavClose.click( function() {
+			jQuery( 'body' ).removeClass( 'mobile-nav-open' );
+			jQuery( '#mobile-navigation' ).removeClass( 'open' );
+		});
 
 		// skip link focus fix
 		// borrowed from _s theme: https://git.io/vWdr2

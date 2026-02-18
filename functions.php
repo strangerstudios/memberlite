@@ -406,13 +406,11 @@ function memberlite_widgets_init() {
 
 	register_sidebar(
 		array(
-			'name'          => __( 'Header Right', 'memberlite' ),
+			'name'          => __( 'Header', 'memberlite' ),
 			'id'            => 'sidebar-3',
-			'description'   => '',
+			'description'   => 'Depending on your header variation, this is a spot you can put extra things.',
 			'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 			'after_widget'  => '</aside>',
-			'before_title'  => '<h1 class="widget-title">',
-			'after_title'   => '</h1>',
 		)
 	);
 

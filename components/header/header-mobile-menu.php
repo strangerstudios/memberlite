@@ -11,6 +11,12 @@
 	// show the mobile menu widget area
 	if ( is_active_sidebar( 'sidebar-5' ) || has_nav_menu( 'primary' ) ) { ?>
 		<nav id="mobile-navigation" role="navigation">
+			<button id="close-mobile-nav" class="menu-toggle" aria-controls="mobile-navigation" aria-expanded="true">
+				<i class="fa fa-times" aria-hidden="true"></i>
+				<span class="screen-reader-text">
+					<?php _e( 'Close mobile menu', 'memberlite' ); ?>
+				</span>
+			</button>
 		<?php
 			if ( is_active_sidebar( 'sidebar-5' ) ) {
 				dynamic_sidebar( 'sidebar-5' );

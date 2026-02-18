@@ -31,18 +31,6 @@
 			// Get Login Form/Member Profile Info
 			get_template_part( 'components/header/header', 'member-info' );
 
-			add_action( 'memberlite_meta_navigation', function() {
-				// If a menu was assigned to the deprecated 'meta' location, show it
-				if ( has_nav_menu( 'meta' ) ) {
-					wp_nav_menu( array(
-						'theme_location' => 'meta',
-						'container'      => 'nav',
-						'container_id'   => 'meta-navigation',
-						'fallback_cb'    => false,
-					) );
-				}
-			} );
-
 			// Get sidebar-3 for widget area in header right
 			get_template_part( 'components/header/header', 'widget-area' );
 
@@ -56,11 +44,11 @@
 	// show the mobile menu toggle button
 	if ( is_active_sidebar( 'sidebar-5' ) || has_nav_menu( 'primary' ) ) { ?>
 		<div class="mobile-navigation-bar">
-			<button class="menu-toggle">
-				<i class="fa fa-bars"></i>
+			<button id="expand-mobile-nav" class="menu-toggle" aria-controls="mobile-navigation" aria-expanded="false">
+				<i class="fa fa-bars" aria-hidden="true"></i>
 				<span class="screen-reader-text">
-							<?php esc_html_e( 'Toggle Mobile Menu', 'memberlite' ); ?>
-						</span>
+					<?php _e( 'Expand mobile menu', 'memberlite' ); ?>
+				</span>
 			</button>
 		</div>
 	<?php }
