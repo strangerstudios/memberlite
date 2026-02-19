@@ -2848,6 +2848,11 @@ body.mobile-nav-open {
 	padding-bottom: var(--wp--preset--spacing--20);
 }
 
+.site-footer.site-footer-default .site-info .columns {
+	display: flex;
+	justify-content: space-between;
+}
+
 .site-footer .site-info p,
 .site-footer .site-info .columns:first-child a {
 	margin: 0;
