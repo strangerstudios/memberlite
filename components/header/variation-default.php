@@ -21,11 +21,10 @@
 	</div><!-- .site-branding -->
 
 	<?php if ( ! empty( $should_show_header_right ) ) {
-		$header_meta_menu_class = ! memberlite_is_meta_login_active() ? ' no-meta-menu' : '';
+		$header_meta_menu_class = ! memberlite_is_meta_login_active() ? 'no-meta-menu' : '';
 		?>
 		<div
-			class="columns header-right medium-<?php echo esc_attr( memberlite_getColumnsRatio( 'header-right' ) );
-			echo esc_attr( $header_meta_menu_class ) ?>">
+			class="columns header-right medium-<?php echo esc_attr( memberlite_getColumnsRatio( 'header-right' ) ) . ' ' . esc_attr( $header_meta_menu_class ); ?>">
 
 			<?php
 			// Get Login Form/Member Profile Info

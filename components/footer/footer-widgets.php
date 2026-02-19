@@ -13,5 +13,3 @@ if ( is_active_sidebar( 'sidebar-4' ) ) { ?>
 	</div><!-- .footer-widgets -->
 	<?php
 }
-
-do_action( 'memberlite_after_footer_widgets' ); ?>

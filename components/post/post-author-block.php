@@ -5,7 +5,7 @@
  * @package Memberlite
  */
 global $memberlite_defaults;
-$author_block = get_theme_mod( 'author_block', $memberlite_defaults[ 'author_block' ] );
+$author_block = get_theme_mod( 'author_block', $memberlite_defaults['author_block'] );
 
 if ( ! empty( $author_block ) ) { ?>
 	<div class="entry-author">
