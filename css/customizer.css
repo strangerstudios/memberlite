@@ -38,12 +38,3 @@ label + .customize-control-description {
 #customize-theme-controls .customize-pane-child {
 	background: #fff;
 }
-
-#accordion-section-memberlite_typography_options > h3 .accordion-trigger,
-#accordion-section-colors > h3 .accordion-trigger,
-#accordion-section-memberlite_breadcrumbs_options > h3 .accordion-trigger {
-	display: flex;
-	justify-content: flex-start;
-	align-items: center;
-	gap: .5rem;
-}
