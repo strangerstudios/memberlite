@@ -5,8 +5,6 @@
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
  * @package Memberlite
- *
- * @todo: Deprecate in favor of blocks
  */
 ?>
 

@@ -18,8 +18,14 @@ if ( ! function_exists( 'memberlite_the_custom_logo' ) ) :
 	}
 endif;
 
+/**
+ * Returns the site title based on whether we're on the front page
+ *
+ * @since 7.0.0
+ * @return string The HTML for the site title
+ */
 if ( ! function_exists( 'memberlite_output_site_title' ) ) {
-	function memberlite_output_site_title() {
+	function memberlite_output_site_title() : string {
 		$site_url = esc_url( home_url( '/' ) );
 		$site_name = esc_html( get_bloginfo( 'name' ) );
 
@@ -31,8 +37,14 @@ if ( ! function_exists( 'memberlite_output_site_title' ) ) {
 	}
 }
 
+/**
+ * Returns true if there is content to show in the header right area (meta login, widgets, or action content).
+ *
+ * @since 7.0.0
+ * @return bool Whether to show the header right area.
+ */
 if ( ! function_exists( 'memberlite_should_show_header_right' ) ) {
-	function memberlite_should_show_header_right() {
+	function memberlite_should_show_header_right() : bool {
 		$meta_login  = get_theme_mod( 'meta_login', false );
 		$has_content = has_action( 'memberlite_after_member_info' ) || ! empty( $meta_login ) || is_active_sidebar( 'sidebar-3' );
 
@@ -40,8 +52,14 @@ if ( ! function_exists( 'memberlite_should_show_header_right' ) ) {
 	}
 }
 
+/**
+ * Returns true if the meta login content is active.
+ *
+ * @since 7.0.0
+ * @return bool The value of the meta login setting.
+ */
 if ( ! function_exists( 'memberlite_is_meta_login_active' ) ) {
-	function memberlite_is_meta_login_active() {
+	function memberlite_is_meta_login_active() : bool {
 		return get_theme_mod( 'meta_login', false );
 	}
 }
@@ -242,7 +260,6 @@ function memberlite_get_author_avatar( $author_id ) {
 /**
  * Returns true if a blog has more than 1 category.
  *
- * @todo: Potentially remove
  * @return bool
  */
 function memberlite_categorized_blog() {
@@ -275,7 +292,6 @@ function memberlite_categorized_blog() {
 
 /**
  * Flush out the transients used in memberlite_categorized_blog.
- * @todo: Potentially remove
  */
 function memberlite_category_transient_flusher() {
 	// Like, beat it. Dig?
