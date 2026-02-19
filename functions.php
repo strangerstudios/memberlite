@@ -300,18 +300,6 @@ if ( ! function_exists( 'memberlite_setup' ) ) :
 		);
 		add_theme_support( 'html5', $html5_support_types );
 
-		// Enables support for Post Formats.
-		add_theme_support(
-			'post-formats', array(
-				'audio',
-				'image',
-				'link',
-				'quote',
-				'status',
-				'video',
-			)
-		);
-
 		// Setup the WordPress core custom background feature.
 		$custom_background = apply_filters(
 			'memberlite_custom_background_args', array(
