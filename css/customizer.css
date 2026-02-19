@@ -29,8 +29,6 @@ label + .customize-control-description {
 	margin-top: 5px;
 }
 
-/* Branding experiements */
-
 .customize-control label {
 	text-transform: uppercase;
 }
