@@ -1340,7 +1340,8 @@ body.mobile-nav-open {
 
 #mobile-navigation a[aria-current] {
 	font-weight: bold;
-	background-color: color-mix(in srgb, var(--memberlite-color-site-navigation-background), white 30%);
+	/*background-color: color-mix(in srgb, var(--memberlite-color-site-navigation-background), white 30%);*/
+	background-color: light-dark( color-mix(in srgb, var(--memberlite-color-site-navigation-background), black 5%), color-mix(in srgb, var(--memberlite-color-site-navigation-background), white 3%) );
 }
 
 #mobile-navigation nav > ul.sub-menu {
@@ -1360,6 +1361,7 @@ body.mobile-nav-open {
 #mobile-navigation .widget {
 	padding: var(--wp--preset--spacing--10);
 	margin-left: 0;
+	border-left: none;
 }
 
 #mobile-navigation .widget ul,

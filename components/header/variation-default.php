@@ -44,10 +44,10 @@
 	// show the mobile menu toggle button
 	if ( is_active_sidebar( 'sidebar-5' ) || has_nav_menu( 'primary' ) ) { ?>
 		<div class="mobile-navigation-bar">
-			<button id="expand-mobile-nav" class="menu-toggle" aria-controls="mobile-navigation" aria-expanded="false">
+			<button id="expand-mobile-nav" aria-haspopup="dialog" class="menu-toggle" aria-controls="mobile-navigation" aria-expanded="false">
 				<i class="fa fa-bars" aria-hidden="true"></i>
 				<span class="screen-reader-text">
-					<?php _e( 'Expand mobile menu', 'memberlite' ); ?>
+					<?php _e( 'Open mobile menu', 'memberlite' ); ?>
 				</span>
 			</button>
 		</div>
