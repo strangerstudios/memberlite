@@ -6,17 +6,21 @@
  *
  * @package Memberlite
  */
+
 global $memberlite_defaults;
-$post_class = get_post_type() === 'post' ? 'entry-header-grid' : '';
-//@todo: Do we need memberlite_before/after_content_single hooks?
-?>
+$post_class = get_post_type() === 'post' ? 'entry-header-grid' : ''; ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class( $post_class ); ?>>
 
 	<?php get_template_part( 'components/post/entry', 'header' ); ?>
 
 	<div class="entry-content">
-		<?php do_action( 'memberlite_before_content_post' );
+		<?php if ( is_single() ) {
+			do_action( 'memberlite_before_content_single' );
+		} else {
+			do_action( 'memberlite_before_content_post' );
+		}
+
 		get_template_part( 'components/post/post', 'featured-image' );
 
 		if ( is_archive() || ( is_home() && get_post_type() === 'post' ) ) {
@@ -44,7 +48,11 @@ $post_class = get_post_type() === 'post' ? 'entry-header-grid' : '';
 			)
 		);
 
-		do_action( 'memberlite_after_content_post' ); ?>
+		if ( is_single() ) {
+			do_action( 'memberlite_after_content_single' );
+		} else {
+			do_action( 'memberlite_after_content_post' );
+		} ?>
 	</div><!-- .entry-content -->
 
 	<?php get_template_part( 'components/post/entry', 'footer' ); ?>
