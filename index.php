@@ -15,7 +15,7 @@ get_header(); ?>
 				/**
 				 * Wrap posts output in the .grid-list class based on settings.
 				 */
-				$content_archives = get_theme_mod( 'content_archives', $memberlite_defaults[ 'content_archives' ] );
+				$content_archives = get_theme_mod( 'content_archives', $memberlite_defaults['content_archives'] );
 				if ( $content_archives === 'grid' ) { ?>
 					<div class="grid-list">
 				<?php }
