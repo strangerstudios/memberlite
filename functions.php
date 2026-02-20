@@ -4,7 +4,7 @@
  *
  * @package Memberlite
  */
-define( 'MEMBERLITE_VERSION', '6.1.1.0.21' );
+define( 'MEMBERLITE_VERSION', '6.1.1.0.22' );
 define( 'MEMBERLITE_URL', get_template_directory_uri() );
 
 // enqueue additional stylesheets and javascript
