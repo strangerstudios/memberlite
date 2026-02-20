@@ -619,7 +619,7 @@ a.comment-reply-link,
 	color: var(--memberlite-color-white);
 	cursor: pointer;
 	font-family: var(--memberlite-header-font), ui-sans-serif;
-	font-size: var(--wp--preset--font-size--18);
+	font-size: var(--wp--preset--font-size--16);
 	font-style: normal;
 	font-weight: 700;
 	display: inline-block;
@@ -2552,7 +2552,7 @@ body.mobile-nav-open {
 .comment,
 .pingback.even,
 .trackback.event {
-	background-color: var(--memberlite-color-borders);
+	background-color: light-dark( color-mix(in srgb, var(--memberlite-color-site-background), black 1%), color-mix(in srgb, var(--memberlite-color-site-background), white 3%) );;
 }
 
 .comment.even .child-comments .comment {
@@ -2645,20 +2645,13 @@ body.mobile-nav-open {
 .comment-respond label {
 	display: inline-block;
 	text-align: right;
-	margin: 0 .7rem 0 0;
+	margin: 0 .7rem 1rem 0;
 }
 
 .comment-respond p.comment-form-cookies-consent label {
 	display: inline;
 	text-align: left;
 	margin: 0 0 0 .7rem;
-}
-
-.comment-respond p.comment-form-comment label,
-.comment-respond p.comment-form-author label,
-.comment-respond p.comment-form-email label,
-.comment-respond p.comment-form-url label {
-	width: 15%;
 }
 
 .comment-respond p {
@@ -2670,13 +2663,6 @@ body.mobile-nav-open {
 	font-size: var(--wp--preset--font-size--14);
 }
 
-.comment-respond input[type=text],
-.comment-respond input[type=email],
-.comment-respond input[type=url],
-.comment-respond textarea {
-	width: 81%;
-}
-
 .comment-repond input[type=checkbox],
 .comment-repond input[type=radio] {
 	margin-right: .5em;
@@ -2685,20 +2671,6 @@ body.mobile-nav-open {
 .comment-respond .form-allowed-tags,
 .comment-respond .form-allowed-tags code {
 	font-size: var(--wp--preset--font-size--14);
-}
-
-.comment-respond .comment-form-comment span.required,
-.comment-respond .comment-form-author span.required,
-.comment-respond .comment-form-email span.required {
-	position: absolute;
-	top: 0;
-	right: 0;
-}
-
-.comment-respond .form-allowed-tags,
-.comment-respond .form-submit,
-.comment-respond .comment-subscription-form {
-	margin-left: 16%;
 }
 
 .pingback h4.comment-author {
