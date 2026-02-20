@@ -317,11 +317,11 @@ function memberlite_get_midnight_violet_colors(): array {
  */
 function memberlite_get_cocoa_ash_colors(): array {
 	return array(
-		'header_textcolor'        => 'ddd7cf',
+		'header_textcolor'        => '1f1b18',
 		'background_color'        => 'ffffff',
 		'bgcolor_header'          => '1f1b18',
-		'bgcolor_site_navigation' => 'a8a29a',
-		'color_site_navigation'   => '1f1b18',
+		'bgcolor_site_navigation' => '6f6a66',
+		'color_site_navigation'   => 'ffffff',
 		'color_text'              => '1f1b18',
 		'color_link'              => '2e2623',
 		'color_meta_link'         => 'ddd7cf',
