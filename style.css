@@ -668,7 +668,6 @@ input[type=submit]:active,
 .btn:hover,
 .btn:focus,
 .btn:active,
-a.comment-reply-link:hover,
 #main div.em-search-main button.em-search-submit:hover {
 	filter: brightness(var(--memberlite-hover-brightness));
 	box-shadow: var(--memberlite-shadow-hover);
