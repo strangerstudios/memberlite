@@ -856,7 +856,6 @@ textarea {
 	border-radius: var(--wp--custom--border--radius);
 	color: var(--memberlite-color-text);
 	font-size: var(--wp--preset--font-size--16);
-	padding: calc(var(--wp--preset--spacing--10) / 2) var(--wp--preset--spacing--10);
 }
 
 /*--------------------------------------------------------------
@@ -1323,6 +1322,7 @@ body.mobile-nav-open {
 #mobile-navigation ul li {
 	padding: 0;
 	margin: 0;
+	list-style: none;
 }
 
 #mobile-navigation ul li.menu-item a {
@@ -1371,28 +1371,37 @@ body.mobile-nav-open {
 	margin: 0;
 }
 
-#mobile-navigation .search-form {
-	border-top: 1px solid rgba(0, 0, 0, 0.1);
-	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+#mobile-navigation .member-navigation {
+	margin-bottom: 1.5rem;
 }
 
-#mobile-navigation .search-form input[type=search] {
-	background-color: rgba(255, 255, 255, 0.2);
-	border: 1px solid rgba(255, 255, 255, 0.3);
-	color: var(--memberlite-color-white);
-	width: 90%;
+#mobile-navigation #meta-member {
+	font-weight: bold;
+	letter-spacing: 1px;
 }
 
-#mobile-navigation .search-form input[type=search]::placeholder {
-	color: var(--memberlite-color-white);
-	opacity: 1;
+#mobile-navigation #meta-member .user {
+	margin-right: 1rem;
 }
 
-#mobile-navigation .search-form input[type=submit].search-submit {
-	background: none;
-	padding: 0;
-	position: absolute;
-	text-indent: -9999em;
+#mobile-navigation .member-navigation .menu {
+	display: flex;
+	gap: .8rem;
+	text-transform: uppercase;
+}
+
+#mobile-navigation .menu-item-search {
+	margin-top: 2rem;
+}
+
+#mobile-navigation .menu-item-search .search-field {
+	min-width: 60%;
+	vertical-align: bottom;
+}
+
+#mobile-navigation .menu-item-search .search-field,
+#mobile-navigation .menu-item-search .search-submit {
+	height: 40px;
 }
 
 #mobile-navigation .pmpro_card {
