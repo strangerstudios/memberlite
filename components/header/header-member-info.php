@@ -16,6 +16,7 @@
 			$user_account_link = '<a href="' . esc_url( $get_account_url ) . '">' . esc_html( preg_replace( '/\@.*/', '', $current_user->display_name ) ) . '</a>';
 			?>
 			<span class="user">
+				<span aria-hidden="true" class="fa fa-user"></span>
 				<?php /* translators: a generated link to the user's account or profile page */
 				echo Memberlite_Customize::sanitize_text_with_links( sprintf( __( 'Welcome, %s', 'memberlite' ), $user_account_link ) ); // WPCS: xss ok.
 				?>

@@ -1380,8 +1380,16 @@ body.mobile-nav-open {
 	letter-spacing: 1px;
 }
 
+#mobile-navigation #meta-member .meta-member-inner {
+	text-align: center;
+}
+
 #mobile-navigation #meta-member .user {
 	margin-right: 1rem;
+}
+
+#meta-member .user .fa-user {
+	padding-right: 3px;
 }
 
 #mobile-navigation .member-navigation .menu {
@@ -1397,11 +1405,6 @@ body.mobile-nav-open {
 #mobile-navigation .menu-item-search .search-field {
 	min-width: 60%;
 	vertical-align: bottom;
-}
-
-#mobile-navigation .menu-item-search .search-field,
-#mobile-navigation .menu-item-search .search-submit {
-	height: 40px;
 }
 
 #mobile-navigation .pmpro_card {
