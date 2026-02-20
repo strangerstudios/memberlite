@@ -1,1 +1,7 @@
 /** Block Editor Custom Styles **/
+
+/* Custom Settings Panel Icons */
+.memberlite-custom-settings .components-panel__body-title button svg {
+	order: -1;
+	margin-right: 5px;
+}
