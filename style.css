@@ -399,8 +399,7 @@ big {
 }
 
 label {
-	font-family: var(--memberlite-header-font), ui-sans-serif;
-	font-weight: 700;
+	font-family: var(--memberlite-body-font), ui-sans-serif;
 }
 
 .required {
@@ -793,6 +792,11 @@ input::-moz-focus-inner {
 	padding: 0;
 }
 
+form label {
+	font-size: 18px;
+	line-height: 18px;
+}
+
 input[type=text],
 input[type=tel],
 input[type=email],
@@ -801,17 +805,18 @@ input[type=password],
 input[type=search],
 textarea {
 	background-color: var(--memberlite-color-site-background);
-	border: 1px solid var(--memberlite-color-borders);
-	border-radius: var(--wp--custom--border--radius);
+	border: 1px solid light-dark( #222222, #dbe6ed );
+	border-radius: 8px;
 	box-shadow: none;
 	box-sizing: border-box;
 	color: var(--memberlite-color-text);
 	font-size: var(--wp--preset--font-size--16);
+	line-height: 1.5;
 	height: auto;
-	margin: 0;
+	margin: 6px 0 0;
 	min-height: auto;
 	outline: none;
-	padding: calc(var(--wp--preset--spacing--10) / 2);
+	padding: 12px;
 	word-break: normal;
 }
 
