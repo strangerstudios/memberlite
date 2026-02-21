@@ -14,24 +14,21 @@
 
 <?php do_action( 'memberlite_before_footer' ); ?>
 
-<?php if ( ! memberlite_hide_page_footer() ) {
-	$footer_variation = get_theme_mod( 'memberlite_footer_variation', 'default' );
-	$is_default       = empty( $footer_variation ) || 'default' === $footer_variation;
-	$footer_class     = $is_default ? 'site-footer-default' : 'site-footer-' . $footer_variation;
+<?php
+if ( ! memberlite_hide_page_footer() ) {
+	$footer_variation = sanitize_key( memberlite_get_variation( 'footer' ) );
+	$footer_class = 'site-footer site-footer-' . $footer_variation;
 	?>
-	<footer id="colophon" class="site-footer <?php echo esc_attr( $footer_class ); ?>" role="contentinfo">
-		<?php if ( $is_default ) {
-			get_template_part( 'components/footer/variation', 'default' );
-		} else {
-			get_template_part( 'components/footer/variation', $footer_variation );
-		} ?>
+	<footer id="colophon" class="<?php echo esc_attr( $footer_class ); ?>" role="contentinfo">
+		<?php get_template_part( 'components/footer/variation', $footer_variation ); ?>
 	</footer><!-- #colophon -->
-<?php } // End if(). ?>
+	<?php
+}
+?>
 
 <?php do_action( 'memberlite_after_footer' ); ?>
 
 </div><!-- #page -->
-
 
 <?php do_action( 'memberlite_after_page' ); ?>
 
