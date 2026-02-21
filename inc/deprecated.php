@@ -41,6 +41,7 @@ $memberlite_map_deprecated_hooks = array(
 	'memberlite_after_footer_widgets'   => 'after_footer_widgets',
 	'memberlite_before_site_info'       => 'before_site_info',
 	'memberlite_after_site_info'        => 'after_site_info',
+	'memberlite_editor_color_palette'	=> null,
 );
 
 // anonymous function used below is only supported in php 5.3+
@@ -223,6 +224,18 @@ add_action( 'admin_notices', 'memberlite_check_for_deprecated_plugins' );
 	return $actions;
 }
 add_filter( 'plugin_action_links', 'memberlite_deprecated_plugins_action_links', 10, 2 );
+
+/**
+ * The breadcrumbs function was renamed from `memberlite_getBreadcrumbs` to `memberlite_get_breadcrumbs`.
+ *
+ * @since TBD
+ * @return string The breadcrumbs HTML.
+ *
+ */
+function memberlite_getBreadcrumbs() {
+    _deprecated_function( __FUNCTION__, 'TBD', 'memberlite_get_breadcrumbs' );
+    return memberlite_get_breadcrumbs();
+}
 
 /**
  * Get legacy color scheme definitions in 17-color associative format.
