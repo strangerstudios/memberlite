@@ -100,7 +100,6 @@ input, textarea, select, button {
 }
 
 html {
-	font-size: 62.5%;
 	-webkit-text-size-adjust: 100%; /* Prevents iOS text size adjust after orientation change, without disabling user zoom */
 }
 
@@ -161,7 +160,7 @@ a img {
 --------------------------------------------------------------*/
 body {
 	font-family: var(--memberlite-body-font), ui-sans-serif;
-	font-size: var(--wp--preset--font-size--18);
+	font-size: var(--wp--preset--font-size--16);
 }
 
 body,
@@ -793,8 +792,8 @@ input::-moz-focus-inner {
 }
 
 form label {
-	font-size: 18px;
-	line-height: 18px;
+	font-size: 1.1rem;
+	line-height: 1.1rem;
 }
 
 input[type=text],
@@ -805,7 +804,7 @@ input[type=password],
 input[type=search],
 textarea {
 	background-color: var(--memberlite-color-site-background);
-	border: 1px solid light-dark( #222222, #dbe6ed );
+	border: 1px solid light-dark( #222222, var(--memberlite-color-text) );
 	border-radius: 8px;
 	box-shadow: none;
 	box-sizing: border-box;
