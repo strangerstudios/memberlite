@@ -16,23 +16,6 @@
 				$( ev.currentTarget ).attr( 'aria-expanded', false );
 			} );
 
-			// scroll to target links in page
-			$( 'a[href*="#"]:not(.memberlite_tabs a)' ).on(
-				'click', function(event) {
-
-					let target = $( '#' + $( this ).attr( 'href' ).hash );
-
-					if ( target.length ) {
-						event.preventDefault();
-						$( 'html, body' ).animate(
-							{
-								scrollTop: target.offset().top
-							}, 800
-						);
-					}
-				}
-			);
-
 			// switch tab content when clicked
 			$( '.memberlite_tabbable .memberlite_tabs li a' ).click(
 				function(e) {

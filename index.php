@@ -40,7 +40,7 @@ get_header(); ?>
 				<?php } ?>
 				<?php memberlite_paging_nav(); ?>
 			<?php else : ?>
-				<?php get_template_part( 'content', 'none' ); ?>
+				<?php get_template_part( 'components/post/content', 'none' ); ?>
 			<?php endif; ?>
 			<?php do_action( 'memberlite_after_loop' ); ?>
 		</main><!-- #main -->
