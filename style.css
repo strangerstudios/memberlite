@@ -281,7 +281,7 @@ blockquote > :last-child {
 
 .wp-block-pullquote blockquote,
 .wp-block-quote {
-	unset: all;
+	all: unset;
 }
 
 .wp-block-quote:not(.is-style-plain) {
@@ -326,7 +326,7 @@ address {
 }
 
 pre {
-	background-color: color-mix(in srgb, var(--memberlite-color-text) 7%, transparent);
+	background-color: light-dark( color-mix(in srgb, var(--memberlite-color-text) 7%, transparent), color-mix(in srgb, var(--memberlite-color-text) 20%, transparent) );
 	font-family: "Courier 10 Pitch", Courier, monospace;
 	margin: var(--wp--preset--spacing--20) 0;
 	max-width: 100%;
@@ -342,8 +342,8 @@ code,
 kbd,
 tt,
 var {
-	background-color: color-mix(in srgb, var(--memberlite-color-text) 7%, transparent);
-	color: var(--memberlite-color--error-text);
+	background-color: light-dark( color-mix(in srgb, var(--memberlite-color-text) 7%, transparent), color-mix(in srgb, var(--memberlite-color-text) 20%, transparent) );
+	color: light-dark( var(--memberlite-color--error-text), var(--memberlite-color--error-background) );
 	font-family: "Courier 10 Pitch", Courier, monospace;
 	padding: 2px 4px;
 }
@@ -1168,16 +1168,6 @@ a {
 
 .footer-navigation ul ul {
 	display: none;
-}
-
-.footer-navigation a,
-.site-info a:not(.skip-link) {
-	color: var(--memberlite-color-link);
-}
-
-.footer-navigation a:hover,
-.site-info .columns:first-child a:hover {
-	filter: brightness(var(--memberlite-hover-brightness));
 }
 
 /* Dropdown Menu */
@@ -2534,7 +2524,7 @@ body.mobile-nav-open {
 
 .grid-list a.post-thumbnail-link .post-thumbnail-empty {
 	align-items: center;
-	background-color: color-mix(in srgb, Canvas 50%, transparent);
+	background-color: light-dark( color-mix(in srgb, var(--memberlite-color-text) 7%, transparent), color-mix(in srgb, var(--memberlite-color-text) 20%, transparent) );
 	display: flex;
 	height: 180px;
 	justify-content: center;
@@ -2543,7 +2533,7 @@ body.mobile-nav-open {
 
 .grid-list .post-thumbnail-empty .fas {
 	color: var(--memberlite-color-white);
-	font-size: var(--wp--preset--font-size--72);
+	font-size: var(--wp--preset--font-size--54);
 }
 
 .grid-list .entry-header {
@@ -2855,21 +2845,6 @@ body.mobile-nav-open {
 	padding: .3rem;
 }
 
-.site-footer .site-info {
-	padding-top: var(--wp--preset--spacing--20);
-	padding-bottom: var(--wp--preset--spacing--20);
-}
-
-.site-footer.site-footer-default .site-info .columns {
-	display: flex;
-	justify-content: space-between;
-}
-
-.site-footer .site-info p,
-.site-footer .site-info .columns:first-child a {
-	margin: 0;
-}
-
 #banner_bottom {
 	background-color: var(--memberlite-color-secondary);
 	color: var(--memberlite-color-white);
@@ -2900,14 +2875,36 @@ body.mobile-nav-open {
 }
 
 /*--------------------------------------------------------------
-Memberlite Footer Variations
+10.6.1 Memberlite Footer - Default Variation
 --------------------------------------------------------------*/
-
-.footer-style-default .site-info .columns {
+.site-footer.site-footer-default .site-info {
+	align-items: center;
 	display: flex;
+	flex-direction: column;
+	gap: var(--wp--preset--spacing--20);
 	justify-content: space-between;
+	margin: 0 auto;
+	padding: var(--wp--preset--spacing--20) 2.35rem;
 }
 
+.site-footer.site-footer-default .site-info > * {
+	margin: 0;
+}
+
+@media only screen and (min-width: 768px) {
+	.site-footer.site-footer-default .site-info {
+		flex-direction: row;
+	}
+}
+
+@media only screen and (min-width: 1160px) {
+	.site-footer.site-footer-default .site-info {
+		max-width: var(--wp--style--global--wide-size);
+		padding-left: 0;
+		padding-right: 0;
+		width: calc( 100% - 2.35rem * 2 );
+	}
+}
 
 /*--------------------------------------------------------------
 10.7 Memberlite Shortcodes
