@@ -22,7 +22,7 @@ if ( ! empty( $memberlite_banner_show ) ) { ?>
 
 				<?php do_action( 'memberlite_before_masthead_inner' ); ?>
 
-				<?php get_template_part( 'components/header/header', 'breadcrumbs' ); ?>
+				<?php memberlite_get_breadcrumbs(); ?>
 
 				<?php
 				$memberlite_masthead_content = apply_filters( 'memberlite_masthead_content', '' );
