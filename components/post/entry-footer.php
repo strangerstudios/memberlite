@@ -1,8 +1,12 @@
 <?php
 /**
- * Entry Footer
+ * Template part for displaying the post entry footer.
+ * Version: TBD
+ *
+ * @version TBD
+ *
+ * @package Memberlite
  */
-
 
 $memberlite_get_entry_meta_after = memberlite_get_entry_meta( $post, 'after' );
 

@@ -1,6 +1,11 @@
 <?php
 /**
- * Single Post Comments Form
+ * Template part for displaying the single post comments form.
+ * Version: TBD
+ *
+ * @version TBD
+ *
+ * @package Memberlite
  */
 
 // If comments are open or we have at least one comment, load up the comment template

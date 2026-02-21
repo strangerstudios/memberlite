@@ -1,6 +1,9 @@
 <?php
 /**
- * Displays the footer widgets content
+ * Displays the footer widgets content.
+ * Version: TBD
+ *
+ * @version TBD
  *
  * @package Memberlite
  */

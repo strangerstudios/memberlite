@@ -1,14 +1,14 @@
 <?php
 /**
- * Template part for displaying grid-style posts
+ * Template part for displaying grid-style posts.
+ * Version: TBD
  *
- * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
+ * @version TBD
  *
  * @package Memberlite
  */
-?>
 
-<?php global $memberlite_defaults; ?>
+global $memberlite_defaults; ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class( ); ?>>
 	<a class="post-thumbnail-link" href="<?php echo esc_url( get_permalink() ); ?>">

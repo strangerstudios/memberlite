@@ -1,9 +1,13 @@
 <?php
 /**
- * Displays the post author block
+ * Template part for displaying the post author block.
+ * Version: TBD
+ *
+ * @version TBD
  *
  * @package Memberlite
  */
+
 global $memberlite_defaults;
 $author_block = get_theme_mod( 'author_block', $memberlite_defaults['author_block'] );
 

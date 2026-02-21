@@ -1,6 +1,11 @@
 <?php
 /**
- * Featured image for archives and single posts, for use within the loop
+ * Featured image for archives and single posts, for use within the loop.
+ * Version: TBD
+ *
+ * @version TBD
+ *
+ * @package Memberlite
  */
 
 $args = get_post_format() === 'image' ? array(

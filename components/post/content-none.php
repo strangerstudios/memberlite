@@ -1,8 +1,9 @@
 <?php
 /**
- * Template part for displaying a message that posts cannot be found
+ * Template part for displaying a message that posts cannot be found.
+ * Version: TBD
  *
- * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
+ * @version TBD
  *
  * @package Memberlite
  */

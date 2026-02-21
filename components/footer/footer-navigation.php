@@ -1,13 +1,14 @@
 <?php
 /**
- * Displays the footer navigation content
+ * Displays the footer navigation content.
+ * Version: TBD
+ *
+ * @version TBD
  *
  * @package Memberlite
  */
 
-?>
-
-<?php if ( has_nav_menu( 'footer' ) ) { ?>
+if ( has_nav_menu( 'footer' ) ) { ?>
 	<nav id="footer-navigation">
 		<?php
 		wp_nav_menu(
@@ -20,4 +21,5 @@
 		);
 		?>
 	</nav><!-- #footer-navigation -->
-<?php } ?>
+	<?php
+}

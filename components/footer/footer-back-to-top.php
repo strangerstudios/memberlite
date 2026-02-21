@@ -1,12 +1,16 @@
 <?php
 /**
- * Displays the footer back to top button
+ * Displays the footer back to top button.
+ * Version: TBD
+ *
+ * @version TBD
  *
  * @package Memberlite
  */
 
 global $memberlite_defaults;
 $back_to_top = get_theme_mod( 'memberlite_back_to_top', $memberlite_defaults['memberlite_back_to_top'] );
+
 if ( ! empty( $back_to_top ) ) {
 	$back_to_top_allowed_html = array(
 		'i' => array(
