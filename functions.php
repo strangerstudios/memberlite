@@ -266,20 +266,6 @@ if ( ! function_exists( 'memberlite_setup' ) ) :
 		// Enable support for responsive embeds.
 		add_theme_support( 'responsive-embeds' );
 
-		// Switch default core markup for search form, comment form, and comments to output valid HTML5.
-		add_theme_support(
-			'html5',
-			array(
-				'comment-form',
-				'comment-list',
-				'gallery',
-				'caption',
-				'style',
-				'script',
-				'navigation-widgets',
-			)
-		);
-
 		// This theme uses wp_nav_menu() in five locations.
 		register_nav_menus(
 			array(
@@ -290,15 +276,20 @@ if ( ! function_exists( 'memberlite_setup' ) ) :
 			)
 		);
 
-		// Switch default core markup for search form, comment form, and comments to output valid HTML5.
-		$html5_support_types = array(
-			'search-form',
-			'comment-form',
-			'comment-list',
-			'gallery',
-			'caption',
+		// Switch default core markup to output valid HTML5.
+		add_theme_support(
+			'html5',
+			array(
+				'comment-form',
+				'comment-list',
+				'gallery',
+				'caption',
+				'style',
+				'script',
+				'navigation-widgets',
+				'search-form',
+			)
 		);
-		add_theme_support( 'html5', $html5_support_types );
 
 		// Setup the WordPress core custom background feature.
 		$custom_background = apply_filters(
@@ -702,6 +693,9 @@ require_once get_template_directory() . '/inc/page_banners.php';
 
 /* Custom template tags. */
 require_once get_template_directory() . '/inc/template-tags.php';
+
+/* Custom theme variations code. */
+require_once get_template_directory() . '/inc/variations.php';
 
 /* Custom widgets that act independently of the theme templates. */
 require_once get_template_directory() . '/inc/widgets.php';
