@@ -238,6 +238,28 @@ function memberlite_getBreadcrumbs() {
 }
 
 /**
+ * The page title function was split into memberlite_get_page_title() and memberlite_get_page_description().
+ *
+ * @since TBD
+ *
+ * @param bool $echo Whether to echo the output.
+ * @return string The page title and description HTML.
+ */
+function memberlite_page_title( $echo = true ) {
+	_deprecated_function( __FUNCTION__, 'TBD', 'memberlite_get_page_title() and memberlite_get_page_description()' );
+
+	$page_title_html = memberlite_get_page_title() . memberlite_get_page_description();
+
+	$page_title_html = apply_filters( 'memberlite_page_title', $page_title_html );
+
+	if ( $echo ) {
+		echo wp_kses_post( $page_title_html );
+	}
+
+	return $page_title_html;
+}
+
+/**
  * Get legacy color scheme definitions in 17-color associative format.
  * Used by upgrade script to migrate legacy schemes to individual theme_mods.
  *

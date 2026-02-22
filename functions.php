@@ -667,11 +667,11 @@ require_once get_template_directory() . '/inc/custom-header.php';
 /* Customizer additions. */
 require_once get_template_directory() . '/inc/customizer.php';
 
-/* Deprecated hooks, filters and functions. */
-require_once get_template_directory() . '/inc/deprecated.php';
-
 /* Custom functions that act independently of the theme templates. */
 require_once get_template_directory() . '/inc/extras.php';
+
+/* Deprecated hooks, filters and functions. */
+require_once get_template_directory() . '/inc/deprecated.php';
 
 /* Load Font Awesome custom functions file. */
 require_once get_template_directory() . '/inc/font-awesome.php';
@@ -721,6 +721,11 @@ if ( defined( 'PMPRO_VERSION' ) ) {
 /* Integration for BuddyPress. */
 if ( function_exists( 'is_buddypress' ) ) {
 	require_once get_template_directory() . '/inc/integrations/buddypress.php';
+}
+
+/* Integration for bbPress. */
+if ( function_exists( 'is_bbpress' ) ) {
+	require_once get_template_directory() . '/inc/integrations/bbpress.php';
 }
 
 /* Integration for LifterLMS. */

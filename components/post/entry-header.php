@@ -8,7 +8,7 @@
  * @package Memberlite
  */
 
-global $memberlite_defaults;
+global $memberlite_defaults, $post;
 $content_archives = get_theme_mod( 'content_archives', $memberlite_defaults['content_archives'] );
 
 if ( $content_archives != 'grid' || is_search() ) {
@@ -17,20 +17,9 @@ if ( $content_archives != 'grid' || is_search() ) {
 	}
 
 	if ( ! empty( $memberlite_get_banner_image_src ) ) { ?>
-		<div class="entry-banner" style="background-image: url('<?php echo esc_attr( $memberlite_get_banner_image_src[0] ); ?>'); ">
+		<div class="entry-banner">
+			<img class="banner-image" src="<?php echo esc_url( $memberlite_get_banner_image_src[0] ); ?>" alt="" aria-hidden="true" />
 	<?php } ?>
-
-	<?php
-		$memberlite_loop_images = get_theme_mod( 'memberlite_loop_images', $memberlite_defaults['memberlite_loop_images'] );
-		if ( $memberlite_loop_images === 'show_thumbnail' ) {
-			the_post_thumbnail(
-				'thumbnail',
-				array(
-					'class' => 'alignright',
-				)
-			);
-		}
-	?>
 
 <?php } ?>
 

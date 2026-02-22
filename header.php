@@ -49,6 +49,4 @@ if ( function_exists( 'wp_body_open' ) ) {
 
 	<div id="content" class="site-content">
 
-		<?php if ( ! is_single() ) {
-			get_template_part( 'components/header/header', 'masthead' );
-		} ?>
+		<?php get_template_part( 'components/header/header', 'masthead' ); ?>

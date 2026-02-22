@@ -6,7 +6,7 @@
  */
 ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+<article id="post-<?php the_ID(); ?>" <?php post_class(); ?> aria-labelledby="page-title">
 	<div class="entry-content">
 		<?php do_action( 'memberlite_before_content_page' ); ?>
 		<?php the_content(); ?>
