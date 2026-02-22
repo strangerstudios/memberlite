@@ -390,6 +390,8 @@ function memberlite_widgets_init() {
 			'description'   => 'Depending on your header variation, this is a spot you can put extra things.',
 			'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 			'after_widget'  => '</aside>',
+			'before_sidebar' => '<div class="header-widget-area">',
+			'after_sidebar'  => '</div>',
 		)
 	);
 
@@ -454,18 +456,18 @@ function memberlite_menus( $items, $args ) {
 	if ( $args->theme_location == 'member' || $args->theme_location == 'member-logged-out' || ( substr( $args->theme_location, -strlen( '-member' ) ) === '-member' ) ) {
 		if ( is_user_logged_in() && defined( 'PMPRO_VERSION' ) && pmpro_hasMembershipLevel() ) {
 			// user is logged in and has a membership level
-			$items .= '<li><a href="' . esc_url( wp_logout_url( memberlite_logout_redirect_to() ) ) . '">' . esc_html__( 'Log Out', 'memberlite' ) . '</a></li>';
+			$items .= '<li class="menu-item"><a href="' . esc_url( wp_logout_url( memberlite_logout_redirect_to() ) ) . '">' . esc_html__( 'Log Out', 'memberlite' ) . '</a></li>';
 		} elseif ( is_user_logged_in() ) {
 			// user is logged in and does not have a membership level
-			$items = '<li><a href="' . esc_url( wp_logout_url( memberlite_logout_redirect_to() ) ) . '">' . esc_html__( 'Log Out', 'memberlite' ) . '</a></li>';
+			$items = '<li class="menu-item"><a href="' . esc_url( wp_logout_url( memberlite_logout_redirect_to() ) ) . '">' . esc_html__( 'Log Out', 'memberlite' ) . '</a></li>';
 		} else {
 			// not logged in
-			$items .= '<li><a href="' . esc_url( wp_login_url( memberlite_login_redirect_to() ) ) . '">' . esc_html__( 'Log In', 'memberlite' ) . '</a></li>';
+			$items .= '<li class="menu-item"><a href="' . esc_url( wp_login_url( memberlite_login_redirect_to() ) ) . '">' . esc_html__( 'Log In', 'memberlite' ) . '</a></li>';
 
 			$show_register_link = get_option( 'users_can_register' ) || defined( 'PMPRO_VERSION' );
 			$show_register_link = apply_filters( 'memberlite_show_register_link', $show_register_link );
 			if ( ! empty( $show_register_link ) ) {
-				$items .= '<li><a href="' . esc_url( wp_registration_url() ) . '">' . esc_html__( 'Register', 'memberlite' ) . '</a></li>';
+				$items .= '<li class="menu-item"><a href="' . esc_url( wp_registration_url() ) . '">' . esc_html__( 'Register', 'memberlite' ) . '</a></li>';
 			}
 		}
 	}
