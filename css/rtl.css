@@ -63,30 +63,30 @@ textarea{
 	border-left: none;
 	padding-left: 1.45rem;
 }
-.meta-navigation ul, .header-right .widget_nav_menu ul, .footer-navigation ul{
+.header-right .widget_nav_menu ul, .footer-navigation ul{
 	margin: 0 0 1.45rem 0 ;
 	padding-right: 0;
 }
-.meta-navigation ul li, .header-right .widget_nav_menu ul li, .footer-navigation ul li{
+.header-right .widget_nav_menu ul li, .footer-navigation ul li{
 	border-left: 1px solid #ccc;
 	border-right: none;
 }
-.meta-navigation li:last-child, .header-right .widget_nav_menu li:last-child, .footer-navigation li:last-child{
+.header-right .widget_nav_menu li:last-child, .footer-navigation li:last-child{
 	border-left: none;
 	border-right: none;
 	padding-left: 0;
 }
-.main-navigation ul.sub-menu, .meta-navigation ul.sub-menu, .header-right .widget_nav_menu ul.sub-menu{
+.main-navigation ul.sub-menu, .header-right .widget_nav_menu ul.sub-menu{
 	float: right;
 	right: -9999em;
 	left: auto;
 	text-align: right;
 }
-.meta-navigation ul.sub-menu ul.sub-menu, .header-right .widget_nav_menu ul.sub-menu ul.sub-menu{
+.header-right .widget_nav_menu ul.sub-menu ul.sub-menu{
 	right: -9999em;
 	left: auto;
 }
-.main-navigation ul.sub-menu a, .meta-navigation ul.sub-menu a, .header-right .widget_nav_menu ul.sub-menu a{
+.main-navigation ul.sub-menu a, .header-right .widget_nav_menu ul.sub-menu a{
 	border-right: none;
 	border-left: none;
 }
@@ -103,15 +103,15 @@ textarea{
 	left: auto;
 }
 
-.meta-navigation ul li:hover > ul, .header-right .widget_nav_menu ul li:hover > ul{
+.header-right .widget_nav_menu ul li:hover > ul{
 	right: 0;
 	left: auto;
 }
-.main-navigation ul ul li:hover > ul, .meta-navigation ul ul li:hover > ul, .header-right .widget_nav_menu ul ul li:hover > ul{
+.main-navigation ul ul li:hover > ul, .header-right .widget_nav_menu ul ul li:hover > ul{
 	right: 100%;
 	left: auto;
 }
-.main-navigation ul ul li:first-child a, .main-navigation ul li:first-child ul li a, .meta-navigation ul ul li:first-child a, .header-right .widget_nav_menu ul ul li:first-child a{
+.main-navigation ul ul li:first-child a, .main-navigation ul li:first-child ul li a, .header-right .widget_nav_menu ul ul li:first-child a{
 	padding-right: 1.5rem;
 	padding-left: 0;
 }
