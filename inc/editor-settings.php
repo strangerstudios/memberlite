@@ -13,7 +13,7 @@
  * @since 7.0
  * @return void
  */
-function memberlite_register_editor_settings_post_meta() : void {
+function memberlite_register_editor_settings_post_meta(): void {
 	register_post_meta( 'page', '_memberlite_hide_header', array(
 		'show_in_rest' => true,
 		'type'         => 'boolean',
@@ -54,7 +54,7 @@ add_action( 'init', 'memberlite_register_editor_settings_post_meta' );
  * @since 7.0
  * @return void
  */
-function memberlite_enqueue_custom_editor_assets() : void {
+function memberlite_enqueue_custom_editor_assets(): void {
 	$asset_path = get_template_directory() . '/build/editor/custom-settings.asset.php';
 
 	if ( ! file_exists( $asset_path ) ) {
@@ -78,7 +78,7 @@ function memberlite_enqueue_custom_editor_assets() : void {
 
 	// Get existing theme mods that we're moving into the settings
 	wp_localize_script( 'memberlite-custom-settings', 'memberlite_theme_mod_settings', array(
-		'showPrevNextSinglePages' => get_theme_mod( 'memberlite_page_nav', true)
+		'showPrevNextSinglePages' => get_theme_mod( 'memberlite_page_nav', true )
 	) );
 }
 add_action( 'enqueue_block_editor_assets', 'memberlite_enqueue_custom_editor_assets' );
@@ -104,7 +104,7 @@ function memberlite_hide_page_header() {
  * @return bool
  */
 function memberlite_hide_page_footer() {
-	if ( get_post_type() !== 'page') {
+	if ( get_post_type() !== 'page' ) {
 		return false;
 	}
 
