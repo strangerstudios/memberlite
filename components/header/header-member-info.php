@@ -4,14 +4,18 @@
  *
  * @package Memberlite
  */
+
+global $current_user, $pmpro_pages;
+
+if ( ! memberlite_is_meta_login_active() ) {
+	return;
+}
 ?>
 
 <div id="meta-member">
 	<div class="meta-member-inner">
 		<?php
-		global $current_user, $pmpro_pages;
-
-		if ( memberlite_is_meta_login_active() && $current_user->ID ) {
+		if ( $current_user->ID ) {
 			$get_account_url   = ! empty( $pmpro_pages ) ? pmpro_url( 'account' ) : admin_url( 'profile.php' );
 			$user_account_link = '<a href="' . esc_url( $get_account_url ) . '">' . esc_html( preg_replace( '/\@.*/', '', $current_user->display_name ) ) . '</a>';
 			?>
