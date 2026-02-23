@@ -90,8 +90,8 @@ function pmpro_login_memberlite_page_title( $page_title_html ) {
 		return $page_title_html;
 	}
 
-	$page_title_html = '<h1 class="page-title">' . esc_html( $title ) . '</h1>';
+	$page_title_html = '<h1 id="page-title">' . esc_html( $title ) . '</h1>';
 
 	return $page_title_html;
 }
-add_filter( 'memberlite_page_title', 'pmpro_login_memberlite_page_title' );
+add_filter( 'memberlite_get_page_title', 'pmpro_login_memberlite_page_title' );

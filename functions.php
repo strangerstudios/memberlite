@@ -4,7 +4,7 @@
  *
  * @package Memberlite
  */
-define( 'MEMBERLITE_VERSION', '6.1.1.0.21' );
+define( 'MEMBERLITE_VERSION', '6.1.1.1.0' );
 define( 'MEMBERLITE_URL', get_template_directory_uri() );
 
 // enqueue additional stylesheets and javascript
@@ -266,7 +266,17 @@ if ( ! function_exists( 'memberlite_setup' ) ) :
 		// Enable support for responsive embeds.
 		add_theme_support( 'responsive-embeds' );
 
-		// Switch default core markup for search form, comment form, and comments to output valid HTML5.
+		// This theme uses wp_nav_menu() in four locations.
+		register_nav_menus(
+			array(
+				'primary'           => __( 'Primary', 'memberlite' ),
+				'member'            => __( 'Member', 'memberlite' ),
+				'member-logged-out' => __( 'Member - Logged Out', 'memberlite' ),
+				'footer'            => __( 'Footer', 'memberlite' ),
+			)
+		);
+
+		// Switch default core markup to output valid HTML5.
 		add_theme_support(
 			'html5',
 			array(
@@ -277,39 +287,7 @@ if ( ! function_exists( 'memberlite_setup' ) ) :
 				'style',
 				'script',
 				'navigation-widgets',
-			)
-		);
-
-		// This theme uses wp_nav_menu() in five locations.
-		register_nav_menus(
-			array(
-				'primary'           => __( 'Primary', 'memberlite' ),
-				'member'            => __( 'Member', 'memberlite' ),
-				'member-logged-out' => __( 'Member - Logged Out', 'memberlite' ),
-				'meta'              => __( 'Meta', 'memberlite' ),
-				'footer'            => __( 'Footer', 'memberlite' ),
-			)
-		);
-
-		// Switch default core markup for search form, comment form, and comments to output valid HTML5.
-		$html5_support_types = array(
-			'search-form',
-			'comment-form',
-			'comment-list',
-			'gallery',
-			'caption',
-		);
-		add_theme_support( 'html5', $html5_support_types );
-
-		// Enables support for Post Formats.
-		add_theme_support(
-			'post-formats', array(
-				'audio',
-				'image',
-				'link',
-				'quote',
-				'status',
-				'video',
+				'search-form',
 			)
 		);
 
@@ -392,6 +370,7 @@ function memberlite_widgets_init() {
 			'after_title'   => '</h3>',
 		)
 	);
+
 	register_sidebar(
 		array(
 			'name'          => __( 'Pages', 'memberlite' ),
@@ -403,15 +382,16 @@ function memberlite_widgets_init() {
 			'after_title'   => '</h3>',
 		)
 	);
+
 	register_sidebar(
 		array(
-			'name'          => __( 'Header Right', 'memberlite' ),
+			'name'          => __( 'Header', 'memberlite' ),
 			'id'            => 'sidebar-3',
-			'description'   => '',
+			'description'   => 'Depending on your header variation, this is a spot you can put extra things.',
 			'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 			'after_widget'  => '</aside>',
-			'before_title'  => '<h1 class="widget-title">',
-			'after_title'   => '</h1>',
+			'before_sidebar' => '<div class="header-widget-area">',
+			'after_sidebar'  => '</div>',
 		)
 	);
 
@@ -476,18 +456,18 @@ function memberlite_menus( $items, $args ) {
 	if ( $args->theme_location == 'member' || $args->theme_location == 'member-logged-out' || ( substr( $args->theme_location, -strlen( '-member' ) ) === '-member' ) ) {
 		if ( is_user_logged_in() && defined( 'PMPRO_VERSION' ) && pmpro_hasMembershipLevel() ) {
 			// user is logged in and has a membership level
-			$items .= '<li><a href="' . esc_url( wp_logout_url( memberlite_logout_redirect_to() ) ) . '">' . esc_html__( 'Log Out', 'memberlite' ) . '</a></li>';
+			$items .= '<li class="menu-item"><a href="' . esc_url( wp_logout_url( memberlite_logout_redirect_to() ) ) . '">' . esc_html__( 'Log Out', 'memberlite' ) . '</a></li>';
 		} elseif ( is_user_logged_in() ) {
 			// user is logged in and does not have a membership level
-			$items = '<li><a href="' . esc_url( wp_logout_url( memberlite_logout_redirect_to() ) ) . '">' . esc_html__( 'Log Out', 'memberlite' ) . '</a></li>';
+			$items = '<li class="menu-item"><a href="' . esc_url( wp_logout_url( memberlite_logout_redirect_to() ) ) . '">' . esc_html__( 'Log Out', 'memberlite' ) . '</a></li>';
 		} else {
 			// not logged in
-			$items .= '<li><a href="' . esc_url( wp_login_url( memberlite_login_redirect_to() ) ) . '">' . esc_html__( 'Log In', 'memberlite' ) . '</a></li>';
+			$items .= '<li class="menu-item"><a href="' . esc_url( wp_login_url( memberlite_login_redirect_to() ) ) . '">' . esc_html__( 'Log In', 'memberlite' ) . '</a></li>';
 
 			$show_register_link = get_option( 'users_can_register' ) || defined( 'PMPRO_VERSION' );
 			$show_register_link = apply_filters( 'memberlite_show_register_link', $show_register_link );
 			if ( ! empty( $show_register_link ) ) {
-				$items .= '<li><a href="' . esc_url( wp_registration_url() ) . '">' . esc_html__( 'Register', 'memberlite' ) . '</a></li>';
+				$items .= '<li class="menu-item"><a href="' . esc_url( wp_registration_url() ) . '">' . esc_html__( 'Register', 'memberlite' ) . '</a></li>';
 			}
 		}
 	}
@@ -505,7 +485,7 @@ add_filter( 'wp_nav_menu_items', 'memberlite_menus', 10, 2 );
 function memberlite_member_menu_cb( $args ) {
 	extract( $args );
 	if ( empty( $link_before ) ) {
-		$link_before = '<li class="menu_item">';
+		$link_before = '<li class="menu-item">';
 	}
 	if ( empty( $link_after ) ) {
 		$link_after = '</li>';
@@ -689,11 +669,11 @@ require_once get_template_directory() . '/inc/custom-header.php';
 /* Customizer additions. */
 require_once get_template_directory() . '/inc/customizer.php';
 
-/* Deprecated hooks, filters and functions. */
-require_once get_template_directory() . '/inc/deprecated.php';
-
 /* Custom functions that act independently of the theme templates. */
 require_once get_template_directory() . '/inc/extras.php';
+
+/* Deprecated hooks, filters and functions. */
+require_once get_template_directory() . '/inc/deprecated.php';
 
 /* Load Font Awesome custom functions file. */
 require_once get_template_directory() . '/inc/font-awesome.php';
@@ -715,6 +695,9 @@ require_once get_template_directory() . '/inc/page_banners.php';
 
 /* Custom template tags. */
 require_once get_template_directory() . '/inc/template-tags.php';
+
+/* Custom theme variations code. */
+require_once get_template_directory() . '/inc/variations.php';
 
 /* Custom widgets that act independently of the theme templates. */
 require_once get_template_directory() . '/inc/widgets.php';
@@ -740,6 +723,11 @@ if ( defined( 'PMPRO_VERSION' ) ) {
 /* Integration for BuddyPress. */
 if ( function_exists( 'is_buddypress' ) ) {
 	require_once get_template_directory() . '/inc/integrations/buddypress.php';
+}
+
+/* Integration for bbPress. */
+if ( function_exists( 'is_bbpress' ) ) {
+	require_once get_template_directory() . '/inc/integrations/bbpress.php';
 }
 
 /* Integration for LifterLMS. */

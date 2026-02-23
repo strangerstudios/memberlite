@@ -39,9 +39,9 @@ function memberlite_checkForUpdates() {
 	}
 
 	// Memberlite 7.0 Update
-	if ( $memberlite_db_version < '2026021201' ) {
+	if ( $memberlite_db_version < '2026022201' ) {
 		require_once get_template_directory() . '/inc/updates/update_7_0.php';
-		update_option( 'memberlite_db_version', '2026021601', 'no' );
+		update_option( 'memberlite_db_version', '2026022201', 'no' );
 	}
 }
 

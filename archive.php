@@ -6,7 +6,7 @@
  */
 
 get_header(); ?>
-
+<div class="row">
 	<section id="primary" class="medium-<?php echo esc_attr( memberlite_getColumnsRatio() ); ?> columns content-area">
 		<?php do_action( 'memberlite_before_main' ); ?>
 		<main id="main" class="site-main" role="main">
@@ -31,7 +31,7 @@ get_header(); ?>
 					if ( $content_archives === 'grid' ) {
 						get_template_part( 'components/post/content', 'grid' );
 					} else {
-						get_template_part( 'components/post/content', get_post_format() );
+						get_template_part( 'components/post/content' );
 					}
 				?>
 			<?php endwhile; ?>
@@ -40,13 +40,14 @@ get_header(); ?>
 			<?php } ?>
 			<?php memberlite_paging_nav(); ?>
 		<?php else : ?>
-			<?php get_template_part( 'content', 'none' ); ?>
+			<?php get_template_part( 'components/post/content', 'none' ); ?>
 		<?php endif; ?>
 		<?php do_action( 'memberlite_after_loop' ); ?>
 		</main><!-- #main -->
 		<?php do_action( 'memberlite_after_main' ); ?>
 	</section><!-- #primary -->
 
-<?php memberlite_get_sidebar(); ?>
+	<?php memberlite_get_sidebar(); ?>
 
+</div>
 <?php get_footer(); ?>

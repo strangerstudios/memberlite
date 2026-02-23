@@ -19,11 +19,11 @@ add_action( 'after_setup_theme', 'memberlite_woocommerce_setup' );
 
 // Wrapping html for Memberlite styling
 function memberlite_woocommerce_before_main_content() {
-	echo '<div id="primary" class="large-12 columns content-area">';
+	echo '<div class="row"><div id="primary" class="large-12 columns content-area">';
 	echo '<main id="main" class="site-main" role="main">';
 }
 function memberlite_woocommerce_after_main_content() {
-	echo '</main></div>';
+	echo '</main></div></div>';
 }
 remove_action( 'woocommerce_before_main_content', 'woocommerce_output_content_wrapper', 10 );
 remove_action( 'woocommerce_after_main_content', 'woocommerce_output_content_wrapper_end', 10 );
@@ -60,3 +60,61 @@ function memberlite_woocommerce_output_related_products_args( $args ) {
 	return $args;
 }
 add_filter( 'woocommerce_output_related_products_args', 'memberlite_woocommerce_output_related_products_args' );
+
+/**
+ * Filter the page title for WooCommerce pages.
+ *
+ * @since TBD
+ *
+ * @param string $page_title_html The page title HTML.
+ * @return string The filtered page title HTML.
+ */
+function memberlite_woocommerce_page_title( $page_title_html ) {
+	if ( ! is_woocommerce() ) {
+		return $page_title_html;
+	}
+
+	ob_start();
+	?>
+	<h1 id="page-title">
+	<?php
+	if ( is_shop() ) {
+		echo esc_html( get_the_title( get_option( 'woocommerce_shop_page_id' ) ) );
+	} elseif ( is_archive() ) {
+		single_cat_title();
+	} else {
+		the_title();
+	}
+	?>
+	</h1>
+	<?php
+
+	return ob_get_clean();
+}
+add_filter( 'memberlite_get_page_title', 'memberlite_woocommerce_page_title' );
+
+/**
+ * Filter the page description for WooCommerce pages.
+ *
+ * @since TBD
+ *
+ * @param string $page_description_html The page description HTML.
+ * @return string The filtered page description HTML.
+ */
+function memberlite_woocommerce_page_description( $page_description_html ) {
+	if ( ! is_woocommerce() ) {
+		return $page_description_html;
+	}
+
+	ob_start();
+
+	// Show an optional term description.
+	$term_description = woocommerce_product_archive_description();
+	if ( ! empty( $term_description ) ) :
+		printf( '<div class="taxonomy-description">%s</div>', wp_kses_post( $term_description ) );
+	endif;
+	woocommerce_taxonomy_archive_description();
+
+	return ob_get_clean();
+}
+add_filter( 'memberlite_get_page_description', 'memberlite_woocommerce_page_description' );
