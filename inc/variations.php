@@ -5,13 +5,13 @@
  * @package Memberlite
  * @package Memberlite
  *
- * @since TBD
+ * @since 7.0
  */
 
 /**
  * Get the current variation for a given slug.
  *
- * @since TBD
+ * @since 7.0
  *
  * @param string $slug The slug for the variation type (e.g., 'footer').
  * @return string The current variation slug, or 'default' if not set.

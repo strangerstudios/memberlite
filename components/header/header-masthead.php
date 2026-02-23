@@ -4,7 +4,7 @@
  *
  * Handles all contexts: single posts (with byline), singular pages, and archives.
  *
- * @version TBD
+ * @version 7.0
  *
  * @package Memberlite
  */

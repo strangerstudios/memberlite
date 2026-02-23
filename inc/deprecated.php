@@ -220,25 +220,25 @@ add_filter( 'plugin_action_links', 'memberlite_deprecated_plugins_action_links',
 /**
  * The breadcrumbs function was renamed from `memberlite_getBreadcrumbs` to `memberlite_get_breadcrumbs`.
  *
- * @since TBD
+ * @since 7.0
  * @return string The breadcrumbs HTML.
  *
  */
 function memberlite_getBreadcrumbs() {
-    _deprecated_function( __FUNCTION__, 'TBD', 'memberlite_get_breadcrumbs' );
+    _deprecated_function( __FUNCTION__, '7.0', 'memberlite_get_breadcrumbs' );
     return memberlite_get_breadcrumbs();
 }
 
 /**
  * The page title function was split into memberlite_get_page_title() and memberlite_get_page_description().
  *
- * @since TBD
+ * @since 7.0
  *
  * @param bool $echo Whether to echo the output.
  * @return string The page title and description HTML.
  */
 function memberlite_page_title( $echo = true ) {
-	_deprecated_function( __FUNCTION__, 'TBD', 'memberlite_get_page_title() and memberlite_get_page_description()' );
+	_deprecated_function( __FUNCTION__, '7.0', 'memberlite_get_page_title() and memberlite_get_page_description()' );
 
 	$page_title_html = memberlite_get_page_title() . memberlite_get_page_description();
 
@@ -255,7 +255,7 @@ function memberlite_page_title( $echo = true ) {
  * Get legacy color scheme definitions in 17-color associative format.
  * Used by upgrade script to migrate legacy schemes to individual theme_mods.
  *
- * @since TBD
+ * @since 7.0
  * @return array Legacy color schemes with 17-color associative arrays.
  */
 function memberlite_get_legacy_color_scheme_definitions(): array {

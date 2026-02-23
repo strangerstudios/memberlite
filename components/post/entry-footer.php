@@ -1,9 +1,9 @@
 <?php
 /**
  * Template part for displaying the post entry footer.
- * Version: TBD
+ * Version: 7.0
  *
- * @version TBD
+ * @version 7.0
  *
  * @package Memberlite
  */

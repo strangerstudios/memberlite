@@ -1,9 +1,9 @@
 <?php
 /**
  * Displays the footer back to top button.
- * Version: TBD
+ * Version: 7.0
  *
- * @version TBD
+ * @version 7.0
  *
  * @package Memberlite
  */

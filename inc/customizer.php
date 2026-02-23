@@ -889,7 +889,7 @@ class Memberlite_Customize {
 	 * Wraps sanitize_hex_color_no_hash() and ensures the
 	 * returned value is always lowercase.
 	 *
-	 * @since TBD
+	 * @since 7.0
 	 *
 	 * @param string $color Hex color value without hash.
 	 * @return string|null Sanitized lowercase hex color or null.
@@ -905,7 +905,7 @@ class Memberlite_Customize {
 	/**
 	 * Sanitization callback for color schemes.
 	 *
-	 * @since TBD
+	 * @since 7.0
 	 *
 	 * @param string $value Color scheme name value.
 	 * @return string Color scheme name.
@@ -965,7 +965,7 @@ class Memberlite_Customize {
 	 *
 	 * Passes color scheme data as colorSchemes global.
 	 *
-	 * @since TBD
+	 * @since 7.0
 	 */
 	public static function customizer_controls_js() {
 		wp_enqueue_script(
@@ -1028,7 +1028,7 @@ add_action( 'customize_preview_init', array( 'Memberlite_Customize', 'live_previ
  *
  * This ensures the individual color settings are always the source of truth.
  *
- * @since TBD
+ * @since 7.0
  */
 add_action( 'customize_save_after', 'memberlite_save_scheme_colors' );
 

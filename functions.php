@@ -4,7 +4,7 @@
  *
  * @package Memberlite
  */
-define( 'MEMBERLITE_VERSION', '6.1.1.1.0' );
+define( 'MEMBERLITE_VERSION', '6.1.1.1.2' );
 define( 'MEMBERLITE_URL', get_template_directory_uri() );
 
 // enqueue additional stylesheets and javascript
@@ -817,7 +817,7 @@ add_filter( 'theme_mod_copyright_textbox', 'memberlite_theme_mod_copyright_textb
 /**
  * Filter theme.json data to add theme settings
  *
- * @since TBD
+ * @since 7.0
  *
  * @param WP_Theme_JSON $theme_json Theme JSON object.
  * @return WP_Theme_JSON Theme JSON object.
@@ -894,7 +894,7 @@ add_filter( 'wp_theme_json_data_theme', 'memberlite_filter_theme_json' );
 /**
  * Dedupe the full color palette for the editor color picker.
  *
- * @since TBD
+ * @since 7.0
  *
  * @param array $editor_settings Editor settings array.
  * @param WP_Block_Editor_Context $context Editor context.

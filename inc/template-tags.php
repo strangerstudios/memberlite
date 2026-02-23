@@ -21,7 +21,7 @@ endif;
 /**
  * Returns the site title based on whether we're on the front page
  *
- * @since 7.0.0
+ * @since 7.0
  * @return string The HTML for the site title
  */
 if ( ! function_exists( 'memberlite_output_site_title' ) ) {
@@ -40,7 +40,7 @@ if ( ! function_exists( 'memberlite_output_site_title' ) ) {
 /**
  * Returns true if there is content to show in the header right area (meta login, widgets, or action content).
  *
- * @since 7.0.0
+ * @since 7.0
  * @return bool Whether to show the header right area.
  */
 if ( ! function_exists( 'memberlite_should_show_header_right' ) ) {
@@ -55,7 +55,7 @@ if ( ! function_exists( 'memberlite_should_show_header_right' ) ) {
 /**
  * Returns true if the meta login content is active.
  *
- * @since 7.0.0
+ * @since 7.0
  * @return bool The value of the meta login setting.
  */
 if ( ! function_exists( 'memberlite_is_meta_login_active' ) ) {

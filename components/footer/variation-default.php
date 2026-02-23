@@ -1,9 +1,9 @@
 <?php
 /**
  * Displays the footer content for the default footer variation.
- * Version: TBD
+ * Version: 7.0
  *
- * @version TBD
+ * @version 7.0
  *
  * @package Memberlite
  */

@@ -4,7 +4,7 @@
  *
  * Merges non-color defaults with the default color scheme.
  *
- * @since TBD
+ * @since 7.0
  * @return array
  */
 function memberlite_get_defaults(): array {
@@ -49,7 +49,7 @@ function memberlite_get_defaults(): array {
 	/**
 	 * Filter Memberlite default settings.
 	 *
-	 * @since TBD
+	 * @since 7.0
 	 * @param array $defaults Associative array of default settings.
 	 */
 	return apply_filters( 'memberlite_defaults', $defaults );
