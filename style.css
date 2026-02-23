@@ -160,7 +160,7 @@ a img {
 --------------------------------------------------------------*/
 body {
 	font-family: var(--memberlite-body-font), ui-sans-serif;
-	font-size: var(--wp--preset--font-size--16);
+	font-size: var(--wp--preset--font-size--18);
 }
 
 body,
@@ -2015,7 +2015,6 @@ body.mobile-nav-open {
 	justify-content: flex-end;
 }
 
-/** TODO: Address if other widgets should have this adjustment **/
 .header-widget-area .wp-block-social-links {
 	margin: 0;
 }
