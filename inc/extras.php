@@ -423,20 +423,20 @@ function memberlite_get_page_title() {
 
 	if ( is_post_type_archive() ) {
 		?>
-		<h1 id="page-title" class="page-title"><?php the_archive_title(); ?></h1>
+		<h1 id="page-title"><?php the_archive_title(); ?></h1>
 		<?php
 	} elseif ( is_author() || is_tag() || is_archive() ) {
 		$archive_title = get_the_archive_title();
 
 		if ( ! empty( $archive_title ) ) { ?>
-			<h1 id="page-title" class="page-title">
+			<h1 id="page-title">
 				<?php echo wp_kses_post( $archive_title ); ?>
 			</h1>
 			<?php
 		}
 	} elseif ( is_search() ) {
 		?>
-		<h1 id="page-title" class="page-title">
+		<h1 id="page-title">
 			<?php
 				/* translators: %s: search keywords */
 				printf( esc_html__( 'Search Results for: %s', 'memberlite' ), '<span>' . get_search_query() . '</span>' );
@@ -445,7 +445,7 @@ function memberlite_get_page_title() {
 		<?php
 	} elseif ( is_home() ) {
 		?>
-		<h1 id="page-title" class="page-title">
+		<h1 id="page-title">
 		<?php
 		if ( get_option( 'page_for_posts' ) ) {
 			echo esc_html( get_the_title( get_option( 'page_for_posts' ) ) );
