@@ -1313,7 +1313,7 @@ body.mobile-nav-open {
 }
 
 #mobile-navigation ul li.menu-item a {
-	border-bottom: 1px solid color-mix(in srgb, var(--memberlite-color-site-navigation-background), black 10%);
+	border-bottom: 1px solid light-dark( color-mix(in srgb, var(--memberlite-color-site-navigation-background), black 10%), color-mix(in srgb, var(--memberlite-color-site-navigation-background), white 10%) );
 	color: var(--memberlite-color-site-navigation);
 	display: block;
 	padding: calc( var(--wp--preset--spacing--10) / 2 ) var(--wp--preset--spacing--10);
@@ -1349,8 +1349,8 @@ body.mobile-nav-open {
 	margin: 0;
 }
 
-#mobile-navigation .member-navigation {
-	margin-bottom: var(--wp--preset--spacing--30);
+.logged-in #mobile-navigation .member-navigation {
+	margin-bottom: var(--wp--preset--spacing--40);
 }
 
 #mobile-navigation #meta-member .user {
@@ -1363,9 +1363,10 @@ body.mobile-nav-open {
 	gap: var(--wp--preset--spacing--10);
 }
 
-.logged-in #mobile-navigation .member-navigation:has(ul > li + li),
-.logged-in #mobile-navigation .member-navigation:has(ul > li + li) .menu {
+#mobile-navigation .member-navigation:has(ul > li + li),
+#mobile-navigation .member-navigation:has(ul > li + li) .menu {
     display: block;
+	margin: 0;
 }
 
 #mobile-navigation .menu-item-search {

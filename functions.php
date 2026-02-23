@@ -485,7 +485,7 @@ add_filter( 'wp_nav_menu_items', 'memberlite_menus', 10, 2 );
 function memberlite_member_menu_cb( $args ) {
 	extract( $args );
 	if ( empty( $link_before ) ) {
-		$link_before = '<li class="menu_item">';
+		$link_before = '<li class="menu-item">';
 	}
 	if ( empty( $link_after ) ) {
 		$link_after = '</li>';
