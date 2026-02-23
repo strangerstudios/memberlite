@@ -16,7 +16,7 @@ get_header(); ?>
 			while ( have_posts() ) :
 				the_post();
 ?>
-				<?php get_template_part( 'components/page/content-landing', 'page' ); ?>
+				<?php get_template_part( 'components/page/content-landing' ); ?>
 				<?php
 				// If comments are open or we have at least one comment, load up the comment template
 				if ( comments_open() || '0' != get_comments_number() ) :
