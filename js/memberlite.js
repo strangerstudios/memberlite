@@ -84,8 +84,29 @@
 				}
 			});
 
+			// Sticky navigation
+			var stickyWrapper = $( '.site-navigation-sticky-wrapper' );
+			if ( stickyWrapper.length ) {
+				var stickyNav = $( '#site-navigation' );
+				var navHeight = stickyNav.outerHeight();
+
+				// Size wrapper and nav to the measured height.
+				stickyWrapper.css( 'height', navHeight );
+				stickyNav.css( 'height', navHeight );
+
+				var adminBarHeight = $( '#wpadminbar' ).outerHeight() || 0;
+				var stickyTop = stickyWrapper.offset().top - adminBarHeight;
+
+				$( window ).on( 'scroll', function() {
+					if ( $( window ).scrollTop() >= stickyTop ) {
+						stickyNav.addClass( 'site-navigation-sticky' ).css( 'top', adminBarHeight );
+					} else {
+						stickyNav.removeClass( 'site-navigation-sticky' ).css( 'top', '' );
+					}
+				} );
+			}
+
 		}
 	);
 
 }( jQuery ) );
-

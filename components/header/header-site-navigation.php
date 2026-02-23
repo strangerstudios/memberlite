@@ -29,19 +29,5 @@ if ( $sticky_nav == true ) { ?>
 		<?php
 		if ( $sticky_nav == true ) { ?>
 	</div> <!-- .site-navigation-sticky-wrapper -->
-	<script>
-		jQuery(document).ready(function ($) {
-			var s = $("#site-navigation");
-			var pos = s.position();
-			$(window).scroll(function() {
-				var windowpos = $(window).scrollTop();
-				if ( windowpos >= pos.top ) {
-					s.addClass("site-navigation-sticky");
-				} else {
-					s.removeClass("site-navigation-sticky");
-				}
-			});
-		});
-	</script>
 <?php }
 }
