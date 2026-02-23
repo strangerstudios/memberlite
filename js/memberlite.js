@@ -78,6 +78,12 @@
 				mobilenavTrigger.attr( 'aria-expanded', false ).focus();
 			});
 
+			$( document ).on( 'keydown', function( e ) {
+				if ( e.key === 'Escape' && mobileNav.hasClass( 'open' ) ) {
+					mobileNavClose.click();
+				}
+			});
+
 			// skip link focus fix
 			// borrowed from _s theme: https://git.io/vWdr2
 			let isIe = /(trident|msie)/i.test( navigator.userAgent );

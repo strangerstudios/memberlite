@@ -11,7 +11,7 @@ Requires PHP: 7.2.24
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: memberlite
-Tags: one-column, two-columns, left-sidebar, right-sidebar, flexible-header, custom-background, custom-colors, custom-header, custom-menu, custom-logo, editor-style, featured-images, footer-widgets, full-width-template, post-formats, theme-options, threaded-comments, translation-ready, e-commerce
+Tags: one-column, two-columns, left-sidebar, right-sidebar, flexible-header, custom-background, custom-colors, custom-header, custom-menu, custom-logo, editor-style, featured-images, footer-widgets, full-width-template, theme-options, threaded-comments, translation-ready, e-commerce
 
 Memberlite WordPress Theme, (C) 2018 - 2026 Stranger Studios, LLC
 Memberlite is distributed under the terms of the GNU GPL.
@@ -240,7 +240,7 @@ h5 a:hover,
 h6 a:hover,
 .navigation a {
 	text-decoration-line: underline;
-	text-underline-offset: 5px;
+	text-underline-offset: 2px;
 }
 
 p {
@@ -1032,7 +1032,7 @@ a {
 
 #site-navigation a:hover:not(#site-navigation .menu-item-has-children > a:hover) {
 	text-decoration-line: underline;
-	text-underline-offset: 4px;
+	text-underline-offset: 2px;
 }
 
 #site-navigation ul > .menu-item-has-children > a {
@@ -1141,7 +1141,7 @@ a {
 .header-right .widget_nav_menu a:hover {
 	filter: brightness(var(--memberlite-hover-brightness));
 	text-decoration-line: underline;
-	text-underline-offset: 4px;
+	text-underline-offset: 2px;
 }
 
 .header-right .widget_nav_menu .menu-item-has-children > a:hover {
@@ -2317,6 +2317,10 @@ body.mobile-nav-open {
 	padding-left: 0;
 }
 
+.entry-meta a {
+	text-underline-offset: 2px;
+}
+
 .entry-author {
 	border: 1px solid var(--memberlite-color-borders);
 	display: flex;
@@ -2378,18 +2382,14 @@ body.mobile-nav-open {
 	padding: var(--wp--preset--spacing--10) 0 0 0;
 }
 
-#primary .entry-footer a {
+.entry-footer a {
 	color: var(--memberlite-color-link);
 	text-decoration: underline;
+	text-underline-offset: 2px;
 }
 
-#primary .entry-footer a:hover {
+.entry-footer a:hover {
 	color: var(--memberlite-color-text);
-}
-
-#primary .entry-footer a.pmpro_btn,
-.entry-footer a.pmpro_btn:hover {
-	border: none;
 }
 
 .byline,

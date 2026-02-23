@@ -31,7 +31,7 @@ get_header(); ?>
 					if ( $content_archives === 'grid' ) {
 						get_template_part( 'components/post/content', 'grid' );
 					} else {
-						get_template_part( 'components/post/content', get_post_format() );
+						get_template_part( 'components/post/content' );
 					}
 				?>
 			<?php endwhile; ?>

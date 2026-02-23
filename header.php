@@ -15,15 +15,11 @@
 </head>
 
 <body <?php body_class(); ?>>
-<?php
-do_action( 'memberlite_before_page' );
 
-if ( function_exists( 'wp_body_open' ) ) {
-	wp_body_open();
-} else {
-	do_action( 'wp_body_open' );
-}
-?>
+<?php wp_body_open(); ?>
+
+<?php do_action( 'memberlite_before_page' ); ?>
+
 <div id="page" class="hfeed site">
 
 	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'memberlite' ); ?></a>
