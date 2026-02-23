@@ -300,7 +300,7 @@ function memberlite_the_content( $content ) {
 		 * Filter to turn enlarge/enhance the excerpt text for a single post with a separator.
 		 *
 		 * @since 4.5.4
-		 * @since TBD Reversed filter default to `false` in TBD
+		 * @since 7.0 Reversed filter default to `false` in 7.0
 		 *
 		 * @param bool $memberlite_excerpt_larger Enlarge/enhance the excerpt text on a single post.
 		 * @return bool $memberlite_excerpt_larger
@@ -412,7 +412,7 @@ function memberlite_loop_image() {
 /**
  * Get just the page title HTML (<h1> tag).
  *
- * @since TBD
+ * @since 7.0
  *
  * @return string The page title HTML.
  */
@@ -467,7 +467,7 @@ function memberlite_get_page_title() {
 /**
  * Get just the page description HTML (taxonomy/archive description).
  *
- * @since TBD
+ * @since 7.0
  *
  * @return string The page description HTML.
  */

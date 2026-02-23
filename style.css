@@ -4,7 +4,7 @@ Theme URI: https://www.paidmembershipspro.com/
 Author: Stranger Studios
 Author URI: https://www.strangerstudios.com
 Description: Memberlite is the ideal theme for your membership site - packed with integration for top plugins including Paid Memberships Pro and LifterLMS. It's fully customizable with your logo, colors, fonts, custom sidebars and more global layout settings. Extend the site appearance further with icons, masthead banners, post formats, and additional settings for your site's pages. Memberlite is responsive, clean and minimal.
-Version: 6.1.1.1
+Version: 6.1.1.1.2
 Requires at least: 6.0
 Tested up to: 6.9
 Requires PHP: 7.2.24
@@ -2478,12 +2478,15 @@ body.mobile-nav-open {
 }
 
 .grid-list .entry-header {
+	align-items: center;
+	display: flex;
+	flex-direction: column;
 	margin-top: var(--wp--preset--spacing--20);
 	z-index: 1;
 }
 
 .grid-list .entry-header .avatar {
-	border: 2px solid var(--memberlite-color-white);
+	border: 2px solid var(--memberlite-color-borders);
 	margin-top: -4.35rem;
 }
 

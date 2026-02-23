@@ -1,9 +1,9 @@
 <?php
 /**
  * Template part for displaying a message that posts cannot be found.
- * Version: TBD
+ * Version: 7.0
  *
- * @version TBD
+ * @version 7.0
  *
  * @package Memberlite
  */

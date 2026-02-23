@@ -1,9 +1,9 @@
 <?php
 /**
  * Displays the Copyright Text in the footer site info area.
- * Version: TBD
+ * Version: 7.0
  *
- * @version TBD
+ * @version 7.0
  *
  * @package Memberlite
  */

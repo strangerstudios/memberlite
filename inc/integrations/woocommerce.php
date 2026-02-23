@@ -64,7 +64,7 @@ add_filter( 'woocommerce_output_related_products_args', 'memberlite_woocommerce_
 /**
  * Filter the page title for WooCommerce pages.
  *
- * @since TBD
+ * @since 7.0
  *
  * @param string $page_title_html The page title HTML.
  * @return string The filtered page title HTML.
@@ -96,7 +96,7 @@ add_filter( 'memberlite_get_page_title', 'memberlite_woocommerce_page_title' );
 /**
  * Filter the page description for WooCommerce pages.
  *
- * @since TBD
+ * @since 7.0
  *
  * @param string $page_description_html The page description HTML.
  * @return string The filtered page description HTML.
