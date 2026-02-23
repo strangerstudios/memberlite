@@ -266,7 +266,7 @@ if ( ! function_exists( 'memberlite_setup' ) ) :
 		// Enable support for responsive embeds.
 		add_theme_support( 'responsive-embeds' );
 
-		// This theme uses wp_nav_menu() in five locations.
+		// This theme uses wp_nav_menu() in four locations.
 		register_nav_menus(
 			array(
 				'primary'           => __( 'Primary', 'memberlite' ),
