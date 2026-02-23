@@ -48,7 +48,6 @@ function memberlite_settings_meta_box_callback( $post ) {
 	$memberlite_banner_right = get_post_meta($post->ID, '_memberlite_banner_right', true);
 	$memberlite_banner_icon = get_post_meta($post->ID, '_memberlite_banner_icon', true);
 	$memberlite_banner_bottom = get_post_meta($post->ID, '_memberlite_banner_bottom', true);
-	$memberlite_hide_page_nav = get_post_meta($post->ID, '_memberlite_hide_page_nav', true);
 	$memberlite_landing_page_checkout_button = get_post_meta($post->ID, '_memberlite_landing_page_checkout_button', true);
 	$pmproal_landing_page_level = get_post_meta($post->ID, '_pmproal_landing_page_level', true);
 	$memberlite_landing_page_upsell = get_post_meta($post->ID, '_memberlite_landing_page_upsell', true);
