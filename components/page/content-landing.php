@@ -6,7 +6,7 @@
  */
 ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>	
+<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<div class="entry-content">
 		<?php do_action( 'memberlite_before_content_page' ); ?>
 		<?php the_content(); ?>
@@ -24,7 +24,7 @@
 		<?php do_action( 'memberlite_after_content_page' ); ?>
 
 	</div><!-- .entry-content -->
-	<?php if ( current_user_can( 'edit_post', $post->ID ) ) { ?>
+	<?php if ( current_user_can( 'edit_post', get_the_ID() ) ) { ?>
 		<footer class="entry-footer">
 			<?php edit_post_link( esc_html__( 'Edit', 'memberlite' ), '<span class="edit-link">', '</span>' ); ?>
 		</footer><!-- .entry-footer -->

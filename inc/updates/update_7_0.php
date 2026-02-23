@@ -48,6 +48,10 @@ function memberlite_migrate_colors_to_theme_mods(): void {
 		$resolved[ $key ] = '';
 		$existing = get_theme_mod( $key, '' );
 		if ( ! empty( $existing ) ) {
+			if ( $key === 'header_textcolor' && $existing === 'blank' ) {
+				$resolved[ $key ] = 'blank';
+				continue;
+			}
 			$sanitized = sanitize_hex_color_no_hash( '#' . ltrim( $existing, '#' ) );
 			if ( ! empty( $sanitized ) ) {
 				$has_custom_colors = true;

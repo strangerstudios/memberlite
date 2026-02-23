@@ -18,6 +18,52 @@ if ( ! function_exists( 'memberlite_the_custom_logo' ) ) :
 	}
 endif;
 
+/**
+ * Returns the site title based on whether we're on the front page
+ *
+ * @since 7.0.0
+ * @return string The HTML for the site title
+ */
+if ( ! function_exists( 'memberlite_output_site_title' ) ) {
+	function memberlite_output_site_title(): string {
+		$site_url = esc_url( home_url( '/' ) );
+		$site_name = esc_html( get_bloginfo( 'name' ) );
+
+		if ( is_front_page() ) {
+			return '<h1 class="site-title">' . $site_name . '</h1>';
+		}
+
+		return '<h1 class="site-title"><a href="' . $site_url . '">' . $site_name . '</a></h1>';
+	}
+}
+
+/**
+ * Returns true if there is content to show in the header right area (meta login, widgets, or action content).
+ *
+ * @since 7.0.0
+ * @return bool Whether to show the header right area.
+ */
+if ( ! function_exists( 'memberlite_should_show_header_right' ) ) {
+	function memberlite_should_show_header_right(): bool {
+		$meta_login  = get_theme_mod( 'meta_login', false );
+		$has_content = has_action( 'memberlite_after_member_info' ) || ! empty( $meta_login ) || is_active_sidebar( 'sidebar-3' );
+
+		return apply_filters( 'memberlite_show_header_right', $has_content );
+	}
+}
+
+/**
+ * Returns true if the meta login content is active.
+ *
+ * @since 7.0.0
+ * @return bool The value of the meta login setting.
+ */
+if ( ! function_exists( 'memberlite_is_meta_login_active' ) ) {
+	function memberlite_is_meta_login_active(): bool {
+		return get_theme_mod( 'meta_login', false );
+	}
+}
+
 if ( ! function_exists( 'memberlite_paging_nav' ) ) :
 	/**
 	 * Display navigation to next/previous set of posts when applicable.

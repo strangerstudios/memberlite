@@ -6,7 +6,7 @@ window.MemberliteMultiPostThumbnails = {
 
 	setThumbnailID: function(thumb_id, id, post_type){
 		var field = jQuery('input[value=_' + post_type + '_' + id + '_thumbnail_id]', '#list-table');
-		if ( field.size() > 0 ) {
+		if ( field.length > 0 ) {
 			jQuery('#meta\\[' + field.attr('id').match(/[0-9]+/) + '\\]\\[value\\]').text(thumb_id);
 		}
 	},

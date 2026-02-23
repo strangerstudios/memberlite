@@ -118,8 +118,8 @@
 					currentValue = wp.customize(colorKey) ? wp.customize(colorKey)() : '';
 				}
 
-				const schemeValue = schemeColors[colorKey].toUpperCase();
-				const compareValue = (currentValue || '').toUpperCase();
+				const schemeValue = schemeColors[colorKey];
+				const compareValue = (currentValue || '').replace(/^#/, '');
 
 				if (schemeValue !== compareValue) {
 					isMatch = false;
