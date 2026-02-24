@@ -1,0 +1,179 @@
+/*--------------------------------------------------------------
+9.0 Widgets
+--------------------------------------------------------------*/
+#secondary .wp-block-calendar thead th,
+#secondary .wp-block-calendar tbody td {
+	padding: .7rem var(--wp--preset--spacing--10);
+}
+
+/* Make sure select elements fit in widgets */
+.widget select {
+	max-width: 100%;
+}
+
+#secondary .widget_block.widget_search input[type=search] {
+	width: auto;
+}
+
+/* Other widgets */
+.widget_tag_cloud .tag-link-count {
+	font-size: var(--wp--preset--font-size--14);
+}
+
+.widget_tag_cloud .tagcloud a:link {
+	text-decoration: none;
+}
+
+#secondary .widget.widget_text .textwidget {
+	padding: var(--wp--preset--spacing--10);
+}
+
+#secondary .widget.widget_text .textwidget.custom-html-widget {
+	padding: 0;
+}
+
+/* All widgets */
+#secondary .widget {
+	margin-bottom: var(--wp--preset--spacing--20);
+}
+
+.widget-area .widget a:not(.btn):not(.pmpro_btn) {
+	border-bottom: 1px solid transparent;
+	text-decoration: none;
+}
+
+.widget-area .widget a:not(.btn):not(.pmpro_btn):hover {
+	border-bottom-color: var(--memberlite-color-link);
+}
+
+#secondary .widget ul.menu,
+#secondary .widget_archive ul,
+#secondary .widget_recent_entries ul,
+#secondary .widget_categories ul,
+#secondary .widget_recent_comments ul,
+#secondary .widget_search ul,
+#secondary .widget_meta ul {
+	list-style: none;
+	margin: 0;
+	padding-left: 0;
+}
+
+#secondary .widget ul.children {
+	color: var(--memberlite-color-text);
+	list-style-type: circle;
+	margin-left: 1.9rem;
+}
+
+.widget_calendar #wp-calendar caption {
+	font-size: var(--wp--preset--font-size--24);
+	text-align: center;
+}
+
+#secondary .widget-title {
+	border-top: 1px solid var(--memberlite-color-borders);
+	margin: 0;
+	padding: var(--wp--preset--spacing--20) 0 var(--wp--preset--spacing--10) 0;
+}
+
+#secondary .widget-title a {
+	text-decoration: none;
+}
+
+.widget_calendar #wp-calendar caption {
+	background-color: var(--memberlite-color-borders);
+	border-top: 1px solid var(--memberlite-color-borders);
+	padding: .7rem var(--wp--preset--spacing--10);
+}
+
+#secondary select {
+	margin: var(--wp--preset--spacing--10);
+}
+
+#secondary .widget_nav_menu h3.widget-title {
+	margin-bottom: 0;
+}
+
+#secondary .widget_nav_menu li.page_item_has_children .children {
+	display: none;
+}
+
+#secondary .widget_nav_menu li.page_item_has_children.current_page_item .children,
+#secondary .widget_nav_menu li.page_item_has_children.current_page_parent .children,
+#secondary .widget_nav_menu li.page_item_has_children.current_page_ancestor .children {
+	display: block;
+}
+
+#secondary .widget_nav_menu li.current_page_item > a,
+#secondary .widget_nav_menu li.current_page_item > a:hover {
+	font-weight: bold;
+	border-bottom: 1px solid var(--memberlite-color-link);
+}
+
+.widget_recent_comments ul li a,
+.widget_recent_entries ul li a,
+.widget_recent_entries_thumbnails ul li a {
+	hyphens: auto;
+	word-wrap: break-word;
+	overflow-wrap: break-word;
+}
+
+.widget_recent_entries_thumbnails ul {
+	margin-left: 0;
+	margin-top: var(--wp--preset--spacing--10);
+}
+
+.widget_recent_entries_thumbnails li {
+	display: grid;
+	grid-template-columns: 80px var(--wp--preset--spacing--10) auto;
+	grid-template-areas:
+	"thumbnail . title"
+	"thumbnail . date";
+	margin-bottom: var(--wp--preset--spacing--10);
+}
+
+.widget_recent_entries_thumbnails .entry-title {
+	align-self: end;
+	grid-area: title;
+	margin: 0;
+}
+
+.widget_recent_entries_thumbnails .post-date {
+	align-self: start;
+	grid-area: date;
+}
+
+.footer-widgets .widget_recent_entries_thumbnails .post-date {
+	opacity: 0.8;
+}
+
+.widget_recent_entries_thumbnails a.widget_post_thumbnail,
+#secondary .widget_recent_entries_thumbnails a.widget_post_thumbnail {
+	border: none;
+	border-radius: 50%;
+	grid-area: thumbnail;
+	height: auto;
+	opacity: 1.0;
+	width: 100%;
+}
+
+.widget_recent_entries_thumbnails a.widget_post_thumbnail:hover,
+#secondary .widget_recent_entries_thumbnails a.widget_post_thumbnail:hover {
+	border: none;
+}
+
+.widget_recent_entries_thumbnails .widget_post_thumbnail img {
+	aspect-ratio: 1 / 1;
+	border-radius: 50%;
+	margin: 0;
+	object-fit: cover;
+	object-position: center center;
+}
+
+.widget_recent_entries_thumbnails .widget_post_thumbnail .fa {
+	font-size: var(--wp--preset--font-size--42);
+	margin: 20px;
+}
+
+#secondary .widget.widget_meta h3.widget-title {
+	margin-bottom: 0;
+}

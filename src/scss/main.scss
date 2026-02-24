@@ -5,14 +5,17 @@
 @import "base/typography";
 @import "base/elements";
 
+@import "components/alerts";
 @import "components/buttons";
+@import "components/breadcrumbs";
 @import "components/comments";
 @import "components/forms";
 @import "components/grid-list";
-@import "components/messages";
+@import "components/pagination";
+@import "components/shortcodes";
+@import "components/widgets";
 
 @import "layout/header";
-@import "layout/sidebar";
 @import "layout/footer";
 @import "layout/content";
 @import "layout/masthead";
@@ -20,10 +23,6 @@
 @import "pages/404";
 
 @import "plugins/pmpro";
-
-@import "shortcodes/accordion";
-@import "shortcodes/banner";
-@import "shortcodes/recent-posts";
 
 @import "utilities/accessibility";
 @import "utilities/alignments";

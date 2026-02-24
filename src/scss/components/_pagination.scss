@@ -1,0 +1,47 @@
+/*--------------------------------------------------------------
+5.4 Prev/Next Navigation
+--------------------------------------------------------------*/
+.site-main .post-navigation,
+.site-main .paging-navigation,
+.site-main .page-navigation,
+.site-main .page-links {
+	margin: var(--wp--preset--spacing--20) 0;
+	overflow: hidden;
+}
+
+.site-main .comment-navigation {
+	margin: 1em 0;
+	overflow: hidden;
+}
+
+.site-main .page-navigation,
+.site-main .page-links {
+	border-top: 1px solid var(--memberlite-color-borders);
+	clear: both;
+	padding-top: var(--wp--preset--spacing--20);
+}
+
+#nav-below::after {
+	content: "";
+	clear: both;
+	display: table;
+}
+
+.comment-navigation .nav-previous,
+.paging-navigation .nav-previous,
+.post-navigation .nav-previous,
+.page-navigation .nav-previous {
+	float: left;
+	overflow-wrap: break-word;
+	text-align: left;
+	width: 49%;
+}
+
+.comment-navigation .nav-next,
+.paging-navigation .nav-next,
+.post-navigation .nav-next,
+.page-navigation .nav-next {
+	float: right;
+	text-align: right;
+	width: 49%;
+}

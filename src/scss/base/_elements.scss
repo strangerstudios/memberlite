@@ -1,6 +1,11 @@
 /*--------------------------------------------------------------
 3.0 Elements
 --------------------------------------------------------------*/
+
+a {
+	color: var(--memberlite-color-link);
+}
+
 hr {
 	background-color: var(--memberlite-color-borders);
 	border: 0;
