@@ -1922,6 +1922,7 @@ body.mobile-nav-open {
 	font-family: var(--memberlite-header-font);
 	font-weight: 700;
 	line-height: var(--wp--custom--line-height--heading);
+	color: var(--memberlite-color-header-text);
 	margin: 0;
 }
 
