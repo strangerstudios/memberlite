@@ -1,0 +1,201 @@
+/*--------------------------------------------------------------
+10.0 Content
+--------------------------------------------------------------*/
+.page.sidebar-content #primary,
+.page.sidebar-left #primary,
+.blog.sidebar-blog-left #primary,
+.archive.sidebar-blog-left #primary,
+.search.sidebar-blog-left #primary,
+.single.sidebar-blog-left #primary {
+	order: 2;
+}
+
+.page.content-sidebar #primary,
+.blog.sidebar-blog-right #primary,
+.archive.sidebar-blog-right #primary,
+.search.sidebar-blog-right #primary,
+.single.sidebar-blog-right #primary {
+	order: unset;
+}
+
+.page.page-template-full-width #primary,
+.page.page-template-narrow-width #primary {
+	order: unset;
+}
+
+.single #secondary {
+	margin-top: var(--wp--preset--spacing--40);
+}
+
+.site-content > .row {
+	padding-top: var(--wp--preset--spacing--50);
+}
+
+/*--------------------------------------------------------------
+10.3 Posts and Pages
+--------------------------------------------------------------*/
+.hentry {
+	margin: 0 0 var(--wp--preset--spacing--70);
+}
+
+.entry-title {
+	overflow-wrap: break-word;
+}
+
+.page-template-blank .hentry {
+	margin: 0;
+}
+
+.columns .hentry.memberlite_subpagelist_item {
+	margin: 0;
+}
+
+.hentry .entry-banner {
+	overflow: hidden;
+	position: relative;
+	margin: 0 0 var(--wp--preset--spacing--20) 0;
+}
+
+.hentry:has(.banner-image) .entry-header {
+	background-color: rgba(0, 0, 0, 0.6);
+	margin: 0;
+	padding: var(--wp--preset--spacing--50) var(--wp--preset--spacing--20);
+	position: relative;
+	width: 100%;
+}
+
+.hentry:has(.banner-image) .entry-header {
+	color: var(--memberlite-color-white);
+}
+
+.hentry:has(.banner-image) .entry-header a {
+	color: inherit;
+}
+
+.entry-header-grid .entry-header {
+	display: flex;
+	gap: var(--wp--preset--spacing--10);
+	margin: 0 0 var(--wp--preset--spacing--10) 0;
+}
+
+.entry-header-grid .entry-header-content {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.entry-header-grid .entry-banner .entry-header-content {
+	margin-bottom: 0;
+}
+
+.entry-header-grid .entry-header .entry-title {
+	margin: 0;
+	hyphens: auto;
+	word-wrap: break-word;
+	overflow-wrap: break-word;
+}
+
+.entry-header-grid .entry-header .post_author_avatar {
+	flex-shrink: 0;
+	height: auto;
+}
+
+.hentry .post_author_avatar img {
+	border-radius: 50%;
+	display: block;
+}
+
+.hentry.pmpro-level-required h1.entry-title a:before,
+.pmpro-body-level-required .masthead-post-byline h1.entry-title:before {
+	content: "\f023";
+	font-family: 'Font Awesome 5 Free';
+	font-weight: 900;
+	padding-right: 10px;
+}
+
+.pmpro-level-required.pmpro-has-access h1.entry-title a:before,
+.pmpro-body-level-required.pmpro-body-has-access h1.entry-title:before {
+	content: "";
+	font-family: 'Font Awesome 5 Free';
+	padding-right: 0;
+}
+
+.entry-content .wp-post-image {
+	margin-bottom: var(--wp--preset--spacing--20);
+}
+
+.entry-meta a {
+	text-underline-offset: 2px;
+}
+
+.entry-author {
+	border: 1px solid var(--memberlite-color-borders);
+	display: flex;
+	flex: auto;
+	flex-wrap: nowrap;
+	gap: var(--wp--preset--spacing--10);
+	margin: var(--wp--preset--spacing--20) 0;
+	max-width: 100%;
+	padding: var(--wp--preset--spacing--20);
+}
+
+.entry-author .post_author_avatar {
+	flex-grow: 1;
+	min-width: 80px;
+}
+
+.entry-author .post_author_details p:last-child {
+	margin-bottom: 0;
+}
+
+.entry-author .post_author_name {
+	font-weight: bold;
+	margin: 0;
+}
+
+.hentry .entry-content .lead .wp-post-image {
+	margin-bottom: 0;
+}
+
+.entry-content,
+.entry-summary {
+	margin: 0;
+}
+
+.error-404 .entry-content {
+	padding: 0 0 var(--wp--preset--spacing--50) 0;
+	text-align: center;
+}
+
+.page .entry-content {
+	border-bottom: 0;
+}
+
+#main .columns .hentry.memberlite_subpagelist_item .entry-content {
+	border-bottom: none;
+}
+
+.post .entry-footer {
+	border-top: 1px solid var(--memberlite-color-borders);
+	padding: var(--wp--preset--spacing--10) 0 0 0;
+}
+
+.entry-footer a {
+	color: var(--memberlite-color-link);
+	text-decoration: underline;
+	text-underline-offset: 2px;
+}
+
+.entry-footer a:hover {
+	color: var(--memberlite-color-text);
+}
+
+.byline,
+.updated {
+	display: none;
+}
+
+.single .byline,
+.group-blog .byline {
+	display: inline;
+}

@@ -1,0 +1,119 @@
+/*--------------------------------------------------------------
+4.3 Messages - Success, Error, Info, Alert
+--------------------------------------------------------------*/
+.pmpro_bbp_membership_msg,
+#sitewide-notice p,
+p.success,
+p.error,
+p.info,
+p.alert {
+	border: 1px solid var(--memberlite-color--info-border);
+	border-radius: var(--wp--custom--border--radius);
+	box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.07);
+	background-color: var(--memberlite-color--info-background);
+	color: var(--memberlite-color--info-text);
+	font-size: var(--wp--preset--font-size--18);
+	font-weight: 400;
+	margin: var(--wp--preset--spacing--20) 0;
+	padding: var(--wp--preset--spacing--10);
+	text-align: left;
+}
+
+p.success {
+	background-color: var(--memberlite-color--success-background);
+	border-color: var(--memberlite-color--success-border);
+	color: var(--memberlite-color--success-text);
+}
+
+p.success a {
+	color: var(--memberlite-color--success-link);
+}
+
+p.error {
+	background-color: var(--memberlite-color--error-background);
+	border-color: var(--memberlite-color--error-border);
+	color: var(--memberlite-color--error-text);
+}
+
+p.error a {
+	color: var(--memberlite-color--error-link);
+}
+
+p.info a {
+	color: var(--memberlite-color--info-link);
+}
+
+p.alert {
+	background-color: var(--memberlite-color--alert-background);
+	border-color: var(--memberlite-color--alert-border);
+	color: var(--memberlite-color--alert-text);
+}
+
+p.alert a {
+	color: var(--memberlite-color--alert-link);
+}
+
+#sitewide-notice p {
+	background-color: var(--memberlite-color-borders);
+	border-color: var(--memberlite-color--alert-border);
+	color: var(--memberlite-color--alert-text);
+}
+
+.pmpro_bbp_membership_msg {
+	background-color: var(--memberlite-color--alert-background);
+	border-color: var(--memberlite-color--alert-border);
+	color: var(--memberlite-color--alert-text);
+	clear: both;
+}
+
+.pmpro_bbp_membership_msg a {
+	color: var(--memberlite-color--alert-link);
+}
+
+.primary {
+	color: var(--memberlite-color-primary);
+}
+
+.secondary {
+	color: var(--memberlite-color-secondary);
+}
+
+.action {
+	color: var(--memberlite-color-action);
+}
+
+.has-text-color a {
+	color: inherit;
+}
+
+.info {
+	color: var(--memberlite-color--info-text);
+}
+
+.success {
+	color: var(--memberlite-color--success-text);
+}
+
+.error {
+	color: var(--memberlite-color--error-text);
+}
+
+.alert {
+	color: var(--memberlite-color--alert-text);
+}
+
+.muted {
+	opacity: .6;
+}
+
+.bg_primary {
+	background-color: var(--memberlite-color-primary);
+}
+
+.bg_secondary {
+	background-color: var(--memberlite-color-secondary);
+}
+
+.bg_action {
+	background-color: var(--memberlite-color-action);
+}
