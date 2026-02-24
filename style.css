@@ -77,40 +77,48 @@ Memberlite is distributed under the terms of the GNU GPL.
 /*--------------------------------------------------------------
 1.0 - Reset
 --------------------------------------------------------------*/
-applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, font, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td {
-	border: 0;
-	font-size: 100%;
-	font-style: inherit;
-	font-weight: inherit;
-	margin: 0;
-	outline: 0;
-	padding: 0;
-	vertical-align: baseline;
-}
 
-input, textarea, select, button {
-	font-family: inherit;
-}
-
-html {
-	-webkit-text-size-adjust: 100%; /* Prevents iOS text size adjust after orientation change, without disabling user zoom */
-}
-
-*,
-*:before,
-*:after {
+*, *::before, *::after {
 	box-sizing: border-box;
 }
 
+/* 3. Enable keyword animations */
+@media (prefers-reduced-motion: no-preference) {
+	html {
+		interpolate-size: allow-keywords;
+	}
+}
+
 body {
-	background-color: var(--memberlite-color-site-background); /* Fallback for when there is no custom background color defined. */
+	line-height: 1.5;
+	-webkit-font-smoothing: antialiased;
+	background-color: var(--memberlite-color-site-background);
+}
+
+/* @todo: Confirm WP's alignment classes are okay with this */
+img, picture, video, canvas, svg {
+	display: block;
+	max-width: 100%;
+}
+
+input, button, textarea, select {
+	font: inherit;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+	overflow-wrap: break-word;
+}
+
+p {
+	text-wrap: pretty;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	text-wrap: balance;
+}
+
+#root, #__next {
+	isolation: isolate;
 }
 
 ol,
@@ -1701,6 +1709,7 @@ body.mobile-nav-open {
 #secondary .widget_meta ul {
 	list-style: none;
 	margin: 0;
+	padding-left: 0;
 }
 
 #secondary .widget ul.children {
