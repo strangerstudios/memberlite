@@ -2011,6 +2011,10 @@ body.mobile-nav-open {
 	justify-content: flex-end;
 }
 
+.header-widget-area .wp-block-social-links {
+	margin: 0;
+}
+
 .header-right:has(#meta-member) .header-widget-area {
 	margin-bottom: var(--wp--preset--spacing--10);
 }
