@@ -1,0 +1,151 @@
+/*--------------------------------------------------------------
+3.0 Elements
+--------------------------------------------------------------*/
+hr {
+	background-color: var(--memberlite-color-borders);
+	border: 0;
+	height: 1px;
+	margin: var(--wp--preset--spacing--20) 0;
+}
+
+hr.wp-block-separator {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+hr.wp-block-separator:not(.is-style-wide):not(.is-style-dots) {
+	max-width: 100px;
+}
+
+hr.wp-block-separator.is-style-dots:before {
+	color: var(--memberlite-color-borders);
+}
+
+hr.wp-block-separator.is-style-wide {
+	border: 0;
+}
+
+ul,
+ol {
+	margin: 0 0 var(--wp--preset--spacing--20) 0;
+}
+
+.entry-content ul,
+.entry-content ol {
+	padding-left: 3.2rem;
+}
+
+.wp-block-query ul {
+	padding-left: 0;
+}
+
+ul {
+	list-style: disc;
+}
+
+ul ul {
+	list-style-type: circle;
+}
+
+ol {
+	list-style: decimal;
+}
+
+ul li,
+ol li {
+	margin: 0 0 1rem 0;
+}
+
+ul li:last-child,
+ol li:last-child {
+	margin: 0;
+}
+
+li > ul,
+li > ol {
+	margin-bottom: 1rem;
+	margin-top: 1rem;
+}
+
+img {
+	height: auto; /* Make sure images are scaled correctly. */
+	max-width: 100%; /* Adhere to container width. */
+}
+
+figure {
+	margin: 0;
+}
+
+table {
+	margin: var(--wp--preset--spacing--20) 0;
+	width: 100%;
+}
+
+.wp-block-table thead,
+.wp-block-table.is-style-regular thead {
+	border: none;
+}
+
+th,
+.wp-block-table th {
+	font-family: var(--memberlite-header-font), ui-sans-serif;
+	font-weight: 400;
+	padding: var(--wp--preset--spacing--10);
+}
+
+thead th,
+tbody th,
+.wp-block-table thead th,
+.wp-block-table tbody th {
+	border-color: var(--memberlite-color-borders);
+	padding: var(--wp--preset--spacing--10);
+}
+
+thead th,
+.wp-block-table thead th {
+	background-color: color-mix(in srgb, var(--memberlite-color-borders) 30%, transparent);
+	border-style: solid;
+	border-width: 1px 0;
+}
+
+tbody th,
+.wp-block-table tbody th {
+	border-style: dotted;
+	border-width: 0 0 1px 0;
+}
+
+tbody td,
+.wp-block-table tbody td {
+	border-color: var(--memberlite-color-borders);
+	border-style: solid;
+	border-width: 0 0 1px 0;
+	padding: var(--wp--preset--spacing--10);
+	vertical-align: top;
+}
+
+tbody tr:nth-child(even) th,
+tbody tr:nth-child(even) td,
+.wp-block-table tbody tr:nth-child(even) th,
+.wp-block-table tbody tr:nth-child(even) td {
+	background-color: color-mix(in srgb, var(--memberlite-color-borders) 30%, transparent);
+}
+
+dl {
+	margin: var(--wp--preset--spacing--20) 0;
+	border-top: 1px solid var(--memberlite-color-borders);
+	border-bottom: 1px solid var(--memberlite-color-borders);
+}
+
+dt {
+	font-weight: bold;
+	padding: var(--wp--preset--spacing--20) 0 0 0;
+	border-top: 1px solid var(--memberlite-color-borders);
+}
+
+dd {
+	margin: 0 var(--wp--preset--spacing--20) var(--wp--preset--spacing--20);
+}
+
+dl dt:first-child {
+	border-top: none;
+}
