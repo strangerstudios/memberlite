@@ -346,3 +346,16 @@ big {
 	padding-top: var(--wp--preset--spacing--50);
 }
 
+.single.sidebar-blog-none .alignfull,
+.home.page-template-default .alignfull,
+.page-template-default.sidebar-none .alignfull,
+.page-template-full-width .alignfull,
+.page-template-fluid-width .alignfull,
+.page-template-narrow-width .alignfull,
+.page-template-blank .alignfull {
+	margin-left: calc(50% - 50vw);
+	margin-right: calc(50% - 50vw);
+	max-width: 1000%;
+	width: auto;
+}
+

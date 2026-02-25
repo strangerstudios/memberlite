@@ -82,3 +82,7 @@
 .wp-block-search .wp-block-search__button {
 	padding: calc(var(--wp--preset--spacing--10) / 2) var(--wp--preset--spacing--10);
 }
+
+.wp-block-image.alignfull {
+	text-align: center;
+}

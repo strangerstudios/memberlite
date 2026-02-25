@@ -1,7 +1,7 @@
 // abstracts/_mixins.scss
 @mixin breakpoint($size) {
 	@if $size == mobile    { @media (max-width: 767px) { @content; } }
-	@if $size == tablet    { @media (min-width: 768px) and (max-width: 959px) { @content; } }
+	@if $size == tablet    { @media (min-width: 768px) { @content; } }
 	@if $size == desktop   { @media (min-width: 960px) { @content; } }
 	@if $size == wide      { @media (min-width: 1160px) { @content; } }
 }
@@ -12,4 +12,11 @@
 	height: 1px;
 	width: 1px;
 	overflow: hidden;
+}
+
+@mixin remove-btn-defaults() {
+	padding: 0;
+	background: none;
+	border: none;
+	border-radius: 0;
 }
