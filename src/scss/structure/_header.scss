@@ -266,7 +266,7 @@
 		box-shadow: var(--memberlite-shadow);
 		position: fixed;
 		width: 100%;
-		z-index: 99999;
+		z-index: 10;
 	}
 
 	// Search item pushed to far right
@@ -307,7 +307,7 @@
 
 		li:hover > a {
 			background-color: light-dark(
-					color-mix(in srgb, var(--memberlite-color-text) 7%, transparent),
+					color-mix(in srgb, var(--memberlite-color-text) 4%, transparent),
 					color-mix(in srgb, var(--memberlite-color-text) 20%, transparent)
 			);
 		}

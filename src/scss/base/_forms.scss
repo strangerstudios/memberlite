@@ -1,6 +1,9 @@
-/*--------------------------------------------------------------
-4.2 Form Elements
---------------------------------------------------------------*/
+label {
+	font-family: var(--memberlite-body-font), ui-sans-serif;
+	font-size: 1.1rem;
+	line-height: 1.1rem;
+}
+
 input[type=checkbox],
 input[type=radio] {
 	padding: 0;
@@ -11,19 +14,6 @@ input[type=search] {
 	box-sizing: content-box;
 }
 
-input[type=search]::-webkit-search-decoration {
-	appearance: none;
-}
-
-label {
-	font-family: var(--memberlite-body-font), ui-sans-serif;
-}
-
-form label {
-	font-size: 1.1rem;
-	line-height: 1.1rem;
-}
-
 input[type=text],
 input[type=tel],
 input[type=email],
@@ -32,7 +22,11 @@ input[type=password],
 input[type=search],
 textarea {
 	background-color: var(--memberlite-color-site-background);
-	border: 1px solid light-dark( #222222, var(--memberlite-color-text) );
+	//border: 1px solid #222;
+	border: 1px solid light-dark(
+			color-mix(in srgb, var(--memberlite-color-text), white 12%),
+			color-mix(in srgb, var(--memberlite-color-text), black 60%)
+	);
 	border-radius: 8px;
 	box-shadow: none;
 	box-sizing: border-box;
@@ -45,6 +39,14 @@ textarea {
 	outline: none;
 	padding: 12px;
 	word-break: normal;
+
+	&:focus {
+		background-color: var(--memberlite-color-site-background);
+		border-color: $color-info-border;
+		box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, .25);
+		outline: none;
+		word-break: initial;
+	}
 }
 
 select {
@@ -53,24 +55,10 @@ select {
 	border: 1px solid var(--memberlite-color-borders);
 	border-radius: var(--wp--custom--border--radius);
 	padding: var(--wp--preset--spacing--10);
-}
 
-select:focus {
-	outline: none;
-}
-
-input[type=text]:focus,
-input[type=email]:focus,
-input[type=url]:focus,
-input[type=password]:focus,
-input[type=search]:focus,
-.content-area select:focus,
-textarea:focus {
-	background-color: var(--memberlite-color-site-background);
-	border-color: $color-info-border;
-	box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, .25);
-	outline: none;
-	word-break: initial;
+	&:focus {
+		outline: none;
+	}
 }
 
 textarea {
@@ -83,13 +71,13 @@ textarea {
 .search-form {
 	display: flex;
 	gap: calc(var(--wp--preset--spacing--10) / 2);
-}
 
-.search-form input[type=search] {
-	border: 1px solid var(--memberlite-color-borders);
-	border-radius: var(--wp--custom--border--radius);
-	color: var(--memberlite-color-text);
-	font-size: var(--wp--preset--font-size--16);
-	line-height: var(--wp--custom--line-height--body);
-	padding: calc( var(--wp--preset--spacing--10) / 2 );
+	input[type=search] {
+		border: 1px solid var(--memberlite-color-borders);
+		border-radius: var(--wp--custom--border--radius);
+		color: var(--memberlite-color-text);
+		font-size: var(--wp--preset--font-size--16);
+		line-height: var(--wp--custom--line-height--body);
+		padding: calc( var(--wp--preset--spacing--10) / 2 );
+	}
 }

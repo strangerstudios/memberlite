@@ -11,7 +11,7 @@
 @import "base/alerts";
 @import "base/buttons";
 @import "base/forms";
-@import "base/grid-list";
+@import "base/grid";
 
 // Blocks
 @import "blocks/blocks";
@@ -19,6 +19,7 @@
 // Re-usable components
 @import "components/breadcrumbs";
 @import "components/comments";
+@import "components/grid-list";
 @import "components/pagination";
 @import "components/shortcodes";
 @import "components/widgets";
