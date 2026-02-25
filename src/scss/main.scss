@@ -1,6 +1,10 @@
+/* Main Stylesheet */
+
+// Abstracts
 @import "abstracts/variables";
 @import "abstracts/mixins";
 
+// Base | Global
 @import "base/reset";
 @import "base/base";
 @import "base/utilities";
@@ -9,21 +13,27 @@
 @import "base/forms";
 @import "base/grid-list";
 
+// Blocks
+@import "blocks/blocks";
+
+// Re-usable components
 @import "components/breadcrumbs";
 @import "components/comments";
 @import "components/pagination";
 @import "components/shortcodes";
 @import "components/widgets";
 
-@import "layout/header";
-@import "layout/footer";
-@import "layout/content";
-@import "layout/masthead";
+// Structural pieces of Memberlite
+@import "structure/header";
+@import "structure/masthead";
+@import "structure/footer";
+@import "structure/content";
 
+// Page-specific styles
 @import "pages/404";
 
+// Plugin-specific styles
 @import "plugins/pmpro";
 
-@import "utilities/alignments";
-//@todo: Consider removing...
+//@todo: Get rid of this...
 @import "utilities/responsive";
