@@ -1,3 +1,9 @@
+
+.navigation a {
+	text-decoration-line: underline;
+	text-underline-offset: 2px;
+}
+
 #site-navigation {
 	background-color: var(--memberlite-color-site-navigation-background);
 	clear: both;
@@ -389,9 +395,6 @@ body.mobile-nav-open {
 	padding: calc(var(--wp--preset--spacing--10) / 2) 0;
 }
 
-/*--------------------------------------------------------------
-10.1 Header and Member Meta
---------------------------------------------------------------*/
 .site-header {
 	background-color: var(--memberlite-color-header-background);
 }

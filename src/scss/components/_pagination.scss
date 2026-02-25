@@ -21,12 +21,6 @@
 	padding-top: var(--wp--preset--spacing--20);
 }
 
-#nav-below::after {
-	content: "";
-	clear: both;
-	display: table;
-}
-
 .comment-navigation .nav-previous,
 .paging-navigation .nav-previous,
 .post-navigation .nav-previous,

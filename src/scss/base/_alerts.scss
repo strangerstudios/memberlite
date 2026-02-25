@@ -7,11 +7,11 @@ p.success,
 p.error,
 p.info,
 p.alert {
-	border: 1px solid var(--memberlite-color--info-border);
+	border: 1px solid $color-info-border;
 	border-radius: var(--wp--custom--border--radius);
 	box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.07);
-	background-color: var(--memberlite-color--info-background);
-	color: var(--memberlite-color--info-text);
+	background-color: $color-info-bg;
+	color: $color-info-text;
 	font-size: var(--wp--preset--font-size--18);
 	font-weight: 400;
 	margin: var(--wp--preset--spacing--20) 0;
@@ -20,54 +20,54 @@ p.alert {
 }
 
 p.success {
-	background-color: var(--memberlite-color--success-background);
-	border-color: var(--memberlite-color--success-border);
-	color: var(--memberlite-color--success-text);
+	background-color: $color-success-bg;
+	border-color: $color-success-border;
+	color: $color-success-text;
 }
 
 p.success a {
-	color: var(--memberlite-color--success-link);
+	color: $color-success-link;
 }
 
 p.error {
-	background-color: var(--memberlite-color--error-background);
-	border-color: var(--memberlite-color--error-border);
-	color: var(--memberlite-color--error-text);
+	background-color: $color-error-bg;
+	border-color: $color-error-border;
+	color: $color-error-text;
 }
 
 p.error a {
-	color: var(--memberlite-color--error-link);
+	color: $color-error-link;
 }
 
 p.info a {
-	color: var(--memberlite-color--info-link);
+	color: $color-info-link;
 }
 
 p.alert {
-	background-color: var(--memberlite-color--alert-background);
-	border-color: var(--memberlite-color--alert-border);
-	color: var(--memberlite-color--alert-text);
+	background-color: $color-alert-bg;
+	border-color: $color-alert-border;
+	color: $color-alert-text;
 }
 
 p.alert a {
-	color: var(--memberlite-color--alert-link);
+	color: $color-alert-link;
 }
 
 #sitewide-notice p {
 	background-color: var(--memberlite-color-borders);
-	border-color: var(--memberlite-color--alert-border);
-	color: var(--memberlite-color--alert-text);
+	border-color: $color-alert-border;
+	color: $color-alert-text;
 }
 
 .pmpro_bbp_membership_msg {
-	background-color: var(--memberlite-color--alert-background);
-	border-color: var(--memberlite-color--alert-border);
-	color: var(--memberlite-color--alert-text);
+	background-color: $color-alert-bg;
+	border-color: $color-alert-border;
+	color: $color-alert-text;
 	clear: both;
 }
 
 .pmpro_bbp_membership_msg a {
-	color: var(--memberlite-color--alert-link);
+	color: $color-alert-link;
 }
 
 .primary {
@@ -87,15 +87,15 @@ p.alert a {
 }
 
 .info {
-	color: var(--memberlite-color--info-text);
+	color: $color-info-text;
 }
 
 .success {
-	color: var(--memberlite-color--success-text);
+	color: $color-success-text;
 }
 
 .error {
-	color: var(--memberlite-color--error-text);
+	color: $color-error-text;
 }
 
 .alert {

@@ -1,0 +1,84 @@
+.wp-block-table thead,
+.wp-block-table.is-style-regular thead {
+	border: none;
+}
+
+.wp-block-table th {
+	font-family: var(--memberlite-header-font), ui-sans-serif;
+	font-weight: 400;
+	padding: var(--wp--preset--spacing--10);
+}
+
+.wp-block-table thead th,
+.wp-block-table tbody th {
+	border-color: var(--memberlite-color-borders);
+	padding: var(--wp--preset--spacing--10);
+}
+
+.wp-block-table thead th {
+	background-color: color-mix(in srgb, var(--memberlite-color-borders) 30%, transparent);
+	border-style: solid;
+	border-width: 1px 0;
+}
+
+.wp-block-table tbody th {
+	border-style: dotted;
+	border-width: 0 0 1px 0;
+}
+
+.wp-block-table tbody td {
+	border-color: var(--memberlite-color-borders);
+	border-style: solid;
+	border-width: 0 0 1px 0;
+	padding: var(--wp--preset--spacing--10);
+	vertical-align: top;
+}
+
+.wp-block-table tbody tr:nth-child(even) th,
+.wp-block-table tbody tr:nth-child(even) td {
+	background-color: color-mix(in srgb, var(--memberlite-color-borders) 30%, transparent);
+}
+
+.wp-block-pullquote blockquote,
+.wp-block-quote {
+	all: unset;
+}
+
+.wp-block-quote:not(.is-style-plain) {
+	background: none;
+	position: relative;
+}
+
+.wp-block-quote:not(.is-style-plain):before {
+	content: "\f10d";
+	font-family: 'Font Awesome 5 Free';
+	font-weight: 900;
+	color: var(--memberlite-color-secondary);
+	font-size: var(--wp--preset--font-size--30);
+	left: 0;
+	top: 0;
+	position: absolute;
+}
+
+.wp-block-quote.is-style-plain {
+	padding-left: 0;
+}
+
+.wp-block-quote p:last-of-type {
+	margin-bottom: 0;
+}
+
+.wp-block-quote cite {
+	display: block;
+	font-size: inherit;
+	margin-top: var(--wp--preset--spacing--10);
+	text-align: right;
+}
+
+.wp-block-quote cite a {
+	text-decoration: none;
+}
+
+.wp-block-search .wp-block-search__button {
+	padding: calc(var(--wp--preset--spacing--10) / 2) var(--wp--preset--spacing--10);
+}

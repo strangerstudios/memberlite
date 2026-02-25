@@ -5,3 +5,11 @@
 	@if $size == desktop   { @media (min-width: 960px) { @content; } }
 	@if $size == wide      { @media (min-width: 1160px) { @content; } }
 }
+
+@mixin screen-reader-only {
+	clip: rect(1px, 1px, 1px, 1px);
+	position: absolute !important;
+	height: 1px;
+	width: 1px;
+	overflow: hidden;
+}
