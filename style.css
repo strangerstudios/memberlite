@@ -2012,6 +2012,7 @@ body.mobile-nav-open {
 	justify-content: flex-end;
 }
 
+/** TODO: Address if other widgets should have this adjustment **/
 .header-widget-area .wp-block-social-links {
 	margin: 0;
 }
