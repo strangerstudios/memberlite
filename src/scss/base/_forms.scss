@@ -15,6 +15,10 @@ input[type=search]::-webkit-search-decoration {
 	appearance: none;
 }
 
+label {
+	font-family: var(--memberlite-body-font), ui-sans-serif;
+}
+
 form label {
 	font-size: 1.1rem;
 	line-height: 1.1rem;
@@ -63,7 +67,7 @@ input[type=search]:focus,
 .content-area select:focus,
 textarea:focus {
 	background-color: var(--memberlite-color-site-background);
-	border-color: var(--memberlite-color--info-border);
+	border-color: $color-info-border;
 	box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, .25);
 	outline: none;
 	word-break: initial;

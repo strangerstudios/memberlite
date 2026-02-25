@@ -1,0 +1,31 @@
+.screen-reader-text {
+	@include screen-reader-only;
+}
+
+.text-center {
+	text-align: center;
+}
+
+.text-left {
+	text-align: left;
+}
+
+.text-right {
+	text-align: right;
+}
+
+.text-2x {
+	font-size: var(--wp--preset--font-size--21);
+}
+
+.text-3x {
+	font-size: var(--wp--preset--font-size--24);
+}
+
+.text-4x {
+	font-size: var(--wp--preset--font-size--30);
+}
+
+.text-5x {
+	font-size: var(--wp--preset--font-size--36);
+}

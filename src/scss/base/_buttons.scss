@@ -1,17 +1,6 @@
 /*--------------------------------------------------------------
 4.1 Buttons
 --------------------------------------------------------------*/
-button,
-input,
-select,
-textarea,
-a.comment-reply-link,
-a.pmpro_btn,
-#main div.em-search-main button.em-search-submit {
-	font-size: 100%; /* Corrects font size not being inherited in all browsers */
-	margin: 0; /* Addresses margins set differently in IE6/7, F3/4, S5, Chrome */
-	vertical-align: baseline; /* Improves appearance and consistency in all browsers */
-}
 
 button,
 input[type=button],
@@ -19,12 +8,11 @@ input[type=reset],
 input[type=submit],
 .btn,
 a.comment-reply-link,
-#main div.em-search-main button.em-search-submit,
 .wp-block-search .wp-block-search__button {
 	background-color: var(--memberlite-color-button);
 	border: none;
 	border-radius: var(--wp--custom--border--radius);
-	box-shadow: var(--memberlite-shadow);
+	box-shadow: $btn-shadow;
 	color: var(--memberlite-color-white);
 	cursor: pointer;
 	font-family: var(--memberlite-header-font), ui-sans-serif;
@@ -47,10 +35,6 @@ input[type=button].inline-form-button,
 input[type=reset].inline-form-button,
 input[type=submit].inline-form-button {
 	padding: var(--wp--preset--spacing--10);
-}
-
-#main div.em-search-main button.em-search-submit {
-	padding-bottom: .5rem;
 }
 
 a.comment-reply-link,
@@ -76,51 +60,50 @@ input[type=submit]:focus,
 input[type=submit]:active,
 .btn:hover,
 .btn:focus,
-.btn:active,
-#main div.em-search-main button.em-search-submit:hover {
+.btn:active {
 	filter: brightness(var(--memberlite-hover-brightness));
-	box-shadow: var(--memberlite-shadow-hover);
+	box-shadow: $btn-shadow-hover;
 	color: var(--memberlite-color-white);
 }
 
 a.comment-reply-link:focus,
 a.comment-reply-link:hover {
 	border: none;
-	box-shadow: var(--memberlite-shadow-hover);
+	box-shadow: $btn-shadow-hover;
 	color: var(--memberlite-color-white);
 	text-shadow: none;
 }
 
 .btn_info {
-	background-color: var(--memberlite-color--info-text);
+	background-color: $color-info-text;
 }
 
 .btn_success {
-	background-color: var(--memberlite-color--success-text);
+	background-color: $color-success-text;
 }
 
 .btn_error {
-	background-color: var(--memberlite-color--error-text);
+	background-color: $color-error-text;
 }
 
 .btn_alert {
-	background-color: var(--memberlite-color--alert-text);
+	background-color: $color-alert-text;
 }
 
 .btn_info:hover {
-	background-color: var(--memberlite-color--info-link);
+	background-color: $color-info-link;
 }
 
 .btn_success:hover {
-	background-color: var(--memberlite-color--success-link);
+	background-color: $color-success-text;
 }
 
 .btn_error:hover {
-	background-color: var(--memberlite-color--error-link);
+	background-color: $color-error-link;
 }
 
 .btn_alert:hover {
-	background-color: var(--memberlite-color--alert-link);
+	background-color: $color-alert-link;
 }
 
 .btn_primary {
@@ -173,8 +156,4 @@ a.comment-reply-link:hover {
 	background-color: transparent;
 	box-shadow: none;
 	text-decoration: underline;
-}
-
-.wp-block-search .wp-block-search__button {
-	padding: calc(var(--wp--preset--spacing--10) / 2) var(--wp--preset--spacing--10);
 }

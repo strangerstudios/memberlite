@@ -2,15 +2,15 @@
 @import "abstracts/mixins";
 
 @import "base/reset";
-@import "base/typography";
-@import "base/elements";
+@import "base/base";
+@import "base/utilities";
+@import "base/alerts";
+@import "base/buttons";
+@import "base/forms";
+@import "base/grid-list";
 
-@import "components/alerts";
-@import "components/buttons";
 @import "components/breadcrumbs";
 @import "components/comments";
-@import "components/forms";
-@import "components/grid-list";
 @import "components/pagination";
 @import "components/shortcodes";
 @import "components/widgets";
@@ -24,8 +24,6 @@
 
 @import "plugins/pmpro";
 
-@import "utilities/accessibility";
 @import "utilities/alignments";
-@import "utilities/helpers";
 //@todo: Consider removing...
 @import "utilities/responsive";

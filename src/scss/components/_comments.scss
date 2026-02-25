@@ -151,3 +151,8 @@
 .pingback .comment-content p:last-child {
 	margin-bottom: 0;
 }
+
+.says {
+	@include screen-reader-only;
+}
+

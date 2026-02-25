@@ -110,3 +110,9 @@
 	border-radius: 50%;
 	display: block;
 }
+
+.masthead .memberlite-breadcrumb a {
+	color: var(--memberlite-color-page-masthead);
+	text-decoration-line: underline;
+	text-underline-offset: 2px;
+}

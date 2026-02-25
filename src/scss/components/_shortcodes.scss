@@ -325,3 +325,11 @@ details > p:first-of-type {
 .page .entry-content .memberlite_subpagelist_item .entry-content {
 	border-bottom: none;
 }
+
+.columns .hentry.memberlite_subpagelist_item {
+	margin: 0;
+}
+
+#main .columns .hentry.memberlite_subpagelist_item .entry-content {
+	border-bottom: none;
+}

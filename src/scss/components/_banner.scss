@@ -1,0 +1,28 @@
+#banner_bottom {
+	background-color: var(--memberlite-color-secondary);
+	color: var(--memberlite-color-white);
+	padding: 4rem 0;
+}
+
+#banner_bottom p {
+	font-size: var(--wp--preset--font-size--21);
+}
+
+#banner_bottom h1,
+#banner_bottom h2,
+#banner_bottom h3,
+#banner_bottom h4,
+#banner_bottom h5 {
+	color: var(--memberlite-color-white);
+	margin: 0 0 1.6rem 0;
+}
+
+#banner_bottom h1 a,
+#banner_bottom h2 a,
+#banner_bottom h3 a,
+#banner_bottom h4 a,
+#banner_bottom h5 a {
+	color: var(--memberlite-color-white);
+	text-decoration: none;
+	border-bottom: 1px dotted var(--memberlite-color-white);
+}

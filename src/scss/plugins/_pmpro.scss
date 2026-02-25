@@ -238,3 +238,18 @@
 	display: block;
 	padding: var(--wp--preset--spacing--10);
 }
+
+.hentry.pmpro-level-required h1.entry-title a:before,
+.pmpro-body-level-required .masthead-post-byline h1.entry-title:before {
+	content: "\f023";
+	font-family: 'Font Awesome 5 Free';
+	font-weight: 900;
+	padding-right: 10px;
+}
+
+.pmpro-level-required.pmpro-has-access h1.entry-title a:before,
+.pmpro-body-level-required.pmpro-body-has-access h1.entry-title:before {
+	content: "";
+	font-family: 'Font Awesome 5 Free';
+	padding-right: 0;
+}
