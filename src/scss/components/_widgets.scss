@@ -1,6 +1,7 @@
-/*--------------------------------------------------------------
-9.0 Widgets
---------------------------------------------------------------*/
+#secondary {
+	overflow: hidden;
+}
+
 #secondary .wp-block-calendar thead th,
 #secondary .wp-block-calendar tbody td {
 	padding: .7rem var(--wp--preset--spacing--10);
