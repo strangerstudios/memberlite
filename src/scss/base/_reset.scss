@@ -1,3 +1,7 @@
+/*--------------------------------------------------------------
+ Base: Reset
+--------------------------------------------------------------*/
+
 *, *::before, *::after {
 	box-sizing: border-box;
 }
@@ -12,7 +16,6 @@ body {
 	-webkit-font-smoothing: antialiased;
 }
 
-/* @todo: Confirm WP's alignment classes are okay with this */
 img, picture, video, canvas, svg {
 	display: block;
 	max-width: 100%;
@@ -77,7 +80,6 @@ a img {
 	border: 0;
 }
 
-/* Make sure embeds and iframes fit their containers */
 embed,
 iframe,
 object {

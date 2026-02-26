@@ -1,7 +1,16 @@
+/*--------------------------------------------------------------
+ Base: Forms
+--------------------------------------------------------------*/
+
 label {
 	font-family: var(--memberlite-body-font), ui-sans-serif;
 	font-size: 1.1rem;
 	line-height: 1.1rem;
+}
+
+.required {
+	color: $color-error-text;
+	font-weight: 400;
 }
 
 input[type=checkbox],
@@ -22,7 +31,6 @@ input[type=password],
 input[type=search],
 textarea {
 	background-color: var(--memberlite-color-site-background);
-	//border: 1px solid #222;
 	border: 1px solid light-dark(
 			color-mix(in srgb, var(--memberlite-color-text), white 12%),
 			color-mix(in srgb, var(--memberlite-color-text), black 60%)

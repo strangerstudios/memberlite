@@ -1,3 +1,7 @@
+/*--------------------------------------------------------------
+ Base: Utility Classes
+--------------------------------------------------------------*/
+
 .screen-reader-text {
 	@include screen-reader-only;
 }
@@ -30,6 +34,13 @@
 	font-size: var(--wp--preset--font-size--36);
 }
 
+.alignfull {
+	@include breakpoint(mobile) {
+		margin-right: -2.35rem;
+		margin-left: -2.35rem;
+	}
+}
+
 .alignleft {
 	display: inline;
 	float: left;
@@ -46,4 +57,16 @@
 	clear: both;
 	display: block;
 	margin: 0 auto;
+}
+
+.hide-screen {
+	@include breakpoint(desktop) {
+		display: none;
+	}
+}
+
+.hide-mobile {
+	@include breakpoint(mobile) {
+		display: none;
+	}
 }

@@ -1,7 +1,8 @@
-// =============================================================================
-// Posts & Pages — Entry Styles
-// Covers: .hentry, entry header, entry content, entry footer, entry author
-// =============================================================================
+/*--------------------------------------------------------------
+Structure: Content
+
+Covers: .hentry, entry header, entry content, entry footer, entry author
+--------------------------------------------------------------*/
 
 
 // -----------------------------------------------------------------------------
@@ -27,7 +28,9 @@
 		position: relative;
 		width: 100%;
 
-		a { color: inherit; }
+		a {
+			color: inherit;
+		}
 	}
 
 	.post_author_avatar img {
@@ -59,8 +62,8 @@
 		margin: 0 0 var(--wp--preset--spacing--10) 0;
 
 		.entry-title {
-			hyphens: auto;
 			margin: 0;
+			hyphens: auto;
 			overflow-wrap: break-word;
 			word-wrap: break-word;
 		}
@@ -117,14 +120,20 @@
 // -----------------------------------------------------------------------------
 
 .entry-author {
-	border: 1px solid var(--memberlite-color-borders);
-	display: flex;
-	flex: auto;
-	flex-wrap: nowrap;
-	gap: var(--wp--preset--spacing--10);
-	margin: var(--wp--preset--spacing--20) 0;
+	display: block;
 	max-width: 100%;
+	margin: var(--wp--preset--spacing--20) 0;
 	padding: var(--wp--preset--spacing--20);
+	text-align: center;
+	border: 1px solid var(--memberlite-color-borders);
+
+	@include breakpoint(tablet) {
+		display: flex;
+		flex: auto;
+		flex-wrap: nowrap;
+		gap: var(--wp--preset--spacing--10);
+		text-align: start;
+	}
 
 	.post_author_avatar {
 		flex-grow: 1;
@@ -156,6 +165,21 @@
 	// Featured image spacing
 	.wp-post-image {
 		margin-bottom: var(--wp--preset--spacing--20);
+	}
+
+	img.alignleft,
+	img.alignright {
+		@include breakpoint(mobile) {
+			@include reset-alignment-floats-mobile;
+		}
+	}
+
+	// Support legacy alignment on images
+	p:has(> img.alignleft),
+	p:has(> img.alignright),
+	p:has(> a > img.alignleft),
+	p:has(> a > img.alignright) {
+		display: flow-root;
 	}
 
 	// Large h1 inside content area (not a block heading)
@@ -199,5 +223,25 @@
 
 	&:hover {
 		color: var(--memberlite-color-text);
+	}
+}
+
+
+// -----------------------------------------------------------------------------
+// Primary Entry Header
+// -----------------------------------------------------------------------------
+
+#primary .post.hentry .entry-header {
+	@include breakpoint(mobile) {
+		grid-template-columns: 1fr;
+		grid-template-areas: "avatar" "title" "meta";
+	}
+
+	.entry-title {
+		@include breakpoint(mobile) {
+			hyphens: none;
+			word-wrap: normal;
+			overflow-wrap: normal;
+		}
 	}
 }

@@ -1,3 +1,9 @@
+/*--------------------------------------------------------------
+Structure: Masthead
+
+Covers: masthead layout, masthead banner, post byline, breadcrumbs
+--------------------------------------------------------------*/
+
 .masthead {
 	background-color: var(--memberlite-color-page-masthead-background);
 	color: var(--memberlite-color-page-masthead);
@@ -28,10 +34,16 @@
 	}
 
 	h1 {
-		hyphens: auto;
+		hyphens: none;
 		margin: var(--wp--preset--spacing--20) 0 0 0;
 		word-wrap: break-word;
 		overflow-wrap: break-word;
+		text-align: start;
+
+		@include breakpoint(tablet) {
+			hyphens: auto;
+			text-align: left;
+		}
 	}
 
 	h1 a,
@@ -47,8 +59,15 @@
 	}
 
 	.post_author_avatar {
-		border-radius: 50%;
-		flex-shrink: 0;
+		margin-top: var(--wp--preset--spacing--10);
+		text-align: center;
+
+		@include breakpoint(tablet) {
+			border-radius: 50%;
+			flex-shrink: 0;
+			text-align: start;
+			margin-top: 0;
+		}
 	}
 
 	.post_author_avatar img {
@@ -79,6 +98,11 @@
 	display: flex;
 	gap: var(--wp--preset--spacing--10);
 	margin-top: var(--wp--preset--spacing--20);
+
+	@include breakpoint(mobile) {
+		grid-template-columns: 1fr;
+		grid-template-areas: "avatar" "title" "meta";
+	}
 
 	.entry-header-content {
 		display: flex;
@@ -113,5 +137,11 @@
 		margin-left: auto;
 		margin-right: auto;
 		max-width: var(--wp--style--global--content-size);
+	}
+}
+
+.home .masthead {
+	@include breakpoint(mobile) {
+		text-align: center;
 	}
 }

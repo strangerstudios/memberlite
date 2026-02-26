@@ -1,8 +1,8 @@
-// =============================================================================
-// Navigation
-// Covers: site nav, mobile nav, header branding, header-right/meta-member
-// =============================================================================
+/*--------------------------------------------------------------
+Structure: Header
 
+Covers: site nav, mobile nav, header branding, header-right/meta-member
+--------------------------------------------------------------*/
 
 // -----------------------------------------------------------------------------
 // General
@@ -21,8 +21,27 @@
 .site-header {
 	background-color: var(--memberlite-color-header-background);
 
+	@include breakpoint(mobile) {
+		padding: 0 calc(var(--wp--preset--spacing--10) / 2);
+	}
+
 	.row {
 		margin-bottom: 0;
+
+		@include breakpoint(mobile) {
+			align-items: center;
+			display: grid;
+			grid-column-gap: calc(var(--wp--preset--spacing--10) / 2);
+			grid-template-columns: 6fr 1fr;
+			grid-template-areas: "site-branding menu-toggle";
+		}
+	}
+
+	.mobile-navigation-bar {
+		@include breakpoint(mobile) {
+			grid-area: menu-toggle;
+			text-align: right;
+		}
 	}
 }
 
@@ -32,11 +51,23 @@
 	gap: var(--wp--preset--spacing--10);
 	margin: var(--wp--preset--spacing--10) 0;
 
+	@include breakpoint(mobile) {
+		grid-area: site-branding;
+		margin: var(--wp--preset--spacing--10) 0;
+		padding: 0;
+		width: 100%;
+	}
+
 	a.custom-logo-link {
 		display: block;
 
-		&:hover { filter: unset; }
-		&:focus { outline: none; }
+		&:hover {
+			filter: unset;
+		}
+
+		&:focus {
+			outline: none;
+		}
 
 		.custom-logo {
 			max-height: 100px;
@@ -63,6 +94,12 @@
 		border: none;
 		color: var(--memberlite-color-header-text);
 		text-decoration: none;
+
+		@include breakpoint(mobile) {
+			width: 100%;
+			height: auto;
+			background-size: contain;
+		}
 	}
 
 	.site-description {
@@ -78,10 +115,14 @@
 // -----------------------------------------------------------------------------
 
 .header-right {
-	display: flex;
-	flex-direction: column;
-	gap: var(--wp--preset--spacing--20);
-	justify-content: center;
+	display: none;
+
+	@include breakpoint(tablet) {
+		display: flex;
+		flex-direction: column;
+		gap: var(--wp--preset--spacing--20);
+		justify-content: center;
+	}
 
 	&:has(#meta-member) .header-widget-area {
 		margin-bottom: var(--wp--preset--spacing--10);
@@ -105,7 +146,9 @@
 			font-family: var(--memberlite-header-font);
 			margin: 0 calc(var(--wp--preset--spacing--10) / 2);
 
-			a { font-weight: 700; }
+			a {
+				font-weight: 700;
+			}
 		}
 
 		a {
@@ -134,7 +177,9 @@
 				margin: 0;
 				position: relative;
 
-				&:last-child { border: none; }
+				&:last-child {
+					border: none;
+				}
 			}
 
 			a {
@@ -164,7 +209,9 @@
 				}
 
 				// Nested sub-menus stay hidden
-				.sub-menu { display: none; }
+				.sub-menu {
+					display: none;
+				}
 			}
 
 			ul li:hover > ul {
@@ -188,7 +235,9 @@
 	display: flex;
 	justify-content: flex-end;
 
-	.wp-block-social-links { margin: 0; }
+	.wp-block-social-links {
+		margin: 0;
+	}
 }
 
 
@@ -196,16 +245,22 @@
 // Desktop Site Navigation (#site-navigation)
 // -----------------------------------------------------------------------------
 
+#site-navigation,
+.site-navigation-sticky-wrapper {
+	display: none;
+
+	@include breakpoint(tablet) {
+		display: block;
+	}
+}
+
 #site-navigation {
 	background-color: var(--memberlite-color-site-navigation-background);
 	clear: both;
-	display: none;
 
-	@include breakpoint( tablet ) {
-		display: block;
+	ul {
+		list-style: none;
 	}
-
-	ul { list-style: none; }
 
 	ul.menu {
 		align-items: center;
@@ -220,7 +275,9 @@
 		margin: 0;
 		position: relative;
 
-		&:first-child a { padding-left: 0; }
+		&:first-child a {
+			padding-left: 0;
+		}
 	}
 
 	a {
@@ -447,7 +504,7 @@
 // -----------------------------------------------------------------------------
 
 .mobile-navigation-bar {
-	@include breakpoint( tablet ) {
+	@include breakpoint(tablet) {
 		display: none;
 	}
 }
@@ -495,11 +552,13 @@ body.mobile-nav-open {
 	width: 100vw;
 	z-index: 100;
 
-	@include breakpoint( tablet ) {
+	@include breakpoint(tablet) {
 		display: none;
 	}
 
-	&.open { left: 0; }
+	&.open {
+		left: 0;
+	}
 
 	ul li {
 		list-style: none;
@@ -538,9 +597,13 @@ body.mobile-nav-open {
 		margin-top: 0;
 		margin-bottom: 0;
 
-		li a { padding-left: var(--wp--preset--spacing--20); }
+		li a {
+			padding-left: var(--wp--preset--spacing--20);
+		}
 
-		ul.sub-menu li a { padding-left: var(--wp--preset--spacing--30); }
+		ul.sub-menu li a {
+			padding-left: var(--wp--preset--spacing--30);
+		}
 	}
 
 	.widget ul,
@@ -551,7 +614,7 @@ body.mobile-nav-open {
 
 	// Member navigation
 	.member-navigation {
-		@include breakpoint( mobile ) {
+		@include breakpoint(mobile) {
 			display: block;
 		}
 
@@ -605,7 +668,9 @@ body.mobile-nav-open {
 	}
 
 	// PMPro overrides inside mobile nav
-	.pmpro_section { margin: 0; }
+	.pmpro_section {
+		margin: 0;
+	}
 
 	.pmpro_card {
 		background-color: transparent;
@@ -630,7 +695,9 @@ body.mobile-nav-open {
 		button {
 			color: var(--memberlite-color-white);
 
-			svg { stroke: var(--memberlite-color-white); }
+			svg {
+				stroke: var(--memberlite-color-white);
+			}
 		}
 	}
 

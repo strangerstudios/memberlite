@@ -1,4 +1,6 @@
-/* Main Stylesheet */
+/*--------------------------------------------------------------
+ V1.0 - Main Memberlite Stylesheet
+--------------------------------------------------------------*/
 
 // Abstracts
 @import "abstracts/variables";
@@ -31,10 +33,9 @@
 @import "structure/content";
 
 // Page-specific styles
+@import "pages/blog";
 @import "pages/404";
+@import "pages/page";
 
 // Plugin-specific styles
 @import "plugins/pmpro";
-
-//@todo: Get rid of this...
-@import "utilities/responsive";

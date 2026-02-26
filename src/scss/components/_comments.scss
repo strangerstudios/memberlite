@@ -1,7 +1,6 @@
-// =============================================================================
-// Comments
-// =============================================================================
-
+/*--------------------------------------------------------------
+ Components: Comments
+--------------------------------------------------------------*/
 
 // -----------------------------------------------------------------------------
 // Comments Container
@@ -159,9 +158,25 @@
 	}
 
 	label {
-		display: inline-block;
+		display: block;
+		text-align: left;
+		width: 100%;
 		margin: 0 .7rem 1rem 0;
-		text-align: right;
+
+		@include breakpoint(tablet) {
+			display: inline-block;
+			text-align: right;
+		}
+
+	}
+
+	input[type=text],
+	input[type=email],
+	input[type=url],
+	textarea {
+		@include breakpoint(mobile) {
+			width: 100%;
+		}
 	}
 
 	.comment-notes,
@@ -172,6 +187,20 @@
 	.form-allowed-tags,
 	.form-allowed-tags code {
 		font-size: var(--wp--preset--font-size--14);
+	}
+
+	.form-allowed-tags,
+	.form-submit,
+	.comment-subscription-form {
+		@include breakpoint(mobile) {
+			margin-left: 0;
+		}
+	}
+
+	.form-submit input[type=submit] {
+		@include breakpoint(mobile) {
+			width: 100%;
+		}
 	}
 }
 
