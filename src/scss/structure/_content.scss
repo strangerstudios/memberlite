@@ -1,134 +1,104 @@
+// =============================================================================
+// Posts & Pages — Entry Styles
+// Covers: .hentry, entry header, entry content, entry footer, entry author
+// =============================================================================
+
+
+// -----------------------------------------------------------------------------
+// Entry (hentry)
+// -----------------------------------------------------------------------------
+
 .hentry {
 	margin: 0 0 var(--wp--preset--spacing--70);
+
+	// Entry banner (featured image as full-bleed header)
+	.entry-banner {
+		margin: 0 0 var(--wp--preset--spacing--20) 0;
+		overflow: hidden;
+		position: relative;
+	}
+
+	// When a banner image is present, overlay the entry header
+	&:has(.banner-image) .entry-header {
+		background-color: rgba(0, 0, 0, 0.6);
+		color: var(--memberlite-color-white);
+		margin: 0;
+		padding: var(--wp--preset--spacing--50) var(--wp--preset--spacing--20);
+		position: relative;
+		width: 100%;
+
+		a { color: inherit; }
+	}
+
+	.post_author_avatar img {
+		border-radius: 50%;
+		display: block;
+	}
+
+	// Remove lead image bottom margin inside .lead
+	.entry-content .lead .wp-post-image {
+		margin-bottom: 0;
+	}
 }
+
+// Blank page template removes entry margin
+.page-template-blank .hentry {
+	margin: 0;
+}
+
+
+// -----------------------------------------------------------------------------
+// Entry Header — Grid Layout (.entry-header-grid)
+// -----------------------------------------------------------------------------
+
+.entry-header-grid {
+
+	.entry-header {
+		display: flex;
+		gap: var(--wp--preset--spacing--10);
+		margin: 0 0 var(--wp--preset--spacing--10) 0;
+
+		.entry-title {
+			hyphens: auto;
+			margin: 0;
+			overflow-wrap: break-word;
+			word-wrap: break-word;
+		}
+
+		.post_author_avatar {
+			flex-shrink: 0;
+			height: auto;
+		}
+	}
+
+	.entry-header-content {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+	}
+
+	// No bottom margin when header-content sits inside a banner
+	.entry-banner .entry-header-content {
+		margin-bottom: 0;
+	}
+}
+
+
+// -----------------------------------------------------------------------------
+// Entry Title
+// -----------------------------------------------------------------------------
 
 .entry-title {
 	overflow-wrap: break-word;
 }
 
-.page-template-blank .hentry {
-	margin: 0;
-}
 
-.hentry .entry-banner {
-	overflow: hidden;
-	position: relative;
-	margin: 0 0 var(--wp--preset--spacing--20) 0;
-}
-
-.hentry:has(.banner-image) .entry-header {
-	background-color: rgba(0, 0, 0, 0.6);
-	margin: 0;
-	padding: var(--wp--preset--spacing--50) var(--wp--preset--spacing--20);
-	position: relative;
-	width: 100%;
-}
-
-.hentry:has(.banner-image) .entry-header {
-	color: var(--memberlite-color-white);
-}
-
-.hentry:has(.banner-image) .entry-header a {
-	color: inherit;
-}
-
-.entry-header-grid .entry-header {
-	display: flex;
-	gap: var(--wp--preset--spacing--10);
-	margin: 0 0 var(--wp--preset--spacing--10) 0;
-}
-
-.entry-header-grid .entry-header-content {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-}
-
-.entry-header-grid .entry-banner .entry-header-content {
-	margin-bottom: 0;
-}
-
-.entry-header-grid .entry-header .entry-title {
-	margin: 0;
-	hyphens: auto;
-	word-wrap: break-word;
-	overflow-wrap: break-word;
-}
-
-.entry-header-grid .entry-header .post_author_avatar {
-	flex-shrink: 0;
-	height: auto;
-}
-
-.hentry .post_author_avatar img {
-	border-radius: 50%;
-	display: block;
-}
-
-.entry-content .wp-post-image {
-	margin-bottom: var(--wp--preset--spacing--20);
-}
+// -----------------------------------------------------------------------------
+// Entry Meta
+// -----------------------------------------------------------------------------
 
 .entry-meta a {
 	text-underline-offset: 2px;
-}
-
-.entry-author {
-	border: 1px solid var(--memberlite-color-borders);
-	display: flex;
-	flex: auto;
-	flex-wrap: nowrap;
-	gap: var(--wp--preset--spacing--10);
-	margin: var(--wp--preset--spacing--20) 0;
-	max-width: 100%;
-	padding: var(--wp--preset--spacing--20);
-}
-
-.entry-author .post_author_avatar {
-	flex-grow: 1;
-	min-width: 80px;
-}
-
-.entry-author .post_author_details p:last-child {
-	margin-bottom: 0;
-}
-
-.entry-author .post_author_name {
-	font-weight: bold;
-	margin: 0;
-}
-
-.hentry .entry-content .lead .wp-post-image {
-	margin-bottom: 0;
-}
-
-.entry-content,
-.entry-summary {
-	margin: 0;
-}
-
-.error-404 .entry-content {
-	padding: 0 0 var(--wp--preset--spacing--50) 0;
-	text-align: center;
-}
-
-.page .entry-content {
-	border-bottom: 0;
-}
-
-.post .entry-footer {
-	border-top: 1px solid var(--memberlite-color-borders);
-	padding: var(--wp--preset--spacing--10) 0 0 0;
-}
-
-.entry-footer a {
-	color: var(--memberlite-color-link);
-	text-decoration: underline;
-	text-underline-offset: 2px;
-}
-
-.entry-footer a:hover {
-	color: var(--memberlite-color-text);
 }
 
 .byline,
@@ -141,12 +111,93 @@
 	display: inline;
 }
 
-.entry-content h1:not(.wp-block-heading),
-.entry-content .h1 {
-	font-size: var(--wp--preset--font-size--54);
+
+// -----------------------------------------------------------------------------
+// Entry Author Box
+// -----------------------------------------------------------------------------
+
+.entry-author {
+	border: 1px solid var(--memberlite-color-borders);
+	display: flex;
+	flex: auto;
+	flex-wrap: nowrap;
+	gap: var(--wp--preset--spacing--10);
+	margin: var(--wp--preset--spacing--20) 0;
+	max-width: 100%;
+	padding: var(--wp--preset--spacing--20);
+
+	.post_author_avatar {
+		flex-grow: 1;
+		min-width: 80px;
+	}
+
+	.post_author_details p:last-child {
+		margin-bottom: 0;
+	}
+
+	.post_author_name {
+		font-weight: bold;
+		margin: 0;
+	}
 }
 
-.entry-content ul,
-.entry-content ol {
-	padding-left: 3.2rem;
+
+// -----------------------------------------------------------------------------
+// Entry Content & Summary
+// -----------------------------------------------------------------------------
+
+.entry-content,
+.entry-summary {
+	margin: 0;
+}
+
+.entry-content {
+
+	// Featured image spacing
+	.wp-post-image {
+		margin-bottom: var(--wp--preset--spacing--20);
+	}
+
+	// Large h1 inside content area (not a block heading)
+	h1:not(.wp-block-heading),
+	.h1 {
+		font-size: var(--wp--preset--font-size--54);
+	}
+
+	// Restore list indentation inside content
+	ul,
+	ol {
+		padding-left: 3.2rem;
+	}
+}
+
+// Page-type entry — no bottom border
+.page .entry-content {
+	border-bottom: 0;
+}
+
+// 404 error page content
+.error-404 .entry-content {
+	padding: 0 0 var(--wp--preset--spacing--50) 0;
+	text-align: center;
+}
+
+
+// -----------------------------------------------------------------------------
+// Entry Footer
+// -----------------------------------------------------------------------------
+
+.post .entry-footer {
+	border-top: 1px solid var(--memberlite-color-borders);
+	padding: var(--wp--preset--spacing--10) 0 0 0;
+}
+
+.entry-footer a {
+	color: var(--memberlite-color-link);
+	text-decoration: underline;
+	text-underline-offset: 2px;
+
+	&:hover {
+		color: var(--memberlite-color-text);
+	}
 }

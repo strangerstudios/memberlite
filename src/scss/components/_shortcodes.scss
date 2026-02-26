@@ -1,6 +1,14 @@
-/*--------------------------------------------------------------
-10.7 Memberlite Shortcodes
---------------------------------------------------------------*/
+// =============================================================================
+// Memberlite Shortcodes & Elements
+// Covers: banners, tabs, accordion, recent posts widget, subpage list,
+//         masthead elements, landing page overrides
+// =============================================================================
+
+
+// -----------------------------------------------------------------------------
+// Banner Color Variants
+// -----------------------------------------------------------------------------
+
 .banner_primary {
 	background-color: var(--memberlite-color-primary);
 }
@@ -17,165 +25,183 @@
 	background-color: var(--memberlite-color-site-background);
 }
 
-#main .banner_primary,
-#main .banner_primary h1,
-#main .banner_primary h2,
-#main .banner_primary h3,
-#main .banner_primary h4,
-#main .banner_primary h5,
-#main .banner_primary a,
-#main .banner_primary a:link,
-#main .banner_primary a:hover,
-#main .banner_secondary,
-#main .banner_secondary h1,
-#main .banner_secondary h2,
-#main .banner_secondary h3,
-#main .banner_secondary h4,
-#main .banner_secondary h5,
-#main .banner_secondary a,
-#main .banner_secondary a:link,
-#main .banner_secondary a:hover {
-	color: var(--memberlite-color-white);
+// Force white text on colored banners inside #main
+#main {
+
+	.banner_primary,
+	.banner_secondary {
+		color: var(--memberlite-color-white);
+
+		h1, h2, h3, h4, h5,
+		a, a:link, a:hover {
+			color: var(--memberlite-color-white);
+		}
+	}
 }
 
-.banner_primary div.lead p,
-.banner_primary p.lead,
-.banner_secondary div.lead p,
-.banner_secondary p.lead,
-.banner_action div.lead p,
-.banner_action p.lead {
-	color: var(--memberlite-color-white);
+// White lead text on all action-colored banners
+.banner_primary,
+.banner_secondary,
+.banner_action {
+
+	div.lead p,
+	p.lead {
+		color: var(--memberlite-color-white);
+	}
 }
 
-/* Tabs used in theme comments also used by Memberlite Shortcodes plugin */
-.memberlite_tabbable ul.memberlite_tabs {
-	margin: 0;
+
+// -----------------------------------------------------------------------------
+// [memberlite_banner] Shortcode
+// -----------------------------------------------------------------------------
+
+.banner {
+	padding: var(--wp--preset--spacing--50) 0;
+
+	.text-center {
+		text-align: center;
+	}
+
+	.text-right {
+		text-align: right;
+	}
+
+	.text-left {
+		text-align: left;
+	}
+
+	&.banner_background-image {
+		background-repeat: no-repeat;
+		background-size: cover;
+	}
 }
 
-.memberlite_tabbable ul.memberlite_tabs li {
-	float: left;
-	list-style: none;
-	margin: 0 calc(var(--wp--preset--spacing--10) / 2) 0 0;
-}
 
-.memberlite_tabbable ul.memberlite_tabs li > a {
-	background: none;
-	border: 1px solid var(--memberlite-color-borders);
-	border-top-left-radius: var(--wp--custom--border--radius);
-	border-top-right-radius: var(--wp--custom--border--radius);
-	border-bottom: none;
-	display: inline-block;
-	float: none;
-	outline: none;
-	padding: calc(var(--wp--preset--spacing--10) / 2) var(--wp--preset--spacing--10);
-	text-decoration: none;
-}
+// -----------------------------------------------------------------------------
+// Memberlite Elements — Masthead
+// -----------------------------------------------------------------------------
 
-.memberlite_tabbable ul.memberlite_tabs li > a:hover {
-	background-color: var(--memberlite-color-borders);
-}
-
-.memberlite_tabbable ul.memberlite_tabs li.memberlite_active a {
-	background-color: var(--memberlite-color-secondary);
-	border-color: var(--memberlite-color-secondary);
-	color: var(--memberlite-color-white);
-	font-weight: bold;
-}
-
-.memberlite_tabbable .memberlite_tab_content {
-	border-top-width: .5rem;
-	border-top-style: solid;
-	border-top-color: var(--memberlite-color-secondary);
-	clear: both;
-	padding-top: var(--wp--preset--spacing--30);
-}
-
-.memberlite_tabbable .memberlite_tab_pane {
-	display: none;
-}
-
-.memberlite_tabbable .memberlite_tab_pane.memberlite_active {
-	display: block;
-}
-
-#comments .memberlite_tabbable .memberlite_tab_content {
-	padding-top: 0;
-}
-
-/*--------------------------------------------------------------
-13.0 Memberlite Elements styles
---------------------------------------------------------------*/
 body.memberlite-banner-hidden .entry-content > .banner:first-child {
 	margin-top: 0;
 }
 
-.masthead .memberlite_elements-masthead {
-	padding-top: 2rem;
+.masthead {
+
+	.memberlite_elements-masthead {
+		padding-top: 2rem;
+
+		h1 {
+			margin-top: 0;
+		}
+	}
 }
 
-.masthead .memberlite_elements-masthead h1 {
-	margin-top: 0;
+.page-template-landing .masthead {
+
+	.alignleft.wp-post-image {
+		margin-top: 2rem;
+	}
+
+	p {
+		margin-top: var(--wp--preset--spacing--10);
+	}
+
+	.pmpro_level-price {
+		font-size: var(--wp--preset--font-size--36);
+	}
+
+	.pmpro_level-subprice {
+		display: block;
+		font-size: var(--wp--preset--font-size--18);
+	}
 }
 
-.page-template-landing .masthead .alignleft.wp-post-image {
-	margin-top: 2rem;
+
+// -----------------------------------------------------------------------------
+// Tabs (.memberlite_tabbable)
+// Used in theme comments and Memberlite Shortcodes plugin
+// -----------------------------------------------------------------------------
+
+.memberlite_tabbable {
+
+	ul.memberlite_tabs {
+		margin: 0;
+
+		li {
+			float: left;
+			list-style: none;
+			margin: 0 calc(var(--wp--preset--spacing--10) / 2) 0 0;
+
+			> a {
+				background: none;
+				border: 1px solid var(--memberlite-color-borders);
+				border-top-left-radius: var(--wp--custom--border--radius);
+				border-top-right-radius: var(--wp--custom--border--radius);
+				border-bottom: none;
+				display: inline-block;
+				float: none;
+				outline: none;
+				padding: calc(var(--wp--preset--spacing--10) / 2) var(--wp--preset--spacing--10);
+				text-decoration: none;
+
+				&:hover {
+					background-color: var(--memberlite-color-borders);
+				}
+			}
+
+			&.memberlite_active a {
+				background-color: var(--memberlite-color-secondary);
+				border-color: var(--memberlite-color-secondary);
+				color: var(--memberlite-color-white);
+				font-weight: bold;
+			}
+		}
+	}
+
+	.memberlite_tab_content {
+		border-top: .5rem solid var(--memberlite-color-secondary);
+		clear: both;
+		padding-top: var(--wp--preset--spacing--30);
+	}
+
+	.memberlite_tab_pane {
+		display: none;
+
+		&.memberlite_active {
+			display: block;
+		}
+	}
 }
 
-.page-template-landing .masthead p {
-	margin-top: var(--wp--preset--spacing--10);
+// Remove top padding on tabs used inside comments
+#comments .memberlite_tabbable .memberlite_tab_content {
+	padding-top: 0;
 }
 
-.page-template-landing .masthead .pmpro_level-price {
-	font-size: var(--wp--preset--font-size--36);
-}
 
-.page-template-landing .masthead .pmpro_level-subprice {
-	display: block;
-	font-size: var(--wp--preset--font-size--18);
-}
+// -----------------------------------------------------------------------------
+// [memberlite_accordion] Shortcode, <details> block, accordion block
+//
+// Note: :is() selectors are preserved as-is — Sass nesting can't cleanly
+// express these cross-component groupings without either duplicating rules
+// or producing unintended specificity.
+// -----------------------------------------------------------------------------
 
-/*--------------------------------------------------------------
-14.0 Memberlite Shortcodes Styles
---------------------------------------------------------------*/
-
-/* [memberlite_banner] Shortcode */
-.banner {
-	padding: var(--wp--preset--spacing--50) 0;
-}
-
-.banner .text-center {
-	text-align: center;
-}
-
-.banner .text-right {
-	text-align: right;
-}
-
-.banner .text-left {
-	text-align: left;
-}
-
-.banner.banner_background-image {
-	background-repeat: no-repeat;
-	background-size: cover;
-}
-
-/* [memberlite_accordion] Shortcode, details block, accordion block */
 :is(
-	details,
-	.memberlite_accordion h2,
-	.entry-content .memberlite_accordion h2,
-	.wp-block-accordion-item .wp-block-accordion-heading
+  details,
+  .memberlite_accordion h2,
+  .entry-content .memberlite_accordion h2,
+  .wp-block-accordion-item .wp-block-accordion-heading
 ) {
 	border-top: 1px solid var(--memberlite-color-borders);
 	padding: var(--wp--preset--spacing--10);
 }
 
 :is(
-	details > summary,
-	.memberlite_accordion h2,
-	.entry-content .memberlite_accordion h2,
-	.wp-block-accordion-item .wp-block-accordion-heading
+  details > summary,
+  .memberlite_accordion h2,
+  .entry-content .memberlite_accordion h2,
+  .wp-block-accordion-item .wp-block-accordion-heading
 ) {
 	cursor: pointer;
 	font-family: var(--memberlite-header-font), ui-sans-serif;
@@ -185,143 +211,178 @@ body.memberlite-banner-hidden .entry-content > .banner:first-child {
 	margin: 0;
 }
 
-details > summary {
-	list-style: none;
-	outline: none;
-}
-
-details > summary::-webkit-details-marker {
-	display: none;
-}
-
-details > p:first-of-type {
-	margin-block-start: var(--wp--preset--spacing--10);
-}
-
-.wp-block-accordion-item .wp-block-accordion-heading__toggle {
-	background: none;
-	border: 0;
-	box-shadow: none;
-	padding: 0;
-	text-align: left;
-}
-
 :is(
-	details > summary,
-	.memberlite_accordion h2,
-	.entry-content .memberlite_accordion h2,
-	.wp-block-accordion-item .wp-block-accordion-heading__toggle-title
+  details > summary,
+  .memberlite_accordion h2,
+  .entry-content .memberlite_accordion h2,
+  .wp-block-accordion-item .wp-block-accordion-heading__toggle-title
 ):hover {
 	text-decoration: underline;
 }
 
+// Chevron icon — collapsed state
 :is(
-	details > summary,
-	.memberlite_accordion h2
+  details > summary,
+  .memberlite_accordion h2
 )::before {
-	content: "\f078";
+	content: "\f078"; // fa-chevron-down
 	float: right;
 	font-family: "Font Awesome 5 Free";
 	font-weight: 900;
 	margin-left: var(--wp--preset--spacing--10);
 }
 
+// Chevron icon — expanded state
 :is(
-	details[open] > summary,
-	.memberlite_accordion-item.memberlite_accordion-active h2
+  details[open] > summary,
+  .memberlite_accordion-item.memberlite_accordion-active h2
 )::before {
-	content: "\f077";
+	content: "\f077"; // fa-chevron-up
+}
+
+details {
+
+	> summary {
+		list-style: none;
+		outline: none;
+
+		// Hide default WebKit disclosure triangle
+		&::-webkit-details-marker {
+			display: none;
+		}
+	}
+
+	> p:first-of-type {
+		margin-block-start: var(--wp--preset--spacing--10);
+	}
 }
 
 .wp-block-accordion-item {
 	margin-block-start: 0;
+
+	.wp-block-accordion-heading__toggle {
+		background: none;
+		border: 0;
+		box-shadow: none;
+		padding: 0;
+		text-align: left;
+	}
 }
 
 :is(
-	.wp-block-accordion-panel,
-	.memberlite_accordion .memberlite_accordion-item-content
+  .wp-block-accordion-panel,
+  .memberlite_accordion .memberlite_accordion-item-content
 ) {
 	margin-block-start: 0;
 	padding: 0 var(--wp--preset--spacing--10) var(--wp--preset--spacing--10);
 }
 
-.memberlite_accordion .memberlite_accordion-item-content {
-	display: none;
+.memberlite_accordion {
+
+	.memberlite_accordion-item-content {
+		display: none;
+	}
 }
 
+// First item is open by default
 .memberlite_accordion-item:first-child .memberlite_accordion-item-content {
 	display: block;
 }
 
-/* [memberlite_recent_posts] Shortcode */
-#widget_memberlite_recent_posts .post.hentry {
-	margin-bottom: 0;
+
+// -----------------------------------------------------------------------------
+// [memberlite_recent_posts] Shortcode Widget
+// -----------------------------------------------------------------------------
+
+#widget_memberlite_recent_posts {
+
+	.post.hentry {
+		margin-bottom: 0;
+
+		.entry-header .entry-title {
+			margin: 0;
+		}
+	}
+
+	// With thumbnail — grid layout
+	.widget_has_thumbnail .post.hentry .entry-header {
+		display: grid;
+		grid-template-columns: 80px var(--wp--preset--spacing--10) auto;
+		grid-template-areas:
+      "thumbnail . title"
+      "thumbnail . date";
+		margin-bottom: var(--wp--preset--spacing--10);
+
+		.entry-title {
+			align-self: end;
+			grid-area: title;
+		}
+
+		.post-date {
+			align-self: start;
+			grid-area: date;
+		}
+
+		.widget_post_thumbnail {
+			border-radius: 50%;
+			grid-area: thumbnail;
+			height: auto;
+			width: 100%;
+
+			img {
+				border-radius: 50%;
+				margin: 0;
+			}
+		}
+	}
+
+	// Without thumbnail — simple margin
+	.widget_no_thumbnail .post.hentry .entry-header {
+		margin-bottom: var(--wp--preset--spacing--10);
+	}
+
+	// Post format icons
+	.hentry {
+
+		&.format-audio,
+		&.format-image,
+		&.format-link,
+		&.format-video {
+
+			h4.entry-title::before {
+				font-family: 'Font Awesome 5 Free';
+				padding-right: 10px;
+			}
+		}
+
+		&.format-audio h4.entry-title::before {
+			content: "\f025";
+		}
+
+		// fa-headphones
+		&.format-image h4.entry-title::before {
+			content: "\f1c5";
+		}
+
+		// fa-file-image
+		&.format-link h4.entry-title::before {
+			content: "\f08e";
+		}
+
+		// fa-external-link
+		&.format-video h4.entry-title::before {
+			content: "\f03d";
+		}
+
+		// fa-video
+	}
 }
 
-#widget_memberlite_recent_posts .widget_has_thumbnail .post.hentry .entry-header {
-	display: grid;
-	grid-template-columns: 80px var(--wp--preset--spacing--10) auto;
-	grid-template-areas:
-	"thumbnail . title"
-	"thumbnail . date";
-	margin-bottom: var(--wp--preset--spacing--10);
-}
 
-#widget_memberlite_recent_posts .widget_no_thumbnail .post.hentry .entry-header {
-	margin-bottom: var(--wp--preset--spacing--10);
-}
+// -----------------------------------------------------------------------------
+// [memberlite_subpagelist] Shortcode
+// -----------------------------------------------------------------------------
 
-#widget_memberlite_recent_posts .post.hentry .entry-header .entry-title {
-	margin: 0;
-}
-
-#widget_memberlite_recent_posts .widget_has_thumbnail .post.hentry .entry-header .entry-title {
-	align-self: end;
-	grid-area: title;
-}
-
-#widget_memberlite_recent_posts .widget_has_thumbnail .post.hentry .entry-header .post-date {
-	align-self: start;
-	grid-area: date;
-}
-
-#widget_memberlite_recent_posts .widget_has_thumbnail .post.hentry .entry-header .widget_post_thumbnail {
-	border-radius: 50%;
-	grid-area: thumbnail;
-	height: auto;
-	width: 100%;
-}
-
-#widget_memberlite_recent_posts .widget_has_thumbnail .post.hentry .entry-header .widget_post_thumbnail img {
-	border-radius: 50%;
-	margin: 0;
-}
-
-#widget_memberlite_recent_posts .hentry.format-audio h4.entry-title:before,
-#widget_memberlite_recent_posts .hentry.format-image h4.entry-title:before,
-#widget_memberlite_recent_posts .hentry.format-link h4.entry-title:before,
-#widget_memberlite_recent_posts .hentry.format-video h4.entry-title:before {
-	font-family: 'Font Awesome 5 Free';
-	padding-right: 10px;
-}
-
-#widget_memberlite_recent_posts .hentry.format-audio h4.entry-title:before {
-	content: "\f025";
-}
-
-#widget_memberlite_recent_posts .hentry.format-image h4.entry-title:before {
-	content: "\f1c5";
-}
-
-#widget_memberlite_recent_posts .hentry.format-link h4.entry-title:before {
-	content: "\f08e";
-}
-
-#widget_memberlite_recent_posts .hentry.format-video h4.entry-title:before {
-	content: "\f03d";
-}
-
-/* [memberlite_subpagelist] Shortcode */
 .page .entry-content .memberlite_subpagelist_item .entry-content {
 	border-bottom: none;
 }
