@@ -1,8 +1,9 @@
-// =============================================================================
-// WordPress Block Styles
-// Covers: wp-block-table, wp-block-quote, wp-block-pullquote,
-//         wp-block-search, wp-block-image
-// =============================================================================
+/*--------------------------------------------------------------
+ Blocks: WordPress Block Styles
+
+ Covers: wp-block-table, wp-block-quote, wp-block-pullquote,
+         wp-block-search, wp-block-image
+--------------------------------------------------------------*/
 
 
 // -----------------------------------------------------------------------------
@@ -56,6 +57,26 @@
 	}
 }
 
+// -----------------------------------------------------------------------------
+// Separator Block
+// -----------------------------------------------------------------------------
+
+hr.wp-block-separator {
+	margin-left: auto;
+	margin-right: auto;
+
+	&:not(.is-style-wide):not(.is-style-dots) {
+		max-width: 100px;
+	}
+
+	&.is-style-dots:before {
+		color: var(--memberlite-color-borders);
+	}
+
+	&.is-style-wide {
+		border: 0;
+	}
+}
 
 // -----------------------------------------------------------------------------
 // Quote & Pullquote Blocks
@@ -120,8 +141,22 @@
 // -----------------------------------------------------------------------------
 
 .wp-block-image {
-
 	&.alignfull {
 		text-align: center;
 	}
+
+	&.figure.alignleft,
+	&.figure.alignright {
+		@include breakpoint(mobile) {
+			@include reset-alignment-floats-mobile;
+		}
+	}
+}
+
+// -----------------------------------------------------------------------------
+// Query Loop Block
+// -----------------------------------------------------------------------------
+
+.wp-block-query ul {
+	padding-left: 0;
 }

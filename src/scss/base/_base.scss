@@ -1,6 +1,12 @@
 /*--------------------------------------------------------------
-3.0 Elements
+ Base: Base elements and global styles
 --------------------------------------------------------------*/
+
+body {
+	font-family: var(--memberlite-body-font), ui-sans-serif;
+	font-size: var(--wp--preset--font-size--18);
+	background-color: var(--memberlite-color-site-background);
+}
 
 body,
 button,
@@ -22,30 +28,9 @@ hr {
 	margin: var(--wp--preset--spacing--20) 0;
 }
 
-hr.wp-block-separator {
-	margin-left: auto;
-	margin-right: auto;
-}
-
-hr.wp-block-separator:not(.is-style-wide):not(.is-style-dots) {
-	max-width: 100px;
-}
-
-hr.wp-block-separator.is-style-dots:before {
-	color: var(--memberlite-color-borders);
-}
-
-hr.wp-block-separator.is-style-wide {
-	border: 0;
-}
-
 ul,
 ol {
 	margin: 0 0 var(--wp--preset--spacing--20) 0;
-}
-
-.wp-block-query ul {
-	padding-left: 0;
 }
 
 ul {
@@ -63,11 +48,10 @@ ol {
 ul li,
 ol li {
 	margin: 0 0 1rem 0;
-}
 
-ul li:last-child,
-ol li:last-child {
-	margin: 0;
+	&:last-child {
+		margin: 0;
+	}
 }
 
 li > ul,
@@ -79,15 +63,6 @@ li > ol {
 img {
 	height: auto; /* Make sure images are scaled correctly. */
 	max-width: 100%; /* Adhere to container width. */
-}
-
-img.banner-image {
-	height: 100%;
-	left: 0;
-	object-fit: cover;
-	position: absolute;
-	top: 0;
-	width: 100%;
 }
 
 figure {
@@ -153,12 +128,6 @@ dd {
 
 dl dt:first-child {
 	border-top: none;
-}
-
-body {
-	font-family: var(--memberlite-body-font), ui-sans-serif;
-	font-size: var(--wp--preset--font-size--18);
-	background-color: var(--memberlite-color-site-background);
 }
 
 h1,
@@ -257,10 +226,10 @@ pre {
 	max-width: 100%;
 	overflow: auto;
 	padding: var(--wp--preset--spacing--20);
-}
 
-pre > :first-child {
-	margin-top: 0;
+	> :first-child {
+		margin-top: 0;
+	}
 }
 
 code,
@@ -311,51 +280,6 @@ big {
 	font-size: 125%;
 }
 
-.required {
-	color: $color-error-text;
-	font-weight: 400;
-}
-
-.page.sidebar-content #primary,
-.page.sidebar-left #primary,
-.blog.sidebar-blog-left #primary,
-.archive.sidebar-blog-left #primary,
-.search.sidebar-blog-left #primary,
-.single.sidebar-blog-left #primary {
-	order: 2;
-}
-
-.page.content-sidebar #primary,
-.blog.sidebar-blog-right #primary,
-.archive.sidebar-blog-right #primary,
-.search.sidebar-blog-right #primary,
-.single.sidebar-blog-right #primary {
-	order: unset;
-}
-
-.page.page-template-full-width #primary,
-.page.page-template-narrow-width #primary {
-	order: unset;
-}
-
-.single #secondary {
-	margin-top: var(--wp--preset--spacing--40);
-}
-
 .site-content > .row {
 	padding-top: var(--wp--preset--spacing--50);
 }
-
-.single.sidebar-blog-none .alignfull,
-.home.page-template-default .alignfull,
-.page-template-default.sidebar-none .alignfull,
-.page-template-full-width .alignfull,
-.page-template-fluid-width .alignfull,
-.page-template-narrow-width .alignfull,
-.page-template-blank .alignfull {
-	margin-left: calc(50% - 50vw);
-	margin-right: calc(50% - 50vw);
-	max-width: 1000%;
-	width: auto;
-}
-

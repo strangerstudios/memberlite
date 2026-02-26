@@ -1,7 +1,8 @@
-// =============================================================================
-// Footer
-// Covers: footer navigation, footer widgets, site footer / site-info
-// =============================================================================
+/*--------------------------------------------------------------
+Structure: Footer
+
+Covers: footer navigation, footer widgets, site footer / site-info
+--------------------------------------------------------------*/
 
 
 // -----------------------------------------------------------------------------
@@ -61,7 +62,21 @@
 	border-top: 1px solid var(--memberlite-color-borders);
 	border-bottom: 1px solid var(--memberlite-color-borders);
 	color: var(--memberlite-color-footer-widgets);
-	padding: var(--wp--preset--spacing--50) 0;
+	padding: 0;
+
+	@include breakpoint(tablet) {
+		padding: var(--wp--preset--spacing--50) 0;
+	}
+
+	.widget {
+		padding-top: var(--wp--preset--spacing--30);
+		padding-bottom: var(--wp--preset--spacing--30);
+
+		@include breakpoint(tablet) {
+			padding-top: 0;
+			padding-bottom: 0;
+		}
+	}
 
 	h3 {
 		font-weight: 700;
@@ -132,6 +147,15 @@
 			padding-left: 0;
 			padding-right: 0;
 			width: calc(100% - 2.35rem * 2);
+		}
+
+		// Back to Top
+		.skip-link {
+			margin-top: var(--wp--preset--spacing--10);
+
+			@include breakpoint(tablet) {
+				margin: 0;
+			}
 		}
 	}
 }

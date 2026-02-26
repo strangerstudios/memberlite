@@ -90,3 +90,12 @@
 	outline: none;
 	word-break: initial;
 }
+
+@mixin reset-alignment-floats-mobile {
+	clear: both;
+	display: block;
+	float: none;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}

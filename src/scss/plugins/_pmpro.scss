@@ -1,8 +1,9 @@
-// =============================================================================
-// Paid Memberships Pro — Integrated Styles
-// Covers: levels layouts, highlight cards, compare table, signup forms,
-//         checkout, sitewide sales, login widget, entry title lock icons
-// =============================================================================
+/*--------------------------------------------------------------
+Plugins: Paid Memberships Pro
+
+Covers: levels layouts, highlight cards, compare table, signup forms,
+        checkout, sitewide sales, login widget, entry title lock icons
+--------------------------------------------------------------*/
 
 
 // -----------------------------------------------------------------------------
@@ -386,4 +387,37 @@
 	content: "";
 	font-family: 'Font Awesome 5 Free';
 	padding-right: 0;
+}
+
+.pmpro_levels-div {
+	@include breakpoint(mobile) {
+		text-align: center;
+	}
+}
+
+.pmpro_levels-div .entry-footer .alignright,
+.pmpro_levels-2col .entry-footer .alignright {
+	@include breakpoint(mobile) {
+		display: block;
+		float: none;
+		margin: 0 0 var(--wp--preset--spacing--20) 0;
+	}
+}
+
+#pmpro_levels.pmpro_advanced_levels-compare_table {
+	@include breakpoint(mobile) {
+		display: none;
+	}
+}
+
+#pmpro_levels.pmpro_advanced_levels-compare_table_responsive {
+	@include breakpoint(mobile) {
+		display: block;
+	}
+}
+
+.pmpro_member_profile_edit_wrap .pmpro_checkout_box-user .pmpro_member_profile_edit-fields {
+	@include breakpoint(mobile) {
+		display: block;
+	}
 }
