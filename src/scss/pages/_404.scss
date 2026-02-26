@@ -1,19 +1,17 @@
-/*--------------------------------------------------------------
-10.8 No Results/404 Not Found
---------------------------------------------------------------*/
-.search-no-results .content-area .search-form,
-.error-404 .search-form {
-	margin-bottom: 8.7rem;
+.search-no-results .content-area,
+.error-404 {
+	.search-form {
+		margin-bottom: 8.7rem;
+
+		input[type=submit] {
+			padding-top: calc(var(--wp--preset--spacing--10) / 2);
+			padding-bottom: calc(var(--wp--preset--spacing--10) / 2);
+		}
+	}
 }
 
 .error-404 .search-form {
 	justify-content: center;
-}
-
-.search-no-results .content-area .search-form input[type=submit],
-.error-404 .search-form input[type=submit] {
-	padding-top: calc( var(--wp--preset--spacing--10) / 2 );
-	padding-bottom: calc( var(--wp--preset--spacing--10) / 2 );
 }
 
 .search-no-results #secondary .widget_search {

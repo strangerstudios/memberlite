@@ -1,21 +1,18 @@
-/*--------------------------------------------------------------
-5.3 Breadcrumbs
---------------------------------------------------------------*/
 .memberlite-breadcrumb {
 	color: var(--memberlite-color-page-masthead);
 	font-size: var(--wp--preset--font-size--14);
 	margin: 0;
 	padding: 0;
-}
 
-.memberlite-breadcrumb a {
-	color: var(--memberlite-color-page-masthead);
-}
+	a {
+		color: var(--memberlite-color-page-masthead);
 
-.memberlite-breadcrumb a:hover {
-	font-weight: 400;
-}
+		&:hover {
+			font-weight: 400;
+		}
+	}
 
-.memberlite-breadcrumb .current_page_item {
-	font-weight: 700;
+	.current_page_item {
+		font-weight: 700;
+	}
 }
