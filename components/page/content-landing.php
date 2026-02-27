@@ -1,6 +1,9 @@
 <?php
 /**
  * The template used for displaying page content in page.php
+ * Version: 7.0
+ *
+ * @version 7.0
  *
  * @package Memberlite
  */

@@ -1,6 +1,11 @@
 <?php
 /**
  * Default template for the header
+ * Version: 7.0
+ *
+ * @version 7.0
+ *
+ * @package Memberlite
  */
 ?>
 
