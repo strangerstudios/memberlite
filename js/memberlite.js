@@ -1,9 +1,5 @@
 /**
  * Main JS for the Memberlite Theme
- * Version: 7.0
- *
- * @version 7.0
- * @package Memberlite
  */
 document.addEventListener( 'DOMContentLoaded', function() {
 
@@ -119,9 +115,12 @@ function initMobileNav() {
 }
 
 function openMobileNav( mobileNav, trigger, closeBtn ) {
+	const content  = document.getElementById( 'content' );
+	const colophon = document.getElementById( 'colophon' );
+
 	document.body.classList.add( 'mobile-nav-open' );
-	document.getElementById( 'content' ).setAttribute( 'inert', true );
-	document.getElementById( 'colophon' ).setAttribute( 'inert', true );
+	if ( content ) content.setAttribute( 'inert', true );
+	if ( colophon ) colophon.setAttribute( 'inert', true );
 	mobileNav.removeAttribute( 'inert' );
 	mobileNav.classList.add( 'open' );
 	trigger.setAttribute( 'aria-expanded', 'true' );
@@ -129,9 +128,12 @@ function openMobileNav( mobileNav, trigger, closeBtn ) {
 }
 
 function closeMobileNav( mobileNav, trigger ) {
+	const content  = document.getElementById( 'content' );
+	const colophon = document.getElementById( 'colophon' );
+
 	document.body.classList.remove( 'mobile-nav-open' );
-	document.getElementById( 'content' ).removeAttribute( 'inert' );
-	document.getElementById( 'colophon' ).removeAttribute( 'inert' );
+	if ( content ) content.removeAttribute( 'inert' );
+	if ( colophon ) colophon.removeAttribute( 'inert' );
 	mobileNav.classList.remove( 'open' );
 	mobileNav.setAttribute( 'inert', true );
 	trigger.setAttribute( 'aria-expanded', 'false' );
@@ -153,12 +155,13 @@ function isAnchorLinkForCurrentPage( link ) {
 // ─── Sticky Navigation ───────────────────────────────────────────────────────
 
 function initStickyNav() {
-	const stickyWrapper = document.querySelector( '.site-navigation-sticky-wrapper' );
-	if ( !stickyWrapper ) return;
-
+	const stickyWrapper  = document.querySelector( '.site-navigation-sticky-wrapper' );
 	const stickyNav      = document.getElementById( 'site-navigation' );
+
+	if ( ! stickyWrapper || ! stickyNav ) return;
+
 	const navHeight      = stickyNav.offsetHeight;
-	const adminBar       = document.getElementById( 'wpadminbar' );
+	const adminBar               = document.getElementById( 'wpadminbar' );
 	const adminBarHeight = adminBar ? adminBar.offsetHeight : 0;
 
 	stickyWrapper.style.height = navHeight + 'px';
