@@ -1,112 +1,161 @@
 /**
- * memberlite.js
+ * Main JS for the Memberlite Theme
+ * Version: 7.0
+ *
+ * @version 7.0
+ * @package Memberlite
  */
+document.addEventListener( 'DOMContentLoaded', function() {
 
-( function( $ ){
-	$( document ).ready(
-		function() {
-			// Focus styles for menus when using keyboard navigation
-			// Properly update the ARIA states on focus (keyboard) and mouse over events
-			$( 'nav > ul' ).on( 'focus.wparia mouseenter.wparia', '[aria-haspopup="true"]', function ( ev ) {
-				$( ev.currentTarget ).attr( 'aria-expanded', true );
-			} );
+	initAriaNavigation();
+	initTabs();
+	initMobileNav();
+	initStickyNav();
 
-			// Properly update the ARIA states on blur (keyboard) and mouse out events
-			$( 'nav > ul' ).on( 'blur.wparia mouseleave.wparia', '[aria-haspopup="true"]', function ( ev ) {
-				$( ev.currentTarget ).attr( 'aria-expanded', false );
-			} );
+} );
 
-			// switch tab content when clicked
-			$( '.memberlite_tabbable .memberlite_tabs li a' ).click(
-				function(e) {
+// ─── ARIA Navigation ────────────────────────────────────────────────────────
 
-					// don't want to jump to #
-					e.preventDefault();
+function initAriaNavigation() {
+	document.querySelectorAll( 'nav > ul' ).forEach( function( nav ) {
+		nav.addEventListener( 'focus',      function( ev ) { setAriaExpanded( ev, true );  }, true );
+		nav.addEventListener( 'mouseenter', function( ev ) { setAriaExpanded( ev, true );  }, true );
+		nav.addEventListener( 'blur',       function( ev ) { setAriaExpanded( ev, false ); }, true );
+		nav.addEventListener( 'mouseleave', function( ev ) { setAriaExpanded( ev, false ); }, true );
+	} );
+}
 
-					// which tab was clicked
-					let tab, tabarea;
-					tab     = $( this ).attr( 'href' ).replace( /#/, '' );
-					tabarea = $( this ).closest( '.memberlite_tabbable' );
+function setAriaExpanded( ev, expanded ) {
+	const trigger = ev.target.closest( '[aria-haspopup="true"]' );
+	if ( trigger ) {
+		trigger.setAttribute( 'aria-expanded', String( expanded ) );
+	}
+}
 
-					// hide all tab panes
-					tabarea.find( '.memberlite_tab_pane' ).hide();
-					tabarea.find( '.memberlite_tab_pane' ).removeClass( 'memberlite_active' );
+// ─── Tabs ────────────────────────────────────────────────────────────────────
 
-					// show the active one
-					$( '#' + tab ).show();
-					$( '#' + tab ).addClass( 'memberlite_active' );
+function initTabs() {
+	document.querySelectorAll( '.memberlite_tabbable .memberlite_tabs li a' ).forEach( function( tabLink ) {
+		tabLink.addEventListener( 'click', onTabClick );
+	} );
 
-					// unstyle tabs
-					tabarea.find( '.memberlite_tabs li' ).removeClass( 'memberlite_active' );
+	// Check if we should switch tab content on page load
+	const hashLink = document.querySelector( 'a[data-toggle="tab"][href="' + window.location.hash + '"]' );
+	if ( hashLink ) {
+		hashLink.click();
+	}
+}
 
-					// highlight the active one
-					$( this ).closest( 'li' ).addClass( 'memberlite_active' );
+function onTabClick( e ) {
+	e.preventDefault();
 
-					// update the URL
-					if(history.pushState) {
-						history.pushState( null, null, '#' + tab );
-					} else {
-						location.hash = '#' + tab;
-					}
-				}
-			);
+	const tab     = this.getAttribute( 'href' ).replace( /#/, '' );
+	const tabarea = this.closest( '.memberlite_tabbable' );
 
-			// check if we should switch tab content on page loads
-			$( 'a[data-toggle="tab"][href="' + window.location.hash + '"]' ).click();
+	setActiveTab( tabarea, tab );
+	setActiveTabLink( tabarea, this );
+	updateUrlHash( tab );
+}
 
-			// mobile navigation
-			let mobileNav = $( '#mobile-navigation' ),
-				mobilenavTrigger = $( '#expand-mobile-nav' ),
-				mobileNavClose = $( '#close-mobile-nav' );
+function setActiveTab( tabarea, tab ) {
+	tabarea.querySelectorAll( '.memberlite_tab_pane' ).forEach( function( pane ) {
+		pane.style.display = 'none';
+		pane.classList.remove( 'memberlite_active' );
+	} );
 
-			mobilenavTrigger.click(
-				function() {
-					$( 'body' ).addClass( 'mobile-nav-open' );
-					$( '#content').attr( 'inert', true );
-					$( '#colophon').attr( 'inert', true );
-					mobileNav.removeAttr( 'inert' ).addClass( 'open' );
-					$(this).attr( 'aria-expanded', true );
-					mobileNavClose.focus();
-				}
-			);
+	const activePane = document.getElementById( tab );
+	if ( activePane ) {
+		activePane.style.display = '';
+		activePane.classList.add( 'memberlite_active' );
+	}
+}
 
-			mobileNavClose.click( function() {
-				$( 'body' ).removeClass( 'mobile-nav-open' );
-				$( '#content').removeAttr( 'inert' );
-				$( '#colophon').removeAttr( 'inert' );
-				mobileNav.removeClass( 'open' ).attr( 'inert', true );
-				mobilenavTrigger.attr( 'aria-expanded', false ).focus();
-			});
+function setActiveTabLink( tabarea, activeLink ) {
+	tabarea.querySelectorAll( '.memberlite_tabs li' ).forEach( function( li ) {
+		li.classList.remove( 'memberlite_active' );
+	} );
+	activeLink.closest( 'li' ).classList.add( 'memberlite_active' );
+}
 
-			$( document ).on( 'keydown', function( e ) {
-				if ( e.key === 'Escape' && mobileNav.hasClass( 'open' ) ) {
-					mobileNavClose.click();
-				}
-			});
+function updateUrlHash( hash ) {
+	if ( history.pushState ) {
+		history.pushState( null, null, '#' + hash );
+	} else {
+		location.hash = '#' + hash;
+	}
+}
 
-			// Sticky navigation
-			var stickyWrapper = $( '.site-navigation-sticky-wrapper' );
-			if ( stickyWrapper.length ) {
-				var stickyNav = $( '#site-navigation' );
-				var navHeight = stickyNav.outerHeight();
+// ─── Mobile Navigation ───────────────────────────────────────────────────────
 
-				// Size wrapper and nav to the measured height.
-				stickyWrapper.css( 'height', navHeight );
-				stickyNav.css( 'height', navHeight );
+function initMobileNav() {
+	const mobileNav        = document.getElementById( 'mobile-navigation' );
+	const mobilenavTrigger = document.getElementById( 'expand-mobile-nav' );
+	const mobileNavClose   = document.getElementById( 'close-mobile-nav' );
 
-				var adminBarHeight = $( '#wpadminbar' ).outerHeight() || 0;
-				var stickyTop = stickyWrapper.offset().top - adminBarHeight;
+	if ( !mobileNav || !mobilenavTrigger || !mobileNavClose ) return;
 
-				$( window ).on( 'scroll', function() {
-					if ( $( window ).scrollTop() >= stickyTop ) {
-						stickyNav.addClass( 'site-navigation-sticky' ).css( 'top', adminBarHeight );
-					} else {
-						stickyNav.removeClass( 'site-navigation-sticky' ).css( 'top', '' );
-					}
-				} );
-			}
+	mobilenavTrigger.addEventListener( 'click', function() {
+		openMobileNav( mobileNav, mobilenavTrigger, mobileNavClose );
+	} );
 
+	mobileNavClose.addEventListener( 'click', function() {
+		closeMobileNav( mobileNav, mobilenavTrigger );
+	} );
+
+	document.addEventListener( 'keydown', function( e ) {
+		if ( e.key === 'Escape' && mobileNav.classList.contains( 'open' ) ) {
+			closeMobileNav( mobileNav, mobilenavTrigger );
 		}
-	);
+	} );
+}
 
-}( jQuery ) );
+function openMobileNav( mobileNav, trigger, closeBtn ) {
+	document.body.classList.add( 'mobile-nav-open' );
+	document.getElementById( 'content' ).setAttribute( 'inert', true );
+	document.getElementById( 'colophon' ).setAttribute( 'inert', true );
+	mobileNav.removeAttribute( 'inert' );
+	mobileNav.classList.add( 'open' );
+	trigger.setAttribute( 'aria-expanded', 'true' );
+	closeBtn.focus();
+}
+
+function closeMobileNav( mobileNav, trigger ) {
+	document.body.classList.remove( 'mobile-nav-open' );
+	document.getElementById( 'content' ).removeAttribute( 'inert' );
+	document.getElementById( 'colophon' ).removeAttribute( 'inert' );
+	mobileNav.classList.remove( 'open' );
+	mobileNav.setAttribute( 'inert', true );
+	trigger.setAttribute( 'aria-expanded', 'false' );
+	trigger.focus();
+}
+
+// ─── Sticky Navigation ───────────────────────────────────────────────────────
+
+function initStickyNav() {
+	const stickyWrapper = document.querySelector( '.site-navigation-sticky-wrapper' );
+	if ( !stickyWrapper ) return;
+
+	const stickyNav      = document.getElementById( 'site-navigation' );
+	const navHeight      = stickyNav.offsetHeight;
+	const adminBar       = document.getElementById( 'wpadminbar' );
+	const adminBarHeight = adminBar ? adminBar.offsetHeight : 0;
+
+	stickyWrapper.style.height = navHeight + 'px';
+	stickyNav.style.height     = navHeight + 'px';
+
+	const stickyTop = stickyWrapper.getBoundingClientRect().top + window.scrollY - adminBarHeight;
+
+	window.addEventListener( 'scroll', function() {
+		updateStickyState( stickyNav, stickyTop, adminBarHeight );
+	} );
+}
+
+function updateStickyState( stickyNav, stickyTop, adminBarHeight ) {
+	if ( window.scrollY >= stickyTop ) {
+		stickyNav.classList.add( 'site-navigation-sticky' );
+		stickyNav.style.top = adminBarHeight + 'px';
+	} else {
+		stickyNav.classList.remove( 'site-navigation-sticky' );
+		stickyNav.style.top = '';
+	}
+}
