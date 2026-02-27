@@ -1,4 +1,3 @@
-// abstracts/_mixins.scss
 @mixin breakpoint($size) {
 	@if $size == mobile    { @media (max-width: 767px) { @content; } }
 	@if $size == tablet    { @media (min-width: 768px) { @content; } }
@@ -21,7 +20,6 @@
 	border-radius: 0;
 }
 
-// Button base styles
 @mixin button-base {
 	background-color: var(--memberlite-color-button);
 	border: none;
@@ -44,7 +42,6 @@
 	vertical-align: middle;
 }
 
-// Button variant mixins
 @mixin button-variant($bg, $color: var(--memberlite-color-white)) {
 	background-color: $bg;
 	color: $color;
@@ -65,7 +62,6 @@
 	text-shadow: none;
 }
 
-// Form element base styles
 @mixin form-element-base {
 	background-color: var(--memberlite-color-site-background);
 	border: 1px solid light-dark( #222222, var(--memberlite-color-text) );
