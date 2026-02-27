@@ -240,8 +240,8 @@ Covers: .hentry, entry header, entry content, entry footer, entry author
 	.entry-title {
 		@include breakpoint(mobile) {
 			hyphens: none;
-			word-wrap: normal;
 			overflow-wrap: normal;
+			word-break: break-word;
 		}
 	}
 }

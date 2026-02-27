@@ -23,6 +23,15 @@ Covers: masthead layout, masthead banner, post byline, breadcrumbs
 		position: relative;
 	}
 
+	img.banner-image {
+		height: 100%;
+		left: 0;
+		object-fit: cover;
+		position: absolute;
+		top: 0;
+		width: 100%;
+	}
+
 	p a:not(.btn) {
 		color: var(--memberlite-color-page-masthead);
 		text-decoration-line: underline;

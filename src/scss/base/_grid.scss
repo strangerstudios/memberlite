@@ -105,6 +105,7 @@ $grid-breakpoints: (
 		@for $i from 1 through $grid-columns {
 			.#{$prefix}-#{$i} {
 				flex: 0 0 math.percentage(math.div($i, $grid-columns));
+				max-width: math.percentage(math.div($i, $grid-columns));
 			}
 		}
 
