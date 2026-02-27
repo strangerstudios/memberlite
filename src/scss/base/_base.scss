@@ -209,14 +209,19 @@ blockquote {
 	margin: var(--wp--preset--spacing--20) 0;
 	background-color: color-mix(in srgb, var(--memberlite-color-text) 7%, transparent);
 	padding: var(--wp--preset--spacing--20);
-}
 
-blockquote > :last-child {
-	margin-bottom: 0;
+	> :first-child {
+		margin-top: 0;
+	}
+
+	> :last-child {
+		margin-bottom: 0;
+	}
 }
 
 address {
 	margin: 0 0 var(--wp--preset--spacing--20);
+	font-style: italic;
 }
 
 pre {
@@ -242,7 +247,8 @@ var {
 	padding: 2px 4px;
 }
 
-abbr {
+abbr,
+acronym {
 	border-bottom: 1px dotted;
 	cursor: help;
 }
