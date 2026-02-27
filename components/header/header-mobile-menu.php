@@ -1,6 +1,9 @@
 <?php
 /**
  * Displays the meta member login content
+ * Version: 7.0
+ *
+ * @version 7.0
  *
  * @package Memberlite
  */

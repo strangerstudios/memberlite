@@ -1,6 +1,11 @@
 <?php
 /**
  * Site Navigation for the Header
+ * Version: 7.0
+ *
+ * @version 7.0
+ *
+ * @package Memberlite
  */
 
 do_action( 'memberlite_before_site_navigation' );

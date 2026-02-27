@@ -1,6 +1,7 @@
 <?php
 /**
  * Masthead — default variation.
+ * Version: 7.0
  *
  * Handles all contexts: single posts (with byline), singular pages, and archives.
  *

@@ -1,6 +1,9 @@
 <?php
 /**
  * Displays the member info if logged in, or the login form
+ * Version: 7.0
+ *
+ * @version 7.0
  *
  * @package Memberlite
  */
