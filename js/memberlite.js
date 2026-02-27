@@ -102,8 +102,17 @@ function initMobileNav() {
 		closeMobileNav( mobileNav, mobilenavTrigger );
 	} );
 
+	// Close the mobile menu when the Escape key is pressed
 	document.addEventListener( 'keydown', function( e ) {
 		if ( e.key === 'Escape' && mobileNav.classList.contains( 'open' ) ) {
+			closeMobileNav( mobileNav, mobilenavTrigger );
+		}
+	} );
+
+	// Close the mobile menu when an anchor link is clicked
+	mobileNav.addEventListener( 'click', function( e ) {
+		const link = e.target.closest( 'a' );
+		if ( link && isAnchorLinkForCurrentPage( link ) ) {
 			closeMobileNav( mobileNav, mobilenavTrigger );
 		}
 	} );
@@ -127,6 +136,18 @@ function closeMobileNav( mobileNav, trigger ) {
 	mobileNav.setAttribute( 'inert', true );
 	trigger.setAttribute( 'aria-expanded', 'false' );
 	trigger.focus();
+}
+
+function isAnchorLinkForCurrentPage( link ) {
+	return (
+		// Filter out links with no # at all, and bare # links (which have a hash of '')
+		link.hash !== '' &&
+		// Rule out links to other domains that happen to have a hash, e.g. https://example.com/page#section
+		( link.origin === window.location.origin ) &&
+		// Rule out links to other pages on the same site, e.g. /another-page#section,
+		// which would cause a full navigation anyway and naturally close the menu
+		( link.pathname === window.location.pathname )
+	);
 }
 
 // ─── Sticky Navigation ───────────────────────────────────────────────────────
