@@ -3,30 +3,11 @@
  */
 document.addEventListener( 'DOMContentLoaded', function() {
 
-	initAriaNavigation();
 	initTabs();
 	initMobileNav();
 	initStickyNav();
 
 } );
-
-// ─── ARIA Navigation ────────────────────────────────────────────────────────
-
-function initAriaNavigation() {
-	document.querySelectorAll( 'nav > ul' ).forEach( function( nav ) {
-		nav.addEventListener( 'focus',      function( ev ) { setAriaExpanded( ev, true );  }, true );
-		nav.addEventListener( 'mouseenter', function( ev ) { setAriaExpanded( ev, true );  }, true );
-		nav.addEventListener( 'blur',       function( ev ) { setAriaExpanded( ev, false ); }, true );
-		nav.addEventListener( 'mouseleave', function( ev ) { setAriaExpanded( ev, false ); }, true );
-	} );
-}
-
-function setAriaExpanded( ev, expanded ) {
-	const trigger = ev.target.closest( '[aria-haspopup="true"]' );
-	if ( trigger ) {
-		trigger.setAttribute( 'aria-expanded', String( expanded ) );
-	}
-}
 
 // ─── Tabs ────────────────────────────────────────────────────────────────────
 
