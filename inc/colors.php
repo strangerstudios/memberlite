@@ -317,7 +317,7 @@ function memberlite_get_midnight_violet_colors(): array {
  */
 function memberlite_get_cocoa_ash_colors(): array {
 	return array(
-		'header_textcolor'        => '1f1b18',
+		'header_textcolor'        => 'ffffff',
 		'background_color'        => 'ffffff',
 		'bgcolor_header'          => '1f1b18',
 		'bgcolor_site_navigation' => '6f6a66',

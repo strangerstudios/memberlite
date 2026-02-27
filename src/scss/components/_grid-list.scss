@@ -69,7 +69,10 @@
 		// Fallback placeholder when no thumbnail exists
 		.post-thumbnail-empty {
 			align-items: center;
-			background-color: tinted(var(--memberlite-color-text));
+			background-color: light-dark(
+				color-mix(in srgb, var(--memberlite-color-text) 7%, transparent),
+				color-mix(in srgb, var(--memberlite-color-text) 20%, transparent)
+			);
 			display: flex;
 			height: 180px;
 			justify-content: center;
