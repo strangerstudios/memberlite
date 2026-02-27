@@ -1,13 +1,5 @@
 /*--------------------------------------------------------------
- Grid System
- 12-column flexbox grid with responsive breakpoints, offsets, and utilities.
-
- Breakpoint mapping (original → mixin):
-   medium: 40.063em (~641px) → tablet (768px)
-   large:  64.063em (~1025px) → desktop (960px)
-
- Note: If child themes depend on the original em-based breakpoints,
- this change may affect layout at narrow screen widths.
+ 1.7 Base | Global: Grid
 --------------------------------------------------------------*/
 
 @use 'sass:math';

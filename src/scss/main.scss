@@ -2,11 +2,46 @@
  V1.0 - Main Memberlite Stylesheet
 --------------------------------------------------------------*/
 
-// Abstracts
+/*--------------------------------------------------------------
+ TABLE OF CONTENTS
+--------------------------------------------------------------*/
+/*
+1.0 Base | Global
+	1.1 Reset (_reset.scss)
+	1.2 Base (_base.scss)
+	1.3 Utilities (_utilities.scss)
+	1.4 Alerts (_alerts.scss)
+	1.5 Buttons (_buttons.scss)
+	1.6 Forms (_forms.scss)
+	1.7 Grid (_grid.scss)
+2.0 Blocks
+	2.1 Blocks (_blocks.scss)
+3.0 Components
+	3.1 Breadcrumbs (_breadcrumbs.scss)
+	3.2 Comments (_comments.scss)
+	3.3 Grid List (_grid-list.scss)
+	3.4 Pagination (_pagination.scss)
+	3.5 Shortcodes (_shortcodes.scss)
+	3.6 Widgets (_widgets.scss)
+4.0 Structure
+	4.1 Header (_header.scss)
+	4.2 Masthead (_masthead.scss)
+	4.3 Footer (_footer.scss)
+	4.4 Content (_content.scss)
+5.0 Pages
+	5.1 Blog (_blog.scss)
+	5.2 404 (_404.scss)
+	5.3 Page (_page.scss)
+6.0 Plugins
+	6.1 Paid Memberships Pro (_pmpro.scss)
+*/
+
 @import "abstracts/variables";
 @import "abstracts/mixins";
 
-// Base | Global
+/*--------------------------------------------------------------
+ BASE | GLOBAL
+--------------------------------------------------------------*/
 @import "base/reset";
 @import "base/base";
 @import "base/utilities";
@@ -15,10 +50,14 @@
 @import "base/forms";
 @import "base/grid";
 
-// Blocks
+/*--------------------------------------------------------------
+ BLOCKS
+--------------------------------------------------------------*/
 @import "blocks/blocks";
 
-// Re-usable components
+/*--------------------------------------------------------------
+ COMPONENTS
+--------------------------------------------------------------*/
 @import "components/breadcrumbs";
 @import "components/comments";
 @import "components/grid-list";
@@ -26,16 +65,22 @@
 @import "components/shortcodes";
 @import "components/widgets";
 
-// Structural pieces of Memberlite
+/*--------------------------------------------------------------
+ STRUCTURE
+--------------------------------------------------------------*/
 @import "structure/header";
 @import "structure/masthead";
 @import "structure/footer";
 @import "structure/content";
 
-// Page-specific styles
+/*--------------------------------------------------------------
+ PAGES
+--------------------------------------------------------------*/
 @import "pages/blog";
 @import "pages/404";
 @import "pages/page";
 
-// Plugin-specific styles
+/*--------------------------------------------------------------
+ PLUGINS
+--------------------------------------------------------------*/
 @import "plugins/pmpro";

@@ -5,7 +5,7 @@
 	"private": true,
 	"scripts": {
 		"build:blocks": "wp-scripts build",
-		"build:css": "sass src/scss:build/css --no-source-map --style=compressed",
+		"build:css": "sass src/scss:build/css --no-source-map",
 		"watch:css": "sass --watch src/scss:build/css",
 		"watch:blocks": "wp-scripts start",
 		"build": "npm-run-all build:*"
