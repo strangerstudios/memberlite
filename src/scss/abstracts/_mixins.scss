@@ -1,3 +1,5 @@
+@use "variables" as *;
+
 @mixin breakpoint($size) {
 	@if $size == mobile    { @media (max-width: 767px) { @content; } }
 	@if $size == tablet    { @media (min-width: 768px) { @content; } }
