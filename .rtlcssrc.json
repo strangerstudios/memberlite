@@ -1,0 +1,33 @@
+{
+	"autoRename": false,
+	"autoRenameStrict": false,
+	"blacklist":{},
+	"clean": true,
+	"greedy": false,
+	"processUrls": false,
+	"stringMap": [
+		{
+			"name"    : "left-right",
+			"priority": 100,
+			"search"  : ["left", "Left", "LEFT"],
+			"replace" : ["right", "Right", "RIGHT"],
+			"options" : {
+				"scope" : "*",
+				"ignoreCase" : false
+			}
+		},
+		{
+			"name"    : "flex-start",
+			"priority": 100,
+			"search"  : ["flex-start"],
+			"replace" : ["flex-end"],
+			"options" :	{
+				"scope" : "*",
+				"ignoreCase" : false
+			}
+		}
+	],
+	"useCalc": false,
+	"aliases": {},
+	"processEnv": true
+}
