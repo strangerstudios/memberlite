@@ -36,51 +36,48 @@
 	6.1 Paid Memberships Pro (_pmpro.scss)
 */
 
-@import "abstracts/variables";
-@import "abstracts/mixins";
-
 /*--------------------------------------------------------------
  BASE | GLOBAL
 --------------------------------------------------------------*/
-@import "base/reset";
-@import "base/base";
-@import "base/utilities";
-@import "base/alerts";
-@import "base/buttons";
-@import "base/forms";
-@import "base/grid";
+@use "base/reset";
+@use "base/base";
+@use "base/utilities";
+@use "base/alerts";
+@use "base/buttons";
+@use "base/forms";
+@use "base/grid";
 
 /*--------------------------------------------------------------
  BLOCKS
 --------------------------------------------------------------*/
-@import "blocks/blocks";
+@use "blocks/blocks";
 
 /*--------------------------------------------------------------
  COMPONENTS
 --------------------------------------------------------------*/
-@import "components/breadcrumbs";
-@import "components/comments";
-@import "components/grid-list";
-@import "components/pagination";
-@import "components/shortcodes";
-@import "components/widgets";
+@use "components/breadcrumbs";
+@use "components/comments";
+@use "components/grid-list";
+@use "components/pagination";
+@use "components/shortcodes";
+@use "components/widgets";
 
 /*--------------------------------------------------------------
  STRUCTURE
 --------------------------------------------------------------*/
-@import "structure/header";
-@import "structure/masthead";
-@import "structure/footer";
-@import "structure/content";
+@use "structure/header";
+@use "structure/masthead";
+@use "structure/footer";
+@use "structure/content";
 
 /*--------------------------------------------------------------
  PAGES
 --------------------------------------------------------------*/
-@import "pages/blog";
-@import "pages/404";
-@import "pages/page";
+@use "pages/blog";
+@use "pages/no-results-404";
+@use "pages/page";
 
 /*--------------------------------------------------------------
  PLUGINS
 --------------------------------------------------------------*/
-@import "plugins/pmpro";
+@use "plugins/pmpro";
