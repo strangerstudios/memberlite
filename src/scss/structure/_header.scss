@@ -313,7 +313,7 @@
 	}
 
 	ul.sub-menu > .menu-item-has-children > a::after {
-		content: "\f105"; // fa-chevron-right
+		content: "\f105"; /*! rtl:raw:content: "\f104"; */
 		display: block;
 		font-family: $font-family-awesome;
 		font-size: var(--wp--preset--font-size--14);
@@ -450,7 +450,7 @@
 	}
 
 	ul.sub-menu > .menu-item-has-children > a::after {
-		content: "\f105";
+		content: "\f105"; /*! rtl:raw:content: "\f104"; */
 		display: block;
 		font-family: $font-family-awesome;
 		font-size: var(--wp--preset--font-size--14);

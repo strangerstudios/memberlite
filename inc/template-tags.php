@@ -97,21 +97,33 @@ if ( ! function_exists( 'memberlite_post_nav' ) ) :
 	 * Display navigation to next/previous post when applicable.
 	 */
 	function memberlite_post_nav() {
-		// Don't print empty markup if there's nowhere to navigate.
 		$previous = ( is_attachment() ) ? get_post( get_post()->post_parent ) : get_adjacent_post( false, '', true );
 		$next     = get_adjacent_post( false, '', false );
 
 		if ( ! $next && ! $previous ) {
 			return;
 		}
+
+		if ( is_rtl() ) {
+			$previous_format = _x( '<span class="meta-nav">&rarr;</span> %title', 'Previous post link', 'memberlite' );
+			$next_format     = _x( '%title <span class="meta-nav">&larr;</span>', 'Next post link', 'memberlite' );
+		} else {
+			$previous_format = _x( '<span class="meta-nav">&larr;</span> %title', 'Previous post link', 'memberlite' );
+			$next_format     = _x( '%title <span class="meta-nav">&rarr;</span>', 'Next post link', 'memberlite' );
+		}
 		?>
 		<nav class="navigation post-navigation" role="navigation">
-		<span class="screen-reader-text"><?php esc_html_e( 'Post navigation', 'memberlite' ); ?></span>
-		<div class="nav-links">
-			<?php
-				previous_post_link( '<div class="nav-previous">%link</div>', _x( '<span class="meta-nav">&larr;</span> %title', 'Previous post link', 'memberlite' ) );
-				next_post_link( '<div class="nav-next">%link</div>', _x( '%title <span class="meta-nav">&rarr;</span>', 'Next post link', 'memberlite' ) );
-			?>
+			<span class="screen-reader-text"><?php esc_html_e( 'Post navigation', 'memberlite' ); ?></span>
+			<div class="nav-links">
+				<?php
+				if ( is_rtl() ) {
+					next_post_link( '<div class="nav-next">%link</div>', $next_format );
+					previous_post_link( '<div class="nav-previous">%link</div>', $previous_format );
+				} else {
+					previous_post_link( '<div class="nav-previous">%link</div>', $previous_format );
+					next_post_link( '<div class="nav-next">%link</div>', $next_format );
+				}
+				?>
 			</div><!-- .nav-links -->
 		</nav><!-- .navigation -->
 		<?php
@@ -148,7 +160,6 @@ if ( ! function_exists( 'memberlite_page_nav' ) ) :
 			$child_of = $post->ID;
 		}
 
-		// Check if this is a
 		if ( empty( $child_of ) ) {
 			return;
 		}
@@ -157,46 +168,50 @@ if ( ! function_exists( 'memberlite_page_nav' ) ) :
 		$allpages = get_pages( 'child_of=' . $child_of . '&sort_column=menu_order&sort_order=asc' );
 
 		$pages   = array();
-		$pages[] = $child_of;       // parent id is first
+		$pages[] = $child_of;
 		foreach ( $allpages as $page ) {
 			$pages[] += $page->ID;
 		}
 
-		// figure out prev and next post IDs
+		// figure out prev and next page IDs
 		$current = array_search( $post->ID, $pages );
 
-		// prev
-		if ( ! empty( $pages[ $current - 1 ] ) ) {
-			$previousID = $pages[ $current - 1 ];
-		} else {
-			$previousID = false;
-		}
+		$previousID = ! empty( $pages[ $current - 1 ] ) ? $pages[ $current - 1 ] : false;
+		$nextID     = ! empty( $pages[ $current + 1 ] ) ? $pages[ $current + 1 ] : false;
 
-		// next
-		if ( ! empty( $pages[ $current + 1 ] ) ) {
-			$nextID = $pages[ $current + 1 ];
-		} else {
-			$nextID = false;
-		}
-
-		// don't show if neither prev or next
 		if ( empty( $nextID ) && empty( $previousID ) ) {
 			return;
 		}
 
-		// HTML
+		$rtl = is_rtl();
+
+		$previous_arrow = $rtl ? '&rarr;' : '&larr;';
+		$next_arrow     = $rtl ? '&larr;' : '&rarr;';
 		?>
 		<nav class="navigation page-navigation" role="navigation">
-		<span class="screen-reader-text"><?php esc_html_e( 'Page navigation', 'memberlite' ); ?></span>
-		<div class="nav-links">
-			<?php if ( ! empty( $previousID ) && ( $previousID != $post->ID ) ) { ?>
-				<div class="nav-previous"><a href="<?php echo esc_url( get_permalink( $previousID ) ); ?>" rel="prev"><span class="meta-nav">&larr;</span> <?php echo esc_html( get_the_title( $previousID ) ); ?></a></div>
-			<?php } if ( ! empty( $nextID ) && ( $nextID != $post->ID ) ) { ?>
-				<div class="nav-next"><a href="<?php echo esc_url( get_permalink( $nextID ) ); ?>" rel="next"><?php echo esc_html( get_the_title( $nextID ) ); ?> <span class="meta-nav">&rarr;</span></a></div>
-			<?php } ?>
-		</div><!-- .nav-links -->
-	</nav><!-- .navigation -->
-	<?php
+			<span class="screen-reader-text"><?php esc_html_e( 'Page navigation', 'memberlite' ); ?></span>
+			<div class="nav-links">
+				<?php
+				$previous_html = '';
+				$next_html     = '';
+
+				if ( ! empty( $previousID ) && ( $previousID != $post->ID ) ) {
+					$previous_html = '<div class="nav-previous"><a href="' . esc_url( get_permalink( $previousID ) ) . '" rel="prev"><span class="meta-nav">' . $previous_arrow . '</span> ' . esc_html( get_the_title( $previousID ) ) . '</a></div>';
+				}
+
+				if ( ! empty( $nextID ) && ( $nextID != $post->ID ) ) {
+					$next_html = '<div class="nav-next"><a href="' . esc_url( get_permalink( $nextID ) ) . '" rel="next">' . esc_html( get_the_title( $nextID ) ) . ' <span class="meta-nav">' . $next_arrow . '</span></a></div>';
+				}
+
+				if ( $rtl ) {
+					echo $next_html . $previous_html;
+				} else {
+					echo $previous_html . $next_html;
+				}
+				?>
+			</div><!-- .nav-links -->
+		</nav><!-- .navigation -->
+		<?php
 	}
 endif;
 
