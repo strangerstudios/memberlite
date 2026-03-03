@@ -102,26 +102,17 @@ if ( ! function_exists( 'memberlite_post_nav' ) ) :
 
 		if ( ! $next && ! $previous ) {
 			return;
-		}
-
-		if ( is_rtl() ) {
-			$previous_format = _x( '<span class="meta-nav">&rarr;</span> %title', 'Previous post link', 'memberlite' );
-			$next_format     = _x( '%title <span class="meta-nav">&larr;</span>', 'Next post link', 'memberlite' );
-		} else {
-			$previous_format = _x( '<span class="meta-nav">&larr;</span> %title', 'Previous post link', 'memberlite' );
-			$next_format     = _x( '%title <span class="meta-nav">&rarr;</span>', 'Next post link', 'memberlite' );
-		}
-		?>
+		} ?>
 		<nav class="navigation post-navigation" role="navigation">
 			<span class="screen-reader-text"><?php esc_html_e( 'Post navigation', 'memberlite' ); ?></span>
 			<div class="nav-links">
 				<?php
 				if ( is_rtl() ) {
-					next_post_link( '<div class="nav-next">%link</div>', $next_format );
-					previous_post_link( '<div class="nav-previous">%link</div>', $previous_format );
+					next_post_link( '<div class="nav-next">%link</div>', '%title <span class="meta-nav">&larr;</span>' );
+					previous_post_link( '<div class="nav-previous">%link</div>', '<span class="meta-nav">&rarr;</span> %title' );
 				} else {
-					previous_post_link( '<div class="nav-previous">%link</div>', $previous_format );
-					next_post_link( '<div class="nav-next">%link</div>', $next_format );
+					previous_post_link( '<div class="nav-previous">%link</div>', '<span class="meta-nav">&larr;</span> %title' );
+					next_post_link( '<div class="nav-next">%link</div>', '%title <span class="meta-nav">&rarr;</span>' );
 				}
 				?>
 			</div><!-- .nav-links -->
