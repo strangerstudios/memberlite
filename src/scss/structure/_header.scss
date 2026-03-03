@@ -271,7 +271,6 @@
 		display: flex;
 		margin: 0 auto;
 		max-width: 71em;
-		padding: var(--wp--preset--spacing--10) var(--wp--preset--spacing--10) 0;
 		z-index: 10;
 	}
 
@@ -371,6 +370,10 @@
 	}
 
 	// Reveal top-level dropdown on hover/aria
+	ul.menu > li.menu-item-has-children:hover > a:after {
+		content: "\f106";
+	}
+
 	ul.menu > li:hover > ul.sub-menu,
 	ul.menu > li[aria-expanded="true"] > ul.sub-menu {
 		left: auto;

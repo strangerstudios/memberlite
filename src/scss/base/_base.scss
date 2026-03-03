@@ -22,6 +22,18 @@ textarea {
 
 a {
 	color: var(--memberlite-color-link);
+	transition: all 0.2s ease-in-out;
+
+	&:hover, &:focus {
+		transition: all 0.2s ease-in-out;
+	}
+}
+
+button {
+	transition: all 0.2s ease-in-out;
+	&:hover, &:focus {
+		transition: all 0.2s ease-in-out;
+	}
 }
 
 hr {
