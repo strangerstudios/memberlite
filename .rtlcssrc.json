@@ -12,17 +12,7 @@
 			"search"  : ["left", "Left", "LEFT"],
 			"replace" : ["right", "Right", "RIGHT"],
 			"options" : {
-				"scope" : "*",
-				"ignoreCase" : false
-			}
-		},
-		{
-			"name"    : "flex-start",
-			"priority": 100,
-			"search"  : ["flex-start"],
-			"replace" : ["flex-end"],
-			"options" :	{
-				"scope" : "*",
+				"scope" : "value",
 				"ignoreCase" : false
 			}
 		}

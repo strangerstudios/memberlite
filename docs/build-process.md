@@ -26,7 +26,7 @@ Memberlite uses a hybrid development approach:
 3. Run `npm run build:blocks` to build blocks and editor settings.
 4. Run `npm run build:css` to compile Sass to CSS.
 5. Run `npm run build:rtl` to compile a RTL version of the CSS. If you've made Sass changes, you'll need to compile the CSS for `main.scss` first.
-6. Run `npm run build` to build blocks, editor settings, and CSS all at once.
+6. Run `npm run build` to build blocks, editor settings, CSS, and the RTL stylesheet all at once.
 7. You can also run `npm run watch:css` or `npm run watch:blocks` to watch for changes and rebuild automatically.
 
 ## How the RTL CSS is Built
@@ -46,7 +46,7 @@ RTL version of the icon font. For example:
 content: "\f105"; /*! rtl:raw:content: "\f104"; */
 ```
 
-The RTLCSS compiler will swap the icon font for the RTL version. In the example above, it switches the angle left icon to the angle right icon.
+The RTLCSS compiler will swap the icon font for the RTL version. In the example above, it switches the angle right icon to the angle left icon.
 
 ## Adding New Paths to the Webpack Config
 
