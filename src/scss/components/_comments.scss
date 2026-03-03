@@ -165,12 +165,6 @@
 		text-align: left;
 		width: 100%;
 		margin: 0 .7rem 1rem 0;
-
-		@include breakpoint(tablet) {
-			display: inline-block;
-			text-align: right;
-		}
-
 	}
 
 	input[type=text],
@@ -185,6 +179,10 @@
 	.comment-notes,
 	.form-allowed-tags {
 		font-style: italic;
+	}
+
+	#cancel-comment-reply-link {
+		padding-left: 1rem;
 	}
 
 	.form-allowed-tags,

@@ -192,8 +192,8 @@
 	}
 
 	// Restore list indentation inside content
-	ul,
-	ol {
+	> ul,
+	> ol {
 		padding-left: 3.2rem;
 	}
 }

@@ -491,13 +491,15 @@
 	}
 
 	ul.menu > li:hover > ul.sub-menu,
-	ul.menu > li[aria-expanded="true"] > ul.sub-menu {
+	ul.menu > li[aria-expanded="true"] > ul.sub-menu,
+	ul.menu > li:focus-within > ul.sub-menu {
 		left: 0;
 		top: 100%;
 	}
 
 	ul.menu li:hover > ul.sub-menu li:hover > ul.sub-menu,
-	ul.sub-menu > li[aria-expanded="true"] > ul.sub-menu {
+	ul.sub-menu > li[aria-expanded="true"] > ul.sub-menu,
+	ul.sub-menu > li:focus-within > ul.sub-menu {
 		left: 100%;
 	}
 }

@@ -159,6 +159,11 @@
 			@include breakpoint(tablet) {
 				margin: 0;
 			}
+
+			&:focus {
+				outline-color: var(--memberlite-color-text);
+				outline-offset: 2px;
+			}
 		}
 	}
 }
