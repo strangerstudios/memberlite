@@ -1,0 +1,123 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+
+/*--------------------------------------------------------------
+ 1.4 Base | Global: Alerts
+--------------------------------------------------------------*/
+
+.pmpro_bbp_membership_msg,
+#sitewide-notice p,
+p.success,
+p.error,
+p.info,
+p.alert {
+	border: 1px solid $color-info-border;
+	border-radius: var(--wp--custom--border--radius);
+	box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.07);
+	background-color: $color-info-bg;
+	color: $color-info-text;
+	font-size: var(--wp--preset--font-size--18);
+	font-weight: 400;
+	margin: var(--wp--preset--spacing--20) 0;
+	padding: var(--wp--preset--spacing--10);
+	text-align: left;
+}
+
+p.success {
+	background-color: $color-success-bg;
+	border-color: $color-success-border;
+	color: $color-success-text;
+}
+
+p.success a {
+	color: $color-success-link;
+}
+
+p.error {
+	background-color: $color-error-bg;
+	border-color: $color-error-border;
+	color: $color-error-text;
+}
+
+p.error a {
+	color: $color-error-link;
+}
+
+p.info a {
+	color: $color-info-link;
+}
+
+p.alert {
+	background-color: $color-alert-bg;
+	border-color: $color-alert-border;
+	color: $color-alert-text;
+}
+
+p.alert a {
+	color: $color-alert-link;
+}
+
+#sitewide-notice p {
+	background-color: var(--memberlite-color-borders);
+	border-color: $color-alert-border;
+	color: $color-alert-text;
+}
+
+.pmpro_bbp_membership_msg {
+	background-color: $color-alert-bg;
+	border-color: $color-alert-border;
+	color: $color-alert-text;
+	clear: both;
+}
+
+.pmpro_bbp_membership_msg a {
+	color: $color-alert-link;
+}
+
+.primary {
+	color: var(--memberlite-color-primary);
+}
+
+.secondary {
+	color: var(--memberlite-color-secondary);
+}
+
+.action {
+	color: var(--memberlite-color-action);
+}
+
+.has-text-color a {
+	color: inherit;
+}
+
+.info {
+	color: $color-info-text;
+}
+
+.success {
+	color: $color-success-text;
+}
+
+.error {
+	color: $color-error-text;
+}
+
+.alert {
+	color: var(--memberlite-color--alert-text);
+}
+
+.muted {
+	opacity: .6;
+}
+
+.bg_primary {
+	background-color: var(--memberlite-color-primary);
+}
+
+.bg_secondary {
+	background-color: var(--memberlite-color-secondary);
+}
+
+.bg_action {
+	background-color: var(--memberlite-color-action);
+}

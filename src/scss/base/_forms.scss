@@ -1,0 +1,94 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+
+/*--------------------------------------------------------------
+ 1.6 Base | Global: Forms
+--------------------------------------------------------------*/
+
+label {
+	font-family: var(--memberlite-body-font), ui-sans-serif;
+	font-size: 1.1rem;
+	line-height: 1.1rem;
+}
+
+.required {
+	color: $color-error-text;
+	font-weight: 400;
+}
+
+input[type=checkbox],
+input[type=radio] {
+	padding: 0;
+}
+
+input[type=search] {
+	appearance: textfield;
+	box-sizing: content-box;
+}
+
+input[type=text],
+input[type=tel],
+input[type=email],
+input[type=url],
+input[type=password],
+input[type=search],
+textarea {
+	background-color: var(--memberlite-color-site-background);
+	border: 1px solid light-dark(
+			color-mix(in srgb, var(--memberlite-color-text), white 12%),
+			color-mix(in srgb, var(--memberlite-color-text), black 60%)
+	);
+	border-radius: 8px;
+	box-shadow: none;
+	box-sizing: border-box;
+	color: var(--memberlite-color-text);
+	font-size: var(--wp--preset--font-size--16);
+	line-height: 1.5;
+	height: auto;
+	margin: 6px 0 0;
+	min-height: auto;
+	outline: none;
+	padding: 12px;
+	word-break: normal;
+
+	&:focus {
+		background-color: var(--memberlite-color-site-background);
+		border-color: $color-info-border;
+		box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, .25);
+		outline: none;
+		word-break: initial;
+	}
+}
+
+select {
+	appearance: none;
+	color: var(--memberlite-color-text);
+	border: 1px solid var(--memberlite-color-borders);
+	border-radius: var(--wp--custom--border--radius);
+	padding: var(--wp--preset--spacing--10);
+
+	&:focus {
+		outline: none;
+	}
+}
+
+textarea {
+	overflow: auto;
+	padding-left: var(--wp--preset--spacing--10);
+	vertical-align: top;
+	width: 100%;
+}
+
+.search-form {
+	display: flex;
+	gap: calc(var(--wp--preset--spacing--10) / 2);
+
+	input[type=search] {
+		border: 1px solid var(--memberlite-color-borders);
+		border-radius: var(--wp--custom--border--radius);
+		color: var(--memberlite-color-text);
+		font-size: var(--wp--preset--font-size--16);
+		line-height: var(--wp--custom--line-height--body);
+		padding: calc( var(--wp--preset--spacing--10) / 2 );
+	}
+}

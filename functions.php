@@ -12,8 +12,9 @@ function memberlite_init_styles() {
 	global $memberlite_defaults;
 
 	// framework stuff
-	wp_enqueue_style( 'memberlite_grid', MEMBERLITE_URL . '/css/grid.css', array(), MEMBERLITE_VERSION );
 	wp_enqueue_style( 'memberlite_style', get_stylesheet_uri(), array(), MEMBERLITE_VERSION );
+	wp_enqueue_style( 'memberlite_main_style', MEMBERLITE_URL . '/build/css/main.css', array(), MEMBERLITE_VERSION );
+
 	if ( is_rtl() ) {
 		wp_enqueue_style( 'memberlite_rtl', MEMBERLITE_URL . '/css/rtl.css', array( 'memberlite_style' ), MEMBERLITE_VERSION );
 	}

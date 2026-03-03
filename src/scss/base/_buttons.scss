@@ -1,0 +1,161 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+
+/*--------------------------------------------------------------
+ 1.5 Base | Global: Buttons
+--------------------------------------------------------------*/
+
+button,
+input[type=button],
+input[type=reset],
+input[type=submit],
+.btn,
+a.comment-reply-link,
+.wp-block-search .wp-block-search__button {
+	background-color: var(--memberlite-color-button);
+	border: none;
+	border-radius: var(--wp--custom--border--radius);
+	box-shadow: $btn-shadow;
+	color: var(--memberlite-color-white);
+	cursor: pointer;
+	font-family: var(--memberlite-header-font), ui-sans-serif;
+	font-size: var(--wp--preset--font-size--16);
+	font-style: normal;
+	font-weight: 700;
+	display: inline-block;
+	line-height: var(--wp--custom--line-height--body);
+	padding: calc(var(--wp--preset--spacing--10) / 1.5) var(--wp--preset--spacing--20);
+	text-align: center;
+	text-decoration: none;
+	text-shadow: none;
+	backface-visibility: hidden;
+	overflow: hidden;
+	vertical-align: middle;
+}
+
+button.inline-form-button,
+input[type=button].inline-form-button,
+input[type=reset].inline-form-button,
+input[type=submit].inline-form-button {
+	padding: var(--wp--preset--spacing--10);
+}
+
+a.comment-reply-link,
+a.btn.skip-link {
+	padding: calc(var(--wp--preset--spacing--10) / 2) var(--wp--preset--spacing--10);
+}
+
+a.btn.skip-link {
+	font-size: var(--wp--preset--font-size--14);
+}
+
+button:where(:not(.pmpro_btn, .pmpro_btn-plain, .menu-toggle, .wp-block-accordion-heading__toggle)):hover,
+button:where(:not(.pmpro_btn, .pmpro_btn-plain, .menu-toggle, .wp-block-accordion-heading__toggle)):focus,
+button:where(:not(.pmpro_btn, .pmpro_btn-plain, .menu-toggle, .wp-block-accordion-heading__toggle)):active,
+input[type=button]:hover,
+input[type=button]:focus,
+input[type=button]:active,
+input[type=reset]:hover,
+input[type=reset]:focus,
+input[type=reset]:active,
+input[type=submit]:hover,
+input[type=submit]:focus,
+input[type=submit]:active,
+.btn:hover,
+.btn:focus,
+.btn:active {
+	filter: brightness(var(--memberlite-hover-brightness));
+	box-shadow: $btn-shadow-hover;
+	color: var(--memberlite-color-white);
+}
+
+a.comment-reply-link:focus,
+a.comment-reply-link:hover {
+	border: none;
+	box-shadow: $btn-shadow-hover;
+	color: var(--memberlite-color-white);
+	text-shadow: none;
+}
+
+.btn_info {
+	background-color: $color-info-text;
+}
+
+.btn_success {
+	background-color: $color-success-text;
+}
+
+.btn_error {
+	background-color: $color-error-text;
+}
+
+.btn_alert {
+	background-color: $color-alert-text;
+}
+
+.btn_info:hover {
+	background-color: $color-info-link;
+}
+
+.btn_success:hover {
+	background-color: $color-success-text;
+}
+
+.btn_error:hover {
+	background-color: $color-error-link;
+}
+
+.btn_alert:hover {
+	background-color: $color-alert-link;
+}
+
+.btn_primary {
+	background-color: var(--memberlite-color-primary);
+}
+
+.btn_secondary {
+	background-color: var(--memberlite-color-secondary);
+	color: var(--memberlite-color-white);
+}
+
+.btn_action {
+	background-color: var(--memberlite-color-action);
+	color: var(--memberlite-color-white);
+}
+
+.btn_block {
+	display: block;
+	width: 100%;
+}
+
+.btn .fa,
+.btn .fab,
+.btn .far,
+.btn .fas,
+.btn_link .fa,
+.btn_link .fab,
+.btn_link .far,
+.btn_link .fas {
+	padding: 0 .5rem;
+}
+
+.btn_link {
+	background-color: transparent;
+	border: none;
+	box-shadow: none;
+	color: var(--memberlite-color-link);
+	cursor: pointer;
+	display: inline-block;
+	font-style: normal;
+	font-weight: 400;
+	overflow: hidden;
+	padding: var(--wp--preset--spacing--10) var(--wp--preset--spacing--20);
+	text-decoration: underline;
+	text-shadow: none;
+
+	&:hover {
+		background-color: transparent;
+		box-shadow: none;
+		text-decoration: underline;
+	}
+}

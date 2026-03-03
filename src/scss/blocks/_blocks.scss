@@ -1,0 +1,165 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+
+/*--------------------------------------------------------------
+ 2.1 Blocks: WordPress Block Styles
+
+ Covers: wp-block-table, wp-block-quote, wp-block-pullquote,
+         wp-block-search, wp-block-image
+--------------------------------------------------------------*/
+
+
+// -----------------------------------------------------------------------------
+// Table Block
+// -----------------------------------------------------------------------------
+
+.wp-block-table {
+
+	thead,
+	&.is-style-regular thead {
+		border: none;
+	}
+
+	th {
+		font-family: var(--memberlite-header-font), ui-sans-serif;
+		font-weight: 400;
+		padding: var(--wp--preset--spacing--10);
+	}
+
+	thead th,
+	tbody th {
+		border-color: var(--memberlite-color-borders);
+		padding: var(--wp--preset--spacing--10);
+	}
+
+	thead th {
+		background-color: color-mix(in srgb, var(--memberlite-color-borders) 30%, transparent);
+		border-style: solid;
+		border-width: 1px 0;
+	}
+
+	tbody {
+
+		th {
+			border-style: dotted;
+			border-width: 0 0 1px 0;
+		}
+
+		td {
+			border-color: var(--memberlite-color-borders);
+			border-style: solid;
+			border-width: 0 0 1px 0;
+			padding: var(--wp--preset--spacing--10);
+			vertical-align: top;
+		}
+
+		tr:nth-child(even) th,
+		tr:nth-child(even) td {
+			background-color: color-mix(in srgb, var(--memberlite-color-borders) 30%, transparent);
+		}
+	}
+}
+
+// -----------------------------------------------------------------------------
+// Separator Block
+// -----------------------------------------------------------------------------
+
+hr.wp-block-separator {
+	margin-left: auto;
+	margin-right: auto;
+
+	&:not(.is-style-wide):not(.is-style-dots) {
+		max-width: 100px;
+	}
+
+	&.is-style-dots:before {
+		color: var(--memberlite-color-borders);
+	}
+
+	&.is-style-wide {
+		border: 0;
+	}
+}
+
+// -----------------------------------------------------------------------------
+// Quote & Pullquote Blocks
+// -----------------------------------------------------------------------------
+
+.wp-block-pullquote blockquote,
+.wp-block-quote {
+	all: unset;
+}
+
+.wp-block-quote {
+
+	&:not(.is-style-plain) {
+		background: none;
+		position: relative;
+
+		&::before {
+			color: var(--memberlite-color-secondary);
+			content: "\f10d"; // fa-quote-left
+			font-family: 'Font Awesome 5 Free';
+			font-size: var(--wp--preset--font-size--30);
+			font-weight: 900;
+			left: 0;
+			position: absolute;
+			top: 0;
+		}
+	}
+
+	&.is-style-plain {
+		padding-left: 0;
+	}
+
+	p:last-of-type {
+		margin-bottom: 0;
+	}
+
+	cite {
+		display: block;
+		font-size: inherit;
+		margin-top: var(--wp--preset--spacing--10);
+		text-align: right;
+
+		a { text-decoration: none; }
+	}
+}
+
+
+// -----------------------------------------------------------------------------
+// Search Block
+// -----------------------------------------------------------------------------
+
+.wp-block-search {
+
+	.wp-block-search__button {
+		padding: calc(var(--wp--preset--spacing--10) / 2) var(--wp--preset--spacing--10);
+	}
+}
+
+
+// -----------------------------------------------------------------------------
+// Image Block
+// -----------------------------------------------------------------------------
+
+.wp-block-image {
+	&.alignfull {
+		text-align: center;
+	}
+
+	&.figure.alignleft,
+	&.figure.alignright {
+		@include breakpoint(mobile) {
+			@include reset-alignment-floats-mobile;
+		}
+	}
+}
+
+// -----------------------------------------------------------------------------
+// Query Loop Block
+// -----------------------------------------------------------------------------
+
+.wp-block-query ul {
+	padding-left: 0;
+}

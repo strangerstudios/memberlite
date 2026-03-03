@@ -1,0 +1,75 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+
+/*--------------------------------------------------------------
+ 1.3 Base | Global: Utilities
+--------------------------------------------------------------*/
+
+.screen-reader-text {
+	@include screen-reader-only;
+}
+
+.text-center {
+	text-align: center;
+}
+
+.text-left {
+	text-align: left;
+}
+
+.text-right {
+	text-align: right;
+}
+
+.text-2x {
+	font-size: var(--wp--preset--font-size--21);
+}
+
+.text-3x {
+	font-size: var(--wp--preset--font-size--24);
+}
+
+.text-4x {
+	font-size: var(--wp--preset--font-size--30);
+}
+
+.text-5x {
+	font-size: var(--wp--preset--font-size--36);
+}
+
+.alignfull {
+	@include breakpoint(mobile) {
+		margin-right: -2.35rem;
+		margin-left: -2.35rem;
+	}
+}
+
+.alignleft {
+	display: inline;
+	float: left;
+	margin-right: var(--wp--preset--spacing--20);
+}
+
+.alignright {
+	display: inline;
+	float: right;
+	margin-left: var(--wp--preset--spacing--20);
+}
+
+.aligncenter {
+	clear: both;
+	display: block;
+	margin: 0 auto;
+}
+
+.hide-screen {
+	@include breakpoint(desktop) {
+		display: none;
+	}
+}
+
+.hide-mobile {
+	@include breakpoint(mobile) {
+		display: none;
+	}
+}

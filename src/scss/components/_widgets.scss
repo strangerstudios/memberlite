@@ -1,0 +1,248 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+
+/*--------------------------------------------------------------
+ 3.6 Components: Sidebar & Widgets
+
+ Covers: #secondary sidebar, .widget-area, individual widget types
+--------------------------------------------------------------*/
+
+
+// -----------------------------------------------------------------------------
+// #secondary Sidebar
+// -----------------------------------------------------------------------------
+
+#secondary {
+	overflow: hidden;
+
+	select {
+		margin: var(--wp--preset--spacing--10);
+	}
+
+	// Widget base
+	.widget {
+		margin-bottom: var(--wp--preset--spacing--20);
+	}
+
+	.widget-title {
+		border-top: 1px solid var(--memberlite-color-borders);
+		margin: 0;
+		padding: var(--wp--preset--spacing--20) 0 var(--wp--preset--spacing--10) 0;
+
+		a { text-decoration: none; }
+	}
+
+	// Reset list styles for common widget types
+	.widget ul.menu,
+	.widget_archive ul,
+	.widget_recent_entries ul,
+	.widget_categories ul,
+	.widget_recent_comments ul,
+	.widget_search ul,
+	.widget_meta ul {
+		list-style: none;
+		margin: 0;
+		padding-left: 0;
+	}
+
+	.widget ul.children {
+		color: var(--memberlite-color-text);
+		list-style-type: circle;
+		margin-left: 1.9rem;
+	}
+
+	// Calendar block
+	.wp-block-calendar {
+
+		thead th,
+		tbody td {
+			padding: .7rem var(--wp--preset--spacing--10);
+		}
+	}
+
+	// Search widget
+	.widget_block.widget_search input[type=search] {
+		width: auto;
+	}
+
+	// Text widget
+	.widget.widget_text .textwidget {
+		padding: var(--wp--preset--spacing--10);
+
+		&.custom-html-widget {
+			padding: 0;
+		}
+	}
+
+	// Nav menu widget
+	.widget_nav_menu {
+
+		h3.widget-title {
+			margin-bottom: 0;
+		}
+
+		li.page_item_has_children {
+
+			.children {
+				display: none;
+			}
+
+			&.current_page_item,
+			&.current_page_parent,
+			&.current_page_ancestor {
+
+				.children {
+					display: block;
+				}
+			}
+		}
+
+		li.current_page_item > a,
+		li.current_page_item > a:hover {
+			border-bottom: 1px solid var(--memberlite-color-link);
+			font-weight: bold;
+		}
+	}
+
+	// Meta widget
+	.widget.widget_meta h3.widget-title {
+		margin-bottom: 0;
+	}
+
+	// Recent entries with thumbnails — secondary-scoped overrides
+	.widget_recent_entries_thumbnails a.widget_post_thumbnail {
+		border: none;
+		border-radius: 50%;
+		grid-area: thumbnail;
+		height: auto;
+		opacity: 1;
+		width: 100%;
+
+		&:hover { border: none; }
+	}
+}
+
+
+// -----------------------------------------------------------------------------
+// Widget Area (shared — applies to sidebar and footer widgets)
+// -----------------------------------------------------------------------------
+
+.widget-area .widget {
+
+	a:not(.btn):not(.pmpro_btn) {
+		border-bottom: 1px solid transparent;
+		text-decoration: none;
+
+		&:hover {
+			border-bottom-color: var(--memberlite-color-link);
+		}
+	}
+}
+
+
+// -----------------------------------------------------------------------------
+// Widget — Tag Cloud
+// -----------------------------------------------------------------------------
+
+.widget_tag_cloud {
+
+	.tag-link-count {
+		font-size: var(--wp--preset--font-size--14);
+	}
+
+	.tagcloud a:link {
+		text-decoration: none;
+	}
+}
+
+
+// -----------------------------------------------------------------------------
+// Widget — Calendar
+// -----------------------------------------------------------------------------
+
+.widget_calendar #wp-calendar caption {
+	background-color: var(--memberlite-color-borders);
+	border-top: 1px solid var(--memberlite-color-borders);
+	font-size: var(--wp--preset--font-size--24);
+	padding: .7rem var(--wp--preset--spacing--10);
+	text-align: center;
+}
+
+
+// -----------------------------------------------------------------------------
+// Widget — Recent Comments / Recent Entries (link styles)
+// -----------------------------------------------------------------------------
+
+.widget_recent_comments ul li a,
+.widget_recent_entries ul li a,
+.widget_recent_entries_thumbnails ul li a {
+	hyphens: auto;
+	overflow-wrap: break-word;
+	word-wrap: break-word;
+}
+
+
+// -----------------------------------------------------------------------------
+// Widget — Recent Entries with Thumbnails
+// -----------------------------------------------------------------------------
+
+.widget_recent_entries_thumbnails {
+
+	ul {
+		margin-left: 0;
+		margin-top: var(--wp--preset--spacing--10);
+	}
+
+	li {
+		display: grid;
+		grid-template-columns: 80px var(--wp--preset--spacing--10) auto;
+		grid-template-areas:
+      "thumbnail . title"
+      "thumbnail . date";
+		margin-bottom: var(--wp--preset--spacing--10);
+	}
+
+	.entry-title {
+		align-self: end;
+		grid-area: title;
+		margin: 0;
+	}
+
+	.post-date {
+		align-self: start;
+		grid-area: date;
+	}
+
+	// Shared thumbnail link styles (also scoped in #secondary above)
+	a.widget_post_thumbnail {
+		border: none;
+		border-radius: 50%;
+		grid-area: thumbnail;
+		height: auto;
+		opacity: 1;
+		width: 100%;
+
+		&:hover { border: none; }
+	}
+
+	.widget_post_thumbnail {
+
+		img {
+			aspect-ratio: 1 / 1;
+			border-radius: 50%;
+			margin: 0;
+			object-fit: cover;
+			object-position: center center;
+		}
+
+		.fa {
+			font-size: var(--wp--preset--font-size--42);
+			margin: 20px;
+		}
+	}
+}
+
+// Footer widget context — dim the post date slightly
+.footer-widgets .widget_recent_entries_thumbnails .post-date {
+	opacity: 0.8;
+}

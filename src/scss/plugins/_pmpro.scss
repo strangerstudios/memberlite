@@ -1,0 +1,426 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+
+/*--------------------------------------------------------------
+ 6.1 Plugins: Paid Memberships Pro
+
+ Covers: levels layouts, highlight cards, compare table, signup forms,
+        checkout, sitewide sales, login widget, entry title lock icons
+--------------------------------------------------------------*/
+
+
+// -----------------------------------------------------------------------------
+// .pmpro — Core Plugin Scope
+// -----------------------------------------------------------------------------
+
+.pmpro {
+
+	// Buttons
+	.pmpro_btn {
+		font-family: var(--memberlite-header-font), ui-sans-serif;
+	}
+
+	// Discount code toggle — override default button shadow/weight
+	button[type="button"]#other_discount_code_toggle {
+
+		&,
+		&:hover,
+		&:focus {
+			box-shadow: none;
+			font-weight: 400;
+		}
+	}
+
+
+	// ---------------------------------------------------------------------------
+	// Membership Levels — Shared
+	// ---------------------------------------------------------------------------
+
+	.pmpro_level-description {
+		font-family: var(--memberlite-body-font), ui-sans-serif;
+	}
+
+	// Div layout — price weight
+	.pmpro_advanced_levels-div .pmpro_level-meta .pmpro_level-price {
+		font-weight: 700;
+	}
+
+	// 3 and 4 column layouts
+	.pmpro_levels-3col,
+	.pmpro_levels-4col {
+
+		.pmpro_level-description {
+			margin-top: var(--wp--preset--spacing--20);
+		}
+
+		.pmpro_level-price {
+			font-size: var(--wp--preset--font-size--24);
+		}
+	}
+
+
+	// ---------------------------------------------------------------------------
+	// Level Highlight Card
+	// ---------------------------------------------------------------------------
+
+	// Highlighted card border — all column layouts
+	.pmpro_levels-div,
+	.pmpro_levels-2col,
+	.pmpro_levels-3col,
+	.pmpro_levels-4col {
+
+		.pmpro_level-highlight .pmpro_card {
+			border-top: calc(var(--wp--preset--spacing--10) / 2) solid var(--memberlite-color-secondary);
+			border-bottom: var(--wp--preset--spacing--10) solid var(--memberlite-color-secondary);
+			z-index: 100;
+		}
+	}
+
+	// Offset highlight vertically in multi-col layouts
+	.pmpro_levels-2col,
+	.pmpro_levels-3col,
+	.pmpro_levels-4col {
+
+		.pmpro_level-highlight {
+			margin-top: .55rem;
+		}
+	}
+
+	// Remove padding offset on advanced div layouts
+	.pmpro_advanced_levels-div {
+
+		&.pmpro_levels-3col,
+		&.pmpro_levels-4col {
+
+			.pmpro_level-highlight {
+				padding-top: 0;
+				padding-bottom: 0;
+			}
+		}
+	}
+
+
+	// ---------------------------------------------------------------------------
+	// Advanced Levels Table
+	// ---------------------------------------------------------------------------
+
+	.pmpro_advanced_levels-table {
+
+		tbody th,
+		tbody td {
+			padding-top: 2.35rem;
+			padding-bottom: 2.35rem;
+		}
+
+		th:first-child {
+			padding-left: 2.35rem;
+		}
+
+		// Highlight column left border
+		.pmpro_level-highlight th:first-child {
+			border-left: calc(var(--wp--preset--spacing--10) / 2) solid var(--memberlite-color-secondary);
+			padding-left: 1.9rem;
+		}
+	}
+
+
+	// ---------------------------------------------------------------------------
+	// Compare Table (.pmpro_advanced_levels-compare_table)
+	// ---------------------------------------------------------------------------
+
+	.pmpro_advanced_levels-compare_table {
+		overflow: hidden;
+
+		.pmpro_level-price {
+			font-size: var(--wp--preset--font-size--24);
+			font-weight: 700;
+		}
+
+		th,
+		td {
+			border-color: var(--memberlite-color-borders);
+			position: relative;
+		}
+
+		thead {
+
+			// All non-first th cells in the first header row get top padding
+			tr:first-child th:not(tr:first-child th:first-child) {
+				padding-top: var(--wp--preset--spacing--20);
+			}
+
+			tr:last-child {
+
+				th {
+					border-bottom: .5rem solid var(--memberlite-color-borders);
+					padding-bottom: 2.35rem;
+				}
+
+				th.pmpro_level-highlight {
+					border-bottom: none;
+				}
+			}
+
+			th.pmpro_level-highlight {
+				border-left: calc(var(--wp--preset--spacing--10) / 2) solid var(--memberlite-color-secondary);
+				border-right: calc(var(--wp--preset--spacing--10) / 2) solid var(--memberlite-color-secondary);
+			}
+		}
+
+		tbody {
+
+			// Transparent backgrounds on alternating/first cells
+			tr {
+
+				td:first-child,
+				td:nth-child(even) {
+					background-color: transparent;
+				}
+			}
+
+			// Also clear first th cells in thead
+			// (kept flat — mixing thead/tbody contexts)
+
+			tr:last-child td {
+				border-bottom: .5rem solid var(--memberlite-color-borders);
+			}
+
+			// Row hover highlight
+			tr:hover {
+				background-color: rgba(252, 248, 227, 0.8);
+			}
+
+			// Column hover highlight — pseudo-element trick
+			td:hover::after,
+			th:hover::after {
+				background-color: rgba(252, 248, 227, 0.3);
+				content: "";
+				height: 10000px;
+				left: 0;
+				position: absolute;
+				top: -5000px;
+				width: 100%;
+				z-index: -1;
+			}
+
+			tr td.pmpro_level-highlight {
+				border-left: calc(var(--wp--preset--spacing--10) / 2) solid var(--memberlite-color-secondary);
+				border-right: calc(var(--wp--preset--spacing--10) / 2) solid var(--memberlite-color-secondary);
+				border-bottom: none;
+			}
+		}
+
+		tfoot {
+
+			td.pmpro_level-highlight {
+				border-left: calc(var(--wp--preset--spacing--10) / 2) solid var(--memberlite-color-secondary);
+				border-right: calc(var(--wp--preset--spacing--10) / 2) solid var(--memberlite-color-secondary);
+				border-bottom: none;
+			}
+
+			tr td.pmpro_level-highlight {
+				border-bottom: none;
+			}
+		}
+	}
+
+	// Transparent alternating cells — thead context (can't nest under thead above
+	// without duplicating the .pmpro_advanced_levels-compare_table selector)
+	.pmpro_advanced_levels-compare_table thead tr th:first-child,
+	.pmpro_advanced_levels-compare_table thead tr th:nth-child(even) {
+		background-color: transparent;
+	}
+
+	// Responsive compare table (shown on mobile instead of full table)
+	.pmpro_advanced_levels-compare_table_responsive {
+
+		.pmpro_level-highlight {
+			border-top: calc(var(--wp--preset--spacing--10) / 2) solid var(--memberlite-color-secondary);
+			border-bottom: var(--wp--preset--spacing--10) solid var(--memberlite-color-secondary);
+			border-left: 1px solid var(--memberlite-color-borders);
+			border-right: 1px solid var(--memberlite-color-borders);
+		}
+	}
+
+
+	// ---------------------------------------------------------------------------
+	// Signup Forms
+	// ---------------------------------------------------------------------------
+
+	.pmpro_signup_form {
+
+		.pmpro_card {
+			border-top: calc(var(--wp--preset--spacing--10) / 2) solid var(--memberlite-color-secondary);
+			border-bottom: var(--wp--preset--spacing--10) solid var(--memberlite-color-secondary);
+
+			// Nested cards (e.g. inside a signup card) reset borders
+			.pmpro_card {
+				border-top: none;
+				border-bottom: none;
+			}
+		}
+	}
+}
+
+
+// -----------------------------------------------------------------------------
+// #pmpro_levels — ID-scoped compare table overrides
+// These require the ID for specificity and can't nest inside .pmpro above
+// without producing an incorrect compiled selector.
+// -----------------------------------------------------------------------------
+
+#pmpro_levels.pmpro_advanced_levels-compare_table {
+
+	thead tr:first-child th.pmpro_level-highlight {
+		border-top: calc(var(--wp--preset--spacing--10) / 2) solid var(--memberlite-color-secondary);
+		padding-top: 2rem;
+	}
+
+	tfoot tr:last-child td.pmpro_level-highlight {
+		border-bottom: calc(var(--wp--preset--spacing--10) / 2) solid var(--memberlite-color-secondary);
+	}
+}
+
+
+// -----------------------------------------------------------------------------
+// .pmpro-variation_1 — Card Border Variant
+// -----------------------------------------------------------------------------
+
+.pmpro-variation_1 {
+
+	.pmpro_card,
+	.pmpro_card_actions,
+	.pmpro_card_content + .pmpro_card_actions {
+		border-color: var(--memberlite-color-borders);
+	}
+}
+
+
+// -----------------------------------------------------------------------------
+// Checkout — Sidebar Form
+// -----------------------------------------------------------------------------
+
+#secondary form.pmpro_form {
+
+	.pmpro_submit {
+		text-align: center;
+
+		.pmpro_btn {
+			display: block;
+			width: 100%;
+		}
+	}
+}
+
+
+// -----------------------------------------------------------------------------
+// Sitewide Sales Banner
+// -----------------------------------------------------------------------------
+
+#pmpro_sws_banner_top span.pmpro_sws_banner-button .pmpro_btn {
+	padding: .45rem var(--wp--preset--spacing--10);
+}
+
+
+// -----------------------------------------------------------------------------
+// Login / Logout Widget
+// -----------------------------------------------------------------------------
+
+.widget {
+
+	.pmpro_login_wrap,
+	.pmpro_logged_in_welcome_wrap {
+
+		hr {
+			margin: var(--wp--preset--spacing--10) 0;
+		}
+
+		ul li,
+		ul.menu li {
+			border: none;
+			margin: 0;
+			padding: 0;
+		}
+	}
+
+	.pmpro_logged_in_welcome_wrap .pmpro_member_log_out {
+		display: block;
+		padding: var(--wp--preset--spacing--10);
+	}
+}
+
+#secondary .widget.widget_pmpro_member_login {
+
+	ul.menu ul.sub-menu {
+		margin-top: 0;
+	}
+
+	.pmpro_logged_in_welcome_wrap .menu {
+		list-style: none;
+		margin-left: 0;
+	}
+}
+
+.widget.widget_pmpro_member_login #loginform {
+
+	input[type=text],
+	input[type=password] {
+		max-width: 100%;
+		width: 100%;
+	}
+}
+
+
+// -----------------------------------------------------------------------------
+// Entry Title — Lock Icon (PMPro access control)
+// -----------------------------------------------------------------------------
+
+// Show lock icon when content requires a membership level
+.hentry.pmpro-level-required h1.entry-title a::before,
+.pmpro-body-level-required .masthead-post-byline h1.entry-title::before {
+	content: "\f023"; // fa-lock
+	font-family: 'Font Awesome 5 Free';
+	font-weight: 900;
+	padding-right: 10px;
+}
+
+// Remove lock icon when user has access
+.pmpro-level-required.pmpro-has-access h1.entry-title a::before,
+.pmpro-body-level-required.pmpro-body-has-access h1.entry-title::before {
+	content: "";
+	font-family: 'Font Awesome 5 Free';
+	padding-right: 0;
+}
+
+.pmpro_levels-div {
+	@include breakpoint(mobile) {
+		text-align: center;
+	}
+}
+
+.pmpro_levels-div .entry-footer .alignright,
+.pmpro_levels-2col .entry-footer .alignright {
+	@include breakpoint(mobile) {
+		display: block;
+		float: none;
+		margin: 0 0 var(--wp--preset--spacing--20) 0;
+	}
+}
+
+#pmpro_levels.pmpro_advanced_levels-compare_table {
+	@include breakpoint(mobile) {
+		display: none;
+	}
+}
+
+#pmpro_levels.pmpro_advanced_levels-compare_table_responsive {
+	@include breakpoint(mobile) {
+		display: block;
+	}
+}
+
+.pmpro_member_profile_edit_wrap .pmpro_checkout_box-user .pmpro_member_profile_edit-fields {
+	@include breakpoint(mobile) {
+		display: block;
+	}
+}

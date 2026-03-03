@@ -1,0 +1,245 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+
+/*--------------------------------------------------------------
+ 3.2 Components: Comments
+--------------------------------------------------------------*/
+
+// -----------------------------------------------------------------------------
+// Comments Container
+// -----------------------------------------------------------------------------
+
+#comments {
+	margin-bottom: var(--wp--preset--spacing--20);
+}
+
+
+// -----------------------------------------------------------------------------
+// Comment / Pingback / Trackback — Shared Base
+// -----------------------------------------------------------------------------
+
+.comment,
+.pingback,
+.trackback {
+	border: 1px dotted var(--memberlite-color-borders);
+}
+
+.comment .comment-body,
+.pingback,
+.trackback {
+	padding: var(--wp--preset--spacing--20);
+}
+
+.comment,
+.pingback.even,
+.trackback.even {
+	background-color: light-dark(
+			color-mix(in srgb, var(--memberlite-color-site-background), black 1%),
+			color-mix(in srgb, var(--memberlite-color-site-background), white 3%)
+	);
+}
+
+
+// -----------------------------------------------------------------------------
+// Comment
+// -----------------------------------------------------------------------------
+
+.comment {
+	hyphens: auto;
+	margin: 0 var(--wp--preset--spacing--20) var(--wp--preset--spacing--20) var(--wp--preset--spacing--20);
+	overflow-wrap: break-word;
+
+	&.depth-1 {
+		margin: 0;
+	}
+
+	// Zebra striping for nested child comments
+	&.even .child-comments .comment {
+		background-color: var(--memberlite-color-borders);
+	}
+
+	&.odd .child-comments .comment {
+		background-color: var(--memberlite-color-white);
+	}
+
+	.comment-meta {
+
+		.comment-author.vcard {
+			display: grid;
+			grid-gap: calc(var(--wp--preset--spacing--10) / 2);
+			grid-template-columns: 40px auto auto;
+			justify-content: start;
+		}
+
+		.avatar {
+			border-radius: 50%;
+			display: inline-block;
+		}
+
+		.comment-metadata {
+			margin-left: 50px;
+		}
+	}
+
+	.comment-respond {
+		margin: 0 var(--wp--preset--spacing--20);
+	}
+}
+
+.comment-content a {
+	overflow-wrap: break-word;
+}
+
+
+// -----------------------------------------------------------------------------
+// Comment Meta (shared between .comment and .bypostauthor contexts)
+// -----------------------------------------------------------------------------
+
+.comment-meta {
+	.comment-author.vcard .fn {
+		font-size: var(--wp--preset--font-size--21);
+	}
+
+	.comment-metadata,
+	.comment-awaiting-moderation {
+		font-size: var(--wp--preset--font-size--14);
+		margin: 0 0 var(--wp--preset--spacing--10) 0;
+	}
+
+	.comment-metadata .edit-link {
+		border-left: 1px solid var(--memberlite-color-borders);
+		grid-area: edit-link;
+		margin: 0 0 0 .7rem;
+		padding: 0 0 0 .7rem;
+	}
+}
+
+.comment-awaiting-moderation {
+	font-style: italic;
+}
+
+
+// -----------------------------------------------------------------------------
+// Post Author Comments (.bypostauthor)
+// -----------------------------------------------------------------------------
+
+.bypostauthor {
+	border-left-width: 10px;
+	border-style: solid;
+
+	.comment-meta .comment-author.vcard .fn::after {
+		content: "\f007"; // fa-user
+		font-family: $font-family-awesome;
+		font-size: var(--wp--preset--font-size--14);
+		font-weight: 900;
+		margin-left: 5px;
+		margin-top: -2px;
+	}
+}
+
+
+// -----------------------------------------------------------------------------
+// Comment Reply Form
+// -----------------------------------------------------------------------------
+
+.comment-respond {
+	margin-top: var(--wp--preset--spacing--20);
+
+	p {
+		position: relative;
+
+		&.logged-in-as,
+		&.comment-notes {
+			font-size: var(--wp--preset--font-size--14);
+		}
+
+		&.comment-form-cookies-consent label {
+			display: inline;
+			margin: 0 0 0 .7rem;
+			text-align: left;
+		}
+	}
+
+	label {
+		display: block;
+		text-align: left;
+		width: 100%;
+		margin: 0 .7rem 1rem 0;
+
+		@include breakpoint(tablet) {
+			display: inline-block;
+			text-align: right;
+		}
+
+	}
+
+	input[type=text],
+	input[type=email],
+	input[type=url],
+	textarea {
+		@include breakpoint(mobile) {
+			width: 100%;
+		}
+	}
+
+	.comment-notes,
+	.form-allowed-tags {
+		font-style: italic;
+	}
+
+	.form-allowed-tags,
+	.form-allowed-tags code {
+		font-size: var(--wp--preset--font-size--14);
+	}
+
+	.form-allowed-tags,
+	.form-submit,
+	.comment-subscription-form {
+		@include breakpoint(mobile) {
+			margin-left: 0;
+		}
+	}
+
+	.form-submit input[type=submit] {
+		@include breakpoint(mobile) {
+			width: 100%;
+		}
+	}
+}
+
+// Note: `.comment-repond` (missing 's') is a typo in WordPress core markup.
+// Preserved here as-is to match the actual rendered HTML.
+.comment-repond {
+	input[type=checkbox],
+	input[type=radio] {
+		margin-right: .5em;
+	}
+}
+
+
+// -----------------------------------------------------------------------------
+// Pingback
+// -----------------------------------------------------------------------------
+
+.pingback {
+	h4.comment-author {
+		margin: 0;
+	}
+
+	.comment-meta-item {
+		font-size: var(--wp--preset--font-size--14);
+	}
+
+	.comment-content p:last-child {
+		margin-bottom: 0;
+	}
+}
+
+
+// -----------------------------------------------------------------------------
+// Screen Reader
+// -----------------------------------------------------------------------------
+
+.says {
+	@include screen-reader-only;
+}
