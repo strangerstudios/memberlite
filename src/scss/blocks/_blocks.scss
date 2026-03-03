@@ -181,17 +181,17 @@ hr.wp-block-separator {
 // Comments Block
 // -----------------------------------------------------------------------------
 
-.wp-block-columns.is-layout-flex {
-	gap: var(--wp--preset--spacing--10);
-	margin-bottom: 0;
-
-	.wp-block-group-is-layout-flex {
-		gap: .7rem;
-	}
-}
-
 .wp-block-comment-template {
 	padding-left: 0;
+
+	.wp-block-columns.is-layout-flex {
+		gap: var(--wp--preset--spacing--10);
+		margin-bottom: 0;
+
+		.wp-block-group-is-layout-flex {
+			gap: .7rem;
+		}
+	}
 
 	.comment {
 		padding: var(--wp--preset--spacing--20);
@@ -214,7 +214,8 @@ hr.wp-block-separator {
 	.wp-block-comment-author-name,
 	.wp-block-comment-author-name.has-small-font-size {
 		font-weight: 700;
-		font-size: var(--wp--preset--font-size--21)!important;
+		// Override the default editor font-size for the author name
+		font-size: var(--wp--preset--font-size--21) !important;
 	}
 
 	.wp-block-comment-date {
