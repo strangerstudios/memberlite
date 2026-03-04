@@ -115,3 +115,9 @@ class Memberlite_Aria_Walker_Nav_Menu extends Walker_Nav_Menu {
 		$output .= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
 	}
 }
+
+function memberlite_set_aria_walker( $args ) {
+	$args['walker'] = new Memberlite_Aria_Walker_Nav_Menu();
+	return $args;
+}
+add_filter( 'wp_nav_menu_args', 'memberlite_set_aria_walker' );

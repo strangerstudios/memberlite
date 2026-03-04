@@ -292,7 +292,7 @@
 	}
 
 	// Only top-level items get this padding, top levels with children don't get padding right
-	> ul.menu > li.menu-item:not(.menu-item-has-children) > a {
+	> ul.menu > li.menu-item > a {
 		padding: var(--wp--preset--spacing--20) var(--wp--preset--spacing--10);
 	}
 
@@ -333,7 +333,7 @@
 	// --- Dropdown sub-menu ---
 	ul.sub-menu {
 		background-color: var(--memberlite-color-site-navigation-background);
-		box-shadow: 1px 15px 5px rgba(0, 0, 0, 0.12);
+		box-shadow: 4px 12px 16px 0 rgba(0, 0, 0, 0.12);
 		display: flex;
 		flex-direction: column;
 		left: -9999em;
@@ -357,15 +357,12 @@
 		}
 	}
 
-	// Mouse users, does not use aria attributes intentionally
-	ul.menu li.menu-item-has-children:hover > .sub-menu {
-		left: 0;
-	}
-
-	// Keyboard users, uses aria attributes
+	// Hover for mouse users, does not use aria attributes intentionally
+	// Aria attributes are used for keyboard users
+	ul.menu li.menu-item-has-children:hover > .sub-menu,
 	ul.menu li.menu-item-has-children > button[aria-expanded="true"] + .sub-menu,
 	ul.menu li.menu-item-has-children > button[aria-expanded="true"] ~ .sub-menu {
-		display: block;
+		left: 0;
 	}
 
 	// Sticky modifier
