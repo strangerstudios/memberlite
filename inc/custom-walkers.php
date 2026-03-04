@@ -106,10 +106,7 @@ class Memberlite_Aria_Walker_Nav_Menu extends Walker_Nav_Menu {
 			// SVG chevron — hidden from AT since the button's aria-label carries
 			// the full accessible name. Role and focusable are set explicitly for
 			// IE11 compatibility.
-			$item_output .= '<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true" focusable="false">';
-			$item_output .= '<polyline points="2,3 6,9 10,3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>';
-			$item_output .= '</svg>';
-			$item_output .= '</button>';
+			$item_output .= '<span aria-hidden="true" class="fa fa-angle-down"></span></button>';
 		}
 
 		$item_output .= $args->after;

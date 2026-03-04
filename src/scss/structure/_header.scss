@@ -291,16 +291,34 @@
 		}
 	}
 
-	// Only top-level items get this padding
-	> ul.menu > li.menu-item > a {
+	// Only top-level items get this padding, top levels with children don't get padding right
+	> ul.menu > li.menu-item:not(.menu-item-has-children) > a {
 		padding: var(--wp--preset--spacing--20) var(--wp--preset--spacing--10);
 	}
 
 	// Parent items with children get flex + chevron
-	ul > .menu-item-has-children > a {
-		align-items: center;
+	ul > li.menu-item-has-children {
 		display: flex;
-		flex-wrap: nowrap;
+		justify-content: space-between;
+		align-items: center;
+
+		> a {
+			display: flex;
+			align-items: center;
+			flex-wrap: nowrap;
+			padding-right: calc(var(--wp--preset--spacing--10) / 2);
+		}
+
+		// Submenu toggle
+		> button {
+			@include remove-btn-defaults;
+			padding: 0 calc(var(--wp--preset--spacing--10) / 2);
+			color: var(--memberlite-color-site-navigation);
+			border-left: 1px solid light-dark(
+					color-mix(in srgb, var(--memberlite-color-site-navigation-background), black 10%),
+					color-mix(in srgb, var(--memberlite-color-site-navigation-background), white 25%)
+			);
+		}
 	}
 
 	ul.sub-menu > .menu-item-has-children > a::after {
@@ -310,27 +328,6 @@
 		font-size: var(--wp--preset--font-size--14);
 		font-weight: 900;
 		margin-left: 5px;
-	}
-
-	// Sticky modifier
-	&.site-navigation-sticky {
-		border-bottom: 1px solid var(--memberlite-color-borders);
-		box-shadow: var(--memberlite-shadow);
-		position: fixed;
-		width: 100%;
-		z-index: 10;
-	}
-
-	// Search item pushed to far right
-	li.menu-item-search {
-		margin-left: auto;
-	}
-
-	.search-form input[type=submit].search-submit {
-		background: none;
-		padding: 0;
-		position: absolute;
-		text-indent: -9999em;
 	}
 
 	// --- Dropdown sub-menu ---
@@ -360,23 +357,37 @@
 		}
 	}
 
-	// Reveal top-level dropdown on hover/aria
-	//ul.menu > li:hover > ul.sub-menu,
-	//ul.menu > li[aria-expanded="true"] > ul.sub-menu {
-	//	left: auto;
-	//}
+	// Mouse users, does not use aria attributes intentionally
+	ul.menu li.menu-item-has-children:hover > .sub-menu {
+		left: 0;
+	}
 
-	// First item: align to left edge rather than parent
-	//ul.menu li:first-child:hover > ul.sub-menu {
-	//	left: 0;
-	//}
+	// Keyboard users, uses aria attributes
+	ul.menu li.menu-item-has-children > button[aria-expanded="true"] + .sub-menu,
+	ul.menu li.menu-item-has-children > button[aria-expanded="true"] ~ .sub-menu {
+		display: block;
+	}
 
-	// Reveal nested dropdown on hover/aria
-	//ul.menu li:hover > ul.sub-menu li:hover > ul.sub-menu,
-	//ul.sub-menu > li[aria-expanded="true"] > ul.sub-menu {
-	//	left: 100%;
-	//	top: 0;
-	//}
+	// Sticky modifier
+	&.site-navigation-sticky {
+		border-bottom: 1px solid var(--memberlite-color-borders);
+		box-shadow: var(--memberlite-shadow);
+		position: fixed;
+		width: 100%;
+		z-index: 10;
+	}
+
+	// Search item pushed to far right
+	li.menu-item-search {
+		margin-left: auto;
+	}
+
+	.search-form input[type=submit].search-submit {
+		background: none;
+		padding: 0;
+		position: absolute;
+		text-indent: -9999em;
+	}
 }
 
 
