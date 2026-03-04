@@ -4,7 +4,7 @@ import { PluginDocumentSettingPanel } from '@wordpress/editor';
 import { ToggleControl } from '@wordpress/components';
 import { useSelect } from '@wordpress/data';
 import { useEntityProp } from '@wordpress/core-data';
-import { SVG, Path } from '@wordpress/primitives';
+import { SVG } from '@wordpress/primitives';
 
 const MemberliteCustomSettings = () => {
 	const postType = useSelect(
