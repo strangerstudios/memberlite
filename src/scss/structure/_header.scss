@@ -303,15 +303,6 @@
 		flex-wrap: nowrap;
 	}
 
-	ul.menu > .menu-item-has-children > a::after {
-		content: "\f107"; // fa-chevron-down
-		display: block;
-		font-family: $font-family-awesome;
-		font-size: var(--wp--preset--font-size--14);
-		font-weight: 900;
-		margin-left: 5px;
-	}
-
 	ul.sub-menu > .menu-item-has-children > a::after {
 		content: "\f105"; // fa-chevron-right
 		display: block;
@@ -370,26 +361,22 @@
 	}
 
 	// Reveal top-level dropdown on hover/aria
-	ul.menu > li.menu-item-has-children:hover > a:after {
-		content: "\f106";
-	}
-
-	ul.menu > li:hover > ul.sub-menu,
-	ul.menu > li[aria-expanded="true"] > ul.sub-menu {
-		left: auto;
-	}
+	//ul.menu > li:hover > ul.sub-menu,
+	//ul.menu > li[aria-expanded="true"] > ul.sub-menu {
+	//	left: auto;
+	//}
 
 	// First item: align to left edge rather than parent
-	ul.menu li:first-child:hover > ul.sub-menu {
-		left: 0;
-	}
+	//ul.menu li:first-child:hover > ul.sub-menu {
+	//	left: 0;
+	//}
 
 	// Reveal nested dropdown on hover/aria
-	ul.menu li:hover > ul.sub-menu li:hover > ul.sub-menu,
-	ul.sub-menu > li[aria-expanded="true"] > ul.sub-menu {
-		left: 100%;
-		top: 0;
-	}
+	//ul.menu li:hover > ul.sub-menu li:hover > ul.sub-menu,
+	//ul.sub-menu > li[aria-expanded="true"] > ul.sub-menu {
+	//	left: 100%;
+	//	top: 0;
+	//}
 }
 
 
@@ -437,15 +424,6 @@
 		align-items: center;
 		display: flex;
 		flex-wrap: nowrap;
-	}
-
-	ul.menu > .menu-item-has-children > a::after {
-		content: "\f107";
-		display: block;
-		font-family: $font-family-awesome;
-		font-size: var(--wp--preset--font-size--14);
-		font-weight: 900;
-		margin-left: 5px;
 	}
 
 	ul.sub-menu > .menu-item-has-children > a::after {
@@ -525,6 +503,25 @@
 		background-color: transparent;
 		box-shadow: none;
 		color: var(--memberlite-color-primary);
+	}
+}
+
+// Make sure hamburger/close icon is visible for Cocoa Ash color scheme
+.scheme_cocoa_ash {
+	$cocoa-ash-primary-lightened: color-mix(in srgb, var(--memberlite-color-primary) 30%, white);
+
+	#expand-mobile-nav {
+		color: $cocoa-ash-primary-lightened;
+	}
+
+	.menu-toggle {
+		color: $cocoa-ash-primary-lightened;
+
+		&:active,
+		&:focus,
+		&:hover {
+			color: $cocoa-ash-primary-lightened;
+		}
 	}
 }
 
