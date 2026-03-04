@@ -29,10 +29,6 @@ label + .customize-control-description {
 	margin-top: 5px;
 }
 
-.customize-control label {
-	text-transform: uppercase;
-}
-
 #customize-theme-controls .customize-pane-child {
 	background: #fff;
 }

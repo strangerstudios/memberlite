@@ -5,12 +5,17 @@
  * @package Memberlite
  */
 
-/*
-	Adds Theme Support submenu page to "Appearance" menu.
-*/
+/**
+ * Adds the Memberlite admin pages.
+ */
 function memberlite_add_pages() {
+	$svg_path = MEMBERLITE_DIR . '/assets/images/pmpro-icon.svg';
+	$icon_url = file_exists( $svg_path )
+		? 'data:image/svg+xml;base64,' . base64_encode( file_get_contents( $svg_path ) )
+		: 'dashicons-privacy';
+
 	// Top level menu right under Appearance.
-	add_menu_page( __( 'Memberlite', 'memberlite' ), __( 'Memberlite', 'memberlite' ), 'edit_theme_options', 'memberlite-dashboard', 'memberlite_dashboard', 'dashicons-privacy', 61 );
+	add_menu_page( __( 'Memberlite', 'memberlite' ), __( 'Memberlite', 'memberlite' ), 'edit_theme_options', 'memberlite-dashboard', 'memberlite_dashboard', $icon_url, 61 );
 
 	// Memberlite admin subpages.
 	add_submenu_page( 'memberlite-dashboard', __( 'Dashboard', 'memberlite' ), __( 'Dashboard', 'memberlite' ), 'edit_theme_options', 'memberlite-dashboard', 'memberlite_dashboard' );

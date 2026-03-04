@@ -6,6 +6,7 @@
  */
 define( 'MEMBERLITE_VERSION', '6.1.1.0.21' );
 define( 'MEMBERLITE_URL', get_template_directory_uri() );
+define( 'MEMBERLITE_DIR', get_template_directory() );
 
 // enqueue additional stylesheets and javascript
 function memberlite_init_styles() {
@@ -73,8 +74,6 @@ function memberlite_admin_enqueue_scripts() {
 		wp_enqueue_script( 'memberlite_admin_js' );
 	}
 
-	wp_register_style( 'memberlite-dashboard', MEMBERLITE_URL . '/css/dashboard.css', [], MEMBERLITE_VERSION, 'screen' );
-	wp_enqueue_style( 'memberlite-dashboard' );
 }
 add_action( 'admin_enqueue_scripts', 'memberlite_admin_enqueue_scripts' );
 
