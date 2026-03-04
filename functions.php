@@ -6,6 +6,7 @@
  */
 define( 'MEMBERLITE_VERSION', '6.1.1.1.2' );
 define( 'MEMBERLITE_URL', get_template_directory_uri() );
+define( 'MEMBERLITE_DIR', get_template_directory() );
 
 // enqueue additional stylesheets and javascript
 function memberlite_init_styles() {
@@ -73,6 +74,7 @@ function memberlite_admin_enqueue_scripts() {
 		wp_register_script( 'memberlite_admin_js', MEMBERLITE_URL . '/js/admin.js', [ 'jquery' ], MEMBERLITE_VERSION, true );
 		wp_enqueue_script( 'memberlite_admin_js' );
 	}
+
 }
 add_action( 'admin_enqueue_scripts', 'memberlite_admin_enqueue_scripts' );
 
