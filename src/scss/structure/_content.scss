@@ -67,8 +67,6 @@
 		.entry-title {
 			margin: 0;
 			hyphens: auto;
-			overflow-wrap: break-word;
-			word-wrap: break-word;
 		}
 
 		.post_author_avatar {
@@ -96,6 +94,7 @@
 
 .entry-title {
 	overflow-wrap: break-word;
+	word-break: break-word;
 }
 
 
@@ -235,8 +234,6 @@
 	.entry-title {
 		@include breakpoint(mobile) {
 			hyphens: none;
-			overflow-wrap: normal;
-			word-break: break-word;
 		}
 	}
 }

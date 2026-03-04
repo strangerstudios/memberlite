@@ -48,7 +48,6 @@
 .comment {
 	hyphens: auto;
 	margin: 0 var(--wp--preset--spacing--20) var(--wp--preset--spacing--20) var(--wp--preset--spacing--20);
-	overflow-wrap: break-word;
 
 	&.depth-1 {
 		margin: var(--wp--preset--spacing--20) 0;
@@ -77,11 +76,6 @@
 		margin: 0 var(--wp--preset--spacing--20);
 	}
 }
-
-.comment-content a {
-	overflow-wrap: break-word;
-}
-
 
 // -----------------------------------------------------------------------------
 // Comment Meta (shared between .comment and .bypostauthor contexts)
