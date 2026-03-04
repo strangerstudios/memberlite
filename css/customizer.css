@@ -28,3 +28,7 @@
 label + .customize-control-description {
 	margin-top: 5px;
 }
+
+#customize-theme-controls .customize-pane-child {
+	background: #fff;
+}
