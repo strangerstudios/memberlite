@@ -95,60 +95,151 @@ function memberlite_tools() {
  * Exports theme settings as a JSON file.
  *
  * @since 6.1
+ * @since TBD Added optional navigation menu export.
  */
 function memberlite_export_theme_settings() {
 	if ( ! current_user_can( 'edit_theme_options' ) ) {
 		wp_die( esc_html__( 'You are not allowed to export theme settings.', 'memberlite' ) );
 	}
 
-	check_admin_referer( 'memberlite_export_theme_settings' );
+	if ( empty( $_POST['memberlite_export_theme_settings_nonce'] ) ) {
+		wp_die( esc_html__( 'Invalid export request.', 'memberlite' ) );
+	}
+
+	check_admin_referer( 'memberlite_export_theme_settings', 'memberlite_export_theme_settings_nonce' );
 
 	$template = get_option( 'template' );
 
-	// All theme mods = all Customizer settings for the active theme.
-	$mods = get_theme_mods();
-	if ( ! is_array( $mods ) ) {
-		$mods = array();
-	}
-
-	/**
-	 * Filter the option keys to export when exporting Memberlite theme settings.
-	 * By default, we export the site icon, custom sidebars, and sidebar assignments for custom post types.
-	 *
-	 * Note: This same filter is used for resetting options in memberlite_reset_theme_settings().
-	 *
-	 * @since 6.1
-	 * @param array $option_keys Array of option keys to export.
-	 */
-	$option_keys = apply_filters(
-		'memberlite_export_option_keys',
-		array(
-			'site_icon',
-			'memberlite_cpt_sidebars',
-			'memberlite_custom_sidebars',
-		)
+	$data = array(
+		'template' => $template,
 	);
 
-	$options = array();
+	// Export theme mods if selected.
+	if ( ! empty( $_POST['memberlite_export_theme_mods'] ) ) {
+		// All theme mods = all Customizer settings for the active theme.
+		$mods = get_theme_mods();
+		if ( ! is_array( $mods ) ) {
+			$mods = array();
+		}
+		$data['mods'] = $mods;
 
-	foreach ( $option_keys as $key ) {
-		$value = get_option( $key, null );
-		if ( null !== $value ) {
-			$options[ $key ] = $value;
+		/**
+		 * Filter the option keys to export when exporting Memberlite theme settings.
+		 * By default, we export the site icon, custom sidebars, and sidebar assignments for custom post types.
+		 *
+		 * Note: This same filter is used for resetting options in memberlite_reset_theme_settings().
+		 *
+		 * @since 6.1
+		 * @param array $option_keys Array of option keys to export.
+		 */
+		$option_keys = apply_filters(
+			'memberlite_export_option_keys',
+			array(
+				'site_icon',
+				'memberlite_cpt_sidebars',
+				'memberlite_custom_sidebars',
+			)
+		);
+
+		$options = array();
+
+		foreach ( $option_keys as $key ) {
+			$value = get_option( $key, null );
+			if ( null !== $value ) {
+				$options[ $key ] = $value;
+			}
+		}
+
+		$data['options'] = $options;
+
+		if ( function_exists( 'wp_get_custom_css' ) ) {
+			$data['wp_css'] = wp_get_custom_css();
 		}
 	}
 
-	$data = array(
-		'template' => $template,
-		'mods'     => $mods,
-		'options'  => $options,
-	);
+	// Export menus if selected.
+	if ( ! empty( $_POST['memberlite_export_menus'] ) && ! empty( $_POST['memberlite_export_menu_ids'] ) ) {
+		$menu_ids = array_map( 'intval', $_POST['memberlite_export_menu_ids'] );
+		$menus_data = array();
 
-	if ( function_exists( 'wp_get_custom_css' ) ) {
-		$data['wp_css'] = wp_get_custom_css();
+		// Get current menu location assignments to export with menus.
+		$menu_locations = get_nav_menu_locations();
+		$menu_id_to_locations = array();
+		foreach ( $menu_locations as $location => $assigned_menu_id ) {
+			if ( ! empty( $assigned_menu_id ) ) {
+				if ( ! isset( $menu_id_to_locations[ $assigned_menu_id ] ) ) {
+					$menu_id_to_locations[ $assigned_menu_id ] = array();
+				}
+				$menu_id_to_locations[ $assigned_menu_id ][] = $location;
+			}
+		}
+
+		foreach ( $menu_ids as $menu_id ) {
+			$menu = wp_get_nav_menu_object( $menu_id );
+			if ( ! $menu ) {
+				continue;
+			}
+
+			$menu_items = wp_get_nav_menu_items( $menu_id );
+			$items_data = array();
+
+			if ( ! empty( $menu_items ) ) {
+				// Build index map for parent references.
+				$id_to_index = array();
+				foreach ( $menu_items as $index => $item ) {
+					$id_to_index[ $item->db_id ] = $index;
+				}
+
+				foreach ( $menu_items as $index => $item ) {
+					// Determine parent index (null if top-level).
+					$parent_index = null;
+					if ( ! empty( $item->menu_item_parent ) && isset( $id_to_index[ $item->menu_item_parent ] ) ) {
+						$parent_index = $id_to_index[ $item->menu_item_parent ];
+					}
+
+					// Make internal URLs relative for portability across environments.
+					$item_url = $item->url;
+					$site_url = home_url();
+					if ( strpos( $item_url, $site_url ) === 0 ) {
+						$item_url = substr( $item_url, strlen( $site_url ) );
+						// Ensure empty path becomes root slash.
+						if ( empty( $item_url ) ) {
+							$item_url = '/';
+						}
+					}
+
+					$items_data[] = array(
+						'label'       => $item->title,
+						'url'         => $item_url,
+						'target'      => $item->target,
+						'attr_title'  => $item->attr_title,
+						'description' => $item->description,
+						'classes'     => array_filter( (array) $item->classes ),
+						'xfn'         => $item->xfn,
+						'parent'      => $parent_index,
+					);
+				}
+			}
+
+			$menu_export_data = array(
+				'name'  => $menu->name,
+				'items' => $items_data,
+			);
+
+			// Include location assignments for this menu.
+			if ( isset( $menu_id_to_locations[ $menu_id ] ) ) {
+				$menu_export_data['locations'] = $menu_id_to_locations[ $menu_id ];
+			}
+
+			$menus_data[] = $menu_export_data;
+		}
+
+		if ( ! empty( $menus_data ) ) {
+			$data['menus'] = $menus_data;
+		}
 	}
 
-	$json = wp_json_encode( $data );
+	$json = wp_json_encode( $data, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES );
 
 	if ( false === $json ) {
 		wp_die( esc_html__( 'Error encoding export data.', 'memberlite' ) );
@@ -170,6 +261,7 @@ add_action( 'admin_post_memberlite_export_theme_settings', 'memberlite_export_th
  * Handle Memberlite theme settings import.
  *
  * @since 6.1
+ * @since TBD Added navigation menu import support.
  */
 function memberlite_import_theme_settings() {
 	if ( ! current_user_can( 'edit_theme_options' ) ) {
@@ -196,7 +288,8 @@ function memberlite_import_theme_settings() {
 	// Decode JSON created by the export tool.
 	$data = json_decode( $raw, true );
 
-	if ( ! is_array( $data ) || empty( $data['template'] ) || ! isset( $data['mods'] ) ) {
+	// Validate file structure - must have template and either mods or menus.
+	if ( ! is_array( $data ) || empty( $data['template'] ) || ( ! isset( $data['mods'] ) && ! isset( $data['menus'] ) ) ) {
 		memberlite_import_settings_redirect( 'invalid_file' );
 	}
 
@@ -209,7 +302,7 @@ function memberlite_import_theme_settings() {
 		memberlite_import_settings_redirect( 'wrong_theme' );
 	}
 
-	// Overwrite current theme mods.
+	// Overwrite current theme mods if present.
 	if ( isset( $data['mods'] ) && is_array( $data['mods'] ) ) {
 		// Clear existing mods so we don't leave stale ones behind.
 		remove_theme_mods();
@@ -271,6 +364,148 @@ function memberlite_import_theme_settings() {
 	// Restore Additional CSS if we exported it.
 	if ( ! empty( $data['wp_css'] ) && function_exists( 'wp_update_custom_css_post' ) ) {
 		wp_update_custom_css_post( $data['wp_css'] );
+	}
+
+	// Import navigation menus if present.
+	if ( ! empty( $data['menus'] ) && is_array( $data['menus'] ) ) {
+		// Track location assignments to apply after all menus are created.
+		$location_assignments = array();
+
+		// Check if user wants to replace existing menus.
+		$replace_existing = ! empty( $_POST['memberlite_replace_existing_menus'] );
+
+		foreach ( $data['menus'] as $menu_data ) {
+			if ( empty( $menu_data['name'] ) ) {
+				continue;
+			}
+
+			$menu_name = sanitize_text_field( $menu_data['name'] );
+
+			// Check if a menu with this exact name already exists.
+			$existing_menu = wp_get_nav_menu_object( $menu_name );
+
+			if ( $existing_menu ) {
+				if ( $replace_existing ) {
+					// Replace mode: Delete existing menu items and import new ones into existing menu.
+					$menu_id = $existing_menu->term_id;
+					$location_menu_id = $menu_id;
+
+					$existing_items = wp_get_nav_menu_items( $menu_id );
+					if ( ! empty( $existing_items ) ) {
+						foreach ( $existing_items as $item ) {
+							wp_delete_post( $item->db_id, true );
+						}
+					}
+				} else {
+					// Non-replace mode: Create duplicate menu, but assign original to locations.
+					$location_menu_id = $existing_menu->term_id;
+
+					// Create duplicate with numbered name.
+					$duplicate_name = $menu_name;
+					$counter = 1;
+					while ( wp_get_nav_menu_object( $duplicate_name ) ) {
+						$counter++;
+						$duplicate_name = $menu_name . ' (' . $counter . ')';
+					}
+
+					$menu_id = wp_create_nav_menu( $duplicate_name );
+
+					if ( is_wp_error( $menu_id ) ) {
+						continue;
+					}
+				}
+			} else {
+				// Menu doesn't exist - create it and use it for locations.
+				$menu_id = wp_create_nav_menu( $menu_name );
+
+				if ( is_wp_error( $menu_id ) ) {
+					continue;
+				}
+
+				$location_menu_id = $menu_id;
+			}
+
+			// Track location assignments using the appropriate menu ID.
+			if ( ! empty( $menu_data['locations'] ) && is_array( $menu_data['locations'] ) ) {
+				foreach ( $menu_data['locations'] as $location ) {
+					$location_assignments[ sanitize_key( $location ) ] = $location_menu_id;
+				}
+			}
+
+			// Import menu items.
+			if ( ! empty( $menu_data['items'] ) && is_array( $menu_data['items'] ) ) {
+				// Map of old index to new menu item ID for parent relationships.
+				$index_to_new_id = array();
+
+				foreach ( $menu_data['items'] as $index => $item_data ) {
+					$label = isset( $item_data['label'] ) ? sanitize_text_field( $item_data['label'] ) : '';
+					$url   = isset( $item_data['url'] ) ? $item_data['url'] : '';
+
+					// Convert relative URLs to absolute using the current site URL.
+					if ( ! empty( $url ) && strpos( $url, '/' ) === 0 && strpos( $url, '//' ) !== 0 ) {
+						$url = home_url( $url );
+					}
+
+					$url = esc_url_raw( $url );
+
+					if ( empty( $label ) || empty( $url ) ) {
+						continue;
+					}
+
+					// Determine parent menu item ID.
+					$parent_id = 0;
+					if ( isset( $item_data['parent'] ) && is_int( $item_data['parent'] ) && isset( $index_to_new_id[ $item_data['parent'] ] ) ) {
+						$parent_id = $index_to_new_id[ $item_data['parent'] ];
+					}
+
+					// Prepare menu item data.
+					$menu_item_data = array(
+						'menu-item-title'     => $label,
+						'menu-item-url'       => $url,
+						'menu-item-status'    => 'publish',
+						'menu-item-type'      => 'custom',
+						'menu-item-parent-id' => $parent_id,
+					);
+
+					// Add optional fields if present.
+					if ( ! empty( $item_data['target'] ) ) {
+						$menu_item_data['menu-item-target'] = sanitize_text_field( $item_data['target'] );
+					}
+
+					if ( ! empty( $item_data['attr_title'] ) ) {
+						$menu_item_data['menu-item-attr-title'] = sanitize_text_field( $item_data['attr_title'] );
+					}
+
+					if ( ! empty( $item_data['description'] ) ) {
+						$menu_item_data['menu-item-description'] = sanitize_textarea_field( $item_data['description'] );
+					}
+
+					if ( ! empty( $item_data['classes'] ) && is_array( $item_data['classes'] ) ) {
+						$menu_item_data['menu-item-classes'] = implode( ' ', array_map( 'sanitize_html_class', $item_data['classes'] ) );
+					}
+
+					if ( ! empty( $item_data['xfn'] ) ) {
+						$menu_item_data['menu-item-xfn'] = sanitize_text_field( $item_data['xfn'] );
+					}
+
+					// Insert the menu item.
+					$new_item_id = wp_update_nav_menu_item( $menu_id, 0, $menu_item_data );
+
+					if ( ! is_wp_error( $new_item_id ) ) {
+						$index_to_new_id[ $index ] = $new_item_id;
+					}
+				}
+			}
+		}
+
+		// Apply menu location assignments after all menus are created.
+		if ( ! empty( $location_assignments ) ) {
+			$current_locations = get_nav_menu_locations();
+			foreach ( $location_assignments as $location => $menu_id ) {
+				$current_locations[ $location ] = $menu_id;
+			}
+			set_theme_mod( 'nav_menu_locations', $current_locations );
+		}
 	}
 
 	memberlite_import_settings_redirect( 'import_ok' );

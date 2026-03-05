@@ -20,6 +20,8 @@ function memberlite_add_pages() {
 	// Memberlite admin subpages.
 	add_submenu_page( 'memberlite-dashboard', __( 'Dashboard', 'memberlite' ), __( 'Dashboard', 'memberlite' ), 'edit_theme_options', 'memberlite-dashboard', 'memberlite_dashboard' );
 
+	add_submenu_page( 'memberlite-dashboard', __( 'Custom Menus', 'memberlite' ), __( 'Custom Menus', 'memberlite' ), 'edit_theme_options', 'memberlite-custom-menus', 'memberlite_custom_menus' );
+
 	add_submenu_page( 'memberlite-dashboard', __( 'Custom Sidebars', 'memberlite' ), __( 'Custom Sidebars', 'memberlite' ), 'edit_theme_options', 'memberlite-custom-sidebars', 'memberlite_custom_sidebars' );
 
 	add_submenu_page( 'memberlite-dashboard', __( 'Tools', 'memberlite' ), __( 'Tools', 'memberlite' ), 'edit_theme_options', 'memberlite-tools', 'memberlite_tools' );
@@ -252,3 +254,50 @@ function memberlite_hide_non_memberlite_notices() {
 	}
 }
 add_action( 'in_admin_header', 'memberlite_hide_non_memberlite_notices' );
+
+/**
+ * Add "Manage with Memberlite" link to Appearance > Menus page.
+ *
+ * @since 6.2
+ */
+function memberlite_add_menus_page_link() {
+	$screen = get_current_screen();
+	if ( ! $screen || $screen->base !== 'nav-menus' ) {
+		return;
+	}
+
+	$custom_menus_url = admin_url( 'admin.php?page=memberlite-custom-menus' );
+	?>
+	<script>
+	(function() {
+		// Create the Memberlite link.
+		var memberliteLink = document.createElement( 'a' );
+		memberliteLink.href = '<?php echo esc_url( $custom_menus_url ); ?>';
+		memberliteLink.className = 'page-title-action';
+		memberliteLink.textContent = '<?php echo esc_js( __( 'Manage with Memberlite', 'memberlite' ) ); ?>';
+
+		// Find all page-title-action links and insert after the last one.
+		var pageTitleActions = document.querySelectorAll( '.wrap .page-title-action' );
+		if ( pageTitleActions.length > 0 ) {
+			var lastAction = pageTitleActions[ pageTitleActions.length - 1 ];
+			lastAction.parentNode.insertBefore( memberliteLink, lastAction.nextSibling );
+			return;
+		}
+
+		// Fallback: insert before wp-header-end.
+		var headerEnd = document.querySelector( '.wrap hr.wp-header-end' );
+		if ( headerEnd ) {
+			headerEnd.parentNode.insertBefore( memberliteLink, headerEnd );
+			return;
+		}
+
+		// Last fallback: insert after the h1.
+		var pageTitle = document.querySelector( '.wrap h1' );
+		if ( pageTitle ) {
+			pageTitle.parentNode.insertBefore( memberliteLink, pageTitle.nextSibling );
+		}
+	})();
+	</script>
+	<?php
+}
+add_action( 'admin_footer', 'memberlite_add_menus_page_link' );
