@@ -194,11 +194,6 @@
 
 }
 
-// Page-type entry — no bottom border
-.page .entry-content {
-	border-bottom: 0;
-}
-
 // 404 error page content
 .error-404 .entry-content {
 	padding: 0 0 var(--wp--preset--spacing--50) 0;
@@ -212,6 +207,7 @@
 
 .post:not(:has(.entry-author)) .entry-footer {
 	border-top: 1px solid var(--memberlite-color-borders);
+	clear: both;
 	padding: var(--wp--preset--spacing--10) 0 0 0;
 }
 

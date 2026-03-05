@@ -19,13 +19,19 @@
 	> * {
 		background-color: color-mix(in srgb, Canvas 10%, transparent);
 		border: 1px solid var(--memberlite-color-borders);
+		border-radius: var(--wp--custom--border--radius);
 		display: flex;
 		flex-direction: column;
 		flex-wrap: wrap;
 		justify-content: start;
 		margin: 0;
+		overflow: hidden;
 		padding: var(--wp--preset--spacing--10);
 		text-align: center;
+	}
+
+	.hentry {
+		margin: 0;
 	}
 
 	// Card titles
@@ -45,6 +51,8 @@
 			&:hover {
 				border-bottom: none;
 				color: var(--memberlite-color-link);
+				text-decoration: underline;
+				text-underline-offset: 2px;
 			}
 		}
 	}
@@ -98,7 +106,7 @@
 
 		.avatar {
 			border: 2px solid var(--memberlite-color-borders);
-			margin-top: -4.35rem;
+			margin-top: calc(-1 * var(--wp--preset--spacing--40));
 		}
 	}
 

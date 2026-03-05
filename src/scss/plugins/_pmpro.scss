@@ -283,21 +283,6 @@
 
 
 // -----------------------------------------------------------------------------
-// .pmpro-variation_1 — Rounded Cards Variant
-// -----------------------------------------------------------------------------
-
-.pmpro-variation_1 {
-
-	.pmpro_card_actions {
-		background-color: light-dark(
-			color-mix(in srgb, var(--memberlite-color-site-background), white 50%),
-			color-mix(in srgb, var(--memberlite-color-site-background), white 5%)
-		);
-	}
-}
-
-
-// -----------------------------------------------------------------------------
 // Checkout — Sidebar Form
 // -----------------------------------------------------------------------------
 
