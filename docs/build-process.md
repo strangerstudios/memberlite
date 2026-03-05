@@ -25,8 +25,28 @@ Memberlite uses a hybrid development approach:
 2. Run `npm install` to install dependencies.
 3. Run `npm run build:blocks` to build blocks and editor settings.
 4. Run `npm run build:css` to compile Sass to CSS.
-5. Run `npm run build` to build blocks, editor settings, and CSS all at once.
-6. You can also run `npm run watch:css` or `npm run watch:blocks` to watch for changes and rebuild automatically.
+5. Run `npm run build:rtl` to compile a RTL version of the CSS. If you've made Sass changes, you'll need to compile the CSS for `main.scss` first.
+6. Run `npm run build` to build blocks, editor settings, CSS, and the RTL stylesheet all at once.
+7. You can also run `npm run watch:css` or `npm run watch:blocks` to watch for changes and rebuild automatically.
+
+## How the RTL CSS is Built
+
+We're using the [RTLCSS](https://github.com/MohammadYounes/rtlcss) library to build RTL versions of the CSS. It works by parsing the CSS 
+and reversing the direction of all CSS properties that have a directional value. For example, `margin-left` becomes `margin-right` and `padding-right` 
+becomes `padding-left`. You can make adjustments for what strings it replaces in the `.rtlcssrc.json` file.
+
+**Note:** Keep in mind that the RTLCSS compiler only scans the CSS for strings to replace. It does not change markup from our PHP templates or from within the block editor.
+
+### A Note About Swapping Icon Fonts
+
+If you're trying to swap an icon font, for example, Font Awesome, you can leave a comment in the CSS with the
+RTL version of the icon font. For example:
+
+```aiignore
+content: "\f105"; /*! rtl:raw:content: "\f104"; */
+```
+
+The RTLCSS compiler will swap the icon font for the RTL version. In the example above, it switches the angle right icon to the angle left icon.
 
 ## Adding New Paths to the Webpack Config
 
