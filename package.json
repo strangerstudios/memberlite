@@ -6,14 +6,15 @@
 	"scripts": {
 		"build:blocks": "wp-scripts build",
 		"build:css": "sass src/scss:build/css --no-source-map",
+		"build:rtl": "rtlcss build/css/main.css build/css/main.rtl.css --config .rtlcssrc.json",
 		"watch:css": "sass --watch src/scss:build/css",
 		"watch:blocks": "wp-scripts start",
 		"build": "npm-run-all build:*"
 	},
 	"devDependencies": {
-		"@playwright/test": "^1.58.2",
 		"@wordpress/scripts": "^31.0.0",
 		"npm-run-all": "^4.1.5",
+		"rtlcss": "^4.3.0",
 		"sass": "^1.97.3"
 	}
 }
