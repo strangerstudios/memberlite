@@ -1,259 +1,213 @@
 /**
  * Theme Customizer enhancements for a better user experience.
  *
- * Contains handlers to make Theme Customizer preview reload changes asynchronously.
+ * This functionality runs in the site preview panel of Theme Customizer.
+ *
+ * Color variable mappings are localized from PHP so both
+ * --memberlite-color-{css_var} and --wp--preset--color--{slug}
+ * var names are always in sync with memberlite_get_color_preset_map().
  */
 ( function( $ ) {
-	// Site title and description.
-	wp.customize(
-		'blogname', function( setting ) {
-			setting.bind(
-				function( value ) {
-					$( '.site-title a' ).text( value );
-				}
-			);
+
+	/**
+	 * Build the color setting map from localized PHP data.
+	 *
+	 * memberlite_css_vars (localized from PHP) maps setting keys to their
+	 * css_var suffix, e.g. { color_link: 'link', bgcolor_header: 'header-background' }.
+	 * We use this to build the --memberlite-color-{css_var} var names dynamically.
+	 */
+	var colorSettingMap = {};
+
+	if ( typeof memberlite_css_vars !== 'undefined' ) {
+		Object.keys( memberlite_css_vars ).forEach( function( key ) {
+			colorSettingMap[ key ] = {
+				memberliteVar: '--memberlite-color-' + memberlite_css_vars[ key ]
+			};
+		} );
+	}
+
+	// header_textcolor can be 'blank' (WP stores it without #), so it needs a custom normalizer.
+	if ( colorSettingMap.header_textcolor ) {
+		colorSettingMap.header_textcolor.normalize = function( value ) {
+			if ( 'blank' === value ) {
+				return value;
+			}
+			return value.charAt( 0 ) === '#' ? value : '#' + value;
+		};
+	}
+
+	/**
+	 * Build the vars array for each setting from the static memberlite var
+	 * plus the WP preset slugs localized from PHP.
+	 */
+	Object.keys( colorSettingMap ).forEach( function( key ) {
+		var config = colorSettingMap[ key ];
+
+		config.vars = [
+			{ styleId: 'memberlite-customizer-css', varName: config.memberliteVar }
+		];
+
+		// Add WP preset var from the PHP-localized slug map.
+		if ( typeof memberlite_preset_slugs !== 'undefined' && memberlite_preset_slugs[ key ] ) {
+			config.vars.push( {
+				styleId: 'global-styles-inline-css',
+				varName: '--wp--preset--color--' + memberlite_preset_slugs[ key ]
+			} );
 		}
-	);
-	wp.customize(
-		'blogdescription', function( setting ) {
-			setting.bind(
-				function( value ) {
-					$( '.site-description' ).text( value );
-				}
-			);
+	} );
+
+	/**
+	 * Default normalizer for colors (Customizer values are typically hex, sometimes without '#').
+	 */
+	function normalizeColorValue( value ) {
+		if ( ! value ) {
+			return value;
 		}
-	);
-	// Header text color.
-	wp.customize(
-		'header_textcolor', function( setting ) {
-			setting.bind(
-				function( value ) {
-					if ( 'blank' === value ) {
-						$( '.site-title' ).css(
-							{
-								'text-indent': '-9999em',
-							}
-						);
-						$( '.site-description' ).css(
-							{
-								'clip': 'rect(1px, 1px, 1px, 1px)',
-								'position': 'absolute'
-							}
-						);
-					} else {
-						$( '.site-title' ).css(
-							{
-								'text-indent': '0',
-							}
-						);
+		return value.charAt( 0 ) === '#' ? value : '#' + value;
+	}
 
-						$( '.site-title, .site-description' ).css(
-							{
-								'clip': 'auto',
-								'color': value,
-								'position': 'static'
-							}
-						);
+	/**
+	 * Update a CSS variable inside a specific <style> tag by id.
+	 * If the variable doesn't exist yet, append a new :root block.
+	 */
+	function updateCssVarInStyleTag( styleId, varName, value ) {
+		var styleEl = document.getElementById( styleId );
+		if ( ! styleEl ) {
+			return;
+		}
 
-						$( '.site-title a' ).css(
-							{
-								'color': value
-							}
-						);
+		var css   = styleEl.textContent || '';
+		var esc   = varName.replace( /[-]/g, '\\-' );
+		var regex = new RegExp( esc + ':\\s*[^;]+;' );
 
+		if ( regex.test( css ) ) {
+			css = css.replace( regex, varName + ': ' + value + ';' );
+		} else {
+			css += '\n:root { ' + varName + ': ' + value + '; }';
+		}
+
+		styleEl.textContent = css;
+	}
+
+	/**
+	 * Bind one Customizer color setting to update all mapped CSS vars.
+	 */
+	function bindColorSetting( settingKey, config ) {
+		wp.customize( settingKey, function( setting ) {
+			setting.bind( function( value ) {
+				var normalized = ( config.normalize ? config.normalize( value ) : normalizeColorValue( value ) );
+
+				// Special case: header text can be hidden.
+				if ( settingKey === 'header_textcolor' ) {
+					if ( 'blank' === normalized ) {
+						$( '.site-title' ).css( { clip: 'rect(1px, 1px, 1px, 1px)', position: 'absolute' } );
+						$( '.site-description' ).css( { clip: 'rect(1px, 1px, 1px, 1px)', position: 'absolute' } );
+						return;
 					}
+
+					$( '.site-title' ).css( { clip: 'auto', position: 'static' } );
+					$( '.site-description' ).css( { clip: 'auto', position: 'static' } );
 				}
-			);
-		}
-	);
-	// Body Background Color.
-	wp.customize(
-		'background_color', function( setting ) {
-			setting.bind(
-				function( value ) {
-					document.documentElement.style.setProperty('--memberlite-color-site-background', value );
-					$( '#memberlite-customizer-css' ).append( 'body { --wp--preset--color--color-site-background:' + value + '; }' );
+
+				// Update each target var in its respective style tag.
+				if ( Array.isArray( config.vars ) ) {
+					config.vars.forEach( function( target ) {
+						updateCssVarInStyleTag( target.styleId, target.varName, normalized );
+					} );
 				}
-			);
+			} );
+		} );
+	}
+
+	/**
+	 * Check if a hex color is dark using WCAG relative luminance.
+	 */
+	function isDarkColor( hex ) {
+		hex = hex.replace( /^#/, '' );
+		if ( hex.length === 3 ) {
+			hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
 		}
-	);
-	// Header Background Color.
-	wp.customize(
-		'bgcolor_header', function( setting ) {
-			setting.bind(
-				function( value ) {
-					document.documentElement.style.setProperty('--memberlite-color-header-background', value );
-					$( '#memberlite-customizer-css' ).append( 'body { --wp--preset--color--color-header-background:' + value + '; }' );
+		var r = parseInt( hex.substr( 0, 2 ), 16 ) / 255;
+		var g = parseInt( hex.substr( 2, 2 ), 16 ) / 255;
+		var b = parseInt( hex.substr( 4, 2 ), 16 ) / 255;
+
+		r = ( r <= 0.03928 ) ? r / 12.92 : Math.pow( ( r + 0.055 ) / 1.055, 2.4 );
+		g = ( g <= 0.03928 ) ? g / 12.92 : Math.pow( ( g + 0.055 ) / 1.055, 2.4 );
+		b = ( b <= 0.03928 ) ? b / 12.92 : Math.pow( ( b + 0.055 ) / 1.055, 2.4 );
+
+		return ( 0.2126 * r + 0.7152 * g + 0.0722 * b ) <= 0.179;
+	}
+
+	/**
+	 * Register all color bindings
+	 */
+	Object.keys( colorSettingMap ).forEach( function( settingKey ) {
+		bindColorSetting( settingKey, colorSettingMap[ settingKey ] );
+	} );
+
+	/**
+	 * When background_color changes, toggle is-style-dark / is-style-light
+	 * body class and update the color-scheme property on :root.
+	 */
+	wp.customize( 'background_color', function( setting ) {
+		setting.bind( function( value ) {
+			var dark = isDarkColor( value );
+
+			$( 'body' ).toggleClass( 'is-style-dark', dark ).toggleClass( 'is-style-light', ! dark );
+
+			// Update color-scheme in the customizer style tag.
+			var styleEl = document.getElementById( 'memberlite-customizer-css' );
+			if ( styleEl ) {
+				var css = styleEl.textContent || '';
+				var schemeRegex = /color-scheme:\s*[^;]+;/;
+				var newScheme   = 'color-scheme: ' + ( dark ? 'dark' : 'light' ) + ';';
+				if ( schemeRegex.test( css ) ) {
+					css = css.replace( schemeRegex, newScheme );
+				} else {
+					css += '\n:root { ' + newScheme + ' }';
 				}
-			);
-		}
-	);
-	// Primary Navigation Background Color.
-	wp.customize(
-		'bgcolor_site_navigation', function( setting ) {
-			setting.bind(
-				function( value ) {
-					document.documentElement.style.setProperty('--memberlite-color-site-navigation-background', value );
-					$( '#memberlite-customizer-css' ).append( 'body { --wp--preset--color--bgcolor-site-navigation:' + value + '; }' );
-				}
-			);
-		}
-	);
-	// Primary Navigation Color.
-	wp.customize(
-		'color_site_navigation', function( setting ) {
-			setting.bind(
-				function( value ) {
-					document.documentElement.style.setProperty('--memberlite-color-site-navigation', value );
-					$( '#memberlite-customizer-css' ).append( 'body { --wp--preset--color--color-site-navigation:' + value + '; }' );
-				}
-			);
-		}
-	);
-	// Link Color.
-	wp.customize(
-		'color_link', function( setting ) {
-			setting.bind(
-				function( value ) {
-					document.documentElement.style.setProperty('--memberlite-color-link', value );
-					$( '#memberlite-customizer-css' ).append( 'body { --wp--preset--color--color-link:' + value + '; }' );
-				}
-			);
-		}
-	);
-	// Meta Link Color.
-	wp.customize(
-		'color_meta_link', function( setting ) {
-			setting.bind(
-				function( value ) {
-					document.documentElement.style.setProperty('--memberlite-color-meta-link', value );
-					$( '#memberlite-customizer-css' ).append( 'body { --wp--preset--color--color-meta-link:' + value + '; }' );
-				}
-			);
-		}
-	);
-	// Primary Color.
-	wp.customize(
-		'color_primary', function( setting ) {
-			setting.bind(
-				function( value ) {
-					document.documentElement.style.setProperty('--memberlite-color-primary', value );
-					$( '#memberlite-customizer-css' ).append( 'body { --wp--preset--color--color-primary:' + value + '; }' );
-				}
-			);
-		}
-	);
-	// Secondary Color.
-	wp.customize(
-		'color_secondary', function( setting ) {
-			setting.bind(
-				function( value ) {
-					document.documentElement.style.setProperty('--memberlite-color-secondary', value );
-					$( '#memberlite-customizer-css' ).append( 'body { --wp--preset--color--color-secondary:' + value + '; }' );
-				}
-			);
-		}
-	);
-	// Action Color.
-	wp.customize(
-		'color_action', function( setting ) {
-			setting.bind(
-				function( value ) {
-					document.documentElement.style.setProperty('--memberlite-color-action', value );
-					$( '#memberlite-customizer-css' ).append( 'body { --wp--preset--color--color-action:' + value + '; }' );
-				}
-			);
-		}
-	);
-	// Button Color.
-		wp.customize(
-		'color_button', function( setting ) {
-			setting.bind(
-				function( value ) {
-					document.documentElement.style.setProperty('--memberlite-color-button', value );
-					$( '#memberlite-customizer-css' ).append( 'body { --wp--preset--color--color-button:' + value + '; }' );
-				}
-			);
-		}
-	);
-	// Page Masthead Background Color.
-	wp.customize(
-		'bgcolor_page_masthead', function( setting ) {
-			setting.bind(
-				function( value ) {
-					document.documentElement.style.setProperty('--memberlite-color-page-masthead-background', value );
-					$( '#memberlite-customizer-css' ).append( 'body { --wp--preset--color--bgcolor-page-masthead:' + value + '; }' );
-				}
-			);
-		}
-	);
-	// Footer Widgets Color.
-	wp.customize(
-		'color_page_masthead', function( setting ) {
-			setting.bind(
-				function( value ) {
-					document.documentElement.style.setProperty('--memberlite-color-page-masthead', value );
-					$( '#memberlite-customizer-css' ).append( 'body { --wp--preset--color--color-page-masthead:' + value + '; }' );
-				}
-			);
-		}
-	);
-	// Footer Widgets Background Color.
-	wp.customize(
-		'bgcolor_footer_widgets', function( setting ) {
-			setting.bind(
-				function( value ) {
-					document.documentElement.style.setProperty('--memberlite-color-footer-widgets-background', value );
-					$( '#memberlite-customizer-css' ).append( 'body { --wp--preset--color--bgcolor-footer-widgets:' + value + '; }' );
-				}
-			);
-		}
-	);
-	// Footer Widgets Color.
-	wp.customize(
-		'color_footer_widgets', function( setting ) {
-			setting.bind(
-				function( value ) {
-					document.documentElement.style.setProperty('--memberlite-color-footer-widgets', value );
-					$( '#memberlite-customizer-css' ).append( 'body { --wp--preset--color--color-footer-widgets:' + value + '; }' );
-				}
-			);
-		}
-	);
-	wp.customize(
-		'delimiter', function( setting ) {
-			setting.bind(
-				function( value ) {
-					$( '.memberlite-breadcrumb .sep, .bbp-breadcrumb-sep, .woocommerce-breadcrumb .sep' ).text( value );
-				}
-			);
-		}
-	);
-	wp.customize(
-		'posts_entry_meta_before', function( setting ) {
-			setting.bind(
-				function( value ) {
-					$( 'header .entry-meta' ).text( value );
-				}
-			);
-		}
-	);
-	wp.customize(
-		'posts_entry_meta_after', function( setting ) {
-			setting.bind(
-				function( value ) {
-					$( '.post .entry-footer' ).text( value );
-				}
-			);
-		}
-	);
-	wp.customize(
-		'copyright_textbox', function( setting ) {
-			setting.bind(
-				function( value ) {
-					$( '.site-info p' ).text( value );
-				}
-			);
-		}
-	);
+				styleEl.textContent = css;
+			}
+		} );
+	} );
+
+	/**
+	 * Bind non-color settings.
+	 */
+	wp.customize( 'blogname', function( setting ) {
+		setting.bind( function( value ) {
+			$( '.site-title a' ).text( value );
+		} );
+	} );
+
+	wp.customize( 'blogdescription', function( setting ) {
+		setting.bind( function( value ) {
+			$( '.site-description' ).text( value );
+		} );
+	} );
+
+	wp.customize( 'delimiter', function( setting ) {
+		setting.bind( function( value ) {
+			$( '.memberlite-breadcrumb .sep, .bbp-breadcrumb-sep, .woocommerce-breadcrumb .sep' ).text( value );
+		} );
+	} );
+
+	wp.customize( 'posts_entry_meta_before', function( setting ) {
+		setting.bind( function( value ) {
+			$( 'header .entry-meta' ).text( value );
+		} );
+	} );
+
+	wp.customize( 'posts_entry_meta_after', function( setting ) {
+		setting.bind( function( value ) {
+			$( '.post .entry-footer' ).text( value );
+		} );
+	} );
+
+	wp.customize( 'copyright_textbox', function( setting ) {
+		setting.bind( function( value ) {
+			$( '.site-info p' ).text( value );
+		} );
+	} );
+
 } )( jQuery );

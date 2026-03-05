@@ -6,11 +6,16 @@
  */
 
 /**
- * Add Memberlite admin pages.
+ * Adds the Memberlite admin pages.
  */
 function memberlite_add_pages() {
+	$svg_path = MEMBERLITE_DIR . '/assets/images/pmpro-icon.svg';
+	$icon_url = file_exists( $svg_path )
+		? 'data:image/svg+xml;base64,' . base64_encode( file_get_contents( $svg_path ) )
+		: 'dashicons-privacy';
+
 	// Top level menu right under Appearance.
-	add_menu_page( __( 'Memberlite', 'memberlite' ), __( 'Memberlite', 'memberlite' ), 'edit_theme_options', 'memberlite-dashboard', 'memberlite_dashboard', 'dashicons-privacy', 61 );
+	add_menu_page( __( 'Memberlite', 'memberlite' ), __( 'Memberlite', 'memberlite' ), 'edit_theme_options', 'memberlite-dashboard', 'memberlite_dashboard', $icon_url, 61 );
 
 	// Memberlite admin subpages.
 	add_submenu_page( 'memberlite-dashboard', __( 'Dashboard', 'memberlite' ), __( 'Dashboard', 'memberlite' ), 'edit_theme_options', 'memberlite-dashboard', 'memberlite_dashboard' );
@@ -73,7 +78,12 @@ function memberlite_admin_init_notifications() {
 	$script = esc_html( wp_basename( $script_name ) );
 	$maybe_installing = in_array( $script, array( 'update.php', 'plugins.php' ), true );
 
-	// 1. Show link to the welcome page the first time the theme is activated
+	// Show link to the welcome page the first time the theme is activated
+	// Auto-dismiss the welcome notice if the user has visited the Memberlite Dashboard.
+	$page = isset( $_GET['page'] ) ? sanitize_text_field( wp_unslash( $_GET['page'] ) ) : '';
+	if ( $page === 'memberlite-dashboard' ) {
+		update_option( 'memberlite_notice_welcome_link_dismissed', 1, 'no' );
+	}
 	$welcome_link_dismissed = get_option( 'memberlite_notice_welcome_link_dismissed', false );
 	if ( ! $welcome_link_dismissed && ! $maybe_installing ) {
 		wp_enqueue_script( 'memberlite-admin-dismiss-notice', MEMBERLITE_URL . '/js/admin-dismiss-notice.js', array( 'jquery' ), MEMBERLITE_VERSION, true );
@@ -108,9 +118,9 @@ function memberlite_admin_notice_welcome_link() {
 	<div id="memberlite-admin-notice-welcome_link" class="notice notice-info is-dismissible memberlite-notice">
 		<p><strong><?php esc_html_e( 'Memberlite', 'memberlite' ); ?>:</strong>
 		<?php
-			echo esc_html__( 'We have documentation and recommended plugins to help you get started with Memberlite Theme.', 'memberlite' );
-			$click_link = add_query_arg( 'page', 'memberlite-support', admin_url( 'themes.php' ) );
-			$click_text = __( 'Click here to view the Memberlite welcome page.', 'memberlite' );
+			echo esc_html__( 'We have documentation and recommendations to help you get started with the Memberlite Theme.', 'memberlite' );
+			$click_link = add_query_arg( 'page', 'memberlite-dashboard', admin_url( 'admin.php' ) );
+			$click_text = __( 'Click here to view the Memberlite dashboard.', 'memberlite' );
 			echo ' <a href="' . esc_url( $click_link ) . '">' . esc_html( $click_text ) . '</a>';
 		?>
 		</p>

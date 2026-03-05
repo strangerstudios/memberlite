@@ -1,0 +1,48 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+
+/*--------------------------------------------------------------
+ 3.4 Components: Pagination
+--------------------------------------------------------------*/
+
+.site-main {
+	.post-navigation,
+	.paging-navigation,
+	.page-navigation,
+	.page-links {
+		margin: var(--wp--preset--spacing--20) 0;
+		overflow: hidden;
+	}
+
+	.comment-navigation {
+		margin: 1em 0;
+		overflow: hidden;
+	}
+
+	.page-navigation,
+	.page-links {
+		border-top: 1px solid var(--memberlite-color-borders);
+		clear: both;
+		padding-top: var(--wp--preset--spacing--20);
+	}
+}
+
+.comment-navigation .nav-previous,
+.paging-navigation .nav-previous,
+.post-navigation .nav-previous,
+.page-navigation .nav-previous {
+	float: left;
+	overflow-wrap: break-word;
+	text-align: left;
+	width: 49%;
+}
+
+.comment-navigation .nav-next,
+.paging-navigation .nav-next,
+.post-navigation .nav-next,
+.page-navigation .nav-next {
+	float: right;
+	overflow-wrap: break-word;
+	text-align: right;
+	width: 49%;
+}

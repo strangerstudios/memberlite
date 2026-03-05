@@ -1,8 +1,9 @@
 <?php
 /**
- * Template part for displaying a message that posts cannot be found
+ * Template part for displaying a message that posts cannot be found.
+ * Version: 7.0
  *
- * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
+ * @version 7.0
  *
  * @package Memberlite
  */
@@ -10,7 +11,7 @@
 
 <section class="no-results not-found">
 	<header class="page-header">
-		<h1 class="page-title"><?php esc_html_e( 'Nothing Found', 'memberlite' ); ?></h1>
+		<h1 id="page-title"><?php esc_html_e( 'Nothing Found', 'memberlite' ); ?></h1>
 	</header><!-- .page-header -->
 
 	<div class="page-content">

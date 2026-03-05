@@ -4,28 +4,22 @@
  *
  * @package Memberlite
  */
-define( 'MEMBERLITE_VERSION', '6.1.1' );
+define( 'MEMBERLITE_VERSION', '6.1.1.1.2' );
 define( 'MEMBERLITE_URL', get_template_directory_uri() );
+define( 'MEMBERLITE_DIR', get_template_directory() );
 
 // enqueue additional stylesheets and javascript
 function memberlite_init_styles() {
-	global $memberlite_defaults;
-
-	// framework stuff
-	wp_enqueue_style( 'memberlite_grid', MEMBERLITE_URL . '/css/grid.css', array(), MEMBERLITE_VERSION );
 	wp_enqueue_style( 'memberlite_style', get_stylesheet_uri(), array(), MEMBERLITE_VERSION );
+
 	if ( is_rtl() ) {
-		wp_enqueue_style( 'memberlite_rtl', MEMBERLITE_URL . '/css/rtl.css', array( 'memberlite_style' ), MEMBERLITE_VERSION );
+		wp_enqueue_style( 'memberlite_rtl', MEMBERLITE_URL . '/build/css/main.rtl.css', array( 'memberlite_style' ), MEMBERLITE_VERSION );
+	} else {
+		wp_enqueue_style( 'memberlite_main_style', MEMBERLITE_URL . '/build/css/main.css', array(), MEMBERLITE_VERSION );
 	}
 	wp_enqueue_style( 'memberlite_print_style', MEMBERLITE_URL . '/css/print.css', array(), MEMBERLITE_VERSION, 'print' );
 	wp_enqueue_script( 'memberlite-script', MEMBERLITE_URL . '/js/memberlite.js', array( 'jquery' ), MEMBERLITE_VERSION, true );
 	wp_enqueue_style( 'font-awesome', MEMBERLITE_URL . '/font-awesome/css/all.min.css', array(), '6.6.0' );
-
-	// load dark.css for dark/inverted backgrounds
-	$memberlite_darkcss = get_theme_mod( 'memberlite_darkcss', $memberlite_defaults['memberlite_darkcss'], false );
-	if ( ! empty( $memberlite_darkcss ) ) {
-		wp_enqueue_style( 'memberlite_darkcss', MEMBERLITE_URL . '/css/dark.css', array(), MEMBERLITE_VERSION );
-	}
 
 	// comments JS on single pages only
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
@@ -78,6 +72,7 @@ function memberlite_admin_enqueue_scripts() {
 		wp_register_script( 'memberlite_admin_js', MEMBERLITE_URL . '/js/admin.js', [ 'jquery' ], MEMBERLITE_VERSION, true );
 		wp_enqueue_script( 'memberlite_admin_js' );
 	}
+
 }
 add_action( 'admin_enqueue_scripts', 'memberlite_admin_enqueue_scripts' );
 
@@ -140,7 +135,7 @@ font-stretch: normal;
 }<?php
 		}
 	}
-	
+
 	// Enqueue the header font.
 	if ( ! empty( $header_font ) ) { ?>@font-face {
 font-family: <?php echo esc_html( memberlite_get_font( 'header_font', true ) ); ?>;
@@ -232,6 +227,7 @@ add_action( 'wp', 'memberlite_adjusted_content_width' );
 if ( ! function_exists( 'memberlite_setup' ) ) :
 	/* Sets up theme defaults and registers support for various WordPress features. */
 	function memberlite_setup() {
+		require_once get_template_directory() . '/inc/colors.php';
 		require_once get_template_directory() . '/inc/defaults.php';
 
 		global $memberlite_defaults;
@@ -249,7 +245,7 @@ if ( ! function_exists( 'memberlite_setup' ) ) :
 			'flex-height'  => true,
 			'flex-width'  => true,
 			'header-text' => array( 'site-title', 'site-description' ),
-			'unlink-homepage-logo' => false, 
+			'unlink-homepage-logo' => false,
 		);
 
 		add_theme_support( 'custom-logo', $logo_defaults );
@@ -271,7 +267,17 @@ if ( ! function_exists( 'memberlite_setup' ) ) :
 		// Enable support for responsive embeds.
 		add_theme_support( 'responsive-embeds' );
 
-		// Switch default core markup for search form, comment form, and comments to output valid HTML5.
+		// This theme uses wp_nav_menu() in four locations.
+		register_nav_menus(
+			array(
+				'primary'           => __( 'Primary', 'memberlite' ),
+				'member'            => __( 'Member', 'memberlite' ),
+				'member-logged-out' => __( 'Member - Logged Out', 'memberlite' ),
+				'footer'            => __( 'Footer', 'memberlite' ),
+			)
+		);
+
+		// Switch default core markup to output valid HTML5.
 		add_theme_support(
 			'html5',
 			array(
@@ -282,199 +288,18 @@ if ( ! function_exists( 'memberlite_setup' ) ) :
 				'style',
 				'script',
 				'navigation-widgets',
-			)
-		);
-
-		// This theme uses wp_nav_menu() in five locations.
-		register_nav_menus(
-			array(
-				'primary'           => __( 'Primary', 'memberlite' ),
-				'member'            => __( 'Member', 'memberlite' ),
-				'member-logged-out' => __( 'Member - Logged Out', 'memberlite' ),
-				'meta'              => __( 'Meta', 'memberlite' ),
-				'footer'            => __( 'Footer', 'memberlite' ),
-			)
-		);
-
-		// Switch default core markup for search form, comment form, and comments to output valid HTML5.
-		$html5_support_types = array(
-			'search-form',
-			'comment-form',
-			'comment-list',
-			'gallery',
-			'caption',
-		);
-		add_theme_support( 'html5', $html5_support_types );
-
-		// Enables support for Post Formats.
-		add_theme_support(
-			'post-formats', array(
-				'audio',
-				'image',
-				'link',
-				'quote',
-				'status',
-				'video',
+				'search-form',
 			)
 		);
 
 		// Setup the WordPress core custom background feature.
 		$custom_background = apply_filters(
 			'memberlite_custom_background_args', array(
-				'default-color' => 'FFFFFF',
+				'default-color' => 'ffffff',
 				'default-image' => '',
 			)
 		);
 		add_theme_support( 'custom-background', $custom_background );
-		
-		// Build unique array of Color Scheme values to include in Block Editor
-		$color_scheme = array();
-
-		// Primary Color
-		$color_scheme[] = array(
-			'name' => __( 'Primary', 'memberlite' ),
-			'slug' => 'color-primary',
-			'color' => get_theme_mod( 'color_primary', $memberlite_defaults['color_primary'] )
-		);
-
-		// Secondary Color
-		$color_scheme[] = array(
-			'name' => __( 'Secondary', 'memberlite' ),
-			'slug' => 'color-secondary',
-			'color' => get_theme_mod( 'color_secondary', $memberlite_defaults['color_secondary'] )
-		);
-
-		// Action Color
-		$color_scheme[] = array(
-			'name' => __( 'Action', 'memberlite' ),
-			'slug' => 'color-action',
-			'color' => get_theme_mod( 'color_action', $memberlite_defaults['color_action'] )
-		);
-
-		// Primary Navigation Background Color
-		$color_scheme[] = array(
-			'name' => __( 'Navigation Background', 'memberlite' ),
-			'slug' => 'site-navigation-background',
-			'color' => get_theme_mod( 'bgcolor_site_navigation', $memberlite_defaults['bgcolor_site_navigation'] )
-		);
-
-		// Link Color
-		$color_scheme[] = array(
-			'name' => __( 'Links', 'memberlite' ),
-			'slug' => 'memberlite-links',
-			'color' => get_theme_mod( 'color_link', $memberlite_defaults['color_link'] )
-		);
-
-		// Primary Navigation Color
-		$color_scheme[] = array(
-			'name' => __( 'Navigation Links', 'memberlite' ),
-			'slug' => 'site-navigation-link',
-			'color' => get_theme_mod( 'color_site_navigation', $memberlite_defaults['color_site_navigation'] )
-		);
-
-		// Meta Link Color
-		$color_scheme[] = array(
-			'name' => __( 'Meta Links ', 'memberlite' ),
-			'slug' => 'meta-link',
-			'color' => get_theme_mod( 'color_meta_link', $memberlite_defaults['color_meta_link'] )
-		);
-
-		// Button Color
-		$color_scheme[] = array(
-			'name' => __( 'Buttons', 'memberlite' ),
-			'slug' => 'buttons',
-			'color' => get_theme_mod( 'color_button', $memberlite_defaults['color_button'] )
-		);
-
-		// White Color
-		$color_scheme[] = array(
-			'name' => __( 'White', 'memberlite' ),
-			'slug' => 'white',
-			'color' => get_theme_mod( 'color_white', $memberlite_defaults['color_white'] )
-		);
-
-		// Borders Color
-		$color_scheme[] = array(
-			'name' => __( 'Borders', 'memberlite' ),
-			'slug' => 'borders',
-			'color' => get_theme_mod( 'color_borders', $memberlite_defaults['color_borders'] )
-		);
-
-		// v4.6 added four new colors. For this reason, we need to set the fallback colors if they are using a built in scheme.
-		// Get the current color scheme
-		$this_color_scheme = get_theme_mod( 'memberlite_color_scheme' );
-
-		// Set the defaults to the primary color from the current scheme if it isn't the new default.
-		if ( $this_color_scheme != 'default_v4.6' ) {
-			$memberlite_defaults['bgcolor_page_masthead'] = $color_scheme[0]['color'];
-			$memberlite_defaults['color_page_masthead'] = $memberlite_defaults['color_white'];
-			$memberlite_defaults['bgcolor_footer_widgets'] = $color_scheme[0]['color'];
-			$memberlite_defaults['color_footer_widgets'] = $memberlite_defaults['color_white'];
-		}
-
-		// Page Masthead Background Color
-		$color_scheme[] = array(
-			'name' => __( 'Page Masthead Background Color', 'memberlite' ),
-			'slug' => 'page-masthead-background',
-			'color' => get_theme_mod( 'bgcolor_page_masthead', $memberlite_defaults['bgcolor_page_masthead'] )
-		);
-
-		// Page Masthead Color
-		$color_scheme[] = array(
-			'name' => __( 'Page Masthead Color', 'memberlite' ),
-			'slug' => 'page-masthead',
-			'color' => get_theme_mod( 'color_page_masthead', $memberlite_defaults['color_page_masthead'] )
-		);
-
-		// Footer Widgets Background Color
-		$color_scheme[] = array(
-			'name' => __( 'Footer Widgets Background Color', 'memberlite' ),
-			'slug' => 'footer-widgets-background',
-			'color' => get_theme_mod( 'bgcolor_footer_widgets', $memberlite_defaults['bgcolor_footer_widgets'] )
-		);
-
-		// Footer Widgets Color
-		$color_scheme[] = array(
-			'name' => __( 'Footer Widgets Color', 'memberlite' ),
-			'slug' => 'footer-widgets',
-			'color' => get_theme_mod( 'color_footer_widgets', $memberlite_defaults['color_footer_widgets'] )
-		);
-
-		// Get all unique color values.
-		$color_scheme_temp = array_unique( array_column( $color_scheme, 'color' ) );
-		$color_scheme = array_intersect_key( $color_scheme, $color_scheme_temp );
-
-		// Always ensure the body text color is set.
-		$color_scheme[] = array(
-			'name' => __( 'Text', 'memberlite' ),
-			'slug' => 'body-text',
-			'color' => get_theme_mod( 'color_text', $memberlite_defaults['color_text'] )
-		);
-
-		// Always ensure the base color is set.
-		$base_color = get_theme_mod( 'background_color', $memberlite_defaults['background_color'] );
-		// Add a # if it's missing.
-		if ( strpos( $base_color, '#' ) === false ) {
-			$base_color = '#' . $base_color;
-		}
-		$color_scheme[] = array(
-			'name' => __( 'Base', 'memberlite' ),
-			'slug' => 'base',
-			'color' => esc_attr( $base_color )
-		);
-
-		// Build colors array for palette.
-		$colors = array();
-		foreach( $color_scheme as $color ) {
-			$colors[] = array(
-				'name' => $color['name'],
-				'slug' => $color['slug'],
-				'color' => $color['color'],
-			);
-		}
-
-		// Add color values to Block Editor
-		add_theme_support( 'editor-color-palette', apply_filters( 'memberlite_editor_color_palette', $colors ) );
 
 		// Indicate widget sidebars can use selective refresh in the Customizer.
 		add_theme_support( 'customize-selective-refresh-widgets' );
@@ -484,18 +309,18 @@ add_action( 'after_setup_theme', 'memberlite_setup' );
 
 /**
  * Load the Memberlite theme textdomain on init (WP 6.7+ requirement).
- * 
+ *
  * If you're building a theme based on Memberlite, use a find and replace
  * to change 'memberlite' to the name of your theme in all the template files.
  */
 function memberlite_load_textdomain() {
-    load_theme_textdomain( 'memberlite', get_template_directory() . '/languages' );
+	load_theme_textdomain( 'memberlite', get_template_directory() . '/languages' );
 }
 add_action( 'init', 'memberlite_load_textdomain' );
 
 /**
  * Load custom translations from our own server: translate.strangerstudios.com
- * 
+ *
  * @since 6.1
  */
 function memberlite_check_for_translations() {
@@ -504,12 +329,12 @@ function memberlite_check_for_translations() {
 	if ( function_exists( 'pmproum_check_for_translations' ) ) {
 		return;
 	}
-	
+
 	// If the library isn't loaded, bail.
 	if ( ! function_exists( 'Memberlite\Required\Traduttore_Registry\add_project' ) ) {
 		return;
 	}
-	
+
 	// Only check for updates when on the update page, plugins, themes page, or the Memberlite support page
 	$is_update_or_plugins_page = strpos( $_SERVER['REQUEST_URI'], 'update-core.php' ) !== false || strpos( $_SERVER['REQUEST_URI'], 'plugins.php' ) !== false || strpos( $_SERVER['REQUEST_URI'], 'themes.php' ) !== false;
 	$is_memberlite_admin_page = isset( $_REQUEST['page'] ) && $_REQUEST['page'] === 'memberlite-support';
@@ -546,6 +371,7 @@ function memberlite_widgets_init() {
 			'after_title'   => '</h3>',
 		)
 	);
+
 	register_sidebar(
 		array(
 			'name'          => __( 'Pages', 'memberlite' ),
@@ -557,15 +383,16 @@ function memberlite_widgets_init() {
 			'after_title'   => '</h3>',
 		)
 	);
+
 	register_sidebar(
 		array(
-			'name'          => __( 'Header Right', 'memberlite' ),
+			'name'          => __( 'Header', 'memberlite' ),
 			'id'            => 'sidebar-3',
-			'description'   => '',
+			'description'   => 'Depending on your header variation, this is a spot you can put extra things.',
 			'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 			'after_widget'  => '</aside>',
-			'before_title'  => '<h1 class="widget-title">',
-			'after_title'   => '</h1>',
+			'before_sidebar' => '<div class="header-widget-area">',
+			'after_sidebar'  => '</div>',
 		)
 	);
 
@@ -630,18 +457,18 @@ function memberlite_menus( $items, $args ) {
 	if ( $args->theme_location == 'member' || $args->theme_location == 'member-logged-out' || ( substr( $args->theme_location, -strlen( '-member' ) ) === '-member' ) ) {
 		if ( is_user_logged_in() && defined( 'PMPRO_VERSION' ) && pmpro_hasMembershipLevel() ) {
 			// user is logged in and has a membership level
-			$items .= '<li><a href="' . esc_url( wp_logout_url( memberlite_logout_redirect_to() ) ) . '">' . esc_html__( 'Log Out', 'memberlite' ) . '</a></li>';
+			$items .= '<li class="menu-item"><a href="' . esc_url( wp_logout_url( memberlite_logout_redirect_to() ) ) . '">' . esc_html__( 'Log Out', 'memberlite' ) . '</a></li>';
 		} elseif ( is_user_logged_in() ) {
 			// user is logged in and does not have a membership level
-			$items = '<li><a href="' . esc_url( wp_logout_url( memberlite_logout_redirect_to() ) ) . '">' . esc_html__( 'Log Out', 'memberlite' ) . '</a></li>';
+			$items = '<li class="menu-item"><a href="' . esc_url( wp_logout_url( memberlite_logout_redirect_to() ) ) . '">' . esc_html__( 'Log Out', 'memberlite' ) . '</a></li>';
 		} else {
 			// not logged in
-			$items .= '<li><a href="' . esc_url( wp_login_url( memberlite_login_redirect_to() ) ) . '">' . esc_html__( 'Log In', 'memberlite' ) . '</a></li>';
+			$items .= '<li class="menu-item"><a href="' . esc_url( wp_login_url( memberlite_login_redirect_to() ) ) . '">' . esc_html__( 'Log In', 'memberlite' ) . '</a></li>';
 
 			$show_register_link = get_option( 'users_can_register' ) || defined( 'PMPRO_VERSION' );
 			$show_register_link = apply_filters( 'memberlite_show_register_link', $show_register_link );
 			if ( ! empty( $show_register_link ) ) {
-				$items .= '<li><a href="' . esc_url( wp_registration_url() ) . '">' . esc_html__( 'Register', 'memberlite' ) . '</a></li>';
+				$items .= '<li class="menu-item"><a href="' . esc_url( wp_registration_url() ) . '">' . esc_html__( 'Register', 'memberlite' ) . '</a></li>';
 			}
 		}
 	}
@@ -659,7 +486,7 @@ add_filter( 'wp_nav_menu_items', 'memberlite_menus', 10, 2 );
 function memberlite_member_menu_cb( $args ) {
 	extract( $args );
 	if ( empty( $link_before ) ) {
-		$link_before = '<li class="menu_item">';
+		$link_before = '<li class="menu-item">';
 	}
 	if ( empty( $link_after ) ) {
 		$link_after = '</li>';
@@ -688,121 +515,6 @@ function memberlite_member_menu_cb( $args ) {
 
 /* Allow the use of shortcodes in menus */
 add_filter( 'wp_nav_menu', 'do_shortcode', 11 );
-
-/**
- * Create an accessible HTML list of nav menu items.
- */
-class Memberlite_Aria_Walker_Nav_Menu extends Walker_Nav_Menu {
-	/**
-	 * Start the element output.
-	 */
-	public function start_el( &$output, $item, $depth = 0, $args = array(), $id = 0 ) {
-		$indent = ( $depth ) ? str_repeat( "\t", $depth ) : '';
-
-		$classes = empty( $item->classes ) ? array() : (array) $item->classes;
-		$classes[] = 'menu-item-' . $item->ID;
-
-		/**
-		 * Filter the arguments for a single nav menu item.
-		 *
-		 * @param array  $args  An array of arguments.
-		 * @param object $item  Menu item data object.
-		 * @param int    $depth Depth of menu item. Used for padding.
-		 */
-		$args = apply_filters( 'nav_menu_item_args', $args, $item, $depth );
-
-		/**
-		 * Filter the CSS class(es) applied to a menu item's list item element.
-		 *
-		 * @param array  $classes The CSS classes that are applied to the menu item's `<li>` element.
-		 * @param object $item    The current menu item.
-		 * @param array  $args    An array of {@see wp_nav_menu()} arguments.
-		 * @param int    $depth   Depth of menu item. Used for padding.
-		 */
-		$class_names = join( ' ', apply_filters( 'nav_menu_css_class', array_filter( $classes ), $item, $args, $depth ) );
-		$class_names = $class_names ? ' class="' . esc_attr( $class_names ) . '"' : '';
-
-		/**
-		 * Filter the ID applied to a menu item's list item element.
-		 *
-		 * @param string $menu_id The ID that is applied to the menu item's `<li>` element.
-		 * @param object $item    The current menu item.
-		 * @param array  $args    An array of {@see wp_nav_menu()} arguments.
-		 * @param int    $depth   Depth of menu item. Used for padding.
-		 */
-		$id = apply_filters( 'nav_menu_item_id', 'menu-item-'. $item->ID, $item, $args, $depth );
-		$id = $id ? ' id="' . esc_attr( $id ) . '"' : '';
-
-		$output .= sprintf( '%s<li%s%s%s>',
-			$indent,
-			$id,
-			$class_names,
-			in_array( 'menu-item-has-children', $item->classes ) ? ' aria-haspopup="true" aria-expanded="false" tabindex="0"' : ''
-		);
-
-		$atts = array();
-		$atts['title']  = ! empty( $item->attr_title ) ? $item->attr_title : '';
-		$atts['target'] = ! empty( $item->target )     ? $item->target     : '';
-		$atts['rel']    = ! empty( $item->xfn )        ? $item->xfn        : '';
-		$atts['href']   = ! empty( $item->url )        ? $item->url        : '';
-
-		/**
-		 * Filter the HTML attributes applied to a menu item's anchor element.
-		 *
-		 * @param array $atts {
-		 *     The HTML attributes applied to the menu item's `<a>` element, empty strings are ignored.
-		 *
-		 *     @type string $title  Title attribute.
-		 *     @type string $target Target attribute.
-		 *     @type string $rel    The rel attribute.
-		 *     @type string $href   The href attribute.
-		 * }
-		 * @param object $item  The current menu item.
-		 * @param array  $args  An array of {@see wp_nav_menu()} arguments.
-		 * @param int    $depth Depth of menu item. Used for padding.
-		 */
-		$atts = apply_filters( 'nav_menu_link_attributes', $atts, $item, $args, $depth );
-
-		$attributes = '';
-		foreach ( $atts as $attr => $value ) {
-			if ( ! empty( $value ) ) {
-				$value = ( 'href' === $attr ) ? esc_url( $value ) : esc_attr( $value );
-				$attributes .= ' ' . $attr . '="' . $value . '"';
-			}
-		}
-
-		/** This filter is documented in wp-includes/post-template.php */
-		$title = apply_filters( 'the_title', $item->title, $item->ID );
-
-		/**
-		 * Filter a menu item's title.
-		 *
-		 * @param string $title The menu item's title.
-		 * @param object $item  The current menu item.
-		 * @param array  $args  An array of {@see wp_nav_menu()} arguments.
-		 * @param int    $depth Depth of menu item. Used for padding.
-		 */
-		$title = apply_filters( 'nav_menu_item_title', $title, $item, $args, $depth );
-
-		$item_output = $args->before;
-		$item_output .= '<a'. $attributes .'>';
-		$item_output .= $args->link_before . $title . $args->link_after;
-		$item_output .= '</a>';
-		$item_output .= $args->after;
-
-		/**
-		 * Filter a menu item's starting output.
-		 *
-		 * @param string $item_output The menu item's starting HTML output.
-		 * @param object $item        Menu item data object.
-		 * @param int    $depth       Depth of menu item. Used for padding.
-		 * @param array  $args        An array of {@see wp_nav_menu()} arguments.
-		 */
-		$output .= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
-	}
-
-}
-
 
 /* Exclude pings and trackbacks from the number of comments on a post. */
 function memberlite_comment_count( $count ) {
@@ -843,11 +555,11 @@ require_once get_template_directory() . '/inc/custom-header.php';
 /* Customizer additions. */
 require_once get_template_directory() . '/inc/customizer.php';
 
-/* Deprecated hooks, filters and functions. */
-require_once get_template_directory() . '/inc/deprecated.php';
-
 /* Custom functions that act independently of the theme templates. */
 require_once get_template_directory() . '/inc/extras.php';
+
+/* Deprecated hooks, filters and functions. */
+require_once get_template_directory() . '/inc/deprecated.php';
 
 /* Load Font Awesome custom functions file. */
 require_once get_template_directory() . '/inc/font-awesome.php';
@@ -870,11 +582,17 @@ require_once get_template_directory() . '/inc/page_banners.php';
 /* Custom template tags. */
 require_once get_template_directory() . '/inc/template-tags.php';
 
+/* Custom theme variations code. */
+require_once get_template_directory() . '/inc/variations.php';
+
 /* Custom widgets that act independently of the theme templates. */
 require_once get_template_directory() . '/inc/widgets.php';
 
 /* Dashboard. */
 require_once get_template_directory() . '/adminpages/dashboard.php';
+
+/* Editor Settings */
+require_once get_template_directory() . '/inc/editor-settings.php';
 
 /* Custom sidebars. */
 require_once get_template_directory() . '/inc/sidebars.php';
@@ -896,14 +614,14 @@ if ( function_exists( 'is_buddypress' ) ) {
 	require_once get_template_directory() . '/inc/integrations/buddypress.php';
 }
 
+/* Integration for bbPress. */
+if ( function_exists( 'is_bbpress' ) ) {
+	require_once get_template_directory() . '/inc/integrations/bbpress.php';
+}
+
 /* Integration for LifterLMS. */
 if ( class_exists( 'LifterLMS' ) ) {
 	require_once get_template_directory() . '/inc/integrations/lifterlms.php';
-}
-
-/* Integration for Theme My Login. */
-if ( function_exists( 'theme_my_login' ) ) {
-	require_once get_template_directory() . '/inc/integrations/theme-my-login.php';
 }
 
 /* Integration for WooCommerce. */
@@ -940,47 +658,6 @@ function memberlite_frontpage_template_hierarchy( $templates ) {
 add_filter( 'frontpage_template_hierarchy', 'memberlite_frontpage_template_hierarchy', 5 );
 
 /**
- * Formats custom property to be used in CSS.
- *
- * @param string $property The property name.
- * @return string
- */
-function memberlite_format_custom_property( string $property ): string {
-	if ( ! str_contains( $property, 'var:' ) ) {
-		return $property;
-	}
-
-	return str_replace(
-		[ 'var:', '|' ],
-		[ 'var(--wp--', '--' ],
-		$property
-	) . ')';
-}
-
-/**
- * Generate custom properties from global styles.
- *
- * @return string
- */
-function memberlite_get_custom_properties(): string {
-	$custom_properties  = [];
-	$custom_properties[ "--memberlite-header-font" ] = memberlite_get_font( 'header_font', true );
-	$custom_properties[ "--memberlite-body-font" ] = memberlite_get_font( 'body_font', true );
-
-	if ( is_array( $custom_properties ) ) {
-		$css = [];
-
-		foreach ( $custom_properties as $key => $value ) {
-			$css[] = $key . ':' . memberlite_format_custom_property( $value ) . ';';
-		}
-
-		return 'body{' . implode( '', $css ) . '}';
-	}
-
-	return '';
-}
-
-/**
  * Enqueue block editor styles.
  *
  * @since 5.1.0
@@ -988,18 +665,11 @@ function memberlite_get_custom_properties(): string {
  * @return void
  */
 function memberlite_enqueue_block_assets() {
-   // Enqueue the editor stylesheet to attach the inline styles to.
 	wp_enqueue_style(
 		'memberlite-block-editor-style',
 		MEMBERLITE_URL . '/css/editor.css',
 		[],
 		MEMBERLITE_VERSION
-	);
-
-	// Add custom inline styles to the block editor.
-	wp_add_inline_style(
-		'memberlite-block-editor-style',
-		memberlite_get_custom_properties()
 	);
 }
 add_action( 'enqueue_block_assets', 'memberlite_enqueue_block_assets' );
@@ -1010,8 +680,8 @@ add_action( 'enqueue_block_assets', 'memberlite_enqueue_block_assets' );
 function memberlite_theme_mod_copyright_textbox( $copyright_text ) {
 	// Don't filter the text in the admin.
 	if ( is_admin() ) {
-        return $copyright_text;
-    }
+		return $copyright_text;
+	}
 
 	// Return if the text is not a string.
 	if ( ! is_string( $copyright_text ) ) {
@@ -1019,16 +689,182 @@ function memberlite_theme_mod_copyright_textbox( $copyright_text ) {
 	}
 
 	$data = array(
-        'current_year' => date( 'Y' ),
-        'site_title'   => (string) get_option( 'blogname' ),
-        'site_url'     => (string) get_option( 'siteurl' ),
-        'tagline'      => (string) get_option( 'blogdescription' ),
-    );
+		'current_year' => date( 'Y' ),
+		'site_title'   => (string) get_option( 'blogname' ),
+		'site_url'     => (string) get_option( 'siteurl' ),
+		'tagline'      => (string) get_option( 'blogdescription' ),
+	);
 
-    foreach ( $data as $key => $value ) {
-        $copyright_text = str_replace( "!!" . $key . "!!", $value, $copyright_text );
-    }
+	foreach ( $data as $key => $value ) {
+		$copyright_text = str_replace( "!!" . $key . "!!", $value, $copyright_text );
+	}
 
-    return $copyright_text;
+	return $copyright_text;
 }
 add_filter( 'theme_mod_copyright_textbox', 'memberlite_theme_mod_copyright_textbox' );
+
+/**
+ * Filter theme.json data to add theme settings
+ *
+ * @since 7.0
+ *
+ * @param WP_Theme_JSON $theme_json Theme JSON object.
+ * @return WP_Theme_JSON Theme JSON object.
+ */
+function memberlite_filter_theme_json( $theme_json ) {
+	$active_colors = memberlite_get_active_colors();
+	$preset_map = memberlite_get_color_preset_map();
+
+	// Make sure every color is a color and prepend a # in front of it.
+	foreach ( $active_colors as $key => $color ) {
+		if ( sanitize_hex_color_no_hash( $color ) === NULL ) {
+			unset( $active_colors[ $key ] );
+			continue;
+		}
+		$active_colors[ $key ] = '#' . $color;
+	}
+
+	// Build the color palette from the canonical preset map.
+	$color_scheme = array();
+	foreach ( $preset_map as $setting_key => $preset ) {
+		if ( ! isset( $active_colors[ $setting_key ] ) ) {
+			continue;
+		}
+
+		$color_scheme[] = array(
+			'slug'  => $preset['slug'],
+			'color' => $active_colors[ $setting_key ],
+			'name'  => $preset['label'],
+		);
+	}
+
+	// Static palette entry.
+	$color_scheme[] = array(
+		'slug' => 'white',
+		'color' => '#ffffff',
+		'name' => __( 'White', 'memberlite' )
+	);
+
+	// Reindex the array to ensure sequential keys.
+	$color_palette = array_values( $color_scheme );
+
+	// Merge with existing theme.json data.
+	$theme_json_data = $theme_json->get_data();
+
+	// Update the color palette.
+	if ( ! isset( $theme_json_data['settings'] ) ) {
+		$theme_json_data['settings'] = array();
+	}
+	if ( ! isset( $theme_json_data['settings']['color'] ) ) {
+		$theme_json_data['settings']['color'] = array();
+	}
+
+	$theme_json_data['settings']['color']['palette'] = $color_palette;
+
+	// Add font family custom properties.
+	if ( ! isset( $theme_json_data['settings']['custom'] ) ) {
+		$theme_json_data['settings']['custom'] = array();
+	}
+	if ( ! isset( $theme_json_data['settings']['custom']['heading'] ) ) {
+		$theme_json_data['settings']['custom']['heading'] = array();
+	}
+	if ( ! isset( $theme_json_data['settings']['custom']['body'] ) ) {
+		$theme_json_data['settings']['custom']['body'] = array();
+	}
+
+	$theme_json_data['settings']['custom']['heading']['fontFamily'] = memberlite_get_font( 'header_font', true );
+	$theme_json_data['settings']['custom']['body']['fontFamily'] = memberlite_get_font( 'body_font', true );
+
+	// Update the theme.json object.
+	return $theme_json->update_with( $theme_json_data );
+}
+add_filter( 'wp_theme_json_data_theme', 'memberlite_filter_theme_json' );
+
+/**
+ * Dedupe the full color palette for the editor color picker.
+ *
+ * @since 7.0
+ *
+ * @param array $editor_settings Editor settings array.
+ * @param WP_Block_Editor_Context $context Editor context.
+ * @return array
+ */
+function memberlite_dedupe_editor_color_palette( $editor_settings, $context ) {
+	// Helper: return a deduped palette (first occurrence wins) by color value.
+	// but always keep 'body-text' and 'base' slugs.
+	$dedupe = static function( $palette ) {
+		if ( empty( $palette ) || ! is_array( $palette ) ) {
+			return $palette;
+		}
+
+		$seen   = array();
+		$result = array();
+
+		foreach ( $palette as $entry ) {
+			if ( ! is_array( $entry ) || empty( $entry['color'] ) ) {
+				continue;
+			}
+
+			$color = sanitize_hex_color( $entry['color'] );
+			if ( empty( $color ) ) {
+				continue;
+			}
+
+			$key = strtolower( $color );
+			$slug = isset( $entry['slug'] ) ? $entry['slug'] : '';
+
+			// Always keep 'body-text' and 'base' slugs, even if duplicate color.
+			if ( in_array( $slug, array( 'body-text', 'base' ), true ) ) {
+				$entry['color'] = $color;
+				$result[] = $entry;
+				continue;
+			}
+
+			if ( isset( $seen[ $key ] ) ) {
+				continue;
+			}
+
+			$seen[ $key ] = true;
+
+			// Keep the original entry shape (slug/name), but normalize color.
+			$entry['color'] = $color;
+			$result[]       = $entry;
+		}
+
+		return array_values( $result );
+	};
+
+	/*
+	 * WordPress stores palette data for the editor UI in slightly different
+	 * places depending on WP/Gutenberg versions.
+	 *
+	 * We try the most common paths and replace only the "theme" palette list
+	 * that powers the picker UI.
+	 */
+	$paths = array(
+		array( '__experimentalFeatures', 'color', 'palette', 'theme' ),
+		array( '__experimentalFeatures', 'settings', 'color', 'palette', 'theme' ),
+		array( 'settings', 'color', 'palette', 'theme' ),
+	);
+
+	foreach ( $paths as $path ) {
+		$ref = &$editor_settings;
+
+		$found = true;
+		foreach ( $path as $segment ) {
+			if ( ! is_array( $ref ) || ! array_key_exists( $segment, $ref ) ) {
+				$found = false;
+				break;
+			}
+			$ref = &$ref[ $segment ];
+		}
+
+		if ( $found && is_array( $ref ) ) {
+			$ref = $dedupe( $ref );
+			// Don’t break; multiple paths can exist in some setups.
+		}
+	}
+
+	return $editor_settings;
+}
+add_filter( 'block_editor_settings_all', 'memberlite_dedupe_editor_color_palette', 20, 2 );

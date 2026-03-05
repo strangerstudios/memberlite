@@ -108,7 +108,7 @@ function memberlite_export_theme_settings() {
 
 	check_admin_referer( 'memberlite_export_theme_settings', 'memberlite_export_theme_settings_nonce' );
 
-	$template = get_option( 'stylesheet' );
+	$template = get_option( 'template' );
 
 	$data = array(
 		'template' => $template,
@@ -293,10 +293,12 @@ function memberlite_import_theme_settings() {
 		memberlite_import_settings_redirect( 'invalid_file' );
 	}
 
-	$current_template = get_option( 'stylesheet' );
+	$current_template   = get_option( 'template' );
+	$current_stylesheet = get_option( 'stylesheet' );
 
-	// Ensure the file is for this theme.
-	if ( $data['template'] !== $current_template ) {
+	// Ensure the file is for this theme (or a child of the same parent theme).
+	// Check against both template and stylesheet for backwards compatibility with older exports from parent theme installations.
+	if ( $data['template'] !== $current_template && $data['template'] !== $current_stylesheet ) {
 		memberlite_import_settings_redirect( 'wrong_theme' );
 	}
 
@@ -305,9 +307,51 @@ function memberlite_import_theme_settings() {
 		// Clear existing mods so we don't leave stale ones behind.
 		remove_theme_mods();
 
+		// Get all color setting keys.
+		$color_keys = memberlite_get_color_setting_keys();
+
+		// Deprecated mods to skip on import.
+		$deprecated_mods = array( 'memberlite_darkcss' );
+
 		foreach ( $data['mods'] as $key => $value ) {
+			// Skip deprecated settings.
+			if ( in_array( $key, $deprecated_mods, true ) ) {
+				continue;
+			}
+
+			// Sanitize color values to remove # prefix
+			if ( in_array( $key, $color_keys, true ) && is_string( $value ) ) {
+				$value = sanitize_hex_color_no_hash( $value );
+
+				// Skip if sanitization failed (returns null for invalid colors)
+				if ( $value === null ) {
+					continue;
+				}
+
+				// Lowercase for consistency
+				$value = strtolower( $value );
+			}
+
 			set_theme_mod( $key, $value );
 		}
+
+		// Now detect if the imported color scheme is legacy or modern
+		$imported_scheme = isset( $data['mods']['memberlite_color_scheme'] ) ? $data['mods']['memberlite_color_scheme'] : '';
+		$final_scheme = 'custom'; // Default to custom if we can't determine the color scheme
+
+		// Type safety: ensure it's a string before using as array key
+		if ( is_string( $imported_scheme ) && ! empty( $imported_scheme ) && $imported_scheme !== 'custom' ) {
+			// Check if it's a modern scheme
+			$modern_schemes = memberlite_get_color_schemes();
+
+			if ( isset( $modern_schemes[ $imported_scheme ] ) ) {
+				// It's a valid modern scheme, keep it as-is
+				$final_scheme = $imported_scheme;
+			}
+		}
+
+		// Anything legacy or a malformed color scheme will default to "custom"
+		set_theme_mod( 'memberlite_color_scheme', $final_scheme );
 	}
 
 	// Restore extra options (site_icon, sidebars, etc.), if present.

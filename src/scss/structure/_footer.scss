@@ -1,0 +1,169 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+
+/*--------------------------------------------------------------
+ 4.3 Structure: Footer
+
+ Covers: footer navigation, footer widgets, site footer / site-info
+--------------------------------------------------------------*/
+
+
+// -----------------------------------------------------------------------------
+// Footer Navigation
+// -----------------------------------------------------------------------------
+
+.footer-navigation {
+
+	ul {
+		border-bottom: 1px solid var(--memberlite-color-borders);
+		margin: 0;
+		padding-top: var(--wp--preset--spacing--20);
+		padding-bottom: var(--wp--preset--spacing--20);
+
+		// Hide nested sub-menus in footer
+		ul { display: none; }
+	}
+
+	// When no footer widgets are present, add a top border too
+	&.footer-widgets-empty ul {
+		border-top: 1px solid var(--memberlite-color-borders);
+		margin-top: var(--wp--preset--spacing--20);
+	}
+
+	ul li {
+		display: inline-block;
+		float: none;
+		margin: 0;
+		position: relative;
+	}
+
+	a {
+		color: inherit;
+		display: block;
+		padding: calc(var(--wp--preset--spacing--10) / 2) var(--wp--preset--spacing--10);
+		text-decoration: none;
+
+		&:hover {
+			filter: brightness(var(--memberlite-hover-brightness));
+			text-decoration-line: underline;
+			text-underline-offset: 2px;
+		}
+	}
+
+	li:first-child a {
+		padding-left: 0;
+	}
+}
+
+
+// -----------------------------------------------------------------------------
+// Footer Widgets
+// -----------------------------------------------------------------------------
+
+.footer-widgets {
+	background-color: var(--memberlite-color-footer-widgets-background);
+	border-top: 1px solid var(--memberlite-color-borders);
+	border-bottom: 1px solid var(--memberlite-color-borders);
+	color: var(--memberlite-color-footer-widgets);
+	padding: 0;
+
+	@include breakpoint(tablet) {
+		padding: var(--wp--preset--spacing--50) 0;
+	}
+
+	.widget {
+		padding-top: var(--wp--preset--spacing--30);
+		padding-bottom: var(--wp--preset--spacing--30);
+
+		@include breakpoint(tablet) {
+			padding-top: 0;
+			padding-bottom: 0;
+		}
+	}
+
+	h3 {
+		font-weight: 700;
+		margin: 0 0 var(--wp--preset--spacing--10) 0;
+	}
+
+	p {
+		margin: var(--wp--preset--spacing--10) 0 0 0;
+	}
+
+	a {
+		color: var(--memberlite-color-footer-widgets);
+		opacity: 0.9;
+		text-decoration: none;
+		transition: opacity .15s ease-in-out;
+
+		&:hover {
+			color: var(--memberlite-color-footer-widgets);
+			opacity: 1;
+			text-decoration: underline;
+		}
+	}
+
+	ul {
+		list-style: none;
+		margin: .7rem 0 0 0;
+	}
+
+	.post_author_avatar {
+		border-radius: 50%;
+		float: left;
+		height: 80px;
+		margin: 0 20px 0 0;
+		width: 80px;
+
+		img {
+			border-radius: 50%;
+			transform: scale(0.8);
+			transition: transform 0.5s ease;
+		}
+	}
+}
+
+
+// -----------------------------------------------------------------------------
+// Site Footer — Default Variation
+// -----------------------------------------------------------------------------
+
+.site-footer.site-footer-default {
+
+	.site-info {
+		align-items: center;
+		display: flex;
+		flex-direction: column;
+		gap: var(--wp--preset--spacing--20);
+		justify-content: space-between;
+		margin: 0 auto;
+		padding: var(--wp--preset--spacing--20) 2.35rem;
+
+		> * { margin: 0; }
+
+		@include breakpoint(tablet) {
+			flex-direction: row;
+		}
+
+		@include breakpoint(wide) {
+			max-width: var(--wp--style--global--wide-size);
+			padding-left: 0;
+			padding-right: 0;
+			width: calc(100% - 2.35rem * 2);
+		}
+
+		// Back to Top
+		.skip-link {
+			margin-top: var(--wp--preset--spacing--10);
+
+			@include breakpoint(tablet) {
+				margin: 0;
+			}
+
+			&:focus {
+				outline-color: var(--memberlite-color-text);
+				outline-offset: 2px;
+			}
+		}
+	}
+}
