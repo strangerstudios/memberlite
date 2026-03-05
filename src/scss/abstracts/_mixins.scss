@@ -56,37 +56,42 @@
 	color: var(--memberlite-color-link);
 	cursor: pointer;
 	display: inline-block;
+	font-size: var(--wp--preset--font-size--16);
 	font-style: normal;
 	font-weight: 400;
+	line-height: var(--wp--custom--line-height--body);
 	overflow: hidden;
-	padding: var(--wp--preset--spacing--10) var(--wp--preset--spacing--20);
+	padding: calc(var(--wp--preset--spacing--10) / 1.5) var(--wp--preset--spacing--20);
 	text-decoration: underline;
 	text-shadow: none;
+	overflow: hidden;
+	vertical-align: middle;
 }
 
 @mixin form-element-base {
-	background-color: var(--memberlite-color-site-background);
-	border: 1px solid light-dark( #222222, var(--memberlite-color-text) );
-	border-radius: 8px;
+	background-color: transparent;
+	border: 1px solid light-dark(
+		color-mix(in srgb, var(--memberlite-color-text), white 12%),
+		color-mix(in srgb, var(--memberlite-color-text), black 60%)
+	);
+	border-radius: var(--wp--custom--border--radius);
 	box-shadow: none;
 	box-sizing: border-box;
 	color: var(--memberlite-color-text);
 	font-size: var(--wp--preset--font-size--16);
-	line-height: 1.5;
+	line-height: var(--wp--custom--line-height--body);
 	height: auto;
-	margin: 6px 0 0;
+	margin: 0;
 	min-height: auto;
 	outline: none;
-	padding: 12px;
+	padding: var(--pmpro--base--spacing--small, 12px);
 	word-break: normal;
 }
 
 @mixin form-element-focus {
-	background-color: var(--memberlite-color-site-background);
 	border-color: $color-info-border;
 	box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, .25);
 	outline: none;
-	word-break: initial;
 }
 
 @mixin reset-alignment-floats-mobile {

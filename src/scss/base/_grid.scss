@@ -44,12 +44,6 @@ $grid-breakpoints: (
 		width: auto;
 	}
 
-	// Remove gutters from direct column children
-	&.collapse > .column {
-		padding-left: 0;
-		padding-right: 0;
-	}
-
 	// Horizontal alignment utilities
 	&.align-center  { justify-content: center; }
 	&.align-right   { justify-content: flex-end; }
@@ -62,7 +56,6 @@ $grid-breakpoints: (
 // Base Column
 // -----------------------------------------------------------------------------
 
-.column,
 .columns {
 	flex: 0 0 100%;
 	padding-left: $grid-gutter;

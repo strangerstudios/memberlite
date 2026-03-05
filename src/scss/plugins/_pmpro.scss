@@ -283,15 +283,16 @@
 
 
 // -----------------------------------------------------------------------------
-// .pmpro-variation_1 — Card Border Variant
+// .pmpro-variation_1 — Rounded Cards Variant
 // -----------------------------------------------------------------------------
 
 .pmpro-variation_1 {
 
-	.pmpro_card,
-	.pmpro_card_actions,
-	.pmpro_card_content + .pmpro_card_actions {
-		border-color: var(--memberlite-color-borders);
+	.pmpro_card_actions {
+		background-color: light-dark(
+			color-mix(in srgb, var(--memberlite-color-site-background), white 50%),
+			color-mix(in srgb, var(--memberlite-color-site-background), white 5%)
+		);
 	}
 }
 

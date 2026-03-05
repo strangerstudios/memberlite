@@ -31,13 +31,9 @@ hr {
 	margin: var(--wp--preset--spacing--20) 0;
 }
 
-ul,
-ol {
-	margin: 0 0 var(--wp--preset--spacing--20) 0;
-}
-
 ul {
 	list-style: disc;
+	margin: 0 0 var(--wp--preset--spacing--20) var(--wp--preset--spacing--20);
 }
 
 ul ul {
@@ -46,11 +42,12 @@ ul ul {
 
 ol {
 	list-style: decimal;
+	margin: 0 0 var(--wp--preset--spacing--20) var(--wp--preset--spacing--20);
 }
 
 ul li,
 ol li {
-	margin: 0 0 1rem 0;
+	margin: 0 0 var(--wp--preset--spacing--10) 0;
 
 	&:last-child {
 		margin: 0;
@@ -59,8 +56,8 @@ ol li {
 
 li > ul,
 li > ol {
-	margin-bottom: 1rem;
-	margin-top: 1rem;
+	margin-bottom: var(--wp--preset--spacing--20);
+	margin-top: var(--wp--preset--spacing--20);
 }
 
 img {
@@ -90,7 +87,10 @@ tbody th {
 }
 
 thead th {
-	background-color: color-mix(in srgb, var(--memberlite-color-borders) 30%, transparent);
+	background-color: light-dark(
+		color-mix(in srgb, var(--memberlite-color-site-background), black 3%),
+		color-mix(in srgb, var(--memberlite-color-site-background), white 3%)
+	);
 	border-style: solid;
 	border-width: 1px 0;
 }
@@ -110,7 +110,10 @@ tbody td {
 
 tbody tr:nth-child(even) th,
 tbody tr:nth-child(even) td {
-	background-color: color-mix(in srgb, var(--memberlite-color-borders) 30%, transparent);
+	background-color: light-dark(
+		color-mix(in srgb, var(--memberlite-color-site-background), black 3%),
+		color-mix(in srgb, var(--memberlite-color-site-background), white 3%)
+	);
 }
 
 dl {
