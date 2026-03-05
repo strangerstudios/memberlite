@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Process menu actions (duplicate/delete) before headers are sent.
  *
- * @since TBD
+ * @since 7.0
  */
 function memberlite_process_menu_actions() {
 	// Only process on our custom menus admin page.
@@ -126,7 +126,7 @@ add_action( 'admin_init', 'memberlite_process_menu_actions' );
 /**
  * Display admin notices for menu actions on the nav-menus.php page.
  *
- * @since TBD
+ * @since 7.0
  */
 function memberlite_menu_admin_notices() {
 	$screen = get_current_screen();
@@ -155,7 +155,7 @@ add_action( 'admin_notices', 'memberlite_menu_admin_notices' );
 /**
  * Render the Custom Menus admin page.
  *
- * @since TBD
+ * @since 7.0
  */
 function memberlite_custom_menus() {
 	$menus = wp_get_nav_menus();
@@ -381,7 +381,7 @@ function memberlite_custom_menus() {
 /**
  * Duplicate a navigation menu and all its items.
  *
- * @since TBD
+ * @since 7.0
  *
  * @param int    $menu_id The ID of the menu to duplicate.
  * @param string $new_name The name for the duplicated menu.

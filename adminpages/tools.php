@@ -95,7 +95,7 @@ function memberlite_tools() {
  * Exports theme settings as a JSON file.
  *
  * @since 6.1
- * @since TBD Added optional navigation menu export.
+ * @since 7.0 Added optional navigation menu export.
  */
 function memberlite_export_theme_settings() {
 	if ( ! current_user_can( 'edit_theme_options' ) ) {
@@ -261,7 +261,7 @@ add_action( 'admin_post_memberlite_export_theme_settings', 'memberlite_export_th
  * Handle Memberlite theme settings import.
  *
  * @since 6.1
- * @since TBD Added navigation menu import support.
+ * @since 7.0 Added navigation menu import support.
  */
 function memberlite_import_theme_settings() {
 	if ( ! current_user_can( 'edit_theme_options' ) ) {
