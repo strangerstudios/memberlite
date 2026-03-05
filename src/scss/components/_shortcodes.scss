@@ -344,41 +344,6 @@ details {
 		margin-bottom: var(--wp--preset--spacing--10);
 	}
 
-	// Post format icons
-	.hentry {
-
-		&.format-audio,
-		&.format-image,
-		&.format-link,
-		&.format-video {
-
-			h4.entry-title::before {
-				font-family: 'Font Awesome 5 Free';
-				padding-right: 10px;
-			}
-		}
-
-		&.format-audio h4.entry-title::before {
-			content: "\f025";
-		}
-
-		// fa-headphones
-		&.format-image h4.entry-title::before {
-			content: "\f1c5";
-		}
-
-		// fa-file-image
-		&.format-link h4.entry-title::before {
-			content: "\f08e";
-		}
-
-		// fa-external-link
-		&.format-video h4.entry-title::before {
-			content: "\f03d";
-		}
-
-		// fa-video
-	}
 }
 
 

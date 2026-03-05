@@ -50,11 +50,9 @@
 		margin: var(--wp--preset--spacing--20) 0 0 0;
 		word-wrap: break-word;
 		overflow-wrap: break-word;
-		text-align: start;
 
 		@include breakpoint(tablet) {
 			hyphens: auto;
-			text-align: left;
 		}
 	}
 
@@ -91,6 +89,10 @@
 		color: var(--memberlite-color-page-masthead);
 		text-decoration-line: underline;
 		text-underline-offset: 2px;
+	}
+
+	& + .row {
+		margin-top: var(--wp--preset--spacing--50);
 	}
 }
 

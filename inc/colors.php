@@ -198,7 +198,7 @@ function memberlite_get_default_colors(): array {
 function memberlite_get_evergreen_colors(): array {
 	return array(
 		'header_textcolor'        => '174b49',
-		'background_color'        => 'ffffff',
+		'background_color'        => 'f9fafb',
 		'bgcolor_header'          => 'f9fafb',
 		'bgcolor_site_navigation' => 'f9fafb',
 		'color_site_navigation'   => '0f0f0f',
