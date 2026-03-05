@@ -270,8 +270,8 @@
 		align-items: center;
 		display: flex;
 		margin: 0 auto;
-		max-width: 71em;
 		z-index: 10;
+		list-style: none;
 	}
 
 	li {
@@ -280,10 +280,9 @@
 	}
 
 	a {
-		color: var(--memberlite-color-site-navigation);
 		display: block;
-		padding: calc(var(--wp--preset--spacing--10) / 2) var(--wp--preset--spacing--10);
 		text-decoration: none;
+		padding: calc(var(--wp--preset--spacing--10) / 2) var(--wp--preset--spacing--10);
 
 		&:hover:not(.menu-item-has-children > a:hover) {
 			text-decoration-line: underline;
@@ -314,10 +313,7 @@
 			@include remove-btn-defaults;
 			padding: 0 calc(var(--wp--preset--spacing--10) / 2);
 			color: var(--memberlite-color-site-navigation);
-			border-left: 1px solid light-dark(
-					color-mix(in srgb, var(--memberlite-color-site-navigation-background), black 10%),
-					color-mix(in srgb, var(--memberlite-color-site-navigation-background), white 25%)
-			);
+			border-left: 1px solid var(--memberlite-color-site-navigation-background);
 		}
 	}
 
@@ -350,10 +346,7 @@
 		}
 
 		li:hover > a {
-			background-color: light-dark(
-					color-mix(in srgb, var(--memberlite-color-text) 4%, transparent),
-					color-mix(in srgb, var(--memberlite-color-text) 20%, transparent)
-			);
+			background-color: rgba(0,0,0,0.04);
 		}
 	}
 
@@ -468,10 +461,7 @@
 		}
 
 		li:hover > a {
-			background-color: light-dark(
-					color-mix(in srgb, var(--memberlite-color-text) 7%, transparent),
-					color-mix(in srgb, var(--memberlite-color-text) 20%, transparent)
-			);
+			background-color: rgba(0,0,0,0.04);
 		}
 	}
 
@@ -575,11 +565,8 @@ body.mobile-nav-open {
 	}
 
 	ul li.menu-item a {
-		border-bottom: 1px solid light-dark(
-				color-mix(in srgb, var(--memberlite-color-site-navigation-background), black 10%),
-				color-mix(in srgb, var(--memberlite-color-site-navigation-background), white 10%)
-		);
-		color: var(--memberlite-color-site-navigation);
+		border-bottom: 1px solid var(--memberlite-color-site-navigation-border, #e0e0e0);
+		color: var(--memberlite-color-site-navigation, #222);
 		display: block;
 		padding: calc(var(--wp--preset--spacing--10) / 2) var(--wp--preset--spacing--10);
 		text-decoration: none;
@@ -592,10 +579,7 @@ body.mobile-nav-open {
 		}
 
 		&[aria-current] {
-			background-color: light-dark(
-					color-mix(in srgb, var(--memberlite-color-site-navigation-background), black 5%),
-					color-mix(in srgb, var(--memberlite-color-site-navigation-background), white 3%)
-			);
+			background-color: var(--memberlite-color-site-navigation-current-bg, #f5f5f5);
 			font-weight: bold;
 		}
 	}
@@ -716,4 +700,85 @@ body.mobile-nav-open {
 	.pmpro-member-navigation li {
 		padding: calc(var(--wp--preset--spacing--10) / 2) 0;
 	}
+}
+
+// Consolidated shared navigation styles for custom walker
+#site-navigation,
+#menu-header {
+  ul.menu {
+    align-items: center;
+    display: flex;
+    margin: 0 auto;
+    z-index: 10;
+    list-style: none;
+  }
+  li {
+    margin: 0;
+    position: relative;
+  }
+  a {
+    display: block;
+    text-decoration: none;
+    padding: calc(var(--wp--preset--spacing--10) / 2) var(--wp--preset--spacing--10);
+    &:hover:not(.menu-item-has-children > a:hover) {
+      text-decoration-line: underline;
+      text-underline-offset: 2px;
+    }
+  }
+  ul > li.menu-item-has-children {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    > a {
+      display: flex;
+      align-items: center;
+      flex-wrap: nowrap;
+      padding-right: calc(var(--wp--preset--spacing--10) / 2);
+    }
+    > button {
+      @include remove-btn-defaults;
+      padding: 0 calc(var(--wp--preset--spacing--10) / 2);
+      color: inherit;
+      border-left: 1px solid var(--memberlite-color-site-navigation-background);
+    }
+  }
+  ul.sub-menu > .menu-item-has-children > a::after {
+    content: "\f105";
+    display: block;
+    font-family: $font-family-awesome;
+    font-size: var(--wp--preset--font-size--14);
+    font-weight: 900;
+    margin-left: 5px;
+  }
+  ul.sub-menu {
+    background-color: var(--memberlite-color-site-navigation-background);
+    box-shadow: 4px 12px 16px 0 rgba(0, 0, 0, 0.12);
+    display: flex;
+    flex-direction: column;
+    left: -9999em;
+    margin: 0;
+    position: absolute;
+    text-align: left;
+    top: 100%;
+    z-index: 99999;
+    li {
+      border: none;
+      padding: 0;
+      position: relative;
+    }
+    li:hover > a {
+      background-color: rgba(0,0,0,0.04);
+    }
+  }
+  ul.menu li.menu-item-has-children:hover > .sub-menu,
+  ul.menu li.menu-item-has-children > button[aria-expanded="true"] + .sub-menu,
+  ul.menu li.menu-item-has-children > button[aria-expanded="true"] ~ .sub-menu {
+    left: 0;
+  }
+}
+
+// Apply shared styles to both navigation blocks
+#site-navigation,
+.header-right .widget_nav_menu {
+  @extend .memberlite-nav;
 }

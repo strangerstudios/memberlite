@@ -116,8 +116,21 @@ class Memberlite_Aria_Walker_Nav_Menu extends Walker_Nav_Menu {
 	}
 }
 
+function memberlite_set_aria_walker_for_header_sidebar( $params ) {
+	if ( isset( $params[0]['id'] ) && 'sidebar-3' === $params[0]['id'] ) {
+		add_filter( 'wp_nav_menu_args', 'memberlite_set_aria_walker' );
+		add_action( 'dynamic_sidebar_after', 'memberlite_remove_aria_walker_filter' );
+	}
+	return $params;
+}
+add_filter( 'dynamic_sidebar_params', 'memberlite_set_aria_walker_for_header_sidebar' );
+
 function memberlite_set_aria_walker( $args ) {
 	$args['walker'] = new Memberlite_Aria_Walker_Nav_Menu();
 	return $args;
 }
-add_filter( 'wp_nav_menu_args', 'memberlite_set_aria_walker' );
+
+function memberlite_remove_aria_walker_filter() {
+	remove_filter( 'wp_nav_menu_args', 'memberlite_set_aria_walker' );
+	remove_action( 'dynamic_sidebar_after', 'memberlite_remove_aria_walker_filter' );
+}

@@ -22,6 +22,7 @@ if ( has_nav_menu( 'primary' ) ) {
 				'fallback_cb'    => false,
 				'items_wrap'     => '<ul id="%1$s" class="%2$s" role="menubar">%3$s</ul>',
 				'menu_class'     => 'menu',
+				'walker'         => new Memberlite_Aria_Walker_Nav_Menu(),
 			);
 			wp_nav_menu( $primary_defaults );
 		}
