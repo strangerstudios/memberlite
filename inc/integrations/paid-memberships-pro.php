@@ -1,7 +1,40 @@
 <?php
-/*
-	Don't show the page nav on the PMPro Membership Account page and subpages.
-*/
+/**
+ * Filter the theme.json properties based on the PMPro style variation.
+ *
+ * @since 7.0
+ *
+ * @param WP_Theme_JSON $theme_json Theme JSON object.
+ * @return WP_Theme_JSON Theme JSON object.
+ */
+function memberlite_pmpro_filter_theme_json( $theme_json ) {
+	// Get the current PMPro style variation.
+	$pmpro_style_variation = get_option( 'pmpro_style_variation', 'variation_1' );
+
+	// Return early if the variation is not variation_high_contrast.
+	if ( $pmpro_style_variation !== 'variation_high_contrast' ) {
+		return $theme_json;
+	}
+
+	// Change the custom border radius property to 0.
+	$theme_json_data = $theme_json->get_data();
+	if ( ! isset( $theme_json_data['settings'] ) ) {
+		$theme_json_data['settings'] = array();
+	}
+	if ( ! isset( $theme_json_data['settings']['custom'] ) ) {
+		$theme_json_data['settings']['custom'] = array();
+	}
+
+	$theme_json_data['settings']['custom']['border']['radius'] = 0;
+
+	// Update the theme.json object.
+	return $theme_json->update_with( $theme_json_data );
+}
+add_filter( 'wp_theme_json_data_theme', 'memberlite_pmpro_filter_theme_json' );
+
+/**
+ * Don't show the page nav on the PMPro Membership Account page and subpages.
+ */
 function memberlite_pmpro_theme_mod_memberlite_page_nav( $mod ) {
 	global $pmpro_pages, $post;
 
@@ -60,38 +93,3 @@ function memberlite_pmpro_sidebar_hide_children( $widget_areas ) {
 	return $widget_areas;
 }
 add_filter( 'memberlite_get_widget_areas', 'memberlite_pmpro_sidebar_hide_children' );
-
-/**
- * Filter the page title on the Log In page based on page action.
- *
- */
-function pmpro_login_memberlite_page_title( $page_title_html ) {
-	global $pmpro_pages;
-
-	if ( ! is_main_query() ) {
-		return $page_title_html;
-	}
-
-	if ( empty( $pmpro_pages ) || empty( $pmpro_pages['login'] ) ) {
-		return $page_title_html;
-	}
-
-	if ( ! is_page( $pmpro_pages['login'] ) ) {
-		return $page_title_html;
-	}
-
-	if ( is_user_logged_in() ) {
-		$title = __( 'Welcome', 'memberlite' );
-	} elseif ( ! empty( $_REQUEST['action'] ) && $_REQUEST['action'] === 'reset_pass' ) {
-		$title = __( 'Lost Password', 'memberlite' );
-	} elseif ( ! empty( $_REQUEST['action'] ) && $_REQUEST['action'] === 'rp' ) {
-		$title = __( 'Reset Password', 'memberlite' );
-	} else {
-		return $page_title_html;
-	}
-
-	$page_title_html = '<h1 id="page-title">' . esc_html( $title ) . '</h1>';
-
-	return $page_title_html;
-}
-add_filter( 'memberlite_get_page_title', 'pmpro_login_memberlite_page_title' );

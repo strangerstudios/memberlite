@@ -728,12 +728,15 @@ class Memberlite_Customize {
 				--memberlite-hover-brightness: <?php echo esc_attr( $memberlite_defaults['hover_brightness'] ); ?>;
 				--memberlite-color-white: #ffffff;
 
-			<?php if ( $override_pmpro_colors && defined( 'PMPRO_VERSION' ) ) : ?>
+			<?php if ( $override_pmpro_colors && defined( 'PMPRO_VERSION' ) ) :
+				$pmpro_style_variation = get_option( 'pmpro_style_variation', 'variation_1' );
+				?>
 				/* PMPro color vars */
 				--pmpro--color--accent: <?php echo '#' . esc_attr( $active_colors['color_primary'] ); ?>;
 				--pmpro--color--accent--variation: <?php echo '#' . esc_attr( $active_colors['color_primary'] ); ?>;
-				--pmpro--color--base: <?php echo '#' . esc_attr( $active_colors['background_color'] ); ?>;
+				--pmpro--color--base: light-dark( #fff, <?php echo '#' . esc_attr( $active_colors['background_color'] ); ?> );
 				--pmpro--color--contrast: <?php echo '#' . esc_attr( $active_colors['color_text'] ); ?>;
+				--pmpro--color--border--variation: <?php echo ( $pmpro_style_variation === 'variation_high_contrast' ) ? '#' . esc_attr( $active_colors['color_text'] ) : '#' . esc_attr( $active_colors['color_borders'] ); ?>;
 			<?php endif; ?>
 
 			}

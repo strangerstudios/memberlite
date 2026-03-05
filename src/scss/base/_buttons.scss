@@ -12,25 +12,7 @@ input[type=submit],
 .btn,
 a.comment-reply-link,
 .wp-block-search .wp-block-search__button {
-	background-color: var(--memberlite-color-button);
-	border: none;
-	border-radius: var(--wp--custom--border--radius);
-	box-shadow: $btn-shadow;
-	color: var(--memberlite-color-white);
-	cursor: pointer;
-	font-family: var(--memberlite-header-font), ui-sans-serif;
-	font-size: var(--wp--preset--font-size--16);
-	font-style: normal;
-	font-weight: 700;
-	display: inline-block;
-	line-height: var(--wp--custom--line-height--body);
-	padding: calc(var(--wp--preset--spacing--10) / 1.5) var(--wp--preset--spacing--20);
-	text-align: center;
-	text-decoration: none;
-	text-shadow: none;
-	backface-visibility: hidden;
-	overflow: hidden;
-	vertical-align: middle;
+	@include button-base;
 }
 
 button.inline-form-button,
@@ -128,30 +110,21 @@ a.comment-reply-link:hover {
 	width: 100%;
 }
 
-.btn .fa,
-.btn .fab,
-.btn .far,
-.btn .fas,
-.btn_link .fa,
-.btn_link .fab,
-.btn_link .far,
-.btn_link .fas {
-	padding: 0 .5rem;
+.btn:has(.fa),
+.btn:has(.fas),
+.btn:has(.far),
+.btn:has(.fab),
+.btn_link:has(.fa),
+.btn_link:has(.fas),
+.btn_link:has(.far),
+.btn_link:has(.fab) {
+	align-items: center;
+	display: inline-flex;
+	gap: calc(var(--wp--preset--spacing--10) / 2);
 }
 
 .btn_link {
-	background-color: transparent;
-	border: none;
-	box-shadow: none;
-	color: var(--memberlite-color-link);
-	cursor: pointer;
-	display: inline-block;
-	font-style: normal;
-	font-weight: 400;
-	overflow: hidden;
-	padding: var(--wp--preset--spacing--10) var(--wp--preset--spacing--20);
-	text-decoration: underline;
-	text-shadow: none;
+	@include button-link;
 
 	&:hover {
 		background-color: transparent;
