@@ -21,7 +21,8 @@
 .comment,
 .pingback,
 .trackback {
-	border: 1px dotted var(--memberlite-color-borders);
+	border: 1px solid var(--memberlite-color-borders);
+	border-radius: var(--wp--custom--border--radius);
 }
 
 .comment .comment-body,
@@ -30,12 +31,12 @@
 	padding: var(--wp--preset--spacing--20);
 }
 
-.comment,
+.comment.thread-even,
 .pingback.even,
 .trackback.even {
 	background-color: light-dark(
-			color-mix(in srgb, var(--memberlite-color-site-background), black 1%),
-			color-mix(in srgb, var(--memberlite-color-site-background), white 3%)
+		color-mix(in srgb, var(--memberlite-color-site-background), black 3%),
+		color-mix(in srgb, var(--memberlite-color-site-background), white 3%)
 	);
 }
 
@@ -50,16 +51,7 @@
 	overflow-wrap: break-word;
 
 	&.depth-1 {
-		margin: 0;
-	}
-
-	// Zebra striping for nested child comments
-	&.even .child-comments .comment {
-		background-color: var(--memberlite-color-borders);
-	}
-
-	&.odd .child-comments .comment {
-		background-color: var(--memberlite-color-white);
+		margin: var(--wp--preset--spacing--20) 0;
 	}
 
 	.comment-meta {
@@ -148,11 +140,6 @@
 	p {
 		position: relative;
 
-		&.logged-in-as,
-		&.comment-notes {
-			font-size: var(--wp--preset--font-size--14);
-		}
-
 		&.comment-form-cookies-consent label {
 			display: inline;
 			margin: 0 0 0 .7rem;
@@ -164,13 +151,6 @@
 		display: block;
 		text-align: left;
 		width: 100%;
-		margin: 0 .7rem 1rem 0;
-
-		@include breakpoint(tablet) {
-			display: inline-block;
-			text-align: right;
-		}
-
 	}
 
 	input[type=text],
@@ -182,37 +162,16 @@
 		}
 	}
 
-	.comment-notes,
-	.form-allowed-tags {
-		font-style: italic;
-	}
-
-	.form-allowed-tags,
-	.form-allowed-tags code {
-		font-size: var(--wp--preset--font-size--14);
-	}
-
-	.form-allowed-tags,
-	.form-submit,
-	.comment-subscription-form {
-		@include breakpoint(mobile) {
-			margin-left: 0;
-		}
+	#cancel-comment-reply-link {
+		margin-left: var(--wp--preset--spacing--10);
+		text-decoration-line: underline;
+		text-underline-offset: 2px;
 	}
 
 	.form-submit input[type=submit] {
 		@include breakpoint(mobile) {
 			width: 100%;
 		}
-	}
-}
-
-// Note: `.comment-repond` (missing 's') is a typo in WordPress core markup.
-// Preserved here as-is to match the actual rendered HTML.
-.comment-repond {
-	input[type=checkbox],
-	input[type=radio] {
-		margin-right: .5em;
 	}
 }
 

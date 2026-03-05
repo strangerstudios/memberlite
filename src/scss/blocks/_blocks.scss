@@ -104,7 +104,11 @@ hr.wp-block-separator {
 			font-weight: 900;
 			left: 0;
 			position: absolute;
-			top: 0;
+			top: -1rem;
+		}
+
+		p {
+			padding-left: 2.5rem;
 		}
 	}
 
@@ -162,4 +166,64 @@ hr.wp-block-separator {
 
 .wp-block-query ul {
 	padding-left: 0;
+}
+
+
+// -----------------------------------------------------------------------------
+// Buttons Block
+// -----------------------------------------------------------------------------
+.wp-block-buttons .wp-block-button__link:focus {
+	outline-color: var(--memberlite-color-text);
+	outline-offset: 2px;
+}
+
+// -----------------------------------------------------------------------------
+// Comments Block
+// -----------------------------------------------------------------------------
+
+.wp-block-comment-template {
+	padding-left: 0;
+
+	.wp-block-columns.is-layout-flex {
+		gap: var(--wp--preset--spacing--10);
+		margin-bottom: 0;
+
+		.wp-block-group-is-layout-flex {
+			gap: .7rem;
+		}
+	}
+
+	.comment {
+		padding: var(--wp--preset--spacing--20);
+	}
+
+	ol {
+		padding-top: var(--wp--preset--spacing--20);
+		padding-left: 0;
+	}
+
+	a:not(.comment-reply-link) {
+		text-decoration: underline;
+	}
+
+	.wp-block-comment-edit-link a {
+		border-left: 1px solid var(--memberlite-color-borders);
+		padding: 0 0 0 .7rem;
+	}
+
+	.wp-block-comment-author-name,
+	.wp-block-comment-author-name.has-small-font-size {
+		font-weight: 700;
+		// Override the default editor font-size for the author name
+		font-size: var(--wp--preset--font-size--21) !important;
+	}
+
+	.wp-block-comment-date {
+		font-size: var(--wp--preset--font-size--14);
+	}
+
+	.wp-block-comment-content,
+	.wp-block-comment-reply-link {
+		margin-block-start: var(--wp--preset--spacing--10);
+	}
 }

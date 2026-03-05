@@ -129,6 +129,7 @@
 	padding: var(--wp--preset--spacing--20);
 	text-align: center;
 	border: 1px solid var(--memberlite-color-borders);
+	border-radius: var(--wp--custom--border--radius);
 
 	@include breakpoint(tablet) {
 		display: flex;
@@ -191,11 +192,6 @@
 		font-size: var(--wp--preset--font-size--54);
 	}
 
-	// Restore list indentation inside content
-	ul,
-	ol {
-		padding-left: 3.2rem;
-	}
 }
 
 // Page-type entry — no bottom border
@@ -214,7 +210,7 @@
 // Entry Footer
 // -----------------------------------------------------------------------------
 
-.post .entry-footer {
+.post:not(:has(.entry-author)) .entry-footer {
 	border-top: 1px solid var(--memberlite-color-borders);
 	padding: var(--wp--preset--spacing--10) 0 0 0;
 }

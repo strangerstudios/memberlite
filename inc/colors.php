@@ -243,7 +243,7 @@ function memberlite_get_seaside_linen_colors(): array {
 		'color_page_masthead'     => 'ffffff',
 		'bgcolor_footer_widgets'  => 'ecebe3',
 		'color_footer_widgets'    => '25292b',
-		'color_borders'           => 'e0e0e0',
+		'color_borders'           => 'cccab8',
 	);
 }
 
