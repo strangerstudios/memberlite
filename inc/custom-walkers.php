@@ -34,6 +34,9 @@ class Memberlite_Aria_Walker_Nav_Menu extends Walker_Nav_Menu {
 	 * aria-haspopup and aria-expanded are intentionally NOT placed on the <li>
 	 * or the <a>; they belong on the interactive control (the button).
 	 *
+	 * A depth class (e.g. menu-item-depth-0) is added to each <li> for
+	 * styling purposes.
+	 *
 	 * @param string   $output Used to append additional content (passed by reference).
 	 * @param WP_Post  $item   Menu item data object.
 	 * @param int      $depth  Depth of menu item. Used for padding.
@@ -45,6 +48,7 @@ class Memberlite_Aria_Walker_Nav_Menu extends Walker_Nav_Menu {
 
 		$classes   = empty( $item->classes ) ? array() : (array) $item->classes;
 		$classes[] = 'menu-item-' . $item->ID;
+		$classes[] = 'menu-item-depth-' . $depth;
 
 		/** This filter is documented in wp-includes/class-walker-nav-menu.php */
 		$args = apply_filters( 'nav_menu_item_args', $args, $item, $depth );
@@ -62,7 +66,7 @@ class Memberlite_Aria_Walker_Nav_Menu extends Walker_Nav_Menu {
 		$output .= "$indent<li$li_id$class_names>";
 
 		// Build anchor attributes.
-		$atts          = array();
+		$atts           = array();
 		$atts['title']  = ! empty( $item->attr_title ) ? $item->attr_title : '';
 		$atts['target'] = ! empty( $item->target )     ? $item->target     : '';
 		$atts['rel']    = ! empty( $item->xfn )        ? $item->xfn        : '';
@@ -94,19 +98,20 @@ class Memberlite_Aria_Walker_Nav_Menu extends Walker_Nav_Menu {
 		// the only element that carries aria-expanded and aria-controls; JS will
 		// toggle aria-expanded between "true" and "false" on click.
 		if ( in_array( 'menu-item-has-children', $item->classes, true ) ) {
-			$submenu_id   = 'submenu-' . $item->ID;
+			$submenu_id = 'submenu-' . $item->ID;
 			// Translators: %s is the menu item title. Describes the toggle button to screen readers.
 			$button_label = sprintf( esc_attr__( 'Toggle submenu for %s', 'memberlite' ), $title );
+
+			// Top-level items get a down chevron; nested items get a right
+			// chevron to reflect the direction the submenu opens.
+			$icon_class = ( 0 === $depth ) ? 'fa fa-angle-down' : 'fa fa-angle-right';
 
 			$item_output .= sprintf(
 				'<button type="button" aria-expanded="false" aria-controls="%s" aria-label="%s">',
 				esc_attr( $submenu_id ),
 				$button_label
 			);
-			// SVG chevron — hidden from AT since the button's aria-label carries
-			// the full accessible name. Role and focusable are set explicitly for
-			// IE11 compatibility.
-			$item_output .= '<span aria-hidden="true" class="fa fa-angle-down"></span></button>';
+			$item_output .= '<span aria-hidden="true" class="' . esc_attr( $icon_class ) . '"></span></button>';
 		}
 
 		$item_output .= $args->after;
