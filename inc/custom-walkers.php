@@ -1,4 +1,11 @@
 <?php
+
+/**
+ * Aria-enabled nav menu walker.
+ *
+ * @package Memberlite
+ * @since 7.0
+ */
 class Memberlite_Aria_Walker_Nav_Menu extends Walker_Nav_Menu {
 
 	/**
