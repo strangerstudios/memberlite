@@ -1,12 +1,15 @@
 <?php
 /**
  * The template used for displaying page content in page.php
+ * Version: 7.0
+ *
+ * @version 7.0
  *
  * @package Memberlite
  */
 ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>	
+<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<div class="entry-content">
 		<?php do_action( 'memberlite_before_content_page' ); ?>
 		<?php the_content(); ?>
@@ -18,15 +21,13 @@
 				)
 			);
 		?>
-		<?php
-			$memberlite_page_nav = get_theme_mod( 'memberlite_page_nav', 1 );
-		if ( ! empty( $memberlite_page_nav ) ) {
-			memberlite_page_nav();
-		}
-		?>
+
+		<?php memberlite_page_nav(); ?>
+
 		<?php do_action( 'memberlite_after_content_page' ); ?>
+
 	</div><!-- .entry-content -->
-	<?php if ( current_user_can( 'edit_post', $post->ID ) ) { ?>
+	<?php if ( current_user_can( 'edit_post', get_the_ID() ) ) { ?>
 		<footer class="entry-footer">
 			<?php edit_post_link( esc_html__( 'Edit', 'memberlite' ), '<span class="edit-link">', '</span>' ); ?>
 		</footer><!-- .entry-footer -->

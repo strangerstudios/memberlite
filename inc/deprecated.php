@@ -41,21 +41,14 @@ $memberlite_map_deprecated_hooks = array(
 	'memberlite_after_footer_widgets'   => 'after_footer_widgets',
 	'memberlite_before_site_info'       => 'before_site_info',
 	'memberlite_after_site_info'        => 'after_site_info',
+	'memberlite_editor_color_palette'	=> null,
 );
 
-// anonymous function used below is only supported in php 5.3+
 foreach ( $memberlite_map_deprecated_hooks as $new => $old ) {
 	// assumes hooks with no parameters
-	if ( version_compare( phpversion(), '5.3.0', '>=' ) ) {
-		// Using anonmyous functions for PHP 5.3+
-		$func = function() use ( $new, $old ) {
-			memberlite_maybe_show_deprecated_hook_message( $new, $old );
-		};
-	} else {
-		// Using create_function for PHP 5.2
-		$func = create_function( '', "memberlite_maybe_show_deprecated_hook_message( '$new', '$old' );" );
-	}
-	add_action( $new, $func );
+	add_action( $new, function() use ( $new, $old ) {
+		memberlite_maybe_show_deprecated_hook_message( $new, $old );
+	} );
 }
 
 function memberlite_maybe_show_deprecated_hook_message( $new, $old ) {
@@ -225,10 +218,44 @@ add_action( 'admin_notices', 'memberlite_check_for_deprecated_plugins' );
 add_filter( 'plugin_action_links', 'memberlite_deprecated_plugins_action_links', 10, 2 );
 
 /**
+ * The breadcrumbs function was renamed from `memberlite_getBreadcrumbs` to `memberlite_get_breadcrumbs`.
+ *
+ * @since 7.0
+ * @return string The breadcrumbs HTML.
+ *
+ */
+function memberlite_getBreadcrumbs() {
+    _deprecated_function( __FUNCTION__, '7.0', 'memberlite_get_breadcrumbs' );
+    return memberlite_get_breadcrumbs();
+}
+
+/**
+ * The page title function was split into memberlite_get_page_title() and memberlite_get_page_description().
+ *
+ * @since 7.0
+ *
+ * @param bool $echo Whether to echo the output.
+ * @return string The page title and description HTML.
+ */
+function memberlite_page_title( $echo = true ) {
+	_deprecated_function( __FUNCTION__, '7.0', 'memberlite_get_page_title() and memberlite_get_page_description()' );
+
+	$page_title_html = memberlite_get_page_title() . memberlite_get_page_description();
+
+	$page_title_html = apply_filters( 'memberlite_page_title', $page_title_html );
+
+	if ( $echo ) {
+		echo wp_kses_post( $page_title_html );
+	}
+
+	return $page_title_html;
+}
+
+/**
  * Get legacy color scheme definitions in 17-color associative format.
  * Used by upgrade script to migrate legacy schemes to individual theme_mods.
  *
- * @since TBD
+ * @since 7.0
  * @return array Legacy color schemes with 17-color associative arrays.
  */
 function memberlite_get_legacy_color_scheme_definitions(): array {

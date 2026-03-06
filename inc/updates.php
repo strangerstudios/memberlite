@@ -10,11 +10,6 @@
  * @since 4.0
  */
 
-// Ensure files are loaded for color migration functions.
-require_once get_template_directory() . '/inc/colors.php';
-require_once get_template_directory() . '/inc/defaults.php';
-require_once get_template_directory() . '/inc/deprecated.php';
-
 /**
  * Check for updates and run migration scripts.
  *
@@ -43,87 +38,11 @@ function memberlite_checkForUpdates() {
 		update_option( 'memberlite_db_version', '2025032601', 'no' );
 	}
 
-	// Migrate color scheme to individual theme_mods.
-	// Remove the old memberlite_darkcss theme_mod which is no longer used.
-	if ( $memberlite_db_version < '2026021001' ) {
-		memberlite_migrate_colors_to_theme_mods();
-		remove_theme_mod( 'memberlite_darkcss' );
-		update_option( 'memberlite_db_version', '2026021001', 'no' );
+	// Memberlite 7.0 Update
+	if ( $memberlite_db_version < '2026022201' ) {
+		require_once get_template_directory() . '/inc/updates/update_7_0.php';
+		update_option( 'memberlite_db_version', '2026022201', 'no' );
 	}
-
-}
-
-/**
- * Migrate color scheme to individual theme_mods.
- *
- * This migration handles three scenarios:
- * 1. User has a legacy scheme selected (from deprecated.php) → expand all to theme_mods, set scheme to 'custom'
- * 2. User has a new scheme selected → expand all to theme_mods, keep scheme setting
- * 3. User has custom colors already → preserve them, set scheme to 'custom'
- *
- * After migration, the all individual color theme_mods are the single source of truth.
- *
- * @since TBD
- */
-function memberlite_migrate_colors_to_theme_mods() {
-	$color_keys = memberlite_get_color_setting_keys();
-	$current_scheme = get_theme_mod( 'memberlite_color_scheme', '' );
-	$scheme_colors  = array();
-	$final_scheme   = 'default';
-	if ( ! empty( $current_scheme ) && 'custom' !== $current_scheme ) {
-		$modern_schemes = memberlite_get_color_schemes();
-		if ( isset( $modern_schemes[ $current_scheme ]['colors'] ) ) {
-			$scheme_colors = $modern_schemes[ $current_scheme ]['colors'];
-			$final_scheme  = $current_scheme;
-		} else {
-			$legacy_definitions = memberlite_get_legacy_color_scheme_definitions();
-			if ( isset( $legacy_definitions[ $current_scheme ]['colors'] ) ) {
-				$scheme_colors = $legacy_definitions[ $current_scheme ]['colors'];
-				$final_scheme  = 'custom';
-			}
-		}
-	}
-	$resolved          = array();
-	$has_custom_colors = false;
-	foreach ( $color_keys as $key ) {
-		$resolved[ $key ] = '';
-		$existing = get_theme_mod( $key, '' );
-		if ( ! empty( $existing ) ) {
-			$sanitized = sanitize_hex_color_no_hash( '#' . ltrim( $existing, '#' ) );
-			if ( ! empty( $sanitized ) ) {
-				$has_custom_colors = true;
-				$resolved[ $key ]  = $sanitized;
-				continue;
-			}
-		}
-		if ( isset( $scheme_colors[ $key ] ) ) {
-			$resolved[ $key ] = sanitize_hex_color_no_hash( '#' . ltrim( $scheme_colors[ $key ], '#' ) );
-		}
-	}
-	$primary = $resolved['color_primary'] ?? '';
-	if ( empty( $resolved['bgcolor_page_masthead'] ) && ! empty( $primary ) ) {
-		$resolved['bgcolor_page_masthead'] = $primary;
-		$resolved['color_page_masthead']   = 'ffffff';
-	}
-	if ( empty( $resolved['bgcolor_footer_widgets'] ) && ! empty( $primary ) ) {
-		$resolved['bgcolor_footer_widgets'] = $primary;
-		$resolved['color_footer_widgets']   = 'ffffff';
-	}
-	$default_colors = memberlite_get_default_colors();
-	foreach ( $color_keys as $key ) {
-		if ( empty( $resolved[ $key ] ) && isset( $default_colors[ $key ] ) ) {
-			$resolved[ $key ] = sanitize_hex_color_no_hash( '#' . ltrim( $default_colors[ $key ], '#' ) );
-		}
-	}
-	foreach ( $color_keys as $key ) {
-		if ( ! empty( $resolved[ $key ] ) ) {
-			set_theme_mod( $key, $resolved[ $key ] );
-		}
-	}
-	if ( $has_custom_colors ) {
-		$final_scheme = 'custom';
-	}
-	set_theme_mod( 'memberlite_color_scheme', $final_scheme );
 }
 
 /**

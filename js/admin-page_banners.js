@@ -15,7 +15,7 @@ function memberlite_togglePageBannerMeta() {
 jQuery(document).ready(function() { memberlite_togglePageBannerMeta(); });
 
 //toggle when show banner radio is changed
-jQuery('input[name=memberlite_banner_show]').bind('keyup change', function() { memberlite_togglePageBannerMeta() });
+jQuery('input[name=memberlite_banner_show]').on('keyup change', function() { memberlite_togglePageBannerMeta() });
 
 /**
  * Temporary fix for Gutenberg issue where wp_editor fields are not saved when

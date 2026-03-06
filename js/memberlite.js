@@ -1,131 +1,166 @@
 /**
- * memberlite.js
+ * Main JS for the Memberlite Theme
  */
-jQuery( document ).ready(
-	function() {
-		// Focus styles for menus when using keyboard navigation
-		// Properly update the ARIA states on focus (keyboard) and mouse over events
-		jQuery( 'nav > ul' ).on( 'focus.wparia mouseenter.wparia', '[aria-haspopup="true"]', function ( ev ) {
-			jQuery( ev.currentTarget ).attr( 'aria-expanded', true );
-		} );
+document.addEventListener( 'DOMContentLoaded', function() {
 
-		// Properly update the ARIA states on blur (keyboard) and mouse out events
-		jQuery( 'nav > ul' ).on( 'blur.wparia mouseleave.wparia', '[aria-haspopup="true"]', function ( ev ) {
-			jQuery( ev.currentTarget ).attr( 'aria-expanded', false );
-		} );
+	initTabs();
+	initMobileNav();
+	initStickyNav();
 
-		// scroll to target links in page
-		jQuery( 'a[href*="#"]:not(.memberlite_tabs a)' ).on(
-			'click', function(event) {
+} );
 
-				var target = jQuery( '#' + jQuery( this ).attr( 'href' ).hash );
+// ─── Tabs ────────────────────────────────────────────────────────────────────
 
-				if ( target.length ) {
-					event.preventDefault();
-					jQuery( 'html, body' ).animate(
-						{
-							scrollTop: target.offset().top
-						}, 800
-					);
-				}
-			}
-		);
+function initTabs() {
+	document.querySelectorAll( '.memberlite_tabbable .memberlite_tabs li a' ).forEach( function( tabLink ) {
+		tabLink.addEventListener( 'click', onTabClick );
+	} );
 
-		// switch tab content when clicked
-		jQuery( '.memberlite_tabbable .memberlite_tabs li a' ).click(
-			function(e) {
-
-				// don't want to jump to #
-				e.preventDefault();
-
-				// which tab was clicked
-				var tab, tabarea;
-				tab     = jQuery( this ).attr( 'href' ).replace( /#/, '' );
-				tabarea = jQuery( this ).closest( '.memberlite_tabbable' );
-
-				// hide all tab panes
-				tabarea.find( '.memberlite_tab_pane' ).hide();
-				tabarea.find( '.memberlite_tab_pane' ).removeClass( 'memberlite_active' );
-
-				// show the active one
-				jQuery( '#' + tab ).show();
-				jQuery( '#' + tab ).addClass( 'memberlite_active' );
-
-				// unstyle tabs
-				tabarea.find( '.memberlite_tabs li' ).removeClass( 'memberlite_active' );
-
-				// highlight the active one
-				jQuery( this ).closest( 'li' ).addClass( 'memberlite_active' );
-
-				// update the URL
-				if(history.pushState) {
-					history.pushState( null, null, '#' + tab );
-				} else {
-					location.hash = '#' + tab;
-				}
-			}
-		);
-
-		// check if we should switch tab content on page loads
-		jQuery( 'a[data-toggle="tab"][href="' + window.location.hash + '"]' ).click();
-
-		// mobile navigation
-		var mobilenav_trigger = jQuery( 'button.menu-toggle' );
-		jQuery( '#mobile-navigation' ).after( jQuery( '<div id="mobile-navigation-height-col"></div>' ) );
-		mobilenav_trigger.click(
-			function() {
-
-				jQuery( '#mobile-navigation' ).toggleClass( 'toggled' );
-
-				if (jQuery( '#mobile-navigation' ).hasClass( 'toggled' )) {
-					jQuery( '#mobile-navigation' ).animate(
-						{
-							left: '0px'
-						}
-					);
-					jQuery( '#mobile-navigation-height-col' ).animate(
-						{
-							left: '0px'
-						}
-					);
-				} else {
-					jQuery( '#mobile-navigation' ).animate(
-						{
-							left: '-100%'
-						}
-					);
-					jQuery( '#mobile-navigation-height-col' ).animate(
-						{
-							left: '-100%'
-						}
-					);
-				}
-			}
-		);
-
-		// skip link focus fix
-		// borrowed from _s theme: https://git.io/vWdr2
-		var isIe = /(trident|msie)/i.test( navigator.userAgent );
-
-		if ( isIe && document.getElementById && window.addEventListener ) {
-			window.addEventListener( 'hashchange', function() {
-				var id = location.hash.substring( 1 ),
-					element;
-
-				if ( ! ( /^[A-z0-9_-]+$/.test( id ) ) ) {
-					return;
-				}
-
-				element = document.getElementById( id );
-
-				if ( element ) {
-					if ( ! ( /^(?:a|select|input|button|textarea)$/i.test( element.tagName ) ) ) {
-						element.tabIndex = -1;
-					}
-
-					element.focus();
-				}
-			}, false );
-		}
+	// Check if we should switch tab content on page load
+	const hashLink = document.querySelector( 'a[data-toggle="tab"][href="' + window.location.hash + '"]' );
+	if ( hashLink ) {
+		hashLink.click();
 	}
-);
+}
+
+function onTabClick( e ) {
+	e.preventDefault();
+
+	const tab     = this.getAttribute( 'href' ).replace( /#/, '' );
+	const tabarea = this.closest( '.memberlite_tabbable' );
+
+	setActiveTab( tabarea, tab );
+	setActiveTabLink( tabarea, this );
+	updateUrlHash( tab );
+}
+
+function setActiveTab( tabarea, tab ) {
+	tabarea.querySelectorAll( '.memberlite_tab_pane' ).forEach( function( pane ) {
+		pane.style.display = 'none';
+		pane.classList.remove( 'memberlite_active' );
+	} );
+
+	const activePane = document.getElementById( tab );
+	if ( activePane ) {
+		activePane.style.display = '';
+		activePane.classList.add( 'memberlite_active' );
+	}
+}
+
+function setActiveTabLink( tabarea, activeLink ) {
+	tabarea.querySelectorAll( '.memberlite_tabs li' ).forEach( function( li ) {
+		li.classList.remove( 'memberlite_active' );
+	} );
+	activeLink.closest( 'li' ).classList.add( 'memberlite_active' );
+}
+
+function updateUrlHash( hash ) {
+	if ( history.pushState ) {
+		history.pushState( null, null, '#' + hash );
+	} else {
+		location.hash = '#' + hash;
+	}
+}
+
+// ─── Mobile Navigation ───────────────────────────────────────────────────────
+
+function initMobileNav() {
+	const mobileNav        = document.getElementById( 'mobile-navigation' );
+	const mobilenavTrigger = document.getElementById( 'expand-mobile-nav' );
+	const mobileNavClose   = document.getElementById( 'close-mobile-nav' );
+
+	if ( !mobileNav || !mobilenavTrigger || !mobileNavClose ) return;
+
+	mobilenavTrigger.addEventListener( 'click', function() {
+		openMobileNav( mobileNav, mobilenavTrigger, mobileNavClose );
+	} );
+
+	mobileNavClose.addEventListener( 'click', function() {
+		closeMobileNav( mobileNav, mobilenavTrigger );
+	} );
+
+	// Close the mobile menu when the Escape key is pressed
+	document.addEventListener( 'keydown', function( e ) {
+		if ( e.key === 'Escape' && mobileNav.classList.contains( 'open' ) ) {
+			closeMobileNav( mobileNav, mobilenavTrigger );
+		}
+	} );
+
+	// Close the mobile menu when an anchor link is clicked
+	mobileNav.addEventListener( 'click', function( e ) {
+		const link = e.target.closest( 'a' );
+		if ( link && isAnchorLinkForCurrentPage( link ) ) {
+			closeMobileNav( mobileNav, mobilenavTrigger );
+		}
+	} );
+}
+
+function openMobileNav( mobileNav, trigger, closeBtn ) {
+	const content  = document.getElementById( 'content' );
+	const colophon = document.getElementById( 'colophon' );
+
+	document.body.classList.add( 'mobile-nav-open' );
+	if ( content ) content.setAttribute( 'inert', true );
+	if ( colophon ) colophon.setAttribute( 'inert', true );
+	mobileNav.removeAttribute( 'inert' );
+	mobileNav.classList.add( 'open' );
+	trigger.setAttribute( 'aria-expanded', 'true' );
+	closeBtn.focus();
+}
+
+function closeMobileNav( mobileNav, trigger ) {
+	const content  = document.getElementById( 'content' );
+	const colophon = document.getElementById( 'colophon' );
+
+	document.body.classList.remove( 'mobile-nav-open' );
+	if ( content ) content.removeAttribute( 'inert' );
+	if ( colophon ) colophon.removeAttribute( 'inert' );
+	mobileNav.classList.remove( 'open' );
+	mobileNav.setAttribute( 'inert', true );
+	trigger.setAttribute( 'aria-expanded', 'false' );
+	trigger.focus();
+}
+
+function isAnchorLinkForCurrentPage( link ) {
+	return (
+		// Filter out links with no # at all, and bare # links (which have a hash of '')
+		link.hash !== '' &&
+		// Rule out links to other domains that happen to have a hash, e.g. https://example.com/page#section
+		( link.origin === window.location.origin ) &&
+		// Rule out links to other pages on the same site, e.g. /another-page#section,
+		// which would cause a full navigation anyway and naturally close the menu
+		( link.pathname === window.location.pathname )
+	);
+}
+
+// ─── Sticky Navigation ───────────────────────────────────────────────────────
+
+function initStickyNav() {
+	const stickyWrapper  = document.querySelector( '.site-navigation-sticky-wrapper' );
+	const stickyNav      = document.getElementById( 'site-navigation' );
+
+	if ( ! stickyWrapper || ! stickyNav ) return;
+
+	const navHeight      = stickyNav.offsetHeight;
+	const adminBar               = document.getElementById( 'wpadminbar' );
+	const adminBarHeight = adminBar ? adminBar.offsetHeight : 0;
+
+	stickyWrapper.style.height = navHeight + 'px';
+	stickyNav.style.height     = navHeight + 'px';
+
+	const stickyTop = stickyWrapper.getBoundingClientRect().top + window.scrollY - adminBarHeight;
+
+	window.addEventListener( 'scroll', function() {
+		updateStickyState( stickyNav, stickyTop, adminBarHeight );
+	} );
+}
+
+function updateStickyState( stickyNav, stickyTop, adminBarHeight ) {
+	if ( window.scrollY >= stickyTop ) {
+		stickyNav.classList.add( 'site-navigation-sticky' );
+		stickyNav.style.top = adminBarHeight + 'px';
+	} else {
+		stickyNav.classList.remove( 'site-navigation-sticky' );
+		stickyNav.style.top = '';
+	}
+}

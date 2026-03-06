@@ -1,0 +1,242 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+
+/*--------------------------------------------------------------
+ 4.4 Structure: Content
+
+ Covers: .hentry, entry header, entry content, entry footer, entry author
+--------------------------------------------------------------*/
+
+
+// -----------------------------------------------------------------------------
+// Entry (hentry)
+// -----------------------------------------------------------------------------
+
+.hentry {
+	margin: 0 0 var(--wp--preset--spacing--70);
+
+	// Entry banner (featured image as full-bleed header)
+	.entry-banner {
+		margin: 0 0 var(--wp--preset--spacing--20) 0;
+		overflow: hidden;
+		position: relative;
+	}
+
+	// When a banner image is present, overlay the entry header
+	&:has(.banner-image) .entry-header {
+		background-color: rgba(0, 0, 0, 0.6);
+		color: var(--memberlite-color-white);
+		margin: 0;
+		padding: var(--wp--preset--spacing--50) var(--wp--preset--spacing--20);
+		position: relative;
+		width: 100%;
+
+		a {
+			color: inherit;
+		}
+	}
+
+	.post_author_avatar img {
+		border-radius: 50%;
+		display: block;
+	}
+
+	// Remove lead image bottom margin inside .lead
+	.entry-content .lead .wp-post-image {
+		margin-bottom: 0;
+	}
+}
+
+// Blank page template removes entry margin
+.page-template-blank .hentry {
+	margin: 0;
+}
+
+
+// -----------------------------------------------------------------------------
+// Entry Header — Grid Layout (.entry-header-grid)
+// -----------------------------------------------------------------------------
+
+.entry-header-grid {
+
+	.entry-header {
+		display: flex;
+		gap: var(--wp--preset--spacing--10);
+		margin: 0 0 var(--wp--preset--spacing--10) 0;
+
+		.entry-title {
+			margin: 0;
+			hyphens: auto;
+			overflow-wrap: break-word;
+			word-wrap: break-word;
+		}
+
+		.post_author_avatar {
+			flex-shrink: 0;
+			height: auto;
+		}
+	}
+
+	.entry-header-content {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+	}
+
+	// No bottom margin when header-content sits inside a banner
+	.entry-banner .entry-header-content {
+		margin-bottom: 0;
+	}
+}
+
+
+// -----------------------------------------------------------------------------
+// Entry Title
+// -----------------------------------------------------------------------------
+
+.entry-title {
+	overflow-wrap: break-word;
+}
+
+
+// -----------------------------------------------------------------------------
+// Entry Meta
+// -----------------------------------------------------------------------------
+
+.entry-meta a {
+	text-underline-offset: 2px;
+}
+
+.byline,
+.updated {
+	display: none;
+}
+
+.single .byline,
+.group-blog .byline {
+	display: inline;
+}
+
+
+// -----------------------------------------------------------------------------
+// Entry Author Box
+// -----------------------------------------------------------------------------
+
+.entry-author {
+	display: block;
+	max-width: 100%;
+	margin: var(--wp--preset--spacing--20) 0;
+	padding: var(--wp--preset--spacing--20);
+	text-align: center;
+	border: 1px solid var(--memberlite-color-borders);
+	border-radius: var(--wp--custom--border--radius);
+
+	@include breakpoint(tablet) {
+		display: flex;
+		flex: auto;
+		flex-wrap: nowrap;
+		gap: var(--wp--preset--spacing--10);
+		text-align: start;
+	}
+
+	.post_author_avatar {
+		flex-grow: 1;
+		min-width: 80px;
+	}
+
+	.post_author_details p:last-child {
+		margin-bottom: 0;
+	}
+
+	.post_author_name {
+		font-weight: bold;
+		margin: 0;
+	}
+}
+
+
+// -----------------------------------------------------------------------------
+// Entry Content & Summary
+// -----------------------------------------------------------------------------
+
+.entry-content,
+.entry-summary {
+	margin: 0;
+}
+
+.entry-content {
+
+	// Featured image spacing
+	.wp-post-image {
+		margin-bottom: var(--wp--preset--spacing--20);
+	}
+
+	img.alignleft,
+	img.alignright {
+		@include breakpoint(mobile) {
+			@include reset-alignment-floats-mobile;
+		}
+	}
+
+	// Support legacy alignment on images
+	p:has(> img.alignleft),
+	p:has(> img.alignright),
+	p:has(> a > img.alignleft),
+	p:has(> a > img.alignright) {
+		display: flow-root;
+	}
+
+	// Large h1 inside content area (not a block heading)
+	h1:not(.wp-block-heading),
+	.h1 {
+		font-size: var(--wp--preset--font-size--54);
+	}
+
+}
+
+// 404 error page content
+.error-404 .entry-content {
+	padding: 0 0 var(--wp--preset--spacing--50) 0;
+	text-align: center;
+}
+
+
+// -----------------------------------------------------------------------------
+// Entry Footer
+// -----------------------------------------------------------------------------
+
+.post:not(:has(.entry-author)) .entry-footer {
+	border-top: 1px solid var(--memberlite-color-borders);
+	clear: both;
+	padding: var(--wp--preset--spacing--10) 0 0 0;
+}
+
+.entry-footer a {
+	color: var(--memberlite-color-link);
+	text-decoration: underline;
+	text-underline-offset: 2px;
+
+	&:hover {
+		color: var(--memberlite-color-text);
+	}
+}
+
+
+// -----------------------------------------------------------------------------
+// Primary Entry Header
+// -----------------------------------------------------------------------------
+
+#primary .post.hentry .entry-header {
+	@include breakpoint(mobile) {
+		grid-template-columns: 1fr;
+		grid-template-areas: "avatar" "title" "meta";
+	}
+
+	.entry-title {
+		@include breakpoint(mobile) {
+			hyphens: none;
+			overflow-wrap: normal;
+			word-break: break-word;
+		}
+	}
+}

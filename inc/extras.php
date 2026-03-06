@@ -58,11 +58,9 @@ function memberlite_body_classes( $classes ) {
 	if ( is_multi_author() ) {
 		$classes[] = 'group-blog';
 	}
+
 	if ( is_page_template( 'templates/landing.php' ) ) {
 		$classes[] = 'landing';
-	}
-	if ( is_page_template( 'templates/interstitial.php' ) ) {
-		$classes[] = 'interstitial';
 	}
 
 	if ( ! empty( $post ) && is_page() ) {
@@ -100,8 +98,7 @@ function memberlite_getColumnsRatio( $location = null ) {
 	} elseif ( $location == 'header-left' ) {
 		$r = $columns_ratio_header_array[0];
 	} elseif ( is_front_page() && empty( $page_template_slug ) && 'posts' != get_option( 'show_on_front' ) ||
-		is_page_template( 'templates/full-width.php' ) ||
-		is_page_template( 'templates/interstitial.php' )
+		is_page_template( 'templates/full-width.php' )
 	) {
 		$r = '12';
 	} elseif ( is_page_template( 'templates/narrow-width.php' ) ) {
@@ -293,8 +290,9 @@ function memberlite_the_content( $content ) {
 		$morespan_pos = strpos( $content, $morespan );
 		$leadcontent = substr( $content, 0, $morespan_pos );
 
-		// Add the block image between the "excerpt" and the rest of the content.
-		if ( ! empty( $image_content ) ) {
+		// Add the block image between the "excerpt" and the rest of the content on singular views only.
+		// Archives handle the block image separately in memberlite_the_excerpt().
+		if ( ! empty( $image_content ) && is_singular() ) {
 			$leadcontent .= $image_content;
 		}
 
@@ -302,7 +300,7 @@ function memberlite_the_content( $content ) {
 		 * Filter to turn enlarge/enhance the excerpt text for a single post with a separator.
 		 *
 		 * @since 4.5.4
-		 * @since TBD Reversed filter default to `false` in TBD
+		 * @since 7.0 Reversed filter default to `false` in 7.0
 		 *
 		 * @param bool $memberlite_excerpt_larger Enlarge/enhance the excerpt text on a single post.
 		 * @return bool $memberlite_excerpt_larger
@@ -411,122 +409,43 @@ function memberlite_loop_image() {
 	return $image_content;
 }
 
-function memberlite_page_title( $echo = true ) {
+/**
+ * Get just the page title HTML (<h1> tag).
+ *
+ * @since 7.0
+ *
+ * @return string The page title HTML.
+ */
+function memberlite_get_page_title() {
 	global $post;
 
-	// capture output
 	ob_start();
 
-	// figure out page title
-	if ( function_exists( 'is_woocommerce' ) && is_woocommerce() ) { ?>
-		<h1 class="page-title">
-		<?php
-		if ( is_shop() ) {
-			echo esc_html( get_the_title( get_option( 'woocommerce_shop_page_id' ) ) );
-		} elseif ( is_archive() ) {
-			single_cat_title();
-		} else {
-			the_title();
-		}
+	if ( is_post_type_archive() ) {
 		?>
-		</h1>
-			<?php
-			// Show an optional term description.
-			$term_description = woocommerce_product_archive_description();
-			if ( ! empty( $term_description ) ) :
-				printf( '<div class="taxonomy-description">%s</div>', wp_kses_post( $term_description ) );
-			endif;
-			woocommerce_taxonomy_archive_description();
-	} elseif ( is_post_type_archive() ) {
-		?>
-		<h1 class="page-title"><?php the_archive_title(); ?></h1>
-		<?php
-	} elseif ( function_exists( 'is_bbpress' ) && ( is_bbpress() || bbp_is_single_user() ) ) {
-		?>
-		<h1 class="page-title">
-		<?php
-		if ( bbp_is_search_results() ) {
-			/* translators: %s: bbPress forum search terms */
-			printf( esc_html__( 'Forum Search Results for: %s', 'memberlite' ), '<span>' . esc_html( bbp_get_search_terms() ) . '</span>' );
-		} elseif ( bbp_is_search() ) {
-			esc_html_e( 'Forum Search', 'memberlite' );
-		} elseif ( bbp_is_single_forum() || bbp_is_single_topic() ) {
-			the_title();
-		} elseif ( bbp_is_single_user() ) {
-			/* translators: %s: bbPress user profile display name */
-			echo sprintf( esc_html__( '%s\'s Profile', 'memberlite' ), esc_html( get_userdata( bbp_get_user_id() )->display_name ) );
-		} else {
-			esc_html_e( 'Forums', 'memberlite' );
-		}
-		?>
-		</h1>
+		<h1 id="page-title"><?php the_archive_title(); ?></h1>
 		<?php
 	} elseif ( is_author() || is_tag() || is_archive() ) {
 		$archive_title = get_the_archive_title();
-		$archive_description = get_the_archive_description();
 
 		if ( ! empty( $archive_title ) ) { ?>
-			<h1 class="page-title">
+			<h1 id="page-title">
 				<?php echo wp_kses_post( $archive_title ); ?>
 			</h1>
 			<?php
 		}
-
-		if ( ! empty( $archive_description ) ) { ?>
-			<div class="taxonomy-description">
-				<?php echo wp_kses_post( $archive_description ); ?>
-			</div>
-			<?php
-		}
-
 	} elseif ( is_search() ) {
 		?>
-		<h1 class="page-title">
+		<h1 id="page-title">
 			<?php
 				/* translators: %s: search keywords */
 				printf( esc_html__( 'Search Results for: %s', 'memberlite' ), '<span>' . get_search_query() . '</span>' );
 			?>
 		</h1>
 		<?php
-	} elseif ( is_singular( 'post' ) ) { ?>
-		<div class="masthead-post-byline">
-			<?php
-				$author_avatar_allowed_html = array(
-					'div' => array(
-						'class' => array(),
-					),
-					'img' => array(
-						'alt' => array(),
-						'class' => array(),
-						'height' => array(),
-						'loading' => array(),
-						'src' => array(),
-						'title' => array(),
-						'width' => array()
-					),
-					'noscript' => array()
-				);
-				$author_avatar = memberlite_get_author_avatar( $post->post_author );
-				echo empty( $author_avatar ) ? '' : wp_kses( $author_avatar, $author_avatar_allowed_html );
-			?>
-			<div class="entry-header-content">
-				<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
-				<?php
-					$memberlite_get_entry_meta_before = memberlite_get_entry_meta( $post, 'before' );
-				if ( ! empty( $memberlite_get_entry_meta_before ) ) {
-					?>
-					<p class="entry-meta">
-						<?php echo Memberlite_Customize::sanitize_text_with_links( memberlite_get_entry_meta( $post, 'before' ) ); // WPCS: xss ok. ?>
-						</p><!-- .entry-meta -->
-						<?php
-				}
-				?>
-			</div> <!-- .entry-header-content -->
-		</div>
-		<?php
 	} elseif ( is_home() ) {
 		?>
-		<h1 class="page-title">
+		<h1 id="page-title">
 		<?php
 		if ( get_option( 'page_for_posts' ) ) {
 			echo esc_html( get_the_title( get_option( 'page_for_posts' ) ) );
@@ -535,23 +454,40 @@ function memberlite_page_title( $echo = true ) {
 		</h1>
 		<?php
 	} elseif ( is_404() ) {
-		echo '<h1 class="entry-title">' . esc_html__( '404: Page Not Found', 'memberlite' ) . '</h1>';
+		echo '<h1 id="page-title" class="entry-title">' . esc_html__( '404: Page Not Found', 'memberlite' ) . '</h1>';
 	} else {
-		the_title( '<h1 class="entry-title">', '</h1>' );
+		the_title( '<h1 id="page-title" class="entry-title">', '</h1>' );
 	}
 
-	// get captured output
-	$page_title_html = ob_get_contents();
-	ob_end_clean();
+	$page_title_html = ob_get_clean();
 
-	// filter
-	$page_title_html = apply_filters( 'memberlite_page_title', $page_title_html );
+	return apply_filters( 'memberlite_get_page_title', $page_title_html );
+}
 
-	if ( $echo ) {
-		echo wp_kses_post( $page_title_html );
+/**
+ * Get just the page description HTML (taxonomy/archive description).
+ *
+ * @since 7.0
+ *
+ * @return string The page description HTML.
+ */
+function memberlite_get_page_description() {
+	ob_start();
+
+	if ( is_author() || is_tag() || is_archive() ) {
+		$archive_description = get_the_archive_description();
+
+		if ( ! empty( $archive_description ) ) { ?>
+			<div class="taxonomy-description">
+				<?php echo wp_kses_post( $archive_description ); ?>
+			</div>
+			<?php
+		}
 	}
 
-	return $page_title_html;
+	$page_description_html = ob_get_clean();
+
+	return apply_filters( 'memberlite_get_page_description', $page_description_html );
 }
 
 /**
@@ -615,23 +551,7 @@ function memberlite_nav_menu_submenu() {
 	}
 }
 
-/* Customizes the bbp_breadcrumb output */
-function memberlite_bbp_breadcrumb( $args ) {
-	global $memberlite_defaults;
-	$args = array(
-		'sep'       => get_theme_mod( 'delimiter', $memberlite_defaults['delimiter'] ),
-		'home_text' => __( 'Home', 'memberlite' ),
-		'before'    => '',
-		'after'     => '',
-	);
-	return $args;
-}
-add_filter( 'bbp_before_get_breadcrumb_parse_args', 'memberlite_bbp_breadcrumb' );
-
-/* Removes bbp_breadcrumb from bbpress templates */
-add_filter( 'bbp_no_breadcrumb', '__return_true' );
-
-function memberlite_getBreadcrumbs() {
+function memberlite_get_breadcrumbs() {
 	global $posts, $post, $memberlite_defaults;
 	$page_breadcrumbs       = get_theme_mod( 'page_breadcrumbs', false );
 	$post_breadcrumbs       = get_theme_mod( 'post_breadcrumbs', false );
@@ -647,7 +567,16 @@ function memberlite_getBreadcrumbs() {
 		|| '' != $profile_breadcrumbs
 	) ? true : false;
 
-	$memberlite_show_breadcrumbs = apply_filters( 'memberlite_show_breadcrumbs', true );
+	// Check _memberlite_banner_hide_breadcrumbs meta to determine if breadcrumbs should display.
+	$memberlite_breadcrumbs_post_id = get_queried_object_id();
+	if ( empty( $memberlite_breadcrumbs_post_id ) && ( is_home() || is_post_type_archive( 'post' ) ) ) {
+		$memberlite_breadcrumbs_post_id = get_option( 'page_for_posts' );
+	}
+	$memberlite_show_breadcrumbs = true;
+	if ( ! empty( $memberlite_breadcrumbs_post_id ) && get_post_meta( $memberlite_breadcrumbs_post_id, '_memberlite_banner_hide_breadcrumbs', true ) === '1' ) {
+		$memberlite_show_breadcrumbs = false;
+	}
+	$memberlite_show_breadcrumbs = apply_filters( 'memberlite_show_breadcrumbs', $memberlite_show_breadcrumbs );
 
 	if ( $memberlite_show_breadcrumbs ) {
 		$memberlite_delimiter = get_theme_mod( 'delimiter', $memberlite_defaults['delimiter'] );
@@ -888,42 +817,7 @@ function memberlite_should_show_banner_image( $post_id = null ) {
 	return $r;
 }
 
-/**
- * Get the post thumbnail image src and allow filtering.
- * Used to swap in the banner for loop/single posts.
- */
-function memberlite_get_banner_image( $attachment_id = 0, $size = 'banner', $icon = false, $attr = '', $post_id = 0 ) {
-	// default to global post
-	if ( empty( $attachment_id ) ) {
-		global $post;
-		$post_id = $post->ID;
-		$attachment_id = get_post_thumbnail_id( $post_id );
-	}
 
-	$memberlite_banner_image = wp_get_attachment_image( $attachment_id, $size, $icon, $attr );
-
-	$memberlite_banner_image = apply_filters( 'memberlite_get_banner_image', $memberlite_banner_image, $attachment_id, $size, $icon, $attr, $post_id );
-
-	return $memberlite_banner_image;
-}
-
-/**
- * Get the post thumbnail image src and allow filtering.
- * Used to swap in the banner for loop/single posts.
- */
-function memberlite_get_banner_image_src( $post_id = null, $size = 'banner' ) {
-	// default to global post
-	if ( empty( $post_id ) ) {
-		global $post;
-		$post_id = $post->ID;
-	}
-
-	$memberlite_banner_image_src = wp_get_attachment_image_src( get_post_thumbnail_id( $post_id ), $size );
-
-	$memberlite_banner_image_src = apply_filters( 'memberlite_banner_image_src', $memberlite_banner_image_src, $size, $post_id );
-
-	return $memberlite_banner_image_src;
-}
 
 /**
  * Parses tags added to fields in customizer (i.e. posts_entry_meta_before and posts_entry_meta_after. Available tags include:

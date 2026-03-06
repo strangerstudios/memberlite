@@ -1,0 +1,23 @@
+{
+	"autoRename": false,
+	"autoRenameStrict": false,
+	"blacklist":{},
+	"clean": true,
+	"greedy": false,
+	"processUrls": false,
+	"stringMap": [
+		{
+			"name"    : "left-right",
+			"priority": 100,
+			"search"  : ["left", "Left", "LEFT"],
+			"replace" : ["right", "Right", "RIGHT"],
+			"options" : {
+				"scope" : "value",
+				"ignoreCase" : false
+			}
+		}
+	],
+	"useCalc": false,
+	"aliases": {},
+	"processEnv": true
+}

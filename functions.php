@@ -4,18 +4,18 @@
  *
  * @package Memberlite
  */
-define( 'MEMBERLITE_VERSION', '6.1.1.0.21' );
+define( 'MEMBERLITE_VERSION', '6.1.1.1.10' );
 define( 'MEMBERLITE_URL', get_template_directory_uri() );
+define( 'MEMBERLITE_DIR', get_template_directory() );
 
 // enqueue additional stylesheets and javascript
 function memberlite_init_styles() {
-	global $memberlite_defaults;
-
-	// framework stuff
-	wp_enqueue_style( 'memberlite_grid', MEMBERLITE_URL . '/css/grid.css', array(), MEMBERLITE_VERSION );
 	wp_enqueue_style( 'memberlite_style', get_stylesheet_uri(), array(), MEMBERLITE_VERSION );
+
 	if ( is_rtl() ) {
-		wp_enqueue_style( 'memberlite_rtl', MEMBERLITE_URL . '/css/rtl.css', array( 'memberlite_style' ), MEMBERLITE_VERSION );
+		wp_enqueue_style( 'memberlite_rtl', MEMBERLITE_URL . '/build/css/main.rtl.css', array( 'memberlite_style' ), MEMBERLITE_VERSION );
+	} else {
+		wp_enqueue_style( 'memberlite_main_style', MEMBERLITE_URL . '/build/css/main.css', array(), MEMBERLITE_VERSION );
 	}
 	wp_enqueue_style( 'memberlite_print_style', MEMBERLITE_URL . '/css/print.css', array(), MEMBERLITE_VERSION, 'print' );
 	wp_enqueue_script( 'memberlite-script', MEMBERLITE_URL . '/js/memberlite.js', array( 'jquery' ), MEMBERLITE_VERSION, true );
@@ -72,6 +72,7 @@ function memberlite_admin_enqueue_scripts() {
 		wp_register_script( 'memberlite_admin_js', MEMBERLITE_URL . '/js/admin.js', [ 'jquery' ], MEMBERLITE_VERSION, true );
 		wp_enqueue_script( 'memberlite_admin_js' );
 	}
+
 }
 add_action( 'admin_enqueue_scripts', 'memberlite_admin_enqueue_scripts' );
 
@@ -266,7 +267,17 @@ if ( ! function_exists( 'memberlite_setup' ) ) :
 		// Enable support for responsive embeds.
 		add_theme_support( 'responsive-embeds' );
 
-		// Switch default core markup for search form, comment form, and comments to output valid HTML5.
+		// This theme uses wp_nav_menu() in four locations.
+		register_nav_menus(
+			array(
+				'primary'           => __( 'Primary', 'memberlite' ),
+				'member'            => __( 'Member', 'memberlite' ),
+				'member-logged-out' => __( 'Member - Logged Out', 'memberlite' ),
+				'footer'            => __( 'Footer', 'memberlite' ),
+			)
+		);
+
+		// Switch default core markup to output valid HTML5.
 		add_theme_support(
 			'html5',
 			array(
@@ -277,39 +288,7 @@ if ( ! function_exists( 'memberlite_setup' ) ) :
 				'style',
 				'script',
 				'navigation-widgets',
-			)
-		);
-
-		// This theme uses wp_nav_menu() in five locations.
-		register_nav_menus(
-			array(
-				'primary'           => __( 'Primary', 'memberlite' ),
-				'member'            => __( 'Member', 'memberlite' ),
-				'member-logged-out' => __( 'Member - Logged Out', 'memberlite' ),
-				'meta'              => __( 'Meta', 'memberlite' ),
-				'footer'            => __( 'Footer', 'memberlite' ),
-			)
-		);
-
-		// Switch default core markup for search form, comment form, and comments to output valid HTML5.
-		$html5_support_types = array(
-			'search-form',
-			'comment-form',
-			'comment-list',
-			'gallery',
-			'caption',
-		);
-		add_theme_support( 'html5', $html5_support_types );
-
-		// Enables support for Post Formats.
-		add_theme_support(
-			'post-formats', array(
-				'audio',
-				'image',
-				'link',
-				'quote',
-				'status',
-				'video',
+				'search-form',
 			)
 		);
 
@@ -392,6 +371,7 @@ function memberlite_widgets_init() {
 			'after_title'   => '</h3>',
 		)
 	);
+
 	register_sidebar(
 		array(
 			'name'          => __( 'Pages', 'memberlite' ),
@@ -403,15 +383,16 @@ function memberlite_widgets_init() {
 			'after_title'   => '</h3>',
 		)
 	);
+
 	register_sidebar(
 		array(
-			'name'          => __( 'Header Right', 'memberlite' ),
+			'name'          => __( 'Header', 'memberlite' ),
 			'id'            => 'sidebar-3',
-			'description'   => '',
+			'description'   => 'Depending on your header variation, this is a spot you can put extra things.',
 			'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 			'after_widget'  => '</aside>',
-			'before_title'  => '<h1 class="widget-title">',
-			'after_title'   => '</h1>',
+			'before_sidebar' => '<div class="header-widget-area">',
+			'after_sidebar'  => '</div>',
 		)
 	);
 
@@ -476,18 +457,18 @@ function memberlite_menus( $items, $args ) {
 	if ( $args->theme_location == 'member' || $args->theme_location == 'member-logged-out' || ( substr( $args->theme_location, -strlen( '-member' ) ) === '-member' ) ) {
 		if ( is_user_logged_in() && defined( 'PMPRO_VERSION' ) && pmpro_hasMembershipLevel() ) {
 			// user is logged in and has a membership level
-			$items .= '<li><a href="' . esc_url( wp_logout_url( memberlite_logout_redirect_to() ) ) . '">' . esc_html__( 'Log Out', 'memberlite' ) . '</a></li>';
+			$items .= '<li class="menu-item"><a href="' . esc_url( wp_logout_url( memberlite_logout_redirect_to() ) ) . '">' . esc_html__( 'Log Out', 'memberlite' ) . '</a></li>';
 		} elseif ( is_user_logged_in() ) {
 			// user is logged in and does not have a membership level
-			$items = '<li><a href="' . esc_url( wp_logout_url( memberlite_logout_redirect_to() ) ) . '">' . esc_html__( 'Log Out', 'memberlite' ) . '</a></li>';
+			$items = '<li class="menu-item"><a href="' . esc_url( wp_logout_url( memberlite_logout_redirect_to() ) ) . '">' . esc_html__( 'Log Out', 'memberlite' ) . '</a></li>';
 		} else {
 			// not logged in
-			$items .= '<li><a href="' . esc_url( wp_login_url( memberlite_login_redirect_to() ) ) . '">' . esc_html__( 'Log In', 'memberlite' ) . '</a></li>';
+			$items .= '<li class="menu-item"><a href="' . esc_url( wp_login_url( memberlite_login_redirect_to() ) ) . '">' . esc_html__( 'Log In', 'memberlite' ) . '</a></li>';
 
 			$show_register_link = get_option( 'users_can_register' ) || defined( 'PMPRO_VERSION' );
 			$show_register_link = apply_filters( 'memberlite_show_register_link', $show_register_link );
 			if ( ! empty( $show_register_link ) ) {
-				$items .= '<li><a href="' . esc_url( wp_registration_url() ) . '">' . esc_html__( 'Register', 'memberlite' ) . '</a></li>';
+				$items .= '<li class="menu-item"><a href="' . esc_url( wp_registration_url() ) . '">' . esc_html__( 'Register', 'memberlite' ) . '</a></li>';
 			}
 		}
 	}
@@ -505,7 +486,7 @@ add_filter( 'wp_nav_menu_items', 'memberlite_menus', 10, 2 );
 function memberlite_member_menu_cb( $args ) {
 	extract( $args );
 	if ( empty( $link_before ) ) {
-		$link_before = '<li class="menu_item">';
+		$link_before = '<li class="menu-item">';
 	}
 	if ( empty( $link_after ) ) {
 		$link_after = '</li>';
@@ -534,121 +515,6 @@ function memberlite_member_menu_cb( $args ) {
 
 /* Allow the use of shortcodes in menus */
 add_filter( 'wp_nav_menu', 'do_shortcode', 11 );
-
-/**
- * Create an accessible HTML list of nav menu items.
- */
-class Memberlite_Aria_Walker_Nav_Menu extends Walker_Nav_Menu {
-	/**
-	 * Start the element output.
-	 */
-	public function start_el( &$output, $item, $depth = 0, $args = array(), $id = 0 ) {
-		$indent = ( $depth ) ? str_repeat( "\t", $depth ) : '';
-
-		$classes = empty( $item->classes ) ? array() : (array) $item->classes;
-		$classes[] = 'menu-item-' . $item->ID;
-
-		/**
-		 * Filter the arguments for a single nav menu item.
-		 *
-		 * @param array  $args  An array of arguments.
-		 * @param object $item  Menu item data object.
-		 * @param int    $depth Depth of menu item. Used for padding.
-		 */
-		$args = apply_filters( 'nav_menu_item_args', $args, $item, $depth );
-
-		/**
-		 * Filter the CSS class(es) applied to a menu item's list item element.
-		 *
-		 * @param array  $classes The CSS classes that are applied to the menu item's `<li>` element.
-		 * @param object $item    The current menu item.
-		 * @param array  $args    An array of {@see wp_nav_menu()} arguments.
-		 * @param int    $depth   Depth of menu item. Used for padding.
-		 */
-		$class_names = join( ' ', apply_filters( 'nav_menu_css_class', array_filter( $classes ), $item, $args, $depth ) );
-		$class_names = $class_names ? ' class="' . esc_attr( $class_names ) . '"' : '';
-
-		/**
-		 * Filter the ID applied to a menu item's list item element.
-		 *
-		 * @param string $menu_id The ID that is applied to the menu item's `<li>` element.
-		 * @param object $item    The current menu item.
-		 * @param array  $args    An array of {@see wp_nav_menu()} arguments.
-		 * @param int    $depth   Depth of menu item. Used for padding.
-		 */
-		$id = apply_filters( 'nav_menu_item_id', 'menu-item-'. $item->ID, $item, $args, $depth );
-		$id = $id ? ' id="' . esc_attr( $id ) . '"' : '';
-
-		$output .= sprintf( '%s<li%s%s%s>',
-			$indent,
-			$id,
-			$class_names,
-			in_array( 'menu-item-has-children', $item->classes ) ? ' aria-haspopup="true" aria-expanded="false" tabindex="0"' : ''
-		);
-
-		$atts = array();
-		$atts['title']  = ! empty( $item->attr_title ) ? $item->attr_title : '';
-		$atts['target'] = ! empty( $item->target )     ? $item->target     : '';
-		$atts['rel']    = ! empty( $item->xfn )        ? $item->xfn        : '';
-		$atts['href']   = ! empty( $item->url )        ? $item->url        : '';
-
-		/**
-		 * Filter the HTML attributes applied to a menu item's anchor element.
-		 *
-		 * @param array $atts {
-		 *     The HTML attributes applied to the menu item's `<a>` element, empty strings are ignored.
-		 *
-		 *     @type string $title  Title attribute.
-		 *     @type string $target Target attribute.
-		 *     @type string $rel    The rel attribute.
-		 *     @type string $href   The href attribute.
-		 * }
-		 * @param object $item  The current menu item.
-		 * @param array  $args  An array of {@see wp_nav_menu()} arguments.
-		 * @param int    $depth Depth of menu item. Used for padding.
-		 */
-		$atts = apply_filters( 'nav_menu_link_attributes', $atts, $item, $args, $depth );
-
-		$attributes = '';
-		foreach ( $atts as $attr => $value ) {
-			if ( ! empty( $value ) ) {
-				$value = ( 'href' === $attr ) ? esc_url( $value ) : esc_attr( $value );
-				$attributes .= ' ' . $attr . '="' . $value . '"';
-			}
-		}
-
-		/** This filter is documented in wp-includes/post-template.php */
-		$title = apply_filters( 'the_title', $item->title, $item->ID );
-
-		/**
-		 * Filter a menu item's title.
-		 *
-		 * @param string $title The menu item's title.
-		 * @param object $item  The current menu item.
-		 * @param array  $args  An array of {@see wp_nav_menu()} arguments.
-		 * @param int    $depth Depth of menu item. Used for padding.
-		 */
-		$title = apply_filters( 'nav_menu_item_title', $title, $item, $args, $depth );
-
-		$item_output = $args->before;
-		$item_output .= '<a'. $attributes .'>';
-		$item_output .= $args->link_before . $title . $args->link_after;
-		$item_output .= '</a>';
-		$item_output .= $args->after;
-
-		/**
-		 * Filter a menu item's starting output.
-		 *
-		 * @param string $item_output The menu item's starting HTML output.
-		 * @param object $item        Menu item data object.
-		 * @param int    $depth       Depth of menu item. Used for padding.
-		 * @param array  $args        An array of {@see wp_nav_menu()} arguments.
-		 */
-		$output .= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
-	}
-
-}
-
 
 /* Exclude pings and trackbacks from the number of comments on a post. */
 function memberlite_comment_count( $count ) {
@@ -692,11 +558,11 @@ require_once get_template_directory() . '/classes/class-memberlite-patterns.php'
 /* Customizer additions. */
 require_once get_template_directory() . '/inc/customizer.php';
 
-/* Deprecated hooks, filters and functions. */
-require_once get_template_directory() . '/inc/deprecated.php';
-
 /* Custom functions that act independently of the theme templates. */
 require_once get_template_directory() . '/inc/extras.php';
+
+/* Deprecated hooks, filters and functions. */
+require_once get_template_directory() . '/inc/deprecated.php';
 
 /* Load Font Awesome custom functions file. */
 require_once get_template_directory() . '/inc/font-awesome.php';
@@ -719,11 +585,17 @@ require_once get_template_directory() . '/inc/page_banners.php';
 /* Custom template tags. */
 require_once get_template_directory() . '/inc/template-tags.php';
 
+/* Custom theme variations code. */
+require_once get_template_directory() . '/inc/variations.php';
+
 /* Custom widgets that act independently of the theme templates. */
 require_once get_template_directory() . '/inc/widgets.php';
 
 /* Dashboard. */
 require_once get_template_directory() . '/adminpages/dashboard.php';
+
+/* Editor Settings */
+require_once get_template_directory() . '/inc/editor-settings.php';
 
 /* Custom sidebars. */
 require_once get_template_directory() . '/inc/sidebars.php';
@@ -731,6 +603,9 @@ require_once get_template_directory() . '/adminpages/sidebars.php';
 
 /* Tools */
 require_once get_template_directory() . '/adminpages/tools.php';
+
+/* Manage Menus */
+require_once get_template_directory() . '/adminpages/menus.php';
 
 /* Integration for Paid Memberships Pro. */
 if ( defined( 'PMPRO_VERSION' ) ) {
@@ -740,6 +615,11 @@ if ( defined( 'PMPRO_VERSION' ) ) {
 /* Integration for BuddyPress. */
 if ( function_exists( 'is_buddypress' ) ) {
 	require_once get_template_directory() . '/inc/integrations/buddypress.php';
+}
+
+/* Integration for bbPress. */
+if ( function_exists( 'is_bbpress' ) ) {
+	require_once get_template_directory() . '/inc/integrations/bbpress.php';
 }
 
 /* Integration for LifterLMS. */
@@ -829,7 +709,7 @@ add_filter( 'theme_mod_copyright_textbox', 'memberlite_theme_mod_copyright_textb
 /**
  * Filter theme.json data to add theme settings
  *
- * @since TBD
+ * @since 7.0
  *
  * @param WP_Theme_JSON $theme_json Theme JSON object.
  * @return WP_Theme_JSON Theme JSON object.
@@ -906,7 +786,7 @@ add_filter( 'wp_theme_json_data_theme', 'memberlite_filter_theme_json' );
 /**
  * Dedupe the full color palette for the editor color picker.
  *
- * @since TBD
+ * @since 7.0
  *
  * @param array $editor_settings Editor settings array.
  * @param WP_Block_Editor_Context $context Editor context.

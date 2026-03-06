@@ -1,0 +1,293 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+
+/*--------------------------------------------------------------
+ 1.2 Base | Global: Base
+--------------------------------------------------------------*/
+
+body {
+	font-family: var(--memberlite-body-font), ui-sans-serif;
+	font-size: var(--wp--preset--font-size--18);
+	background-color: var(--memberlite-color-site-background);
+}
+
+body,
+button,
+input,
+select,
+textarea {
+	color: var(--memberlite-color-text);
+	font-weight: 400;
+}
+
+a {
+	color: var(--memberlite-color-link);
+}
+
+hr {
+	background-color: var(--memberlite-color-borders);
+	border: 0;
+	height: 1px;
+	margin: var(--wp--preset--spacing--20) 0;
+}
+
+ul {
+	list-style: disc;
+	margin: 0 0 var(--wp--preset--spacing--20) var(--wp--preset--spacing--20);
+}
+
+ul ul {
+	list-style-type: circle;
+}
+
+ol {
+	list-style: decimal;
+	margin: 0 0 var(--wp--preset--spacing--20) var(--wp--preset--spacing--20);
+}
+
+ul li,
+ol li {
+	margin: 0 0 var(--wp--preset--spacing--10) 0;
+
+	&:last-child {
+		margin: 0;
+	}
+}
+
+li > ul,
+li > ol {
+	margin-bottom: var(--wp--preset--spacing--20);
+	margin-top: var(--wp--preset--spacing--20);
+}
+
+img {
+	height: auto; /* Make sure images are scaled correctly. */
+	max-width: 100%; /* Adhere to container width. */
+}
+
+figure {
+	margin: 0;
+}
+
+table {
+	margin: var(--wp--preset--spacing--20) 0;
+	width: 100%;
+}
+
+th {
+	font-family: var(--memberlite-header-font), ui-sans-serif;
+	font-weight: 400;
+	padding: var(--wp--preset--spacing--10);
+}
+
+thead th,
+tbody th {
+	border-color: var(--memberlite-color-borders);
+	padding: var(--wp--preset--spacing--10);
+}
+
+thead th {
+	background-color: light-dark(
+		color-mix(in srgb, var(--memberlite-color-site-background), black 3%),
+		color-mix(in srgb, var(--memberlite-color-site-background), white 3%)
+	);
+	border-style: solid;
+	border-width: 1px 0;
+}
+
+tbody th {
+	border-style: dotted;
+	border-width: 0 0 1px 0;
+}
+
+tbody td {
+	border-color: var(--memberlite-color-borders);
+	border-style: solid;
+	border-width: 0 0 1px 0;
+	padding: var(--wp--preset--spacing--10);
+	vertical-align: top;
+}
+
+tbody tr:nth-child(even) th,
+tbody tr:nth-child(even) td {
+	background-color: light-dark(
+		color-mix(in srgb, var(--memberlite-color-site-background), black 3%),
+		color-mix(in srgb, var(--memberlite-color-site-background), white 3%)
+	);
+}
+
+dl {
+	margin: var(--wp--preset--spacing--20) 0;
+	border-top: 1px solid var(--memberlite-color-borders);
+	border-bottom: 1px solid var(--memberlite-color-borders);
+}
+
+dt {
+	font-weight: bold;
+	padding: var(--wp--preset--spacing--20) 0 0 0;
+	border-top: 1px solid var(--memberlite-color-borders);
+}
+
+dd {
+	margin: 0 var(--wp--preset--spacing--20) var(--wp--preset--spacing--20);
+}
+
+dl dt:first-child {
+	border-top: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: var(--memberlite-header-font);
+	font-weight: 700;
+	line-height: var(--wp--custom--line-height--heading);
+	margin: var(--wp--preset--spacing--40) 0 var(--wp--preset--spacing--10) 0;
+}
+
+h1,
+h2,
+.h1,
+.h2 {
+	font-size: var(--wp--preset--font-size--32);
+	margin: var(--wp--preset--spacing--40) 0 var(--wp--preset--spacing--10) 0;
+}
+
+h3,
+.h3 {
+	font-size: var(--wp--preset--font-size--24);
+}
+
+h3.comment-reply-title {
+	margin: 0;
+}
+
+h4,
+.h4 {
+	font-size: var(--wp--preset--font-size--21);
+}
+
+h5,
+h6,
+.h5,
+.h6 {
+	font-size: var(--wp--preset--font-size--18);
+}
+
+h1 a,
+h2 a,
+h3 a,
+h4 a,
+h5 a,
+h6 a {
+	text-decoration: none;
+}
+
+h1 a:hover,
+h2 a:hover,
+h3 a:hover,
+h4 a:hover,
+h5 a:hover,
+h6 a:hover {
+	text-decoration-line: underline;
+	text-underline-offset: 2px;
+}
+
+p {
+	margin-bottom: var(--wp--preset--spacing--20);
+}
+
+div.lead p,
+p.lead {
+	color: var(--memberlite-color-text);
+	font-size: var(--wp--preset--font-size--24);
+}
+
+dfn,
+cite {
+	font-style: italic;
+}
+
+blockquote {
+	margin: var(--wp--preset--spacing--20) 0;
+	background-color: color-mix(in srgb, var(--memberlite-color-text) 7%, transparent);
+	padding: var(--wp--preset--spacing--20);
+
+	> :first-child {
+		margin-top: 0;
+	}
+
+	> :last-child {
+		margin-bottom: 0;
+	}
+}
+
+address {
+	margin: 0 0 var(--wp--preset--spacing--20);
+	font-style: italic;
+}
+
+pre {
+	background-color: light-dark( color-mix(in srgb, var(--memberlite-color-text) 7%, transparent), color-mix(in srgb, var(--memberlite-color-text) 20%, transparent) );
+	font-family: "Courier 10 Pitch", Courier, monospace;
+	margin: var(--wp--preset--spacing--20) 0;
+	max-width: 100%;
+	overflow: auto;
+	padding: var(--wp--preset--spacing--20);
+
+	> :first-child {
+		margin-top: 0;
+	}
+}
+
+code,
+kbd,
+tt,
+var {
+	background-color: light-dark( color-mix(in srgb, var(--memberlite-color-text) 7%, transparent), color-mix(in srgb, var(--memberlite-color-text) 20%, transparent) );
+	color: light-dark( $color-error-text, $color-error-bg );
+	font-family: "Courier 10 Pitch", Courier, monospace;
+	padding: 2px 4px;
+}
+
+abbr,
+acronym {
+	border-bottom: 1px dotted;
+	cursor: help;
+}
+
+mark,
+ins {
+	color: $color-alert-text;
+	background-color: $color-alert-border;
+	padding: 2px 4px;
+	text-decoration: none;
+}
+
+sup,
+sub {
+	font-size: 75%;
+	height: 0;
+	line-height: 0;
+	position: relative;
+	vertical-align: baseline;
+}
+
+sup {
+	bottom: 1ex;
+}
+
+sub {
+	top: .5ex;
+}
+
+small {
+	font-size: 75%;
+}
+
+big {
+	font-size: 125%;
+}

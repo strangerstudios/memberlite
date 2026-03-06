@@ -4,7 +4,7 @@
  *
  * @package Memberlite
  *
- * @since TBD
+ * @since 7.0
  */
 
 /**
@@ -19,7 +19,7 @@
  * Note: Some slugs don't match the setting key pattern due to legacy naming in
  * the editor color palette that we must continue to support.
  *
- * @since TBD
+ * @since 7.0
  * @return array Associative array keyed by setting key, each value containing 'slug', 'label'.
  */
 function memberlite_get_color_preset_map(): array {
@@ -115,7 +115,7 @@ function memberlite_get_color_preset_map(): array {
 /**
  * Get the 17 color setting keys used by the theme.
  *
- * @since TBD
+ * @since 7.0
  * @return array List of color setting keys.
  */
 function memberlite_get_color_setting_keys(): array {
@@ -127,7 +127,7 @@ function memberlite_get_color_setting_keys(): array {
  *
  * Builds a simplified version of the preset map for JS localization.
  *
- * @since TBD
+ * @since 7.0
  * @return array Associative array of setting_key => slug.
  */
 function memberlite_get_color_preset_slugs(): array {
@@ -145,7 +145,7 @@ function memberlite_get_color_preset_slugs(): array {
  * Used to localize the css_var values to JS so the customizer
  * live preview can build --memberlite-color-{css_var} dynamically.
  *
- * @since TBD
+ * @since 7.0
  * @return array Associative array of setting_key => css_var.
  */
 function memberlite_get_color_css_vars(): array {
@@ -162,7 +162,7 @@ function memberlite_get_color_css_vars(): array {
  *
  * Clean, professional look with navy primary.
  *
- * @since TBD
+ * @since 7.0
  * @return array 17-color associative array.
  */
 function memberlite_get_default_colors(): array {
@@ -192,14 +192,14 @@ function memberlite_get_default_colors(): array {
  *
  * Rich forest greens with a vibrant pink accent.
  *
- * @since TBD
+ * @since 7.0
  * @return array 17-color associative array.
  */
 function memberlite_get_evergreen_colors(): array {
 	return array(
 		'header_textcolor'        => '174b49',
-		'background_color'        => 'ffffff',
-		'bgcolor_header'          => 'ffffff',
+		'background_color'        => 'f9fafb',
+		'bgcolor_header'          => 'f9fafb',
 		'bgcolor_site_navigation' => 'f9fafb',
 		'color_site_navigation'   => '0f0f0f',
 		'color_text'              => '0f0f0f',
@@ -222,7 +222,7 @@ function memberlite_get_evergreen_colors(): array {
  *
  * Warm tan background with deep blue and chartreuse accent.
  *
- * @since TBD
+ * @since 7.0
  * @return array 17-color associative array.
  */
 function memberlite_get_seaside_linen_colors(): array {
@@ -243,7 +243,7 @@ function memberlite_get_seaside_linen_colors(): array {
 		'color_page_masthead'     => 'ffffff',
 		'bgcolor_footer_widgets'  => 'ecebe3',
 		'color_footer_widgets'    => '25292b',
-		'color_borders'           => 'e0e0e0',
+		'color_borders'           => 'cccab8',
 	);
 }
 
@@ -252,7 +252,7 @@ function memberlite_get_seaside_linen_colors(): array {
  *
  * Cool blue tones with sage green accent.
  *
- * @since TBD
+ * @since 7.0
  * @return array 17-color associative array.
  */
 function memberlite_get_deep_harbor_colors(): array {
@@ -282,7 +282,7 @@ function memberlite_get_deep_harbor_colors(): array {
  *
  * Dark mode with purple accents.
  *
- * @since TBD
+ * @since 7.0
  * @return array 17-color associative array.
  */
 function memberlite_get_midnight_violet_colors(): array {
@@ -293,12 +293,12 @@ function memberlite_get_midnight_violet_colors(): array {
 		'bgcolor_site_navigation' => '1c1d21',
 		'color_site_navigation'   => 'f2f2f3',
 		'color_text'              => 'f2f2f3',
-		'color_link'              => '7c4dff',
+		'color_link'              => 'a483ff',
 		'color_meta_link'         => '9a9aa0',
-		'color_primary'           => '7c4dff',
+		'color_primary'           => 'a483ff',
 		'color_secondary'         => '9a9aa0',
-		'color_action'            => '7c4dff',
-		'color_button'            => '7c4dff',
+		'color_action'            => 'a483ff',
+		'color_button'            => 'a483ff',
 		'bgcolor_page_masthead'   => '1c1d21',
 		'color_page_masthead'     => 'f2f2f3',
 		'bgcolor_footer_widgets'  => '1c1d21',
@@ -312,16 +312,16 @@ function memberlite_get_midnight_violet_colors(): array {
  *
  * Warm browns with orange accent.
  *
- * @since TBD
+ * @since 7.0
  * @return array 17-color associative array.
  */
 function memberlite_get_cocoa_ash_colors(): array {
 	return array(
-		'header_textcolor'        => 'ddd7cf',
+		'header_textcolor'        => 'ffffff',
 		'background_color'        => 'ffffff',
 		'bgcolor_header'          => '1f1b18',
-		'bgcolor_site_navigation' => 'a8a29a',
-		'color_site_navigation'   => '1f1b18',
+		'bgcolor_site_navigation' => '6f6a66',
+		'color_site_navigation'   => 'ffffff',
 		'color_text'              => '1f1b18',
 		'color_link'              => '2e2623',
 		'color_meta_link'         => 'ddd7cf',
@@ -342,7 +342,7 @@ function memberlite_get_cocoa_ash_colors(): array {
  *
  * Clean grays with restrained green accents.
  *
- * @since TBD
+ * @since 7.0
  * @return array 17-color associative array.
  */
 function memberlite_get_soft_spruce_colors(): array {
@@ -372,7 +372,7 @@ function memberlite_get_soft_spruce_colors(): array {
  *
  * Dark charcoal with rust orange accent.
  *
- * @since TBD
+ * @since 7.0
  * @return array 17-color associative array.
  */
 function memberlite_get_iron_ember_colors(): array {
@@ -402,7 +402,7 @@ function memberlite_get_iron_ember_colors(): array {
  *
  * Deep navy with teal and coral accents.
  *
- * @since TBD
+ * @since 7.0
  * @return array 17-color associative array.
  */
 function memberlite_get_slate_harbor_colors(): array {
@@ -433,7 +433,7 @@ function memberlite_get_slate_harbor_colors(): array {
  * Each scheme contains a label and the full 17-color associative array.
  * The 'custom' scheme is a special case handled separately in the customizer.
  *
- * @since TBD
+ * @since 7.0
  * @return array Associative array of color schemes.
  */
 function memberlite_get_color_schemes(): array {
@@ -479,7 +479,7 @@ function memberlite_get_color_schemes(): array {
 	/**
 	 * Filter Memberlite color schemes.
 	 *
-	 * @since TBD
+	 * @since 7.0
 	 *
 	 * @param array $schemes Associative array of color schemes.
 	 */
@@ -491,7 +491,7 @@ function memberlite_get_color_schemes(): array {
  *
  * Returns scheme keys and labels, plus 'custom' option.
  *
- * @since TBD
+ * @since 7.0
  *
  * @return array Associative array of scheme_key => label.
  */
@@ -512,7 +512,7 @@ function memberlite_get_color_scheme_choices(): array {
 /**
  * Get colors for a specific scheme by key.
  *
- * @since TBD
+ * @since 7.0
  * @param string $scheme_key The scheme key (e.g., 'default', 'evergreen').
  * @return array|null The 17-color array or null if not found.
  */
@@ -532,7 +532,7 @@ function memberlite_get_scheme_colors( string $scheme_key ): ?array {
  * Returns the 17 color values currently saved in theme_mods,
  * falling back to defaults for any missing values.
  *
- * @since TBD
+ * @since 7.0
  * @return array Associative array of all 17 color values.
  */
 function memberlite_get_active_colors(): array {
@@ -556,7 +556,7 @@ function memberlite_get_active_colors(): array {
  * A luminance of 0.179 is the threshold — colors at or below this
  * value are considered dark.
  *
- * @since TBD
+ * @since 7.0
  * @param string $hex_color Hex color value (with or without leading '#').
  * @return bool True if the color is dark, false if light.
  */
@@ -587,7 +587,7 @@ function memberlite_is_dark_color( string $hex_color ): bool {
  *
  * Compares all 17 color values. Returns 'custom' if no exact match.
  *
- * @since TBD
+ * @since 7.0
  * @return string Scheme key or 'custom'.
  */
 function memberlite_detect_current_scheme(): string {

@@ -18,12 +18,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 	</div>
 	<div class="memberlite_section_inside">
 		<p><?php esc_html_e( 'Use the tool below to import Memberlite theme settings from a previously exported settings file.', 'memberlite' ); ?> <strong><?php esc_html_e( 'This will overwrite your current Memberlite theme settings.', 'memberlite' ); ?></strong></p>
-		<p><?php esc_html_e( 'The import will apply Customizer settings (logo, colors, typography, backgrounds, etc.), related Memberlite options (such as custom sidebars), and Additional CSS if present in the file.', 'memberlite' ); ?></p>
+		<p><?php esc_html_e( 'The import will apply Customizer settings (logo, colors, typography, backgrounds, etc.), related Memberlite options (such as custom sidebars), Additional CSS, and navigation menus if present in the file.', 'memberlite' ); ?></p>
 		<form method="post" enctype="multipart/form-data" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
 			<table class="form-table">
 					<tbody>
 						<tr>
-							<th scope="row">	
+							<th scope="row">
 								<label for="memberlite_import_file"><?php esc_html_e( 'Import File', 'memberlite' ); ?></label>
 							</th>
 							<td>
@@ -31,6 +31,20 @@ if ( ! defined( 'ABSPATH' ) ) {
 								<p class="description">
 									<?php esc_html_e( 'Select a Memberlite theme settings file (.json) to import.', 'memberlite' ); ?>
 								</p>
+							</td>
+						</tr>
+						<tr>
+							<th scope="row"><?php esc_html_e( 'Menu Import Options', 'memberlite' ); ?></th>
+							<td>
+								<fieldset>
+									<label>
+										<input type="checkbox" name="memberlite_replace_existing_menus" value="1" />
+										<?php esc_html_e( 'Replace existing menus with imported versions', 'memberlite' ); ?>
+									</label>
+									<p class="description">
+										<?php esc_html_e( 'If checked, any existing menu with the same name will be replaced. If unchecked, a new duplicate menu will be created instead.', 'memberlite' ); ?>
+									</p>
+								</fieldset>
 							</td>
 						</tr>
 					</tbody>

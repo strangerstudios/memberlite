@@ -18,6 +18,52 @@ if ( ! function_exists( 'memberlite_the_custom_logo' ) ) :
 	}
 endif;
 
+/**
+ * Returns the site title based on whether we're on the front page
+ *
+ * @since 7.0
+ * @return string The HTML for the site title
+ */
+if ( ! function_exists( 'memberlite_output_site_title' ) ) {
+	function memberlite_output_site_title(): string {
+		$site_url = esc_url( home_url( '/' ) );
+		$site_name = esc_html( get_bloginfo( 'name' ) );
+
+		if ( is_front_page() ) {
+			return '<h1 class="site-title">' . $site_name . '</h1>';
+		}
+
+		return '<h1 class="site-title"><a href="' . $site_url . '">' . $site_name . '</a></h1>';
+	}
+}
+
+/**
+ * Returns true if there is content to show in the header right area (meta login, widgets, or action content).
+ *
+ * @since 7.0
+ * @return bool Whether to show the header right area.
+ */
+if ( ! function_exists( 'memberlite_should_show_header_right' ) ) {
+	function memberlite_should_show_header_right(): bool {
+		$meta_login  = get_theme_mod( 'meta_login', false );
+		$has_content = has_action( 'memberlite_after_member_info' ) || ! empty( $meta_login ) || is_active_sidebar( 'sidebar-3' );
+
+		return apply_filters( 'memberlite_show_header_right', $has_content );
+	}
+}
+
+/**
+ * Returns true if the meta login content is active.
+ *
+ * @since 7.0
+ * @return bool The value of the meta login setting.
+ */
+if ( ! function_exists( 'memberlite_is_meta_login_active' ) ) {
+	function memberlite_is_meta_login_active(): bool {
+		return get_theme_mod( 'meta_login', false );
+	}
+}
+
 if ( ! function_exists( 'memberlite_paging_nav' ) ) :
 	/**
 	 * Display navigation to next/previous set of posts when applicable.
@@ -51,21 +97,24 @@ if ( ! function_exists( 'memberlite_post_nav' ) ) :
 	 * Display navigation to next/previous post when applicable.
 	 */
 	function memberlite_post_nav() {
-		// Don't print empty markup if there's nowhere to navigate.
 		$previous = ( is_attachment() ) ? get_post( get_post()->post_parent ) : get_adjacent_post( false, '', true );
 		$next     = get_adjacent_post( false, '', false );
 
 		if ( ! $next && ! $previous ) {
 			return;
-		}
-		?>
+		} ?>
 		<nav class="navigation post-navigation" role="navigation">
-		<span class="screen-reader-text"><?php esc_html_e( 'Post navigation', 'memberlite' ); ?></span>
-		<div class="nav-links">
-			<?php
-				previous_post_link( '<div class="nav-previous">%link</div>', _x( '<span class="meta-nav">&larr;</span> %title', 'Previous post link', 'memberlite' ) );
-				next_post_link( '<div class="nav-next">%link</div>', _x( '%title <span class="meta-nav">&rarr;</span>', 'Next post link', 'memberlite' ) );
-			?>
+			<span class="screen-reader-text"><?php esc_html_e( 'Post navigation', 'memberlite' ); ?></span>
+			<div class="nav-links">
+				<?php
+				if ( is_rtl() ) {
+					next_post_link( '<div class="nav-next">%link</div>', '%title <span class="meta-nav">&larr;</span>' );
+					previous_post_link( '<div class="nav-previous">%link</div>', '<span class="meta-nav">&rarr;</span> %title' );
+				} else {
+					previous_post_link( '<div class="nav-previous">%link</div>', '<span class="meta-nav">&larr;</span> %title' );
+					next_post_link( '<div class="nav-next">%link</div>', '%title <span class="meta-nav">&rarr;</span>' );
+				}
+				?>
 			</div><!-- .nav-links -->
 		</nav><!-- .navigation -->
 		<?php
@@ -78,6 +127,11 @@ if ( ! function_exists( 'memberlite_page_nav' ) ) :
 	 */
 	function memberlite_page_nav() {
 		global $post;
+
+		// Return early if the global theme setting is disabled.
+		if ( ! (bool) get_theme_mod( 'memberlite_page_nav', 1 ) ) {
+			return;
+		}
 
 		$post_type_object = get_post_type_object( get_post_type( $post ) );
 		if ( empty( $post_type_object ) ) {
@@ -97,7 +151,6 @@ if ( ! function_exists( 'memberlite_page_nav' ) ) :
 			$child_of = $post->ID;
 		}
 
-		// Check if this is a
 		if ( empty( $child_of ) ) {
 			return;
 		}
@@ -106,46 +159,50 @@ if ( ! function_exists( 'memberlite_page_nav' ) ) :
 		$allpages = get_pages( 'child_of=' . $child_of . '&sort_column=menu_order&sort_order=asc' );
 
 		$pages   = array();
-		$pages[] = $child_of;       // parent id is first
+		$pages[] = $child_of;
 		foreach ( $allpages as $page ) {
 			$pages[] += $page->ID;
 		}
 
-		// figure out prev and next post IDs
+		// figure out prev and next page IDs
 		$current = array_search( $post->ID, $pages );
 
-		// prev
-		if ( ! empty( $pages[ $current - 1 ] ) ) {
-			$previousID = $pages[ $current - 1 ];
-		} else {
-			$previousID = false;
-		}
+		$previousID = ! empty( $pages[ $current - 1 ] ) ? $pages[ $current - 1 ] : false;
+		$nextID     = ! empty( $pages[ $current + 1 ] ) ? $pages[ $current + 1 ] : false;
 
-		// next
-		if ( ! empty( $pages[ $current + 1 ] ) ) {
-			$nextID = $pages[ $current + 1 ];
-		} else {
-			$nextID = false;
-		}
-
-		// don't show if neither prev or next
 		if ( empty( $nextID ) && empty( $previousID ) ) {
 			return;
 		}
 
-		// HTML
+		$rtl = is_rtl();
+
+		$previous_arrow = $rtl ? '&rarr;' : '&larr;';
+		$next_arrow     = $rtl ? '&larr;' : '&rarr;';
 		?>
 		<nav class="navigation page-navigation" role="navigation">
-		<span class="screen-reader-text"><?php esc_html_e( 'Page navigation', 'memberlite' ); ?></span>
-		<div class="nav-links">
-			<?php if ( ! empty( $previousID ) && ( $previousID != $post->ID ) ) { ?>
-				<div class="nav-previous"><a href="<?php echo esc_url( get_permalink( $previousID ) ); ?>" rel="prev"><span class="meta-nav">&larr;</span> <?php echo esc_html( get_the_title( $previousID ) ); ?></a></div>
-			<?php } if ( ! empty( $nextID ) && ( $nextID != $post->ID ) ) { ?>
-				<div class="nav-next"><a href="<?php echo esc_url( get_permalink( $nextID ) ); ?>" rel="next"><?php echo esc_html( get_the_title( $nextID ) ); ?> <span class="meta-nav">&rarr;</span></a></div>
-			<?php } ?>
-		</div><!-- .nav-links -->
-	</nav><!-- .navigation -->
-	<?php
+			<span class="screen-reader-text"><?php esc_html_e( 'Page navigation', 'memberlite' ); ?></span>
+			<div class="nav-links">
+				<?php
+				$previous_html = '';
+				$next_html     = '';
+
+				if ( ! empty( $previousID ) && ( $previousID != $post->ID ) ) {
+					$previous_html = '<div class="nav-previous"><a href="' . esc_url( get_permalink( $previousID ) ) . '" rel="prev"><span class="meta-nav">' . $previous_arrow . '</span> ' . esc_html( get_the_title( $previousID ) ) . '</a></div>';
+				}
+
+				if ( ! empty( $nextID ) && ( $nextID != $post->ID ) ) {
+					$next_html = '<div class="nav-next"><a href="' . esc_url( get_permalink( $nextID ) ) . '" rel="next">' . esc_html( get_the_title( $nextID ) ) . ' <span class="meta-nav">' . $next_arrow . '</span></a></div>';
+				}
+
+				if ( $rtl ) {
+					echo $next_html . $previous_html;
+				} else {
+					echo $previous_html . $next_html;
+				}
+				?>
+			</div><!-- .nav-links -->
+		</nav><!-- .navigation -->
+		<?php
 	}
 endif;
 
