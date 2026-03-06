@@ -66,7 +66,7 @@ function updateUrlHash(hash) {
 
 function initDesktopNav() {
 	// Both of these navigations are in the header and can have submenus.
-	const widgetSiteNav = document.getElementById('menu-header');
+	const widgetSiteNav = document.querySelector('.header-widget-area');
 	const mainSiteNav = document.getElementById('site-navigation');
 
 	if (mainSiteNav) {
