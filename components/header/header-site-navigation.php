@@ -12,7 +12,7 @@ do_action( 'memberlite_before_site_navigation' );
 
 if ( has_nav_menu( 'primary' ) ) {
 	$sticky_nav = get_theme_mod( 'sticky_nav' );
-	if ( $sticky_nav === true ) : ?><div class="site-navigation-sticky-wrapper"><?php endif; ?>
+	if ( $sticky_nav == true ) { ?><div class="site-navigation-sticky-wrapper"><?php } ?>
 	<nav id="site-navigation" role="navigation" aria-label="<?php esc_attr_e( 'Main Menu', 'memberlite' ); ?>">
 		<?php
 		if ( has_nav_menu( 'primary' ) ) {
@@ -28,7 +28,7 @@ if ( has_nav_menu( 'primary' ) ) {
 		}
 		?>
 	</nav><!-- #site-navigation -->
-	<?php if ( $sticky_nav === true ) : ?>
+	<?php if ( $sticky_nav == true ) { ?>
 		</div> <!-- .site-navigation-sticky-wrapper -->
-	<?php endif;
+	<?php }
 }
