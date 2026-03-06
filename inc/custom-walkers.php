@@ -100,7 +100,10 @@ class Memberlite_Aria_Walker_Nav_Menu extends Walker_Nav_Menu {
 		if ( in_array( 'menu-item-has-children', $item->classes, true ) ) {
 			$submenu_id = 'submenu-' . $item->ID;
 			// Translators: %s is the menu item title. Describes the toggle button to screen readers.
-			$button_label = sprintf( esc_attr__( 'Toggle submenu for %s', 'memberlite' ), $title );
+			$button_label = esc_attr( sprintf(
+				__( 'Toggle submenu for %s', 'memberlite' ),
+				wp_strip_all_tags( $title )
+			) );
 
 			// Top-level items get a down chevron; nested items get a right
 			// chevron to reflect the direction the submenu opens.
