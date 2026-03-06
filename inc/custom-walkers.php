@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Aria-enabled nav menu walker.
  *
