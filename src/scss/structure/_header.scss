@@ -246,7 +246,7 @@
 
 
 // -----------------------------------------------------------------------------
-// Desktop Site Navigation (#site-navigation)
+// Desktop Main Site Navigation (#site-navigation)
 // -----------------------------------------------------------------------------
 
 #site-navigation,
@@ -262,72 +262,14 @@
 	background-color: var(--memberlite-color-site-navigation-background);
 	clear: both;
 
-	//ul {
-	//	list-style: none;
-	//}
-
 	ul.menu {
-		align-items: center;
-		display: flex;
-		margin: 0 auto;
-		z-index: 10;
-		list-style: none;
-
 		max-width: 71em;
-		padding: var(--wp--preset--spacing--10);
 	}
-	//
-	//li {
-	//	margin: 0;
-	//	position: relative;
-	//}
-
-	//a {
-	//	display: block;
-	//	text-decoration: none;
-	//	padding: calc(var(--wp--preset--spacing--10) / 2) var(--wp--preset--spacing--10);
-	//
-	//	&:hover:not(.menu-item-has-children > a:hover) {
-	//		text-decoration-line: underline;
-	//		text-underline-offset: 2px;
-	//	}
-	//}
 
 	// Only top-level items get this padding, top levels with children don't get padding right
 	> ul.menu > li.menu-item > a {
 		padding: var(--wp--preset--spacing--20) var(--wp--preset--spacing--10);
 	}
-
-	// Parent items with children get flex + chevron
-	//ul > li.menu-item-has-children {
-	//	display: flex;
-	//	justify-content: space-between;
-	//	align-items: center;
-	//
-	//	> a {
-	//		display: flex;
-	//		align-items: center;
-	//		flex-wrap: nowrap;
-	//		padding-right: calc(var(--wp--preset--spacing--10) / 2);
-	//	}
-	//
-	//	// Submenu toggle
-	//	> button {
-	//		@include remove-btn-defaults;
-	//		padding: 0 calc(var(--wp--preset--spacing--10) / 2);
-	//		color: var(--memberlite-color-site-navigation);
-	//		border-left: 1px solid var(--memberlite-color-site-navigation-background);
-	//	}
-	//}
-
-	//ul.sub-menu > .menu-item-has-children > a::after {
-	//	content: "\f105"; // fa-chevron-right
-	//	display: block;
-	//	font-family: $font-family-awesome;
-	//	font-size: var(--wp--preset--font-size--14);
-	//	font-weight: 900;
-	//	margin-left: 5px;
-	//}
 
 	// Sticky modifier
 	&.site-navigation-sticky {
@@ -341,6 +283,7 @@
 	// Search item pushed to far right
 	li.menu-item-search {
 		margin-left: auto;
+		margin-right: var(--wp--preset--spacing--10);
 	}
 
 	.search-form input[type=submit].search-submit {
@@ -353,7 +296,7 @@
 
 
 // -----------------------------------------------------------------------------
-// Header Right Widget Nav Menu (desktop header utility nav)
+// Desktop: Header Right Widget Nav Menu
 // -----------------------------------------------------------------------------
 
 .member-navigation,
@@ -364,84 +307,32 @@
 
 .header-right .widget_nav_menu {
 	ul {
-		//list-style: none;
-		//margin: 0;
-
 		li {
 			display: inline-block;
 			float: none;
-			//margin: 0;
-			//position: relative;
 		}
 	}
 
 	a {
 		color: var(--memberlite-color-meta-link);
-		//display: block;
 		padding: calc(var(--wp--preset--spacing--10) / 2) var(--wp--preset--spacing--10);
-		//text-decoration: none;
 
 		&:hover {
 			filter: brightness(var(--memberlite-hover-brightness));
-			//text-decoration-line: underline;
-			//text-underline-offset: 2px;
 		}
 	}
-
-	//.menu-item-has-children > a:hover {
-	//	text-decoration: none;
-	//}
-
-	//ul > .menu-item-has-children > a {
-	//	display: flex;
-	//	align-items: center;
-	//	flex-wrap: nowrap;
-	//}
 
 	// Dropdown
 	ul.sub-menu {
-		//background-color: var(--memberlite-color-header-background);
-		//box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
-		//display: flex;
-		//flex-direction: column;
-		//left: -9999em;
-		//margin: 0;
-		//position: absolute;
-		//text-align: left;
-		//top: 0;
-		//z-index: 99999;
-		//
-		//li {
-		//	border: none;
-		//	padding: 0;
-		//	position: relative;
-		//}
-
 		a {
 			padding: calc(var(--wp--preset--spacing--10) / 2) var(--wp--preset--spacing--10);
-			width: 210px;
+			max-width: 210px;
 		}
-
-		//li:hover > a {
-		//	background-color: rgba(0,0,0,0.04);
-		//}
-	}
-
-	//ul.menu > li:hover > ul.sub-menu,
-	//ul.menu > li[aria-expanded="true"] > ul.sub-menu {
-	//	left: 0;
-	//	top: 100%;
-	//}
-	//
-	ul.menu li:hover > ul.sub-menu li:hover > ul.sub-menu,
-	ul.sub-menu > li[aria-expanded="true"] > ul.sub-menu {
-		top: 0;
-		left: 100%;
 	}
 }
 
 // -----------------------------------------------------------------------------
-// Consolidated shared navigation styles for custom walker (Desktop only)
+// Consolidated shared navigation styles for custom walker (Desktop menus only)
 // -----------------------------------------------------------------------------
 
 #site-navigation,
@@ -451,8 +342,8 @@
 		margin: 0;
 
 		&.menu {
-			align-items: center;
 			display: flex;
+			align-items: center;
 			margin: 0 auto;
 			z-index: 10;
 		}
@@ -474,7 +365,7 @@
 		}
 	}
 
-	// Parent items with children get flex + chevron
+	// Parent items with children get flex + arrow icon
 	ul > li.menu-item-has-children {
 		display: flex;
 		justify-content: space-between;
@@ -490,7 +381,10 @@
 		> button {
 			@include remove-btn-defaults;
 			color: inherit;
-			border-left: 1px solid var(--memberlite-color-site-navigation-background);
+			border-left: 1px solid light-dark(
+					color-mix(in srgb, var(--memberlite-color-site-navigation), white 80%),
+					color-mix(in srgb, var(--memberlite-color-site-navigation), black 70%)
+			);
 		}
 
 		&.menu-item-depth-0 > button {
@@ -506,7 +400,7 @@
 	ul.sub-menu {
 		background-color: var(--memberlite-color-site-navigation-background);
 		box-shadow: 4px 12px 16px 0 rgba(0, 0, 0, 0.12);
-		display: flex;
+		display: none;
 		flex-direction: column;
 		left: -9999em;
 		margin: 0;
@@ -520,17 +414,30 @@
 			padding: 0;
 			position: relative;
 		}
+
+		li:hover > a,
 		li:hover > a {
-			background-color: rgba(0,0,0,0.04);
+			background-color: light-dark( rgba(0,0,0,0.04), rgba(255,255,255,0.04));
+		}
+
+		// So third level doesn't get squished due to absolute positioning
+		ul.sub-menu {
+			width: 100%;
 		}
 	}
 
-	// Hover for mouse users, does not use aria attributes intentionally
-	// Aria attributes are used for keyboard users
-	ul.menu li.menu-item-has-children:hover > .sub-menu,
-	ul.menu li.menu-item-has-children > button[aria-expanded="true"] + .sub-menu,
-	ul.menu li.menu-item-has-children > button[aria-expanded="true"] ~ .sub-menu {
+	ul.menu li.menu-item-depth-0 > button[aria-expanded="true"] + .sub-menu,
+	ul.menu li.menu-item-depth-0 > button[aria-expanded="true"] ~ .sub-menu {
+		display: flex;
+		top: 100%;
 		left: 0;
+
+		li > button[aria-expanded="true"] + .sub-menu,
+		li > button[aria-expanded="true"] ~ .sub-menu {
+			display: flex;
+			top: 0;
+			left: 100%;
+		}
 	}
 }
 

@@ -57,7 +57,29 @@ caption, th, td {
 	text-align: left;
 }
 
-a:focus-visible {
-	outline: 2px solid currentColor;
-	outline-offset: 2px;
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+	content: "";
+}
+
+blockquote,
+q {
+	quotes: "" "";
+}
+
+a:hover,
+a:active {
+	outline: 0;
+}
+
+a img {
+	border: 0;
+}
+
+embed,
+iframe,
+object {
+	max-width: 100%;
 }

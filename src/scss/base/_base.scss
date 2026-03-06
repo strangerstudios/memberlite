@@ -22,6 +22,18 @@ textarea {
 
 a {
 	color: var(--memberlite-color-link);
+
+	&:focus,
+	&:focus-visible {
+		outline: thin dotted var(--memberlite-color-link);
+	}
+}
+
+button {
+	&:focus,
+	&:focus-visible {
+		outline: thin dotted var(--memberlite-color-button);
+	}
 }
 
 a,
