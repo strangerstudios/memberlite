@@ -61,7 +61,6 @@ img, video {
 }
 
 embed, iframe, object {
-  height: auto;
   max-width: 100%;
 }
 
@@ -1891,12 +1890,6 @@ details > p:first-of-type {
 #secondary .widget_block.widget_search input[type=search] {
   width: auto;
 }
-#secondary .widget.widget_text .textwidget {
-  padding: var(--wp--preset--spacing--10);
-}
-#secondary .widget.widget_text .textwidget.custom-html-widget {
-  padding: 0;
-}
 #secondary .widget_nav_menu h3.widget-title {
   margin-bottom: 0;
 }
@@ -2593,7 +2586,7 @@ body.mobile-nav-open {
   width: 100%;
 }
 .masthead p a:not(.btn) {
-  color: var(--memberlite-color-page-masthead);
+  color: currentColor;
   text-decoration-line: underline;
   text-underline-offset: 2px;
 }
