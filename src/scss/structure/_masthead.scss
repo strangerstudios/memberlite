@@ -36,7 +36,7 @@
 	}
 
 	p a:not(.btn) {
-		color: var(--memberlite-color-page-masthead);
+		color: currentColor;
 		text-decoration-line: underline;
 		text-underline-offset: 2px;
 	}

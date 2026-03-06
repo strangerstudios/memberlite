@@ -65,15 +65,6 @@
 		width: auto;
 	}
 
-	// Text widget
-	.widget.widget_text .textwidget {
-		padding: var(--wp--preset--spacing--10);
-
-		&.custom-html-widget {
-			padding: 0;
-		}
-	}
-
 	// Nav menu widget
 	.widget_nav_menu {
 
