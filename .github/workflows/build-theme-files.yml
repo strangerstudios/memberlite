@@ -21,7 +21,7 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build stylesheets
+      - name: Build stylesheets and scripts
         run: npm run build
 
       - name: Commit build folder to master
