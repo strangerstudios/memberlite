@@ -3,7 +3,7 @@ name: Build Stylesheets and Scripts
 on:
   push:
     branches:
-      - test-workflow
+      - test-workflow # Branch we want to run this on
   workflow_dispatch:
 
 jobs:
@@ -22,7 +22,7 @@ jobs:
         run: npm ci
 
       - name: Build stylesheets
-        run: npm run build # Replace with your actual build command
+        run: npm run build
 
       - name: Commit build folder to master
         run: |
