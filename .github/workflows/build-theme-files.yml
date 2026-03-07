@@ -1,0 +1,35 @@
+name: Build Stylesheets and Scripts
+
+on:
+  push:
+    branches:
+      - test-workflow
+  workflow_dispatch:
+
+jobs:
+  build-stylesheets:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build stylesheets
+        run: npm run build # Replace with your actual build command
+
+      - name: Commit build folder to master
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add build/ # Replace with your actual build output folder
+          git diff --staged --quiet || git commit -m "chore: build stylesheets and scripts [skip ci]"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
