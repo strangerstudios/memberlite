@@ -67,11 +67,17 @@ function updateUrlHash(hash) {
 function initDesktopNav() {
 	// Both of these navigations are in the header and can have submenus.
 	const widgetSiteNav = document.querySelector('.header-widget-area');
+	const memberNav = document.getElementById('member-navigation');
 	const mainSiteNav = document.getElementById('site-navigation');
 
 	if (mainSiteNav) {
 		mainSiteNav.querySelectorAll('.menu-item-has-children').forEach(initDesktopNavItem);
 		initDesktopNavClickOutside(mainSiteNav);
+	}
+
+	if (memberNav) {
+		memberNav.querySelectorAll('.menu-item-has-children').forEach(initDesktopNavItem);
+		initDesktopNavClickOutside(memberNav);
 	}
 
 	if (widgetSiteNav) {

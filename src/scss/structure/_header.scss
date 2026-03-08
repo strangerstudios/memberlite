@@ -143,7 +143,11 @@
 			border-bottom-left-radius: var(--wp--custom--border--radius);
 			color: var(--memberlite-color-white);
 			font-size: var(--wp--preset--font-size--16);
-			padding: calc(var(--wp--preset--spacing--10) / 2);
+			padding: 0 calc(var(--wp--preset--spacing--10) / 2);
+
+			li.menu-item-depth-0 {
+				padding: calc(var(--wp--preset--spacing--10) / 2);
+			}
 		}
 
 		.user {
@@ -187,7 +191,8 @@
 			}
 
 			a {
-				margin: 0 calc(var(--wp--preset--spacing--10) / 2);
+				padding: 0 calc(var(--wp--preset--spacing--10) / 2);
+				margin: 0;
 			}
 
 			// Dropdown
@@ -199,7 +204,7 @@
 				padding: 0;
 				position: absolute;
 				text-align: left;
-				top: 2.6rem;
+				top: 100%;
 
 				li {
 					border: none;
@@ -305,7 +310,8 @@
 	display: inline-block;
 }
 
-.header-right .widget_nav_menu {
+.header-right .widget_nav_menu,
+.member-navigation {
 	ul {
 		li {
 			display: inline-block;
@@ -336,6 +342,7 @@
 // -----------------------------------------------------------------------------
 
 #site-navigation,
+.member-navigation,
 .header-right .widget_nav_menu {
 	ul {
 		list-style: none;
