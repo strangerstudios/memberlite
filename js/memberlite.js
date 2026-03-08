@@ -76,6 +76,7 @@ function initDesktopNav() {
 	}
 
 	if (memberNav) {
+		console.log('TEST');
 		memberNav.querySelectorAll('.menu-item-has-children').forEach(initDesktopNavItem);
 		initDesktopNavClickOutside(memberNav);
 	}

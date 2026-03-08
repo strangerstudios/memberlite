@@ -38,7 +38,8 @@ if ( ! memberlite_is_meta_login_active() ) {
 					'container_class' => 'member-navigation',
 					'fallback_cb'     => 'memberlite_member_menu_cb',
 					'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s</ul>',
-					'walker'         => new Memberlite_Aria_Walker_Nav_Menu(),
+					'walker'          => new Memberlite_Aria_Walker_Nav_Menu(),
+					'depth'           => 2,
 				)
 			);
 		} else {
@@ -50,7 +51,7 @@ if ( ! memberlite_is_meta_login_active() ) {
 					'container_class' => 'member-navigation',
 					'fallback_cb'     => 'memberlite_member_menu_cb',
 					'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s</ul>',
-					'walker'         => new Memberlite_Aria_Walker_Nav_Menu(),
+					'walker'          => new Memberlite_Aria_Walker_Nav_Menu(),
 				)
 			);
 		} ?>

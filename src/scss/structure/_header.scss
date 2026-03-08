@@ -198,34 +198,13 @@
 			// Dropdown
 			.sub-menu {
 				background-color: var(--memberlite-color-secondary);
-				display: none;
-				left: -9999em;
-				margin: 0;
 				padding: 0;
-				position: absolute;
-				text-align: left;
-				top: 100%;
-
-				li {
-					border: none;
-					display: block;
-				}
 
 				li a {
 					margin: 0;
 					padding: .5rem 1rem;
 					width: 125px;
 				}
-
-				// Nested sub-menus stay hidden
-				.sub-menu {
-					display: none;
-				}
-			}
-
-			ul li:hover > ul {
-				display: block;
-				left: auto;
 			}
 
 			ul ul a:hover {
