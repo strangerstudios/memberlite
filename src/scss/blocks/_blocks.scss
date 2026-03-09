@@ -168,10 +168,10 @@ hr.wp-block-separator {
 	padding-left: 0;
 }
 
-
 // -----------------------------------------------------------------------------
 // Buttons Block
 // -----------------------------------------------------------------------------
+
 .wp-block-buttons .wp-block-button__link:focus {
 	outline-color: var(--memberlite-color-text);
 	outline-offset: 2px;
@@ -225,5 +225,16 @@ hr.wp-block-separator {
 	.wp-block-comment-content,
 	.wp-block-comment-reply-link {
 		margin-block-start: var(--wp--preset--spacing--10);
+	}
+}
+
+// -----------------------------------------------------------------------------
+// Social Links Block
+// -----------------------------------------------------------------------------
+
+.wp-block-social-links .wp-block-social-link.wp-social-link a.wp-block-social-link-anchor {
+	&:focus,
+	&:focus-visible {
+		outline: thin dotted var(--memberlite-color-site-navigation);
 	}
 }

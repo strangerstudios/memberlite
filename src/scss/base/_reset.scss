@@ -17,7 +17,6 @@ body {
 }
 
 img, video {
-	display: block;
 	height: auto;
 	max-width: 100%;
 }
@@ -30,8 +29,9 @@ input, button, textarea, select {
 	font: inherit;
 }
 
-p, h1, h2, h3, h4, h5, h6 {
+p, a, h1, h2, h3, h4, h5, h6 {
 	overflow-wrap: break-word;
+	word-break: break-word;
 }
 
 p {
@@ -56,7 +56,23 @@ caption, th, td {
 	text-align: left;
 }
 
-a:focus-visible {
-	outline: 2px solid currentColor;
-	outline-offset: 2px;
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+	content: "";
+}
+
+blockquote,
+q {
+	quotes: "" "";
+}
+
+a:hover,
+a:active {
+	outline: 0;
+}
+
+a img {
+	border: 0;
 }

@@ -143,11 +143,10 @@ body.memberlite-banner-hidden .entry-content > .banner:first-child {
 				border-bottom: none;
 				display: inline-block;
 				float: none;
-				outline: none;
 				padding: calc(var(--wp--preset--spacing--10) / 2) var(--wp--preset--spacing--10);
 				text-decoration: none;
 
-				&:hover {
+				&:hover, &:focus {
 					background-color: var(--memberlite-color-borders);
 				}
 			}

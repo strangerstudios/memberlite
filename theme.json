@@ -12,7 +12,8 @@
 			},
 			"lineHeight": {
 				"body": 1.7,
-				"heading": 1.4
+				"heading": 1.4,
+				"field": 1.5
 			}
 		},
 		"layout": {
@@ -708,7 +709,7 @@
 					"fontFamily": "\"Ubuntu\", sans-serif",
 					"name": "Ubuntu",
 					"slug": "ubuntu"
-				}				
+				}
 			],
 			"fontSizes": [
 				{
