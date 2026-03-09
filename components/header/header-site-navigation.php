@@ -20,7 +20,7 @@ if ( has_nav_menu( 'primary' ) ) {
 				'theme_location' => 'primary',
 				'container'      => false,
 				'fallback_cb'    => false,
-				'items_wrap'     => '<ul id="%1$s" class="%2$s" role="menubar">%3$s</ul>',
+				'items_wrap'     => '<ul id="%1$s" class="%2$s">%3$s</ul>',
 				'menu_class'     => 'menu',
 				'walker'         => new Memberlite_Aria_Walker_Nav_Menu(),
 			);
