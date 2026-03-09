@@ -357,15 +357,16 @@
 		// Dropdown sub-menus (desktop only)
 		ul.sub-menu {
 			@include breakpoint(tablet) {
-				background-color: var(--memberlite-color-site-navigation-background);
-				box-shadow: 4px 12px 16px 0 rgba(0, 0, 0, 0.12);
 				display: none;
 				flex-direction: column;
-				margin: 0;
 				position: absolute;
-				text-align: left;
 				top: 100%;
 				z-index: 99999;
+				margin: 0;
+				width: 100%;
+				background-color: var(--memberlite-color-site-navigation-background);
+				box-shadow: 4px 12px 16px 0 rgba(0, 0, 0, 0.12);
+				text-align: left;
 			}
 
 			li {
