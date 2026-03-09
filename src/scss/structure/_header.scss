@@ -175,6 +175,10 @@
 		.member-navigation,
 		.member-navigation ul {
 			list-style: none;
+
+			@include breakpoint(tablet) {
+				margin: 0;
+			}
 		}
 
 		.member-navigation {
@@ -284,15 +288,21 @@
 .member-navigation,
 .header-right .widget_nav_menu,
 .header-right .widget_nav_menu div {
-	display: inline-block;
+	@include breakpoint(tablet) {
+		display: inline-block;
+	}
 }
 
-.header-right .widget_nav_menu,
-.member-navigation {
+.member-navigation,
+.header-right .widget_nav_menu
+ {
 	ul {
 		li {
-			display: inline-block;
 			float: none;
+
+			@include breakpoint(tablet) {
+				display: inline-block;
+			}
 		}
 	}
 
@@ -309,7 +319,10 @@
 	ul.sub-menu {
 		a {
 			padding: calc(var(--wp--preset--spacing--10) / 2) var(--wp--preset--spacing--10);
-			max-width: 210px;
+
+			@include breakpoint(tablet) {
+				max-width: 210px;
+			}
 		}
 	}
 }
@@ -351,9 +364,11 @@
 
 	// Parent items with children get flex + arrow icon
 	ul > li.menu-item-has-children {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
+		@include breakpoint(tablet) {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+		}
 
 		> a {
 			display: flex;
@@ -382,16 +397,18 @@
 
 	// --- Dropdown sub-menu ---
 	ul.sub-menu {
-		background-color: var(--memberlite-color-site-navigation-background);
-		box-shadow: 4px 12px 16px 0 rgba(0, 0, 0, 0.12);
-		display: none;
-		flex-direction: column;
-		left: -9999em;
-		margin: 0;
-		position: absolute;
-		text-align: left;
-		top: 100%;
-		z-index: 99999;
+		@include breakpoint(tablet) {
+			background-color: var(--memberlite-color-site-navigation-background);
+			box-shadow: 4px 12px 16px 0 rgba(0, 0, 0, 0.12);
+			display: none;
+			flex-direction: column;
+			left: -9999em;
+			margin: 0;
+			position: absolute;
+			text-align: left;
+			top: 100%;
+			z-index: 99999;
+		}
 
 		li {
 			border: none;
@@ -560,16 +577,22 @@ body.mobile-nav-open {
 		.menu {
 			display: flex;
 			gap: var(--wp--preset--spacing--10);
+			margin: 0 0 var(--wp--preset--spacing--20) var(--wp--preset--spacing--20);
 
 			li.menu-item a {
-				border: none;
+				@include breakpoint(tablet) {
+					border: none;
+				}
 			}
 		}
 
 		&:has(ul > li + li),
 		&:has(ul > li + li) .menu {
 			display: block;
-			margin: 0;
+
+			@include breakpoint(tablet) {
+				margin: 0;
+			}
 		}
 	}
 

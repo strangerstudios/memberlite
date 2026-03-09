@@ -80,7 +80,7 @@
 	margin: 0 auto;
 }
 
-.hide-screen {
+.hide-desktop {
 	@include breakpoint(desktop) {
 		display: none;
 	}
