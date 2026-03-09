@@ -22,6 +22,27 @@ textarea {
 
 a {
 	color: var(--memberlite-color-link);
+
+	&:focus,
+	&:focus-visible {
+		outline: thin dotted var(--memberlite-color-link);
+	}
+}
+
+button {
+	&:focus,
+	&:focus-visible {
+		outline: thin dotted var(--memberlite-color-button);
+	}
+}
+
+a,
+button {
+	transition: all 0.3s ease-in-out;
+
+	&:hover, &:active, &:focus {
+		transition: all 0.3s ease-in-out;
+	}
 }
 
 hr {
@@ -231,7 +252,7 @@ address {
 }
 
 pre {
-	background-color: light-dark( color-mix(in srgb, var(--memberlite-color-text) 7%, transparent), color-mix(in srgb, var(--memberlite-color-text) 20%, transparent) );
+	background-color: light-dark(color-mix(in srgb, var(--memberlite-color-text) 7%, transparent), color-mix(in srgb, var(--memberlite-color-text) 20%, transparent));
 	font-family: "Courier 10 Pitch", Courier, monospace;
 	margin: var(--wp--preset--spacing--20) 0;
 	max-width: 100%;
@@ -247,8 +268,8 @@ code,
 kbd,
 tt,
 var {
-	background-color: light-dark( color-mix(in srgb, var(--memberlite-color-text) 7%, transparent), color-mix(in srgb, var(--memberlite-color-text) 20%, transparent) );
-	color: light-dark( $color-error-text, $color-error-bg );
+	background-color: light-dark(color-mix(in srgb, var(--memberlite-color-text) 7%, transparent), color-mix(in srgb, var(--memberlite-color-text) 20%, transparent));
+	color: light-dark($color-error-text, $color-error-bg);
 	font-family: "Courier 10 Pitch", Courier, monospace;
 	padding: 2px 4px;
 }

@@ -17,6 +17,7 @@ p.alert {
 	background-color: $color-info-bg;
 	color: $color-info-text;
 	font-size: var(--wp--preset--font-size--18);
+	line-height: var(--wp--custom--line-height--body);
 	font-weight: 400;
 	margin: var(--wp--preset--spacing--20) 0;
 	padding: var(--wp--preset--spacing--10);
