@@ -34,7 +34,7 @@
 		<!-- wp:column {"verticalAlignment":"center"} -->
 		<div class="wp-block-column is-vertically-aligned-center">
 			<!-- wp:image {"sizeSlug":"full","linkDestination":"none"} -->
-			<figure class="wp-block-image size-full"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/patterns/experts/linkedin-sales-solutions-NpyF7rjqmq4-unsplash-md.jpg alt="A group of professionals collaborating together at a table."/></figure>
+			<figure class="wp-block-image size-full"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/patterns/experts/linkedin-sales-solutions-NpyF7rjqmq4-unsplash-md.jpg" alt="A group of professionals collaborating together at a table."/></figure>
 			<!-- /wp:image -->
 		</div>
 		<!-- /wp:column -->
