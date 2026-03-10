@@ -41,30 +41,30 @@
 				<!-- wp:column {"style":{"spacing":{"blockGap":"var:preset|spacing|10"}}} -->
 				<div class="wp-block-column">
 					<!-- wp:image {"aspectRatio":"1","scale":"cover","className":"is-style-rounded","style":{"border":{"radius":"100%"}}} -->
-					<figure class="wp-block-image has-custom-border is-style-rounded"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/patterns/people/alex-starnes-WYE2UhXsU1Y-unsplash-sm.jpg alt="Member photo." style="border-radius:100%;aspect-ratio:1;object-fit:cover"/></figure>
+					<figure class="wp-block-image has-custom-border is-style-rounded"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/patterns/people/alex-starnes-WYE2UhXsU1Y-unsplash-sm.jpg" alt="Member photo." style="border-radius:100%;aspect-ratio:1;object-fit:cover"/></figure>
 					<!-- /wp:image -->
 					<!-- wp:image {"aspectRatio":"1","scale":"cover","className":"is-style-rounded","style":{"border":{"radius":"100%"}}} -->
-					<figure class="wp-block-image has-custom-border is-style-rounded"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/patterns/people/dylan-ferreira-jIM8kVsFKlM-unsplash-sm.jpg alt="Member photo." style="border-radius:100%;aspect-ratio:1;object-fit:cover"/></figure>
+					<figure class="wp-block-image has-custom-border is-style-rounded"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/patterns/people/dylan-ferreira-jIM8kVsFKlM-unsplash-sm.jpg" alt="Member photo." style="border-radius:100%;aspect-ratio:1;object-fit:cover"/></figure>
 					<!-- /wp:image -->
 				</div>
 				<!-- /wp:column -->
 				<!-- wp:column {"style":{"spacing":{"blockGap":"var:preset|spacing|10","padding":{"top":"var:preset|spacing|30"}}}} -->
 				<div class="wp-block-column" style="padding-top:var(--wp--preset--spacing--30)">
 					<!-- wp:image {"aspectRatio":"1","scale":"cover","className":"is-style-rounded","style":{"border":{"radius":"100%"}}} -->
-					<figure class="wp-block-image has-custom-border is-style-rounded"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/patterns/people/christina-wocintechchat-com-SJvDxw0azqw-unsplash-sm.jpg alt="Member photo." style="border-radius:100%;aspect-ratio:1;object-fit:cover"/></figure>
+					<figure class="wp-block-image has-custom-border is-style-rounded"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/patterns/people/christina-wocintechchat-com-SJvDxw0azqw-unsplash-sm.jpg" alt="Member photo." style="border-radius:100%;aspect-ratio:1;object-fit:cover"/></figure>
 					<!-- /wp:image -->
 					<!-- wp:image {"aspectRatio":"1","scale":"cover","className":"is-style-rounded","style":{"border":{"radius":"100%"}}} -->
-					<figure class="wp-block-image has-custom-border is-style-rounded"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/patterns/people/edward-cisneros-_H6wpor9mjs-unsplash-sm.jpg alt="Member photo." style="border-radius:100%;aspect-ratio:1;object-fit:cover"/></figure>
+					<figure class="wp-block-image has-custom-border is-style-rounded"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/patterns/people/edward-cisneros-_H6wpor9mjs-unsplash-sm.jpg" alt="Member photo." style="border-radius:100%;aspect-ratio:1;object-fit:cover"/></figure>
 					<!-- /wp:image -->
 				</div>
 				<!-- /wp:column -->
 				<!-- wp:column {"style":{"spacing":{"blockGap":"var:preset|spacing|10"}}} -->
 				<div class="wp-block-column">
 					<!-- wp:image {"aspectRatio":"1","scale":"cover","className":"is-style-rounded","style":{"border":{"radius":"100%"}}} -->
-					<figure class="wp-block-image has-custom-border is-style-rounded"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/patterns/people/karsten-winegeart-Q7iB4Yixcfw-unsplash-sm.jpg alt="Member photo." style="border-radius:100%;aspect-ratio:1;object-fit:cover"/></figure>
+					<figure class="wp-block-image has-custom-border is-style-rounded"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/patterns/people/karsten-winegeart-Q7iB4Yixcfw-unsplash-sm.jpg" alt="Member photo." style="border-radius:100%;aspect-ratio:1;object-fit:cover"/></figure>
 					<!-- /wp:image -->
 					<!-- wp:image {"aspectRatio":"1","scale":"cover","className":"is-style-rounded","style":{"border":{"radius":"100%"}}} -->
-					<figure class="wp-block-image has-custom-border is-style-rounded"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/patterns/people/rana-sawalha-IhuHLIxS_Tk-unsplash-sm.jpg alt="Member photo." style="border-radius:100%;aspect-ratio:1;object-fit:cover"/></figure>
+					<figure class="wp-block-image has-custom-border is-style-rounded"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/patterns/people/rana-sawalha-IhuHLIxS_Tk-unsplash-sm.jpg" alt="Member photo." style="border-radius:100%;aspect-ratio:1;object-fit:cover"/></figure>
 					<!-- /wp:image -->
 				</div>
 				<!-- /wp:column -->

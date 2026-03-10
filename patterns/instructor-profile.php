@@ -20,7 +20,7 @@
 		<!-- wp:column {"verticalAlignment":"center","width":"35%"} -->
 		<div class="wp-block-column is-vertically-aligned-center" style="flex-basis:35%">
 			<!-- wp:image {"aspectRatio":"3/4","scale":"cover","className":"is-style-default","style":{"border":{"radius":"8px"}}} -->
-			<figure class="wp-block-image has-custom-border is-style-default"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/patterns/experts/christina-wocintechchat-com-3sY92eKV6-Y-unsplash-md.jpg alt="Photo of an instructor in a professional setting." style="border-radius:8px;aspect-ratio:3/4;object-fit:cover"/></figure>
+			<figure class="wp-block-image has-custom-border is-style-default"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/patterns/experts/christina-wocintechchat-com-3sY92eKV6-Y-unsplash-md.jpg" alt="Photo of an instructor in a professional setting." style="border-radius:8px;aspect-ratio:3/4;object-fit:cover"/></figure>
 			<!-- /wp:image -->
 		</div>
 		<!-- /wp:column -->
