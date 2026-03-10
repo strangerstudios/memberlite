@@ -31,7 +31,7 @@
 			<!-- wp:column {"style":{"spacing":{"blockGap":"0"}}} -->
 			<div class="wp-block-column">
 				<!-- wp:image {"width":"150px","aspectRatio":"1","scale":"cover","align":"center","className":"is-style-rounded","style":{"border":{"radius":"100%"},"spacing":{"margin":{"bottom":"var:preset|spacing|10"}}}} -->
-				<figure class="wp-block-image aligncenter is-resized has-custom-border is-style-rounded" style="margin-bottom:var(--wp--preset--spacing--10)"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/patterns/people/foto-sushi-ExVlW9b648Q-unsplash-sm.jpg" alt="Photo of a man in a red top with arms crossed." style="border-radius:100%;aspect-ratio:1;object-fit:cover;width:150px"/></figure>
+				<figure class="wp-block-image aligncenter is-resized has-custom-border is-style-rounded" style="margin-bottom:var(--wp--preset--spacing--10)"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/patterns/images/people/foto-sushi-ExVlW9b648Q-unsplash-sm.jpg" alt="Photo of a man in a red top with arms crossed." style="border-radius:100%;aspect-ratio:1;object-fit:cover;width:150px"/></figure>
 				<!-- /wp:image -->
 
 				<!-- wp:heading {"textAlign":"center","level":3} -->
@@ -47,7 +47,7 @@
 			<!-- wp:column {"style":{"spacing":{"blockGap":"0"}}} -->
 			<div class="wp-block-column">
 				<!-- wp:image {"width":"150px","aspectRatio":"1","scale":"cover","align":"center","className":"is-style-rounded","style":{"border":{"radius":"100%"},"spacing":{"margin":{"bottom":"var:preset|spacing|10"}}}} -->
-				<figure class="wp-block-image aligncenter is-resized has-custom-border is-style-rounded" style="margin-bottom:var(--wp--preset--spacing--10)"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/patterns/people/christina-wocintechchat-com-SJvDxw0azqw-unsplash-sm.jpg" alt="Photo of a professional woman." style="border-radius:100%;aspect-ratio:1;object-fit:cover;width:150px"/></figure>
+				<figure class="wp-block-image aligncenter is-resized has-custom-border is-style-rounded" style="margin-bottom:var(--wp--preset--spacing--10)"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/patterns/images/people/christina-wocintechchat-com-SJvDxw0azqw-unsplash-sm.jpg" alt="Photo of a professional woman." style="border-radius:100%;aspect-ratio:1;object-fit:cover;width:150px"/></figure>
 				<!-- /wp:image -->
 
 				<!-- wp:heading {"textAlign":"center","level":3} -->
@@ -63,7 +63,7 @@
 			<!-- wp:column {"style":{"spacing":{"blockGap":"0"}}} -->
 			<div class="wp-block-column">
 				<!-- wp:image {"width":"150px","aspectRatio":"1","scale":"cover","align":"center","className":"is-style-rounded","style":{"border":{"radius":"100%"},"spacing":{"margin":{"bottom":"var:preset|spacing|10"}}}} -->
-				<figure class="wp-block-image aligncenter is-resized has-custom-border is-style-rounded" style="margin-bottom:var(--wp--preset--spacing--10)"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/patterns/people/james-balensiefen-snFilgm4_RU-unsplash-sm.jpg" alt="Photo of a man with light eyes in a cap." style="border-radius:100%;aspect-ratio:1;object-fit:cover;width:150px"/></figure>
+				<figure class="wp-block-image aligncenter is-resized has-custom-border is-style-rounded" style="margin-bottom:var(--wp--preset--spacing--10)"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/patterns/images/people/james-balensiefen-snFilgm4_RU-unsplash-sm.jpg" alt="Photo of a man with light eyes in a cap." style="border-radius:100%;aspect-ratio:1;object-fit:cover;width:150px"/></figure>
 				<!-- /wp:image -->
 
 				<!-- wp:heading {"textAlign":"center","level":3} -->
@@ -79,7 +79,7 @@
 			<!-- wp:column {"style":{"spacing":{"blockGap":"0"}}} -->
 			<div class="wp-block-column">
 				<!-- wp:image {"width":"150px","aspectRatio":"1","scale":"cover","align":"center","className":"is-style-rounded","style":{"border":{"radius":"100%"},"spacing":{"margin":{"bottom":"var:preset|spacing|10"}}}} -->
-				<figure class="wp-block-image aligncenter is-resized has-custom-border is-style-rounded" style="margin-bottom:var(--wp--preset--spacing--10)"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/patterns/people/michael-dam-mEZ3PoFGs_k-unsplash-sm.jpg" alt="Photo of a woman with red lipstick and a red crop neck top." style="border-radius:100%;aspect-ratio:1;object-fit:cover;width:150px"/></figure>
+				<figure class="wp-block-image aligncenter is-resized has-custom-border is-style-rounded" style="margin-bottom:var(--wp--preset--spacing--10)"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/patterns/images/people/michael-dam-mEZ3PoFGs_k-unsplash-sm.jpg" alt="Photo of a woman with red lipstick and a red crop neck top." style="border-radius:100%;aspect-ratio:1;object-fit:cover;width:150px"/></figure>
 				<!-- /wp:image -->
 
 				<!-- wp:heading {"textAlign":"center","level":3} -->

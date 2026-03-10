@@ -30,7 +30,7 @@
 				<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|10"}},"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"left"}} -->
 				<div class="wp-block-group">
 					<!-- wp:image {"width":"100px","aspectRatio":"1","scale":"cover","className":"is-style-rounded","style":{"border":{"radius":"100%"}}} -->
-					<figure class="wp-block-image is-resized has-custom-border is-style-rounded"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/patterns/people/alex-starnes-WYE2UhXsU1Y-unsplash-sm.jpg" alt="Photo of a smiling woman with short black curly hair and a white peasant style top standing in a clothing store." style="border-radius:100%;aspect-ratio:1;object-fit:cover;width:100px"/></figure>
+					<figure class="wp-block-image is-resized has-custom-border is-style-rounded"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/patterns/images/people/alex-starnes-WYE2UhXsU1Y-unsplash-sm.jpg" alt="Photo of a smiling woman with short black curly hair and a white peasant style top standing in a clothing store." style="border-radius:100%;aspect-ratio:1;object-fit:cover;width:100px"/></figure>
 					<!-- /wp:image -->
 					<!-- wp:paragraph -->
 					<p><strong>Aria DeVaugn</strong><br>Premium Member</p>
@@ -54,7 +54,7 @@
 				<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|10"}},"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"left"}} -->
 				<div class="wp-block-group">
 					<!-- wp:image {"width":"100px","aspectRatio":"1","scale":"cover","className":"is-style-rounded","style":{"border":{"radius":"100%"}}} -->
-					<figure class="wp-block-image is-resized has-custom-border is-style-rounded"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/patterns/people/dylan-ferreira-jIM8kVsFKlM-unsplash-sm.jpg" alt="Close up photo of a smiling man with dark hair on a blue backdrop." style="border-radius:100%;aspect-ratio:1;object-fit:cover;width:100px"/></figure>
+					<figure class="wp-block-image is-resized has-custom-border is-style-rounded"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/patterns/images/people/dylan-ferreira-jIM8kVsFKlM-unsplash-sm.jpg" alt="Close up photo of a smiling man with dark hair on a blue backdrop." style="border-radius:100%;aspect-ratio:1;object-fit:cover;width:100px"/></figure>
 					<!-- /wp:image -->
 					<!-- wp:paragraph -->
 					<p><strong>Ricardo Owens</strong><br>Member Since 2022</p>

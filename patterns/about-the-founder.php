@@ -30,7 +30,7 @@
 		<!-- wp:column {"verticalAlignment":"center","width":"35%"} -->
 		<div class="wp-block-column is-vertically-aligned-center" style="flex-basis:35%">
 			<!-- wp:image {"aspectRatio":"3/4","scale":"cover"} -->
-			<figure class="wp-block-image"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/patterns/people/christina-wocintechchat-com-SJvDxw0azqw-unsplash-sm.jpg" alt="Photo of the a female executive side profile of a woman with a white and black striped vest in a corporate setting." style="aspect-ratio:3/4;object-fit:cover"/></figure>
+			<figure class="wp-block-image"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/patterns/images/people/christina-wocintechchat-com-SJvDxw0azqw-unsplash-sm.jpg" alt="Photo of the a female executive side profile of a woman with a white and black striped vest in a corporate setting." style="aspect-ratio:3/4;object-fit:cover"/></figure>
 			<!-- /wp:image -->
 		</div>
 		<!-- /wp:column -->

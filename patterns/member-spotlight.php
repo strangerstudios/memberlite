@@ -22,7 +22,7 @@
 			<!-- wp:column {"verticalAlignment":"center","width":"30%","style":{"spacing":{"blockGap":"var:preset|spacing|10"}}} -->
 			<div class="wp-block-column is-vertically-aligned-center" style="flex-basis:30%">
 				<!-- wp:image {"width":"200px","aspectRatio":"1","scale":"cover","className":"is-style-rounded","style":{"border":{"radius":"100%"}}} -->
-				<figure class="wp-block-image is-resized has-custom-border is-style-rounded"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/patterns/people/samuel-raita-RiDxDgHg7pw-unsplash-sm.jpg" alt="Photo of a man with glasses and blonde hair." style="border-radius:100%;aspect-ratio:1;object-fit:cover;width:200px"/></figure>
+				<figure class="wp-block-image is-resized has-custom-border is-style-rounded"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/patterns/images/people/samuel-raita-RiDxDgHg7pw-unsplash-sm.jpg" alt="Photo of a man with glasses and blonde hair." style="border-radius:100%;aspect-ratio:1;object-fit:cover;width:200px"/></figure>
 				<!-- /wp:image -->
 			</div>
 			<!-- /wp:column -->
