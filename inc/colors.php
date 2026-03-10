@@ -550,6 +550,39 @@ function memberlite_get_active_colors(): array {
 }
 
 /**
+ * Adjust color brightness for hover states.
+ *
+ * Adjusts the brightness of a hex color by a percentage.
+ * Negative percentages darken, positive percentages lighten.
+ *
+ * @since 7.0
+ * @param string $hex_color Hex color (with or without #).
+ * @param float  $percent   Percentage to adjust (-100 to 100). Negative darkens, positive lightens.
+ * @return string Adjusted hex color with # prefix.
+ */
+function memberlite_adjust_color_brightness( string $hex_color, float $percent = -15 ): string {
+	$hex = ltrim( $hex_color, '#' );
+
+	// Expand shorthand.
+	if ( 3 === strlen( $hex ) ) {
+		$hex = $hex[0] . $hex[0] . $hex[1] . $hex[1] . $hex[2] . $hex[2];
+	}
+
+	$r = hexdec( substr( $hex, 0, 2 ) );
+	$g = hexdec( substr( $hex, 2, 2 ) );
+	$b = hexdec( substr( $hex, 4, 2 ) );
+
+	// Adjust each channel.
+	$r = max( 0, min( 255, $r + ( $r * $percent / 100 ) ) );
+	$g = max( 0, min( 255, $g + ( $g * $percent / 100 ) ) );
+	$b = max( 0, min( 255, $b + ( $b * $percent / 100 ) ) );
+
+	return '#' . str_pad( dechex( (int) round( $r ) ), 2, '0', STR_PAD_LEFT )
+	            . str_pad( dechex( (int) round( $g ) ), 2, '0', STR_PAD_LEFT )
+	            . str_pad( dechex( (int) round( $b ) ), 2, '0', STR_PAD_LEFT );
+}
+
+/**
  * Determine whether a hex color is "dark" based on WCAG relative luminance.
  *
  * Uses the sRGB linearization and luminance formula from WCAG 2.0.

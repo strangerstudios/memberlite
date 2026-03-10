@@ -235,7 +235,7 @@
 				.sub-menu {
 					background-color: var(--memberlite-color-secondary);
 
-					li a { min-width: 125px; }
+					li a { min-width: 100%; }
 				}
 
 				ul ul a:hover {
@@ -377,8 +377,8 @@
 
 			li:hover > a {
 				background-color: light-dark(
-					color-mix(in srgb, var(--memberlite-color-site-background), black 3%),
-					color-mix(in srgb, var(--memberlite-color-site-background), white 3%)
+					color-mix(in srgb, var(--memberlite-color-site-navigation-background), black 5%),
+					color-mix(in srgb, var(--memberlite-color-site-navigation-background), white 3%)
 				);
 			}
 

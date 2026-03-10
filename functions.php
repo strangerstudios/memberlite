@@ -744,6 +744,26 @@ function memberlite_filter_theme_json( $theme_json ) {
 		);
 	}
 
+	// Generate button hover color based on whether the color scheme is light or dark.
+	if ( isset( $active_colors['color_button'] ) && isset( $active_colors['background_color'] ) ) {
+		$button_color = $active_colors['color_button'];
+		$site_bg_color = $active_colors['background_color'];
+
+		// Check if the site background is dark (dark scheme) or light (light scheme)
+		$is_dark_scheme = memberlite_is_dark_color( $site_bg_color );
+
+		// Dark schemes: lighten buttons on hover
+		// Light schemes: darken buttons on hover
+		$hover_adjustment = $is_dark_scheme ? 20 : -50;
+		$button_hover = memberlite_adjust_color_brightness( '#' . $button_color, $hover_adjustment );
+
+		$color_scheme[] = array(
+			'slug'  => 'buttons-hover',
+			'color' => $button_hover,
+			'name'  => __( 'Buttons Hover', 'memberlite' ),
+		);
+	}
+
 	// Static palette entry.
 	$color_scheme[] = array(
 		'slug' => 'white',

@@ -46,7 +46,7 @@ input[type=submit]:active,
 .btn:hover,
 .btn:focus,
 .btn:active {
-	filter: brightness(var(--memberlite-hover-brightness));
+	background-color: var(--wp--preset--color--buttons-hover);
 	box-shadow: $btn-shadow-hover;
 	color: var(--memberlite-color-white);
 }
