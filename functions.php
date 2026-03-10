@@ -555,6 +555,9 @@ require_once get_template_directory() . '/inc/custom-header.php';
 /* Custom Walkers for wp_nav_menu() */
 require_once get_template_directory() . '/inc/custom-walkers.php';
 
+/* Pattern categories. */
+require_once get_template_directory() . '/inc/patterns.php';
+
 /* Customizer additions. */
 require_once get_template_directory() . '/inc/customizer.php';
 
