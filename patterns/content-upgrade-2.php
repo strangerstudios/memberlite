@@ -16,7 +16,7 @@
 	<h3 class="wp-block-heading">Member Resources</h3>
 	<!-- /wp:heading -->
 	<!-- wp:image {"linkDestination":"none","className":"is-style-plain","style":{"spacing":{"blockGap":"var:preset|spacing|10"}}} -->
-	<figure class="wp-block-image is-style-plain"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/patterns/experts/cathryn-lavery-fMD_Cru6OTk-unsplash-md.jpg" alt="Notebook on a wooden desk with hands holding a pen writing."/></figure>
+	<figure class="wp-block-image is-style-plain"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/patterns/images/experts/cathryn-lavery-fMD_Cru6OTk-unsplash-md.jpg" alt="Notebook on a wooden desk with hands holding a pen writing."/></figure>
 	<!-- /wp:image -->
 	<!-- wp:paragraph -->
 	<p>Download our free starter guide to see what membership is all about. Practical tips you can use right away, with no strings attached.</p>

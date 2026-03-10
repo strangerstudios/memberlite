@@ -22,7 +22,7 @@
 			<!-- wp:column {"verticalAlignment":"center","width":"35%"} -->
 			<div class="wp-block-column is-vertically-aligned-center" style="flex-basis:35%">
 				<!-- wp:image {"aspectRatio":"1","scale":"cover","style":{"border":{"radius":"8px"}}} -->
-				<figure class="wp-block-image has-custom-border"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/patterns/experts/cathryn-lavery-fMD_Cru6OTk-unsplash-md.jpg" alt="Podcast episode artwork." style="border-radius:8px;aspect-ratio:1;object-fit:cover"/></figure>
+				<figure class="wp-block-image has-custom-border"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/patterns/images/experts/cathryn-lavery-fMD_Cru6OTk-unsplash-md.jpg" alt="Podcast episode artwork." style="border-radius:8px;aspect-ratio:1;object-fit:cover"/></figure>
 				<!-- /wp:image -->
 			</div>
 			<!-- /wp:column -->

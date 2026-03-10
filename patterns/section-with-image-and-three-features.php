@@ -20,7 +20,7 @@
 		<!-- wp:column {"verticalAlignment":"center","width":"50%"} -->
 		<div class="wp-block-column is-vertically-aligned-center" style="flex-basis:50%">
 			<!-- wp:image {"sizeSlug":"full","linkDestination":"none"} -->
-			<figure class="wp-block-image size-full"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/patterns/experts/thought-catalog-505eectW54k-unsplash-md.jpg" alt="Overhead shot of a desk with books, a laptop, glasses, coffee, photos, and someone writing in a notebook."/></figure>
+			<figure class="wp-block-image size-full"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/patterns/images/experts/thought-catalog-505eectW54k-unsplash-md.jpg" alt="Overhead shot of a desk with books, a laptop, glasses, coffee, photos, and someone writing in a notebook."/></figure>
 			<!-- /wp:image -->
 		</div>
 		<!-- /wp:column -->
