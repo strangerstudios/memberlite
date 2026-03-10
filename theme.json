@@ -1138,6 +1138,12 @@
 					"background": "var(--wp--preset--color--buttons)",
 					"text": "var(--wp--preset--color--base)"
 				},
+				":hover": {
+					"color": {
+						"background": "var(--wp--preset--color--buttons-hover)",
+						"text": "var(--wp--preset--color--base)"
+					}
+				},
 				":focus": {
 					"outline": {
 					"color": "var(--wp--preset--color--body-text)",
