@@ -32,7 +32,7 @@
 			<!-- wp:buttons -->
 			<div class="wp-block-buttons">
 				<!-- wp:button {"backgroundColor":"color-primary","className":"is-style-fill"} -->
-				<div class="wp-block-button is-style-fill"><a class="wp-block-button__link has-color-primary-background-color has-background wp-element-button"><strong>New Members Welcome</strong>: Apply Here</a></div>
+				<div class="wp-block-button is-style-fill"><a class="wp-block-button__link has-color-primary-background-color has-background wp-element-button" href="#"><strong>New Members Welcome</strong>: Apply Here</a></div>
 				<!-- /wp:button -->
 			</div>
 			<!-- /wp:buttons -->

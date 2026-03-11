@@ -24,7 +24,7 @@
 	<!-- wp:buttons -->
 	<div class="wp-block-buttons">
 		<!-- wp:button {"backgroundColor":"color-primary","width":100} -->
-		<div class="wp-block-button has-custom-width wp-block-button__width-100"><a class="wp-block-button__link has-color-primary-background-color has-background wp-element-button">Download Free Guide</a></div>
+		<div class="wp-block-button has-custom-width wp-block-button__width-100"><a class="wp-block-button__link has-color-primary-background-color has-background wp-element-button" href="#">Download Free Guide</a></div>
 		<!-- /wp:button -->
 	</div>
 	<!-- /wp:buttons -->
