@@ -27,8 +27,6 @@ The `header_output()` function in `inc/customizer.php` converts those values int
 
 We sync colors to `theme.json` using the `wp_theme_json_data_theme` filter.
 
-When writing styles, use CSS variables prefixed with: `--memberlite-`
-
 ---
 
 ## Customizer Settings & Controls
@@ -110,6 +108,9 @@ This is not a full list. Explore the codebase for more.
 
 - `memberlite_get_active_colors()` - Returns all 17 saved color values
 
+- `memberlite_is_dark_color()` - Returns true if a hex color is "dark" based on WCAG relative luminance
+    - This is key in setting up hover colors for button and links styled like buttons across the site. 
+
 ---
 
 ### `inc/customizer.php`
@@ -147,3 +148,7 @@ In `inc/customizer.php`, use one of these helpers:
 - `add_memberlite_setting_control()`: Use for standard settings
 
 - `add_memberlite_color_control()`: Use for color picker settings
+
+---
+
+**Last Updated**: 2026-03-11

@@ -62,3 +62,7 @@ The RTLCSS compiler will swap the icon font for the RTL version. In the example 
 
 - [WordPress Scripts Documentation](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-scripts/)
 - [How Webpack and WordPress packages interact](https://developer.wordpress.org/news/2023/04/how-webpack-and-wordpress-packages-interact/)
+
+---
+
+**Last Updated**: 2026-03-05
