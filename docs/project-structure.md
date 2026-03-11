@@ -113,3 +113,6 @@ In addition to the folders above, the theme root contains key PHP files such as:
 * `style.css` – Theme metadata and base styles
 * `theme.json` – Block editor configuration. Memberlite is a hybrid WordPress theme, so the theme.json is minimal and syncs colors and fonts with the customizer settings.
 
+---
+
+**Last Updated**: 2026-02-04
