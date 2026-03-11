@@ -5,7 +5,7 @@
  1.5 Base | Global: Buttons
 --------------------------------------------------------------*/
 
-button,
+button:not(.wp-block-accordion-heading__toggle):not(.menu-toggle),
 input[type=button],
 input[type=reset],
 input[type=submit],
@@ -13,6 +13,7 @@ input[type=submit],
 a.comment-reply-link,
 .wp-block-search .wp-block-search__button {
 	@include button-base;
+	color: var(--wp--preset--color--base);
 }
 
 button.inline-form-button,
@@ -48,14 +49,12 @@ input[type=submit]:active,
 .btn:active {
 	background-color: var(--wp--preset--color--buttons-hover);
 	box-shadow: $btn-shadow-hover;
-	color: var(--memberlite-color-white);
 }
 
 a.comment-reply-link:focus,
 a.comment-reply-link:hover {
 	border: none;
 	box-shadow: $btn-shadow-hover;
-	color: var(--memberlite-color-white);
 	text-shadow: none;
 }
 
@@ -97,12 +96,12 @@ a.comment-reply-link:hover {
 
 .btn_secondary {
 	background-color: var(--memberlite-color-secondary);
-	color: var(--memberlite-color-white);
+	color: var(--wp--preset--color--base);
 }
 
 .btn_action {
 	background-color: var(--memberlite-color-action);
-	color: var(--memberlite-color-white);
+	color: var(--wp--preset--color--base);
 }
 
 .btn_block {

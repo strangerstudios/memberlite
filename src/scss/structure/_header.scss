@@ -426,6 +426,7 @@
 
 .menu-toggle {
 	background-color: transparent;
+	border: none;
 	box-shadow: none;
 	color: var(--memberlite-color-primary);
 	font-size: var(--wp--preset--font-size--24);
@@ -511,11 +512,6 @@ body.mobile-nav-open {
 	}
 
 	a {
-		&:hover {
-			text-decoration-line: underline;
-			text-underline-offset: 2px;
-		}
-
 		&[aria-current] {
 			background-color: light-dark(
 					color-mix(in srgb, var(--memberlite-color-site-navigation-background), black 5%),
