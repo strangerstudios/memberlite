@@ -167,7 +167,7 @@ add_action( 'init', 'memberlite_register_pattern_categories' );
 
 #### 1. Broken Image URLs
 
-**Problem**: Images not loading in pattern.
+**Problem**: Images not loading in the pattern.
 
 **Cause**: Incorrect image path format.
 
@@ -209,7 +209,7 @@ add_action( 'init', 'memberlite_register_pattern_categories' );
 - Missing or incorrect metadata in DocBlock comment
 - Invalid category slug in `Categories:` field
 - PHP syntax error in the file
-- File not saved with `.php` extension
+- File isn't saved with `.php` extension
 
 **Fix**: Verify the pattern file structure matches the format shown in [Pattern File Format](#pattern-file-format).
 
@@ -252,7 +252,7 @@ Pattern placeholder images serve a different purpose than theme assets:
 **Reason 3: Licensing Clarity**
 Keeping pattern images separate makes it clear which images are:
 - Demo content (can be replaced without affecting theme functionality)
-- Core theme assets (required for theme to function properly)
+- Core theme assets (required for the theme to function properly)
 
 ### Image Sources and Copyright
 
@@ -351,7 +351,7 @@ $categories = array(
 ### Manual Testing Checklist
 
 - [ ] Pattern appears in block inserter
-- [ ] Pattern is in correct category
+- [ ] Pattern is in the correct category
 - [ ] All images load correctly
 - [ ] Pattern is responsive (test mobile, tablet, desktop)
 - [ ] Pattern respects theme colors/fonts
@@ -377,20 +377,20 @@ $categories = array(
 2. **Check file extension**: Must be `.php`
 3. **Check metadata format**: DocBlock must be formatted correctly
 4. **Check for PHP errors**: Look in `wp-content/debug.log`
-5. **Clear cache**: If using caching plugins, clear cache
+5. **Clear cache**: If using caching plugins, clear cache. Also, check your environment's PHP cache settings.
 
 ### Images Not Loading
 
 1. **Verify image exists** at the specified path
 2. **Check path format**: Must use `<?php echo esc_url( get_template_directory_uri() ); ?>/patterns/images/...`
-3. **Check file permissions**: Images must be readable by web server
-4. **Check subdirectory**: Make sure image is in correct folder (experts/people/landscapes)
+3. **Check file permissions**: Images must be readable by the web server
+4. **Check subdirectory**: Make sure the image is in the correct folder (experts/people/landscapes)
 
 ### Pattern Breaks Layout
 
 1. **Validate HTML**: Check for unclosed tags, mismatched quotes
 2. **Check for missing closing quotes** on attributes
-3. **Test in isolation**: Try pattern on a blank page to isolate issues
+3. **Test in isolation**: Try your pattern on a blank page to isolate issues
 4. **Compare with working pattern**: Look at similar patterns that work correctly
 
 ---
