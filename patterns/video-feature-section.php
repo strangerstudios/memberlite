@@ -47,7 +47,7 @@
 			<h3 class="wp-block-heading has-24-font-size">About This Video</h3>
 			<!-- /wp:heading -->
 			<!-- wp:paragraph -->
-			<p>In this comprehensive tutorial, we break down the core techniques you need to know. Whether you\'re just getting started or looking to sharpen your skills, this video covers everything from basics to advanced tips with real-world examples.</p>
+			<p>In this comprehensive tutorial, we break down the core techniques you need to know. Whether you're just getting started or looking to sharpen your skills, this video covers everything from basics to advanced tips with real-world examples.</p>
 			<!-- /wp:paragraph -->
 		</div>
 		<!-- /wp:column -->

@@ -25,7 +25,7 @@
 			<!-- wp:buttons -->
 			<div class="wp-block-buttons">
 				<!-- wp:button {"backgroundColor":"color-primary"} -->
-				<div class="wp-block-button"><a class="wp-block-button__link has-color-primary-background-color has-background wp-element-button">Get Started Now</a></div>
+				<div class="wp-block-button"><a class="wp-block-button__link has-color-primary-background-color has-background wp-element-button" href="#">Get Started Now</a></div>
 				<!-- /wp:button -->
 			</div>
 			<!-- /wp:buttons -->

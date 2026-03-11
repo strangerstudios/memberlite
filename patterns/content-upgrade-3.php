@@ -28,7 +28,7 @@
 	<!-- wp:buttons {"layout":{"type":"flex","justifyContent":"left","flexWrap":"wrap"}} -->
 	<div class="wp-block-buttons">
 		<!-- wp:button {"width":100,"className":"is-style-outline"} -->
-		<div class="wp-block-button has-custom-width wp-block-button__width-100 is-style-outline"><a class="wp-block-button__link wp-element-button">Become a Member</a></div>
+		<div class="wp-block-button has-custom-width wp-block-button__width-100 is-style-outline"><a class="wp-block-button__link wp-element-button" href="#">Become a Member</a></div>
 		<!-- /wp:button -->
 	</div>
 	<!-- /wp:buttons -->

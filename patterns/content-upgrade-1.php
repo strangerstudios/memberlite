@@ -31,7 +31,7 @@
 				<!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center"}} -->
 				<div class="wp-block-buttons">
 					<!-- wp:button {"backgroundColor":"color-primary","width":100,"className":"is-style-fill"} -->
-					<div class="wp-block-button has-custom-width wp-block-button__width-100 is-style-fill"><a class="wp-block-button__link has-color-primary-background-color has-background wp-element-button">Get Free Access</a></div>
+					<div class="wp-block-button has-custom-width wp-block-button__width-100 is-style-fill"><a class="wp-block-button__link has-color-primary-background-color has-background wp-element-button" href="#">Get Free Access</a></div>
 					<!-- /wp:button -->
 				</div>
 				<!-- /wp:buttons -->
