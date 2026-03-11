@@ -29,8 +29,8 @@
 				<!-- /wp:heading -->
 			</div>
 			<!-- /wp:group -->
-			<!-- wp:separator {"className":"is-style-wide","backgroundColor":"border-blue"} -->
-			<hr class="wp-block-separator has-text-color has-border-blue-color has-alpha-channel-opacity has-border-blue-background-color has-background is-style-wide"/>
+			<!-- wp:separator {"className":"is-style-wide","backgroundColor":"color-borders"} -->
+			<hr class="wp-block-separator has-text-color has-borders-color has-alpha-channel-opacity has-borders-background-color has-background is-style-wide"/>
 			<!-- /wp:separator -->
 			<!-- wp:paragraph -->
 			<p>Downloadable guides, templates, and step-by-step lessons you can use right away—updated regularly.</p>
@@ -49,8 +49,8 @@
 				<!-- /wp:heading -->
 			</div>
 			<!-- /wp:group -->
-			<!-- wp:separator {"className":"is-style-wide","backgroundColor":"border-blue"} -->
-			<hr class="wp-block-separator has-text-color has-border-blue-color has-alpha-channel-opacity has-border-blue-background-color has-background is-style-wide"/>
+			<!-- wp:separator {"className":"is-style-wide","backgroundColor":"color-borders"} -->
+			<hr class="wp-block-separator has-text-color has-borders-color has-alpha-channel-opacity has-borders-background-color has-background is-style-wide"/>
 			<!-- /wp:separator -->
 			<!-- wp:paragraph -->
 			<p>Get answers when you need them—through member Q&amp;A, feedback, and guidance from people who understand your goals.</p>
@@ -73,8 +73,8 @@
 				<!-- /wp:heading -->
 			</div>
 			<!-- /wp:group -->
-			<!-- wp:separator {"className":"is-style-wide","backgroundColor":"border-blue"} -->
-			<hr class="wp-block-separator has-text-color has-border-blue-color has-alpha-channel-opacity has-border-blue-background-color has-background is-style-wide"/>
+			<!-- wp:separator {"className":"is-style-wide","backgroundColor":"color-borders"} -->
+			<hr class="wp-block-separator has-text-color has-borders-color has-alpha-channel-opacity has-borders-background-color has-background is-style-wide"/>
 			<!-- /wp:separator -->
 			<!-- wp:paragraph -->
 			<p>Workshops, live sessions, and behind-the-scenes updates that help you stay consistent and make progress.</p>
@@ -93,8 +93,8 @@
 				<!-- /wp:heading -->
 			</div>
 			<!-- /wp:group -->
-			<!-- wp:separator {"className":"is-style-wide","backgroundColor":"border-blue"} -->
-			<hr class="wp-block-separator has-text-color has-border-blue-color has-alpha-channel-opacity has-border-blue-background-color has-background is-style-wide"/>
+			<!-- wp:separator {"className":"is-style-wide","backgroundColor":"color-borders"} -->
+			<hr class="wp-block-separator has-text-color has-borders-color has-alpha-channel-opacity has-borders-background-color has-background is-style-wide"/>
 			<!-- /wp:separator -->
 			<!-- wp:paragraph -->
 			<p>Choose the membership level that fits your needs. Upgrade, downgrade, or cancel anytime—no long-term commitment required.</p>

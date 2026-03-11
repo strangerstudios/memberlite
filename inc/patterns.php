@@ -7,9 +7,12 @@
  */
 
 /**
- * Register block pattern categories.
+ * Register pattern categories for Memberlite theme.
+ *
+ * @since 7.0
+ * @return void
  */
-function memberlite_register_pattern_categories() {
+function memberlite_register_pattern_categories(): void {
 	$categories = array(
 		'memberlite-about'        => __( 'Memberlite - About', 'memberlite' ),
 		'memberlite-community'    => __( 'Memberlite - Community', 'memberlite' ),
@@ -29,3 +32,22 @@ function memberlite_register_pattern_categories() {
 	}
 }
 add_action( 'init', 'memberlite_register_pattern_categories' );
+
+/**
+ * Make sure the wp_block post type is shown in the menu.
+ *
+ * @since 7.0
+ * @return void
+ */
+function memberlite_add_patterns_menu_item(): void {
+	add_menu_page(
+		__( 'Patterns', 'memberlite' ),
+		__( 'Patterns', 'memberlite' ),
+		'edit_posts',
+		'edit.php?post_type=wp_block',
+		'',
+		'dashicons-layout',
+		26
+	);
+}
+add_action( 'admin_menu', 'memberlite_add_patterns_menu_item' );
