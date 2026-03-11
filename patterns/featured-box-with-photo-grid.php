@@ -27,7 +27,7 @@
 			<!-- wp:buttons -->
 			<div class="wp-block-buttons">
 				<!-- wp:button {"className":"is-style-outline"} -->
-				<div class="wp-block-button is-style-outline"><a class="wp-block-button__link wp-element-button">Learn More About Membership</a></div>
+				<div class="wp-block-button is-style-outline"><a class="wp-block-button__link wp-element-button" href="#">Learn More About Membership</a></div>
 				<!-- /wp:button -->
 			</div>
 			<!-- /wp:buttons -->

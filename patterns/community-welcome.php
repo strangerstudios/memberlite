@@ -23,7 +23,7 @@
 			<h2 class="wp-block-heading">Welcome to the Community</h2>
 			<!-- /wp:heading -->
 			<!-- wp:paragraph {"fontSize":"18"} -->
-			<p class="has-18-font-size">We\'re glad you\'re here. This is a space for members to connect, share ideas, ask questions, and support each other. Review the guidelines below to get started.</p>
+			<p class="has-18-font-size">We're glad you're here. This is a space for members to connect, share ideas, ask questions, and support each other. Review the guidelines below to get started.</p>
 			<!-- /wp:paragraph -->
 			<!-- wp:buttons -->
 			<div class="wp-block-buttons">
@@ -48,7 +48,7 @@
 			<details class="wp-block-details has-border-color has-borders-border-color" style="border-width:1px;border-radius:8px;padding-top:var(--wp--preset--spacing--20);padding-right:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--20);padding-left:var(--wp--preset--spacing--20)">
 				<summary>Share Knowledge Freely</summary>
 				<!-- wp:paragraph -->
-				<p>This community thrives when members share their expertise. Don\'t hesitate to answer questions, offer feedback, or share resources that have helped you.</p>
+				<p>This community thrives when members share their expertise. Don't hesitate to answer questions, offer feedback, or share resources that have helped you.</p>
 				<!-- /wp:paragraph -->
 			</details>
 			<!-- /wp:details -->

@@ -15,7 +15,7 @@
 	<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|10"}},"layout":{"type":"constrained"}} -->
 	<div class="wp-block-group">
 		<!-- wp:heading {"textAlign":"center"} -->
-		<h2 class="wp-block-heading has-text-align-center">This Week\'s Featured Video</h2>
+		<h2 class="wp-block-heading has-text-align-center">This Week's Featured Video</h2>
 		<!-- /wp:heading -->
 		<!-- wp:paragraph {"align":"center","fontSize":"18"} -->
 		<p class="has-text-align-center has-18-font-size">New premium video content published every week for members.</p>
