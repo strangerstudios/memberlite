@@ -40,7 +40,7 @@
 				<!-- wp:quote {"className":"is-style-plain","style":{"spacing":{"padding":{"top":"0","right":"0","bottom":"0","left":"0"},"margin":{"top":"0","right":"0","bottom":"0","left":"0"}},"border":{"left":{"color":"var:preset|color|color-secondary","width":"3px"}},"typography":{"fontStyle":"italic","fontWeight":"400"}}} -->
 				<blockquote class="wp-block-quote is-style-plain" style="border-left-color:var(--wp--preset--color--color-secondary);border-left-width:3px;margin-top:0;margin-right:0;margin-bottom:0;margin-left:0;padding-top:0;padding-right:0;padding-bottom:0;padding-left:0;font-style:italic;font-weight:400">
 					<!-- wp:paragraph {"fontSize":"16"} -->
-					<p class="has-16-font-size">"Being part of this community has completely changed how I approach my work. The connections I\'ve made here are priceless."</p>
+					<p class="has-16-font-size">"Being part of this community has completely changed how I approach my work. The connections I've made here are priceless."</p>
 					<!-- /wp:paragraph -->
 				</blockquote>
 				<!-- /wp:quote -->
