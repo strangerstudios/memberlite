@@ -325,7 +325,8 @@
 			color: currentColor;
 			display: block;
 			padding: calc(var(--wp--preset--spacing--10) / 2) var(--wp--preset--spacing--10);
-			text-decoration: none;
+			overflow-wrap: normal;
+			word-break: normal;
 		}
 
 		// Parent items with a dropdown toggle button

@@ -143,6 +143,9 @@
 				return;
 			}
 
+			// Uncheck PMPro overrides whenever the scheme changes
+			wp.customize('memberlite_pmpro_color_override').set(false);
+
 			// Get the scheme colors
 			if (typeof colorSchemes !== 'undefined' && colorSchemes[to]) {
 				updateColorPickersFromScheme(colorSchemes[to].colors);
