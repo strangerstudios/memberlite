@@ -13,7 +13,7 @@
 <?php
 // show the mobile menu widget area
 if ( is_active_sidebar( 'sidebar-5' ) || has_nav_menu( 'primary' ) ) { ?>
-	<div id="mobile-navigation" role="dialog" aria-label="Mobile menu" aria-modal="true" inert>
+	<div id="mobile-navigation" role="dialog" aria-label="<?php echo esc_attr__( 'Mobile menu', 'memberlite' ); ?>" aria-modal="true" inert>
 		<div class="mobile-navigation-bar">
 			<button id="close-mobile-nav" class="menu-toggle">
 				<i class="fa fa-times" aria-hidden="true"></i>

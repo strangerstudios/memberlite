@@ -3,7 +3,6 @@
  * Helper functions for variations.
  *
  * @package Memberlite
- * @package Memberlite
  *
  * @since 7.0
  */
