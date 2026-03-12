@@ -2,8 +2,8 @@
 Contributors: kimannwall, strangerstudios
 Requires at least: 6.0
 Tested up to: 6.9
-Requires PHP: 5.6
-Stable tag: 6.1.1.1.10
+Requires PHP: 7.4
+Stable tag: 7.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: one-column, two-columns, left-sidebar, right-sidebar, flexible-header, custom-background, custom-colors, custom-header, custom-menu, custom-logo, editor-style, featured-images, footer-widgets, full-width-template, theme-options, threaded-comments, translation-ready, e-commerce
@@ -176,7 +176,7 @@ Memberlite includes formatting for use with:
 * FEATURE: Added block image option for showing post thumbnails in the loop and single post.
 * FEATURE: Added author block customizer setting for posts.
 * ENHANCEMENT: Now loading all webfonts locally.
-* ENHANCEMENT: Moved all colors to root variables to improve 
+* ENHANCEMENT: Moved all colors to root variables to improve
 * ENHANCEMENT: Added all unique colors in theme to editor color palette.
 * ENHANCEMENT: Updated to Font Awesome version 6.2.
 * ENHANCEMENT: Improved compatibility with WordPress Block Editor styling options and core blocks.
@@ -232,7 +232,7 @@ Memberlite includes formatting for use with:
 * ENHANCEMENT: Added `memberlite_show_header_right` filter to hide header right area in logo space.
 * ENHANCEMENT: Added `memberlite_login_redirect_to` function and filter to get the `redirect_to` URL attribute used for "Log In" links.
 * ENHANCEMENT: Adjusted appearance of headings and form elements on the new Member Profile Edit page in PMPro.
-* REFACTOR: Added new function `memberlite_get_font` to return the header or body font from theme options. 
+* REFACTOR: Added new function `memberlite_get_font` to return the header or body font from theme options.
 
 = 4.4 - 2020-04-30 =
 * FEATURE: Added layout for "No Sidebar" Layout for Blog, Archive, Posts.
