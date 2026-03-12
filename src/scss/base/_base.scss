@@ -20,7 +20,7 @@ textarea {
 	font-weight: 400;
 }
 
-a:not(.wp-block-button__link) {
+a:where(:not(.wp-block-button__link)) {
 	color: var(--memberlite-color-link);
 	text-decoration: underline;
 	text-underline-offset: 2px;
