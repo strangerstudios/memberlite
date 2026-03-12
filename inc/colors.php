@@ -458,10 +458,10 @@ function memberlite_get_color_schemes(): array {
 			'label'  => __( 'Midnight Violet', 'memberlite' ),
 			'colors' => memberlite_get_midnight_violet_colors(),
 		),
-		'cocoa_ash'       => array(
-			'label'  => __( 'Cocoa Ash', 'memberlite' ),
-			'colors' => memberlite_get_cocoa_ash_colors(),
-		),
+//		'cocoa_ash'       => array(
+//			'label'  => __( 'Cocoa Ash', 'memberlite' ),
+//			'colors' => memberlite_get_cocoa_ash_colors(),
+//		),
 		'soft_spruce'     => array(
 			'label'  => __( 'Soft Spruce', 'memberlite' ),
 			'colors' => memberlite_get_soft_spruce_colors(),
