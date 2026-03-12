@@ -61,18 +61,6 @@
 .banner {
 	padding: var(--wp--preset--spacing--50) 0;
 
-	.text-center {
-		text-align: center;
-	}
-
-	.text-right {
-		text-align: right;
-	}
-
-	.text-left {
-		text-align: left;
-	}
-
 	&.banner_background-image {
 		background-repeat: no-repeat;
 		background-size: cover;

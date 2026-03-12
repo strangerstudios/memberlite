@@ -219,7 +219,7 @@
 			}
 
 			.member-navigation {
-				li {
+					li {
 					display: inline-block;
 					margin: 0;
 					position: relative;
@@ -238,9 +238,6 @@
 					li a { min-width: 100%; }
 				}
 
-				ul ul a:hover {
-					background-color: rgba(0, 0, 0, 0.1);
-				}
 			}
 		}
 	}
@@ -345,6 +342,7 @@
 			> a {
 				align-items: center;
 				display: flex;
+				flex: 1;
 				flex-wrap: nowrap;
 				padding-right: calc(var(--wp--preset--spacing--10) / 2);
 			}
@@ -381,12 +379,6 @@
 				position: relative;
 			}
 
-			li:hover > a {
-				background-color: light-dark(
-					color-mix(in srgb, var(--memberlite-color-site-navigation-background), black 5%),
-					color-mix(in srgb, var(--memberlite-color-site-navigation-background), white 3%)
-				);
-			}
 
 			// Third-level sub-menus need explicit width due to absolute positioning
 			ul.sub-menu {

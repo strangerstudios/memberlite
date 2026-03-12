@@ -6,10 +6,7 @@
 --------------------------------------------------------------*/
 
 .site-main {
-	.post-navigation,
-	.paging-navigation,
-	.page-navigation,
-	.page-links {
+	:where(.post-navigation, .paging-navigation, .page-navigation, .page-links) {
 		margin: var(--wp--preset--spacing--20) 0;
 		overflow: hidden;
 	}
@@ -19,28 +16,23 @@
 		overflow: hidden;
 	}
 
-	.page-navigation,
-	.page-links {
+	:where(.page-navigation, .page-links) {
 		border-top: 1px solid var(--memberlite-color-borders);
 		clear: both;
 		padding-top: var(--wp--preset--spacing--20);
 	}
 }
 
-.comment-navigation .nav-previous,
-.paging-navigation .nav-previous,
-.post-navigation .nav-previous,
-.page-navigation .nav-previous {
-	float: left;
-	text-align: left;
-	width: 49%;
-}
+:where(.comment-navigation, .paging-navigation, .post-navigation, .page-navigation) {
+	.nav-previous {
+		float: left;
+		text-align: left;
+		width: 49%;
+	}
 
-.comment-navigation .nav-next,
-.paging-navigation .nav-next,
-.post-navigation .nav-next,
-.page-navigation .nav-next {
-	float: right;
-	text-align: right;
-	width: 49%;
+	.nav-next {
+		float: right;
+		text-align: right;
+		width: 49%;
+	}
 }

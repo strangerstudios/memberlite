@@ -186,14 +186,9 @@
 	}
 
 	// Large h1 inside content area (not a block heading)
-	h1:not(.wp-block-heading),
+	h1:where(:not(.wp-block-heading)),
 	.h1 {
 		font-size: var(--wp--preset--font-size--54);
-	}
-
-	ul,
-	ol {
-		padding-left: 1.3rem;
 	}
 
 }
@@ -209,7 +204,7 @@
 // Entry Footer
 // -----------------------------------------------------------------------------
 
-.post:not(:has(.entry-author)) .entry-footer {
+.post:where(:not(:has(.entry-author))) .entry-footer {
 	border-top: 1px solid var(--memberlite-color-borders);
 	clear: both;
 	padding: var(--wp--preset--spacing--10) 0 0 0;

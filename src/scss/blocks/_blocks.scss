@@ -15,8 +15,7 @@
 
 .wp-block-table {
 
-	thead,
-	&.is-style-regular thead {
+	thead {
 		border: none;
 	}
 
@@ -33,7 +32,6 @@
 	}
 
 	thead th {
-		background-color: color-mix(in srgb, var(--memberlite-color-borders) 30%, transparent);
 		border-style: solid;
 		border-width: 1px 0;
 	}
@@ -41,7 +39,7 @@
 	tbody {
 
 		th {
-			border-style: dotted;
+			border-style: solid;
 			border-width: 0 0 1px 0;
 		}
 
@@ -53,11 +51,30 @@
 			vertical-align: top;
 		}
 
-		tr:nth-child(even) th,
-		tr:nth-child(even) td {
-			background-color: color-mix(in srgb, var(--memberlite-color-borders) 30%, transparent);
+		tr:nth-child(odd) > * {
+			background-color: transparent;
 		}
+
 	}
+
+	&.is-style-stripes {
+		border-bottom: none;
+
+		td,
+		th {
+			border-color: var(--memberlite-color-borders);
+		}
+
+		tbody {
+
+			tr:nth-child(odd) {
+				background-color: color-mix(in srgb, var(--memberlite-color-borders) 30%, transparent);
+			}
+
+		}
+
+	}
+
 }
 
 // -----------------------------------------------------------------------------
@@ -68,7 +85,7 @@ hr.wp-block-separator {
 	margin-left: auto;
 	margin-right: auto;
 
-	&:not(.is-style-wide):not(.is-style-dots) {
+	&:where(:not(.is-style-wide, .is-style-dots)) {
 		max-width: 100px;
 	}
 
@@ -215,7 +232,7 @@ hr.wp-block-separator {
 		padding-left: 0;
 	}
 
-	a:not(.comment-reply-link) {
+	a:where(:not(.comment-reply-link)) {
 		text-decoration: underline;
 	}
 
@@ -245,7 +262,7 @@ hr.wp-block-separator {
 // Social Links Block
 // -----------------------------------------------------------------------------
 
-.wp-block-social-links .wp-block-social-link.wp-social-link a.wp-block-social-link-anchor {
+:where(.wp-block-social-links) .wp-block-social-link a {
 	&:focus,
 	&:focus-visible {
 		outline: thin dotted var(--memberlite-color-site-navigation);

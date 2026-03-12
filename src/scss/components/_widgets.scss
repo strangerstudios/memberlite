@@ -48,7 +48,7 @@
 	.widget ul.children {
 		color: var(--memberlite-color-text);
 		list-style-type: circle;
-		margin-left: 1.9rem;
+		margin-top: var(--wp--preset--spacing--10);
 	}
 
 	// Calendar block
@@ -120,7 +120,7 @@
 
 .widget-area .widget {
 
-	a:not(.btn):not(.pmpro_btn) {
+	a:where(:not(.btn, .pmpro_btn)) {
 		border-bottom: 1px solid transparent;
 		text-decoration: none;
 
