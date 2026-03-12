@@ -7,8 +7,8 @@ This document describes the **top-level structure** of the Memberlite theme repo
 * **Business back-end logic → `/inc`**
 * **Reusable markup → `/components`**
 * **Static assets → `/assets`**
-* **Front-end CSS → `stylesheet.css` in root**
-* **CSS for the editor, admin, print, utilities, etc. → `/css`**
+* **Front-end CSS source → `/src/scss`** (compiled to `/build/css/main.css`)
+* **CSS for the editor, admin, print, plugin integrations, etc. → `/css`** (manually maintained, not part of the build)
 * **JS for the front or back-end (including customizer) → `/js`**
 
 When adding new functionality, prefer extending existing directories rather than creating new top-level folders unless there is a clear architectural need.
@@ -19,14 +19,12 @@ When adding new functionality, prefer extending existing directories rather than
 
 ### `/assets`
 
-Front-end assets for the theme.
+Static front-end assets for the theme.
 
 Typically contains:
 
-* CSS (Not compiled, we do not have a build process.)
-* JavaScript used on the front end
-* Images (mostly icons atm)
-* Fonts that are used to customize Memberlite via the customizer settings or the block editor options
+* Fonts used to customize Memberlite via the Customizer settings or the Block Editor options
+* Images (mostly icons)
 
 ---
 
@@ -36,9 +34,36 @@ bbPress specific template override for single user content.
 
 ---
 
+### `/build`
+
+Compiled output from the build process. **Do not edit files here directly.**
+
+Contains:
+
+* `css/main.css` — compiled from `src/scss/main.scss`
+* `css/main.rtl.css` — auto-generated RTL version of `main.css`
+* Block and editor assets (future — built from `src/blocks/` and `src/editor/`)
+
+See [Build Process](build-process.md) for details.
+
+---
+
 ### `/components`
 
 Reusable theme components and partials for the header, footer, page and post templates.
+
+---
+
+### `/css`
+
+Vanilla CSS files that are **not** part of the Sass build process. These are committed and edited directly.
+
+Typically contains:
+
+* Integration stylesheets for third-party plugins (`bbpress.css`, `lifterlms.css`, `woocommerce.css`)
+* Utility stylesheets (`admin.css`, `editor.css`, `print.css`, `customizer.css`)
+
+See [CSS Guidelines](css-guidelines.md) for guidance on when styles belong here vs. in `/src/scss`.
 
 ---
 
@@ -67,8 +92,14 @@ Typically contains:
 
 **Notes:**
 
-* This is the primary “back-end” directory for the theme.
+* This is the primary "back-end" directory for the theme.
 * Most extension points (filters/actions) live here.
+
+---
+
+### `/js`
+
+JavaScript for the front end and back end, including the Customizer preview. Files are authored and committed directly — no build step.
 
 ---
 
@@ -87,9 +118,23 @@ Typically contains:
 
 ---
 
-### `/shortodes`
+### `/shortcodes`
 
 Where the theme's custom shortcodes are defined. This was previously part of Memberlite's Shortcode/Elements Add Ons.
+
+---
+
+### `/src`
+
+Source files that require a build step before use.
+
+Contains:
+
+* `scss/` — Sass source files, compiled to `build/css/main.css`. See [CSS Guidelines](css-guidelines.md) for directory structure and conventions.
+* `blocks/` — Custom Gutenberg block source (future use). Built with `@wordpress/scripts` to `build/`.
+* `editor/` — Block editor settings and customizations (future use).
+
+See [Build Process](build-process.md) for details.
 
 ---
 
@@ -100,7 +145,7 @@ Top-level page templates.
 Typically contains:
 
 * Custom page templates registered with WordPress
-* Specialized templates that don’t fit cleanly into the default hierarchy
+* Specialized templates that don't fit cleanly into the default hierarchy
 
 ---
 
@@ -110,9 +155,9 @@ In addition to the folders above, the theme root contains key PHP files such as:
 
 * `functions.php` – Bootstraps the theme and loads files from `/inc`
 * Template hierarchy files (`index.php`, `single.php`, `page.php`, etc.)
-* `style.css` – Theme metadata and base styles
-* `theme.json` – Block editor configuration. Memberlite is a hybrid WordPress theme, so the theme.json is minimal and syncs colors and fonts with the customizer settings.
+* `style.css` – Theme metadata header and a small base stylesheet. The primary front-end stylesheet is `build/css/main.css`.
+* `theme.json` – Block editor configuration. Memberlite is a hybrid WordPress theme, so the theme.json is minimal and syncs colors and fonts with the Customizer settings.
 
 ---
 
-**Last Updated**: 2026-02-04
+**Last Updated**: 2026-03-12
