@@ -53,6 +53,10 @@
 // Footer Widgets
 // -----------------------------------------------------------------------------
 
+#site-footer .footer-widgets a {
+	color: var(--memberlite-color-footer-widgets);
+}
+
 .footer-widgets {
 	background-color: var(--memberlite-color-footer-widgets-background);
 	border-top: 1px solid var(--memberlite-color-borders);

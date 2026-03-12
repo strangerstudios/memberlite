@@ -327,6 +327,11 @@
 			padding: calc(var(--wp--preset--spacing--10) / 2) var(--wp--preset--spacing--10);
 			overflow-wrap: normal;
 			word-break: normal;
+			text-decoration: none;
+
+			&:hover {
+				text-decoration: underline;
+			}
 		}
 
 		// Parent items with a dropdown toggle button
