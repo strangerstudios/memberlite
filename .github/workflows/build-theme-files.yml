@@ -3,7 +3,7 @@ name: Build Stylesheets and Scripts
 on:
   push:
     branches:
-      - test-workflow # Branch we want to run this on w/ package-lock.json & build folder not ignored
+      - master # Branch we want to run this on w/ package-lock.json & build folder not ignored
   workflow_dispatch:
 
 jobs:
