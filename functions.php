@@ -4,7 +4,7 @@
  *
  * @package Memberlite
  */
-define( 'MEMBERLITE_VERSION', '7.0.0' );
+define( 'MEMBERLITE_VERSION', '7.0' );
 define( 'MEMBERLITE_URL', get_template_directory_uri() );
 define( 'MEMBERLITE_DIR', get_template_directory() );
 
