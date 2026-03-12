@@ -10,13 +10,13 @@ define( 'MEMBERLITE_DIR', get_template_directory() );
 
 // enqueue additional stylesheets and javascript
 function memberlite_init_styles() {
-	wp_enqueue_style( 'memberlite_style', get_stylesheet_uri(), array(), MEMBERLITE_VERSION );
-
 	if ( is_rtl() ) {
-		wp_enqueue_style( 'memberlite_rtl', MEMBERLITE_URL . '/build/css/main.rtl.css', array( 'memberlite_style' ), MEMBERLITE_VERSION );
+		wp_enqueue_style( 'memberlite_rtl', MEMBERLITE_URL . '/build/css/main.rtl.css', array(), MEMBERLITE_VERSION );
 	} else {
 		wp_enqueue_style( 'memberlite_main_style', MEMBERLITE_URL . '/build/css/main.css', array(), MEMBERLITE_VERSION );
 	}
+
+	wp_enqueue_style( 'memberlite_style', get_stylesheet_uri(), array(), MEMBERLITE_VERSION );
 	wp_enqueue_style( 'memberlite_print_style', MEMBERLITE_URL . '/css/print.css', array(), MEMBERLITE_VERSION, 'print' );
 	wp_enqueue_script( 'memberlite-script', MEMBERLITE_URL . '/js/memberlite.js', array( 'jquery' ), MEMBERLITE_VERSION, true );
 	wp_enqueue_style( 'font-awesome', MEMBERLITE_URL . '/font-awesome/css/all.min.css', array(), '6.6.0' );
