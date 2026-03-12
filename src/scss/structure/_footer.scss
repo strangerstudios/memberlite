@@ -53,10 +53,6 @@
 // Footer Widgets
 // -----------------------------------------------------------------------------
 
-#site-footer .footer-widgets a {
-	color: var(--memberlite-color-footer-widgets);
-}
-
 .footer-widgets {
 	background-color: var(--memberlite-color-footer-widgets-background);
 	border-top: 1px solid var(--memberlite-color-borders);
@@ -89,14 +85,9 @@
 
 	a {
 		color: var(--memberlite-color-footer-widgets);
-		opacity: 0.9;
-		text-decoration: none;
-		transition: opacity .15s ease-in-out;
 
 		&:hover {
 			color: var(--memberlite-color-footer-widgets);
-			opacity: 1;
-			text-decoration: underline;
 		}
 	}
 

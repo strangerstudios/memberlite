@@ -6,7 +6,7 @@
 --------------------------------------------------------------*/
 
 
-button:not(.wp-block-accordion-heading__toggle):not(.menu-toggle):not(.customize-partial-edit-shortcut-button),
+button:where(:not(.wp-block-accordion-heading__toggle):not(.menu-toggle):not(.customize-partial-edit-shortcut-button)),
 input[type=button],
 input[type=reset],
 input[type=submit],
