@@ -8,5 +8,7 @@ Whenever possible, we try to keep this documentation up-to-date with the latest 
 ## Table of Contents
 
 1. [Build Process](build-process.md)
-1. [Customizer](customizer.md)
-1. [Project Structure](project-structure.md)
+2. [Customizer](customizer.md)
+3. [Patterns](patterns.md)
+4. [Project Structure](project-structure.md)
+
