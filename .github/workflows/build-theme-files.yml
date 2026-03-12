@@ -3,12 +3,14 @@ name: Build Stylesheets and Scripts
 on:
   push:
     branches:
-      - master # Branch we want to run this on w/ package-lock.json & build folder not ignored
+      - master # Branch we want to run this
   workflow_dispatch:
 
 jobs:
   build-stylesheets:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v2
 
@@ -30,6 +32,6 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add build/ # Replace with your actual build output folder
           git diff --staged --quiet || git commit -m "chore: build stylesheets and scripts [skip ci]"
-          git push
+          git push origin HEAD:master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
