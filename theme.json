@@ -842,6 +842,15 @@
 								"bottom": "calc( var(--wp--preset--spacing--10) / 2)",
 								"left": "var(--wp--preset--spacing--10)"
 							}
+						},
+						":hover": {
+							"color": {
+								"background": "currentColor",
+								"text": "var(--wp--preset--color--base)"
+							},
+							"border": {
+								"color": "currentColor"
+							}
 						}
 					}
 				}
@@ -1137,6 +1146,12 @@
 				"color": {
 					"background": "var(--wp--preset--color--buttons)",
 					"text": "var(--wp--preset--color--base)"
+				},
+				":hover": {
+					"color": {
+						"background": "var(--wp--preset--color--buttons-hover)",
+						"text": "var(--wp--preset--color--base)"
+					}
 				},
 				":focus": {
 					"outline": {

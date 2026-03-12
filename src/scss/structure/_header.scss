@@ -235,7 +235,7 @@
 				.sub-menu {
 					background-color: var(--memberlite-color-secondary);
 
-					li a { min-width: 125px; }
+					li a { min-width: 100%; }
 				}
 
 				ul ul a:hover {
@@ -325,7 +325,8 @@
 			color: currentColor;
 			display: block;
 			padding: calc(var(--wp--preset--spacing--10) / 2) var(--wp--preset--spacing--10);
-			text-decoration: none;
+			overflow-wrap: normal;
+			word-break: normal;
 		}
 
 		// Parent items with a dropdown toggle button
@@ -357,15 +358,16 @@
 		// Dropdown sub-menus (desktop only)
 		ul.sub-menu {
 			@include breakpoint(tablet) {
-				background-color: var(--memberlite-color-site-navigation-background);
-				box-shadow: 4px 12px 16px 0 rgba(0, 0, 0, 0.12);
 				display: none;
 				flex-direction: column;
-				margin: 0;
 				position: absolute;
-				text-align: left;
 				top: 100%;
 				z-index: 99999;
+				margin: 0;
+				width: 100%;
+				background-color: var(--memberlite-color-site-navigation-background);
+				box-shadow: 4px 12px 16px 0 rgba(0, 0, 0, 0.12);
+				text-align: left;
 			}
 
 			li {
@@ -376,8 +378,8 @@
 
 			li:hover > a {
 				background-color: light-dark(
-					color-mix(in srgb, var(--memberlite-color-site-background), black 3%),
-					color-mix(in srgb, var(--memberlite-color-site-background), white 3%)
+					color-mix(in srgb, var(--memberlite-color-site-navigation-background), black 5%),
+					color-mix(in srgb, var(--memberlite-color-site-navigation-background), white 3%)
 				);
 			}
 
@@ -509,11 +511,6 @@ body.mobile-nav-open {
 	}
 
 	a {
-		&:hover {
-			text-decoration-line: underline;
-			text-underline-offset: 2px;
-		}
-
 		&[aria-current] {
 			background-color: light-dark(
 					color-mix(in srgb, var(--memberlite-color-site-navigation-background), black 5%),

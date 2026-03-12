@@ -41,13 +41,6 @@
 		color: inherit;
 		display: block;
 		padding: calc(var(--wp--preset--spacing--10) / 2) var(--wp--preset--spacing--10);
-		text-decoration: none;
-
-		&:hover {
-			filter: brightness(var(--memberlite-hover-brightness));
-			text-decoration-line: underline;
-			text-underline-offset: 2px;
-		}
 	}
 
 	li:first-child a {
@@ -155,6 +148,8 @@
 		// Back to Top
 		.skip-link {
 			margin-top: var(--wp--preset--spacing--10);
+			text-decoration: none;
+			color: var(--wp--preset--color--base);
 
 			@include breakpoint(tablet) {
 				margin: 0;

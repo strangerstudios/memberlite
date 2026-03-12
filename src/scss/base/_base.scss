@@ -20,8 +20,10 @@ textarea {
 	font-weight: 400;
 }
 
-a {
+a:not(.wp-block-button__link) {
 	color: var(--memberlite-color-link);
+	text-decoration: underline;
+	text-underline-offset: 2px;
 
 	&:focus,
 	&:focus-visible {

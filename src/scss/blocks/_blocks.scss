@@ -172,9 +172,22 @@ hr.wp-block-separator {
 // Buttons Block
 // -----------------------------------------------------------------------------
 
-.wp-block-buttons .wp-block-button__link:focus {
-	outline-color: var(--memberlite-color-text);
-	outline-offset: 2px;
+.wp-block-buttons .wp-block-button__link {
+	&:focus {
+		outline-color: var(--memberlite-color-text);
+		outline-offset: 2px;
+	}
+}
+
+.wp-block-button.is-style-outline .wp-block-button__link {
+	background: transparent;
+	border-color: var(--wp--preset--color--buttons);
+	color: var(--wp--preset--color--buttons);
+
+	&:hover {
+		background-color: var(--wp--preset--color--buttons);
+		color: var(--wp--preset--color--base);
+	}
 }
 
 // -----------------------------------------------------------------------------
