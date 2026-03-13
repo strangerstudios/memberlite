@@ -91,6 +91,31 @@ Memberlite includes formatting for use with:
 [Install Events Manager »](https://wordpress.org/plugins/events-manager/)
 
 == Changelog ==
+= 7.0 - 2026-03-13 =
+* FEATURE: Refactored theme structure into smaller component files with a redesigned mobile navigation. #215 (@kimcoleman)(@RachelRVasquez)
+* FEATURE: Added Gutenberg block patterns for common membership site layouts. #225 (@kimcoleman)(@RachelRVasquez)
+* FEATURE: Updated theme build process with automated Sass compilation and GitHub Actions deployment workflow. #212 (@RachelRVasquez)
+* FEATURE: Added theme support to duplicate an existing menu, export menus as custom links with relative URLs, and import theme settings with menus. #195 (@kimcoleman)
+* ENHANCEMENT: Converted all stylesheets from CSS to Sass (SCSS) for better code organization and maintainability. #220 (@RachelRVasquez)
+* ENHANCEMENT: Converted jQuery to vanilla JavaScript in the main Memberlite JS file. #219 (@RachelRVasquez)
+* ENHANCEMENT: Improved header navigation accessibility for both mouse and keyboard users. #223 (@RachelRVasquez)
+* ENHANCEMENT: Added adaptive button hover colors for light and dark color schemes. #226 (@RachelRVasquez)
+* ENHANCEMENT: Automated RTL language styles generated from existing theme styles. #221 (@RachelRVasquez)
+* ENHANCEMENT: Added PMPro icon next to the Memberlite admin menu and Template Settings page. #216 (@RachelRVasquez)
+* ENHANCEMENT: Modernized color schemes with upgrade script and updated theme.json filter. #200 (@kimcoleman)(@RachelRVasquez)
+* ENHANCEMENT: Streamlined colors and styles across the theme. #196 (@kimcoleman)
+* ENHANCEMENT: Updated import function to properly handle legacy colors before saving to theme mods. #211 (@kimcoleman)
+* ENHANCEMENT: Improved color mapping to WordPress presets and de-duplication of block editor color palette. #210 (@kimcoleman)
+* ENHANCEMENT: Import and export theme settings now support child theme to parent theme and vice versa. #201 (@kimcoleman)
+* ENHANCEMENT: Added version numbers to remaining component templates. #218 (@RachelRVasquez)
+* ENHANCEMENT: Styling adjustments and fixes after Sass conversion. #222 (@RachelRVasquez)
+* ENHANCEMENT: Turned off the enlarged excerpt display by default. #209 (@RachelRVasquez)
+* REFACTOR: Customizer colors no longer stored with # symbols; added upgrade path for existing settings. #204 (@kimcoleman)(@RachelRVasquez)
+* BUG FIX: Fixed site title color in the Customizer. #217 (@RachelRVasquez)
+* BUG FIX: Re-enabled color overrides for PMPro CSS variables. #202 (@kimcoleman)(@RachelRVasquez)
+* BUG FIX: Ensured style.css loads after the main theme stylesheet for correct cascade. #232 (@RachelRVasquez)
+* BUG FIX: Fixed link and button colors, footer widget link colors, and block table consistency. #233 #234 (@RachelRVasquez)
+
 = 6.1.1 - 2026-01-27 =
 * ENHANCEMENT: Replacing webfonts with latin-extended versions for broader language support. #190 (@kimcoleman)
 * ENHANCEMENT: Added a separate column ratio setting for posts and blog (inherits from pages setting by default). #192 (@kimcoleman)
