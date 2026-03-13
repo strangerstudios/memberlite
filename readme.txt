@@ -92,8 +92,8 @@ Memberlite includes formatting for use with:
 
 == Changelog ==
 = 7.0 - 2026-03-13 =
-* FEATURE: Refactored theme structure into smaller component files with a redesigned mobile navigation. #215 (@kimcoleman)(@RachelRVasquez)
-* FEATURE: Added Gutenberg block patterns for common membership site layouts. #225 (@kimcoleman)(@RachelRVasquez)
+* FEATURE: Refactored theme structure into smaller component files with a redesigned mobile navigation. #215 (@kimcoleman, @RachelRVasquez)
+* FEATURE: Added Gutenberg block patterns for common membership site layouts. #225 (@kimcoleman, @RachelRVasquez)
 * FEATURE: Updated theme build process with automated Sass compilation and GitHub Actions deployment workflow. #212 (@RachelRVasquez)
 * FEATURE: Added theme support to duplicate an existing menu, export menus as custom links with relative URLs, and import theme settings with menus. #195 (@kimcoleman)
 * ENHANCEMENT: Converted all stylesheets from CSS to Sass (SCSS) for better code organization and maintainability. #220 (@RachelRVasquez)
@@ -102,7 +102,7 @@ Memberlite includes formatting for use with:
 * ENHANCEMENT: Added adaptive button hover colors for light and dark color schemes. #226 (@RachelRVasquez)
 * ENHANCEMENT: Automated RTL language styles generated from existing theme styles. #221 (@RachelRVasquez)
 * ENHANCEMENT: Added PMPro icon next to the Memberlite admin menu and Template Settings page. #216 (@RachelRVasquez)
-* ENHANCEMENT: Modernized color schemes with upgrade script and updated theme.json filter. #200 (@kimcoleman)(@RachelRVasquez)
+* ENHANCEMENT: Modernized color schemes with upgrade script and updated `theme.json` filter. #200 (@kimcoleman, @RachelRVasquez)
 * ENHANCEMENT: Streamlined colors and styles across the theme. #196 (@kimcoleman)
 * ENHANCEMENT: Updated import function to properly handle legacy colors before saving to theme mods. #211 (@kimcoleman)
 * ENHANCEMENT: Improved color mapping to WordPress presets and de-duplication of block editor color palette. #210 (@kimcoleman)
@@ -110,11 +110,15 @@ Memberlite includes formatting for use with:
 * ENHANCEMENT: Added version numbers to remaining component templates. #218 (@RachelRVasquez)
 * ENHANCEMENT: Styling adjustments and fixes after Sass conversion. #222 (@RachelRVasquez)
 * ENHANCEMENT: Turned off the enlarged excerpt display by default. #209 (@RachelRVasquez)
-* REFACTOR: Customizer colors no longer stored with # symbols; added upgrade path for existing settings. #204 (@kimcoleman)(@RachelRVasquez)
+* REFACTOR: Customizer colors no longer stored with # symbols; added upgrade path for existing settings. #204 (@kimcoleman, @RachelRVasquez)
 * BUG FIX: Fixed site title color in the Customizer. #217 (@RachelRVasquez)
-* BUG FIX: Re-enabled color overrides for PMPro CSS variables. #202 (@kimcoleman)(@RachelRVasquez)
-* BUG FIX: Ensured style.css loads after the main theme stylesheet for correct cascade. #232 (@RachelRVasquez)
+* BUG FIX: Re-enabled color overrides for PMPro CSS variables. #202 (@kimcoleman, @RachelRVasquez)
+* BUG FIX: Ensured `style.css` loads after the main theme stylesheet for correct cascade. #232 (@RachelRVasquez)
 * BUG FIX: Fixed link and button colors, footer widget link colors, and block table consistency. #233 #234 (@RachelRVasquez)
+* DEPRECATED: Renamed `memberlite_getBreadcrumbs()` to `memberlite_get_breadcrumbs()` for WordPress coding standards.
+* DEPRECATED: Split `memberlite_page_title()` into `memberlite_get_page_title()` and `memberlite_get_page_description()` for more granular control over page title and description output.
+* DEPRECATED: Removed the `memberlite_editor_color_palette` filter; the editor color palette is now built from the color preset map.
+* DEPRECATED: Moved legacy color scheme definitions to deprecated file; sites using old schemes will be migrated automatically via the upgrade script.
 
 = 6.1.1 - 2026-01-27 =
 * ENHANCEMENT: Replacing webfonts with latin-extended versions for broader language support. #190 (@kimcoleman)
