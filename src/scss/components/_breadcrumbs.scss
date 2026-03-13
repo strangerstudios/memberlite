@@ -1,0 +1,25 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+
+/*--------------------------------------------------------------
+ 3.1 Components: Breadcrumbs
+--------------------------------------------------------------*/
+
+.memberlite-breadcrumb {
+	color: var(--memberlite-color-page-masthead);
+	font-size: var(--wp--preset--font-size--14);
+	margin: 0;
+	padding: 0;
+
+	a {
+		color: var(--memberlite-color-page-masthead);
+
+		&:hover {
+			font-weight: 400;
+		}
+	}
+
+	.current_page_item {
+		font-weight: 700;
+	}
+}

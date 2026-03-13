@@ -1,0 +1,107 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+
+/*--------------------------------------------------------------
+ 1.7 Base | Global: Grid
+--------------------------------------------------------------*/
+
+@use 'sass:math';
+
+// -----------------------------------------------------------------------------
+// Config
+// -----------------------------------------------------------------------------
+
+$grid-columns:      12                  !default;
+$grid-gutter:       1.5rem             !default;
+$grid-max-width:    71em                !default;
+
+// Maps breakpoint names to the column/offset class prefix.
+// Values must match keys in your breakpoint() mixin.
+$grid-breakpoints: (
+	'medium': 'tablet',
+	'large':  'desktop',
+) !default;
+
+
+// -----------------------------------------------------------------------------
+// Row
+// -----------------------------------------------------------------------------
+
+.row {
+	display: flex;
+	flex-wrap: wrap;
+	margin: 0 auto;
+	max-width: $grid-max-width;
+	width: 100%;
+
+	// Nested rows bleed into the parent gutter
+	.row {
+		display: flex;
+		flex-wrap: wrap;
+		margin-left: -$grid-gutter;
+		margin-right: -$grid-gutter;
+		max-width: none;
+		width: auto;
+	}
+
+	// Horizontal alignment utilities
+	&.align-center  { justify-content: center; }
+	&.align-right   { justify-content: flex-end; }
+	&.align-justify { justify-content: space-between; }
+	&.align-spaced  { justify-content: space-around; }
+}
+
+
+// -----------------------------------------------------------------------------
+// Base Column
+// -----------------------------------------------------------------------------
+
+.columns {
+	flex: 0 0 100%;
+	padding-left: $grid-gutter;
+	padding-right: $grid-gutter;
+	width: 100%;
+
+	// Vertical alignment utilities
+	&.align-center { align-self: center; }
+	&.align-top    { align-self: flex-start; }
+	&.align-bottom,
+	&.align-right  { align-self: flex-end; }
+}
+
+
+// -----------------------------------------------------------------------------
+// Small (mobile-first) Offsets — no breakpoint wrapper
+// -----------------------------------------------------------------------------
+
+@for $i from 0 through $grid-columns - 1 {
+	.small-offset-#{$i} {
+		margin-left: math.percentage(math.div($i, $grid-columns));
+	}
+}
+
+
+// -----------------------------------------------------------------------------
+// Responsive Columns + Offsets
+// Maps 'medium'/'large' prefixes to your breakpoint() mixin names.
+// -----------------------------------------------------------------------------
+
+@each $prefix, $bp in $grid-breakpoints {
+	@include breakpoint($bp) {
+
+		// Columns
+		@for $i from 1 through $grid-columns {
+			.#{$prefix}-#{$i} {
+				flex: 0 0 math.percentage(math.div($i, $grid-columns));
+				max-width: math.percentage(math.div($i, $grid-columns));
+			}
+		}
+
+		// Offsets
+		@for $i from 0 through $grid-columns - 1 {
+			.#{$prefix}-offset-#{$i} {
+				margin-left: math.percentage(math.div($i, $grid-columns));
+			}
+		}
+	}
+}

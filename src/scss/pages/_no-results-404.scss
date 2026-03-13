@@ -1,0 +1,28 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+
+/*--------------------------------------------------------------
+ 5.2 Pages: 404 and No Search Results
+
+ Covers: 404 error page, search-no-results layout, search form styling
+--------------------------------------------------------------*/
+
+.search-no-results .content-area,
+.error-404 {
+	.search-form {
+		margin-bottom: 8.7rem;
+
+		input[type=submit] {
+			padding-top: calc(var(--wp--preset--spacing--10) / 2);
+			padding-bottom: calc(var(--wp--preset--spacing--10) / 2);
+		}
+	}
+}
+
+.error-404 .search-form {
+	justify-content: center;
+}
+
+.search-no-results #secondary .widget_search {
+	display: none;
+}

@@ -1,0 +1,633 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+
+/*--------------------------------------------------------------
+ 4.1 Structure: Header
+
+ Covers: site nav, mobile nav, header branding, header-right/meta-member
+--------------------------------------------------------------*/
+
+// -----------------------------------------------------------------------------
+// Site Header
+// -----------------------------------------------------------------------------
+
+.site-header {
+	background-color: var(--memberlite-color-header-background);
+
+	@include breakpoint(mobile) {
+		padding: 0 calc(var(--wp--preset--spacing--10) / 2);
+	}
+
+	// Nav link underline — scoped to header menus only
+	.menu a {
+		&:hover:not(.menu-item-has-children > a:hover) {
+			text-decoration-line: underline;
+			text-underline-offset: 2px;
+		}
+	}
+
+	.row {
+		margin-bottom: 0;
+
+		@include breakpoint(mobile) {
+			align-items: center;
+			display: grid;
+			grid-column-gap: calc(var(--wp--preset--spacing--10) / 2);
+			grid-template-columns: 6fr 1fr;
+			grid-template-areas: "site-branding menu-toggle";
+		}
+	}
+
+	// -------------------------------------------------------------------------
+	// Branding
+	// -------------------------------------------------------------------------
+
+	.site-branding {
+		align-items: center;
+		display: flex;
+		gap: var(--wp--preset--spacing--10);
+		margin: var(--wp--preset--spacing--10) 0;
+
+		@include breakpoint(mobile) {
+			grid-area: site-branding;
+			padding-left: var(--wp--preset--spacing--10);
+			width: 100%;
+		}
+
+		a.custom-logo-link {
+			display: block;
+
+			&:hover {
+				filter: unset;
+			}
+			&:focus {
+				outline: none;
+			}
+
+			.custom-logo {
+				max-height: 100px;
+				width: auto;
+			}
+		}
+
+		.site-identity {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+		}
+
+		h1.site-title,
+		span.site-title {
+			color: var(--memberlite-color-header-text);
+			font-family: var(--memberlite-header-font);
+			font-size: var(--wp--preset--font-size--36);
+			font-weight: 700;
+			line-height: var(--wp--custom--line-height--heading);
+			margin: 0;
+		}
+
+		.site-title a {
+			border: none;
+			color: var(--memberlite-color-header-text);
+			text-decoration: none;
+
+			@include breakpoint(mobile) {
+				height: auto;
+				background-size: contain;
+				width: 100%;
+			}
+		}
+
+		.site-description {
+			color: var(--memberlite-color-header-text);
+			display: block;
+			margin: 0;
+		}
+	}
+
+	// -------------------------------------------------------------------------
+	// Header Right & Meta Member
+	// -------------------------------------------------------------------------
+
+	.header-right {
+		color: var(--memberlite-color-meta-link);
+		display: none;
+
+		@include breakpoint(tablet) {
+			display: flex;
+			flex-direction: column;
+			gap: var(--wp--preset--spacing--20);
+			justify-content: center;
+		}
+
+		&:has(#meta-member) .header-widget-area {
+			margin-bottom: var(--wp--preset--spacing--10);
+		}
+
+		.widget_nav_menu,
+		.widget_nav_menu div {
+			@include breakpoint(tablet) {
+				display: inline-block;
+			}
+		}
+
+		.widget_nav_menu {
+			ul li {
+				float: none;
+
+				@include breakpoint(tablet) {
+					display: inline-block;
+				}
+			}
+
+			a {
+				color: currentColor;
+				padding: calc(var(--wp--preset--spacing--10) / 2) var(--wp--preset--spacing--10);
+			}
+
+			ul.sub-menu a {
+				padding: calc(var(--wp--preset--spacing--10) / 2) var(--wp--preset--spacing--10);
+
+				@include breakpoint(tablet) {
+					max-width: 210px;
+				}
+			}
+		}
+
+		.header-widget-area {
+			align-items: center;
+			display: flex;
+			justify-content: flex-end;
+
+			.wp-block-social-links {
+				margin: 0;
+			}
+		}
+
+		#meta-member {
+			display: flex;
+			justify-content: flex-end;
+			margin-bottom: auto;
+
+			.fa-user {
+				margin-right: 3px;
+			}
+
+			.meta-member-inner {
+				background-color: var(--memberlite-color-secondary);
+				border-bottom-right-radius: var(--wp--custom--border--radius);
+				border-bottom-left-radius: var(--wp--custom--border--radius);
+				color: var(--memberlite-color-white);
+				font-size: var(--wp--preset--font-size--16);
+				padding: 0 calc(var(--wp--preset--spacing--10) / 2);
+
+				li.menu-item-depth-0 {
+					padding: 0;
+				}
+			}
+
+			.user {
+				font-family: var(--memberlite-header-font);
+				margin: 0 calc(var(--wp--preset--spacing--10) / 2);
+
+				a {
+					font-weight: 700;
+					padding: calc(var(--wp--preset--spacing--10) / 2) 0;
+				}
+			}
+
+			a {
+				color: var(--memberlite-color-white);
+				display: inline-block;
+				text-decoration: none;
+
+				&:hover {
+					border: none;
+					color: var(--memberlite-color-white);
+					text-decoration: underline;
+				}
+			}
+
+			// Inline member links (e.g. "My Account | Log Out")
+			.member-navigation,
+			.member-navigation > ul {
+				display: inline;
+
+				@include breakpoint(tablet) {
+					margin: 0;
+				}
+			}
+
+			.member-navigation {
+					li {
+					display: inline-block;
+					margin: 0;
+					position: relative;
+
+					&:last-child { border: none; }
+				}
+
+				a {
+					margin: 0;
+					padding: calc(var(--wp--preset--spacing--10) / 2);
+				}
+
+				.sub-menu {
+					background-color: var(--memberlite-color-secondary);
+
+					li a { min-width: 100%; }
+				}
+
+			}
+		}
+	}
+
+	// -------------------------------------------------------------------------
+	// Desktop Main Navigation
+	// Note: hidden below tablet — #mobile-navigation takes over.
+	// -------------------------------------------------------------------------
+
+	#site-navigation,
+	.site-navigation-sticky-wrapper {
+		display: none;
+
+		@include breakpoint(tablet) {
+			display: block;
+		}
+	}
+
+	#site-navigation {
+		background-color: var(--memberlite-color-site-navigation-background);
+		color: var(--memberlite-color-site-navigation);
+		clear: both;
+
+		ul {
+			max-width: 71em;
+		}
+
+		> ul > li.menu-item > a {
+			padding: var(--wp--preset--spacing--20) var(--wp--preset--spacing--10);
+		}
+
+		&.site-navigation-sticky {
+			border-bottom: 1px solid var(--memberlite-color-borders);
+			box-shadow: var(--memberlite-shadow);
+			position: fixed;
+			width: 100%;
+			z-index: 10;
+		}
+
+		li.menu-item-search {
+			margin-left: auto;
+			margin-right: var(--wp--preset--spacing--10);
+		}
+
+		.search-form input[type=submit].search-submit {
+			background: none;
+			padding: 0;
+			position: absolute;
+			text-indent: -9999em;
+		}
+	}
+}
+
+
+// -----------------------------------------------------------------------------
+// Shared desktop navigation styles
+// Applies to: main nav, member nav, header-right widget nav
+// -----------------------------------------------------------------------------
+
+.site-header {
+	#site-navigation,
+	.member-navigation,
+	.header-right .widget_nav_menu {
+		ul {
+			list-style: none;
+			margin: 0;
+
+			&.menu {
+				align-items: center;
+				display: flex;
+				margin: 0 auto;
+				z-index: 10;
+			}
+		}
+
+		li {
+			margin: 0;
+			position: relative;
+		}
+
+		a {
+			color: currentColor;
+			display: block;
+			padding: calc(var(--wp--preset--spacing--10) / 2) var(--wp--preset--spacing--10);
+			overflow-wrap: normal;
+			word-break: normal;
+			text-decoration: none;
+
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+
+		// Parent items with a dropdown toggle button
+		ul > li.menu-item-has-children {
+			@include breakpoint(tablet) {
+				align-items: center;
+				display: flex;
+				justify-content: space-between;
+			}
+
+			> a {
+				align-items: center;
+				display: flex;
+				flex: 1;
+				flex-wrap: nowrap;
+				padding-right: calc(var(--wp--preset--spacing--10) / 2);
+			}
+
+			> button {
+				@include remove-btn-defaults;
+				border-left: 1px solid light-dark(
+					color-mix(in srgb, var(--memberlite-color-site-navigation), white 80%),
+					color-mix(in srgb, var(--memberlite-color-site-navigation), black 70%)
+				);
+				color: inherit;
+				padding: 0 calc(var(--wp--preset--spacing--10) / 2);
+			}
+		}
+
+		// Dropdown sub-menus (desktop only)
+		ul.sub-menu {
+			@include breakpoint(tablet) {
+				display: none;
+				flex-direction: column;
+				position: absolute;
+				top: 100%;
+				z-index: 99999;
+				margin: 0;
+				width: 100%;
+				background-color: var(--memberlite-color-site-navigation-background);
+				box-shadow: 4px 12px 16px 0 rgba(0, 0, 0, 0.12);
+				text-align: left;
+			}
+
+			li {
+				border: none;
+				padding: 0;
+				position: relative;
+			}
+
+
+			// Third-level sub-menus need explicit width due to absolute positioning
+			ul.sub-menu {
+				width: 100%;
+			}
+		}
+
+		// Open state — first level
+		ul.menu li.menu-item-depth-0 > button[aria-expanded="true"] {
+			+ .sub-menu,
+			~ .sub-menu {
+				display: flex;
+				left: 0;
+				top: 100%;
+
+				// Open state — second level
+				li > button[aria-expanded="true"] {
+					+ .sub-menu,
+					~ .sub-menu {
+						display: flex;
+						left: 100%;
+						top: 0;
+					}
+				}
+			}
+		}
+	}
+}
+
+// -----------------------------------------------------------------------------
+// Mobile Navigation Toggle
+// -----------------------------------------------------------------------------
+
+// Hidden on tablet+ since the desktop nav takes over
+.mobile-navigation-bar {
+	text-align: right;
+
+	@include breakpoint(tablet) {
+		display: none;
+	}
+}
+
+.menu-toggle {
+	background-color: transparent;
+	box-shadow: none;
+	color: var(--memberlite-color-primary);
+	font-size: var(--wp--preset--font-size--24);
+	padding: calc(var(--wp--preset--spacing--10) / 2) var(--wp--preset--spacing--10);
+
+	&:active,
+	&:focus,
+	&:hover {
+		background-color: transparent;
+		box-shadow: none;
+		color: var(--memberlite-color-primary);
+	}
+}
+
+// Cocoa Ash: primary color is too dark so we lighten toggle icons via a CSS
+// custom property — keeps color-mix() in the browser, not Sass compile time.
+.scheme_cocoa_ash {
+	--cocoa-ash-primary-lightened: color-mix(in srgb, var(--memberlite-color-primary) 30%, white);
+
+	#expand-mobile-nav,
+	.menu-toggle {
+		color: var(--cocoa-ash-primary-lightened);
+
+		&:active,
+		&:focus,
+		&:hover {
+			color: var(--cocoa-ash-primary-lightened);
+		}
+	}
+}
+
+body.mobile-nav-open {
+	overflow: hidden;
+}
+
+
+// -----------------------------------------------------------------------------
+// Mobile Navigation Panel (#mobile-navigation)
+// -----------------------------------------------------------------------------
+
+.admin-bar #mobile-navigation {
+	padding-top: 60px;
+}
+
+#mobile-navigation {
+	background-color: var(--memberlite-color-site-navigation-background);
+	color: var(--memberlite-color-text);
+	height: 100vh;
+	left: -100vw;
+	overflow: auto;
+	padding: var(--wp--preset--spacing--30);
+	position: fixed;
+	text-align: left;
+	top: 0;
+	transition: left 0.5s;
+	width: 100vw;
+	z-index: 100;
+
+	@include breakpoint(tablet) {
+		display: none;
+	}
+
+	&.open {
+		left: 0;
+	}
+
+	ul {
+		margin-left: 0;
+	}
+
+	ul li {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	ul li.menu-item a {
+		border-bottom: 1px solid var(--memberlite-color-borders, #e0e0e0);
+		color: var(--memberlite-color-site-navigation, #222);
+		display: block;
+		padding: calc(var(--wp--preset--spacing--10) / 2) var(--wp--preset--spacing--10);
+		text-decoration: none;
+	}
+
+	a {
+		&[aria-current] {
+			background-color: light-dark(
+					color-mix(in srgb, var(--memberlite-color-site-navigation-background), black 5%),
+					color-mix(in srgb, var(--memberlite-color-site-navigation-background), white 3%)
+			);
+			font-weight: bold;
+		}
+	}
+
+	// Sub-menu indentation
+	ul.sub-menu {
+		margin: 0;
+
+		li a {
+			padding-left: var(--wp--preset--spacing--20);
+		}
+		ul.sub-menu li a {
+			padding-left: var(--wp--preset--spacing--30);
+		}
+	}
+
+	.widget ul,
+	.widget ol {
+		list-style: none;
+		margin: 0;
+	}
+
+	.member-navigation {
+		@include breakpoint(mobile) {
+			display: block;
+		}
+
+		.menu {
+			display: flex;
+			gap: var(--wp--preset--spacing--10);
+			margin: 0 0 var(--wp--preset--spacing--20);
+
+			li.menu-item a {
+				@include breakpoint(tablet) {
+					border: none;
+				}
+			}
+		}
+
+		// Multiple member nav items — switch to block layout
+		&:has(ul > li + li),
+		&:has(ul > li + li) .menu {
+			display: block;
+
+			@include breakpoint(tablet) {
+				margin: 0;
+			}
+		}
+	}
+
+	#meta-member .user {
+		font-weight: bold;
+		margin-right: var(--wp--preset--spacing--10);
+	}
+
+	.logged-in & .member-navigation {
+		margin-bottom: var(--wp--preset--spacing--40);
+	}
+
+	.menu-item-search {
+		margin-top: var(--wp--preset--spacing--30);
+
+		.search-form {
+			label {
+				box-sizing: border-box;
+				flex: 1 1 0%;
+				min-width: 0;
+			}
+
+			input[type=search] {
+				height: 100%;
+				margin-top: 0;
+				width: 100%;
+			}
+
+			input[type=submit].search-submit {
+				padding-bottom: calc(var(--wp--preset--spacing--10) / 2);
+				padding-top: calc(var(--wp--preset--spacing--10) / 2);
+			}
+		}
+	}
+
+	// PMPro overrides
+	.pmpro_section { margin: 0; }
+
+	.pmpro_card {
+		background-color: transparent;
+		border: none;
+		border-radius: 0;
+		box-shadow: none;
+	}
+
+	.pmpro_card_title,
+	.pmpro_card_content {
+		padding: 0;
+	}
+
+	.pmpro_card_actions {
+		background-color: transparent;
+		border: none;
+		padding-left: 0;
+		padding-right: 0;
+	}
+
+	.pmpro_form_field-password-toggle button {
+		color: var(--memberlite-color-white);
+
+		svg { stroke: var(--memberlite-color-white); }
+	}
+
+	#loginform .login-submit .button {
+		background-color: var(--memberlite-color-action);
+	}
+
+	.pmpro-member-navigation li {
+		padding: calc(var(--wp--preset--spacing--10) / 2) 0;
+	}
+}

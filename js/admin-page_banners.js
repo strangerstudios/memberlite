@@ -15,7 +15,7 @@ function memberlite_togglePageBannerMeta() {
 jQuery(document).ready(function() { memberlite_togglePageBannerMeta(); });
 
 //toggle when show banner radio is changed
-jQuery('input[name=memberlite_banner_show]').bind('keyup change', function() { memberlite_togglePageBannerMeta() });
+jQuery('input[name=memberlite_banner_show]').on('keyup change', function() { memberlite_togglePageBannerMeta() });
 
 /**
  * Temporary fix for Gutenberg issue where wp_editor fields are not saved when
@@ -23,12 +23,12 @@ jQuery('input[name=memberlite_banner_show]').bind('keyup change', function() { m
  * Borrowed from CMB2: https://github.com/CMB2/CMB2/pull/1190
  */
 if (wp.data && window.tinymce) {
-  wp.data.subscribe(function () {
-    // the post is currently being saved && we have tinymce editors
-    if (wp.data.select( 'core/editor' ).isSavingPost() && window.tinymce.editors) {
-      for (var i = 0; i < tinymce.editors.length; i++) {
-        tinymce.editors[i].save();
-      }
-    }
-  });
+	wp.data.subscribe(function () {
+		// the post is currently being saved && we have tinymce editors
+		if (wp.data.select( 'core/editor' ).isSavingPost() && window.tinymce.editors) {
+			for (var i = 0; i < tinymce.editors.length; i++) {
+			tinymce.editors[i].save();
+			}
+		}
+	});
 }

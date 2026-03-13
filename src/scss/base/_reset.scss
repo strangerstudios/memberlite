@@ -1,0 +1,78 @@
+/*--------------------------------------------------------------
+ 1.1 Base | Global: Reset
+--------------------------------------------------------------*/
+
+*, *::before, *::after {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	html {
+		interpolate-size: allow-keywords;
+	}
+}
+
+img, video {
+	height: auto;
+	max-width: 100%;
+}
+
+embed, iframe, object {
+	max-width: 100%;
+}
+
+input, button, textarea, select {
+	font: inherit;
+}
+
+p, a, h1, h2, h3, h4, h5, h6 {
+	overflow-wrap: break-word;
+	word-break: break-word;
+}
+
+p {
+	text-wrap: pretty;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	text-wrap: balance;
+}
+
+ol, ul {
+	list-style: none;
+	padding-left: 0;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+caption, th, td {
+	font-weight: normal;
+	text-align: left;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+	content: "";
+}
+
+blockquote,
+q {
+	quotes: "" "";
+}
+
+a:hover,
+a:active {
+	outline: 0;
+}
+
+a img {
+	border: 0;
+}
