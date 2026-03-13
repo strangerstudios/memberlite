@@ -229,7 +229,7 @@ function memberlite_custom_sidebars() {
 										'memberlite_delete_custom_sidebar'
 									);
 									?>
-									<a href="javascript:confirmCustomSidebarDeletion('<?php echo $confirm_text; ?>', '<?php echo esc_url( $delete_url ); ?>');">
+									<a href="javascript:confirmCustomSidebarDeletion('<?php echo $confirm_text; ?>', '<?php echo esc_url( $delete_url ); ?>');" class="button button-secondary memberlite-button-danger" title="<?php echo esc_attr( sprintf( /* translators: %s: sidebar name */ __( 'Delete "%s" Sidebar', 'memberlite' ), $wp_registered_sidebar['name'] ) ); ?>">
 										<?php esc_html_e( 'Delete', 'memberlite' ); ?>
 									</a>
 									<?php

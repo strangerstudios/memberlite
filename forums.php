@@ -6,6 +6,8 @@
  */
 
 get_header(); ?>
+
+<div class="row">
 	<?php
 		if ( bbp_is_single_user() ) {
 			$columns_class = 'medium-12';
@@ -34,5 +36,7 @@ if ( ! bbp_is_single_user() ) {
 	memberlite_get_sidebar();
 }
 ?>
+
+</div><!-- .row -->
 
 <?php get_footer(); ?>

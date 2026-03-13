@@ -1,0 +1,69 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+
+/*--------------------------------------------------------------
+ 1.6 Base | Global: Forms
+--------------------------------------------------------------*/
+
+label {
+	font-family: var(--memberlite-body-font), ui-sans-serif;
+	font-size: var(--wp--preset--font-size--18);
+	line-height: var(--wp--custom--line-height--body);
+	display: block;
+}
+
+.required {
+	color: $color-error-text;
+	font-weight: 400;
+}
+
+input[type=search] {
+	appearance: textfield;
+	box-sizing: content-box;
+}
+
+input[type=text],
+input[type=email],
+input[type=password],
+input[type=url],
+input[type=tel],
+input[type=number],
+input[type=search],
+input[type=file],
+input[type=date],
+input[type=time],
+input[type=month],
+input[type=week],
+input[type=datetime-local],
+select,
+textarea {
+	@include form-element-base;
+
+	&:focus {
+		@include form-element-focus;
+	}
+}
+
+select:where(:not([multiple])) {
+	appearance: none;
+	background-image: url('data:image/svg+xml;utf8,<svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path fill="%23222222" d="M7 10l5 5 5-5z"/></svg>');
+	background-position: right var(--pmpro--base--spacing--small, 12px) center;
+	background-repeat: no-repeat;
+	background-size: 16px 16px;
+	padding-right: calc(var(--pmpro--base--spacing--small, 12px) + 16px);
+}
+
+.is-style-dark select:where(:not([multiple])) {
+	background-image: url('data:image/svg+xml;utf8,<svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path fill="%23ffffff" d="M7 10l5 5 5-5z"/></svg>');
+}
+
+textarea {
+	overflow: auto;
+	vertical-align: top;
+	width: 100%;
+}
+
+.search-form {
+	display: flex;
+	gap: calc(var(--wp--preset--spacing--10) / 2);
+}

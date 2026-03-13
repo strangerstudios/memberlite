@@ -5,30 +5,43 @@
  * After running an update, sets memberlite_db_version to the version of the last update run.
  * Update versions are based on the date they were released. YYYYMMDD01, YYYYMMDD02.
  * Hopefully we don't release more than 99 updates in any given day.
+ *
+ * @package Memberlite
+ * @since 4.0
+ */
+
+/**
+ * Check for updates and run migration scripts.
+ *
+ * @since 4.0
  */
 function memberlite_checkForUpdates() {
-	$memberlite_db_version = get_option('memberlite_db_version', 0);
+	$memberlite_db_version = get_option( 'memberlite_db_version', 0 );
 
-	// default DB version for Memberlite 4.0
+	// Default DB version for Memberlite 4.0
 	if ( empty( $memberlite_db_version ) ) {
 		$memberlite_db_version = '2018080101';
-		update_option('memberlite_db_version', $memberlite_db_version, 'no');
+		update_option( 'memberlite_db_version', $memberlite_db_version, 'no' );
 	}
 
 	// Migrate the theme_mod for webfonts to single properties.
-	// Update the database version to 2025032601
 	if ( $memberlite_db_version < '2025032601' ) {
 		$memberlite_webfonts = get_theme_mod( 'memberlite_webfonts' );
 		if ( ! empty( $memberlite_webfonts ) ) {
-			// Break the theme mod for custom fonts into two parts.
-			$fonts_string_parts = explode( '_', $memberlite_webfonts );
+			$fonts_string_parts     = explode( '_', $memberlite_webfonts );
 			$memberlite_header_font = $fonts_string_parts[0];
-			$memberlite_body_font = $fonts_string_parts[1];
+			$memberlite_body_font   = $fonts_string_parts[1];
 			set_theme_mod( 'memberlite_header_font', $memberlite_header_font );
 			set_theme_mod( 'memberlite_body_font', $memberlite_body_font );
 			remove_theme_mod( 'memberlite_webfonts' );
 		}
 		update_option( 'memberlite_db_version', '2025032601', 'no' );
+	}
+
+	// Memberlite 7.0 Update
+	if ( $memberlite_db_version < '2026022201' ) {
+		require_once get_template_directory() . '/inc/updates/update_7_0.php';
+		update_option( 'memberlite_db_version', '2026022201', 'no' );
 	}
 }
 
@@ -66,16 +79,16 @@ function memberlite_get_update_info() {
 	// Query the server if we do not have the local $update_info or we force checking for an update.
 	if ( empty( $update_info ) || ! empty( $_REQUEST['force-check'] ) || current_time('timestamp') > $update_info_timestamp + 86400 ) {
 		/**
-         * Filter to change the timeout for this wp_remote_get() request for updates.
-         * @since 6.0
+		 * Filter to change the timeout for this wp_remote_get() request for updates.
+		 * @since 6.0
 		 *
-         * @param int $timeout The number of seconds before the request times out
-         */
-        $timeout = apply_filters( 'memberlite_get_update_info_timeout', 5 );
+		 * @param int $timeout The number of seconds before the request times out
+		 */
+		$timeout = apply_filters( 'memberlite_get_update_info_timeout', 5 );
 		$remote_info = wp_remote_get( PMPRO_LICENSE_SERVER . 'themes/', $timeout );
 
 		// Test response.
-        if ( is_wp_error( $remote_info ) || empty( $remote_info['response'] ) || $remote_info['response']['code'] != '200' ) {
+		if ( is_wp_error( $remote_info ) || empty( $remote_info['response'] ) || $remote_info['response']['code'] != '200' ) {
 			// Error.
 			return new WP_Error( 'connection_error', 'Could not connect to the PMPro License Server to get update information. Try again later.' );
 		} else {
@@ -116,7 +129,7 @@ function memberlite_update_themes_filter( $value ) {
 
 	// Find the memberlite theme data in the update info array.
 	$find_theme = array_search( 'memberlite', array_column( $update_info, 'Slug' ) );
-	
+
 	// If the theme update data is found, adjust $update_info to be specifically for memberlite.
 	if ( $find_theme !== false ) {
 		$update_info = $update_info[$find_theme];
@@ -126,7 +139,7 @@ function memberlite_update_themes_filter( $value ) {
 
 	//get data for memberlite. This will always return data.
 	$theme_data = wp_get_theme( $update_info['Slug'] );
-	
+
 	//compare versions
 	if ( ! empty( $update_info['License'] ) && version_compare( $theme_data['Version'], $update_info['Version'], '<' ) ){
 		$value->response[$update_info['Slug']] = array(

@@ -1,0 +1,41 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+
+/*--------------------------------------------------------------
+ 5.1 Pages: Blog and Single Post
+
+ Covers: Blog layout, single post layout, sidebar ordering, wide/full alignments
+--------------------------------------------------------------*/
+
+.blog.sidebar-blog-left #primary,
+.archive.sidebar-blog-left #primary,
+.search.sidebar-blog-left #primary,
+.single.sidebar-blog-left #primary {
+	order: 2;
+}
+
+.blog.sidebar-blog-right #primary,
+.archive.sidebar-blog-right #primary,
+.search.sidebar-blog-right #primary,
+.single.sidebar-blog-right #primary {
+	order: unset;
+}
+
+.single.sidebar-blog-none {
+	.alignfull,
+	.alignwide {
+		margin-left: calc(50% - 50vw);
+		margin-right: calc(50% - 50vw);
+		max-width: 1000%;
+		width: auto;
+	}
+
+	.alignwide {
+		@include breakpoint(wide) {
+			margin-left: calc(50% - var(--wp--style--global--wide-size) / 2);
+			margin-right: calc(50% - var(--wp--style--global--wide-size) / 2);
+			max-width: var(--wp--style--global--wide-size);
+			width: auto;
+		}
+	}
+}

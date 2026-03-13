@@ -8,15 +8,15 @@
  * Root variables
  */
 :root {
-	--memberlite--border--color: #E5E7EB;
+	--memberlite--border--color: #e5e7eb;
 	--memberlite--border--radius: 6px;
 	--memberlite--box-shadow: 1px 2px 3px #12196110;
-	--memberlite--color--blue-lightest: #F5F8FA;
-	--memberlite--color--blue-medium-transparent: #E2E8F099;
-	--memberlite--color--blue-medium: #E2E8F0;
-	--memberlite--color--blue-darkest-transparent: #C3D0E099;
-	--memberlite--color--blue-darkest: #C3D0E0;
-	--memberlite--color--almost-black: #0F172A;
+	--memberlite--color--blue-lightest: #f5f8fa;
+	--memberlite--color--blue-medium-transparent: #e2e8f099;
+	--memberlite--color--blue-medium: #e2e8f0;
+	--memberlite--color--blue-darkest-transparent: #c3d0e099;
+	--memberlite--color--blue-darkest: #c3d0e0;
+	--memberlite--color--almost-black: #0f172a;
 	--memberlite--color--error-text: #721c24;
 	--memberlite--spacing--medium: 30px;
 	--memberlite--spacing--small: 10px;
@@ -26,7 +26,7 @@
  * Admin Banner Area
  */
 .memberlite_banner {
-	background-color: #FFF;
+	background-color: #fff;
 	box-shadow: var(--memberlite--box-shadow);
 	margin-left: -20px;
 	padding: var(--memberlite--spacing--medium) 0 calc( var(--memberlite--spacing--medium) / 2 ) 0;
@@ -161,7 +161,7 @@ body[class*="toplevel_page_memberlite-"] {
 
 .memberlite_admin .memberlite-nav-primary ul li a:hover:not(.memberlite_admin .memberlite-nav-primary a.current:hover),
 .memberlite_admin .memberlite-nav-primary ul li a:focus:not(.memberlite_admin .memberlite-nav-primary a.current:hover) {
-	background-color: #FFF;
+	background-color: #fff;
 }
 
 .memberlite_admin hr:not(hr.wp-header-end) {
@@ -429,7 +429,7 @@ body[class*="toplevel_page_memberlite-"] #footer-left a {
  * Settings pages sections styles
  */
 .memberlite_admin .memberlite_section {
-	background-color: #FFF;
+	background-color: #fff;
 	border: 1px solid var(--memberlite--border--color);
 	border-radius: var(--memberlite--border--radius);
 	box-shadow: var(--memberlite--box-shadow);
@@ -511,7 +511,7 @@ body[class*="toplevel_page_memberlite-"] #footer-left a {
 }
 
 .memberlite_admin .memberlite_section .memberlite_section-sort .memberlite_section-sort-button:disabled {
-	color: #AAA;
+	color: #aaa;
 }
 
 .memberlite_admin .memberlite_section .memberlite_section-sort .memberlite_section-sort-button-description {
@@ -587,4 +587,67 @@ body[class*="toplevel_page_memberlite-"] #footer-left a {
 .memberlite_admin .plugin-card {
 	display: flex;
 	flex-direction: column;
+}
+
+/**
+ * Scrollable Boxes
+ */
+.memberlite_scrollable {
+	background-color: #FFFFFF;
+	height: 170px;
+	overflow: auto;
+}
+
+.memberlite_scrollable::-webkit-scrollbar {
+	background-color: #c3c4c7;
+	width: 8px;
+	height: 8px;
+}
+
+.memberlite_scrollable::-webkit-scrollbar-thumb {
+	background: #2c3338;
+	border-radius: 5px;
+}
+
+/**
+ * Clickable Items
+ */
+.memberlite_clickable {
+	cursor: pointer;
+}
+
+/**
+ * Checkbox Boxes
+ */
+.memberlite_checkbox_box {
+	background-color: #FFFFFF;
+	border: 1px solid var(--memberlite--border--color);
+	max-width: 300px;
+}
+
+.memberlite_checkbox_box div {
+	border-bottom: 1px solid var(--memberlite--border--color);
+	padding: 6px;
+}
+
+.memberlite_checkbox_box div:last-child {
+	border-bottom: none;
+}
+
+.memberlite_checkbox_box .memberlite_clickable {
+	align-items: center;
+	cursor: pointer;
+	display: flex;
+}
+
+.memberlite_checkbox_box .memberlite_clickable:hover {
+	background: rgba(255, 185, 0, 0.1);
+}
+
+.memberlite_checkbox_box .memberlite_clickable label {
+	flex-grow: 1;
+}
+
+.memberlite_checkbox_box .memberlite_clickable input[type=checkbox] {
+	margin-top: 0;
 }

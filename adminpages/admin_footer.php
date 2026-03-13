@@ -5,5 +5,4 @@
  * @since 6.1
  */
 ?>
-	<div class="clear"></div>
 </div> <!-- end .memberlite_admin -->
