@@ -24,7 +24,7 @@ composer.js
 composer.lock
 
 # compiled
-build
+# build
 
 # Temporary files
 *~
