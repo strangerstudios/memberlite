@@ -59,6 +59,7 @@
 	border-bottom: 1px solid var(--memberlite-color-borders);
 	color: var(--memberlite-color-footer-widgets);
 	padding: 0;
+	overflow: hidden;
 
 	@include breakpoint(tablet) {
 		padding: var(--wp--preset--spacing--50) 0;

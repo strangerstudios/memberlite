@@ -103,7 +103,7 @@
 // -----------------------------------------------------------------------------
 
 .entry-meta a {
-	text-underline-offset: 2px;
+	text-underline-offset: 3px;
 }
 
 .byline,
@@ -213,7 +213,7 @@
 .entry-footer a {
 	color: var(--memberlite-color-link);
 	text-decoration: underline;
-	text-underline-offset: 2px;
+	text-underline-offset: 3px;
 
 	&:hover {
 		color: var(--memberlite-color-text);

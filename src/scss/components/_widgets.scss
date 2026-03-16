@@ -13,7 +13,12 @@
 // -----------------------------------------------------------------------------
 
 #secondary {
-	overflow: hidden;
+	margin-bottom: var(--wp--preset--spacing--50);
+	background-color: light-dark(
+		color-mix(in srgb, var(--wp--preset--color--base), black 2%),
+		color-mix(in srgb, var(--wp--preset--color--base), white 5%)
+	);
+	border-radius: var(--wp--custom--border--radius);
 
 	select {
 		margin: var(--wp--preset--spacing--10);
@@ -21,7 +26,15 @@
 
 	// Widget base
 	.widget {
-		margin-bottom: var(--wp--preset--spacing--20);
+		overflow: hidden;
+		margin: var(--wp--preset--spacing--10) 0;
+		padding: var(--wp--preset--spacing--20) 0 0;
+		border-top: 1px solid var(--memberlite-color-borders);
+
+		&:first-child {
+			margin-top: 0;
+			border-top: none;
+		}
 	}
 
 	.widget-title {
@@ -53,7 +66,6 @@
 
 	// Calendar block
 	.wp-block-calendar {
-
 		thead th,
 		tbody td {
 			padding: .7rem var(--wp--preset--spacing--10);
@@ -118,17 +130,17 @@
 // Widget Area (shared — applies to sidebar and footer widgets)
 // -----------------------------------------------------------------------------
 
-.widget-area .widget {
-
-	a:where(:not(.btn, .pmpro_btn)) {
-		border-bottom: 1px solid transparent;
-		text-decoration: none;
-
-		&:hover {
-			border-bottom-color: var(--memberlite-color-link);
-		}
-	}
-}
+//.widget-area .widget {
+//
+//	a:where(:not(.btn, .pmpro_btn)) {
+//		border-bottom: 1px solid transparent;
+//		text-decoration: none;
+//
+//		&:hover {
+//			border-bottom-color: var(--memberlite-color-link);
+//		}
+//	}
+//}
 
 
 // -----------------------------------------------------------------------------
@@ -151,13 +163,29 @@
 // Widget — Calendar
 // -----------------------------------------------------------------------------
 
-.widget_calendar #wp-calendar caption {
+.widget_calendar #wp-calendar caption,
+.wp-block-calendar caption {
 	background-color: var(--memberlite-color-borders);
 	border-top: 1px solid var(--memberlite-color-borders);
 	font-size: var(--wp--preset--font-size--24);
 	padding: .7rem var(--wp--preset--spacing--10);
 	text-align: center;
 }
+
+.wp-block-calendar {
+	thead th,
+	tbody td {
+		padding: .7rem var(--wp--preset--spacing--10);
+	}
+}
+
+.wp-block-calendar :where(table:not(.has-text-color)) {
+	color: var(--memberlite-color-text);
+}
+
+//.wp-block-calendar :where(table:not(.has-text-color)) th {
+//	color: var(--wp--preset--color--base);
+//}
 
 
 // -----------------------------------------------------------------------------

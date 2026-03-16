@@ -22,7 +22,7 @@
 	.menu a {
 		&:hover:not(.menu-item-has-children > a:hover) {
 			text-decoration-line: underline;
-			text-underline-offset: 2px;
+			text-underline-offset: 3px;
 		}
 	}
 
