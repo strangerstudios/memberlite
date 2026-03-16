@@ -38,9 +38,8 @@
 	}
 
 	.widget-title {
-		border-top: 1px solid var(--memberlite-color-borders);
 		margin: 0;
-		padding: var(--wp--preset--spacing--20) 0 var(--wp--preset--spacing--10) 0;
+		padding: 0 0 var(--wp--preset--spacing--10) 0;
 
 		a { text-decoration: none; }
 	}
@@ -163,29 +162,25 @@
 // Widget — Calendar
 // -----------------------------------------------------------------------------
 
-.widget_calendar #wp-calendar caption,
-.wp-block-calendar caption {
-	background-color: var(--memberlite-color-borders);
-	border-top: 1px solid var(--memberlite-color-borders);
-	font-size: var(--wp--preset--font-size--24);
-	padding: .7rem var(--wp--preset--spacing--10);
-	text-align: center;
-}
-
+.widget_calendar,
 .wp-block-calendar {
+	caption {
+		background-color: var(--memberlite-color-borders);
+		border-top: 1px solid var(--memberlite-color-borders);
+		font-size: var(--wp--preset--font-size--24);
+		padding: .7rem var(--wp--preset--spacing--10);
+		text-align: center;
+	}
+
 	thead th,
 	tbody td {
 		padding: .7rem var(--wp--preset--spacing--10);
 	}
-}
 
-.wp-block-calendar :where(table:not(.has-text-color)) {
-	color: var(--memberlite-color-text);
+	&:where(table:not(.has-text-color)) {
+		color: var(--memberlite-color-text);
+	}
 }
-
-//.wp-block-calendar :where(table:not(.has-text-color)) th {
-//	color: var(--wp--preset--color--base);
-//}
 
 
 // -----------------------------------------------------------------------------
