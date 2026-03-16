@@ -270,7 +270,10 @@
 		}
 
 		&.site-navigation-sticky {
-			border-bottom: 1px solid var(--memberlite-color-borders);
+			border-bottom: 1px solid light-dark(
+					color-mix(in srgb, var(--memberlite-color-site-navigation-background), black 10%),
+					color-mix(in srgb, var(--memberlite-color-site-navigation-background), white 20%)
+			);
 			box-shadow: var(--memberlite-shadow);
 			position: fixed;
 			width: 100%;
@@ -422,6 +425,7 @@
 }
 
 .menu-toggle {
+	border: none;
 	background-color: transparent;
 	box-shadow: none;
 	color: var(--memberlite-color-primary);
