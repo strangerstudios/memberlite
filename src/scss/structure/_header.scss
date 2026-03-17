@@ -358,10 +358,6 @@
 
 			> button {
 				@include remove-btn-defaults;
-				//border-left: 1px solid light-dark(
-				//	color-mix(in srgb, var(--memberlite-color-site-navigation), white 80%),
-				//	color-mix(in srgb, var(--memberlite-color-site-navigation), black 70%)
-				//);
 				border-left: 1px solid;
 				border-color: inherit;
 				color: inherit;

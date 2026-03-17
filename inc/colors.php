@@ -612,8 +612,8 @@ function memberlite_adjust_color_brightness( string $hex_color, float $percent =
 	$b = max( 0, min( 255, $b + ( $b * $percent / 100 ) ) );
 
 	return '#' . str_pad( dechex( (int) round( $r ) ), 2, '0', STR_PAD_LEFT )
-	       . str_pad( dechex( (int) round( $g ) ), 2, '0', STR_PAD_LEFT )
-	       . str_pad( dechex( (int) round( $b ) ), 2, '0', STR_PAD_LEFT );
+		. str_pad( dechex( (int) round( $g ) ), 2, '0', STR_PAD_LEFT )
+		. str_pad( dechex( (int) round( $b ) ), 2, '0', STR_PAD_LEFT );
 }
 
 /**
