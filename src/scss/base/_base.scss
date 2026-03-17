@@ -90,6 +90,7 @@ figure {
 }
 
 table {
+	background: var(--memberlite-color-site-background);
 	margin: var(--wp--preset--spacing--20) 0;
 	width: 100%;
 }
@@ -239,7 +240,7 @@ address {
 }
 
 pre {
-	background-color: light-dark(color-mix(in srgb, var(--memberlite-color-text) 7%, transparent), color-mix(in srgb, var(--memberlite-color-text) 20%, transparent));
+	background-color: light-dark(color-mix(in srgb, var(--memberlite-color-text) 1%, transparent), color-mix(in srgb, var(--memberlite-color-text) 10%, transparent));
 	font-family: "Courier 10 Pitch", Courier, monospace;
 	margin: var(--wp--preset--spacing--20) 0;
 	max-width: 100%;

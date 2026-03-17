@@ -68,7 +68,7 @@
 }
 
 @mixin form-element-base {
-	background-color: transparent;
+	background-color: var(--wp--preset--color--base);
 	border: 1px solid light-dark(
 		color-mix(in srgb, var(--memberlite-color-text), white 12%),
 		color-mix(in srgb, var(--memberlite-color-text), black 60%)

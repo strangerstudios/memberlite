@@ -75,6 +75,10 @@
 		}
 	}
 
+	.wp-block-calendar a {
+		color: var(--memberlite-color-link);
+	}
+
 	h3 {
 		font-weight: 700;
 		margin: 0 0 var(--wp--preset--spacing--10) 0;
