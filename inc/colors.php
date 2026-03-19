@@ -312,7 +312,7 @@ function memberlite_get_midnight_violet_colors(): array {
  *
  * Warm browns with orange accent.
  *
- * @since 7.1
+ * @since 7.0.1
  * @return array 17-color associative array.
  */
 function memberlite_get_cocoa_ash_colors(): array {
@@ -342,7 +342,7 @@ function memberlite_get_cocoa_ash_colors(): array {
  *
  * Dark blues with peach accents.
  *
- * @since 7.1
+ * @since 7.0.1
  * @return array 17-color associative array.
  */
 function memberlite_get_gotham_colors(): array {
