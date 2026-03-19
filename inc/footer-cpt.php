@@ -58,25 +58,15 @@ add_action( 'init', 'memberlite_register_footer_cpt' );
  * @return WP_Post|null The footer post, or null if none exist.
  */
 function memberlite_get_default_footer(): ?WP_Post {
-	// Check for an explicitly chosen default first (set via Customizer).
 	$default_id = (int) get_theme_mod( 'memberlite_default_footer_id', 0 );
-	if ( $default_id ) {
-		$post = get_post( $default_id );
-		if ( $post && 'memberlite_footer' === $post->post_type && 'publish' === $post->post_status ) {
-			return $post;
-		}
+	if ( ! $default_id ) {
+		return null;
 	}
 
-	// Fall back to the most-recently published footer.
-	$footers = get_posts(
-		array(
-			'post_type'      => 'memberlite_footer',
-			'post_status'    => 'publish',
-			'posts_per_page' => 1,
-			'orderby'        => 'date',
-			'order'          => 'DESC',
-		)
-	);
+	$post = get_post( $default_id );
+	if ( $post && 'memberlite_footer' === $post->post_type && 'publish' === $post->post_status ) {
+		return $post;
+	}
 
-	return $footers[0] ?? null;
+	return null;
 }
