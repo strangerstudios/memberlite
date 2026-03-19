@@ -397,22 +397,12 @@ function memberlite_widgets_init() {
 		)
 	);
 
-	$footer_widgets_count = get_theme_mod( 'memberlite_footerwidgets', $memberlite_defaults['memberlite_footerwidgets'] );
-	if ( $footer_widgets_count == '2' ) {
-		$footer_widgets_col_class = 'medium-6';
-	} elseif ( $footer_widgets_count == '3' ) {
-		$footer_widgets_col_class = 'medium-4';
-	} elseif ( $footer_widgets_count == '6' ) {
-		$footer_widgets_col_class = 'large-3';
-	} else {
-		$footer_widgets_col_class = 'medium-3';
-	}
 	register_sidebar(
 		array(
 			'name'          => __( 'Footer Widgets', 'memberlite' ),
 			'id'            => 'sidebar-4',
-			'description'   => 'You can set the number of widget columns in Appearance > Customize. Default: 4 columns.',
-			'before_widget' => '<aside id="%1$s" class="widget ' . $footer_widgets_col_class . ' columns %2$s">',
+			'description'   => 'Footer widget area. Widgets are spaced evenly (max 4 per row, minimum 25% width each).',
+			'before_widget' => '<aside id="%1$s" class="widget memberlite-footer-widget-col columns %2$s">',
 			'after_widget'  => '</aside>',
 			'before_title'  => '<h3 class="widget-title">',
 			'after_title'   => '</h3>',
@@ -431,6 +421,34 @@ function memberlite_widgets_init() {
 	);
 }
 add_action( 'widgets_init', 'memberlite_widgets_init' );
+
+/**
+ * Dynamically assign column width classes to footer widgets based on how many
+ * are active, spacing them evenly at no less than 25% width (max 4 per row).
+ */
+function memberlite_footer_widget_col_class( array $params ): array {
+	if ( 'sidebar-4' !== $params[0]['id'] ) {
+		return $params;
+	}
+
+	$sidebars = wp_get_sidebars_widgets();
+	$count    = count( $sidebars['sidebar-4'] ?? array() );
+
+	if ( $count <= 1 ) {
+		$col_class = 'medium-12';
+	} elseif ( $count === 2 ) {
+		$col_class = 'medium-6';
+	} elseif ( $count === 3 ) {
+		$col_class = 'medium-4';
+	} else {
+		$col_class = 'medium-3';
+	}
+
+	$params[0]['before_widget'] = str_replace( 'memberlite-footer-widget-col', $col_class, $params[0]['before_widget'] );
+
+	return $params;
+}
+add_filter( 'dynamic_sidebar_params', 'memberlite_footer_widget_col_class' );
 
 /* Get the redirect_to URL to use for "Log In" links. */
 function memberlite_login_redirect_to() {
