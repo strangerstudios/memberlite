@@ -559,6 +559,9 @@ require_once get_template_directory() . '/inc/custom-walkers.php';
 /* Pattern categories. */
 require_once get_template_directory() . '/inc/patterns.php';
 
+/* Footer CPT and helpers. */
+require_once get_template_directory() . '/inc/footer-cpt.php';
+
 /* Customizer additions. */
 require_once get_template_directory() . '/inc/customizer.php';
 

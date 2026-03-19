@@ -370,6 +370,29 @@ class Memberlite_Customize {
 	 * @return void
 	 */
 	public static function set_customizer_footer_settings( WP_Customize_Manager $wp_customize ) {
+		// FOOTER: Footer CPT ===================
+		$footer_posts = get_posts( array(
+			'post_type'      => 'memberlite_footer',
+			'post_status'    => 'publish',
+			'posts_per_page' => -1,
+			'orderby'        => 'title',
+			'order'          => 'ASC',
+		) );
+
+		if ( ! empty( $footer_posts ) ) {
+			$footer_choices = array( '0' => __( '— Use default footer —', 'memberlite' ) );
+			foreach ( $footer_posts as $footer_post ) {
+				$footer_choices[ $footer_post->ID ] = $footer_post->post_title;
+			}
+
+			self::add_memberlite_setting_control( $wp_customize, 'memberlite_default_footer_id', __( 'Footer', 'memberlite' ), 'memberlite_footer_options', array(
+				'type'              => 'select',
+				'sanitize_callback' => 'absint',
+				'choices'           => $footer_choices,
+				'description'       => __( 'Choose which footer to display on the site.', 'memberlite' ),
+			) );
+		}
+
 		// FOOTER: Footer Widgets ===============
 		self::add_memberlite_setting_control( $wp_customize, 'memberlite_footerwidgets', __( 'Footer Widget Columns', 'memberlite' ), 'memberlite_footer_options', array(
 			'type'              => 'select',
