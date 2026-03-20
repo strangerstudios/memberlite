@@ -38,7 +38,7 @@
 	p a:not(.btn) {
 		color: currentColor;
 		text-decoration-line: underline;
-		text-underline-offset: 2px;
+		text-underline-offset: 3px;
 	}
 
 	p:last-child {
@@ -61,7 +61,7 @@
 	h3 a {
 		color: var(--memberlite-color-page-masthead);
 		text-decoration-line: underline;
-		text-underline-offset: 2px;
+		text-underline-offset: 3px;
 	}
 
 	a.pmpro_btn {
@@ -88,7 +88,7 @@
 	.memberlite-breadcrumb a {
 		color: var(--memberlite-color-page-masthead);
 		text-decoration-line: underline;
-		text-underline-offset: 2px;
+		text-underline-offset: 3px;
 	}
 
 	& + .row {

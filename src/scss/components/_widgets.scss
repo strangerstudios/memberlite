@@ -13,7 +13,6 @@
 // -----------------------------------------------------------------------------
 
 #secondary {
-	overflow: hidden;
 
 	select {
 		margin: var(--wp--preset--spacing--10);
@@ -21,15 +20,32 @@
 
 	// Widget base
 	.widget {
-		margin-bottom: var(--wp--preset--spacing--20);
+		background-color: light-dark(
+			color-mix(in srgb, var(--wp--preset--color--base), black 2%),
+			color-mix(in srgb, var(--wp--preset--color--base), white 5%)
+		);
+		border-radius: var(--wp--custom--border--radius);
+		overflow: hidden;
+		margin: 0 0 var(--wp--style--root--padding-right) 0;
+
+		> :first-child {
+			padding-top: var(--wp--style--root--padding-top);
+		}
+
+		> :last-child {
+			padding-bottom: var(--wp--style--root--padding-bottom);
+		}
 	}
 
 	.widget-title {
-		border-top: 1px solid var(--memberlite-color-borders);
 		margin: 0;
-		padding: var(--wp--preset--spacing--20) 0 var(--wp--preset--spacing--10) 0;
+		padding: 0;
 
-		a { text-decoration: none; }
+		a {
+			&:hover, &:active, &:focus {
+				text-decoration: underline;
+			}
+		}
 	}
 
 	// Reset list styles for common widget types
@@ -52,11 +68,12 @@
 	}
 
 	// Calendar block
-	.wp-block-calendar {
+	.widget:has(.wp-block-calendar) {
+		background-color: transparent;
+		border-radius: 0;
 
-		thead th,
-		tbody td {
-			padding: .7rem var(--wp--preset--spacing--10);
+		.wp-block-calendar {
+			padding: 0;
 		}
 	}
 
@@ -67,9 +84,11 @@
 
 	// Nav menu widget
 	.widget_nav_menu {
+		padding-left: var(--wp--style--root--padding-left);
+		padding-right: var(--wp--style--root--padding-right);
 
-		h3.widget-title {
-			margin-bottom: 0;
+		.widget-title {
+			margin-bottom: var(--wp--preset--spacing--20);
 		}
 
 		li.page_item_has_children {
@@ -90,7 +109,6 @@
 
 		li.current_page_item > a,
 		li.current_page_item > a:hover {
-			border-bottom: 1px solid var(--memberlite-color-link);
 			font-weight: bold;
 		}
 	}
@@ -113,24 +131,6 @@
 	}
 }
 
-
-// -----------------------------------------------------------------------------
-// Widget Area (shared — applies to sidebar and footer widgets)
-// -----------------------------------------------------------------------------
-
-.widget-area .widget {
-
-	a:where(:not(.btn, .pmpro_btn)) {
-		border-bottom: 1px solid transparent;
-		text-decoration: none;
-
-		&:hover {
-			border-bottom-color: var(--memberlite-color-link);
-		}
-	}
-}
-
-
 // -----------------------------------------------------------------------------
 // Widget — Tag Cloud
 // -----------------------------------------------------------------------------
@@ -148,17 +148,39 @@
 
 
 // -----------------------------------------------------------------------------
-// Widget — Calendar
+// Widget — Calendar (Includes block version)
 // -----------------------------------------------------------------------------
 
-.widget_calendar #wp-calendar caption {
-	background-color: var(--memberlite-color-borders);
-	border-top: 1px solid var(--memberlite-color-borders);
-	font-size: var(--wp--preset--font-size--24);
-	padding: .7rem var(--wp--preset--spacing--10);
-	text-align: center;
-}
+.widget_calendar,
+.wp-block-calendar {
 
+	table {
+		margin: 0;
+	}
+
+	thead th,
+	tbody td {
+		border-color: var(--memberlite-color-borders);
+		padding: .7rem 1px;
+		text-align: center;
+	}
+
+	caption {
+		background-color: light-dark(
+				color-mix(in srgb, var(--memberlite-color-site-background), black 3%),
+				color-mix(in srgb, var(--memberlite-color-site-background), white 3%)
+		);
+		border: 1px solid var(--memberlite-color-borders);
+		border-bottom: none;
+		font-size: var(--wp--preset--font-size--24);
+		padding: .7rem var(--wp--preset--spacing--10);
+		text-align: center;
+	}
+
+	:where(table:not(.has-text-color)) {
+		color: var(--memberlite-color-text);
+	}
+}
 
 // -----------------------------------------------------------------------------
 // Widget — Recent Comments / Recent Entries (link styles)

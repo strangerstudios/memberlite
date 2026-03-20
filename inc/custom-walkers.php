@@ -111,9 +111,10 @@ class Memberlite_Aria_Walker_Nav_Menu extends Walker_Nav_Menu {
 				wp_strip_all_tags( $title )
 			) );
 
-			// Top-level items get a down chevron; nested items get a right
-			// chevron to reflect the direction the submenu opens.
-			$icon_class = ( 0 === $depth ) ? 'fa fa-angle-down' : 'fa fa-angle-right';
+			// Top-level items get a down chevron; nested items get a right chevron
+			// in LTR or a left chevron in RTL to reflect the submenu direction.
+			$left_right_chevron = is_rtl() ? 'fa fa-angle-left' : 'fa fa-angle-right';
+			$icon_class = ( 0 === $depth ) ? 'fa fa-angle-down' : $left_right_chevron;
 
 			$item_output .= sprintf(
 				'<button type="button" aria-expanded="false" aria-controls="%s" aria-label="%s" class="hide-mobile">',
