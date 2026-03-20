@@ -80,6 +80,10 @@ add_action( 'admin_enqueue_scripts', 'memberlite_admin_enqueue_scripts' );
 /**
  * Output the floating back-to-top button in wp_footer.
  * Visibility is controlled by JS (scroll position + IntersectionObserver on the footer).
+ * (Turned on in Customizer > General Settings)
+ *
+ * @version TBD
+ * @return void
  */
 function memberlite_floating_back_to_top() {
 	global $memberlite_defaults;
