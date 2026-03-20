@@ -2,12 +2,12 @@
 /**
  * Title: Footer Variation 1
  * Slug: memberlite/footer-01
- * Description: Memberlite footer with two rows, 4 columns on top of 2.
+ * Description: Footer with two rows, 4 columns on top of 2.
  * Categories: memberlite-footer, footer
  * Keywords: footer, variation
  * @package WordPress
  * @subpackage Memberlite
- * @since Memberlite 7.0
+ * @since TBD
  */
 ?>
 <!-- wp:group {"align":"full","style":{"spacing":{"padding":{"top":"var:preset|spacing|50","right":"var:preset|spacing|50","bottom":"var:preset|spacing|50","left":"var:preset|spacing|50"}},"elements":{"link":{"color":{"text":"var:preset|color|page-masthead"}}}},"backgroundColor":"color-primary","textColor":"page-masthead","layout":{"type":"constrained"}} -->
