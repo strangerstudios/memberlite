@@ -21,6 +21,9 @@ class Memberlite_Customize {
 		// Panels & Sections
 		self::set_customizer_panels_sections( $wp_customize );
 
+		// General Settings
+		self::set_general_settings( $wp_customize );
+
 		// Typography Settings
 		self::set_typography_settings( $wp_customize );
 
@@ -83,12 +86,22 @@ class Memberlite_Customize {
 		/* Site Identity --------------------------------- */
 		$wp_customize->get_section( 'title_tagline' )->priority = 0;
 
+		/* General Settings ----------------------------- */
+
+		$wp_customize->add_section(
+			'memberlite_general_options',
+			array(
+				'title' => __( 'General', 'memberlite' ),
+				'priority'    => 2,
+			)
+		);
+
 		/* Typography ------------------------------------ */
 		$wp_customize->add_section(
 			'memberlite_typography_options',
 			array(
 				'title' => __( 'Typography', 'memberlite' ),
-				'priority'    => 2,
+				'priority'    => 3,
 			)
 		);
 
@@ -97,7 +110,7 @@ class Memberlite_Customize {
 			'memberlite_breadcrumbs_options',
 			array(
 				'title' => __( 'Breadcrumbs', 'memberlite' ),
-				'priority'    => 3,
+				'priority'    => 4,
 			)
 		);
 
@@ -109,7 +122,7 @@ class Memberlite_Customize {
 			'memberlite_header_options',
 			array(
 				'title'       => __( 'Header', 'memberlite' ),
-				'priority' => 4,
+				'priority' => 5,
 			)
 		);
 
@@ -118,7 +131,7 @@ class Memberlite_Customize {
 			'memberlite_footer_options',
 			array(
 				'title' => __( 'Footer', 'memberlite' ),
-				'priority' => 5,
+				'priority' => 6,
 			)
 		);
 
@@ -127,7 +140,7 @@ class Memberlite_Customize {
 			'memberlite_post_archive_options',
 			array(
 				'title' => __( 'Posts & Archives', 'memberlite' ),
-				'priority' => 6,
+				'priority' => 7,
 			)
 		);
 
@@ -136,10 +149,22 @@ class Memberlite_Customize {
 			'memberlite_page_options',
 			array(
 				'title' => __( 'Pages', 'memberlite' ),
-				'priority' => 7,
+				'priority' => 8,
 			)
 		);
 
+	}
+
+	public static function set_general_settings( WP_Customize_Manager $wp_customize ){
+		// GENERAL: Back to Top Heading ==========
+		self::add_memberlite_heading( $wp_customize, 'memberlite_back_to_top_heading', __( 'Back to Top', 'memberlite' ), 'memberlite_general_options' );
+
+		// GENERAL: Back to Top Link =============
+		self::add_memberlite_setting_control( $wp_customize, 'memberlite_back_to_top', __( 'Show Back to Top Link', 'memberlite' ), 'memberlite_general_options', array(
+			'type'              => 'checkbox',
+			'default'           => true,
+			'sanitize_callback' => array( 'Memberlite_Customize', 'sanitize_checkbox' ),
+		) );
 	}
 
 	/**
@@ -370,28 +395,11 @@ class Memberlite_Customize {
 	 * @return void
 	 */
 	public static function set_customizer_footer_settings( WP_Customize_Manager $wp_customize ) {
-		// FOOTER: Footer Widgets ===============
-		self::add_memberlite_setting_control( $wp_customize, 'memberlite_footerwidgets', __( 'Footer Widget Columns', 'memberlite' ), 'memberlite_footer_options', array(
-			'type'              => 'select',
-			'sanitize_callback' => 'absint',
-			'choices'           => array( '2' => '2', '3' => '3', '4' => '4', '6' => '6' ),
-		) );
-
 		// FOOTER: Copyright Text ===============
 		self::add_memberlite_setting_control( $wp_customize, 'copyright_textbox', __( 'Copyright Text', 'memberlite' ), 'memberlite_footer_options', array(
 			'transport'         => 'postMessage',
 			'sanitize_callback' => array( 'Memberlite_Customize', 'sanitize_text_with_links' ),
 			'sanitize_js_callback' => array( 'Memberlite_Customize', 'sanitize_js_text_with_links' ),
-		) );
-
-		// FOOTER: Back to Top Heading ==========
-		self::add_memberlite_heading( $wp_customize, 'memberlite_back_to_top_heading', __( 'Back to Top', 'memberlite' ), 'memberlite_footer_options' );
-
-		// FOOTER: Back to Top Link =============
-		self::add_memberlite_setting_control( $wp_customize, 'memberlite_back_to_top', __( 'Show Back to Top Link', 'memberlite' ), 'memberlite_footer_options', array(
-			'type'              => 'checkbox',
-			'default'           => true,
-			'sanitize_callback' => array( 'Memberlite_Customize', 'sanitize_checkbox' ),
 		) );
 	}
 
