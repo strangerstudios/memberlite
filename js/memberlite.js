@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function () {
 	initDesktopNav();
 	initMobileNav();
 	initStickyNav();
-
+	initBackToTop();
 });
 
 // ─── Tabs ────────────────────────────────────────────────────────────────────
@@ -300,4 +300,33 @@ function updateStickyState(stickyNav, stickyTop, adminBarHeight) {
 		stickyNav.classList.remove('site-navigation-sticky');
 		stickyNav.style.top = '';
 	}
+}
+
+// ─── Back to Top ─────────────────────────────────────────────────────────────
+
+function initBackToTop() {
+	const btn = document.querySelector('.memberlite-back-to-top');
+	if (!btn) return;
+
+	const SCROLL_THRESHOLD = 300;
+
+	function updateScrollVisibility() {
+		btn.classList.toggle('is-visible', window.scrollY > SCROLL_THRESHOLD);
+	}
+
+	// Hide the button when the site footer scrolls into view.
+	const footer = document.getElementById('colophon');
+	if (footer) {
+		new IntersectionObserver(function (entries) {
+			btn.classList.toggle('is-footer-visible', entries[0].isIntersecting);
+		}).observe(footer);
+	}
+
+	window.addEventListener('scroll', updateScrollVisibility, { passive: true });
+	updateScrollVisibility();
+
+	btn.addEventListener('click', function (e) {
+		e.preventDefault();
+		window.scrollTo({ top: 0, behavior: 'smooth' });
+	});
 }
