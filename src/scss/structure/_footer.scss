@@ -144,21 +144,43 @@
 			padding-right: 0;
 			width: calc(100% - 2.35rem * 2);
 		}
+	}
+}
 
-		// Back to Top
-		.skip-link {
-			margin-top: var(--wp--preset--spacing--10);
-			text-decoration: none;
-			color: var(--wp--preset--color--base);
+// -----------------------------------------------------------------------------
+// Floating Back to Top
+// -----------------------------------------------------------------------------
 
-			@include breakpoint(tablet) {
-				margin: 0;
-			}
+.memberlite-back-to-top {
+	--memberlite-btt-bottom: 1.5rem;
+	text-decoration: none;
+	background-color: var(--memberlite-color-button);
+	border-radius: 100%;
+	color: var(--wp--preset--color--base);
+	box-shadow: 0 2px 6px light-dark(rgba(0, 0, 0, 0.22), rgba(255, 255, 255, 0.14));
+	padding: var(--wp--preset--spacing--10);
+	width: 40px;
+	height: 40px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	bottom: var(--memberlite-btt-bottom);
+	opacity: 0;
+	pointer-events: none;
+	position: fixed;
+	right: 1.5rem;
+	transform: translateY(0.5rem);
+	transition: opacity 0.2s ease, transform 0.2s ease;
+	z-index: 999;
 
-			&:focus {
-				outline-color: var(--memberlite-color-text);
-				outline-offset: 2px;
-			}
-		}
+	// Shown only when scrolled past threshold and footer is not in view.
+	&.is-visible:not(.is-footer-visible) {
+		opacity: 1;
+		pointer-events: auto;
+		transform: translateY(0);
+	}
+
+	&:focus {
+		outline: none;
 	}
 }
