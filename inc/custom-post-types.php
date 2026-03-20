@@ -1,0 +1,46 @@
+<?php
+/**
+ * Register custom post types for Memberlite
+ */
+
+/**
+ * Register the memberlite_footer CPT for footer variations.
+ *
+ * Not public-facing; only accessible in the admin.
+ *
+ * @since TBD
+ * @return void
+ */
+function memberlite_register_footer_cpt(): void {
+	$labels = array(
+		'name'               => __( 'Footer Variations', 'memberlite' ),
+		'singular_name'      => __( 'Footer Variation', 'memberlite' ),
+		'add_new'            => __( 'Add New Footer Variation', 'memberlite' ),
+		'add_new_item'       => __( 'Add New Footer Variation', 'memberlite' ),
+		'edit_item'          => __( 'Edit Footer Variation', 'memberlite' ),
+		'new_item'           => __( 'New Footer Variation', 'memberlite' ),
+		'view_item'          => __( 'View Footer Variation', 'memberlite' ),
+		'search_items'       => __( 'Search Footer Variations', 'memberlite' ),
+		'not_found'          => __( 'No footer variations found.', 'memberlite' ),
+		'not_found_in_trash' => __( 'No footer variations found in Trash.', 'memberlite' ),
+		'all_items'          => __( 'All Footer Variations', 'memberlite' ),
+		'menu_name'          => __( 'Footer Variations', 'memberlite' ),
+	);
+
+	register_post_type(
+		'memberlite_footer',
+		array(
+			'labels'              => $labels,
+			'public'              => false,
+			'publicly_queryable'  => false,
+			'show_ui'             => true,
+			'show_in_menu'        => false,  // placed under Memberlite menu manually
+			'show_in_rest'        => true,   // required for block editor support
+			'supports'            => array( 'title', 'editor', 'revisions' ),
+			'rewrite'             => false,
+			'query_var'           => false,
+			'has_archive'         => false,
+		)
+	);
+}
+add_action( 'init', 'memberlite_register_footer_cpt' );
