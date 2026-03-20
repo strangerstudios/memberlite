@@ -2,12 +2,12 @@
 /**
  * Title: Footer Default
  * Slug: memberlite/footer-default
- * Description: Default Memberlite footer with four widget columns, navigation, and site info.
+ * Description: Default footer with four widget columns, navigation, and site info.
  * Categories: memberlite-footer, footer
  * Keywords: footer, variation
  * @package WordPress
  * @subpackage Memberlite
- * @since Memberlite 7.0
+ * @since TBD
  */
 ?>
 <!-- wp:group {"layout":{"type":"constrained"}} -->
