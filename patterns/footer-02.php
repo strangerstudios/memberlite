@@ -20,7 +20,7 @@
 		<p>|</p>
 		<!-- /wp:paragraph -->
 
-		<!-- wp:navigation {"ref":3283,"overlayMenu":"never","fontSize":"14","layout":{"type":"flex","justifyContent":"right"}} /--></div>
+		<!-- wp:navigation {"overlayMenu":"never","fontSize":"14","layout":{"type":"flex","justifyContent":"right"}} /--></div>
 	<!-- /wp:group -->
 
 	<!-- wp:social-links {"iconColor":"color-action","iconColorValue":"#f83773","size":"has-large-icon-size","className":"is-style-logos-only","style":{"spacing":{"blockGap":{"top":"12px","left":"12px"}}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
