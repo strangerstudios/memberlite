@@ -318,6 +318,7 @@ function initBackToTop() {
 	const footer = document.getElementById('colophon');
 	if (footer) {
 		new IntersectionObserver(function (entries) {
+			if (!entries.length) return;
 			btn.classList.toggle('is-footer-visible', entries[0].isIntersecting);
 		}).observe(footer);
 	}
