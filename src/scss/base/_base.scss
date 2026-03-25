@@ -70,7 +70,7 @@ ol {
 	margin-left: var(--wp--preset--spacing--10);
 }
 
-ul:where(:not(.wp-block-navigation)) li,
+ul:where(:not(.wp-block-navigation):not(.wp-block-navigation__container)) li,
 ol li {
 	margin: 0 0 var(--wp--preset--spacing--10) 0;
 
