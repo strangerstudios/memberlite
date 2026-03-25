@@ -78,44 +78,6 @@ function memberlite_admin_enqueue_scripts() {
 add_action( 'admin_enqueue_scripts', 'memberlite_admin_enqueue_scripts' );
 
 /**
- * Output the floating back-to-top button in wp_footer.
- * Visibility is controlled by JS (scroll position + IntersectionObserver on the footer).
- * (Turned on in Customizer > General Settings)
- *
- * @version TBD
- * @return void
- */
-function memberlite_floating_back_to_top() {
-	global $memberlite_defaults;
-
-	if ( empty( get_theme_mod( 'memberlite_back_to_top', $memberlite_defaults['memberlite_back_to_top'] ) ) ) {
-		return;
-	}
-
-	if ( 'floating' !== get_theme_mod( 'memberlite_back_to_top_style', $memberlite_defaults['memberlite_back_to_top_style'] ) ) {
-		return;
-	}
-
-	$label = apply_filters(
-		'memberlite_back_to_top',
-		'<i class="fa fa-chevron-up" aria-hidden="true"></i><span class="screen-reader-text">' . esc_html__( 'Back to Top', 'memberlite' ) . '</span>'
-	);
-
-	if ( empty( $label ) ) {
-		return;
-	}
-
-	$allowed_html = array(
-		'i'    => array( 'class' => array(), 'aria-hidden' => array() ),
-		'span' => array( 'class' => array() ),
-	);
-
-	echo '<a class="memberlite-back-to-top floating" href="#page">' . wp_kses( $label, $allowed_html ) . '</a>';
-}
-add_action( 'wp_footer', 'memberlite_floating_back_to_top' );
-
-
-/**
  * Get the selected font slug for a given font type.
  *
  * Returns the theme.json-compatible slug (lowercase). If $nicename is true,
