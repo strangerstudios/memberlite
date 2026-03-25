@@ -66,7 +66,6 @@ function memberlite_footer_cpt_submenu_highlight( $submenu_file ) {
 }
 add_filter( 'submenu_file', 'memberlite_footer_cpt_submenu_highlight' );
 
-
 /**
  * Show an action button for the specified plugin
  * @param string $slug The plugin slug
