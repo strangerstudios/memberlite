@@ -85,7 +85,7 @@ function memberlite_get_font( $font_type, $nicename = NULL ) {
 
 	// If we're returning the font name, convert the slug to a human-readable name.
 	if ( ! empty( $nicename ) ) {
-		$r = str_replace( '-', ' ', $r );
+		$r = ucwords( str_replace( '-', ' ', $r ) );
 	}
 
 	return $r;
@@ -95,15 +95,13 @@ function memberlite_get_font( $font_type, $nicename = NULL ) {
  * Load locally hosted Google fonts used in site.
  */
 function memberlite_load_local_webfonts() {
-	global $memberlite_defaults;
-
 	// Get the selected fonts from theme options.
 	$header_font = strtolower( memberlite_get_font( 'header_font' ) );
 	$body_font = strtolower( memberlite_get_font( 'body_font' ) );
 
 	// If it's not a Google font, ignore.
-	$fonts_string = $header_font . '_' . $body_font;
-	if ( ! in_array( $fonts_string, array_keys( Memberlite_Customize::get_google_fonts() ) ) ) {
+	$google_fonts = array_keys( Memberlite_Customize::get_google_fonts() );
+	if ( ! in_array( $header_font, $google_fonts ) && ! in_array( $body_font, $google_fonts ) ) {
 		return;
 	}
 
