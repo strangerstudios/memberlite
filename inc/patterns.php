@@ -40,6 +40,17 @@ add_action( 'init', 'memberlite_register_pattern_categories' );
  * @return void
  */
 function memberlite_add_patterns_menu_item(): void {
+	global $menu;
+
+	// Bail if another plugin or theme already added a menu item for wp_block.
+	if ( is_array( $menu ) ) {
+		foreach ( $menu as $menu_item ) {
+			if ( isset( $menu_item[2] ) && 'edit.php?post_type=wp_block' === $menu_item[2] ) {
+				return;
+			}
+		}
+	}
+
 	add_menu_page(
 		__( 'Patterns', 'memberlite' ),
 		__( 'Patterns', 'memberlite' ),
