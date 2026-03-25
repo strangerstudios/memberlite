@@ -10,15 +10,15 @@
  * @since TBD
  */
 ?>
-<!-- wp:group {"align":"full","style":{"spacing":{"padding":{"top":"var:preset|spacing|50","right":"var:preset|spacing|50","bottom":"var:preset|spacing|50","left":"var:preset|spacing|50"}},"elements":{"link":{"color":{"text":"var:preset|color|page-masthead"}}}},"backgroundColor":"color-primary","textColor":"page-masthead","layout":{"type":"constrained"}} -->
-<div class="wp-block-group footer-variation-01 alignfull has-page-masthead-color has-color-primary-background-color has-text-color has-background has-link-color" style="padding-top:var(--wp--preset--spacing--50);padding-right:var(--wp--preset--spacing--50);padding-bottom:var(--wp--preset--spacing--50);padding-left:var(--wp--preset--spacing--50)"><!-- wp:columns {"align":"wide","style":{"spacing":{"blockGap":{"top":"var:preset|spacing|40","left":"var:preset|spacing|40"}}}} -->
+<!-- wp:group {"align":"full","className":"footer-variation-01","style":{"spacing":{"padding":{"top":"var:preset|spacing|50","right":"var:preset|spacing|50","bottom":"var:preset|spacing|50","left":"var:preset|spacing|50"}},"elements":{"link":{"color":{"text":"var:preset|color|page-masthead"}}}},"backgroundColor":"color-primary","textColor":"page-masthead","layout":{"type":"constrained"}} -->
+<div class="wp-block-group alignfull footer-variation-01 has-page-masthead-color has-color-primary-background-color has-text-color has-background has-link-color" style="padding-top:var(--wp--preset--spacing--50);padding-right:var(--wp--preset--spacing--50);padding-bottom:var(--wp--preset--spacing--50);padding-left:var(--wp--preset--spacing--50)"><!-- wp:columns {"align":"wide","style":{"spacing":{"blockGap":{"top":"var:preset|spacing|40","left":"var:preset|spacing|40"}}}} -->
 	<div class="wp-block-columns alignwide"><!-- wp:column {"width":"33%"} -->
 		<div class="wp-block-column" style="flex-basis:33%"><!-- wp:site-logo /-->
 
 			<!-- wp:site-title {"fontSize":"18"} /-->
 
 			<!-- wp:paragraph {"fontSize":"14"} -->
-			<p class="has-14-font-size">Zazu SA (Pty) Ltd.<br>Darter Studios, Darter Road<br>Gardens, Cape Town, 800 – South Africa</p>
+			<p class="has-14-font-size">123 Example Street<br>Cityville, AA, 99999<br>(555) 555-5555</p>
 			<!-- /wp:paragraph --></div>
 		<!-- /wp:column -->
 
@@ -65,9 +65,19 @@
 		<!-- /wp:column -->
 
 		<!-- wp:column {"style":{"spacing":{"blockGap":"var:preset|spacing|40"}}} -->
-		<div class="wp-block-column"><!-- wp:paragraph {"className":"has-text-align-right","style":{"typography":{"fontSize":"0.75rem"}},"textColor":"white"} -->
-			<p class="has-text-align-right has-white-color has-text-color" style="font-size:0.75rem">© 2026 Memberlite. All Rights Reserved.</p>
-			<!-- /wp:paragraph --></div>
+		<div class="wp-block-column"><!-- wp:group {"style":{"spacing":{"padding":{"top":"0","right":"0","bottom":"0","left":"0"},"margin":{"top":"0","bottom":"0"},"blockGap":"0"},"elements":{"link":{"color":{"text":"var:preset|color|site-navigation-background"}}}},"textColor":"site-navigation-background","layout":{"type":"flex","justifyContent":"right","flexWrap":"nowrap","verticalAlignment":"center"}} -->
+			<div class="wp-block-group has-site-navigation-background-color has-text-color has-link-color" style="margin-top:0;margin-bottom:0;padding-top:0;padding-right:0;padding-bottom:0;padding-left:0"><!-- wp:paragraph {"style":{"typography":{"fontSize":"0.75rem"}}} -->
+				<p style="font-size:0.75rem">©</p>
+				<!-- /wp:paragraph -->
+
+				<!-- wp:post-date {"datetime":"2026-03-25T15:34:02.436Z","format":"Y","style":{"typography":{"fontSize":"0.75rem"}}} /-->
+
+				<!-- wp:site-title {"level":0,"style":{"typography":{"fontStyle":"normal","fontWeight":"400","fontSize":"0.75rem"},"spacing":{"padding":{"left":"0.5rem"}}}} /-->
+
+				<!-- wp:paragraph {"style":{"typography":{"fontSize":"0.75rem"},"spacing":{"padding":{"left":"0.5rem"}}}} -->
+				<p style="padding-left:0.5rem;font-size:0.75rem"> All rights reserved.</p>
+				<!-- /wp:paragraph --></div>
+			<!-- /wp:group --></div>
 		<!-- /wp:column --></div>
 	<!-- /wp:columns --></div>
 <!-- /wp:group -->
