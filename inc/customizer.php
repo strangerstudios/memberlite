@@ -155,7 +155,7 @@ class Memberlite_Customize {
 
 	}
 
-	public static function set_general_settings( WP_Customize_Manager $wp_customize ){
+	public static function set_general_settings( WP_Customize_Manager $wp_customize ) {
 		// GENERAL: Back to Top Heading ==========
 		self::add_memberlite_heading( $wp_customize, 'memberlite_back_to_top_heading', __( 'Back to Top', 'memberlite' ), 'memberlite_general_options' );
 
@@ -164,6 +164,20 @@ class Memberlite_Customize {
 			'type'              => 'checkbox',
 			'default'           => true,
 			'sanitize_callback' => array( 'Memberlite_Customize', 'sanitize_checkbox' ),
+		) );
+
+		// GENERAL: Back to Top Style =============
+		self::add_memberlite_setting_control( $wp_customize, 'memberlite_back_to_top_style', __( 'Back to Top Style', 'memberlite' ), 'memberlite_general_options', array(
+			'type'            => 'radio',
+			'default'         => 'default',
+			'choices'         => array(
+				'default'  => __( 'Default (inline link in footer)', 'memberlite' ),
+				'floating' => __( 'Floating button (fixed position)', 'memberlite' ),
+			),
+			'description' => __( 'The inline link is only available for the default footer variation. Footer variations can be set in the "Footer" panel.', 'memberlite' ),
+			'active_callback' => function() {
+				return (bool) get_theme_mod( 'memberlite_back_to_top', true );
+			},
 		) );
 	}
 
@@ -668,16 +682,17 @@ class Memberlite_Customize {
 		);
 
 		// 2. Add Control
-		$wp_customize->add_control(
-			$id,
-			array(
-				'label'       => $label,
-				'section'     => $section,
-				'type'        => $args['type'],
-				'choices'     => $args['choices'],
-				'description' => $args['description'],
-			)
+		$control_args = array(
+			'label'       => $label,
+			'section'     => $section,
+			'type'        => $args['type'],
+			'choices'     => $args['choices'],
+			'description' => $args['description'],
 		);
+		if ( ! empty( $args['active_callback'] ) ) {
+			$control_args['active_callback'] = $args['active_callback'];
+		}
+		$wp_customize->add_control( $id, $control_args );
 	}
 
 	/**

@@ -161,7 +161,7 @@
 // Floating Back to Top
 // -----------------------------------------------------------------------------
 
-.memberlite-back-to-top {
+.memberlite-back-to-top.floating {
 	--memberlite-btt-bottom: 1.5rem;
 	text-decoration: none;
 	background-color: var(--memberlite-color-button);
@@ -188,9 +188,5 @@
 		opacity: 1;
 		pointer-events: auto;
 		transform: translateY(0);
-	}
-
-	&:focus {
-		outline: none;
 	}
 }
