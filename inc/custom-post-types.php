@@ -40,6 +40,22 @@ function memberlite_register_footer_cpt(): void {
 			'rewrite'             => false,
 			'query_var'           => false,
 			'has_archive'         => false,
+			'capabilities'        => array(
+				'read_post'              => 'edit_theme_options',
+				'read_private_posts'     => 'edit_theme_options',
+				'edit_post'              => 'edit_theme_options',
+				'edit_posts'             => 'edit_theme_options',
+				'edit_others_posts'      => 'edit_theme_options',
+				'edit_private_posts'     => 'edit_theme_options',
+				'edit_published_posts'   => 'edit_theme_options',
+				'publish_posts'          => 'edit_theme_options',
+				'delete_post'            => 'edit_theme_options',
+				'delete_posts'           => 'edit_theme_options',
+				'delete_private_posts'   => 'edit_theme_options',
+				'delete_published_posts' => 'edit_theme_options',
+				'delete_others_posts'    => 'edit_theme_options',
+				'create_posts'           => 'edit_theme_options',
+			),
 		)
 	);
 }
