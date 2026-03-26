@@ -107,8 +107,16 @@ function memberlite_load_local_webfonts() {
 
 	// If it's not a Google font, ignore.
 	$google_fonts = array_map( 'strtolower', array_keys( Memberlite_Customize::get_google_fonts() ) );
-	if ( ! in_array( $header_font, $google_fonts ) && ! in_array( $body_font, $google_fonts ) ) {
+	if ( ! in_array( $header_font, $google_fonts, true ) && ! in_array( $body_font, $google_fonts, true ) ) {
 		return;
+	}
+
+	// Disable any font that is not a Google font so no @font-face is emitted for it.
+	if ( ! in_array( $header_font, $google_fonts, true ) ) {
+		$header_font = false;
+	}
+	if ( ! in_array( $body_font, $google_fonts, true ) ) {
+		$body_font = false;
 	}
 
 	// If the header and body fonts are the same, just load the body font.
@@ -130,7 +138,7 @@ src: url('<?php echo esc_url( MEMBERLITE_URL ) . '/assets/fonts/' . esc_html( $b
 font-weight: normal;
 font-display: fallback;
 font-stretch: normal;
-}<?php if ( ! in_array( $body_font, $no_bold_font ) ) { ?>@font-face {
+}<?php if ( ! in_array( $body_font, $no_bold_font, true ) ) { ?>@font-face {
 font-family: <?php echo esc_html( memberlite_get_font( 'body_font', true ) ); ?>;
 font-style:normal;
 src: url('<?php echo esc_url( MEMBERLITE_URL ) . '/assets/fonts/' . esc_html( $body_font ) . '/' . esc_html( $body_font ) . '-bold.woff2'; ?>') format('woff2');
@@ -149,7 +157,7 @@ src: url('<?php echo esc_url( MEMBERLITE_URL ) . '/assets/fonts/' . esc_html( $h
 font-weight: normal;
 font-display: fallback;
 font-stretch: normal;
-}<?php if ( ! in_array( $header_font, $no_bold_font ) ) { ?>@font-face {
+}<?php if ( ! in_array( $header_font, $no_bold_font, true ) ) { ?>@font-face {
 font-family: <?php echo esc_html( memberlite_get_font( 'header_font', true ) ); ?>;
 font-style:normal;
 src: url('<?php echo esc_url( MEMBERLITE_URL ) . '/assets/fonts/' . esc_html( $header_font ) . '/' . esc_html( $header_font ) . '-bold.woff2'; ?>') format('woff2');
