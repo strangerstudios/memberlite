@@ -318,6 +318,7 @@
 			&.menu {
 				align-items: center;
 				display: flex;
+				flex-wrap: wrap;
 				margin: 0 auto;
 				z-index: 10;
 			}
