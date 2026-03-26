@@ -43,6 +43,17 @@ function memberlite_checkForUpdates() {
 		require_once get_template_directory() . '/inc/updates/update_7_0.php';
 		update_option( 'memberlite_db_version', '2026022201', 'no' );
 	}
+
+	// Migrate font theme_mods to lowercase slugs to match theme.json.
+	if ( $memberlite_db_version < '2026032601' ) {
+		foreach ( array( 'memberlite_header_font', 'memberlite_body_font' ) as $mod_key ) {
+			$value = get_theme_mod( $mod_key );
+			if ( ! empty( $value ) ) {
+				set_theme_mod( $mod_key, strtolower( $value ) );
+			}
+		}
+		update_option( 'memberlite_db_version', '2026032601', 'no' );
+	}
 }
 
 /**
