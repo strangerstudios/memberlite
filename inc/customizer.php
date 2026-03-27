@@ -786,7 +786,11 @@ class Memberlite_Customize {
 		$font_families = $settings['typography']['fontFamilies']['theme'] ?? array();
 		$fonts         = array();
 		foreach ( $font_families as $font ) {
-			$fonts[ $font['slug'] ] = $font['name'];
+			if ( ! is_array( $font ) || empty( $font['slug'] ) || empty( $font['name'] ) ) {
+				continue;
+			}
+			$slug          = sanitize_key( $font['slug'] );
+			$fonts[ $slug ] = $font['name'];
 		}
 		return $fonts;
 	}
