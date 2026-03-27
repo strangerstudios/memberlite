@@ -16,6 +16,14 @@
  * @return string post_name of the memberlite_footer post, or '0' if none is set.
  */
 function memberlite_get_current_footer_post_name() {
+	// Per-page override takes priority over all Customizer settings.
+	if ( is_singular() ) {
+		$override = get_post_meta( get_the_ID(), '_memberlite_footer_override', true );
+		if ( '' !== $override ) {
+			return $override;
+		}
+	}
+
 	$post_name = '0';
 
 	if ( is_singular( 'post' ) ) {
