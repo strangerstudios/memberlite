@@ -789,7 +789,10 @@ class Memberlite_Customize {
 			if ( ! is_array( $font ) || empty( $font['slug'] ) || empty( $font['name'] ) ) {
 				continue;
 			}
-			$slug          = sanitize_key( $font['slug'] );
+			$slug = sanitize_key( $font['slug'] );
+			if ( '' === $slug ) {
+				continue;
+			}
 			$fonts[ $slug ] = $font['name'];
 		}
 		return $fonts;

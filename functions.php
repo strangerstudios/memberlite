@@ -126,7 +126,10 @@ function memberlite_get_font( $font_type, $nicename = false ) {
  */
 function memberlite_get_font_name_from_json_data( $slug, $font_families ) {
 	foreach ( $font_families as $font ) {
-		if ( ( $font['slug'] ?? '' ) === $slug ) {
+		if ( ! is_array( $font ) || empty( $font['slug'] ) || empty( $font['name'] ) ) {
+			continue;
+		}
+		if ( $font['slug'] === $slug ) {
 			return $font['name'];
 		}
 	}
@@ -774,7 +777,15 @@ function memberlite_filter_theme_json( $theme_json ) {
 
 	// Look up font display names directly from the theme.json data to avoid
 	// circular calls to wp_get_global_settings() inside this filter.
-	$font_families = $theme_json_data['settings']['typography']['fontFamilies'] ?? array();
+	// fontFamilies in raw theme.json data may be grouped (e.g. 'theme', 'default'),
+	// so flatten all groups into a single list before passing to the lookup function.
+	$font_families_grouped = $theme_json_data['settings']['typography']['fontFamilies'] ?? array();
+	$font_families         = array();
+	foreach ( $font_families_grouped as $group ) {
+		if ( is_array( $group ) ) {
+			$font_families = array_merge( $font_families, $group );
+		}
+	}
 	$theme_json_data['settings']['custom']['heading']['fontFamily'] = memberlite_get_font_name_from_json_data( memberlite_get_font( 'header_font' ), $font_families );
 	$theme_json_data['settings']['custom']['body']['fontFamily']    = memberlite_get_font_name_from_json_data( memberlite_get_font( 'body_font' ), $font_families );
 
