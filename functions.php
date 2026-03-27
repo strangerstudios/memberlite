@@ -550,6 +550,9 @@ if ( is_admin() ) {
 	require_once get_template_directory() . '/inc/admin.php';
 }
 
+/* Register custom post types. */
+require_once get_template_directory() . '/inc/custom-post-types.php';
+
 /* Implement the Custom Header feature. */
 require_once get_template_directory() . '/inc/custom-header.php';
 
