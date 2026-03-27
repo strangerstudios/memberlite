@@ -69,7 +69,7 @@ function memberlite_render_footer_variation( $post_name ) {
  *
  * @return array
  */
-function get_footer_variations(): array {
+function memberlite_get_footer_variations(): array {
 	$footer_posts = get_posts( array(
 		'post_type'      => 'memberlite_footer',
 		'post_status'    => 'publish',

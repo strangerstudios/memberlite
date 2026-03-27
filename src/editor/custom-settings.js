@@ -22,7 +22,7 @@ const MemberliteCustomSettings = () => {
 	const hideHeaderValue = meta?._memberlite_hide_header || false;
 	const hideFooterValue = meta?._memberlite_hide_footer || false;
 	const hidePageNavValue = meta?._memberlite_hide_page_nav || false;
-	const footerOverrideValue = meta?._memberlite_footer_override || '';
+	const footerOverrideValue = meta?._memberlite_footer_override || '0';
 
 	// Get and set up the footer variations for the SelectControl
 	const footerVariations = window.memberliteEditorData.footerVariations;

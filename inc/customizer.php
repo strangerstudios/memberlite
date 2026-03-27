@@ -429,7 +429,7 @@ class Memberlite_Customize {
 		self::add_memberlite_heading( $wp_customize, 'memberlite_pattern_footer_heading', __( 'Variation Settings', 'memberlite' ), 'memberlite_footer_options' );
 
 		// FOOTER: Footer CPT ===================
-		$footer_choices = get_footer_variations();
+		$footer_choices = memberlite_get_footer_variations();
 
 		// FOOTER: Variations, Global ===============
 		self::add_memberlite_setting_control( $wp_customize, 'memberlite_default_footer_slug', __( 'Default Footer', 'memberlite' ), 'memberlite_footer_options', array(

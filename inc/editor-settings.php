@@ -37,11 +37,12 @@ function memberlite_register_editor_settings_post_meta(): void {
 	) );
 
 	register_post_meta( 'page', '_memberlite_footer_override', array(
-		'show_in_rest' => true,
-		'type'         => 'string',
-		'single'       => true,
-		'default'      => '',
-		'label'        => __( 'Select Footer', 'memberlite' ),
+		'show_in_rest'      => true,
+		'type'              => 'string',
+		'single'            => true,
+		'default'           => '',
+		'label'             => __( 'Select Footer', 'memberlite' ),
+		'sanitize_callback' => 'sanitize_key',
 		'auth_callback' => function() {
 			return current_user_can( 'edit_posts' );
 		}
@@ -93,7 +94,7 @@ function memberlite_enqueue_custom_editor_assets(): void {
 		'memberliteEditorData',
 		array(
 			'showPrevNextSinglePages' => get_theme_mod( 'memberlite_page_nav', true ),
-			'footerVariations'        => get_footer_variations(),
+			'footerVariations'        => memberlite_get_footer_variations(),
 		)
 	);
 }
