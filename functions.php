@@ -99,9 +99,12 @@ function memberlite_get_font( $font_type, $nicename = false ) {
 	}
 
 	// Look up the display name from theme.json font families.
-	$settings     = wp_get_global_settings();
+	$settings      = wp_get_global_settings();
 	$font_families = $settings['typography']['fontFamilies']['theme'] ?? array();
 	foreach ( $font_families as $font ) {
+		if ( ! is_array( $font ) || empty( $font['slug'] ) || empty( $font['name'] ) ) {
+			continue;
+		}
 		if ( $font['slug'] === $slug ) {
 			return $font['name'];
 		}
