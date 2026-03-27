@@ -148,6 +148,34 @@
 }
 
 // -----------------------------------------------------------------------------
+// Site Footer — Variation 01
+// -----------------------------------------------------------------------------
+
+.footer-variation-01 {
+	.flex-wrap-mobile.is-layout-flex {
+		width: 100%;
+		display: block;
+
+		@include breakpoint(desktop) {
+			width: auto;
+			display: flex;
+		}
+
+		> .wp-block-group.is-vertical {
+			padding-bottom: var(--wp--preset--spacing--40);
+
+			&:last-child {
+				padding-bottom: 0;
+			}
+
+			@include breakpoint(desktop) {
+				padding-bottom: 0;
+			}
+		}
+	}
+}
+
+// -----------------------------------------------------------------------------
 // Site Footer — Variation 02
 // -----------------------------------------------------------------------------
 
