@@ -49,7 +49,12 @@ function memberlite_checkForUpdates() {
 		foreach ( array( 'memberlite_header_font', 'memberlite_body_font' ) as $mod_key ) {
 			$value = get_theme_mod( $mod_key );
 			if ( ! empty( $value ) ) {
-				set_theme_mod( $mod_key, strtolower( $value ) );
+				$new_value = strtolower( $value );
+				// Map legacy "Courier" slug to "courier-new" to match theme.json.
+				if ( 'courier' === $new_value ) {
+					$new_value = 'courier-new';
+				}
+				set_theme_mod( $mod_key, $new_value );
 			}
 		}
 		update_option( 'memberlite_db_version', '2026032601', 'no' );
