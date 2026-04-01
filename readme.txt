@@ -3,7 +3,7 @@ Contributors: kimannwall, strangerstudios
 Requires at least: 6.4
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 7.0
+Stable tag: 7.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: one-column, two-columns, left-sidebar, right-sidebar, flexible-header, custom-background, custom-colors, custom-header, custom-menu, custom-logo, editor-style, featured-images, footer-widgets, full-width-template, theme-options, threaded-comments, translation-ready, e-commerce
@@ -91,6 +91,19 @@ Memberlite includes formatting for use with:
 [Install Events Manager »](https://wordpress.org/plugins/events-manager/)
 
 == Changelog ==
+= 7.0.1 - 2026-04-02 =
+* ENHANCEMENT: Adjusted widget and secondary area styles to better balance theme presets and customizer flexibility. #238 (@RachelRVasquez)
+* ENHANCEMENT: Updated Font Awesome from 6.6.0 to 7.2.0. #243 (@flintfromthebasement)
+* ENHANCEMENT: Added flex wrap to navigation menus in the header to better support many menu items. #244 (@RachelRVasquez)
+* ENHANCEMENT: Added new web font options with OFL licenses. #245 (@RachelRVasquez)
+* ENHANCEMENT: Refactored font system so theme.json is the source of truth with a migration path for existing theme mod settings. #246 (@kimcoleman)
+* ENHANCEMENT: Bumped minimum required WordPress version to 6.4. #246 (@kimcoleman)
+* ENHANCEMENT: Simplified signup shortcode and block styles in preparation for the upcoming Advanced Signups Add On. #248 (@kimcoleman)
+* BUG FIX: Fixed right chevron display in submenus for RTL layouts. #238 (@RachelRVasquez)
+* BUG FIX: Added defensive check to prevent errors on malformed wp_block menu items. #240 (@kimcoleman)
+* BUG FIX: Added defensive checks and sanitization for malformed font entries in font helper functions. #246 (@kimcoleman)
+* BUG FIX: Mapped legacy "courier" font slug to "courier-new" during font migration. #246 (@kimcoleman)
+
 = 7.0 - 2026-03-13 =
 * FEATURE: Refactored theme structure into smaller component files with a redesigned mobile navigation. #215 (@kimcoleman, @RachelRVasquez)
 * FEATURE: Added Gutenberg block patterns for common membership site layouts. #225 (@kimcoleman, @RachelRVasquez)
