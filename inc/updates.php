@@ -45,7 +45,7 @@ function memberlite_checkForUpdates() {
 	}
 
 	// Migrate font theme_mods to lowercase slugs to match theme.json.
-	if ( $memberlite_db_version < '2026032601' ) {
+	if ( $memberlite_db_version < '2026040201' ) {
 		foreach ( array( 'memberlite_header_font', 'memberlite_body_font' ) as $mod_key ) {
 			$value = get_theme_mod( $mod_key );
 			if ( ! empty( $value ) ) {
@@ -57,7 +57,7 @@ function memberlite_checkForUpdates() {
 				set_theme_mod( $mod_key, $new_value );
 			}
 		}
-		update_option( 'memberlite_db_version', '2026032601', 'no' );
+		update_option( 'memberlite_db_version', '2026040201', 'no' );
 	}
 }
 

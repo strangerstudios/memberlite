@@ -85,6 +85,7 @@ add_action( 'admin_enqueue_scripts', 'memberlite_admin_enqueue_scripts' );
  * Safe to call anywhere except from within the wp_theme_json_data_theme filter
  * with $nicename = true (use memberlite_get_font_name_from_json_data() there instead).
  *
+ * @since 7.0.1
  * @param string    $font_type 'header_font' or 'body_font'.
  * @param bool|null $nicename  Optional. If true, return the display name.
  * @return string Font slug or display name.
@@ -120,6 +121,7 @@ function memberlite_get_font( $font_type, $nicename = false ) {
  * Used inside the wp_theme_json_data_theme filter to avoid circular calls
  * to wp_get_global_settings().
  *
+ * @since 7.0.1
  * @param string $slug         The font slug to look up.
  * @param array  $font_families Array of fontFamily objects from theme.json data.
  * @return string Display name, or title-cased slug as fallback.

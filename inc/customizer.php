@@ -779,6 +779,7 @@ class Memberlite_Customize {
 	 * theme.json is the single source of truth for available fonts. Developers
 	 * can add fonts by filtering wp_theme_json_data_theme.
 	 *
+	 * @since 7.0.1
 	 * @return array Associative array of slug => display name.
 	 */
 	public static function get_all_fonts() {
