@@ -1,6 +1,6 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/theme.json",
-	"version": 2,
+	"version": 4,
 	"settings": {
 		"appearanceTools": true,
 		"color": {
@@ -77,7 +77,7 @@
 				{
 					"fontFace": [
 						{
-							"fontDisplay": "block",
+							"fontDisplay": "swap",
 							"fontFamily": "Abril Fatface",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
@@ -87,14 +87,112 @@
 							]
 						}
 					],
-					"fontFamily": "\"Abril Fatface\", sans-serif",
+					"fontFamily": "\"Abril Fatface\", serif",
 					"name": "Abril Fatface",
 					"slug": "abril-fatface"
 				},
 				{
 					"fontFace": [
 						{
-							"fontDisplay": "block",
+							"fontDisplay": "swap",
+							"fontFamily": "Bubblegum Sans",
+							"fontStretch": "normal",
+							"fontStyle": "normal",
+							"fontWeight": "400",
+							"src": [
+								"file:./assets/fonts/bubblegum-sans/bubblegum-sans.woff2"
+							]
+						}
+					],
+					"fontFamily": "\"Bubblegum Sans\", sans-serif",
+					"name": "Bubblegum Sans",
+					"slug": "bubblegum-sans"
+				},
+				{
+					"fontFace": [
+						{
+							"fontDisplay": "swap",
+							"fontFamily": "Barlow",
+							"fontStretch": "normal",
+							"fontStyle": "normal",
+							"fontWeight": "400",
+							"src": [
+								"file:./assets/fonts/barlow/barlow.woff2"
+							]
+						},
+						{
+							"fontDisplay": "swap",
+							"fontFamily": "Barlow",
+							"fontStretch": "normal",
+							"fontStyle": "normal",
+							"fontWeight": "700",
+							"src": [
+								"file:./assets/fonts/barlow/barlow-bold.woff2"
+							]
+						}
+					],
+					"fontFamily": "\"Barlow\", sans-serif",
+					"name": "Barlow",
+					"slug": "barlow"
+				},
+				{
+					"fontFace": [
+						{
+							"fontDisplay": "swap",
+							"fontFamily": "Cabin",
+							"fontStretch": "normal",
+							"fontStyle": "normal",
+							"fontWeight": "400",
+							"src": [
+								"file:./assets/fonts/cabin/cabin.woff2"
+							]
+						},
+						{
+							"fontDisplay": "swap",
+							"fontFamily": "Cabin",
+							"fontStretch": "normal",
+							"fontStyle": "normal",
+							"fontWeight": "700",
+							"src": [
+								"file:./assets/fonts/cabin/cabin-bold.woff2"
+							]
+						}
+					],
+					"fontFamily": "\"Cabin\", sans-serif",
+					"name": "Cabin",
+					"slug": "cabin"
+				},
+				{
+					"fontFace": [
+						{
+							"fontDisplay": "swap",
+							"fontFamily": "Crimson Text",
+							"fontStretch": "normal",
+							"fontStyle": "normal",
+							"fontWeight": "400",
+							"src": [
+								"file:./assets/fonts/crimson-text/crimson-text.woff2"
+							]
+						},
+						{
+							"fontDisplay": "swap",
+							"fontFamily": "Crimson Text",
+							"fontStretch": "normal",
+							"fontStyle": "normal",
+							"fontWeight": "700",
+							"src": [
+								"file:./assets/fonts/crimson-text/crimson-text-bold.woff2"
+							]
+						}
+					],
+					"fontFamily": "\"Crimson Text\", serif",
+					"name": "Crimson Text",
+					"slug": "crimson-text"
+				},
+				{
+					"fontFace": [
+						{
+							"fontDisplay": "swap",
 							"fontFamily": "DM Sans",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
@@ -104,7 +202,7 @@
 							]
 						},
 						{
-							"fontDisplay": "block",
+							"fontDisplay": "swap",
 							"fontFamily": "DM Sans",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
@@ -114,7 +212,7 @@
 							]
 						},
 						{
-							"fontDisplay": "block",
+							"fontDisplay": "swap",
 							"fontFamily": "DM Sans",
 							"fontStretch": "normal",
 							"fontStyle": "italic",
@@ -124,7 +222,7 @@
 							]
 						},
 						{
-							"fontDisplay": "block",
+							"fontDisplay": "swap",
 							"fontFamily": "DM Sans",
 							"fontStretch": "normal",
 							"fontStyle": "italic",
@@ -141,7 +239,51 @@
 				{
 					"fontFace": [
 						{
-							"fontDisplay": "block",
+							"fontDisplay": "swap",
+							"fontFamily": "Eagle Lake",
+							"fontStretch": "normal",
+							"fontStyle": "normal",
+							"fontWeight": "400",
+							"src": [
+								"file:./assets/fonts/eagle-lake/eagle-lake.woff2"
+							]
+						}
+					],
+					"fontFamily": "\"Eagle Lake\", serif",
+					"name": "Eagle Lake",
+					"slug": "eagle-lake"
+				},
+				{
+					"fontFace": [
+						{
+							"fontDisplay": "swap",
+							"fontFamily": "Exo 2",
+							"fontStretch": "normal",
+							"fontStyle": "normal",
+							"fontWeight": "400",
+							"src": [
+								"file:./assets/fonts/exo-2/exo-2.woff2"
+							]
+						},
+						{
+							"fontDisplay": "swap",
+							"fontFamily": "Exo 2",
+							"fontStretch": "normal",
+							"fontStyle": "normal",
+							"fontWeight": "700",
+							"src": [
+								"file:./assets/fonts/exo-2/exo-2-bold.woff2"
+							]
+						}
+					],
+					"fontFamily": "\"Exo 2\", sans-serif",
+					"name": "Exo 2",
+					"slug": "exo-2"
+				},
+				{
+					"fontFace": [
+						{
+							"fontDisplay": "swap",
 							"fontFamily": "Figtree",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
@@ -151,7 +293,7 @@
 							]
 						},
 						{
-							"fontDisplay": "block",
+							"fontDisplay": "swap",
 							"fontFamily": "Figtree",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
@@ -168,7 +310,61 @@
 				{
 					"fontFace": [
 						{
-							"fontDisplay": "block",
+							"fontDisplay": "swap",
+							"fontFamily": "Fira Code",
+							"fontStretch": "normal",
+							"fontStyle": "normal",
+							"fontWeight": "400",
+							"src": [
+								"file:./assets/fonts/fira-code/fira-code.woff2"
+							]
+						},
+						{
+							"fontDisplay": "swap",
+							"fontFamily": "Fira Code",
+							"fontStretch": "normal",
+							"fontStyle": "normal",
+							"fontWeight": "700",
+							"src": [
+								"file:./assets/fonts/fira-code/fira-code-bold.woff2"
+							]
+						}
+					],
+					"fontFamily": "\"Fira Code\", monospace",
+					"name": "Fira Code",
+					"slug": "fira-code"
+				},
+				{
+					"fontFace": [
+						{
+							"fontDisplay": "swap",
+							"fontFamily": "Fira Sans",
+							"fontStretch": "normal",
+							"fontStyle": "normal",
+							"fontWeight": "400",
+							"src": [
+								"file:./assets/fonts/fira-sans/fira-sans.woff2"
+							]
+						},
+						{
+							"fontDisplay": "swap",
+							"fontFamily": "Fira Sans",
+							"fontStretch": "normal",
+							"fontStyle": "normal",
+							"fontWeight": "700",
+							"src": [
+								"file:./assets/fonts/fira-sans/fira-sans-bold.woff2"
+							]
+						}
+					],
+					"fontFamily": "\"Fira Sans\", sans-serif",
+					"name": "Fira Sans",
+					"slug": "fira-sans"
+				},
+				{
+					"fontFace": [
+						{
+							"fontDisplay": "swap",
 							"fontFamily": "Fjalla One",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
@@ -185,7 +381,7 @@
 				{
 					"fontFace": [
 						{
-							"fontDisplay": "block",
+							"fontDisplay": "swap",
 							"fontFamily": "Gentium Book Basic",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
@@ -195,7 +391,7 @@
 							]
 						},
 						{
-							"fontDisplay": "block",
+							"fontDisplay": "swap",
 							"fontFamily": "Gentium Book Basic",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
@@ -212,7 +408,24 @@
 				{
 					"fontFace": [
 						{
-							"fontDisplay": "block",
+							"fontDisplay": "swap",
+							"fontFamily": "Great Vibes",
+							"fontStretch": "normal",
+							"fontStyle": "normal",
+							"fontWeight": "400",
+							"src": [
+								"file:./assets/fonts/great-vibes/great-vibes.woff2"
+							]
+						}
+					],
+					"fontFamily": "\"Great Vibes\", cursive",
+					"name": "Great Vibes",
+					"slug": "great-vibes"
+				},
+				{
+					"fontFace": [
+						{
+							"fontDisplay": "swap",
 							"fontFamily": "Inter",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
@@ -222,7 +435,7 @@
 							]
 						},
 						{
-							"fontDisplay": "block",
+							"fontDisplay": "swap",
 							"fontFamily": "Inter",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
@@ -239,7 +452,88 @@
 				{
 					"fontFace": [
 						{
-							"fontDisplay": "block",
+							"fontDisplay": "swap",
+							"fontFamily": "JetBrains Mono",
+							"fontStretch": "normal",
+							"fontStyle": "normal",
+							"fontWeight": "400",
+							"src": [
+								"file:./assets/fonts/jetbrains-mono/jetbrains-mono.woff2"
+							]
+						},
+						{
+							"fontDisplay": "swap",
+							"fontFamily": "JetBrains Mono",
+							"fontStretch": "normal",
+							"fontStyle": "normal",
+							"fontWeight": "700",
+							"src": [
+								"file:./assets/fonts/jetbrains-mono/jetbrains-mono-bold.woff2"
+							]
+						}
+					],
+					"fontFamily": "\"JetBrains Mono\", monospace",
+					"name": "JetBrains Mono",
+					"slug": "jetbrains-mono"
+				},
+				{
+					"fontFace": [
+						{
+							"fontDisplay": "swap",
+							"fontFamily": "Josefin Sans",
+							"fontStretch": "normal",
+							"fontStyle": "normal",
+							"fontWeight": "400",
+							"src": [
+								"file:./assets/fonts/josefin-sans/josefin-sans.woff2"
+							]
+						},
+						{
+							"fontDisplay": "swap",
+							"fontFamily": "Josefin Sans",
+							"fontStretch": "normal",
+							"fontStyle": "normal",
+							"fontWeight": "700",
+							"src": [
+								"file:./assets/fonts/josefin-sans/josefin-sans-bold.woff2"
+							]
+						}
+					],
+					"fontFamily": "\"Josefin Sans\", sans-serif",
+					"name": "Josefin Sans",
+					"slug": "josefin-sans"
+				},
+				{
+					"fontFace": [
+						{
+							"fontDisplay": "swap",
+							"fontFamily": "Karla",
+							"fontStretch": "normal",
+							"fontStyle": "normal",
+							"fontWeight": "400",
+							"src": [
+								"file:./assets/fonts/karla/karla.woff2"
+							]
+						},
+						{
+							"fontDisplay": "swap",
+							"fontFamily": "Karla",
+							"fontStretch": "normal",
+							"fontStyle": "normal",
+							"fontWeight": "700",
+							"src": [
+								"file:./assets/fonts/karla/karla-bold.woff2"
+							]
+						}
+					],
+					"fontFamily": "\"Karla\", sans-serif",
+					"name": "Karla",
+					"slug": "karla"
+				},
+				{
+					"fontFace": [
+						{
+							"fontDisplay": "swap",
 							"fontFamily": "Lato",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
@@ -249,7 +543,7 @@
 							]
 						},
 						{
-							"fontDisplay": "block",
+							"fontDisplay": "swap",
 							"fontFamily": "Lato",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
@@ -266,7 +560,61 @@
 				{
 					"fontFace": [
 						{
-							"fontDisplay": "block",
+							"fontDisplay": "swap",
+							"fontFamily": "Libre Baskerville",
+							"fontStretch": "normal",
+							"fontStyle": "normal",
+							"fontWeight": "400",
+							"src": [
+								"file:./assets/fonts/libre-baskerville/libre-baskerville.woff2"
+							]
+						},
+						{
+							"fontDisplay": "swap",
+							"fontFamily": "Libre Baskerville",
+							"fontStretch": "normal",
+							"fontStyle": "normal",
+							"fontWeight": "700",
+							"src": [
+								"file:./assets/fonts/libre-baskerville/libre-baskerville-bold.woff2"
+							]
+						}
+					],
+					"fontFamily": "\"Libre Baskerville\", serif",
+					"name": "Libre Baskerville",
+					"slug": "libre-baskerville"
+				},
+				{
+					"fontFace": [
+						{
+							"fontDisplay": "swap",
+							"fontFamily": "Libre Franklin",
+							"fontStretch": "normal",
+							"fontStyle": "normal",
+							"fontWeight": "400",
+							"src": [
+								"file:./assets/fonts/libre-franklin/libre-franklin.woff2"
+							]
+						},
+						{
+							"fontDisplay": "swap",
+							"fontFamily": "Libre Franklin",
+							"fontStretch": "normal",
+							"fontStyle": "normal",
+							"fontWeight": "700",
+							"src": [
+								"file:./assets/fonts/libre-franklin/libre-franklin-bold.woff2"
+							]
+						}
+					],
+					"fontFamily": "\"Libre Franklin\", sans-serif",
+					"name": "Libre Franklin",
+					"slug": "libre-franklin"
+				},
+				{
+					"fontFace": [
+						{
+							"fontDisplay": "swap",
 							"fontFamily": "Merriweather",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
@@ -276,7 +624,7 @@
 							]
 						},
 						{
-							"fontDisplay": "block",
+							"fontDisplay": "swap",
 							"fontFamily": "Merriweather",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
@@ -293,7 +641,7 @@
 				{
 					"fontFace": [
 						{
-							"fontDisplay": "block",
+							"fontDisplay": "swap",
 							"fontFamily": "Montserrat",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
@@ -303,7 +651,7 @@
 							]
 						},
 						{
-							"fontDisplay": "block",
+							"fontDisplay": "swap",
 							"fontFamily": "Montserrat",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
@@ -313,7 +661,7 @@
 							]
 						},
 						{
-							"fontDisplay": "block",
+							"fontDisplay": "swap",
 							"fontFamily": "Montserrat",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
@@ -323,7 +671,7 @@
 							]
 						},
 						{
-							"fontDisplay": "block",
+							"fontDisplay": "swap",
 							"fontFamily": "Montserrat",
 							"fontStretch": "normal",
 							"fontStyle": "italic",
@@ -340,7 +688,34 @@
 				{
 					"fontFace": [
 						{
-							"fontDisplay": "block",
+							"fontDisplay": "swap",
+							"fontFamily": "Mulish",
+							"fontStretch": "normal",
+							"fontStyle": "normal",
+							"fontWeight": "400",
+							"src": [
+								"file:./assets/fonts/mulish/mulish.woff2"
+							]
+						},
+						{
+							"fontDisplay": "swap",
+							"fontFamily": "Mulish",
+							"fontStretch": "normal",
+							"fontStyle": "normal",
+							"fontWeight": "700",
+							"src": [
+								"file:./assets/fonts/mulish/mulish-bold.woff2"
+							]
+						}
+					],
+					"fontFamily": "\"Mulish\", sans-serif",
+					"name": "Mulish",
+					"slug": "mulish"
+				},
+				{
+					"fontFace": [
+						{
+							"fontDisplay": "swap",
 							"fontFamily": "Noto Sans",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
@@ -350,7 +725,7 @@
 							]
 						},
 						{
-							"fontDisplay": "block",
+							"fontDisplay": "swap",
 							"fontFamily": "Noto Sans",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
@@ -367,7 +742,61 @@
 				{
 					"fontFace": [
 						{
-							"fontDisplay": "block",
+							"fontDisplay": "swap",
+							"fontFamily": "Nunito",
+							"fontStretch": "normal",
+							"fontStyle": "normal",
+							"fontWeight": "400",
+							"src": [
+								"file:./assets/fonts/nunito/nunito.woff2"
+							]
+						},
+						{
+							"fontDisplay": "swap",
+							"fontFamily": "Nunito",
+							"fontStretch": "normal",
+							"fontStyle": "normal",
+							"fontWeight": "700",
+							"src": [
+								"file:./assets/fonts/nunito/nunito-bold.woff2"
+							]
+						}
+					],
+					"fontFamily": "\"Nunito\", sans-serif",
+					"name": "Nunito",
+					"slug": "nunito"
+				},
+				{
+					"fontFace": [
+						{
+							"fontDisplay": "swap",
+							"fontFamily": "Nunito Sans",
+							"fontStretch": "normal",
+							"fontStyle": "normal",
+							"fontWeight": "400",
+							"src": [
+								"file:./assets/fonts/nunito-sans/nunito-sans.woff2"
+							]
+						},
+						{
+							"fontDisplay": "swap",
+							"fontFamily": "Nunito Sans",
+							"fontStretch": "normal",
+							"fontStyle": "normal",
+							"fontWeight": "700",
+							"src": [
+								"file:./assets/fonts/nunito-sans/nunito-sans-bold.woff2"
+							]
+						}
+					],
+					"fontFamily": "\"Nunito Sans\", sans-serif",
+					"name": "Nunito Sans",
+					"slug": "nunito-sans"
+				},
+				{
+					"fontFace": [
+						{
+							"fontDisplay": "swap",
 							"fontFamily": "Open Sans",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
@@ -377,7 +806,7 @@
 							]
 						},
 						{
-							"fontDisplay": "block",
+							"fontDisplay": "swap",
 							"fontFamily": "Open Sans",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
@@ -394,7 +823,7 @@
 				{
 					"fontFace": [
 						{
-							"fontDisplay": "block",
+							"fontDisplay": "swap",
 							"fontFamily": "Oswald",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
@@ -404,7 +833,7 @@
 							]
 						},
 						{
-							"fontDisplay": "block",
+							"fontDisplay": "swap",
 							"fontFamily": "Oswald",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
@@ -421,7 +850,7 @@
 				{
 					"fontFace": [
 						{
-							"fontDisplay": "block",
+							"fontDisplay": "swap",
 							"fontFamily": "Pathway Gothic One",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
@@ -438,7 +867,7 @@
 				{
 					"fontFace": [
 						{
-							"fontDisplay": "block",
+							"fontDisplay": "swap",
 							"fontFamily": "Playfair Display",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
@@ -448,7 +877,7 @@
 							]
 						},
 						{
-							"fontDisplay": "block",
+							"fontDisplay": "swap",
 							"fontFamily": "Playfair Display",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
@@ -465,7 +894,34 @@
 				{
 					"fontFace": [
 						{
-							"fontDisplay": "block",
+							"fontDisplay": "swap",
+							"fontFamily": "Plus Jakarta Sans",
+							"fontStretch": "normal",
+							"fontStyle": "normal",
+							"fontWeight": "400",
+							"src": [
+								"file:./assets/fonts/plus-jakarta-sans/plus-jakarta-sans.woff2"
+							]
+						},
+						{
+							"fontDisplay": "swap",
+							"fontFamily": "Plus Jakarta Sans",
+							"fontStretch": "normal",
+							"fontStyle": "normal",
+							"fontWeight": "700",
+							"src": [
+								"file:./assets/fonts/plus-jakarta-sans/plus-jakarta-sans-bold.woff2"
+							]
+						}
+					],
+					"fontFamily": "\"Plus Jakarta Sans\", sans-serif",
+					"name": "Plus Jakarta Sans",
+					"slug": "plus-jakarta-sans"
+				},
+				{
+					"fontFace": [
+						{
+							"fontDisplay": "swap",
 							"fontFamily": "Poppins",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
@@ -475,7 +931,7 @@
 							]
 						},
 						{
-							"fontDisplay": "block",
+							"fontDisplay": "swap",
 							"fontFamily": "Poppins",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
@@ -485,7 +941,7 @@
 							]
 						},
 						{
-							"fontDisplay": "block",
+							"fontDisplay": "swap",
 							"fontFamily": "Poppins",
 							"fontStretch": "normal",
 							"fontStyle": "italic",
@@ -502,7 +958,7 @@
 				{
 					"fontFace": [
 						{
-							"fontDisplay": "block",
+							"fontDisplay": "swap",
 							"fontFamily": "PT Mono",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
@@ -519,7 +975,7 @@
 				{
 					"fontFace": [
 						{
-							"fontDisplay": "block",
+							"fontDisplay": "swap",
 							"fontFamily": "PT Sans",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
@@ -529,7 +985,7 @@
 							]
 						},
 						{
-							"fontDisplay": "block",
+							"fontDisplay": "swap",
 							"fontFamily": "PT Sans",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
@@ -546,7 +1002,7 @@
 				{
 					"fontFace": [
 						{
-							"fontDisplay": "block",
+							"fontDisplay": "swap",
 							"fontFamily": "PT Serif",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
@@ -556,7 +1012,7 @@
 							]
 						},
 						{
-							"fontDisplay": "block",
+							"fontDisplay": "swap",
 							"fontFamily": "PT Serif",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
@@ -573,7 +1029,7 @@
 				{
 					"fontFace": [
 						{
-							"fontDisplay": "block",
+							"fontDisplay": "swap",
 							"fontFamily": "Quattrocento",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
@@ -583,7 +1039,7 @@
 							]
 						},
 						{
-							"fontDisplay": "block",
+							"fontDisplay": "swap",
 							"fontFamily": "Quattrocento",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
@@ -600,7 +1056,34 @@
 				{
 					"fontFace": [
 						{
-							"fontDisplay": "block",
+							"fontDisplay": "swap",
+							"fontFamily": "Raleway",
+							"fontStretch": "normal",
+							"fontStyle": "normal",
+							"fontWeight": "400",
+							"src": [
+								"file:./assets/fonts/raleway/raleway.woff2"
+							]
+						},
+						{
+							"fontDisplay": "swap",
+							"fontFamily": "Raleway",
+							"fontStretch": "normal",
+							"fontStyle": "normal",
+							"fontWeight": "700",
+							"src": [
+								"file:./assets/fonts/raleway/raleway-bold.woff2"
+							]
+						}
+					],
+					"fontFamily": "\"Raleway\", sans-serif",
+					"name": "Raleway",
+					"slug": "raleway"
+				},
+				{
+					"fontFace": [
+						{
+							"fontDisplay": "swap",
 							"fontFamily": "Roboto",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
@@ -610,7 +1093,7 @@
 							]
 						},
 						{
-							"fontDisplay": "block",
+							"fontDisplay": "swap",
 							"fontFamily": "Roboto",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
@@ -627,7 +1110,7 @@
 				{
 					"fontFace": [
 						{
-							"fontDisplay": "block",
+							"fontDisplay": "swap",
 							"fontFamily": "Roboto Slab",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
@@ -637,7 +1120,7 @@
 							]
 						},
 						{
-							"fontDisplay": "block",
+							"fontDisplay": "swap",
 							"fontFamily": "Roboto Slab",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
@@ -654,7 +1137,34 @@
 				{
 					"fontFace": [
 						{
-							"fontDisplay": "block",
+							"fontDisplay": "swap",
+							"fontFamily": "Rubik",
+							"fontStretch": "normal",
+							"fontStyle": "normal",
+							"fontWeight": "400",
+							"src": [
+								"file:./assets/fonts/rubik/rubik.woff2"
+							]
+						},
+						{
+							"fontDisplay": "swap",
+							"fontFamily": "Rubik",
+							"fontStretch": "normal",
+							"fontStyle": "normal",
+							"fontWeight": "700",
+							"src": [
+								"file:./assets/fonts/rubik/rubik-bold.woff2"
+							]
+						}
+					],
+					"fontFamily": "\"Rubik\", sans-serif",
+					"name": "Rubik",
+					"slug": "rubik"
+				},
+				{
+					"fontFace": [
+						{
+							"fontDisplay": "swap",
 							"fontFamily": "Source Sans Pro",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
@@ -664,7 +1174,7 @@
 							]
 						},
 						{
-							"fontDisplay": "block",
+							"fontDisplay": "swap",
 							"fontFamily": "Source Sans Pro",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
@@ -679,6 +1189,87 @@
 					"slug": "source-sans-pro"
 				},
 				{
+					"fontFace": [
+						{
+							"fontDisplay": "swap",
+							"fontFamily": "Source Serif 4",
+							"fontStretch": "normal",
+							"fontStyle": "normal",
+							"fontWeight": "400",
+							"src": [
+								"file:./assets/fonts/source-serif-4/source-serif-4.woff2"
+							]
+						},
+						{
+							"fontDisplay": "swap",
+							"fontFamily": "Source Serif 4",
+							"fontStretch": "normal",
+							"fontStyle": "normal",
+							"fontWeight": "700",
+							"src": [
+								"file:./assets/fonts/source-serif-4/source-serif-4-bold.woff2"
+							]
+						}
+					],
+					"fontFamily": "\"Source Serif 4\", serif",
+					"name": "Source Serif 4",
+					"slug": "source-serif-4"
+				},
+				{
+					"fontFace": [
+						{
+							"fontDisplay": "swap",
+							"fontFamily": "Space Grotesk",
+							"fontStretch": "normal",
+							"fontStyle": "normal",
+							"fontWeight": "400",
+							"src": [
+								"file:./assets/fonts/space-grotesk/space-grotesk.woff2"
+							]
+						},
+						{
+							"fontDisplay": "swap",
+							"fontFamily": "Space Grotesk",
+							"fontStretch": "normal",
+							"fontStyle": "normal",
+							"fontWeight": "700",
+							"src": [
+								"file:./assets/fonts/space-grotesk/space-grotesk-bold.woff2"
+							]
+						}
+					],
+					"fontFamily": "\"Space Grotesk\", sans-serif",
+					"name": "Space Grotesk",
+					"slug": "space-grotesk"
+				},
+				{
+					"fontFace": [
+						{
+							"fontDisplay": "swap",
+							"fontFamily": "Space Mono",
+							"fontStretch": "normal",
+							"fontStyle": "normal",
+							"fontWeight": "400",
+							"src": [
+								"file:./assets/fonts/space-mono/space-mono.woff2"
+							]
+						},
+						{
+							"fontDisplay": "swap",
+							"fontFamily": "Space Mono",
+							"fontStretch": "normal",
+							"fontStyle": "normal",
+							"fontWeight": "700",
+							"src": [
+								"file:./assets/fonts/space-mono/space-mono-bold.woff2"
+							]
+						}
+					],
+					"fontFamily": "\"Space Mono\", monospace",
+					"name": "Space Mono",
+					"slug": "space-mono"
+				},
+				{
 					"fontFamily": "-apple-system,BlinkMacSystemFont,\"Segoe UI\",Roboto,Oxygen-Sans,Ubuntu,Cantarell,\"Helvetica Neue\",sans-serif",
 					"name": "System Font",
 					"slug": "system-font"
@@ -686,7 +1277,7 @@
 				{
 					"fontFace": [
 						{
-							"fontDisplay": "block",
+							"fontDisplay": "swap",
 							"fontFamily": "Ubuntu",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
@@ -696,7 +1287,7 @@
 							]
 						},
 						{
-							"fontDisplay": "block",
+							"fontDisplay": "swap",
 							"fontFamily": "Ubuntu",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
@@ -709,6 +1300,33 @@
 					"fontFamily": "\"Ubuntu\", sans-serif",
 					"name": "Ubuntu",
 					"slug": "ubuntu"
+				},
+				{
+					"fontFace": [
+						{
+							"fontDisplay": "swap",
+							"fontFamily": "Work Sans",
+							"fontStretch": "normal",
+							"fontStyle": "normal",
+							"fontWeight": "400",
+							"src": [
+								"file:./assets/fonts/work-sans/work-sans.woff2"
+							]
+						},
+						{
+							"fontDisplay": "swap",
+							"fontFamily": "Work Sans",
+							"fontStretch": "normal",
+							"fontStyle": "normal",
+							"fontWeight": "700",
+							"src": [
+								"file:./assets/fonts/work-sans/work-sans-bold.woff2"
+							]
+						}
+					],
+					"fontFamily": "\"Work Sans\", sans-serif",
+					"name": "Work Sans",
+					"slug": "work-sans"
 				},
 				{
 					"fontFamily": "Arial, sans-serif",
@@ -912,9 +1530,9 @@
 			},
 			"core/image": {
 				"variations": {
-					"rounded": {
+					"rounded" : {
 						"border": {
-							"radius": "var(--wp--custom--border--radius)"
+						"radius": "var(--wp--custom--border--radius)"
 						}
 					}
 				},
@@ -1022,7 +1640,7 @@
 					}
 				}
 			},
-			"core/comments-title": {
+			"core/comments-title":{
 				"spacing": {
 					"margin": {
 						"bottom": "var(--wp--preset--spacing--40)"
@@ -1205,8 +1823,8 @@
 				},
 				":focus": {
 					"outline": {
-						"color": "var(--wp--preset--color--body-text)",
-						"offset": "2px"
+					"color": "var(--wp--preset--color--body-text)",
+					"offset": "2px"
 					}
 				},
 				"spacing": {
