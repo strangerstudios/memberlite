@@ -709,6 +709,56 @@
 					"fontFamily": "\"Ubuntu\", sans-serif",
 					"name": "Ubuntu",
 					"slug": "ubuntu"
+				},
+				{
+					"fontFamily": "Arial, sans-serif",
+					"name": "Arial",
+					"slug": "arial"
+				},
+				{
+					"fontFamily": "Bookman, serif",
+					"name": "Bookman",
+					"slug": "bookman"
+				},
+				{
+					"fontFamily": "\"Courier New\", monospace",
+					"name": "Courier New",
+					"slug": "courier-new"
+				},
+				{
+					"fontFamily": "Garamond, serif",
+					"name": "Garamond",
+					"slug": "garamond"
+				},
+				{
+					"fontFamily": "Georgia, serif",
+					"name": "Georgia",
+					"slug": "georgia"
+				},
+				{
+					"fontFamily": "Helvetica, sans-serif",
+					"name": "Helvetica",
+					"slug": "helvetica"
+				},
+				{
+					"fontFamily": "Times, serif",
+					"name": "Times",
+					"slug": "times"
+				},
+				{
+					"fontFamily": "\"Times New Roman\", serif",
+					"name": "Times New Roman",
+					"slug": "times-new-roman"
+				},
+				{
+					"fontFamily": "\"Trebuchet MS\", sans-serif",
+					"name": "Trebuchet MS",
+					"slug": "trebuchet-ms"
+				},
+				{
+					"fontFamily": "Verdana, sans-serif",
+					"name": "Verdana",
+					"slug": "verdana"
 				}
 			],
 			"fontSizes": [
@@ -862,9 +912,9 @@
 			},
 			"core/image": {
 				"variations": {
-					"rounded" : {
+					"rounded": {
 						"border": {
-						"radius": "var(--wp--custom--border--radius)"
+							"radius": "var(--wp--custom--border--radius)"
 						}
 					}
 				},
@@ -972,7 +1022,7 @@
 					}
 				}
 			},
-			"core/comments-title":{
+			"core/comments-title": {
 				"spacing": {
 					"margin": {
 						"bottom": "var(--wp--preset--spacing--40)"
@@ -1155,8 +1205,8 @@
 				},
 				":focus": {
 					"outline": {
-					"color": "var(--wp--preset--color--body-text)",
-					"offset": "2px"
+						"color": "var(--wp--preset--color--body-text)",
+						"offset": "2px"
 					}
 				},
 				"spacing": {
