@@ -2,14 +2,14 @@
 # This file is distributed under the GNU General Public License v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Memberlite 7.0\n"
+"Project-Id-Version: Memberlite 7.0.1\n"
 "Report-Msgid-Bugs-To: info@paidmembershipspro.com\n"
 "Last-Translator: Paid Memberships Pro <info@paidmembershipspro.com>\n"
 "Language-Team: Paid Memberships Pro <info@paidmembershipspro.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-03-13T17:20:59+00:00\n"
+"POT-Creation-Date: 2026-04-02T16:38:06+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: memberlite\n"
@@ -789,68 +789,68 @@ msgstr ""
 msgid "Author: %s"
 msgstr ""
 
-#: functions.php:274
+#: functions.php:252
 #: inc/colors.php:30
 msgid "Primary"
 msgstr ""
 
-#: functions.php:275
+#: functions.php:253
 msgid "Member"
 msgstr ""
 
-#: functions.php:276
+#: functions.php:254
 msgid "Member - Logged Out"
 msgstr ""
 
-#: functions.php:277
+#: functions.php:255
 #: inc/customizer.php:120
 msgid "Footer"
 msgstr ""
 
-#: functions.php:366
+#: functions.php:344
 msgid "Posts and Archives"
 msgstr ""
 
-#: functions.php:378
+#: functions.php:356
 #: inc/customizer.php:138
 msgid "Pages"
 msgstr ""
 
-#: functions.php:390
+#: functions.php:368
 #: inc/customizer.php:111
 msgid "Header"
 msgstr ""
 
-#: functions.php:412
+#: functions.php:390
 #: inc/colors.php:110
 msgid "Footer Widgets"
 msgstr ""
 
-#: functions.php:423
+#: functions.php:401
 msgid "Mobile Menu Widgets"
 msgstr ""
 
-#: functions.php:461
-#: functions.php:464
-#: functions.php:496
+#: functions.php:439
+#: functions.php:442
+#: functions.php:474
 msgid "Log Out"
 msgstr ""
 
-#: functions.php:467
-#: functions.php:499
+#: functions.php:445
+#: functions.php:477
 msgid "Log In"
 msgstr ""
 
-#: functions.php:472
-#: functions.php:504
+#: functions.php:450
+#: functions.php:482
 msgid "Register"
 msgstr ""
 
-#: functions.php:764
+#: functions.php:742
 msgid "Buttons Hover"
 msgstr ""
 
-#: functions.php:772
+#: functions.php:750
 msgid "White"
 msgstr ""
 
@@ -957,39 +957,47 @@ msgstr ""
 msgid "Footer Widgets Background"
 msgstr ""
 
-#: inc/colors.php:442
+#: inc/colors.php:472
 msgid "Default"
 msgstr ""
 
-#: inc/colors.php:446
+#: inc/colors.php:476
 msgid "Evergreen"
 msgstr ""
 
-#: inc/colors.php:450
+#: inc/colors.php:480
 msgid "Seaside Linen"
 msgstr ""
 
-#: inc/colors.php:454
+#: inc/colors.php:484
 msgid "Deep Harbor"
 msgstr ""
 
-#: inc/colors.php:458
+#: inc/colors.php:488
 msgid "Midnight Violet"
 msgstr ""
 
-#: inc/colors.php:466
+#: inc/colors.php:492
+msgid "Cocoa Ash"
+msgstr ""
+
+#: inc/colors.php:496
+msgid "Gotham"
+msgstr ""
+
+#: inc/colors.php:500
 msgid "Soft Spruce"
 msgstr ""
 
-#: inc/colors.php:470
+#: inc/colors.php:504
 msgid "Iron Ember"
 msgstr ""
 
-#: inc/colors.php:474
+#: inc/colors.php:508
 msgid "Slate Harbor"
 msgstr ""
 
-#: inc/colors.php:507
+#: inc/colors.php:541
 msgid "Custom"
 msgstr ""
 
@@ -1293,142 +1301,6 @@ msgstr ""
 
 #: inc/customizer.php:531
 msgid "Show Prev/Next on Single Pages"
-msgstr ""
-
-#: inc/customizer.php:781
-msgid "Abril Fatface"
-msgstr ""
-
-#: inc/customizer.php:782
-msgid "DM Sans"
-msgstr ""
-
-#: inc/customizer.php:783
-msgid "Figtree"
-msgstr ""
-
-#: inc/customizer.php:784
-msgid "Fjalla One"
-msgstr ""
-
-#: inc/customizer.php:785
-msgid "Gentium Book Basic"
-msgstr ""
-
-#: inc/customizer.php:786
-msgid "Inter"
-msgstr ""
-
-#: inc/customizer.php:787
-msgid "Lato"
-msgstr ""
-
-#: inc/customizer.php:788
-msgid "Merriweather"
-msgstr ""
-
-#: inc/customizer.php:789
-msgid "Montserrat"
-msgstr ""
-
-#: inc/customizer.php:790
-msgid "Noto Sans"
-msgstr ""
-
-#: inc/customizer.php:791
-msgid "Open Sans"
-msgstr ""
-
-#: inc/customizer.php:792
-msgid "Oswald"
-msgstr ""
-
-#: inc/customizer.php:793
-msgid "Pathway Gothic One"
-msgstr ""
-
-#: inc/customizer.php:794
-msgid "Playfair Display"
-msgstr ""
-
-#: inc/customizer.php:795
-msgid "Poppins"
-msgstr ""
-
-#: inc/customizer.php:796
-msgid "PT Mono"
-msgstr ""
-
-#: inc/customizer.php:797
-msgid "PT Sans"
-msgstr ""
-
-#: inc/customizer.php:798
-msgid "PT Serif"
-msgstr ""
-
-#: inc/customizer.php:799
-msgid "Quattrocento"
-msgstr ""
-
-#: inc/customizer.php:800
-msgid "Roboto"
-msgstr ""
-
-#: inc/customizer.php:801
-msgid "Roboto Slab"
-msgstr ""
-
-#: inc/customizer.php:802
-msgid "Source Sans Pro"
-msgstr ""
-
-#: inc/customizer.php:803
-msgid "Ubuntu"
-msgstr ""
-
-#: inc/customizer.php:812
-msgid "Arial"
-msgstr ""
-
-#: inc/customizer.php:813
-msgid "Bookman"
-msgstr ""
-
-#: inc/customizer.php:814
-msgid "Courier"
-msgstr ""
-
-#: inc/customizer.php:815
-msgid "Courier New"
-msgstr ""
-
-#: inc/customizer.php:816
-msgid "Garamond"
-msgstr ""
-
-#: inc/customizer.php:817
-msgid "Georgia"
-msgstr ""
-
-#: inc/customizer.php:818
-msgid "Helvetica"
-msgstr ""
-
-#: inc/customizer.php:819
-msgid "Times"
-msgstr ""
-
-#: inc/customizer.php:820
-msgid "Times New Roman"
-msgstr ""
-
-#: inc/customizer.php:821
-msgid "Trebuchet MS"
-msgstr ""
-
-#: inc/customizer.php:822
-msgid "Verdana"
 msgstr ""
 
 #: inc/defaults.php:28
@@ -1842,8 +1714,8 @@ msgstr ""
 msgid "Memberlite - Testimonials"
 msgstr ""
 
-#: inc/patterns.php:44
-#: inc/patterns.php:45
+#: inc/patterns.php:55
+#: inc/patterns.php:56
 msgid "Patterns"
 msgstr ""
 
@@ -2317,12 +2189,52 @@ msgstr ""
 
 #: theme.json
 msgctxt "Font family name"
+msgid "Bubblegum Sans"
+msgstr ""
+
+#: theme.json
+msgctxt "Font family name"
+msgid "Barlow"
+msgstr ""
+
+#: theme.json
+msgctxt "Font family name"
+msgid "Cabin"
+msgstr ""
+
+#: theme.json
+msgctxt "Font family name"
+msgid "Crimson Text"
+msgstr ""
+
+#: theme.json
+msgctxt "Font family name"
 msgid "DM Sans"
 msgstr ""
 
 #: theme.json
 msgctxt "Font family name"
+msgid "Eagle Lake"
+msgstr ""
+
+#: theme.json
+msgctxt "Font family name"
+msgid "Exo 2"
+msgstr ""
+
+#: theme.json
+msgctxt "Font family name"
 msgid "Figtree"
+msgstr ""
+
+#: theme.json
+msgctxt "Font family name"
+msgid "Fira Code"
+msgstr ""
+
+#: theme.json
+msgctxt "Font family name"
+msgid "Fira Sans"
 msgstr ""
 
 #: theme.json
@@ -2337,12 +2249,42 @@ msgstr ""
 
 #: theme.json
 msgctxt "Font family name"
+msgid "Great Vibes"
+msgstr ""
+
+#: theme.json
+msgctxt "Font family name"
 msgid "Inter"
 msgstr ""
 
 #: theme.json
 msgctxt "Font family name"
+msgid "JetBrains Mono"
+msgstr ""
+
+#: theme.json
+msgctxt "Font family name"
+msgid "Josefin Sans"
+msgstr ""
+
+#: theme.json
+msgctxt "Font family name"
+msgid "Karla"
+msgstr ""
+
+#: theme.json
+msgctxt "Font family name"
 msgid "Lato"
+msgstr ""
+
+#: theme.json
+msgctxt "Font family name"
+msgid "Libre Baskerville"
+msgstr ""
+
+#: theme.json
+msgctxt "Font family name"
+msgid "Libre Franklin"
 msgstr ""
 
 #: theme.json
@@ -2357,7 +2299,22 @@ msgstr ""
 
 #: theme.json
 msgctxt "Font family name"
+msgid "Mulish"
+msgstr ""
+
+#: theme.json
+msgctxt "Font family name"
 msgid "Noto Sans"
+msgstr ""
+
+#: theme.json
+msgctxt "Font family name"
+msgid "Nunito"
+msgstr ""
+
+#: theme.json
+msgctxt "Font family name"
+msgid "Nunito Sans"
 msgstr ""
 
 #: theme.json
@@ -2378,6 +2335,11 @@ msgstr ""
 #: theme.json
 msgctxt "Font family name"
 msgid "Playfair Display"
+msgstr ""
+
+#: theme.json
+msgctxt "Font family name"
+msgid "Plus Jakarta Sans"
 msgstr ""
 
 #: theme.json
@@ -2407,6 +2369,11 @@ msgstr ""
 
 #: theme.json
 msgctxt "Font family name"
+msgid "Raleway"
+msgstr ""
+
+#: theme.json
+msgctxt "Font family name"
 msgid "Roboto"
 msgstr ""
 
@@ -2417,7 +2384,27 @@ msgstr ""
 
 #: theme.json
 msgctxt "Font family name"
+msgid "Rubik"
+msgstr ""
+
+#: theme.json
+msgctxt "Font family name"
 msgid "Source Sans Pro"
+msgstr ""
+
+#: theme.json
+msgctxt "Font family name"
+msgid "Source Serif 4"
+msgstr ""
+
+#: theme.json
+msgctxt "Font family name"
+msgid "Space Grotesk"
+msgstr ""
+
+#: theme.json
+msgctxt "Font family name"
+msgid "Space Mono"
 msgstr ""
 
 #: theme.json
@@ -2428,6 +2415,61 @@ msgstr ""
 #: theme.json
 msgctxt "Font family name"
 msgid "Ubuntu"
+msgstr ""
+
+#: theme.json
+msgctxt "Font family name"
+msgid "Work Sans"
+msgstr ""
+
+#: theme.json
+msgctxt "Font family name"
+msgid "Arial"
+msgstr ""
+
+#: theme.json
+msgctxt "Font family name"
+msgid "Bookman"
+msgstr ""
+
+#: theme.json
+msgctxt "Font family name"
+msgid "Courier New"
+msgstr ""
+
+#: theme.json
+msgctxt "Font family name"
+msgid "Garamond"
+msgstr ""
+
+#: theme.json
+msgctxt "Font family name"
+msgid "Georgia"
+msgstr ""
+
+#: theme.json
+msgctxt "Font family name"
+msgid "Helvetica"
+msgstr ""
+
+#: theme.json
+msgctxt "Font family name"
+msgid "Times"
+msgstr ""
+
+#: theme.json
+msgctxt "Font family name"
+msgid "Times New Roman"
+msgstr ""
+
+#: theme.json
+msgctxt "Font family name"
+msgid "Trebuchet MS"
+msgstr ""
+
+#: theme.json
+msgctxt "Font family name"
+msgid "Verdana"
 msgstr ""
 
 #: theme.json
