@@ -30,7 +30,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add build/ # Replace with your actual build output folder
+          git add -f build/ # Add build output folder, force commit will bypass the .gitignore rules
           git diff --staged --quiet || git commit -m "chore: build stylesheets and scripts [skip ci]"
           git push origin HEAD:master
         env:

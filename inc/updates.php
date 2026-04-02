@@ -43,6 +43,22 @@ function memberlite_checkForUpdates() {
 		require_once get_template_directory() . '/inc/updates/update_7_0.php';
 		update_option( 'memberlite_db_version', '2026022201', 'no' );
 	}
+
+	// Migrate font theme_mods to lowercase slugs to match theme.json.
+	if ( $memberlite_db_version < '2026040201' ) {
+		foreach ( array( 'memberlite_header_font', 'memberlite_body_font' ) as $mod_key ) {
+			$value = get_theme_mod( $mod_key );
+			if ( ! empty( $value ) ) {
+				$new_value = strtolower( $value );
+				// Map legacy "Courier" slug to "courier-new" to match theme.json.
+				if ( 'courier' === $new_value ) {
+					$new_value = 'courier-new';
+				}
+				set_theme_mod( $mod_key, $new_value );
+			}
+		}
+		update_option( 'memberlite_db_version', '2026040201', 'no' );
+	}
 }
 
 /**

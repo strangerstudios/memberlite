@@ -774,60 +774,29 @@ class Memberlite_Customize {
 	}
 
 	/**
-	 * Get Google fonts
-	 */
-	public static function get_google_fonts() {
-		return array(
-			'Abril-Fatface'      => __( 'Abril Fatface', 'memberlite' ),
-			'DM-Sans'            => __( 'DM Sans', 'memberlite' ),
-			'Figtree'            => __( 'Figtree', 'memberlite' ),
-			'Fjalla-One'         => __( 'Fjalla One', 'memberlite' ),
-			'Gentium-Book-Basic' => __( 'Gentium Book Basic', 'memberlite' ),
-			'Inter'              => __( 'Inter', 'memberlite' ),
-			'Lato'               => __( 'Lato', 'memberlite' ),
-			'Merriweather'       => __( 'Merriweather', 'memberlite' ),
-			'Montserrat'         => __( 'Montserrat', 'memberlite' ),
-			'Noto-Sans'          => __( 'Noto Sans', 'memberlite' ),
-			'Open-Sans'          => __( 'Open Sans', 'memberlite' ),
-			'Oswald'             => __( 'Oswald', 'memberlite' ),
-			'Pathway-Gothic-One' => __( 'Pathway Gothic One', 'memberlite' ),
-			'Playfair-Display'   => __( 'Playfair Display', 'memberlite' ),
-			'Poppins'            => __( 'Poppins', 'memberlite' ),
-			'PT-Mono'            => __( 'PT Mono', 'memberlite' ),
-			'PT-Sans'            => __( 'PT Sans', 'memberlite' ),
-			'PT-Serif'           => __( 'PT Serif', 'memberlite' ),
-			'Quattrocento'       => __( 'Quattrocento', 'memberlite' ),
-			'Roboto'             => __( 'Roboto', 'memberlite' ),
-			'Roboto-Slab'        => __( 'Roboto Slab', 'memberlite' ),
-			'Source-Sans-Pro'    => __( 'Source Sans Pro', 'memberlite' ),
-			'Ubuntu'             => __( 'Ubuntu', 'memberlite' ),
-		);
-	}
-
-	/**
-	 * Get array of web safe fonts
-	 */
-	public static function get_web_safe_fonts() {
-		return array(
-			'Arial'           => __( 'Arial', 'memberlite' ),
-			'Bookman'         => __( 'Bookman', 'memberlite' ),
-			'Courier'         => __( 'Courier', 'memberlite' ),
-			'Courier-New'     => __( 'Courier New', 'memberlite' ),
-			'Garamond'        => __( 'Garamond', 'memberlite' ),
-			'Georgia'         => __( 'Georgia', 'memberlite' ),
-			'Helvetica'       => __( 'Helvetica', 'memberlite' ),
-			'Times'           => __( 'Times', 'memberlite' ),
-			'Times-New-Roman' => __( 'Times New Roman', 'memberlite' ),
-			'Trebuchet-MS'    => __( 'Trebuchet MS', 'memberlite' ),
-			'Verdana'         => __( 'Verdana', 'memberlite' ),
-		);
-	}
-
-	/**
-	 * Get array of all fonts
+	 * Get all available fonts from theme.json font families.
+	 *
+	 * theme.json is the single source of truth for available fonts. Developers
+	 * can add fonts by filtering wp_theme_json_data_theme.
+	 *
+	 * @since 7.0.1
+	 * @return array Associative array of slug => display name.
 	 */
 	public static function get_all_fonts() {
-		return array_merge( Memberlite_Customize::get_google_fonts(), Memberlite_Customize::get_web_safe_fonts() );
+		$settings      = wp_get_global_settings();
+		$font_families = $settings['typography']['fontFamilies']['theme'] ?? array();
+		$fonts         = array();
+		foreach ( $font_families as $font ) {
+			if ( ! is_array( $font ) || empty( $font['slug'] ) || empty( $font['name'] ) ) {
+				continue;
+			}
+			$slug = sanitize_key( $font['slug'] );
+			if ( '' === $slug ) {
+				continue;
+			}
+			$fonts[ $slug ] = $font['name'];
+		}
+		return $fonts;
 	}
 
 

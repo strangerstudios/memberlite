@@ -236,7 +236,7 @@ function memberlite_get_seaside_linen_colors(): array {
 		'color_link'              => '1f3a4a',
 		'color_meta_link'         => '1f3a4a',
 		'color_primary'           => '1f3a4a',
-		'color_secondary'         => '4e6a78',
+		'color_secondary'         => '445c69',
 		'color_action'            => 'ebf9a8',
 		'color_button'            => '1f3a4a',
 		'bgcolor_page_masthead'   => '1f3a4a',
@@ -264,9 +264,9 @@ function memberlite_get_deep_harbor_colors(): array {
 		'color_site_navigation'   => '2a2f36',
 		'color_text'              => '2a2f36',
 		'color_link'              => '1f3a5f',
-		'color_meta_link'         => '2f5f8f',
+		'color_meta_link'         => '2b5784',
 		'color_primary'           => '1f3a5f',
-		'color_secondary'         => '2f5f8f',
+		'color_secondary'         => '2b5784',
 		'color_action'            => '8faea0',
 		'color_button'            => '1f3a5f',
 		'bgcolor_page_masthead'   => '1f3a5f',
@@ -312,28 +312,58 @@ function memberlite_get_midnight_violet_colors(): array {
  *
  * Warm browns with orange accent.
  *
- * @since 7.0
+ * @since 7.0.1
  * @return array 17-color associative array.
  */
 function memberlite_get_cocoa_ash_colors(): array {
 	return array(
 		'header_textcolor'        => 'ffffff',
-		'background_color'        => 'ffffff',
+		'background_color'        => '1f1b18',
 		'bgcolor_header'          => '1f1b18',
-		'bgcolor_site_navigation' => '6f6a66',
+		'bgcolor_site_navigation' => '45403c',
 		'color_site_navigation'   => 'ffffff',
-		'color_text'              => '1f1b18',
-		'color_link'              => '2e2623',
+		'color_text'              => 'ffffff',
+		'color_link'              => 'ffffff',
 		'color_meta_link'         => 'ddd7cf',
 		'color_primary'           => '2e2623',
-		'color_secondary'         => '6f6a66',
-		'color_action'            => 'd89a5a',
-		'color_button'            => '2e2623',
-		'bgcolor_page_masthead'   => 'a8a29a',
+		'color_secondary'         => '5a5653',
+		'color_action'            => 'ffa951',
+		'color_button'            => 'ffa951',
+		'bgcolor_page_masthead'   => 'cfc9c1',
 		'color_page_masthead'     => '1f1b18',
 		'bgcolor_footer_widgets'  => '2e2623',
-		'color_footer_widgets'    => 'ddd7cf',
-		'color_borders'           => 'a8a29a',
+		'color_footer_widgets'    => 'ffffff',
+		'color_borders'           => '635c56',
+	);
+}
+
+/**
+ * Gotham color scheme
+ *
+ * Dark blues with peach accents.
+ *
+ * @since 7.0.1
+ * @return array 17-color associative array.
+ */
+function memberlite_get_gotham_colors(): array {
+	return array(
+		'header_textcolor'        => 'ffffff',
+		'background_color'        => '191b1f',
+		'bgcolor_header'          => '191b1f',
+		'bgcolor_site_navigation' => '292b31',
+		'color_site_navigation'   => 'ffffff',
+		'color_text'              => 'ffffff',
+		'color_link'              => 'e9d5cd',
+		'color_meta_link'         => 'ffffff',
+		'color_primary'           => 'c3b2ad',
+		'color_secondary'         => '69666f',
+		'color_action'            => 'e7b39e',
+		'color_button'            => 'e7b39e',
+		'bgcolor_page_masthead'   => 'e9d5cd',
+		'color_page_masthead'     => '191b1f',
+		'bgcolor_footer_widgets'  => 'c3b2ad',
+		'color_footer_widgets'    => '191b1f',
+		'color_borders'           => '40444d',
 	);
 }
 
@@ -353,12 +383,12 @@ function memberlite_get_soft_spruce_colors(): array {
 		'bgcolor_site_navigation' => 'f5f7f6',
 		'color_site_navigation'   => '2b2e2d',
 		'color_text'              => '2b2e2d',
-		'color_link'              => '0e7a49',
-		'color_meta_link'         => '7a7f7c',
-		'color_primary'           => '0e7a49',
-		'color_secondary'         => '7a7f7c',
+		'color_link'              => '0b603a',
+		'color_meta_link'         => '555858',
+		'color_primary'           => '0b603a',
+		'color_secondary'         => '555858',
 		'color_action'            => 'd18a3a',
-		'color_button'            => '0e7a49',
+		'color_button'            => '0b603a',
 		'bgcolor_page_masthead'   => 'f5f7f6',
 		'color_page_masthead'     => '2b2e2d',
 		'bgcolor_footer_widgets'  => 'f5f7f6',
@@ -458,10 +488,14 @@ function memberlite_get_color_schemes(): array {
 			'label'  => __( 'Midnight Violet', 'memberlite' ),
 			'colors' => memberlite_get_midnight_violet_colors(),
 		),
-//		'cocoa_ash'       => array(
-//			'label'  => __( 'Cocoa Ash', 'memberlite' ),
-//			'colors' => memberlite_get_cocoa_ash_colors(),
-//		),
+		'cocoa_ash'       => array(
+			'label'  => __( 'Cocoa Ash', 'memberlite' ),
+			'colors' => memberlite_get_cocoa_ash_colors(),
+		),
+		'gotham'       => array(
+			'label'  => __( 'Gotham', 'memberlite' ),
+			'colors' => memberlite_get_gotham_colors(),
+		),
 		'soft_spruce'     => array(
 			'label'  => __( 'Soft Spruce', 'memberlite' ),
 			'colors' => memberlite_get_soft_spruce_colors(),
@@ -578,8 +612,8 @@ function memberlite_adjust_color_brightness( string $hex_color, float $percent =
 	$b = max( 0, min( 255, $b + ( $b * $percent / 100 ) ) );
 
 	return '#' . str_pad( dechex( (int) round( $r ) ), 2, '0', STR_PAD_LEFT )
-	            . str_pad( dechex( (int) round( $g ) ), 2, '0', STR_PAD_LEFT )
-	            . str_pad( dechex( (int) round( $b ) ), 2, '0', STR_PAD_LEFT );
+		. str_pad( dechex( (int) round( $g ) ), 2, '0', STR_PAD_LEFT )
+		. str_pad( dechex( (int) round( $b ) ), 2, '0', STR_PAD_LEFT );
 }
 
 /**

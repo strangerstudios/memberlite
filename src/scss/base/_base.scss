@@ -23,7 +23,7 @@ textarea {
 a:where(:not(.wp-block-button__link)) {
 	color: var(--memberlite-color-link);
 	text-decoration: underline;
-	text-underline-offset: 2px;
+	text-underline-offset: 3px;
 
 	&:focus,
 	&:focus-visible {
@@ -56,7 +56,8 @@ hr {
 
 ul {
 	list-style: disc;
-	margin: 0 0 var(--wp--preset--spacing--20) var(--wp--preset--spacing--20);
+	margin-top: var(--wp--preset--spacing--10);
+	margin-left: var(--wp--preset--spacing--10);
 }
 
 ul ul {
@@ -65,7 +66,8 @@ ul ul {
 
 ol {
 	list-style: decimal;
-	margin: 0 0 var(--wp--preset--spacing--20) var(--wp--preset--spacing--20);
+	margin-top: var(--wp--preset--spacing--10);
+	margin-left: var(--wp--preset--spacing--10);
 }
 
 ul li,
@@ -88,11 +90,13 @@ figure {
 }
 
 table {
+	background: var(--memberlite-color-site-background);
 	margin: var(--wp--preset--spacing--20) 0;
 	width: 100%;
 }
 
 th {
+	background: inherit;
 	font-family: var(--memberlite-header-font), ui-sans-serif;
 	font-weight: 400;
 	padding: var(--wp--preset--spacing--10);
@@ -115,6 +119,7 @@ tbody th {
 }
 
 tbody td {
+	background-color: var(--wp--preset--color--base);
 	border-color: var(--memberlite-color-borders);
 	border-style: solid;
 	border-width: 0 0 1px 0;
@@ -196,7 +201,7 @@ h6,
 
 	&:hover {
 		text-decoration-line: underline;
-		text-underline-offset: 2px;
+		text-underline-offset: 3px;
 	}
 }
 
@@ -235,7 +240,7 @@ address {
 }
 
 pre {
-	background-color: light-dark(color-mix(in srgb, var(--memberlite-color-text) 7%, transparent), color-mix(in srgb, var(--memberlite-color-text) 20%, transparent));
+	background-color: light-dark(color-mix(in srgb, var(--memberlite-color-text) 1%, transparent), color-mix(in srgb, var(--memberlite-color-text) 10%, transparent));
 	font-family: "Courier 10 Pitch", Courier, monospace;
 	margin: var(--wp--preset--spacing--20) 0;
 	max-width: 100%;

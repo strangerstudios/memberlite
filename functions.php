@@ -4,7 +4,7 @@
  *
  * @package Memberlite
  */
-define( 'MEMBERLITE_VERSION', '7.0' );
+define( 'MEMBERLITE_VERSION', '7.0.1' );
 define( 'MEMBERLITE_URL', get_template_directory_uri() );
 define( 'MEMBERLITE_DIR', get_template_directory() );
 
@@ -20,7 +20,7 @@ function memberlite_init_styles() {
 
 	wp_enqueue_style( 'memberlite_print_style', MEMBERLITE_URL . '/css/print.css', array(), MEMBERLITE_VERSION, 'print' );
 	wp_enqueue_script( 'memberlite-script', MEMBERLITE_URL . '/js/memberlite.js', array( 'jquery' ), MEMBERLITE_VERSION, true );
-	wp_enqueue_style( 'font-awesome', MEMBERLITE_URL . '/font-awesome/css/all.min.css', array(), '6.6.0' );
+	wp_enqueue_style( 'font-awesome', MEMBERLITE_URL . '/font-awesome/css/all.min.css', array(), '7.2.0' );
 
 	// comments JS on single pages only
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
@@ -77,88 +77,66 @@ function memberlite_admin_enqueue_scripts() {
 }
 add_action( 'admin_enqueue_scripts', 'memberlite_admin_enqueue_scripts' );
 
-function memberlite_get_font( $font_type, $nicename = NULL ) {
+/**
+ * Get the selected font slug for a given font type.
+ *
+ * Returns the theme.json-compatible slug (lowercase). If $nicename is true,
+ * returns the display name by looking it up in the registered font families.
+ * Safe to call anywhere except from within the wp_theme_json_data_theme filter
+ * with $nicename = true (use memberlite_get_font_name_from_json_data() there instead).
+ *
+ * @since 7.0.1
+ * @param string    $font_type 'header_font' or 'body_font'.
+ * @param bool|null $nicename  Optional. If true, return the display name.
+ * @return string Font slug or display name.
+ */
+function memberlite_get_font( $font_type, $nicename = false ) {
 	global $memberlite_defaults;
 
-	// Get the selected fonts from theme options.
-	$r = get_theme_mod( 'memberlite_' . $font_type, $memberlite_defaults[ 'memberlite_' . $font_type ] );
+	$slug = strtolower( get_theme_mod( 'memberlite_' . $font_type, $memberlite_defaults[ 'memberlite_' . $font_type ] ) );
 
-	// If we're returning the font name, convert the slug to a human-readable name.
-	if ( ! empty( $nicename ) ) {
-		$r = str_replace( '-', ' ', $r );
+	if ( ! $nicename ) {
+		return $slug;
 	}
 
-	return $r;
+	// Look up the display name from theme.json font families.
+	$settings      = wp_get_global_settings();
+	$font_families = $settings['typography']['fontFamilies']['theme'] ?? array();
+	foreach ( $font_families as $font ) {
+		if ( ! is_array( $font ) || empty( $font['slug'] ) || empty( $font['name'] ) ) {
+			continue;
+		}
+		if ( $font['slug'] === $slug ) {
+			return $font['name'];
+		}
+	}
+
+	// Fallback: convert slug to title case.
+	return ucwords( str_replace( '-', ' ', $slug ) );
 }
 
 /**
- * Load locally hosted Google fonts used in site.
+ * Look up a font display name from a fontFamilies array.
+ *
+ * Used inside the wp_theme_json_data_theme filter to avoid circular calls
+ * to wp_get_global_settings().
+ *
+ * @since 7.0.1
+ * @param string $slug         The font slug to look up.
+ * @param array  $font_families Array of fontFamily objects from theme.json data.
+ * @return string Display name, or title-cased slug as fallback.
  */
-function memberlite_load_local_webfonts() {
-	global $memberlite_defaults;
-
-	// Get the selected fonts from theme options.
-	$header_font = strtolower( memberlite_get_font( 'header_font' ) );
-	$body_font = strtolower( memberlite_get_font( 'body_font' ) );
-
-	// If it's not a Google font, ignore.
-	$fonts_string = $header_font . '_' . $body_font;
-	if ( ! in_array( $fonts_string, array_keys( Memberlite_Customize::get_google_fonts() ) ) ) {
-		return;
-	}
-
-	// If the header and body fonts are the same, just load the body font.
-	if ( $body_font === $header_font ) {
-		$header_font = false;
-	}
-
-	// Fonts that do not have a bold (700 weight) font family.
-	$no_bold_font = array( 'abril-fatface', 'fjalla-one', 'pathway-gothic-one', 'pt-mono' );
-
-	// Wrapper style tag for CSS.
-	echo '<style id="memberlite-webfonts-inline-css" type="text/css">';
-
-	// Enqueue the body font.
-	if ( ! empty( $body_font ) ) { ?>@font-face {
-font-family: <?php echo esc_html( memberlite_get_font( 'body_font', true ) ); ?>;
-font-style:normal;
-src: url('<?php echo esc_url( MEMBERLITE_URL ) . '/assets/fonts/' . esc_html( $body_font ) . '/' . esc_html( $body_font ) . '.woff2'; ?>') format('woff2');
-font-weight: normal;
-font-display: fallback;
-font-stretch: normal;
-}<?php if ( ! in_array( $body_font, $no_bold_font ) ) { ?>@font-face {
-font-family: <?php echo esc_html( memberlite_get_font( 'body_font', true ) ); ?>;
-font-style:normal;
-src: url('<?php echo esc_url( MEMBERLITE_URL ) . '/assets/fonts/' . esc_html( $body_font ) . '/' . esc_html( $body_font ) . '-bold.woff2'; ?>') format('woff2');
-font-weight: bold;
-font-display: fallback;
-font-stretch: normal;
-}<?php
+function memberlite_get_font_name_from_json_data( $slug, $font_families ) {
+	foreach ( $font_families as $font ) {
+		if ( ! is_array( $font ) || empty( $font['slug'] ) || empty( $font['name'] ) ) {
+			continue;
+		}
+		if ( $font['slug'] === $slug ) {
+			return $font['name'];
 		}
 	}
-
-	// Enqueue the header font.
-	if ( ! empty( $header_font ) ) { ?>@font-face {
-font-family: <?php echo esc_html( memberlite_get_font( 'header_font', true ) ); ?>;
-font-style:normal;
-src: url('<?php echo esc_url( MEMBERLITE_URL ) . '/assets/fonts/' . esc_html( $header_font ) . '/' . esc_html( $header_font ) . '.woff2'; ?>') format('woff2');
-font-weight: normal;
-font-display: fallback;
-font-stretch: normal;
-}<?php if ( ! in_array( $header_font, $no_bold_font ) ) { ?>@font-face {
-font-family: <?php echo esc_html( memberlite_get_font( 'header_font', true ) ); ?>;
-font-style:normal;
-src: url('<?php echo esc_url( MEMBERLITE_URL ) . '/assets/fonts/' . esc_html( $header_font ) . '/' . esc_html( $header_font ) . '-bold.woff2'; ?>') format('woff2');
-font-weight: bold;
-font-display: fallback;
-font-stretch: normal;
-}<?php
-		}
-	}
-
-	echo '</style>';
+	return ucwords( str_replace( '-', ' ', $slug ) );
 }
-add_action( 'wp_head', 'memberlite_load_local_webfonts' );
 
 /**
  * Set the content width in pixels, based on the theme's design and stylesheet.
@@ -799,8 +777,19 @@ function memberlite_filter_theme_json( $theme_json ) {
 		$theme_json_data['settings']['custom']['body'] = array();
 	}
 
-	$theme_json_data['settings']['custom']['heading']['fontFamily'] = memberlite_get_font( 'header_font', true );
-	$theme_json_data['settings']['custom']['body']['fontFamily'] = memberlite_get_font( 'body_font', true );
+	// Look up font display names directly from the theme.json data to avoid
+	// circular calls to wp_get_global_settings() inside this filter.
+	// fontFamilies in raw theme.json data may be grouped (e.g. 'theme', 'default'),
+	// so flatten all groups into a single list before passing to the lookup function.
+	$font_families_grouped = $theme_json_data['settings']['typography']['fontFamilies'] ?? array();
+	$font_families         = array();
+	foreach ( $font_families_grouped as $group ) {
+		if ( is_array( $group ) ) {
+			$font_families = array_merge( $font_families, $group );
+		}
+	}
+	$theme_json_data['settings']['custom']['heading']['fontFamily'] = memberlite_get_font_name_from_json_data( memberlite_get_font( 'header_font' ), $font_families );
+	$theme_json_data['settings']['custom']['body']['fontFamily']    = memberlite_get_font_name_from_json_data( memberlite_get_font( 'body_font' ), $font_families );
 
 	// Update the theme.json object.
 	return $theme_json->update_with( $theme_json_data );

@@ -22,7 +22,7 @@
 	.menu a {
 		&:hover:not(.menu-item-has-children > a:hover) {
 			text-decoration-line: underline;
-			text-underline-offset: 2px;
+			text-underline-offset: 3px;
 		}
 	}
 
@@ -141,7 +141,7 @@
 			}
 
 			a {
-				color: currentColor;
+				color: var(--memberlite-color-site-navigation);
 				padding: calc(var(--wp--preset--spacing--10) / 2) var(--wp--preset--spacing--10);
 			}
 
@@ -270,7 +270,10 @@
 		}
 
 		&.site-navigation-sticky {
-			border-bottom: 1px solid var(--memberlite-color-borders);
+			border-bottom: 1px solid light-dark(
+					color-mix(in srgb, var(--memberlite-color-site-navigation-background), black 10%),
+					color-mix(in srgb, var(--memberlite-color-site-navigation-background), white 20%)
+			);
 			box-shadow: var(--memberlite-shadow);
 			position: fixed;
 			width: 100%;
@@ -291,6 +294,13 @@
 	}
 }
 
+// Midnight Violet: member nav links should be darker than the background
+.scheme_midnight_violet .site-header {
+	.header-right #meta-member a,
+	.header-right #meta-member .meta-member-inner {
+		color: var(--memberlite-color-site-background);
+	}
+}
 
 // -----------------------------------------------------------------------------
 // Shared desktop navigation styles
@@ -308,6 +318,7 @@
 			&.menu {
 				align-items: center;
 				display: flex;
+				flex-wrap: wrap;
 				margin: 0 auto;
 				z-index: 10;
 			}
@@ -319,7 +330,6 @@
 		}
 
 		a {
-			color: currentColor;
 			display: block;
 			padding: calc(var(--wp--preset--spacing--10) / 2) var(--wp--preset--spacing--10);
 			overflow-wrap: normal;
@@ -349,10 +359,8 @@
 
 			> button {
 				@include remove-btn-defaults;
-				border-left: 1px solid light-dark(
-					color-mix(in srgb, var(--memberlite-color-site-navigation), white 80%),
-					color-mix(in srgb, var(--memberlite-color-site-navigation), black 70%)
-				);
+				border-left: 1px solid;
+				border-color: inherit;
 				color: inherit;
 				padding: 0 calc(var(--wp--preset--spacing--10) / 2);
 			}
@@ -422,6 +430,7 @@
 }
 
 .menu-toggle {
+	border: none;
 	background-color: transparent;
 	box-shadow: none;
 	color: var(--memberlite-color-primary);
