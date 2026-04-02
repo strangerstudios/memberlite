@@ -136,7 +136,7 @@ textarea {
 a:where(:not(.wp-block-button__link)) {
   color: var(--memberlite-color-link);
   text-decoration: underline;
-  text-underline-offset: 2px;
+  text-underline-offset: 3px;
 }
 a:where(:not(.wp-block-button__link)):focus, a:where(:not(.wp-block-button__link)):focus-visible {
   outline: thin dotted var(--memberlite-color-link);
@@ -166,7 +166,8 @@ hr {
 
 ul {
   list-style: disc;
-  margin: 0 var(--wp--preset--spacing--20) var(--wp--preset--spacing--20) 0;
+  margin-top: var(--wp--preset--spacing--10);
+  margin-right: var(--wp--preset--spacing--10);
 }
 
 ul ul {
@@ -175,7 +176,8 @@ ul ul {
 
 ol {
   list-style: decimal;
-  margin: 0 var(--wp--preset--spacing--20) var(--wp--preset--spacing--20) 0;
+  margin-top: var(--wp--preset--spacing--10);
+  margin-right: var(--wp--preset--spacing--10);
 }
 
 ul li,
@@ -198,11 +200,13 @@ figure {
 }
 
 table {
+  background: var(--memberlite-color-site-background);
   margin: var(--wp--preset--spacing--20) 0;
   width: 100%;
 }
 
 th {
+  background: inherit;
   font-family: var(--memberlite-header-font), ui-sans-serif;
   font-weight: 400;
   padding: var(--wp--preset--spacing--10);
@@ -225,6 +229,7 @@ tbody th {
 }
 
 tbody td {
+  background-color: var(--wp--preset--color--base);
   border-color: var(--memberlite-color-borders);
   border-style: solid;
   border-width: 0 0 1px 0;
@@ -303,7 +308,7 @@ h6,
 }
 :where(h1, h2, h3, h4, h5, h6) a:hover {
   text-decoration-line: underline;
-  text-underline-offset: 2px;
+  text-underline-offset: 3px;
 }
 
 p {
@@ -339,7 +344,7 @@ address {
 }
 
 pre {
-  background-color: light-dark(color-mix(in srgb, var(--memberlite-color-text) 7%, transparent), color-mix(in srgb, var(--memberlite-color-text) 20%, transparent));
+  background-color: light-dark(color-mix(in srgb, var(--memberlite-color-text) 1%, transparent), color-mix(in srgb, var(--memberlite-color-text) 10%, transparent));
   font-family: "Courier 10 Pitch", Courier, monospace;
   margin: var(--wp--preset--spacing--20) 0;
   max-width: 100%;
@@ -808,7 +813,7 @@ input[type=week],
 input[type=datetime-local],
 select,
 textarea {
-  background-color: transparent;
+  background-color: var(--wp--preset--color--base);
   border: 1px solid light-dark(color-mix(in srgb, var(--memberlite-color-text), white 12%), color-mix(in srgb, var(--memberlite-color-text), black 60%));
   border-radius: var(--wp--custom--border--radius);
   box-shadow: none;
@@ -1446,7 +1451,7 @@ hr.wp-block-separator.is-style-wide {
 .comment-respond #cancel-comment-reply-link {
   margin-right: var(--wp--preset--spacing--10);
   text-decoration-line: underline;
-  text-underline-offset: 2px;
+  text-underline-offset: 3px;
 }
 @media (max-width: 767px) {
   .comment-respond .form-submit input[type=submit] {
@@ -1519,7 +1524,7 @@ hr.wp-block-separator.is-style-wide {
   border-bottom: none;
   color: var(--memberlite-color-link);
   text-decoration: underline;
-  text-underline-offset: 2px;
+  text-underline-offset: 3px;
 }
 .grid-list a.post-thumbnail-link {
   align-items: center;
@@ -1861,22 +1866,27 @@ details > p:first-of-type {
 
  Covers: #secondary sidebar, .widget-area, individual widget types
 --------------------------------------------------------------*/
-#secondary {
-  overflow: hidden;
-}
 #secondary select {
   margin: var(--wp--preset--spacing--10);
 }
 #secondary .widget {
-  margin-bottom: var(--wp--preset--spacing--20);
+  background-color: light-dark(color-mix(in srgb, var(--wp--preset--color--base), black 2%), color-mix(in srgb, var(--wp--preset--color--base), white 5%));
+  border-radius: var(--wp--custom--border--radius);
+  overflow: hidden;
+  margin: 0 0 var(--wp--style--root--padding-right) 0;
+}
+#secondary .widget > :first-child {
+  padding-top: var(--wp--style--root--padding-top);
+}
+#secondary .widget > :last-child {
+  padding-bottom: var(--wp--style--root--padding-bottom);
 }
 #secondary .widget-title {
-  border-top: 1px solid var(--memberlite-color-borders);
   margin: 0;
-  padding: var(--wp--preset--spacing--20) 0 var(--wp--preset--spacing--10) 0;
+  padding: 0;
 }
-#secondary .widget-title a {
-  text-decoration: none;
+#secondary .widget-title a:hover, #secondary .widget-title a:active, #secondary .widget-title a:focus {
+  text-decoration: underline;
 }
 #secondary .widget ul.menu,
 #secondary .widget_archive ul,
@@ -1894,15 +1904,22 @@ details > p:first-of-type {
   list-style-type: circle;
   margin-top: var(--wp--preset--spacing--10);
 }
-#secondary .wp-block-calendar thead th,
-#secondary .wp-block-calendar tbody td {
-  padding: 0.7rem var(--wp--preset--spacing--10);
+#secondary .widget:has(.wp-block-calendar) {
+  background-color: transparent;
+  border-radius: 0;
+}
+#secondary .widget:has(.wp-block-calendar) .wp-block-calendar {
+  padding: 0;
 }
 #secondary .widget_block.widget_search input[type=search] {
   width: auto;
 }
-#secondary .widget_nav_menu h3.widget-title {
-  margin-bottom: 0;
+#secondary .widget_nav_menu {
+  padding-right: var(--wp--style--root--padding-left);
+  padding-left: var(--wp--style--root--padding-right);
+}
+#secondary .widget_nav_menu .widget-title {
+  margin-bottom: var(--wp--preset--spacing--20);
 }
 #secondary .widget_nav_menu li.page_item_has_children .children {
   display: none;
@@ -1912,7 +1929,6 @@ details > p:first-of-type {
 }
 #secondary .widget_nav_menu li.current_page_item > a,
 #secondary .widget_nav_menu li.current_page_item > a:hover {
-  border-bottom: 1px solid var(--memberlite-color-link);
   font-weight: bold;
 }
 #secondary .widget.widget_meta h3.widget-title {
@@ -1930,14 +1946,6 @@ details > p:first-of-type {
   border: none;
 }
 
-.widget-area .widget a:where(:not(.btn, .pmpro_btn)) {
-  border-bottom: 1px solid transparent;
-  text-decoration: none;
-}
-.widget-area .widget a:where(:not(.btn, .pmpro_btn)):hover {
-  border-bottom-color: var(--memberlite-color-link);
-}
-
 .widget_tag_cloud .tag-link-count {
   font-size: var(--wp--preset--font-size--14);
 }
@@ -1945,12 +1953,30 @@ details > p:first-of-type {
   text-decoration: none;
 }
 
-.widget_calendar #wp-calendar caption {
-  background-color: var(--memberlite-color-borders);
-  border-top: 1px solid var(--memberlite-color-borders);
+.widget_calendar table,
+.wp-block-calendar table {
+  margin: 0;
+}
+.widget_calendar thead th,
+.widget_calendar tbody td,
+.wp-block-calendar thead th,
+.wp-block-calendar tbody td {
+  border-color: var(--memberlite-color-borders);
+  padding: 0.7rem 1px;
+  text-align: center;
+}
+.widget_calendar caption,
+.wp-block-calendar caption {
+  background-color: light-dark(color-mix(in srgb, var(--memberlite-color-site-background), black 3%), color-mix(in srgb, var(--memberlite-color-site-background), white 3%));
+  border: 1px solid var(--memberlite-color-borders);
+  border-bottom: none;
   font-size: var(--wp--preset--font-size--24);
   padding: 0.7rem var(--wp--preset--spacing--10);
   text-align: center;
+}
+.widget_calendar :where(table:not(.has-text-color)),
+.wp-block-calendar :where(table:not(.has-text-color)) {
+  color: var(--memberlite-color-text);
 }
 
 .widget_recent_comments ul li a,
@@ -2023,7 +2049,7 @@ details > p:first-of-type {
 }
 .site-header .menu a:hover:not(.menu-item-has-children > a:hover) {
   text-decoration-line: underline;
-  text-underline-offset: 2px;
+  text-underline-offset: 3px;
 }
 .site-header .row {
   margin-bottom: 0;
@@ -2124,7 +2150,7 @@ details > p:first-of-type {
   }
 }
 .site-header .header-right .widget_nav_menu a {
-  color: currentColor;
+  color: var(--memberlite-color-site-navigation);
   padding: calc(var(--wp--preset--spacing--10) / 2) var(--wp--preset--spacing--10);
 }
 .site-header .header-right .widget_nav_menu ul.sub-menu a {
@@ -2230,7 +2256,7 @@ details > p:first-of-type {
   padding: var(--wp--preset--spacing--20) var(--wp--preset--spacing--10);
 }
 .site-header #site-navigation.site-navigation-sticky {
-  border-bottom: 1px solid var(--memberlite-color-borders);
+  border-bottom: 1px solid light-dark(color-mix(in srgb, var(--memberlite-color-site-navigation-background), black 10%), color-mix(in srgb, var(--memberlite-color-site-navigation-background), white 20%));
   box-shadow: var(--memberlite-shadow);
   position: fixed;
   width: 100%;
@@ -2247,6 +2273,11 @@ details > p:first-of-type {
   text-indent: -9999em;
 }
 
+.scheme_midnight_violet .site-header .header-right #meta-member a,
+.scheme_midnight_violet .site-header .header-right #meta-member .meta-member-inner {
+  color: var(--memberlite-color-site-background);
+}
+
 .site-header #site-navigation ul,
 .site-header .member-navigation ul,
 .site-header .header-right .widget_nav_menu ul {
@@ -2258,6 +2289,7 @@ details > p:first-of-type {
 .site-header .header-right .widget_nav_menu ul.menu {
   align-items: center;
   display: flex;
+  flex-wrap: wrap;
   margin: 0 auto;
   z-index: 10;
 }
@@ -2270,7 +2302,6 @@ details > p:first-of-type {
 .site-header #site-navigation a,
 .site-header .member-navigation a,
 .site-header .header-right .widget_nav_menu a {
-  color: currentColor;
   display: block;
   padding: calc(var(--wp--preset--spacing--10) / 2) var(--wp--preset--spacing--10);
   overflow-wrap: normal;
@@ -2308,7 +2339,8 @@ details > p:first-of-type {
   border: none;
   border-radius: 0;
   box-shadow: none;
-  border-right: 1px solid light-dark(color-mix(in srgb, var(--memberlite-color-site-navigation), white 80%), color-mix(in srgb, var(--memberlite-color-site-navigation), black 70%));
+  border-right: 1px solid;
+  border-color: inherit;
   color: inherit;
   padding: 0 calc(var(--wp--preset--spacing--10) / 2);
 }
@@ -2377,6 +2409,7 @@ details > p:first-of-type {
 }
 
 .menu-toggle {
+  border: none;
   background-color: transparent;
   box-shadow: none;
   color: var(--memberlite-color-primary);
@@ -2577,7 +2610,7 @@ body.mobile-nav-open {
 .masthead p a:not(.btn) {
   color: currentColor;
   text-decoration-line: underline;
-  text-underline-offset: 2px;
+  text-underline-offset: 3px;
 }
 .masthead p:last-child {
   margin: 0;
@@ -2598,7 +2631,7 @@ body.mobile-nav-open {
 .masthead h3 a {
   color: var(--memberlite-color-page-masthead);
   text-decoration-line: underline;
-  text-underline-offset: 2px;
+  text-underline-offset: 3px;
 }
 .masthead a.pmpro_btn {
   margin: 2rem 0 0 0;
@@ -2622,7 +2655,7 @@ body.mobile-nav-open {
 .masthead .memberlite-breadcrumb a {
   color: var(--memberlite-color-page-masthead);
   text-decoration-line: underline;
-  text-underline-offset: 2px;
+  text-underline-offset: 3px;
 }
 .masthead + .row {
   margin-top: var(--wp--preset--spacing--50);
@@ -2728,6 +2761,7 @@ body.mobile-nav-open {
   border-bottom: 1px solid var(--memberlite-color-borders);
   color: var(--memberlite-color-footer-widgets);
   padding: 0;
+  overflow: hidden;
 }
 @media (min-width: 768px) {
   .footer-widgets {
@@ -2743,6 +2777,9 @@ body.mobile-nav-open {
     padding-top: 0;
     padding-bottom: 0;
   }
+}
+.footer-widgets .wp-block-calendar a {
+  color: var(--memberlite-color-link);
 }
 .footer-widgets h3 {
   font-weight: 700;
@@ -2878,7 +2915,7 @@ body.mobile-nav-open {
 }
 
 .entry-meta a {
-  text-underline-offset: 2px;
+  text-underline-offset: 3px;
 }
 
 .byline,
@@ -2965,7 +3002,7 @@ body.mobile-nav-open {
 .entry-footer a {
   color: var(--memberlite-color-link);
   text-decoration: underline;
-  text-underline-offset: 2px;
+  text-underline-offset: 3px;
 }
 .entry-footer a:hover {
   color: var(--memberlite-color-text);
@@ -3221,14 +3258,6 @@ body.mobile-nav-open {
   border-bottom: var(--wp--preset--spacing--10) solid var(--memberlite-color-secondary);
   border-right: 1px solid var(--memberlite-color-borders);
   border-left: 1px solid var(--memberlite-color-borders);
-}
-.pmpro .pmpro_signup_form .pmpro_card {
-  border-top: calc(var(--wp--preset--spacing--10) / 2) solid var(--memberlite-color-secondary);
-  border-bottom: var(--wp--preset--spacing--10) solid var(--memberlite-color-secondary);
-}
-.pmpro .pmpro_signup_form .pmpro_card .pmpro_card {
-  border-top: none;
-  border-bottom: none;
 }
 
 #pmpro_levels.pmpro_advanced_levels-compare_table thead tr:first-child th.pmpro_level-highlight {
