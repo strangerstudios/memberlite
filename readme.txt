@@ -3,7 +3,7 @@ Contributors: kimannwall, strangerstudios
 Requires at least: 6.4
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 7.0.1
+Stable tag: 7.0.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: one-column, two-columns, left-sidebar, right-sidebar, flexible-header, custom-background, custom-colors, custom-header, custom-menu, custom-logo, editor-style, featured-images, footer-widgets, full-width-template, theme-options, threaded-comments, translation-ready, e-commerce
@@ -91,6 +91,10 @@ Memberlite includes formatting for use with:
 [Install Events Manager »](https://wordpress.org/plugins/events-manager/)
 
 == Changelog ==
+
+= 7.0.2 - 2026-04-02 =
+* BUG FIX: Fixed issue in v7.0.1 that incremented theme.json version and should not have. 
+
 = 7.0.1 - 2026-04-02 =
 * ENHANCEMENT: Adjusted widget and secondary area styles to better balance theme presets and customizer flexibility. #238 (@RachelRVasquez)
 * ENHANCEMENT: Updated Font Awesome from 6.6.0 to 7.2.0. #243 (@flintfromthebasement)
