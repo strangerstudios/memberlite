@@ -20,7 +20,11 @@ function memberlite_get_current_footer_post_name() {
 	if ( is_singular() ) {
 		$override = get_post_meta( get_the_ID(), '_memberlite_footer_override', true );
 		if ( '' !== $override ) {
-			return $override;
+			$footer_variations = memberlite_get_footer_variations();
+			if ( isset( $footer_variations[ $override ] ) ) {
+				return $override;
+			}
+			// Invalid override — fall through to Customizer settings
 		}
 	}
 
