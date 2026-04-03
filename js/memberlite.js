@@ -306,7 +306,6 @@ function updateStickyState(stickyNav, stickyTop, adminBarHeight) {
 
 function initBackToTop() {
 	const btn = document.querySelector('.memberlite-back-to-top.floating');
-
 	if (!btn) return;
 
 	const SCROLL_THRESHOLD = 300;
