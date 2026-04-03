@@ -10,8 +10,8 @@
 function memberlite_get_defaults(): array {
 	$defaults = array(
 		// Typography
-		'memberlite_header_font'            => 'Lato',
-		'memberlite_body_font'              => 'Lato',
+		'memberlite_header_font'            => 'lato',
+		'memberlite_body_font'              => 'lato',
 
 		// Layout
 		'columns_ratio'                     => '8-4',

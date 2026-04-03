@@ -242,24 +242,6 @@
 		}
 	}
 
-
-	// ---------------------------------------------------------------------------
-	// Signup Forms
-	// ---------------------------------------------------------------------------
-
-	.pmpro_signup_form {
-
-		.pmpro_card {
-			border-top: calc(var(--wp--preset--spacing--10) / 2) solid var(--memberlite-color-secondary);
-			border-bottom: var(--wp--preset--spacing--10) solid var(--memberlite-color-secondary);
-
-			// Nested cards (e.g. inside a signup card) reset borders
-			.pmpro_card {
-				border-top: none;
-				border-bottom: none;
-			}
-		}
-	}
 }
 
 
