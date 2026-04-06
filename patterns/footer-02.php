@@ -5,6 +5,7 @@
  * Description: Minimalist footer with three rows and social icons.
  * Categories: memberlite-footer, footer
  * Keywords: footer, variation
+ * Post Types: memberlite_footer
  * @package WordPress
  * @subpackage Memberlite
  * @since TBD

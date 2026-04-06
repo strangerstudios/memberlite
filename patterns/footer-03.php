@@ -5,6 +5,7 @@
  * Description: Footer with logo on the left and 3 columns on the right.
  * Categories: memberlite-footer, footer
  * Keywords: footer, variation
+ * Post Types: memberlite_footer
  * @package WordPress
  * @subpackage Memberlite
  * @since TBD
