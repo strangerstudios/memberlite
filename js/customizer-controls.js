@@ -192,4 +192,27 @@
 		});
 	});
 
+	// If a footer slug setting was saved but the post was later deleted, the select
+	// will have no matching option and jQuery .val() returns null. Reset to '0' so
+	// the "Use legacy footer" option is selected rather than the field appearing blank.
+	wp.customize.bind( 'ready', function() {
+		var footerSlugSettings = [
+			'memberlite_default_footer_slug',
+			'memberlite_archives_footer_slug',
+			'memberlite_post_footer_slug',
+			'memberlite_page_footer_slug',
+		];
+
+		footerSlugSettings.forEach( function( settingId ) {
+			var $select = $( '#customize-control-' + settingId + ' select' );
+			if ( ! $select.length ) {
+				return;
+			}
+			if ( null === $select.val() ) {
+				$select.val( '0' );
+				wp.customize( settingId ).set( '0' ); //Will prompt the user to save, this is intentional if posts were deleted
+			}
+		} );
+	} );
+
 })(jQuery);
