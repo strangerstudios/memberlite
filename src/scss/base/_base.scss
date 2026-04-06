@@ -222,7 +222,10 @@ cite {
 
 blockquote {
 	margin: var(--wp--preset--spacing--20) 0;
-	background-color: color-mix(in srgb, var(--memberlite-color-text) 7%, transparent);
+	background-color: light-dark(
+		color-mix(in srgb, var(--memberlite-color-site-background), black 3%),
+		color-mix(in srgb, var(--memberlite-color-site-background), white 3%)
+	);
 	padding: var(--wp--preset--spacing--20);
 
 	> :first-child {
@@ -240,7 +243,10 @@ address {
 }
 
 pre {
-	background-color: light-dark(color-mix(in srgb, var(--memberlite-color-text) 1%, transparent), color-mix(in srgb, var(--memberlite-color-text) 10%, transparent));
+	background-color: light-dark(
+			color-mix(in srgb, var(--memberlite-color-site-background), black 3%),
+			color-mix(in srgb, var(--memberlite-color-site-background), white 3%)
+	);
 	font-family: "Courier 10 Pitch", Courier, monospace;
 	margin: var(--wp--preset--spacing--20) 0;
 	max-width: 100%;
@@ -256,7 +262,10 @@ code,
 kbd,
 tt,
 var {
-	background-color: light-dark(color-mix(in srgb, var(--memberlite-color-text) 7%, transparent), color-mix(in srgb, var(--memberlite-color-text) 20%, transparent));
+	background-color: light-dark(
+		color-mix(in srgb, var(--memberlite-color-site-background), black 3%),
+		color-mix(in srgb, var(--memberlite-color-site-background), white 3%)
+	);
 	color: light-dark($color-error-text, $color-error-bg);
 	font-family: "Courier 10 Pitch", Courier, monospace;
 	padding: 2px 4px;

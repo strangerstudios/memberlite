@@ -21,8 +21,8 @@
 	// Widget base
 	.widget {
 		background-color: light-dark(
-			color-mix(in srgb, var(--wp--preset--color--base), black 2%),
-			color-mix(in srgb, var(--wp--preset--color--base), white 5%)
+			color-mix(in srgb, var(--memberlite-color-site-background), black 3%),
+			color-mix(in srgb, var(--memberlite-color-site-background), white 3%)
 		);
 		border-radius: var(--wp--custom--border--radius);
 		overflow: hidden;
