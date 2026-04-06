@@ -263,8 +263,8 @@ kbd,
 tt,
 var {
 	background-color: light-dark(
-		color-mix(in srgb, var(--memberlite-color-site-background), black 3%),
-		color-mix(in srgb, var(--memberlite-color-site-background), white 3%)
+			color-mix(in srgb, var(--memberlite-color-site-background), black 3%),
+			color-mix(in srgb, var(--memberlite-color-site-background), white 3%)
 	);
 	color: light-dark($color-error-text, $color-error-bg);
 	font-family: "Courier 10 Pitch", Courier, monospace;

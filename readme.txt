@@ -92,6 +92,8 @@ Memberlite includes formatting for use with:
 
 == Changelog ==
 
+= 7.0.3 - TBD =
+
 = 7.0.2 - 2026-04-02 =
 * BUG FIX: Fixed issue in v7.0.1 that incremented theme.json version and should not have.
 
