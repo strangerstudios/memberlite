@@ -24,8 +24,8 @@
 		<!-- /wp:column -->
 
 		<!-- wp:column {"style":{"spacing":{"blockGap":"var:preset|spacing|40"}}} -->
-		<div class="wp-block-column"><!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|40"}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
-			<div class="wp-block-group"><!-- wp:group {"style":{"layout":{"selfStretch":"fit","flexSize":null}},"layout":{"type":"flex","orientation":"vertical","justifyContent":"left","flexWrap":"nowrap"}} -->
+		<div class="wp-block-column"><!-- wp:group {"className":"memberlite-footer-column-wrap","style":{"spacing":{"blockGap":"var:preset|spacing|40"}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
+			<div class="wp-block-group memberlite-footer-column-wrap"><!-- wp:group {"style":{"layout":{"selfStretch":"fit","flexSize":null}},"layout":{"type":"flex","orientation":"vertical","justifyContent":"left","flexWrap":"nowrap"}} -->
 				<div class="wp-block-group"><!-- wp:paragraph {"style":{"typography":{"fontStyle":"normal","fontWeight":"500"}}} -->
 					<p style="font-style:normal;font-weight:500">Consulting</p>
 					<!-- /wp:paragraph -->
