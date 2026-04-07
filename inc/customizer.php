@@ -409,16 +409,6 @@ class Memberlite_Customize {
 	 * @return void
 	 */
 	public static function set_customizer_footer_settings( WP_Customize_Manager $wp_customize ) {
-		// FOOTER: Legacy Footer Heading ========
-		self::add_memberlite_heading( $wp_customize, 'memberlite_legacy_footer_heading', __( 'Legacy Settings', 'memberlite' ), 'memberlite_footer_options' );
-
-		// FOOTER: Copyright Text ===============
-		self::add_memberlite_setting_control( $wp_customize, 'copyright_textbox', __( 'Copyright Text', 'memberlite' ), 'memberlite_footer_options', array(
-			'transport'         => 'postMessage',
-			'sanitize_callback' => array( 'Memberlite_Customize', 'sanitize_text_with_links' ),
-			'sanitize_js_callback' => array( 'Memberlite_Customize', 'sanitize_js_text_with_links' ),
-		) );
-
 		// FOOTER: Pattern Footer Heading ========
 		self::add_memberlite_heading( $wp_customize, 'memberlite_pattern_footer_heading', __( 'Variation Settings', 'memberlite' ), 'memberlite_footer_options' );
 
@@ -459,6 +449,16 @@ class Memberlite_Customize {
 			'choices'           => $footer_choices,
 			'default'           => '0',
 			'description'       => __( 'Choose which footer pattern to display on your pages.', 'memberlite' ),
+		) );
+
+		// FOOTER: Legacy Footer Heading ========
+		self::add_memberlite_heading( $wp_customize, 'memberlite_legacy_footer_heading', __( 'Legacy Settings', 'memberlite' ), 'memberlite_footer_options' );
+
+		// FOOTER: Copyright Text ===============
+		self::add_memberlite_setting_control( $wp_customize, 'copyright_textbox', __( 'Copyright Text', 'memberlite' ), 'memberlite_footer_options', array(
+			'transport'         => 'postMessage',
+			'sanitize_callback' => array( 'Memberlite_Customize', 'sanitize_text_with_links' ),
+			'sanitize_js_callback' => array( 'Memberlite_Customize', 'sanitize_js_text_with_links' ),
 		) );
 	}
 
