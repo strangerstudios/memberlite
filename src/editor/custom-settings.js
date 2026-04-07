@@ -22,8 +22,7 @@ const MemberliteCustomSettings = () => {
 	const hideHeaderValue = meta?._memberlite_hide_header || false;
 	const hideFooterValue = meta?._memberlite_hide_footer || false;
 	const hidePageNavValue = meta?._memberlite_hide_page_nav || false;
-	const footerOverrideValue = meta?._memberlite_footer_override || '-- Use Customizer Setting --';
-
+	const footerOverrideValue = meta?._memberlite_footer_override || '0'; // Default comes from the memberlite_get_footer_variations function
 	// Get and set up the footer variations for the SelectControl
 	const footerVariations = window.memberliteEditorData.footerVariations;
 	const footerOptions = Object.entries( footerVariations ).map( ( [ value, label ] ) => ( { value, label } ) );
