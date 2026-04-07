@@ -412,12 +412,6 @@ class Memberlite_Customize {
 		// FOOTER: Legacy Footer Heading ========
 		self::add_memberlite_heading( $wp_customize, 'memberlite_legacy_footer_heading', __( 'Legacy Settings', 'memberlite' ), 'memberlite_footer_options' );
 
-		// FOOTER: Footer Widgets ===============
-		self::add_memberlite_setting_control( $wp_customize, 'memberlite_footerwidgets', __( 'Footer Widget Columns', 'memberlite' ), 'memberlite_footer_options', array(
-			'sanitize_callback' => 'absint',
-			'choices'           => array( '2' => '2', '3' => '3', '4' => '4', '6' => '6' ),
-			) );
-
 		// FOOTER: Copyright Text ===============
 		self::add_memberlite_setting_control( $wp_customize, 'copyright_textbox', __( 'Copyright Text', 'memberlite' ), 'memberlite_footer_options', array(
 			'transport'         => 'postMessage',
