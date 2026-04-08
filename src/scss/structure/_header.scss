@@ -147,10 +147,6 @@
 
 			ul.sub-menu a {
 				padding: calc(var(--wp--preset--spacing--10) / 2) var(--wp--preset--spacing--10);
-
-				@include breakpoint(tablet) {
-					max-width: 210px;
-				}
 			}
 		}
 
@@ -375,8 +371,8 @@
 				top: 100%;
 				z-index: 99999;
 				margin: 0;
-				width: 100%;
-				min-width: max-content;
+				width: max-content;
+				max-width: 210px;
 				background-color: var(--memberlite-color-site-navigation-background);
 				box-shadow: 4px 12px 16px 0 rgba(0, 0, 0, 0.12);
 				text-align: left;
