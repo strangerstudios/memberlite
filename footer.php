@@ -36,6 +36,7 @@ if ( ! memberlite_hide_page_footer() ) {
 		}
 		?>
 	</footer><!-- #colophon -->
+	<?php memberlite_the_footer_edit_link( $footer_post_name ); ?>
 	<?php
 }
 ?>

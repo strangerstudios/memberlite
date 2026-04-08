@@ -73,7 +73,11 @@ function memberlite_render_footer_variation( $post_name ) {
  *
  * @return array
  */
-function memberlite_get_footer_variations(): array {
+function memberlite_get_footer_variations( string $default_label = '' ): array {
+	if ( '' === $default_label ) {
+		$default_label = __( '— Use Legacy Footer —', 'memberlite' );
+	}
+
 	$footer_posts = get_posts( array(
 		'post_type'      => 'memberlite_footer',
 		'post_status'    => 'publish',
@@ -83,7 +87,7 @@ function memberlite_get_footer_variations(): array {
 	) );
 
 	$footer_choices = array(
-		'0' => __( '— Use legacy footer —', 'memberlite' ),
+		'0' => $default_label,
 	);
 
 	if ( ! empty( $footer_posts ) ) {
@@ -93,4 +97,36 @@ function memberlite_get_footer_variations(): array {
 	}
 
 	return $footer_choices;
+}
+
+/**
+ * Output an "Edit Footer" link for users who can edit the current footer post.
+ *
+ * Only renders for CPT-based footers (not the legacy footer). Uses the
+ * standard WordPress edit post link.
+ *
+ * @since TBD
+ *
+ * @param string $post_name The post_name of the current footer post.
+ */
+function memberlite_the_footer_edit_link( string $post_name ): void {
+	if ( empty( $post_name ) || '0' === $post_name ) {
+		return;
+	}
+
+	$footer_post = get_page_by_path( $post_name, OBJECT, 'memberlite_footer' );
+
+	if ( ! $footer_post || ! current_user_can( 'edit_post', $footer_post->ID ) ) {
+		return;
+	}
+
+	$edit_url = get_edit_post_link( $footer_post->ID );
+
+	if ( ! $edit_url ) {
+		return;
+	}
+
+	echo '<div class="memberlite-variation-part-edit-link">';
+	echo '<a href="' . esc_url( $edit_url ) . '">' . esc_html__( 'Edit Footer', 'memberlite' ) . '</a>';
+	echo '</div>';
 }
