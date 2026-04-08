@@ -409,11 +409,63 @@ class Memberlite_Customize {
 	 * @return void
 	 */
 	public static function set_customizer_footer_settings( WP_Customize_Manager $wp_customize ) {
+		// FOOTER: Pattern Footer Heading ========
+		self::add_memberlite_heading( $wp_customize, 'memberlite_pattern_footer_heading', __( 'Variation Settings', 'memberlite' ), 'memberlite_footer_options' );
+
+		// FOOTER: Manage Footers link ========
+		self::add_memberlite_link_control( $wp_customize, 'memberlite_manage_footers_link', __( 'Manage Footers', 'memberlite' ), 'memberlite_footer_options', admin_url( 'edit.php?post_type=memberlite_footer' ) );
+
+		// FOOTER: Footer CPT choices ===================
+		$footer_choices_default = memberlite_get_footer_variations();
+		$footer_choices_context = memberlite_get_footer_variations( __( '— Use Default Footer —', 'memberlite' ) );
+
+		// FOOTER: Variations, Global ===============
+		self::add_memberlite_setting_control( $wp_customize, 'memberlite_default_footer_slug', __( 'Default Footer', 'memberlite' ), 'memberlite_footer_options', array(
+			'type'              => 'select',
+			'sanitize_callback' => 'sanitize_key',
+			'choices'           => $footer_choices_default,
+			'default'           => '0',
+			'description'       => __( 'Choose which footer pattern to display all across the site.', 'memberlite' ),
+		) );
+
+		// FOOTER: Variations, Blog & Archives ===============
+		self::add_memberlite_setting_control( $wp_customize, 'memberlite_archives_footer_slug', __( 'Blog & Archives Footer', 'memberlite' ), 'memberlite_footer_options', array(
+			'type'              => 'select',
+			'sanitize_callback' => 'sanitize_key',
+			'choices'           => $footer_choices_context,
+			'default'           => '0',
+			'description'       => __( 'Choose which footer pattern to display on your blog and post archives.', 'memberlite' ),
+		) );
+
+		// FOOTER: Variations, Single Post ===============
+		self::add_memberlite_setting_control( $wp_customize, 'memberlite_post_footer_slug', __( 'Single Post Footer', 'memberlite' ), 'memberlite_footer_options', array(
+			'type'              => 'select',
+			'sanitize_callback' => 'sanitize_key',
+			'choices'           => $footer_choices_context,
+			'default'           => '0',
+			'description'       => __( 'Choose which footer pattern to display on the single post view.', 'memberlite' ),
+		) );
+
+		// FOOTER: Variations, Pages ===============
+		self::add_memberlite_setting_control( $wp_customize, 'memberlite_page_footer_slug', __( 'Pages Footer', 'memberlite' ), 'memberlite_footer_options', array(
+			'type'              => 'select',
+			'sanitize_callback' => 'sanitize_key',
+			'choices'           => $footer_choices_context,
+			'default'           => '0',
+			'description'       => __( 'Choose which footer pattern to display on your pages.', 'memberlite' ),
+		) );
+
+		// FOOTER: Legacy Footer Heading ========
+		self::add_memberlite_heading( $wp_customize, 'memberlite_legacy_footer_heading', __( 'Legacy Settings', 'memberlite' ), 'memberlite_footer_options', array(
+			'active_callback' => 'memberlite_is_legacy_footer_active',
+		) );
+
 		// FOOTER: Copyright Text ===============
 		self::add_memberlite_setting_control( $wp_customize, 'copyright_textbox', __( 'Copyright Text', 'memberlite' ), 'memberlite_footer_options', array(
 			'transport'         => 'postMessage',
 			'sanitize_callback' => array( 'Memberlite_Customize', 'sanitize_text_with_links' ),
 			'sanitize_js_callback' => array( 'Memberlite_Customize', 'sanitize_js_text_with_links' ),
+			'active_callback'   => 'memberlite_is_legacy_footer_active',
 		) );
 	}
 
@@ -577,14 +629,51 @@ class Memberlite_Customize {
 				'sanitize_callback' => 'sanitize_text_field',
 			)
 		);
+		$control_args = array(
+			'label'    => $label,
+			'section'  => $section,
+			'priority' => $args['priority'] ?? 10,
+		);
+		if ( ! empty( $args['active_callback'] ) ) {
+			$control_args['active_callback'] = $args['active_callback'];
+		}
 		$wp_customize->add_control(
 			new Memberlite_Customize_Header_Control(
+				$wp_customize,
+				$id,
+				$control_args
+			)
+		);
+	}
+
+	/**
+	 * Helper to add a link control (no setting, just a rendered anchor)
+	 *
+	 * @since 7.0
+	 *
+	 * @param WP_Customize_Manager $wp_customize
+	 * @param string $id
+	 * @param string $label
+	 * @param string $section
+	 * @param string $url
+	 *
+	 * @return void
+	 */
+	public static function add_memberlite_link_control( WP_Customize_Manager $wp_customize, string $id, string $label, string $section, string $url ): void {
+		$wp_customize->add_setting(
+			$id,
+			array(
+				'sanitize_callback' => 'sanitize_text_field',
+			)
+		);
+		$wp_customize->add_control(
+			new Memberlite_Customize_Link_Control(
 				$wp_customize,
 				$id,
 				array(
 					'label'   => $label,
 					'section' => $section,
-					'priority'=> $args['priority'] ?? 10,
+					'url'     => $url,
 				)
 			)
 		);
@@ -1006,6 +1095,24 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 			echo '<span class="customize-control-title settings-heading">' . esc_html( $this->label ) . '</span>';
 		}
 	}
+
+	class Memberlite_Customize_Link_Control extends WP_Customize_Control {
+		public $type = 'memberlite_link';
+		public $url  = '';
+
+		public function render_content() {
+			echo '<a href="' . esc_url( $this->url ) . '" target="_blank" class="button button-secondary">' . esc_html( $this->label ) . '</a>';
+		}
+	}
+}
+
+/**
+ * Active callback: show legacy footer controls only when the default footer is set to legacy (0).
+ *
+ * @since 7.0
+ */
+function memberlite_is_legacy_footer_active(): bool {
+	return '0' === get_theme_mod( 'memberlite_default_footer_slug', '0' );
 }
 
 // Setup the Theme Customizer settings and controls...

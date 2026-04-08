@@ -1,83 +1,41 @@
 <?php
 /**
- * Title: Footer Variation 1
+ * Title: Footer: Basic
  * Slug: memberlite/footer-01
- * Description: Footer with two rows, 4 columns on top of 2.
+ * Description: The default footer.
  * Categories: memberlite-footer, footer
- * Keywords: footer, variation
+ * Keywords: footer, links
+ * Block Types: core/post-content
+ * Post Types: memberlite_footer
  * @package WordPress
  * @subpackage Memberlite
  * @since TBD
  */
 ?>
-<!-- wp:group {"align":"full","className":"footer-variation-01","style":{"spacing":{"padding":{"top":"var:preset|spacing|50","right":"var:preset|spacing|50","bottom":"var:preset|spacing|50","left":"var:preset|spacing|50"}},"elements":{"link":{"color":{"text":"var:preset|color|page-masthead"}}}},"backgroundColor":"color-primary","textColor":"page-masthead","layout":{"type":"constrained"}} -->
-<div class="wp-block-group alignfull footer-variation-01 has-page-masthead-color has-color-primary-background-color has-text-color has-background has-link-color" style="padding-top:var(--wp--preset--spacing--50);padding-right:var(--wp--preset--spacing--50);padding-bottom:var(--wp--preset--spacing--50);padding-left:var(--wp--preset--spacing--50)"><!-- wp:columns {"align":"wide","style":{"spacing":{"blockGap":{"top":"var:preset|spacing|40","left":"var:preset|spacing|40"}}}} -->
-	<div class="wp-block-columns alignwide"><!-- wp:column {"width":"33%"} -->
-		<div class="wp-block-column" style="flex-basis:33%"><!-- wp:site-logo /-->
+<!-- wp:group {"style":{"spacing":{"margin":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|50"}}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group" style="margin-top:var(--wp--preset--spacing--50);margin-bottom:var(--wp--preset--spacing--50)">
 
-			<!-- wp:site-title {"fontSize":"18"} /-->
+	<!-- wp:separator {"align":"wide","className":"is-style-wide","style":{"spacing":{"margin":{"top":"var:preset|spacing|30","bottom":"var:preset|spacing|30"}}},"backgroundColor":"borders"} -->
+	<hr class="wp-block-separator alignwide has-text-color has-borders-color has-alpha-channel-opacity has-borders-background-color has-background is-style-wide" style="margin-top:var(--wp--preset--spacing--30);margin-bottom:var(--wp--preset--spacing--30)"/>
+	<!-- /wp:separator -->
 
-			<!-- wp:paragraph {"fontSize":"14"} -->
-			<p class="has-14-font-size">123 Example Street<br>Cityville, AA, 99999<br>(555) 555-5555</p>
-			<!-- /wp:paragraph --></div>
-		<!-- /wp:column -->
+	<!-- wp:group {"align":"wide","style":{"spacing":{"blockGap":"var:preset|spacing|20"}},"layout":{"type":"flex","justifyContent":"space-between","flexWrap":"wrap","verticalAlignment":"center"}} -->
+	<div class="wp-block-group alignwide">
 
-		<!-- wp:column {"style":{"spacing":{"blockGap":"var:preset|spacing|40"}}} -->
-		<div class="wp-block-column"><!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|40"}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
-			<div class="wp-block-group"><!-- wp:group {"style":{"layout":{"selfStretch":"fit","flexSize":null}},"layout":{"type":"flex","orientation":"vertical","justifyContent":"left","flexWrap":"nowrap"}} -->
-				<div class="wp-block-group"><!-- wp:paragraph {"style":{"typography":{"fontStyle":"normal","fontWeight":"500"}}} -->
-					<p style="font-style:normal;font-weight:500">Consulting</p>
-					<!-- /wp:paragraph -->
+		<!-- wp:group {"style":{"spacing":{"blockGap":"5px"}},"layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"center"}} -->
+		<div class="wp-block-group">
+			<!-- wp:paragraph --><p>©</p><!-- /wp:paragraph -->
+			<!-- wp:site-title {"level":0,"isLink":false,"style":{"typography":{"lineHeight":"1.7"}},"fontSize":"18"} /-->
+			<!-- wp:paragraph {"style":{"spacing":{"padding":{"left":"4px"}}}} --><p style="padding-left:4px"><?php esc_html_e( 'All rights reserved.', 'memberlite' ); ?></p><!-- /wp:paragraph -->
+		</div>
+		<!-- /wp:group -->
 
-					<!-- wp:paragraph -->
-					<p>Our vision is to be at the forefront of architectural innovation, fostering a global community of architects and enthusiasts united by a passion for creating spaces.</p>
-					<!-- /wp:paragraph --></div>
-				<!-- /wp:group -->
+		<!-- wp:paragraph -->
+		<p><a href="#"><?php esc_html_e( 'Privacy Policy', 'memberlite' ); ?></a> &nbsp;·&nbsp; <a href="#"><?php esc_html_e( 'Terms of Service', 'memberlite' ); ?></a></p>
+		<!-- /wp:paragraph -->
 
-				<!-- wp:group {"layout":{"type":"flex","orientation":"vertical","flexWrap":"nowrap"}} -->
-				<div class="wp-block-group"><!-- wp:paragraph {"style":{"typography":{"fontStyle":"normal","fontWeight":"500"}}} -->
-					<p style="font-style:normal;font-weight:500">Project Management</p>
-					<!-- /wp:paragraph -->
+	</div>
+	<!-- /wp:group -->
 
-					<!-- wp:paragraph -->
-					<p>Our vision is to be at the forefront of architectural innovation, fostering a global community of architects and enthusiasts united by a passion for creating spaces.</p>
-					<!-- /wp:paragraph --></div>
-				<!-- /wp:group -->
-
-				<!-- wp:group {"layout":{"type":"flex","orientation":"vertical","flexWrap":"nowrap"}} -->
-				<div class="wp-block-group"><!-- wp:paragraph {"style":{"typography":{"fontStyle":"normal","fontWeight":"500"}}} -->
-					<p style="font-style:normal;font-weight:500">Project Management</p>
-					<!-- /wp:paragraph -->
-
-					<!-- wp:paragraph -->
-					<p>Our vision is to be at the forefront of architectural innovation, fostering a global community of architects and enthusiasts united by a passion for creating spaces.</p>
-					<!-- /wp:paragraph --></div>
-				<!-- /wp:group --></div>
-			<!-- /wp:group --></div>
-		<!-- /wp:column --></div>
-	<!-- /wp:columns -->
-
-	<!-- wp:columns {"align":"wide","style":{"spacing":{"blockGap":{"top":"var:preset|spacing|40","left":"var:preset|spacing|40"}}}} -->
-	<div class="wp-block-columns alignwide"><!-- wp:column {"width":"33%"} -->
-		<div class="wp-block-column" style="flex-basis:33%"><!-- wp:paragraph {"style":{"typography":{"fontSize":"0.75rem"}},"textColor":"white"} -->
-			<p class="has-white-color has-text-color" style="font-size:0.75rem">Banking services provided by a South African bank and regulated by the South African Reserve Bank.</p>
-			<!-- /wp:paragraph --></div>
-		<!-- /wp:column -->
-
-		<!-- wp:column {"style":{"spacing":{"blockGap":"var:preset|spacing|40"}}} -->
-		<div class="wp-block-column"><!-- wp:group {"style":{"spacing":{"padding":{"top":"0","right":"0","bottom":"0","left":"0"},"margin":{"top":"0","bottom":"0"},"blockGap":"0"},"elements":{"link":{"color":{"text":"var:preset|color|site-navigation-background"}}}},"textColor":"site-navigation-background","layout":{"type":"flex","justifyContent":"right","flexWrap":"nowrap","verticalAlignment":"center"}} -->
-			<div class="wp-block-group has-site-navigation-background-color has-text-color has-link-color" style="margin-top:0;margin-bottom:0;padding-top:0;padding-right:0;padding-bottom:0;padding-left:0"><!-- wp:paragraph {"style":{"typography":{"fontSize":"0.75rem"}}} -->
-				<p style="font-size:0.75rem">©</p>
-				<!-- /wp:paragraph -->
-
-				<!-- wp:post-date {"datetime":"2026-03-25T15:34:02.436Z","format":"Y","style":{"typography":{"fontSize":"0.75rem"}}} /-->
-
-				<!-- wp:site-title {"level":0,"style":{"typography":{"fontStyle":"normal","fontWeight":"400","fontSize":"0.75rem"},"spacing":{"padding":{"left":"0.5rem"}}}} /-->
-
-				<!-- wp:paragraph {"style":{"typography":{"fontSize":"0.75rem"},"spacing":{"padding":{"left":"0.5rem"}}}} -->
-				<p style="padding-left:0.5rem;font-size:0.75rem"> All rights reserved.</p>
-				<!-- /wp:paragraph --></div>
-			<!-- /wp:group --></div>
-		<!-- /wp:column --></div>
-	<!-- /wp:columns --></div>
+</div>
 <!-- /wp:group -->

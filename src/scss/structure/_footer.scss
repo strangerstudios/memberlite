@@ -148,12 +148,28 @@
 }
 
 // -----------------------------------------------------------------------------
+// Site Footer — Variation 01
+// -----------------------------------------------------------------------------
+
+.footer-variation-01 .memberlite-footer-column-wrap {
+	@include breakpoint(mobile) {
+		flex-wrap: wrap;
+	}
+}
+
+// -----------------------------------------------------------------------------
 // Site Footer — Variation 02
 // -----------------------------------------------------------------------------
 
 .footer-variation-02 {
 	.wp-block-navigation__container {
 		gap: var(--wp--preset--spacing--10);
+	}
+
+	.memberlite-footer-justify-center {
+		@include breakpoint(mobile) {
+			justify-content: center;
+		}
 	}
 }
 

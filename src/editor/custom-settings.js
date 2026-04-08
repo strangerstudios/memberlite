@@ -1,7 +1,7 @@
 import {__} from '@wordpress/i18n';
 import { registerPlugin } from '@wordpress/plugins';
 import { PluginDocumentSettingPanel } from '@wordpress/editor';
-import { ToggleControl } from '@wordpress/components';
+import { ToggleControl, SelectControl } from '@wordpress/components';
 import { useSelect } from '@wordpress/data';
 import { useEntityProp } from '@wordpress/core-data';
 import { SVG } from '@wordpress/primitives';
@@ -22,9 +22,13 @@ const MemberliteCustomSettings = () => {
 	const hideHeaderValue = meta?._memberlite_hide_header || false;
 	const hideFooterValue = meta?._memberlite_hide_footer || false;
 	const hidePageNavValue = meta?._memberlite_hide_page_nav || false;
+	const footerOverrideValue = meta?._memberlite_footer_override || '0'; // Default comes from the memberlite_get_footer_variations function
+	// Get and set up the footer variations for the SelectControl
+	const footerVariations = window.memberliteEditorData.footerVariations;
+	const footerOptions = Object.entries( footerVariations ).map( ( [ value, label ] ) => ( { value, label } ) );
 
 	// Check if the theme mod to show prev/next globally on pages is set to true
-	const showPrevNextGlobally = window.memberlite_theme_mod_settings?.showPrevNextSinglePages;
+	const showPrevNextGlobally = window.memberliteEditorData.showPrevNextSinglePages;
 
 	const textDomain = 'memberlite';
 
@@ -59,6 +63,16 @@ const MemberliteCustomSettings = () => {
 					checked={ hidePageNavValue }
 					onChange={ ( value ) => {
 						setMeta( { ...meta, _memberlite_hide_page_nav: value } );
+					} }
+				/>
+			)}
+			{ ! hideFooterValue && (
+				<SelectControl
+					label={ __( 'Override Footer Variation', textDomain ) }
+					value={ footerOverrideValue }
+					options={ footerOptions }
+					onChange={ ( value ) => {
+						setMeta( { ...meta, _memberlite_footer_override: value } );
 					} }
 				/>
 			)}
