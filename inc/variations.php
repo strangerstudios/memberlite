@@ -61,7 +61,7 @@ function memberlite_render_footer_variation( $post_name ) {
 		$footer_post = get_page_by_path( $post_name, OBJECT, 'memberlite_footer' );
 
 		if ( $footer_post ) {
-			echo do_blocks( $footer_post->post_content ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			echo do_shortcode( do_blocks( $footer_post->post_content ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		}
 	}
 }

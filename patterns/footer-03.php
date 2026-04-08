@@ -1,108 +1,152 @@
 <?php
 /**
- * Title: Footer Variation 3
+ * Title: Footer: Logo & Four Member Columns
  * Slug: memberlite/footer-03
- * Description: Footer with logo on the left and 3 columns on the right.
+ * Description: Logo and branding on top, with four link columns below. Dark background.
  * Categories: memberlite-footer, footer
- * Keywords: footer, variation
+ * Keywords: footer, logo, columns, links, membership, dark
+ * Block Types: core/post-content
  * Post Types: memberlite_footer
  * @package WordPress
  * @subpackage Memberlite
  * @since TBD
  */
 ?>
-<!-- wp:group {"align":"full","className":"footer-variation-03","style":{"spacing":{"padding":{"top":"var:preset|spacing|50","right":"var:preset|spacing|50","bottom":"var:preset|spacing|50","left":"var:preset|spacing|50"}},"border":{"top":{"color":"var:preset|color|borders","width":"1px"}},"elements":{"link":{"color":{"text":"var:preset|color|site-navigation-background"}}}},"backgroundColor":"site-navigation-link","textColor":"site-navigation-background","layout":{"type":"constrained"}} -->
-<div class="wp-block-group alignfull footer-variation-03 has-site-navigation-background-color has-site-navigation-link-background-color has-text-color has-background has-link-color" style="border-top-color:var(--wp--preset--color--borders);border-top-width:1px;padding-top:var(--wp--preset--spacing--50);padding-right:var(--wp--preset--spacing--50);padding-bottom:var(--wp--preset--spacing--50);padding-left:var(--wp--preset--spacing--50)"><!-- wp:columns {"align":"wide","style":{"spacing":{"blockGap":{"top":"var:preset|spacing|40","left":"var:preset|spacing|40"}}}} -->
-	<div class="wp-block-columns alignwide"><!-- wp:column {"width":"33%"} -->
-		<div class="wp-block-column" style="flex-basis:33%"><!-- wp:site-logo {"width":242} /--></div>
+<!-- wp:group {"align":"full","className":"footer-variation-03","style":{"border":{"top":{"color":"var:preset|color|borders","width":"1px"}},"elements":{"link":{"color":{"text":"var:preset|color|site-navigation-background"}}},"spacing":{"padding":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|50"}}},"backgroundColor":"site-navigation-link","textColor":"site-navigation-background","layout":{"type":"constrained"}} -->
+<div class="wp-block-group alignfull footer-variation-03 has-site-navigation-background-color has-site-navigation-link-background-color has-text-color has-background has-link-color" style="border-top-color:var(--wp--preset--color--borders);border-top-width:1px;padding-top:var(--wp--preset--spacing--50);padding-bottom:var(--wp--preset--spacing--50)">
+
+	<!-- wp:group {"align":"wide","style":{"spacing":{"blockGap":"var:preset|spacing|10"}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
+	<div class="wp-block-group alignwide">
+
+		<!-- wp:site-logo {"width":140,"className":"is-style-rounded","style":{"spacing":{"margin":{"top":"0","right":"0","bottom":"var:preset|spacing|10"}}}} /-->
+
+		<!-- wp:group {"style":{"spacing":{"blockGap":"0"}},"layout":{"type":"flex","orientation":"vertical"}} -->
+		<div class="wp-block-group">
+			<!-- wp:site-title {"level":0,"isLink":false,"fontSize":"24","fontFamily":"raleway"} /-->
+			<!-- wp:site-tagline {"fontSize":"24","fontFamily":"raleway"} /-->
+		</div>
+		<!-- /wp:group -->
+
+	</div>
+	<!-- /wp:group -->
+
+	<!-- wp:spacer {"height":"10px"} -->
+	<div style="height:10px" aria-hidden="true" class="wp-block-spacer"></div>
+	<!-- /wp:spacer -->
+
+	<!-- wp:columns {"align":"wide","style":{"spacing":{"blockGap":{"top":"var:preset|spacing|40","left":"var:preset|spacing|60"}}}} -->
+	<div class="wp-block-columns alignwide">
+
+		<!-- wp:column {"style":{"spacing":{"blockGap":"var:preset|spacing|10"}}} -->
+		<div class="wp-block-column">
+
+			<!-- wp:paragraph {"style":{"typography":{"letterSpacing":"-0.03em"}},"textColor":"site-navigation-background"} -->
+			<p class="has-site-navigation-background-color has-text-color" style="letter-spacing:-0.03em"><strong><?php esc_html_e( 'Member Area', 'memberlite' ); ?></strong></p>
+			<!-- /wp:paragraph -->
+
+			<!-- wp:list {"className":"is-style-plain","style":{"spacing":{"blockGap":"var:preset|spacing|10"}}} -->
+			<ul class="wp-block-list is-style-plain">
+				<!-- wp:list-item {"style":{"spacing":{"margin":{"top":"4px","bottom":"4px"}}}} --><li style="margin-top:4px;margin-bottom:4px"><a href="#"><?php esc_html_e( 'Membership Levels', 'memberlite' ); ?></a></li><!-- /wp:list-item -->
+				<!-- wp:list-item {"style":{"spacing":{"margin":{"top":"4px","bottom":"4px"}}}} --><li style="margin-top:4px;margin-bottom:4px"><a href="#"><?php esc_html_e( 'Join Now', 'memberlite' ); ?></a></li><!-- /wp:list-item -->
+				<!-- wp:list-item {"style":{"spacing":{"margin":{"top":"4px","bottom":"4px"}}}} --><li style="margin-top:4px;margin-bottom:4px"><a href="#"><?php esc_html_e( 'Member Login', 'memberlite' ); ?></a></li><!-- /wp:list-item -->
+				<!-- wp:list-item {"style":{"spacing":{"margin":{"top":"4px","bottom":"4px"}}}} --><li style="margin-top:4px;margin-bottom:4px"><a href="#"><?php esc_html_e( 'My Account', 'memberlite' ); ?></a></li><!-- /wp:list-item -->
+			</ul>
+			<!-- /wp:list -->
+
+		</div>
 		<!-- /wp:column -->
 
-		<!-- wp:column {"style":{"spacing":{"blockGap":"var:preset|spacing|40"}}} -->
-		<div class="wp-block-column"><!-- wp:columns -->
-			<div class="wp-block-columns"><!-- wp:column -->
-				<div class="wp-block-column"><!-- wp:heading {"level":3,"style":{"border":{"bottom":{"color":"var:preset|color|color-secondary","width":"1px"}},"spacing":{"padding":{"bottom":"5px"}}}} -->
-					<h3 class="wp-block-heading" style="border-bottom-color:var(--wp--preset--color--color-secondary);border-bottom-width:1px;padding-bottom:5px">Useful Links</h3>
-					<!-- /wp:heading -->
+		<!-- wp:column {"style":{"spacing":{"blockGap":"var:preset|spacing|10"}}} -->
+		<div class="wp-block-column">
 
-					<!-- wp:group {"style":{"spacing":{"blockGap":"0","margin":{"top":"var:preset|spacing|10"}}},"layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"left"}} -->
-					<div class="wp-block-group" style="margin-top:var(--wp--preset--spacing--10)"><!-- wp:icon {"icon":"core/chevron-right","style":{"elements":{"link":{"color":{"text":"var:preset|color|color-action"}}}},"textColor":"color-action"} /-->
+			<!-- wp:paragraph {"style":{"typography":{"letterSpacing":"-0.03em"}},"textColor":"site-navigation-background"} -->
+			<p class="has-site-navigation-background-color has-text-color" style="letter-spacing:-0.03em"><strong><?php esc_html_e( 'Support', 'memberlite' ); ?></strong></p>
+			<!-- /wp:paragraph -->
 
-						<!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"0"}}}} -->
-						<p style="margin-top:0"><a href="#">Login</a></p>
-						<!-- /wp:paragraph --></div>
-					<!-- /wp:group -->
+			<!-- wp:list {"className":"is-style-plain","style":{"spacing":{"blockGap":"var:preset|spacing|10"}}} -->
+			<ul class="wp-block-list is-style-plain">
+				<!-- wp:list-item {"style":{"spacing":{"margin":{"top":"4px","bottom":"4px"}}}} --><li style="margin-top:4px;margin-bottom:4px"><a href="#"><?php esc_html_e( 'Contact Us', 'memberlite' ); ?></a></li><!-- /wp:list-item -->
+				<!-- wp:list-item {"style":{"spacing":{"margin":{"top":"4px","bottom":"4px"}}}} --><li style="margin-top:4px;margin-bottom:4px"><a href="#"><?php esc_html_e( 'Help Center', 'memberlite' ); ?></a></li><!-- /wp:list-item -->
+				<!-- wp:list-item {"style":{"spacing":{"margin":{"top":"4px","bottom":"4px"}}}} --><li style="margin-top:4px;margin-bottom:4px"><a href="#"><?php esc_html_e( 'Refund Policy', 'memberlite' ); ?></a></li><!-- /wp:list-item -->
+			</ul>
+			<!-- /wp:list -->
 
-					<!-- wp:group {"style":{"spacing":{"blockGap":"0","margin":{"top":"var:preset|spacing|10"}}},"layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"left"}} -->
-					<div class="wp-block-group" style="margin-top:var(--wp--preset--spacing--10)"><!-- wp:icon {"icon":"core/chevron-right","style":{"elements":{"link":{"color":{"text":"var:preset|color|color-action"}}}},"textColor":"color-action"} /-->
+		</div>
+		<!-- /wp:column -->
 
-						<!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"0"}}}} -->
-						<p style="margin-top:0"><a href="#">Membership Levels</a></p>
-						<!-- /wp:paragraph --></div>
-					<!-- /wp:group -->
+		<!-- wp:column {"style":{"spacing":{"blockGap":"var:preset|spacing|10"}}} -->
+		<div class="wp-block-column">
 
-					<!-- wp:group {"style":{"spacing":{"blockGap":"0","margin":{"top":"var:preset|spacing|10"}}},"layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"left"}} -->
-					<div class="wp-block-group" style="margin-top:var(--wp--preset--spacing--10)"><!-- wp:icon {"icon":"core/chevron-right","style":{"elements":{"link":{"color":{"text":"var:preset|color|color-action"}}}},"textColor":"color-action"} /-->
+			<!-- wp:paragraph {"style":{"typography":{"letterSpacing":"-0.03em"}},"textColor":"site-navigation-background"} -->
+			<p class="has-site-navigation-background-color has-text-color" style="letter-spacing:-0.03em"><strong><?php esc_html_e( 'Quick Links', 'memberlite' ); ?></strong></p>
+			<!-- /wp:paragraph -->
 
-						<!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"0"}}}} -->
-						<p style="margin-top:0"><a href="#">Join Us</a></p>
-						<!-- /wp:paragraph --></div>
-					<!-- /wp:group -->
+			<!-- wp:list {"className":"is-style-plain","style":{"spacing":{"blockGap":"var:preset|spacing|10"}}} -->
+			<ul class="wp-block-list is-style-plain">
+				<!-- wp:list-item {"style":{"spacing":{"margin":{"top":"4px","bottom":"4px"}}}} --><li style="margin-top:4px;margin-bottom:4px"><a href="#"><?php esc_html_e( 'Courses & Training', 'memberlite' ); ?></a></li><!-- /wp:list-item -->
+				<!-- wp:list-item {"style":{"spacing":{"margin":{"top":"4px","bottom":"4px"}}}} --><li style="margin-top:4px;margin-bottom:4px"><a href="#"><?php esc_html_e( 'Community', 'memberlite' ); ?></a></li><!-- /wp:list-item -->
+				<!-- wp:list-item {"style":{"spacing":{"margin":{"top":"4px","bottom":"4px"}}}} --><li style="margin-top:4px;margin-bottom:4px"><a href="#"><?php esc_html_e( 'Blog', 'memberlite' ); ?></a></li><!-- /wp:list-item -->
+				<!-- wp:list-item {"style":{"spacing":{"margin":{"top":"4px","bottom":"4px"}}}} --><li style="margin-top:4px;margin-bottom:4px"><a href="#"><?php esc_html_e( 'Events', 'memberlite' ); ?></a></li><!-- /wp:list-item -->
+			</ul>
+			<!-- /wp:list -->
 
-					<!-- wp:group {"style":{"spacing":{"blockGap":"0","margin":{"top":"var:preset|spacing|10"}}},"layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"left"}} -->
-					<div class="wp-block-group" style="margin-top:var(--wp--preset--spacing--10)"><!-- wp:icon {"icon":"core/chevron-right","style":{"elements":{"link":{"color":{"text":"var:preset|color|color-action"}}}},"textColor":"color-action"} /-->
+		</div>
+		<!-- /wp:column -->
 
-						<!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"0"}}}} -->
-						<p style="margin-top:0"><a href="#">Our Mission</a></p>
-						<!-- /wp:paragraph --></div>
-					<!-- /wp:group --></div>
-				<!-- /wp:column -->
+		<!-- wp:column {"style":{"spacing":{"blockGap":"var:preset|spacing|10"}}} -->
+		<div class="wp-block-column">
 
-				<!-- wp:column -->
-				<div class="wp-block-column"><!-- wp:heading {"level":3,"style":{"border":{"bottom":{"color":"var:preset|color|color-secondary","width":"1px"}},"spacing":{"padding":{"bottom":"5px"}}}} -->
-					<h3 class="wp-block-heading" style="border-bottom-color:var(--wp--preset--color--color-secondary);border-bottom-width:1px;padding-bottom:5px">Support</h3>
-					<!-- /wp:heading -->
+			<!-- wp:paragraph {"style":{"typography":{"letterSpacing":"-0.03em"}},"textColor":"site-navigation-background"} -->
+			<p class="has-site-navigation-background-color has-text-color" style="letter-spacing:-0.03em"><strong><?php esc_html_e( 'Connect', 'memberlite' ); ?></strong></p>
+			<!-- /wp:paragraph -->
 
-					<!-- wp:group {"style":{"spacing":{"blockGap":"0","margin":{"top":"var:preset|spacing|10"}}},"layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"left"}} -->
-					<div class="wp-block-group" style="margin-top:var(--wp--preset--spacing--10)"><!-- wp:icon {"icon":"core/chevron-right","style":{"elements":{"link":{"color":{"text":"var:preset|color|color-action"}}}},"textColor":"color-action"} /-->
+			<!-- wp:list {"className":"is-style-plain","style":{"spacing":{"blockGap":"var:preset|spacing|10"}}} -->
+			<ul class="wp-block-list is-style-plain">
+				<!-- wp:list-item {"style":{"spacing":{"margin":{"top":"4px","bottom":"4px"}}}} --><li style="margin-top:4px;margin-bottom:4px"><a href="#"><?php esc_html_e( 'Our Story', 'memberlite' ); ?></a></li><!-- /wp:list-item -->
+				<!-- wp:list-item {"style":{"spacing":{"margin":{"top":"4px","bottom":"4px"}}}} --><li style="margin-top:4px;margin-bottom:4px"><a href="#"><?php esc_html_e( 'Who We Help', 'memberlite' ); ?></a></li><!-- /wp:list-item -->
+				<!-- wp:list-item {"style":{"spacing":{"margin":{"top":"4px","bottom":"4px"}}}} --><li style="margin-top:4px;margin-bottom:4px"><a href="#"><?php esc_html_e( 'Our Team', 'memberlite' ); ?></a></li><!-- /wp:list-item -->
+			</ul>
+			<!-- /wp:list -->
 
-						<!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"0"}},"typography":{"textDecoration":"none"}}} -->
-						<p style="margin-top:0;text-decoration:none"><a href="mailto:#">info@email.com</a></p>
-						<!-- /wp:paragraph --></div>
-					<!-- /wp:group -->
+			<!-- wp:social-links {"iconColor":"site-navigation-background","iconColorValue":"#ffffff","size":"has-normal-icon-size","className":"has-icon-color is-style-logos-only","style":{"spacing":{"blockGap":{"left":"var:preset|spacing|10"}}},"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"left"}} -->
+			<ul class="wp-block-social-links has-normal-icon-size has-icon-color is-style-logos-only">
+				<!-- wp:social-link {"url":"#","service":"facebook"} /-->
+				<!-- wp:social-link {"url":"#","service":"instagram"} /-->
+				<!-- wp:social-link {"url":"#","service":"linkedin"} /-->
+				<!-- wp:social-link {"url":"#","service":"youtube"} /-->
+			</ul>
+			<!-- /wp:social-links -->
 
-					<!-- wp:group {"style":{"spacing":{"blockGap":"0","margin":{"top":"var:preset|spacing|10"}}},"layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"left"}} -->
-					<div class="wp-block-group" style="margin-top:var(--wp--preset--spacing--10)"><!-- wp:icon {"icon":"core/chevron-right","style":{"elements":{"link":{"color":{"text":"var:preset|color|color-action"}}}},"textColor":"color-action"} /-->
+		</div>
+		<!-- /wp:column -->
 
-						<!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"0"}}}} -->
-						<p style="margin-top:0">(123) 456-7890</p>
-						<!-- /wp:paragraph --></div>
-					<!-- /wp:group -->
+	</div>
+	<!-- /wp:columns -->
 
-					<!-- wp:group {"style":{"spacing":{"blockGap":"0","margin":{"top":"var:preset|spacing|10"}}},"layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"left"}} -->
-					<div class="wp-block-group" style="margin-top:var(--wp--preset--spacing--10)"><!-- wp:icon {"icon":"core/chevron-right","style":{"elements":{"link":{"color":{"text":"var:preset|color|color-action"}}}},"textColor":"color-action"} /-->
+	<!-- wp:spacer {"height":"10px"} -->
+	<div style="height:10px" aria-hidden="true" class="wp-block-spacer"></div>
+	<!-- /wp:spacer -->
 
-						<!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"0"}},"typography":{"textDecoration":"none"}}} -->
-						<p style="margin-top:0;text-decoration:none"><a href="#">Contact Us</a></p>
-						<!-- /wp:paragraph --></div>
-					<!-- /wp:group --></div>
-				<!-- /wp:column -->
+	<!-- wp:group {"align":"wide","style":{"spacing":{"blockGap":"var:preset|spacing|10"}},"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"left","verticalAlignment":"center"}} -->
+	<div class="wp-block-group alignwide">
 
-				<!-- wp:column -->
-				<div class="wp-block-column"><!-- wp:heading {"level":3,"style":{"border":{"bottom":{"color":"var:preset|color|color-secondary","width":"1px"}},"spacing":{"padding":{"bottom":"5px"}}}} -->
-					<h3 class="wp-block-heading" style="border-bottom-color:var(--wp--preset--color--color-secondary);border-bottom-width:1px;padding-bottom:5px">Follow Us!</h3>
-					<!-- /wp:heading -->
+		<!-- wp:group {"style":{"spacing":{"blockGap":"5px"}},"layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"center"}} -->
+		<div class="wp-block-group">
+			<!-- wp:paragraph --><p>©</p><!-- /wp:paragraph -->
+			<!-- wp:site-title {"level":0,"isLink":false,"style":{"typography":{"lineHeight":"1.7"}},"fontSize":"18"} /-->
+			<!-- wp:paragraph {"style":{"spacing":{"padding":{"left":"4px"}}}} --><p style="padding-left:4px"><?php esc_html_e( 'All rights reserved.', 'memberlite' ); ?></p><!-- /wp:paragraph -->
+		</div>
+		<!-- /wp:group -->
 
-					<!-- wp:social-links {"iconColor":"site-navigation-background","iconColorValue":"#ecebe3","size":"has-large-icon-size","className":"is-style-logos-only","style":{"spacing":{"margin":{"top":"var:preset|spacing|10"},"blockGap":{"left":"var:preset|spacing|10"}}}} -->
-					<ul class="wp-block-social-links has-large-icon-size has-icon-color is-style-logos-only" style="margin-top:var(--wp--preset--spacing--10)"><!-- wp:social-link {"url":"#","service":"linkedin"} /-->
+		<!-- wp:paragraph {"textColor":"borders","fontSize":"14"} -->
+		<p class="has-borders-color has-text-color has-14-font-size">|</p>
+		<!-- /wp:paragraph -->
 
-						<!-- wp:social-link {"url":"#","service":"bluesky"} /-->
+		<!-- wp:paragraph --><p><a href="#"><?php esc_html_e( 'Privacy Policy', 'memberlite' ); ?></a></p><!-- /wp:paragraph -->
+		<!-- wp:paragraph --><p><a href="#"><?php esc_html_e( 'Terms', 'memberlite' ); ?></a></p><!-- /wp:paragraph -->
 
-						<!-- wp:social-link {"url":"#","service":"x"} /-->
+	</div>
+	<!-- /wp:group -->
 
-						<!-- wp:social-link {"url":"#","service":"facebook"} /--></ul>
-					<!-- /wp:social-links --></div>
-				<!-- /wp:column --></div>
-			<!-- /wp:columns --></div>
-		<!-- /wp:column --></div>
-	<!-- /wp:columns --></div>
+</div>
 <!-- /wp:group -->

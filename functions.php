@@ -601,6 +601,9 @@ require_once get_template_directory() . '/adminpages/dashboard.php';
 /* Editor Settings */
 require_once get_template_directory() . '/inc/editor-settings.php';
 
+/* Block Styles */
+require_once get_template_directory() . '/inc/block-styles.php';
+
 /* Custom sidebars. */
 require_once get_template_directory() . '/inc/sidebars.php';
 require_once get_template_directory() . '/adminpages/sidebars.php';
