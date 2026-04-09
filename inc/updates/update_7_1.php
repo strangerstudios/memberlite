@@ -47,7 +47,7 @@ function memberlite_seed_default_footer(): void {
 		'post_type'    => 'memberlite_footer',
 		'post_status'  => 'publish',
 		'post_title'   => __( 'Footer 01', 'memberlite' ),
-		'post_name'    => 'footer-01',
+		'post_name'    => 'memberlite-footer-01',
 		'post_content' => $content,
 	) );
 
@@ -61,7 +61,7 @@ function memberlite_seed_default_footer(): void {
 	// Existing/legacy users keep the legacy footer.
 	$is_fresh_activation = get_option( 'memberlite_fresh_activation', false );
 	if ( $is_fresh_activation ) {
-		set_theme_mod( 'memberlite_default_footer_slug', 'footer-01' );
+		set_theme_mod( 'memberlite_default_footer_slug', 'memberlite-footer-01' );
 		delete_option( 'memberlite_fresh_activation' );
 	}
 }
