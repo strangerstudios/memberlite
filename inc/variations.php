@@ -8,7 +8,8 @@
  */
 
 /*
- * Checks location-specific theme_mods first (single post, page, archives),
+ * Checks post_meta override first,
+ * then checks location-specific theme_mods (single post, page, archives),
  * then falls back to the global default footer setting.
  *
  * @since 7.1
@@ -16,19 +17,22 @@
  * @return string post_name of the memberlite_footer post, or '0' if none is set.
  */
 function memberlite_get_current_footer_post_name() {
+	$footer_variations = memberlite_get_footer_variations();
+	$post_name         = '0';
+
+	// If no footer posts exist, fall back to legacy immediately.
+	if ( count( $footer_variations ) === 1 ) {
+		return $post_name;
+	}
+
 	// Per-page override takes priority over all Customizer settings.
 	if ( is_singular() ) {
 		$override = get_post_meta( get_the_ID(), '_memberlite_footer_override', true );
-		if ( '' !== $override ) {
-			$footer_variations = memberlite_get_footer_variations();
-			if ( isset( $footer_variations[ $override ] ) ) {
-				return $override;
-			}
-			// Invalid override — fall through to Customizer settings
+		if ( '' !== $override && isset( $footer_variations[ $override ] ) ) {
+			return $override;
 		}
+		// Invalid override — fall through to Customizer settings.
 	}
-
-	$post_name = '0';
 
 	if ( is_singular( 'post' ) ) {
 		$post_name = get_theme_mod( 'memberlite_post_footer_slug', '0' );
@@ -45,11 +49,8 @@ function memberlite_get_current_footer_post_name() {
 
 	// Validate that the resolved post still exists. If it has been deleted,
 	// fall back to the legacy footer rather than rendering nothing.
-	if ( '0' !== $post_name ) {
-		$footer_variations = memberlite_get_footer_variations();
-		if ( ! isset( $footer_variations[ $post_name ] ) ) {
-			return '0';
-		}
+	if ( '0' !== $post_name && ! isset( $footer_variations[ $post_name ] ) ) {
+		return '0';
 	}
 
 	return $post_name;
