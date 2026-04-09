@@ -51,6 +51,10 @@ function memberlite_seed_default_footer(): void {
 		'post_content' => $content,
 	) );
 
+	// Use the actual post_name WordPress assigned rather than the intended slug.
+	// If a slug collision exists (e.g. a trashed post with the same name), WordPress
+	// will suffix the slug (e.g. memberlite-footer-01-2), and hardcoding the intended
+	// slug in the theme_mod would point to a post that doesn't exist.
 	if ( is_wp_error( $post_id ) || empty( $post_id ) ) {
 		return;
 	}
@@ -61,7 +65,8 @@ function memberlite_seed_default_footer(): void {
 	// Existing/legacy users keep the legacy footer.
 	$is_fresh_activation = get_option( 'memberlite_fresh_activation', false );
 	if ( $is_fresh_activation ) {
-		set_theme_mod( 'memberlite_default_footer_slug', 'memberlite-footer-01' );
+		$seeded_post = get_post( $post_id );
+		set_theme_mod( 'memberlite_default_footer_slug', $seeded_post->post_name );
 		delete_option( 'memberlite_fresh_activation' );
 	}
 }
