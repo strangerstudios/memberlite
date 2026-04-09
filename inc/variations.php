@@ -43,6 +43,15 @@ function memberlite_get_current_footer_post_name() {
 		$post_name = get_theme_mod( 'memberlite_default_footer_slug', '0' );
 	}
 
+	// Validate that the resolved post still exists. If it has been deleted,
+	// fall back to the legacy footer rather than rendering nothing.
+	if ( '0' !== $post_name ) {
+		$footer_variations = memberlite_get_footer_variations();
+		if ( ! isset( $footer_variations[ $post_name ] ) ) {
+			return '0';
+		}
+	}
+
 	return $post_name;
 }
 
@@ -73,11 +82,7 @@ function memberlite_render_footer_variation( $post_name ) {
  *
  * @return array
  */
-function memberlite_get_footer_variations( string $default_label = '' ): array {
-	if ( '' === $default_label ) {
-		$default_label = __( '— Use Legacy Footer —', 'memberlite' );
-	}
-
+function memberlite_get_footer_variations(): array {
 	$footer_posts = get_posts( array(
 		'post_type'      => 'memberlite_footer',
 		'post_status'    => 'publish',
@@ -87,7 +92,7 @@ function memberlite_get_footer_variations( string $default_label = '' ): array {
 	) );
 
 	$footer_choices = array(
-		'0' => $default_label,
+		'0' => __( '— Use Legacy Footer —', 'memberlite' ),
 	);
 
 	if ( ! empty( $footer_posts ) ) {

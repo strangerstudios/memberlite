@@ -416,14 +416,13 @@ class Memberlite_Customize {
 		self::add_memberlite_link_control( $wp_customize, 'memberlite_manage_footers_link', __( 'Manage Footers', 'memberlite' ), 'memberlite_footer_options', admin_url( 'edit.php?post_type=memberlite_footer' ) );
 
 		// FOOTER: Footer CPT choices ===================
-		$footer_choices_default = memberlite_get_footer_variations();
-		$footer_choices_context = memberlite_get_footer_variations( __( '— Use Default Footer —', 'memberlite' ) );
+		$footer_variation_options = memberlite_get_footer_variations();
 
 		// FOOTER: Variations, Global ===============
 		self::add_memberlite_setting_control( $wp_customize, 'memberlite_default_footer_slug', __( 'Default Footer', 'memberlite' ), 'memberlite_footer_options', array(
 			'type'              => 'select',
 			'sanitize_callback' => 'sanitize_key',
-			'choices'           => $footer_choices_default,
+			'choices'           => $footer_variation_options,
 			'default'           => '0',
 			'description'       => __( 'Choose which footer pattern to display all across the site.', 'memberlite' ),
 		) );
@@ -432,7 +431,7 @@ class Memberlite_Customize {
 		self::add_memberlite_setting_control( $wp_customize, 'memberlite_archives_footer_slug', __( 'Blog & Archives Footer', 'memberlite' ), 'memberlite_footer_options', array(
 			'type'              => 'select',
 			'sanitize_callback' => 'sanitize_key',
-			'choices'           => $footer_choices_context,
+			'choices'           => $footer_variation_options,
 			'default'           => '0',
 			'description'       => __( 'Choose which footer pattern to display on your blog and post archives.', 'memberlite' ),
 		) );
@@ -441,7 +440,7 @@ class Memberlite_Customize {
 		self::add_memberlite_setting_control( $wp_customize, 'memberlite_post_footer_slug', __( 'Single Post Footer', 'memberlite' ), 'memberlite_footer_options', array(
 			'type'              => 'select',
 			'sanitize_callback' => 'sanitize_key',
-			'choices'           => $footer_choices_context,
+			'choices'           => $footer_variation_options,
 			'default'           => '0',
 			'description'       => __( 'Choose which footer pattern to display on the single post view.', 'memberlite' ),
 		) );
@@ -450,7 +449,7 @@ class Memberlite_Customize {
 		self::add_memberlite_setting_control( $wp_customize, 'memberlite_page_footer_slug', __( 'Pages Footer', 'memberlite' ), 'memberlite_footer_options', array(
 			'type'              => 'select',
 			'sanitize_callback' => 'sanitize_key',
-			'choices'           => $footer_choices_context,
+			'choices'           => $footer_variation_options,
 			'default'           => '0',
 			'description'       => __( 'Choose which footer pattern to display on your pages.', 'memberlite' ),
 		) );

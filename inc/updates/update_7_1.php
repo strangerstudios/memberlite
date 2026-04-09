@@ -46,8 +46,8 @@ function memberlite_seed_default_footer(): void {
 	$post_id = wp_insert_post( array(
 		'post_type'    => 'memberlite_footer',
 		'post_status'  => 'publish',
-		'post_title'   => __( 'Default Footer', 'memberlite' ),
-		'post_name'    => 'default-footer',
+		'post_title'   => __( 'Footer 01', 'memberlite' ),
+		'post_name'    => 'footer-01',
 		'post_content' => $content,
 	) );
 
@@ -55,11 +55,13 @@ function memberlite_seed_default_footer(): void {
 		return;
 	}
 
-	// For new installs only, set the default footer theme_mod so the block-based
-	// footer is active immediately. Existing/legacy users keep the legacy footer.
+	// For new installs only, set the global default footer so the block-based footer
+	// is active immediately. Location-specific mods are left at '0' so they cascade
+	// to this global default — changing it in the Customizer affects all locations.
+	// Existing/legacy users keep the legacy footer.
 	$is_fresh_activation = get_option( 'memberlite_fresh_activation', false );
 	if ( $is_fresh_activation ) {
-		set_theme_mod( 'memberlite_default_footer_slug', 'default-footer' );
+		set_theme_mod( 'memberlite_default_footer_slug', 'footer-01' );
 		delete_option( 'memberlite_fresh_activation' );
 	}
 }
