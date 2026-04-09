@@ -13,14 +13,14 @@
  * @since TBD
  */
 ?>
-<!-- wp:group {"align":"full","className":"footer-variation-05-cta","style":{"spacing":{"padding":{"top":"var:preset|spacing|70","right":"var:preset|spacing|50","bottom":"var:preset|spacing|70","left":"var:preset|spacing|50"}},"elements":{"link":{"color":{"text":"var:preset|color|memberlite-links"}}},"border":{"top":{"color":"var:preset|color|borders","width":"1px"},"right":{},"bottom":{},"left":{}}},"backgroundColor":"footer-widgets-background","layout":{"type":"constrained"}} -->
+<!-- wp:group {"align":"full","className":"footer-variation-05-cta","style":{"spacing":{"padding":{"top":"var:preset|spacing|70","right":"var:preset|spacing|50","bottom":"var:preset|spacing|70","left":"var:preset|spacing|50"}},"elements":{"link":{"color":{"text":"var:preset|color|footer-widgets"}}},"border":{"top":{"color":"var:preset|color|borders","width":"1px"},"right":{},"bottom":{},"left":{}}},"backgroundColor":"footer-widgets-background","layout":{"type":"constrained"}} -->
 <div class="wp-block-group alignfull footer-variation-05-cta has-footer-widgets-background-background-color has-background has-link-color" style="border-top-color:var(--wp--preset--color--borders);border-top-width:1px;padding-top:var(--wp--preset--spacing--70);padding-right:var(--wp--preset--spacing--50);padding-bottom:var(--wp--preset--spacing--70);padding-left:var(--wp--preset--spacing--50)"><!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|10"}},"layout":{"type":"constrained","contentSize":"600px"}} -->
-<div class="wp-block-group"><!-- wp:heading {"textAlign":"center","style":{"typography":{"fontWeight":"700"}},"fontSize":"36"} -->
-<h2 class="wp-block-heading has-text-align-center has-36-font-size" style="font-weight:700"><?php esc_html_e( 'Ready to become a member?', 'memberlite' ); ?></h2>
+<div class="wp-block-group"><!-- wp:heading {"textAlign":"center","textColor":"footer-widgets","style":{"typography":{"fontWeight":"700"}},"fontSize":"36"} -->
+<h2 class="wp-block-heading has-text-align-center has-footer-widgets-color has-text-color has-36-font-size" style="font-weight:700"><?php esc_html_e( 'Ready to become a member?', 'memberlite' ); ?></h2>
 <!-- /wp:heading -->
 
-<!-- wp:paragraph {"align":"center","className":"has-text-align-center","textColor":"meta-link"} -->
-<p class="has-text-align-center has-text-align-center has-meta-link-color has-text-color"><?php esc_html_e( 'Join thousands of members who are already learning, growing, and building connections in our community.', 'memberlite' ); ?></p>
+<!-- wp:paragraph {"align":"center","className":"has-text-align-center","textColor":"footer-widgets"} -->
+<p class="has-text-align-center has-text-align-center has-footer-widgets-color has-text-color"><?php esc_html_e( 'Join thousands of members who are already learning, growing, and building connections in our community.', 'memberlite' ); ?></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
@@ -29,13 +29,13 @@
 <div class="wp-block-button"><a class="wp-block-button__link has-color-action-background-color has-background wp-element-button"><?php printf( '[fa icon="heart"] %s', esc_html__( 'Join Today', 'memberlite' ) ); ?></a></div>
 <!-- /wp:button -->
 
-<!-- wp:button -->
-<div class="wp-block-button"><a class="wp-block-button__link wp-element-button"><?php printf( '[fa icon="arrow-right-to-bracket"] %s', esc_html__( 'Log In', 'memberlite' ) ); ?></a></div>
+<!-- wp:button {"backgroundColor":"color-secondary"} -->
+<div class="wp-block-button"><a class="wp-block-button__link has-color-secondary-background-color has-background wp-element-button"><?php printf( '[fa icon="arrow-right-to-bracket"] %s', esc_html__( 'Log In', 'memberlite' ) ); ?></a></div>
 <!-- /wp:button --></div>
 <!-- /wp:buttons -->
 
-<!-- wp:paragraph {"className":"has-text-align-center","style":{"typography":{"letterSpacing":"0.03em"}},"textColor":"meta-link","fontSize":"14","fontFamily":"space-grotesk"} -->
-<p class="has-text-align-center has-meta-link-color has-text-color has-space-grotesk-font-family has-14-font-size" style="letter-spacing:0.03em"><?php esc_html_e( 'No long-term commitment required. Cancel anytime.', 'memberlite' ); ?></p>
+<!-- wp:paragraph {"className":"has-text-align-center","style":{"typography":{"letterSpacing":"0.03em"}},"textColor":"footer-widgets","fontSize":"14","fontFamily":"space-grotesk"} -->
+<p class="has-text-align-center has-footer-widgets-color has-text-color has-space-grotesk-font-family has-14-font-size" style="letter-spacing:0.03em"><?php esc_html_e( 'No long-term commitment required. Cancel anytime.', 'memberlite' ); ?></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
@@ -54,16 +54,16 @@
 <!-- /wp:group -->
 
 <!-- wp:group {"layout":{"type":"flex","flexWrap":"nowrap"}} -->
-<div class="wp-block-group"><!-- wp:paragraph -->
-<p><a href="#"><?php esc_html_e( 'Privacy Policy', 'memberlite' ); ?></a></p>
+<div class="wp-block-group"><!-- wp:paragraph {"style":{"elements":{"link":{"color":{"text":"var:preset|color|site-navigation-background"}}}}} -->
+<p class="has-link-color" style="--wp--elements--link--color--text:var(--wp--preset--color--site-navigation-background)"><a href="#"><?php esc_html_e( 'Privacy Policy', 'memberlite' ); ?></a></p>
 <!-- /wp:paragraph -->
 
-<!-- wp:paragraph -->
-<p><a href="#"><?php esc_html_e( 'Terms of Service', 'memberlite' ); ?></a></p>
+<!-- wp:paragraph {"style":{"elements":{"link":{"color":{"text":"var:preset|color|site-navigation-background"}}}}} -->
+<p class="has-link-color" style="--wp--elements--link--color--text:var(--wp--preset--color--site-navigation-background)"><a href="#"><?php esc_html_e( 'Terms of Service', 'memberlite' ); ?></a></p>
 <!-- /wp:paragraph -->
 
-<!-- wp:paragraph -->
-<p><a href="#"><?php esc_html_e( 'Refund Policy', 'memberlite' ); ?></a></p>
+<!-- wp:paragraph {"style":{"elements":{"link":{"color":{"text":"var:preset|color|site-navigation-background"}}}}} -->
+<p class="has-link-color" style="--wp--elements--link--color--text:var(--wp--preset--color--site-navigation-background)"><a href="#"><?php esc_html_e( 'Refund Policy', 'memberlite' ); ?></a></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></div>

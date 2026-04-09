@@ -142,8 +142,8 @@
 		<p class="has-borders-color has-text-color has-14-font-size">|</p>
 		<!-- /wp:paragraph -->
 
-		<!-- wp:paragraph --><p><a href="#"><?php esc_html_e( 'Privacy Policy', 'memberlite' ); ?></a></p><!-- /wp:paragraph -->
-		<!-- wp:paragraph --><p><a href="#"><?php esc_html_e( 'Terms', 'memberlite' ); ?></a></p><!-- /wp:paragraph -->
+		<!-- wp:paragraph {"style":{"elements":{"link":{"color":{"text":"var:preset|color|site-navigation-background"}}}}} --><p class="has-link-color" style="--wp--elements--link--color--text:var(--wp--preset--color--site-navigation-background)"><a href="#"><?php esc_html_e( 'Privacy Policy', 'memberlite' ); ?></a></p><!-- /wp:paragraph -->
+		<!-- wp:paragraph {"style":{"elements":{"link":{"color":{"text":"var:preset|color|site-navigation-background"}}}}} --><p class="has-link-color" style="--wp--elements--link--color--text:var(--wp--preset--color--site-navigation-background)"><a href="#"><?php esc_html_e( 'Terms', 'memberlite' ); ?></a></p><!-- /wp:paragraph -->
 
 	</div>
 	<!-- /wp:group -->
