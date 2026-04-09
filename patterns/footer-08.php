@@ -12,8 +12,8 @@
  * @since TBD
  */
 ?>
-<!-- wp:group {"align":"full","className":"footer-variation-08","style":{"elements":{"link":{"color":{"text":"var:preset|color|site-navigation-background"}}},"spacing":{"padding":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|50"}}},"backgroundColor":"color-primary","textColor":"site-navigation-background","layout":{"type":"constrained"}} -->
-<div class="wp-block-group alignfull footer-variation-08 has-site-navigation-background-color has-color-primary-background-color has-text-color has-background has-link-color" style="padding-top:var(--wp--preset--spacing--50);padding-bottom:var(--wp--preset--spacing--50)">
+<!-- wp:group {"align":"full","className":"footer-variation-08","style":{"elements":{"link":{"color":{"text":"var:preset|color|site-navigation-background"}}},"spacing":{"padding":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|50"}}},"backgroundColor":"site-navigation-link","textColor":"site-navigation-background","layout":{"type":"constrained"}} -->
+<div class="wp-block-group alignfull footer-variation-08 has-site-navigation-background-color has-site-navigation-link-background-color has-text-color has-background has-link-color" style="padding-top:var(--wp--preset--spacing--50);padding-bottom:var(--wp--preset--spacing--50)">
 
 	<!-- wp:columns {"align":"wide"} -->
 	<div class="wp-block-columns alignwide">
@@ -102,8 +102,8 @@
 		</div>
 		<!-- /wp:group -->
 
-		<!-- wp:paragraph -->
-		<p><a href="#"><?php esc_html_e( 'Privacy Policy', 'memberlite' ); ?></a> &nbsp;·&nbsp; <a href="#"><?php esc_html_e( 'Terms of Service', 'memberlite' ); ?></a></p>
+		<!-- wp:paragraph {"style":{"elements":{"link":{"color":{"text":"var:preset|color|site-navigation-background"}}}}} -->
+		<p class="has-link-color" style="--wp--elements--link--color--text:var(--wp--preset--color--site-navigation-background)"><a href="#"><?php esc_html_e( 'Privacy Policy', 'memberlite' ); ?></a> &nbsp;·&nbsp; <a href="#"><?php esc_html_e( 'Terms of Service', 'memberlite' ); ?></a></p>
 		<!-- /wp:paragraph -->
 
 	</div>

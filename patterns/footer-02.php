@@ -12,7 +12,7 @@
  * @since TBD
  */
 ?>
-<!-- wp:group {"align":"full","className":"footer-variation-02","style":{"spacing":{"blockGap":"var:preset|spacing|40","padding":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|50"}},"border":{"top":{"color":"var:preset|color|borders","width":"1px"}},"elements":{"link":{"color":{"text":"var:preset|color|memberlite-links"}}}},"backgroundColor":"footer-widgets-background","textColor":"footer-widgets","layout":{"type":"constrained"}} -->
+<!-- wp:group {"align":"full","className":"footer-variation-02","style":{"spacing":{"blockGap":"var:preset|spacing|40","padding":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|50"}},"border":{"top":{"color":"var:preset|color|borders","width":"1px"}},"elements":{"link":{"color":{"text":"var:preset|color|footer-widgets"}}}},"backgroundColor":"footer-widgets-background","textColor":"footer-widgets","layout":{"type":"constrained"}} -->
 <div class="wp-block-group alignfull footer-variation-02 has-footer-widgets-color has-footer-widgets-background-background-color has-text-color has-background has-link-color" style="border-top-color:var(--wp--preset--color--borders);border-top-width:1px;padding-top:var(--wp--preset--spacing--50);padding-bottom:var(--wp--preset--spacing--50)">
 
 	<!-- wp:group {"align":"wide","style":{"spacing":{"blockGap":"var:preset|spacing|10"}},"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"center","verticalAlignment":"center"}} -->
@@ -30,15 +30,15 @@
 		<p class="has-borders-color has-text-color has-14-font-size">|</p>
 		<!-- /wp:paragraph -->
 
-		<!-- wp:paragraph --><p><a href="#"><?php esc_html_e( 'Membership Levels', 'memberlite' ); ?></a></p><!-- /wp:paragraph -->
-		<!-- wp:paragraph --><p><a href="#"><?php esc_html_e( 'Login', 'memberlite' ); ?></a></p><!-- /wp:paragraph -->
-		<!-- wp:paragraph --><p><a href="#"><?php esc_html_e( 'Blog', 'memberlite' ); ?></a></p><!-- /wp:paragraph -->
-		<!-- wp:paragraph --><p><a href="#"><?php esc_html_e( 'Contact', 'memberlite' ); ?></a></p><!-- /wp:paragraph -->
+		<!-- wp:paragraph {"style":{"elements":{"link":{"color":{"text":"var:preset|color|footer-widgets"}}}}} --><p class="has-link-color" style="--wp--elements--link--color--text:var(--wp--preset--color--footer-widgets)"><a href="#"><?php esc_html_e( 'Membership Levels', 'memberlite' ); ?></a></p><!-- /wp:paragraph -->
+		<!-- wp:paragraph {"style":{"elements":{"link":{"color":{"text":"var:preset|color|footer-widgets"}}}}} --><p class="has-link-color" style="--wp--elements--link--color--text:var(--wp--preset--color--footer-widgets)"><a href="#"><?php esc_html_e( 'Login', 'memberlite' ); ?></a></p><!-- /wp:paragraph -->
+		<!-- wp:paragraph {"style":{"elements":{"link":{"color":{"text":"var:preset|color|footer-widgets"}}}}} --><p class="has-link-color" style="--wp--elements--link--color--text:var(--wp--preset--color--footer-widgets)"><a href="#"><?php esc_html_e( 'Blog', 'memberlite' ); ?></a></p><!-- /wp:paragraph -->
+		<!-- wp:paragraph {"style":{"elements":{"link":{"color":{"text":"var:preset|color|footer-widgets"}}}}} --><p class="has-link-color" style="--wp--elements--link--color--text:var(--wp--preset--color--footer-widgets)"><a href="#"><?php esc_html_e( 'Contact', 'memberlite' ); ?></a></p><!-- /wp:paragraph -->
 
 	</div>
 	<!-- /wp:group -->
 
-	<!-- wp:social-links {"iconColor":"site-navigation-link","iconColorValue":"#222222","size":"has-normal-icon-size","className":"has-icon-color is-style-logos-only","style":{"spacing":{"blockGap":{"top":"var:preset|spacing|20","left":"var:preset|spacing|20"}}},"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"center"}} -->
+	<!-- wp:social-links {"iconColor":"footer-widgets","iconColorValue":"#222222","size":"has-normal-icon-size","className":"has-icon-color is-style-logos-only","style":{"spacing":{"blockGap":{"top":"var:preset|spacing|20","left":"var:preset|spacing|20"}}},"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"center"}} -->
 	<ul class="wp-block-social-links has-normal-icon-size has-icon-color is-style-logos-only">
 		<!-- wp:social-link {"url":"#","service":"facebook"} /-->
 		<!-- wp:social-link {"url":"#","service":"instagram"} /-->
