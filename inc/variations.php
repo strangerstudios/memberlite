@@ -4,14 +4,14 @@
  *
  * @package Memberlite
  *
- * @since 7.0
+ * @since 7.1
  */
 
 /*
  * Checks location-specific theme_mods first (single post, page, archives),
  * then falls back to the global default footer setting.
  *
- * @since TBD
+ * @since 7.1
  *
  * @return string post_name of the memberlite_footer post, or '0' if none is set.
  */
@@ -62,7 +62,7 @@ function memberlite_get_current_footer_post_name() {
  * theme_mod) and renders its block content. Does nothing if the post is not
  * found; the legacy footer fallback is handled upstream in footer.php.
  *
- * @since TBD
+ * @since 7.1
  * @param string $post_name The post_name of the memberlite_footer post to render.
  */
 function memberlite_render_footer_variation( $post_name ) {
@@ -78,7 +78,7 @@ function memberlite_render_footer_variation( $post_name ) {
 /**
  * Get memberlite_footer posts for our variation options
  *
- * @since TBD
+ * @since 7.1
  *
  * @return array
  */
@@ -110,7 +110,7 @@ function memberlite_get_footer_variations(): array {
  * Only renders for CPT-based footers (not the legacy footer). Uses the
  * standard WordPress edit post link.
  *
- * @since TBD
+ * @since 7.1
  *
  * @param string $post_name The post_name of the current footer post.
  */

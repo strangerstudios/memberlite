@@ -8,7 +8,7 @@
  *
  * Not public-facing; only accessible in the admin.
  *
- * @since TBD
+ * @since 7.1
  * @return void
  */
 function memberlite_register_footer_cpt(): void {

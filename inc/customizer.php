@@ -1172,7 +1172,7 @@ function memberlite_save_scheme_colors( WP_Customize_Manager $wp_customize ) {
  * Visibility is controlled by JS (scroll position + IntersectionObserver on the footer).
  * (Turned on in Customizer > General Settings)
  *
- * @version TBD
+ * @version 7.1
  * @return void
  */
 function memberlite_floating_back_to_top() {
