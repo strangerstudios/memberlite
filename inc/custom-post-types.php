@@ -60,3 +60,34 @@ function memberlite_register_footer_cpt(): void {
 	);
 }
 add_action( 'init', 'memberlite_register_footer_cpt' );
+
+/**
+ * Auto-generate a title for memberlite_footer posts saved without one.
+ *
+ * If the user leaves the title blank, sets it to "Footer {slug}" so the post
+ * is identifiable in the Customizer dropdown and admin list.
+ *
+ * @since 7.1
+ * @param int     $post_id The post ID.
+ * @param WP_Post $post    The post object.
+ * @return void
+ */
+function memberlite_footer_auto_title( int $post_id, WP_Post $post ): void {
+	if ( wp_is_post_revision( $post_id ) || 'auto-draft' === $post->post_status ) {
+		return;
+	}
+
+	if ( ! empty( $post->post_title ) || empty( $post->post_name ) ) {
+		return;
+	}
+
+	remove_action( 'save_post_memberlite_footer', 'memberlite_footer_auto_title', 10 );
+
+	wp_update_post( array(
+		'ID'         => $post_id,
+		'post_title' => sprintf( __( 'Footer %s', 'memberlite' ), $post->post_name ),
+	) );
+
+	add_action( 'save_post_memberlite_footer', 'memberlite_footer_auto_title', 10, 2 );
+}
+add_action( 'save_post_memberlite_footer', 'memberlite_footer_auto_title', 10, 2 );
