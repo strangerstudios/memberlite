@@ -21,10 +21,11 @@ function memberlite_checkForUpdates() {
 	// Default DB version for Memberlite 4.0
 	if ( empty( $memberlite_db_version ) ) {
 		$memberlite_db_version = '2018080101';
+		update_option( 'memberlite_fresh_activation', true, 'no' );
 		update_option( 'memberlite_db_version', $memberlite_db_version, 'no' );
 	}
 
-	// Migrate the theme_mod for webfonts to single properties.
+	// Memberlite 5.2.1 Update - Migrate the theme_mod for webfonts to single properties.
 	if ( $memberlite_db_version < '2025032601' ) {
 		$memberlite_webfonts = get_theme_mod( 'memberlite_webfonts' );
 		if ( ! empty( $memberlite_webfonts ) ) {
@@ -44,7 +45,7 @@ function memberlite_checkForUpdates() {
 		update_option( 'memberlite_db_version', '2026022201', 'no' );
 	}
 
-	// Migrate font theme_mods to lowercase slugs to match theme.json.
+	// Memberlite 7.0.1 Update - Migrate font theme_mods to lowercase slugs to match theme.json.
 	if ( $memberlite_db_version < '2026040201' ) {
 		foreach ( array( 'memberlite_header_font', 'memberlite_body_font' ) as $mod_key ) {
 			$value = get_theme_mod( $mod_key );
@@ -58,6 +59,12 @@ function memberlite_checkForUpdates() {
 			}
 		}
 		update_option( 'memberlite_db_version', '2026040201', 'no' );
+	}
+
+	// Memberlite 7.1 Update - Set up for new footer and header variations
+	if ( $memberlite_db_version < '2026040901' ) {
+		require_once get_template_directory() . '/inc/updates/update_7_1.php';
+		update_option( 'memberlite_db_version', '2026040901', 'no' );
 	}
 }
 
