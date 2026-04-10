@@ -60,3 +60,61 @@ function memberlite_register_footer_cpt(): void {
 	);
 }
 add_action( 'init', 'memberlite_register_footer_cpt' );
+
+/**
+ * Register the memberlite_header CPT for header variations.
+ *
+ * Not public-facing; only accessible in the admin.
+ *
+ * @since TBD
+ * @return void
+ */
+function memberlite_register_header_cpt(): void {
+	$labels = array(
+		'name'               => __( 'Header Variations', 'memberlite' ),
+		'singular_name'      => __( 'Header Variation', 'memberlite' ),
+		'add_new'            => __( 'Add New Header Variation', 'memberlite' ),
+		'add_new_item'       => __( 'Add New Header Variation', 'memberlite' ),
+		'edit_item'          => __( 'Edit Header Variation', 'memberlite' ),
+		'new_item'           => __( 'New Header Variation', 'memberlite' ),
+		'view_item'          => __( 'View Header Variation', 'memberlite' ),
+		'search_items'       => __( 'Search Header Variations', 'memberlite' ),
+		'not_found'          => __( 'No header variations found.', 'memberlite' ),
+		'not_found_in_trash' => __( 'No header variations found in Trash.', 'memberlite' ),
+		'all_items'          => __( 'All Header Variations', 'memberlite' ),
+		'menu_name'          => __( 'Header Variations', 'memberlite' ),
+	);
+
+	register_post_type(
+		'memberlite_header',
+		array(
+			'labels'              => $labels,
+			'public'              => false,
+			'publicly_queryable'  => false,
+			'show_ui'             => true,
+			'show_in_menu'        => false,  // placed under Memberlite menu manually
+			'show_in_rest'        => true,   // required for block editor support
+			'supports'            => array( 'title', 'editor', 'revisions' ),
+			'rewrite'             => false,
+			'query_var'           => false,
+			'has_archive'         => false,
+			'capabilities'        => array(
+				'read_post'              => 'edit_theme_options',
+				'read_private_posts'     => 'edit_theme_options',
+				'edit_post'              => 'edit_theme_options',
+				'edit_posts'             => 'edit_theme_options',
+				'edit_others_posts'      => 'edit_theme_options',
+				'edit_private_posts'     => 'edit_theme_options',
+				'edit_published_posts'   => 'edit_theme_options',
+				'publish_posts'          => 'edit_theme_options',
+				'delete_post'            => 'edit_theme_options',
+				'delete_posts'           => 'edit_theme_options',
+				'delete_private_posts'   => 'edit_theme_options',
+				'delete_published_posts' => 'edit_theme_options',
+				'delete_others_posts'    => 'edit_theme_options',
+				'create_posts'           => 'edit_theme_options',
+			),
+		)
+	);
+}
+add_action( 'init', 'memberlite_register_header_cpt' );

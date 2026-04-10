@@ -27,6 +27,8 @@ function memberlite_add_pages() {
 	add_submenu_page( 'memberlite-dashboard', __( 'Tools', 'memberlite' ), __( 'Tools', 'memberlite' ), 'edit_theme_options', 'memberlite-tools', 'memberlite_tools' );
 
 	add_submenu_page( 'memberlite-dashboard', __( 'Footers', 'memberlite' ), __( 'Footers', 'memberlite' ), 'edit_theme_options', 'edit.php?post_type=memberlite_footer' );
+
+	add_submenu_page( 'memberlite-dashboard', __( 'Headers', 'memberlite' ), __( 'Headers', 'memberlite' ), 'edit_theme_options', 'edit.php?post_type=memberlite_header' );
 }
 add_action( 'admin_menu', 'memberlite_add_pages' );
 
@@ -65,6 +67,42 @@ function memberlite_footer_cpt_submenu_highlight( $submenu_file ) {
 	return $submenu_file;
 }
 add_filter( 'submenu_file', 'memberlite_footer_cpt_submenu_highlight' );
+
+/**
+ * Keep the Memberlite menu and Headers submenu item highlighted when viewing the list table or editing a single memberlite_header post.
+ *
+ * @since TBD
+ * @param mixed|string $parent_file The parent file for the Memberlite menu.
+ * @return string $parent_file The parent file for the Memberlite menu.
+ */
+function memberlite_header_cpt_menu_highlight( $parent_file ) {
+	global $post_type;
+
+	if ( 'memberlite_header' === $post_type ) {
+		return 'memberlite-dashboard';
+	}
+
+	return $parent_file;
+}
+add_filter( 'parent_file', 'memberlite_header_cpt_menu_highlight' );
+
+/**
+ * Keep the Memberlite Headers submenu item highlighted when viewing the list table or editing a single memberlite_header post.
+ *
+ * @since TBD
+ * @param mixed|string $submenu_file The submenu file for the Memberlite menu.
+ * @return string $submenu_file The submenu file for the Memberlite menu.
+ */
+function memberlite_header_cpt_submenu_highlight( $submenu_file ) {
+	global $post_type;
+
+	if ( 'memberlite_header' === $post_type ) {
+		return 'edit.php?post_type=memberlite_header';
+	}
+
+	return $submenu_file;
+}
+add_filter( 'submenu_file', 'memberlite_header_cpt_submenu_highlight' );
 
 /**
  * Show an action button for the specified plugin

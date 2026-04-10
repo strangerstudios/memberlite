@@ -1,0 +1,10 @@
+/*
+ * Editor placeholder styles for the memberlite/member-info block.
+ */
+
+.wp-block-memberlite-member-info.memberlite-member-info-placeholder {
+	opacity: 0.75;
+	padding: 10px 14px;
+	text-align: center;
+	border: 2px dashed #c3c4c7;
+}

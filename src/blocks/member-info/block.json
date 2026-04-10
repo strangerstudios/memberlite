@@ -1,0 +1,25 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "memberlite/member-info",
+    "version": "1.0.0",
+    "title": "Member Info",
+    "category": "memberlite",
+    "description": "Shows member login info, welcome message, and member navigation menus.",
+    "icon": "admin-users",
+    "supports": {
+        "html": false,
+        "reusable": false,
+        "lock": false
+    },
+    "attributes": {
+        "showWelcomeMessage": {
+            "type": "boolean",
+            "default": true
+        }
+    },
+    "render": "file:./render.php",
+    "editorScript": "memberlite-block-member-info-editor",
+    "editorStyle": "file:./index.css",
+    "textdomain": "memberlite"
+}

@@ -259,6 +259,108 @@ hr.wp-block-separator {
 }
 
 // -----------------------------------------------------------------------------
+// Nav Menu Block (memberlite/nav-menu)
+// The render uses get_block_wrapper_attributes() on the <nav>, so the element
+// carries both id="site-navigation" AND class="wp-block-memberlite-nav-menu".
+// .site-header #site-navigation in _header.scss has specificity (1,1,0).
+// The compound selector below bumps to (1,2,0) so it wins regardless of load order.
+// -----------------------------------------------------------------------------
+
+.site-header #site-navigation.wp-block-memberlite-nav-menu {
+	background-color: unset;
+	color: unset;
+	clear: unset;
+}
+
+// -----------------------------------------------------------------------------
+// Member Info Block (memberlite/member-info)
+// Layout and menu structure only — colors, background, font-size, and
+// font-family are left to block supports (color, typography settings).
+// -----------------------------------------------------------------------------
+
+.wp-block-memberlite-member-info {
+	#meta-member {
+		display: flex;
+		justify-content: flex-end;
+
+		.fa-user {
+			margin-right: 3px;
+		}
+
+		.meta-member-inner {
+
+			li.menu-item-depth-0 {
+				padding: 0;
+			}
+		}
+
+		.user {
+			margin: 0 calc(var(--wp--preset--spacing--10) / 2);
+
+			a {
+				font-weight: 700;
+				padding: calc(var(--wp--preset--spacing--10) / 2) 0;
+			}
+		}
+
+		a {
+			display: inline-block;
+			text-decoration: none;
+
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+
+		// Inline member links (e.g. "My Account | Log Out")
+		.member-navigation,
+		.member-navigation > ul {
+			display: inline;
+
+			@include breakpoint(tablet) {
+				margin: 0;
+			}
+		}
+
+		.member-navigation {
+			li {
+				display: inline-block;
+				margin: 0;
+				position: relative;
+
+				&:last-child { border: none; }
+			}
+
+			a {
+				margin: 0;
+				padding: calc(var(--wp--preset--spacing--10) / 2);
+			}
+
+			.sub-menu {
+				background-color: inherit;
+
+				li a {
+					min-width: 100%;
+				}
+			}
+		}
+	}
+}
+
+// -----------------------------------------------------------------------------
+// Site Title & Site Tagline Blocks
+// Prevent mid-word breaks when inside flex rows/groups — both frontend and editor.
+// -----------------------------------------------------------------------------
+
+.wp-block-site-title,
+.wp-block-site-tagline {
+	overflow-wrap: normal;
+	word-break: normal;
+	overflow: visible;
+	min-width: 0;
+}
+
+// -----------------------------------------------------------------------------
 // Social Links Block
 // -----------------------------------------------------------------------------
 

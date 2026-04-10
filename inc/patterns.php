@@ -20,6 +20,7 @@ function memberlite_register_pattern_categories(): void {
 		'memberlite-courses'      => __( 'Memberlite - Courses', 'memberlite' ),
 		'memberlite-cta'          => __( 'Memberlite - Call to Action', 'memberlite' ),
 		'memberlite-footer'       => __( 'Memberlite - Footer Variations', 'memberlite' ),
+		'memberlite-header'       => __( 'Memberlite - Header Variations', 'memberlite' ),
 		'memberlite-media'        => __( 'Memberlite - Media', 'memberlite' ),
 		'memberlite-team'         => __( 'Memberlite - Team', 'memberlite' ),
 		'memberlite-testimonials' => __( 'Memberlite - Testimonials', 'memberlite' ),
