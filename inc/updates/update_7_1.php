@@ -66,7 +66,7 @@ function memberlite_seed_default_footer(): void {
 	$is_fresh_activation = get_option( 'memberlite_fresh_activation', false );
 	if ( $is_fresh_activation ) {
 		$seeded_post = get_post( $post_id );
-		set_theme_mod( 'memberlite_default_footer_slug', $seeded_post->post_name );
+		set_theme_mod( 'memberlite_global_footer_slug', $seeded_post->post_name );
 		delete_option( 'memberlite_fresh_activation' );
 	}
 }

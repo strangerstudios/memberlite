@@ -7,14 +7,23 @@
  * @since 7.1
  */
 
-/*
- * Checks post_meta override first,
- * then checks location-specific theme_mods (single post, page, archives),
- * then falls back to the global default footer setting.
+/**
+ * Resolve which footer post_name to use for the current request.
+ *
+ * Priority order (highest to lowest):
+ *   1. Per-page post meta override (_memberlite_footer_override)
+ *   2. Location-specific theme_mod (post, page, archives)
+ *   3. Global footer theme_mod (memberlite_global_footer_slug)
+ *   4. Legacy footer (returned as '0')
+ *
+ * Location-specific controls use 'memberlite-global-footer' as the sentinel
+ * value meaning "defer to the global setting". Choosing '0' in a location
+ * control is always literal — it forces the legacy footer for that location
+ * regardless of what the global setting is.
  *
  * @since 7.1
  *
- * @return string post_name of the memberlite_footer post, or '0' if none is set.
+ * @return string post_name of the memberlite_footer post, or '0' for legacy.
  */
 function memberlite_get_current_footer_post_name() {
 	$footer_variations = memberlite_get_footer_variations();
@@ -35,16 +44,16 @@ function memberlite_get_current_footer_post_name() {
 	}
 
 	if ( is_singular( 'post' ) ) {
-		$post_name = get_theme_mod( 'memberlite_post_footer_slug', '0' );
+		$post_name = get_theme_mod( 'memberlite_post_footer_slug', 'memberlite-global-footer' );
 	} elseif ( is_page() ) {
-		$post_name = get_theme_mod( 'memberlite_page_footer_slug', '0' );
+		$post_name = get_theme_mod( 'memberlite_page_footer_slug', 'memberlite-global-footer' );
 	} elseif ( is_archive() || is_home() ) {
-		$post_name = get_theme_mod( 'memberlite_archives_footer_slug', '0' );
+		$post_name = get_theme_mod( 'memberlite_archives_footer_slug', 'memberlite-global-footer' );
 	}
 
-	// Fall back to the global default if the context-specific setting is unset.
-	if ( empty( $post_name ) || '0' === $post_name ) {
-		$post_name = get_theme_mod( 'memberlite_default_footer_slug', '0' );
+	// 'memberlite-global-footer' means the location is set to inherit from the global setting.
+	if ( 'memberlite-global-footer' === $post_name ) {
+		$post_name = get_theme_mod( 'memberlite_global_footer_slug', '0' );
 	}
 
 	// Validate that the resolved post still exists. If it has been deleted,
@@ -79,11 +88,20 @@ function memberlite_render_footer_variation( $post_name ) {
 /**
  * Get memberlite_footer posts for our variation options
  *
+ * Results are cached in a transient for 12 hours. The cache is busted
+ * automatically whenever a memberlite_footer post is saved, trashed, or
+ * permanently deleted, so the Customizer always sees an accurate list.
+ *
  * @since 7.1
  *
  * @return array
  */
 function memberlite_get_footer_variations(): array {
+	$cached = get_transient( 'memberlite_footer_variations' );
+	if ( false !== $cached ) {
+		return $cached;
+	}
+
 	$footer_posts = get_posts( array(
 		'post_type'      => 'memberlite_footer',
 		'post_status'    => 'publish',
@@ -102,8 +120,41 @@ function memberlite_get_footer_variations(): array {
 		}
 	}
 
+	set_transient( 'memberlite_footer_variations', $footer_choices, 12 * HOUR_IN_SECONDS );
+
 	return $footer_choices;
 }
+
+/**
+ * Clear the footer variations transient cache.
+ *
+ * Hooked to save_post_memberlite_footer, which fires on publish, update,
+ * trash, and untrash — covering every status transition for the CPT.
+ *
+ * @since 7.1
+ * @return void
+ */
+function memberlite_flush_footer_variations_cache(): void {
+	delete_transient( 'memberlite_footer_variations' );
+}
+add_action( 'save_post_memberlite_footer', 'memberlite_flush_footer_variations_cache' );
+
+/**
+ * Clear the footer variations cache when a memberlite_footer post is permanently deleted.
+ *
+ * save_post does not fire for permanent deletion, so this covers that gap.
+ *
+ * @since 7.1
+ * @param int     $post_id The post ID being deleted.
+ * @param WP_Post $post    The post object being deleted.
+ * @return void
+ */
+function memberlite_flush_footer_variations_cache_on_delete( int $post_id, WP_Post $post ): void {
+	if ( 'memberlite_footer' === $post->post_type ) {
+		memberlite_flush_footer_variations_cache();
+	}
+}
+add_action( 'deleted_post', 'memberlite_flush_footer_variations_cache_on_delete', 10, 2 );
 
 /**
  * Output an "Edit Footer" link for users who can edit the current footer post.

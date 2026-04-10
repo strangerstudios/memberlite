@@ -197,7 +197,7 @@
 	// the "Use legacy footer" option is selected rather than the field appearing blank.
 	wp.customize.bind( 'ready', function() {
 		var footerSlugSettings = [
-			'memberlite_default_footer_slug',
+			'memberlite_global_footer_slug',
 			'memberlite_archives_footer_slug',
 			'memberlite_post_footer_slug',
 			'memberlite_page_footer_slug',
