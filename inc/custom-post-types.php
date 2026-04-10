@@ -73,7 +73,7 @@ add_action( 'init', 'memberlite_register_footer_cpt' );
  * @return void
  */
 function memberlite_footer_auto_title( int $post_id, WP_Post $post ): void {
-	if ( wp_is_post_revision( $post_id ) || 'auto-draft' === $post->post_status ) {
+	if ( wp_is_post_revision( $post_id ) || $post->post_status === 'auto-draft' ) {
 		return;
 	}
 

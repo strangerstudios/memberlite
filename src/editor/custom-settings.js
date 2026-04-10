@@ -1,7 +1,7 @@
 import {__} from '@wordpress/i18n';
 import { registerPlugin } from '@wordpress/plugins';
 import { PluginDocumentSettingPanel } from '@wordpress/editor';
-import { ToggleControl, SelectControl } from '@wordpress/components';
+import { ToggleControl, SelectControl, ExternalLink } from '@wordpress/components';
 import { useSelect } from '@wordpress/data';
 import { useEntityProp } from '@wordpress/core-data';
 import { SVG } from '@wordpress/primitives';
@@ -50,6 +50,7 @@ const MemberliteCustomSettings = () => {
 					setMeta( { ...meta, _memberlite_hide_header: value } );
 				} }
 			/>
+			<div style={{ marginTop: '24px' }} />
 			<ToggleControl
 				label={__('Hide Footer', textDomain)}
 				checked={ hideFooterValue }
@@ -67,14 +68,20 @@ const MemberliteCustomSettings = () => {
 				/>
 			)}
 			{ ! hideFooterValue && (
-				<SelectControl
-					label={ __( 'Override Footer Variation', textDomain ) }
-					value={ footerOverrideValue }
-					options={ footerOptions }
-					onChange={ ( value ) => {
-						setMeta( { ...meta, _memberlite_footer_override: value } );
-					} }
-				/>
+				<>
+					<div style={{ marginTop: '24px' }} />
+					<SelectControl
+						label={ __( 'Override Footer Variation', textDomain ) }
+						value={ footerOverrideValue }
+						options={ footerOptions }
+						onChange={ ( value ) => {
+							setMeta( { ...meta, _memberlite_footer_override: value } );
+						} }
+					/>
+					<ExternalLink href={ window.memberliteEditorData.manageFootersUrl }>
+						{ __( 'Manage Footers', textDomain ) }
+					</ExternalLink>
+				</>
 			)}
 		</PluginDocumentSettingPanel>
 	);

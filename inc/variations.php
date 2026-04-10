@@ -30,8 +30,8 @@ function memberlite_get_current_footer_post_name() {
 	$post_name         = '0';
 
 	// If no footer posts exist, fall back to legacy immediately.
-	if ( count( $footer_variations ) === 1 ) {
-		return $post_name;
+	if ( empty( $footer_variations ) || ( count( $footer_variations ) === 1 && isset( $footer_variations['0'] ) ) ) {
+		return $post_name; // return '0'
 	}
 
 	// Per-page override takes priority over all Customizer settings.
@@ -110,14 +110,16 @@ function memberlite_get_footer_variations(): array {
 		'order'          => 'ASC',
 	) );
 
-	$footer_choices = array(
-		'0' => __( '— Use Legacy Footer —', 'memberlite' ),
-	);
+	$footer_choices = array();
 
-	if ( ! empty( $footer_posts ) ) {
-		foreach ( $footer_posts as $footer_post ) {
-			$footer_choices[ $footer_post->post_name ] = $footer_post->post_title;
-		}
+	// Only include the legacy option when no CPT footers exist yet.
+	// Once footers are created, the legacy slot is removed from the choices.
+	if ( empty( $footer_posts ) ) {
+		$footer_choices[ '0' ] = __( '— Use Legacy Footer —', 'memberlite' );
+	}
+
+	foreach ( $footer_posts as $footer_post ) {
+		$footer_choices[ $footer_post->post_name ] = $footer_post->post_title;
 	}
 
 	set_transient( 'memberlite_footer_variations', $footer_choices, 12 * HOUR_IN_SECONDS );
@@ -150,7 +152,7 @@ add_action( 'save_post_memberlite_footer', 'memberlite_flush_footer_variations_c
  * @return void
  */
 function memberlite_flush_footer_variations_cache_on_delete( int $post_id, WP_Post $post ): void {
-	if ( 'memberlite_footer' === $post->post_type ) {
+	if ( $post->post_type === 'memberlite_footer' ) {
 		memberlite_flush_footer_variations_cache();
 	}
 }
@@ -167,7 +169,7 @@ add_action( 'deleted_post', 'memberlite_flush_footer_variations_cache_on_delete'
  * @param string $post_name The post_name of the current footer post.
  */
 function memberlite_the_footer_edit_link( string $post_name ): void {
-	if ( empty( $post_name ) || '0' === $post_name ) {
+	if ( empty( $post_name ) || $post_name === '0' ) {
 		return;
 	}
 
