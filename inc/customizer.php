@@ -418,11 +418,13 @@ class Memberlite_Customize {
 		// FOOTER: Footer CPT choices ===================
 		$footer_variation_options = memberlite_get_footer_variations();
 
-		// Location-specific controls get an extra first option to inherit from the global setting.
+		// Location-specific controls inherit from the global setting or pick a specific footer.
+		// The legacy option is intentionally excluded — use the global setting for that.
 		$footer_choices_context = array_merge(
 			array( 'memberlite-global-footer' => __( '— Use Global Footer —', 'memberlite' ) ),
 			$footer_variation_options
 		);
+		unset( $footer_choices_context['0'] );
 
 		// FOOTER: Variations, Global ===============
 		self::add_memberlite_setting_control( $wp_customize, 'memberlite_global_footer_slug', __( 'Global Footer', 'memberlite' ), 'memberlite_footer_options', array(
