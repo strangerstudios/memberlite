@@ -60,8 +60,8 @@ function memberlite_seed_default_footer(): void {
 	}
 
 	// For new installs only, set the global default footer so the block-based footer
-	// is active immediately. Location-specific mods are left at '0' so they cascade
-	// to this global default — changing it in the Customizer affects all locations.
+	// is active immediately. Location-specific mods default to 'memberlite-global-footer'
+	// (inherit from global), so changing the global in the Customizer affects all locations.
 	// Existing/legacy users keep the legacy footer.
 	$is_fresh_activation = get_option( 'memberlite_fresh_activation', false );
 	if ( $is_fresh_activation ) {
