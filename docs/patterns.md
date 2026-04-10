@@ -395,6 +395,14 @@ $categories = array(
 
 ---
 
+## Footer Patterns
+
+Eight starter footer designs live in `patterns/footer-*.php`. They follow the same file format as all other patterns but carry a `Post Types: memberlite_footer` header, which scopes them exclusively to the footer CPT editor. They do not appear in the general page/post block inserter.
+
+For the full picture of how footer patterns are used within the variations system (CPT, Customizer settings, resolver logic, seeding), see [footer-variations.md](footer-variations.md).
+
+---
+
 ## Additional Resources
 
 - [WordPress Block Pattern Documentation](https://developer.wordpress.org/block-editor/reference-guides/block-api/block-patterns/)
