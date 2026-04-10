@@ -424,7 +424,7 @@ class Memberlite_Customize {
 			array( 'memberlite-global-footer' => __( '— Use Global Footer —', 'memberlite' ) ),
 			$footer_variation_options
 		);
-		
+
 		unset( $footer_choices_context['0'] );
 
 		// FOOTER: Variations, Global ===============

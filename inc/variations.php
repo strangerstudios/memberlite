@@ -110,13 +110,12 @@ function memberlite_get_footer_variations(): array {
 		'order'          => 'ASC',
 	) );
 
-	$footer_choices = array();
-
-	// Only include the legacy option when no CPT footers exist yet.
-	// Once footers are created, the legacy slot is removed from the choices.
-	if ( empty( $footer_posts ) ) {
-		$footer_choices[ '0' ] = __( '— Use Legacy Footer —', 'memberlite' );
-	}
+	// '0' is always present so the global control always has the legacy option,
+	// including for existing users whose saved value is '0'. Location-specific
+	// controls strip it separately via unset( $footer_choices_context['0'] ).
+	$footer_choices = array(
+		'0' => __( '— Use Legacy Footer —', 'memberlite' ),
+	);
 
 	foreach ( $footer_posts as $footer_post ) {
 		$footer_choices[ $footer_post->post_name ] = $footer_post->post_title;
