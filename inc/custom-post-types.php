@@ -62,6 +62,41 @@ function memberlite_register_header_cpt(): void {
 add_action( 'init', 'memberlite_register_header_cpt' );
 
 /**
+ * Auto-generate a title and slug for memberlite_header posts saved without one.
+ *
+ * Assigns a name like "Header 123" (using the post ID) and a matching slug,
+ * replacing the bare numeric slug WordPress assigns to untitled posts.
+ *
+ * @since TBD
+ * @param int     $post_id The post ID.
+ * @param WP_Post $post    The post object.
+ * @return void
+ */
+function memberlite_header_auto_title( int $post_id, WP_Post $post ): void {
+	if ( wp_is_post_revision( $post_id ) || $post->post_status === 'auto-draft' ) {
+		return;
+	}
+
+	if ( ! empty( $post->post_title ) ) {
+		return;
+	}
+
+	$auto_title = sprintf( __( 'Header %d', 'memberlite' ), $post_id );
+	$auto_slug  = 'header-' . $post_id;
+
+	remove_action( 'save_post_memberlite_header', 'memberlite_header_auto_title', 10 );
+
+	wp_update_post( array(
+		'ID'         => $post_id,
+		'post_title' => $auto_title,
+		'post_name'  => $auto_slug,
+	) );
+
+	add_action( 'save_post_memberlite_header', 'memberlite_header_auto_title', 10, 2 );
+}
+add_action( 'save_post_memberlite_header', 'memberlite_header_auto_title', 10, 2 );
+
+/**
  * Register the memberlite_footer CPT for footer variations.
  *
  * Not public-facing; only accessible in the admin.

@@ -20,15 +20,15 @@ function memberlite_add_pages() {
 	// Memberlite admin subpages.
 	add_submenu_page( 'memberlite-dashboard', __( 'Dashboard', 'memberlite' ), __( 'Dashboard', 'memberlite' ), 'edit_theme_options', 'memberlite-dashboard', 'memberlite_dashboard' );
 
+	add_submenu_page( 'memberlite-dashboard', __( 'Headers', 'memberlite' ), __( 'Headers', 'memberlite' ), 'edit_theme_options', 'edit.php?post_type=memberlite_header' );
+
+	add_submenu_page( 'memberlite-dashboard', __( 'Footers', 'memberlite' ), __( 'Footers', 'memberlite' ), 'edit_theme_options', 'edit.php?post_type=memberlite_footer' );
+
 	add_submenu_page( 'memberlite-dashboard', __( 'Custom Menus', 'memberlite' ), __( 'Custom Menus', 'memberlite' ), 'edit_theme_options', 'memberlite-custom-menus', 'memberlite_custom_menus' );
 
 	add_submenu_page( 'memberlite-dashboard', __( 'Custom Sidebars', 'memberlite' ), __( 'Custom Sidebars', 'memberlite' ), 'edit_theme_options', 'memberlite-custom-sidebars', 'memberlite_custom_sidebars' );
 
 	add_submenu_page( 'memberlite-dashboard', __( 'Tools', 'memberlite' ), __( 'Tools', 'memberlite' ), 'edit_theme_options', 'memberlite-tools', 'memberlite_tools' );
-
-	add_submenu_page( 'memberlite-dashboard', __( 'Footers', 'memberlite' ), __( 'Footers', 'memberlite' ), 'edit_theme_options', 'edit.php?post_type=memberlite_footer' );
-
-	add_submenu_page( 'memberlite-dashboard', __( 'Headers', 'memberlite' ), __( 'Headers', 'memberlite' ), 'edit_theme_options', 'edit.php?post_type=memberlite_header' );
 }
 add_action( 'admin_menu', 'memberlite_add_pages' );
 
