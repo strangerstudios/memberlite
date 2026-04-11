@@ -95,7 +95,6 @@ function memberlite_enqueue_custom_editor_assets(): void {
 		array(
 			'showPrevNextSinglePages' => get_theme_mod( 'memberlite_page_nav', true ),
 			'footerVariations'        => memberlite_get_footer_variations(),
-			'manageFootersUrl'        => admin_url( 'edit.php?post_type=memberlite_footer' ),
 		)
 	);
 }

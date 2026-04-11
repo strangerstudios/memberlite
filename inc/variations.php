@@ -74,9 +74,7 @@ function memberlite_render_footer_variation( $post_name ) {
  * @return array
  */
 function memberlite_get_footer_variations( string $default_label = '' ): array {
-	$is_legacy_slot = '' === $default_label;
-
-	if ( $is_legacy_slot ) {
+	if ( '' === $default_label ) {
 		$default_label = __( '— Use Legacy Footer —', 'memberlite' );
 	}
 
@@ -88,13 +86,9 @@ function memberlite_get_footer_variations( string $default_label = '' ): array {
 		'order'          => 'ASC',
 	) );
 
-	$footer_choices = array();
-
-	// Include the '0' (legacy footer) option only when no CPT footers exist.
-	// Context-specific selects always include '0' since it means "use the global default footer."
-	if ( ! $is_legacy_slot || empty( $footer_posts ) ) {
-		$footer_choices['0'] = $default_label;
-	}
+	$footer_choices = array(
+		'0' => $default_label,
+	);
 
 	if ( ! empty( $footer_posts ) ) {
 		foreach ( $footer_posts as $footer_post ) {

@@ -1107,23 +1107,12 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 }
 
 /**
- * Active callback: show legacy footer controls only when no CPT footers exist and the default
- * footer slug is unset (0). On new installs with generated footers, '0' is the uninitialized
- * default — not a deliberate legacy choice — so we suppress these controls when CPT footers exist.
+ * Active callback: show legacy footer controls only when the default footer is set to legacy (0).
  *
  * @since 7.0
  */
 function memberlite_is_legacy_footer_active(): bool {
-	if ( '0' !== get_theme_mod( 'memberlite_default_footer_slug', '0' ) ) {
-		return false;
-	}
-	$footer_posts = get_posts( array(
-		'post_type'      => 'memberlite_footer',
-		'post_status'    => 'publish',
-		'posts_per_page' => 1,
-		'fields'         => 'ids',
-	) );
-	return empty( $footer_posts );
+	return '0' === get_theme_mod( 'memberlite_default_footer_slug', '0' );
 }
 
 // Setup the Theme Customizer settings and controls...
