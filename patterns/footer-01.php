@@ -9,7 +9,7 @@
  * Post Types: memberlite_footer
  * @package WordPress
  * @subpackage Memberlite
- * @since TBD
+ * @since 7.1
  */
 ?>
 <!-- wp:group {"style":{"spacing":{"margin":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|50"}}},"layout":{"type":"constrained"}} -->

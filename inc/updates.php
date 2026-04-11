@@ -21,7 +21,6 @@ function memberlite_checkForUpdates() {
 	// Default DB version for Memberlite 4.0
 	if ( empty( $memberlite_db_version ) ) {
 		$memberlite_db_version = '2018080101';
-		update_option( 'memberlite_fresh_activation', true, 'no' );
 		update_option( 'memberlite_db_version', $memberlite_db_version, 'no' );
 	}
 
@@ -61,11 +60,6 @@ function memberlite_checkForUpdates() {
 		update_option( 'memberlite_db_version', '2026040201', 'no' );
 	}
 
-	// Memberlite 7.1 Update - Set up for new footer and header variations
-	if ( $memberlite_db_version < '2026040901' ) {
-		require_once get_template_directory() . '/inc/updates/update_7_1.php';
-		update_option( 'memberlite_db_version', '2026040901', 'no' );
-	}
 }
 
 /**

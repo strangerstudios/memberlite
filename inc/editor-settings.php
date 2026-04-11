@@ -92,7 +92,7 @@ function memberlite_enqueue_custom_editor_assets(): void {
 	$footer_variations_editor = array(
 		array(
 			'value' => '',
-			'label' => __( '— Use Global Footer —', 'memberlite' ),
+			'label' => __( '— No Override —', 'memberlite' ),
 		),
 	);
 	foreach ( memberlite_get_footer_variations() as $slug => $title ) {

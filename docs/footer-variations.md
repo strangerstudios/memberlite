@@ -9,11 +9,11 @@ This document covers the footer variations system introduced in Memberlite 7.1. 
 3. [Resolver Priority Chain](#resolver-priority-chain)
 4. [Customizer Controls](#customizer-controls)
 5. [The Global Sentinel Value](#the-global-sentinel-value)
-6. [Per-Page Override](#per-page-override)
+6. [Per-Page Override (Pages Only)](#per-page-override-pages-only)
 7. [Footer Patterns](#footer-patterns)
 8. [Transient Cache](#transient-cache)
-9. [Seeding Routine](#seeding-routine)
-10. [Legacy Footer Fallback](#legacy-footer-fallback)
+9. [Default Footer Fallback](#default-footer-fallback)
+10. [Admin List Table](#admin-list-table)
 11. [Key Files](#key-files)
 
 ---
@@ -26,7 +26,7 @@ Footer variations are powered by the `memberlite_footer` custom post type. Each 
 - Footers are stored as CPT posts, not PHP templates or widget areas
 - Content is rendered via `do_blocks()` + `do_shortcode()`
 - Settings store the footer's `post_name` (slug), not its ID, so they are portable across environments (dev → staging → production)
-- The legacy widget-area footer remains available as a fallback
+- The default widget-area footer remains available as a fallback (value `'0'`)
 
 ---
 
@@ -39,8 +39,17 @@ memberlite_get_current_footer_post_name() — resolves which footer to show
         ↓
 memberlite_render_footer_variation() — renders the resolved post's block content
         ↓
-footer.php — calls the above; falls back to legacy footer if post_name is '0'
+footer.php — calls the above; falls back to the default footer template if post_name is '0'
+             (or if the footer post cannot be rendered)
 ```
+
+`footer.php` wraps the footer in `<footer id="colophon">` with two possible classes:
+- `site-footer site-footer-{post_name}` — when a CPT footer is active
+- `site-footer site-footer-default` — when the default (widget-area) footer is active
+
+The default footer is rendered via `get_template_part( 'components/footer/variation', 'default' )`, which loads `components/footer/variation-default.php` (widget areas, navigation, site info).
+
+The footer can be hidden entirely on individual pages via the `_memberlite_hide_footer` post meta, checked by `memberlite_hide_page_footer()` (registered in `inc/editor-settings.php`).
 
 ### CPT Registration
 
@@ -52,10 +61,10 @@ Registered in `inc/custom-post-types.php`. The CPT is not public-facing — it h
 
 `memberlite_get_current_footer_post_name()` in `inc/variations.php` resolves the footer for each request using this priority order (highest to lowest):
 
-1. **Per-page post meta** (`_memberlite_footer_override`) — set per post/page in the block editor's document settings panel. Takes priority over all Customizer settings.
+1. **Per-page post meta** (`_memberlite_footer_override`) — set per **page** in the block editor's document settings panel. Only applies on `is_singular('page')`; has no effect on single posts, archives, or other contexts.
 2. **Location-specific theme mod** — one of `memberlite_post_footer_slug`, `memberlite_page_footer_slug`, or `memberlite_archives_footer_slug`, depending on the current context.
 3. **Global theme mod** (`memberlite_global_footer_slug`) — the site-wide default, used when the location mod is set to inherit.
-4. **Legacy footer** — rendered when the resolved value is `'0'`.
+4. **Default footer** — rendered when the resolved value is `'0'`.
 
 If the resolved post_name no longer exists (e.g., the footer post was deleted), the resolver falls back to `'0'` rather than rendering nothing.
 
@@ -67,39 +76,45 @@ All controls live in the **Footer** panel under Appearance > Customize.
 
 | Setting key | Label | Options |
 |---|---|---|
-| `memberlite_global_footer_slug` | Global Footer | All published footer posts + "— Use Legacy Footer —" |
+| `memberlite_global_footer_slug` | Global Footer | "— Default —" + all published footer posts |
 | `memberlite_archives_footer_slug` | Blog & Archives Footer | "— Use Global Footer —" + all published footer posts |
 | `memberlite_post_footer_slug` | Single Post Footer | "— Use Global Footer —" + all published footer posts |
 | `memberlite_page_footer_slug` | Pages Footer | "— Use Global Footer —" + all published footer posts |
 
-**Important distinction**: The "— Use Legacy Footer —" option (`'0'`) is only available on the **global** control. Location-specific controls intentionally omit it — they can defer to the global setting (which may itself be legacy) but cannot independently select the legacy footer. This encourages use of the block-based footer system.
+**Important distinction**: The "— Default —" option (`'0'`) is only available on the **global** control. Location-specific controls can defer to the global setting (which may itself be `'0'`) but cannot independently select the default footer. This encourages use of the block-based footer system.
 
 A **"Manage Footers"** link in the panel navigates directly to the `memberlite_footer` post list screen.
 
 ### How choices are built
 
-`memberlite_get_footer_variations()` returns the base choices array (legacy option + all published footer posts, alphabetical by title). The Customizer builds a separate `$footer_choices_context` array for location controls by prepending the "— Use Global Footer —" sentinel and removing the `'0'` entry.
+`memberlite_get_footer_variations()` returns only published CPT footer posts as a `slug => title` array, alphabetical by title. It never includes sentinels — each consumer adds its own:
+
+- **Customizer global control** — always prepends `'0' => '— Default —'` alongside any CPT footers.
+- **Customizer location controls** — prepend `'memberlite-global-footer' => '— Use Global Footer —'`.
+- **Editor sidebar** — prepends `'' => '— Use Global Footer —'`.
 
 ---
 
 ## The Global Sentinel Value
 
-Location-specific controls use the string `'memberlite-global-footer'` as a sentinel meaning "inherit from the global setting." This is distinct from `'0'` (legacy) and from any real footer post_name.
+Location-specific controls use the string `'memberlite-global-footer'` as a sentinel meaning "inherit from the global setting." This is distinct from `'0'` (default) and from any real footer post_name.
 
 - **`'memberlite-global-footer'`** → read `memberlite_global_footer_slug` and use that value
-- **`'0'`** → use the legacy widget-area footer (only reachable via the global control)
+- **`'0'`** → use the default widget-area footer (only reachable via the global control)
 - **any other string** → a footer post_name; look up and render that post
 
-The sentinel is namespaced to avoid accidental collision with a user-created footer slug. The auto-title function generates slugs like `memberlite-footer-01`, so natural collisions are not possible.
+The sentinel is namespaced to avoid accidental collision with a user-created footer slug. The auto-title function generates slugs like `footer-{post_id}`, so natural collisions are not possible.
 
 ---
 
-## Per-Page Override
+## Per-Page Override (Pages Only)
 
-Individual posts or pages can override the Customizer footer selection via the `_memberlite_footer_override` post meta key. This is exposed as a select control in the block editor's document settings panel.
+Individual **pages** can override the Customizer footer selection via the `_memberlite_footer_override` post meta key. This is exposed as a select control in the block editor's document settings panel.
 
+- The meta key is registered for the `'page'` post type only (in `inc/editor-settings.php`).
+- The resolver checks this override only on `is_singular('page')` — it has no effect on single posts, archives, or other templates.
 - Only valid footer post_names are honoured; an invalid or stale value (e.g., a deleted footer) is silently ignored and the resolver falls through to the Customizer settings.
-- An empty value means "use site default" (no override).
+- An empty string means "use site default" (no override).
 
 ---
 
@@ -126,37 +141,40 @@ Both hooks call `memberlite_flush_footer_variations_cache()`, which simply calls
 
 ---
 
-## Seeding Routine
+## Default Footer Fallback
 
-The seeder runs as part of the Memberlite 7.1 update routine (`inc/updates/update_7_1.php`, triggered from `memberlite_checkForUpdates()`). It is hooked to `init` at priority 20 so the `memberlite_footer` CPT is registered (priority 10) before any post insertion is attempted.
+The default footer (widget areas, navigation, site info) continues to render whenever `memberlite_get_current_footer_post_name()` returns `'0'`. This happens when:
 
-### What it does
+- No `memberlite_footer` posts exist at all
+- The global footer setting is explicitly set to "— Default —"
+- The resolved post_name is invalid (post was deleted after being assigned)
 
-1. **Guard check** — queries for any existing published `memberlite_footer` post. If one exists, returns immediately. The seeder never re-runs once footer posts exist.
-2. **Creates one footer post** — output-buffers `patterns/footer-01.php` to capture its block markup, then inserts a published `memberlite_footer` post. The actual post_name WordPress assigns is read back from the inserted post to handle any slug collisions (e.g., a trashed post with the same name causing WordPress to append a numeric suffix).
-3. **New installs only** — checks for the `memberlite_fresh_activation` flag (set when `memberlite_db_version` has no prior value). If present, sets `memberlite_global_footer_slug` to the seeded post's actual slug so the block footer is active immediately. Then deletes the flag.
+The Customizer's "Default Footer Settings" heading and the copyright text control both use `memberlite_is_global_footer_default()` as their `active_callback`. This function returns `true` when `memberlite_global_footer_slug` equals `'0'`. When the global is set to any CPT footer, these legacy controls are hidden.
 
-### Behaviour by user type
-
-| User type | Result |
-|---|---|
-| Fresh install | One footer post created; global set to it; block footer active immediately |
-| Existing user upgrading to 7.1 | One footer post created; global untouched; legacy footer continues rendering |
-| Either, if footer posts already exist | Seeder skips entirely; nothing changes |
-
-Location-specific mods (`memberlite_archives_footer_slug`, `memberlite_post_footer_slug`, `memberlite_page_footer_slug`) are never written by the seeder. Their registered default is `'memberlite-global-footer'`, so they inherit from the global setting until a user explicitly overrides them.
+```php
+function memberlite_is_global_footer_default(): bool {
+    return get_theme_mod( 'memberlite_global_footer_slug', '0' ) === '0';
+}
+```
 
 ---
 
-## Legacy Footer Fallback
+## Admin List Table
 
-The legacy footer (widget areas) continues to render whenever `memberlite_get_current_footer_post_name()` returns `'0'`. This happens when:
+The `memberlite_footer` list table (Memberlite > Footers) includes a **"Used By"** column showing where each footer is currently assigned.
 
-- No `memberlite_footer` posts exist at all
-- The global footer setting is explicitly set to "— Use Legacy Footer —"
-- The resolved post_name is invalid (post was deleted after being assigned)
+### What is shown
 
-The Customizer's Legacy Settings section (copyright text) uses `memberlite_is_legacy_footer_active()` as its `active_callback`, which checks whether `memberlite_global_footer_slug` is `'0'`. Those controls are hidden whenever a CPT footer is active globally.
+`memberlite_get_footer_assignments( $post_name )` in `inc/admin.php` checks:
+
+1. **The four theme mod controls** — `memberlite_global_footer_slug`, `memberlite_archives_footer_slug`, `memberlite_post_footer_slug`, `memberlite_page_footer_slug`. Each match produces a linked label (e.g., "Global Footer", "Single Posts") that deep-links into the Customizer at the matching control.
+2. **Per-page post meta** — a direct database query for all posts with `_memberlite_footer_override` set to this footer's slug. Displays "1 page override" (linked to that page's edit screen) or "N page overrides" (unlinked) as appropriate.
+
+If a footer has no assignments, the column shows `—`.
+
+### Admin navigation
+
+The CPT is surfaced under **Memberlite > Footers** in the admin menu. Two filters (`parent_file`, `submenu_file`) keep the Memberlite menu and Footers submenu item highlighted when viewing the list table or editing a single footer post.
 
 ---
 
@@ -166,8 +184,10 @@ The Customizer's Legacy Settings section (copyright text) uses `memberlite_is_le
 |---|---|
 | `inc/variations.php` | Resolver, renderer, edit link, `memberlite_get_footer_variations()`, transient cache |
 | `inc/custom-post-types.php` | CPT registration, auto-title hook |
-| `inc/customizer.php` | Customizer panel/controls (`set_customizer_footer_settings()`) |
-| `inc/updates.php` | `memberlite_checkForUpdates()` — triggers the 7.1 update |
-| `inc/updates/update_7_1.php` | `memberlite_seed_default_footer()` — seeding routine |
-| `footer.php` | Calls resolver and renderer; falls back to legacy footer |
+| `inc/customizer.php` | Customizer panel/controls (`set_customizer_footer_settings()`), `memberlite_is_global_footer_default()` |
+| `inc/admin.php` | Admin menu registration, menu highlight filters, "Used By" column, `memberlite_get_footer_assignments()` |
+| `inc/editor-settings.php` | Post meta registration (`_memberlite_footer_override`, `_memberlite_hide_footer`), editor JS enqueue |
+| `inc/updates.php` | `memberlite_checkForUpdates()` — version migration runner |
+| `footer.php` | Calls resolver and renderer; falls back to default footer; outputs edit link |
+| `components/footer/variation-default.php` | Default footer template (widget areas, navigation, site info) |
 | `patterns/footer-*.php` | Eight starter footer patterns scoped to the CPT |
