@@ -67,6 +67,150 @@ function memberlite_footer_cpt_submenu_highlight( $submenu_file ) {
 add_filter( 'submenu_file', 'memberlite_footer_cpt_submenu_highlight' );
 
 /**
+ * Get the locations where a footer post is currently assigned.
+ *
+ * Checks the four footer theme mods and any per-page override post meta.
+ * Returns human-readable labels used by the list table column and the
+ * trash row action prevention.
+ *
+ * @since 7.1
+ * @param string $post_name The post_name of the memberlite_footer post.
+ * @return array Human-readable assignment labels, empty if unassigned.
+ */
+function memberlite_get_footer_assignments( string $post_name ): array {
+	global $wpdb;
+
+	$assignments = array();
+
+	$theme_mod_controls = array(
+		'memberlite_global_footer_slug'   => __( 'Global Footer', 'memberlite' ),
+		'memberlite_archives_footer_slug' => __( 'Blog & Archives', 'memberlite' ),
+		'memberlite_post_footer_slug'     => __( 'Single Posts', 'memberlite' ),
+		'memberlite_page_footer_slug'     => __( 'Pages', 'memberlite' ),
+	);
+
+	foreach ( $theme_mod_controls as $mod_key => $label ) {
+		if ( get_theme_mod( $mod_key ) === $post_name ) {
+			$assignments[] = array(
+				'label' => $label,
+				'url'   => add_query_arg( array( 'autofocus[control]' => $mod_key ), admin_url( 'customize.php' ) ),
+			);
+		}
+	}
+
+	// Get per-page override post IDs via a direct meta query.
+	$override_post_ids = $wpdb->get_col( $wpdb->prepare(
+		"SELECT post_id FROM {$wpdb->postmeta} WHERE meta_key = '_memberlite_footer_override' AND meta_value = %s",
+		$post_name
+	) );
+
+	$page_count = count( $override_post_ids );
+
+	if ( 1 === $page_count ) {
+		$assignments[] = array(
+			'label' => __( '1 page override', 'memberlite' ),
+			'url'   => get_edit_post_link( (int) $override_post_ids[0] ),
+		);
+	} elseif ( $page_count > 1 ) {
+		$assignments[] = array(
+			'label' => sprintf(
+				/* translators: %d: number of pages with this footer assigned via post meta override */
+				__( '%d page overrides', 'memberlite' ),
+				$page_count
+			),
+			'url'   => null,
+		);
+	}
+
+	return $assignments;
+}
+
+/**
+ * Add a "Used By" column to the footer CPT list table.
+ *
+ * @since 7.1
+ * @param array $columns Existing columns.
+ * @return array Modified columns.
+ */
+function memberlite_footer_add_used_by_column( array $columns ): array {
+	$columns['memberlite_used_by'] = __( 'Used By', 'memberlite' );
+	return $columns;
+}
+add_filter( 'manage_memberlite_footer_posts_columns', 'memberlite_footer_add_used_by_column' );
+
+/**
+ * Render the "Used By" column content for footer posts.
+ *
+ * @since 7.1
+ * @param string $column  The column name.
+ * @param int    $post_id The post ID.
+ */
+function memberlite_footer_render_used_by_column( string $column, int $post_id ): void {
+	if ( 'memberlite_used_by' !== $column ) {
+		return;
+	}
+
+	$post = get_post( $post_id );
+	if ( ! $post ) {
+		return;
+	}
+
+	$assignments = memberlite_get_footer_assignments( $post->post_name );
+
+	if ( empty( $assignments ) ) {
+		echo '<span aria-label="' . esc_attr__( 'Not assigned', 'memberlite' ) . '">&#8212;</span>';
+		return;
+	}
+
+	$parts = array();
+	foreach ( $assignments as $assignment ) {
+		if ( ! empty( $assignment['url'] ) ) {
+			$parts[] = '<a href="' . esc_url( $assignment['url'] ) . '" target="_blank">' . esc_html( $assignment['label'] ) . '</a>';
+		} else {
+			$parts[] = esc_html( $assignment['label'] );
+		}
+	}
+	echo implode( ', ', $parts ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+}
+add_action( 'manage_memberlite_footer_posts_custom_column', 'memberlite_footer_render_used_by_column', 10, 2 );
+
+/**
+ * Remove the Trash row action for footer posts that are currently assigned.
+ *
+ * Prevents accidental deletion of in-use footers from the list table.
+ * Note: this is a UI-level guard — direct URL or REST API deletion is not blocked.
+ *
+ * @since 7.1
+ * @param array   $actions The row actions.
+ * @param WP_Post $post    The post object.
+ * @return array Modified row actions.
+ */
+function memberlite_footer_restrict_trash_row_action( array $actions, WP_Post $post ): array {
+	if ( 'memberlite_footer' !== $post->post_type ) {
+		return $actions;
+	}
+
+	$assignments = memberlite_get_footer_assignments( $post->post_name );
+
+	if ( ! empty( $assignments ) ) {
+		unset( $actions['trash'] );
+		$labels = array_column( $assignments, 'label' );
+		$actions['memberlite_in_use'] = sprintf(
+			'<span title="%s">%s</span>',
+			esc_attr( sprintf(
+				/* translators: %s: comma-separated list of locations using this footer */
+				__( 'In use: %s', 'memberlite' ),
+				implode( ', ', $labels )
+			) ),
+			esc_html__( 'In use', 'memberlite' )
+		);
+	}
+
+	return $actions;
+}
+add_filter( 'post_row_actions', 'memberlite_footer_restrict_trash_row_action', 10, 2 );
+
+/**
  * Show an action button for the specified plugin
  * @param string $slug The plugin slug
  * @param string $plugin_file The plugin file (includes slug/plugin.php)
