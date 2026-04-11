@@ -88,13 +88,27 @@ function memberlite_enqueue_custom_editor_assets(): void {
 		true
 	);
 
+	// Build editor footer choices as an ordered array of {value, label} objects.
+	$footer_variations_editor = array(
+		array(
+			'value' => '',
+			'label' => __( '— Use Global Footer —', 'memberlite' ),
+		),
+	);
+	foreach ( memberlite_get_footer_variations() as $slug => $title ) {
+		$footer_variations_editor[] = array(
+			'value' => (string) $slug,
+			'label' => $title,
+		);
+	}
+
 	// Get existing theme mods, and get footer variations to populate the footer override setting
 	wp_localize_script(
 		'memberlite-custom-settings',
 		'memberliteEditorData',
 		array(
 			'showPrevNextSinglePages' => get_theme_mod( 'memberlite_page_nav', true ),
-			'footerVariations'        => memberlite_get_footer_variations(),
+			'footerVariations'        => $footer_variations_editor,
 			'manageFootersUrl'        => admin_url( 'edit.php?post_type=memberlite_footer' ),
 		)
 	);
