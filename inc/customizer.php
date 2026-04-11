@@ -174,7 +174,7 @@ class Memberlite_Customize {
 				'default'  => __( 'Default (inline link in footer)', 'memberlite' ),
 				'floating' => __( 'Floating button (fixed position)', 'memberlite' ),
 			),
-			'description' => __( 'The inline link is only available for the default footer variation. Footer variations can be set in the "Footer" panel.', 'memberlite' ),
+			'description' => __( 'The inline link is only available for the legacy footer. Footer variations can be set in the "Footer" panel.', 'memberlite' ),
 			'active_callback' => function() {
 				return (bool) get_theme_mod( 'memberlite_back_to_top', true );
 			},
