@@ -22,7 +22,7 @@ const MemberliteCustomSettings = () => {
 	const hideHeaderValue = meta?._memberlite_hide_header || false;
 	const hideFooterValue = meta?._memberlite_hide_footer || false;
 	const hidePageNavValue = meta?._memberlite_hide_page_nav || false;
-	const footerOverrideValue = meta?._memberlite_footer_override ?? ''; // '' = use global footer (no per-page override)
+	const footerOverrideValue = meta?._memberlite_footer_override ?? ''; // '' = inherit from theme settings (no per-page override)
 	// footerVariations is a pre-ordered array of {value, label} objects from PHP.
 	const footerOptions = window.memberliteEditorData.footerVariations;
 
