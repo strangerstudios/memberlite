@@ -62,10 +62,10 @@ function memberlite_register_footer_cpt(): void {
 add_action( 'init', 'memberlite_register_footer_cpt' );
 
 /**
- * Auto-generate a title for memberlite_footer posts saved without one.
+ * Auto-generate a title and slug for memberlite_footer posts saved without one.
  *
- * If the user leaves the title blank, sets it to "Footer {slug}" so the post
- * is identifiable in the Customizer dropdown and admin list.
+ * Assigns a name like "Footer 123" (using the post ID) and a matching slug,
+ * replacing the bare numeric slug WordPress assigns to untitled posts.
  *
  * @since 7.1
  * @param int     $post_id The post ID.
@@ -77,15 +77,19 @@ function memberlite_footer_auto_title( int $post_id, WP_Post $post ): void {
 		return;
 	}
 
-	if ( ! empty( $post->post_title ) || empty( $post->post_name ) ) {
+	if ( ! empty( $post->post_title ) ) {
 		return;
 	}
+
+	$auto_title = sprintf( __( 'Footer %d', 'memberlite' ), $post_id );
+	$auto_slug  = 'footer-' . $post_id;
 
 	remove_action( 'save_post_memberlite_footer', 'memberlite_footer_auto_title', 10 );
 
 	wp_update_post( array(
 		'ID'         => $post_id,
-		'post_title' => sprintf( __( 'Footer %s', 'memberlite' ), $post->post_name ),
+		'post_title' => $auto_title,
+		'post_name'  => $auto_slug,
 	) );
 
 	add_action( 'save_post_memberlite_footer', 'memberlite_footer_auto_title', 10, 2 );

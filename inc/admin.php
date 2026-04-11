@@ -175,42 +175,6 @@ function memberlite_footer_render_used_by_column( string $column, int $post_id )
 add_action( 'manage_memberlite_footer_posts_custom_column', 'memberlite_footer_render_used_by_column', 10, 2 );
 
 /**
- * Remove the Trash row action for footer posts that are currently assigned.
- *
- * Prevents accidental deletion of in-use footers from the list table.
- * Note: this is a UI-level guard — direct URL or REST API deletion is not blocked.
- *
- * @since 7.1
- * @param array   $actions The row actions.
- * @param WP_Post $post    The post object.
- * @return array Modified row actions.
- */
-function memberlite_footer_restrict_trash_row_action( array $actions, WP_Post $post ): array {
-	if ( 'memberlite_footer' !== $post->post_type ) {
-		return $actions;
-	}
-
-	$assignments = memberlite_get_footer_assignments( $post->post_name );
-
-	if ( ! empty( $assignments ) ) {
-		unset( $actions['trash'] );
-		$labels = array_column( $assignments, 'label' );
-		$actions['memberlite_in_use'] = sprintf(
-			'<span title="%s">%s</span>',
-			esc_attr( sprintf(
-				/* translators: %s: comma-separated list of locations using this footer */
-				__( 'In use: %s', 'memberlite' ),
-				implode( ', ', $labels )
-			) ),
-			esc_html__( 'In use', 'memberlite' )
-		);
-	}
-
-	return $actions;
-}
-add_filter( 'post_row_actions', 'memberlite_footer_restrict_trash_row_action', 10, 2 );
-
-/**
  * Show an action button for the specified plugin
  * @param string $slug The plugin slug
  * @param string $plugin_file The plugin file (includes slug/plugin.php)
