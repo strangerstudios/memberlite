@@ -22,10 +22,9 @@ const MemberliteCustomSettings = () => {
 	const hideHeaderValue = meta?._memberlite_hide_header || false;
 	const hideFooterValue = meta?._memberlite_hide_footer || false;
 	const hidePageNavValue = meta?._memberlite_hide_page_nav || false;
-	const footerOverrideValue = meta?._memberlite_footer_override || '0'; // Default comes from the memberlite_get_footer_variations function
-	// Get and set up the footer variations for the SelectControl
-	const footerVariations = window.memberliteEditorData.footerVariations;
-	const footerOptions = Object.entries( footerVariations ).map( ( [ value, label ] ) => ( { value, label } ) );
+	const footerOverrideValue = meta?._memberlite_footer_override ?? ''; // '' = use global footer (no per-page override)
+	// footerVariations is a pre-ordered array of {value, label} objects from PHP.
+	const footerOptions = window.memberliteEditorData.footerVariations;
 
 	// Check if the theme mod to show prev/next globally on pages is set to true
 	const showPrevNextGlobally = window.memberliteEditorData.showPrevNextSinglePages;
@@ -59,13 +58,16 @@ const MemberliteCustomSettings = () => {
 				} }
 			/>
 			{ showPrevNextGlobally && (
-				<ToggleControl
-					label={__('Hide Prev/Next Page Navigation', textDomain)}
-					checked={ hidePageNavValue }
-					onChange={ ( value ) => {
-						setMeta( { ...meta, _memberlite_hide_page_nav: value } );
-					} }
-				/>
+				<>
+					<div style={{ marginTop: '24px' }} />
+					<ToggleControl
+						label={__('Hide Prev/Next Page Navigation', textDomain)}
+						checked={ hidePageNavValue }
+						onChange={ ( value ) => {
+							setMeta( { ...meta, _memberlite_hide_page_nav: value } );
+						} }
+					/>
+				</>
 			)}
 			{ ! hideFooterValue && (
 				<>
