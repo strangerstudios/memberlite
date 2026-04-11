@@ -174,7 +174,7 @@ class Memberlite_Customize {
 				'default'  => __( 'Default (inline link in footer)', 'memberlite' ),
 				'floating' => __( 'Floating button (fixed position)', 'memberlite' ),
 			),
-			'description' => __( 'The inline link is only available for the default footer variation. Footer variations can be set in the "Footer" panel.', 'memberlite' ),
+			'description' => __( 'The inline link is only available if your site is using the default footer. Footer variations can be set in the "Footer" panel.', 'memberlite' ),
 			'active_callback' => function() {
 				return (bool) get_theme_mod( 'memberlite_back_to_top', true );
 			},
@@ -416,16 +416,27 @@ class Memberlite_Customize {
 		self::add_memberlite_link_control( $wp_customize, 'memberlite_manage_footers_link', __( 'Manage Footers', 'memberlite' ), 'memberlite_footer_options', admin_url( 'edit.php?post_type=memberlite_footer' ) );
 
 		// FOOTER: Footer CPT choices ===================
-		$footer_choices_default = memberlite_get_footer_variations();
-		$footer_choices_context = memberlite_get_footer_variations( __( '— Use Default Footer —', 'memberlite' ) );
+		$footer_cpt_posts = memberlite_get_footer_variations();
+
+		// Global: always include the Default footer option alongside any CPT footers.
+		$footer_global_options = array_merge(
+			array( '0' => __( '— Default —', 'memberlite' ) ),
+			$footer_cpt_posts
+		);
+
+		// Location-specific controls inherit from the global setting or pick a specific CPT footer.
+		$footer_choices_context = array_merge(
+			array( 'memberlite-global-footer' => __( '— Use Global Footer —', 'memberlite' ) ),
+			$footer_cpt_posts
+		);
 
 		// FOOTER: Variations, Global ===============
-		self::add_memberlite_setting_control( $wp_customize, 'memberlite_default_footer_slug', __( 'Default Footer', 'memberlite' ), 'memberlite_footer_options', array(
+		self::add_memberlite_setting_control( $wp_customize, 'memberlite_global_footer_slug', __( 'Global Footer', 'memberlite' ), 'memberlite_footer_options', array(
 			'type'              => 'select',
 			'sanitize_callback' => 'sanitize_key',
-			'choices'           => $footer_choices_default,
+			'choices'           => $footer_global_options,
 			'default'           => '0',
-			'description'       => __( 'Choose which footer pattern to display all across the site.', 'memberlite' ),
+			'description'       => __( 'Choose which footer pattern to display across the site.', 'memberlite' ),
 		) );
 
 		// FOOTER: Variations, Blog & Archives ===============
@@ -433,7 +444,7 @@ class Memberlite_Customize {
 			'type'              => 'select',
 			'sanitize_callback' => 'sanitize_key',
 			'choices'           => $footer_choices_context,
-			'default'           => '0',
+			'default'           => 'memberlite-global-footer',
 			'description'       => __( 'Choose which footer pattern to display on your blog and post archives.', 'memberlite' ),
 		) );
 
@@ -442,7 +453,7 @@ class Memberlite_Customize {
 			'type'              => 'select',
 			'sanitize_callback' => 'sanitize_key',
 			'choices'           => $footer_choices_context,
-			'default'           => '0',
+			'default'           => 'memberlite-global-footer',
 			'description'       => __( 'Choose which footer pattern to display on the single post view.', 'memberlite' ),
 		) );
 
@@ -451,13 +462,13 @@ class Memberlite_Customize {
 			'type'              => 'select',
 			'sanitize_callback' => 'sanitize_key',
 			'choices'           => $footer_choices_context,
-			'default'           => '0',
+			'default'           => 'memberlite-global-footer',
 			'description'       => __( 'Choose which footer pattern to display on your pages.', 'memberlite' ),
 		) );
 
-		// FOOTER: Legacy Footer Heading ========
-		self::add_memberlite_heading( $wp_customize, 'memberlite_legacy_footer_heading', __( 'Legacy Settings', 'memberlite' ), 'memberlite_footer_options', array(
-			'active_callback' => 'memberlite_is_legacy_footer_active',
+		// FOOTER: Default Footer Heading ========
+		self::add_memberlite_heading( $wp_customize, 'memberlite_default_footer_heading', __( 'Default Footer Settings', 'memberlite' ), 'memberlite_footer_options', array(
+			'active_callback' => 'memberlite_is_global_footer_default',
 		) );
 
 		// FOOTER: Copyright Text ===============
@@ -465,7 +476,7 @@ class Memberlite_Customize {
 			'transport'         => 'postMessage',
 			'sanitize_callback' => array( 'Memberlite_Customize', 'sanitize_text_with_links' ),
 			'sanitize_js_callback' => array( 'Memberlite_Customize', 'sanitize_js_text_with_links' ),
-			'active_callback'   => 'memberlite_is_legacy_footer_active',
+			'active_callback'   => 'memberlite_is_global_footer_default',
 		) );
 	}
 
@@ -1107,12 +1118,12 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 }
 
 /**
- * Active callback: show legacy footer controls only when the default footer is set to legacy (0).
+ * Active callback: show Default footer settings only when the global footer is set to Default ('0').
  *
- * @since 7.0
+ * @since 7.1
  */
-function memberlite_is_legacy_footer_active(): bool {
-	return '0' === get_theme_mod( 'memberlite_default_footer_slug', '0' );
+function memberlite_is_global_footer_default(): bool {
+	return get_theme_mod( 'memberlite_global_footer_slug', '0' ) === '0';
 }
 
 // Setup the Theme Customizer settings and controls...
@@ -1173,7 +1184,7 @@ function memberlite_save_scheme_colors( WP_Customize_Manager $wp_customize ) {
  * Visibility is controlled by JS (scroll position + IntersectionObserver on the footer).
  * (Turned on in Customizer > General Settings)
  *
- * @version TBD
+ * @version 7.1
  * @return void
  */
 function memberlite_floating_back_to_top() {
