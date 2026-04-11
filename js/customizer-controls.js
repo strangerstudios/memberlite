@@ -192,29 +192,4 @@
 		});
 	});
 
-	// If a footer slug setting was saved but the post was later deleted, the select
-	// will have no matching option and jQuery .val() returns null. Reset to '0' so
-	// the "Use legacy footer" option is selected rather than the field appearing blank.
-	//@TODO RACHEL: THIS JS CAUSING A SMALL BUG, LEGACY NOT SELECTED ON THEME UPDATE< REMOVE OTHER ONEs
-	wp.customize.bind( 'ready', function() {
-		let footerSlugSettings = [
-			'memberlite_global_footer_slug',
-			'memberlite_archives_footer_slug',
-			'memberlite_post_footer_slug',
-			'memberlite_page_footer_slug',
-		];
-
-		footerSlugSettings.forEach( function( settingId ) {
-			let $select = $( '#customize-control-' + settingId + ' select' );
-			if ( ! $select.length ) {
-				return;
-			}
-			if ( null === $select.val() ) {
-				let fallback = settingId === 'memberlite_global_footer_slug' ? '0' : 'memberlite-global-footer';
-				$select.val( fallback );
-				wp.customize( settingId ).set( fallback ); //Will prompt the user to save, this is intentional if posts were deleted
-			}
-		} );
-	} );
-
 })(jQuery);
