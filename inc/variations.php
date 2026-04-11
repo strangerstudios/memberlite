@@ -138,7 +138,7 @@ function memberlite_get_footer_variations(): array {
 /**
  * Get the post_name of the current header variation.
  *
- * Returns '0' if no CPT header variation is selected (legacy header).
+ * Returns '0' if no CPT header variation is selected (default header).
  *
  * @since TBD
  * @return string
@@ -152,34 +152,36 @@ function memberlite_get_current_header_post_name(): string {
  * Render a header variation.
  *
  * Looks up the memberlite_header CPT post by post_name and renders its block
- * content. Does nothing if the post is not found; the legacy header fallback
- * is handled upstream in header.php.
+ * content. Returns true on success, false if the post was not found or is not
+ * published; the default header fallback is handled upstream in header.php.
  *
  * @since TBD
  * @param string $post_name The post_name of the memberlite_header post to render.
+ * @return bool True if the variation was rendered, false otherwise.
  */
-function memberlite_render_header_variation( string $post_name ): void {
-	if ( empty( $post_name ) || '0' === $post_name ) {
-		return;
+function memberlite_render_header_variation( string $post_name ): bool {
+	if ( ! empty( $post_name ) && '0' !== $post_name ) {
+		$header_post = get_page_by_path( $post_name, OBJECT, 'memberlite_header' );
+
+		if ( $header_post && 'publish' === $header_post->post_status ) {
+			echo do_shortcode( do_blocks( $header_post->post_content ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			return true;
+		}
 	}
 
-	$header_post = get_page_by_path( $post_name, OBJECT, 'memberlite_header' );
-
-	if ( $header_post ) {
-		echo do_shortcode( do_blocks( $header_post->post_content ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-	}
+	return false;
 }
 
 /**
  * Get memberlite_header posts for variation options.
  *
  * @since TBD
- * @param string $default_label Optional label for the legacy option.
+ * @param string $default_label Optional label for the default option.
  * @return array
  */
 function memberlite_get_header_variations( string $default_label = '' ): array {
 	if ( '' === $default_label ) {
-		$default_label = __( '— Use Legacy Header —', 'memberlite' );
+		$default_label = __( '— Default —', 'memberlite' );
 	}
 
 	$header_posts = get_posts( array(
@@ -202,12 +204,12 @@ function memberlite_get_header_variations( string $default_label = '' ): array {
 }
 
 /**
- * Returns true when the active header variation is the legacy PHP-based header.
+ * Returns true when the active header variation is the default PHP-based header.
  *
  * @since TBD
  * @return bool
  */
-function memberlite_is_legacy_header_active(): bool {
+function memberlite_is_default_header_active(): bool {
 	$slug = get_theme_mod( 'memberlite_default_header_slug', '0' );
 	return empty( $slug ) || '0' === $slug;
 }
@@ -215,7 +217,7 @@ function memberlite_is_legacy_header_active(): bool {
 /**
  * Output an "Edit Header" link for users who can edit the current header post.
  *
- * Only renders for CPT-based headers (not the legacy header).
+ * Only renders for CPT-based headers (not the default header).
  *
  * @since TBD
  * @param string $post_name The post_name of the current header post.

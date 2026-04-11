@@ -474,7 +474,7 @@ function memberlite_menus( $items, $args ) {
 	// is this the primary menu location or a replaced menu using pmpro-nav-menus plugin
 	if ( $args->theme_location == 'primary' || ( substr( $args->theme_location, -strlen( '-primary' ) ) === '-primary' ) ) {
 		$nav_menu_search = get_theme_mod( 'nav_menu_search', false );
-		if ( ! empty( $nav_menu_search ) && memberlite_is_legacy_header_active() ) {
+		if ( ! empty( $nav_menu_search ) && memberlite_is_default_header_active() ) {
 			$items .= '<li class="menu-item-search">' . get_search_form( false ) . '</li>';
 		}
 	}

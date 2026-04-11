@@ -28,24 +28,34 @@
 		<?php do_action( 'memberlite_before_site_header' ); ?>
 
 		<?php
-		$header_post_name = memberlite_get_current_header_post_name();
-		$is_legacy_header = memberlite_is_legacy_header_active();
-		$header_class     = $is_legacy_header ? 'site-header-default' : 'site-header-' . esc_attr( $header_post_name );
+		$header_post_name        = memberlite_get_current_header_post_name();
+		$header_post_name_exists = ! empty( $header_post_name ) && '0' !== $header_post_name;
+		$header_class            = 'site-header';
+
+		if ( $header_post_name_exists ) {
+			$header_class .= ' site-header-' . sanitize_html_class( $header_post_name );
+		} else {
+			$header_class .= ' site-header-default';
+		}
 		?>
-		<header class="site-header <?php echo esc_attr( $header_class ); ?>" role="banner">
-			<?php if ( $is_legacy_header ) {
+		<header class="<?php echo esc_attr( $header_class ); ?>" role="banner">
+			<?php if ( ! $header_post_name_exists ) {
 				get_template_part( 'components/header/variation', 'default' );
 			} else {
 				get_template_part( 'components/header/header', 'mobile-row' );
 				?>
 				<div class="site-header-variation">
-					<?php memberlite_render_header_variation( $header_post_name ); ?>
+					<?php
+					if ( ! memberlite_render_header_variation( $header_post_name ) ) {
+						get_template_part( 'components/header/variation', 'default' );
+					}
+					?>
 				</div>
 				<?php
 				get_template_part( 'components/header/header', 'mobile-menu' );
-				memberlite_the_header_edit_link( $header_post_name );
 			} ?>
 		</header><!-- #masthead -->
+		<?php memberlite_the_header_edit_link( $header_post_name ); ?>
 	<?php } // End if memberlite_hide_page_header is false ?>
 
 	<?php do_action( 'memberlite_before_content' ); ?>

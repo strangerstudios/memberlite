@@ -372,9 +372,9 @@ class Memberlite_Customize {
 			'description'       => __( 'Choose which header pattern to display across the site.', 'memberlite' ),
 		) );
 
-		// HEADER: Legacy Settings Heading ======
-		self::add_memberlite_heading( $wp_customize, 'memberlite_legacy_header_heading', __( 'Legacy Settings', 'memberlite' ), 'memberlite_header_options', array(
-			'active_callback' => 'memberlite_is_legacy_header_active',
+		// HEADER: Default Header Settings Heading ======
+		self::add_memberlite_heading( $wp_customize, 'memberlite_default_header_heading', __( 'Default Header Settings', 'memberlite' ), 'memberlite_header_options', array(
+			'active_callback' => 'memberlite_is_default_header_active',
 		) );
 
 		// HEADER: Columns Ratio ================
@@ -395,26 +395,26 @@ class Memberlite_Customize {
 				'10-2' => '10x2',
 				'11-1' => '11x1',
 			),
-			'active_callback' => 'memberlite_is_legacy_header_active',
+			'active_callback' => 'memberlite_is_default_header_active',
 		) );
 
 		// HEADER: Other Settings Heading =======
 		self::add_memberlite_heading( $wp_customize, 'memberlite_header_heading', __( 'Other Settings', 'memberlite' ), 'memberlite_header_options', array(
-			'active_callback' => 'memberlite_is_legacy_header_active',
+			'active_callback' => 'memberlite_is_default_header_active',
 		) );
 
 		// HEADER: Show Login/Member Info =======
 		self::add_memberlite_setting_control( $wp_customize, 'meta_login', __( 'Show Login/Member Info in Header', 'memberlite' ), 'memberlite_header_options', array(
 			'type'              => 'checkbox',
 			'sanitize_callback' => array( 'Memberlite_Customize', 'sanitize_checkbox' ),
-			'active_callback'   => 'memberlite_is_legacy_header_active',
+			'active_callback'   => 'memberlite_is_default_header_active',
 		) );
 
 		// HEADER: Show search form =============
 		self::add_memberlite_setting_control( $wp_customize, 'nav_menu_search', __( 'Show Search Form After Main Nav', 'memberlite' ), 'memberlite_header_options', array(
 			'type'              => 'checkbox',
 			'sanitize_callback' => array( 'Memberlite_Customize', 'sanitize_checkbox' ),
-			'active_callback'   => 'memberlite_is_legacy_header_active',
+			'active_callback'   => 'memberlite_is_default_header_active',
 		) );
 
 		// HEADER: Enable sticky header =========
@@ -422,7 +422,7 @@ class Memberlite_Customize {
 			'type'              => 'checkbox',
 			'description'       => __( 'On scroll, the header menu will stick to the top of the screen.', 'memberlite' ),
 			'sanitize_callback' => array( 'Memberlite_Customize', 'sanitize_checkbox' ),
-			'active_callback'   => 'memberlite_is_legacy_header_active',
+			'active_callback'   => 'memberlite_is_default_header_active',
 		) );
 	}
 
