@@ -5,9 +5,3 @@
 	order: -1;
 	margin-right: 5px;
 }
-
-/* Footer Variation 02 */
-.footer-variation-02 .wp-block-navigation__container {
-	gap: var(--wp--preset--spacing--10);
-}
-
