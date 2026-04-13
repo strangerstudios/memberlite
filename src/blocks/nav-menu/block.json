@@ -1,0 +1,46 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "memberlite/nav-menu",
+    "version": "1.0.0",
+    "title": "Nav Menu",
+    "category": "memberlite",
+    "description": "Renders a WordPress classic navigation menu by theme location.",
+    "icon": "menu",
+    "supports": {
+        "html": false,
+        "reusable": false,
+        "lock": false,
+        "align": ["wide", "full"],
+        "color": {
+            "text": true,
+            "background": true,
+            "link": true
+        },
+        "typography": {
+            "fontSize": true,
+            "fontFamily": true,
+            "fontWeight": true,
+            "fontStyle": true,
+            "lineHeight": true,
+            "letterSpacing": true,
+            "textTransform": true
+        },
+        "border": {
+            "color": true,
+            "radius": true,
+            "style": true,
+            "width": true
+        }
+    },
+    "attributes": {
+        "menuLocation": {
+            "type": "string",
+            "default": "primary"
+        }
+    },
+    "render": "file:./render.php",
+    "editorScript": "memberlite-block-nav-menu-editor",
+    "editorStyle": "file:./index.css",
+    "textdomain": "memberlite"
+}

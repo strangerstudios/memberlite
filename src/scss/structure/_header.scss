@@ -215,7 +215,7 @@
 			}
 
 			.member-navigation {
-					li {
+				li {
 					display: inline-block;
 					margin: 0;
 					position: relative;
@@ -233,9 +233,9 @@
 
 					li a { min-width: 100%; }
 				}
-
 			}
 		}
+
 	}
 
 	// -------------------------------------------------------------------------
@@ -295,6 +295,24 @@
 	.header-right #meta-member a,
 	.header-right #meta-member .meta-member-inner {
 		color: var(--memberlite-color-site-background);
+	}
+}
+
+// -----------------------------------------------------------------------------
+// CPT-based header variations
+// .site-header-mobile-row  — logo + toggle, visible on mobile only
+// .site-header-variation   — block editor content, visible on tablet+ only
+// -----------------------------------------------------------------------------
+
+.site-header-mobile-row {
+	@include breakpoint(tablet) {
+		display: none;
+	}
+}
+
+.site-header-variation {
+	@include breakpoint(mobile) {
+		display: none;
 	}
 }
 

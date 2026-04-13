@@ -357,12 +357,32 @@ class Memberlite_Customize {
 	 * @return void
 	 */
 	public static function set_customizer_header_settings( WP_Customize_Manager $wp_customize ) {
+		// HEADER: Variation Settings Heading ===
+		self::add_memberlite_heading( $wp_customize, 'memberlite_pattern_header_heading', __( 'Variation Settings', 'memberlite' ), 'memberlite_header_options' );
+
+		// HEADER: Manage Headers link ==========
+		self::add_memberlite_link_control( $wp_customize, 'memberlite_manage_headers_link', __( 'Manage Headers', 'memberlite' ), 'memberlite_header_options', admin_url( 'edit.php?post_type=memberlite_header' ) );
+
+		// HEADER: Default Header ===============
+		self::add_memberlite_setting_control( $wp_customize, 'memberlite_default_header_slug', __( 'Default Header', 'memberlite' ), 'memberlite_header_options', array(
+			'type'              => 'select',
+			'sanitize_callback' => 'sanitize_key',
+			'choices'           => memberlite_get_header_variations(),
+			'default'           => '0',
+			'description'       => __( 'Choose which header pattern to display across the site.', 'memberlite' ),
+		) );
+
+		// HEADER: Default Header Settings Heading ======
+		self::add_memberlite_heading( $wp_customize, 'memberlite_default_header_heading', __( 'Default Header Settings', 'memberlite' ), 'memberlite_header_options', array(
+			'active_callback' => 'memberlite_is_default_header_active',
+		) );
+
 		// HEADER: Columns Ratio ================
 		self::add_memberlite_setting_control( $wp_customize, 'columns_ratio_header', __( 'Columns Ratio', 'memberlite' ), 'memberlite_header_options', array(
-			'type'        => 'select',
-			'transport'   => 'refresh',
-			'description' => __( 'Controls how the left and right sections of your header are sized. For example, "4-8" makes the left side narrower and the right side wider.', 'memberlite' ),
-			'choices'     => array(
+			'type'            => 'select',
+			'transport'       => 'refresh',
+			'description'     => __( 'Controls how the left and right sections of your header are sized. For example, "4-8" makes the left side narrower and the right side wider.', 'memberlite' ),
+			'choices'         => array(
 				'1-11' => '1x11',
 				'2-10' => '2x10',
 				'3-9'  => '3x9',
@@ -375,21 +395,26 @@ class Memberlite_Customize {
 				'10-2' => '10x2',
 				'11-1' => '11x1',
 			),
+			'active_callback' => 'memberlite_is_default_header_active',
 		) );
 
 		// HEADER: Other Settings Heading =======
-		self::add_memberlite_heading( $wp_customize, 'memberlite_header_heading', __( 'Other Settings', 'memberlite' ), 'memberlite_header_options' );
+		self::add_memberlite_heading( $wp_customize, 'memberlite_header_heading', __( 'Other Settings', 'memberlite' ), 'memberlite_header_options', array(
+			'active_callback' => 'memberlite_is_default_header_active',
+		) );
 
 		// HEADER: Show Login/Member Info =======
 		self::add_memberlite_setting_control( $wp_customize, 'meta_login', __( 'Show Login/Member Info in Header', 'memberlite' ), 'memberlite_header_options', array(
 			'type'              => 'checkbox',
 			'sanitize_callback' => array( 'Memberlite_Customize', 'sanitize_checkbox' ),
+			'active_callback'   => 'memberlite_is_default_header_active',
 		) );
 
 		// HEADER: Show search form =============
 		self::add_memberlite_setting_control( $wp_customize, 'nav_menu_search', __( 'Show Search Form After Main Nav', 'memberlite' ), 'memberlite_header_options', array(
 			'type'              => 'checkbox',
 			'sanitize_callback' => array( 'Memberlite_Customize', 'sanitize_checkbox' ),
+			'active_callback'   => 'memberlite_is_default_header_active',
 		) );
 
 		// HEADER: Enable sticky header =========
@@ -397,6 +422,7 @@ class Memberlite_Customize {
 			'type'              => 'checkbox',
 			'description'       => __( 'On scroll, the header menu will stick to the top of the screen.', 'memberlite' ),
 			'sanitize_callback' => array( 'Memberlite_Customize', 'sanitize_checkbox' ),
+			'active_callback'   => 'memberlite_is_default_header_active',
 		) );
 	}
 

@@ -129,6 +129,127 @@ function memberlite_get_footer_variations(): array {
 	return $footer_choices;
 }
 
+/*
+ * =========================================================================
+ * Header Variations
+ * =========================================================================
+ */
+
+/**
+ * Get the post_name of the current header variation.
+ *
+ * Returns '0' if no CPT header variation is selected (default header).
+ *
+ * @since TBD
+ * @return string
+ */
+function memberlite_get_current_header_post_name(): string {
+	$post_name = get_theme_mod( 'memberlite_default_header_slug', '0' );
+	return empty( $post_name ) ? '0' : $post_name;
+}
+
+/**
+ * Render a header variation.
+ *
+ * Looks up the memberlite_header CPT post by post_name and renders its block
+ * content. Returns true on success, false if the post was not found or is not
+ * published; the default header fallback is handled upstream in header.php.
+ *
+ * @since TBD
+ * @param string $post_name The post_name of the memberlite_header post to render.
+ * @return bool True if the variation was rendered, false otherwise.
+ */
+function memberlite_render_header_variation( string $post_name ): bool {
+	if ( ! empty( $post_name ) && '0' !== $post_name ) {
+		$header_post = get_page_by_path( $post_name, OBJECT, 'memberlite_header' );
+
+		if ( $header_post && 'publish' === $header_post->post_status ) {
+			echo do_shortcode( do_blocks( $header_post->post_content ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			return true;
+		}
+	}
+
+	return false;
+}
+
+/**
+ * Get memberlite_header posts for variation options.
+ *
+ * @since TBD
+ * @param string $default_label Optional label for the default option.
+ * @return array
+ */
+function memberlite_get_header_variations( string $default_label = '' ): array {
+	if ( '' === $default_label ) {
+		$default_label = __( '— Default —', 'memberlite' );
+	}
+
+	$header_posts = get_posts( array(
+		'post_type'      => 'memberlite_header',
+		'post_status'    => 'publish',
+		'posts_per_page' => -1,
+		'orderby'        => 'title',
+		'order'          => 'ASC',
+	) );
+
+	$header_choices = array(
+		'0' => $default_label,
+	);
+
+	foreach ( $header_posts as $header_post ) {
+		$header_choices[ $header_post->post_name ] = $header_post->post_title;
+	}
+
+	return $header_choices;
+}
+
+/**
+ * Returns true when the active header variation is the default PHP-based header.
+ *
+ * @since TBD
+ * @return bool
+ */
+function memberlite_is_default_header_active(): bool {
+	$slug = get_theme_mod( 'memberlite_default_header_slug', '0' );
+	return empty( $slug ) || '0' === $slug;
+}
+
+/**
+ * Output an "Edit Header" link for users who can edit the current header post.
+ *
+ * Only renders for CPT-based headers (not the default header).
+ *
+ * @since TBD
+ * @param string $post_name The post_name of the current header post.
+ */
+function memberlite_the_header_edit_link( string $post_name ): void {
+	if ( empty( $post_name ) || '0' === $post_name ) {
+		return;
+	}
+
+	$header_post = get_page_by_path( $post_name, OBJECT, 'memberlite_header' );
+
+	if ( ! $header_post || ! current_user_can( 'edit_post', $header_post->ID ) ) {
+		return;
+	}
+
+	$edit_url = get_edit_post_link( $header_post->ID );
+
+	if ( ! $edit_url ) {
+		return;
+	}
+
+	echo '<div class="memberlite-variation-part-edit-link">';
+	echo '<a href="' . esc_url( $edit_url ) . '">' . esc_html__( 'Edit Header', 'memberlite' ) . '</a>';
+	echo '</div>';
+}
+
+/*
+ * =========================================================================
+ * Footer Variations (edit links)
+ * =========================================================================
+ */
+
 /**
  * Clear the footer variations transient cache.
  *
