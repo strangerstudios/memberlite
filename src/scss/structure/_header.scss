@@ -391,7 +391,7 @@
 				margin: 0;
 				width: max-content;
 				max-width: 210px;
-				background-color: var(--memberlite-color-site-navigation-background);
+				//background-color: var(--memberlite-color-site-navigation-background);
 				box-shadow: 4px 12px 16px 0 rgba(0, 0, 0, 0.12);
 				text-align: left;
 			}
@@ -428,6 +428,18 @@
 				}
 			}
 		}
+	}
+
+	// Legacy header uses site navigation background color
+	#site-navigation .sub-menu {
+		background-color: var(--memberlite-color-site-navigation-background);
+	}
+
+	// Block based header shares header background color with member and widget navs
+	.site-header-variation #site-navigation .sub-menu,
+	.member-navigation .sub-menu,
+	.header-right .widget_nav_menu .sub-menu {
+		background-color: var(--memberlite-color-header-background);
 	}
 }
 
