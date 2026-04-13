@@ -431,14 +431,18 @@
 
 	// Legacy header uses site navigation background color
 	#site-navigation .sub-menu {
-		background-color: var(--memberlite-color-site-navigation-background);
+		@include breakpoint(tablet) {
+			background-color: var(--memberlite-color-site-navigation-background);
+		}
 	}
 
 	// Block based header shares header background color with member and widget navs
 	.site-header-variation #site-navigation .sub-menu,
 	.member-navigation .sub-menu,
 	.header-right .widget_nav_menu .sub-menu {
-		background-color: var(--memberlite-color-header-background);
+		@include breakpoint(tablet) {
+			background-color: var(--memberlite-color-header-background);
+		}
 	}
 }
 
