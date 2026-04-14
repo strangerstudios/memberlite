@@ -20,11 +20,25 @@ if ( ! has_nav_menu( $menu_location ) ) {
 $registered_menus = get_registered_nav_menus();
 $aria_label       = $registered_menus[ $menu_location ] ?? __( 'Navigation', 'memberlite' );
 
-$wrapper_attributes = get_block_wrapper_attributes( array(
+// Propagate the background color to sub-menus via a CSS custom property.
+$nav_style_vars = '';
+if ( ! empty( $attributes['backgroundColor'] ) ) {
+	$slug           = sanitize_key( $attributes['backgroundColor'] );
+	$nav_style_vars = '--memberlite-color-navigation-block-background:var(--wp--preset--color--' . $slug . ');';
+} elseif ( ! empty( $attributes['style']['color']['background'] ) ) {
+	$nav_style_vars = '--memberlite-color-navigation-block-background:' . esc_attr( $attributes['style']['color']['background'] ) . ';';
+}
+
+$extra_attrs = array(
 	'id'         => 'site-navigation',
 	'role'       => 'navigation',
 	'aria-label' => $aria_label,
-) );
+);
+if ( $nav_style_vars ) {
+	$extra_attrs['style'] = $nav_style_vars;
+}
+
+$wrapper_attributes = get_block_wrapper_attributes( $extra_attrs );
 ?>
 <nav <?php echo $wrapper_attributes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
 	<?php
