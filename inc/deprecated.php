@@ -579,9 +579,9 @@ function memberlite_get_legacy_color_scheme_definitions(): array {
  *
  * @return string
  */
-function memberlite_get_variation( $slug ){
+function memberlite_get_variation( $slug = '' ){
 	// Trigger a deprecation notice
-	_deprecated_function( __FUNCTION__, '7.1.0', 'memberlite_get_variation' );
+	_deprecated_function( __FUNCTION__, '7.1', 'memberlite_get_variation' );
 
 	// No replacement for this function, returning 'default' will get the components/footer/variation-default.php template part
 	return 'default';
