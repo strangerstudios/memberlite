@@ -579,7 +579,7 @@ function memberlite_get_legacy_color_scheme_definitions(): array {
  *
  * @return string
  */
-function memberlite_get_variation( $slug = '' ){
+function memberlite_get_variation( $slug ){
 	// Trigger a deprecation notice
 	_deprecated_function( __FUNCTION__, '7.1', 'memberlite_get_variation' );
 
