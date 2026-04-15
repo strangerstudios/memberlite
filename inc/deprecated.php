@@ -573,10 +573,10 @@ function memberlite_get_legacy_color_scheme_definitions(): array {
 /**
  * Helper function meant to fetch template parts based on variation
  *
- * @since 7.1
+ * @since 7.0
+ * @deprecated 7.1
  *
  * @param $slug
- *
  * @return string
  */
 function memberlite_get_variation( $slug ){
