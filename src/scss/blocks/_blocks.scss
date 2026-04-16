@@ -337,7 +337,7 @@ hr.wp-block-separator {
 			}
 
 			.sub-menu {
-				background-color: inherit;
+				background-color: var(--memberlite-color-navigation-block-background, var(--memberlite-color-site-navigation-background));
 
 				li a {
 					min-width: 100%;

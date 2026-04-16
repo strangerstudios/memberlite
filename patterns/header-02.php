@@ -26,7 +26,7 @@
 <!-- wp:social-link {"url":"#","service":"youtube"} /--></ul>
 <!-- /wp:social-links -->
 
-<!-- wp:memberlite/member-info /--></div>
+<!-- wp:memberlite/member-info {"backgroundColor":"footer-widgets-background"} /--></div>
 <!-- /wp:group --></div>
 <!-- /wp:group -->
 
