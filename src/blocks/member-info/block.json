@@ -10,7 +10,12 @@
     "supports": {
         "html": false,
         "reusable": false,
-        "lock": false
+        "lock": false,
+        "color": {
+            "text": true,
+            "background": true,
+            "link": true
+        }
     },
     "attributes": {
         "showWelcomeMessage": {

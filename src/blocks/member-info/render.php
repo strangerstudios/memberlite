@@ -16,9 +16,23 @@
 
 global $current_user, $pmpro_pages;
 
-$show_welcome        = $attributes['showWelcomeMessage'] ?? true;
+$show_welcome = $attributes['showWelcomeMessage'] ?? true;
 
-$wrapper_attributes = get_block_wrapper_attributes();
+// Propagate the background color to sub-menus via a CSS custom property.
+$nav_style_vars = '';
+if ( ! empty( $attributes['backgroundColor'] ) ) {
+	$slug           = sanitize_key( $attributes['backgroundColor'] );
+	$nav_style_vars = '--memberlite-color-navigation-block-background:var(--wp--preset--color--' . $slug . ');';
+} elseif ( ! empty( $attributes['style']['color']['background'] ) ) {
+	$nav_style_vars = '--memberlite-color-navigation-block-background:' . esc_attr( $attributes['style']['color']['background'] ) . ';';
+}
+
+$extra_attrs = array();
+if ( $nav_style_vars ) {
+	$extra_attrs['style'] = $nav_style_vars;
+}
+
+$wrapper_attributes = get_block_wrapper_attributes( $extra_attrs );
 ?>
 <div <?php echo $wrapper_attributes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
 <div id="meta-member">
