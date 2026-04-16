@@ -56,7 +56,10 @@ The RTLCSS compiler will swap the icon font for the RTL version. In the example 
     - Format: `'blocks/my-new-block/index': path.resolve( process.cwd(), 'src/blocks/my-new-block/index.js' ),`
 4. For new editor settings, you can use the existing `src/editor/custom-settings.js` file. You do not need to add a new path to the Webpack config.
 
-**Note:** Developers should not commit build files manually; they are generated automatically on merge to `master` via the workflow.
+## Commit Process
+
+- Do not commit build files from feature branches/pull requests.
+- Build files are typically committed on the `dev` branch as a pre-release step.
 
 ## Further Reading
 
