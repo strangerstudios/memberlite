@@ -7,7 +7,7 @@
  */
 
 /**
- * Enqueue JS for custom icon on our Memberlite block category in the inserter.
+ * Enqueue JS for custom block inserter icon for our Memberlite block category.
  *
  * @since TBD
  * @return void
