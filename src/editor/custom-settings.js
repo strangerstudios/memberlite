@@ -4,7 +4,7 @@ import { PluginDocumentSettingPanel } from '@wordpress/editor';
 import { ToggleControl, SelectControl, ExternalLink } from '@wordpress/components';
 import { useSelect } from '@wordpress/data';
 import { useEntityProp } from '@wordpress/core-data';
-import PMProIcon from "./pmpro-icon";
+import PMProIcon from './pmpro-icon';
 
 const MemberliteCustomSettings = () => {
 	const postType = useSelect(
