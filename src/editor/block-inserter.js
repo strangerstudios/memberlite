@@ -4,9 +4,12 @@
 
 import PMProIcon from "./pmpro-icon";
 
-( function () {
-	wp.blocks.updateCategory('memberlite', {
+import domReady from '@wordpress/dom-ready';
+import { updateCategory } from '@wordpress/blocks';
+
+domReady( () => {
+	updateCategory( 'memberlite', {
 		icon: PMProIcon
 	} );
-} )();
+} );
 
