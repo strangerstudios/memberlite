@@ -7,6 +7,36 @@
  */
 
 /**
+ * Enqueue JS for custom block inserter icon for our Memberlite block category.
+ *
+ * @since TBD
+ * @return void
+ */
+function memberlite_enqueue_block_inserter_icon(): void {
+	$asset_path = get_template_directory() . '/build/editor/block-inserter.asset.php';
+
+	if ( ! file_exists( $asset_path ) ) {
+		if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
+			// Log in debug mode. See docs/build-process.md for more info on the build process.
+			error_log( 'Memberlite: Missing asset file at ' . $asset_path );
+		}
+
+		return;
+	}
+
+	$asset_file = include $asset_path;
+
+	wp_enqueue_script(
+		'memberlite-block-inserter-icons',
+		get_template_directory_uri() . '/build/editor/block-inserter.js',
+		$asset_file['dependencies'],
+		$asset_file['version'],
+		true
+	);
+}
+add_action( 'enqueue_block_editor_assets', 'memberlite_enqueue_block_inserter_icon' );
+
+/**
  * Register a block category for Memberlite blocks.
  *
  * @since TBD

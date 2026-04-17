@@ -42,6 +42,11 @@ function Edit( { attributes, setAttributes } ) {
 }
 
 registerBlockType( metadata.name, {
+	icon: {
+		background: '#FFFFFF',
+		foreground: '#00a59d',
+		src: 'menu',
+	},
 	edit: Edit,
 	save: () => null,
 } );
