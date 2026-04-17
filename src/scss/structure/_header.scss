@@ -372,6 +372,7 @@
 				z-index: 99999;
 				margin: 0;
 				width: max-content;
+				min-width: 100px;
 				max-width: 210px;
 				background-color: var(--memberlite-color-site-navigation-background);
 				box-shadow: 4px 12px 16px 0 rgba(0, 0, 0, 0.12);
@@ -388,6 +389,7 @@
 			// Third-level sub-menus need explicit width due to absolute positioning
 			ul.sub-menu {
 				width: 100%;
+				height: 100%;
 			}
 		}
 
