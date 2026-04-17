@@ -29,8 +29,8 @@ function memberlite_enqueue_block_inserter_icon(): void {
 	wp_enqueue_script(
 		'memberlite-block-inserter-icons',
 		get_template_directory_uri() . '/build/editor/block-inserter.js',
-		array( 'wp-blocks' ),
-		MEMBERLITE_VERSION,
+		$asset_file['dependencies'],
+		$asset_file['version'],
 		true
 	);
 }
