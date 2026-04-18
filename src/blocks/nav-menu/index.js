@@ -63,6 +63,8 @@ function Edit( { attributes, setAttributes } ) {
 						label={ __( 'Menu Location', 'memberlite' ) }
 						value={ menuLocation }
 						options={ menuLocations }
+						disabled={ isLoading }
+						help={ menuLocationsError || undefined }
 						onChange={ ( value ) =>
 							setAttributes( { menuLocation: value } )
 						}
