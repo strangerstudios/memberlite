@@ -11,7 +11,7 @@ import apiFetch from '@wordpress/api-fetch';
 function Edit( { attributes, setAttributes } ) {
 	const { menuLocation } = attributes;
 	const blockProps = useBlockProps();
-	const [menuLocations, setMenuLocations] = useState([]);
+	const [ menuLocations, setMenuLocations ] = useState([]);
 
 	useEffect( () => {
 		apiFetch( { path: '/wp/v2/menu-locations' } )
