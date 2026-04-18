@@ -11,18 +11,20 @@ import apiFetch from '@wordpress/api-fetch';
 function Edit( { attributes, setAttributes } ) {
 	const { menuLocation } = attributes;
 	const blockProps = useBlockProps();
-	const [ menuLocations, setMenuLocations ] = useState([]);
+	const [ menuLocations, setMenuLocations ] = useState( [] );
 
 	useEffect( () => {
 		apiFetch( { path: '/wp/v2/menu-locations' } )
 			.then( ( locations ) => {
-				const options = Object.entries( locations ).map( ( [value, location] ) => ( {
+				const options = Object.entries( locations ).map( ( [value, location ] ) => ( {
 					label: location.description,
 					value: value,
 				} ) );
-				setMenuLocations( options);
+				setMenuLocations( options );
 			})
-			.catch( ( err ) => console.error('Failed to fetch menu locations:', err) );
+			.catch( ( err ) =>
+				console.error( 'Failed to fetch menu locations:', err )
+			);
 	}, [] );
 
 	return (
@@ -30,7 +32,7 @@ function Edit( { attributes, setAttributes } ) {
 			<InspectorControls>
 				<PanelBody title={ __( 'Menu Settings', 'memberlite' ) }>
 					<SelectControl
-						label={ __('Menu Location', 'memberlite') }
+						label={ __( 'Menu Location', 'memberlite' ) }
 						value={ menuLocation }
 						options={ menuLocations }
 						onChange={ ( value ) =>
