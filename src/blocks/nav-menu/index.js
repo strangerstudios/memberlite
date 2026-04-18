@@ -8,10 +8,24 @@ import metadata from './block.json';
 import { useState, useEffect } from '@wordpress/element';
 import apiFetch from '@wordpress/api-fetch';
 
+const FALLBACK_MENU_LOCATIONS  = [
+	{ label: __( 'Primary', 'memberlite' ), value: 'primary' },
+	{ label: __( 'Member (logged in)', 'memberlite' ), value: 'member' },
+	{ label: __( 'Member (logged out)', 'memberlite' ), value: 'member-logged-out' },
+	{ label: __( 'Footer', 'memberlite' ), value: 'footer' },
+];
+
 function Edit( { attributes, setAttributes } ) {
 	const { menuLocation } = attributes;
 	const blockProps = useBlockProps();
-	const [ menuLocations, setMenuLocations ] = useState( [] );
+	const [ menuLocations, setMenuLocations ] = useState( [
+		{
+			label: __( 'Loading menu locations…', 'memberlite' ),
+			value: '',
+		},
+	] );
+	const [ isLoading, setIsLoading ] = useState( true );
+	const [ menuLocationsError, setMenuLocationsError ] = useState( '' );
 
 	useEffect( () => {
 		apiFetch( { path: '/wp/v2/menu-locations' } )
@@ -20,11 +34,25 @@ function Edit( { attributes, setAttributes } ) {
 					label: location.description,
 					value: value,
 				} ) );
-				setMenuLocations( options );
-			})
-			.catch( ( err ) =>
-				console.error( 'Failed to fetch menu locations:', err )
-			);
+
+				setMenuLocations(
+					options.length
+						? options
+						: FALLBACK_MENU_LOCATIONS
+				);
+
+				setMenuLocationsError( '' );
+				setIsLoading( false );
+			} )
+			.catch( ( err ) => {
+				console.error( 'Failed to fetch menu locations:', err );
+
+				setMenuLocations( FALLBACK_MENU_LOCATIONS );
+				setMenuLocationsError(
+					__( 'Menu locations could not be loaded. Showing defaults.', 'memberlite' )
+				);
+				setIsLoading( false );
+			} );
 	}, [] );
 
 	return (
