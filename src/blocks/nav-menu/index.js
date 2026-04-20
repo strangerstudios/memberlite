@@ -15,9 +15,17 @@ const FALLBACK_MENU_LOCATIONS  = [
 	{ label: __( 'Footer', 'memberlite' ), value: 'footer' },
 ];
 
+const NO_MENUS_MESSAGE = __( 'No menus found.', 'memberlite' );
+
 function Edit( { attributes, setAttributes } ) {
 	const { menuLocation } = attributes;
 	const blockProps = useBlockProps();
+	const [ menus, setMenus ] = useState( [
+		{
+			label: __( 'Loading menus…', 'memberlite' ),
+			value: '',
+		},
+	] );
 	const [ menuLocations, setMenuLocations ] = useState( [
 		{
 			label: __( 'Loading menu locations…', 'memberlite' ),
@@ -25,7 +33,7 @@ function Edit( { attributes, setAttributes } ) {
 		},
 	] );
 	const [ isLoading, setIsLoading ] = useState( true );
-	const [ menuLocationsError, setMenuLocationsError ] = useState( '' );
+	const [ menuLocationsError, setMenuLocationsError, menusError, setMenusError ] = useState( '' );
 
 	useEffect( () => {
 		apiFetch( { path: '/wp/v2/menu-locations' } )
@@ -53,6 +61,48 @@ function Edit( { attributes, setAttributes } ) {
 				);
 				setIsLoading( false );
 			} );
+
+		apiFetch( { path: '/wp/v2/menus' } )
+			.then( ( menus ) => {
+				const menuOptions = menus.map( ( menu ) => ( {
+					label: menu.name,
+					value: menu.slug,
+				} ) );
+
+				setMenus(
+					menuOptions.length
+						? menuOptions
+						: NO_MENUS_MESSAGE
+				);
+
+				setMenusError( '' );
+				setIsLoading( false );
+
+			} )
+			.catch( ( err ) => {
+				console.error( 'Failed to fetch menus:', err );
+
+				setMenus( NO_MENUS_MESSAGE );
+				setMenuLocationsError(
+					__( 'Menus could not be loaded.', 'memberlite' )
+				);
+				setIsLoading( false );
+			} );
+
+		const combineOptions = <optgroup label={ __( 'Menus', 'memberlite' ) } >
+			{ menus.map( ( menu ) => (
+					<option key={ menu.value } value={ menu.value }>
+						{ menu.label }
+					</option>
+				) ) }
+		</optgroup>
+		<optgroup label={ __( 'Menu Locations', 'memberlite' ) } >
+			{ locations.map( ( location ) => (
+				<option key={ location.value } value={ location.value }>
+					{ location.label }
+				</option>
+			) ) }
+		</optgroup>
 	}, [] );
 
 	return (
@@ -60,7 +110,7 @@ function Edit( { attributes, setAttributes } ) {
 			<InspectorControls>
 				<PanelBody title={ __( 'Menu Settings', 'memberlite' ) }>
 					<SelectControl
-						label={ __( 'Menu Location', 'memberlite' ) }
+						label={ __( 'Select Menu', 'memberlite' ) }
 						value={ menuLocation }
 						options={ menuLocations }
 						disabled={ isLoading }
