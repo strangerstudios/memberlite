@@ -5,7 +5,7 @@
     "version": "1.0.0",
     "title": "Nav Menu",
     "category": "memberlite",
-    "description": "Renders a WordPress classic navigation menu by theme location.",
+    "description": "Renders a WordPress classic navigation menu.",
     "icon": "menu",
     "supports": {
         "html": false,
@@ -34,7 +34,7 @@
         }
     },
     "attributes": {
-        "menuLocation": {
+        "selectedMenu": {
             "type": "string",
             "default": "primary"
         }

@@ -16,7 +16,7 @@ const FALLBACK_MENU_LOCATIONS = [
 ];
 
 function Edit( { attributes, setAttributes } ) {
-	const { menuLocation } = attributes;
+	const { selectedMenu } = attributes;
 	const blockProps = useBlockProps();
 	const [ locations, setLocations ] = useState( [] );
 	const [ menus, setMenus ] = useState( [] );
@@ -31,9 +31,8 @@ function Edit( { attributes, setAttributes } ) {
 			apiFetch( { path: '/wp/v2/menus' } ),
 		] )
 			.then( ( [ fetchedLocations, fetchedMenus ] ) => {
-				const locationOptions = Object.entries( fetchedLocations ).map( ( [ slug ] ) => ( {
-					// prefix value to avoid collision if a menu slug matches a location slug
-					label: labels[ slug ] || slug,
+				const locationOptions = Object.entries( fetchedLocations ).map( ( [ slug, location ] ) => ( {
+					label: location.description || labels[ slug ] || slug,
 					value: `location:${ slug }`,
 				} ) );
 
@@ -72,8 +71,8 @@ function Edit( { attributes, setAttributes } ) {
 								<select
 									id="memberlite-menu-location-select"
 									className="components-select-control__input"
-									value={ menuLocation }
-									onChange={ ( e ) => setAttributes( { menuLocation: e.target.value } ) }
+									value={ selectedMenu }
+									onChange={ ( e ) => setAttributes( { selectedMenu: e.target.value } ) }
 								>
 									{ menus.length > 0 && (
 										<optgroup label={ __( 'By Menu', 'memberlite' ) }>
