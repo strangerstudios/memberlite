@@ -1,124 +1,115 @@
 import './editor.css';
 import { registerBlockType } from '@wordpress/blocks';
 import { useBlockProps, InspectorControls } from '@wordpress/block-editor';
-import { PanelBody, SelectControl } from '@wordpress/components';
+import { PanelBody } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import ServerSideRender from '@wordpress/server-side-render';
 import metadata from './block.json';
 import { useState, useEffect } from '@wordpress/element';
 import apiFetch from '@wordpress/api-fetch';
 
-const FALLBACK_MENU_LOCATIONS  = [
-	{ label: __( 'Primary', 'memberlite' ), value: 'primary' },
-	{ label: __( 'Member (logged in)', 'memberlite' ), value: 'member' },
-	{ label: __( 'Member (logged out)', 'memberlite' ), value: 'member-logged-out' },
-	{ label: __( 'Footer', 'memberlite' ), value: 'footer' },
+const FALLBACK_MENU_LOCATIONS = [
+	{ label: __( 'Primary', 'memberlite' ), value: 'location:primary' },
+	{ label: __( 'Member (logged in)', 'memberlite' ), value: 'location:member' },
+	{ label: __( 'Member (logged out)', 'memberlite' ), value: 'location:member-logged-out' },
+	{ label: __( 'Footer', 'memberlite' ), value: 'location:footer' },
 ];
-
-const NO_MENUS_MESSAGE = __( 'No menus found.', 'memberlite' );
 
 function Edit( { attributes, setAttributes } ) {
 	const { menuLocation } = attributes;
 	const blockProps = useBlockProps();
-	const [ menus, setMenus ] = useState( [
-		{
-			label: __( 'Loading menus…', 'memberlite' ),
-			value: '',
-		},
-	] );
-	const [ menuLocations, setMenuLocations ] = useState( [
-		{
-			label: __( 'Loading menu locations…', 'memberlite' ),
-			value: '',
-		},
-	] );
+	const [ locations, setLocations ] = useState( [] );
+	const [ menus, setMenus ] = useState( [] );
 	const [ isLoading, setIsLoading ] = useState( true );
-	const [ menuLocationsError, setMenuLocationsError, menusError, setMenusError ] = useState( '' );
+	const [ error, setError ] = useState( '' );
 
 	useEffect( () => {
-		apiFetch( { path: '/wp/v2/menu-locations' } )
-			.then( ( locations ) => {
-				const options = Object.entries( locations ).map( ( [value, location ] ) => ( {
-					label: location.description,
-					value: value,
+		const labels = window.memberliteBlockData?.menuLocationLabels || {};
+
+		Promise.all( [
+			apiFetch( { path: '/wp/v2/menu-locations' } ),
+			apiFetch( { path: '/wp/v2/menus' } ),
+		] )
+			.then( ( [ fetchedLocations, fetchedMenus ] ) => {
+				const locationOptions = Object.entries( fetchedLocations ).map( ( [ slug ] ) => ( {
+					// prefix value to avoid collision if a menu slug matches a location slug
+					label: labels[ slug ] || slug,
+					value: `location:${ slug }`,
 				} ) );
 
-				setMenuLocations(
-					options.length
-						? options
-						: FALLBACK_MENU_LOCATIONS
-				);
-
-				setMenuLocationsError( '' );
-				setIsLoading( false );
-			} )
-			.catch( ( err ) => {
-				console.error( 'Failed to fetch menu locations:', err );
-
-				setMenuLocations( FALLBACK_MENU_LOCATIONS );
-				setMenuLocationsError(
-					__( 'Menu locations could not be loaded. Showing defaults.', 'memberlite' )
-				);
-				setIsLoading( false );
-			} );
-
-		apiFetch( { path: '/wp/v2/menus' } )
-			.then( ( menus ) => {
-				const menuOptions = menus.map( ( menu ) => ( {
+				const menuOptions = fetchedMenus.map( ( menu ) => ( {
 					label: menu.name,
-					value: menu.slug,
+					value: `menu:${ menu.id }`,
 				} ) );
 
-				setMenus(
-					menuOptions.length
-						? menuOptions
-						: NO_MENUS_MESSAGE
-				);
-
-				setMenusError( '' );
+				setLocations( locationOptions.length ? locationOptions : FALLBACK_MENU_LOCATIONS );
+				setMenus( menuOptions );
 				setIsLoading( false );
-
 			} )
 			.catch( ( err ) => {
-				console.error( 'Failed to fetch menus:', err );
-
-				setMenus( NO_MENUS_MESSAGE );
-				setMenuLocationsError(
-					__( 'Menus could not be loaded.', 'memberlite' )
-				);
+				console.error( 'Failed to fetch menus or locations:', err );
+				setLocations( FALLBACK_MENU_LOCATIONS );
+				setError( __( 'Could not load menus. Showing defaults.', 'memberlite' ) );
 				setIsLoading( false );
 			} );
-
-		const combineOptions = <optgroup label={ __( 'Menus', 'memberlite' ) } >
-			{ menus.map( ( menu ) => (
-					<option key={ menu.value } value={ menu.value }>
-						{ menu.label }
-					</option>
-				) ) }
-		</optgroup>
-		<optgroup label={ __( 'Menu Locations', 'memberlite' ) } >
-			{ locations.map( ( location ) => (
-				<option key={ location.value } value={ location.value }>
-					{ location.label }
-				</option>
-			) ) }
-		</optgroup>
 	}, [] );
 
 	return (
 		<>
 			<InspectorControls>
 				<PanelBody title={ __( 'Menu Settings', 'memberlite' ) }>
-					<SelectControl
-						label={ __( 'Select Menu', 'memberlite' ) }
-						value={ menuLocation }
-						options={ menuLocations }
-						disabled={ isLoading }
-						help={ menuLocationsError || undefined }
-						onChange={ ( value ) =>
-							setAttributes( { menuLocation: value } )
-						}
-					/>
+					<div className="memberlite-menu-select">
+						<label
+							className="components-base-control__label"
+							htmlFor="memberlite-menu-location-select"
+						>
+							{ __( 'Select Menu', 'memberlite' ) }
+						</label>
+						{ isLoading ? (
+							<p>{ __( 'Loading…', 'memberlite' ) }</p>
+						) : (
+							<>
+								<select
+									id="memberlite-menu-location-select"
+									className="components-select-control__input"
+									value={ menuLocation }
+									onChange={ ( e ) => setAttributes( { menuLocation: e.target.value } ) }
+								>
+									{ menus.length > 0 && (
+										<optgroup label={ __( 'By Menu', 'memberlite' ) }>
+											{ menus.map( ( opt ) => (
+												<option key={ opt.value } value={ opt.value }>
+													{ opt.label }
+												</option>
+											) ) }
+										</optgroup>
+									) }
+									<optgroup label={ __( 'By Location', 'memberlite' ) }>
+										{ locations.map( ( opt ) => (
+											<option key={ opt.value } value={ opt.value }>
+												{ opt.label }
+											</option>
+										) ) }
+									</optgroup>
+								</select>
+								{ menus.length === 0 && ! error && (
+									<p className="components-base-control__help">
+										{ __( 'No menus found. Create one under Appearance → Menus.', 'memberlite' ) }
+									</p>
+								) }
+								{ error && (
+									<p className="components-base-control__help" style={ { color: 'red' } }>
+										{ error }
+									</p>
+								) }
+							</>
+						) }
+						{ error && (
+							<p className="components-base-control__help" style={ { color: 'red' } }>
+								{ error }
+							</p>
+						) }
+					</div>
 				</PanelBody>
 			</InspectorControls>
 			<div { ...blockProps }>
