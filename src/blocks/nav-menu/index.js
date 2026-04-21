@@ -75,8 +75,6 @@ function Edit( { attributes, setAttributes } ) {
 		}
 	}, [] );
 
-	console.log( 'locations ', locations );
-
 	return (
 		<>
 			<InspectorControls>
@@ -128,11 +126,6 @@ function Edit( { attributes, setAttributes } ) {
 									</p>
 								) }
 							</>
-						) }
-						{ error && (
-							<p className="components-base-control__help" style={ { color: 'red' } }>
-								{ error }
-							</p>
 						) }
 					</div>
 				</PanelBody>

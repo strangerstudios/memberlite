@@ -42,7 +42,7 @@ function memberlite_register_blocks(): void {
 	wp_register_script(
 		'memberlite-block-nav-menu-editor',
 		get_template_directory_uri() . '/build/blocks/nav-menu/index.js',
-		array( 'wp-blocks', 'wp-element', 'wp-block-editor', 'wp-components', 'wp-i18n' ),
+		array( 'wp-blocks', 'wp-element', 'wp-block-editor', 'wp-components', 'wp-i18n', 'wp-api-fetch' ),
 		MEMBERLITE_VERSION,
 		true
 	);
@@ -75,8 +75,13 @@ add_action( 'init', 'memberlite_register_blocks' );
  * @return array
  */
 function memberlite_allowed_blocks( $allowed_block_types, $editor_context ): array {
-	$post_type         = $editor_context->post->post_type ?? '';
 	$disallowed_blocks = array();
+
+	if ( ! isset( $editor_context->post->post_type ) ) {
+		return $allowed_block_types;
+	}
+
+	$post_type = $editor_context->post->post_type;
 
 	if ( ! in_array( $post_type, array( 'memberlite_footer', 'memberlite_header' ), true ) ) {
 		$disallowed_blocks = array(

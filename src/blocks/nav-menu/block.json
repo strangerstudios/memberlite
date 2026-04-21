@@ -36,7 +36,7 @@
     "attributes": {
         "selectedMenu": {
             "type": "string",
-            "default": "primary"
+            "default": ""
         }
     },
     "render": "file:./render.php",

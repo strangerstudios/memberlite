@@ -21,17 +21,20 @@ if ( empty( $selected_menu ) ) {
 }
 
 // Uses prefix to distinguish between location and menu.
-if ( str_starts_with( $selected_menu, 'location:' ) && function_exists( 'pmpro_is_plugin_active' ) && pmpro_is_plugin_active( 'pmpro-nav-menus/pmpro-nav-menus.php') ) {
+if ( strpos( $selected_menu, 'location:' ) === 0 && function_exists( 'pmpro_is_plugin_active' ) && pmpro_is_plugin_active( 'pmpro-nav-menus/pmpro-nav-menus.php') ) {
 	$slug = substr( $selected_menu, strlen( 'location:' ) );
 	if ( ! has_nav_menu( $slug ) ) {
+		error_log( 'has_nav_menu: false on post ID ' . get_the_ID() );
 		return;
 	}
 	$menu_type = 'location';
 }
 
-if ( str_starts_with( $selected_menu, 'menu:' ) ) {
+if ( strpos( $selected_menu, 'menu:' ) === 0 ) {
 	$id = (int) substr( $selected_menu, strlen( 'menu:' ) );
+
 	if ( ! is_nav_menu( $id ) ) {
+		error_log( 'is_nav_menu: false on post ID ' . get_the_ID() );
 		return;
 	}
 	$menu_type = 'menu';
