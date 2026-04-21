@@ -74,7 +74,7 @@ add_action( 'init', 'memberlite_register_blocks' );
  *
  * @return array
  */
-function memberlite_allowed_blocks( $allowed_block_types, $editor_context ): array {
+function memberlite_allowed_blocks( $allowed_block_types, $editor_context ) {
 	$disallowed_blocks = array();
 
 	if ( ! isset( $editor_context->post->post_type ) ) {
