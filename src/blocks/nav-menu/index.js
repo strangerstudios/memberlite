@@ -22,36 +22,60 @@ function Edit( { attributes, setAttributes } ) {
 	const [ menus, setMenus ] = useState( [] );
 	const [ isLoading, setIsLoading ] = useState( true );
 	const [ error, setError ] = useState( '' );
+	// From wp_localize_script...
+	const navMenusAddOnActive = active_pmpro_plugins.nav_menu_plugin_active ?? false;
 
 	useEffect( () => {
 		const labels = window.memberliteBlockData?.menuLocationLabels || {};
 
-		Promise.all( [
-			apiFetch( { path: '/wp/v2/menu-locations' } ),
-			apiFetch( { path: '/wp/v2/menus' } ),
-		] )
-			.then( ( [ fetchedLocations, fetchedMenus ] ) => {
-				const locationOptions = Object.entries( fetchedLocations ).map( ( [ slug, location ] ) => ( {
-					label: location.description || labels[ slug ] || slug,
-					value: `location:${ slug }`,
-				} ) );
+		if ( ! navMenusAddOnActive ) {
+			Promise.all( [
+				apiFetch( { path: '/wp/v2/menus' } ),
+			] )
+				.then( ( [ fetchedMenus ] ) => {
+					const menuOptions = fetchedMenus.map( ( menu ) => ( {
+						label: menu.name,
+						value: `menu:${ menu.id }`,
+					} ) );
 
-				const menuOptions = fetchedMenus.map( ( menu ) => ( {
-					label: menu.name,
-					value: `menu:${ menu.id }`,
-				} ) );
+					setMenus( menuOptions );
+					setIsLoading( false );
+				} )
+				.catch( ( err ) => {
+					console.error( 'Failed to fetch menus:', err );
+					setError( __( 'Could not load menus. Showing defaults.', 'memberlite' ) );
+					setIsLoading( false );
+				} );
+		} else {
+			Promise.all( [
+				apiFetch( { path: '/wp/v2/menu-locations' } ),
+				apiFetch( { path: '/wp/v2/menus' } ),
+			] )
+				.then( ( [ fetchedLocations, fetchedMenus ] ) => {
+					const locationOptions = Object.entries( fetchedLocations ).map( ( [ slug, location ] ) => ( {
+						label: location.description || labels[ slug ] || slug,
+						value: `location:${ slug }`,
+					} ) );
 
-				setLocations( locationOptions.length ? locationOptions : FALLBACK_MENU_LOCATIONS );
-				setMenus( menuOptions );
-				setIsLoading( false );
-			} )
-			.catch( ( err ) => {
-				console.error( 'Failed to fetch menus or locations:', err );
-				setLocations( FALLBACK_MENU_LOCATIONS );
-				setError( __( 'Could not load menus. Showing defaults.', 'memberlite' ) );
-				setIsLoading( false );
-			} );
+					const menuOptions = fetchedMenus.map( ( menu ) => ( {
+						label: menu.name,
+						value: `menu:${ menu.id }`,
+					} ) );
+
+					setLocations( locationOptions.length ? locationOptions : FALLBACK_MENU_LOCATIONS );
+					setMenus( menuOptions );
+					setIsLoading( false );
+				} )
+				.catch( ( err ) => {
+					console.error( 'Failed to fetch menus or locations:', err );
+					setLocations( FALLBACK_MENU_LOCATIONS );
+					setError( __( 'Could not load menus. Showing defaults.', 'memberlite' ) );
+					setIsLoading( false );
+				} );
+		}
 	}, [] );
+
+	console.log( 'locations ', locations );
 
 	return (
 		<>
@@ -83,13 +107,15 @@ function Edit( { attributes, setAttributes } ) {
 											) ) }
 										</optgroup>
 									) }
-									<optgroup label={ __( 'By Location', 'memberlite' ) }>
-										{ locations.map( ( opt ) => (
-											<option key={ opt.value } value={ opt.value }>
-												{ opt.label }
-											</option>
-										) ) }
-									</optgroup>
+									{ navMenusAddOnActive && (
+										<optgroup label={ __( 'By Location', 'memberlite' ) }>
+											{ locations.map( ( opt ) => (
+												<option key={ opt.value } value={ opt.value }>
+													{ opt.label }
+												</option>
+											) ) }
+										</optgroup>
+									) }
 								</select>
 								{ menus.length === 0 && ! error && (
 									<p className="components-base-control__help">

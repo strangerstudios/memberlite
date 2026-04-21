@@ -48,6 +48,12 @@ function memberlite_register_blocks(): void {
 	);
 	register_block_type( get_template_directory() . '/build/blocks/nav-menu' );
 
+	wp_localize_script('memberlite-block-nav-menu-editor', 'active_pmpro_plugins',
+		array(
+			'nav_menu_plugin_active' => function_exists( 'pmpro_is_plugin_active' ) && pmpro_is_plugin_active( 'pmpro-nav-menus/pmpro-nav-menus.php')
+		)
+	);
+
 	// Member Info block.
 	wp_register_script(
 		'memberlite-block-member-info-editor',

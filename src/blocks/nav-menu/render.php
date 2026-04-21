@@ -21,7 +21,7 @@ if ( empty( $selected_menu ) ) {
 }
 
 // Uses prefix to distinguish between location and menu.
-if ( str_starts_with( $selected_menu, 'location:' ) ) {
+if ( str_starts_with( $selected_menu, 'location:' ) && function_exists( 'pmpro_is_plugin_active' ) && pmpro_is_plugin_active( 'pmpro-nav-menus/pmpro-nav-menus.php') ) {
 	$slug = substr( $selected_menu, strlen( 'location:' ) );
 	if ( ! has_nav_menu( $slug ) ) {
 		return;
