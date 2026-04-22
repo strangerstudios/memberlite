@@ -1,11 +1,9 @@
 import './editor.scss';
-import { registerBlockType } from '@wordpress/blocks';
 import { useBlockProps, InspectorControls } from '@wordpress/block-editor';
 import { PanelBody, ToggleControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
-import metadata from './block.json';
 
-function Edit( { attributes, setAttributes } ) {
+export default function Edit( { attributes, setAttributes } ) {
 	const { showWelcomeMessage } = attributes;
 	const blockProps = useBlockProps( {
 		className: 'memberlite-member-info-placeholder',
@@ -34,8 +32,3 @@ function Edit( { attributes, setAttributes } ) {
 		</>
 	);
 }
-
-registerBlockType( metadata.name, {
-	edit: Edit,
-	save: () => null,
-} );

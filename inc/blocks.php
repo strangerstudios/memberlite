@@ -38,24 +38,13 @@ add_filter( 'block_categories_all', 'memberlite_register_block_categories' );
  * @return void
  */
 function memberlite_register_blocks(): void {
-	// Nav Menu block.
-	wp_register_script(
-		'memberlite-block-nav-menu-editor',
-		get_template_directory_uri() . '/build/blocks/nav-menu/index.js',
-		array( 'wp-blocks', 'wp-element', 'wp-block-editor', 'wp-components', 'wp-i18n' ),
-		MEMBERLITE_VERSION,
-		true
+	$memberlite_blocks = array(
+		'nav-menu',
+		'member-info',
 	);
-	register_block_type( get_template_directory() . '/build/blocks/nav-menu' );
 
-	// Member Info block.
-	wp_register_script(
-		'memberlite-block-member-info-editor',
-		get_template_directory_uri() . '/build/blocks/member-info/index.js',
-		array( 'wp-blocks', 'wp-element', 'wp-block-editor', 'wp-components', 'wp-i18n' ),
-		MEMBERLITE_VERSION,
-		true
-	);
-	register_block_type( get_template_directory() . '/build/blocks/member-info' );
+	foreach ( $memberlite_blocks as $memberlite_block ) {
+		register_block_type( get_template_directory() . '/build/blocks/' . $memberlite_block );
+	}
 }
 add_action( 'init', 'memberlite_register_blocks' );

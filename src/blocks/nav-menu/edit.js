@@ -1,10 +1,8 @@
 import './editor.scss';
-import { registerBlockType } from '@wordpress/blocks';
 import { useBlockProps, InspectorControls } from '@wordpress/block-editor';
 import { PanelBody, SelectControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import ServerSideRender from '@wordpress/server-side-render';
-import metadata from './block.json';
 
 const MENU_LOCATIONS = [
 	{ label: __( 'Primary', 'memberlite' ), value: 'primary' },
@@ -13,7 +11,7 @@ const MENU_LOCATIONS = [
 	{ label: __( 'Footer', 'memberlite' ), value: 'footer' },
 ];
 
-function Edit( { attributes, setAttributes } ) {
+export default function Edit( { attributes, setAttributes } ) {
 	const { menuLocation } = attributes;
 	const blockProps = useBlockProps();
 
@@ -40,8 +38,3 @@ function Edit( { attributes, setAttributes } ) {
 		</>
 	);
 }
-
-registerBlockType( metadata.name, {
-	edit: Edit,
-	save: () => null,
-} );
