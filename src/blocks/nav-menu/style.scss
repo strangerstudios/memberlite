@@ -1,0 +1,37 @@
+/*
+ * Editor preview styles for the memberlite/nav-menu block.
+ *
+ * Mirrors the key frontend rules from _header.scss so the ServerSideRender
+ * preview looks like the real nav bar. Sub-menus and toggle buttons are hidden
+ * so only the first tier is visible in the editor.
+ */
+
+.wp-block-memberlite-nav-menu #site-navigation ul.menu {
+	align-items: center;
+	display: flex;
+	flex-wrap: wrap;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.wp-block-memberlite-nav-menu #site-navigation ul.menu > li.menu-item {
+	margin: 0;
+	position: relative;
+}
+
+.wp-block-memberlite-nav-menu #site-navigation ul.menu > li.menu-item > a {
+	color: inherit;
+	display: block;
+	overflow-wrap: normal;
+	padding: var( --wp--preset--spacing--20, 0.75rem ) var( --wp--preset--spacing--10, 0.5rem );
+	pointer-events: none;
+	text-decoration: none;
+	word-break: normal;
+}
+
+/* Hide sub-menus and dropdown toggle buttons — first tier only */
+.wp-block-memberlite-nav-menu #site-navigation ul.sub-menu,
+.wp-block-memberlite-nav-menu #site-navigation button {
+	display: none;
+}

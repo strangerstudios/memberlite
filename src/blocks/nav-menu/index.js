@@ -1,47 +1,33 @@
-import './editor.css';
+/**
+ * Registers a new block provided a unique name and an object defining its behavior.
+ *
+ * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-registration/
+ */
 import { registerBlockType } from '@wordpress/blocks';
-import { useBlockProps, InspectorControls } from '@wordpress/block-editor';
-import { PanelBody, SelectControl } from '@wordpress/components';
-import { __ } from '@wordpress/i18n';
-import ServerSideRender from '@wordpress/server-side-render';
+
+/**
+ * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
+ * All files containing `style` keyword are bundled together. The code used
+ * gets applied both to the front of your site and to the editor.
+ *
+ * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
+ */
+import './style.scss';
+
+/**
+ * Internal dependencies
+ */
+import Edit from './edit';
 import metadata from './block.json';
 
-const MENU_LOCATIONS = [
-	{ label: __( 'Primary', 'memberlite' ), value: 'primary' },
-	{ label: __( 'Member (logged in)', 'memberlite' ), value: 'member' },
-	{ label: __( 'Member (logged out)', 'memberlite' ), value: 'member-logged-out' },
-	{ label: __( 'Footer', 'memberlite' ), value: 'footer' },
-];
-
-function Edit( { attributes, setAttributes } ) {
-	const { menuLocation } = attributes;
-	const blockProps = useBlockProps();
-
-	return (
-		<>
-			<InspectorControls>
-				<PanelBody title={ __( 'Menu Settings', 'memberlite' ) }>
-					<SelectControl
-						label={ __( 'Menu Location', 'memberlite' ) }
-						value={ menuLocation }
-						options={ MENU_LOCATIONS }
-						onChange={ ( value ) =>
-							setAttributes( { menuLocation: value } )
-						}
-					/>
-				</PanelBody>
-			</InspectorControls>
-			<div { ...blockProps }>
-				<ServerSideRender
-					block="memberlite/nav-menu"
-					attributes={ attributes }
-				/>
-			</div>
-		</>
-	);
-}
-
+/**
+ * Every block starts by registering a new block type definition.
+ *
+ * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-registration/
+ */
 registerBlockType( metadata.name, {
+	/**
+	 * @see ./edit.js
+	 */
 	edit: Edit,
-	save: () => null,
 } );

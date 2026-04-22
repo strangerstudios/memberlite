@@ -1,41 +1,33 @@
-import './editor.css';
+/**
+ * Registers a new block provided a unique name and an object defining its behavior.
+ *
+ * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-registration/
+ */
 import { registerBlockType } from '@wordpress/blocks';
-import { useBlockProps, InspectorControls } from '@wordpress/block-editor';
-import { PanelBody, ToggleControl } from '@wordpress/components';
-import { __ } from '@wordpress/i18n';
+
+/**
+ * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
+ * All files containing `style` keyword are bundled together. The code used
+ * gets applied both to the front of your site and to the editor.
+ *
+ * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
+ */
+import './style.scss';
+
+/**
+ * Internal dependencies
+ */
+import Edit from './edit';
 import metadata from './block.json';
 
-function Edit( { attributes, setAttributes } ) {
-	const { showWelcomeMessage } = attributes;
-	const blockProps = useBlockProps( {
-		className: 'memberlite-member-info-placeholder',
-	} );
-
-	return (
-		<>
-			<InspectorControls>
-				<PanelBody title={ __( 'Member Info Settings', 'memberlite' ) }>
-					<ToggleControl
-						label={ __( 'Show Welcome Message', 'memberlite' ) }
-						help={ __(
-							'Show "Welcome, [name]" for logged-in users.',
-							'memberlite'
-						) }
-						checked={ showWelcomeMessage }
-						onChange={ ( value ) =>
-							setAttributes( { showWelcomeMessage: value } )
-						}
-					/>
-				</PanelBody>
-			</InspectorControls>
-			<div { ...blockProps }>
-				<strong>{ __( 'Member Info', 'memberlite' ) }</strong>
-			</div>
-		</>
-	);
-}
-
+/**
+ * Every block starts by registering a new block type definition.
+ *
+ * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-registration/
+ */
 registerBlockType( metadata.name, {
+	/**
+	 * @see ./edit.js
+	 */
 	edit: Edit,
-	save: () => null,
 } );
