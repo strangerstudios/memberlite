@@ -6,7 +6,7 @@
  * so only the first tier is visible in the editor.
  */
 
-.wp-block-memberlite-nav-menu #site-navigation ul.menu {
+.wp-block-memberlite-nav-menu ul.menu {
 	align-items: center;
 	display: flex;
 	flex-wrap: wrap;
@@ -15,12 +15,12 @@
 	padding: 0;
 }
 
-.wp-block-memberlite-nav-menu #site-navigation ul.menu > li.menu-item {
+.wp-block-memberlite-nav-menu ul.menu > li.menu-item {
 	margin: 0;
 	position: relative;
 }
 
-.wp-block-memberlite-nav-menu #site-navigation ul.menu > li.menu-item > a {
+.wp-block-memberlite-nav-menu ul.menu > li.menu-item > a {
 	color: inherit;
 	display: block;
 	overflow-wrap: normal;
@@ -31,7 +31,7 @@
 }
 
 /* Hide sub-menus and dropdown toggle buttons — first tier only */
-.wp-block-memberlite-nav-menu #site-navigation ul.sub-menu,
-.wp-block-memberlite-nav-menu #site-navigation button {
+.wp-block-memberlite-nav-menu ul.sub-menu,
+.wp-block-memberlite-nav-menu button {
 	display: none;
 }
