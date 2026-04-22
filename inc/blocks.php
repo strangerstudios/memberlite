@@ -30,10 +30,6 @@ add_filter( 'block_categories_all', 'memberlite_register_block_categories' );
 /**
  * Register custom Memberlite blocks.
  *
- * Each block's editor script handle is registered first so that
- * register_block_type() (which reads the named handle from block.json)
- * can resolve it correctly.
- *
  * @since TBD
  * @return void
  */

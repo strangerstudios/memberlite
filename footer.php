@@ -21,7 +21,7 @@ if ( ! memberlite_hide_page_footer() ) {
 	$footer_post_name_exists = ! empty( $footer_post_name ) && '0' !== $footer_post_name;
 
 	if ( $footer_post_name_exists ) {
-		$footer_class .= ' site-footer-variation';
+		$footer_class .= ' is-footer-variation';
 		$footer_class .= ' site-footer-' . sanitize_html_class( $footer_post_name );
 	} else {
 		$footer_class .= ' site-footer-default';
