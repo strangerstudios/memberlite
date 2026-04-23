@@ -1,10 +1,8 @@
 import './editor.scss';
-import { registerBlockType } from '@wordpress/blocks';
 import { useBlockProps, InspectorControls } from '@wordpress/block-editor';
 import { PanelBody } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import ServerSideRender from '@wordpress/server-side-render';
-import metadata from './block.json';
 import { useState, useEffect } from '@wordpress/element';
 import apiFetch from '@wordpress/api-fetch';
 
@@ -141,12 +139,4 @@ function Edit( { attributes, setAttributes } ) {
 	);
 }
 
-registerBlockType( metadata.name, {
-	icon: {
-		background: '#FFFFFF',
-		foreground: '#00a59d',
-		src: 'menu',
-	},
-	edit: Edit,
-	save: () => null,
-} );
+export default Edit;
