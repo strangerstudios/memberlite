@@ -61,7 +61,6 @@ if ( ! empty( $attributes['backgroundColor'] ) ) {
 	$nav_style_vars = '--memberlite-color-navigation-block-background:' . esc_attr( $attributes['style']['color']['background'] ) . ';';
 }
 
-//@todo: Easiest fix I think is to apply a class and then add that class to the header.scss styles for site-navigation...
 $extra_attrs = array(
 	'class'      => 'memberlite-nav-menu',
 	'role'       => 'navigation',
