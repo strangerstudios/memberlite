@@ -20,6 +20,11 @@ registerBlockType( metadata.name, {
 	/**
 	 * @see ./edit.js
 	 */
+	icon: {
+		background: '#FFFFFF',
+		foreground: '#00a59d',
+		src: 'admin-users',
+	},
 	edit: Edit,
 	save: () => null,
 } );
