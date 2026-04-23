@@ -46,7 +46,27 @@
 
 <!-- wp:column {"verticalAlignment":"center","width":"auto"} -->
 <div class="wp-block-column is-vertically-aligned-center"><!-- wp:group {"layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"right"}} -->
-<div class="wp-block-group"><!-- wp:memberlite/nav-menu {"menuLocation":"primary"} /--></div>
+<div class="wp-block-group"><!-- wp:group {"layout":{"type":"flex","flexWrap":"nowrap"}} -->
+<div class="wp-block-group"><!-- wp:paragraph {"fontSize":"16"} -->
+<p class="has-16-font-size"><a href="#">Home</a></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"fontSize":"16"} -->
+<p class="has-16-font-size"><a href="#">About</a></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"fontSize":"16"} -->
+<p class="has-16-font-size"><a href="#">Membership</a></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"fontSize":"16"} -->
+<p class="has-16-font-size"><a href="#">Blog</a></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"fontSize":"16"} -->
+<p class="has-16-font-size"><a href="#">Contact</a></p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group --></div>
 <!-- /wp:group --></div>
 <!-- /wp:column --></div>
 <!-- /wp:columns --></div>

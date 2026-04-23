@@ -21,7 +21,27 @@
 				<!-- /wp:group -->
 
 				<!-- wp:group {"layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"right","verticalAlignment":"center"}} -->
-				<div class="wp-block-group"><!-- wp:memberlite/nav-menu {"selectedMenu":"menu:211","fontSize":"16"} /-->
+				<div class="wp-block-group"><!-- wp:group {"layout":{"type":"flex","flexWrap":"nowrap"}} -->
+					<div class="wp-block-group"><!-- wp:paragraph {"fontSize":"16"} -->
+					<p class="has-16-font-size"><a href="#">Home</a></p>
+					<!-- /wp:paragraph -->
+
+					<!-- wp:paragraph {"fontSize":"16"} -->
+					<p class="has-16-font-size"><a href="#">Speakers</a></p>
+					<!-- /wp:paragraph -->
+
+					<!-- wp:paragraph {"fontSize":"16"} -->
+					<p class="has-16-font-size"><a href="#">Program</a></p>
+					<!-- /wp:paragraph -->
+
+					<!-- wp:paragraph {"fontSize":"16"} -->
+					<p class="has-16-font-size"><a href="#">About</a></p>
+					<!-- /wp:paragraph -->
+
+					<!-- wp:paragraph {"fontSize":"16"} -->
+					<p class="has-16-font-size"><a href="#">News</a></p>
+					<!-- /wp:paragraph --></div>
+					<!-- /wp:group -->
 
 					<!-- wp:buttons {"layout":{"type":"flex","verticalAlignment":"center","justifyContent":"right"}} -->
 					<div class="wp-block-buttons"><!-- wp:button {"backgroundColor":"color-action","textColor":"site-navigation-link","style":{"spacing":{"padding":{"top":"5px","bottom":"5px"}},"elements":{"link":{"color":{"text":"var:preset|color|site-navigation-link"}}}},"fontSize":"16"} -->
@@ -38,7 +58,7 @@
 						<p>The Annual Membership Summit</p>
 						<!-- /wp:paragraph -->
 
-						<!-- wp:heading {"style":{"spacing":{"margin":{"top":"0"}}},"fontSize":"42"} -->
+						<!-- wp:heading {"style":{"spacing":{"margin":{"top":"5px"}}},"fontSize":"42"} -->
 						<h2 class="wp-block-heading has-42-font-size" style="margin-top:5px">Everything You Need to Launch, Grow, and Scale Your Membership</h2>
 						<!-- /wp:heading --></div>
 					<!-- /wp:group -->
