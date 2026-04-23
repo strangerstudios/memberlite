@@ -40,14 +40,6 @@ function Edit( { attributes, setAttributes } ) {
 
 					setMenus( menuOptions );
 					setIsLoading( false );
-
-					// If no menu is selected yet, default to the first available option
-					if ( ! selectedMenu ) {
-						const firstOption = menuOptions[ 0 ] ?? FALLBACK_MENU_LOCATIONS[ 0 ];
-						if ( firstOption ) {
-							setAttributes( { selectedMenu: firstOption.value } );
-						}
-					}
 				} )
 				.catch( ( err ) => {
 					console.error( 'Failed to fetch menus:', err );
@@ -73,14 +65,6 @@ function Edit( { attributes, setAttributes } ) {
 					setLocations( locationOptions.length ? locationOptions : FALLBACK_MENU_LOCATIONS );
 					setMenus( menuOptions );
 					setIsLoading( false );
-
-					// If no menu is selected yet, default to the first available option
-					if ( ! selectedMenu ) {
-						const firstOption = menuOptions[ 0 ] ?? locationOptions[ 0 ] ?? FALLBACK_MENU_LOCATIONS[ 0 ];
-						if ( firstOption ) {
-							setAttributes( { selectedMenu: firstOption.value } );
-						}
-					}
 				} )
 				.catch( ( err ) => {
 					console.error( 'Failed to fetch menus or locations:', err );
@@ -112,6 +96,7 @@ function Edit( { attributes, setAttributes } ) {
 									value={ selectedMenu }
 									onChange={ ( e ) => setAttributes( { selectedMenu: e.target.value } ) }
 								>
+									<option value="">{ __( '-- No Menu Selected --', 'memberlite' ) }</option>
 									{ menus.length > 0 && (
 										<optgroup label={ __( 'By Menu', 'memberlite' ) }>
 											{ menus.map( ( opt ) => (
