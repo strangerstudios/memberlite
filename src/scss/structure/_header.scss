@@ -310,9 +310,23 @@
 	}
 }
 
+.site-header-variation-sticky-wrapper {
+	@include breakpoint(mobile) {
+		display: none;
+	}
+}
+
 .site-header-variation {
 	@include breakpoint(mobile) {
 		display: none;
+	}
+
+	&.site-navigation-sticky {
+		box-shadow: var(--memberlite-shadow);
+		position: fixed;
+		top: 0;
+		width: 100%;
+		z-index: 10;
 	}
 }
 

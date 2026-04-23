@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', function () {
 	initDesktopNav();
 	initMobileNav();
 	initStickyNav();
+	initStickyVariation();
 	initBackToTop();
 });
 
@@ -300,6 +301,28 @@ function updateStickyState(stickyNav, stickyTop, adminBarHeight) {
 		stickyNav.classList.remove('site-navigation-sticky');
 		stickyNav.style.top = '';
 	}
+}
+
+function initStickyVariation() {
+	if ( window.innerWidth < 768 ) return;
+
+	const stickyWrapper = document.querySelector( '.site-header-variation-sticky-wrapper' );
+	const stickyNav     = document.querySelector( '.site-header-variation' );
+
+	if ( !stickyWrapper || !stickyNav ) return;
+
+	const navHeight      = stickyNav.offsetHeight;
+	const adminBar       = document.getElementById( 'wpadminbar' );
+	const adminBarHeight = adminBar ? adminBar.offsetHeight : 0;
+
+	stickyWrapper.style.height = navHeight + 'px';
+	stickyNav.style.height     = navHeight + 'px';
+
+	const stickyTop = stickyWrapper.getBoundingClientRect().top + window.scrollY - adminBarHeight;
+
+	window.addEventListener( 'scroll', function () {
+		updateStickyState( stickyNav, stickyTop, adminBarHeight );
+	} );
 }
 
 // ─── Back to Top ─────────────────────────────────────────────────────────────
