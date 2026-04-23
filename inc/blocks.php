@@ -72,11 +72,17 @@ function memberlite_register_blocks(): void {
 	wp_register_script(
 		'memberlite-block-nav-menu-editor',
 		get_template_directory_uri() . '/build/blocks/nav-menu/index.js',
-		array( 'wp-blocks', 'wp-element', 'wp-block-editor', 'wp-components', 'wp-i18n' ),
+		array( 'wp-blocks', 'wp-element', 'wp-block-editor', 'wp-components', 'wp-i18n', 'wp-api-fetch' ),
 		MEMBERLITE_VERSION,
 		true
 	);
 	register_block_type( get_template_directory() . '/build/blocks/nav-menu' );
+
+	wp_localize_script('memberlite-block-nav-menu-editor', 'active_pmpro_plugins',
+		array(
+			'nav_menu_plugin_active' => function_exists( 'pmpro_is_plugin_active' ) && pmpro_is_plugin_active( 'pmpro-nav-menus/pmpro-nav-menus.php')
+		)
+	);
 
 	// Member Info block.
 	wp_register_script(
@@ -89,3 +95,51 @@ function memberlite_register_blocks(): void {
 	register_block_type( get_template_directory() . '/build/blocks/member-info' );
 }
 add_action( 'init', 'memberlite_register_blocks' );
+
+/**
+ * Only allow Memberlite's Nav Menu block on the memberlite_header and memberlite_footer post types.
+ *
+ * @param $allowed_block_types
+ * @param $editor_context
+ *
+ * @return array
+ */
+function memberlite_allowed_blocks( $allowed_block_types, $editor_context ) {
+	$disallowed_blocks = array();
+
+	if ( ! isset( $editor_context->post->post_type ) ) {
+		return $allowed_block_types;
+	}
+
+	$post_type = $editor_context->post->post_type;
+
+	if ( ! in_array( $post_type, array( 'memberlite_footer', 'memberlite_header' ), true ) ) {
+		$disallowed_blocks = array(
+			'memberlite/nav-menu',
+		);
+	}
+
+	// Get all registered blocks if $allowed_block_types is not already set.
+	if ( ! is_array( $allowed_block_types ) || empty( $allowed_block_types ) ) {
+		$registered_blocks   = WP_Block_Type_Registry::get_instance()->get_all_registered();
+		$allowed_block_types = array_keys( $registered_blocks );
+	}
+
+	// Create a new array for the allowed blocks.
+	$filtered_blocks = array();
+
+	// Loop through each block in the allowed blocks list.
+	foreach ( $allowed_block_types as $block ) {
+
+		// Check if the block is not in the disallowed blocks list.
+		if ( ! in_array( $block, $disallowed_blocks, true ) ) {
+
+			// If it's not disallowed, add it to the filtered list.
+			$filtered_blocks[] = $block;
+		}
+	}
+
+	// Return the filtered list of allowed blocks
+	return $filtered_blocks;
+}
+add_filter( 'allowed_block_types_all', 'memberlite_allowed_blocks', 10, 2 );
