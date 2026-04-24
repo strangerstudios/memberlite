@@ -58,13 +58,14 @@ function memberlite_render_header_variation( string $post_name ): bool {
  * @return array
  */
 function memberlite_get_header_variations( string $default_label = '' ): array {
-	if ( '' === $default_label ) {
-		$default_label = __( '— Default —', 'memberlite' );
-	}
-
 	$cached = get_transient( 'memberlite_header_variations' );
+
 	if ( false !== $cached ) {
 		return $cached;
+	}
+
+	if ( '' === $default_label ) {
+		$default_label = __( '— Default —', 'memberlite' );
 	}
 
 	$header_posts = get_posts( array(
@@ -265,6 +266,7 @@ function memberlite_render_footer_variation( $post_name ): bool {
  */
 function memberlite_get_footer_variations(): array {
 	$cached = get_transient( 'memberlite_footer_variations' );
+
 	if ( false !== $cached ) {
 		return $cached;
 	}
