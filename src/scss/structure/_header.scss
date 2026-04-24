@@ -270,7 +270,7 @@
 					color-mix(in srgb, var(--memberlite-color-site-navigation-background), black 10%),
 					color-mix(in srgb, var(--memberlite-color-site-navigation-background), white 20%)
 			);
-			box-shadow: var(--memberlite-shadow);
+			box-shadow: var(--memberlite-shadow, $header-shadow);
 			position: fixed;
 			width: 100%;
 			z-index: 10;
@@ -322,7 +322,7 @@
 	}
 
 	&.site-navigation-sticky {
-		box-shadow: var(--memberlite-shadow);
+		box-shadow: var(--memberlite-shadow, $header-shadow);
 		position: fixed;
 		top: 0;
 		width: 100%;

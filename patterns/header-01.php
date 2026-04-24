@@ -5,18 +5,18 @@
  * Description: Site branding on the left, member info on the right, with navigation below.
  * Categories: memberlite-header, header
  * Keywords: header, navigation, member, classic, two-column
+ * Viewport Width: 1280
  * Block Types: core/post-content
  * Post Types: memberlite_header
- * @package WordPress
- * @subpackage Memberlite
- * @since TBD
+ * Inserter: true
  */
 ?>
-<!-- wp:group {"align":"full","style":{"spacing":{"blockGap":"0"}},"layout":{"type":"constrained"}} -->
-<div class="wp-block-group alignfull"><!-- wp:columns {"verticalAlignment":null,"align":"wide","style":{"spacing":{"margin":{"top":"0","bottom":"0"}}}} -->
-<div class="wp-block-columns alignwide" style="margin-top:0;margin-bottom:0"><!-- wp:column {"verticalAlignment":"top","width":"40%","style":{"spacing":{"padding":{"top":"var:preset|spacing|20","bottom":"var:preset|spacing|20"}}}} -->
-<div class="wp-block-column is-vertically-aligned-top" style="padding-top:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--20);flex-basis:40%"><!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|10"}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
-<div class="wp-block-group"><!-- wp:site-logo {"width":120,"className":"is-style-default","style":{"spacing":{"margin":{"top":"0","right":"0","bottom":"var:preset|spacing|10"}}}} /-->
+<!-- wp:group {"align":"full","backgroundColor":"site-navigation-background","layout":{"type":"constrained"}} -->
+<div class="wp-block-group alignfull has-site-navigation-background-background-color has-background"><!-- wp:group {"align":"full","style":{"spacing":{"blockGap":"0"}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group alignfull"><!-- wp:columns {"align":"wide","style":{"spacing":{"margin":{"top":"0","bottom":"0"}}}} -->
+<div class="wp-block-columns alignwide" style="margin-top:0;margin-bottom:0"><!-- wp:column {"verticalAlignment":"top","width":"40%","style":{"spacing":{"padding":{"top":"0","bottom":"0"}}}} -->
+<div class="wp-block-column is-vertically-aligned-top" style="padding-top:0;padding-bottom:0;flex-basis:40%"><!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|10"}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
+<div class="wp-block-group"><!-- wp:site-logo {"width":81,"className":"is-style-default","style":{"spacing":{"margin":{"top":"0","right":"0","bottom":"var:preset|spacing|10"}},"layout":{"selfStretch":"fit","flexSize":null}}} /-->
 
 <!-- wp:group {"style":{"spacing":{"blockGap":"0"}},"layout":{"type":"flex","orientation":"vertical"}} -->
 <div class="wp-block-group"><!-- wp:site-title {"level":0,"fontSize":"30"} /-->
@@ -34,8 +34,8 @@
 <!-- /wp:columns --></div>
 <!-- /wp:group -->
 
-<!-- wp:group {"align":"full","layout":{"type":"constrained"}} -->
-<div class="wp-block-group alignfull"><!-- wp:group {"align":"wide","layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"space-between"}} -->
+<!-- wp:group {"align":"full","style":{"spacing":{"margin":{"top":"0"}}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group alignfull" style="margin-top:0"><!-- wp:group {"align":"wide","layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"space-between"}} -->
 <div class="wp-block-group alignwide"><!-- wp:group {"layout":{"type":"flex","flexWrap":"nowrap"}} -->
 <div class="wp-block-group"><!-- wp:paragraph -->
 <p><a href="#">Home</a></p>
@@ -59,5 +59,6 @@
 <!-- /wp:group -->
 
 <!-- wp:search {"label":"Search","showLabel":false,"placeholder":"Search","buttonText":"Search","buttonPosition":"no-button"} /--></div>
+<!-- /wp:group --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group -->
