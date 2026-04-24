@@ -62,6 +62,11 @@ function memberlite_get_header_variations( string $default_label = '' ): array {
 		$default_label = __( '— Default —', 'memberlite' );
 	}
 
+	$cached = get_transient( 'memberlite_header_variations' );
+	if ( false !== $cached ) {
+		return $cached;
+	}
+
 	$header_posts = get_posts( array(
 		'post_type'      => 'memberlite_header',
 		'post_status'    => 'publish',
@@ -77,6 +82,8 @@ function memberlite_get_header_variations( string $default_label = '' ): array {
 	foreach ( $header_posts as $header_post ) {
 		$header_choices[ $header_post->post_name ] = $header_post->post_title;
 	}
+
+	set_transient( 'memberlite_header_variations', $header_choices, 12 * HOUR_IN_SECONDS );
 
 	return $header_choices;
 }
