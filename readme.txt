@@ -92,7 +92,10 @@ Memberlite includes formatting for use with:
 
 == Changelog ==
 
-= 7.0.3 - TBD =
+= 7.0.3 - 2026-04-17 =
+* BUG FIX: Styling fix to prevent links that are too long in header navigations from overflowing past the sub-menu width. #255 (@RachelRVasquez)
+* REFACTOR: Remove automated Github action that built the theme's Sass and block scripts. Remove the `/build` directory from the `.gitignore` file. #264 (@RachelRVasquez)
+* BUG FIX: Styling fix on third-level sub-menus in the header navigation. When the second-level link was too long and tall, it made the third-level sub-menu unreachable by mouse. #265 (@RachelRVasquez)
 
 = 7.0.2 - 2026-04-02 =
 * BUG FIX: Fixed issue in v7.0.1 that incremented theme.json version and should not have.
