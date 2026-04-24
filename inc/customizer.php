@@ -245,15 +245,15 @@ class Memberlite_Customize {
 		self::add_memberlite_link_control( $wp_customize, 'memberlite_manage_headers_link_colors', __( 'Manage Headers', 'memberlite' ), 'colors', admin_url( 'edit.php?post_type=memberlite_header' ) );
 
 		self::add_memberlite_color_control( $wp_customize, 'memberlite_bgcolor_header', __( 'Header Background Color', 'memberlite' ), 'bgcolor_header', array(
-			'description' => __( 'This color may not be used in header patterns.', 'memberlite' ),
+			'description' => __( 'Color may not be reflected in pattern version of the header.', 'memberlite' ),
 		) );
 
 		self::add_memberlite_color_control( $wp_customize, 'memberlite_bgcolor_site_navigation', __( 'Primary Navigation Background Color', 'memberlite' ), 'bgcolor_site_navigation', array(
-			'description' => __( 'This color may not be used in header patterns.', 'memberlite' ),
+			'description' => __( 'Color may not be reflected in pattern version of the header.', 'memberlite' ),
 		) );
 
 		self::add_memberlite_color_control( $wp_customize, 'memberlite_color_site_navigation', __( 'Primary Navigation Link Color', 'memberlite' ), 'color_site_navigation', array(
-			'description' => __( 'This color may not be used in header patterns.', 'memberlite' ),
+			'description' => __( 'Color may not be reflected in pattern version of the header.', 'memberlite' ),
 		) );
 
 		// COLORS: Footer Colors ================
@@ -262,11 +262,11 @@ class Memberlite_Customize {
 		self::add_memberlite_link_control( $wp_customize, 'memberlite_manage_footers_link_colors', __( 'Manage Footers', 'memberlite' ), 'colors', admin_url( 'edit.php?post_type=memberlite_footer' ) );
 
 		self::add_memberlite_color_control( $wp_customize, 'memberlite_bgcolor_footer_widgets', __( 'Footer Widgets Background Color', 'memberlite' ), 'bgcolor_footer_widgets', array(
-			'description' => __( 'This color may not be used in footer patterns.', 'memberlite' ),
+			'description' => __( 'Color may not be reflected in pattern version of the footer.', 'memberlite' ),
 		) );
 
 		self::add_memberlite_color_control( $wp_customize, 'memberlite_color_footer_widgets', __( 'Footer Widgets Text Color', 'memberlite' ), 'color_footer_widgets', array(
-			'description' => __( 'This color may not be used in footer patterns.', 'memberlite' ),
+			'description' => __( 'Color may not be reflected in pattern version of the footer.', 'memberlite' ),
 		) );
 
 		// COLORS: Masthead Colors ==============
