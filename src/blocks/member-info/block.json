@@ -4,7 +4,7 @@
     "name": "memberlite/member-info",
     "version": "1.0.0",
     "title": "Member Info",
-    "category": "memberlite",
+    "category": "theme",
     "description": "Shows member login info, welcome message, and member navigation menus.",
     "icon": "admin-users",
     "supports": {

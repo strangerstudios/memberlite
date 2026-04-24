@@ -4,7 +4,7 @@
     "name": "memberlite/nav-menu",
     "version": "1.0.0",
     "title": "Nav Menu",
-    "category": "memberlite",
+    "category": "theme",
     "description": "Renders a WordPress classic navigation menu.",
     "icon": "menu",
     "supports": {
