@@ -294,7 +294,7 @@ function initStickyNav() {
 }
 
 function updateStickyState(stickyNav, stickyTop, adminBarHeight) {
-	if (window.scrollY >= stickyTop) {
+	if (window.scrollY > stickyTop) {
 		stickyNav.classList.add('site-navigation-sticky');
 		stickyNav.style.top = adminBarHeight + 'px';
 	} else {
