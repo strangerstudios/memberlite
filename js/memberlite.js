@@ -320,9 +320,11 @@ function initStickyVariation() {
 
 	const stickyTop = stickyWrapper.getBoundingClientRect().top + window.scrollY - adminBarHeight;
 
+	updateStickyState( stickyNav, stickyTop, adminBarHeight );
+
 	window.addEventListener( 'scroll', function () {
 		updateStickyState( stickyNav, stickyTop, adminBarHeight );
-	} );
+	}, { passive: true }  );
 }
 
 // ─── Back to Top ─────────────────────────────────────────────────────────────
