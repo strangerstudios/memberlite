@@ -12,7 +12,7 @@
 		position: relative;
 	}
 
-	&:hover {
+	&:hover, &:focus-within {
 		>.memberlite-variation-part-edit-link {
 			@include breakpoint(tablet) {
 				opacity: 1;
