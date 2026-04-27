@@ -27,13 +27,13 @@ if ( ! memberlite_hide_page_footer() ) {
 	}
 	?>
 	<footer id="colophon" class="<?php echo esc_attr( $footer_class ); ?>" role="contentinfo">
+		<?php memberlite_the_footer_edit_link( $footer_post_name ); ?>
 		<?php
 		if ( ! $footer_post_name_exists || ! memberlite_render_footer_variation( $footer_post_name ) ) {
 			get_template_part( 'components/footer/variation', 'default' );
 		}
 		?>
 	</footer><!-- #colophon -->
-	<?php memberlite_the_footer_edit_link( $footer_post_name ); ?>
 	<?php
 }
 ?>
