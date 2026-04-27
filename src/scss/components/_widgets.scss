@@ -20,21 +20,9 @@
 
 	// Widget base
 	.widget {
-		background-color: light-dark(
-			color-mix(in srgb, var(--memberlite-color-site-background), black 3%),
-			color-mix(in srgb, var(--memberlite-color-site-background), white 3%)
-		);
 		border-radius: var(--wp--custom--border--radius);
 		overflow: hidden;
 		margin: 0 0 var(--wp--style--root--padding-right) 0;
-
-		> :first-child {
-			padding-top: var(--wp--style--root--padding-top);
-		}
-
-		> :last-child {
-			padding-bottom: var(--wp--style--root--padding-bottom);
-		}
 	}
 
 	.widget-title {
