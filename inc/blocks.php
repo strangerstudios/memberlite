@@ -52,6 +52,7 @@ function memberlite_allowed_blocks( $allowed_block_types, $editor_context ) {
 	if ( ! in_array( $post_type, array( 'memberlite_footer', 'memberlite_header' ), true ) ) {
 		$disallowed_blocks = array(
 			'memberlite/nav-menu',
+			'memberlite/member-info',
 		);
 	}
 
