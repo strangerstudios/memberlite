@@ -70,10 +70,19 @@ function initDesktopNav() {
 	const widgetSiteNav = document.querySelector('.header-widget-area');
 	const memberNav = document.getElementById('member-navigation');
 	const mainSiteNav = document.getElementById('site-navigation');
+	// Memberlite Nav Menu Block
+	const blockSiteNav = document.querySelectorAll('.memberlite-nav-menu');
 
 	if (mainSiteNav) {
 		mainSiteNav.querySelectorAll('.menu-item-has-children').forEach(initDesktopNavItem);
 		initDesktopNavClickOutside(mainSiteNav);
+	}
+
+	if (blockSiteNav) {
+		blockSiteNav.forEach((blockMenu) => {
+			blockMenu.querySelectorAll('.menu-item-has-children').forEach(initDesktopNavItem);
+			initDesktopNavClickOutside(blockMenu);
+		});
 	}
 
 	if (memberNav) {

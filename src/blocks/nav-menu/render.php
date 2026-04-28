@@ -62,7 +62,7 @@ if ( ! empty( $attributes['backgroundColor'] ) ) {
 }
 
 $extra_attrs = array(
-	'id'         => 'site-navigation',
+	'class'      => 'memberlite-nav-menu',
 	'role'       => 'navigation',
 	'aria-label' => $aria_label,
 );

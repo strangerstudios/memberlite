@@ -32,6 +32,7 @@
 		$header_class     = 'site-header';
 
 		if ( ! memberlite_is_default_header_active() ) {
+			$header_class .= ' is-header-variation';
 			$header_class .= ' site-header-' . sanitize_html_class( $header_post_name );
 		} else {
 			$header_class .= ' site-header-default';
