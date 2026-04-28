@@ -229,7 +229,7 @@
 		justify-content: space-between;
 		gap: 5px;
 		padding: calc(var(--wp--preset--spacing--10) / 1.5) var(--wp--preset--spacing--10);
-		font-size: 14px;
+		font-size: var(--wp--preset--font-size--14);
 		font-weight: 700;
 		text-decoration: none;
 		text-transform: uppercase;

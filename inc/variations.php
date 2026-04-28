@@ -240,7 +240,7 @@ function memberlite_the_header_edit_link( string $post_name ): void {
 	}
 
 	echo '<div id="edit-memberlite-header" class="memberlite-variation-part-edit-link row has-global-padding">';
-	echo '<a href="' . esc_url( $edit_url ) . '">'. memberlite_edit_link_icon() . esc_html__( 'Edit Header', 'memberlite' ) . '</a>';
+	echo '<a href="' . esc_url( $edit_url ) . '">' . memberlite_edit_link_icon() . esc_html__( 'Edit Header', 'memberlite' ) . '</a>';
 	echo '</div>';
 }
 
@@ -309,6 +309,6 @@ function memberlite_the_footer_edit_link( string $post_name ): void {
 	}
 
 	echo '<div id="edit-memberlite-footer" class="memberlite-variation-part-edit-link row has-global-padding">';
-	echo '<a href="' . esc_url( $edit_url ) . '">'. memberlite_edit_link_icon() . esc_html__( 'Edit Footer', 'memberlite' ) . '</a>';
+	echo '<a href="' . esc_url( $edit_url ) . '">' . memberlite_edit_link_icon() . esc_html__( 'Edit Footer', 'memberlite' ) . '</a>';
 	echo '</div>';
 }
