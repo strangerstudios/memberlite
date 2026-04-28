@@ -1,0 +1,37 @@
+/*
+ * Front-end styles for the memberlite/nav-menu block.
+ *
+ * Since these menus normally exist in the header already, the styles exist
+ * in the header.scss file. We need styles specifically for the footer.
+ */
+
+.is-footer-variation {
+	.wp-block-memberlite-nav-menu ul.menu {
+		align-items: center;
+		display: flex;
+		flex-wrap: wrap;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	.wp-block-memberlite-nav-menu ul.menu > li.menu-item {
+		margin: 0;
+		position: relative;
+	}
+
+	.wp-block-memberlite-nav-menu ul.menu > li.menu-item > a {
+		color: inherit;
+		display: block;
+		overflow-wrap: normal;
+		padding: var( --wp--preset--spacing--20, 0.75rem ) var( --wp--preset--spacing--10, 0.5rem );
+		text-decoration: none;
+		word-break: normal;
+	}
+
+	/* Hide sub-menus and dropdown toggle buttons — first tier only */
+	.wp-block-memberlite-nav-menu ul.sub-menu,
+	.wp-block-memberlite-nav-menu button {
+		display: none;
+	}
+}
