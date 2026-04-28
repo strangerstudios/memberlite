@@ -60,12 +60,15 @@
 
 #bbpress-forums div.even,
 #bbpress-forums ul.even {
-	background-color: #fff;
+	background-color: var(--memberlite-color-site-background);
 }
 
 #bbpress-forums div.odd,
 #bbpress-forums ul.odd {
-	background-color: #fafafa;
+	background-color: light-dark(
+		color-mix(in srgb, var(--memberlite-color-site-background), black 3%),
+		color-mix(in srgb, var(--memberlite-color-site-background), white 3%)
+	);
 }
 
 body.reply-edit .reply {
@@ -147,7 +150,7 @@ body.reply-edit .reply {
 
 #bbpress-forums li.bbp-header,
 #bbpress-forums li.bbp-footer {
-	background: #efefef;
+	background: var(--memberlite-color-site-navigation-background);
 	border-top: 1px solid var(--memberlite-color-borders);
 }
 
@@ -1135,7 +1138,7 @@ div.bbp-template-notice.error,
 div.bbp-template-notice.warning {
 	background-color: #f2dede;
 	border-color: #ebccd1;
-	color: #a94442; 
+	color: #a94442;
 }
 
 div.bbp-template-notice.error a,
@@ -1217,7 +1220,7 @@ div.bbp-template-notice li {
 .bbp-login-form .bbp-password,
 .bbp-login-form .bbp-remember-me,
 .bbp-login-form .bbp-submit-wrapper {
-	margin-bottom: 2.9rem; 
+	margin-bottom: 2.9rem;
 }
 
 .bbp-login-form .bbp-submit-wrapper {
