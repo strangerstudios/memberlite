@@ -21,16 +21,28 @@ function memberlite_register_blocks(): void {
 	foreach ( $memberlite_blocks as $memberlite_block ) {
 		register_block_type( get_template_directory() . '/build/blocks/' . $memberlite_block );
 	}
+}
+add_action( 'init', 'memberlite_register_blocks' );
 
+/**
+ * Localize editor-only data for the Nav Menu block.
+ *
+ * Runs on enqueue_block_editor_assets so the data is only attached in the block editor,
+ * not on every front-end request.
+ *
+ * @since TBD
+ * @return void
+ */
+function memberlite_enqueue_nav_menu_block_data(): void {
 	wp_localize_script(
 		'memberlite-nav-menu-editor-script',
-		'active_pmpro_plugins',
+		'memberliteBlockData',
 		array(
-			'nav_menu_plugin_active' => function_exists( 'pmpro_is_plugin_active' ) && pmpro_is_plugin_active( 'pmpro-nav-menus/pmpro-nav-menus.php' ),
+			'navMenuPluginActive' => function_exists( 'pmpro_is_plugin_active' ) && pmpro_is_plugin_active( 'pmpro-nav-menus/pmpro-nav-menus.php' ),
 		)
 	);
 }
-add_action( 'init', 'memberlite_register_blocks' );
+add_action( 'enqueue_block_editor_assets', 'memberlite_enqueue_nav_menu_block_data' );
 
 /**
  * Only allow Memberlite's Nav Menu block on the memberlite_header and memberlite_footer post types.
@@ -55,8 +67,13 @@ function memberlite_allowed_blocks( $allowed_block_types, $editor_context ) {
 		);
 	}
 
-	// Get all registered blocks if $allowed_block_types is not already set.
-	if ( ! is_array( $allowed_block_types ) || empty( $allowed_block_types ) ) {
+	// If another filter has explicitly disallowed all blocks, respect that.
+	if ( false === $allowed_block_types ) {
+		return $allowed_block_types;
+	}
+
+	// Default value (true) — expand into an explicit allowlist of currently registered blocks.
+	if ( ! is_array( $allowed_block_types ) ) {
 		$registered_blocks   = WP_Block_Type_Registry::get_instance()->get_all_registered();
 		$allowed_block_types = array_keys( $registered_blocks );
 	}
