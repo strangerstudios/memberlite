@@ -7,71 +7,28 @@
  */
 
 /**
- * Enqueue JS for custom block inserter icon for our Memberlite block category.
- *
- * @since TBD
- * @return void
- */
-function memberlite_enqueue_block_inserter_icon(): void {
-	$asset_path = get_template_directory() . '/build/editor/block-inserter.asset.php';
-
-	if ( ! file_exists( $asset_path ) ) {
-		if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
-			// Log in debug mode. See docs/build-process.md for more info on the build process.
-			error_log( 'Memberlite: Missing asset file at ' . $asset_path );
-		}
-
-		return;
-	}
-
-	$asset_file = include $asset_path;
-
-	wp_enqueue_script(
-		'memberlite-block-inserter-icons',
-		get_template_directory_uri() . '/build/editor/block-inserter.js',
-		$asset_file['dependencies'],
-		$asset_file['version'],
-		true
-	);
-}
-add_action( 'enqueue_block_editor_assets', 'memberlite_enqueue_block_inserter_icon' );
-
-/**
  * Register custom Memberlite blocks.
- *
- * Each block's editor script handle is registered first so that
- * register_block_type() (which reads the named handle from block.json)
- * can resolve it correctly.
  *
  * @since TBD
  * @return void
  */
 function memberlite_register_blocks(): void {
-	// Nav Menu block.
-	wp_register_script(
-		'memberlite-block-nav-menu-editor',
-		get_template_directory_uri() . '/build/blocks/nav-menu/index.js',
-		array( 'wp-blocks', 'wp-element', 'wp-block-editor', 'wp-components', 'wp-i18n', 'wp-api-fetch' ),
-		MEMBERLITE_VERSION,
-		true
+	$memberlite_blocks = array(
+		'nav-menu',
+		'member-info',
 	);
-	register_block_type( get_template_directory() . '/build/blocks/nav-menu' );
 
-	wp_localize_script('memberlite-block-nav-menu-editor', 'active_pmpro_plugins',
+	foreach ( $memberlite_blocks as $memberlite_block ) {
+		register_block_type( get_template_directory() . '/build/blocks/' . $memberlite_block );
+	}
+
+	wp_localize_script(
+		'memberlite-nav-menu-editor-script',
+		'active_pmpro_plugins',
 		array(
-			'nav_menu_plugin_active' => function_exists( 'pmpro_is_plugin_active' ) && pmpro_is_plugin_active( 'pmpro-nav-menus/pmpro-nav-menus.php')
+			'nav_menu_plugin_active' => function_exists( 'pmpro_is_plugin_active' ) && pmpro_is_plugin_active( 'pmpro-nav-menus/pmpro-nav-menus.php' ),
 		)
 	);
-
-	// Member Info block.
-	wp_register_script(
-		'memberlite-block-member-info-editor',
-		get_template_directory_uri() . '/build/blocks/member-info/index.js',
-		array( 'wp-blocks', 'wp-element', 'wp-block-editor', 'wp-components', 'wp-i18n' ),
-		MEMBERLITE_VERSION,
-		true
-	);
-	register_block_type( get_template_directory() . '/build/blocks/member-info' );
 }
 add_action( 'init', 'memberlite_register_blocks' );
 
@@ -122,3 +79,33 @@ function memberlite_allowed_blocks( $allowed_block_types, $editor_context ) {
 	return $filtered_blocks;
 }
 add_filter( 'allowed_block_types_all', 'memberlite_allowed_blocks', 10, 2 );
+
+/**
+ * Enqueue JS for custom block inserter icon for our Memberlite block category.
+ *
+ * @since TBD
+ * @return void
+ */
+function memberlite_enqueue_block_inserter_icon(): void {
+	$asset_path = get_template_directory() . '/build/editor/block-inserter.asset.php';
+
+	if ( ! file_exists( $asset_path ) ) {
+		if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
+			// Log in debug mode. See docs/build-process.md for more info on the build process.
+			error_log( 'Memberlite: Missing asset file at ' . $asset_path );
+		}
+
+		return;
+	}
+
+	$asset_file = include $asset_path;
+
+	wp_enqueue_script(
+		'memberlite-block-inserter-icons',
+		get_template_directory_uri() . '/build/editor/block-inserter.js',
+		$asset_file['dependencies'],
+		$asset_file['version'],
+		true
+	);
+}
+add_action( 'enqueue_block_editor_assets', 'memberlite_enqueue_block_inserter_icon' );
