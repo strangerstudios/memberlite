@@ -45,11 +45,12 @@
 		gap: 5px;
 		padding: calc(var(--wp--preset--spacing--10) / 1.5) var(--wp--preset--spacing--10);
 		border-radius: var(--wp--custom--border--radius); //repeated to prevent weird clip effect
-		background-color: #06896F;
+		background-color: #04624F;
 		font-family: 'Poppins', sans-serif;
 		font-size: var(--wp--preset--font-size--14);
 		font-weight: 700;
 		color: #FFFFFF;
+		letter-spacing: 1px;
 		text-decoration: none;
 	}
 
@@ -69,7 +70,7 @@
 
 		&::after {
 			bottom: 100%;
-			border-bottom-color: #06896F;
+			border-bottom-color: #04624F;
 		}
 	}
 
@@ -78,7 +79,7 @@
 
 		&::after {
 			top: 100%;
-			border-top-color: #06896F;
+			border-top-color: #04624F;
 		}
 	}
 }

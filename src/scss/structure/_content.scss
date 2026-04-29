@@ -229,14 +229,14 @@
 		justify-content: space-between;
 		gap: 5px;
 		padding: calc(var(--wp--preset--spacing--10) / 1.5) var(--wp--preset--spacing--10);
+		font-family: 'Poppins', sans-serif;
 		font-size: var(--wp--preset--font-size--14);
 		font-weight: 700;
 		text-decoration: none;
-		text-transform: uppercase;
+		color: #FFFFFF;
 		letter-spacing: 1px;
-		color: var(--memberlite-color-site-background);
-		background-color: var(--memberlite-color-text);
-		border: 2px solid var(--memberlite-color-site-background);
+		background-color: #04624F;
+		border: #FFFFFF;
 		border-radius: var(--wp--custom--border--radius);
 		box-shadow: $btn-shadow;
 
