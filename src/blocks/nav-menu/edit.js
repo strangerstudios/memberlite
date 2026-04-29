@@ -20,12 +20,10 @@ function Edit( { attributes, setAttributes } ) {
 	const [ menus, setMenus ] = useState( [] );
 	const [ isLoading, setIsLoading ] = useState( true );
 	const [ error, setError ] = useState( '' );
-	// From wp_localize_script...
-	const navMenusAddOnActive = active_pmpro_plugins.nav_menu_plugin_active ?? false;
+	// From wp_localize_script — see memberlite_enqueue_nav_menu_block_data() in inc/blocks.php.
+	const navMenusAddOnActive = window.memberliteBlockData?.navMenuPluginActive ?? false;
 
 	useEffect( () => {
-		const labels = window.memberliteBlockData?.menuLocationLabels || {};
-
 		if ( ! navMenusAddOnActive ) {
 			Promise.all( [
 				apiFetch( { path: '/wp/v2/menus' } ),
@@ -51,7 +49,7 @@ function Edit( { attributes, setAttributes } ) {
 			] )
 				.then( ( [ fetchedLocations, fetchedMenus ] ) => {
 					const locationOptions = Object.entries( fetchedLocations ).map( ( [ slug, location ] ) => ( {
-						label: location.description || labels[ slug ] || slug,
+						label: location.description || slug,
 						value: `location:${ slug }`,
 					} ) );
 
