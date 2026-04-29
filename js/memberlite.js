@@ -299,7 +299,7 @@ function initStickyNav() {
 
 	window.addEventListener( 'scroll', function () {
 		updateStickyState( stickyNav, stickyTop, adminBarHeight );
-	} );
+	}, { passive: true } );
 }
 
 function updateStickyState( stickyNav, stickyTop, adminBarHeight ) {
@@ -333,7 +333,7 @@ function initStickyVariation() {
 
 	window.addEventListener( 'scroll', function () {
 		updateStickyState( stickyNav, stickyTop, adminBarHeight );
-	}, { passive: true }  );
+	}, { passive: true } );
 }
 
 // ─── Back to Top ─────────────────────────────────────────────────────────────
