@@ -5,14 +5,22 @@
  6.2 Plugins: bbPress
 
  Covers:
+ - General layout and typography
+ - Forum, topic, and reply lists
+ - Row backgrounds
+ - Header and footer rows
+ - Sticky and closed topics
+ - Forms
+ - Notices
+ - Subscription and favorite toggles
+ - Avatars
 --------------------------------------------------------------*/
 
-//General
 #bbpress-forums {
 	font-family: var(--memberlite-body-font), ui-sans-serif;
 	font-size: var(--wp--preset--font-size--18);
 
-	//links
+	// Links
 	span.bbp-admin-links a,
 	.bbp-forum-header a.bbp-forum-permalink,
 	.bbp-reply-header a.bbp-reply-permalink,
@@ -20,13 +28,19 @@
 		color: var(--memberlite-color-link);
 	}
 
-	//breadcrumbs, tags
+	// Breadcrumbs, topic tags, and admin links
 	div.bbp-breadcrumb,
-	div.bbp-topic-tags {
+	div.bbp-topic-tags,
+	span.bbp-admin-links a {
 		font-size: var(--wp--preset--font-size--14);
 	}
 
-	//Topics/Reply
+	// Search form
+	div.bbp-search-form {
+		margin-bottom: 1rem;
+	}
+
+	// Forum, topic, and reply lists
 	ul.bbp-forums,
 	ul.bbp-lead-topic,
 	ul.bbp-replies,
@@ -36,14 +50,18 @@
 		border-color: var(--memberlite-color-borders);
 	}
 
-	.bbp-forum-info .bbp-forum-content, p.bbp-topic-meta {
-		font-size: var(--wp--preset--font-size--14);
-	}
-
 	ul.bbp-topics {
 		border-radius: var(--wp--custom--border--radius);
 	}
 
+	// Secondary meta text inside forum info and topic rows
+	.bbp-forum-info .bbp-forum-content,
+	p.bbp-topic-meta {
+		font-size: var(--wp--preset--font-size--14);
+		margin: 5px 0;
+	}
+
+	// Row backgrounds — even rows use base background, odd rows get a subtle tint
 	div.even,
 	ul.even {
 		background-color: var(--memberlite-color-site-background);
@@ -59,102 +77,102 @@
 		);
 	}
 
+	// Shared top border and padding for header, footer, and body rows
 	li.bbp-footer,
 	li.bbp-header,
 	li.bbp-body ul.forum,
 	li.bbp-body ul.topic {
 		border-top: 1px solid var(--memberlite-color-borders);
+		padding: 1rem;
 	}
 
+	// Header and footer row typography
+	li.bbp-footer,
+	li.bbp-header {
+		font-family: var(--memberlite-header-font);
+		font-weight: 400;
+		text-align: center;
+	}
+
+	// Forum, reply, and topic header wrappers
 	div.bbp-forum-header,
 	div.bbp-reply-header,
 	div.bbp-topic-header {
 		background-color: var(--memberlite-color-site-background);
 		border-color: var(--memberlite-color-borders);
+		font-size: var(--wp--preset--font-size--14);
 	}
 
-	//sticky topics
-	.bbp-forum-content ul.sticky, .bbp-topics ul.sticky, .bbp-topics ul.super-sticky, .bbp-topics-front ul.super-sticky {
-		background-color: var(--pmpro--color--alert-background)!important; //original styles also use important
+	// Sticky topics use the alert background to stand out
+	.bbp-forum-content ul.sticky,
+	.bbp-topics ul.sticky,
+	.bbp-topics ul.super-sticky,
+	.bbp-topics-front ul.super-sticky {
+		background-color: var(--pmpro--color--alert-background) !important; // bbPress core also uses !important here
 	}
 
-	//closed topics
-	ul.status-closed, ul.status-closed a {
+	// Closed topics are visually muted
+	ul.status-closed,
+	ul.status-closed a {
 		color: light-dark(
-				color-mix(in srgb, var(--memberlite-color-text), white 40%),
-				color-mix(in srgb, var(--memberlite-color-text), black 40%)
+			color-mix(in srgb, var(--memberlite-color-text), white 40%),
+			color-mix(in srgb, var(--memberlite-color-text), black 40%)
 		);
 	}
 
-	//Forms
+	// Forms
 	fieldset.bbp-form,
 	div.wp-editor-container {
 		border: 1px solid var(--memberlite-color-borders);
 		border-radius: var(--wp--custom--border--radius);
 	}
 
-	fieldset.bbp-form input[type=password],
-	fieldset.bbp-form input[type=text],
-	fieldset.bbp-form select {
-		height: auto;
+	fieldset.bbp-form {
+		input[type=password],
+		input[type=text],
+		select {
+			height: auto;
+		}
 	}
 
-	//notices
-	div.bbp-template-notice, div.indicator-hint {
-		border-radius: var(--wp--custom--border--radius);
+	// Notices — default uses alert (warning) colors; .info variant below
+	div.bbp-template-notice,
+	div.indicator-hint {
 		background-color: var(--pmpro--color--alert-background);
 		border-color: var(--pmpro--color--alert-border);
+		border-radius: var(--wp--custom--border--radius);
 		color: var(--pmpro--color--alert-text);
 	}
 
-	div.bbp-template-notice a {
-		text-decoration: underline;
-		text-underline-offset: 3px;
-		color: inherit;
+	div.bbp-template-notice {
+		a {
+			color: inherit;
+			text-decoration: underline;
+			text-underline-offset: 3px;
+		}
+
+		li,
+		p {
+			font-size: var(--wp--preset--font-size--16);
+		}
+
+		&.info {
+			background-color: var(--pmpro--color--info-background);
+			border: 1px solid var(--pmpro--color--info-border);
+			color: var(--pmpro--color--info-text);
+		}
 	}
 
-	div.bbp-template-notice.info {
-		background-color: var(--pmpro--color--info-background);
-		border: 1px solid var(--pmpro--color--info-border);
-		color: var(--pmpro--color--info-text);
-	}
-
-	div.bbp-template-notice li, div.bbp-template-notice p {
-		font-size: var(--wp--preset--font-size--16);
-	}
-
-	//Toggles
+	// Subscription and favorite toggles
 	#favorite-toggle,
 	#subscription-toggle {
 		padding-bottom: 1rem;
 	}
+
+	// Avatars
+	div.bbp-forum-author img.avatar,
+	div.bbp-reply-author img.avatar,
+	div.bbp-topic-author img.avatar {
+		border-radius: 50%;
+	}
 }
-
-//stuff to implement above that was copied from old css
-#bbpress-forums li.bbp-footer, #bbpress-forums li.bbp-header {
-	font-weight: 400;
-	padding: 1rem;
-	text-align: center;
-	font-family: var(--memberlite-header-font);
-}
-
-#bbpress-forums .bbp-forum-info .bbp-forum-content, #bbpress-forums p.bbp-topic-meta {
-	font-size: var(--wp--preset--font-size--small);
-	margin: 5px 0;
-}
-
-#bbpress-forums li.bbp-body ul.forum, #bbpress-forums li.bbp-body ul.topic {
-	padding: 1rem;
-}
-
-#bbpress-forums div.bbp-search-form {
-	margin-bottom: 1rem;
-}
-
-
-
-
-
-
-
-
