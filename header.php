@@ -39,6 +39,7 @@
 		}
 		?>
 		<header class="<?php echo esc_attr( $header_class ); ?>" role="banner">
+			<?php memberlite_the_header_edit_link( $header_post_name ); ?>
 			<?php if ( memberlite_is_default_header_active() ) {
 				get_template_part( 'components/header/variation', 'default' );
 			} else {
@@ -57,7 +58,6 @@
 				get_template_part( 'components/header/header', 'mobile-menu' );
 			} ?>
 		</header><!-- #masthead -->
-		<?php memberlite_the_header_edit_link( $header_post_name ); ?>
 	<?php } // End if memberlite_hide_page_header is false ?>
 
 	<?php do_action( 'memberlite_before_content' ); ?>
