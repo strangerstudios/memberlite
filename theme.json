@@ -1759,15 +1759,9 @@
 							}
 						},
 						":active": {
-							"color": {
-								"text": "var(--wp--preset--color--color-secondary)"
-							},
 							"typography": {
 								"textDecoration": "none"
 							}
-						},
-						"color": {
-							"text": "var(--wp--preset--color--color-primary)"
 						},
 						"typography": {
 							"textDecoration": "none"
