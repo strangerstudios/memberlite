@@ -30,7 +30,6 @@
 	z-index: 10;
 	width: max-content;
 	padding: 0;
-	border: 2px solid var(--memberlite-color-site-background);
 	border-radius: var(--wp--custom--border--radius);
 	box-shadow: $btn-shadow;
 
@@ -46,13 +45,12 @@
 		gap: 5px;
 		padding: calc(var(--wp--preset--spacing--10) / 1.5) var(--wp--preset--spacing--10);
 		border-radius: var(--wp--custom--border--radius); //repeated to prevent weird clip effect
-		background-color: var(--memberlite-color-text);
+		background-color: #06896F;
+		font-family: 'Poppins', sans-serif;
 		font-size: var(--wp--preset--font-size--14);
 		font-weight: 700;
-		color: var(--memberlite-color-site-background);
+		color: #FFFFFF;
 		text-decoration: none;
-		text-transform: uppercase;
-		letter-spacing: 1px;
 	}
 
 	&::after {
@@ -71,7 +69,7 @@
 
 		&::after {
 			bottom: 100%;
-			border-bottom-color: var(--memberlite-color-text);
+			border-bottom-color: #06896F;
 		}
 	}
 
@@ -80,7 +78,7 @@
 
 		&::after {
 			top: 100%;
-			border-top-color: var(--memberlite-color-text);
+			border-top-color: #06896F;
 		}
 	}
 }
