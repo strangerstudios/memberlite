@@ -61,7 +61,6 @@ function memberlite_register_header_cpt(): void {
 }
 add_action( 'init', 'memberlite_register_header_cpt' );
 
-
 /**
  * Auto-generate a title and slug for memberlite_header posts saved without one.
  *
