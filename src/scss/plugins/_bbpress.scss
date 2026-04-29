@@ -32,7 +32,7 @@
 	ul.bbp-replies,
 	ul.bbp-search-results,
 	ul.bbp-topics {
-		font-size: var(--wp--preset--font-size--16);
+		font-size: var(--wp--preset--font-size--18);
 		border-color: var(--memberlite-color-borders);
 	}
 
@@ -63,7 +63,7 @@
 	li.bbp-header,
 	li.bbp-body ul.forum,
 	li.bbp-body ul.topic {
-		border-color: var(--memberlite-color-borders);
+		border-top: 1px solid var(--memberlite-color-borders);
 	}
 
 	div.bbp-forum-header,
@@ -73,19 +73,24 @@
 		border-color: var(--memberlite-color-borders);
 	}
 
+	//sticky topics
+	.bbp-forum-content ul.sticky, .bbp-topics ul.sticky, .bbp-topics ul.super-sticky, .bbp-topics-front ul.super-sticky {
+		background-color: var(--pmpro--color--alert-background)!important; //original styles also use important
+	}
+
+	//closed topics
+	ul.status-closed, ul.status-closed a {
+		color: light-dark(
+				color-mix(in srgb, var(--memberlite-color-text), white 40%),
+				color-mix(in srgb, var(--memberlite-color-text), black 40%)
+		);
+	}
+
 	//Forms
 	fieldset.bbp-form,
 	div.wp-editor-container {
 		border: 1px solid var(--memberlite-color-borders);
 		border-radius: var(--wp--custom--border--radius);
-	}
-
-	.quicktags-toolbar {
-		border-color: var(--memberlite-color-borders);
-		background: light-dark(
-				color-mix(in srgb, var(--memberlite-color-site-background), black 3%),
-				color-mix(in srgb, var(--memberlite-color-site-background), white 3%)
-		);
 	}
 
 	fieldset.bbp-form input[type=password],
@@ -123,6 +128,27 @@
 	#subscription-toggle {
 		padding-bottom: 1rem;
 	}
+}
+
+//stuff to implement above that was copied from old css
+#bbpress-forums li.bbp-footer, #bbpress-forums li.bbp-header {
+	font-weight: 400;
+	padding: 1rem;
+	text-align: center;
+	font-family: var(--memberlite-header-font);
+}
+
+#bbpress-forums .bbp-forum-info .bbp-forum-content, #bbpress-forums p.bbp-topic-meta {
+	font-size: var(--wp--preset--font-size--small);
+	margin: 5px 0;
+}
+
+#bbpress-forums li.bbp-body ul.forum, #bbpress-forums li.bbp-body ul.topic {
+	padding: 1rem;
+}
+
+#bbpress-forums div.bbp-search-form {
+	margin-bottom: 1rem;
 }
 
 
