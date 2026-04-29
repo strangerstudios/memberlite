@@ -77,7 +77,7 @@ const MemberliteCustomSettings = () => {
 						} }
 					/>
 					<ExternalLink href={ window.memberliteEditorData.manageFootersUrl }>
-						{ __( 'Manage Footers', textDomain ) }
+						{ __( 'Edit Footer Patterns', textDomain ) }
 					</ExternalLink>
 				</>
 			)}

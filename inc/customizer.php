@@ -240,34 +240,28 @@ class Memberlite_Customize {
 		}
 
 		// COLORS: Header Colors ================
-		self::add_memberlite_heading( $wp_customize, 'memberlite_header_colors', __( 'Header Colors', 'memberlite' ), 'colors' );
+		self::add_memberlite_heading( $wp_customize, 'memberlite_header_colors', __( 'Default Header Colors', 'memberlite' ), 'colors' );
 
-		self::add_memberlite_link_control( $wp_customize, 'memberlite_manage_headers_link_colors', __( 'Manage Headers', 'memberlite' ), 'colors', admin_url( 'edit.php?post_type=memberlite_header' ) );
+		self::add_memberlite_notice_control( $wp_customize, 'memberlite_header_colors_notice', __( 'These colors apply to the default header. Some header patterns may not use every color. Colors changed directly in the block editor override these settings.', 'memberlite' ), 'colors' );
 
-		self::add_memberlite_color_control( $wp_customize, 'memberlite_bgcolor_header', __( 'Header Background Color', 'memberlite' ), 'bgcolor_header', array(
-			'description' => __( 'Color may not be reflected in pattern version of the header.', 'memberlite' ),
-		) );
+		self::add_memberlite_link_control( $wp_customize, 'memberlite_manage_headers_link_colors', __( 'Edit Header Patterns', 'memberlite' ), 'colors', admin_url( 'edit.php?post_type=memberlite_header' ) );
 
-		self::add_memberlite_color_control( $wp_customize, 'memberlite_bgcolor_site_navigation', __( 'Primary Navigation Background Color', 'memberlite' ), 'bgcolor_site_navigation', array(
-			'description' => __( 'Color may not be reflected in pattern version of the header.', 'memberlite' ),
-		) );
+		self::add_memberlite_color_control( $wp_customize, 'memberlite_bgcolor_header', __( 'Header Background Color', 'memberlite' ), 'bgcolor_header' );
 
-		self::add_memberlite_color_control( $wp_customize, 'memberlite_color_site_navigation', __( 'Primary Navigation Link Color', 'memberlite' ), 'color_site_navigation', array(
-			'description' => __( 'Color may not be reflected in pattern version of the header.', 'memberlite' ),
-		) );
+		self::add_memberlite_color_control( $wp_customize, 'memberlite_bgcolor_site_navigation', __( 'Primary Navigation Background Color', 'memberlite' ), 'bgcolor_site_navigation' );
+
+		self::add_memberlite_color_control( $wp_customize, 'memberlite_color_site_navigation', __( 'Primary Navigation Link Color', 'memberlite' ), 'color_site_navigation' );
 
 		// COLORS: Footer Colors ================
-		self::add_memberlite_heading( $wp_customize, 'memberlite_footer_colors', __( 'Footer Colors', 'memberlite' ), 'colors' );
+		self::add_memberlite_heading( $wp_customize, 'memberlite_footer_colors', __( 'Default Footer Colors', 'memberlite' ), 'colors' );
 
-		self::add_memberlite_link_control( $wp_customize, 'memberlite_manage_footers_link_colors', __( 'Manage Footers', 'memberlite' ), 'colors', admin_url( 'edit.php?post_type=memberlite_footer' ) );
+		self::add_memberlite_notice_control( $wp_customize, 'memberlite_footer_colors_notice', __( 'These colors apply to the default footer. Some footer patterns may not use every color. Colors changed directly in the block editor override these settings.', 'memberlite' ), 'colors' );
 
-		self::add_memberlite_color_control( $wp_customize, 'memberlite_bgcolor_footer_widgets', __( 'Footer Widgets Background Color', 'memberlite' ), 'bgcolor_footer_widgets', array(
-			'description' => __( 'Color may not be reflected in pattern version of the footer.', 'memberlite' ),
-		) );
+		self::add_memberlite_link_control( $wp_customize, 'memberlite_manage_footers_link_colors', __( 'Edit Footer Patterns', 'memberlite' ), 'colors', admin_url( 'edit.php?post_type=memberlite_footer' ) );
 
-		self::add_memberlite_color_control( $wp_customize, 'memberlite_color_footer_widgets', __( 'Footer Widgets Text Color', 'memberlite' ), 'color_footer_widgets', array(
-			'description' => __( 'Color may not be reflected in pattern version of the footer.', 'memberlite' ),
-		) );
+		self::add_memberlite_color_control( $wp_customize, 'memberlite_bgcolor_footer_widgets', __( 'Footer Widgets Background Color', 'memberlite' ), 'bgcolor_footer_widgets' );
+
+		self::add_memberlite_color_control( $wp_customize, 'memberlite_color_footer_widgets', __( 'Footer Widgets Text Color', 'memberlite' ), 'color_footer_widgets' );
 
 		// COLORS: Masthead Colors ==============
 		self::add_memberlite_heading( $wp_customize, 'memberlite_masthead_colors', __( 'Masthead Colors', 'memberlite' ), 'colors' );
@@ -374,8 +368,8 @@ class Memberlite_Customize {
 		// HEADER: Variation Settings Heading ===
 		self::add_memberlite_heading( $wp_customize, 'memberlite_pattern_header_heading', __( 'Variation Settings', 'memberlite' ), 'memberlite_header_options' );
 
-		// HEADER: Manage Headers link ==========
-		self::add_memberlite_link_control( $wp_customize, 'memberlite_manage_headers_link', __( 'Manage Headers', 'memberlite' ), 'memberlite_header_options', admin_url( 'edit.php?post_type=memberlite_header' ) );
+		// HEADER: Edit Header Patterns link ==========
+		self::add_memberlite_link_control( $wp_customize, 'memberlite_manage_headers_link', __( 'Edit Header Patterns', 'memberlite' ), 'memberlite_header_options', admin_url( 'edit.php?post_type=memberlite_header' ) );
 
 		// HEADER: Default Header ===============
 		self::add_memberlite_setting_control( $wp_customize, 'memberlite_default_header_slug', __( 'Default Header', 'memberlite' ), 'memberlite_header_options', array(
@@ -452,8 +446,8 @@ class Memberlite_Customize {
 		// FOOTER: Pattern Footer Heading ========
 		self::add_memberlite_heading( $wp_customize, 'memberlite_pattern_footer_heading', __( 'Variation Settings', 'memberlite' ), 'memberlite_footer_options' );
 
-		// FOOTER: Manage Footers link ========
-		self::add_memberlite_link_control( $wp_customize, 'memberlite_manage_footers_link', __( 'Manage Footers', 'memberlite' ), 'memberlite_footer_options', admin_url( 'edit.php?post_type=memberlite_footer' ) );
+		// FOOTER: Edit Footer Patterns link ========
+		self::add_memberlite_link_control( $wp_customize, 'memberlite_manage_footers_link', __( 'Edit Footer Patterns', 'memberlite' ), 'memberlite_footer_options', admin_url( 'edit.php?post_type=memberlite_footer' ) );
 
 		// FOOTER: Footer CPT choices ===================
 		$footer_cpt_posts = memberlite_get_footer_variations();
@@ -725,6 +719,37 @@ class Memberlite_Customize {
 					'label'   => $label,
 					'section' => $section,
 					'url'     => $url,
+				)
+			)
+		);
+	}
+
+	/**
+	 * Helper to add a notice control (no setting, just a rendered paragraph for informational purposes)
+	 *
+	 * @since 7.0
+	 *
+	 * @param WP_Customize_Manager $wp_customize
+	 * @param string $id
+	 * @param string $label
+	 * @param string $section
+	 *
+	 * @return void
+	 */
+	public static function add_memberlite_notice_control( WP_Customize_Manager $wp_customize, string $id, string $description, string $section ): void {
+		$wp_customize->add_setting(
+			$id,
+			array(
+				'sanitize_callback' => 'sanitize_text_field',
+			)
+		);
+		$wp_customize->add_control(
+			new Memberlite_Customize_Notice_Control(
+				$wp_customize,
+				$id,
+				array(
+					'description'   => $description,
+					'section'       => $section,
 				)
 			)
 		);
@@ -1153,6 +1178,14 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 
 		public function render_content() {
 			echo '<a href="' . esc_url( $this->url ) . '" target="_blank" class="button button-secondary">' . esc_html( $this->label ) . '</a>';
+		}
+	}
+
+	class Memberlite_Customize_Notice_Control extends WP_Customize_Control {
+		public $type = 'memberlite_notice';
+
+		public function render_content() {
+			echo '<p>' . esc_html( $this->description ) . '</p>';
 		}
 	}
 }
