@@ -134,6 +134,7 @@
 		input[type=text],
 		select {
 			height: auto;
+			padding: var(--pmpro--base--spacing--small, 12px);
 		}
 	}
 
