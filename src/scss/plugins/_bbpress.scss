@@ -1,0 +1,134 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+
+/*--------------------------------------------------------------
+ 6.2 Plugins: bbPress
+
+ Covers:
+--------------------------------------------------------------*/
+
+//General
+#bbpress-forums {
+	font-family: var(--memberlite-body-font), ui-sans-serif;
+	font-size: var(--wp--preset--font-size--18);
+
+	//links
+	span.bbp-admin-links a,
+	.bbp-forum-header a.bbp-forum-permalink,
+	.bbp-reply-header a.bbp-reply-permalink,
+	.bbp-topic-header a.bbp-topic-permalink {
+		color: var(--memberlite-color-link);
+	}
+
+	//breadcrumbs, tags
+	div.bbp-breadcrumb,
+	div.bbp-topic-tags {
+		font-size: var(--wp--preset--font-size--14);
+	}
+
+	//Topics/Reply
+	ul.bbp-forums,
+	ul.bbp-lead-topic,
+	ul.bbp-replies,
+	ul.bbp-search-results,
+	ul.bbp-topics {
+		font-size: var(--wp--preset--font-size--16);
+		border-color: var(--memberlite-color-borders);
+	}
+
+	.bbp-forum-info .bbp-forum-content, p.bbp-topic-meta {
+		font-size: var(--wp--preset--font-size--14);
+	}
+
+	ul.bbp-topics {
+		border-radius: var(--wp--custom--border--radius);
+	}
+
+	div.even,
+	ul.even {
+		background-color: var(--memberlite-color-site-background);
+	}
+
+	div.odd,
+	ul.odd,
+	li.bbp-footer,
+	li.bbp-header {
+		background-color: light-dark(
+			color-mix(in srgb, var(--memberlite-color-site-background), black 3%),
+			color-mix(in srgb, var(--memberlite-color-site-background), white 3%)
+		);
+	}
+
+	li.bbp-footer,
+	li.bbp-header,
+	li.bbp-body ul.forum,
+	li.bbp-body ul.topic {
+		border-color: var(--memberlite-color-borders);
+	}
+
+	div.bbp-forum-header,
+	div.bbp-reply-header,
+	div.bbp-topic-header {
+		background-color: var(--memberlite-color-site-background);
+		border-color: var(--memberlite-color-borders);
+	}
+
+	//Forms
+	fieldset.bbp-form,
+	div.wp-editor-container {
+		border: 1px solid var(--memberlite-color-borders);
+		border-radius: var(--wp--custom--border--radius);
+	}
+
+	.quicktags-toolbar {
+		border-color: var(--memberlite-color-borders);
+		background: light-dark(
+				color-mix(in srgb, var(--memberlite-color-site-background), black 3%),
+				color-mix(in srgb, var(--memberlite-color-site-background), white 3%)
+		);
+	}
+
+	fieldset.bbp-form input[type=password],
+	fieldset.bbp-form input[type=text],
+	fieldset.bbp-form select {
+		height: auto;
+	}
+
+	//notices
+	div.bbp-template-notice, div.indicator-hint {
+		border-radius: var(--wp--custom--border--radius);
+		background-color: var(--pmpro--color--alert-background);
+		border-color: var(--pmpro--color--alert-border);
+		color: var(--pmpro--color--alert-text);
+	}
+
+	div.bbp-template-notice a {
+		text-decoration: underline;
+		text-underline-offset: 3px;
+		color: inherit;
+	}
+
+	div.bbp-template-notice.info {
+		background-color: var(--pmpro--color--info-background);
+		border: 1px solid var(--pmpro--color--info-border);
+		color: var(--pmpro--color--info-text);
+	}
+
+	div.bbp-template-notice li, div.bbp-template-notice p {
+		font-size: var(--wp--preset--font-size--16);
+	}
+
+	//Toggles
+	#favorite-toggle,
+	#subscription-toggle {
+		padding-bottom: 1rem;
+	}
+}
+
+
+
+
+
+
+
+
