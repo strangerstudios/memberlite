@@ -114,7 +114,7 @@
 	.bbp-topics ul.sticky,
 	.bbp-topics ul.super-sticky,
 	.bbp-topics-front ul.super-sticky {
-		background-color: var(--pmpro--color--alert-background) !important; // bbPress core also uses !important here
+		background-color: $color-alert-bg !important; // bbPress core also uses !important here
 	}
 
 	// Closed topics are visually muted
@@ -145,10 +145,10 @@
 	// Notices — default uses alert (warning) colors; .info variant below
 	div.bbp-template-notice,
 	div.indicator-hint {
-		background-color: var(--pmpro--color--alert-background);
-		border-color: var(--pmpro--color--alert-border);
+		background-color: $color-alert-bg;
+		border-color: $color-alert-border;
 		border-radius: var(--wp--custom--border--radius);
-		color: var(--pmpro--color--alert-text);
+		color: $color-alert-text;
 	}
 
 	div.bbp-template-notice {
@@ -164,9 +164,9 @@
 		}
 
 		&.info {
-			background-color: var(--pmpro--color--info-background);
-			border: 1px solid var(--pmpro--color--info-border);
-			color: var(--pmpro--color--info-text);
+			background-color: $color-info-bg;
+			border: 1px solid $color-info-border;
+			color: $color-info-text;
 		}
 	}
 

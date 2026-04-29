@@ -60,7 +60,7 @@ Vanilla CSS files that are **not** part of the Sass build process. These are com
 
 Typically contains:
 
-* Integration stylesheets for third-party plugins (`bbpress.css`, `lifterlms.css`, `woocommerce.css`)
+* Integration stylesheets for third-party plugins (`bbp.css`, `lifterlms.css`, `woocommerce.css`)
 * Utility stylesheets (`admin.css`, `editor.css`, `print.css`, `customizer.css`)
 
 See [CSS Guidelines](css-guidelines.md) for guidance on when styles belong here vs. in `/src/scss`.
@@ -160,4 +160,4 @@ In addition to the folders above, the theme root contains key PHP files such as:
 
 ---
 
-**Last Updated**: 2026-03-12
+**Last Updated**: 2026-04-29
