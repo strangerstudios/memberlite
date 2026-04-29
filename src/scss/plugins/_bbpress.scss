@@ -38,6 +38,7 @@
 	// Search form
 	div.bbp-search-form {
 		margin-bottom: 1rem;
+		padding: var(--pmpro--base--spacing--small, 12px);
 	}
 
 	// Forum, topic, and reply lists
@@ -48,9 +49,6 @@
 	ul.bbp-topics {
 		font-size: var(--wp--preset--font-size--18);
 		border-color: var(--memberlite-color-borders);
-	}
-
-	ul.bbp-topics {
 		border-radius: var(--wp--custom--border--radius);
 	}
 
@@ -58,7 +56,7 @@
 	.bbp-forum-info .bbp-forum-content,
 	p.bbp-topic-meta {
 		font-size: var(--wp--preset--font-size--14);
-		margin: 5px 0;
+		margin: .9rem 0 .5rem;
 	}
 
 	// Row backgrounds — even rows use base background, odd rows get a subtle tint
@@ -82,8 +80,12 @@
 	li.bbp-header,
 	li.bbp-body ul.forum,
 	li.bbp-body ul.topic {
-		border-top: 1px solid var(--memberlite-color-borders);
+		border-color: var(--memberlite-color-borders);
 		padding: 1rem;
+	}
+
+	li.bbp-header {
+		border-top: none;
 	}
 
 	// Header and footer row typography
