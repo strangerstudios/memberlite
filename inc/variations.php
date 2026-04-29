@@ -27,6 +27,24 @@ function memberlite_get_current_header_post_name(): string {
 }
 
 /**
+ * Check whether a header variation has the sticky option enabled.
+ *
+ * @since TBD
+ * @param string $post_name The post_name of the memberlite_header post to check.
+ * @return bool True if sticky is enabled, false otherwise.
+ */
+function memberlite_is_header_variation_sticky( string $post_name ): bool {
+	if ( empty( $post_name ) || '0' === $post_name ) {
+		return false;
+	}
+	$header_post = get_page_by_path( $post_name, OBJECT, 'memberlite_header' );
+	if ( ! $header_post || 'publish' !== $header_post->post_status ) {
+		return false;
+	}
+	return (bool) get_post_meta( $header_post->ID, '_memberlite_header_sticky', true );
+}
+
+/**
  * Render a header variation.
  *
  * Looks up the memberlite_header CPT post by post_name and renders its block
@@ -58,12 +76,6 @@ function memberlite_render_header_variation( string $post_name ): bool {
  * @return array
  */
 function memberlite_get_header_variations( string $default_label = '' ): array {
-	$cached = get_transient( 'memberlite_header_variations' );
-
-	if ( false !== $cached ) {
-		return $cached;
-	}
-
 	if ( '' === $default_label ) {
 		$default_label = __( '— Default —', 'memberlite' );
 	}
@@ -84,8 +96,6 @@ function memberlite_get_header_variations( string $default_label = '' ): array {
 		$header_choices[ $header_post->post_name ] = $header_post->post_title;
 	}
 
-	set_transient( 'memberlite_header_variations', $header_choices, 12 * HOUR_IN_SECONDS );
-
 	return $header_choices;
 }
 
@@ -99,37 +109,6 @@ function memberlite_is_default_header_active(): bool {
 	$slug = get_theme_mod( 'memberlite_default_header_slug', '0' );
 	return empty( $slug ) || '0' === $slug;
 }
-
-/**
- * Clear the header variations transient cache.
- *
- * Hooked to save_post_memberlite_header, which fires on publish, update,
- * trash, and untrash — covering every status transition for the CPT.
- *
- * @since 7.1
- * @return void
- */
-function memberlite_flush_header_variations_cache(): void {
-	delete_transient( 'memberlite_header_variations' );
-}
-add_action( 'save_post_memberlite_header', 'memberlite_flush_header_variations_cache' );
-
-/**
- * Clear the header variations cache when a memberlite_header post is permanently deleted.
- *
- * save_post does not fire for permanent deletion, so this covers that gap.
- *
- * @since 7.1
- * @param int     $post_id The post ID being deleted.
- * @param WP_Post $post    The post object being deleted.
- * @return void
- */
-function memberlite_flush_header_variations_cache_on_delete( int $post_id, WP_Post $post ): void {
-	if ( $post->post_type === 'memberlite_header' ) {
-		memberlite_flush_header_variations_cache();
-	}
-}
-add_action( 'deleted_post', 'memberlite_flush_header_variations_cache_on_delete', 10, 2 );
 
 /**
  * Output an "Edit Header" link for users who can edit the current header post.
@@ -156,8 +135,8 @@ function memberlite_the_header_edit_link( string $post_name ): void {
 		return;
 	}
 
-	echo '<div class="memberlite-variation-part-edit-link row has-global-padding">';
-	echo '<a href="' . esc_url( $edit_url ) . '">' . esc_html__( 'Edit Header', 'memberlite' ) . '</a>';
+	echo '<div id="edit-memberlite-header" class="memberlite-variation-part-edit-link row has-global-padding">';
+	echo '<a href="' . esc_url( $edit_url ) . '">' . memberlite_edit_link_icon() . esc_html__( 'Edit Header', 'memberlite' ) . '</a>';
 	echo '</div>';
 }
 
@@ -166,6 +145,7 @@ function memberlite_the_header_edit_link( string $post_name ): void {
  * Footer Variations
  * =========================================================================
  */
+
 /**
  * Resolve which footer post_name to use for the current request.
  *
@@ -266,7 +246,6 @@ function memberlite_render_footer_variation( $post_name ): bool {
  */
 function memberlite_get_footer_variations(): array {
 	$cached = get_transient( 'memberlite_footer_variations' );
-
 	if ( false !== $cached ) {
 		return $cached;
 	}
@@ -347,7 +326,7 @@ function memberlite_the_footer_edit_link( string $post_name ): void {
 		return;
 	}
 
-	echo '<div class="memberlite-variation-part-edit-link row has-global-padding">';
-	echo '<a href="' . esc_url( $edit_url ) . '">' . esc_html__( 'Edit Footer', 'memberlite' ) . '</a>';
+	echo '<div id="edit-memberlite-footer" class="memberlite-variation-part-edit-link row has-global-padding">';
+	echo '<a href="' . esc_url( $edit_url ) . '">' . memberlite_edit_link_icon() . esc_html__( 'Edit Footer', 'memberlite' ) . '</a>';
 	echo '</div>';
 }
