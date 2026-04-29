@@ -28,6 +28,11 @@
 		color: var(--memberlite-color-link);
 	}
 
+	// Lists
+	.bbp-forums-list {
+		border-left: none;
+	}
+
 	// Breadcrumbs, topic tags, and admin links
 	div.bbp-breadcrumb,
 	div.bbp-topic-tags,
@@ -38,7 +43,6 @@
 	// Search form
 	div.bbp-search-form {
 		margin-bottom: 1rem;
-		padding: var(--pmpro--base--spacing--small, 12px);
 	}
 
 	// Forum, topic, and reply lists
