@@ -149,6 +149,24 @@ function memberlite_get_current_header_post_name(): string {
 }
 
 /**
+ * Check whether a header variation has the sticky option enabled.
+ *
+ * @since TBD
+ * @param string $post_name The post_name of the memberlite_header post to check.
+ * @return bool True if sticky is enabled, false otherwise.
+ */
+function memberlite_is_header_variation_sticky( string $post_name ): bool {
+	if ( empty( $post_name ) || '0' === $post_name ) {
+		return false;
+	}
+	$header_post = get_page_by_path( $post_name, OBJECT, 'memberlite_header' );
+	if ( ! $header_post || 'publish' !== $header_post->post_status ) {
+		return false;
+	}
+	return (bool) get_post_meta( $header_post->ID, '_memberlite_header_sticky', true );
+}
+
+/**
  * Render a header variation.
  *
  * Looks up the memberlite_header CPT post by post_name and renders its block

@@ -57,6 +57,16 @@ function memberlite_register_editor_settings_post_meta(): void {
 			return current_user_can( 'edit_posts' );
 		}
 	) );
+
+	register_post_meta( 'memberlite_header', '_memberlite_header_sticky', array(
+		'show_in_rest'  => true,
+		'single'        => true,
+		'type'          => 'boolean',
+		'default'       => false,
+		'auth_callback' => function() {
+			return current_user_can( 'edit_posts' );
+		},
+	) );
 }
 add_action( 'init', 'memberlite_register_editor_settings_post_meta' );
 

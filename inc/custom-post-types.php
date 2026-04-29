@@ -36,7 +36,7 @@ function memberlite_register_header_cpt(): void {
 			'show_ui'             => true,
 			'show_in_menu'        => false,  // placed under Memberlite menu manually
 			'show_in_rest'        => true,   // required for block editor support
-			'supports'            => array( 'title', 'editor', 'revisions' ),
+			'supports'            => array( 'title', 'editor', 'revisions', 'custom-fields' ),
 			'rewrite'             => false,
 			'query_var'           => false,
 			'has_archive'         => false,
