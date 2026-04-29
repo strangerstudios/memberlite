@@ -731,7 +731,7 @@ class Memberlite_Customize {
 	 *
 	 * @param WP_Customize_Manager $wp_customize
 	 * @param string $id
-	 * @param string $label
+	 * @param string $description
 	 * @param string $section
 	 *
 	 * @return void
