@@ -16,8 +16,8 @@
 <!-- wp:group {"align":"wide","layout":{"type":"constrained"}} -->
 <div class="wp-block-group alignwide">
 
-	<!-- wp:group {"align":"wide","className":"footer-variation-04","style":{"border":{"radius":{"topLeft":"8px","topRight":"8px","bottomLeft":"8px","bottomRight":"8px"},"width":"1px"},"spacing":{"padding":{"top":"var:preset|spacing|30","bottom":"var:preset|spacing|30","left":"var:preset|spacing|30","right":"var:preset|spacing|30"},"margin":{"top":"var:preset|spacing|30","bottom":"var:preset|spacing|30"}}},"backgroundColor":"footer-widgets-background","borderColor":"borders","layout":{"type":"constrained"}} -->
-	<div class="wp-block-group alignwide footer-variation-04 has-border-color has-borders-border-color has-footer-widgets-background-background-color has-background" style="border-width:1px;border-top-left-radius:8px;border-top-right-radius:8px;border-bottom-left-radius:8px;border-bottom-right-radius:8px;margin-top:var(--wp--preset--spacing--30);margin-bottom:var(--wp--preset--spacing--30);padding-top:var(--wp--preset--spacing--30);padding-right:var(--wp--preset--spacing--30);padding-bottom:var(--wp--preset--spacing--30);padding-left:var(--wp--preset--spacing--30)">
+	<!-- wp:group {"align":"wide","className":"footer-variation-04","style":{"border":{"radius":{"topLeft":"8px","topRight":"8px","bottomLeft":"8px","bottomRight":"8px"},"width":"1px"},"elements":{"link":{"color":{"text":"var:preset|color|footer-widgets"}}},"spacing":{"padding":{"top":"var:preset|spacing|30","bottom":"var:preset|spacing|30","left":"var:preset|spacing|30","right":"var:preset|spacing|30"},"margin":{"top":"var:preset|spacing|30","bottom":"var:preset|spacing|30"}}},"backgroundColor":"footer-widgets-background","borderColor":"borders","textColor":"footer-widgets","layout":{"type":"constrained"}} -->
+	<div class="wp-block-group alignwide footer-variation-04 has-footer-widgets-color has-footer-widgets-background-background-color has-text-color has-background has-link-color has-border-color has-borders-border-color" style="border-width:1px;border-top-left-radius:8px;border-top-right-radius:8px;border-bottom-left-radius:8px;border-bottom-right-radius:8px;margin-top:var(--wp--preset--spacing--30);margin-bottom:var(--wp--preset--spacing--30);padding-top:var(--wp--preset--spacing--30);padding-right:var(--wp--preset--spacing--30);padding-bottom:var(--wp--preset--spacing--30);padding-left:var(--wp--preset--spacing--30)">
 
 		<!-- wp:columns {"align":"wide"} -->
 		<div class="wp-block-columns alignwide">
@@ -105,8 +105,8 @@
 		<hr class="wp-block-separator alignwide has-text-color has-borders-color has-alpha-channel-opacity has-borders-background-color has-background is-style-wide" style="margin-top:var(--wp--preset--spacing--30);margin-bottom:var(--wp--preset--spacing--30)"/>
 		<!-- /wp:separator -->
 
-		<!-- wp:group {"align":"wide","textColor":"footer-widgets","style":{"spacing":{"blockGap":"var:preset|spacing|20"}},"layout":{"type":"flex","justifyContent":"space-between","flexWrap":"wrap","verticalAlignment":"center"}} -->
-		<div class="wp-block-group alignwide has-footer-widgets-color has-text-color">
+		<!-- wp:group {"align":"wide","style":{"spacing":{"blockGap":"var:preset|spacing|20"}},"layout":{"type":"flex","justifyContent":"space-between","flexWrap":"wrap","verticalAlignment":"center"}} -->
+		<div class="wp-block-group alignwide">
 
 			<!-- wp:group {"style":{"spacing":{"blockGap":"5px"}},"layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"center"}} -->
 			<div class="wp-block-group">
@@ -116,9 +116,15 @@
 			</div>
 			<!-- /wp:group -->
 
-			<!-- wp:paragraph {"style":{"elements":{"link":{"color":{"text":"var:preset|color|footer-widgets"}}}}} -->
-			<p class="has-link-color" style="--wp--elements--link--color--text:var(--wp--preset--color--footer-widgets)"><a href="#"><?php esc_html_e( 'Privacy Policy', 'memberlite' ); ?></a> &nbsp;·&nbsp; <a href="#"><?php esc_html_e( 'Terms of Service', 'memberlite' ); ?></a></p>
+			<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|10"}},"layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"right"}} -->
+			<div class="wp-block-group"><!-- wp:paragraph -->
+			<p><a href="#"><?php esc_html_e( 'Privacy Policy', 'memberlite' ); ?></a></p>
 			<!-- /wp:paragraph -->
+
+			<!-- wp:paragraph -->
+			<p><a href="#"><?php esc_html_e( 'Terms of Service', 'memberlite' ); ?></a></p>
+			<!-- /wp:paragraph --></div>
+			<!-- /wp:group -->
 
 		</div>
 		<!-- /wp:group -->
