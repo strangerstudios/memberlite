@@ -10,7 +10,7 @@
  * Note: Update the stat numbers and labels to reflect your actual community metrics.
  * @package WordPress
  * @subpackage Memberlite
- * @since TBD
+ * @since 7.1
  */
 ?>
 <!-- wp:group {"align":"full","className":"footer-variation-06","style":{"border":{"top":{"color":"var:preset|color|borders","width":"1px"}},"elements":{"link":{"color":{"text":"var:preset|color|footer-widgets"}}},"spacing":{"padding":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|50"}}},"backgroundColor":"footer-widgets-background","textColor":"footer-widgets","layout":{"type":"constrained"}} -->

@@ -8,7 +8,7 @@
  *
  * Not public-facing; only accessible in the admin.
  *
- * @since TBD
+ * @since 7.1
  * @return void
  */
 function memberlite_register_header_cpt(): void {
@@ -67,7 +67,7 @@ add_action( 'init', 'memberlite_register_header_cpt' );
  * Assigns a name like "Header 123" (using the post ID) and a matching slug,
  * replacing the bare numeric slug WordPress assigns to untitled posts.
  *
- * @since TBD
+ * @since 7.1
  * @param int     $post_id The post ID.
  * @param WP_Post $post    The post object.
  * @return void

@@ -9,7 +9,7 @@
  * Post Types: memberlite_header
  * @package WordPress
  * @subpackage Memberlite
- * @since TBD
+ * @since 7.1
  */
 ?>
 <!-- wp:group {"className":"header-variation-03","align":"full","style":{"border":{"bottom":{"color":"var:preset|color|borders","width":"1px"}},"elements":{"link":{"color":{"text":"var:preset|color|footer-widgets"}}}},"backgroundColor":"footer-widgets-background","textColor":"footer-widgets","layout":{"type":"constrained"}} -->

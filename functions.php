@@ -4,7 +4,7 @@
  *
  * @package Memberlite
  */
-define( 'MEMBERLITE_VERSION', '7.0.3' );
+define( 'MEMBERLITE_VERSION', '7.1' );
 define( 'MEMBERLITE_URL', get_template_directory_uri() );
 define( 'MEMBERLITE_DIR', get_template_directory() );
 
@@ -404,7 +404,7 @@ add_action( 'widgets_init', 'memberlite_widgets_init' );
  * Dynamically assign column width classes to footer widgets based on how many
  * are active, spacing them evenly at no less than 25% width (max 4 per row).
  *
- * @since TBD
+ * @since 7.1
  */
 function memberlite_footer_widget_col_class( array $params ): array {
 	if ( 'sidebar-4' !== $params[0]['id'] ) {

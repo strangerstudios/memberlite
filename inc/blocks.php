@@ -3,13 +3,13 @@
  * Register custom blocks for Memberlite.
  *
  * @package Memberlite
- * @since TBD
+ * @since 7.1
  */
 
 /**
  * Register custom Memberlite blocks.
  *
- * @since TBD
+ * @since 7.1
  * @return void
  */
 function memberlite_register_blocks(): void {
@@ -30,7 +30,7 @@ add_action( 'init', 'memberlite_register_blocks' );
  * Runs on enqueue_block_editor_assets so the data is only attached in the block editor,
  * not on every front-end request.
  *
- * @since TBD
+ * @since 7.1
  * @return void
  */
 function memberlite_enqueue_nav_menu_block_data(): void {
@@ -101,7 +101,7 @@ add_filter( 'allowed_block_types_all', 'memberlite_allowed_blocks', 10, 2 );
 /**
  * Enqueue JS for custom block inserter icon for our Memberlite block category.
  *
- * @since TBD
+ * @since 7.1
  * @return void
  */
 function memberlite_enqueue_block_inserter_icon(): void {

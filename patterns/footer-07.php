@@ -9,7 +9,7 @@
  * Post Types: memberlite_footer
  * @package WordPress
  * @subpackage Memberlite
- * @since TBD
+ * @since 7.1
  */
 ?>
 <!-- wp:group {"align":"full","className":"footer-variation-07","style":{"spacing":{"blockGap":"var:preset|spacing|40","padding":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|50"}},"border":{"top":{"color":"var:preset|color|borders","width":"1px"}},"elements":{"link":{"color":{"text":"var:preset|color|footer-widgets"}}}},"backgroundColor":"footer-widgets-background","textColor":"footer-widgets","layout":{"type":"constrained"}} -->

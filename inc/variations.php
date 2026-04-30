@@ -18,7 +18,7 @@
  *
  * Returns '0' if no CPT header variation is selected (default header).
  *
- * @since TBD
+ * @since 7.1
  * @return string
  */
 function memberlite_get_current_header_post_name(): string {
@@ -29,7 +29,7 @@ function memberlite_get_current_header_post_name(): string {
 /**
  * Check whether a header variation has the sticky option enabled.
  *
- * @since TBD
+ * @since 7.1
  * @param string $post_name The post_name of the memberlite_header post to check.
  * @return bool True if sticky is enabled, false otherwise.
  */
@@ -51,7 +51,7 @@ function memberlite_is_header_variation_sticky( string $post_name ): bool {
  * content. Returns true on success, false if the post was not found or is not
  * published; the default header fallback is handled upstream in header.php.
  *
- * @since TBD
+ * @since 7.1
  * @param string $post_name The post_name of the memberlite_header post to render.
  * @return bool True if the variation was rendered, false otherwise.
  */
@@ -71,7 +71,7 @@ function memberlite_render_header_variation( string $post_name ): bool {
 /**
  * Get memberlite_header posts for variation options.
  *
- * @since TBD
+ * @since 7.1
  * @param string $default_label Optional label for the default option.
  * @return array
  */
@@ -102,7 +102,7 @@ function memberlite_get_header_variations( string $default_label = '' ): array {
 /**
  * Returns true when the active header variation is the default PHP-based header.
  *
- * @since TBD
+ * @since 7.1
  * @return bool
  */
 function memberlite_is_default_header_active(): bool {
@@ -115,7 +115,7 @@ function memberlite_is_default_header_active(): bool {
  *
  * Only renders for CPT-based headers (not the default header).
  *
- * @since TBD
+ * @since 7.1
  * @param string $post_name The post_name of the current header post.
  */
 function memberlite_the_header_edit_link( string $post_name ): void {
