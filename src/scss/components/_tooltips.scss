@@ -35,22 +35,12 @@
 
 	svg {
 		fill: currentColor;
-		width: 25px;
+		width: 20px;
 		height: auto;
 	}
 
 	a {
-		display: flex;
-		align-items: center;
-		gap: 5px;
-		padding: calc(var(--wp--preset--spacing--10) / 1.5) var(--wp--preset--spacing--10);
-		border-radius: var(--wp--custom--border--radius); //repeated to prevent weird clip effect
-		background-color: #06896F;
-		font-family: 'Poppins', sans-serif;
-		font-size: var(--wp--preset--font-size--14);
-		font-weight: 700;
-		color: #FFFFFF;
-		text-decoration: none;
+		@include tool-tip-base;
 	}
 
 	&::after {
@@ -69,7 +59,7 @@
 
 		&::after {
 			bottom: 100%;
-			border-bottom-color: #06896F;
+			border-bottom-color: $color-tooltip-bg;
 		}
 	}
 
@@ -78,7 +68,7 @@
 
 		&::after {
 			top: 100%;
-			border-top-color: #06896F;
+			border-top-color: $color-tooltip-bg;
 		}
 	}
 }

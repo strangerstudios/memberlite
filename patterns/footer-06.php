@@ -16,8 +16,8 @@
 <!-- wp:group {"align":"full","className":"footer-variation-06","style":{"border":{"top":{"color":"var:preset|color|borders","width":"1px"}},"elements":{"link":{"color":{"text":"var:preset|color|footer-widgets"}}},"spacing":{"padding":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|50"}}},"backgroundColor":"footer-widgets-background","textColor":"footer-widgets","layout":{"type":"constrained"}} -->
 <div class="wp-block-group alignfull footer-variation-06 has-footer-widgets-color has-footer-widgets-background-background-color has-text-color has-background has-link-color" style="border-top-color:var(--wp--preset--color--borders);border-top-width:1px;padding-top:var(--wp--preset--spacing--50);padding-bottom:var(--wp--preset--spacing--50)">
 
-	<!-- wp:columns {"align":"wide"} -->
-	<div class="wp-block-columns alignwide">
+	<!-- wp:columns {"isStackedOnMobile":false,"align":"wide"} -->
+	<div class="wp-block-columns alignwide is-not-stacked-on-mobile">
 
 		<!-- wp:column {"width":"25%","style":{"spacing":{"blockGap":"0"}}} -->
 		<div class="wp-block-column" style="flex-basis:25%">
@@ -82,18 +82,18 @@
 	<hr class="wp-block-separator alignwide has-text-color has-borders-color has-alpha-channel-opacity has-borders-background-color has-background is-style-wide" style="margin-top:var(--wp--preset--spacing--50);margin-bottom:var(--wp--preset--spacing--50)"/>
 	<!-- /wp:separator -->
 
-	<!-- wp:columns {"align":"wide"} -->
-	<div class="wp-block-columns alignwide">
+	<!-- wp:columns {"isStackedOnMobile":false,"align":"wide"} -->
+	<div class="wp-block-columns alignwide is-not-stacked-on-mobile">
 
-		<!-- wp:column {"width":"30%"} -->
-		<div class="wp-block-column" style="flex-basis:30%">
+		<!-- wp:column {"width":"25%"} -->
+		<div class="wp-block-column" style="flex-basis:25%">
 			<!-- wp:site-logo {"width":140,"className":"is-style-rounded"} /-->
 			<!-- wp:site-tagline {"style":{"spacing":{"margin":{"top":"var:preset|spacing|20"}}}} /-->
 		</div>
 		<!-- /wp:column -->
 
-		<!-- wp:column {"style":{"spacing":{"blockGap":"var:preset|spacing|10"}}} -->
-		<div class="wp-block-column">
+		<!-- wp:column {"width":"25%","style":{"spacing":{"blockGap":"var:preset|spacing|10"}}} -->
+		<div class="wp-block-column" style="flex-basis:25%">
 
 			<!-- wp:paragraph {"style":{"typography":{"textTransform":"uppercase","letterSpacing":"-0.03em"}},"textColor":"footer-widgets"} -->
 			<p class="has-footer-widgets-color has-text-color" style="letter-spacing:-0.03em;text-transform:uppercase"><strong><?php esc_html_e( 'Membership', 'memberlite' ); ?></strong></p>
@@ -111,8 +111,8 @@
 		</div>
 		<!-- /wp:column -->
 
-		<!-- wp:column {"style":{"spacing":{"blockGap":"var:preset|spacing|10"}}} -->
-		<div class="wp-block-column">
+		<!-- wp:column {"width":"25%","style":{"spacing":{"blockGap":"var:preset|spacing|10"}}} -->
+		<div class="wp-block-column" style="flex-basis:25%">
 
 			<!-- wp:paragraph {"style":{"typography":{"textTransform":"uppercase","letterSpacing":"-0.03em"}},"textColor":"footer-widgets"} -->
 			<p class="has-footer-widgets-color has-text-color" style="letter-spacing:-0.03em;text-transform:uppercase"><strong><?php esc_html_e( 'Resources', 'memberlite' ); ?></strong></p>
@@ -130,8 +130,8 @@
 		</div>
 		<!-- /wp:column -->
 
-		<!-- wp:column {"style":{"spacing":{"blockGap":"var:preset|spacing|10"}}} -->
-		<div class="wp-block-column">
+		<!-- wp:column {"width":"25%","style":{"spacing":{"blockGap":"var:preset|spacing|10"}}} -->
+		<div class="wp-block-column" style="flex-basis:25%">
 
 			<!-- wp:paragraph {"style":{"typography":{"textTransform":"uppercase","letterSpacing":"-0.03em"}},"textColor":"footer-widgets"} -->
 			<p class="has-footer-widgets-color has-text-color" style="letter-spacing:-0.03em;text-transform:uppercase"><strong><?php esc_html_e( 'Follow Along', 'memberlite' ); ?></strong></p>
@@ -167,9 +167,15 @@
 		</div>
 		<!-- /wp:group -->
 
-		<!-- wp:paragraph {"style":{"elements":{"link":{"color":{"text":"var:preset|color|footer-widgets"}}}}} -->
-		<p class="has-link-color" style="--wp--elements--link--color--text:var(--wp--preset--color--footer-widgets)"><a href="#"><?php esc_html_e( 'Privacy Policy', 'memberlite' ); ?></a> &nbsp;·&nbsp; <a href="#"><?php esc_html_e( 'Terms of Service', 'memberlite' ); ?></a></p>
+		<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|10"}},"layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"right"}} -->
+		<div class="wp-block-group"><!-- wp:paragraph -->
+		<p><a href="#"><?php esc_html_e( 'Privacy Policy', 'memberlite' ); ?></a></p>
 		<!-- /wp:paragraph -->
+
+		<!-- wp:paragraph -->
+		<p><a href="#"><?php esc_html_e( 'Terms of Service', 'memberlite' ); ?></a></p>
+		<!-- /wp:paragraph --></div>
+		<!-- /wp:group -->
 
 	</div>
 	<!-- /wp:group -->

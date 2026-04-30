@@ -225,24 +225,12 @@
 	width: max-content;
 
 	a.post-edit-link {
-		display: flex;
-		justify-content: space-between;
-		gap: 5px;
-		padding: calc(var(--wp--preset--spacing--10) / 1.5) var(--wp--preset--spacing--10);
-		font-size: var(--wp--preset--font-size--14);
-		font-weight: 700;
-		text-decoration: none;
-		text-transform: uppercase;
-		letter-spacing: 1px;
-		color: var(--memberlite-color-site-background);
-		background-color: var(--memberlite-color-text);
-		border: 2px solid var(--memberlite-color-site-background);
-		border-radius: var(--wp--custom--border--radius);
+		@include tool-tip-base;
 		box-shadow: $btn-shadow;
 
 		svg {
 			fill: currentColor;
-			width: 25px;
+			width: 20px;
 			height: auto;
 		}
 	}

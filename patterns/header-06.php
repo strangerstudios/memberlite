@@ -22,9 +22,7 @@
 
 <!-- wp:group {"layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"right","verticalAlignment":"center"}} -->
 <div class="wp-block-group"><!-- wp:group {"layout":{"type":"flex","flexWrap":"nowrap"}} -->
-<div class="wp-block-group"><!-- wp:paragraph -->
-<p><a href="#">Home</a></p>
-<!-- /wp:paragraph -->
+<div class="wp-block-group">
 
 <!-- wp:paragraph -->
 <p><a href="#">Speakers</a></p>
