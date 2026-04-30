@@ -53,17 +53,17 @@
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
-<!-- wp:group {"layout":{"type":"flex","flexWrap":"nowrap"}} -->
-<div class="wp-block-group"><!-- wp:paragraph {"style":{"elements":{"link":{"color":{"text":"var:preset|color|site-navigation-background"}}}}} -->
-<p class="has-link-color" style="--wp--elements--link--color--text:var(--wp--preset--color--site-navigation-background)"><a href="#"><?php esc_html_e( 'Privacy Policy', 'memberlite' ); ?></a></p>
+<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|10"}},"layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"right"}} -->
+<div class="wp-block-group"><!-- wp:paragraph -->
+<p><a href="#"><?php esc_html_e( 'Privacy Policy', 'memberlite' ); ?></a></p>
 <!-- /wp:paragraph -->
 
-<!-- wp:paragraph {"style":{"elements":{"link":{"color":{"text":"var:preset|color|site-navigation-background"}}}}} -->
-<p class="has-link-color" style="--wp--elements--link--color--text:var(--wp--preset--color--site-navigation-background)"><a href="#"><?php esc_html_e( 'Terms of Service', 'memberlite' ); ?></a></p>
+<!-- wp:paragraph -->
+<p><a href="#"><?php esc_html_e( 'Terms of Service', 'memberlite' ); ?></a></p>
 <!-- /wp:paragraph -->
 
-<!-- wp:paragraph {"style":{"elements":{"link":{"color":{"text":"var:preset|color|site-navigation-background"}}}}} -->
-<p class="has-link-color" style="--wp--elements--link--color--text:var(--wp--preset--color--site-navigation-background)"><a href="#"><?php esc_html_e( 'Refund Policy', 'memberlite' ); ?></a></p>
+<!-- wp:paragraph -->
+<p><a href="#"><?php esc_html_e( 'Refund Policy', 'memberlite' ); ?></a></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></div>
