@@ -67,6 +67,22 @@
 	vertical-align: middle;
 }
 
+@mixin tool-tip-base {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 5px;
+	padding: calc(var(--wp--preset--spacing--10) / 1.5) var(--wp--preset--spacing--10);
+	font-family: 'Poppins', sans-serif;
+	font-size: var(--wp--preset--font-size--16);
+	font-weight: 700;
+	letter-spacing: 1px;
+	text-decoration: none;
+	color: #FFFFFF;
+	background-color: $color-tooltip-bg;
+	border-radius: var(--wp--custom--border--radius);
+}
+
 @mixin form-element-base {
 	background-color: var(--wp--preset--color--base);
 	border: 1px solid light-dark(

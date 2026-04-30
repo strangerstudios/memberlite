@@ -225,24 +225,12 @@
 	width: max-content;
 
 	a.post-edit-link {
-		display: flex;
-		justify-content: space-between;
-		gap: 5px;
-		padding: calc(var(--wp--preset--spacing--10) / 1.5) var(--wp--preset--spacing--10);
-		font-family: 'Poppins', sans-serif;
-		font-size: var(--wp--preset--font-size--14);
-		font-weight: 700;
-		text-decoration: none;
-		color: #FFFFFF;
-		letter-spacing: 1px;
-		background-color: #04624F;
-		border: #FFFFFF;
-		border-radius: var(--wp--custom--border--radius);
+		@include tool-tip-base;
 		box-shadow: $btn-shadow;
 
 		svg {
 			fill: currentColor;
-			width: 25px;
+			width: 20px;
 			height: auto;
 		}
 	}
