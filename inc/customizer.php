@@ -668,16 +668,11 @@ class Memberlite_Customize {
 	 * @return void
 	 */
 	public static function add_memberlite_heading( WP_Customize_Manager $wp_customize, string $id, string $label, string $section, $args = array() ): void {
-		$wp_customize->add_setting(
-			$id,
-			array(
-				'sanitize_callback' => 'sanitize_text_field',
-			)
-		);
 		$control_args = array(
 			'label'    => $label,
 			'section'  => $section,
 			'priority' => $args['priority'] ?? 10,
+			'settings' => array(),
 		);
 		if ( ! empty( $args['active_callback'] ) ) {
 			$control_args['active_callback'] = $args['active_callback'];
@@ -705,20 +700,15 @@ class Memberlite_Customize {
 	 * @return void
 	 */
 	public static function add_memberlite_link_control( WP_Customize_Manager $wp_customize, string $id, string $label, string $section, string $url ): void {
-		$wp_customize->add_setting(
-			$id,
-			array(
-				'sanitize_callback' => 'sanitize_text_field',
-			)
-		);
 		$wp_customize->add_control(
 			new Memberlite_Customize_Link_Control(
 				$wp_customize,
 				$id,
 				array(
-					'label'   => $label,
-					'section' => $section,
-					'url'     => $url,
+					'label'    => $label,
+					'section'  => $section,
+					'url'      => $url,
+					'settings' => array(),
 				)
 			)
 		);
@@ -727,7 +717,7 @@ class Memberlite_Customize {
 	/**
 	 * Helper to add a notice control (no setting, just a rendered paragraph for informational purposes)
 	 *
-	 * @since 7.0
+	 * @since 7.1
 	 *
 	 * @param WP_Customize_Manager $wp_customize
 	 * @param string $id
@@ -737,19 +727,14 @@ class Memberlite_Customize {
 	 * @return void
 	 */
 	public static function add_memberlite_notice_control( WP_Customize_Manager $wp_customize, string $id, string $description, string $section ): void {
-		$wp_customize->add_setting(
-			$id,
-			array(
-				'sanitize_callback' => 'sanitize_text_field',
-			)
-		);
 		$wp_customize->add_control(
 			new Memberlite_Customize_Notice_Control(
 				$wp_customize,
 				$id,
 				array(
-					'description'   => $description,
-					'section'       => $section,
+					'description' => $description,
+					'section'     => $section,
+					'settings'    => array(),
 				)
 			)
 		);
