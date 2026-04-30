@@ -7,128 +7,6 @@
  * @since 7.1
  */
 
-/**
- * Resolve which footer post_name to use for the current request.
- *
- * Priority order (highest to lowest):
- *   1. Per-page post meta override (_memberlite_footer_override) — pages only
- *   2. Location-specific theme_mod (post, page, archives)
- *   3. Global footer theme_mod (memberlite_global_footer_slug)
- *   4. Default footer ('0')
- *
- * Location-specific controls use 'memberlite-global-footer' as the sentinel
- * value meaning "defer to the global setting". Choosing '0' in a location
- * control is always literal. It forces the default footer for that location
- * regardless of what the global setting is.
- *
- * The resolved value is passed through the 'memberlite_footer_post_name' filter
- * before being returned, allowing developers to override the footer based on
- * any runtime condition (e.g., post category, protected by membership level).
- *
- * @since 7.1
- *
- * @return string post_name of the memberlite_footer post, or '0' for default.
- */
-function memberlite_get_current_footer_post_name() {
-	$footer_variations = memberlite_get_footer_variations();
-	$post_name         = '0';
-
-	if ( ! empty( $footer_variations ) ) {
-		// Per-page override takes priority over all Customizer settings (pages only).
-		$override = is_singular( 'page' ) ? get_post_meta( get_the_ID(), '_memberlite_footer_override', true ) : '';
-
-		if ( '' !== $override && isset( $footer_variations[ $override ] ) ) {
-			$post_name = $override;
-		} else {
-			if ( is_singular( 'post' ) ) {
-				$post_name = get_theme_mod( 'memberlite_post_footer_slug', 'memberlite-global-footer' );
-			} elseif ( is_page() ) {
-				$post_name = get_theme_mod( 'memberlite_page_footer_slug', 'memberlite-global-footer' );
-			} elseif ( is_archive() || is_home() ) {
-				$post_name = get_theme_mod( 'memberlite_archives_footer_slug', 'memberlite-global-footer' );
-			}
-
-			// 'memberlite-global-footer' means the location is set to inherit from the global setting.
-			if ( 'memberlite-global-footer' === $post_name ) {
-				$post_name = get_theme_mod( 'memberlite_global_footer_slug', '0' );
-			}
-
-			// Validate that the resolved post still exists. If it has been deleted,
-			// fall back to the default footer rather than rendering nothing.
-			if ( ! isset( $footer_variations[ $post_name ] ) ) {
-				$post_name = '0';
-			}
-		}
-	}
-
-	/**
-	 * Filters the resolved footer post_name before it is used.
-	 *
-	 * @since 7.1
-	 *
-	 * @param string $post_name The resolved post_name, or '0' for the default footer.
-	 */
-	return apply_filters( 'memberlite_footer_post_name', $post_name );
-}
-
-/**
- * Render a footer variation.
- *
- * Looks up the memberlite_footer CPT post by post_name (as stored in the
- * theme_mod) and renders its block content. Does nothing if the post is not
- * found; the default footer fallback is handled upstream in footer.php.
- *
- * @since 7.1
- * @param string $post_name The post_name of the memberlite_footer post to render.
- */
-function memberlite_render_footer_variation( $post_name ): bool {
-	if ( ! empty( $post_name ) && '0' !== $post_name ) {
-		$footer_post = get_page_by_path( $post_name, OBJECT, 'memberlite_footer' );
-
-		if ( $footer_post && 'publish' === $footer_post->post_status ) {
-			echo do_shortcode( do_blocks( $footer_post->post_content ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-			return true;
-		}
-	}
-
-	return false;
-}
-
-/**
- * Get memberlite_footer posts for our variation options
- *
- * Results are cached in a transient for 12 hours. The cache is busted
- * automatically whenever a memberlite_footer post is saved, trashed, or
- * permanently deleted, so the Customizer always sees an accurate list.
- *
- * @since 7.1
- *
- * @return array
- */
-function memberlite_get_footer_variations(): array {
-	$cached = get_transient( 'memberlite_footer_variations' );
-	if ( false !== $cached ) {
-		return $cached;
-	}
-
-	$footer_posts = get_posts( array(
-		'post_type'      => 'memberlite_footer',
-		'post_status'    => 'publish',
-		'posts_per_page' => -1,
-		'orderby'        => 'title',
-		'order'          => 'ASC',
-	) );
-
-	$footer_choices = array();
-	foreach ( $footer_posts as $footer_post ) {
-		$footer_choices[ $footer_post->post_name ] = $footer_post->post_title;
-	}
-
-	set_transient( 'memberlite_footer_variations', $footer_choices, 12 * HOUR_IN_SECONDS );
-
-	return $footer_choices;
-}
-
 /*
  * =========================================================================
  * Header Variations
@@ -264,9 +142,131 @@ function memberlite_the_header_edit_link( string $post_name ): void {
 
 /*
  * =========================================================================
- * Footer Variations (edit links)
+ * Footer Variations
  * =========================================================================
  */
+
+/**
+ * Resolve which footer post_name to use for the current request.
+ *
+ * Priority order (highest to lowest):
+ *   1. Per-page post meta override (_memberlite_footer_override) — pages only
+ *   2. Location-specific theme_mod (post, page, archives)
+ *   3. Global footer theme_mod (memberlite_global_footer_slug)
+ *   4. Default footer ('0')
+ *
+ * Location-specific controls use 'memberlite-global-footer' as the sentinel
+ * value meaning "defer to the global setting". Choosing '0' in a location
+ * control is always literal. It forces the default footer for that location
+ * regardless of what the global setting is.
+ *
+ * The resolved value is passed through the 'memberlite_footer_post_name' filter
+ * before being returned, allowing developers to override the footer based on
+ * any runtime condition (e.g., post category, protected by membership level).
+ *
+ * @since 7.1
+ *
+ * @return string post_name of the memberlite_footer post, or '0' for default.
+ */
+function memberlite_get_current_footer_post_name() {
+	$footer_variations = memberlite_get_footer_variations();
+	$post_name         = '0';
+
+	if ( ! empty( $footer_variations ) ) {
+		// Per-page override takes priority over all Customizer settings (pages only).
+		$override = is_singular( 'page' ) ? get_post_meta( get_the_ID(), '_memberlite_footer_override', true ) : '';
+
+		if ( '' !== $override && isset( $footer_variations[ $override ] ) ) {
+			$post_name = $override;
+		} else {
+			if ( is_singular( 'post' ) ) {
+				$post_name = get_theme_mod( 'memberlite_post_footer_slug', 'memberlite-global-footer' );
+			} elseif ( is_page() ) {
+				$post_name = get_theme_mod( 'memberlite_page_footer_slug', 'memberlite-global-footer' );
+			} elseif ( is_archive() || is_home() ) {
+				$post_name = get_theme_mod( 'memberlite_archives_footer_slug', 'memberlite-global-footer' );
+			}
+
+			// 'memberlite-global-footer' means the location is set to inherit from the global setting.
+			if ( 'memberlite-global-footer' === $post_name ) {
+				$post_name = get_theme_mod( 'memberlite_global_footer_slug', '0' );
+			}
+
+			// Validate that the resolved post still exists. If it has been deleted,
+			// fall back to the default footer rather than rendering nothing.
+			if ( ! isset( $footer_variations[ $post_name ] ) ) {
+				$post_name = '0';
+			}
+		}
+	}
+
+	/**
+	 * Filters the resolved footer post_name before it is used.
+	 *
+	 * @since 7.1
+	 *
+	 * @param string $post_name The resolved post_name, or '0' for the default footer.
+	 */
+	return apply_filters( 'memberlite_footer_post_name', $post_name );
+}
+
+/**
+ * Render a footer variation.
+ *
+ * Looks up the memberlite_footer CPT post by post_name (as stored in the
+ * theme_mod) and renders its block content. Does nothing if the post is not
+ * found; the default footer fallback is handled upstream in footer.php.
+ *
+ * @since 7.1
+ * @param string $post_name The post_name of the memberlite_footer post to render.
+ */
+function memberlite_render_footer_variation( $post_name ): bool {
+	if ( ! empty( $post_name ) && '0' !== $post_name ) {
+		$footer_post = get_page_by_path( $post_name, OBJECT, 'memberlite_footer' );
+
+		if ( $footer_post && 'publish' === $footer_post->post_status ) {
+			echo do_shortcode( do_blocks( $footer_post->post_content ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			return true;
+		}
+	}
+
+	return false;
+}
+
+/**
+ * Get memberlite_footer posts for our variation options
+ *
+ * Results are cached in a transient for 12 hours. The cache is busted
+ * automatically whenever a memberlite_footer post is saved, trashed, or
+ * permanently deleted, so the Customizer always sees an accurate list.
+ *
+ * @since 7.1
+ *
+ * @return array
+ */
+function memberlite_get_footer_variations(): array {
+	$cached = get_transient( 'memberlite_footer_variations' );
+	if ( false !== $cached ) {
+		return $cached;
+	}
+
+	$footer_posts = get_posts( array(
+		'post_type'      => 'memberlite_footer',
+		'post_status'    => 'publish',
+		'posts_per_page' => -1,
+		'orderby'        => 'title',
+		'order'          => 'ASC',
+	) );
+
+	$footer_choices = array();
+	foreach ( $footer_posts as $footer_post ) {
+		$footer_choices[ $footer_post->post_name ] = $footer_post->post_title;
+	}
+
+	set_transient( 'memberlite_footer_variations', $footer_choices, 12 * HOUR_IN_SECONDS );
+
+	return $footer_choices;
+}
 
 /**
  * Clear the footer variations transient cache.

@@ -127,24 +127,3 @@ function memberlite_enqueue_block_inserter_icon(): void {
 	);
 }
 add_action( 'enqueue_block_editor_assets', 'memberlite_enqueue_block_inserter_icon' );
-
-/**
- * Register a block category for Memberlite blocks.
- *
- * @since TBD
- * @param array $categories Existing block categories.
- * @return array
- */
-function memberlite_register_block_categories( array $categories ): array {
-	return array_merge(
-		$categories,
-		array(
-			array(
-				'slug'  => 'memberlite',
-				'title' => __( 'Memberlite', 'memberlite' ),
-				'icon'  => null,
-			),
-		)
-	);
-}
-add_filter( 'block_categories_all', 'memberlite_register_block_categories' );

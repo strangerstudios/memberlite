@@ -379,7 +379,7 @@ function memberlite_widgets_init() {
 		array(
 			'name'          => __( 'Footer Widgets', 'memberlite' ),
 			'id'            => 'sidebar-4',
-			'description'   => __( 'This is a legacy method to customize the site footer. For more control, create a new Footer Variation and assign it in Customizer settings.', 'memberlite' ) . ' <a href="https://memberlitedev.local/wp-admin/edit.php?post_type=memberlite_footer" target="_blank">' . __( 'Manage Footers', 'memberlite' ) . '</a>',
+			'description'   => __( 'This is a legacy method to customize the site footer. For more control, create a new Footer Variation and assign it in Customizer settings.', 'memberlite' ) . ' <a href="' . admin_url( 'edit.php?post_type=memberlite_footer' ) . '" target="_blank">' . __( 'Edit Footer Variations', 'memberlite' ) . '</a>',
 			'before_widget' => '<aside id="%1$s" class="widget medium-3 columns %2$s">',
 			'after_widget'  => '</aside>',
 			'before_title'  => '<h3 class="widget-title">',
