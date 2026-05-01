@@ -50,6 +50,7 @@ add_action( 'enqueue_block_editor_assets', 'memberlite_enqueue_nav_menu_block_da
  * @param $allowed_block_types
  * @param $editor_context
  *
+ * @since 7.1
  * @return array
  */
 function memberlite_allowed_blocks( $allowed_block_types, $editor_context ) {
