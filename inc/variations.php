@@ -16,12 +16,27 @@
 /**
  * Get the post_name of the current header variation.
  *
- * Returns '0' if no CPT header variation is selected (default header).
+ * Priority order (highest to lowest):
+ *   1. Per-page post meta override (_memberlite_header_override) — pages only
+ *   2. Global header theme_mod (memberlite_default_header_slug)
+ *   3. Default header ('0')
  *
  * @since 7.1
- * @return string
+ * @return string post_name of the memberlite_header post, or '0' for default.
  */
 function memberlite_get_current_header_post_name(): string {
+	// Per-page override takes priority over the global setting (pages only).
+	if ( is_singular( 'page' ) ) {
+		$override = get_post_meta( get_the_ID(), '_memberlite_header_override', true );
+		if ( '' !== $override ) {
+			$header_variations = memberlite_get_header_variations();
+			unset( $header_variations['0'] );
+			if ( isset( $header_variations[ $override ] ) ) {
+				return $override;
+			}
+		}
+	}
+
 	$post_name = get_theme_mod( 'memberlite_default_header_slug', '0' );
 	return empty( $post_name ) ? '0' : $post_name;
 }

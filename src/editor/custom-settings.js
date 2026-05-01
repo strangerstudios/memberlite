@@ -22,11 +22,13 @@ const MemberliteCustomSettings = () => {
 	const isPage   = postType === 'page';
 	const isHeader = postType === 'memberlite_header';
 
-	const hideHeaderValue    = meta?._memberlite_hide_header || false;
-	const hideFooterValue    = meta?._memberlite_hide_footer || false;
-	const hidePageNavValue   = meta?._memberlite_hide_page_nav || false;
+	const hideHeaderValue     = meta?._memberlite_hide_header || false;
+	const hideFooterValue     = meta?._memberlite_hide_footer || false;
+	const hidePageNavValue    = meta?._memberlite_hide_page_nav || false;
+	const headerOverrideValue = meta?._memberlite_header_override ?? '';
+	const headerOptions       = window.memberliteEditorData.headerVariations;
 	const footerOverrideValue = meta?._memberlite_footer_override ?? '';
-	const footerOptions      = window.memberliteEditorData.footerVariations;
+	const footerOptions       = window.memberliteEditorData.footerVariations;
 	const showPrevNextGlobally = window.memberliteEditorData.showPrevNextSinglePages;
 
 	const stickyValue = meta?._memberlite_header_sticky || false;
@@ -49,6 +51,22 @@ const MemberliteCustomSettings = () => {
 							setMeta( { ...meta, _memberlite_hide_header: value } );
 						} }
 					/>
+					{ ! hideHeaderValue && (
+						<>
+							<div style={{ marginTop: '24px' }} />
+							<SelectControl
+								label={ __( 'Override Header Variation', textDomain ) }
+								value={ headerOverrideValue }
+								options={ headerOptions }
+								onChange={ ( value ) => {
+									setMeta( { ...meta, _memberlite_header_override: value } );
+								} }
+							/>
+							<ExternalLink href={ window.memberliteEditorData.manageHeadersUrl }>
+								{ __( 'Edit Header Variations', textDomain ) }
+							</ExternalLink>
+						</>
+					)}
 					<div style={{ marginTop: '24px' }} />
 					<ToggleControl
 						label={__('Hide Footer', textDomain)}

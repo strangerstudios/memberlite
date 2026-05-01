@@ -36,6 +36,18 @@ function memberlite_register_editor_settings_post_meta(): void {
 		}
 	) );
 
+	register_post_meta( 'page', '_memberlite_header_override', array(
+		'show_in_rest'      => true,
+		'type'              => 'string',
+		'single'            => true,
+		'default'           => '',
+		'label'             => __( 'Select Header', 'memberlite' ),
+		'sanitize_callback' => 'sanitize_key',
+		'auth_callback' => function() {
+			return current_user_can( 'edit_posts' );
+		}
+	) );
+
 	register_post_meta( 'page', '_memberlite_footer_override', array(
 		'show_in_rest'      => true,
 		'type'              => 'string',
@@ -98,6 +110,23 @@ function memberlite_enqueue_custom_editor_assets(): void {
 		true
 	);
 
+	// Build editor header choices as an ordered array of {value, label} objects.
+	$header_variations_editor = array(
+		array(
+			'value' => '',
+			'label' => __( '— No Override —', 'memberlite' ),
+		),
+	);
+	foreach ( memberlite_get_header_variations() as $slug => $title ) {
+		if ( '0' === $slug ) {
+			continue;
+		}
+		$header_variations_editor[] = array(
+			'value' => (string) $slug,
+			'label' => $title,
+		);
+	}
+
 	// Build editor footer choices as an ordered array of {value, label} objects.
 	$footer_variations_editor = array(
 		array(
@@ -112,12 +141,13 @@ function memberlite_enqueue_custom_editor_assets(): void {
 		);
 	}
 
-	// Get existing theme mods, and get footer variations to populate the footer override setting
 	wp_localize_script(
 		'memberlite-custom-settings',
 		'memberliteEditorData',
 		array(
 			'showPrevNextSinglePages' => get_theme_mod( 'memberlite_page_nav', true ),
+			'headerVariations'        => $header_variations_editor,
+			'manageHeadersUrl'        => admin_url( 'edit.php?post_type=memberlite_header' ),
 			'footerVariations'        => $footer_variations_editor,
 			'manageFootersUrl'        => admin_url( 'edit.php?post_type=memberlite_footer' ),
 		)

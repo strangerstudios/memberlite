@@ -9,6 +9,7 @@ This document covers the variations system introduced in Memberlite 7.1. Both he
 3. [Header Variations](#header-variations)
    - [Resolver](#resolver)
    - [Customizer Controls](#customizer-controls)
+   - [Per-Page Override (Pages Only)](#per-page-override-pages-only)
    - [Sticky Option](#sticky-option)
    - [Header Patterns](#header-patterns)
 4. [Footer Variations](#footer-variations)
@@ -63,9 +64,13 @@ Both resolvers and renderers live in `inc/variations.php`.
 
 ### Resolver
 
-`memberlite_get_current_header_post_name()` in `inc/variations.php` returns the `post_name` of the header to render for the current request. The header system has a **single global setting** — there are no per-location or per-page overrides.
+`memberlite_get_current_header_post_name()` in `inc/variations.php` resolves the header for each request using this priority order (highest to lowest):
 
-If the resolved post_name no longer exists (e.g., the header post was deleted), the resolver falls back to `'0'`.
+1. **Per-page post meta** (`_memberlite_header_override`) — set per **page** in the block editor's document settings panel. Only applies on `is_singular('page')`.
+2. **Global theme mod** (`memberlite_default_header_slug`) — the site-wide default.
+3. **Default header** — rendered when the resolved value is `'0'`.
+
+If a per-page override is set but the post no longer exists (e.g., the header post was deleted), the resolver silently ignores it and falls through to the global setting.
 
 `header.php` wraps the header in `<header id="masthead">` with two possible class sets:
 - `is-header-variation site-header-{post_name}` — when a CPT header is active
@@ -82,6 +87,16 @@ All controls live in the **Header** section under Appearance > Customize.
 The **"— Default —"** option (`'0'`) renders the classic PHP header. When any CPT header is selected, the "Default Header Settings" group (columns ratio, login info, search, sticky nav) is hidden via `memberlite_is_default_header_active()` as its `active_callback`.
 
 An **"Edit Header Variations"** link in the section navigates directly to the `memberlite_header` post list screen.
+
+### Per-Page Override (Pages Only)
+
+Individual **pages** can override the global header selection via the `_memberlite_header_override` post meta key. This is exposed as a select control in the block editor's document settings panel, alongside the existing footer override.
+
+- The meta key is registered for the `'page'` post type only (in `inc/editor-settings.php`).
+- The resolver checks this override only on `is_singular('page')`.
+- Only valid header post_names are honoured; an invalid or stale value is silently ignored and the resolver falls through to the global theme mod.
+- An empty string means "use site default" (no override).
+- The control is hidden when "Hide Header" is enabled for the page.
 
 ### Sticky Option
 
@@ -102,7 +117,7 @@ When a CPT header is sticky, `header.php` wraps the rendered content in:
 
 ### Header Patterns
 
-Six starter header designs are registered as block patterns scoped to the `memberlite_header` CPT. Pattern files live in `patterns/header-01.php` through `patterns/header-06.php`. They carry `Post Types: memberlite_header` in their metadata, which scopes them to the header CPT editor and prevents them from appearing in the general page/post inserter.
+Starter header designs are registered as block patterns scoped to the `memberlite_header` CPT. Pattern files live in `patterns/header-01.php` through `patterns/header-06.php`. They carry `Post Types: memberlite_header` in their metadata, which scopes them to the header CPT editor and prevents them from appearing in the general page/post inserter.
 
 See [patterns.md](patterns.md) for general pattern authoring guidelines.
 
@@ -173,7 +188,7 @@ Individual **pages** can override the Customizer footer selection via the `_memb
 
 ### Footer Patterns
 
-Eight starter footer designs are registered as block patterns scoped to the `memberlite_footer` CPT. Pattern files live in `patterns/footer-*.php` and carry `Post Types: memberlite_footer` in their metadata, scoping them to the footer CPT editor only.
+Starter footer designs are registered as block patterns scoped to the `memberlite_footer` CPT. Pattern files live in `patterns/footer-*.php` and carry `Post Types: memberlite_footer` in their metadata, scoping them to the footer CPT editor only.
 
 See [patterns.md](patterns.md) for general pattern authoring guidelines.
 
@@ -231,7 +246,7 @@ The footer CPT is surfaced under **Memberlite > Footers** and the header CPT und
 | Global setting | `memberlite_default_header_slug` | `memberlite_global_footer_slug` |
 | Location-specific settings | None | 3 (posts, pages, archives) |
 | Location sentinel value | N/A | `'memberlite-global-footer'` |
-| Per-page override | No | Yes (`_memberlite_footer_override`, pages only) |
+| Per-page override | Yes (`_memberlite_header_override`, pages only) | Yes (`_memberlite_footer_override`, pages only) |
 | Sticky option | Yes (`_memberlite_header_sticky` post meta per variation) | No |
 | Default sticky | `sticky_nav` theme_mod (default header only) | N/A |
 | Starter patterns | 6 (`header-01` – `header-06`) | 8 (`footer-*.php`) |
@@ -249,7 +264,7 @@ The footer CPT is surfaced under **Memberlite > Footers** and the header CPT und
 | `inc/custom-post-types.php` | CPT registration and auto-title hooks for both CPTs |
 | `inc/customizer.php` | Customizer controls for both header and footer variation settings |
 | `inc/admin.php` | Admin menu registration, menu highlight filters, footer "Used By" column |
-| `inc/editor-settings.php` | Post meta registration (`_memberlite_header_sticky`, `_memberlite_footer_override`, `_memberlite_hide_footer`), editor JS enqueue |
+| `inc/editor-settings.php` | Post meta registration (`_memberlite_header_sticky`, `_memberlite_header_override`, `_memberlite_footer_override`, `_memberlite_hide_footer`), editor JS enqueue |
 | `inc/updates.php` | `memberlite_checkForUpdates()` — version migration runner |
 | `header.php` | Calls header resolver and renderer; handles sticky wrapper; falls back to default |
 | `footer.php` | Calls footer resolver and renderer; falls back to default footer |
