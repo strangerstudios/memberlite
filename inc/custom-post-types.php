@@ -195,11 +195,13 @@ add_action( 'save_post_memberlite_footer', 'memberlite_footer_auto_title', 10, 2
  * =========================================================================
  *
  * Theme_mods reference header/footer variations by post_name. When the
- * referenced post is permanently deleted, the frontend already falls back
- * to the default header/footer, but the Customizer dropdown is left with
- * an orphan value. Cleanup runs only on permanent deletion so that
- * trash/untrash preserves the original assignment; the Customizer JS in
- * customizer-controls.js handles the trashed-but-not-yet-deleted case.
+ * referenced post is trashed or permanently deleted, the frontend already
+ * falls back to the default header/footer, but the Customizer dropdown
+ * shows an orphan empty selection until the theme_mod is cleared.
+ *
+ * Both wp_trash_post and before_delete_post are used so cleanup runs
+ * whether the user trashes from the Edit screen or a caller passes
+ * $force_delete=true to wp_delete_post().
  */
 
 /**
@@ -219,6 +221,7 @@ function memberlite_cleanup_header_assignment_on_delete( int $post_id ): void {
 		remove_theme_mod( 'memberlite_default_header_slug' );
 	}
 }
+add_action( 'wp_trash_post', 'memberlite_cleanup_header_assignment_on_delete' );
 add_action( 'before_delete_post', 'memberlite_cleanup_header_assignment_on_delete' );
 
 /**
@@ -254,4 +257,5 @@ function memberlite_cleanup_footer_assignment_on_delete( int $post_id ): void {
 	// Clear per-page footer overrides that reference the deleted slug.
 	delete_metadata( 'post', 0, '_memberlite_footer_override', $slug, true );
 }
+add_action( 'wp_trash_post', 'memberlite_cleanup_footer_assignment_on_delete' );
 add_action( 'before_delete_post', 'memberlite_cleanup_footer_assignment_on_delete' );
