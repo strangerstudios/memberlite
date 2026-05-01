@@ -28,12 +28,8 @@ function memberlite_get_current_header_post_name(): string {
 	// Per-page override takes priority over the global setting (pages only).
 	if ( is_singular( 'page' ) ) {
 		$override = get_post_meta( get_the_ID(), '_memberlite_header_override', true );
-		if ( '' !== $override ) {
-			$header_variations = memberlite_get_header_variations();
-			unset( $header_variations['0'] );
-			if ( isset( $header_variations[ $override ] ) ) {
-				return $override;
-			}
+		if ( '' !== $override && isset( memberlite_get_header_variations()[ $override ] ) ) {
+			return $override;
 		}
 	}
 
@@ -86,13 +82,18 @@ function memberlite_render_header_variation( string $post_name ): bool {
 /**
  * Get memberlite_header posts for variation options.
  *
+ * Results are cached in a transient for 12 hours. The cache is busted
+ * automatically whenever a memberlite_header post is saved, trashed, or
+ * permanently deleted, so the Customizer always sees an accurate list.
+ *
  * @since 7.1
- * @param string $default_label Optional label for the default option.
+ *
  * @return array
  */
-function memberlite_get_header_variations( string $default_label = '' ): array {
-	if ( '' === $default_label ) {
-		$default_label = __( '— Default —', 'memberlite' );
+function memberlite_get_header_variations(): array {
+	$cached = get_transient( 'memberlite_header_variations' );
+	if ( false !== $cached ) {
+		return $cached;
 	}
 
 	$header_posts = get_posts( array(
@@ -103,13 +104,12 @@ function memberlite_get_header_variations( string $default_label = '' ): array {
 		'order'          => 'ASC',
 	) );
 
-	$header_choices = array(
-		'0' => $default_label,
-	);
-
+	$header_choices = array();
 	foreach ( $header_posts as $header_post ) {
 		$header_choices[ $header_post->post_name ] = $header_post->post_title;
 	}
+
+	set_transient( 'memberlite_header_variations', $header_choices, 12 * HOUR_IN_SECONDS );
 
 	return $header_choices;
 }
@@ -124,6 +124,37 @@ function memberlite_is_default_header_active(): bool {
 	$slug = get_theme_mod( 'memberlite_default_header_slug', '0' );
 	return empty( $slug ) || '0' === $slug;
 }
+
+/**
+ * Clear the header variations transient cache.
+ *
+ * Hooked to save_post_memberlite_header, which fires on publish, update,
+ * trash, and untrash — covering every status transition for the CPT.
+ *
+ * @since 7.1
+ * @return void
+ */
+function memberlite_flush_header_variations_cache(): void {
+	delete_transient( 'memberlite_header_variations' );
+}
+add_action( 'save_post_memberlite_header', 'memberlite_flush_header_variations_cache' );
+
+/**
+ * Clear the header variations cache when a memberlite_header post is permanently deleted.
+ *
+ * save_post does not fire for permanent deletion, so this covers that gap.
+ *
+ * @since 7.1
+ * @param int     $post_id The post ID being deleted.
+ * @param WP_Post $post    The post object being deleted.
+ * @return void
+ */
+function memberlite_flush_header_variations_cache_on_delete( int $post_id, WP_Post $post ): void {
+	if ( $post->post_type === 'memberlite_header' ) {
+		memberlite_flush_header_variations_cache();
+	}
+}
+add_action( 'deleted_post', 'memberlite_flush_header_variations_cache_on_delete', 10, 2 );
 
 /**
  * Output an "Edit Header" link for users who can edit the current header post.

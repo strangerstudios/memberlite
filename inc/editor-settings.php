@@ -118,9 +118,6 @@ function memberlite_enqueue_custom_editor_assets(): void {
 		),
 	);
 	foreach ( memberlite_get_header_variations() as $slug => $title ) {
-		if ( '0' === $slug ) {
-			continue;
-		}
 		$header_variations_editor[] = array(
 			'value' => (string) $slug,
 			'label' => $title,

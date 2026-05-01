@@ -250,7 +250,7 @@ The footer CPT is surfaced under **Memberlite > Footers** and the header CPT und
 | Sticky option | Yes (`_memberlite_header_sticky` post meta per variation) | No |
 | Default sticky | `sticky_nav` theme_mod (default header only) | N/A |
 | Starter patterns | 6 (`header-01` – `header-06`) | 8 (`footer-*.php`) |
-| Transient cache | No | Yes (`memberlite_footer_variations`, 12 h) |
+| Transient cache | Yes (`memberlite_header_variations`, 12 h) | Yes (`memberlite_footer_variations`, 12 h) |
 | "Used By" admin column | No | Yes |
 | Admin menu item | Memberlite > Headers | Memberlite > Footers |
 
