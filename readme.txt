@@ -93,17 +93,17 @@ Memberlite includes formatting for use with:
 == Changelog ==
 
 = 7.1 - 2026-05-01 =
-* FEATURE: Added a new block-based footer variation system. Create and manage multiple footer patterns as posts in a new Footer Variations CPT (`memberlite_footer`). Then assign them globally or per-location via the Customizer. Post meta override on a per-page basis. #247 #253 #256 #258 #272 (@RachelRVasquez, @kimcoleman)
-* FEATURE: Added a new block-based header variation system. Create and manage multiple header patterns as posts in a new Header Variations CPT (`memberlite_header`). Then assign them globally via the Customizer. Post meta override on a per-page basis. Setting to enable sticky header available on `memberlite_header` post types. #259 #271 (@RachelRVasquez, @kimcoleman)
-* FEATURE: Added a custom Nav Menu block and Member Info block. Nav Menu block dynamically pulls registered WordPress menus and menu locations ( if the "Paid Memberships Pro - Nav Menus Add On" is active ) for use in header and footer patterns. #258 #259 #269 #277 (@RachelRVasquez)(@kimcoleman)
-* ENHANCEMENT: Added tooltip styling with a new SCSS mixin and A11y compliant Memberlite brand colors. #274 (@RachelRVasquez)
+* FEATURE: Added a new block-based footer variation system. Create and manage multiple footer designs as posts in a new Footer Variations CPT (`memberlite_footer`). Assign them globally or per location via the Customizer. Optional post-meta override available on pages. #247 #253 #256 #272 (@RachelRVasquez, @kimcoleman)
+* FEATURE: Added a new block-based header variation system. Create and manage multiple header designs as posts in a new Header Variations CPT (`memberlite_header`). Assign a global header via the Customizer. Optional post-meta override available on pages. Includes a sticky header option configurable per header post. #259 #271 (@RachelRVasquez, @kimcoleman)
+* FEATURE: Added a custom Nav Menu block and Member Info block. The Nav Menu block dynamically pulls registered WordPress menus and menu locations (with support for the Paid Memberships Pro - Nav Menus Add On) for use in header and footer patterns. The Nav Menu and Member Info blocks are restricted to the block inserter for header or footer CPT posts. #258 #259 #269 #277 (@RachelRVasquez, @kimcoleman)
+* ENHANCEMENT: Added tooltip styling with a new SCSS mixin, Memberlite brand colors, improved color contrast, and refined icon sizing. #274 (@RachelRVasquez)
 * ENHANCEMENT: Added colored PMPro icons to custom Memberlite blocks and replaced the block category with a block collection for better block inserter organization. #268 (@RachelRVasquez)
 * ENHANCEMENT: Updated block build styles to use WordPress color presets instead of hardcoded CSS values. #270 (@RachelRVasquez)
-* ENHANCEMENT: Added "Edit Header/Footer Variation" links and notices to the header and footer color picker settings in the Customizer. (@RachelRVasquez)
-* BUG FIX: Fixed sub-menu background color to correctly use the parent block's background color for the nav menu and member info blocks. #262 (@kimcoleman)
+* ENHANCEMENT: Added "Edit Header/Footer Variation" links and notices to the "Colors" section in Customizer. (@RachelRVasquez)
+* BUG FIX: Fixed submenu background color to correctly use the parent block's background color for the Nav Menu and Member Info blocks. #262 (@kimcoleman)
 * BUG FIX: Fixed block styles not being enqueued on the front-end. #270 (@RachelRVasquez)
 * BUG FIX: Removed type hinting on `memberlite_allowed_blocks` that caused fatal errors on sites with no registered menus. #269 (@RachelRVasquez)
-* DEPRECATED: Deprecated `memberlite_get_variation()` introduced in 7.0. It now always returns the default footer template part. #263 (@RachelRVasquez)
+* DEPRECATED: Deprecated `memberlite_get_variation()`. It now always returns the default footer template part. #263 (@RachelRVasquez)
 
 = 7.0.3 - 2026-04-17 =
 * BUG FIX: Styling fix to prevent links that are too long in header navigations from overflowing past the sub-menu width. #255 (@RachelRVasquez)
