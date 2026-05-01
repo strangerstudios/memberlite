@@ -4,13 +4,13 @@
  *
  * @package Memberlite
  *
- * @since 7.0
+ * @since 7.1
  */
 
 /**
  * Register block styles.
  *
- * @since 7.0
+ * @since 7.1
  * @return void
  */
 function memberlite_register_block_styles(): void {

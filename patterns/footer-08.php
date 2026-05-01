@@ -9,7 +9,7 @@
  * Post Types: memberlite_footer
  * @package WordPress
  * @subpackage Memberlite
- * @since TBD
+ * @since 7.1
  */
 ?>
 <!-- wp:group {"align":"full","className":"footer-variation-08","style":{"elements":{"link":{"color":{"text":"var:preset|color|site-navigation-background"}}},"spacing":{"padding":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|50"}}},"backgroundColor":"site-navigation-link","textColor":"site-navigation-background","layout":{"type":"constrained"}} -->

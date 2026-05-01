@@ -8,7 +8,7 @@
  *   $block       (WP_Block)       Block instance.
  *
  * @package Memberlite
- * @since TBD
+ * @since 7.1
  */
 
 $selected_menu = sanitize_text_field( $attributes['selectedMenu'] ?? '' );

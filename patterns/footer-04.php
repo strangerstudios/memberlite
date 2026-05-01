@@ -10,7 +10,7 @@
  * Note: Update links to point to your membership levels and checkout pages.
  * @package WordPress
  * @subpackage Memberlite
- * @since TBD
+ * @since 7.1
  */
 ?>
 <!-- wp:group {"align":"wide","layout":{"type":"constrained"}} -->

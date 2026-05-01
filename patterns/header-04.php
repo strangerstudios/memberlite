@@ -8,7 +8,9 @@
  * Viewport Width: 1280
  * Block Types: core/post-content
  * Post Types: memberlite_header
- * Inserter: true
+ * @package WordPress
+ * @subpackage Memberlite
+ * @since 7.1
  */
 ?>
 <!-- wp:group {"align":"full","className":"header-variation-04","style":{"border":{"bottom":{"color":"var:preset|color|borders","width":"1px"}},"elements":{"link":{"color":{"text":"var:preset|color|page-masthead"}}},"spacing":{"padding":{"top":"0","bottom":"0"}}},"backgroundColor":"page-masthead-background","textColor":"page-masthead","layout":{"type":"constrained"}} -->

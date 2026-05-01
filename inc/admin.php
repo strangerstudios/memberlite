@@ -35,7 +35,7 @@ add_action( 'admin_menu', 'memberlite_add_pages' );
 /**
  * Keep the Memberlite menu and Headers submenu item highlighted when viewing the list table or editing a single memberlite_header post.
  *
- * @since TBD
+ * @since 7.1
  * @param mixed|string $parent_file The parent file for the Memberlite menu.
  * @return string $parent_file The parent file for the Memberlite menu.
  */
@@ -53,7 +53,7 @@ add_filter( 'parent_file', 'memberlite_header_cpt_menu_highlight' );
 /**
  * Keep the Memberlite Headers submenu item highlighted when viewing the list table or editing a single memberlite_header post.
  *
- * @since TBD
+ * @since 7.1
  * @param mixed|string $submenu_file The submenu file for the Memberlite menu.
  * @return string $submenu_file The submenu file for the Memberlite menu.
  */

@@ -8,7 +8,9 @@
  * Viewport Width: 1280
  * Block Types: core/post-content
  * Post Types: memberlite_header
- * Inserter: true
+ * @package WordPress
+ * @subpackage Memberlite
+ * @since 7.1
  */
 ?>
 <!-- wp:group {"className":"header-variation-05","align":"full","style":{"spacing":{"blockGap":"0"}},"layout":{"type":"constrained"}} -->

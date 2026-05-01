@@ -2,9 +2,11 @@
 
 ## TL;DR
 
-Memberlite 7.0 changed how we save colors. We added new color schemes, layout settings, and theme variations. We also built tools to support users upgrading from older versions.
+Memberlite 7.0 changed how we save colors. We added new color schemes and layout settings. We also built tools to support users upgrading from older versions.
 
 The Customizer is the single source of truth for colors and fonts. We sync those values to `theme.json`.
+
+In Memberlite 7.1, we introduced [header and footer variations](variations.md).
 
 ---
 
@@ -19,13 +21,13 @@ We also added new layout settings for:
 - Footer
 - Single posts
 
-We introduced theme variations. A variation applies multiple settings at once. This gives users a quick way to change the look of their site.
-
 The Customizer is the source of truth for colors and fonts.
 
 The `header_output()` function in `inc/customizer.php` converts those values into CSS variables in `:root`.
 
 We sync colors to `theme.json` using the `wp_theme_json_data_theme` filter.
+
+In 7.1, we added [header and footer variations](variations.md) settings to the Customizer. These settings assign header and footer variations to global and per-location slots.
 
 ---
 
@@ -36,20 +38,6 @@ Most Customizer logic lives in:
 `inc/customizer.php`
 
 Start with the `register()` function.
-
----
-
-## Color Schemes
-
-### Color Scheme vs. Variation
-
-Both are presets.
-
-A color scheme controls colors only.
-
-A variation controls colors, layout, typography, and other settings.
-
-A variation can include a color scheme.
 
 ---
 
@@ -119,11 +107,23 @@ This is not a full list. Explore the codebase for more.
 
 - `header_output()` - Outputs CSS variables in `:root`
 
+- `set_customizer_header_settings()` - Registers all header Customizer controls, including the header variation select
+
+- `set_customizer_footer_settings()` - Registers all footer Customizer controls, including the global and per-location variation selects
+
 - `customizer_controls_js()` - Loads JS for customizer controls. 
   - This is where we update color pickers based on the selected color scheme.
 
 - `live_preview()` - Loads JS for live preview. 
   - This is where we define CSS variables and apply inline CSS for previewing setting changes.
+
+---
+
+### `inc/variations.php`
+
+- `memberlite_is_default_header_active()` - Returns true when the header is set to the default; used as `active_callback` to show/hide the legacy default header controls in the Customizer
+
+- `memberlite_is_default_footer_active()` - Returns true when the global footer is set to the default; used as `active_callback` to show/hide the legacy default footer controls in the Customizer
 
 ---
 
@@ -146,9 +146,10 @@ If a user edits one color, this script sets the scheme to: `custom`
 In `inc/customizer.php`, use one of these helpers:
 
 - `add_memberlite_setting_control()`: Use for standard settings
-
 - `add_memberlite_color_control()`: Use for color picker settings
+- `add_memberlite_link_control()`: Use for links (We usually use them as shortcuts to point to other settings or admin pages)
+- `add_memberlite_notice_control()`: Use for notices
 
 ---
 
-**Last Updated**: 2026-03-11
+**Last Updated**: 2026-05-01

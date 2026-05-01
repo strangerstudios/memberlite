@@ -10,7 +10,7 @@
  * Note: Update button links to point to your membership levels and checkout pages.
  * @package WordPress
  * @subpackage Memberlite
- * @since TBD
+ * @since 7.1
  */
 ?>
 <!-- wp:group {"align":"full","className":"footer-variation-05","style":{"spacing":{"padding":{"top":"var:preset|spacing|70","right":"var:preset|spacing|50","bottom":"var:preset|spacing|70","left":"var:preset|spacing|50"}},"elements":{"link":{"color":{"text":"var:preset|color|footer-widgets"}}},"border":{"top":{"color":"var:preset|color|borders","width":"1px"},"right":{},"bottom":{},"left":{}}},"backgroundColor":"footer-widgets-background","layout":{"type":"constrained"}} -->

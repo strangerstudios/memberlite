@@ -11,7 +11,7 @@
  * the memberlite_is_meta_login_active() gate — the block is explicitly placed.
  *
  * @package Memberlite
- * @since TBD
+ * @since 7.1
  */
 
 global $current_user, $pmpro_pages;

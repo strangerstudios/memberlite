@@ -4,6 +4,9 @@
  *
  * Displays the site logo, site title, and mobile menu toggle button.
  * Hidden on tablet and above via CSS (.site-header-mobile-row).
+ * Version: 7.1
+ *
+ * @version 7.1
  *
  * @package Memberlite
  */

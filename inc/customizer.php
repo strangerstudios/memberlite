@@ -372,7 +372,7 @@ class Memberlite_Customize {
 		self::add_memberlite_link_control( $wp_customize, 'memberlite_manage_headers_link', __( 'Edit Header Variations', 'memberlite' ), 'memberlite_header_options', admin_url( 'edit.php?post_type=memberlite_header' ) );
 
 		// HEADER: Default Header ===============
-		self::add_memberlite_setting_control( $wp_customize, 'memberlite_default_header_slug', __( 'Default Header', 'memberlite' ), 'memberlite_header_options', array(
+		self::add_memberlite_setting_control( $wp_customize, 'memberlite_default_header_slug', __( 'Global Header', 'memberlite' ), 'memberlite_header_options', array(
 			'type'              => 'select',
 			'sanitize_callback' => 'sanitize_key',
 			'choices'           => memberlite_get_header_variations(),
@@ -502,7 +502,7 @@ class Memberlite_Customize {
 
 		// FOOTER: Default Footer Heading ========
 		self::add_memberlite_heading( $wp_customize, 'memberlite_default_footer_heading', __( 'Default Footer Settings', 'memberlite' ), 'memberlite_footer_options', array(
-			'active_callback' => 'memberlite_is_global_footer_default',
+			'active_callback' => 'memberlite_is_default_footer_active',
 		) );
 
 		// FOOTER: Copyright Text ===============
@@ -510,7 +510,7 @@ class Memberlite_Customize {
 			'transport'         => 'postMessage',
 			'sanitize_callback' => array( 'Memberlite_Customize', 'sanitize_text_with_links' ),
 			'sanitize_js_callback' => array( 'Memberlite_Customize', 'sanitize_js_text_with_links' ),
-			'active_callback'   => 'memberlite_is_global_footer_default',
+			'active_callback'   => 'memberlite_is_default_footer_active',
 		) );
 	}
 
@@ -1173,15 +1173,6 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 			echo '<p>' . esc_html( $this->description ) . '</p>';
 		}
 	}
-}
-
-/**
- * Active callback: show Default footer settings only when the global footer is set to Default ('0').
- *
- * @since 7.1
- */
-function memberlite_is_global_footer_default(): bool {
-	return get_theme_mod( 'memberlite_global_footer_slug', '0' ) === '0';
 }
 
 // Setup the Theme Customizer settings and controls...

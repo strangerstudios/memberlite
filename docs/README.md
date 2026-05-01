@@ -10,6 +10,6 @@ Whenever possible, we try to keep this documentation up-to-date with the latest 
 1. [Build Process](build-process.md)
 2. [CSS Guidelines](css-guidelines.md)
 3. [Customizer](customizer.md)
-4. [Footer Variations](footer-variations.md)
+4. [Variations](variations.md)
 5. [Patterns](patterns.md)
 6. [Project Structure](project-structure.md)
