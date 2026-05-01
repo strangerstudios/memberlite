@@ -269,6 +269,16 @@ function memberlite_get_footer_variations(): array {
 }
 
 /**
+ * Active callback from customizer.php
+ * Show Default footer settings only when the global footer is set to Default ('0').
+ *
+ * @since 7.1
+ */
+function memberlite_is_default_footer_active(): bool {
+	return get_theme_mod( 'memberlite_global_footer_slug', '0' ) === '0';
+}
+
+/**
  * Clear the footer variations transient cache.
  *
  * Hooked to save_post_memberlite_footer, which fires on publish, update,
