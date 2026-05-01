@@ -372,7 +372,7 @@ class Memberlite_Customize {
 		self::add_memberlite_link_control( $wp_customize, 'memberlite_manage_headers_link', __( 'Edit Header Variations', 'memberlite' ), 'memberlite_header_options', admin_url( 'edit.php?post_type=memberlite_header' ) );
 
 		// HEADER: Default Header ===============
-		self::add_memberlite_setting_control( $wp_customize, 'memberlite_default_header_slug', __( 'Default Header', 'memberlite' ), 'memberlite_header_options', array(
+		self::add_memberlite_setting_control( $wp_customize, 'memberlite_default_header_slug', __( 'Global Header', 'memberlite' ), 'memberlite_header_options', array(
 			'type'              => 'select',
 			'sanitize_callback' => 'sanitize_key',
 			'choices'           => memberlite_get_header_variations(),
