@@ -1938,16 +1938,8 @@ details > p:first-of-type {
   margin: var(--wp--preset--spacing--10);
 }
 #secondary .widget {
-  background-color: light-dark(color-mix(in srgb, var(--memberlite-color-site-background), black 3%), color-mix(in srgb, var(--memberlite-color-site-background), white 3%));
-  border-radius: var(--wp--custom--border--radius);
   overflow: hidden;
   margin: 0 0 var(--wp--style--root--padding-right) 0;
-}
-#secondary .widget > :first-child {
-  padding-top: var(--wp--style--root--padding-top);
-}
-#secondary .widget > :last-child {
-  padding-bottom: var(--wp--style--root--padding-bottom);
 }
 #secondary .widget-title {
   margin: 0;
@@ -1981,10 +1973,6 @@ details > p:first-of-type {
 }
 #secondary .widget_block.widget_search input[type=search] {
   width: auto;
-}
-#secondary .widget_nav_menu {
-  padding-left: var(--wp--style--root--padding-left);
-  padding-right: var(--wp--style--root--padding-right);
 }
 #secondary .widget_nav_menu .widget-title {
   margin-bottom: var(--wp--preset--spacing--20);
