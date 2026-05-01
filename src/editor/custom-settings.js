@@ -51,22 +51,6 @@ const MemberliteCustomSettings = () => {
 							setMeta( { ...meta, _memberlite_hide_header: value } );
 						} }
 					/>
-					{ ! hideHeaderValue && (
-						<>
-							<div style={{ marginTop: '24px' }} />
-							<SelectControl
-								label={ __( 'Override Header Variation', textDomain ) }
-								value={ headerOverrideValue }
-								options={ headerOptions }
-								onChange={ ( value ) => {
-									setMeta( { ...meta, _memberlite_header_override: value } );
-								} }
-							/>
-							<ExternalLink href={ window.memberliteEditorData.manageHeadersUrl }>
-								{ __( 'Edit Header Variations', textDomain ) }
-							</ExternalLink>
-						</>
-					)}
 					<div style={{ marginTop: '24px' }} />
 					<ToggleControl
 						label={__('Hide Footer', textDomain)}
@@ -85,6 +69,22 @@ const MemberliteCustomSettings = () => {
 									setMeta( { ...meta, _memberlite_hide_page_nav: value } );
 								} }
 							/>
+						</>
+					)}
+					{ ! hideHeaderValue && (
+						<>
+							<div style={{ marginTop: '24px' }} />
+							<SelectControl
+								label={ __( 'Override Header Variation', textDomain ) }
+								value={ headerOverrideValue }
+								options={ headerOptions }
+								onChange={ ( value ) => {
+									setMeta( { ...meta, _memberlite_header_override: value } );
+								} }
+							/>
+							<ExternalLink href={ window.memberliteEditorData.manageHeadersUrl }>
+								{ __( 'Edit Header Variations', textDomain ) }
+							</ExternalLink>
 						</>
 					)}
 					{ ! hideFooterValue && (
