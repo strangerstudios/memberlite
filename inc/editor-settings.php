@@ -36,6 +36,18 @@ function memberlite_register_editor_settings_post_meta(): void {
 		}
 	) );
 
+	register_post_meta( 'page', '_memberlite_footer_override', array(
+		'show_in_rest'      => true,
+		'type'              => 'string',
+		'single'            => true,
+		'default'           => '',
+		'label'             => __( 'Select Footer', 'memberlite' ),
+		'sanitize_callback' => 'sanitize_key',
+		'auth_callback' => function() {
+			return current_user_can( 'edit_posts' );
+		}
+	) );
+
 	register_post_meta( 'page', '_memberlite_hide_page_nav', array(
 		'show_in_rest' => true,
 		'single'       => true,
@@ -44,6 +56,16 @@ function memberlite_register_editor_settings_post_meta(): void {
 		'auth_callback' => function() {
 			return current_user_can( 'edit_posts' );
 		}
+	) );
+
+	register_post_meta( 'memberlite_header', '_memberlite_header_sticky', array(
+		'show_in_rest'  => true,
+		'single'        => true,
+		'type'          => 'boolean',
+		'default'       => false,
+		'auth_callback' => function() {
+			return current_user_can( 'edit_posts' );
+		},
 	) );
 }
 add_action( 'init', 'memberlite_register_editor_settings_post_meta' );
@@ -76,10 +98,30 @@ function memberlite_enqueue_custom_editor_assets(): void {
 		true
 	);
 
-	// Get existing theme mods that we're moving into the settings
-	wp_localize_script( 'memberlite-custom-settings', 'memberlite_theme_mod_settings', array(
-		'showPrevNextSinglePages' => get_theme_mod( 'memberlite_page_nav', true )
-	) );
+	// Build editor footer choices as an ordered array of {value, label} objects.
+	$footer_variations_editor = array(
+		array(
+			'value' => '',
+			'label' => __( '— No Override —', 'memberlite' ),
+		),
+	);
+	foreach ( memberlite_get_footer_variations() as $slug => $title ) {
+		$footer_variations_editor[] = array(
+			'value' => (string) $slug,
+			'label' => $title,
+		);
+	}
+
+	// Get existing theme mods, and get footer variations to populate the footer override setting
+	wp_localize_script(
+		'memberlite-custom-settings',
+		'memberliteEditorData',
+		array(
+			'showPrevNextSinglePages' => get_theme_mod( 'memberlite_page_nav', true ),
+			'footerVariations'        => $footer_variations_editor,
+			'manageFootersUrl'        => admin_url( 'edit.php?post_type=memberlite_footer' ),
+		)
+	);
 }
 add_action( 'enqueue_block_editor_assets', 'memberlite_enqueue_custom_editor_assets' );
 

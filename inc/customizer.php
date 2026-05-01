@@ -21,6 +21,9 @@ class Memberlite_Customize {
 		// Panels & Sections
 		self::set_customizer_panels_sections( $wp_customize );
 
+		// General Settings
+		self::set_general_settings( $wp_customize );
+
 		// Typography Settings
 		self::set_typography_settings( $wp_customize );
 
@@ -83,12 +86,22 @@ class Memberlite_Customize {
 		/* Site Identity --------------------------------- */
 		$wp_customize->get_section( 'title_tagline' )->priority = 0;
 
+		/* General Settings ----------------------------- */
+
+		$wp_customize->add_section(
+			'memberlite_general_options',
+			array(
+				'title' => __( 'General', 'memberlite' ),
+				'priority'    => 2,
+			)
+		);
+
 		/* Typography ------------------------------------ */
 		$wp_customize->add_section(
 			'memberlite_typography_options',
 			array(
 				'title' => __( 'Typography', 'memberlite' ),
-				'priority'    => 2,
+				'priority'    => 3,
 			)
 		);
 
@@ -97,7 +110,7 @@ class Memberlite_Customize {
 			'memberlite_breadcrumbs_options',
 			array(
 				'title' => __( 'Breadcrumbs', 'memberlite' ),
-				'priority'    => 3,
+				'priority'    => 4,
 			)
 		);
 
@@ -109,7 +122,7 @@ class Memberlite_Customize {
 			'memberlite_header_options',
 			array(
 				'title'       => __( 'Header', 'memberlite' ),
-				'priority' => 4,
+				'priority' => 5,
 			)
 		);
 
@@ -118,7 +131,7 @@ class Memberlite_Customize {
 			'memberlite_footer_options',
 			array(
 				'title' => __( 'Footer', 'memberlite' ),
-				'priority' => 5,
+				'priority' => 6,
 			)
 		);
 
@@ -127,7 +140,7 @@ class Memberlite_Customize {
 			'memberlite_post_archive_options',
 			array(
 				'title' => __( 'Posts & Archives', 'memberlite' ),
-				'priority' => 6,
+				'priority' => 7,
 			)
 		);
 
@@ -136,10 +149,36 @@ class Memberlite_Customize {
 			'memberlite_page_options',
 			array(
 				'title' => __( 'Pages', 'memberlite' ),
-				'priority' => 7,
+				'priority' => 8,
 			)
 		);
 
+	}
+
+	public static function set_general_settings( WP_Customize_Manager $wp_customize ) {
+		// GENERAL: Back to Top Heading ==========
+		self::add_memberlite_heading( $wp_customize, 'memberlite_back_to_top_heading', __( 'Back to Top', 'memberlite' ), 'memberlite_general_options' );
+
+		// GENERAL: Back to Top Link =============
+		self::add_memberlite_setting_control( $wp_customize, 'memberlite_back_to_top', __( 'Show Back to Top Link', 'memberlite' ), 'memberlite_general_options', array(
+			'type'              => 'checkbox',
+			'default'           => true,
+			'sanitize_callback' => array( 'Memberlite_Customize', 'sanitize_checkbox' ),
+		) );
+
+		// GENERAL: Back to Top Style =============
+		self::add_memberlite_setting_control( $wp_customize, 'memberlite_back_to_top_style', __( 'Back to Top Style', 'memberlite' ), 'memberlite_general_options', array(
+			'type'            => 'radio',
+			'default'         => 'default',
+			'choices'         => array(
+				'default'  => __( 'Default (inline link in footer)', 'memberlite' ),
+				'floating' => __( 'Floating button (fixed position)', 'memberlite' ),
+			),
+			'description' => __( 'The inline link is only available if your site is using the default footer. Footer variations can be set in the "Footer" panel.', 'memberlite' ),
+			'active_callback' => function() {
+				return (bool) get_theme_mod( 'memberlite_back_to_top', true );
+			},
+		) );
 	}
 
 	/**
@@ -201,7 +240,11 @@ class Memberlite_Customize {
 		}
 
 		// COLORS: Header Colors ================
-		self::add_memberlite_heading( $wp_customize, 'memberlite_header_colors', __( 'Header Colors', 'memberlite' ), 'colors' );
+		self::add_memberlite_heading( $wp_customize, 'memberlite_header_colors', __( 'Default Header Colors', 'memberlite' ), 'colors' );
+
+		self::add_memberlite_notice_control( $wp_customize, 'memberlite_header_colors_notice', __( 'These colors apply to the default header. Some header variations may not use every color. Colors changed directly in the block editor override these settings.', 'memberlite' ), 'colors' );
+
+		self::add_memberlite_link_control( $wp_customize, 'memberlite_manage_headers_link_colors', __( 'Edit Header Variations', 'memberlite' ), 'colors', admin_url( 'edit.php?post_type=memberlite_header' ) );
 
 		self::add_memberlite_color_control( $wp_customize, 'memberlite_bgcolor_header', __( 'Header Background Color', 'memberlite' ), 'bgcolor_header' );
 
@@ -210,7 +253,11 @@ class Memberlite_Customize {
 		self::add_memberlite_color_control( $wp_customize, 'memberlite_color_site_navigation', __( 'Primary Navigation Link Color', 'memberlite' ), 'color_site_navigation' );
 
 		// COLORS: Footer Colors ================
-		self::add_memberlite_heading( $wp_customize, 'memberlite_footer_colors', __( 'Footer Colors', 'memberlite' ), 'colors' );
+		self::add_memberlite_heading( $wp_customize, 'memberlite_footer_colors', __( 'Default Footer Colors', 'memberlite' ), 'colors' );
+
+		self::add_memberlite_notice_control( $wp_customize, 'memberlite_footer_colors_notice', __( 'These colors apply to the default footer. Some footer variations may not use every color. Colors changed directly in the block editor override these settings.', 'memberlite' ), 'colors' );
+
+		self::add_memberlite_link_control( $wp_customize, 'memberlite_manage_footers_link_colors', __( 'Edit Footer Variations', 'memberlite' ), 'colors', admin_url( 'edit.php?post_type=memberlite_footer' ) );
 
 		self::add_memberlite_color_control( $wp_customize, 'memberlite_bgcolor_footer_widgets', __( 'Footer Widgets Background Color', 'memberlite' ), 'bgcolor_footer_widgets' );
 
@@ -318,12 +365,32 @@ class Memberlite_Customize {
 	 * @return void
 	 */
 	public static function set_customizer_header_settings( WP_Customize_Manager $wp_customize ) {
+		// HEADER: Variation Settings Heading ===
+		self::add_memberlite_heading( $wp_customize, 'memberlite_pattern_header_heading', __( 'Variation Settings', 'memberlite' ), 'memberlite_header_options' );
+
+		// HEADER: Edit Header Variations link ==========
+		self::add_memberlite_link_control( $wp_customize, 'memberlite_manage_headers_link', __( 'Edit Header Variations', 'memberlite' ), 'memberlite_header_options', admin_url( 'edit.php?post_type=memberlite_header' ) );
+
+		// HEADER: Default Header ===============
+		self::add_memberlite_setting_control( $wp_customize, 'memberlite_default_header_slug', __( 'Global Header', 'memberlite' ), 'memberlite_header_options', array(
+			'type'              => 'select',
+			'sanitize_callback' => 'sanitize_key',
+			'choices'           => memberlite_get_header_variations(),
+			'default'           => '0',
+			'description'       => __( 'Choose which header variation to display across the site.', 'memberlite' ),
+		) );
+
+		// HEADER: Default Header Settings Heading ======
+		self::add_memberlite_heading( $wp_customize, 'memberlite_default_header_heading', __( 'Default Header Settings', 'memberlite' ), 'memberlite_header_options', array(
+			'active_callback' => 'memberlite_is_default_header_active',
+		) );
+
 		// HEADER: Columns Ratio ================
 		self::add_memberlite_setting_control( $wp_customize, 'columns_ratio_header', __( 'Columns Ratio', 'memberlite' ), 'memberlite_header_options', array(
-			'type'        => 'select',
-			'transport'   => 'refresh',
-			'description' => __( 'Controls how the left and right sections of your header are sized. For example, "4-8" makes the left side narrower and the right side wider.', 'memberlite' ),
-			'choices'     => array(
+			'type'            => 'select',
+			'transport'       => 'refresh',
+			'description'     => __( 'Controls how the left and right sections of your header are sized. For example, "4-8" makes the left side narrower and the right side wider.', 'memberlite' ),
+			'choices'         => array(
 				'1-11' => '1x11',
 				'2-10' => '2x10',
 				'3-9'  => '3x9',
@@ -336,21 +403,26 @@ class Memberlite_Customize {
 				'10-2' => '10x2',
 				'11-1' => '11x1',
 			),
+			'active_callback' => 'memberlite_is_default_header_active',
 		) );
 
 		// HEADER: Other Settings Heading =======
-		self::add_memberlite_heading( $wp_customize, 'memberlite_header_heading', __( 'Other Settings', 'memberlite' ), 'memberlite_header_options' );
+		self::add_memberlite_heading( $wp_customize, 'memberlite_header_heading', __( 'Other Settings', 'memberlite' ), 'memberlite_header_options', array(
+			'active_callback' => 'memberlite_is_default_header_active',
+		) );
 
 		// HEADER: Show Login/Member Info =======
 		self::add_memberlite_setting_control( $wp_customize, 'meta_login', __( 'Show Login/Member Info in Header', 'memberlite' ), 'memberlite_header_options', array(
 			'type'              => 'checkbox',
 			'sanitize_callback' => array( 'Memberlite_Customize', 'sanitize_checkbox' ),
+			'active_callback'   => 'memberlite_is_default_header_active',
 		) );
 
 		// HEADER: Show search form =============
 		self::add_memberlite_setting_control( $wp_customize, 'nav_menu_search', __( 'Show Search Form After Main Nav', 'memberlite' ), 'memberlite_header_options', array(
 			'type'              => 'checkbox',
 			'sanitize_callback' => array( 'Memberlite_Customize', 'sanitize_checkbox' ),
+			'active_callback'   => 'memberlite_is_default_header_active',
 		) );
 
 		// HEADER: Enable sticky header =========
@@ -358,6 +430,7 @@ class Memberlite_Customize {
 			'type'              => 'checkbox',
 			'description'       => __( 'On scroll, the header menu will stick to the top of the screen.', 'memberlite' ),
 			'sanitize_callback' => array( 'Memberlite_Customize', 'sanitize_checkbox' ),
+			'active_callback'   => 'memberlite_is_default_header_active',
 		) );
 	}
 
@@ -370,11 +443,66 @@ class Memberlite_Customize {
 	 * @return void
 	 */
 	public static function set_customizer_footer_settings( WP_Customize_Manager $wp_customize ) {
-		// FOOTER: Footer Widgets ===============
-		self::add_memberlite_setting_control( $wp_customize, 'memberlite_footerwidgets', __( 'Footer Widget Columns', 'memberlite' ), 'memberlite_footer_options', array(
+		// FOOTER: Pattern Footer Heading ========
+		self::add_memberlite_heading( $wp_customize, 'memberlite_pattern_footer_heading', __( 'Variation Settings', 'memberlite' ), 'memberlite_footer_options' );
+
+		// FOOTER: Edit Footer Variations link ========
+		self::add_memberlite_link_control( $wp_customize, 'memberlite_manage_footers_link', __( 'Edit Footer Variations', 'memberlite' ), 'memberlite_footer_options', admin_url( 'edit.php?post_type=memberlite_footer' ) );
+
+		// FOOTER: Footer CPT choices ===================
+		$footer_cpt_posts = memberlite_get_footer_variations();
+
+		// Global: always include the Default footer option alongside any CPT footers.
+		$footer_global_options = array_merge(
+			array( '0' => __( '— Default —', 'memberlite' ) ),
+			$footer_cpt_posts
+		);
+
+		// Location-specific controls inherit from the global setting or pick a specific CPT footer.
+		$footer_choices_context = array_merge(
+			array( 'memberlite-global-footer' => __( '— Use Global Footer —', 'memberlite' ) ),
+			$footer_cpt_posts
+		);
+
+		// FOOTER: Variations, Global ===============
+		self::add_memberlite_setting_control( $wp_customize, 'memberlite_global_footer_slug', __( 'Global Footer', 'memberlite' ), 'memberlite_footer_options', array(
 			'type'              => 'select',
-			'sanitize_callback' => 'absint',
-			'choices'           => array( '2' => '2', '3' => '3', '4' => '4', '6' => '6' ),
+			'sanitize_callback' => 'sanitize_key',
+			'choices'           => $footer_global_options,
+			'default'           => '0',
+			'description'       => __( 'Choose which footer variation to display across the site.', 'memberlite' ),
+		) );
+
+		// FOOTER: Variations, Blog & Archives ===============
+		self::add_memberlite_setting_control( $wp_customize, 'memberlite_archives_footer_slug', __( 'Blog & Archives Footer', 'memberlite' ), 'memberlite_footer_options', array(
+			'type'              => 'select',
+			'sanitize_callback' => 'sanitize_key',
+			'choices'           => $footer_choices_context,
+			'default'           => 'memberlite-global-footer',
+			'description'       => __( 'Choose which footer variation to display on your blog and post archives.', 'memberlite' ),
+		) );
+
+		// FOOTER: Variations, Single Post ===============
+		self::add_memberlite_setting_control( $wp_customize, 'memberlite_post_footer_slug', __( 'Single Post Footer', 'memberlite' ), 'memberlite_footer_options', array(
+			'type'              => 'select',
+			'sanitize_callback' => 'sanitize_key',
+			'choices'           => $footer_choices_context,
+			'default'           => 'memberlite-global-footer',
+			'description'       => __( 'Choose which footer variation to display on the single post view.', 'memberlite' ),
+		) );
+
+		// FOOTER: Variations, Pages ===============
+		self::add_memberlite_setting_control( $wp_customize, 'memberlite_page_footer_slug', __( 'Pages Footer', 'memberlite' ), 'memberlite_footer_options', array(
+			'type'              => 'select',
+			'sanitize_callback' => 'sanitize_key',
+			'choices'           => $footer_choices_context,
+			'default'           => 'memberlite-global-footer',
+			'description'       => __( 'Choose which footer variation to display on your pages.', 'memberlite' ),
+		) );
+
+		// FOOTER: Default Footer Heading ========
+		self::add_memberlite_heading( $wp_customize, 'memberlite_default_footer_heading', __( 'Default Footer Settings', 'memberlite' ), 'memberlite_footer_options', array(
+			'active_callback' => 'memberlite_is_default_footer_active',
 		) );
 
 		// FOOTER: Copyright Text ===============
@@ -382,16 +510,7 @@ class Memberlite_Customize {
 			'transport'         => 'postMessage',
 			'sanitize_callback' => array( 'Memberlite_Customize', 'sanitize_text_with_links' ),
 			'sanitize_js_callback' => array( 'Memberlite_Customize', 'sanitize_js_text_with_links' ),
-		) );
-
-		// FOOTER: Back to Top Heading ==========
-		self::add_memberlite_heading( $wp_customize, 'memberlite_back_to_top_heading', __( 'Back to Top', 'memberlite' ), 'memberlite_footer_options' );
-
-		// FOOTER: Back to Top Link =============
-		self::add_memberlite_setting_control( $wp_customize, 'memberlite_back_to_top', __( 'Show Back to Top Link', 'memberlite' ), 'memberlite_footer_options', array(
-			'type'              => 'checkbox',
-			'default'           => true,
-			'sanitize_callback' => array( 'Memberlite_Customize', 'sanitize_checkbox' ),
+			'active_callback'   => 'memberlite_is_default_footer_active',
 		) );
 	}
 
@@ -549,20 +668,73 @@ class Memberlite_Customize {
 	 * @return void
 	 */
 	public static function add_memberlite_heading( WP_Customize_Manager $wp_customize, string $id, string $label, string $section, $args = array() ): void {
-		$wp_customize->add_setting(
-			$id,
-			array(
-				'sanitize_callback' => 'sanitize_text_field',
-			)
+		$control_args = array(
+			'label'    => $label,
+			'section'  => $section,
+			'priority' => $args['priority'] ?? 10,
+			'settings' => array(),
 		);
+		if ( ! empty( $args['active_callback'] ) ) {
+			$control_args['active_callback'] = $args['active_callback'];
+		}
 		$wp_customize->add_control(
 			new Memberlite_Customize_Header_Control(
 				$wp_customize,
 				$id,
+				$control_args
+			)
+		);
+	}
+
+	/**
+	 * Helper to add a link control (no setting, just a rendered anchor)
+	 *
+	 * @since 7.0
+	 *
+	 * @param WP_Customize_Manager $wp_customize
+	 * @param string $id
+	 * @param string $label
+	 * @param string $section
+	 * @param string $url
+	 *
+	 * @return void
+	 */
+	public static function add_memberlite_link_control( WP_Customize_Manager $wp_customize, string $id, string $label, string $section, string $url ): void {
+		$wp_customize->add_control(
+			new Memberlite_Customize_Link_Control(
+				$wp_customize,
+				$id,
 				array(
-					'label'   => $label,
-					'section' => $section,
-					'priority'=> $args['priority'] ?? 10,
+					'label'    => $label,
+					'section'  => $section,
+					'url'      => $url,
+					'settings' => array(),
+				)
+			)
+		);
+	}
+
+	/**
+	 * Helper to add a notice control (no setting, just a rendered paragraph for informational purposes)
+	 *
+	 * @since 7.1
+	 *
+	 * @param WP_Customize_Manager $wp_customize
+	 * @param string $id
+	 * @param string $description
+	 * @param string $section
+	 *
+	 * @return void
+	 */
+	public static function add_memberlite_notice_control( WP_Customize_Manager $wp_customize, string $id, string $description, string $section ): void {
+		$wp_customize->add_control(
+			new Memberlite_Customize_Notice_Control(
+				$wp_customize,
+				$id,
+				array(
+					'description' => $description,
+					'section'     => $section,
+					'settings'    => array(),
 				)
 			)
 		);
@@ -660,16 +832,17 @@ class Memberlite_Customize {
 		);
 
 		// 2. Add Control
-		$wp_customize->add_control(
-			$id,
-			array(
-				'label'       => $label,
-				'section'     => $section,
-				'type'        => $args['type'],
-				'choices'     => $args['choices'],
-				'description' => $args['description'],
-			)
+		$control_args = array(
+			'label'       => $label,
+			'section'     => $section,
+			'type'        => $args['type'],
+			'choices'     => $args['choices'],
+			'description' => $args['description'],
 		);
+		if ( ! empty( $args['active_callback'] ) ) {
+			$control_args['active_callback'] = $args['active_callback'];
+		}
+		$wp_customize->add_control( $id, $control_args );
 	}
 
 	/**
@@ -983,6 +1156,23 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 			echo '<span class="customize-control-title settings-heading">' . esc_html( $this->label ) . '</span>';
 		}
 	}
+
+	class Memberlite_Customize_Link_Control extends WP_Customize_Control {
+		public $type = 'memberlite_link';
+		public $url  = '';
+
+		public function render_content() {
+			echo '<a href="' . esc_url( $this->url ) . '" target="_blank" class="button button-secondary">' . esc_html( $this->label ) . '</a>';
+		}
+	}
+
+	class Memberlite_Customize_Notice_Control extends WP_Customize_Control {
+		public $type = 'memberlite_notice';
+
+		public function render_content() {
+			echo '<p>' . esc_html( $this->description ) . '</p>';
+		}
+	}
 }
 
 // Setup the Theme Customizer settings and controls...
@@ -1037,3 +1227,40 @@ function memberlite_save_scheme_colors( WP_Customize_Manager $wp_customize ) {
 		set_theme_mod( $key, $value );
 	}
 }
+
+/**
+ * Output the floating back-to-top button in wp_footer.
+ * Visibility is controlled by JS (scroll position + IntersectionObserver on the footer).
+ * (Turned on in Customizer > General Settings)
+ *
+ * @version 7.1
+ * @return void
+ */
+function memberlite_floating_back_to_top() {
+	global $memberlite_defaults;
+
+	if ( empty( get_theme_mod( 'memberlite_back_to_top', $memberlite_defaults['memberlite_back_to_top'] ) ) ) {
+		return;
+	}
+
+	if ( 'floating' !== get_theme_mod( 'memberlite_back_to_top_style', $memberlite_defaults['memberlite_back_to_top_style'] ) ) {
+		return;
+	}
+
+	$label = apply_filters(
+		'memberlite_back_to_top',
+		'<i class="fa fa-chevron-up" aria-hidden="true"></i><span class="screen-reader-text">' . esc_html__( 'Back to Top', 'memberlite' ) . '</span>'
+	);
+
+	if ( empty( $label ) ) {
+		return;
+	}
+
+	$allowed_html = array(
+		'i'    => array( 'class' => array(), 'aria-hidden' => array() ),
+		'span' => array( 'class' => array() ),
+	);
+
+	echo '<a class="memberlite-back-to-top floating" href="#page">' . wp_kses( $label, $allowed_html ) . '</a>';
+}
+add_action( 'wp_footer', 'memberlite_floating_back_to_top' );

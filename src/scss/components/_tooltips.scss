@@ -1,0 +1,74 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+/*--------------------------------------------------------------
+ 3.7 Components: Tooltips
+
+ Covers: Header/Footer variation tooltips on the front-end
+--------------------------------------------------------------*/
+
+.site-header:not(.site-header-default),
+.site-footer:not(.site-footer-default) {
+	@include breakpoint(tablet) {
+		position: relative;
+	}
+
+	&:hover, &:focus-within {
+		> .memberlite-variation-part-edit-link {
+			@include breakpoint(tablet) {
+				opacity: 1;
+			}
+		}
+	}
+}
+
+.memberlite-variation-part-edit-link {
+	opacity: 0;
+	transition: opacity 0.2s ease-in-out;
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+	z-index: 10;
+	width: max-content;
+	padding: 0;
+	border-radius: var(--wp--custom--border--radius);
+	box-shadow: $btn-shadow;
+
+	svg {
+		fill: currentColor;
+		width: 20px;
+		height: auto;
+	}
+
+	a {
+		@include tool-tip-base;
+	}
+
+	&::after {
+		position: absolute;
+		left: 50%;
+		content: "";
+		height: 0;
+		width: 0;
+		pointer-events: none;
+		border: 10px solid transparent;
+		margin-left: -10px;
+	}
+
+	&#edit-memberlite-header {
+		bottom: -48px;
+
+		&::after {
+			bottom: 100%;
+			border-bottom-color: $color-tooltip-bg;
+		}
+	}
+
+	&#edit-memberlite-footer {
+		top: -48px;
+
+		&::after {
+			top: 100%;
+			border-top-color: $color-tooltip-bg;
+		}
+	}
+}
