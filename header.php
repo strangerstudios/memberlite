@@ -28,10 +28,11 @@
 		<?php do_action( 'memberlite_before_site_header' ); ?>
 
 		<?php
-		$header_post_name = memberlite_get_current_header_post_name();
-		$header_class     = 'site-header';
+		$header_post_name        = memberlite_get_current_header_post_name();
+		$header_post_name_exists = '0' !== $header_post_name;
+		$header_class            = 'site-header';
 
-		if ( ! memberlite_is_default_header_active() ) {
+		if ( $header_post_name_exists ) {
 			$header_class .= ' is-header-variation';
 			$header_class .= ' site-header-' . sanitize_html_class( $header_post_name );
 		} else {
@@ -40,7 +41,7 @@
 		?>
 		<header class="<?php echo esc_attr( $header_class ); ?>" role="banner">
 			<?php memberlite_the_header_edit_link( $header_post_name ); ?>
-			<?php if ( memberlite_is_default_header_active() ) {
+			<?php if ( ! $header_post_name_exists ) {
 				get_template_part( 'components/header/variation', 'default' );
 			} else {
 				get_template_part( 'components/header/header', 'mobile-row' );
