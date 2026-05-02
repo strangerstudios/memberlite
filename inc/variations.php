@@ -75,9 +75,10 @@ function memberlite_render_header_variation( string $post_name ): bool {
  * @param string $default_label Optional label for the default option.
  * @return array
  */
-function memberlite_get_header_variations( string $default_label = '' ): array {
-	if ( '' === $default_label ) {
-		$default_label = __( '— Default —', 'memberlite' );
+function memberlite_get_header_variations(): array {
+	$cached = get_transient( 'memberlite_header_variations' );
+	if ( false !== $cached ) {
+		return $cached;
 	}
 
 	$header_posts = get_posts( array(
@@ -88,13 +89,12 @@ function memberlite_get_header_variations( string $default_label = '' ): array {
 		'order'          => 'ASC',
 	) );
 
-	$header_choices = array(
-		'0' => $default_label,
-	);
-
+	$header_choices = array();
 	foreach ( $header_posts as $header_post ) {
 		$header_choices[ $header_post->post_name ] = $header_post->post_title;
 	}
+
+	set_transient( 'memberlite_header_variations', $header_choices, 12 * HOUR_IN_SECONDS );
 
 	return $header_choices;
 }
