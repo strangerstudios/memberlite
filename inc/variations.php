@@ -14,16 +14,50 @@
  */
 
 /**
- * Get the post_name of the current header variation.
+ * Resolve which header post_name to use for the current request.
  *
- * Returns '0' if no CPT header variation is selected (default header).
+ * Priority order (highest to lowest):
+ *   1. Per-page post meta override (_memberlite_header_override) — pages only
+ *   2. Global header theme_mod (memberlite_default_header_slug)
+ *   3. Default header ('0')
+ *
+ * The resolved value is passed through the 'memberlite_header_post_name' filter
+ * before being returned, allowing developers to override the header based on
+ * any runtime condition.
  *
  * @since 7.1
- * @return string
+ *
+ * @return string post_name of the memberlite_header post, or '0' for default.
  */
 function memberlite_get_current_header_post_name(): string {
-	$post_name = get_theme_mod( 'memberlite_default_header_slug', '0' );
-	return empty( $post_name ) ? '0' : $post_name;
+	$header_variations = memberlite_get_header_variations();
+	$post_name         = '0';
+
+	if ( ! empty( $header_variations ) ) {
+		// Per-page override takes priority over the Customizer setting (pages only).
+		$override = is_singular( 'page' ) ? get_post_meta( get_the_ID(), '_memberlite_header_override', true ) : '';
+
+		if ( '' !== $override && isset( $header_variations[ $override ] ) ) {
+			$post_name = $override;
+		} else {
+			$post_name = get_theme_mod( 'memberlite_default_header_slug', '0' );
+
+			// Validate that the resolved post still exists. If it has been deleted,
+			// fall back to the default header rather than rendering nothing.
+			if ( ! isset( $header_variations[ $post_name ] ) ) {
+				$post_name = '0';
+			}
+		}
+	}
+
+	/**
+	 * Filters the resolved header post_name before it is used.
+	 *
+	 * @since 7.1
+	 *
+	 * @param string $post_name The resolved post_name, or '0' for the default header.
+	 */
+	return apply_filters( 'memberlite_header_post_name', $post_name );
 }
 
 /**
