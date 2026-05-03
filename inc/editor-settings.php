@@ -132,12 +132,12 @@ add_action( 'enqueue_block_editor_assets', 'memberlite_enqueue_custom_editor_ass
 /**
  * Build options to populate override dropdowns in document settings
  *
- * @param $get_variations
+ * @param array $variations
  *
  * @since 7.1
  * @return array[]
  */
-function memberlite_build_editor_override_choices( $get_variations ){
+function memberlite_build_editor_override_choices( array $variations ) {
 	$variations_editor = array(
 		array(
 			'value' => '',
@@ -145,7 +145,7 @@ function memberlite_build_editor_override_choices( $get_variations ){
 		),
 	);
 
-	foreach ( $get_variations as $slug => $title ) {
+	foreach ( $variations as $slug => $title ) {
 		$variations_editor[] = array(
 			'value' => (string) $slug,
 			'label' => $title,

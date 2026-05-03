@@ -374,7 +374,7 @@ class Memberlite_Customize {
 		// HEADER: Header CPT choices ===================
 		$header_cpt_posts = memberlite_get_header_variations();
 
-		// Always include the Default footer option alongside any CPT footers.
+		// Global: always include the Default header option alongside any CPT headers.
 		$header_options = array_merge(
 			array( '0' => __( '— Default —', 'memberlite' ) ),
 			$header_cpt_posts
