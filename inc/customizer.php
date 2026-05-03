@@ -371,11 +371,20 @@ class Memberlite_Customize {
 		// HEADER: Edit Header Variations link ==========
 		self::add_memberlite_link_control( $wp_customize, 'memberlite_manage_headers_link', __( 'Edit Header Variations', 'memberlite' ), 'memberlite_header_options', admin_url( 'edit.php?post_type=memberlite_header' ) );
 
+		// HEADER: Header CPT choices ===================
+		$header_cpt_posts = memberlite_get_header_variations();
+
+		// Always include the Default footer option alongside any CPT footers.
+		$header_options = array_merge(
+			array( '0' => __( '— Default —', 'memberlite' ) ),
+			$header_cpt_posts
+		);
+
 		// HEADER: Default Header ===============
 		self::add_memberlite_setting_control( $wp_customize, 'memberlite_default_header_slug', __( 'Global Header', 'memberlite' ), 'memberlite_header_options', array(
 			'type'              => 'select',
 			'sanitize_callback' => 'sanitize_key',
-			'choices'           => memberlite_get_header_variations(),
+			'choices'           => $header_options,
 			'default'           => '0',
 			'description'       => __( 'Choose which header variation to display across the site.', 'memberlite' ),
 		) );

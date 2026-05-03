@@ -14,16 +14,50 @@
  */
 
 /**
- * Get the post_name of the current header variation.
+ * Resolve which header post_name to use for the current request.
  *
- * Returns '0' if no CPT header variation is selected (default header).
+ * Priority order (highest to lowest):
+ *   1. Per-page post meta override (_memberlite_header_override) — pages only
+ *   2. Global header theme_mod (memberlite_default_header_slug)
+ *   3. Default header ('0')
+ *
+ * The resolved value is passed through the 'memberlite_header_post_name' filter
+ * before being returned, allowing developers to override the header based on
+ * any runtime condition.
  *
  * @since 7.1
- * @return string
+ *
+ * @return string post_name of the memberlite_header post, or '0' for default.
  */
 function memberlite_get_current_header_post_name(): string {
-	$post_name = get_theme_mod( 'memberlite_default_header_slug', '0' );
-	return empty( $post_name ) ? '0' : $post_name;
+	$header_variations = memberlite_get_header_variations();
+	$post_name         = '0';
+
+	if ( ! empty( $header_variations ) ) {
+		// Per-page override takes priority over the Customizer setting (pages only).
+		$override = is_singular( 'page' ) ? get_post_meta( get_the_ID(), '_memberlite_header_override', true ) : '';
+
+		if ( '' !== $override && isset( $header_variations[ $override ] ) ) {
+			$post_name = $override;
+		} else {
+			$post_name = get_theme_mod( 'memberlite_default_header_slug', '0' );
+
+			// Validate that the resolved post still exists. If it has been deleted,
+			// fall back to the default header rather than rendering nothing.
+			if ( ! isset( $header_variations[ $post_name ] ) ) {
+				$post_name = '0';
+			}
+		}
+	}
+
+	/**
+	 * Filters the resolved header post_name before it is used.
+	 *
+	 * @since 7.1
+	 *
+	 * @param string $post_name The resolved post_name, or '0' for the default header.
+	 */
+	return apply_filters( 'memberlite_header_post_name', $post_name );
 }
 
 /**
@@ -71,13 +105,18 @@ function memberlite_render_header_variation( string $post_name ): bool {
 /**
  * Get memberlite_header posts for variation options.
  *
+ * Results are cached in a transient for 12 hours. The cache is busted
+ * automatically whenever a memberlite_header post is saved, trashed, or
+ * permanently deleted, so the Customizer always sees an accurate list.
+ *
  * @since 7.1
- * @param string $default_label Optional label for the default option.
+ *
  * @return array
  */
-function memberlite_get_header_variations( string $default_label = '' ): array {
-	if ( '' === $default_label ) {
-		$default_label = __( '— Default —', 'memberlite' );
+function memberlite_get_header_variations(): array {
+	$cached = get_transient( 'memberlite_header_variations' );
+	if ( false !== $cached ) {
+		return $cached;
 	}
 
 	$header_posts = get_posts( array(
@@ -88,13 +127,12 @@ function memberlite_get_header_variations( string $default_label = '' ): array {
 		'order'          => 'ASC',
 	) );
 
-	$header_choices = array(
-		'0' => $default_label,
-	);
-
+	$header_choices = array();
 	foreach ( $header_posts as $header_post ) {
 		$header_choices[ $header_post->post_name ] = $header_post->post_title;
 	}
+
+	set_transient( 'memberlite_header_variations', $header_choices, 12 * HOUR_IN_SECONDS );
 
 	return $header_choices;
 }
@@ -109,6 +147,37 @@ function memberlite_is_default_header_active(): bool {
 	$slug = get_theme_mod( 'memberlite_default_header_slug', '0' );
 	return empty( $slug ) || '0' === $slug;
 }
+
+/**
+ * Clear the header variations transient cache.
+ *
+ * Hooked to save_post_memberlite_header, which fires on publish, update,
+ * trash, and untrash — covering every status transition for the CPT.
+ *
+ * @since 7.1
+ * @return void
+ */
+function memberlite_flush_header_variations_cache(): void {
+	delete_transient( 'memberlite_header_variations' );
+}
+add_action( 'save_post_memberlite_header', 'memberlite_flush_header_variations_cache' );
+
+/**
+ * Clear the header variations cache when a memberlite_header post is permanently deleted.
+ *
+ * save_post does not fire for permanent deletion, so this covers that gap.
+ *
+ * @since 7.1
+ * @param int     $post_id The post ID being deleted.
+ * @param WP_Post $post    The post object being deleted.
+ * @return void
+ */
+function memberlite_flush_header_variations_cache_on_delete( int $post_id, WP_Post $post ): void {
+	if ( $post->post_type === 'memberlite_header' ) {
+		memberlite_flush_header_variations_cache();
+	}
+}
+add_action( 'deleted_post', 'memberlite_flush_header_variations_cache_on_delete', 10, 2 );
 
 /**
  * Output an "Edit Header" link for users who can edit the current header post.
@@ -168,7 +237,7 @@ function memberlite_the_header_edit_link( string $post_name ): void {
  *
  * @return string post_name of the memberlite_footer post, or '0' for default.
  */
-function memberlite_get_current_footer_post_name() {
+function memberlite_get_current_footer_post_name(): string {
 	$footer_variations = memberlite_get_footer_variations();
 	$post_name         = '0';
 
@@ -213,14 +282,15 @@ function memberlite_get_current_footer_post_name() {
 /**
  * Render a footer variation.
  *
- * Looks up the memberlite_footer CPT post by post_name (as stored in the
- * theme_mod) and renders its block content. Does nothing if the post is not
- * found; the default footer fallback is handled upstream in footer.php.
+ * Looks up the memberlite_footer CPT post by post_name and renders its block
+ * content. Returns true on success, false if the post was not found or is not
+ * published; the default footer fallback is handled upstream in footer.php.
  *
  * @since 7.1
  * @param string $post_name The post_name of the memberlite_footer post to render.
+ * @return bool True if the variation was rendered, false otherwise.
  */
-function memberlite_render_footer_variation( $post_name ): bool {
+function memberlite_render_footer_variation( string $post_name ): bool {
 	if ( ! empty( $post_name ) && '0' !== $post_name ) {
 		$footer_post = get_page_by_path( $post_name, OBJECT, 'memberlite_footer' );
 
@@ -234,7 +304,7 @@ function memberlite_render_footer_variation( $post_name ): bool {
 }
 
 /**
- * Get memberlite_footer posts for our variation options
+ * Get memberlite_footer posts for variation options.
  *
  * Results are cached in a transient for 12 hours. The cache is busted
  * automatically whenever a memberlite_footer post is saved, trashed, or
@@ -269,10 +339,10 @@ function memberlite_get_footer_variations(): array {
 }
 
 /**
- * Active callback from customizer.php
- * Show Default footer settings only when the global footer is set to Default ('0').
+ * Returns true when the active footer variation is the default PHP-based footer.
  *
  * @since 7.1
+ * @return bool
  */
 function memberlite_is_default_footer_active(): bool {
 	return get_theme_mod( 'memberlite_global_footer_slug', '0' ) === '0';
