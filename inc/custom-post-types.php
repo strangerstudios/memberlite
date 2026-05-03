@@ -215,7 +215,14 @@ function memberlite_cleanup_header_assignment_on_delete( int $post_id ): void {
 		return;
 	}
 
-	if ( get_theme_mod( 'memberlite_default_header_slug', '0' ) === $post->post_name ) {
+	// WordPress appends '__trashed' to post_name when a post is moved to trash;
+	// strip it so we match the original slug stored in theme_mods.
+	$slug = $post->post_name;
+	if ( str_ends_with( $slug, '__trashed' ) ) {
+		$slug = substr( $slug, 0, -strlen( '__trashed' ) );
+	}
+
+	if ( get_theme_mod( 'memberlite_default_header_slug', '0' ) === $slug ) {
 		remove_theme_mod( 'memberlite_default_header_slug' );
 	}
 }
@@ -234,7 +241,12 @@ function memberlite_cleanup_footer_assignment_on_delete( int $post_id ): void {
 		return;
 	}
 
+	// WordPress appends '__trashed' to post_name when a post is moved to trash;
+	// strip it so we match the original slug stored in theme_mods and post meta.
 	$slug = $post->post_name;
+	if ( str_ends_with( $slug, '__trashed' ) ) {
+		$slug = substr( $slug, 0, -strlen( '__trashed' ) );
+	}
 
 	$location_mods = array(
 		'memberlite_post_footer_slug',
