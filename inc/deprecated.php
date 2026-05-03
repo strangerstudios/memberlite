@@ -569,3 +569,21 @@ function memberlite_get_legacy_color_scheme_definitions(): array {
 		),
 	);
 }
+
+/**
+ * Helper function meant to fetch template parts based on variation.
+ * $slug kept for backwards compatibility.
+ * Always returns 'default'.
+ *
+ * @since 7.0
+ * @deprecated 7.1
+ *
+ * @param string $slug
+ * @return string
+ */
+function memberlite_get_variation( $slug ) {
+	_deprecated_function( __FUNCTION__, '7.1' );
+
+	// No replacement for this function, returning 'default' will get the components/footer/variation-default.php template part
+	return 'default';
+}

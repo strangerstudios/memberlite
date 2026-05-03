@@ -28,15 +28,34 @@
 		<?php do_action( 'memberlite_before_site_header' ); ?>
 
 		<?php
-		$header_variation = get_theme_mod( 'memberlite_header_variation' );
-		$is_default       = empty( $header_variation ) || 'default' === $header_variation;
-		$header_class     = $is_default ? 'site-header-default' : 'site-header-' . $header_variation;
+		$header_post_name = memberlite_get_current_header_post_name();
+		$header_class     = 'site-header';
+
+		if ( ! memberlite_is_default_header_active() ) {
+			$header_class .= ' is-header-variation';
+			$header_class .= ' site-header-' . sanitize_html_class( $header_post_name );
+		} else {
+			$header_class .= ' site-header-default';
+		}
 		?>
-		<header class="site-header <?php echo esc_attr( $header_class ); ?>" role="banner">
-			<?php if ( $is_default ) {
+		<header class="<?php echo esc_attr( $header_class ); ?>" role="banner">
+			<?php memberlite_the_header_edit_link( $header_post_name ); ?>
+			<?php if ( memberlite_is_default_header_active() ) {
 				get_template_part( 'components/header/variation', 'default' );
 			} else {
-				get_template_part( 'components/header/variation', $header_variation );
+				get_template_part( 'components/header/header', 'mobile-row' );
+				$is_sticky = memberlite_is_header_variation_sticky( $header_post_name );
+				if ( $is_sticky ) { ?><div class="site-header-variation-sticky-wrapper"><?php } ?>
+				<div class="site-header-variation">
+					<?php
+					if ( ! memberlite_render_header_variation( $header_post_name ) ) {
+						get_template_part( 'components/header/variation', 'default' );
+					}
+					?>
+				</div>
+				<?php if ( $is_sticky ) { ?></div><!-- .site-header-variation-sticky-wrapper --><?php } ?>
+				<?php
+				get_template_part( 'components/header/header', 'mobile-menu' );
 			} ?>
 		</header><!-- #masthead -->
 	<?php } // End if memberlite_hide_page_header is false ?>

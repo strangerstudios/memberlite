@@ -11,6 +11,7 @@ This document explains how block patterns are set up in the Memberlite theme and
 5. [Fixing Existing Patterns](#fixing-existing-patterns)
 6. [Image Guidelines](#image-guidelines)
 7. [Pattern Categories](#pattern-categories)
+8. [Header and Footer Patterns](#header-and-footer-patterns)
 
 ---
 
@@ -28,24 +29,16 @@ Memberlite uses WordPress's native block pattern registration system. Patterns a
 ## Directory Structure
 
 ```
-wp-content/themes/memberlite/
+memberlite/
 ├── patterns/                          # Pattern PHP files (auto-registered by WordPress)
-│   ├── about-the-founder.php
-│   ├── board-of-directors.php
-│   ├── [29 other pattern files]
+│   ├── pattern files                  # Example: about-the-founder.php
 │   └── images/                        # Pattern-specific images
 │       ├── experts/                   # Instructor photos, podcast hosts, expert headshots
-│       │   ├── cathryn-lavery-fMD_Cru6OTk-unsplash-md.jpg
-│       │   └── [25 other images]
 │       ├── landscapes/                # Background images, scenery, hero images
-│       │   ├── joshua-earle-9idqIGrLuTE-unsplash-md.jpg
-│       │   └── [19 other images]
 │       └── people/                    # Team members, testimonials, general people photos
-│           ├── alex-starnes-WYE2UhXsU1Y-unsplash-sm.jpg
-│           └── [25 other images]
 │
 ├── inc/
-│   └── patterns.php                   # Registers custom pattern categories
+│   └── patterns.php                   # Custom pattern categories and other pattern related functions
 │
 └── assets/images/                     # Theme-wide images (NOT for patterns)
     └── [theme assets]
@@ -210,6 +203,7 @@ add_action( 'init', 'memberlite_register_pattern_categories' );
 - Invalid category slug in `Categories:` field
 - PHP syntax error in the file
 - File isn't saved with `.php` extension
+- PHP cache needs to be cleared
 
 **Fix**: Verify the pattern file structure matches the format shown in [Pattern File Format](#pattern-file-format).
 
@@ -301,16 +295,18 @@ Only use images that meet ONE of these criteria:
 
 ### Available Categories
 
-| Category Slug | Label | Use For |
-|---------------|-------|---------|
-| `memberlite-about` | Memberlite - About | About pages, founder bios, organization info |
-| `memberlite-community` | Memberlite - Community | Member spotlights, community features, directory sections |
-| `memberlite-content` | Memberlite - Content | Content upgrades, post grids, newsletter sections |
-| `memberlite-courses` | Memberlite - Courses | Course layouts, curriculum, instructor profiles |
-| `memberlite-cta` | Memberlite - Call to Action | Marketing, promotions, membership CTAs |
-| `memberlite-media` | Memberlite - Media | Video, podcast, media features |
-| `memberlite-team` | Memberlite - Team | Team grids, staff listings, board members |
-| `memberlite-testimonials` | Memberlite - Testimonials | Reviews, social proof, user feedback |
+| Category Slug             | Label                          | Use For                                                       |
+|---------------------------|--------------------------------|---------------------------------------------------------------|
+| `memberlite-about`        | Memberlite - About             | About pages, founder bios, organization info                  |
+| `memberlite-community`    | Memberlite - Community         | Member spotlights, community features, directory sections     |
+| `memberlite-content`      | Memberlite - Content           | Content upgrades, post grids, newsletter sections             |
+| `memberlite-courses`      | Memberlite - Courses           | Course layouts, curriculum, instructor profiles               |
+| `memberlite-cta`          | Memberlite - Call to Action    | Marketing, promotions, membership CTAs                        |
+| `memberlite-footer`       | Memberlite - Footer Variations | For patterns used in the `memberlite_footer` custom post type |
+| `memberlite-header`       | Memberlite - Header Variations | For patterns used in the `memberlite_header` custom post type |
+| `memberlite-media`        | Memberlite - Media             | Video, podcast, media features                                |
+| `memberlite-team`         | Memberlite - Team              | Team grids, staff listings, board members                     |
+| `memberlite-testimonials` | Memberlite - Testimonials      | Reviews, social proof, user feedback                          |
 
 ### Using Multiple Categories
 
@@ -355,7 +351,7 @@ $categories = array(
 - [ ] All images load correctly
 - [ ] Pattern is responsive (test mobile, tablet, desktop)
 - [ ] Pattern respects theme colors/fonts
-- [ ] No PHP errors in debug.log
+- [ ] No PHP errors in `debug.log`
 - [ ] No JavaScript console errors
 - [ ] Pattern works with different color schemes (if applicable)
 
@@ -395,6 +391,18 @@ $categories = array(
 
 ---
 
+## Header and Footer Patterns
+
+Header and footer patterns follow the same file format as all other patterns but carry a `Post Types:` header that scopes them exclusively to their respective CPT editor. They do not appear in the general page/post block inserter.
+
+**Header patterns** — Starter designs live in `patterns/header-*.php`. They carry `Post Types: memberlite_header`.
+
+**Footer patterns** — Starter designs live in `patterns/footer-*.php`. They carry `Post Types: memberlite_footer`.
+
+For the full picture of how these patterns are used within the variations system (CPT, Customizer settings, resolver logic), see [variations.md](variations.md).
+
+---
+
 ## Additional Resources
 
 - [WordPress Block Pattern Documentation](https://developer.wordpress.org/block-editor/reference-guides/block-api/block-patterns/)
@@ -403,4 +411,4 @@ $categories = array(
 
 ---
 
-**Last Updated**: 2026-03-10
+**Last Updated**: 2026-05-01

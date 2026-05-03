@@ -215,7 +215,7 @@
 			}
 
 			.member-navigation {
-					li {
+				li {
 					display: inline-block;
 					margin: 0;
 					position: relative;
@@ -233,9 +233,9 @@
 
 					li a { min-width: 100%; }
 				}
-
 			}
 		}
+
 	}
 
 	// -------------------------------------------------------------------------
@@ -244,6 +244,7 @@
 	// -------------------------------------------------------------------------
 
 	#site-navigation,
+	.memberlite-nav-menu,
 	.site-navigation-sticky-wrapper {
 		display: none;
 
@@ -270,7 +271,7 @@
 					color-mix(in srgb, var(--memberlite-color-site-navigation-background), black 10%),
 					color-mix(in srgb, var(--memberlite-color-site-navigation-background), white 20%)
 			);
-			box-shadow: var(--memberlite-shadow);
+			box-shadow: $header-shadow;
 			position: fixed;
 			width: 100%;
 			z-index: 10;
@@ -299,12 +300,45 @@
 }
 
 // -----------------------------------------------------------------------------
+// CPT-based header variations
+// .site-header-mobile-row  — logo + toggle, visible on mobile only
+// .site-header-variation   — block editor content, visible on tablet+ only
+// -----------------------------------------------------------------------------
+
+.site-header-mobile-row {
+	@include breakpoint(tablet) {
+		display: none;
+	}
+}
+
+.site-header-variation-sticky-wrapper {
+	@include breakpoint(mobile) {
+		display: none;
+	}
+}
+
+.site-header-variation {
+	@include breakpoint(mobile) {
+		display: none;
+	}
+
+	&.site-navigation-sticky {
+		box-shadow: $header-shadow;
+		position: fixed;
+		top: 0;
+		width: 100%;
+		z-index: 10;
+	}
+}
+
+// -----------------------------------------------------------------------------
 // Shared desktop navigation styles
 // Applies to: main nav, member nav, header-right widget nav
 // -----------------------------------------------------------------------------
 
 .site-header {
 	#site-navigation,
+	.memberlite-nav-menu,
 	.member-navigation,
 	.header-right .widget_nav_menu {
 		ul {
@@ -374,7 +408,7 @@
 				width: max-content;
 				min-width: 100px;
 				max-width: 210px;
-				background-color: var(--memberlite-color-site-navigation-background);
+				background-color: var(--memberlite-color-navigation-block-background, var(--memberlite-color-site-navigation-background));
 				box-shadow: 4px 12px 16px 0 rgba(0, 0, 0, 0.12);
 				text-align: left;
 			}

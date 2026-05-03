@@ -30,9 +30,9 @@ function memberlite_get_defaults(): array {
 		'author_block'                      => false,
 
 		// Footer
-		'memberlite_footerwidgets'          => '4',
 		'copyright_textbox'                 => '&copy; !!current_year!! !!site_title!!',
 		'memberlite_back_to_top'            => true,
+		'memberlite_back_to_top_style'      => 'default',
 
 		// Color Scheme
 		'memberlite_color_scheme'           => 'default',

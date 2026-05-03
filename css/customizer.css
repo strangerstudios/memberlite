@@ -21,6 +21,12 @@
 	padding: 10px;
 }
 
+.section-meta + li .customize-control-title.settings-heading {
+	border-top: 0;
+	margin-top: 0;
+	padding-top: 0;
+}
+
 .customize-control-description {
 	margin-bottom: 10px;
 }

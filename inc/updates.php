@@ -24,7 +24,7 @@ function memberlite_checkForUpdates() {
 		update_option( 'memberlite_db_version', $memberlite_db_version, 'no' );
 	}
 
-	// Migrate the theme_mod for webfonts to single properties.
+	// Memberlite 5.2.1 Update - Migrate the theme_mod for webfonts to single properties.
 	if ( $memberlite_db_version < '2025032601' ) {
 		$memberlite_webfonts = get_theme_mod( 'memberlite_webfonts' );
 		if ( ! empty( $memberlite_webfonts ) ) {
@@ -44,7 +44,7 @@ function memberlite_checkForUpdates() {
 		update_option( 'memberlite_db_version', '2026022201', 'no' );
 	}
 
-	// Migrate font theme_mods to lowercase slugs to match theme.json.
+	// Memberlite 7.0.1 Update - Migrate font theme_mods to lowercase slugs to match theme.json.
 	if ( $memberlite_db_version < '2026040201' ) {
 		foreach ( array( 'memberlite_header_font', 'memberlite_body_font' ) as $mod_key ) {
 			$value = get_theme_mod( $mod_key );
@@ -59,6 +59,7 @@ function memberlite_checkForUpdates() {
 		}
 		update_option( 'memberlite_db_version', '2026040201', 'no' );
 	}
+
 }
 
 /**

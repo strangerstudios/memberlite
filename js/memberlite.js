@@ -6,7 +6,8 @@ document.addEventListener('DOMContentLoaded', function () {
 	initDesktopNav();
 	initMobileNav();
 	initStickyNav();
-
+	initStickyVariation();
+	initBackToTop();
 });
 
 // ─── Tabs ────────────────────────────────────────────────────────────────────
@@ -69,10 +70,19 @@ function initDesktopNav() {
 	const widgetSiteNav = document.querySelector('.header-widget-area');
 	const memberNav = document.getElementById('member-navigation');
 	const mainSiteNav = document.getElementById('site-navigation');
+	// Memberlite Nav Menu Block
+	const blockSiteNav = document.querySelectorAll('.memberlite-nav-menu');
 
 	if (mainSiteNav) {
 		mainSiteNav.querySelectorAll('.menu-item-has-children').forEach(initDesktopNavItem);
 		initDesktopNavClickOutside(mainSiteNav);
+	}
+
+	if (blockSiteNav) {
+		blockSiteNav.forEach((blockMenu) => {
+			blockMenu.querySelectorAll('.menu-item-has-children').forEach(initDesktopNavItem);
+			initDesktopNavClickOutside(blockMenu);
+		});
 	}
 
 	if (memberNav) {
@@ -273,13 +283,13 @@ function isAnchorLinkForCurrentPage(link) {
 // ─── Sticky Navigation ───────────────────────────────────────────────────────
 
 function initStickyNav() {
-	const stickyWrapper = document.querySelector('.site-navigation-sticky-wrapper');
-	const stickyNav = document.getElementById('site-navigation');
+	const stickyWrapper = document.querySelector( '.site-navigation-sticky-wrapper' );
+	const stickyNav = document.getElementById( 'site-navigation' );
 
-	if (!stickyWrapper || !stickyNav) return;
+	if ( ! stickyWrapper || ! stickyNav ) return;
 
 	const navHeight = stickyNav.offsetHeight;
-	const adminBar = document.getElementById('wpadminbar');
+	const adminBar = document.getElementById( 'wpadminbar' );
 	const adminBarHeight = adminBar ? adminBar.offsetHeight : 0;
 
 	stickyWrapper.style.height = navHeight + 'px';
@@ -287,17 +297,71 @@ function initStickyNav() {
 
 	const stickyTop = stickyWrapper.getBoundingClientRect().top + window.scrollY - adminBarHeight;
 
-	window.addEventListener('scroll', function () {
-		updateStickyState(stickyNav, stickyTop, adminBarHeight);
-	});
+	window.addEventListener( 'scroll', function () {
+		updateStickyState( stickyNav, stickyTop, adminBarHeight );
+	}, { passive: true } );
 }
 
-function updateStickyState(stickyNav, stickyTop, adminBarHeight) {
-	if (window.scrollY >= stickyTop) {
-		stickyNav.classList.add('site-navigation-sticky');
+function updateStickyState( stickyNav, stickyTop, adminBarHeight ) {
+	if ( window.scrollY > stickyTop ) {
+		stickyNav.classList.add( 'site-navigation-sticky' );
 		stickyNav.style.top = adminBarHeight + 'px';
 	} else {
-		stickyNav.classList.remove('site-navigation-sticky');
+		stickyNav.classList.remove( 'site-navigation-sticky' );
 		stickyNav.style.top = '';
 	}
+}
+
+function initStickyVariation() {
+	if ( window.innerWidth < 768 ) return;
+
+	const stickyWrapper = document.querySelector( '.site-header-variation-sticky-wrapper' );
+	const stickyNav     = document.querySelector( '.site-header-variation' );
+
+	if ( ! stickyWrapper || ! stickyNav ) return;
+
+	const navHeight      = stickyNav.offsetHeight;
+	const adminBar       = document.getElementById( 'wpadminbar' );
+	const adminBarHeight = adminBar ? adminBar.offsetHeight : 0;
+
+	stickyWrapper.style.height = navHeight + 'px';
+	stickyNav.style.height     = navHeight + 'px';
+
+	const stickyTop = stickyWrapper.getBoundingClientRect().top + window.scrollY - adminBarHeight;
+
+	updateStickyState( stickyNav, stickyTop, adminBarHeight );
+
+	window.addEventListener( 'scroll', function () {
+		updateStickyState( stickyNav, stickyTop, adminBarHeight );
+	}, { passive: true } );
+}
+
+// ─── Back to Top ─────────────────────────────────────────────────────────────
+
+function initBackToTop() {
+	const btn = document.querySelector('.memberlite-back-to-top.floating');
+	if (!btn) return;
+
+	const SCROLL_THRESHOLD = 300;
+
+	function updateScrollVisibility() {
+		btn.classList.toggle('is-visible', window.scrollY > SCROLL_THRESHOLD);
+	}
+
+	// Hide the button when the site footer scrolls into view.
+	const footer = document.getElementById('colophon');
+	if (footer) {
+		new IntersectionObserver(function (entries) {
+			if (!entries.length) return;
+			btn.classList.toggle('is-footer-visible', entries[0].isIntersecting);
+		}).observe(footer);
+	}
+
+	window.addEventListener('scroll', updateScrollVisibility, { passive: true });
+	updateScrollVisibility();
+
+	btn.addEventListener('click', function (e) {
+		e.preventDefault();
+		window.scrollTo({ top: 0, behavior: 'smooth' });
+	});
 }

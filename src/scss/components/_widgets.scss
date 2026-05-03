@@ -20,21 +20,8 @@
 
 	// Widget base
 	.widget {
-		background-color: light-dark(
-			color-mix(in srgb, var(--memberlite-color-site-background), black 3%),
-			color-mix(in srgb, var(--memberlite-color-site-background), white 3%)
-		);
-		border-radius: var(--wp--custom--border--radius);
 		overflow: hidden;
 		margin: 0 0 var(--wp--style--root--padding-right) 0;
-
-		> :first-child {
-			padding-top: var(--wp--style--root--padding-top);
-		}
-
-		> :last-child {
-			padding-bottom: var(--wp--style--root--padding-bottom);
-		}
 	}
 
 	.widget-title {
@@ -84,9 +71,6 @@
 
 	// Nav menu widget
 	.widget_nav_menu {
-		padding-left: var(--wp--style--root--padding-left);
-		padding-right: var(--wp--style--root--padding-right);
-
 		.widget-title {
 			margin-bottom: var(--wp--preset--spacing--20);
 		}

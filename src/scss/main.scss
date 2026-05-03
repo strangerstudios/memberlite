@@ -23,6 +23,7 @@
 	3.4 Pagination (_pagination.scss)
 	3.5 Shortcodes (_shortcodes.scss)
 	3.6 Widgets (_widgets.scss)
+	3.7 Tooltips (_tooltips.scss)
 4.0 Structure
 	4.1 Header (_header.scss)
 	4.2 Masthead (_masthead.scss)
@@ -62,6 +63,7 @@
 @use "components/pagination";
 @use "components/shortcodes";
 @use "components/widgets";
+@use "components/tooltips";
 
 /*--------------------------------------------------------------
  STRUCTURE
