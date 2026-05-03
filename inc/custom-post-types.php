@@ -203,7 +203,7 @@ add_action( 'save_post_memberlite_footer', 'memberlite_footer_auto_title', 10, 2
  */
 
 /**
- * Clear the assigned header theme_mod when its memberlite_header post is removed.
+ * Clear theme_mods and per-page overrides referencing a deleted memberlite_header post.
  *
  * @since TBD
  * @param int $post_id The post being trashed or deleted.
@@ -216,7 +216,7 @@ function memberlite_cleanup_header_assignment_on_delete( int $post_id ): void {
 	}
 
 	// WordPress appends '__trashed' to post_name when a post is moved to trash;
-	// strip it so we match the original slug stored in theme_mods.
+	// strip it so we match the original slug stored in theme_mods and post meta.
 	$slug = $post->post_name;
 	if ( str_ends_with( $slug, '__trashed' ) ) {
 		$slug = substr( $slug, 0, -strlen( '__trashed' ) );
@@ -225,6 +225,9 @@ function memberlite_cleanup_header_assignment_on_delete( int $post_id ): void {
 	if ( get_theme_mod( 'memberlite_default_header_slug', '0' ) === $slug ) {
 		remove_theme_mod( 'memberlite_default_header_slug' );
 	}
+
+	// Clear per-page header overrides that reference the deleted slug.
+	delete_metadata( 'post', 0, '_memberlite_header_override', $slug, true );
 }
 add_action( 'before_delete_post', 'memberlite_cleanup_header_assignment_on_delete' );
 
