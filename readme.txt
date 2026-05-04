@@ -105,6 +105,7 @@ Memberlite includes formatting for use with:
 * ENHANCEMENT: Re-labeled existing shortcut links to CPTs to "Edit Header/Footer Variations." Added notices to the "Colors" section in Customizer. Added a new `add_memberlite_link_control` function in `inc/customizer.php` for adding notices between settings. #281 (@RachelRVasquez)
 * ENHANCEMENT: Added a new `add_memberlite_link_control` function in `inc/customizer.php` for displaying links within Customizer. #247 (@kimcoleman)
 * ENHANCEMENT: Updated bbPress styles. bbPress now inherits colors from Memberlite's color schemes and color pickers in Customizer. #278 (@RachelRVasquez)
+* ENHANCEMENT: Added a new helper `memberlite_output_edit_link()` to output SVG icons and `post_type` names in `get_edit_post_link` calls. #289 (@RachelRVasquez)
 * BUG FIX: Fixed submenu background color to correctly use the parent block's background color for the Nav Menu and Member Info blocks. #262 (@kimcoleman)
 * BUG FIX: Fixed block styles not being enqueued on the front-end. #270 (@RachelRVasquez)
 * BUG FIX: Removed type hinting on `memberlite_allowed_blocks` that caused fatal errors on sites with no registered menus. #269 (@RachelRVasquez)
