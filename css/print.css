@@ -4,19 +4,25 @@
  * @package Memberlite
  */
 @media print {
+	@page {
+		margin: 1cm;
+	}
+
+	:root {
+		color-scheme: light !important;
+	}
 
 	/* Force a light, ink-friendly context — protects dark color schemes (body.is-style-dark) and any CSS-variable-driven backgrounds. */
 	body,
 	body.is-style-dark,
 	body.is-style-dark * {
-		background: transparent !important;
+		background: #fff !important;
 		color: #000 !important;
 		text-shadow: none !important;
 		box-shadow: none !important;
 	}
 
 	body {
-		background: #fff;
 		font-size: 10pt;
 		margin: 0;
 		print-color-adjust: economy;
@@ -101,27 +107,27 @@
 		margin: 0;
 	}
 	h1, h2, h3, h4, h5, h6 {
-		page-break-after: avoid;
-		page-break-inside: avoid;
+		break-after: avoid;
+		break-inside: avoid;
 	}
 	p, h2, h3 {
 		orphans: 3;
 		widows: 3;
 	}
 	blockquote, table, pre {
-		page-break-inside: avoid;
+		break-inside: avoid;
 	}
 	ul, ol, dl {
-		page-break-before: avoid;
+		break-before: avoid;
 	}
 	thead {
 		display: table-header-group;
 	}
 	tr, img {
-		page-break-inside: avoid;
+		break-inside: avoid;
 	}
 	img {
-		page-break-after: avoid;
+		break-after: avoid;
 		max-width: 100% !important;
 	}
 }
