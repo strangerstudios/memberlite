@@ -28,7 +28,7 @@
 	</div><!-- .entry-content -->
 	<?php if ( current_user_can( 'edit_post', get_the_ID() ) ) { ?>
 		<footer class="entry-footer">
-			<?php edit_post_link( memberlite_edit_link_icon() . esc_html__( 'Edit Page', 'memberlite' ), '<span class="edit-link">', '</span>' ); ?>
+			<?php memberlite_output_edit_link(); ?>
 		</footer><!-- .entry-footer -->
 	<?php } ?>
 </article><!-- #post-## -->
