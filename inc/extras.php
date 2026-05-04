@@ -1000,10 +1000,15 @@ function memberlite_output_edit_link(): void {
 		? sprintf( esc_html__( '%s', 'memberlite' ), $edit_item_name )
 		: esc_html__( 'Edit', 'memberlite' );
 
-	printf(
-		'<span class="edit-link"><a href="%1$s" class="post-edit-link">%2$s%3$s</a></span>',
+	$link = sprintf(
+		'<a href="%1$s" class="post-edit-link">%2$s%3$s</a>',
 		esc_url( $edit_url ),
 		memberlite_edit_link_icon(),
 		$label
 	);
+
+	// Preserve compatibility with anything hooking into the core filter.
+	$link = apply_filters( 'edit_post_link', $link, get_the_ID(), $label );
+
+	printf( '<span class="edit-link">%s</span>', $link );
 }
