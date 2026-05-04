@@ -97,6 +97,16 @@
 		}
 	}
 
+	// Special handling for our subpage menu widget
+	#nav_menu-submenu {
+		background-color: light-dark(
+			color-mix(in srgb, var(--memberlite-color-site-background), black 3%),
+			color-mix(in srgb, var(--memberlite-color-site-background), white 3%)
+		);
+		border-radius: var(--wp--custom--border--radius);
+		padding: var(--wp--preset--spacing--30);
+	}
+
 	// Meta widget
 	.widget.widget_meta h3.widget-title {
 		margin-bottom: 0;
