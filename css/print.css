@@ -3,69 +3,131 @@
  *
  * @package Memberlite
  */
- @media print {
+@media print {
+	@page {
+		margin: 1cm;
+	}
+
+	:root {
+		color-scheme: light !important;
+	}
+
+	/* Force a light, ink-friendly context — protects dark color schemes (body.is-style-dark) and any CSS-variable-driven backgrounds. */
+	body,
+	body.is-style-dark,
+	body.is-style-dark * {
+		background: #fff !important;
+		color: #000 !important;
+		text-shadow: none !important;
+		box-shadow: none !important;
+	}
+
 	body {
-		background:white;
 		font-size: 10pt;
 		margin: 0;
+		print-color-adjust: economy;
+		-webkit-print-color-adjust: economy;
 	}
+
+	/* Strip background images from banner regions so they don't ghost-print. */
+	.banner_background-image,
+	.masthead-banner,
+	.masthead {
+		background: transparent;
+		background-image: none !important;
+	}
+
 	#masthead .site-branding {
 		width: 100%;
 		text-align: left;
 	}
+
 	#page a {
 		text-decoration: underline;
 		border: none;
 	}
-	#site-navigation, #masthead .header-right, .masthead .memberlite-breadcrumb, .post-navigation, #respond, .pmpro_actions_nav, #secondary, #banner_bottom, .site-footer .footer-widgets, #footer-navigation, .site-info .skip-link, #footer, .ad, #nav-below, .post-edit-link {
-		display: none;
+
+	/* Hide site chrome, navigation, and interactive elements that have no value on paper. */
+	#wpadminbar,
+	.site-navigation-sticky-wrapper,
+	#site-navigation,
+	#mobile-navigation,
+	.mobile-navigation-bar,
+	#expand-mobile-nav,
+	#masthead .header-right,
+	.masthead .memberlite-breadcrumb,
+	.post-navigation,
+	#respond,
+	.comment-respond,
+	.pmpro_actions_nav,
+	#secondary,
+	#banner_bottom,
+	.site-footer .footer-widgets,
+	.site-footer nav,
+	#footer-navigation,
+	.skip-link,
+	#footer,
+	.post-edit-link,
+	.banner-image,
+	.sharedaddy,
+	.sharing,
+	.jp-relatedposts,
+	.addtoany_share_save_container,
+	iframe,
+	video,
+	audio,
+	.wp-block-embed,
+	button,
+	input[type="button"],
+	input[type="submit"],
+	input[type="reset"] {
+		display: none !important;
 	}
-	.masthead {
+
+	.masthead,
+	.masthead-banner,
+	.hentry {
 		padding: 0;
 		margin: 0;
 	}
+
+	.masthead + .row,
+	.masthead-post-byline {
+		margin-top: 0;
+	}
+
 	.site-footer .site-info {
 		padding-bottom: 0;
 		padding-top: 0;
 	}
-	h1, h2, h3, h4, h5, h6 {
-		page-break-after: avoid;
-		page-break-inside: avoid;
+
+	/* Typography & pagination. */
+	h1, .masthead h1 {
+		color: var(--memberlite-color-text);
+		margin: 0;
 	}
-	h3 {
-		margin-left: 10px;
-		margin-bottom: 0px;
-		padding-bottom: 0px;
+	h1, h2, h3, h4, h5, h6 {
+		break-after: avoid;
+		break-inside: avoid;
+	}
+	p, h2, h3 {
+		orphans: 3;
+		widows: 3;
 	}
 	blockquote, table, pre {
-		page-break-inside: avoid;
+		break-inside: avoid;
 	}
 	ul, ol, dl {
-		page-break-before: avoid;
+		break-before: avoid;
 	}
-	img.centered {
-		display: block;
-		margin-left: auto;
-		margin-right: auto;
+	thead {
+		display: table-header-group;
 	}
-	img.right {
-		padding: 4px;
-		margin: 0 0 2px 7px;
-		display: inline;
-	}
-	img.left {
-		padding: 4px;
-		margin: 0 7px 2px 0;
-		display: inline;
-	}
-	.right {
-		float: right;
-	}
-	.left {
-		float: left;
+	tr, img {
+		break-inside: avoid;
 	}
 	img {
-		page-break-inside: avoid;
-		page-break-after: avoid;
+		break-after: avoid;
+		max-width: 100% !important;
 	}
 }
