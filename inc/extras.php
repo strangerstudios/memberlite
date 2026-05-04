@@ -993,11 +993,11 @@ function memberlite_output_edit_link(): void {
 	}
 
 	$post_type_obj = get_post_type_object( $post_type_slug );
-	$singular_name = $post_type_obj->labels->singular_name ?? '';
+	$edit_item_name = $post_type_obj->labels->edit_item ?? '';
 
-	$label = $singular_name
+	$label = $edit_item_name
 		/* translators: %s: Post type singular name, e.g. "Post", "Page". */
-		? sprintf( esc_html__( 'Edit %s', 'memberlite' ), $singular_name )
+		? sprintf( esc_html__( '%s', 'memberlite' ), $edit_item_name )
 		: esc_html__( 'Edit', 'memberlite' );
 
 	printf(
