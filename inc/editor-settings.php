@@ -25,12 +25,36 @@ function memberlite_register_editor_settings_post_meta(): void {
 		}
 	) );
 
+	register_post_meta( 'page', '_memberlite_header_override', array(
+		'show_in_rest'      => true,
+		'type'              => 'string',
+		'single'            => true,
+		'default'           => '',
+		'label'             => __( 'Select Header', 'memberlite' ),
+		'sanitize_callback' => 'sanitize_key',
+		'auth_callback' => function() {
+			return current_user_can( 'edit_posts' );
+		}
+	) );
+
 	register_post_meta( 'page', '_memberlite_hide_footer', array(
 		'show_in_rest' => true,
 		'type'         => 'boolean',
 		'single'       => true,
 		'default'      => false,
 		'label'        => __( 'Hide Footer', 'memberlite' ),
+		'auth_callback' => function() {
+			return current_user_can( 'edit_posts' );
+		}
+	) );
+
+	register_post_meta( 'page', '_memberlite_footer_override', array(
+		'show_in_rest'      => true,
+		'type'              => 'string',
+		'single'            => true,
+		'default'           => '',
+		'label'             => __( 'Select Footer', 'memberlite' ),
+		'sanitize_callback' => 'sanitize_key',
 		'auth_callback' => function() {
 			return current_user_can( 'edit_posts' );
 		}
@@ -44,6 +68,16 @@ function memberlite_register_editor_settings_post_meta(): void {
 		'auth_callback' => function() {
 			return current_user_can( 'edit_posts' );
 		}
+	) );
+
+	register_post_meta( 'memberlite_header', '_memberlite_header_sticky', array(
+		'show_in_rest'  => true,
+		'single'        => true,
+		'type'          => 'boolean',
+		'default'       => false,
+		'auth_callback' => function() {
+			return current_user_can( 'edit_posts' );
+		},
 	) );
 }
 add_action( 'init', 'memberlite_register_editor_settings_post_meta' );
@@ -76,12 +110,50 @@ function memberlite_enqueue_custom_editor_assets(): void {
 		true
 	);
 
-	// Get existing theme mods that we're moving into the settings
-	wp_localize_script( 'memberlite-custom-settings', 'memberlite_theme_mod_settings', array(
-		'showPrevNextSinglePages' => get_theme_mod( 'memberlite_page_nav', true )
-	) );
+	// Build editor footer choices as an ordered array of {value, label} objects.
+	$header_variations_editor = memberlite_build_editor_override_choices( memberlite_get_header_variations() );
+	$footer_variations_editor = memberlite_build_editor_override_choices( memberlite_get_footer_variations() );
+
+	// Get existing theme mods, and get footer variations to populate the footer override setting
+	wp_localize_script(
+		'memberlite-custom-settings',
+		'memberliteEditorData',
+		array(
+			'showPrevNextSinglePages' => get_theme_mod( 'memberlite_page_nav', true ),
+			'headerVariations'        => $header_variations_editor,
+			'footerVariations'        => $footer_variations_editor,
+			'manageHeadersUrl'        => admin_url( 'edit.php?post_type=memberlite_header' ),
+			'manageFootersUrl'        => admin_url( 'edit.php?post_type=memberlite_footer' ),
+		)
+	);
 }
 add_action( 'enqueue_block_editor_assets', 'memberlite_enqueue_custom_editor_assets' );
+
+/**
+ * Build options to populate override dropdowns in document settings
+ *
+ * @param array $variations
+ *
+ * @since 7.1
+ * @return array[]
+ */
+function memberlite_build_editor_override_choices( array $variations ) {
+	$variations_editor = array(
+		array(
+			'value' => '',
+			'label' => __( '— No Override —', 'memberlite' ),
+		),
+	);
+
+	foreach ( $variations as $slug => $title ) {
+		$variations_editor[] = array(
+			'value' => (string) $slug,
+			'label' => $title,
+		);
+	}
+
+	return $variations_editor;
+}
 
 /**
  * Hide header on pages

@@ -11,7 +11,7 @@
 global $memberlite_defaults;
 $back_to_top = get_theme_mod( 'memberlite_back_to_top', $memberlite_defaults['memberlite_back_to_top'] );
 
-if ( ! empty( $back_to_top ) ) {
+if ( ! empty( $back_to_top ) && 'floating' !== get_theme_mod( 'memberlite_back_to_top_style', $memberlite_defaults['memberlite_back_to_top_style'] ) ) {
 	$back_to_top_allowed_html = array(
 		'i' => array(
 			'class' => array(),

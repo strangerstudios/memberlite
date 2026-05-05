@@ -60,7 +60,7 @@ Vanilla CSS files that are **not** part of the Sass build process. These are com
 
 Typically contains:
 
-* Integration stylesheets for third-party plugins (`bbpress.css`, `lifterlms.css`, `woocommerce.css`)
+* Integration stylesheets for third-party plugins (`bbp.css`, `lifterlms.css`, `woocommerce.css`)
 * Utility stylesheets (`admin.css`, `editor.css`, `print.css`, `customizer.css`)
 
 See [CSS Guidelines](css-guidelines.md) for guidance on when styles belong here vs. in `/src/scss`.
@@ -69,7 +69,7 @@ See [CSS Guidelines](css-guidelines.md) for guidance on when styles belong here 
 
 ### `/docs`
 
-Where Memberlite's documentation files live. Ideally they are written and pushed with related code in PRs to ensure the docs are always up to date.
+Where Memberlite's documentation files live. Ideally, they are written and pushed with related code in PRs to ensure the docs are always up to date.
 
 ---
 
@@ -118,6 +118,14 @@ Typically contains:
 
 ---
 
+### `/patterns`
+
+Block patterns that users can insert into pages and posts via the block inserter. WordPress auto-registers any PHP file placed here — no manual registration needed. Includes a nested `images/` directory for pattern placeholder images.
+
+See [patterns.md](patterns.md) for authoring guidelines, image conventions, and the full category list.
+
+---
+
 ### `/shortcodes`
 
 Where the theme's custom shortcodes are defined. This was previously part of Memberlite's Shortcode/Elements Add Ons.
@@ -131,7 +139,7 @@ Source files that require a build step before use.
 Contains:
 
 * `scss/` — Sass source files, compiled to `build/css/main.css`. See [CSS Guidelines](css-guidelines.md) for directory structure and conventions.
-* `blocks/` — Custom Gutenberg block source (future use). Built with `@wordpress/scripts` to `build/`.
+* `blocks/` — Custom Gutenberg block source. Built with `@wordpress/scripts` to `build/`.
 * `editor/` — Block editor settings and customizations (future use).
 
 See [Build Process](build-process.md) for details.
@@ -160,4 +168,4 @@ In addition to the folders above, the theme root contains key PHP files such as:
 
 ---
 
-**Last Updated**: 2026-03-12
+**Last Updated**: 2026-05-01

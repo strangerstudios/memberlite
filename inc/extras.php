@@ -960,3 +960,55 @@ function memberlite_banner_image_setup() {
 	}
 }
 add_action( 'wp_loaded', 'memberlite_banner_image_setup' );
+
+/**
+ * Return pencil icon used for Edit Post/Page/CPT links.
+ *
+ * @since 7.1
+ * @return string
+ */
+function memberlite_edit_link_icon(): string {
+	return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" aria-hidden="true">
+        <path d="M13.89 3.39l2.71 2.72c.46.46.42 1.24.03 1.64l-8.01 8.02-5.56 1.16 1.16-5.58s7.6-7.63 7.99-8.03c.39-.39 1.22-.39 1.68.07zm-2.73 2.79l-5.59 5.61 1.11 1.11 5.54-5.65zm-2.97 8.23l5.58-5.6-1.07-1.08-5.59 5.6z"></path>
+    </svg>';
+}
+
+/**
+ * Output an edit link with SVG icon and post type label for the current post.
+ *
+ * @since 7.1
+ * @return void
+ */
+function memberlite_output_edit_link(): void {
+	$post_type_slug = get_post_type();
+
+	if ( ! $post_type_slug ) {
+		return;
+	}
+
+	$edit_url = get_edit_post_link();
+
+	if ( ! $edit_url ) {
+		return;
+	}
+
+	$post_type_obj = get_post_type_object( $post_type_slug );
+	$edit_item_name = $post_type_obj->labels->edit_item ?? '';
+
+	$label = $edit_item_name
+		/* translators: %s: Post type singular name, e.g. "Post", "Page". */
+		? sprintf( esc_html__( '%s', 'memberlite' ), $edit_item_name )
+		: esc_html__( 'Edit', 'memberlite' );
+
+	$link = sprintf(
+		'<a href="%1$s" class="post-edit-link">%2$s%3$s</a>',
+		esc_url( $edit_url ),
+		memberlite_edit_link_icon(),
+		$label
+	);
+
+	// Preserve compatibility with anything hooking into the core filter.
+	$link = apply_filters( 'edit_post_link', $link, get_the_ID(), $label );
+
+	printf( '<span class="edit-link">%s</span>', $link );
+}

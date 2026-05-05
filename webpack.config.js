@@ -4,8 +4,9 @@ const path = require( 'path' );
 module.exports = {
 	...defaultConfig,
 	entry: {
+		'editor/block-inserter': path.resolve( process.cwd(), 'src/editor/block-inserter.js' ),
 		'editor/custom-settings': path.resolve( process.cwd(), 'src/editor/custom-settings.js' ),
-		// Add more entries as needed
-		// 'blocks/my-block/index': path.resolve( process.cwd(), 'src/blocks/my-block/index.js' ),
+		'blocks/nav-menu/index': path.resolve( process.cwd(), 'src/blocks/nav-menu/index.js' ),
+		'blocks/member-info/index': path.resolve( process.cwd(), 'src/blocks/member-info/index.js' ),
 	},
 };

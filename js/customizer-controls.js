@@ -192,4 +192,37 @@
 		});
 	});
 
+	// If a header/footer variation slug setting points to a post that no longer
+	// appears in the dropdown (e.g. the post was trashed), the <select> has no
+	// matching option and jQuery's .val() returns null. Visually fall back so
+	// the field doesn't render blank.
+	//
+	// We intentionally do NOT call wp.customize(settingId).set() here:
+	//   - Permanent deletion is handled server-side (theme_mod is cleared in
+	//     before_delete_post), so by the time the user reopens the Customizer,
+	//     the setting already matches a real option.
+	//   - During the trash period, the post may be untrashed; preserving the
+	//     stored slug means the original assignment is restored automatically.
+	//   - Calling .set() here would also dirty the Customizer and prompt for a
+	//     save the user didn't intend.
+	wp.customize.bind('ready', function () {
+		const orphanFallbacks = {
+			'memberlite_default_header_slug': '0',
+			'memberlite_global_footer_slug': '0',
+			'memberlite_archives_footer_slug': 'memberlite-global-footer',
+			'memberlite_post_footer_slug': 'memberlite-global-footer',
+			'memberlite_page_footer_slug': 'memberlite-global-footer'
+		};
+
+		Object.keys(orphanFallbacks).forEach(function (settingId) {
+			const $select = $('#customize-control-' + settingId + ' select');
+			if (!$select.length) {
+				return;
+			}
+			if (null === $select.val()) {
+				$select.val(orphanFallbacks[settingId]);
+			}
+		});
+	});
+
 })(jQuery);

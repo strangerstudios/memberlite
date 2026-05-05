@@ -3,7 +3,7 @@ Contributors: kimannwall, strangerstudios
 Requires at least: 6.4
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 7.0.3
+Stable tag: 7.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: one-column, two-columns, left-sidebar, right-sidebar, flexible-header, custom-background, custom-colors, custom-header, custom-menu, custom-logo, editor-style, featured-images, footer-widgets, full-width-template, theme-options, threaded-comments, translation-ready, e-commerce
@@ -91,6 +91,26 @@ Memberlite includes formatting for use with:
 [Install Events Manager »](https://wordpress.org/plugins/events-manager/)
 
 == Changelog ==
+
+= 7.1 - 2026-05-05 =
+* FEATURE: Added a new block-based footer variation system. Create and manage multiple footer designs as posts in a new Footer Variations CPT (`memberlite_footer`). Assign them globally or per location via the Customizer. Optional post-meta override available on pages. #247 #253 #256 #272 (@RachelRVasquez, @kimcoleman)
+* FEATURE: Added a new block-based header variation system. Create and manage multiple header designs as posts in a new Header Variations CPT (`memberlite_header`). Assign a global header via the Customizer. Optional post-meta override available on pages. Includes a sticky header option configurable per header post. #259 #271 #284 #286 (@RachelRVasquez, @kimcoleman)
+* FEATURE: Added functionality to delete header/footer theme mods when a post has been permanently deleted. Customizer JS handles posts that are trashed but not deleted to prevent "blank" options in header/footer settings. #284 #285 (@kimcoleman)
+* FEATURE: Added a custom Nav Menu block and Member Info block. The Nav Menu block dynamically pulls registered WordPress menus and menu locations (with support for the Paid Memberships Pro - Nav Menus Add On) for use in header and footer patterns. The Nav Menu and Member Info blocks are restricted to the block inserter for header or footer CPT posts. #258 #259 #269 #277 (@RachelRVasquez, @kimcoleman)
+* ENHANCEMENT: Added a new helper `memberlite_output_edit_link()` to output edit links with SVG icons and `post_type` names in template output. #289 (@RachelRVasquez)
+* ENHANCEMENT: Updated print styles and structure for this release. #288 (@kimcoleman)
+* ENHANCEMENT: Re-labeled existing shortcut links to CPTs to "Edit Header/Footer Variations." Added notices to the "Colors" section in Customizer. Added a new `add_memberlite_link_control` function in `inc/customizer.php` for adding notices between settings. #281 (@RachelRVasquez)
+* ENHANCEMENT: Updated bbPress styles. bbPress now inherits colors from Memberlite's color schemes and color pickers in Customizer. #278 (@RachelRVasquez)
+* ENHANCEMENT: Added tooltip styling with a new SCSS mixin, Memberlite brand colors, improved color contrast, and refined icon sizing. #274 (@RachelRVasquez)
+* ENHANCEMENT: Updated block build styles to use WordPress color presets instead of hardcoded CSS values. #270 (@RachelRVasquez)
+* ENHANCEMENT: Added colored PMPro icons to custom Memberlite blocks and replaced the block category with a block collection for better block inserter organization. #268 (@RachelRVasquez)
+* ENHANCEMENT: Added new pattern categories: "Memberlite - Header Variations" and "Memberlite - Footer Variations" #253 #259 (@RachelRVasquez, @kimcoleman)
+* ENHANCEMENT: Moved "Back to Top" settings from the "Footer" section to the newly added "General" section. Added new "Floating button" style for "Back to Top" style. #253 (@RachelRVasquez)
+* ENHANCEMENT: Added a new `add_memberlite_link_control` function in `inc/customizer.php` for displaying links within Customizer. #247 (@kimcoleman)
+* BUG FIX: Fixed block styles not being enqueued on the front-end. #270 (@RachelRVasquez)
+* BUG FIX: Removed type hinting on `memberlite_allowed_blocks` that caused fatal errors on sites with no registered menus. #269 (@RachelRVasquez)
+* BUG FIX: Fixed submenu background color to correctly use the parent block's background color for the Nav Menu and Member Info blocks. #262 (@kimcoleman)
+* DEPRECATED: Deprecated `memberlite_get_variation()`. It now always returns the default footer template part. #263 (@RachelRVasquez)
 
 = 7.0.3 - 2026-04-17 =
 * BUG FIX: Styling fix to prevent links that are too long in header navigations from overflowing past the sub-menu width. #255 (@RachelRVasquez)

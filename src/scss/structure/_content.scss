@@ -210,13 +210,29 @@
 	padding: var(--wp--preset--spacing--10) 0 0 0;
 }
 
-.entry-footer a {
+.entry-footer a:not(.post-edit-link) {
 	color: var(--memberlite-color-link);
 	text-decoration: underline;
 	text-underline-offset: 3px;
 
 	&:hover {
 		color: var(--memberlite-color-text);
+	}
+}
+
+.entry-footer .edit-link {
+	display: block;
+	width: max-content;
+
+	a.post-edit-link {
+		@include tool-tip-base;
+		box-shadow: $btn-shadow;
+
+		svg {
+			fill: currentColor;
+			width: 20px;
+			height: auto;
+		}
 	}
 }
 

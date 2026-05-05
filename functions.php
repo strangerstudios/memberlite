@@ -4,7 +4,7 @@
  *
  * @package Memberlite
  */
-define( 'MEMBERLITE_VERSION', '7.0.3' );
+define( 'MEMBERLITE_VERSION', '7.1' );
 define( 'MEMBERLITE_URL', get_template_directory_uri() );
 define( 'MEMBERLITE_DIR', get_template_directory() );
 
@@ -367,7 +367,7 @@ function memberlite_widgets_init() {
 		array(
 			'name'          => __( 'Header', 'memberlite' ),
 			'id'            => 'sidebar-3',
-			'description'   => 'Depending on your header variation, this is a spot you can put extra things.',
+			'description'   => __( 'Depending on your header variation, this is a spot you can put extra things.', 'memberlite' ),
 			'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 			'after_widget'  => '</aside>',
 			'before_sidebar' => '<div class="header-widget-area">',
@@ -375,22 +375,12 @@ function memberlite_widgets_init() {
 		)
 	);
 
-	$footer_widgets_count = get_theme_mod( 'memberlite_footerwidgets', $memberlite_defaults['memberlite_footerwidgets'] );
-	if ( $footer_widgets_count == '2' ) {
-		$footer_widgets_col_class = 'medium-6';
-	} elseif ( $footer_widgets_count == '3' ) {
-		$footer_widgets_col_class = 'medium-4';
-	} elseif ( $footer_widgets_count == '6' ) {
-		$footer_widgets_col_class = 'large-3';
-	} else {
-		$footer_widgets_col_class = 'medium-3';
-	}
 	register_sidebar(
 		array(
 			'name'          => __( 'Footer Widgets', 'memberlite' ),
 			'id'            => 'sidebar-4',
-			'description'   => 'You can set the number of widget columns in Appearance > Customize. Default: 4 columns.',
-			'before_widget' => '<aside id="%1$s" class="widget ' . $footer_widgets_col_class . ' columns %2$s">',
+			'description'   => __( 'This is a legacy method to customize the site footer. For more control, create a new Footer Variation and assign it in Customizer settings.', 'memberlite' ) . ' <a href="' . admin_url( 'edit.php?post_type=memberlite_footer' ) . '" target="_blank">' . __( 'Edit Footer Variations', 'memberlite' ) . '</a>',
+			'before_widget' => '<aside id="%1$s" class="widget medium-3 columns %2$s">',
 			'after_widget'  => '</aside>',
 			'before_title'  => '<h3 class="widget-title">',
 			'after_title'   => '</h3>',
@@ -409,6 +399,36 @@ function memberlite_widgets_init() {
 	);
 }
 add_action( 'widgets_init', 'memberlite_widgets_init' );
+
+/**
+ * Dynamically assign column width classes to footer widgets based on how many
+ * are active, spacing them evenly at no less than 25% width (max 4 per row).
+ *
+ * @since 7.1
+ */
+function memberlite_footer_widget_col_class( array $params ): array {
+	if ( 'sidebar-4' !== $params[0]['id'] ) {
+		return $params;
+	}
+
+	$sidebars = wp_get_sidebars_widgets();
+	$count    = count( $sidebars['sidebar-4'] ?? array() );
+
+	if ( $count <= 1 ) {
+		$col_class = 'medium-12';
+	} elseif ( $count === 2 ) {
+		$col_class = 'medium-6';
+	} elseif ( $count === 3 ) {
+		$col_class = 'medium-4';
+	} else {
+		$col_class = 'medium-3';
+	}
+
+	$params[0]['before_widget'] = str_replace( 'medium-3', $col_class, $params[0]['before_widget'] );
+
+	return $params;
+}
+add_filter( 'dynamic_sidebar_params', 'memberlite_footer_widget_col_class' );
 
 /* Get the redirect_to URL to use for "Log In" links. */
 function memberlite_login_redirect_to() {
@@ -454,7 +474,7 @@ function memberlite_menus( $items, $args ) {
 	// is this the primary menu location or a replaced menu using pmpro-nav-menus plugin
 	if ( $args->theme_location == 'primary' || ( substr( $args->theme_location, -strlen( '-primary' ) ) === '-primary' ) ) {
 		$nav_menu_search = get_theme_mod( 'nav_menu_search', false );
-		if ( ! empty( $nav_menu_search ) ) {
+		if ( ! empty( $nav_menu_search ) && memberlite_get_current_header_post_name() === '0' ) {
 			$items .= '<li class="menu-item-search">' . get_search_form( false ) . '</li>';
 		}
 	}
@@ -528,6 +548,9 @@ if ( is_admin() ) {
 	require_once get_template_directory() . '/inc/admin.php';
 }
 
+/* Register custom post types. */
+require_once get_template_directory() . '/inc/custom-post-types.php';
+
 /* Implement the Custom Header feature. */
 require_once get_template_directory() . '/inc/custom-header.php';
 
@@ -570,6 +593,9 @@ require_once get_template_directory() . '/inc/template-tags.php';
 /* Custom theme variations code. */
 require_once get_template_directory() . '/inc/variations.php';
 
+/* Custom blocks. */
+require_once get_template_directory() . '/inc/blocks.php';
+
 /* Custom widgets that act independently of the theme templates. */
 require_once get_template_directory() . '/inc/widgets.php';
 
@@ -578,6 +604,9 @@ require_once get_template_directory() . '/adminpages/dashboard.php';
 
 /* Editor Settings */
 require_once get_template_directory() . '/inc/editor-settings.php';
+
+/* Block Styles */
+require_once get_template_directory() . '/inc/block-styles.php';
 
 /* Custom sidebars. */
 require_once get_template_directory() . '/inc/sidebars.php';

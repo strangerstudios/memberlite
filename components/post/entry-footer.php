@@ -18,6 +18,6 @@ if ( ! empty( $memberlite_get_entry_meta_after ) || current_user_can( 'edit_post
 			echo Memberlite_Customize::sanitize_text_with_links( $memberlite_get_entry_meta_after ); // WPCS: xss ok.
 		}
 		?>
-		<?php edit_post_link( esc_html__( 'Edit', 'memberlite' ), '<span class="edit-link">', '</span>' ); ?>
+		<?php memberlite_output_edit_link(); ?>
 	</footer><!-- .entry-footer -->
 <?php } ?>
