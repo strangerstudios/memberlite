@@ -92,7 +92,7 @@ Memberlite includes formatting for use with:
 
 == Changelog ==
 
-= 7.1 - 2026-05-01 =
+= 7.1 - 2026-05-05 =
 * FEATURE: Added a new block-based footer variation system. Create and manage multiple footer designs as posts in a new Footer Variations CPT (`memberlite_footer`). Assign them globally or per location via the Customizer. Optional post-meta override available on pages. #247 #253 #256 #272 (@RachelRVasquez, @kimcoleman)
 * FEATURE: Added a new block-based header variation system. Create and manage multiple header designs as posts in a new Header Variations CPT (`memberlite_header`). Assign a global header via the Customizer. Optional post-meta override available on pages. Includes a sticky header option configurable per header post. #259 #271 #284 #286 (@RachelRVasquez, @kimcoleman)
 * FEATURE: Added functionality to delete header/footer theme mods when a post has been permanently deleted. Customizer JS handles posts that are trashed but not deleted to prevent "blank" options in header/footer settings. #284 #285 (@kimcoleman)
