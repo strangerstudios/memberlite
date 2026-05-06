@@ -94,7 +94,7 @@
 
 			<!-- wp:column {"width":"50%","style":{"spacing":{"blockGap":"var:preset|spacing|10"}}} -->
 			<div class="wp-block-column" style="flex-basis:50%">
-				<!-- wp:pmpro/login-form /-->
+				<!-- wp:pmpro/login-form {"style":{"elements":{"link":{"color":{"text":"var:preset|color|color-secondary"}}}},"textColor":"color-secondary"} /-->
 			</div>
 			<!-- /wp:column -->
 
