@@ -284,7 +284,7 @@ function memberlite_wp_ajax_dismiss_notice() {
 	// Get and validate the notice.
 	$notice = sanitize_key( wp_unslash( $_REQUEST['notice'] ?? '' ) );
 	if ( ! in_array( $notice, $notices, true ) ) {
-		wp_die( esc_html__( 'Invalid notice.', 'text-domain' ) );
+		wp_die( esc_html__( 'Invalid notice.', 'memberlite' ) );
 	}
 
 	// update option and leave

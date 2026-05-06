@@ -1,6 +1,11 @@
 <?php
 /**
- * Register custom post types for Memberlite
+ * Custom post types for Memberlite: registration and lifecycle hooks.
+ *
+ * Covers CPT registration, auto-title on save, and theme_mod/post-meta
+ * cleanup on permanent deletion for memberlite_header and memberlite_footer.
+ *
+ * @package Memberlite
  */
 
 /**
@@ -60,6 +65,18 @@ function memberlite_register_header_cpt(): void {
 	);
 }
 add_action( 'init', 'memberlite_register_header_cpt' );
+
+/*
+ * =========================================================================
+ * Auto-title on save
+ * =========================================================================
+ *
+ * WordPress assigns a bare numeric slug to posts saved without a title.
+ * These hooks replace that with a human-readable name ("Header 123") so
+ * that slugs stored in theme_mods and post meta remain meaningful. The
+ * remove/re-add pattern prevents the hook from triggering itself recursively
+ * when wp_update_post fires a second save_post.
+ */
 
 /**
  * Auto-generate a title and slug for memberlite_header posts saved without one.
@@ -205,8 +222,8 @@ add_action( 'save_post_memberlite_footer', 'memberlite_footer_auto_title', 10, 2
 /**
  * Clear theme_mods and per-page overrides referencing a deleted memberlite_header post.
  *
- * @since TBD
- * @param int $post_id The post being trashed or deleted.
+ * @since 7.1
+ * @param int $post_id The post ID being permanently deleted.
  * @return void
  */
 function memberlite_cleanup_header_assignment_on_delete( int $post_id ): void {
@@ -234,8 +251,8 @@ add_action( 'before_delete_post', 'memberlite_cleanup_header_assignment_on_delet
 /**
  * Clear theme_mods and per-page overrides referencing a deleted memberlite_footer post.
  *
- * @since TBD
- * @param int $post_id The post being trashed or deleted.
+ * @since 7.1
+ * @param int $post_id The post ID being permanently deleted.
  * @return void
  */
 function memberlite_cleanup_footer_assignment_on_delete( int $post_id ): void {
