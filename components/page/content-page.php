@@ -7,9 +7,10 @@
  *
  * @package Memberlite
  */
+$aria_attr = memberlite_should_masthead_render() ? ' aria-labelledby="page-title"' : '';
 ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class(); ?> aria-labelledby="page-title">
+<article id="post-<?php the_ID(); ?>" <?php post_class(); ?> <?php echo esc_attr( $aria_attr ); ?>>
 	<div class="entry-content">
 		<?php do_action( 'memberlite_before_content_page' ); ?>
 		<?php the_content(); ?>
