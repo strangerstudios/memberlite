@@ -15,10 +15,10 @@
 
 <?php
 // Check _memberlite_banner_show meta to determine if the masthead should display.
-// $args is passed from the header.php file via get_template_part()
+// $args are passed from the header.php file via get_template_part()
 $should_render_masthead = $args['should_render_masthead'];
 $memberlite_banner_show = apply_filters( 'memberlite_banner_show', $args['should_render_masthead'] );
-$banner_image_url = memberlite_get_masthead_banner_image_url();
+$banner_image_url       = memberlite_get_masthead_banner_image_url();
 
 if ( $should_render_masthead ) { ?>
 

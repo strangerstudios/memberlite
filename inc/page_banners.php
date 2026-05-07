@@ -600,7 +600,7 @@ function memberlite_get_masthead_banner_image_url() {
 }
 
 /**
- * Get post banner/masthead ID
+ * Get banner's post ID
  *
  * @since TBD
  * @return false|int|mixed|null
