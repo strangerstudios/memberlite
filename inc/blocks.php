@@ -69,12 +69,18 @@ function memberlite_allowed_blocks( $allowed_block_types, $editor_context ) {
 		);
 	}
 
+	// Nothing to disallow for this post type — return early and preserve the
+	// existing value (including `true`, which means "all blocks allowed").
+	if ( empty( $disallowed_blocks ) ) {
+		return $allowed_block_types;
+	}
+
 	// If another filter has explicitly disallowed all blocks, respect that.
 	if ( false === $allowed_block_types ) {
 		return $allowed_block_types;
 	}
 
-	// Default value (true) — expand into an explicit allowlist of currently registered blocks.
+	// Only expand `true` into an explicit array when we actually need to remove something.
 	if ( ! is_array( $allowed_block_types ) ) {
 		$registered_blocks   = WP_Block_Type_Registry::get_instance()->get_all_registered();
 		$allowed_block_types = array_keys( $registered_blocks );
@@ -94,8 +100,8 @@ function memberlite_allowed_blocks( $allowed_block_types, $editor_context ) {
 		}
 	}
 
-	// Return the filtered list of allowed blocks
-	return $filtered_blocks;
+	// Return the filtered list of allowed blocks with sequential indices.
+	return array_values( $filtered_blocks );
 }
 add_filter( 'allowed_block_types_all', 'memberlite_allowed_blocks', 10, 2 );
 
