@@ -107,7 +107,7 @@ add_filter( 'submenu_file', 'memberlite_footer_cpt_submenu_highlight' );
 /**
  * Get page-level override assignments for a header or footer variation post.
  *
- * @since 7.1
+ * @since TBD
  * @param string $meta_key  The post meta key used for per-page overrides.
  * @param string $post_name The post_name of the variation post.
  * @return array Human-readable assignment entries, empty if none found.
@@ -184,7 +184,7 @@ function memberlite_get_footer_assignments( string $post_name ): array {
  * Returns human-readable labels used by the list table column and the
  * trash row action prevention.
  *
- * @since 7.1
+ * @since TBD
  * @param string $post_name The post_name of the memberlite_header post.
  * @return array Human-readable assignment labels, empty if unassigned.
  */
