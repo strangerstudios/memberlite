@@ -603,7 +603,7 @@ function memberlite_get_masthead_banner_image_url() {
  * Get banner's post ID
  *
  * @since TBD
- * @return false|int|mixed|null
+ * @return mixed
  */
 function memberlite_get_banner_post_id() {
 	$memberlite_banner_post_id = get_queried_object_id();
@@ -627,6 +627,8 @@ function memberlite_should_masthead_render(): bool {
 	if ( ! empty( $memberlite_banner_post_id ) && get_post_meta( $memberlite_banner_post_id, '_memberlite_banner_show', true ) === '0' ) {
 		$memberlite_banner_show = false;
 	}
+
+	$memberlite_banner_show = apply_filters( 'memberlite_banner_show', $memberlite_banner_show, $memberlite_banner_post_id );
 
 	return $memberlite_banner_show;
 }

@@ -67,5 +67,4 @@
 
 		<?php
 		$should_render_masthead = memberlite_should_masthead_render();
-		$memberlite_banner_show = apply_filters( 'memberlite_banner_show', $should_render_masthead );
-		get_template_part( 'components/header/header', 'masthead', array( 'should_render_masthead' => $memberlite_banner_show ) ); ?>
+		get_template_part( 'components/header/header', 'masthead', array( 'should_render_masthead' => $should_render_masthead ) ); ?>
