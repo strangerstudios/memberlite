@@ -269,11 +269,11 @@ add_action( 'manage_memberlite_header_posts_custom_column', 'memberlite_header_r
  * Set up and format links in the "Used By" column for header and footer posts.
  *
  * @since TBD
- * @param $assignments
+ * @param array $assignments Array of header/footer assignment data to display.
  *
  * @return void
  */
-function memberlite_display_formatted_header_footer_assignments( $assignments ) {
+function memberlite_display_formatted_header_footer_assignments( array $assignments ) {
 	if ( empty( $assignments ) ) {
 		echo '<span aria-label="' . esc_attr__( 'Not assigned', 'memberlite' ) . '">&#8212;</span>';
 		return;
