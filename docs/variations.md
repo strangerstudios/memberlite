@@ -12,10 +12,11 @@ This document covers the variations system introduced in Memberlite 7.1. Both he
    - [Per-Page Override (Pages Only)](#per-page-override-pages-only)
    - [Sticky Option](#sticky-option)
    - [Header Patterns](#header-patterns)
+   - [Admin List Table](#admin-list-table)
 4. [Footer Variations](#footer-variations)
    - [Resolver Priority Chain](#resolver-priority-chain)
    - [Customizer Controls](#customizer-controls-1)
-   - [The Global Sentinel Value](#the-global-sentinel-value)
+   - [Special Reserved Values](#special-reserved-values)
    - [Per-Page Override (Pages Only)](#per-page-override-pages-only)
    - [Footer Patterns](#footer-patterns)
    - [Transient Cache](#transient-cache)
@@ -121,6 +122,17 @@ Starter header designs are registered as block patterns scoped to the `memberlit
 
 See [patterns.md](patterns.md) for general pattern authoring guidelines.
 
+### Admin List Table
+
+The `memberlite_header` list table (Memberlite > Headers) includes a **"Used By"** column showing where each header is currently assigned.
+
+`memberlite_get_header_assignments( $post_name )` in `inc/admin.php` checks:
+
+1. **The global theme mod** — `memberlite_default_header_slug`. A match produces a linked label ("Global Header") that deep-links into the Customizer at the matching control.
+2. **Per-page post meta** — a direct database query for all pages with `_memberlite_header_override` set to this header's slug. Displays "1 page override" (linked to that page's edit screen) or "N page overrides" (unlinked) as appropriate.
+
+If a header has no assignments, the column shows `—`.
+
 ---
 
 ## Footer Variations
@@ -134,7 +146,7 @@ See [patterns.md](patterns.md) for general pattern authoring guidelines.
 3. **Global theme mod** (`memberlite_global_footer_slug`) — the site-wide default, used when the location mod is set to inherit.
 4. **Default footer** — rendered when the resolved value is `'0'`.
 
-If the resolved post_name no longer exists (e.g., the footer post was deleted), the resolver falls back to `'0'` rather than rendering nothing.
+If the resolved `post_name` no longer exists (e.g., the footer post was deleted), the resolver falls back to `'0'` rather than rendering nothing.
 
 `footer.php` wraps the footer in `<footer id="colophon">` with two possible classes:
 - `site-footer site-footer-{post_name}` — when a CPT footer is active
@@ -161,21 +173,22 @@ A **"Manage Footers"** link in the panel navigates directly to the `memberlite_f
 
 #### How choices are built
 
-`memberlite_get_footer_variations()` returns only published CPT footer posts as a `slug => title` array, alphabetical by title. It never includes sentinels — each consumer adds its own:
+`memberlite_get_footer_variations()` returns only published CPT footer posts as a `slug => title` array, alphabetical by title. It does not include placeholder options like "— Default —" or "— Use Global Footer —" — each caller prepends whichever placeholder is appropriate for its context:
 
 - **Customizer global control** — always prepends `'0' => '— Default —'` alongside any CPT footers.
 - **Customizer location controls** — prepend `'memberlite-global-footer' => '— Use Global Footer —'`.
 - **Editor sidebar** — prepends `'' => '— Use Global Footer —'`.
 
-### The Global Sentinel Value
+### Special Reserved Values
 
-Location-specific footer controls use the string `'memberlite-global-footer'` as a sentinel meaning "inherit from the global setting." This is distinct from `'0'` (default) and from any real footer post_name.
+The footer resolver recognises three categories of stored value:
 
-- **`'memberlite-global-footer'`** → read `memberlite_global_footer_slug` and use that value
-- **`'0'`** → use the default widget-area footer (only reachable via the global control)
+- **`'memberlite-global-footer'`** → used by location-specific controls to mean "inherit from the global setting"; read `memberlite_global_footer_slug` and use that value instead
+- **`'0'`** → use the default widget-area footer (only selectable via the global control)
 - **any other string** → a footer post_name; look up and render that post
 
-The sentinel is namespaced to avoid accidental collision with a user-created footer slug. The auto-title function generates slugs like `footer-{post_id}`, so natural collisions are not possible.
+The `'memberlite-global-footer'` string is deliberately namespaced to avoid any collision with a real footer slug. The auto-title function generates slugs like `footer-{post_id}`, so a natural collision is not possible.
+
 
 ### Per-Page Override (Pages Only)
 
@@ -230,8 +243,6 @@ The `memberlite_footer` list table (Memberlite > Footers) includes a **"Used By"
 
 If a footer has no assignments, the column shows `—`.
 
-The header list table does not have an equivalent "Used By" column, since headers have only one global setting.
-
 #### Admin navigation
 
 The footer CPT is surfaced under **Memberlite > Footers** and the header CPT under **Memberlite > Headers** in the admin menu. Filters on `parent_file` and `submenu_file` keep the correct menu items highlighted when viewing the list table or editing a single variation post.
@@ -240,38 +251,37 @@ The footer CPT is surfaced under **Memberlite > Footers** and the header CPT und
 
 ## Key Differences at a Glance
 
-| Feature | Header | Footer |
-|---|---|---|
-| CPT slug | `memberlite_header` | `memberlite_footer` |
-| Global setting | `memberlite_default_header_slug` | `memberlite_global_footer_slug` |
-| Location-specific settings | None | 3 (posts, pages, archives) |
-| Location sentinel value | N/A | `'memberlite-global-footer'` |
-| Per-page override | Yes (`_memberlite_header_override`, pages only) | Yes (`_memberlite_footer_override`, pages only) |
+| Feature | Header                                                    | Footer |
+|---|-----------------------------------------------------------|---|
+| CPT slug | `memberlite_header`                                       | `memberlite_footer` |
+| Global setting | `memberlite_default_header_slug`                          | `memberlite_global_footer_slug` |
+| Location-specific settings | None                                                      | 3 (posts, pages, archives) |
+| Per-page override | Yes (`_memberlite_header_override`, pages only)           | Yes (`_memberlite_footer_override`, pages only) |
 | Sticky option | Yes (`_memberlite_header_sticky` post meta per variation) | No |
-| Default sticky | `sticky_nav` theme_mod (default header only) | N/A |
-| Starter patterns | 6 (`header-01` – `header-06`) | 8 (`footer-*.php`) |
-| Transient cache | Yes (`memberlite_header_variations`, 12 h) | Yes (`memberlite_footer_variations`, 12 h) |
-| "Used By" admin column | No | Yes |
-| Admin menu item | Memberlite > Headers | Memberlite > Footers |
+| Default sticky | `sticky_nav` theme_mod (default header only)              | N/A |
+| Starter patterns | 6 (`header-*.php`)                          | 8 (`footer-*.php`) |
+| Transient cache | Yes (`memberlite_header_variations`, 12 h)                | Yes (`memberlite_footer_variations`, 12 h) |
+| "Used By" admin column | Yes                                                       | Yes |
+| Admin menu item | Memberlite > Headers                                      | Memberlite > Footers |
 
 ---
 
 ## Key Files
 
-| File | Purpose |
-|---|---|
-| `inc/variations.php` | Resolver, renderer, get-variations, cache, and active_callback functions for both systems |
-| `inc/custom-post-types.php` | CPT registration and auto-title hooks for both CPTs |
-| `inc/customizer.php` | Customizer controls for both header and footer variation settings |
-| `inc/admin.php` | Admin menu registration, menu highlight filters, footer "Used By" column |
-| `inc/editor-settings.php` | Post meta registration (`_memberlite_header_sticky`, `_memberlite_header_override`, `_memberlite_footer_override`, `_memberlite_hide_footer`), editor JS enqueue |
-| `inc/updates.php` | `memberlite_checkForUpdates()` — version migration runner |
-| `header.php` | Calls header resolver and renderer; handles sticky wrapper; falls back to default |
-| `footer.php` | Calls footer resolver and renderer; falls back to default footer |
-| `components/footer/variation-default.php` | Default footer template (widget areas, navigation, site info) |
-| `patterns/header-01.php` – `header-06.php` | Six starter header patterns scoped to the CPT |
-| `patterns/footer-*.php` | Eight starter footer patterns scoped to the CPT |
+| File                                     | Purpose                                                                                                                                                          |
+|------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `inc/variations.php`                     | Resolver, renderer, get-variations, cache, and active_callback functions for both systems                                                                        |
+| `inc/custom-post-types.php`              | CPT registration and auto-title hooks for both CPTs                                                                                                              |
+| `inc/customizer.php`                     | Customizer controls for both header and footer variation settings                                                                                                |
+| `inc/admin.php`                          | Admin menu registration, menu highlight filters, header and footer "Used By" columns                                                                             |
+| `inc/editor-settings.php`                | Post meta registration (`_memberlite_header_sticky`, `_memberlite_header_override`, `_memberlite_footer_override`, `_memberlite_hide_footer`), editor JS enqueue |
+| `inc/updates.php`                        | `memberlite_checkForUpdates()` — version migration runner                                                                                                        |
+| `header.php`                             | Calls header resolver and renderer; handles sticky wrapper; falls back to default                                                                                |
+| `footer.php`                             | Calls footer resolver and renderer; falls back to default footer                                                                                                 |
+| `components/footer/variation-default.php` | Default footer template (widget areas, navigation, site info)                                                                                                    |
+| `patterns/header-*.php` | Starter header patterns scoped to the CPT                                                                                                                        |
+| `patterns/footer-*.php`                  | Starter footer patterns scoped to the CPT                                                                                                                        |
 
 ---
 
-**Last Updated**: 2026-05-01
+**Last Updated**: 2026-05-11
