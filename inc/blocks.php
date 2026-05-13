@@ -45,59 +45,33 @@ function memberlite_enqueue_nav_menu_block_data(): void {
 add_action( 'enqueue_block_editor_assets', 'memberlite_enqueue_nav_menu_block_data' );
 
 /**
- * Only allow Memberlite's Nav Menu block on the memberlite_header and memberlite_footer post types.
+ * Enqueue editor JS that hides Memberlite-scoped blocks from the inserter
+ * on post types other than memberlite_header and memberlite_footer.
  *
- * @param $allowed_block_types
- * @param $editor_context
- *
- * @since 7.1
- * @return array
+ * @since 7.1.1
+ * @return void
  */
-function memberlite_allowed_blocks( $allowed_block_types, $editor_context ) {
-	$disallowed_blocks = array();
+function memberlite_enqueue_scope_blocks_script(): void {
+	$asset_path = get_template_directory() . '/build/editor/scope-memberlite-blocks.asset.php';
 
-	if ( ! isset( $editor_context->post->post_type ) ) {
-		return $allowed_block_types;
-	}
-
-	$post_type = $editor_context->post->post_type;
-
-	if ( ! in_array( $post_type, array( 'memberlite_footer', 'memberlite_header' ), true ) ) {
-		$disallowed_blocks = array(
-			'memberlite/nav-menu',
-			'memberlite/member-info',
-		);
-	}
-
-	// If another filter has explicitly disallowed all blocks, respect that.
-	if ( false === $allowed_block_types ) {
-		return $allowed_block_types;
-	}
-
-	// Default value (true) — expand into an explicit allowlist of currently registered blocks.
-	if ( ! is_array( $allowed_block_types ) ) {
-		$registered_blocks   = WP_Block_Type_Registry::get_instance()->get_all_registered();
-		$allowed_block_types = array_keys( $registered_blocks );
-	}
-
-	// Create a new array for the allowed blocks.
-	$filtered_blocks = array();
-
-	// Loop through each block in the allowed blocks list.
-	foreach ( $allowed_block_types as $block ) {
-
-		// Check if the block is not in the disallowed blocks list.
-		if ( ! in_array( $block, $disallowed_blocks, true ) ) {
-
-			// If it's not disallowed, add it to the filtered list.
-			$filtered_blocks[] = $block;
+	if ( ! file_exists( $asset_path ) ) {
+		if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
+			error_log( 'Memberlite: Missing asset file at ' . $asset_path );
 		}
+		return;
 	}
 
-	// Return the filtered list of allowed blocks
-	return $filtered_blocks;
+	$asset_file = include $asset_path;
+
+	wp_enqueue_script(
+		'memberlite-scope-blocks',
+		get_template_directory_uri() . '/build/editor/scope-memberlite-blocks.js',
+		$asset_file['dependencies'],
+		$asset_file['version'],
+		true
+	);
 }
-add_filter( 'allowed_block_types_all', 'memberlite_allowed_blocks', 10, 2 );
+add_action( 'enqueue_block_editor_assets', 'memberlite_enqueue_scope_blocks_script' );
 
 /**
  * Enqueue JS for custom block inserter icon for our Memberlite block category.
