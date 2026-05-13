@@ -45,61 +45,6 @@ function memberlite_enqueue_nav_menu_block_data(): void {
 add_action( 'enqueue_block_editor_assets', 'memberlite_enqueue_nav_menu_block_data' );
 
 /**
- * Only allow Memberlite's Nav Menu block on the memberlite_header and memberlite_footer post types.
- *
- * @param $allowed_block_types
- * @param $editor_context
- *
- * @since 7.1
- * @return array
- */
-function memberlite_allowed_blocks( $allowed_block_types, $editor_context ) {
-	$disallowed_blocks = array();
-
-	if ( ! isset( $editor_context->post->post_type ) ) {
-		return $allowed_block_types;
-	}
-
-	$post_type = $editor_context->post->post_type;
-
-	if ( ! in_array( $post_type, array( 'memberlite_footer', 'memberlite_header' ), true ) ) {
-		$disallowed_blocks = array(
-			'memberlite/nav-menu',
-			'memberlite/member-info',
-		);
-	}
-
-	// If another filter has explicitly disallowed all blocks, respect that.
-	if ( false === $allowed_block_types ) {
-		return $allowed_block_types;
-	}
-
-	// Default value (true) — expand into an explicit allowlist of currently registered blocks.
-	if ( ! is_array( $allowed_block_types ) ) {
-		$registered_blocks   = WP_Block_Type_Registry::get_instance()->get_all_registered();
-		$allowed_block_types = array_keys( $registered_blocks );
-	}
-
-	// Create a new array for the allowed blocks.
-	$filtered_blocks = array();
-
-	// Loop through each block in the allowed blocks list.
-	foreach ( $allowed_block_types as $block ) {
-
-		// Check if the block is not in the disallowed blocks list.
-		if ( ! in_array( $block, $disallowed_blocks, true ) ) {
-
-			// If it's not disallowed, add it to the filtered list.
-			$filtered_blocks[] = $block;
-		}
-	}
-
-	// Return the filtered list of allowed blocks
-	return $filtered_blocks;
-}
-add_filter( 'allowed_block_types_all', 'memberlite_allowed_blocks', 10, 2 );
-
-/**
  * Enqueue JS for custom block inserter icon for our Memberlite block category.
  *
  * @since 7.1
