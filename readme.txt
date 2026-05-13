@@ -3,7 +3,7 @@ Contributors: kimannwall, strangerstudios
 Requires at least: 6.4
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 7.1
+Stable tag: 7.1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: one-column, two-columns, left-sidebar, right-sidebar, flexible-header, custom-background, custom-colors, custom-header, custom-menu, custom-logo, editor-style, featured-images, footer-widgets, full-width-template, theme-options, threaded-comments, translation-ready, e-commerce
@@ -91,6 +91,11 @@ Memberlite includes formatting for use with:
 [Install Events Manager »](https://wordpress.org/plugins/events-manager/)
 
 == Changelog ==
+
+= 7.1.1 - 2026-05-13 =
+
+* BUG FIX: Fixed incorrect comment counts and comments not displaying when comments are closed. #292 (@dwanjuki)
+* BUG FIX: Removed Memberlite’s `allowed_block_types_all` filter that attempted to scope the `memberlite/nav-menu` and `memberlite/member-info` blocks to the `memberlite_header/memberlite_footer` CPTs, resolving the reported compatibility issue where JS-only (client-registered) third-party blocks disappeared from the inserter. #296 (@RachelRVasquez)
 
 = 7.1 - 2026-05-05 =
 * FEATURE: Added a new block-based footer variation system. Create and manage multiple footer designs as posts in a new Footer Variations CPT (`memberlite_footer`). Assign them globally or per location via the Customizer. Optional post-meta override available on pages. #247 #253 #256 #272 (@RachelRVasquez, @kimcoleman)
