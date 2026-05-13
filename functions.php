@@ -516,18 +516,17 @@ function memberlite_member_menu_cb( $args ) {
 add_filter( 'wp_nav_menu', 'do_shortcode', 11 );
 
 /* Exclude pings and trackbacks from the number of comments on a post. */
-function memberlite_comment_count( $count ) {
-	global $id;
-	$comment_count = 0;
-	$comments      = get_approved_comments( $id );
-	foreach ( $comments as $comment ) {
-		if ( $comment->comment_type === '' ) {
-			$comment_count++;
-		}
-	}
-	return $comment_count;
+function memberlite_comment_count( $count, $post_id ) {
+	return get_comments(
+		array(
+			'post_id' => $post_id,
+			'status'  => 'approve',
+			'type'    => 'comment',
+			'count'   => true,
+		)
+	);
 }
-add_filter( 'get_comments_number', 'memberlite_comment_count', 0 );
+add_filter( 'get_comments_number', 'memberlite_comment_count', 0, 2 );
 
 /* Custom loader for get_sidebar to allow templates and child themes to modify */
 function memberlite_get_sidebar( $name = null ) {
