@@ -4,10 +4,13 @@
 /*--------------------------------------------------------------
  2.1 Blocks: WordPress Block Styles
 
- Covers: wp-block-table, wp-block-quote, wp-block-pullquote,
+ Covers: wp-button, wp-block-table, wp-block-quote, wp-block-pullquote,
          wp-block-search, wp-block-image
 --------------------------------------------------------------*/
 
+// -----------------------------------------------------------------------------
+// Button Block
+// -----------------------------------------------------------------------------
 
 .wp-block-button {
 	&.is-style-pill a {
@@ -29,6 +32,7 @@
 		padding-bottom: var(--wp--preset--spacing--10);
 		line-height: 1;
 
+		//@todo: RTL version
 		&:after {
 			font-family: 'Font Awesome 5 Free';
 			content: "\f061";
