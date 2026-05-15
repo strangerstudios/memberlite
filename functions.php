@@ -78,6 +78,17 @@ function memberlite_admin_enqueue_scripts() {
 add_action( 'admin_enqueue_scripts', 'memberlite_admin_enqueue_scripts' );
 
 /**
+ * Enqueue Font Awesome for the editor only.
+ *
+ * @since TBD
+ * @return void
+ */
+function memberlite_enqueue_editor_only_assets() {
+	wp_enqueue_style( 'font-awesome', MEMBERLITE_URL . '/font-awesome/css/all.min.css', [], '7.2.0' );
+}
+add_action( 'enqueue_block_editor_assets', 'memberlite_enqueue_editor_only_assets' );
+
+/**
  * Get the selected font slug for a given font type.
  *
  * Returns the theme.json-compatible slug (lowercase). If $nicename is true,
