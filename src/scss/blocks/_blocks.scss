@@ -9,6 +9,39 @@
 --------------------------------------------------------------*/
 
 
+.wp-block-button {
+	&.is-style-pill a {
+		border-radius: 10em;
+		padding: calc(var(--wp--preset--spacing--10) / 2) var(--wp--preset--spacing--30);
+	}
+
+	&.is-style-sharp a {
+		border-radius: 0;
+	}
+
+	&.is-style-arrow-fill a,
+	&.is-style-arrow-plain a {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: calc( var(--wp--preset--spacing--10) / 1.5);
+		padding-top: var(--wp--preset--spacing--10);
+		padding-bottom: var(--wp--preset--spacing--10);
+		line-height: 1;
+
+		&:after {
+			font-family: 'Font Awesome 5 Free';
+			content: "\f061";
+		}
+	}
+
+	&.is-style-arrow-plain a {
+		padding: 0 var(--wp--preset--spacing--10);
+		background: transparent;
+		color: var(--wp--preset--color--buttons);
+	}
+}
+
 // -----------------------------------------------------------------------------
 // Table Block
 // -----------------------------------------------------------------------------
