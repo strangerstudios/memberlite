@@ -56,3 +56,7 @@ label[for="memberlite-menu-location-select"] {
 	color: var(--wp--preset--color--buttons);
 }
 
+.wp-block-button.is-style-arrow-plain .wp-element-button:hover {
+	color: var(--wp--preset--color--buttons-hover);
+}
+

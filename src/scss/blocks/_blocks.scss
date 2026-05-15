@@ -43,6 +43,10 @@
 		padding: 0 var(--wp--preset--spacing--10);
 		background: transparent;
 		color: var(--wp--preset--color--buttons);
+
+		&:hover, &:active, &:focus {
+			color: var(--wp--preset--color--buttons-hover);
+		}
 	}
 }
 

@@ -297,7 +297,7 @@ function memberlite_get_midnight_violet_colors(): array {
 		'color_meta_link'         => '9a9aa0',
 		'color_primary'           => 'a483ff',
 		'color_secondary'         => '9a9aa0',
-		'color_action'            => 'a483ff',
+		'color_action'            => '9becff',
 		'color_button'            => 'a483ff',
 		'bgcolor_page_masthead'   => '1c1d21',
 		'color_page_masthead'     => 'f2f2f3',
