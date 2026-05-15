@@ -808,6 +808,52 @@ function memberlite_filter_theme_json( $theme_json ) {
 
 	$theme_json_data['settings']['color']['palette'] = $color_palette;
 
+	// Build gradient palette from active customizer colors.
+	$btn  = $active_colors['color_button'];
+	$sec  = $active_colors['color_secondary'];
+	$acc  = $active_colors['color_action'];
+
+	$btn_dark  = memberlite_adjust_color_brightness( $btn, -40 );
+	$btn_light = memberlite_adjust_color_brightness( $btn, 30 );
+	$sec_dark  = memberlite_adjust_color_brightness( $sec, -30 );
+	$sec_light = memberlite_adjust_color_brightness( $sec, 30 );
+	$acc_dark  = memberlite_adjust_color_brightness( $acc, -20 );
+	$acc_light = memberlite_adjust_color_brightness( $acc, 50 );
+
+	$theme_json_data['settings']['color']['gradients'] = array(
+		array(
+			'slug'     => 'secondary-to-dark',
+			'name'     => __( 'Secondary to Dark', 'memberlite' ),
+			'gradient' => "linear-gradient(135deg, {$sec} 0%, {$sec_dark} 100%)",
+		),
+		array(
+			'slug'     => 'secondary-to-light',
+			'name'     => __( 'Secondary to Light', 'memberlite' ),
+			'gradient' => "linear-gradient(135deg, {$sec} 0%, {$sec_light} 100%)",
+		),
+		array(
+			'slug'     => 'accent-to-dark',
+			'name'     => __( 'Accent to Dark', 'memberlite' ),
+			'gradient' => "linear-gradient(135deg, {$acc} 0%, {$acc_dark} 100%)",
+		),
+		array(
+			'slug'     => 'accent-to-light',
+			'name'     => __( 'Accent to Light', 'memberlite' ),
+			'gradient' => "linear-gradient(135deg, {$acc} 0%, {$acc_light} 100%)",
+		),
+		array(
+			'slug'     => 'button-to-dark',
+			'name'     => __( 'Button to Dark', 'memberlite' ),
+			'gradient' => "linear-gradient(135deg, {$btn} 0%, {$btn_dark} 100%)",
+		),
+		array(
+			'slug'     => 'button-to-light',
+			'name'     => __( 'Button to Light', 'memberlite' ),
+			'gradient' => "linear-gradient(135deg, {$btn} 0%, {$btn_light} 100%)",
+		),
+	);
+	$theme_json_data['settings']['color']['defaultGradients'] = false;
+
 	// Add font family custom properties.
 	if ( ! isset( $theme_json_data['settings']['custom'] ) ) {
 		$theme_json_data['settings']['custom'] = array();

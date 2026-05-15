@@ -6,13 +6,8 @@
 		"blocks": {
 			"core/button": {
 				"color": {
-					"gradients": [
-						{
-							"name": "Ocean Breeze",
-							"gradient": "linear-gradient(135deg, #2af598 0%, #009efd 100%)",
-							"slug": "ocean-breeze"
-						}
-					]
+					"gradients": true,
+					"customGradient": false
 				}
 			}
 		},
