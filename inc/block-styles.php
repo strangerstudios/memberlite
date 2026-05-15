@@ -28,5 +28,28 @@ function memberlite_register_block_styles(): void {
 			',
 		)
 	);
+
+	$button_styles = array(
+		array(
+			'name'  => 'pill',
+			'label' => __( 'Pill', 'memberlite' ),
+		),
+		array(
+			'name'  => 'sharp',
+			'label' => __( 'Sharp', 'memberlite' ),
+		),
+		array(
+			'name'  => 'arrow-fill',
+			'label' => __( 'Arrow Fill', 'memberlite' ),
+		),
+		array(
+			'name'  => 'arrow-plain',
+			'label' => __( 'Arrow Plain', 'memberlite' ),
+		),
+	);
+
+	foreach ( $button_styles as $style ) {
+		register_block_style( 'core/button', $style );
+	}
 }
 add_action( 'init', 'memberlite_register_block_styles' );
