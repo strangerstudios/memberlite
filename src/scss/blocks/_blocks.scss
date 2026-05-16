@@ -125,10 +125,11 @@
 hr.wp-block-separator {
 	margin-left: auto;
 	margin-right: auto;
+	width: 100%;
 
-	&:where(:not(.is-style-wide, .is-style-dots)) {
-		max-width: 100px;
-	}
+	//&:where(:not(.is-style-wide, .is-style-dots, .is-style-faded-edges, .is-style-double)) {
+	//	max-width: 100px;
+	//}
 
 	&.is-style-dots:before {
 		color: var(--memberlite-color-borders);
@@ -136,6 +137,18 @@ hr.wp-block-separator {
 
 	&.is-style-wide {
 		border: 0;
+	}
+
+	&.is-style-faded-edges {
+		border: 0;
+		height: 1px;
+		background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+	}
+
+	&.is-style-double {
+		border: 0;
+		border-top: 3px double var(--memberlite-color-borders);
+		height: 0;
 	}
 }
 
