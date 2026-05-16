@@ -51,5 +51,20 @@ function memberlite_register_block_styles(): void {
 	foreach ( $button_styles as $style ) {
 		register_block_style( 'core/button', $style );
 	}
+
+	$separator_styles = array(
+		array(
+			'name'  => 'faded-edges',
+			'label' => __( 'Faded Edges', 'memberlite' ),
+		),
+		array(
+			'name'  => 'double',
+			'label' => __( 'Double', 'memberlite' ),
+		),
+	);
+
+	foreach ( $separator_styles as $separator_style ) {
+		register_block_style( 'core/separator', $separator_style );
+	}
 }
 add_action( 'init', 'memberlite_register_block_styles' );
