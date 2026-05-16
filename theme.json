@@ -9,6 +9,17 @@
 					"gradients": true,
 					"customGradient": false
 				}
+			},
+			"core/group": {
+				"color": {
+					"gradients": true,
+					"customGradient": false
+				}
+			},
+			"core/paragraph": {
+				"color": {
+					"link": true
+				}
 			}
 		},
 		"color": {
@@ -79,7 +90,7 @@
 			]
 		},
 		"typography": {
-			"dropCap": false,
+			"dropCap": true,
 			"fluid": true,
 			"fontFamilies": [
 				{
