@@ -269,10 +269,174 @@ hr.wp-block-separator {
 // -----------------------------------------------------------------------------
 
 .wp-block-search {
-
 	.wp-block-search__button {
 		padding: calc(var(--wp--preset--spacing--10) / 2) var(--wp--preset--spacing--10);
 	}
+}
+
+.wp-block-search__button svg {
+	width: 26px;
+	height: 26px;
+	margin-top: 2px;
+}
+
+	/* ── Shared resets ── */
+.wp-block-search.is-style-filled-pill,
+.wp-block-search.is-style-filled-sharp,
+.wp-block-search.is-style-icon-round,
+.wp-block-search.is-style-icon-square {
+	gap: 0;
+}
+
+.wp-block-search.is-style-filled-pill .wp-block-search__label,
+.wp-block-search.is-style-filled-sharp .wp-block-search__label,
+.wp-block-search.is-style-icon-round .wp-block-search__label,
+.wp-block-search.is-style-icon-square .wp-block-search__label {
+	@include screen-reader-only();
+}
+
+/* ── Row 2 left: Filled Pill ── */
+/* Assumes: no button or button inside input, icon only */
+.wp-block-search.is-style-filled-pill .wp-block-search__inside-wrapper {
+	background-color: var(--wp--preset--color--body-text);
+	border: none;
+	border-radius: 999px;
+	overflow: hidden;
+	padding: 0 1.25rem;
+}
+
+.wp-block-search.is-style-filled-pill .wp-block-search__input {
+	background: transparent;
+	border: none;
+	color: var(--wp--preset--color--base);
+	padding: 0.75rem 0;
+	box-shadow: none;
+	outline: none;
+}
+
+.wp-block-search.is-style-filled-pill .wp-block-search__input::placeholder {
+	color: var(--wp--preset--color--base);
+	opacity: 0.6;
+}
+
+.wp-block-search.is-style-filled-pill .wp-block-search__button {
+	background: transparent;
+	border: none;
+	color: var(--wp--preset--color--base);
+	padding: 0.75rem 0 0.75rem 0.5rem;
+	cursor: pointer;
+}
+
+/* ── Row 2 right: Filled Sharp ── */
+.wp-block-search.is-style-filled-sharp .wp-block-search__inside-wrapper {
+	background-color: var(--wp--preset--color--body-text);
+	border: none;
+	border-radius: 4px;
+	overflow: hidden;
+	padding: 0 1.25rem;
+}
+
+.wp-block-search.is-style-filled-sharp .wp-block-search__input {
+	background: transparent;
+	border: none;
+	color: var(--wp--preset--color--base);
+	padding: 0.75rem 0;
+	box-shadow: none;
+	outline: none;
+}
+
+.wp-block-search.is-style-filled-sharp .wp-block-search__input::placeholder {
+	color: var(--wp--preset--color--base);
+	opacity: 0.6;
+}
+
+.wp-block-search.is-style-filled-sharp .wp-block-search__button {
+	background: transparent;
+	border: none;
+	color: var(--wp--preset--color--base);
+	padding: 0.75rem 0 0.75rem 0.5rem;
+	cursor: pointer;
+}
+
+/* ── Row 4 left: Icon Round ── */
+/* Assumes: button outside input, icon only */
+.wp-block-search.is-style-icon-round .wp-block-search__inside-wrapper {
+	border: 1px solid var(--wp--preset--color--borders);
+	border-radius: 999px;
+	overflow: hidden;
+	padding: 0 0 0 1.25rem;
+	background: var(--wp--preset--color--base);
+	flex: 1;
+}
+
+.wp-block-search.is-style-icon-round .wp-block-search__input {
+	background: transparent;
+	border: none;
+	color: var(--wp--preset--color--body-text);
+	padding: 0.75rem 0;
+	box-shadow: none;
+	outline: none;
+}
+
+.wp-block-search.is-style-icon-round .wp-block-search__input::placeholder {
+	color: var(--wp--preset--color--body-text);
+	opacity: 0.5;
+}
+
+.wp-block-search.is-style-icon-round .wp-block-search__button {
+	background-color: var(--wp--preset--color--buttons);
+	border: none;
+	border-radius: 50%;
+	color: var(--wp--preset--color--base);
+	width: 50px;
+	height: 50px;
+	padding: 0;
+	margin-left: 0.5rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	flex-shrink: 0;
+}
+
+/* ── Row 4 right: Icon Square ── */
+.wp-block-search.is-style-icon-square .wp-block-search__inside-wrapper {
+	border: 1px solid var(--wp--preset--color--borders);
+	border-radius: 4px;
+	overflow: hidden;
+	padding: 0 0 0 1.25rem;
+	background: var(--wp--preset--color--base);
+	flex: 1;
+}
+
+.wp-block-search.is-style-icon-square .wp-block-search__input {
+	background: transparent;
+	border: none;
+	color: var(--wp--preset--color--body-text);
+	padding: 0.75rem 0;
+	box-shadow: none;
+	outline: none;
+}
+
+.wp-block-search.is-style-icon-square .wp-block-search__input::placeholder {
+	color: var(--wp--preset--color--body-text);
+	opacity: 0.5;
+}
+
+.wp-block-search.is-style-icon-square .wp-block-search__button {
+	background-color: var(--wp--preset--color--buttons);
+	border: none;
+	border-radius: 4px;
+	color: var(--wp--preset--color--base);
+	width: 50px;
+	height: 50px;
+	padding: 0;
+	margin-left: 0.5rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	flex-shrink: 0;
 }
 
 
@@ -474,4 +638,24 @@ hr.wp-block-separator {
 	&:focus-visible {
 		outline: thin dotted var(--memberlite-color-site-navigation);
 	}
+}
+
+// -----------------------------------------------------------------------------
+// Loginout Block
+// -----------------------------------------------------------------------------
+
+.wp-block-loginout.is-style-loginout-button a {
+	display: inline-block;
+	padding: 0.6em 1.4em;
+	border-radius: 4px;
+	text-decoration: none;
+	line-height: 1.5;
+
+	/* Fallbacks — overridden when editor color settings are applied */
+	background-color: var(--wp--preset--color--buttons);
+	color: var(--wp--preset--color--base);
+}
+
+.wp-block-loginout.is-style-loginout-button a:hover {
+	opacity: 0.85;
 }
