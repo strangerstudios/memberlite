@@ -86,5 +86,24 @@ function memberlite_register_block_styles(): void {
 	foreach ( $separator_styles as $separator_style ) {
 		register_block_style( 'core/separator', $separator_style );
 	}
+
+	$search_styles = array(
+		array( 'name' => 'filled-pill',   'label' => __( 'Filled Pill', 'memberlite' ) ),
+		array( 'name' => 'filled-sharp',  'label' => __( 'Filled Sharp', 'memberlite' ) ),
+		array( 'name' => 'icon-round',    'label' => __( 'Icon Round', 'memberlite' ) ),
+		array( 'name' => 'icon-square',   'label' => __( 'Icon Square', 'memberlite' ) ),
+	);
+
+	foreach ( $search_styles as $style ) {
+		register_block_style( 'core/search', $style );
+	}
+
+	register_block_style(
+		'core/loginout',
+		array(
+			'name'         => 'loginout-button',
+			'label'        => __( 'Button', 'memberlite' ),
+		)
+	);
 }
 add_action( 'init', 'memberlite_register_block_styles' );
