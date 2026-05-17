@@ -644,16 +644,26 @@ hr.wp-block-separator {
 // Loginout Block
 // -----------------------------------------------------------------------------
 
+.wp-block-loginout {
+	width: max-content;
+	border-radius: var(--wp--custom--border--radius);
+
+	&.is-style-loginout-button:not(.has-background) {
+		/* Fallbacks — overridden when editor color settings are applied */
+		background-color: var(--wp--preset--color--buttons);
+
+		a {
+			color: var(--wp--preset--color--base);
+		}
+	}
+}
+
 .wp-block-loginout.is-style-loginout-button a {
 	display: inline-block;
 	padding: 0.6em 1.4em;
 	border-radius: 4px;
 	text-decoration: none;
 	line-height: 1.5;
-
-	/* Fallbacks — overridden when editor color settings are applied */
-	background-color: var(--wp--preset--color--buttons);
-	color: var(--wp--preset--color--base);
 }
 
 .wp-block-loginout.is-style-loginout-button a:hover {
