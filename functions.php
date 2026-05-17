@@ -839,7 +839,7 @@ function memberlite_filter_theme_json( $theme_json ) {
 		array(
 			'slug'     => 'accent-to-dark',
 			'name'     => __( 'Accent to Dark', 'memberlite' ),
-			'gradient' => "linear-gradient(90eg, {$acc} 0%, {$acc_dark} 100%)",
+			'gradient' => "linear-gradient(90deg, {$acc} 0%, {$acc_dark} 100%)",
 		),
 		array(
 			'slug'     => 'accent-to-light',

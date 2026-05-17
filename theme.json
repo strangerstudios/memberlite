@@ -7,13 +7,13 @@
 			"core/button": {
 				"color": {
 					"gradients": true,
-					"customGradient": false
+					"customGradient": true
 				}
 			},
 			"core/group": {
 				"color": {
 					"gradients": true,
-					"customGradient": false
+					"customGradient": true
 				}
 			},
 			"core/paragraph": {
