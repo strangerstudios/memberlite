@@ -61,6 +61,26 @@ function memberlite_register_block_styles(): void {
 			'name'  => 'double',
 			'label' => __( 'Double', 'memberlite' ),
 		),
+		array(
+			'name'  => 'wave',
+			'label' => __( 'Wave', 'memberlite' ),
+		),
+		array(
+			'name'  => 'flourish-diamond',
+			'label' => __( 'Diamond', 'memberlite' ),
+		),
+		array(
+			'name'  => 'flourish-arrow',
+			'label' => __( 'Arrow', 'memberlite' ),
+		),
+		array(
+			'name'  => 'flourish-triple-diamond',
+			'label' => __( 'Triple Diamond', 'memberlite' ),
+		),
+		array(
+			'name'  => 'flourish-circle-diamond',
+			'label' => __( 'Circle Diamond', 'memberlite' ),
+		),
 	);
 
 	foreach ( $separator_styles as $separator_style ) {
