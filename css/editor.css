@@ -22,6 +22,28 @@ label[for="memberlite-menu-location-select"] {
 	padding-inline: 12px 30px;
 }
 
+/* Custom Block Styles */
+.wp-block-list.is-style-plain {
+	list-style: none;
+	padding-left: 0;
+	margin-left: 0;
+}
+
+.wp-block-list.is-style-horizontal-left,
+.wp-block-list.is-style-horizontal-center {
+	list-style: none;
+	display: flex;
+	gap: 0;
+}
+
+.wp-block-list.is-style-horizontal-left li,
+.wp-block-list.is-style-horizontal-center li {
+	margin: 0;
+}
+
+.wp-block-list.is-style-horizontal-center {
+	justify-content: center;
+}
 
 .wp-block-button.is-style-pill .wp-element-button {
 	border-radius: 10em;

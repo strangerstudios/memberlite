@@ -14,20 +14,24 @@
  * @return void
  */
 function memberlite_register_block_styles(): void {
-	register_block_style(
-		'core/list',
+	$list_styles = array(
 		array(
 			'name'         => 'plain',
 			'label'        => __( 'Plain', 'memberlite' ),
-			'inline_style' => '
-				.wp-block-list.is-style-plain {
-					list-style: none;
-					padding-left: 0;
-					margin-left: 0;
-				}
-			',
-		)
+		),
+		array(
+			'name'         => 'horizontal-left',
+			'label'        => __( 'Horizontal Left', 'memberlite' ),
+		),
+		array(
+			'name'         => 'horizontal-center',
+			'label'        => __( 'Horizontal Center', 'memberlite' ),
+		),
 	);
+
+	foreach ( $list_styles as $list_style ) {
+		register_block_style( 'core/list', $list_style );
+	}
 
 	$button_styles = array(
 		array(
@@ -105,5 +109,15 @@ function memberlite_register_block_styles(): void {
 			'label'        => __( 'Button', 'memberlite' ),
 		)
 	);
+
+	$group_styles = array(
+		array( 'name' => 'slant-bottom-right', 'label' => __( 'Slant: Bottom Right', 'memberlite' ) ),
+		array( 'name' => 'slant-bottom-left',  'label' => __( 'Slant: Bottom Left', 'memberlite' ) ),
+		array( 'name' => 'wavy-bottom',        'label' => __( 'Wavy Bottom', 'memberlite' ) ),
+	);
+
+	foreach ( $group_styles as $style ) {
+		register_block_style( 'core/cover', $style );
+	}
 }
 add_action( 'init', 'memberlite_register_block_styles' );

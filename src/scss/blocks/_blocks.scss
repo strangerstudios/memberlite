@@ -4,48 +4,30 @@
 /*--------------------------------------------------------------
  2.1 Blocks: WordPress Block Styles
 
- Covers: wp-button, wp-block-table, wp-block-quote, wp-block-pullquote,
-         wp-block-search, wp-block-image
+ Covers: wp-block-list, wp-block-table, wp-block-separator, wp-block-quote,
+         wp-block-pullquote, wp-block-search, wp-block-image, wp-block-query,
+         wp-block-buttons, wp-block-button
 --------------------------------------------------------------*/
 
 // -----------------------------------------------------------------------------
-// Button Block
+// List Block
 // -----------------------------------------------------------------------------
 
-.wp-block-button {
-	&.is-style-pill a {
-		border-radius: 10em;
-		padding: calc(var(--wp--preset--spacing--10) / 2) var(--wp--preset--spacing--30);
+.wp-block-list {
+	&.is-style-plain {
+		list-style: none;
+		padding-left: 0;
+		margin-left: 0;
 	}
 
-	&.is-style-sharp a {
-		border-radius: 0;
-	}
-
-	&.is-style-arrow-fill a,
-	&.is-style-arrow-plain a {
+	&.is-style-horizontal-left,
+	&.is-style-horizontal-center {
+		list-style: none;
 		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		gap: calc( var(--wp--preset--spacing--10) / 1.5);
-		padding-top: var(--wp--preset--spacing--10);
-		padding-bottom: var(--wp--preset--spacing--10);
-		line-height: 1;
+		gap: 0;
 
-		//@todo: RTL version
-		&:after {
-			font-family: 'Font Awesome 5 Free';
-			content: "\f061";
-		}
-	}
-
-	&.is-style-arrow-plain a {
-		padding: 0 var(--wp--preset--spacing--10);
-		background: transparent;
-		color: var(--wp--preset--color--buttons);
-
-		&:hover, &:active, &:focus {
-			color: var(--wp--preset--color--buttons-hover);
+		li {
+			margin: 0;
 		}
 	}
 }
@@ -288,13 +270,6 @@ hr.wp-block-separator {
 	gap: 0;
 }
 
-.wp-block-search.is-style-filled-pill .wp-block-search__label,
-.wp-block-search.is-style-filled-sharp .wp-block-search__label,
-.wp-block-search.is-style-icon-round .wp-block-search__label,
-.wp-block-search.is-style-icon-square .wp-block-search__label {
-	@include screen-reader-only();
-}
-
 /* ── Row 2 left: Filled Pill ── */
 /* Assumes: no button or button inside input, icon only */
 .wp-block-search.is-style-filled-pill .wp-block-search__inside-wrapper {
@@ -325,6 +300,10 @@ hr.wp-block-separator {
 	color: var(--wp--preset--color--base);
 	padding: 0.75rem 0 0.75rem 0.5rem;
 	cursor: pointer;
+
+	&:focus, &:focus-visible {
+		outline: thin dotted var(--wp--preset--color--base);
+	}
 }
 
 /* ── Row 2 right: Filled Sharp ── */
@@ -356,6 +335,10 @@ hr.wp-block-separator {
 	color: var(--wp--preset--color--base);
 	padding: 0.75rem 0 0.75rem 0.5rem;
 	cursor: pointer;
+
+	&:focus, &:focus-visible {
+		outline: thin dotted var(--wp--preset--color--base);
+	}
 }
 
 /* ── Row 4 left: Icon Round ── */
@@ -386,17 +369,18 @@ hr.wp-block-separator {
 .wp-block-search.is-style-icon-round .wp-block-search__button {
 	background-color: var(--wp--preset--color--buttons);
 	border: none;
-	border-radius: 50%;
 	color: var(--wp--preset--color--base);
-	width: 50px;
 	height: 50px;
-	padding: 0;
 	margin-left: 0.5rem;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	cursor: pointer;
 	flex-shrink: 0;
+
+	&:hover, &:active, &:focus {
+		background-color: var(--wp--preset--color--buttons-hover);
+	}
 }
 
 /* ── Row 4 right: Icon Square ── */
@@ -428,15 +412,29 @@ hr.wp-block-separator {
 	border: none;
 	border-radius: 4px;
 	color: var(--wp--preset--color--base);
-	width: 50px;
 	height: 50px;
-	padding: 0;
 	margin-left: 0.5rem;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	cursor: pointer;
 	flex-shrink: 0;
+
+	&:hover, &:active, &:focus {
+		background-color: var(--wp--preset--color--buttons-hover);
+	}
+}
+
+// Only apply when icon only button is active
+.wp-block-search__icon-button.is-style-icon-round .wp-block-search__button,
+.wp-block-search__icon-button.is-style-icon-round .wp-block-search__button {
+	width: 50px;
+	padding: 0;
+}
+
+// Only apply when icon only button is active
+.wp-block-search__icon-button.is-style-icon-round .wp-block-search__button {
+	border-radius: 50%;
 }
 
 
@@ -466,13 +464,51 @@ hr.wp-block-separator {
 }
 
 // -----------------------------------------------------------------------------
-// Buttons Block
+// Buttons/Button Block
 // -----------------------------------------------------------------------------
 
 .wp-block-buttons .wp-block-button__link {
 	&:focus {
 		outline-color: var(--memberlite-color-text);
 		outline-offset: 2px;
+	}
+}
+
+.wp-block-button {
+	&.is-style-pill a {
+		border-radius: 10em;
+		padding: calc(var(--wp--preset--spacing--10) / 2) var(--wp--preset--spacing--30);
+	}
+
+	&.is-style-sharp a {
+		border-radius: 0;
+	}
+
+	&.is-style-arrow-fill a,
+	&.is-style-arrow-plain a {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: calc( var(--wp--preset--spacing--10) / 1.5);
+		padding-top: var(--wp--preset--spacing--10);
+		padding-bottom: var(--wp--preset--spacing--10);
+		line-height: 1;
+
+		//@todo: RTL version
+		&:after {
+			font-family: 'Font Awesome 5 Free';
+			content: "\f061";
+		}
+	}
+
+	&.is-style-arrow-plain a {
+		padding: 0 var(--wp--preset--spacing--10);
+		background: transparent;
+		color: var(--wp--preset--color--buttons);
+
+		&:hover, &:active, &:focus {
+			color: var(--wp--preset--color--buttons-hover);
+		}
 	}
 }
 
@@ -656,16 +692,50 @@ hr.wp-block-separator {
 			color: var(--wp--preset--color--base);
 		}
 	}
+
+	&.is-style-loginout-button a {
+		display: inline-block;
+		padding: 0.6em 1.4em;
+		border-radius: 4px;
+		text-decoration: none;
+		line-height: 1.5;
+	}
 }
 
-.wp-block-loginout.is-style-loginout-button a {
-	display: inline-block;
-	padding: 0.6em 1.4em;
-	border-radius: 4px;
-	text-decoration: none;
-	line-height: 1.5;
-}
+// -----------------------------------------------------------------------------
+// Slant and wavy styles for cover blocks
+// -----------------------------------------------------------------------------
 
-.wp-block-loginout.is-style-loginout-button a:hover {
-	opacity: 0.85;
+.wp-block-cover {
+	&.is-style-slant-bottom-right {
+		clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+		padding-bottom: 8rem;
+	}
+
+	&.is-style-slant-bottom-left {
+		clip-path: polygon(0 0, 100% 0, 100% 100%, 0 85%);
+		padding-bottom: 8rem;
+	}
+
+	.is-style-wavy-bottom {
+		position: relative;
+		padding-bottom: 8rem;
+		overflow: visible;
+
+		&::after {
+			content: '';
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			width: 100%;
+			height: 80px;
+			background-color: var(--wp--preset--color--base);
+			-webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80' preserveAspectRatio='none'%3E%3Cpath d='M0,80 L0,40 C180,80 360,0 540,40 C720,80 900,0 1080,40 C1260,80 1380,20 1440,40 L1440,80 Z' fill='black'/%3E%3C/svg%3E");
+			mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80' preserveAspectRatio='none'%3E%3Cpath d='M0,80 L0,40 C180,80 360,0 540,40 C720,80 900,0 1080,40 C1260,80 1380,20 1440,40 L1440,80 Z' fill='black'/%3E%3C/svg%3E");
+			-webkit-mask-size: 100% 100%;
+			mask-size: 100% 100%;
+			-webkit-mask-repeat: no-repeat;
+			mask-repeat: no-repeat;
+		}
+	}
 }
