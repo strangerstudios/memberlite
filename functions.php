@@ -699,7 +699,7 @@ function memberlite_enqueue_block_assets() {
 		MEMBERLITE_VERSION
 	);
 }
-add_action( 'enqueue_block_assets', 'memberlite_enqueue_block_assets' );
+add_action( 'enqueue_block_editor_assets', 'memberlite_enqueue_block_assets' );
 
 /**
  * Filter the footer copyright text to allow dynamic variables.
