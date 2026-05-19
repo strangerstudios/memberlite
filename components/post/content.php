@@ -10,7 +10,7 @@
 
 global $memberlite_defaults;
 $post_class = get_post_type() === 'post' ? 'entry-header-grid' : '';
-$aria_attr = is_single() ? ' aria-labelledby="page-title"' : '';
+$aria_attr = is_single() && memberlite_should_masthead_render() ? ' aria-labelledby="page-title"' : '';
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class( $post_class ); ?><?php echo $aria_attr; ?>>

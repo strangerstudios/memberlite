@@ -65,4 +65,6 @@
 
 	<div id="content" class="site-content">
 
-		<?php get_template_part( 'components/header/header', 'masthead' ); ?>
+		<?php
+		$should_render_masthead = memberlite_should_masthead_render();
+		get_template_part( 'components/header/header', 'masthead', array( 'should_render_masthead' => $should_render_masthead ) ); ?>

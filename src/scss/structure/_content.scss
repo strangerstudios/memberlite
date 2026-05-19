@@ -223,6 +223,7 @@
 .entry-footer .edit-link {
 	display: block;
 	width: max-content;
+	padding-top: var(--wp--preset--spacing--10);
 
 	a.post-edit-link {
 		@include tool-tip-base;
