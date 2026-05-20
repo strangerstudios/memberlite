@@ -55,7 +55,7 @@ label[for="memberlite-menu-location-select"] {
 /*--------------------------------------------------------------
  Loginout Block Styles
 --------------------------------------------------------------*/
-.wp-block-loginout {
+.wp-block-loginout.is-style-loginout-button {
 	width: max-content;
 	border-radius: var(--wp--custom--border--radius);
 }
@@ -160,7 +160,12 @@ hr.wp-block-separator.is-style-double {
 
 hr.wp-block-separator.is-style-faded-edges {
 	height: 1px;
-	background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+	background-image: linear-gradient(
+		to right,
+		transparent,
+		color-mix(in srgb, currentColor 75%, transparent),
+		transparent
+	);
 }
 
 hr.wp-block-separator.is-style-wave,
@@ -349,7 +354,6 @@ hr.wp-block-separator.is-style-flourish-circle-diamond {
 	background-color: var(--wp--preset--color--buttons);
 	border: none;
 	color: var(--wp--preset--color--base);
-	/*height: 50px;*/
 	margin-left: 0.5rem;
 	display: flex;
 	align-items: center;
