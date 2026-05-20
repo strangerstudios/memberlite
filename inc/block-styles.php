@@ -10,8 +10,8 @@
 /**
  * Register block styles.
  *
- * @return void
  * @since 7.1
+ * @return void
  */
 function memberlite_register_block_styles(): void {
 	$block_styles = array(
