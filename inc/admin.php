@@ -118,7 +118,7 @@ function memberlite_get_page_override_assignments( string $meta_key, string $pos
 	$assignments = array();
 
 	$override_post_ids = $wpdb->get_col( $wpdb->prepare(
-		"SELECT post_id FROM {$wpdb->postmeta} WHERE meta_key = %s AND meta_value = %s",
+		"SELECT pm.post_id FROM {$wpdb->postmeta} pm INNER JOIN {$wpdb->posts} p ON p.ID = pm.post_id WHERE pm.meta_key = %s AND pm.meta_value = %s AND p.post_status = 'publish'",
 		$meta_key,
 		$post_name
 	) );
@@ -273,7 +273,7 @@ add_action( 'manage_memberlite_header_posts_custom_column', 'memberlite_header_r
  *
  * @return void
  */
-function memberlite_display_formatted_variation_assignments( array $assignments ) {
+function memberlite_display_formatted_variation_assignments( array $assignments ): void {
 	if ( empty( $assignments ) ) {
 		echo '<span aria-label="' . esc_attr__( 'Not assigned', 'memberlite' ) . '">&#8212;</span>';
 		return;
