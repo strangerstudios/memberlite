@@ -105,6 +105,46 @@ function memberlite_footer_cpt_submenu_highlight( $submenu_file ) {
 add_filter( 'submenu_file', 'memberlite_footer_cpt_submenu_highlight' );
 
 /**
+ * Get page-level override assignments for a header or footer variation post.
+ *
+ * @since TBD
+ * @param string $meta_key  The post meta key used for per-page overrides.
+ * @param string $post_name The post_name of the variation post.
+ * @return array Human-readable assignment entries, empty if none found.
+ */
+function memberlite_get_page_override_assignments( string $meta_key, string $post_name ): array {
+	global $wpdb;
+
+	$assignments = array();
+
+	$override_post_ids = $wpdb->get_col( $wpdb->prepare(
+		"SELECT pm.post_id FROM {$wpdb->postmeta} pm INNER JOIN {$wpdb->posts} p ON p.ID = pm.post_id WHERE pm.meta_key = %s AND pm.meta_value = %s AND p.post_status = 'publish'",
+		$meta_key,
+		$post_name
+	) );
+
+	$page_count = count( $override_post_ids );
+
+	if ( 1 === $page_count ) {
+		$assignments[] = array(
+			'label' => __( '1 page override', 'memberlite' ),
+			'url'   => get_edit_post_link( (int) $override_post_ids[0] ),
+		);
+	} elseif ( $page_count > 1 ) {
+		$assignments[] = array(
+			'label' => sprintf(
+				/* translators: %d: number of pages with this variation assigned via post meta override */
+				__( '%d page overrides', 'memberlite' ),
+				$page_count
+			),
+			'url'   => null,
+		);
+	}
+
+	return $assignments;
+}
+
+/**
  * Get the locations where a footer post is currently assigned.
  *
  * Checks the four footer theme mods and any per-page override post meta.
@@ -116,8 +156,6 @@ add_filter( 'submenu_file', 'memberlite_footer_cpt_submenu_highlight' );
  * @return array Human-readable assignment labels, empty if unassigned.
  */
 function memberlite_get_footer_assignments( string $post_name ): array {
-	global $wpdb;
-
 	$assignments = array();
 
 	$theme_mod_controls = array(
@@ -136,45 +174,48 @@ function memberlite_get_footer_assignments( string $post_name ): array {
 		}
 	}
 
-	// Get per-page override post IDs via a direct meta query.
-	$override_post_ids = $wpdb->get_col( $wpdb->prepare(
-		"SELECT post_id FROM {$wpdb->postmeta} WHERE meta_key = '_memberlite_footer_override' AND meta_value = %s",
-		$post_name
-	) );
-
-	$page_count = count( $override_post_ids );
-
-	if ( 1 === $page_count ) {
-		$assignments[] = array(
-			'label' => __( '1 page override', 'memberlite' ),
-			'url'   => get_edit_post_link( (int) $override_post_ids[0] ),
-		);
-	} elseif ( $page_count > 1 ) {
-		$assignments[] = array(
-			'label' => sprintf(
-				/* translators: %d: number of pages with this footer assigned via post meta override */
-				__( '%d page overrides', 'memberlite' ),
-				$page_count
-			),
-			'url'   => null,
-		);
-	}
-
-	return $assignments;
+	return array_merge( $assignments, memberlite_get_page_override_assignments( '_memberlite_footer_override', $post_name ) );
 }
 
 /**
- * Add a "Used By" column to the footer CPT list table.
+ * Get the locations where a header post is currently assigned.
+ *
+ * Checks the global header theme mod and any per-page override post meta.
+ * Returns human-readable labels used by the list table column and the
+ * trash row action prevention.
+ *
+ * @since TBD
+ * @param string $post_name The post_name of the memberlite_header post.
+ * @return array Human-readable assignment labels, empty if unassigned.
+ */
+function memberlite_get_header_assignments( string $post_name ): array {
+	$assignments = array();
+
+	$mod_key = 'memberlite_default_header_slug';
+
+	if ( get_theme_mod( $mod_key ) === $post_name ) {
+		$assignments[] = array(
+			'label' => __( 'Global Header', 'memberlite' ),
+			'url'   => add_query_arg( array( 'autofocus[control]' => $mod_key ), admin_url( 'customize.php' ) ),
+		);
+	}
+
+	return array_merge( $assignments, memberlite_get_page_override_assignments( '_memberlite_header_override', $post_name ) );
+}
+
+/**
+ * Add a "Used By" column to a variation CPT list table.
  *
  * @since 7.1
  * @param array $columns Existing columns.
  * @return array Modified columns.
  */
-function memberlite_footer_add_used_by_column( array $columns ): array {
+function memberlite_variation_add_used_by_column( array $columns ): array {
 	$columns['memberlite_used_by'] = __( 'Used By', 'memberlite' );
 	return $columns;
 }
-add_filter( 'manage_memberlite_footer_posts_columns', 'memberlite_footer_add_used_by_column' );
+add_filter( 'manage_memberlite_footer_posts_columns', 'memberlite_variation_add_used_by_column' );
+add_filter( 'manage_memberlite_header_posts_columns', 'memberlite_variation_add_used_by_column' );
 
 /**
  * Render the "Used By" column content for footer posts.
@@ -189,12 +230,50 @@ function memberlite_footer_render_used_by_column( string $column, int $post_id )
 	}
 
 	$post = get_post( $post_id );
+
 	if ( ! $post ) {
 		return;
 	}
 
 	$assignments = memberlite_get_footer_assignments( $post->post_name );
 
+	memberlite_display_formatted_variation_assignments( $assignments );
+}
+add_action( 'manage_memberlite_footer_posts_custom_column', 'memberlite_footer_render_used_by_column', 10, 2 );
+
+/**
+ * Render the "Used By" column content for header posts.
+ *
+ * @since TBD
+ * @param string $column  The column name.
+ * @param int    $post_id The post ID.
+ */
+function memberlite_header_render_used_by_column( string $column, int $post_id ): void {
+	if ( 'memberlite_used_by' !== $column ) {
+		return;
+	}
+
+	$post = get_post( $post_id );
+
+	if ( ! $post ) {
+		return;
+	}
+
+	$assignments = memberlite_get_header_assignments( $post->post_name );
+
+	memberlite_display_formatted_variation_assignments( $assignments );
+}
+add_action( 'manage_memberlite_header_posts_custom_column', 'memberlite_header_render_used_by_column', 10, 2 );
+
+/**
+ * Set up and format links in the "Used By" column for variation posts.
+ *
+ * @since TBD
+ * @param array $assignments Array of variation assignment data to display.
+ *
+ * @return void
+ */
+function memberlite_display_formatted_variation_assignments( array $assignments ): void {
 	if ( empty( $assignments ) ) {
 		echo '<span aria-label="' . esc_attr__( 'Not assigned', 'memberlite' ) . '">&#8212;</span>';
 		return;
@@ -210,7 +289,6 @@ function memberlite_footer_render_used_by_column( string $column, int $post_id )
 	}
 	echo implode( ', ', $parts ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 }
-add_action( 'manage_memberlite_footer_posts_custom_column', 'memberlite_footer_render_used_by_column', 10, 2 );
 
 /**
  * Show an action button for the specified plugin
