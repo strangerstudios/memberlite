@@ -10,114 +10,51 @@
 /**
  * Register block styles.
  *
- * @since 7.1
  * @return void
+ * @since 7.1
  */
 function memberlite_register_block_styles(): void {
-	$list_styles = array(
-		array(
-			'name'         => 'plain',
-			'label'        => __( 'Plain', 'memberlite' ),
+	$block_styles = array(
+		'core/list'      => array(
+			array( 'name' => 'plain', 'label' => __( 'Plain', 'memberlite' ) ),
+			array( 'name' => 'horizontal-left', 'label' => __( 'Horizontal Left', 'memberlite' ) ),
+			array( 'name' => 'horizontal-center', 'label' => __( 'Horizontal Center', 'memberlite' ) ),
 		),
-		array(
-			'name'         => 'horizontal-left',
-			'label'        => __( 'Horizontal Left', 'memberlite' ),
+		'core/button'    => array(
+			array( 'name' => 'pill', 'label' => __( 'Pill', 'memberlite' ) ),
+			array( 'name' => 'sharp', 'label' => __( 'Sharp', 'memberlite' ) ),
+			array( 'name' => 'arrow-fill', 'label' => __( 'Arrow Fill', 'memberlite' ) ),
+			array( 'name' => 'arrow-plain', 'label' => __( 'Arrow Plain', 'memberlite' ) ),
 		),
-		array(
-			'name'         => 'horizontal-center',
-			'label'        => __( 'Horizontal Center', 'memberlite' ),
+		'core/separator' => array(
+			array( 'name' => 'faded-edges', 'label' => __( 'Faded Edges', 'memberlite' ) ),
+			array( 'name' => 'double', 'label' => __( 'Double', 'memberlite' ) ),
+			array( 'name' => 'wave', 'label' => __( 'Wave', 'memberlite' ) ),
+			array( 'name' => 'flourish-diamond', 'label' => __( 'Diamond', 'memberlite' ) ),
+			array( 'name' => 'flourish-arrow', 'label' => __( 'Arrow', 'memberlite' ) ),
+			array( 'name' => 'flourish-triple-diamond', 'label' => __( 'Triple Diamond', 'memberlite' ) ),
+			array( 'name' => 'flourish-circle-diamond', 'label' => __( 'Circle Diamond', 'memberlite' ) ),
 		),
-	);
-
-	foreach ( $list_styles as $list_style ) {
-		register_block_style( 'core/list', $list_style );
-	}
-
-	$button_styles = array(
-		array(
-			'name'  => 'pill',
-			'label' => __( 'Pill', 'memberlite' ),
+		'core/search'    => array(
+			array( 'name' => 'filled-pill', 'label' => __( 'Filled Pill', 'memberlite' ) ),
+			array( 'name' => 'filled-sharp', 'label' => __( 'Filled Sharp', 'memberlite' ) ),
+			array( 'name' => 'icon-round', 'label' => __( 'Icon Round', 'memberlite' ) ),
+			array( 'name' => 'icon-square', 'label' => __( 'Icon Square', 'memberlite' ) ),
 		),
-		array(
-			'name'  => 'sharp',
-			'label' => __( 'Sharp', 'memberlite' ),
+		'core/loginout'  => array(
+			array( 'name' => 'loginout-button', 'label' => __( 'Button', 'memberlite' ) ),
 		),
-		array(
-			'name'  => 'arrow-fill',
-			'label' => __( 'Arrow Fill', 'memberlite' ),
-		),
-		array(
-			'name'  => 'arrow-plain',
-			'label' => __( 'Arrow Plain', 'memberlite' ),
-		),
-	);
-
-	foreach ( $button_styles as $style ) {
-		register_block_style( 'core/button', $style );
-	}
-
-	$separator_styles = array(
-		array(
-			'name'  => 'faded-edges',
-			'label' => __( 'Faded Edges', 'memberlite' ),
-		),
-		array(
-			'name'  => 'double',
-			'label' => __( 'Double', 'memberlite' ),
-		),
-		array(
-			'name'  => 'wave',
-			'label' => __( 'Wave', 'memberlite' ),
-		),
-		array(
-			'name'  => 'flourish-diamond',
-			'label' => __( 'Diamond', 'memberlite' ),
-		),
-		array(
-			'name'  => 'flourish-arrow',
-			'label' => __( 'Arrow', 'memberlite' ),
-		),
-		array(
-			'name'  => 'flourish-triple-diamond',
-			'label' => __( 'Triple Diamond', 'memberlite' ),
-		),
-		array(
-			'name'  => 'flourish-circle-diamond',
-			'label' => __( 'Circle Diamond', 'memberlite' ),
+		'core/cover'     => array(
+			array( 'name' => 'slant-bottom-right', 'label' => __( 'Slant: Bottom Right', 'memberlite' ) ),
+			array( 'name' => 'slant-bottom-left', 'label' => __( 'Slant: Bottom Left', 'memberlite' ) ),
+			array( 'name' => 'wavy-bottom', 'label' => __( 'Wavy Bottom', 'memberlite' ) ),
 		),
 	);
 
-	foreach ( $separator_styles as $separator_style ) {
-		register_block_style( 'core/separator', $separator_style );
-	}
-
-	$search_styles = array(
-		array( 'name' => 'filled-pill',   'label' => __( 'Filled Pill', 'memberlite' ) ),
-		array( 'name' => 'filled-sharp',  'label' => __( 'Filled Sharp', 'memberlite' ) ),
-		array( 'name' => 'icon-round',    'label' => __( 'Icon Round', 'memberlite' ) ),
-		array( 'name' => 'icon-square',   'label' => __( 'Icon Square', 'memberlite' ) ),
-	);
-
-	foreach ( $search_styles as $style ) {
-		register_block_style( 'core/search', $style );
-	}
-
-	register_block_style(
-		'core/loginout',
-		array(
-			'name'         => 'loginout-button',
-			'label'        => __( 'Button', 'memberlite' ),
-		)
-	);
-
-	$group_styles = array(
-		array( 'name' => 'slant-bottom-right', 'label' => __( 'Slant: Bottom Right', 'memberlite' ) ),
-		array( 'name' => 'slant-bottom-left',  'label' => __( 'Slant: Bottom Left', 'memberlite' ) ),
-		array( 'name' => 'wavy-bottom',        'label' => __( 'Wavy Bottom', 'memberlite' ) ),
-	);
-
-	foreach ( $group_styles as $style ) {
-		register_block_style( 'core/cover', $style );
+	foreach ( $block_styles as $block_name => $styles ) {
+		foreach ( $styles as $style ) {
+			register_block_style( $block_name, $style );
+		}
 	}
 }
 add_action( 'init', 'memberlite_register_block_styles' );
