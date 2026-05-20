@@ -116,6 +116,11 @@ hr.wp-block-separator {
 	margin-left: auto;
 	margin-right: auto;
 
+	&:where(:not(.is-style-wide, .is-style-dots, .is-style-faded-edges, .is-style-wave, .is-style-double, .is-style-flourish-diamond, .is-style-flourish-arrow,
+	.is-style-flourish-triple-diamond, .is-style-flourish-circle-diamond)) {
+		max-width: 100px;
+	}
+
 	&.is-style-dots:before {
 		color: var(--memberlite-color-borders);
 	}
@@ -135,7 +140,12 @@ hr.wp-block-separator {
 
 	&.is-style-faded-edges {
 		height: 1px;
-		background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+		background-image: linear-gradient(
+			to right,
+			transparent,
+			color-mix(in srgb, currentColor 75%, transparent),
+			transparent
+		);
 	}
 
 	&.is-style-wave,
@@ -713,10 +723,9 @@ hr.wp-block-separator {
 // -----------------------------------------------------------------------------
 
 .wp-block-loginout {
-	width: max-content;
-	border-radius: var(--wp--custom--border--radius);
-
 	&.is-style-loginout-button:not(.has-background) {
+		width: max-content;
+		border-radius: var(--wp--custom--border--radius);
 		/* Fallbacks — overridden when editor color settings are applied */
 		background-color: var(--wp--preset--color--buttons);
 
