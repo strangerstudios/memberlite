@@ -135,7 +135,7 @@ hr.wp-block-separator {
 	&.is-style-faded-edges,
 	&.is-style-wave,
 	&.is-style-double {
-		width: 100%!important;
+		width: 100% !important;
 	}
 
 	&.is-style-faded-edges {
@@ -536,10 +536,10 @@ hr.wp-block-separator {
 		padding-bottom: var(--wp--preset--spacing--10);
 		line-height: 1;
 
-		//@todo: RTL version
 		&:after {
 			font-family: 'Font Awesome 5 Free';
-			content: "\f061";
+			font-weight: 900;
+			content: "\f061"; /*! rtl:raw:content: "\f060"; */
 		}
 	}
 

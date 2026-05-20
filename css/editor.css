@@ -398,7 +398,6 @@ hr.wp-block-separator.is-style-flourish-circle-diamond {
 	border: none;
 	border-radius: 0;
 	color: var(--wp--preset--color--base);
-	/*height: 50px;*/
 	margin-left: 0.5rem;
 	display: flex;
 	align-items: center;
