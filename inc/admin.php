@@ -204,18 +204,18 @@ function memberlite_get_header_assignments( string $post_name ): array {
 }
 
 /**
- * Add a "Used By" column to the header/footer CPT list table.
+ * Add a "Used By" column to a variation CPT list table.
  *
  * @since 7.1
  * @param array $columns Existing columns.
  * @return array Modified columns.
  */
-function memberlite_header_footer_add_used_by_column( array $columns ): array {
+function memberlite_variation_add_used_by_column( array $columns ): array {
 	$columns['memberlite_used_by'] = __( 'Used By', 'memberlite' );
 	return $columns;
 }
-add_filter( 'manage_memberlite_footer_posts_columns', 'memberlite_header_footer_add_used_by_column' );
-add_filter( 'manage_memberlite_header_posts_columns', 'memberlite_header_footer_add_used_by_column' );
+add_filter( 'manage_memberlite_footer_posts_columns', 'memberlite_variation_add_used_by_column' );
+add_filter( 'manage_memberlite_header_posts_columns', 'memberlite_variation_add_used_by_column' );
 
 /**
  * Render the "Used By" column content for footer posts.
@@ -237,7 +237,7 @@ function memberlite_footer_render_used_by_column( string $column, int $post_id )
 
 	$assignments = memberlite_get_footer_assignments( $post->post_name );
 
-	memberlite_display_formatted_header_footer_assignments( $assignments );
+	memberlite_display_formatted_variation_assignments( $assignments );
 }
 add_action( 'manage_memberlite_footer_posts_custom_column', 'memberlite_footer_render_used_by_column', 10, 2 );
 
@@ -261,19 +261,19 @@ function memberlite_header_render_used_by_column( string $column, int $post_id )
 
 	$assignments = memberlite_get_header_assignments( $post->post_name );
 
-	memberlite_display_formatted_header_footer_assignments( $assignments );
+	memberlite_display_formatted_variation_assignments( $assignments );
 }
 add_action( 'manage_memberlite_header_posts_custom_column', 'memberlite_header_render_used_by_column', 10, 2 );
 
 /**
- * Set up and format links in the "Used By" column for header and footer posts.
+ * Set up and format links in the "Used By" column for variation posts.
  *
  * @since TBD
- * @param array $assignments Array of header/footer assignment data to display.
+ * @param array $assignments Array of variation assignment data to display.
  *
  * @return void
  */
-function memberlite_display_formatted_header_footer_assignments( array $assignments ) {
+function memberlite_display_formatted_variation_assignments( array $assignments ) {
 	if ( empty( $assignments ) ) {
 		echo '<span aria-label="' . esc_attr__( 'Not assigned', 'memberlite' ) . '">&#8212;</span>';
 		return;
