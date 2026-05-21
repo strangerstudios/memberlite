@@ -85,7 +85,7 @@ function memberlite_get_current_cpt_archive_type(): ?string {
  * @since TBD
  * @return string One of 'content', 'excerpt', or 'grid'.
  */
-function memberlite_get_content_archives(): string {
+function memberlite_get_content_archives_theme_mod(): string {
 	global $memberlite_defaults;
 
 	$cpt_type = memberlite_get_current_cpt_archive_type();
@@ -226,7 +226,7 @@ function memberlite_sidebar_location_none_columns_ratio( $r, $location ) {
 		}
 	} elseif ( memberlite_is_blog() || is_post_type_archive() || is_search() ) {
 		$cpt_type         = memberlite_get_current_cpt_archive_type();
-		$content_archives = memberlite_get_content_archives();
+		$content_archives = memberlite_get_content_archives_theme_mod();
 		if ( $cpt_type ) {
 			$sidebar_location = get_theme_mod( 'sidebar_location_' . $cpt_type, 'sidebar-blog-right' );
 		} else {
@@ -258,7 +258,7 @@ function memberlite_sidebar_none_get_sidebar( $name ) {
 		}
 	} elseif ( memberlite_is_blog() || is_post_type_archive() || is_search() ) {
 		$cpt_type         = memberlite_get_current_cpt_archive_type();
-		$content_archives = memberlite_get_content_archives();
+		$content_archives = memberlite_get_content_archives_theme_mod();
 		if ( $cpt_type ) {
 			$sidebar_location = get_theme_mod( 'sidebar_location_' . $cpt_type, 'sidebar-blog-right' );
 		} else {

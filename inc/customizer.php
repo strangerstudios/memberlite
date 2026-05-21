@@ -154,16 +154,19 @@ class Memberlite_Customize {
 		);
 
 		/* CPT Archives ---------------------------------- */
-		$cpt_priority = 9;
-		foreach ( memberlite_get_cpt_archive_settings() as $post_type => $cpt_args ) {
-			$wp_customize->add_section(
-				'memberlite_' . $post_type . '_archive_options',
-				array(
-					/* translators: %s: plural label for the post type, e.g. "Courses" */
-					'title'    => sprintf( __( '%s Archives', 'memberlite' ), $cpt_args['label'] ),
-					'priority' => $cpt_priority++,
-				)
-			);
+		$cpt_archive_settings = memberlite_get_cpt_archive_settings();
+		if ( ! empty( $cpt_archive_settings ) ) {
+			$cpt_priority = 9;
+			foreach ( $cpt_archive_settings as $post_type => $cpt_args ) {
+				$wp_customize->add_section(
+					'memberlite_' . $post_type . '_archive_options',
+					array(
+						/* translators: %s: plural label for the post type, e.g. "Courses" */
+						'title'    => sprintf( __( '%s Archives', 'memberlite' ), $cpt_args['label'] ),
+						'priority' => $cpt_priority++,
+					)
+				);
+			}
 		}
 
 	}
@@ -558,8 +561,8 @@ class Memberlite_Customize {
 
 		// POST: Sidebar Location ===============
 		self::add_memberlite_setting_control( $wp_customize, 'sidebar_location_blog', __( 'Sidebar Location', 'memberlite' ), 'memberlite_post_archive_options', array(
-			'type'            => 'radio',
-			'choices'         => array(
+			'type'    => 'radio',
+			'choices' => array(
 				'sidebar-blog-right' => __( 'Right Sidebar', 'memberlite' ),
 				'sidebar-blog-left'  => __( 'Left Sidebar', 'memberlite' ),
 				'sidebar-blog-none'  => __( 'No Sidebar', 'memberlite' ),
@@ -571,10 +574,10 @@ class Memberlite_Customize {
 
 		// POST: Columns Ratio ==================
 		self::add_memberlite_setting_control( $wp_customize, 'columns_ratio_blog', __( 'Columns Ratio', 'memberlite' ), 'memberlite_post_archive_options', array(
-			'type'            => 'select',
-			'transport'       => 'refresh',
-			'description'     => __( 'Sets the content-to-sidebar width ratio. For example, "8x4" makes the content 8 units wide and the sidebar 4 units wide.', 'memberlite' ),
-			'choices'         => array(
+			'type'        => 'select',
+			'transport'   => 'refresh',
+			'description' => __( 'Sets the content-to-sidebar width ratio. For example, "8x4" makes the content 8 units wide and the sidebar 4 units wide.', 'memberlite' ),
+			'choices'     => array(
 				'6-6'  => '6x6',
 				'7-5'  => '7x5',
 				'8-4'  => '8x4',
@@ -638,51 +641,54 @@ class Memberlite_Customize {
 		) );
 
 		// CPT: Per-archive settings for each registered CPT ===
-		foreach ( memberlite_get_cpt_archive_settings() as $post_type => $cpt_args ) {
-			$section = 'memberlite_' . $post_type . '_archive_options';
+		$cpt_archive_settings = memberlite_get_cpt_archive_settings();
+		if ( ! empty( $cpt_archive_settings ) ) {
+			foreach ( $cpt_archive_settings as $post_type => $cpt_args ) {
+				$section = 'memberlite_' . $post_type . '_archive_options';
 
-			self::add_memberlite_setting_control( $wp_customize, 'content_archives_' . $post_type, __( 'Archive Layout', 'memberlite' ), $section, array(
-				'type'        => 'radio',
-				'default'     => 'content',
-				'description' => __( 'Choose how posts are displayed on archive pages.', 'memberlite' ),
-				'choices'     => array(
-					'content' => __( 'Show Full Post Content', 'memberlite' ),
-					'excerpt' => __( 'Show Post Excerpts', 'memberlite' ),
-					'grid'    => __( 'Show Posts in a Grid (sidebar hidden)', 'memberlite' ),
-				),
-			) );
+				self::add_memberlite_setting_control( $wp_customize, 'content_archives_' . $post_type, __( 'Archive Layout', 'memberlite' ), $section, array(
+					'type'        => 'radio',
+					'default'     => 'content',
+					'description' => __( 'Choose how posts are displayed on archive pages.', 'memberlite' ),
+					'choices'     => array(
+						'content' => __( 'Show Full Post Content', 'memberlite' ),
+						'excerpt' => __( 'Show Post Excerpts', 'memberlite' ),
+						'grid'    => __( 'Show Posts in a Grid (sidebar hidden)', 'memberlite' ),
+					),
+				) );
 
-			self::add_memberlite_setting_control( $wp_customize, 'sidebar_location_' . $post_type, __( 'Sidebar Location', 'memberlite' ), $section, array(
-				'type'            => 'radio',
-				'default'         => 'sidebar-blog-right',
-				'choices'         => array(
-					'sidebar-blog-right' => __( 'Right Sidebar', 'memberlite' ),
-					'sidebar-blog-left'  => __( 'Left Sidebar', 'memberlite' ),
-					'sidebar-blog-none'  => __( 'No Sidebar', 'memberlite' ),
-				),
-				'active_callback' => function() use ( $post_type ) {
-					return get_theme_mod( 'content_archives_' . $post_type, 'content' ) !== 'grid';
-				},
-			) );
+				self::add_memberlite_setting_control( $wp_customize, 'sidebar_location_' . $post_type, __( 'Sidebar Location', 'memberlite' ), $section, array(
+					'type'            => 'radio',
+					'default'         => 'sidebar-blog-right',
+					'choices'         => array(
+						'sidebar-blog-right' => __( 'Right Sidebar', 'memberlite' ),
+						'sidebar-blog-left'  => __( 'Left Sidebar', 'memberlite' ),
+						'sidebar-blog-none'  => __( 'No Sidebar', 'memberlite' ),
+					),
+					'active_callback' => function() use ( $post_type ) {
+						return get_theme_mod( 'content_archives_' . $post_type, 'content' ) !== 'grid';
+					},
+				) );
 
-			self::add_memberlite_setting_control( $wp_customize, 'columns_ratio_' . $post_type, __( 'Columns Ratio', 'memberlite' ), $section, array(
-				'type'        => 'select',
-				'default'     => '8-4',
-				'transport'   => 'refresh',
-				'description' => __( 'Sets the content-to-sidebar width ratio. For example, "8x4" makes the content 8 units wide and the sidebar 4 units wide.', 'memberlite' ),
-				'choices'     => array(
-					'6-6'  => '6x6',
-					'7-5'  => '7x5',
-					'8-4'  => '8x4',
-					'9-3'  => '9x3',
-					'10-2' => '10x2',
-					'11-1' => '11x1',
-				),
-				'active_callback' => function() use ( $post_type ) {
-					return get_theme_mod( 'content_archives_' . $post_type, 'content' ) !== 'grid'
-						&& get_theme_mod( 'sidebar_location_' . $post_type, 'sidebar-blog-right' ) !== 'sidebar-blog-none';
-				},
-			) );
+				self::add_memberlite_setting_control( $wp_customize, 'columns_ratio_' . $post_type, __( 'Columns Ratio', 'memberlite' ), $section, array(
+					'type'        => 'select',
+					'default'     => '8-4',
+					'transport'   => 'refresh',
+					'description' => __( 'Sets the content-to-sidebar width ratio. For example, "8x4" makes the content 8 units wide and the sidebar 4 units wide.', 'memberlite' ),
+					'choices'     => array(
+						'6-6'  => '6x6',
+						'7-5'  => '7x5',
+						'8-4'  => '8x4',
+						'9-3'  => '9x3',
+						'10-2' => '10x2',
+						'11-1' => '11x1',
+					),
+					'active_callback' => function() use ( $post_type ) {
+						return get_theme_mod( 'content_archives_' . $post_type, 'content' ) !== 'grid'
+							&& get_theme_mod( 'sidebar_location_' . $post_type, 'sidebar-blog-right' ) !== 'sidebar-blog-none';
+					},
+				) );
+			}
 		}
 	}
 

@@ -45,7 +45,7 @@ $aria_attr = is_single() ? ' aria-labelledby="page-title"' : '';
 
 		if ( is_archive() || ( is_home() && get_post_type() === 'post' ) ) {
 			// If we're on an archive or the blog posts list that isn't an archive.
-			$content_archives = memberlite_get_content_archives();
+			$content_archives = memberlite_get_content_archives_theme_mod();
 			if ( $content_archives === 'excerpt' ) {
 				memberlite_the_excerpt();
 			} else {
