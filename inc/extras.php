@@ -107,7 +107,7 @@ function memberlite_body_classes( $classes ) {
 	global $memberlite_defaults, $post;
 
 	// sidebar classes
-	if ( ! is_page_template( 'templates/fluid-width.php' ) && ! memberlite_is_blog() ) {
+	if ( ! is_page_template( 'templates/fluid-width.php' ) && ! memberlite_is_blog() && ! is_post_type_archive() ) {
 		$classes[] = get_theme_mod( 'sidebar_location', $memberlite_defaults['sidebar_location'] );
 	}
 
