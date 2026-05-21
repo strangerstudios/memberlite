@@ -192,6 +192,29 @@
 		});
 	});
 
+	// Toggle sidebar_location_blog and columns_ratio_blog visibility based on content_archives and sidebar_location_blog values.
+	wp.customize( 'content_archives', function( value ) {
+		value.bind( function( newval ) {
+			var isGrid = newval === 'grid';
+			wp.customize.control( 'sidebar_location_blog', function( control ) {
+				control.active.set( ! isGrid );
+			} );
+			wp.customize.control( 'columns_ratio_blog', function( control ) {
+				var noSidebar = wp.customize( 'sidebar_location_blog' )() === 'sidebar-blog-none';
+				control.active.set( ! isGrid && ! noSidebar );
+			} );
+		} );
+	} );
+
+	wp.customize( 'sidebar_location_blog', function( value ) {
+		value.bind( function( newval ) {
+			wp.customize.control( 'columns_ratio_blog', function( control ) {
+				var isGrid = wp.customize( 'content_archives' )() === 'grid';
+				control.active.set( ! isGrid && newval !== 'sidebar-blog-none' );
+			} );
+		} );
+	} );
+
 	// If a header/footer variation slug setting points to a post that no longer
 	// appears in the dropdown (e.g. the post was trashed), the <select> has no
 	// matching option and jQuery's .val() returns null. Visually fall back so

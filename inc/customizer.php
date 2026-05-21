@@ -545,20 +545,23 @@ class Memberlite_Customize {
 
 		// POST: Sidebar Location ===============
 		self::add_memberlite_setting_control( $wp_customize, 'sidebar_location_blog', __( 'Sidebar Location', 'memberlite' ), 'memberlite_post_archive_options', array(
-			'type'    => 'radio',
-			'choices' => array(
+			'type'            => 'radio',
+			'choices'         => array(
 				'sidebar-blog-right' => __( 'Right Sidebar', 'memberlite' ),
 				'sidebar-blog-left'  => __( 'Left Sidebar', 'memberlite' ),
 				'sidebar-blog-none'  => __( 'No Sidebar', 'memberlite' ),
 			),
+			'active_callback' => function() {
+				return get_theme_mod( 'content_archives', 'content' ) !== 'grid';
+			},
 		) );
 
 		// POST: Columns Ratio ==================
 		self::add_memberlite_setting_control( $wp_customize, 'columns_ratio_blog', __( 'Columns Ratio', 'memberlite' ), 'memberlite_post_archive_options', array(
-			'type'        => 'select',
-			'transport'   => 'refresh',
-			'description' => __( 'Sets the content-to-sidebar width ratio. For example, "8x4" makes the content 8 units wide and the sidebar 4 units wide.', 'memberlite' ),
-			'choices'     => array(
+			'type'            => 'select',
+			'transport'       => 'refresh',
+			'description'     => __( 'Sets the content-to-sidebar width ratio. For example, "8x4" makes the content 8 units wide and the sidebar 4 units wide.', 'memberlite' ),
+			'choices'         => array(
 				'6-6'  => '6x6',
 				'7-5'  => '7x5',
 				'8-4'  => '8x4',
@@ -566,6 +569,10 @@ class Memberlite_Customize {
 				'10-2' => '10x2',
 				'11-1' => '11x1',
 			),
+			'active_callback' => function() {
+				return get_theme_mod( 'content_archives', 'content' ) !== 'grid'
+					&& get_theme_mod( 'sidebar_location_blog', 'sidebar-blog-right' ) !== 'sidebar-blog-none';
+			},
 		) );
 
 		// POST: Navigation Settings Heading ====
