@@ -192,6 +192,37 @@
 		});
 	});
 
+	// Dynamic show/hide for CPT archive controls, mirroring the blog controls logic.
+	if ( typeof memberlite_cpt_archive_slugs !== 'undefined' ) {
+		memberlite_cpt_archive_slugs.forEach( function( postType ) {
+			var archiveKey = 'content_archives_' + postType;
+			var sidebarKey = 'sidebar_location_' + postType;
+			var ratioKey   = 'columns_ratio_' + postType;
+
+			wp.customize( archiveKey, function( value ) {
+				value.bind( function( newval ) {
+					var isGrid = newval === 'grid';
+					wp.customize.control( sidebarKey, function( control ) {
+						control.active.set( ! isGrid );
+					} );
+					wp.customize.control( ratioKey, function( control ) {
+						var noSidebar = wp.customize( sidebarKey )() === 'sidebar-blog-none';
+						control.active.set( ! isGrid && ! noSidebar );
+					} );
+				} );
+			} );
+
+			wp.customize( sidebarKey, function( value ) {
+				value.bind( function( newval ) {
+					wp.customize.control( ratioKey, function( control ) {
+						var isGrid = wp.customize( archiveKey )() === 'grid';
+						control.active.set( ! isGrid && newval !== 'sidebar-blog-none' );
+					} );
+				} );
+			} );
+		} );
+	}
+
 	// Toggle sidebar_location_blog and columns_ratio_blog visibility based on content_archives and sidebar_location_blog values.
 	wp.customize( 'content_archives', function( value ) {
 		value.bind( function( newval ) {

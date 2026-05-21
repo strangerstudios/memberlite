@@ -20,6 +20,84 @@ function memberlite_page_menu_args( $args ) {
 add_filter( 'wp_page_menu_args', 'memberlite_page_menu_args' );
 
 /**
+ * Returns the list of CPTs that have per-archive Customizer settings.
+ *
+ * Detects known CPTs by checking if they are registered, then passes the result
+ * through a filter so developers can add or remove entries. Each entry is keyed
+ * by post type slug and must contain at least a 'label' key used as the
+ * Customizer section title.
+ *
+ * @since TBD
+ * @return array<string, array{label: string}>
+ */
+function memberlite_get_cpt_archive_settings(): array {
+	$cpts = array();
+
+	if ( post_type_exists( 'pmpro_course' ) ) {
+		$cpts['pmpro_course'] = array( 'label' => __( 'PMPro Courses', 'memberlite' ) );
+	}
+
+	if ( post_type_exists( 'pmpro_series' ) ) {
+		$cpts['pmpro_series'] = array( 'label' => __( 'PMPro Series', 'memberlite' ) );
+	}
+
+	/**
+	 * Filter the CPTs that receive per-archive layout settings in the Customizer.
+	 *
+	 * Each entry: 'post_type_slug' => array( 'label' => 'Section Title' )
+	 *
+	 * @since TBD
+	 * @param array $cpts Associative array of post type slugs to args.
+	 */
+	return apply_filters( 'memberlite_cpt_archive_settings', $cpts );
+}
+
+/**
+ * Returns the current CPT slug if we are on a CPT archive that has
+ * per-archive Customizer settings, otherwise null.
+ *
+ * @since TBD
+ * @return string|null
+ */
+function memberlite_get_current_cpt_archive_type(): ?string {
+	if ( ! is_post_type_archive() ) {
+		return null;
+	}
+
+	$queried   = get_queried_object();
+	$post_type = $queried->name ?? null;
+
+	if ( ! $post_type ) {
+		return null;
+	}
+
+	$cpts = memberlite_get_cpt_archive_settings();
+
+	return isset( $cpts[ $post_type ] ) ? $post_type : null;
+}
+
+/**
+ * Returns the resolved content_archives value for the current context.
+ *
+ * Uses the CPT-specific setting when on a CPT archive that has custom settings,
+ * otherwise returns the shared blog/archive setting.
+ *
+ * @since TBD
+ * @return string One of 'content', 'excerpt', or 'grid'.
+ */
+function memberlite_get_content_archives(): string {
+	global $memberlite_defaults;
+
+	$cpt_type = memberlite_get_current_cpt_archive_type();
+
+	if ( $cpt_type ) {
+		return get_theme_mod( 'content_archives_' . $cpt_type, 'content' );
+	}
+
+	return get_theme_mod( 'content_archives', $memberlite_defaults['content_archives'] );
+}
+
+/**
  * Adds custom classes to the array of body classes.
  *
  * @param array $classes Classes for the body element.
@@ -39,8 +117,14 @@ function memberlite_body_classes( $classes ) {
 	}
 
 	if ( is_post_type_archive() ) {
-		$classes[] = get_theme_mod( 'sidebar_location_blog', $memberlite_defaults['sidebar_location_blog'] );
-		$classes[] = 'content-archives-' . get_theme_mod( 'content_archives', $memberlite_defaults['content_archives'] );
+		$cpt_type = memberlite_get_current_cpt_archive_type();
+		if ( $cpt_type ) {
+			$classes[] = get_theme_mod( 'sidebar_location_' . $cpt_type, 'sidebar-blog-right' );
+			$classes[] = 'content-archives-' . get_theme_mod( 'content_archives_' . $cpt_type, 'content' );
+		} else {
+			$classes[] = get_theme_mod( 'sidebar_location_blog', $memberlite_defaults['sidebar_location_blog'] );
+			$classes[] = 'content-archives-' . get_theme_mod( 'content_archives', $memberlite_defaults['content_archives'] );
+		}
 	}
 
 	if ( is_page_template( 'templates/sidebar-content.php' ) ) {
@@ -86,10 +170,14 @@ function memberlite_getColumnsRatio( $location = null ) {
 	global $memberlite_defaults;
 
 	// Get the values as set in customizer.
-	$columns_ratio              = get_theme_mod( 'columns_ratio', $memberlite_defaults['columns_ratio'] );
+	$columns_ratio        = get_theme_mod( 'columns_ratio', $memberlite_defaults['columns_ratio'] );
 	if ( ! is_page() ) {
-		// Get the setting for posts and archives, fall back to page setting.
-		$columns_ratio          = get_theme_mod( 'columns_ratio_blog', $columns_ratio );
+		$cpt_type = memberlite_get_current_cpt_archive_type();
+		if ( $cpt_type ) {
+			$columns_ratio = get_theme_mod( 'columns_ratio_' . $cpt_type, $columns_ratio );
+		} else {
+			$columns_ratio = get_theme_mod( 'columns_ratio_blog', $columns_ratio );
+		}
 	}
 	$columns_ratio_header       = get_theme_mod( 'columns_ratio_header', $memberlite_defaults['columns_ratio_header'] );
 	$columns_ratio_array        = explode( '-', $columns_ratio );
@@ -137,8 +225,13 @@ function memberlite_sidebar_location_none_columns_ratio( $r, $location ) {
 			$r = '8 medium-offset-2';
 		}
 	} elseif ( memberlite_is_blog() || is_post_type_archive() || is_search() ) {
-		$sidebar_location = get_theme_mod( 'sidebar_location_blog', $memberlite_defaults['sidebar_location_blog'] );
-		$content_archives = get_theme_mod( 'content_archives', $memberlite_defaults['content_archives'] );
+		$cpt_type         = memberlite_get_current_cpt_archive_type();
+		$content_archives = memberlite_get_content_archives();
+		if ( $cpt_type ) {
+			$sidebar_location = get_theme_mod( 'sidebar_location_' . $cpt_type, 'sidebar-blog-right' );
+		} else {
+			$sidebar_location = get_theme_mod( 'sidebar_location_blog', $memberlite_defaults['sidebar_location_blog'] );
+		}
 		if ( $content_archives === 'grid' && ! is_singular() && ! is_search() ) {
 			$r = '12';
 		} elseif ( $sidebar_location === 'sidebar-blog-none' ) {
@@ -163,14 +256,18 @@ function memberlite_sidebar_none_get_sidebar( $name ) {
 		if ( $sidebar_location === 'sidebar-none' && empty( is_page_template() ) ) {
 			$name = false;
 		}
-	} elseif ( memberlite_is_blog() || is_post_type_archive() ||  is_search() ) {
-		$sidebar_location = get_theme_mod( 'sidebar_location_blog', $memberlite_defaults['sidebar_location_blog'] );
+	} elseif ( memberlite_is_blog() || is_post_type_archive() || is_search() ) {
+		$cpt_type         = memberlite_get_current_cpt_archive_type();
+		$content_archives = memberlite_get_content_archives();
+		if ( $cpt_type ) {
+			$sidebar_location = get_theme_mod( 'sidebar_location_' . $cpt_type, 'sidebar-blog-right' );
+		} else {
+			$sidebar_location = get_theme_mod( 'sidebar_location_blog', $memberlite_defaults['sidebar_location_blog'] );
+		}
 		if ( $sidebar_location === 'sidebar-blog-none' ) {
 			$name = false;
 		}
-
 		// Hide the sidebar for grid archives.
-		$content_archives = get_theme_mod( 'content_archives', $memberlite_defaults['content_archives'] );
 		if ( $content_archives === 'grid' && ! is_singular() && ! is_search() ) {
 			$name = false;
 		}
