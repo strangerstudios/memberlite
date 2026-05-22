@@ -31,25 +31,31 @@ add_filter( 'wp_page_menu_args', 'memberlite_page_menu_args' );
  * @return array<string, array{label: string}>
  */
 function memberlite_get_cpt_archive_settings(): array {
-	$cpts = array();
+	static $cache = null;
 
-	if ( post_type_exists( 'pmpro_course' ) ) {
-		$cpts['pmpro_course'] = array( 'label' => __( 'PMPro Courses', 'memberlite' ) );
+	if ( null === $cache ) {
+		$cpts = array();
+
+		if ( post_type_exists( 'pmpro_course' ) ) {
+			$cpts['pmpro_course'] = array( 'label' => __( 'PMPro Courses', 'memberlite' ) );
+		}
+
+		if ( post_type_exists( 'pmpro_series' ) ) {
+			$cpts['pmpro_series'] = array( 'label' => __( 'PMPro Series', 'memberlite' ) );
+		}
+
+		/**
+		 * Filter the CPTs that receive per-archive layout settings in the Customizer.
+		 *
+		 * Each entry: 'post_type_slug' => array( 'label' => 'Section Title' )
+		 *
+		 * @since TBD
+		 * @param array $cpts Associative array of post type slugs to args.
+		 */
+		$cache = apply_filters( 'memberlite_cpt_archive_settings', $cpts );
 	}
 
-	if ( post_type_exists( 'pmpro_series' ) ) {
-		$cpts['pmpro_series'] = array( 'label' => __( 'PMPro Series', 'memberlite' ) );
-	}
-
-	/**
-	 * Filter the CPTs that receive per-archive layout settings in the Customizer.
-	 *
-	 * Each entry: 'post_type_slug' => array( 'label' => 'Section Title' )
-	 *
-	 * @since TBD
-	 * @param array $cpts Associative array of post type slugs to args.
-	 */
-	return apply_filters( 'memberlite_cpt_archive_settings', $cpts );
+	return $cache;
 }
 
 /**

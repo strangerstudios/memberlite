@@ -504,7 +504,7 @@ class Memberlite_Customize {
 			'sanitize_callback' => 'sanitize_key',
 			'choices'           => $footer_choices_context,
 			'default'           => 'memberlite-global-footer',
-			'description'       => __( 'Choose which footer variation to display on your blog and post archives.', 'memberlite' ),
+			'description'       => __( 'Choose which footer variation to display on your blog and post archives. Includes custom post types.', 'memberlite' ),
 		) );
 
 		// FOOTER: Variations, Single Post ===============
@@ -513,7 +513,7 @@ class Memberlite_Customize {
 			'sanitize_callback' => 'sanitize_key',
 			'choices'           => $footer_choices_context,
 			'default'           => 'memberlite-global-footer',
-			'description'       => __( 'Choose which footer variation to display on the single post view.', 'memberlite' ),
+			'description'       => __( 'Choose which footer variation to display on the single post view. Includes custom post types.', 'memberlite' ),
 		) );
 
 		// FOOTER: Variations, Pages ===============
@@ -548,6 +548,8 @@ class Memberlite_Customize {
 	 * @return void
 	 */
 	public static function set_customizer_post_settings( WP_Customize_Manager $wp_customize ) {
+		global $memberlite_defaults;
+
 		// POST: Content Archives ===============
 		self::add_memberlite_setting_control( $wp_customize, 'content_archives', __( 'Archive Layout', 'memberlite' ), 'memberlite_post_archive_options', array(
 			'type'        => 'radio',
@@ -567,8 +569,8 @@ class Memberlite_Customize {
 				'sidebar-blog-left'  => __( 'Left Sidebar', 'memberlite' ),
 				'sidebar-blog-none'  => __( 'No Sidebar', 'memberlite' ),
 			),
-			'active_callback' => function() {
-				return get_theme_mod( 'content_archives', 'content' ) !== 'grid';
+			'active_callback' => function() use ( $memberlite_defaults ) {
+				return get_theme_mod( 'content_archives', $memberlite_defaults['content_archives'] ) !== 'grid';
 			},
 		) );
 
@@ -585,8 +587,8 @@ class Memberlite_Customize {
 				'10-2' => '10x2',
 				'11-1' => '11x1',
 			),
-			'active_callback' => function() {
-				return get_theme_mod( 'content_archives', 'content' ) !== 'grid'
+			'active_callback' => function() use ( $memberlite_defaults ) {
+				return get_theme_mod( 'content_archives', $memberlite_defaults['content_archives'] ) !== 'grid'
 					&& get_theme_mod( 'sidebar_location_blog', 'sidebar-blog-right' ) !== 'sidebar-blog-none';
 			},
 		) );
