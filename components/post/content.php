@@ -28,19 +28,22 @@ $aria_attr = is_single() ? ' aria-labelledby="page-title"' : '';
 
 		$memberlite_loop_images = get_theme_mod( 'memberlite_loop_images', $memberlite_defaults['memberlite_loop_images'] );
 		if ( in_array( $memberlite_loop_images, array( 'show_thumbnail', 'show_both' ) ) && has_post_thumbnail() ) {
-			$alt = ''; // Assume purely decorative.
-			$thumbnail_id = get_post_thumbnail_id( $post->ID );
-			if ( $thumbnail_id ) {
-				$alt = get_post_meta( $thumbnail_id, '_wp_attachment_image_alt', true );
-			}
-
-			the_post_thumbnail(
+			$thumbnail_id = get_post_thumbnail_id();
+			$alt          = $thumbnail_id ? get_post_meta( $thumbnail_id, '_wp_attachment_image_alt', true ) : '';
+			$thumbnail    = get_the_post_thumbnail(
+				null,
 				'thumbnail',
 				array(
 					'class' => 'alignright',
 					'alt'   => esc_attr( $alt ),
 				)
 			);
+
+			if ( ! is_single() ) {
+				echo '<a href="' . esc_url( get_permalink() ) . '" tabindex="-1" aria-hidden="true">' . $thumbnail . '</a>';
+			} else {
+				echo $thumbnail;
+			}
 		}
 
 		if ( is_archive() || ( is_home() && get_post_type() === 'post' ) ) {

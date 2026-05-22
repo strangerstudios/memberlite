@@ -14,9 +14,9 @@ global $memberlite_defaults; ?>
 	<a class="post-thumbnail-link" href="<?php echo esc_url( get_permalink() ); ?>">
 		<?php
 			// Use the dedicated banner image if available, otherwise fall back to the featured image.
-			$grid_image = memberlite_get_banner_image( get_the_ID(), 'large', false, array( 'class' => 'aligncenter' ) );
+			$grid_image = memberlite_get_banner_image( get_the_ID(), 'memberlite-16x9', false, array( 'class' => 'aligncenter' ) );
 			if ( empty( $grid_image ) ) {
-				$grid_image = get_the_post_thumbnail( get_the_ID(), 'large', array( 'class' => 'aligncenter' ) );
+				$grid_image = get_the_post_thumbnail( get_the_ID(), 'memberlite-16x9', array( 'class' => 'aligncenter' ) );
 			}
 			if ( ! empty( $grid_image ) ) {
 				echo $grid_image; // WPCS: xss ok.
