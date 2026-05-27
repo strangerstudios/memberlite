@@ -248,7 +248,7 @@ function memberlite_get_current_footer_post_name(): string {
 		if ( '' !== $override && isset( $footer_variations[ $override ] ) ) {
 			$post_name = $override;
 		} else {
-			if ( is_single() ) {
+			if ( is_singular( 'post' ) ) {
 				$post_name = get_theme_mod( 'memberlite_post_footer_slug', 'memberlite-global-footer' );
 			} elseif ( is_page() ) {
 				$post_name = get_theme_mod( 'memberlite_page_footer_slug', 'memberlite-global-footer' );
