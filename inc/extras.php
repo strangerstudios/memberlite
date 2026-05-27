@@ -225,10 +225,6 @@ function memberlite_sidebar_location_none_columns_ratio( $r, $location ) {
 		return $r;
 	}
 
-	if ( function_exists( 'is_bbpress' ) && is_bbpress() ) {
-		return $r;
-	}
-
 	if ( is_page() ) {
 		$sidebar_location = get_theme_mod( 'sidebar_location', $memberlite_defaults['sidebar_location'] );
 		if ( $sidebar_location === 'sidebar-none' && empty( is_page_template() ) ) {
@@ -260,10 +256,6 @@ add_filter( 'memberlite_columns_ratio', 'memberlite_sidebar_location_none_column
  */
 function memberlite_sidebar_none_get_sidebar( $name ) {
 	global $memberlite_defaults;
-
-	if ( function_exists( 'is_bbpress' ) && is_bbpress() ) {
-		return $name;
-	}
 
 	if ( is_page() ) {
 		$sidebar_location = get_theme_mod( 'sidebar_location', $memberlite_defaults['sidebar_location'] );

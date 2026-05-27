@@ -644,12 +644,8 @@ class Memberlite_Customize {
 
 		// CPT: Per-archive settings for each registered CPT ===
 		$cpt_archive_settings = memberlite_get_cpt_archive_settings();
-		$bbpress_post_types   = array( 'forum', 'topic', 'reply' );
 		if ( ! empty( $cpt_archive_settings ) ) {
 			foreach ( $cpt_archive_settings as $post_type => $cpt_args ) {
-				if ( in_array( $post_type, $bbpress_post_types, true ) ) {
-					continue;
-				}
 				$section = 'memberlite_' . $post_type . '_archive_options';
 
 				self::add_memberlite_setting_control( $wp_customize, 'content_archives_' . $post_type, __( 'Archive Layout', 'memberlite' ), $section, array(

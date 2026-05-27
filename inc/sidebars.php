@@ -374,12 +374,9 @@ function memberlite_get_widget_areas() {
 		}
 	}
 
-	// For bbPress pages (except single topics), use a forum-specific sidebar if one is configured.
+	// Special case for bbPress search results page.
 	if ( empty( $memberlite_custom_sidebar ) && function_exists( 'is_bbpress' ) && is_bbpress() && ! bbp_is_single_topic() ) {
-		$default_forum_sidebar = memberlite_get_default_sidebar_by_post_type( 'forum' );
-		if ( $default_forum_sidebar ) {
-			$widget_areas = array( $default_forum_sidebar );
-		}
+		$widget_areas = array( memberlite_get_default_sidebar_by_post_type( 'forum' ) );
 	}
 
 	// If no custom sidebar for this specific post and we're on a blog page, check if the blog page has one to inherit.
