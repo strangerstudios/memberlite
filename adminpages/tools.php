@@ -135,6 +135,8 @@ function memberlite_export_theme_settings() {
 		$option_keys = apply_filters(
 			'memberlite_export_option_keys',
 			array(
+				'blogname',
+				'blogdescription',
 				'site_icon',
 				'memberlite_cpt_sidebars',
 				'memberlite_custom_sidebars',
