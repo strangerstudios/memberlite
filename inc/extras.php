@@ -20,39 +20,40 @@ function memberlite_page_menu_args( $args ) {
 add_filter( 'wp_page_menu_args', 'memberlite_page_menu_args' );
 
 /**
- * Returns the list of CPTs that have per-archive Customizer settings.
+ * Returns the list of CPT slugs that have per-archive Customizer settings.
  *
  * Detects known CPTs by checking if they are registered, then passes the result
- * through a filter so developers can add or remove entries. Each entry is keyed
- * by post type slug and must contain at least a 'label' key used as the
- * Customizer section title.
+ * through a filter so developers can add or remove entries. Section labels are
+ * derived from each post type's registered plural name.
  *
  * @since TBD
- * @return array<string, array{label: string}>
+ * @return string[]
  */
-function memberlite_get_cpt_archive_settings(): array {
+function memberlite_get_customizer_cpts(): array {
 	static $cache = null;
 
 	if ( null === $cache ) {
 		$cpts = array();
 
 		if ( post_type_exists( 'pmpro_course' ) ) {
-			$cpts['pmpro_course'] = array( 'label' => __( 'PMPro Courses', 'memberlite' ) );
+			$cpts[] = 'pmpro_course';
+		}
+
+		if ( post_type_exists( 'pmpro_lesson' ) ) {
+			$cpts[] = 'pmpro_lesson';
 		}
 
 		if ( post_type_exists( 'pmpro_series' ) ) {
-			$cpts['pmpro_series'] = array( 'label' => __( 'PMPro Series', 'memberlite' ) );
+			$cpts[] = 'pmpro_series';
 		}
 
 		/**
-		 * Filter the CPTs that receive per-archive layout settings in the Customizer.
-		 *
-		 * Each entry: 'post_type_slug' => array( 'label' => 'Section Title' )
+		 * Filter the CPT slugs that receive per-archive layout settings in the Customizer.
 		 *
 		 * @since TBD
-		 * @param array $cpts Associative array of post type slugs to args.
+		 * @param string[] $cpts Indexed array of post type slugs.
 		 */
-		$cache = apply_filters( 'memberlite_cpt_archive_settings', $cpts );
+		$cache = apply_filters( 'memberlite_customizer_cpts', $cpts );
 	}
 
 	return $cache;
@@ -77,9 +78,9 @@ function memberlite_get_current_cpt_archive_type(): ?string {
 		return null;
 	}
 
-	$cpts = memberlite_get_cpt_archive_settings();
+	$cpts = memberlite_get_customizer_cpts();
 
-	return isset( $cpts[ $post_type ] ) ? $post_type : null;
+	return in_array( $post_type, $cpts, true ) ? $post_type : null;
 }
 
 /**

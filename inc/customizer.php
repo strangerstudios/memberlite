@@ -154,15 +154,24 @@ class Memberlite_Customize {
 		);
 
 		/* CPT Archives ---------------------------------- */
-		$cpt_archive_settings = memberlite_get_cpt_archive_settings();
+		$cpt_archive_settings = memberlite_get_customizer_cpts();
 		if ( ! empty( $cpt_archive_settings ) ) {
-			$cpt_priority = 9;
-			foreach ( $cpt_archive_settings as $post_type => $cpt_args ) {
+			$wp_customize->add_panel(
+				'memberlite_cpt_archive_panel',
+				array(
+					'title'    => __( 'Other Post Types', 'memberlite' ),
+					'priority' => 9,
+				)
+			);
+
+			$cpt_priority = 1;
+			foreach ( $cpt_archive_settings as $post_type ) {
 				$wp_customize->add_section(
 					'memberlite_' . $post_type . '_archive_options',
 					array(
 						/* translators: %s: plural label for the post type, e.g. "Courses" */
-						'title'    => sprintf( __( '%s Archives', 'memberlite' ), $cpt_args['label'] ),
+						'title'    => sprintf( __( '%s & Archives', 'memberlite' ), get_post_type_object( $post_type )->label ),
+						'panel'    => 'memberlite_cpt_archive_panel',
 						'priority' => $cpt_priority++,
 					)
 				);
@@ -553,7 +562,7 @@ class Memberlite_Customize {
 		// POST: Content Archives ===============
 		self::add_memberlite_setting_control( $wp_customize, 'content_archives', __( 'Archive Layout', 'memberlite' ), 'memberlite_post_archive_options', array(
 			'type'        => 'radio',
-			'description' => __( 'Choose how posts are displayed on blog and archive pages.', 'memberlite' ),
+			'description' => __( 'Choose how posts are displayed on your blog and archive pages.', 'memberlite' ),
 			'choices'     => array(
 				'content' => __( 'Show Full Post Content', 'memberlite' ),
 				'excerpt' => __( 'Show Post Excerpts', 'memberlite' ),
@@ -564,6 +573,7 @@ class Memberlite_Customize {
 		// POST: Sidebar Location ===============
 		self::add_memberlite_setting_control( $wp_customize, 'sidebar_location_blog', __( 'Sidebar Location', 'memberlite' ), 'memberlite_post_archive_options', array(
 			'type'    => 'radio',
+			'description' => __( 'Choose sidebar placement for your blog, archive pages, and single posts.', 'memberlite' ),
 			'choices' => array(
 				'sidebar-blog-right' => __( 'Right Sidebar', 'memberlite' ),
 				'sidebar-blog-left'  => __( 'Left Sidebar', 'memberlite' ),
@@ -643,9 +653,9 @@ class Memberlite_Customize {
 		) );
 
 		// CPT: Per-archive settings for each registered CPT ===
-		$cpt_archive_settings = memberlite_get_cpt_archive_settings();
+		$cpt_archive_settings = memberlite_get_customizer_cpts();
 		if ( ! empty( $cpt_archive_settings ) ) {
-			foreach ( $cpt_archive_settings as $post_type => $cpt_args ) {
+			foreach ( $cpt_archive_settings as $post_type ) {
 				$section = 'memberlite_' . $post_type . '_archive_options';
 
 				self::add_memberlite_setting_control( $wp_customize, 'content_archives_' . $post_type, __( 'Archive Layout', 'memberlite' ), $section, array(
@@ -662,6 +672,7 @@ class Memberlite_Customize {
 				self::add_memberlite_setting_control( $wp_customize, 'sidebar_location_' . $post_type, __( 'Sidebar Location', 'memberlite' ), $section, array(
 					'type'            => 'radio',
 					'default'         => 'sidebar-blog-right',
+					'description' => __( 'Choose sidebar placement for archive pages and single posts.', 'memberlite' ),
 					'choices'         => array(
 						'sidebar-blog-right' => __( 'Right Sidebar', 'memberlite' ),
 						'sidebar-blog-left'  => __( 'Left Sidebar', 'memberlite' ),
@@ -1220,7 +1231,7 @@ class Memberlite_Customize {
 		wp_localize_script( 'Memberlite_Customizer-controls', 'colorSchemes', $js_schemes );
 		wp_localize_script( 'Memberlite_Customizer-controls', 'colorSettingKeys', memberlite_get_color_setting_keys() );
 		wp_localize_script( 'Memberlite_Customizer-controls', 'memberlite_preset_slugs', memberlite_get_color_preset_slugs() );
-		wp_localize_script( 'Memberlite_Customizer-controls', 'memberlite_cpt_archive_slugs', array_keys( memberlite_get_cpt_archive_settings() ) );
+		wp_localize_script( 'Memberlite_Customizer-controls', 'memberlite_cpt_archive_slugs', memberlite_get_customizer_cpts() );
 
 		wp_enqueue_style(
 			'memberlite-customizer-css',
