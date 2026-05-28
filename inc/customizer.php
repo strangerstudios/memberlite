@@ -170,7 +170,7 @@ class Memberlite_Customize {
 					'memberlite_' . $post_type . '_archive_options',
 					array(
 						/* translators: %s: plural label for the post type, e.g. "Courses" */
-						'title'    => sprintf( __( '%s & Archives', 'memberlite' ), get_post_type_object( $post_type )->label ),
+						'title'    => sprintf( __( '%s Layout', 'memberlite' ), get_post_type_object( $post_type )->label ),
 						'panel'    => 'memberlite_cpt_archive_panel',
 						'priority' => $cpt_priority++,
 					)
@@ -656,23 +656,32 @@ class Memberlite_Customize {
 		$cpt_archive_settings = memberlite_get_customizer_cpts();
 		if ( ! empty( $cpt_archive_settings ) ) {
 			foreach ( $cpt_archive_settings as $post_type ) {
-				$section = 'memberlite_' . $post_type . '_archive_options';
+				$section  = 'memberlite_' . $post_type . '_archive_options';
+				$post_type_obj = get_post_type_object( $post_type );
 
-				self::add_memberlite_setting_control( $wp_customize, 'content_archives_' . $post_type, __( 'Archive Layout', 'memberlite' ), $section, array(
-					'type'        => 'radio',
-					'default'     => 'content',
-					'description' => __( 'Choose how posts are displayed on archive pages.', 'memberlite' ),
-					'choices'     => array(
-						'content' => __( 'Show Full Post Content', 'memberlite' ),
-						'excerpt' => __( 'Show Post Excerpts', 'memberlite' ),
-						'grid'    => __( 'Show Posts in a Grid (sidebar hidden)', 'memberlite' ),
-					),
-				) );
+				if ( $post_type_obj && $post_type_obj->has_archive ) {
+					self::add_memberlite_setting_control( $wp_customize, 'content_archives_' . $post_type, __( 'Archive Layout', 'memberlite' ), $section, array(
+						'type'        => 'radio',
+						'default'     => 'content',
+						'description' => __( 'Choose how posts are displayed on archive pages.', 'memberlite' ),
+						'choices'     => array(
+							'content' => __( 'Show Full Post Content', 'memberlite' ),
+							'excerpt' => __( 'Show Post Excerpts', 'memberlite' ),
+							'grid'    => __( 'Show Posts in a Grid (sidebar hidden)', 'memberlite' ),
+						),
+					) );
+				}
+
+				//No archive view for PMPro lessons CPT. Clarify setting description.
+				$sidebar_setting_desc = 'Choose sidebar placement for archive pages and single posts.';
+				if ( $post_type === 'pmpro_lesson' ) {
+					$sidebar_setting_desc = 'Choose sidebar placement for single posts.';
+				}
 
 				self::add_memberlite_setting_control( $wp_customize, 'sidebar_location_' . $post_type, __( 'Sidebar Location', 'memberlite' ), $section, array(
 					'type'            => 'radio',
 					'default'         => 'sidebar-blog-right',
-					'description' => __( 'Choose sidebar placement for archive pages and single posts.', 'memberlite' ),
+					'description' => __( $sidebar_setting_desc, 'memberlite' ),
 					'choices'         => array(
 						'sidebar-blog-right' => __( 'Right Sidebar', 'memberlite' ),
 						'sidebar-blog-left'  => __( 'Left Sidebar', 'memberlite' ),
