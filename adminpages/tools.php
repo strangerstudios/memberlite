@@ -137,7 +137,6 @@ function memberlite_export_theme_settings() {
 			array(
 				'blogname',
 				'blogdescription',
-				'site_icon',
 				'memberlite_cpt_sidebars',
 				'memberlite_custom_sidebars',
 			)
