@@ -218,7 +218,7 @@ function memberlite_getColumnsRatio( $location = null ) {
 	if ( ! is_page() ) {
 		$cpt_type = memberlite_get_current_cpt_type();
 		if ( $cpt_type ) {
-			$columns_ratio = get_theme_mod( 'columns_ratio_' . $cpt_type, $columns_ratio );
+			$columns_ratio = get_theme_mod( 'columns_ratio_' . $cpt_type, '8-4' );
 		} else {
 			$columns_ratio = get_theme_mod( 'columns_ratio_blog', $columns_ratio );
 		}

@@ -668,7 +668,7 @@ class Memberlite_Customize {
 					) );
 				}
 
-				//No archive view for PMPro lessons CPT. Clarify setting description.
+				// No archive view for PMPro lessons CPT. Clarify setting description.
 				$sidebar_setting_desc = __( 'Choose sidebar placement for archive pages and single posts.', 'memberlite' );
 				if ( $post_type === 'pmpro_lesson' ) {
 					$sidebar_setting_desc = __( 'Choose sidebar placement for single posts.', 'memberlite' );
