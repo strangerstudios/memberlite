@@ -8,8 +8,8 @@
  * @package Memberlite
  */
 
-global $memberlite_defaults, $post;
-$content_archives = get_theme_mod( 'content_archives', $memberlite_defaults['content_archives'] );
+global $post;
+$content_archives = memberlite_get_content_archives_theme_mod();
 
 if ( $content_archives != 'grid' || is_search() ) {
 	if ( memberlite_should_show_banner_image() ) {

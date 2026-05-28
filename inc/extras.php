@@ -56,10 +56,10 @@ function memberlite_get_customizer_cpts(): array {
 		 */
 		$filtered = apply_filters( 'memberlite_customizer_cpts', $cpts );
 
-		// Strip any CPTs owned by the Memberlite parent theme — those are not
-		// intended to have per-type Customizer layout settings.
+		// Strip Memberlite's own internal CPTs and any unregistered slugs that
+		// may have been injected via the filter.
 		$memberlite_internal = array( 'memberlite_header', 'memberlite_footer' );
-		$cache = array_values( array_diff( $filtered, $memberlite_internal ) );
+		$cache = array_values( array_filter( array_diff( $filtered, $memberlite_internal ), 'post_type_exists' ) );
 	}
 
 	return $cache;

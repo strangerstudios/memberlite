@@ -669,15 +669,15 @@ class Memberlite_Customize {
 				}
 
 				//No archive view for PMPro lessons CPT. Clarify setting description.
-				$sidebar_setting_desc = 'Choose sidebar placement for archive pages and single posts.';
+				$sidebar_setting_desc = __( 'Choose sidebar placement for archive pages and single posts.', 'memberlite' );
 				if ( $post_type === 'pmpro_lesson' ) {
-					$sidebar_setting_desc = 'Choose sidebar placement for single posts.';
+					$sidebar_setting_desc = __( 'Choose sidebar placement for single posts.', 'memberlite' );
 				}
 
 				self::add_memberlite_setting_control( $wp_customize, 'sidebar_location_' . $post_type, __( 'Sidebar Location', 'memberlite' ), $section, array(
 					'type'            => 'radio',
 					'default'         => 'sidebar-blog-right',
-					'description' => __( $sidebar_setting_desc, 'memberlite' ),
+					'description'     => $sidebar_setting_desc,
 					'choices'         => array(
 						'sidebar-blog-right' => __( 'Right Sidebar', 'memberlite' ),
 						'sidebar-blog-left'  => __( 'Left Sidebar', 'memberlite' ),
