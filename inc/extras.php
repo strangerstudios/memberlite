@@ -50,6 +50,7 @@ function memberlite_get_customizer_cpts(): array {
 		/**
 		 * Filter the CPT slugs that receive per-archive layout settings in the Customizer.
 		 *
+		 * @note: Not all third party CPTs will support customizer/template settings even if this filter is used.
 		 * @since TBD
 		 * @param string[] $cpts Indexed array of post type slugs.
 		 */

@@ -579,9 +579,6 @@ class Memberlite_Customize {
 				'sidebar-blog-left'  => __( 'Left Sidebar', 'memberlite' ),
 				'sidebar-blog-none'  => __( 'No Sidebar', 'memberlite' ),
 			),
-			'active_callback' => function() use ( $memberlite_defaults ) {
-				return get_theme_mod( 'content_archives', $memberlite_defaults['content_archives'] ) !== 'grid';
-			},
 		) );
 
 		// POST: Columns Ratio ==================
@@ -597,9 +594,8 @@ class Memberlite_Customize {
 				'10-2' => '10x2',
 				'11-1' => '11x1',
 			),
-			'active_callback' => function() use ( $memberlite_defaults ) {
-				return get_theme_mod( 'content_archives', $memberlite_defaults['content_archives'] ) !== 'grid'
-					&& get_theme_mod( 'sidebar_location_blog', 'sidebar-blog-right' ) !== 'sidebar-blog-none';
+			'active_callback' => function() {
+				return get_theme_mod( 'sidebar_location_blog', 'sidebar-blog-right' ) !== 'sidebar-blog-none';
 			},
 		) );
 
@@ -687,9 +683,6 @@ class Memberlite_Customize {
 						'sidebar-blog-left'  => __( 'Left Sidebar', 'memberlite' ),
 						'sidebar-blog-none'  => __( 'No Sidebar', 'memberlite' ),
 					),
-					'active_callback' => function() use ( $post_type ) {
-						return get_theme_mod( 'content_archives_' . $post_type, 'content' ) !== 'grid';
-					},
 				) );
 
 				self::add_memberlite_setting_control( $wp_customize, 'columns_ratio_' . $post_type, __( 'Columns Ratio', 'memberlite' ), $section, array(
@@ -706,8 +699,7 @@ class Memberlite_Customize {
 						'11-1' => '11x1',
 					),
 					'active_callback' => function() use ( $post_type ) {
-						return get_theme_mod( 'content_archives_' . $post_type, 'content' ) !== 'grid'
-							&& get_theme_mod( 'sidebar_location_' . $post_type, 'sidebar-blog-right' ) !== 'sidebar-blog-none';
+						return get_theme_mod( 'sidebar_location_' . $post_type, 'sidebar-blog-right' ) !== 'sidebar-blog-none';
 					},
 				) );
 			}
