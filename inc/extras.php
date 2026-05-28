@@ -54,7 +54,12 @@ function memberlite_get_customizer_cpts(): array {
 		 * @since TBD
 		 * @param string[] $cpts Indexed array of post type slugs.
 		 */
-		$cache = apply_filters( 'memberlite_customizer_cpts', $cpts );
+		$filtered = apply_filters( 'memberlite_customizer_cpts', $cpts );
+
+		// Strip any CPTs owned by the Memberlite parent theme — those are not
+		// intended to have per-type Customizer layout settings.
+		$memberlite_internal = array( 'memberlite_header', 'memberlite_footer' );
+		$cache = array_values( array_diff( $filtered, $memberlite_internal ) );
 	}
 
 	return $cache;
