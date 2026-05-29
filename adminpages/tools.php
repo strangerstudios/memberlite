@@ -277,8 +277,15 @@ function memberlite_apply_theme_mods( array $mods ) {
 	$color_keys      = memberlite_get_color_setting_keys();
 	$deprecated_mods = array( 'memberlite_darkcss' );
 
+	// Internal WordPress keys that must never be copied between themes.
+	$internal_keys = array( 'custom_css_post_id' );
+
 	foreach ( $mods as $key => $value ) {
 		if ( in_array( $key, $deprecated_mods, true ) ) {
+			continue;
+		}
+
+		if ( in_array( $key, $internal_keys, true ) || strpos( $key, '_transient_' ) === 0 ) {
 			continue;
 		}
 
