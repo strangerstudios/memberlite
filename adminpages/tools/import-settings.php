@@ -113,6 +113,10 @@ $memberlite_is_child      = is_child_theme();
 		</script>
 		<?php } ?>
 		<hr />
-		<p><?php esc_html_e( 'To import WordPress content such as posts, pages, and media, use the built-in WordPress tools located at Tools > Import in the WordPress admin.', 'memberlite' ); ?></p>
+		<p><?php printf(
+				/* translators: %s: link to the WordPress Tools > Import admin page */
+				esc_html__( 'To import WordPress content such as posts, pages, headers, footers, and media, use the built-in WordPress %s page.', 'memberlite' ),
+				'<a href="' . esc_url( admin_url( 'import.php' ) ) . '">' . esc_html__( 'Tools &gt; Import', 'memberlite' ) . '</a>'
+			); ?></p>
 	</div>
 </div>
