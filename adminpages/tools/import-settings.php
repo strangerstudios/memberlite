@@ -107,7 +107,6 @@ $memberlite_parent_name   = $memberlite_is_child ? wp_get_theme( get_template() 
 			var radios      = document.querySelectorAll( 'input[name="memberlite_import_source"]' );
 			var fileRow     = document.getElementById( 'memberlite_import_file_row' );
 			var menusRow    = document.getElementById( 'memberlite_import_menus_row' );
-			var cloneRow    = document.getElementById( 'memberlite_clone_description_row' );
 			var actionField = document.getElementById( 'memberlite_import_action' );
 			var submitBtn   = document.getElementById( 'memberlite_import_submit' );
 			var fileInput   = document.getElementById( 'memberlite_import_file' );
@@ -118,7 +117,6 @@ $memberlite_parent_name   = $memberlite_is_child ? wp_get_theme( get_template() 
 				var isClone = ( mode === 'clone' );
 				fileRow.style.display     = isClone ? 'none' : '';
 				menusRow.style.display    = isClone ? 'none' : '';
-				cloneRow.style.display    = isClone ? '' : 'none';
 				fileInput.disabled        = isClone;
 				actionField.value         = isClone ? 'memberlite_clone_parent_theme_settings' : 'memberlite_import_theme_settings';
 				submitBtn.textContent     = isClone ? labelClone : labelImport;

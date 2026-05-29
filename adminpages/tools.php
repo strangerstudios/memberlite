@@ -57,7 +57,7 @@ function memberlite_tools() {
 					$class   = 'notice-success';
 					break;
 				case 'clone_ok':
-					$message = __( 'Parent theme settings were copied to your child theme successfully.', 'memberlite' );
+					$message = __( 'Parent theme settings were cloned and imported to your child theme successfully.', 'memberlite' );
 					$class   = 'notice-success';
 					break;
 				case 'no_parent_mods':
