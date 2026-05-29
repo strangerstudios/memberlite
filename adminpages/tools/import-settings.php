@@ -22,6 +22,13 @@ $memberlite_parent_name   = $memberlite_is_child ? wp_get_theme( get_template() 
 	<div class="memberlite_section_inside">
 		<p><?php esc_html_e( 'Use the tool below to import Memberlite theme settings.', 'memberlite' ); ?></p>
 		<p><span class="dashicons dashicons-warning" aria-hidden="true"></span><strong><?php esc_html_e( 'This will overwrite your current theme settings.', 'memberlite' ); ?></strong></p>
+
+		<?php if ( $memberlite_is_child ) { ?>
+			<p><?php esc_html_e( 'Both methods import Customizer settings (logo, colors, typography, backgrounds, etc.) and Additional CSS to the active theme.', 'memberlite' ); ?></p>
+		<?php } else { ?>
+			<?php esc_html_e( 'The import will include Customizer settings (logo, colors, typography, backgrounds, Additional CSS etc.), related Memberlite options (such as custom sidebars), and navigation menus if present in the file.', 'memberlite' ); ?>
+		<?php } ?>
+
 		<form method="post" enctype="multipart/form-data" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
 			<table class="form-table">
 				<tbody>
@@ -34,7 +41,9 @@ $memberlite_parent_name   = $memberlite_is_child ? wp_get_theme( get_template() 
 									<input type="radio" name="memberlite_import_source" value="file" checked />
 									<?php esc_html_e( 'Import from file', 'memberlite' ); ?>
 								</label>
-								<p class="description"><?php esc_html_e( 'The import will include Customizer settings (logo, colors, typography, backgrounds, Additional CSS etc.), related Memberlite options (such as custom sidebars), and navigation menus if present in the file.', 'memberlite' ); ?></p>
+								<p class="description">
+									<?php esc_html_e( 'Imports Customizer settings and Additional CSS, Memberlite-specific options (such as custom sidebars and site icon) and navigation menus if they are included in the file.', 'memberlite' ); ?>
+								</p>
 								<br />
 								<label>
 									<input type="radio" name="memberlite_import_source" value="clone" />
@@ -46,6 +55,15 @@ $memberlite_parent_name   = $memberlite_is_child ? wp_get_theme( get_template() 
 									);
 									?>
 								</label>
+								<p class="description">
+									<?php
+									printf(
+									/* translators: %s: parent theme name */
+										esc_html__( 'Copies Customizer settings and Additional CSS directly from the %s parent theme. Navigation menu items are not modified — existing menus remain intact, and their location assignments are carried over from the parent theme.', 'memberlite' ),
+										esc_html( $memberlite_parent_name )
+									);
+									?>
+								</p>
 							</fieldset>
 						</td>
 					</tr>
@@ -75,25 +93,6 @@ $memberlite_parent_name   = $memberlite_is_child ? wp_get_theme( get_template() 
 							</fieldset>
 						</td>
 					</tr>
-					<?php if ( $memberlite_is_child ) { ?>
-					<tr id="memberlite_clone_description_row" style="display:none;">
-						<th scope="row"><?php esc_html_e( 'Clone Settings', 'memberlite' ); ?></th>
-						<td>
-							<p class="description">
-								<span class="dashicons dashicons-warning" aria-hidden="true"></span>
-								<strong>
-								<?php
-								printf(
-									/* translators: %s: parent theme name */
-									esc_html__( 'This will copy all Customizer settings from the %s parent theme to your child theme, overwriting any existing child theme settings.', 'memberlite' ),
-									esc_html( $memberlite_parent_name )
-								);
-								?>
-								</strong>
-							</p>
-						</td>
-					</tr>
-					<?php } ?>
 				</tbody>
 			</table>
 			<p class="submit">
