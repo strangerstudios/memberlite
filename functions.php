@@ -72,6 +72,11 @@ function memberlite_admin_enqueue_scripts() {
 
 		wp_register_script( 'memberlite_admin_js', MEMBERLITE_URL . '/js/admin.js', [ 'jquery' ], MEMBERLITE_VERSION, true );
 		wp_enqueue_script( 'memberlite_admin_js' );
+
+		if ( isset( $_GET['page'] ) && 'memberlite-tools' === $_GET['page'] && is_child_theme() ) {
+			wp_register_script( 'memberlite_admin_tools_js', MEMBERLITE_URL . '/js/admin-tools.js', [], MEMBERLITE_VERSION, true );
+			wp_enqueue_script( 'memberlite_admin_tools_js' );
+		}
 	}
 
 }

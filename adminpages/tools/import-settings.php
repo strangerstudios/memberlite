@@ -87,31 +87,6 @@ $memberlite_is_child      = is_child_theme();
 				<button type="submit" class="button button-primary"><?php esc_html_e( 'Import Theme Settings', 'memberlite' ); ?></button>
 			</p>
 		</form>
-		<?php if ( $memberlite_is_child ) { ?>
-		<script>
-		( function() {
-			const radios      = document.querySelectorAll( 'input[name="memberlite_import_source"]' ),
-				fileRow     = document.getElementById( 'memberlite-import-file-row' ),
-				menusRow    = document.getElementById( 'memberlite-import-menus-row' ),
-				actionField = document.getElementById( 'memberlite-import-action' ),
-				fileInput   = document.getElementById( 'memberlite-import-file' );
-
-			function updateMode( mode ) {
-				let isClone = ( mode === 'clone' );
-				fileRow.style.display     = isClone ? 'none' : '';
-				menusRow.style.display    = isClone ? 'none' : '';
-				fileInput.disabled        = isClone;
-				actionField.value         = isClone ? 'memberlite_clone_parent_theme_settings' : 'memberlite_import_theme_settings';
-			}
-
-			Array.prototype.forEach.call( radios, function( radio ) {
-				radio.addEventListener( 'change', function() {
-					updateMode( this.value );
-				} );
-			} );
-		}() );
-		</script>
-		<?php } ?>
 		<hr />
 		<p><?php printf(
 				/* translators: %s: link to the WordPress Tools > Import admin page */
