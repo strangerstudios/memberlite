@@ -268,7 +268,7 @@ add_action( 'admin_post_memberlite_export_theme_settings', 'memberlite_export_th
  * Apply an array of theme mods to the active theme.
  * Clears existing mods, skips deprecated keys, and sanitizes color values.
  *
- * @since 7.2
+ * @since TBD
  * @param array $mods Associative array of mod key => value.
  */
 function memberlite_apply_theme_mods( array $mods ) {
@@ -520,7 +520,7 @@ add_action( 'admin_post_memberlite_import_theme_settings', 'memberlite_import_th
 /**
  * Handle cloning theme mods from the parent theme to the active child theme.
  *
- * @since 7.2
+ * @since TBD
  */
 function memberlite_clone_parent_theme_settings() {
 	if ( ! current_user_can( 'edit_theme_options' ) ) {
