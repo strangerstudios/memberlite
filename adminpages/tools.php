@@ -56,6 +56,13 @@ function memberlite_tools() {
 					$message = __( 'Memberlite theme settings were imported successfully.', 'memberlite' );
 					$class   = 'notice-success';
 					break;
+				case 'clone_ok':
+					$message = __( 'Parent theme settings were copied to your child theme successfully.', 'memberlite' );
+					$class   = 'notice-success';
+					break;
+				case 'no_parent_mods':
+					$message = __( 'No settings were found on the parent theme to copy.', 'memberlite' );
+					break;
 			}
 		}
 
@@ -258,6 +265,51 @@ function memberlite_export_theme_settings() {
 add_action( 'admin_post_memberlite_export_theme_settings', 'memberlite_export_theme_settings' );
 
 /**
+ * Apply an array of theme mods to the active theme.
+ * Clears existing mods, skips deprecated keys, and sanitizes color values.
+ *
+ * @since 7.2
+ * @param array $mods Associative array of mod key => value.
+ */
+function memberlite_apply_theme_mods( array $mods ) {
+	remove_theme_mods();
+
+	$color_keys      = memberlite_get_color_setting_keys();
+	$deprecated_mods = array( 'memberlite_darkcss' );
+
+	foreach ( $mods as $key => $value ) {
+		if ( in_array( $key, $deprecated_mods, true ) ) {
+			continue;
+		}
+
+		if ( in_array( $key, $color_keys, true ) && is_string( $value ) ) {
+			$value = sanitize_hex_color_no_hash( $value );
+
+			if ( null === $value ) {
+				continue;
+			}
+
+			$value = strtolower( $value );
+		}
+
+		set_theme_mod( $key, $value );
+	}
+
+	$imported_scheme = isset( $mods['memberlite_color_scheme'] ) ? $mods['memberlite_color_scheme'] : '';
+	$final_scheme    = 'custom';
+
+	if ( is_string( $imported_scheme ) && ! empty( $imported_scheme ) && 'custom' !== $imported_scheme ) {
+		$modern_schemes = memberlite_get_color_schemes();
+
+		if ( isset( $modern_schemes[ $imported_scheme ] ) ) {
+			$final_scheme = $imported_scheme;
+		}
+	}
+
+	set_theme_mod( 'memberlite_color_scheme', $final_scheme );
+}
+
+/**
  * Handle Memberlite theme settings import.
  *
  * @since 6.1
@@ -304,54 +356,7 @@ function memberlite_import_theme_settings() {
 
 	// Overwrite current theme mods if present.
 	if ( isset( $data['mods'] ) && is_array( $data['mods'] ) ) {
-		// Clear existing mods so we don't leave stale ones behind.
-		remove_theme_mods();
-
-		// Get all color setting keys.
-		$color_keys = memberlite_get_color_setting_keys();
-
-		// Deprecated mods to skip on import.
-		$deprecated_mods = array( 'memberlite_darkcss' );
-
-		foreach ( $data['mods'] as $key => $value ) {
-			// Skip deprecated settings.
-			if ( in_array( $key, $deprecated_mods, true ) ) {
-				continue;
-			}
-
-			// Sanitize color values to remove # prefix
-			if ( in_array( $key, $color_keys, true ) && is_string( $value ) ) {
-				$value = sanitize_hex_color_no_hash( $value );
-
-				// Skip if sanitization failed (returns null for invalid colors)
-				if ( $value === null ) {
-					continue;
-				}
-
-				// Lowercase for consistency
-				$value = strtolower( $value );
-			}
-
-			set_theme_mod( $key, $value );
-		}
-
-		// Now detect if the imported color scheme is legacy or modern
-		$imported_scheme = isset( $data['mods']['memberlite_color_scheme'] ) ? $data['mods']['memberlite_color_scheme'] : '';
-		$final_scheme = 'custom'; // Default to custom if we can't determine the color scheme
-
-		// Type safety: ensure it's a string before using as array key
-		if ( is_string( $imported_scheme ) && ! empty( $imported_scheme ) && $imported_scheme !== 'custom' ) {
-			// Check if it's a modern scheme
-			$modern_schemes = memberlite_get_color_schemes();
-
-			if ( isset( $modern_schemes[ $imported_scheme ] ) ) {
-				// It's a valid modern scheme, keep it as-is
-				$final_scheme = $imported_scheme;
-			}
-		}
-
-		// Anything legacy or a malformed color scheme will default to "custom"
-		set_theme_mod( 'memberlite_color_scheme', $final_scheme );
+		memberlite_apply_theme_mods( $data['mods'] );
 	}
 
 	// Restore extra options (site_icon, sidebars, etc.), if present.
@@ -511,6 +516,43 @@ function memberlite_import_theme_settings() {
 	memberlite_import_settings_redirect( 'import_ok' );
 }
 add_action( 'admin_post_memberlite_import_theme_settings', 'memberlite_import_theme_settings' );
+
+/**
+ * Handle cloning theme mods from the parent theme to the active child theme.
+ *
+ * @since 7.2
+ */
+function memberlite_clone_parent_theme_settings() {
+	if ( ! current_user_can( 'edit_theme_options' ) ) {
+		wp_die( esc_html__( 'You are not allowed to import theme settings.', 'memberlite' ) );
+	}
+
+	if ( empty( $_POST['memberlite_import_theme_settings_nonce'] ) ) {
+		wp_die( esc_html__( 'Invalid import request.', 'memberlite' ) );
+	}
+
+	check_admin_referer( 'memberlite_import_theme_settings', 'memberlite_import_theme_settings_nonce' );
+
+	if ( ! is_child_theme() ) {
+		wp_die( esc_html__( 'This operation requires a child theme to be active.', 'memberlite' ) );
+	}
+
+	$parent_mods = get_option( 'theme_mods_' . get_template() );
+
+	if ( ! is_array( $parent_mods ) || empty( $parent_mods ) ) {
+		memberlite_import_settings_redirect( 'no_parent_mods' );
+	}
+
+	memberlite_apply_theme_mods( $parent_mods );
+
+	$parent_css = wp_get_custom_css( get_template() );
+	if ( $parent_css && function_exists( 'wp_update_custom_css_post' ) ) {
+		wp_update_custom_css_post( $parent_css );
+	}
+
+	memberlite_import_settings_redirect( 'clone_ok' );
+}
+add_action( 'admin_post_memberlite_clone_parent_theme_settings', 'memberlite_clone_parent_theme_settings' );
 
 /**
  * Helper: redirect back to the Tools page with a status flag.
