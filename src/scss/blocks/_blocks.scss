@@ -761,7 +761,6 @@ hr.wp-block-separator {
 	&.is-style-wavy-bottom {
 		position: relative;
 		padding-bottom: 8rem;
-		overflow: visible;
 
 		&::after {
 			content: '';

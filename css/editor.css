@@ -124,8 +124,6 @@ label[for="memberlite-menu-location-select"] {
 
 .wp-block-button.is-style-outline .wp-element-button {
 	background: transparent;
-	border-color: var(--wp--preset--color--buttons);
-	color: var(--wp--preset--color--buttons);
 }
 
 .wp-block-button.is-style-outline .wp-element-button:hover {
@@ -464,7 +462,6 @@ hr.wp-block-separator.is-style-flourish-circle-diamond {
 .wp-block-cover.is-style-wavy-bottom {
 	position: relative;
 	padding-bottom: 8rem;
-	overflow: visible;
 }
 
 .wp-block-cover.is-style-wavy-bottom::after {
