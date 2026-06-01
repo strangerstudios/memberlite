@@ -562,7 +562,16 @@ function memberlite_clone_parent_theme_settings() {
 		memberlite_import_settings_redirect( 'no_parent_mods' );
 	}
 
+	// Preserve the child theme's menu location assignments — cloning design settings
+	// should not affect which menus are assigned to which locations in the child.
+	$child_nav_menu_locations = get_theme_mod( 'nav_menu_locations' );
+
 	memberlite_apply_theme_mods( $parent_mods );
+
+	// Restore child menu locations after apply (remove_theme_mods wipes them).
+	if ( ! empty( $child_nav_menu_locations ) ) {
+		set_theme_mod( 'nav_menu_locations', $child_nav_menu_locations );
+	}
 
 	$parent_css = wp_get_custom_css( get_template() );
 	if ( $parent_css && function_exists( 'wp_update_custom_css_post' ) ) {

@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-$memberlite_is_child      = is_child_theme();
+$memberlite_is_child = is_child_theme();
 ?>
 <div id="memberlite_tools_import_settings" class="memberlite_section" data-visibility="shown" data-activated="true">
 	<div class="memberlite_section_toggle">
@@ -58,7 +58,7 @@ $memberlite_is_child      = is_child_theme();
 							<p class="description">
 								<?php esc_html_e( 'Select a Memberlite theme settings file (.json) to import.', 'memberlite' ); ?>
 							</p>
-							<?php if (! $memberlite_is_child) { ?>
+							<?php if ( ! $memberlite_is_child ) { ?>
 								<p class="description">
 									<?php esc_html_e( 'Imports Customizer settings, theme-specific options (site icon, custom sidebars), and menus (if included).', 'memberlite' ); ?>
 								</p>
@@ -91,7 +91,7 @@ $memberlite_is_child      = is_child_theme();
 		<p><?php printf(
 				/* translators: %s: link to the WordPress Tools > Import admin page */
 				esc_html__( 'To import WordPress content such as posts, pages, headers, footers, and media, use the built-in WordPress %s page.', 'memberlite' ),
-				'<a href="' . esc_url( admin_url( 'import.php' ) ) . '">' . esc_html__( 'Tools &gt; Import', 'memberlite' ) . '</a>'
+				'<a href="' . esc_url( admin_url( 'import.php' ) ) . '">' . esc_html__( 'Tools > Import', 'memberlite' ) . '</a>'
 			); ?></p>
 	</div>
 </div>
