@@ -272,47 +272,59 @@ add_action( 'admin_post_memberlite_export_theme_settings', 'memberlite_export_th
  * @param array $mods Associative array of mod key => value.
  */
 function memberlite_apply_theme_mods( array $mods ) {
+	// Clear existing mods so we don't leave stale ones behind.
 	remove_theme_mods();
 
+	// Get all color setting keys.
 	$color_keys      = memberlite_get_color_setting_keys();
+
+	// Deprecated mods to skip on import.
 	$deprecated_mods = array( 'memberlite_darkcss' );
 
 	// Internal WordPress keys that must never be copied between themes.
 	$internal_keys = array( 'custom_css_post_id' );
 
 	foreach ( $mods as $key => $value ) {
+		// Skip deprecated settings.
 		if ( in_array( $key, $deprecated_mods, true ) ) {
 			continue;
 		}
 
+		// Skip internal keys and transient keys
 		if ( in_array( $key, $internal_keys, true ) || strpos( $key, '_transient_' ) === 0 ) {
 			continue;
 		}
 
+		// Sanitize color values to remove # prefix
 		if ( in_array( $key, $color_keys, true ) && is_string( $value ) ) {
 			$value = sanitize_hex_color_no_hash( $value );
 
+			// Skip if sanitization failed (returns null for invalid colors)
 			if ( null === $value ) {
 				continue;
 			}
 
+			// Lowercase for consistency
 			$value = strtolower( $value );
 		}
 
 		set_theme_mod( $key, $value );
 	}
 
+	// Now detect if the imported color scheme is legacy or modern
 	$imported_scheme = isset( $mods['memberlite_color_scheme'] ) ? $mods['memberlite_color_scheme'] : '';
 	$final_scheme    = 'custom';
 
 	if ( is_string( $imported_scheme ) && ! empty( $imported_scheme ) && 'custom' !== $imported_scheme ) {
+		// Check if it's a modern scheme
 		$modern_schemes = memberlite_get_color_schemes();
 
 		if ( isset( $modern_schemes[ $imported_scheme ] ) ) {
-			$final_scheme = $imported_scheme;
+			$final_scheme = $imported_scheme; // Default to custom if we can't determine the color scheme
 		}
 	}
 
+	// Anything legacy or a malformed color scheme will default to "custom"
 	set_theme_mod( 'memberlite_color_scheme', $final_scheme );
 }
 
