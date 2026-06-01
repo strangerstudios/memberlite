@@ -236,6 +236,7 @@ if ( ! function_exists( 'memberlite_setup' ) ) :
 		add_image_size( 'memberlite-banner', 793, 200, true, array( 'center', 'center' ) );
 		add_image_size( 'memberlite-fullwidth', 1170, 1200, false, array( 'center', 'center' ) );
 		add_image_size( 'memberlite-masthead', 1600, 300, true, array( 'center', 'center' ) );
+		add_image_size( 'memberlite-16x9', 960, 540, true, array( 'center', 'center' ) );
 
 		// Add support for Block Styles.
 		add_theme_support( 'wp-block-styles' );
