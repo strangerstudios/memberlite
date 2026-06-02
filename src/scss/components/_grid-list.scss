@@ -61,19 +61,19 @@
 		align-items: center;
 		display: flex;
 		margin: calc(-1 * var(--wp--preset--spacing--10));
-		max-height: 180px;
 		overflow: hidden;
 
-		&:hover,
-		&:focus,
-		&:active {
-			filter: unset;
+		&:has(img) {
+			aspect-ratio: 16 / 9;
+			display: block;
 		}
 
-		// Duplicate rule in original merged into one block
 		.wp-post-image {
 			display: block;
+			height: 100%;
 			margin-bottom: 0;
+			object-fit: cover;
+			width: 100%;
 		}
 
 		// Fallback placeholder when no thumbnail exists
@@ -84,7 +84,7 @@
 				color-mix(in srgb, var(--memberlite-color-text) 20%, transparent)
 			);
 			display: flex;
-			height: 180px;
+			height: 218px;
 			justify-content: center;
 			width: 100%;
 		}
