@@ -104,6 +104,7 @@ label[for="memberlite-menu-location-select"] {
 .wp-block-button.is-style-arrow-fill .wp-element-button:after,
 .wp-block-button.is-style-arrow-plain .wp-element-button:after {
 	font-family: 'Font Awesome 5 Free';
+	font-weight: 900;
 	content: "\f061";
 }
 
@@ -438,6 +439,7 @@ hr.wp-block-separator.is-style-flourish-circle-diamond {
 .wp-block-search__icon-button.is-style-icon-round .wp-block-search__button {
 	border-radius: 50%;
 	width: 50px;
+	height: 50px;
 }
 
 /* Icon Round Search Button w/ Text Button */
