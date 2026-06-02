@@ -183,7 +183,7 @@ hr.wp-block-separator {
 		background: none;
 		height: 32px;
 		max-width: 100%;
-		width: 100%!important;// override core style
+		width: 100% !important;// override core style
 		background-color: var(--memberlite-color-borders);
 		-webkit-mask-repeat: no-repeat;
 		mask-repeat: no-repeat;
@@ -232,7 +232,7 @@ hr.wp-block-separator {
 		&::before {
 			color: var(--memberlite-color-secondary);
 			content: "\f10d"; // fa-quote-left
-			font-family: 'Font Awesome 5 Free';
+			font-family: $font-family-awesome;
 			font-size: var(--wp--preset--font-size--30);
 			font-weight: 900;
 			left: 0;
@@ -537,7 +537,7 @@ hr.wp-block-separator {
 		line-height: 1;
 
 		&:after {
-			font-family: 'Font Awesome 5 Free';
+			font-family: $font-family-awesome;
 			font-weight: 900;
 			content: "\f061"; /*! rtl:raw:content: "\f060"; */
 		}
@@ -724,8 +724,6 @@ hr.wp-block-separator {
 
 .wp-block-loginout {
 	&.is-style-loginout-button:not(.has-background) {
-		width: max-content;
-		border-radius: var(--wp--custom--border--radius);
 		/* Fallbacks — overridden when editor color settings are applied */
 		background-color: var(--wp--preset--color--buttons);
 
@@ -734,12 +732,17 @@ hr.wp-block-separator {
 		}
 	}
 
-	&.is-style-loginout-button a {
-		display: inline-block;
-		padding: 0.6em 1.4em;
-		border-radius: 4px;
-		text-decoration: none;
-		line-height: 1.5;
+	&.is-style-loginout-button {
+		width: max-content;
+		border-radius: var(--wp--custom--border--radius);
+
+		a {
+			display: inline-block;
+			padding: 0.6em 1.4em;
+			border-radius: 4px;
+			text-decoration: none;
+			line-height: 1.5;
+		}
 	}
 }
 

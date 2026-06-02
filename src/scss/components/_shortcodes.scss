@@ -217,7 +217,7 @@ body.memberlite-banner-hidden .entry-content > .banner:first-child {
 )::before {
 	content: "\f078"; // fa-chevron-down
 	float: right;
-	font-family: "Font Awesome 5 Free";
+	font-family: $font-family-awesome;
 	font-weight: 900;
 	margin-left: var(--wp--preset--spacing--10);
 }
