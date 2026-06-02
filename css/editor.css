@@ -144,6 +144,10 @@ hr.wp-block-separator.is-style-dots:before {
 	color: var(--wp--preset--color--borders);
 }
 
+hr.wp-block-separator.is-style-wide {
+	background-color: var(--wp--preset--color--borders);
+}
+
 hr.wp-block-separator.is-style-wide,
 hr.wp-block-separator.is-style-faded-edges,
 hr.wp-block-separator.is-style-wave,
