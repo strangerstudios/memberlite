@@ -56,3 +56,16 @@ add_filter( 'bbp_before_get_breadcrumb_parse_args', 'memberlite_bbp_breadcrumb' 
 
 /* Removes bbp_breadcrumb from bbpress templates */
 add_filter( 'bbp_no_breadcrumb', '__return_true' );
+
+/**
+ * Fix so that bbPress search results page uses the assigned 'forum' post type sidebar, if specified, instead of the default sidebar.
+ *
+ * @param array $widget_areas Array of sidebar IDs.
+ */
+function memberlite_bbpress_widget_areas( $widget_areas ) {
+	if ( is_bbpress() && bbp_is_search_results() ) {
+		$widget_areas = array( memberlite_get_default_sidebar_by_post_type( 'forum' ) );
+	}
+	return $widget_areas;
+}
+add_filter( 'memberlite_get_widget_areas', 'memberlite_bbpress_widget_areas' );
