@@ -18,9 +18,7 @@ if ( $content_archives != 'grid' || is_search() ) {
 
 	if ( ! empty( $memberlite_get_banner_image_src ) ) { ?>
 		<div class="entry-banner">
-			<a href="<?php echo esc_url( get_permalink() ); ?>" tabindex="-1" aria-hidden="true">
-				<img class="banner-image" src="<?php echo esc_url( $memberlite_get_banner_image_src[0] ); ?>" alt="" aria-hidden="true" />
-			</a>
+			<img class="banner-image" src="<?php echo esc_url( $memberlite_get_banner_image_src[0] ); ?>" alt="" aria-hidden="true" />
 	<?php } ?>
 
 <?php } ?>
