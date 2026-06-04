@@ -62,10 +62,18 @@ add_filter( 'bbp_no_breadcrumb', '__return_true' );
  *
  * @param array $widget_areas Array of sidebar IDs.
  */
-function memberlite_bbpress_widget_areas( $widget_areas ) {
-	if ( is_bbpress() && bbp_is_search_results() ) {
-		$widget_areas = array( memberlite_get_default_sidebar_by_post_type( 'forum' ) );
+function memberlite_bbpress_search_widget_areas( $widget_areas ) {
+	// Only modify widget areas for bbPress search results page, otherwise return the default widget areas.
+	if ( ! bbp_is_search() ) {
+		return $widget_areas;
 	}
+
+	// Get the assigned sidebar for the 'forum' post type.
+	$forum_sidebar = memberlite_get_default_sidebar_by_post_type( 'forum' );
+	if ( 'memberlite_sidebar_default' !== $forum_sidebar ) {
+		return array( $forum_sidebar );
+	}
+
 	return $widget_areas;
 }
-add_filter( 'memberlite_get_widget_areas', 'memberlite_bbpress_widget_areas' );
+add_filter( 'memberlite_get_widget_areas', 'memberlite_bbpress_search_widget_areas' );
