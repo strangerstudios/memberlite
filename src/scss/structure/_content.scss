@@ -20,6 +20,15 @@
 		margin: 0 0 var(--wp--preset--spacing--20) 0;
 		overflow: hidden;
 		position: relative;
+
+		img.banner-image {
+			height: 100%;
+			left: 0;
+			object-fit: cover;
+			position: absolute;
+			top: 0;
+			width: 100%;
+		}
 	}
 
 	// When a banner image is present, overlay the entry header
