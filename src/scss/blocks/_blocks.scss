@@ -196,15 +196,6 @@ hr.wp-block-separator {
 	}
 }
 
-.wp-block-button.is-style-outline .wp-block-button__link {
-	background: transparent;
-
-	&:hover {
-		background-color: var(--wp--preset--color--buttons);
-		color: var(--wp--preset--color--base);
-	}
-}
-
 // -----------------------------------------------------------------------------
 // Comments Block
 // -----------------------------------------------------------------------------
