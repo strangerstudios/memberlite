@@ -565,6 +565,9 @@ require_once get_template_directory() . '/inc/customizer.php';
 /* Custom functions that act independently of the theme templates. */
 require_once get_template_directory() . '/inc/extras.php';
 
+/* One-time clone of parent settings on child theme activation. */
+require_once get_template_directory() . '/inc/child-theme-activation.php';
+
 /* Deprecated hooks, filters and functions. */
 require_once get_template_directory() . '/inc/deprecated.php';
 
