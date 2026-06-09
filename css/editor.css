@@ -123,15 +123,6 @@ label[for="memberlite-menu-location-select"] {
 	outline-offset: 2px;
 }
 
-.wp-block-button.is-style-outline .wp-element-button {
-	background: transparent;
-}
-
-.wp-block-button.is-style-outline .wp-element-button:hover {
-	background-color: var(--wp--preset--color--buttons);
-	color: var(--wp--preset--color--base);
-}
-
 /*--------------------------------------------------------------
  Separator Block Styles
 --------------------------------------------------------------*/
