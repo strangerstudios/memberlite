@@ -56,6 +56,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 			</p>
 		</form>
 		<hr />
-		<p><?php esc_html_e( 'To import WordPress content such as posts, pages, header variations, footer variations, and media, use the built-in WordPress tools located at Tools > Import in the WordPress admin.', 'memberlite' ); ?></p>
+		<?php printf(
+		/* translators: %s: link to the WordPress Tools > Import admin page */
+			esc_html__( 'To import WordPress content such as posts, pages, header variations, footer variations, and media, use the built-in WordPress %s page.', 'memberlite' ),
+			'<a href="' . esc_url( admin_url( 'import.php' ) ) . '">' . esc_html__( 'Tools > Import', 'memberlite' ) . '</a>'
+		); ?>
 	</div>
 </div>
