@@ -125,10 +125,12 @@ $menus = wp_get_nav_menus();
 			</p>
 		</form>
 		<hr />
-		<?php printf(
-		/* translators: %s: link to the WordPress Tools > Import admin page */
-			esc_html__( 'To export WordPress content such as posts, pages, header variations, footer variations, and media, use the built-in WordPress %s page.', 'memberlite' ),
-			'<a href="' . esc_url( admin_url( 'export.php' ) ) . '">' . esc_html__( 'Tools > Export', 'memberlite' ) . '</a>'
-		); ?>
+		<p><?php
+			printf(
+			/* translators: %s: link to the WordPress Tools > Export admin page */
+				wp_kses_post( __( 'To export WordPress content such as posts, pages, header variations, footer variations, and media, use the built-in WordPress %s page.', 'memberlite' ) ),
+				'<a href="' . esc_url( admin_url( 'export.php' ) ) . '">' . esc_html__( 'Tools > Export', 'memberlite' ) . '</a>'
+			);
+			?></p>
 	</div>
 </div>

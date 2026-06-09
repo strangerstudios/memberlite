@@ -56,10 +56,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 			</p>
 		</form>
 		<hr />
-		<?php printf(
-		/* translators: %s: link to the WordPress Tools > Import admin page */
-			esc_html__( 'To import WordPress content such as posts, pages, header variations, footer variations, and media, use the built-in WordPress %s page.', 'memberlite' ),
-			'<a href="' . esc_url( admin_url( 'import.php' ) ) . '">' . esc_html__( 'Tools > Import', 'memberlite' ) . '</a>'
-		); ?>
+		<p><?php
+			printf(
+				wp_kses_post( __( 'To import WordPress content such as posts, pages, header variations, footer variations, and media, use the built-in WordPress %s page.', 'memberlite' ) ),
+				'<a href="' . esc_url( admin_url( 'import.php' ) ) . '">' . esc_html__( 'Tools > Import', 'memberlite' ) . '</a>'
+			);
+			?></p>
 	</div>
 </div>
