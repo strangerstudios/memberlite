@@ -18,7 +18,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	</div>
 	<div class="memberlite_section_inside">
 		<p><?php esc_html_e( 'Use this tool to reset Memberlite theme settings to their default values.', 'memberlite' ); ?> <strong><?php esc_html_e( 'This will overwrite your current Memberlite theme settings.', 'memberlite' ); ?></strong></p>
-		<p><?php esc_html_e( 'The reset will clear Memberlite Customizer settings (including logo, colors, typography, and layouts), Memberlite sidebar settings, the site icon, and any Additional CSS for the current theme.', 'memberlite' ); ?> <strong><?php esc_html_e( 'It will not delete any posts, pages, or media.', 'memberlite' ); ?></strong></p>
+		<p><?php esc_html_e( 'The reset will clear Memberlite Customizer settings (including logo, colors, typography, and layouts), Memberlite sidebar settings, the site icon, and any Additional CSS for the current theme.', 'memberlite' ); ?></p>
+		<p><strong><?php esc_html_e( 'It will not delete any posts, pages, navigation menus, header variations, footer variations, or media.', 'memberlite' ); ?></strong></p>
 		<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" onsubmit="return memberliteConfirmThemeReset();">
 			<p class="submit">
 				<?php wp_nonce_field( 'memberlite_reset_theme_settings', 'memberlite_reset_theme_settings_nonce' ); ?>
