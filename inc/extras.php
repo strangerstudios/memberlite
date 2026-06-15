@@ -72,17 +72,33 @@ function memberlite_get_customizer_cpts(): array {
 		 */
 		$filtered = apply_filters( 'memberlite_customizer_cpts', $cpts );
 
+		// Guard against a filter callback returning a non-array; fall back to
+		// the pre-filter list so built-in PMPro CPTs are not lost.
+		if ( ! is_array( $filtered ) ) {
+			$filtered = $cpts;
+		}
+
+		// Strip any non-string or empty values injected via the filter.
+		$filtered = array_filter( $filtered, function( $slug ) {
+			return is_string( $slug ) && '' !== $slug;
+		} );
+
 		// Strip Memberlite's own internal CPTs, any unregistered slugs, and any
 		// CPTs with show_ui false that may have been injected via the filter.
-		// Prevent Memberlite Header/Footer CPTs from being passed through the filter.
 		$memberlite_internal = array( 'memberlite_header', 'memberlite_footer' );
 		$cache = array();
+
+		error_log('$filtered =========');
+		error_log(print_r($filtered, true));
 		foreach ( array_diff( $filtered, $memberlite_internal ) as $slug ) {
 			$obj = get_post_type_object( $slug ); // If CPT doesn't exist, will return null
 			if ( $obj && $obj->show_ui ) {
 				$cache[] = $slug;
 			}
 		}
+
+		error_log('$cache =========');
+		error_log(print_r($cache, true));
 	}
 
 	return $cache;
