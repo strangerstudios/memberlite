@@ -557,8 +557,6 @@ class Memberlite_Customize {
 	 * @return void
 	 */
 	public static function set_customizer_post_settings( WP_Customize_Manager $wp_customize ) {
-		global $memberlite_defaults;
-
 		// POST: Content Archives ===============
 		self::add_memberlite_setting_control( $wp_customize, 'content_archives', __( 'Archive Layout', 'memberlite' ), 'memberlite_post_archive_options', array(
 			'type'        => 'radio',

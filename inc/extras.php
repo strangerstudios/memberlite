@@ -56,7 +56,7 @@ function memberlite_get_customizer_cpts(): array {
 				'pmpro_series'
 			);
 
-			foreach( $pmpro_cpts as $pmpro_cpt ) {
+			foreach ( $pmpro_cpts as $pmpro_cpt ) {
 				if ( post_type_exists( $pmpro_cpt ) ) {
 					$cpts[] = $pmpro_cpt;
 				}
@@ -98,7 +98,7 @@ function memberlite_get_customizer_cpts(): array {
 		$cache = array();
 
 		foreach ( array_diff( $filtered, $memberlite_internal ) as $slug ) {
-			$obj = get_post_type_object( $slug ); // If CPT doesn't exist, will return null
+			$obj = get_post_type_object( $slug );
 			if ( $obj && $obj->show_ui ) {
 				$cache[] = $slug;
 			}
