@@ -20,10 +20,12 @@ function memberlite_page_menu_args( $args ) {
 add_filter( 'wp_page_menu_args', 'memberlite_page_menu_args' );
 
 /**
- * Returns the list of CPT slugs that have per-archive Customizer settings.
+ * Returns the list of CPT slugs that have per-type Customizer settings.
  *
- * Detects known CPTs by checking if they are registered, then passes the result
- * through a filter so developers can add or remove entries. Section labels are
+ * Auto-detects supported PMPro CPTs when registered. Use the
+ * memberlite_pmpro_cpt_layout_settings_enabled filter to disable the
+ * built-in PMPro CPT detection, or the memberlite_customizer_cpts filter
+ * to add CPTs from a child theme or third-party plugin. Section labels are
  * derived from each post type's registered plural name.
  *
  * @since TBD
@@ -35,31 +37,52 @@ function memberlite_get_customizer_cpts(): array {
 	if ( null === $cache ) {
 		$cpts = array();
 
-		if ( post_type_exists( 'pmpro_course' ) ) {
-			$cpts[] = 'pmpro_course';
-		}
+		/**
+		 * Filters whether the built-in PMPro CPT layout settings are enabled.
+		 *
+		 * Return false to prevent PMPro CPTs from receiving Customizer sections.
+		 * CPTs added via the memberlite_customizer_cpts filter are unaffected.
+		 *
+		 * @since TBD
+		 * @param bool $enabled Whether PMPro CPT layout settings are enabled. Default true.
+		 */
+		if ( apply_filters( 'memberlite_pmpro_cpt_layout_settings_enabled', true ) ) {
+			$pmpro_cpts = array(
+				'pmpro_course',
+				'pmpro_lesson',
+				'pmpro_series'
+			);
 
-		if ( post_type_exists( 'pmpro_lesson' ) ) {
-			$cpts[] = 'pmpro_lesson';
-		}
-
-		if ( post_type_exists( 'pmpro_series' ) ) {
-			$cpts[] = 'pmpro_series';
+			foreach( $pmpro_cpts as $pmpro_cpt ) {
+				if ( post_type_exists( $pmpro_cpt ) ) {
+					$cpts[] = $pmpro_cpt;
+				}
+			}
 		}
 
 		/**
-		 * Filter the CPT slugs that receive per-archive layout settings in the Customizer.
+		 * Filters the CPT slugs that receive per-type layout settings in the Customizer.
 		 *
-		 * @note: Not all third party CPTs will support customizer/template settings even if this filter is used.
+		 * Use this filter to add CPTs registered in a child theme or third-party
+		 * plugin. To remove a built-in PMPro CPT, return the array without that slug.
+		 * Note: not all CPTs will support all Customizer settings even if added here.
+		 *
 		 * @since TBD
 		 * @param string[] $cpts Indexed array of post type slugs.
 		 */
 		$filtered = apply_filters( 'memberlite_customizer_cpts', $cpts );
 
-		// Strip Memberlite's own internal CPTs and any unregistered slugs that
-		// may have been injected via the filter.
+		// Strip Memberlite's own internal CPTs, any unregistered slugs, and any
+		// CPTs with show_ui false that may have been injected via the filter.
+		// Prevent Memberlite Header/Footer CPTs from being passed through the filter.
 		$memberlite_internal = array( 'memberlite_header', 'memberlite_footer' );
-		$cache = array_values( array_filter( array_diff( $filtered, $memberlite_internal ), 'post_type_exists' ) );
+		$cache = array();
+		foreach ( array_diff( $filtered, $memberlite_internal ) as $slug ) {
+			$obj = get_post_type_object( $slug );
+			if ( $obj && $obj->show_ui ) {
+				$cache[] = $slug;
+			}
+		}
 	}
 
 	return $cache;

@@ -648,7 +648,7 @@ class Memberlite_Customize {
 			'sanitize_callback' => 'sanitize_text_field',
 		) );
 
-		// CPT: Per-archive settings for each registered CPT ===
+		// CPT: Layout/sidebar/columns settings ==
 		$cpt_archive_settings = memberlite_get_customizer_cpts();
 		if ( ! empty( $cpt_archive_settings ) ) {
 			foreach ( $cpt_archive_settings as $post_type ) {
@@ -668,11 +668,9 @@ class Memberlite_Customize {
 					) );
 				}
 
-				// No archive view for PMPro lessons CPT. Clarify setting description.
-				$sidebar_setting_desc = __( 'Choose sidebar placement for archive pages and single posts.', 'memberlite' );
-				if ( $post_type === 'pmpro_lesson' ) {
-					$sidebar_setting_desc = __( 'Choose sidebar placement for single posts.', 'memberlite' );
-				}
+				$sidebar_setting_desc = $post_type_obj && $post_type_obj->has_archive
+					? __( 'Choose sidebar placement for archive pages and single posts.', 'memberlite' )
+					: __( 'Choose sidebar placement for single posts.', 'memberlite' );
 
 				self::add_memberlite_setting_control( $wp_customize, 'sidebar_location_' . $post_type, __( 'Sidebar Location', 'memberlite' ), $section, array(
 					'type'            => 'radio',
