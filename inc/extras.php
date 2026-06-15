@@ -43,6 +43,9 @@ function memberlite_get_customizer_cpts(): array {
 		 * Return false to prevent PMPro CPTs from receiving Customizer sections.
 		 * CPTs added via the memberlite_customizer_cpts filter are unaffected.
 		 *
+		 * Example usage in a child theme:
+		 * add_filter( 'memberlite_pmpro_cpt_layout_settings_enabled', '__return_false' );
+		 *
 		 * @since TBD
 		 * @param bool $enabled Whether PMPro CPT layout settings are enabled. Default true.
 		 */
@@ -67,6 +70,12 @@ function memberlite_get_customizer_cpts(): array {
 		 * plugin. To remove a built-in PMPro CPT, return the array without that slug.
 		 * Note: not all CPTs will support all Customizer settings even if added here.
 		 *
+		 * Example usage in a child theme:
+		 * add_filter( 'memberlite_customizer_cpts', function( $cpts ) {
+		 *     $cpts[] = 'my_custom_post_type';
+		 *     return $cpts;
+		 * } );
+		 *
 		 * @since TBD
 		 * @param string[] $cpts Indexed array of post type slugs.
 		 */
@@ -88,17 +97,12 @@ function memberlite_get_customizer_cpts(): array {
 		$memberlite_internal = array( 'memberlite_header', 'memberlite_footer' );
 		$cache = array();
 
-		error_log('$filtered =========');
-		error_log(print_r($filtered, true));
 		foreach ( array_diff( $filtered, $memberlite_internal ) as $slug ) {
 			$obj = get_post_type_object( $slug ); // If CPT doesn't exist, will return null
 			if ( $obj && $obj->show_ui ) {
 				$cache[] = $slug;
 			}
 		}
-
-		error_log('$cache =========');
-		error_log(print_r($cache, true));
 	}
 
 	return $cache;
