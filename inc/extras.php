@@ -78,7 +78,7 @@ function memberlite_get_customizer_cpts(): array {
 		$memberlite_internal = array( 'memberlite_header', 'memberlite_footer' );
 		$cache = array();
 		foreach ( array_diff( $filtered, $memberlite_internal ) as $slug ) {
-			$obj = get_post_type_object( $slug );
+			$obj = get_post_type_object( $slug ); // If CPT doesn't exist, will return null
 			if ( $obj && $obj->show_ui ) {
 				$cache[] = $slug;
 			}
