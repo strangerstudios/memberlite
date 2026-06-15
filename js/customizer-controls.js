@@ -195,8 +195,8 @@
 	// Toggle columns_ratio visibility for CPTs based on sidebar_location value.
 	if ( typeof memberlite_cpt_archive_slugs !== 'undefined' ) {
 		memberlite_cpt_archive_slugs.forEach( function( postType ) {
-			var sidebarKey = 'sidebar_location_' + postType;
-			var ratioKey   = 'columns_ratio_' + postType;
+			const sidebarKey = 'sidebar_location_' + postType;
+			const ratioKey   = 'columns_ratio_' + postType;
 
 			wp.customize( sidebarKey, function( value ) {
 				value.bind( function( newval ) {
