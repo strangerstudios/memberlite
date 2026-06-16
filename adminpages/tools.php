@@ -125,7 +125,7 @@ function memberlite_export_theme_settings() {
 
 		/**
 		 * Filter the option keys to export when exporting Memberlite theme settings.
-		 * By default, we export the site icon, custom sidebars, and sidebar assignments for custom post types.
+		 * By default, we export the site title, tagline, custom sidebars, and sidebar assignments for custom post types.
 		 *
 		 * Note: This same filter is used for resetting options in memberlite_reset_theme_settings().
 		 *
@@ -155,6 +155,40 @@ function memberlite_export_theme_settings() {
 
 		if ( function_exists( 'wp_get_custom_css' ) ) {
 			$data['wp_css'] = wp_get_custom_css();
+		}
+
+		// Export attachment references (site icon, custom logo) with absolute URLs so they can be resolved on import.
+		$attachments_data = array();
+
+		$site_icon_id = (int) get_option( 'site_icon' );
+		if ( $site_icon_id ) {
+			$site_icon_url = wp_get_attachment_url( $site_icon_id );
+			if ( $site_icon_url ) {
+				$attachments_data['site_icon'] = array(
+					'id'       => $site_icon_id,
+					'url'      => $site_icon_url,
+					'filename' => basename( wp_parse_url( $site_icon_url, PHP_URL_PATH ) ),
+				);
+			}
+		}
+
+		// Strip the raw ID only after capturing a portable reference, so a broken logo isn't silently dropped.
+		$custom_logo_id = (int) get_theme_mod( 'custom_logo' );
+		if ( $custom_logo_id ) {
+			$custom_logo_url = wp_get_attachment_url( $custom_logo_id );
+			if ( $custom_logo_url ) {
+				$attachments_data['custom_logo'] = array(
+					'id'       => $custom_logo_id,
+					'url'      => $custom_logo_url,
+					'filename' => basename( wp_parse_url( $custom_logo_url, PHP_URL_PATH ) ),
+				);
+				// Only strip once we've captured a resolvable reference — otherwise a broken logo would disappear silently.
+				unset( $data['mods']['custom_logo'] );
+			}
+		}
+
+		if ( ! empty( $attachments_data ) ) {
+			$data['attachments'] = $attachments_data;
 		}
 	}
 
@@ -277,7 +311,8 @@ function memberlite_import_theme_settings() {
 	check_admin_referer( 'memberlite_import_theme_settings', 'memberlite_import_theme_settings_nonce' );
 
 	// Validate file upload.
-	if ( empty( $_FILES['memberlite_import_file']['tmp_name'] ) || ! is_uploaded_file( $_FILES['memberlite_import_file']['tmp_name'] ) ) {
+	$upload_error = isset( $_FILES['memberlite_import_file']['error'] ) ? (int) $_FILES['memberlite_import_file']['error'] : UPLOAD_ERR_NO_FILE;
+	if ( UPLOAD_ERR_OK !== $upload_error || empty( $_FILES['memberlite_import_file']['tmp_name'] ) || ! is_uploaded_file( $_FILES['memberlite_import_file']['tmp_name'] ) ) {
 		memberlite_import_settings_redirect( 'no_file' );
 	}
 
@@ -307,6 +342,10 @@ function memberlite_import_theme_settings() {
 	if ( isset( $data['mods'] ) && is_array( $data['mods'] ) ) {
 		// Clear existing mods so we don't leave stale ones behind.
 		remove_theme_mods();
+
+		// Drop mods whose values are source-site IDs that wouldn't resolve here.
+		// custom_logo is rebuilt via $data['attachments']; nav_menu_locations is rebuilt from imported menus.
+		unset( $data['mods']['custom_logo'], $data['mods']['nav_menu_locations'] );
 
 		// Get all color setting keys.
 		$color_keys = memberlite_get_color_setting_keys();
@@ -355,7 +394,7 @@ function memberlite_import_theme_settings() {
 		set_theme_mod( 'memberlite_color_scheme', $final_scheme );
 	}
 
-	// Restore extra options (site_icon, sidebars, etc.), if present.
+	// Restore extra options (sidebars, blogname, etc.), if present.
 	if ( ! empty( $data['options'] ) && is_array( $data['options'] ) ) {
 		foreach ( $data['options'] as $key => $value ) {
 			update_option( $key, $value );
@@ -365,6 +404,29 @@ function memberlite_import_theme_settings() {
 	// Restore Additional CSS if we exported it.
 	if ( ! empty( $data['wp_css'] ) && function_exists( 'wp_update_custom_css_post' ) ) {
 		wp_update_custom_css_post( $data['wp_css'] );
+	}
+
+	// Resolve attachment references (site_icon, custom_logo) to local attachment IDs.
+	if ( ! empty( $data['attachments'] ) && is_array( $data['attachments'] ) ) {
+		foreach ( $data['attachments'] as $target => $info ) {
+			if ( empty( $info['url'] ) ) {
+				continue;
+			}
+
+			$source_url  = esc_url_raw( $info['url'] );
+			$id_hint     = isset( $info['id'] ) ? (int) $info['id'] : 0;
+			$resolved_id = memberlite_resolve_imported_attachment( $source_url, $id_hint );
+
+			if ( ! $resolved_id ) {
+				continue;
+			}
+
+			if ( 'site_icon' === $target ) {
+				update_option( 'site_icon', $resolved_id );
+			} elseif ( 'custom_logo' === $target ) {
+				set_theme_mod( 'custom_logo', $resolved_id );
+			}
+		}
 	}
 
 	// Import navigation menus if present.
@@ -534,6 +596,103 @@ function memberlite_import_settings_redirect( $code ) {
 }
 
 /**
+ * Resolve an imported attachment reference to a local attachment ID.
+ *
+ * Tries, in order: existing ID with matching filename, media library filename match,
+ * sideload from the absolute URL.
+ *
+ * @since TBD
+ *
+ * @param string $url     Absolute URL of the source attachment.
+ * @param int    $id_hint Attachment ID from the source site (optional).
+ * @return int Resolved attachment ID, or 0 if it could not be resolved.
+ */
+function memberlite_resolve_imported_attachment( $url, $id_hint = 0 ) {
+	$filename = basename( wp_parse_url( $url, PHP_URL_PATH ) );
+	if ( empty( $filename ) ) {
+		return 0;
+	}
+
+	// 1. Same ID locally with matching filename — handles re-importing on the same site.
+	if ( $id_hint > 0 && 'attachment' === get_post_type( $id_hint ) && wp_attachment_is_image( $id_hint ) ) {
+		$existing_file = get_attached_file( $id_hint );
+		if ( $existing_file && basename( $existing_file ) === $filename ) {
+			return $id_hint;
+		}
+	}
+
+	// 2. Find any attachment in the media library with the same filename.
+	// Require an image so we don't bind a logo/icon to an unrelated same-named PDF, ZIP, etc.
+	$found_id = memberlite_find_attachment_by_filename( $filename );
+	if ( $found_id && wp_attachment_is_image( $found_id ) ) {
+		return $found_id;
+	}
+
+	// 3. Sideload from the absolute URL.
+	// Reject anything that isn't an http(s) URL — admin-gated, but we don't want file://, ftp://, etc. fetched.
+	$scheme = wp_parse_url( $url, PHP_URL_SCHEME );
+	if ( ! in_array( $scheme, array( 'http', 'https' ), true ) ) {
+		return 0;
+	}
+
+	require_once ABSPATH . 'wp-admin/includes/media.php';
+	require_once ABSPATH . 'wp-admin/includes/file.php';
+	require_once ABSPATH . 'wp-admin/includes/image.php';
+
+	$tmp = download_url( $url );
+	if ( is_wp_error( $tmp ) ) {
+		return 0;
+	}
+
+	$file_array = array(
+		'name'     => $filename,
+		'tmp_name' => $tmp,
+	);
+
+	$new_id = media_handle_sideload( $file_array, 0 );
+
+	if ( is_wp_error( $new_id ) ) {
+		@unlink( $tmp );
+		return 0;
+	}
+
+	// Reject anything that came back as a non-image — we're only resolving site_icon / custom_logo here.
+	if ( ! wp_attachment_is_image( $new_id ) ) {
+		wp_delete_attachment( $new_id, true );
+		return 0;
+	}
+
+	return (int) $new_id;
+}
+
+/**
+ * Look up an attachment by its filename via the _wp_attached_file meta.
+ *
+ * @since TBD
+ *
+ * @param string $filename The filename to search for (e.g. "icon-512.png").
+ * @return int Attachment ID, or 0 if not found.
+ */
+function memberlite_find_attachment_by_filename( $filename ) {
+	global $wpdb;
+
+	$like = '%/' . $wpdb->esc_like( $filename );
+
+	$id = $wpdb->get_var(
+		$wpdb->prepare(
+			"SELECT post_id FROM {$wpdb->postmeta}
+			WHERE meta_key = '_wp_attached_file'
+			AND ( meta_value = %s OR meta_value LIKE %s )
+			LIMIT 1",
+			$filename,
+			$like
+		)
+	);
+
+	return $id ? (int) $id : 0;
+}
+
+/**
  * Handle Memberlite theme settings reset.
  *
  * @since 6.1
@@ -551,6 +710,9 @@ function memberlite_reset_theme_settings() {
 
 	// Reset all theme mods.
 	remove_theme_mods();
+
+	// Reset the site_logo.
+	delete_option( 'site_logo' );
 
 	/**
 	 * Filter the option keys to reset when resetting Memberlite theme settings.
