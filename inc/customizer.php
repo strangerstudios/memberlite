@@ -153,6 +153,31 @@ class Memberlite_Customize {
 			)
 		);
 
+		/* CPT Archives ---------------------------------- */
+		$cpt_archive_settings = memberlite_get_customizer_cpts();
+		if ( ! empty( $cpt_archive_settings ) ) {
+			$wp_customize->add_panel(
+				'memberlite_cpt_archive_panel',
+				array(
+					'title'    => __( 'Other Post Types', 'memberlite' ),
+					'priority' => 9,
+				)
+			);
+
+			$cpt_priority = 1;
+			foreach ( $cpt_archive_settings as $post_type ) {
+				$wp_customize->add_section(
+					'memberlite_' . $post_type . '_archive_options',
+					array(
+						/* translators: %s: plural label for the post type, e.g. "Courses" */
+						'title'    => sprintf( __( '%s Layout', 'memberlite' ), get_post_type_object( $post_type )->label ),
+						'panel'    => 'memberlite_cpt_archive_panel',
+						'priority' => $cpt_priority++,
+					)
+				);
+			}
+		}
+
 	}
 
 	public static function set_general_settings( WP_Customize_Manager $wp_customize ) {
@@ -488,7 +513,7 @@ class Memberlite_Customize {
 			'sanitize_callback' => 'sanitize_key',
 			'choices'           => $footer_choices_context,
 			'default'           => 'memberlite-global-footer',
-			'description'       => __( 'Choose which footer variation to display on your blog and post archives.', 'memberlite' ),
+			'description'       => __( 'Choose which footer variation to display on your blog and post archives. Includes custom post types.', 'memberlite' ),
 		) );
 
 		// FOOTER: Variations, Single Post ===============
@@ -497,7 +522,7 @@ class Memberlite_Customize {
 			'sanitize_callback' => 'sanitize_key',
 			'choices'           => $footer_choices_context,
 			'default'           => 'memberlite-global-footer',
-			'description'       => __( 'Choose which footer variation to display on the single post view.', 'memberlite' ),
+			'description'       => __( 'Choose which footer variation to display on the single post view. Includes custom post types.', 'memberlite' ),
 		) );
 
 		// FOOTER: Variations, Pages ===============
@@ -535,7 +560,7 @@ class Memberlite_Customize {
 		// POST: Content Archives ===============
 		self::add_memberlite_setting_control( $wp_customize, 'content_archives', __( 'Archive Layout', 'memberlite' ), 'memberlite_post_archive_options', array(
 			'type'        => 'radio',
-			'description' => __( 'Choose how posts are displayed on blog and archive pages.', 'memberlite' ),
+			'description' => __( 'Choose how posts are displayed on your blog and archive pages.', 'memberlite' ),
 			'choices'     => array(
 				'content' => __( 'Show Full Post Content', 'memberlite' ),
 				'excerpt' => __( 'Show Post Excerpts', 'memberlite' ),
@@ -546,6 +571,7 @@ class Memberlite_Customize {
 		// POST: Sidebar Location ===============
 		self::add_memberlite_setting_control( $wp_customize, 'sidebar_location_blog', __( 'Sidebar Location', 'memberlite' ), 'memberlite_post_archive_options', array(
 			'type'    => 'radio',
+			'description' => __( 'Choose sidebar placement for your blog, archive pages, and single posts.', 'memberlite' ),
 			'choices' => array(
 				'sidebar-blog-right' => __( 'Right Sidebar', 'memberlite' ),
 				'sidebar-blog-left'  => __( 'Left Sidebar', 'memberlite' ),
@@ -566,6 +592,9 @@ class Memberlite_Customize {
 				'10-2' => '10x2',
 				'11-1' => '11x1',
 			),
+			'active_callback' => function() {
+				return get_theme_mod( 'sidebar_location_blog', 'sidebar-blog-right' ) !== 'sidebar-blog-none';
+			},
 		) );
 
 		// POST: Navigation Settings Heading ====
@@ -616,6 +645,61 @@ class Memberlite_Customize {
 			'transport'         => 'postMessage',
 			'sanitize_callback' => 'sanitize_text_field',
 		) );
+
+		// CPT: Layout/sidebar/columns settings ==
+		$cpt_archive_settings = memberlite_get_customizer_cpts();
+		if ( ! empty( $cpt_archive_settings ) ) {
+			foreach ( $cpt_archive_settings as $post_type ) {
+				$section  = 'memberlite_' . $post_type . '_archive_options';
+				$post_type_obj = get_post_type_object( $post_type );
+
+				if ( $post_type_obj && $post_type_obj->has_archive ) {
+					self::add_memberlite_setting_control( $wp_customize, 'content_archives_' . $post_type, __( 'Archive Layout', 'memberlite' ), $section, array(
+						'type'        => 'radio',
+						'default'     => 'content',
+						'description' => __( 'Choose how posts are displayed on archive pages.', 'memberlite' ),
+						'choices'     => array(
+							'content' => __( 'Show Full Post Content', 'memberlite' ),
+							'excerpt' => __( 'Show Post Excerpts', 'memberlite' ),
+							'grid'    => __( 'Show Posts in a Grid (sidebar hidden)', 'memberlite' ),
+						),
+					) );
+				}
+
+				$sidebar_setting_desc = $post_type_obj && $post_type_obj->has_archive
+					? __( 'Choose sidebar placement for archive pages and single posts.', 'memberlite' )
+					: __( 'Choose sidebar placement for single posts.', 'memberlite' );
+
+				self::add_memberlite_setting_control( $wp_customize, 'sidebar_location_' . $post_type, __( 'Sidebar Location', 'memberlite' ), $section, array(
+					'type'            => 'radio',
+					'default'         => 'sidebar-blog-right',
+					'description'     => $sidebar_setting_desc,
+					'choices'         => array(
+						'sidebar-blog-right' => __( 'Right Sidebar', 'memberlite' ),
+						'sidebar-blog-left'  => __( 'Left Sidebar', 'memberlite' ),
+						'sidebar-blog-none'  => __( 'No Sidebar', 'memberlite' ),
+					),
+				) );
+
+				self::add_memberlite_setting_control( $wp_customize, 'columns_ratio_' . $post_type, __( 'Columns Ratio', 'memberlite' ), $section, array(
+					'type'        => 'select',
+					'default'     => '8-4',
+					'transport'   => 'refresh',
+					'description' => __( 'Sets the content-to-sidebar width ratio. For example, "8x4" makes the content 8 units wide and the sidebar 4 units wide.', 'memberlite' ),
+					'choices'     => array(
+						'6-6'  => '6x6',
+						'7-5'  => '7x5',
+						'8-4'  => '8x4',
+						'9-3'  => '9x3',
+						'10-2' => '10x2',
+						'11-1' => '11x1',
+					),
+					'active_callback' => function() use ( $post_type ) {
+						return get_theme_mod( 'sidebar_location_' . $post_type, 'sidebar-blog-right' ) !== 'sidebar-blog-none';
+					},
+				) );
+			}
+		}
 	}
 
 	/**
@@ -1144,6 +1228,7 @@ class Memberlite_Customize {
 		wp_localize_script( 'Memberlite_Customizer-controls', 'colorSchemes', $js_schemes );
 		wp_localize_script( 'Memberlite_Customizer-controls', 'colorSettingKeys', memberlite_get_color_setting_keys() );
 		wp_localize_script( 'Memberlite_Customizer-controls', 'memberlite_preset_slugs', memberlite_get_color_preset_slugs() );
+		wp_localize_script( 'Memberlite_Customizer-controls', 'memberlite_cpt_archive_slugs', memberlite_get_customizer_cpts() );
 
 		wp_enqueue_style(
 			'memberlite-customizer-css',

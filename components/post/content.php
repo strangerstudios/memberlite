@@ -48,7 +48,7 @@ $aria_attr = is_single() && memberlite_should_masthead_render() ? ' aria-labelle
 
 		if ( is_archive() || ( is_home() && get_post_type() === 'post' ) ) {
 			// If we're on an archive or the blog posts list that isn't an archive.
-			$content_archives = get_theme_mod( 'content_archives', $memberlite_defaults['content_archives'] );
+			$content_archives = memberlite_get_content_archives_theme_mod();
 			if ( $content_archives === 'excerpt' ) {
 				memberlite_the_excerpt();
 			} else {

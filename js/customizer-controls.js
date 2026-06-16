@@ -192,6 +192,31 @@
 		});
 	});
 
+	// Toggle columns_ratio visibility for CPTs based on sidebar_location value.
+	if ( typeof memberlite_cpt_archive_slugs !== 'undefined' ) {
+		memberlite_cpt_archive_slugs.forEach( function( postType ) {
+			const sidebarKey = 'sidebar_location_' + postType;
+			const ratioKey   = 'columns_ratio_' + postType;
+
+			wp.customize( sidebarKey, function( value ) {
+				value.bind( function( newval ) {
+					wp.customize.control( ratioKey, function( control ) {
+						control.active.set( newval !== 'sidebar-blog-none' );
+					} );
+				} );
+			} );
+		} );
+	}
+
+	// Toggle columns_ratio_blog visibility based on sidebar_location_blog value.
+	wp.customize( 'sidebar_location_blog', function( value ) {
+		value.bind( function( newval ) {
+			wp.customize.control( 'columns_ratio_blog', function( control ) {
+				control.active.set( newval !== 'sidebar-blog-none' );
+			} );
+		} );
+	} );
+
 	// If a header/footer variation slug setting points to a post that no longer
 	// appears in the dropdown (e.g. the post was trashed), the <select> has no
 	// matching option and jQuery's .val() returns null. Visually fall back so
