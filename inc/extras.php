@@ -73,12 +73,17 @@ function memberlite_get_customizer_cpts(): array {
 			return is_string( $slug ) && $slug !== '';
 		} );
 
-		// Strip Memberlite's own internal CPTs, any unregistered slugs, and any
-		// CPTs with show_ui false that may have been injected via the filter.
+		// Strip Memberlite's own internal CPTs, any unregistered slugs, any
+		// CPTs with show_ui false that may have been injected via the filter,
+		// and any duplicate slugs (which would otherwise double-register
+		// sections and double-bind the Customizer's JS visibility toggles).
 		$memberlite_internal = array( 'memberlite_header', 'memberlite_footer' );
 		$cache = array();
 
 		foreach ( array_diff( $filtered, $memberlite_internal ) as $slug ) {
+			if ( in_array( $slug, $cache, true ) ) {
+				continue;
+			}
 			$obj = get_post_type_object( $slug );
 			if ( $obj && $obj->show_ui ) {
 				$cache[] = $slug;
