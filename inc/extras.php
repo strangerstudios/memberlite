@@ -22,11 +22,10 @@ add_filter( 'wp_page_menu_args', 'memberlite_page_menu_args' );
 /**
  * Returns the list of CPT slugs that have per-type Customizer settings.
  *
- * Auto-detects supported PMPro CPTs when registered. Use the
- * memberlite_pmpro_cpt_layout_settings_enabled filter to disable the
- * built-in PMPro CPT detection, or the memberlite_customizer_cpts filter
- * to add CPTs from a child theme or third-party plugin. Section labels are
- * derived from each post type's registered plural name.
+ * PMPro CPTs, if registered, are defaults.
+ * Use the memberlite_customizer_cpts filter to add CPTs from
+ * a child theme or third-party plugin.
+ * Section labels are derived from each post type's registered plural name.
  *
  * @since TBD
  * @return string[]
@@ -34,7 +33,7 @@ add_filter( 'wp_page_menu_args', 'memberlite_page_menu_args' );
 function memberlite_get_customizer_cpts(): array {
 	static $cache = null;
 
-	if ( null === $cache ) {
+	if ( $cache === null ) {
 		/**
 		 * Filters the CPT slugs that receive per-type layout settings in the Customizer.
 		 *
@@ -49,11 +48,9 @@ function memberlite_get_customizer_cpts(): array {
 		 * } );
 		 *
 		 * @since TBD
-		 * @param string[]|string $cpts
-		 * Indexed array of post type slugs, or a
-		 * comma-separated string of slugs. Pass an
-		 * empty array or empty string to disable all
-		 * built-in PMPro CPTs.
+		 * @param string[]|string $cpts Indexed array of post type slugs,
+		 * or a comma-separated string of slugs. Pass an empty array or
+		 * empty string to disable all built-in PMPro CPTs.
 		 */
 		$filtered = apply_filters( 'memberlite_customizer_cpts', array(
 			'pmpro_course',
@@ -68,12 +65,12 @@ function memberlite_get_customizer_cpts(): array {
 
 		// Normalize a string return to an array.
 		if ( is_string( $filtered ) ) {
-			$filtered = '' !== $filtered ? array_map( 'trim', explode( ',', $filtered ) ) : array();
+			$filtered = $filtered !== '' ? array_map( 'trim', explode( ',', $filtered ) ) : array();
 		}
 
 		// Strip non-string elements (e.g. accidental nested arrays) and empty strings.
 		$filtered = array_filter( $filtered, function( $slug ) {
-			return is_string( $slug ) && '' !== $slug;
+			return is_string( $slug ) && $slug !== '';
 		} );
 
 		// Strip Memberlite's own internal CPTs, any unregistered slugs, and any
