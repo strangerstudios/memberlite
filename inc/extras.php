@@ -22,7 +22,7 @@ add_filter( 'wp_page_menu_args', 'memberlite_page_menu_args' );
 /**
  * Returns the list of CPT slugs that have per-type Customizer settings.
  *
- * PMPro CPTs, if registered, are defaults.
+ * PMPro CPT slugs are passed as defaults; unregistered ones are filtered out before caching.
  * Use the memberlite_customizer_cpts filter to add CPTs from
  * a child theme or third-party plugin.
  * Section labels are derived from each post type's registered plural name.

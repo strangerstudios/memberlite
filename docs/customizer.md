@@ -69,15 +69,15 @@ add_filter( 'memberlite_customizer_cpts', function( array $cpts ): array {
 } );
 ```
 
-The filter receives an indexed array of CPT slugs and must return the same.
+The filter receives an indexed array of CPT slugs. It can return an indexed array, or a comma-separated string of slugs.
 
-**Guard behavior:** After the filter runs, Memberlite silently removes any slugs that are:
+**Guard behavior:** After the filter runs, Memberlite normalizes the return value and then silently removes any slugs that are:
 - Registered by the Memberlite parent theme itself (e.g. `memberlite_header`, `memberlite_footer`)
 - Not currently registered as a post type
 - Backed by a CPT with `show_ui => false` (internal/programmatic post types)
-- Not a non-empty string (e.g. empty strings, arrays, integers are stripped)
+- Not a non-empty string (e.g. empty strings, nested arrays, integers are stripped)
 
-If the filter callback returns a non-array, the return value is discarded and the pre-filter list (the auto-detected PMPro CPTs) is used as a fallback, so built-in CPTs are never lost due to a bad callback.
+If the filter callback returns something other than an array or string (e.g. `null`, `false`, an integer), it is treated as an empty array.
 
 This means passing an unregistered, internal, or malformed slug through the filter is safe — it will be dropped without an error.
 
@@ -85,10 +85,16 @@ This means passing an unregistered, internal, or malformed slug through the filt
 
 ### Disabling PMPro CPT Detection
 
-To prevent Memberlite from auto-detecting and adding PMPro CPTs, use the `memberlite_pmpro_cpt_layout_settings_enabled` filter. CPTs added via `memberlite_customizer_cpts` are unaffected — this only controls the built-in detection.
+To prevent Memberlite from adding PMPro CPTs, return an empty array or empty string from the `memberlite_customizer_cpts` filter. To replace them entirely with your own CPTs, return an array containing only those slugs.
 
 ```php
-add_filter( 'memberlite_pmpro_cpt_layout_settings_enabled', '__return_false' );
+// Remove all PMPro CPTs.
+add_filter( 'memberlite_customizer_cpts', '__return_empty_array' );
+
+// Remove all PMPro CPTs and substitute your own.
+add_filter( 'memberlite_customizer_cpts', function( $cpts ) {
+    return array( 'my_cpt_slug' );
+} );
 ```
 
 ### Settings per CPT
@@ -186,7 +192,7 @@ This is not a full list. Explore the codebase for more.
 
 ### `inc/extras.php`
 
-- `memberlite_get_customizer_cpts()` - Returns the indexed array of CPT slugs that receive per-type layout settings. Auto-detects known PMPro CPTs (unless disabled via `memberlite_pmpro_cpt_layout_settings_enabled`), applies the `memberlite_customizer_cpts` filter, then strips internal Memberlite CPTs, CPTs with `show_ui => false`, unregistered slugs, and any non-string or empty values. If the filter returns a non-array, falls back to the pre-filter list. Result is statically cached.
+- `memberlite_get_customizer_cpts()` - Returns the indexed array of CPT slugs that receive per-type layout settings. PMPro CPTs are passed as defaults to the `memberlite_customizer_cpts` filter. After the filter, normalizes the return value (string → array, unexpected types → empty array), then strips internal Memberlite CPTs, unregistered slugs, CPTs with `show_ui => false`, and any non-string or empty elements. Result is statically cached.
 
 - `memberlite_get_current_cpt_type()` - Returns the current CPT slug when on a CPT archive or single post that has Customizer settings, otherwise `null`. Used to resolve sidebar and columns ratio settings for both archive and single views.
 
