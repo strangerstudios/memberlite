@@ -22,11 +22,10 @@ add_filter( 'wp_page_menu_args', 'memberlite_page_menu_args' );
 /**
  * Returns the list of CPT slugs that have per-type Customizer settings.
  *
- * Auto-detects supported PMPro CPTs when registered. Use the
- * memberlite_pmpro_cpt_layout_settings_enabled filter to disable the
- * built-in PMPro CPT detection, or the memberlite_customizer_cpts filter
- * to add CPTs from a child theme or third-party plugin. Section labels are
- * derived from each post type's registered plural name.
+ * PMPro CPT slugs are passed as defaults; unregistered ones are filtered out before caching.
+ * Use the memberlite_customizer_cpts filter to add CPTs from
+ * a child theme or third-party plugin.
+ * Section labels are derived from each post type's registered plural name.
  *
  * @since TBD
  * @return string[]
@@ -34,35 +33,7 @@ add_filter( 'wp_page_menu_args', 'memberlite_page_menu_args' );
 function memberlite_get_customizer_cpts(): array {
 	static $cache = null;
 
-	if ( null === $cache ) {
-		$cpts = array();
-
-		/**
-		 * Filters whether the built-in PMPro CPT layout settings are enabled.
-		 *
-		 * Return false to prevent PMPro CPTs from receiving Customizer sections.
-		 * CPTs added via the memberlite_customizer_cpts filter are unaffected.
-		 *
-		 * Example usage in a child theme:
-		 * add_filter( 'memberlite_pmpro_cpt_layout_settings_enabled', '__return_false' );
-		 *
-		 * @since TBD
-		 * @param bool $enabled Whether PMPro CPT layout settings are enabled. Default true.
-		 */
-		if ( apply_filters( 'memberlite_pmpro_cpt_layout_settings_enabled', true ) ) {
-			$pmpro_cpts = array(
-				'pmpro_course',
-				'pmpro_lesson',
-				'pmpro_series',
-			);
-
-			foreach ( $pmpro_cpts as $pmpro_cpt ) {
-				if ( post_type_exists( $pmpro_cpt ) ) {
-					$cpts[] = $pmpro_cpt;
-				}
-			}
-		}
-
+	if ( $cache === null ) {
 		/**
 		 * Filters the CPT slugs that receive per-type layout settings in the Customizer.
 		 *
@@ -77,27 +48,42 @@ function memberlite_get_customizer_cpts(): array {
 		 * } );
 		 *
 		 * @since TBD
-		 * @param string[] $cpts Indexed array of post type slugs.
+		 * @param string[]|string $cpts Indexed array of post type slugs,
+		 * or a comma-separated string of slugs. Pass an empty array or
+		 * empty string to disable all built-in PMPro CPTs.
 		 */
-		$filtered = apply_filters( 'memberlite_customizer_cpts', $cpts );
+		$filtered = apply_filters( 'memberlite_customizer_cpts', array(
+			'pmpro_course',
+			'pmpro_lesson',
+			'pmpro_series',
+		) );
 
-		// Guard against a filter callback returning a non-array; fall back to
-		// the pre-filter list so built-in PMPro CPTs are not lost.
-		if ( ! is_array( $filtered ) ) {
-			$filtered = $cpts;
+		// Coerce any unexpected return type (null, false, int, etc.) to an empty array.
+		if ( ! is_string( $filtered ) && ! is_array( $filtered ) ) {
+			$filtered = array();
 		}
 
-		// Strip any non-string or empty values injected via the filter.
+		// Normalize a string return to an array.
+		if ( is_string( $filtered ) ) {
+			$filtered = $filtered !== '' ? array_map( 'trim', explode( ',', $filtered ) ) : array();
+		}
+
+		// Strip non-string elements (e.g. accidental nested arrays) and empty strings.
 		$filtered = array_filter( $filtered, function( $slug ) {
-			return is_string( $slug ) && '' !== $slug;
+			return is_string( $slug ) && $slug !== '';
 		} );
 
-		// Strip Memberlite's own internal CPTs, any unregistered slugs, and any
-		// CPTs with show_ui false that may have been injected via the filter.
+		// Strip Memberlite's own internal CPTs, any unregistered slugs, any
+		// CPTs with show_ui false that may have been injected via the filter,
+		// and any duplicate slugs (which would otherwise double-register
+		// sections and double-bind the Customizer's JS visibility toggles).
 		$memberlite_internal = array( 'memberlite_header', 'memberlite_footer' );
 		$cache = array();
 
 		foreach ( array_diff( $filtered, $memberlite_internal ) as $slug ) {
+			if ( in_array( $slug, $cache, true ) ) {
+				continue;
+			}
 			$obj = get_post_type_object( $slug );
 			if ( $obj && $obj->show_ui ) {
 				$cache[] = $slug;
