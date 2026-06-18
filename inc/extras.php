@@ -126,6 +126,9 @@ function memberlite_get_current_cpt_archive_type(): ?string {
  * @return bool
  */
 function memberlite_cpt_inherits_posts_archives( string $cpt_type ): bool {
+	if ( ! in_array( $cpt_type, memberlite_get_customizer_cpts(), true ) ) {
+		return true;
+	}
 	return (bool) get_theme_mod( 'inherit_posts_archives_' . $cpt_type, true );
 }
 
