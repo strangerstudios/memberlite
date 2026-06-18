@@ -653,7 +653,7 @@ class Memberlite_Customize {
 				$section  = 'memberlite_' . $post_type . '_archive_options';
 				$post_type_obj = get_post_type_object( $post_type );
 
-				// CPT: Inherit from Posts & Archives ==
+				// Inherit from Posts & Archives ==
 				self::add_memberlite_setting_control( $wp_customize, 'inherit_posts_archives_' . $post_type, __( 'Inherit from Posts & Archives', 'memberlite' ), $section, array(
 					'type'              => 'checkbox',
 					'default'           => true,
