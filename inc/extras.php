@@ -120,6 +120,7 @@ function memberlite_get_current_cpt_archive_type(): ?string {
 
 /**
  * Returns true if the given CPT should inherit layout settings from Posts & Archives.
+ * Also returns true if the CPT is no longer being passed through the memberlite_customizer_cpts filter.
  *
  * @since TBD
  * @param string $cpt_type CPT slug.
