@@ -192,17 +192,37 @@
 		});
 	});
 
-	// Toggle columns_ratio visibility for CPTs based on sidebar_location value.
+	// Toggle CPT controls based on inherit checkbox and sidebar_location value.
 	if ( typeof memberlite_cpt_archive_slugs !== 'undefined' ) {
 		memberlite_cpt_archive_slugs.forEach( function( postType ) {
+			const inheritKey = 'inherit_posts_archives_' + postType;
+			const archiveKey = 'content_archives_' + postType;
 			const sidebarKey = 'sidebar_location_' + postType;
 			const ratioKey   = 'columns_ratio_' + postType;
 
+			function updateRatioVisibility( inherited, sidebarVal ) {
+				wp.customize.control( ratioKey, function( control ) {
+					control.active.set( ! inherited && sidebarVal !== 'sidebar-blog-none' );
+				} );
+			}
+
+			wp.customize( inheritKey, function( setting ) {
+				setting.bind( function( inherited ) {
+					wp.customize.control( archiveKey, function( control ) {
+						control.active.set( ! inherited );
+					} );
+					wp.customize.control( sidebarKey, function( control ) {
+						control.active.set( ! inherited );
+					} );
+					const sidebarVal = wp.customize( sidebarKey ) ? wp.customize( sidebarKey )() : 'sidebar-blog-right';
+					updateRatioVisibility( inherited, sidebarVal );
+				} );
+			} );
+
 			wp.customize( sidebarKey, function( value ) {
 				value.bind( function( newval ) {
-					wp.customize.control( ratioKey, function( control ) {
-						control.active.set( newval !== 'sidebar-blog-none' );
-					} );
+					const inherited = wp.customize( inheritKey ) ? wp.customize( inheritKey )() : true;
+					updateRatioVisibility( inherited, newval );
 				} );
 			} );
 		} );

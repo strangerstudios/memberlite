@@ -99,11 +99,16 @@ add_filter( 'memberlite_customizer_cpts', function( $cpts ) {
 
 ### Settings per CPT
 
+Each CPT section starts with an **Inherit from Posts & Archives** checkbox (on by default). When checked, the Archive Layout, Sidebar Location, and Columns Ratio controls are hidden and the CPT uses whatever is set in Posts & Archives. Uncheck it to control the CPT independently.
+
+The inherit state is stored as the `inherit_posts_archives_{cpt}` theme_mod (e.g. `inherit_posts_archives_pmpro_course`). It defaults to `true`. This means a CPT will always fall back to Posts & Archives unless a user has explicitly unchecked the box — even if that CPT's other theme_mods have been saved.
+
 | Setting | Applies to | Shown when |
 |---|---|---|
-| Archive Layout | Archive pages only | CPT has `has_archive` |
-| Sidebar Location | Archive pages + single post views | Always |
-| Columns Ratio | Archive pages + single post views | Sidebar is not "No Sidebar" |
+| Inherit from Posts & Archives | Archive pages + single post views | Always |
+| Archive Layout | Archive pages only | Inherit is unchecked, CPT has `has_archive` |
+| Sidebar Location | Archive pages + single post views | Inherit is unchecked |
+| Columns Ratio | Archive pages + single post views | Inherit is unchecked, sidebar is not "No Sidebar" |
 
 Section labels are derived from the CPT's registered plural name (e.g. a CPT registered as "Courses" produces a "Courses Layout" section).
 
@@ -193,6 +198,8 @@ This is not a full list. Explore the codebase for more.
 ### `inc/extras.php`
 
 - `memberlite_get_customizer_cpts()` - Returns the indexed array of CPT slugs that receive per-type layout settings. PMPro CPTs are passed as defaults to the `memberlite_customizer_cpts` filter. After the filter, normalizes the return value (string → array, unexpected types → empty array), then strips internal Memberlite CPTs, unregistered slugs, CPTs with `show_ui => false`, and any non-string or empty elements. Result is statically cached.
+
+- `memberlite_cpt_inherits_posts_archives( $cpt_type )` - Returns `true` if the given CPT should inherit layout settings from Posts & Archives. Reads the `inherit_posts_archives_{cpt}` theme_mod; defaults to `true` so CPTs inherit unless explicitly opted out.
 
 - `memberlite_get_current_cpt_type()` - Returns the current CPT slug when on a CPT archive or single post that has Customizer settings, otherwise `null`. Used to resolve sidebar and columns ratio settings for both archive and single views.
 

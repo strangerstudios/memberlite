@@ -653,6 +653,14 @@ class Memberlite_Customize {
 				$section  = 'memberlite_' . $post_type . '_archive_options';
 				$post_type_obj = get_post_type_object( $post_type );
 
+				// Inherit from Posts & Archives ==
+				self::add_memberlite_setting_control( $wp_customize, 'inherit_posts_archives_' . $post_type, __( 'Inherit from Posts & Archives', 'memberlite' ), $section, array(
+					'type'              => 'checkbox',
+					'default'           => true,
+					'description'       => __( 'When checked, this post type uses the layout settings from Posts & Archives. Uncheck to control it separately.', 'memberlite' ),
+					'sanitize_callback' => array( 'Memberlite_Customize', 'sanitize_checkbox' ),
+				) );
+
 				if ( $post_type_obj && $post_type_obj->has_archive ) {
 					self::add_memberlite_setting_control( $wp_customize, 'content_archives_' . $post_type, __( 'Archive Layout', 'memberlite' ), $section, array(
 						'type'        => 'radio',
@@ -663,6 +671,9 @@ class Memberlite_Customize {
 							'excerpt' => __( 'Show Post Excerpts', 'memberlite' ),
 							'grid'    => __( 'Show Posts in a Grid (sidebar hidden)', 'memberlite' ),
 						),
+						'active_callback' => function() use ( $post_type ) {
+							return ! (bool) get_theme_mod( 'inherit_posts_archives_' . $post_type, true );
+						},
 					) );
 				}
 
@@ -679,6 +690,9 @@ class Memberlite_Customize {
 						'sidebar-blog-left'  => __( 'Left Sidebar', 'memberlite' ),
 						'sidebar-blog-none'  => __( 'No Sidebar', 'memberlite' ),
 					),
+					'active_callback' => function() use ( $post_type ) {
+						return ! (bool) get_theme_mod( 'inherit_posts_archives_' . $post_type, true );
+					},
 				) );
 
 				self::add_memberlite_setting_control( $wp_customize, 'columns_ratio_' . $post_type, __( 'Columns Ratio', 'memberlite' ), $section, array(
@@ -695,7 +709,8 @@ class Memberlite_Customize {
 						'11-1' => '11x1',
 					),
 					'active_callback' => function() use ( $post_type ) {
-						return get_theme_mod( 'sidebar_location_' . $post_type, 'sidebar-blog-right' ) !== 'sidebar-blog-none';
+						return ! (bool) get_theme_mod( 'inherit_posts_archives_' . $post_type, true )
+							&& get_theme_mod( 'sidebar_location_' . $post_type, 'sidebar-blog-right' ) !== 'sidebar-blog-none';
 					},
 				) );
 			}
