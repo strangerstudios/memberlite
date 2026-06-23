@@ -48,7 +48,7 @@ add_action( 'enqueue_block_editor_assets', 'memberlite_enqueue_nav_menu_block_da
  * Enqueue editor JS that hides Memberlite-scoped blocks from the inserter
  * on post types other than memberlite_header and memberlite_footer.
  *
- * @since 7.1.1
+ * @since 7.1.2
  * @return void
  */
 function memberlite_enqueue_scope_blocks_script(): void {

@@ -602,7 +602,7 @@ function memberlite_get_masthead_banner_image_url() {
 /**
  * Get banner's post ID
  *
- * @since TBD
+ * @since 7.1.2
  * @return mixed
  */
 function memberlite_get_banner_post_id() {
@@ -617,7 +617,7 @@ function memberlite_get_banner_post_id() {
 /**
  * Determine if the masthead banner should be rendered
  *
- * @since TBD
+ * @since 7.1.2
  * @return bool
  */
 function memberlite_should_masthead_render(): bool {

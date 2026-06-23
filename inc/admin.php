@@ -107,7 +107,7 @@ add_filter( 'submenu_file', 'memberlite_footer_cpt_submenu_highlight' );
 /**
  * Get page-level override assignments for a header or footer variation post.
  *
- * @since TBD
+ * @since 7.1.2
  * @param string $meta_key  The post meta key used for per-page overrides.
  * @param string $post_name The post_name of the variation post.
  * @return array Human-readable assignment entries, empty if none found.
@@ -184,7 +184,7 @@ function memberlite_get_footer_assignments( string $post_name ): array {
  * Returns human-readable labels used by the list table column and the
  * trash row action prevention.
  *
- * @since TBD
+ * @since 7.1.2
  * @param string $post_name The post_name of the memberlite_header post.
  * @return array Human-readable assignment labels, empty if unassigned.
  */
@@ -244,7 +244,7 @@ add_action( 'manage_memberlite_footer_posts_custom_column', 'memberlite_footer_r
 /**
  * Render the "Used By" column content for header posts.
  *
- * @since TBD
+ * @since 7.1.2
  * @param string $column  The column name.
  * @param int    $post_id The post ID.
  */
@@ -268,7 +268,7 @@ add_action( 'manage_memberlite_header_posts_custom_column', 'memberlite_header_r
 /**
  * Set up and format links in the "Used By" column for variation posts.
  *
- * @since TBD
+ * @since 7.1.2
  * @param array $assignments Array of variation assignment data to display.
  *
  * @return void

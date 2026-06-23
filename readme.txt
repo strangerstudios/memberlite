@@ -92,6 +92,22 @@ Memberlite includes formatting for use with:
 
 == Changelog ==
 
+= 7.1.2 - 2026-06-25 =
+
+* FEATURE: Added new Customizer layout settings for Other Post Types, including support for inheriting Posts & Archives settings by default. #303 #317 #318 @RachelRVasquez
+* ENHANCEMENT: Improved custom post type layout support across archives and single views, including sidebar, column ratio, archive visibility, and safer fallback behavior. #303 #305 #317 #318 @RachelRVasquez
+* ENHANCEMENT: Added support for exporting and importing more site identity settings, and improved help text in the import/export tool. #307 #311 #316 @RachelRVasquez @kimcoleman
+* ENHANCEMENT: Added one-time copying of parent theme mods when activating a Memberlite child theme. #313 @kimcoleman
+* ENHANCEMENT: Added admin column helper functions for header variation management. #297 @RachelRVasquez
+* BUG FIX: Fixed footer variation handling for custom post type single views. #305 @RachelRVasquez
+* BUG FIX: Fixed bbPress search/sidebar inheritance behavior. #315 @kimcoleman
+* BUG FIX: Fixed banner display and removed the hyperlink wrapping the banner. #314 @kimcoleman
+* ENHANCEMENT: Fixed accessibility issue where the `aria-labelledby="page-title"` was tied to the banner instead of the post/page title. #295 @RachelRVasquez
+* REFACTOR: Refactored banner/masthead functionality so we're only calling them once in the `header.php` and using helpers that determine when/if they should render. Added new helpers `memberlite_get_banner_post_id` and `memberlite_should_masthead_render` #295 @RachelRVasquez
+* ENHANCEMENT: Fixed outline button styling and 16:9 image handling improvements. #312 @kimcoleman
+* BUG FIX: Fixed third-party JS-only blocks being removed from allowed blocks. #298 @dparker1005
+* ENHANCEMENT: Fixed footer pattern 04 link color contrast in dark color schemes. #302 @kimcoleman
+
 = 7.1.1 - 2026-05-13 =
 
 * BUG FIX: Fixed incorrect comment counts and comments not displaying when comments are closed. #292 (@dwanjuki)

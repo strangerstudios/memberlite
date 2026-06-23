@@ -6,6 +6,8 @@
  * approach can drop third-party blocks that register client-side only
  * (e.g. yoast-seo/table-of-contents). This filter targets only our two
  * blocks by name and leaves the rest of the inserter untouched.
+ *
+ * @since 7.1.2
  */
 
 import { addFilter } from '@wordpress/hooks';
