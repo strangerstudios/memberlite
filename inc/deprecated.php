@@ -589,32 +589,3 @@ function memberlite_get_variation( $slug ) {
 	// No replacement for this function, returning 'default' will get the components/footer/variation-default.php template part
 	return 'default';
 }
-
-/**
- * Deprecated: 'memberlite_get_banner_image' filter.
- *
- * Previously applied in memberlite_get_banner_image() (formerly in inc/extras.php) to allow
- * filtering the banner image HTML output. The function was refactored in 7.0 and moved to
- * inc/page_banners.php with a revised signature ($post_id as the first argument instead of
- * $attachment_id); this filter was not carried over.
- *
- * @deprecated 7.0 No replacement.
- *
- * Old filter: add_filter( 'memberlite_get_banner_image', 'callback', 10, 6 );
- * Old params: string $html, int $attachment_id, string $size, bool $icon, string $attr, int $post_id
- */
-
-/**
- * Deprecated: 'memberlite_banner_image_src' filter.
- *
- * Previously applied in memberlite_get_banner_image_src() (formerly in inc/extras.php) to allow
- * filtering the banner image source array returned by wp_get_attachment_image_src(). The function
- * was refactored in 7.0 and moved to inc/page_banners.php with revised logic that looks up the
- * dedicated banner image from MemberliteMultiPostThumbnails directly; this filter was not
- * carried over.
- *
- * @deprecated 7.0 No replacement.
- *
- * Old filter: add_filter( 'memberlite_banner_image_src', 'callback', 10, 3 );
- * Old params: array $src, string $size, int $post_id
- */
