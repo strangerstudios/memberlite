@@ -573,6 +573,34 @@ function memberlite_get_legacy_color_scheme_definitions(): array {
 }
 
 /**
+ * Get the post thumbnail image HTML and allow filtering.
+ *
+ * @since 6.1.1
+ * @deprecated 7.0 No replacement available.
+ *
+ * @return string Empty string.
+ */
+function memberlite_get_banner_image() {
+	_deprecated_function( __FUNCTION__, '7.0' );
+
+	return '';
+}
+
+/**
+ * Get the post thumbnail image src and allow filtering.
+ *
+ * @since 6.1.1
+ * @deprecated 7.0 No replacement available.
+ *
+ * @return false
+ */
+function memberlite_get_banner_image_src() {
+	_deprecated_function( __FUNCTION__, '7.0' );
+
+	return false;
+}
+
+/**
  * Helper function meant to fetch template parts based on variation.
  * $slug kept for backwards compatibility.
  * Always returns 'default'.
