@@ -41,7 +41,7 @@ function memberlite_btn_shortcode($atts, $content = null) {
 	if( !empty( $icon ) && ( empty($icon_position) || ($icon_position == 'before') ) ) {
 		$r .= '<i class="' . esc_attr( $icon_class ) . ' fa-' . esc_attr( $icon ) . '"></i>';
 	}
-	$r .= $text;
+	$r .= wp_kses_post( $text );
 	if( !empty( $icon ) && ( $icon_position == 'after' ) ) {
 		$r .= '<i class="' . esc_attr( $icon_class ) . ' fa-' . esc_attr( $icon ) . '"></i>';
 	}
