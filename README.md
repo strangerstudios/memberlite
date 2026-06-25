@@ -5,28 +5,22 @@
 ## Description
 
 **Build a Professional WordPress Membership Site**
-Memberlite is the ideal theme for your membership site - packed with integration for top membership site plugins including Paid Memberships Pro and eLearning plugins like LifterLMS.
 
-Memberlite is fully customizable with your logo, colors, fonts, and more global layout settings. Memberlite is responsive, clean and minimal.
+Memberlite is a customizable hybrid WordPress theme for membership sites, online communities, courses, and content-rich businesses.
+Built to work seamlessly with [Paid Memberships Pro](https://www.paidmembershipspro.com/) and other popular plugins, it helps site owners launch quickly with flexible design controls for logos, fonts, colors, layouts, sidebars, and header/footer variations.
 
-## Getting Started
+## Customizing Memberlite
 
-Memberlite makes it easy to customize the appearance and layout of your site using the Theme Customization Screen (Appearance > Customize).
+New to Memberlite or setting up a site with the latest features? Start with our documentation:
 
-### Adding Your Logo
-Use the Customize > Site Identity screen to add a custom logo (formatted for retina display), update your Site Title and Tagline, and toggle the display of your Site Title & Tagline.
-
-[Explore Documentation on Custom Headers in Memberlite »](https://www.paidmembershipspro.com/documentation/memberlite/site-branding/)
-
-### Customize the Theme
-Use the Customize > Memberlite Options screen to modify theme layout, logo, fonts, colors, copyright message and more.
-
-[Explore Documentation on Customizing Memberlite »](https://www.paidmembershipspro.com/documentation/memberlite/memberlite-theme-customization)
+- [Getting Started](https://www.paidmembershipspro.com/documentation/memberlite/getting-started/)
+- [Customizer Settings](https://www.paidmembershipspro.com/documentation/memberlite/customize/)
+- [Header and Footer Customization](https://www.paidmembershipspro.com/documentation/memberlite/header-footer-variations/)
 
 ### Using Child Themes
-If you need to customize the theme beyond theme settings, use a child theme.
+If you need to customize the theme beyond theme settings, you can [use a child theme](https://www.paidmembershipspro.com/memberlite-child-theme/). Whether you're tweaking styles,
+adding functions, or making layout changes, using a child theme is a great way to future-proof your site.
 
-[About Child Themes (WordPress Developer Handbook) »](https://developer.wordpress.org/themes/advanced-topics/child-themes/)
 
 ### Integrated Plugins
 Memberlite includes formatting for use with:
@@ -57,7 +51,10 @@ If you find an issue/bug, let us know by [creating a detailed GitHub issue](http
 This is a developer's portal for Memberlite. We do not offer support on this channel. **Any support related questions should be directed to [paidmembershipspro.com](https://www.paidmembershipspro.com/contact/).**
 
 ## Contributing to Memberlite ##
-We encourage and welcome any contribution to Memberlite. Please read the [guidelines for contributing](https://github.com/strangerstudios/memberlite/blob/dev/.github/CONTRIBUTING.md) to this repository.
+We encourage and welcome any contribution to Memberlite. 
+Please read the [guidelines for contributing](https://github.com/strangerstudios/memberlite/blob/dev/.github/CONTRIBUTING.md) to this repository.
+
+You can also refer to [Memberlite's developer-focused documentation](https://github.com/strangerstudios/memberlite/blob/dev/docs/README.md) for more details on theme architecture, front-end practices, critical functions, and more.
 
 There are various **ways to help the development** of Memberlite:
 
