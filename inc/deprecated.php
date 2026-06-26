@@ -42,8 +42,6 @@ $memberlite_map_deprecated_hooks = array(
 	'memberlite_before_site_info'       => 'before_site_info',
 	'memberlite_after_site_info'        => 'after_site_info',
 	'memberlite_editor_color_palette'	=> null,
-	'memberlite_get_banner_image'       => null,
-	'memberlite_banner_image_src'       => null,
 );
 
 foreach ( $memberlite_map_deprecated_hooks as $new => $old ) {
@@ -570,34 +568,6 @@ function memberlite_get_legacy_color_scheme_definitions(): array {
 			),
 		),
 	);
-}
-
-/**
- * Get the post thumbnail image HTML and allow filtering.
- *
- * @since 6.1.1
- * @deprecated 7.0 No replacement available.
- *
- * @return string Empty string.
- */
-function memberlite_get_banner_image() {
-	_deprecated_function( __FUNCTION__, '7.0' );
-
-	return '';
-}
-
-/**
- * Get the post thumbnail image src and allow filtering.
- *
- * @since 6.1.1
- * @deprecated 7.0 No replacement available.
- *
- * @return false
- */
-function memberlite_get_banner_image_src() {
-	_deprecated_function( __FUNCTION__, '7.0' );
-
-	return false;
 }
 
 /**
