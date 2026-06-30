@@ -1,0 +1,9 @@
+/*--------------------------------------------------------------
+ 5.1 Non-Blog related archives
+--------------------------------------------------------------*/
+
+.post-type-archive #primary {
+	 article:first-of-type .entry-title {
+			 margin-top: 0;
+	 }
+}
