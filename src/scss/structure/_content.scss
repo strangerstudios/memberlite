@@ -74,7 +74,6 @@
 		margin: 0 0 var(--wp--preset--spacing--10) 0;
 
 		.entry-title {
-			margin: 0;
 			hyphens: auto;
 		}
 
@@ -104,6 +103,7 @@
 .entry-title {
 	overflow-wrap: break-word;
 	word-break: break-word;
+	margin: 0;
 }
 
 
