@@ -107,6 +107,7 @@ Memberlite includes formatting for use with:
 * BUG FIX: Fixed banner display and removed the hyperlink wrapping the banner. #314 @kimcoleman
 * BUG FIX: Fixed footer variation handling for custom post type single views. #305 @RachelRVasquez
 * BUG FIX: Fixed third-party JS-only blocks being removed from allowed blocks. #298 @dparker1005
+* REFACTOR: Make `.entry-title` zero margin style global. This ensures the CPT archive's two-column layout is horizontally aligned under the banner/masthead. #326 @RachelRVasquez
 * REFACTOR: The `memberlite_footer_add_used_by_column` function released in 7.1 has been renamed to `memberlite_variation_add_used_by_column` so that it's more generic. Used by both the header and footer variations. #297 @RachelRVasquez
 * REFACTOR: Refactored banner/masthead functionality so we're only calling them once in the `header.php` and using helpers that determine when/if they should render. Added new helpers `memberlite_get_banner_post_id` and `memberlite_should_masthead_render` #295 @RachelRVasquez
 
