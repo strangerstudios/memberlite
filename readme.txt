@@ -95,6 +95,7 @@ Memberlite includes formatting for use with:
 = 7.1.2 - 2026-06-25 =
 
 * FEATURE: Added new Customizer layout settings for Other Post Types, including support for inheriting Posts & Archives settings by default. #303 #317 #318 @RachelRVasquez
+* ENHANCEMENT: Wrapped the text attribute in the `memberlite_btn` shortcode with `esc_html` to prevent XSS. #321 @kimcoleman
 * ENHANCEMENT: Improved custom post type layout support across archives and single views, including sidebar, column ratio, archive visibility, and safer fallback behavior. #303 #305 #317 #318 @RachelRVasquez
 * ENHANCEMENT: Added support for exporting and importing more site identity settings, and improved help text in the import/export tool. #307 #311 #316 @RachelRVasquez @kimcoleman
 * ENHANCEMENT: Added one-time copying of parent theme mods when activating a Memberlite child theme. #313 @kimcoleman
