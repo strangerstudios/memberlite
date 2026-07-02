@@ -20,6 +20,15 @@
 		margin: 0 0 var(--wp--preset--spacing--20) 0;
 		overflow: hidden;
 		position: relative;
+
+		img.banner-image {
+			height: 100%;
+			left: 0;
+			object-fit: cover;
+			position: absolute;
+			top: 0;
+			width: 100%;
+		}
 	}
 
 	// When a banner image is present, overlay the entry header
@@ -65,7 +74,6 @@
 		margin: 0 0 var(--wp--preset--spacing--10) 0;
 
 		.entry-title {
-			margin: 0;
 			hyphens: auto;
 		}
 
@@ -95,6 +103,7 @@
 .entry-title {
 	overflow-wrap: break-word;
 	word-break: break-word;
+	margin: 0;
 }
 
 
@@ -223,6 +232,7 @@
 .entry-footer .edit-link {
 	display: block;
 	width: max-content;
+	padding-top: var(--wp--preset--spacing--10);
 
 	a.post-edit-link {
 		@include tool-tip-base;

@@ -6,6 +6,7 @@ module.exports = {
 	entry: {
 		'editor/block-inserter': path.resolve( process.cwd(), 'src/editor/block-inserter.js' ),
 		'editor/custom-settings': path.resolve( process.cwd(), 'src/editor/custom-settings.js' ),
+		'editor/scope-memberlite-blocks': path.resolve( process.cwd(), 'src/editor/scope-memberlite-blocks.js' ),
 		'blocks/nav-menu/index': path.resolve( process.cwd(), 'src/blocks/nav-menu/index.js' ),
 		'blocks/member-info/index': path.resolve( process.cwd(), 'src/blocks/member-info/index.js' ),
 	},

@@ -45,6 +45,35 @@ function memberlite_enqueue_nav_menu_block_data(): void {
 add_action( 'enqueue_block_editor_assets', 'memberlite_enqueue_nav_menu_block_data' );
 
 /**
+ * Enqueue editor JS that hides Memberlite-scoped blocks from the inserter
+ * on post types other than memberlite_header and memberlite_footer.
+ *
+ * @since 7.1.2
+ * @return void
+ */
+function memberlite_enqueue_scope_blocks_script(): void {
+	$asset_path = get_template_directory() . '/build/editor/scope-memberlite-blocks.asset.php';
+
+	if ( ! file_exists( $asset_path ) ) {
+		if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
+			error_log( 'Memberlite: Missing asset file at ' . $asset_path );
+		}
+		return;
+	}
+
+	$asset_file = include $asset_path;
+
+	wp_enqueue_script(
+		'memberlite-scope-blocks',
+		get_template_directory_uri() . '/build/editor/scope-memberlite-blocks.js',
+		$asset_file['dependencies'],
+		$asset_file['version'],
+		true
+	);
+}
+add_action( 'enqueue_block_editor_assets', 'memberlite_enqueue_scope_blocks_script' );
+
+/**
  * Enqueue JS for custom block inserter icon for our Memberlite block category.
  *
  * @since 7.1

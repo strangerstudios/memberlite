@@ -20,6 +20,170 @@ function memberlite_page_menu_args( $args ) {
 add_filter( 'wp_page_menu_args', 'memberlite_page_menu_args' );
 
 /**
+ * Returns the list of CPT slugs that have per-type Customizer settings.
+ *
+ * PMPro CPT slugs are passed as defaults; unregistered ones are filtered out before caching.
+ * Use the memberlite_customizer_cpts filter to add CPTs from
+ * a child theme or third-party plugin.
+ * Section labels are derived from each post type's registered plural name.
+ *
+ * @since 7.1.2
+ * @return string[]
+ */
+function memberlite_get_customizer_cpts(): array {
+	static $cache = null;
+
+	if ( $cache === null ) {
+		/**
+		 * Filters the CPT slugs that receive per-type layout settings in the Customizer.
+		 *
+		 * Use this filter to add CPTs registered in a child theme or third-party
+		 * plugin. To remove a built-in PMPro CPT, return the array without that slug.
+		 * Note: not all CPTs will support all Customizer settings even if added here.
+		 *
+		 * Example usage in a child theme:
+		 * add_filter( 'memberlite_customizer_cpts', function( $cpts ) {
+		 *     $cpts[] = 'my_custom_post_type';
+		 *     return $cpts;
+		 * } );
+		 *
+		 * @since 7.1.2
+		 * @param string[]|string $cpts Indexed array of post type slugs,
+		 * or a comma-separated string of slugs. Pass an empty array or
+		 * empty string to disable all built-in PMPro CPTs.
+		 */
+		$filtered = apply_filters( 'memberlite_customizer_cpts', array(
+			'pmpro_course',
+			'pmpro_lesson',
+			'pmpro_series',
+		) );
+
+		// Coerce any unexpected return type (null, false, int, etc.) to an empty array.
+		if ( ! is_string( $filtered ) && ! is_array( $filtered ) ) {
+			$filtered = array();
+		}
+
+		// Normalize a string return to an array.
+		if ( is_string( $filtered ) ) {
+			$filtered = $filtered !== '' ? array_map( 'trim', explode( ',', $filtered ) ) : array();
+		}
+
+		// Strip non-string elements (e.g. accidental nested arrays) and empty strings.
+		$filtered = array_filter( $filtered, function( $slug ) {
+			return is_string( $slug ) && $slug !== '';
+		} );
+
+		// Strip Memberlite's own internal CPTs, any unregistered slugs, any
+		// CPTs with show_ui false that may have been injected via the filter,
+		// and any duplicate slugs (which would otherwise double-register
+		// sections and double-bind the Customizer's JS visibility toggles).
+		$memberlite_internal = array( 'memberlite_header', 'memberlite_footer' );
+		$cache = array();
+
+		foreach ( array_diff( $filtered, $memberlite_internal ) as $slug ) {
+			if ( in_array( $slug, $cache, true ) ) {
+				continue;
+			}
+			$obj = get_post_type_object( $slug );
+			if ( $obj && $obj->show_ui ) {
+				$cache[] = $slug;
+			}
+		}
+	}
+
+	return $cache;
+}
+
+/**
+ * Returns the current CPT slug if we are on a CPT archive that has
+ * per-archive Customizer settings, otherwise null.
+ *
+ * @since 7.1.2
+ * @return string|null
+ */
+function memberlite_get_current_cpt_archive_type(): ?string {
+	if ( ! is_post_type_archive() ) {
+		return null;
+	}
+
+	$queried   = get_queried_object();
+	$post_type = $queried->name ?? null;
+
+	if ( ! $post_type ) {
+		return null;
+	}
+
+	$cpts = memberlite_get_customizer_cpts();
+
+	return in_array( $post_type, $cpts, true ) ? $post_type : null;
+}
+
+/**
+ * Returns true if the given CPT should inherit layout settings from Posts & Archives.
+ * Also returns true if the CPT is no longer being passed through the memberlite_customizer_cpts filter.
+ *
+ * @since 7.1.2
+ * @param string $cpt_type CPT slug.
+ * @return bool
+ */
+function memberlite_cpt_inherits_posts_archives( string $cpt_type ): bool {
+	if ( ! in_array( $cpt_type, memberlite_get_customizer_cpts(), true ) ) {
+		return true;
+	}
+	return (bool) get_theme_mod( 'inherit_posts_archives_' . $cpt_type, true );
+}
+
+/**
+ * Returns the current CPT slug if we are on a CPT archive or single post
+ * that has Customizer settings, otherwise null.
+ *
+ * @since 7.1.2
+ * @return string|null
+ */
+function memberlite_get_current_cpt_type(): ?string {
+	if ( is_post_type_archive() ) {
+		$queried   = get_queried_object();
+		$post_type = $queried->name ?? null;
+	} elseif ( is_singular() ) {
+		$post_type = get_post_type() ?: null;
+	} else {
+		return null;
+	}
+
+	if ( ! $post_type ) {
+		return null;
+	}
+
+	$cpts = memberlite_get_customizer_cpts();
+
+	return in_array( $post_type, $cpts, true ) ? $post_type : null;
+}
+
+/**
+ * Returns the resolved content_archives value for the current context.
+ *
+ * Uses the CPT-specific setting when on a CPT archive that has custom settings,
+ * otherwise returns the shared blog/archive setting.
+ *
+ * @since 7.1.2
+ * @return string One of 'content', 'excerpt', or 'grid'.
+ */
+function memberlite_get_content_archives_theme_mod(): string {
+	global $memberlite_defaults;
+
+	$cpt_type = memberlite_get_current_cpt_archive_type();
+
+	if ( $cpt_type ) {
+		if ( memberlite_cpt_inherits_posts_archives( $cpt_type ) ) {
+			return get_theme_mod( 'content_archives', $memberlite_defaults['content_archives'] );
+		}
+		return get_theme_mod( 'content_archives_' . $cpt_type, 'content' );
+	}
+
+	return get_theme_mod( 'content_archives', $memberlite_defaults['content_archives'] );
+}
+
+/**
  * Adds custom classes to the array of body classes.
  *
  * @param array $classes Classes for the body element.
@@ -29,16 +193,44 @@ function memberlite_body_classes( $classes ) {
 	global $memberlite_defaults, $post;
 
 	// sidebar classes
-	if ( ! is_page_template( 'templates/fluid-width.php' ) && ! memberlite_is_blog() ) {
-		$classes[] = get_theme_mod( 'sidebar_location', $memberlite_defaults['sidebar_location'] );
+	if ( ! is_page_template( 'templates/fluid-width.php' ) && ! memberlite_is_blog() && ! is_post_type_archive() ) {
+		$cpt_type = is_singular() ? memberlite_get_current_cpt_type() : null;
+		if ( $cpt_type ) {
+			if ( memberlite_cpt_inherits_posts_archives( $cpt_type ) ) {
+				$classes[] = get_theme_mod( 'sidebar_location_blog', $memberlite_defaults['sidebar_location_blog'] );
+			} else {
+				$classes[] = get_theme_mod( 'sidebar_location_' . $cpt_type, 'sidebar-blog-right' );
+			}
+		} else {
+			$classes[] = get_theme_mod( 'sidebar_location', $memberlite_defaults['sidebar_location'] );
+		}
 	}
+
 	if ( memberlite_is_blog() ) {
 		$classes[] = get_theme_mod( 'sidebar_location_blog', $memberlite_defaults['sidebar_location_blog'] );
 		$classes[] = 'content-archives-' . get_theme_mod( 'content_archives', $memberlite_defaults['content_archives'] );
 	}
+
+	if ( is_post_type_archive() ) {
+		$cpt_type = memberlite_get_current_cpt_archive_type();
+		if ( $cpt_type ) {
+			if ( memberlite_cpt_inherits_posts_archives( $cpt_type ) ) {
+				$classes[] = get_theme_mod( 'sidebar_location_blog', $memberlite_defaults['sidebar_location_blog'] );
+				$classes[] = 'content-archives-' . get_theme_mod( 'content_archives', $memberlite_defaults['content_archives'] );
+			} else {
+				$classes[] = get_theme_mod( 'sidebar_location_' . $cpt_type, 'sidebar-blog-right' );
+				$classes[] = 'content-archives-' . get_theme_mod( 'content_archives_' . $cpt_type, 'content' );
+			}
+		} else {
+			$classes[] = get_theme_mod( 'sidebar_location_blog', $memberlite_defaults['sidebar_location_blog'] );
+			$classes[] = 'content-archives-' . get_theme_mod( 'content_archives', $memberlite_defaults['content_archives'] );
+		}
+	}
+
 	if ( is_page_template( 'templates/sidebar-content.php' ) ) {
 		$classes[] = 'sidebar-content';
 	}
+
 	if ( is_page_template( 'templates/content-sidebar.php' ) ) {
 		$classes[] = 'content-sidebar';
 	}
@@ -79,11 +271,21 @@ function memberlite_getColumnsRatio( $location = null ) {
 	global $memberlite_defaults;
 
 	// Get the values as set in customizer.
-	$columns_ratio              = get_theme_mod( 'columns_ratio', $memberlite_defaults['columns_ratio'] );
+	$columns_ratio        = get_theme_mod( 'columns_ratio', $memberlite_defaults['columns_ratio'] );
 	if ( ! is_page() ) {
-		// Get the setting for posts and archives, fall back to page setting.
-		$columns_ratio          = get_theme_mod( 'columns_ratio_blog', $columns_ratio );
+		$cpt_type = memberlite_get_current_cpt_type();
+
+		if ( $cpt_type ) {
+			if ( memberlite_cpt_inherits_posts_archives( $cpt_type ) ) {
+				$columns_ratio = get_theme_mod( 'columns_ratio_blog', $columns_ratio );
+			} else {
+				$columns_ratio = get_theme_mod( 'columns_ratio_' . $cpt_type, '8-4' );
+			}
+		} else {
+			$columns_ratio = get_theme_mod( 'columns_ratio_blog', $columns_ratio );
+		}
 	}
+
 	$columns_ratio_header       = get_theme_mod( 'columns_ratio_header', $memberlite_defaults['columns_ratio_header'] );
 	$columns_ratio_array        = explode( '-', $columns_ratio );
 	$columns_ratio_header_array = explode( '-', $columns_ratio_header );
@@ -97,9 +299,7 @@ function memberlite_getColumnsRatio( $location = null ) {
 		$r = $columns_ratio_header_array[1];
 	} elseif ( $location == 'header-left' ) {
 		$r = $columns_ratio_header_array[0];
-	} elseif ( is_front_page() && empty( $page_template_slug ) && 'posts' != get_option( 'show_on_front' ) ||
-		is_page_template( 'templates/full-width.php' )
-	) {
+	} elseif ( is_front_page() && empty( $page_template_slug ) && 'posts' != get_option( 'show_on_front' ) || is_page_template( 'templates/full-width.php' ) ) {
 		$r = '12';
 	} elseif ( is_page_template( 'templates/narrow-width.php' ) ) {
 		$r = '8 medium-offset-2';
@@ -129,13 +329,33 @@ function memberlite_sidebar_location_none_columns_ratio( $r, $location ) {
 		if ( $sidebar_location === 'sidebar-none' && empty( is_page_template() ) ) {
 			$r = '8 medium-offset-2';
 		}
-	} elseif ( memberlite_is_blog() || is_search() ) {
-		$sidebar_location = get_theme_mod( 'sidebar_location_blog', $memberlite_defaults['sidebar_location_blog'] );
-		$content_archives = get_theme_mod( 'content_archives', $memberlite_defaults['content_archives'] );
+	} elseif ( memberlite_is_blog() || is_post_type_archive() || is_search() ) {
+		$cpt_type         = memberlite_get_current_cpt_archive_type();
+		$content_archives = memberlite_get_content_archives_theme_mod();
+
+		if ( $cpt_type ) {
+			$sidebar_location = memberlite_cpt_inherits_posts_archives( $cpt_type )
+				? get_theme_mod( 'sidebar_location_blog', $memberlite_defaults['sidebar_location_blog'] )
+				: get_theme_mod( 'sidebar_location_' . $cpt_type, 'sidebar-blog-right' );
+		} else {
+			$sidebar_location = get_theme_mod( 'sidebar_location_blog', $memberlite_defaults['sidebar_location_blog'] );
+		}
+
 		if ( $content_archives === 'grid' && ! is_singular() && ! is_search() ) {
 			$r = '12';
 		} elseif ( $sidebar_location === 'sidebar-blog-none' ) {
 			$r = '8 medium-offset-2';
+		}
+	} elseif ( is_singular() ) {
+		$cpt_type = memberlite_get_current_cpt_type();
+
+		if ( $cpt_type ) {
+			$sidebar_location = memberlite_cpt_inherits_posts_archives( $cpt_type )
+				? get_theme_mod( 'sidebar_location_blog', $memberlite_defaults['sidebar_location_blog'] )
+				: get_theme_mod( 'sidebar_location_' . $cpt_type, 'sidebar-blog-right' );
+			if ( $sidebar_location === 'sidebar-blog-none' ) {
+				$r = '8 medium-offset-2';
+			}
 		}
 	}
 
@@ -156,16 +376,36 @@ function memberlite_sidebar_none_get_sidebar( $name ) {
 		if ( $sidebar_location === 'sidebar-none' && empty( is_page_template() ) ) {
 			$name = false;
 		}
-	} elseif ( memberlite_is_blog() || is_search() ) {
-		$sidebar_location = get_theme_mod( 'sidebar_location_blog', $memberlite_defaults['sidebar_location_blog'] );
+	} elseif ( memberlite_is_blog() || is_post_type_archive() || is_search() ) {
+		$cpt_type         = memberlite_get_current_cpt_archive_type();
+		$content_archives = memberlite_get_content_archives_theme_mod();
+
+		if ( $cpt_type ) {
+			$sidebar_location = memberlite_cpt_inherits_posts_archives( $cpt_type )
+				? get_theme_mod( 'sidebar_location_blog', $memberlite_defaults['sidebar_location_blog'] )
+				: get_theme_mod( 'sidebar_location_' . $cpt_type, 'sidebar-blog-right' );
+		} else {
+			$sidebar_location = get_theme_mod( 'sidebar_location_blog', $memberlite_defaults['sidebar_location_blog'] );
+		}
+
 		if ( $sidebar_location === 'sidebar-blog-none' ) {
 			$name = false;
 		}
 
 		// Hide the sidebar for grid archives.
-		$content_archives = get_theme_mod( 'content_archives', $memberlite_defaults['content_archives'] );
 		if ( $content_archives === 'grid' && ! is_singular() && ! is_search() ) {
 			$name = false;
+		}
+	} elseif ( is_singular() ) {
+		$cpt_type = memberlite_get_current_cpt_type();
+
+		if ( $cpt_type ) {
+			$sidebar_location = memberlite_cpt_inherits_posts_archives( $cpt_type )
+				? get_theme_mod( 'sidebar_location_blog', $memberlite_defaults['sidebar_location_blog'] )
+				: get_theme_mod( 'sidebar_location_' . $cpt_type, 'sidebar-blog-right' );
+			if ( $sidebar_location === 'sidebar-blog-none' ) {
+				$name = false;
+			}
 		}
 	}
 

@@ -15,18 +15,11 @@
 
 <?php
 // Check _memberlite_banner_show meta to determine if the masthead should display.
-$memberlite_banner_post_id = get_queried_object_id();
-if ( empty( $memberlite_banner_post_id ) && ( is_home() || is_post_type_archive( 'post' ) ) ) {
-	$memberlite_banner_post_id = get_option( 'page_for_posts' );
-}
-$memberlite_banner_show = true;
-if ( ! empty( $memberlite_banner_post_id ) && get_post_meta( $memberlite_banner_post_id, '_memberlite_banner_show', true ) === '0' ) {
-	$memberlite_banner_show = false;
-}
-$memberlite_banner_show = apply_filters( 'memberlite_banner_show', $memberlite_banner_show );
-$banner_image_url = memberlite_get_masthead_banner_image_url();
+// $args are passed from the header.php file via get_template_part()
+$should_render_masthead = $args['should_render_masthead'];
+$banner_image_url       = memberlite_get_masthead_banner_image_url();
 
-if ( ! empty( $memberlite_banner_show ) ) { ?>
+if ( $should_render_masthead ) { ?>
 
 	<?php do_action( 'memberlite_before_masthead_outer' ); ?>
 

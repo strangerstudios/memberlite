@@ -4,7 +4,7 @@
  *
  * @package Memberlite
  */
-define( 'MEMBERLITE_VERSION', '7.1.1' );
+define( 'MEMBERLITE_VERSION', '7.1.2' );
 define( 'MEMBERLITE_URL', get_template_directory_uri() );
 define( 'MEMBERLITE_DIR', get_template_directory() );
 
@@ -564,6 +564,9 @@ require_once get_template_directory() . '/inc/customizer.php';
 
 /* Custom functions that act independently of the theme templates. */
 require_once get_template_directory() . '/inc/extras.php';
+
+/* One-time clone of parent settings on child theme activation. */
+require_once get_template_directory() . '/inc/child-theme-activation.php';
 
 /* Deprecated hooks, filters and functions. */
 require_once get_template_directory() . '/inc/deprecated.php';

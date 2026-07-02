@@ -8,6 +8,8 @@ The Customizer is the single source of truth for colors and fonts. We sync those
 
 In Memberlite 7.1, we introduced [header and footer variations](variations.md).
 
+In Memberlite 7.1.2, we added per-type layout settings for custom post types. See [Other Post Types (CPT Layout Settings)](#other-post-types-cpt-layout-settings) below.
+
 ---
 
 ## Overview
@@ -20,6 +22,7 @@ We also added new layout settings for:
 - Header
 - Footer
 - Single posts
+- Custom post types (CPT layout settings, added in 7.1.2)
 
 The Customizer is the source of truth for colors and fonts.
 
@@ -38,6 +41,76 @@ Most Customizer logic lives in:
 `inc/customizer.php`
 
 Start with the `register()` function.
+
+---
+
+## Other Post Types (CPT Layout Settings)
+
+Added in Memberlite 7.1.2.
+
+When compatible custom post types are detected, an **Other Post Types** panel appears in the Customizer. Each CPT gets its own section inside that panel with layout controls. The panel is hidden when no CPTs are present.
+
+### Auto-detected CPTs
+
+Memberlite automatically checks for these PMPro add-on CPTs at runtime and includes them if registered:
+
+- `pmpro_course` (PMPro Courses)
+- `pmpro_lesson` (PMPro Courses — Lessons)
+- `pmpro_series` (PMPro Series)
+
+### Adding CPTs via Filter
+
+Third-party or child-theme CPTs can be added using the `memberlite_customizer_cpts` filter:
+
+```php
+add_filter( 'memberlite_customizer_cpts', function( array $cpts ): array {
+    $cpts[] = 'my_cpt_slug';
+    return $cpts;
+} );
+```
+
+The filter receives an indexed array of CPT slugs. It can return an indexed array, or a comma-separated string of slugs.
+
+**Guard behavior:** After the filter runs, Memberlite normalizes the return value and then silently removes any slugs that are:
+- Registered by the Memberlite parent theme itself (e.g. `memberlite_header`, `memberlite_footer`)
+- Not currently registered as a post type
+- Backed by a CPT with `show_ui => false` (internal/programmatic post types)
+- Not a non-empty string (e.g. empty strings, nested arrays, integers are stripped)
+
+If the filter callback returns something other than an array or string (e.g. `null`, `false`, an integer), it is treated as an empty array.
+
+This means passing an unregistered, internal, or malformed slug through the filter is safe — it will be dropped without an error.
+
+> **Note:** Not all third-party CPTs will behave correctly even when added via the filter. CPTs that use custom query logic, non-standard archive templates, or override the main loop may not respect Memberlite's sidebar and layout classes. Test after adding any CPT.
+
+### Disabling PMPro CPT Detection
+
+To prevent Memberlite from adding PMPro CPTs, return an empty array or empty string from the `memberlite_customizer_cpts` filter. To replace them entirely with your own CPTs, return an array containing only those slugs.
+
+```php
+// Remove all PMPro CPTs.
+add_filter( 'memberlite_customizer_cpts', '__return_empty_array' );
+
+// Remove all PMPro CPTs and substitute your own.
+add_filter( 'memberlite_customizer_cpts', function( $cpts ) {
+    return array( 'my_cpt_slug' );
+} );
+```
+
+### Settings per CPT
+
+Each CPT section starts with an **Inherit from Posts & Archives** checkbox (on by default). When checked, the Archive Layout, Sidebar Location, and Columns Ratio controls are hidden and the CPT uses whatever is set in Posts & Archives. Uncheck it to control the CPT independently.
+
+The inherit state is stored as the `inherit_posts_archives_{cpt}` theme_mod (e.g. `inherit_posts_archives_pmpro_course`). It defaults to `true`. This means a CPT will always fall back to Posts & Archives unless a user has explicitly unchecked the box — even if that CPT's other theme_mods have been saved.
+
+| Setting | Applies to | Shown when |
+|---|---|---|
+| Inherit from Posts & Archives | Archive pages + single post views | Always |
+| Archive Layout | Archive pages only | Inherit is unchecked, CPT has `has_archive` |
+| Sidebar Location | Archive pages + single post views | Inherit is unchecked |
+| Columns Ratio | Archive pages + single post views | Inherit is unchecked, sidebar is not "No Sidebar" |
+
+Section labels are derived from the CPT's registered plural name (e.g. a CPT registered as "Courses" produces a "Courses Layout" section).
 
 ---
 
@@ -107,15 +180,32 @@ This is not a full list. Explore the codebase for more.
 
 - `header_output()` - Outputs CSS variables in `:root`
 
+- `set_customizer_panels_sections()` - Registers all Customizer panels and sections, including the "Other Post Types" panel when CPTs are detected
+
 - `set_customizer_header_settings()` - Registers all header Customizer controls, including the header variation select
 
 - `set_customizer_footer_settings()` - Registers all footer Customizer controls, including the global and per-location variation selects
 
-- `customizer_controls_js()` - Loads JS for customizer controls. 
+- `customizer_controls_js()` - Loads JS for customizer controls.
   - This is where we update color pickers based on the selected color scheme.
+  - Also handles show/hide of the Columns Ratio control for both blog and CPT sections based on the Sidebar Location value.
 
 - `live_preview()` - Loads JS for live preview. 
   - This is where we define CSS variables and apply inline CSS for previewing setting changes.
+
+---
+
+### `inc/extras.php`
+
+- `memberlite_get_customizer_cpts()` - Returns the indexed array of CPT slugs that receive per-type layout settings. PMPro CPTs are passed as defaults to the `memberlite_customizer_cpts` filter. After the filter, normalizes the return value (string → array, unexpected types → empty array), then strips internal Memberlite CPTs, unregistered slugs, CPTs with `show_ui => false`, and any non-string or empty elements. Result is statically cached.
+
+- `memberlite_cpt_inherits_posts_archives( $cpt_type )` - Returns `true` if the given CPT should inherit layout settings from Posts & Archives. Reads the `inherit_posts_archives_{cpt}` theme_mod; defaults to `true` so CPTs inherit unless explicitly opted out.
+
+- `memberlite_get_current_cpt_type()` - Returns the current CPT slug when on a CPT archive or single post that has Customizer settings, otherwise `null`. Used to resolve sidebar and columns ratio settings for both archive and single views.
+
+- `memberlite_get_current_cpt_archive_type()` - Returns the current CPT slug when on a CPT archive only, otherwise `null`. Used by `memberlite_get_content_archives_theme_mod()` since the Archive Layout setting only applies to archives.
+
+- `memberlite_get_content_archives_theme_mod()` - Returns the resolved archive layout value (`content`, `excerpt`, or `grid`) for the current context. Returns the CPT-specific setting on CPT archives, otherwise falls back to the global `content_archives` setting.
 
 ---
 
@@ -152,4 +242,4 @@ In `inc/customizer.php`, use one of these helpers:
 
 ---
 
-**Last Updated**: 2026-05-01
+**Last Updated**: 7.1.2

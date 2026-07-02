@@ -31,7 +31,7 @@
 	4.4 Content (_content.scss)
 5.0 Pages
 	5.1 Blog (_blog.scss)
-	5.2 404 (_404.scss)
+	5.2 404 (_no-results-404.scss)
 	5.3 Page (_page.scss)
 6.0 Plugins
 	6.1 Paid Memberships Pro (_pmpro.scss)
@@ -1271,16 +1271,6 @@ hr.wp-block-separator.is-style-wide {
   outline-offset: 2px;
 }
 
-.wp-block-button.is-style-outline .wp-block-button__link {
-  background: transparent;
-  border-color: var(--wp--preset--color--buttons);
-  color: var(--wp--preset--color--buttons);
-}
-.wp-block-button.is-style-outline .wp-block-button__link:hover {
-  background-color: var(--wp--preset--color--buttons);
-  color: var(--wp--preset--color--base);
-}
-
 .wp-block-comment-template {
   padding-left: 0;
 }
@@ -1599,21 +1589,24 @@ hr.wp-block-separator.is-style-wide {
   align-items: center;
   display: flex;
   margin: calc(-1 * var(--wp--preset--spacing--10));
-  max-height: 180px;
   overflow: hidden;
 }
-.grid-list a.post-thumbnail-link:hover, .grid-list a.post-thumbnail-link:focus, .grid-list a.post-thumbnail-link:active {
-  filter: unset;
+.grid-list a.post-thumbnail-link:has(img) {
+  aspect-ratio: 16/9;
+  display: block;
 }
 .grid-list a.post-thumbnail-link .wp-post-image {
   display: block;
+  height: 100%;
   margin-bottom: 0;
+  object-fit: cover;
+  width: 100%;
 }
 .grid-list a.post-thumbnail-link .post-thumbnail-empty {
   align-items: center;
   background-color: light-dark(color-mix(in srgb, var(--memberlite-color-text) 7%, transparent), color-mix(in srgb, var(--memberlite-color-text) 20%, transparent));
   display: flex;
-  height: 180px;
+  height: 218px;
   justify-content: center;
   width: 100%;
 }
@@ -1887,9 +1880,6 @@ details > p:first-of-type {
 #widget_memberlite_recent_posts .post.hentry {
   margin-bottom: 0;
 }
-#widget_memberlite_recent_posts .post.hentry .entry-header .entry-title {
-  margin: 0;
-}
 #widget_memberlite_recent_posts .widget_has_thumbnail .post.hentry .entry-header {
   display: grid;
   grid-template-columns: 80px var(--wp--preset--spacing--10) auto;
@@ -2060,7 +2050,6 @@ details > p:first-of-type {
 .widget_recent_entries_thumbnails .entry-title {
   align-self: end;
   grid-area: title;
-  margin: 0;
 }
 .widget_recent_entries_thumbnails .post-date {
   align-self: start;
@@ -2217,9 +2206,6 @@ details > p:first-of-type {
 }
 .site-header .site-branding a.custom-logo-link {
   display: block;
-}
-.site-header .site-branding a.custom-logo-link:hover {
-  filter: unset;
 }
 .site-header .site-branding a.custom-logo-link:focus {
   outline: none;
@@ -3059,6 +3045,14 @@ body.mobile-nav-open {
   overflow: hidden;
   position: relative;
 }
+.hentry .entry-banner img.banner-image {
+  height: 100%;
+  left: 0;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
 .hentry:has(.banner-image) .entry-header {
   background-color: rgba(0, 0, 0, 0.6);
   color: var(--memberlite-color-white);
@@ -3088,7 +3082,6 @@ body.mobile-nav-open {
   margin: 0 0 var(--wp--preset--spacing--10) 0;
 }
 .entry-header-grid .entry-header .entry-title {
-  margin: 0;
   hyphens: auto;
 }
 .entry-header-grid .entry-header .post_author_avatar {
@@ -3107,6 +3100,7 @@ body.mobile-nav-open {
 .entry-title {
   overflow-wrap: break-word;
   word-break: break-word;
+  margin: 0;
 }
 
 .entry-meta a {
@@ -3206,6 +3200,7 @@ body.mobile-nav-open {
 .entry-footer .edit-link {
   display: block;
   width: max-content;
+  padding-top: var(--wp--preset--spacing--10);
 }
 .entry-footer .edit-link a.post-edit-link {
   display: flex;

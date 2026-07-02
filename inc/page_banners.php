@@ -598,3 +598,37 @@ function memberlite_get_masthead_banner_image_url() {
 
 	return false;
 }
+
+/**
+ * Get banner's post ID
+ *
+ * @since 7.1.2
+ * @return mixed
+ */
+function memberlite_get_banner_post_id() {
+	$memberlite_banner_post_id = get_queried_object_id();
+
+	if ( empty( $memberlite_banner_post_id ) && ( is_home() || is_post_type_archive( 'post' ) ) ) {
+		$memberlite_banner_post_id = get_option( 'page_for_posts' );
+	}
+
+	return $memberlite_banner_post_id;
+}
+/**
+ * Determine if the masthead banner should be rendered
+ *
+ * @since 7.1.2
+ * @return bool
+ */
+function memberlite_should_masthead_render(): bool {
+	$memberlite_banner_show = true;
+	$memberlite_banner_post_id = memberlite_get_banner_post_id();
+
+	if ( ! empty( $memberlite_banner_post_id ) && get_post_meta( $memberlite_banner_post_id, '_memberlite_banner_show', true ) === '0' ) {
+		$memberlite_banner_show = false;
+	}
+
+	$memberlite_banner_show = apply_filters( 'memberlite_banner_show', $memberlite_banner_show, $memberlite_banner_post_id );
+
+	return $memberlite_banner_show;
+}
