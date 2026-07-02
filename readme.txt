@@ -96,20 +96,20 @@ Memberlite includes formatting for use with:
 
 * FEATURE: Added new Customizer layout settings for Other Post Types, including support for inheriting Posts & Archives settings by default. #303 #317 #318 @RachelRVasquez
 * ENHANCEMENT: Wrapped the text attribute in the `memberlite_btn` shortcode with `esc_html` to prevent XSS. #321 @kimcoleman
-* ENHANCEMENT: Improved custom post type layout support across archives and single views, including sidebar, column ratio, archive visibility, and safer fallback behavior. #303 #305 #317 #318 @RachelRVasquez
+* ENHANCEMENT: Improved custom post type layout support across archives and single views, including sidebar, column ratio, archive layout and safer fallback behavior. #303 #305 #317 #318 @RachelRVasquez
 * ENHANCEMENT: Added support for exporting and importing more site identity settings, and improved help text in the import/export tool. #307 #311 #316 @RachelRVasquez @kimcoleman
 * ENHANCEMENT: Added one-time copying of parent theme mods when activating a Memberlite child theme. #313 @kimcoleman
-* ENHANCEMENT: Fixed outline button styling and 16:9 image handling improvements. #309 #312 @kimcoleman
-* ENHANCEMENT: Fixed footer pattern 04 link color contrast in dark color schemes. #302 @kimcoleman
-* ENHANCEMENT: Fixed accessibility issue where the `aria-labelledby="page-title"` was tied to the banner instead of the post/page title. #295 @RachelRVasquez
-* ENHANCEMENT: Added admin column helper functions for header variation management. #297 @RachelRVasquez
+* ENHANCEMENT: Outline button styling and 16:9 image handling improvements. #309 #312 @kimcoleman
+* ENHANCEMENT: Adjusted footer pattern 04 link color contrast in dark color schemes. #302 @kimcoleman
+* ENHANCEMENT: Resolved accessibility issue where the `aria-labelledby="page-title"` was tied to the banner instead of the post/page title. #295 @RachelRVasquez
+* ENHANCEMENT: Added admin column helper functions for header variation management. (This feature already existed for footer variations in 7.1) #297 @RachelRVasquez
 * BUG FIX: Fixed bbPress search/sidebar inheritance behavior. #315 @kimcoleman
 * BUG FIX: Fixed banner display and removed the hyperlink wrapping the banner. #314 @kimcoleman
 * BUG FIX: Fixed footer variation handling for custom post type single views. #305 @RachelRVasquez
-* BUG FIX: Fixed third-party JS-only blocks being removed from allowed blocks. #298 @dparker1005
-* REFACTOR: Make `.entry-title` zero margin style global. This ensures the CPT archive's two-column layout is horizontally aligned under the banner/masthead. #326 @RachelRVasquez
-* REFACTOR: The `memberlite_footer_add_used_by_column` function released in 7.1 has been renamed to `memberlite_variation_add_used_by_column` so that it's more generic. Used by both the header and footer variations. #297 @RachelRVasquez
-* REFACTOR: Refactored banner/masthead functionality so we're only calling them once in the `header.php` and using helpers that determine when/if they should render. Added new helpers `memberlite_get_banner_post_id` and `memberlite_should_masthead_render` #295 @RachelRVasquez
+* BUG FIX: Fixed third-party JS-only blocks being removed from allowed blocks when we tried to restrict the Nav Menu and Member Info blocks to header and footer variation posts. #298 @dparker1005
+* REFACTOR: Make `.entry-title` a global style with zero margin. This ensures the CPT archive's two-column layout is horizontally aligned under the banner/masthead. #326 @RachelRVasquez
+* REFACTOR: The `memberlite_footer_add_used_by_column` function released in 7.1 has been renamed to `memberlite_variation_add_used_by_column` so that it's more generic. Used by both the header and footer variations internally. #297 @RachelRVasquez
+* REFACTOR: Refactored banner/masthead functionality so we're only calling them once in the `header.php` and using helpers that determine when/if they should render. The functionality itself is unchanged. Added two new helpers: `memberlite_get_banner_post_id` and `memberlite_should_masthead_render` #295 @RachelRVasquez
 
 = 7.1.1 - 2026-05-13 =
 
