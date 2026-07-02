@@ -284,4 +284,4 @@ The footer CPT is surfaced under **Memberlite > Footers** and the header CPT und
 
 ---
 
-**Last Updated**: 2026-05-11
+**Last Updated**: 2026-06-23

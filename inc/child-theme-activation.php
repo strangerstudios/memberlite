@@ -10,7 +10,7 @@
  * leave it alone. That way this naturally runs only once per child theme.
  *
  * @package Memberlite
- * @since TBD
+ * @since 7.1.2
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -21,7 +21,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * On child theme activation, copy parent Memberlite settings to the child if the
  * child has no meaningful theme_mods of its own yet.
  *
- * @since TBD
+ * @since 7.1.2
  */
 function memberlite_maybe_clone_parent_settings_on_activation() {
 	// Only act when a child theme of Memberlite is now active.
@@ -88,7 +88,7 @@ add_action( 'after_switch_theme', 'memberlite_maybe_clone_parent_settings_on_act
 /**
  * Show a one-time admin notice after we cloned parent theme settings into a child.
  *
- * @since TBD
+ * @since 7.1.2
  */
 function memberlite_cloned_parent_settings_notice() {
 	if ( ! current_user_can( 'edit_theme_options' ) ) {

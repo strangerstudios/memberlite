@@ -601,7 +601,7 @@ function memberlite_import_settings_redirect( $code ) {
  * Tries, in order: existing ID with matching filename, media library filename match,
  * sideload from the absolute URL.
  *
- * @since TBD
+ * @since 7.1.2
  *
  * @param string $url     Absolute URL of the source attachment.
  * @param int    $id_hint Attachment ID from the source site (optional).
@@ -668,7 +668,7 @@ function memberlite_resolve_imported_attachment( $url, $id_hint = 0 ) {
 /**
  * Look up an attachment by its filename via the _wp_attached_file meta.
  *
- * @since TBD
+ * @since 7.1.2
  *
  * @param string $filename The filename to search for (e.g. "icon-512.png").
  * @return int Attachment ID, or 0 if not found.

@@ -8,7 +8,7 @@ The Customizer is the single source of truth for colors and fonts. We sync those
 
 In Memberlite 7.1, we introduced [header and footer variations](variations.md).
 
-In Memberlite TBD, we added per-type layout settings for custom post types. See [Other Post Types (CPT Layout Settings)](#other-post-types-cpt-layout-settings) below.
+In Memberlite 7.1.2, we added per-type layout settings for custom post types. See [Other Post Types (CPT Layout Settings)](#other-post-types-cpt-layout-settings) below.
 
 ---
 
@@ -22,7 +22,7 @@ We also added new layout settings for:
 - Header
 - Footer
 - Single posts
-- Custom post types (CPT layout settings, added in TBD)
+- Custom post types (CPT layout settings, added in 7.1.2)
 
 The Customizer is the source of truth for colors and fonts.
 
@@ -46,7 +46,7 @@ Start with the `register()` function.
 
 ## Other Post Types (CPT Layout Settings)
 
-Added in Memberlite TBD.
+Added in Memberlite 7.1.2.
 
 When compatible custom post types are detected, an **Other Post Types** panel appears in the Customizer. Each CPT gets its own section inside that panel with layout controls. The panel is hidden when no CPTs are present.
 
@@ -242,4 +242,4 @@ In `inc/customizer.php`, use one of these helpers:
 
 ---
 
-**Last Updated**: TBD
+**Last Updated**: 7.1.2

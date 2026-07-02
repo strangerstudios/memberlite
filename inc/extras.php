@@ -27,7 +27,7 @@ add_filter( 'wp_page_menu_args', 'memberlite_page_menu_args' );
  * a child theme or third-party plugin.
  * Section labels are derived from each post type's registered plural name.
  *
- * @since TBD
+ * @since 7.1.2
  * @return string[]
  */
 function memberlite_get_customizer_cpts(): array {
@@ -47,7 +47,7 @@ function memberlite_get_customizer_cpts(): array {
 		 *     return $cpts;
 		 * } );
 		 *
-		 * @since TBD
+		 * @since 7.1.2
 		 * @param string[]|string $cpts Indexed array of post type slugs,
 		 * or a comma-separated string of slugs. Pass an empty array or
 		 * empty string to disable all built-in PMPro CPTs.
@@ -98,7 +98,7 @@ function memberlite_get_customizer_cpts(): array {
  * Returns the current CPT slug if we are on a CPT archive that has
  * per-archive Customizer settings, otherwise null.
  *
- * @since TBD
+ * @since 7.1.2
  * @return string|null
  */
 function memberlite_get_current_cpt_archive_type(): ?string {
@@ -122,7 +122,7 @@ function memberlite_get_current_cpt_archive_type(): ?string {
  * Returns true if the given CPT should inherit layout settings from Posts & Archives.
  * Also returns true if the CPT is no longer being passed through the memberlite_customizer_cpts filter.
  *
- * @since TBD
+ * @since 7.1.2
  * @param string $cpt_type CPT slug.
  * @return bool
  */
@@ -137,7 +137,7 @@ function memberlite_cpt_inherits_posts_archives( string $cpt_type ): bool {
  * Returns the current CPT slug if we are on a CPT archive or single post
  * that has Customizer settings, otherwise null.
  *
- * @since TBD
+ * @since 7.1.2
  * @return string|null
  */
 function memberlite_get_current_cpt_type(): ?string {
@@ -165,7 +165,7 @@ function memberlite_get_current_cpt_type(): ?string {
  * Uses the CPT-specific setting when on a CPT archive that has custom settings,
  * otherwise returns the shared blog/archive setting.
  *
- * @since TBD
+ * @since 7.1.2
  * @return string One of 'content', 'excerpt', or 'grid'.
  */
 function memberlite_get_content_archives_theme_mod(): string {
