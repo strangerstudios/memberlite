@@ -2,14 +2,14 @@
 # This file is distributed under the GNU General Public License v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Memberlite 7.1.1\n"
+"Project-Id-Version: Memberlite 7.1.2\n"
 "Report-Msgid-Bugs-To: info@paidmembershipspro.com\n"
 "Last-Translator: Paid Memberships Pro <info@paidmembershipspro.com>\n"
 "Language-Team: Paid Memberships Pro <info@paidmembershipspro.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-05-13T17:03:18+00:00\n"
+"POT-Creation-Date: 2026-07-02T18:26:29+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: memberlite\n"
@@ -27,6 +27,8 @@ msgstr ""
 #: inc/admin.php:336
 #: build/editor/block-inserter.js:1
 #: src/editor/block-inserter.js:12
+#: inc/admin.php:381
+#: inc/admin.php:414
 msgid "Memberlite"
 msgstr ""
 
@@ -89,6 +91,8 @@ msgstr ""
 #: inc/customizer.php:388
 #: inc/customizer.php:160
 #: inc/customizer.php:1261
+#: inc/customizer.php:185
+#: inc/customizer.php:1361
 msgid "Back to Top"
 msgstr ""
 
@@ -115,6 +119,8 @@ msgstr ""
 #: components/page/content-landing.php:19
 #: components/page/content-page.php:19
 #: components/post/content.php:66
+#: components/page/content-page.php:20
+#: components/post/content.php:69
 msgid "Pages:"
 msgstr ""
 
@@ -135,6 +141,7 @@ msgstr ""
 #: components/page/content-page.php:31
 #: components/post/entry-footer.php:21
 #: inc/extras.php:1001
+#: inc/extras.php:1241
 msgid "Edit"
 msgstr ""
 
@@ -171,6 +178,7 @@ msgstr ""
 #: inc/extras.php:762
 #: components/post/post-author-block.php:30
 #: inc/extras.php:693
+#: inc/extras.php:933
 #, php-format
 msgid "Author: %s"
 msgstr ""
@@ -248,6 +256,7 @@ msgstr ""
 #: inc/extras.php:792
 #: inc/colors.php:75
 #: inc/extras.php:723
+#: inc/extras.php:963
 msgid "Links"
 msgstr ""
 
@@ -277,6 +286,7 @@ msgstr ""
 #: functions.php:750
 #: functions.php:779
 #: functions.php:778
+#: functions.php:781
 msgid "White"
 msgstr ""
 
@@ -293,6 +303,7 @@ msgstr ""
 #: functions.php:417
 #: inc/customizer.php:222
 #: inc/customizer.php:269
+#: inc/customizer.php:294
 msgid "Page Masthead Background Color"
 msgstr ""
 
@@ -308,6 +319,7 @@ msgstr ""
 #: functions.php:431
 #: inc/customizer.php:215
 #: inc/customizer.php:262
+#: inc/customizer.php:287
 msgid "Footer Widgets Background Color"
 msgstr ""
 
@@ -347,6 +359,7 @@ msgstr ""
 #: functions.php:356
 #: inc/admin.php:127
 #: inc/customizer.php:151
+#: inc/admin.php:165
 msgid "Pages"
 msgstr ""
 
@@ -679,6 +692,7 @@ msgstr ""
 #: inc/admin.php:41
 #: inc/admin.php:48
 #: inc/admin.php:232
+#: inc/admin.php:310
 msgid "Active"
 msgstr ""
 
@@ -686,6 +700,7 @@ msgstr ""
 #: inc/admin.php:43
 #: inc/admin.php:50
 #: inc/admin.php:234
+#: inc/admin.php:312
 msgid "Activate"
 msgstr ""
 
@@ -693,6 +708,7 @@ msgstr ""
 #: inc/admin.php:54
 #: inc/admin.php:61
 #: inc/admin.php:245
+#: inc/admin.php:323
 msgid "Install"
 msgstr ""
 
@@ -725,12 +741,14 @@ msgstr ""
 #: inc/customizer.php:78
 #: inc/customizer.php:345
 #: inc/customizer.php:424
+#: inc/customizer.php:449
 msgid "Show Login/Member Info in Header"
 msgstr ""
 
 #: inc/customizer.php:97
 #: inc/customizer.php:351
 #: inc/customizer.php:431
+#: inc/customizer.php:456
 msgid "Show Search Form After Main Nav"
 msgstr ""
 
@@ -780,6 +798,9 @@ msgstr ""
 #: inc/customizer.php:506
 #: inc/customizer.php:550
 #: inc/customizer.php:634
+#: inc/customizer.php:576
+#: inc/customizer.php:689
+#: inc/customizer.php:733
 msgid "Right Sidebar"
 msgstr ""
 
@@ -789,6 +810,9 @@ msgstr ""
 #: inc/customizer.php:507
 #: inc/customizer.php:551
 #: inc/customizer.php:635
+#: inc/customizer.php:577
+#: inc/customizer.php:690
+#: inc/customizer.php:734
 msgid "Left Sidebar"
 msgstr ""
 
@@ -798,6 +822,9 @@ msgstr ""
 #: inc/customizer.php:508
 #: inc/customizer.php:552
 #: inc/customizer.php:636
+#: inc/customizer.php:578
+#: inc/customizer.php:691
+#: inc/customizer.php:735
 msgid "No Sidebar"
 msgstr ""
 
@@ -816,6 +843,8 @@ msgstr ""
 #: inc/customizer.php:250
 #: inc/customizer.php:413
 #: inc/customizer.php:541
+#: inc/customizer.php:566
+#: inc/customizer.php:671
 msgid "Show Post Excerpts"
 msgstr ""
 
@@ -826,72 +855,84 @@ msgstr ""
 #: inc/customizer.php:261
 #: inc/customizer.php:272
 #: inc/customizer.php:319
+#: inc/customizer.php:344
 msgid "Breadcrumbs on Pages"
 msgstr ""
 
 #: inc/customizer.php:267
 #: inc/customizer.php:275
 #: inc/customizer.php:322
+#: inc/customizer.php:347
 msgid "Breadcrumbs on Posts"
 msgstr ""
 
 #: inc/customizer.php:273
 #: inc/customizer.php:278
 #: inc/customizer.php:325
+#: inc/customizer.php:350
 msgid "Breadcrumbs on Archives"
 msgstr ""
 
 #: inc/customizer.php:279
 #: inc/customizer.php:281
 #: inc/customizer.php:328
+#: inc/customizer.php:353
 msgid "Breadcrumbs on Attachments"
 msgstr ""
 
 #: inc/customizer.php:285
 #: inc/customizer.php:284
 #: inc/customizer.php:331
+#: inc/customizer.php:356
 msgid "Breadcrumbs on Search Results"
 msgstr ""
 
 #: inc/customizer.php:291
 #: inc/customizer.php:287
 #: inc/customizer.php:334
+#: inc/customizer.php:359
 msgid "Breadcrumbs on Profiles"
 msgstr ""
 
 #: inc/customizer.php:349
 #: inc/customizer.php:531
 #: inc/customizer.php:659
+#: inc/customizer.php:758
 msgid "Show Prev/Next on Single Pages"
 msgstr ""
 
 #: inc/customizer.php:367
 #: inc/customizer.php:464
 #: inc/customizer.php:592
+#: inc/customizer.php:621
 msgid "Do Not Show Featured Images"
 msgstr ""
 
 #: inc/customizer.php:368
 #: inc/customizer.php:465
 #: inc/customizer.php:593
+#: inc/customizer.php:622
 msgid "Show Banner Only"
 msgstr ""
 
 #: inc/customizer.php:369
 #: inc/customizer.php:466
 #: inc/customizer.php:594
+#: inc/customizer.php:623
 msgid "Show Thumbnail Only"
 msgstr ""
 
 #: inc/customizer.php:370
 #: inc/customizer.php:467
 #: inc/customizer.php:595
+#: inc/customizer.php:624
 msgid "Show Block Image In Excerpt"
 msgstr ""
 
 #: inc/customizer.php:375
 #: inc/customizer.php:471
 #: inc/customizer.php:599
+#: inc/customizer.php:628
 msgid "Show Banner and Thumbnail"
 msgstr ""
 
@@ -902,12 +943,14 @@ msgstr ""
 #: inc/customizer.php:402
 #: inc/customizer.php:481
 #: inc/customizer.php:609
+#: inc/customizer.php:638
 msgid "Post Entry Meta (before)"
 msgstr ""
 
 #: inc/customizer.php:422
 #: inc/customizer.php:487
 #: inc/customizer.php:615
+#: inc/customizer.php:644
 msgid "Post Entry Meta (after)"
 msgstr ""
 
@@ -934,24 +977,28 @@ msgstr ""
 #: inc/customizer.php:486
 #: inc/customizer.php:306
 #: inc/customizer.php:353
+#: inc/customizer.php:378
 msgid "Breadcrumb Delimiter"
 msgstr ""
 
 #: inc/customizer.php:506
 #: inc/customizer.php:381
 #: inc/customizer.php:518
+#: inc/customizer.php:543
 msgid "Copyright Text"
 msgstr ""
 
 #: inc/customizer.php:526
 #: inc/customizer.php:391
 #: inc/customizer.php:163
+#: inc/customizer.php:188
 msgid "Show Back to Top Link"
 msgstr ""
 
 #: inc/customizer.php:545
 #: inc/customizer.php:181
 #: inc/customizer.php:220
+#: inc/customizer.php:245
 msgid "Color Scheme"
 msgstr ""
 
@@ -962,12 +1009,14 @@ msgstr ""
 #: inc/customizer.php:592
 #: inc/customizer.php:206
 #: inc/customizer.php:249
+#: inc/customizer.php:274
 msgid "Header Background Color"
 msgstr ""
 
 #: inc/customizer.php:615
 #: inc/customizer.php:208
 #: inc/customizer.php:251
+#: inc/customizer.php:276
 msgid "Primary Navigation Background Color"
 msgstr ""
 
@@ -990,18 +1039,21 @@ msgstr ""
 #: inc/customizer.php:730
 #: inc/customizer.php:246
 #: inc/customizer.php:293
+#: inc/customizer.php:318
 msgid "Primary Color"
 msgstr ""
 
 #: inc/customizer.php:753
 #: inc/customizer.php:248
 #: inc/customizer.php:295
+#: inc/customizer.php:320
 msgid "Secondary Color"
 msgstr ""
 
 #: inc/customizer.php:776
 #: inc/customizer.php:250
 #: inc/customizer.php:297
+#: inc/customizer.php:322
 msgid "Action Color"
 msgstr ""
 
@@ -1012,18 +1064,21 @@ msgstr ""
 #: inc/customizer.php:800
 #: inc/customizer.php:254
 #: inc/customizer.php:301
+#: inc/customizer.php:326
 msgid "Default Button Color"
 msgstr ""
 
 #: inc/customizer.php:846
 #: inc/customizer.php:224
 #: inc/customizer.php:271
+#: inc/customizer.php:296
 msgid "Page Masthead Text Color"
 msgstr ""
 
 #: inc/customizer.php:892
 #: inc/customizer.php:217
 #: inc/customizer.php:264
+#: inc/customizer.php:289
 msgid "Footer Widgets Text Color"
 msgstr ""
 
@@ -1401,6 +1456,7 @@ msgstr ""
 #: inc/extras.php:200
 #: inc/extras.php:211
 #: inc/extras.php:209
+#: inc/extras.php:449
 msgid "(more...)"
 msgstr ""
 
@@ -1436,6 +1492,7 @@ msgstr ""
 #: inc/extras.php:474
 #: inc/extras.php:485
 #: inc/extras.php:442
+#: inc/extras.php:682
 #, php-format
 msgid "Search Results for: %s"
 msgstr ""
@@ -1443,6 +1500,7 @@ msgstr ""
 #: inc/extras.php:525
 #: inc/extras.php:536
 #: inc/extras.php:457
+#: inc/extras.php:697
 msgid "404: Page Not Found"
 msgstr ""
 
@@ -1469,6 +1527,13 @@ msgstr ""
 #: inc/extras.php:760
 #: inc/extras.php:772
 #: inc/integrations/bbpress.php:49
+#: inc/extras.php:840
+#: inc/extras.php:862
+#: inc/extras.php:890
+#: inc/extras.php:901
+#: inc/extras.php:986
+#: inc/extras.php:1000
+#: inc/extras.php:1012
 msgid "Home"
 msgstr ""
 
@@ -1476,6 +1541,7 @@ msgstr ""
 #: inc/extras.php:747
 #: inc/extras.php:758
 #: inc/extras.php:689
+#: inc/extras.php:929
 #, php-format
 msgid "Posts Tagged: %s"
 msgstr ""
@@ -1484,6 +1550,7 @@ msgstr ""
 #: inc/extras.php:755
 #: inc/extras.php:766
 #: inc/extras.php:697
+#: inc/extras.php:937
 #, php-format
 msgid "Day: %s"
 msgstr ""
@@ -1492,6 +1559,7 @@ msgstr ""
 #: inc/extras.php:759
 #: inc/extras.php:770
 #: inc/extras.php:701
+#: inc/extras.php:941
 #, php-format
 msgid "Month: %s"
 msgstr ""
@@ -1500,6 +1568,7 @@ msgstr ""
 #: inc/extras.php:759
 #: inc/extras.php:770
 #: inc/extras.php:701
+#: inc/extras.php:941
 msgctxt "monthly archives date format"
 msgid "F Y"
 msgstr ""
@@ -1508,6 +1577,7 @@ msgstr ""
 #: inc/extras.php:763
 #: inc/extras.php:774
 #: inc/extras.php:705
+#: inc/extras.php:945
 #, php-format
 msgid "Year: %s"
 msgstr ""
@@ -1516,6 +1586,7 @@ msgstr ""
 #: inc/extras.php:763
 #: inc/extras.php:774
 #: inc/extras.php:705
+#: inc/extras.php:945
 msgctxt "yearly archives date format"
 msgid "Y"
 msgstr ""
@@ -1523,60 +1594,70 @@ msgstr ""
 #: inc/extras.php:766
 #: inc/extras.php:777
 #: inc/extras.php:708
+#: inc/extras.php:948
 msgid "Asides"
 msgstr ""
 
 #: inc/extras.php:769
 #: inc/extras.php:780
 #: inc/extras.php:711
+#: inc/extras.php:951
 msgid "Galleries"
 msgstr ""
 
 #: inc/extras.php:772
 #: inc/extras.php:783
 #: inc/extras.php:714
+#: inc/extras.php:954
 msgid "Images"
 msgstr ""
 
 #: inc/extras.php:775
 #: inc/extras.php:786
 #: inc/extras.php:717
+#: inc/extras.php:957
 msgid "Videos"
 msgstr ""
 
 #: inc/extras.php:778
 #: inc/extras.php:789
 #: inc/extras.php:720
+#: inc/extras.php:960
 msgid "Quotes"
 msgstr ""
 
 #: inc/extras.php:784
 #: inc/extras.php:795
 #: inc/extras.php:726
+#: inc/extras.php:966
 msgid "Statuses"
 msgstr ""
 
 #: inc/extras.php:787
 #: inc/extras.php:798
 #: inc/extras.php:729
+#: inc/extras.php:969
 msgid "Audios"
 msgstr ""
 
 #: inc/extras.php:790
 #: inc/extras.php:801
 #: inc/extras.php:732
+#: inc/extras.php:972
 msgid "Chats"
 msgstr ""
 
 #: inc/extras.php:796
 #: inc/extras.php:807
 #: inc/extras.php:738
+#: inc/extras.php:978
 msgid "Archives"
 msgstr ""
 
 #: inc/extras.php:841
 #: inc/extras.php:852
 #: inc/extras.php:783
+#: inc/extras.php:1023
 msgid "Search Results For"
 msgstr ""
 
@@ -1586,18 +1667,22 @@ msgstr ""
 #: inc/extras.php:1018
 #: inc/extras.php:856
 #: inc/extras.php:914
+#: inc/extras.php:1096
+#: inc/extras.php:1154
 msgid ", "
 msgstr ""
 
 #: inc/extras.php:953
 #: inc/extras.php:964
 #: inc/extras.php:860
+#: inc/extras.php:1100
 msgid "No Category"
 msgstr ""
 
 #: inc/extras.php:971
 #: inc/extras.php:982
 #: inc/extras.php:878
+#: inc/extras.php:1118
 msgid "No Comments"
 msgstr ""
 
@@ -1605,6 +1690,7 @@ msgstr ""
 #: inc/extras.php:974
 #: inc/extras.php:985
 #: inc/extras.php:881
+#: inc/extras.php:1121
 #, php-format
 msgid "%s Comments"
 msgstr ""
@@ -1612,24 +1698,28 @@ msgstr ""
 #: inc/extras.php:976
 #: inc/extras.php:987
 #: inc/extras.php:883
+#: inc/extras.php:1123
 msgid "1 Comment"
 msgstr ""
 
 #: inc/extras.php:987
 #: inc/extras.php:998
 #: inc/extras.php:894
+#: inc/extras.php:1134
 msgid "Comments Off"
 msgstr ""
 
 #: inc/extras.php:998
 #: inc/extras.php:1009
 #: inc/extras.php:905
+#: inc/extras.php:1145
 msgid "permalink"
 msgstr ""
 
 #: inc/extras.php:1047
 #: inc/extras.php:1058
 #: inc/extras.php:954
+#: inc/extras.php:1194
 msgid "Banner Image"
 msgstr ""
 
@@ -2455,26 +2545,31 @@ msgstr ""
 
 #: adminpages/tools.php:154
 #: adminpages/tools.php:245
+#: adminpages/tools.php:280
 msgid "Error encoding export data."
 msgstr ""
 
 #: adminpages/tools.php:176
 #: adminpages/tools.php:268
+#: adminpages/tools.php:303
 msgid "You are not allowed to import theme settings."
 msgstr ""
 
 #: adminpages/tools.php:181
 #: adminpages/tools.php:273
+#: adminpages/tools.php:308
 msgid "Invalid import request."
 msgstr ""
 
 #: adminpages/tools.php:263
 #: adminpages/tools.php:542
+#: adminpages/tools.php:702
 msgid "You are not allowed to reset theme settings."
 msgstr ""
 
 #: adminpages/tools.php:267
 #: adminpages/tools.php:546
+#: adminpages/tools.php:706
 msgid "Invalid reset request."
 msgstr ""
 
@@ -2546,22 +2641,26 @@ msgid "It will not delete any posts, pages, or media."
 msgstr ""
 
 #: adminpages/tools/reset.php:27
+#: adminpages/tools/reset.php:28
 msgid "Reset Memberlite Theme Settings"
 msgstr ""
 
 #: adminpages/tools/reset.php:37
+#: adminpages/tools/reset.php:38
 msgid "Are you sure you want to reset Memberlite theme settings to their default values? This cannot be undone."
 msgstr ""
 
 #: inc/admin.php:146
 #: inc/admin.php:158
 #: inc/admin.php:342
+#: inc/admin.php:420
 msgid "Documentation"
 msgstr ""
 
 #: inc/admin.php:147
 #: inc/admin.php:159
 #: inc/admin.php:343
+#: inc/admin.php:421
 msgid "Get Support"
 msgstr ""
 
@@ -2569,6 +2668,7 @@ msgstr ""
 #: inc/admin.php:170
 #: inc/admin.php:182
 #: inc/admin.php:366
+#: inc/admin.php:444
 #, php-format
 msgid "Please <a href=\"%1$s\" target=\"_blank\" rel=\"noopener noreferrer\">submit a testimonial</a> to help others find %2$s. Thank you from the %3$s team!"
 msgstr ""
@@ -2855,21 +2955,25 @@ msgstr ""
 #: functions.php:742
 #: functions.php:771
 #: functions.php:770
+#: functions.php:773
 msgid "Buttons Hover"
 msgstr ""
 
 #: inc/admin.php:121
 #: inc/admin.php:305
+#: inc/admin.php:383
 msgid "We have documentation and recommendations to help you get started with the Memberlite Theme."
 msgstr ""
 
 #: inc/admin.php:123
 #: inc/admin.php:307
+#: inc/admin.php:385
 msgid "Click here to view the Memberlite dashboard."
 msgstr ""
 
 #: inc/admin.php:277
 #: inc/admin.php:461
+#: inc/admin.php:539
 msgid "Manage with Memberlite"
 msgstr ""
 
@@ -2956,36 +3060,43 @@ msgstr ""
 
 #: inc/customizer.php:155
 #: inc/customizer.php:194
+#: inc/customizer.php:219
 msgid "Heading Font"
 msgstr ""
 
 #: inc/customizer.php:158
 #: inc/customizer.php:197
+#: inc/customizer.php:222
 msgid "Default font used for headings across the site (h1, h2, h3, etc.)."
 msgstr ""
 
 #: inc/customizer.php:162
 #: inc/customizer.php:201
+#: inc/customizer.php:226
 msgid "Content Font"
 msgstr ""
 
 #: inc/customizer.php:165
 #: inc/customizer.php:204
+#: inc/customizer.php:229
 msgid "Default font used for body text across the site (paragraphs, lists, etc.)."
 msgstr ""
 
 #: inc/customizer.php:186
 #: inc/customizer.php:225
+#: inc/customizer.php:250
 msgid "Choose a color scheme preset. Individual colors below will update to match. Customize any color to switch to \"Custom\" scheme."
 msgstr ""
 
 #: inc/customizer.php:195
 #: inc/customizer.php:234
+#: inc/customizer.php:259
 msgid "Override PMPro Colors"
 msgstr ""
 
 #: inc/customizer.php:198
 #: inc/customizer.php:237
+#: inc/customizer.php:262
 msgid "By default, PMPro will use colors from its own settings. Check this box to have PMPro use the colors you have chosen here instead."
 msgstr ""
 
@@ -2995,6 +3106,7 @@ msgstr ""
 
 #: inc/customizer.php:210
 #: inc/customizer.php:253
+#: inc/customizer.php:278
 msgid "Primary Navigation Link Color"
 msgstr ""
 
@@ -3004,36 +3116,43 @@ msgstr ""
 
 #: inc/customizer.php:220
 #: inc/customizer.php:267
+#: inc/customizer.php:292
 msgid "Masthead Colors"
 msgstr ""
 
 #: inc/customizer.php:227
 #: inc/customizer.php:274
+#: inc/customizer.php:299
 msgid "Site Colors"
 msgstr ""
 
 #: inc/customizer.php:240
 #: inc/customizer.php:287
+#: inc/customizer.php:312
 msgid "Default Text Color"
 msgstr ""
 
 #: inc/customizer.php:242
 #: inc/customizer.php:289
+#: inc/customizer.php:314
 msgid "Default Link Color"
 msgstr ""
 
 #: inc/customizer.php:244
 #: inc/customizer.php:291
+#: inc/customizer.php:316
 msgid "Post Meta Link Color"
 msgstr ""
 
 #: inc/customizer.php:251
 #: inc/customizer.php:298
+#: inc/customizer.php:323
 msgid "Used as an accent color for CTAs and decorations."
 msgstr ""
 
 #: inc/customizer.php:256
 #: inc/customizer.php:303
+#: inc/customizer.php:328
 msgid "Border Color"
 msgstr ""
 
@@ -3043,11 +3162,16 @@ msgstr ""
 #: inc/customizer.php:398
 #: inc/customizer.php:557
 #: inc/customizer.php:641
+#: inc/customizer.php:423
+#: inc/customizer.php:583
+#: inc/customizer.php:698
+#: inc/customizer.php:740
 msgid "Columns Ratio"
 msgstr ""
 
 #: inc/customizer.php:325
 #: inc/customizer.php:401
+#: inc/customizer.php:426
 msgid "Controls how the left and right sections of your header are sized. For example, \"4-8\" makes the left side narrower and the right side wider."
 msgstr ""
 
@@ -3055,16 +3179,20 @@ msgstr ""
 #: inc/customizer.php:454
 #: inc/customizer.php:419
 #: inc/customizer.php:582
+#: inc/customizer.php:444
+#: inc/customizer.php:611
 msgid "Other Settings"
 msgstr ""
 
 #: inc/customizer.php:357
 #: inc/customizer.php:438
+#: inc/customizer.php:463
 msgid "Enable Sticky Header"
 msgstr ""
 
 #: inc/customizer.php:359
 #: inc/customizer.php:440
+#: inc/customizer.php:465
 msgid "On scroll, the header menu will stick to the top of the screen."
 msgstr ""
 
@@ -3074,6 +3202,8 @@ msgstr ""
 
 #: inc/customizer.php:408
 #: inc/customizer.php:536
+#: inc/customizer.php:561
+#: inc/customizer.php:665
 msgid "Archive Layout"
 msgstr ""
 
@@ -3084,11 +3214,15 @@ msgstr ""
 
 #: inc/customizer.php:412
 #: inc/customizer.php:540
+#: inc/customizer.php:565
+#: inc/customizer.php:670
 msgid "Show Full Post Content"
 msgstr ""
 
 #: inc/customizer.php:414
 #: inc/customizer.php:542
+#: inc/customizer.php:567
+#: inc/customizer.php:672
 msgid "Show Posts in a Grid (sidebar hidden)"
 msgstr ""
 
@@ -3096,6 +3230,9 @@ msgstr ""
 #: inc/customizer.php:503
 #: inc/customizer.php:547
 #: inc/customizer.php:631
+#: inc/customizer.php:572
+#: inc/customizer.php:684
+#: inc/customizer.php:730
 msgid "Sidebar Location"
 msgstr ""
 
@@ -3103,6 +3240,9 @@ msgstr ""
 #: inc/customizer.php:516
 #: inc/customizer.php:560
 #: inc/customizer.php:644
+#: inc/customizer.php:586
+#: inc/customizer.php:702
+#: inc/customizer.php:743
 msgid "Sets the content-to-sidebar width ratio. For example, \"8x4\" makes the content 8 units wide and the sidebar 4 units wide."
 msgstr ""
 
@@ -3110,21 +3250,26 @@ msgstr ""
 #: inc/customizer.php:528
 #: inc/customizer.php:572
 #: inc/customizer.php:656
+#: inc/customizer.php:601
+#: inc/customizer.php:755
 msgid "Navigation Settings"
 msgstr ""
 
 #: inc/customizer.php:447
 #: inc/customizer.php:575
+#: inc/customizer.php:604
 msgid "Show Prev/Next on Single Posts"
 msgstr ""
 
 #: inc/customizer.php:457
 #: inc/customizer.php:585
+#: inc/customizer.php:614
 msgid "Show Author Block on Posts"
 msgstr ""
 
 #: inc/customizer.php:474
 #: inc/customizer.php:602
+#: inc/customizer.php:631
 msgid "Featured Images"
 msgstr ""
 
@@ -3724,6 +3869,8 @@ msgstr ""
 #: functions.php:382
 #: inc/customizer.php:260
 #: inc/customizer.php:459
+#: inc/customizer.php:285
+#: inc/customizer.php:484
 msgid "Edit Footer Variations"
 msgstr ""
 
@@ -3737,32 +3884,41 @@ msgstr ""
 
 #: inc/admin.php:124
 #: inc/customizer.php:477
+#: inc/admin.php:162
+#: inc/customizer.php:502
 msgid "Global Footer"
 msgstr ""
 
 #: inc/admin.php:125
+#: inc/admin.php:163
 msgid "Blog & Archives"
 msgstr ""
 
 #: inc/admin.php:126
+#: inc/admin.php:164
 msgid "Single Posts"
 msgstr ""
 
 #: inc/admin.php:149
+#: inc/admin.php:130
 msgid "1 page override"
 msgstr ""
 
 #. translators: %d: number of pages with this footer assigned via post meta override
+#. translators: %d: number of pages with this variation assigned via post meta override
 #: inc/admin.php:156
+#: inc/admin.php:137
 #, php-format
 msgid "%d page overrides"
 msgstr ""
 
 #: inc/admin.php:174
+#: inc/admin.php:214
 msgid "Used By"
 msgstr ""
 
 #: inc/admin.php:199
+#: inc/admin.php:278
 msgid "Not assigned"
 msgstr ""
 
@@ -3772,94 +3928,120 @@ msgstr ""
 
 #: inc/custom-post-types.php:16
 #: inc/custom-post-types.php:27
+#: inc/custom-post-types.php:21
+#: inc/custom-post-types.php:32
 msgid "Header Variations"
 msgstr ""
 
 #: inc/custom-post-types.php:17
+#: inc/custom-post-types.php:22
 msgid "Header Variation"
 msgstr ""
 
 #: inc/custom-post-types.php:18
 #: inc/custom-post-types.php:19
+#: inc/custom-post-types.php:23
+#: inc/custom-post-types.php:24
 msgid "Add New Header Variation"
 msgstr ""
 
 #: inc/custom-post-types.php:20
+#: inc/custom-post-types.php:25
 msgid "Edit Header Variation"
 msgstr ""
 
 #: inc/custom-post-types.php:21
+#: inc/custom-post-types.php:26
 msgid "New Header Variation"
 msgstr ""
 
 #: inc/custom-post-types.php:22
+#: inc/custom-post-types.php:27
 msgid "View Header Variation"
 msgstr ""
 
 #: inc/custom-post-types.php:23
+#: inc/custom-post-types.php:28
 msgid "Search Header Variations"
 msgstr ""
 
 #: inc/custom-post-types.php:24
+#: inc/custom-post-types.php:29
 msgid "No header variations found."
 msgstr ""
 
 #: inc/custom-post-types.php:25
+#: inc/custom-post-types.php:30
 msgid "No header variations found in Trash."
 msgstr ""
 
 #: inc/custom-post-types.php:26
+#: inc/custom-post-types.php:31
 msgid "All Header Variations"
 msgstr ""
 
 #: inc/custom-post-types.php:84
+#: inc/custom-post-types.php:101
 #, php-format
 msgid "Header %d"
 msgstr ""
 
 #: inc/custom-post-types.php:109
 #: inc/custom-post-types.php:120
+#: inc/custom-post-types.php:126
+#: inc/custom-post-types.php:137
 msgid "Footer Variations"
 msgstr ""
 
 #: inc/custom-post-types.php:110
+#: inc/custom-post-types.php:127
 msgid "Footer Variation"
 msgstr ""
 
 #: inc/custom-post-types.php:111
 #: inc/custom-post-types.php:112
+#: inc/custom-post-types.php:128
+#: inc/custom-post-types.php:129
 msgid "Add New Footer Variation"
 msgstr ""
 
 #: inc/custom-post-types.php:113
+#: inc/custom-post-types.php:130
 msgid "Edit Footer Variation"
 msgstr ""
 
 #: inc/custom-post-types.php:114
+#: inc/custom-post-types.php:131
 msgid "New Footer Variation"
 msgstr ""
 
 #: inc/custom-post-types.php:115
+#: inc/custom-post-types.php:132
 msgid "View Footer Variation"
 msgstr ""
 
 #: inc/custom-post-types.php:116
+#: inc/custom-post-types.php:133
 msgid "Search Footer Variations"
 msgstr ""
 
 #: inc/custom-post-types.php:117
+#: inc/custom-post-types.php:134
 msgid "No footer variations found."
 msgstr ""
 
 #: inc/custom-post-types.php:118
+#: inc/custom-post-types.php:135
 msgid "No footer variations found in Trash."
 msgstr ""
 
 #: inc/custom-post-types.php:119
+#: inc/custom-post-types.php:136
 msgid "All Footer Variations"
 msgstr ""
 
 #: inc/custom-post-types.php:177
+#: inc/custom-post-types.php:194
 #, php-format
 msgid "Footer %d"
 msgstr ""
@@ -3869,73 +4051,94 @@ msgid "General"
 msgstr ""
 
 #: inc/customizer.php:170
+#: inc/customizer.php:195
 msgid "Back to Top Style"
 msgstr ""
 
 #: inc/customizer.php:174
+#: inc/customizer.php:199
 msgid "Default (inline link in footer)"
 msgstr ""
 
 #: inc/customizer.php:175
+#: inc/customizer.php:200
 msgid "Floating button (fixed position)"
 msgstr ""
 
 #: inc/customizer.php:177
+#: inc/customizer.php:202
 msgid "The inline link is only available if your site is using the default footer. Footer variations can be set in the \"Footer\" panel."
 msgstr ""
 
 #: inc/customizer.php:243
+#: inc/customizer.php:268
 msgid "Default Header Colors"
 msgstr ""
 
 #: inc/customizer.php:245
+#: inc/customizer.php:270
 msgid "These colors apply to the default header. Some header variations may not use every color. Colors changed directly in the block editor override these settings."
 msgstr ""
 
 #: inc/customizer.php:247
 #: inc/customizer.php:372
+#: inc/customizer.php:272
+#: inc/customizer.php:397
 msgid "Edit Header Variations"
 msgstr ""
 
 #: inc/customizer.php:256
+#: inc/customizer.php:281
 msgid "Default Footer Colors"
 msgstr ""
 
 #: inc/customizer.php:258
+#: inc/customizer.php:283
 msgid "These colors apply to the default footer. Some footer variations may not use every color. Colors changed directly in the block editor override these settings."
 msgstr ""
 
 #: inc/customizer.php:369
 #: inc/customizer.php:456
+#: inc/customizer.php:394
+#: inc/customizer.php:481
 msgid "Variation Settings"
 msgstr ""
 
 #: inc/customizer.php:379
 #: inc/customizer.php:466
+#: inc/customizer.php:404
+#: inc/customizer.php:491
 msgid "— Default —"
 msgstr ""
 
 #: inc/customizer.php:384
+#: inc/admin.php:198
+#: inc/customizer.php:409
 msgid "Global Header"
 msgstr ""
 
 #: inc/customizer.php:389
+#: inc/customizer.php:414
 msgid "Choose which header variation to display across the site."
 msgstr ""
 
 #: inc/customizer.php:393
+#: inc/customizer.php:418
 msgid "Default Header Settings"
 msgstr ""
 
 #: inc/customizer.php:472
+#: inc/customizer.php:497
 msgid "— Use Global Footer —"
 msgstr ""
 
 #: inc/customizer.php:482
+#: inc/customizer.php:507
 msgid "Choose which footer variation to display across the site."
 msgstr ""
 
 #: inc/customizer.php:486
+#: inc/customizer.php:511
 msgid "Blog & Archives Footer"
 msgstr ""
 
@@ -3944,6 +4147,7 @@ msgid "Choose which footer variation to display on your blog and post archives."
 msgstr ""
 
 #: inc/customizer.php:495
+#: inc/customizer.php:520
 msgid "Single Post Footer"
 msgstr ""
 
@@ -3952,14 +4156,17 @@ msgid "Choose which footer variation to display on the single post view."
 msgstr ""
 
 #: inc/customizer.php:504
+#: inc/customizer.php:529
 msgid "Pages Footer"
 msgstr ""
 
 #: inc/customizer.php:509
+#: inc/customizer.php:534
 msgid "Choose which footer variation to display on your pages."
 msgstr ""
 
 #: inc/customizer.php:513
+#: inc/customizer.php:538
 msgid "Default Footer Settings"
 msgstr ""
 
@@ -3977,6 +4184,7 @@ msgstr ""
 
 #. translators: %s: Post type singular name, e.g. "Post", "Page".
 #: inc/extras.php:1000
+#: inc/extras.php:1240
 #, php-format
 msgid "%s"
 msgstr ""
@@ -4015,6 +4223,7 @@ msgstr ""
 #: patterns/footer-06.php:166
 #: patterns/footer-07.php:56
 #: patterns/footer-08.php:101
+#: patterns/footer-04.php:131
 msgid "All rights reserved."
 msgstr ""
 
@@ -4026,6 +4235,7 @@ msgstr ""
 #: patterns/footer-07.php:64
 #: patterns/footer-08.php:78
 #: patterns/footer-08.php:107
+#: patterns/footer-04.php:137
 msgid "Privacy Policy"
 msgstr ""
 
@@ -4035,6 +4245,7 @@ msgstr ""
 #: patterns/footer-06.php:176
 #: patterns/footer-08.php:79
 #: patterns/footer-08.php:111
+#: patterns/footer-04.php:141
 msgid "Terms of Service"
 msgstr ""
 
@@ -4054,6 +4265,7 @@ msgstr ""
 #: patterns/footer-06.php:104
 #: patterns/footer-07.php:28
 #: patterns/footer-08.php:37
+#: patterns/footer-04.php:36
 msgid "Membership Levels"
 msgstr ""
 
@@ -4068,6 +4280,7 @@ msgstr ""
 #: patterns/footer-06.php:125
 #: patterns/footer-07.php:30
 #: patterns/footer-08.php:59
+#: patterns/footer-04.php:81
 msgid "Blog"
 msgstr ""
 
@@ -4088,6 +4301,7 @@ msgstr ""
 
 #: patterns/footer-03.php:44
 #: patterns/footer-04.php:29
+#: patterns/footer-04.php:31
 msgid "Member Area"
 msgstr ""
 
@@ -4095,6 +4309,7 @@ msgstr ""
 #: patterns/footer-04.php:35
 #: patterns/footer-06.php:105
 #: patterns/footer-08.php:38
+#: patterns/footer-04.php:37
 msgid "Join Now"
 msgstr ""
 
@@ -4102,6 +4317,7 @@ msgstr ""
 #: patterns/footer-04.php:36
 #: patterns/footer-06.php:106
 #: patterns/footer-08.php:39
+#: patterns/footer-04.php:38
 msgid "Member Login"
 msgstr ""
 
@@ -4109,24 +4325,28 @@ msgstr ""
 #: patterns/footer-04.php:37
 #: patterns/footer-06.php:107
 #: patterns/footer-08.php:40
+#: patterns/footer-04.php:39
 msgid "My Account"
 msgstr ""
 
 #: patterns/footer-03.php:63
 #: patterns/footer-04.php:46
 #: patterns/footer-08.php:71
+#: patterns/footer-04.php:52
 msgid "Support"
 msgstr ""
 
 #: patterns/footer-03.php:68
 #: patterns/footer-04.php:51
 #: patterns/footer-08.php:76
+#: patterns/footer-04.php:57
 msgid "Contact Us"
 msgstr ""
 
 #: patterns/footer-03.php:69
 #: patterns/footer-04.php:52
 #: patterns/footer-08.php:77
+#: patterns/footer-04.php:58
 msgid "Help Center"
 msgstr ""
 
@@ -4134,11 +4354,13 @@ msgstr ""
 #: patterns/footer-04.php:53
 #: patterns/footer-05.php:66
 #: patterns/footer-08.php:80
+#: patterns/footer-04.php:59
 msgid "Refund Policy"
 msgstr ""
 
 #: patterns/footer-03.php:81
 #: patterns/footer-04.php:64
+#: patterns/footer-04.php:74
 msgid "Quick Links"
 msgstr ""
 
@@ -4146,6 +4368,7 @@ msgstr ""
 #: patterns/footer-04.php:69
 #: patterns/footer-06.php:123
 #: patterns/footer-08.php:57
+#: patterns/footer-04.php:79
 msgid "Courses & Training"
 msgstr ""
 
@@ -4153,6 +4376,7 @@ msgstr ""
 #: patterns/footer-04.php:70
 #: patterns/footer-06.php:124
 #: patterns/footer-08.php:58
+#: patterns/footer-04.php:80
 msgid "Community"
 msgstr ""
 
@@ -4160,6 +4384,7 @@ msgstr ""
 #: patterns/footer-04.php:72
 #: patterns/footer-06.php:126
 #: patterns/footer-08.php:60
+#: patterns/footer-04.php:82
 msgid "Events"
 msgstr ""
 
@@ -4169,16 +4394,19 @@ msgstr ""
 
 #: patterns/footer-03.php:105
 #: patterns/footer-04.php:86
+#: patterns/footer-04.php:100
 msgid "Our Story"
 msgstr ""
 
 #: patterns/footer-03.php:106
 #: patterns/footer-04.php:87
+#: patterns/footer-04.php:101
 msgid "Who We Help"
 msgstr ""
 
 #: patterns/footer-03.php:107
 #: patterns/footer-04.php:88
+#: patterns/footer-04.php:102
 msgid "Our Team"
 msgstr ""
 
@@ -4198,6 +4426,7 @@ msgid "Bordered card footer with two stacked link columns and a login form. Ligh
 msgstr ""
 
 #: patterns/footer-04.php:81
+#: patterns/footer-04.php:95
 msgid "About Us"
 msgstr ""
 
@@ -4460,4 +4689,81 @@ msgstr ""
 #: src/blocks/nav-menu/block.json
 msgctxt "block description"
 msgid "Renders a WordPress classic navigation menu."
+msgstr ""
+
+#. translators: %s: link to the WordPress Tools > Export admin page
+#: adminpages/tools/export-settings.php:131
+#, php-format
+msgid "To export WordPress content such as posts, pages, header variations, footer variations, and media, use the built-in WordPress %s page."
+msgstr ""
+
+#: adminpages/tools/export-settings.php:132
+msgid "Tools > Export"
+msgstr ""
+
+#: adminpages/tools/import-settings.php:61
+#, php-format
+msgid "To import WordPress content such as posts, pages, header variations, footer variations, and media, use the built-in WordPress %s page."
+msgstr ""
+
+#: adminpages/tools/import-settings.php:62
+msgid "Tools > Import"
+msgstr ""
+
+#: adminpages/tools/reset.php:22
+msgid "It will not delete any posts, pages, navigation menus, header variations, footer variations, or media."
+msgstr ""
+
+#: inc/admin.php:365
+msgid "Invalid notice."
+msgstr ""
+
+#: inc/child-theme-activation.php:104
+msgid "Memberlite automatically copied your parent theme settings (colors, fonts, layout, menus, and Additional CSS) to this child theme so your site keeps the same look."
+msgstr ""
+
+#: inc/customizer.php:162
+msgid "Other Post Types"
+msgstr ""
+
+#. translators: %s: plural label for the post type, e.g. "Courses"
+#: inc/customizer.php:173
+#, php-format
+msgid "%s Layout"
+msgstr ""
+
+#: inc/customizer.php:516
+msgid "Choose which footer variation to display on your blog and post archives. Includes custom post types."
+msgstr ""
+
+#: inc/customizer.php:525
+msgid "Choose which footer variation to display on the single post view. Includes custom post types."
+msgstr ""
+
+#: inc/customizer.php:563
+msgid "Choose how posts are displayed on your blog and archive pages."
+msgstr ""
+
+#: inc/customizer.php:574
+msgid "Choose sidebar placement for your blog, archive pages, and single posts."
+msgstr ""
+
+#: inc/customizer.php:657
+msgid "Inherit from Posts & Archives"
+msgstr ""
+
+#: inc/customizer.php:660
+msgid "When checked, this post type uses the layout settings from Posts & Archives. Uncheck to control it separately."
+msgstr ""
+
+#: inc/customizer.php:668
+msgid "Choose how posts are displayed on archive pages."
+msgstr ""
+
+#: inc/customizer.php:681
+msgid "Choose sidebar placement for archive pages and single posts."
+msgstr ""
+
+#: inc/customizer.php:682
+msgid "Choose sidebar placement for single posts."
 msgstr ""
