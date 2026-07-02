@@ -92,7 +92,7 @@ Memberlite includes formatting for use with:
 
 == Changelog ==
 
-= 7.1.2 - 2026-06-25 =
+= 7.1.2 - 2026-07-02 =
 
 * FEATURE: Added new Customizer layout settings for Other Post Types, including support for inheriting Posts & Archives settings by default. #303 #317 #318 @RachelRVasquez
 * ENHANCEMENT: Wrapped the text attribute in the `memberlite_btn` shortcode with `esc_html` to prevent XSS. #321 @kimcoleman
