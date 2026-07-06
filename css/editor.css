@@ -491,6 +491,14 @@ hr.wp-block-separator.is-style-flourish-circle-diamond {
  Accordion Block Styles
 --------------------------------------------------------------*/
 
+.wp-block-accordion.is-style-accrdn-medium .wp-block-accordion-heading__toggle-icon {
+	font-size: var(--wp--preset--font-size--30);
+}
+
+.wp-block-accordion.is-style-accrdn-large .wp-block-accordion-heading__toggle-icon {
+	font-size: var(--wp--preset--font-size--42);
+}
+
 .wp-block-accordion-item {
 	margin-block-start: 0;
 }

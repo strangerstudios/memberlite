@@ -787,3 +787,17 @@ hr.wp-block-separator {
 		}
 	}
 }
+
+// -----------------------------------------------------------------------------
+// Accordion Styles
+// -----------------------------------------------------------------------------
+
+.wp-block-accordion {
+	&.is-style-accrdn-medium .wp-block-accordion-heading__toggle-icon {
+		font-size: var(--wp--preset--font-size--30);
+	}
+
+	&.is-style-accrdn-large .wp-block-accordion-heading__toggle-icon {
+		font-size: var(--wp--preset--font-size--42);
+	}
+}

@@ -49,6 +49,10 @@ function memberlite_register_block_styles(): void {
 			array( 'name' => 'slant-bottom-left', 'label' => __( 'Slant: Bottom Left', 'memberlite' ) ),
 			array( 'name' => 'wavy-bottom', 'label' => __( 'Wavy Bottom', 'memberlite' ) ),
 		),
+		'core/accordion'  => array(
+			array( 'name' => 'accrdn-medium', 'label' => __( 'Medium Icon', 'memberlite' ) ),
+			array( 'name' => 'accrdn-large', 'label' => __( 'Large Icon', 'memberlite' ) ),
+		),
 	);
 
 	foreach ( $block_styles as $block_name => $styles ) {
