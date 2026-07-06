@@ -168,7 +168,7 @@ hr.wp-block-separator.is-style-wave,
 hr.wp-block-separator.is-style-double {
 	background: none;
 	/*max-width: 100%;*/
-	background-color: var(--wp--preset--color-borders);
+	background-color: var(--wp--preset--color--borders);
 	mask-repeat: repeat-x;
 	mask-size: auto 100%;
 	mask-position: center;
@@ -202,7 +202,7 @@ hr.wp-block-separator.is-style-flourish-circle-diamond {
 	border: none;
 	background: none;
 	width: 100% !important;
-	background-color: var(--wp--preset--color-borders);
+	background-color: var(--wp--preset--color--borders);
 	mask-repeat: no-repeat;
 	mask-position: center;
 	mask-size: 1230px 32px;
