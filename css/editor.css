@@ -167,7 +167,6 @@ hr.wp-block-separator.is-style-faded-edges,
 hr.wp-block-separator.is-style-wave,
 hr.wp-block-separator.is-style-double {
 	background: none;
-	/*max-width: 100%;*/
 	background-color: var(--wp--preset--color--borders);
 	mask-repeat: repeat-x;
 	mask-size: auto 100%;
@@ -486,4 +485,35 @@ hr.wp-block-separator.is-style-flourish-circle-diamond {
 	mask-size: 100% 100%;
 	-webkit-mask-repeat: no-repeat;
 	mask-repeat: no-repeat;
+}
+
+/*--------------------------------------------------------------
+ Accordion Block Styles
+--------------------------------------------------------------*/
+
+.wp-block-accordion-item {
+	margin-block-start: 0;
+}
+
+.wp-block-accordion-item .wp-block-accordion-heading__toggle {
+	background: none;
+	border: 0;
+	box-shadow: none;
+	padding: 0;
+	text-align: left;
+}
+
+.wp-block-accordion-item .wp-block-accordion-heading {
+	font-family: var(--memberlite-header-font), ui-sans-serif;
+	font-size: inherit;
+	font-weight: 700;
+	line-height: inherit;
+	margin: 0;
+	border-top: 1px solid var(--wp--preset--color--borders);
+	padding: var(--wp--preset--spacing--10);
+}
+
+:is(.wp-block-accordion-panel) {
+	margin-block-start: 0;
+	padding: 0 var(--wp--preset--spacing--10) var(--wp--preset--spacing--10);
 }
