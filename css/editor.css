@@ -528,3 +528,17 @@ hr.wp-block-separator.is-style-flourish-circle-diamond {
 	margin-block-start: 0;
 	padding: 0 var(--wp--preset--spacing--10) var(--wp--preset--spacing--10);
 }
+
+.wp-block-accordion.is-style-accrdn-caret .wp-block-accordion-heading__toggle:after {
+	font-family: "Font Awesome 5 Free";
+	font-weight: 900;
+	content: "\f078";
+	margin-left: var(--wp--preset--spacing--10);
+}
+
+.wp-block-accordion.is-style-accrdn-caret .is-open .wp-block-accordion-heading__toggle:after {
+	content: "\f077";
+}
+.wp-block-accordion.is-style-accrdn-caret .wp-block-accordion-heading__toggle-icon {
+	display: none;
+}

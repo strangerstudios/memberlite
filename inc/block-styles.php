@@ -50,8 +50,9 @@ function memberlite_register_block_styles(): void {
 			array( 'name' => 'wavy-bottom', 'label' => __( 'Wavy Bottom', 'memberlite' ) ),
 		),
 		'core/accordion'  => array(
-			array( 'name' => 'accrdn-medium', 'label' => __( 'Medium Icon', 'memberlite' ) ),
-			array( 'name' => 'accrdn-large', 'label' => __( 'Large Icon', 'memberlite' ) ),
+			array( 'name' => 'accrdn-medium', 'label' => __( 'Medium Plus', 'memberlite' ) ),
+			array( 'name' => 'accrdn-large', 'label' => __( 'Large Plus', 'memberlite' ) ),
+			array( 'name' => 'accrdn-caret', 'label' => __( 'Caret', 'memberlite' ) ),
 		),
 	);
 

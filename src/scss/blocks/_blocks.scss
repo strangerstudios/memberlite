@@ -801,4 +801,21 @@ hr.wp-block-separator {
 	&.is-style-accrdn-large .wp-block-accordion-heading__toggle-icon {
 		font-size: var(--wp--preset--font-size--42);
 	}
+
+	&.is-style-accrdn-caret {
+		.wp-block-accordion-heading__toggle:after {
+			font-family: $font-family-awesome;
+			font-weight: 900;
+			content: "\f078"; // fa-chevron-down
+			margin-left: var(--wp--preset--spacing--10);
+		}
+
+		.wp-block-accordion-heading__toggle[aria-expanded="true"]:after {
+			content: "\f077"; // fa-chevron-up
+		}
+
+		.wp-block-accordion-heading__toggle-icon {
+			display: none;
+		}
+	}
 }
