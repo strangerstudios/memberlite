@@ -140,6 +140,10 @@ hr.wp-block-separator.is-style-dots:before {
 	color: var(--wp--preset--color-borders);
 }
 
+hr.wp-block-separator.is-style-wide {
+	background-color: var(--wp--preset--color--borders);
+}
+
 hr.wp-block-separator.is-style-wide,
 hr.wp-block-separator.is-style-faded-edges,
 hr.wp-block-separator.is-style-wave,
@@ -518,7 +522,6 @@ hr.wp-block-separator.is-style-flourish-circle-diamond {
 	line-height: inherit;
 	margin: 0;
 	border-top: 1px solid var(--wp--preset--color--borders);
-	padding: var(--wp--preset--spacing--10);
 }
 
 :is(.wp-block-accordion-panel) {
