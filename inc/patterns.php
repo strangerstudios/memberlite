@@ -15,6 +15,7 @@
 function memberlite_register_pattern_categories(): void {
 	$categories = array(
 		'memberlite-about'        => __( 'Memberlite - About', 'memberlite' ),
+		'memberlite-accordion'    => __( 'Memberlite - Accordion', 'memberlite' ),
 		'memberlite-community'    => __( 'Memberlite - Community', 'memberlite' ),
 		'memberlite-content'      => __( 'Memberlite - Content', 'memberlite' ),
 		'memberlite-courses'      => __( 'Memberlite - Courses', 'memberlite' ),
@@ -22,6 +23,7 @@ function memberlite_register_pattern_categories(): void {
 		'memberlite-footer'       => __( 'Memberlite - Footer Variations', 'memberlite' ),
 		'memberlite-header'       => __( 'Memberlite - Header Variations', 'memberlite' ),
 		'memberlite-media'        => __( 'Memberlite - Media', 'memberlite' ),
+		'memberlite-pricing'      => __( 'Memberlite - Pricing', 'memberlite' ),
 		'memberlite-team'         => __( 'Memberlite - Team', 'memberlite' ),
 		'memberlite-testimonials' => __( 'Memberlite - Testimonials', 'memberlite' ),
 	);
