@@ -458,6 +458,66 @@ function memberlite_get_slate_harbor_colors(): array {
 }
 
 /**
+ * Neon Indigo color scheme
+ *
+ * Deep indigo dark mode with neon cyan and magenta accents.
+ *
+ * @since 7.1.2
+ * @return array 17-color associative array.
+ */
+function memberlite_get_neon_indigo_colors(): array {
+	return array(
+		'header_textcolor'        => 'f5f5ff',
+		'background_color'        => '0b0b2e',
+		'bgcolor_header'          => '0b0b2e',
+		'bgcolor_site_navigation' => '14143f',
+		'color_site_navigation'   => 'f5f5ff',
+		'color_text'              => 'f5f5ff',
+		'color_link'              => '3ee9e0',
+		'color_meta_link'         => 'ff3fa4',
+		'color_primary'           => '3ee9e0',
+		'color_secondary'         => '6f5fa8',
+		'color_action'            => 'ff3fa4',
+		'color_button'            => '3ee9e0',
+		'bgcolor_page_masthead'   => '0b0b2e',
+		'color_page_masthead'     => 'f5f5ff',
+		'bgcolor_footer_widgets'  => '14143f',
+		'color_footer_widgets'    => 'f5f5ff',
+		'color_borders'           => '2e2e5c',
+	);
+}
+
+/**
+ * Cobalt Current color scheme
+ *
+ * Deep navy dark mode with cobalt blue, lime green buttons, and an amber accent.
+ *
+ * @since 7.1.2
+ * @return array 17-color associative array.
+ */
+function memberlite_get_cobalt_current_colors(): array {
+	return array(
+		'header_textcolor'        => 'ffffff',
+		'background_color'        => '0a1628',
+		'bgcolor_header'          => '0a1628',
+		'bgcolor_site_navigation' => '101f36',
+		'color_site_navigation'   => 'ffffff',
+		'color_text'              => 'e7edf5',
+		'color_link'              => '8ab4f8',
+		'color_meta_link'         => '9fb3c8',
+		'color_primary'           => '3b82f6',
+		'color_secondary'         => '1e3a5f',
+		'color_action'            => 'f5a623',
+		'color_button'            => '7ed321',
+		'bgcolor_page_masthead'   => '0a1628',
+		'color_page_masthead'     => 'ffffff',
+		'bgcolor_footer_widgets'  => '0a1628',
+		'color_footer_widgets'    => 'ffffff',
+		'color_borders'           => '24344a',
+	);
+}
+
+/**
  * Get all available color schemes.
  *
  * Each scheme contains a label and the full 17-color associative array.
@@ -507,6 +567,14 @@ function memberlite_get_color_schemes(): array {
 		'slate_harbor'    => array(
 			'label'  => __( 'Slate Harbor', 'memberlite' ),
 			'colors' => memberlite_get_slate_harbor_colors(),
+		),
+		'neon_indigo'     => array(
+			'label'  => __( 'Neon Indigo', 'memberlite' ),
+			'colors' => memberlite_get_neon_indigo_colors(),
+		),
+		'cobalt_current'  => array(
+			'label'  => __( 'Cobalt Current', 'memberlite' ),
+			'colors' => memberlite_get_cobalt_current_colors(),
 		),
 	);
 
