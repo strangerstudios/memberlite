@@ -357,7 +357,7 @@ function memberlite_get_gotham_colors(): array {
 		'color_meta_link'         => 'ffffff',
 		'color_primary'           => 'c3b2ad',
 		'color_secondary'         => '69666f',
-		'color_action'            => '8ab4d4',
+		'color_action'            => 'a8daff',
 		'color_button'            => 'e7b39e',
 		'bgcolor_page_masthead'   => 'e9d5cd',
 		'color_page_masthead'     => '191b1f',
@@ -387,7 +387,7 @@ function memberlite_get_soft_spruce_colors(): array {
 		'color_meta_link'         => '555858',
 		'color_primary'           => '0b603a',
 		'color_secondary'         => '555858',
-		'color_action'            => 'd18a3a',
+		'color_action'            => 'c77212',
 		'color_button'            => '0b603a',
 		'bgcolor_page_masthead'   => 'f5f7f6',
 		'color_page_masthead'     => '2b2e2d',
@@ -447,7 +447,7 @@ function memberlite_get_slate_harbor_colors(): array {
 		'color_meta_link'         => '0f6e7a',
 		'color_primary'           => '0b1233',
 		'color_secondary'         => '0f6e7a',
-		'color_action'            => 'f26b3a',
+		'color_action'            => '5a7d6d',
 		'color_button'            => '0b1233',
 		'bgcolor_page_masthead'   => '0b1233',
 		'color_page_masthead'     => 'ffffff',
@@ -518,6 +518,39 @@ function memberlite_get_cobalt_current_colors(): array {
 }
 
 /**
+ * Rosewood color scheme
+ *
+ * Soft blush pink on a white site background, sampled from a feminine
+ * reference design. Button/masthead/action colors are deepened just
+ * enough from the reference to stay readable, since button text renders
+ * in the site background color.
+ *
+ * @since 7.1.2
+ * @return array 17-color associative array.
+ */
+function memberlite_get_rosewood_colors(): array {
+	return array(
+		'header_textcolor'        => '4d4a47',
+		'background_color'        => 'ffffff',
+		'bgcolor_header'          => 'ffffff',
+		'bgcolor_site_navigation' => 'ffffff',
+		'color_site_navigation'   => '4d4a47',
+		'color_text'              => '4d4a47',
+		'color_link'              => 'b77a7a',
+		'color_meta_link'         => '82695f',
+		'color_primary'           => 'b77a7a',
+		'color_secondary'         => '82695f',
+		'color_action'            => 'a63f62',
+		'color_button'            => 'a76f6f',
+		'bgcolor_page_masthead'   => 'a76f6f',
+		'color_page_masthead'     => 'ffffff',
+		'bgcolor_footer_widgets'  => 'fcf2f0',
+		'color_footer_widgets'    => '534f4d',
+		'color_borders'           => 'ecd9d3',
+	);
+}
+
+/**
  * Get all available color schemes.
  *
  * Each scheme contains a label and the full 17-color associative array.
@@ -575,6 +608,10 @@ function memberlite_get_color_schemes(): array {
 		'cobalt_current'  => array(
 			'label'  => __( 'Cobalt Current', 'memberlite' ),
 			'colors' => memberlite_get_cobalt_current_colors(),
+		),
+		'rosewood'        => array(
+			'label'  => __( 'Rosewood', 'memberlite' ),
+			'colors' => memberlite_get_rosewood_colors(),
 		),
 	);
 
