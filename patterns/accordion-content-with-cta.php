@@ -13,8 +13,8 @@
 <!-- wp:group {"align":"full","style":{"spacing":{"padding":{"top":"var:preset|spacing|20","bottom":"var:preset|spacing|20"}}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group alignfull" style="padding-top:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--20)"><!-- wp:columns {"align":"wide"} -->
 <div class="wp-block-columns alignwide"><!-- wp:column {"style":{"spacing":{"padding":{"right":"var:preset|spacing|20"}}}} -->
-<div class="wp-block-column" style="padding-right:var(--wp--preset--spacing--20)"><!-- wp:paragraph {"style":{"elements":{"link":{"color":{"text":"var:preset|color|color-secondary"}}},"typography":{"letterSpacing":"1px"}},"textColor":"color-secondary","fontSize":"21","fontFamily":"roboto"} -->
-<p class="has-color-secondary-color has-text-color has-link-color has-roboto-font-family has-21-font-size" style="letter-spacing:1px"><strong>FAQ</strong></p>
+<div class="wp-block-column" style="padding-right:var(--wp--preset--spacing--20)"><!-- wp:paragraph {"style":{"elements":{"link":{"color":{"text":"var:preset|color|color-action"}}},"typography":{"letterSpacing":"1px"}},"textColor":"color-action","fontSize":"21","fontFamily":"roboto"} -->
+<p class="has-color-action-color has-text-color has-link-color has-roboto-font-family has-21-font-size" style="letter-spacing:1px"><strong>FAQ</strong></p>
 <!-- /wp:paragraph -->
 
 <!-- wp:heading {"style":{"typography":{"fontSize":"35px","textTransform":"capitalize"},"spacing":{"margin":{"top":"var:preset|spacing|10","bottom":"0"}}},"fontFamily":"roboto"} -->
@@ -34,8 +34,8 @@
 
 <!-- wp:column -->
 <div class="wp-block-column"><!-- wp:accordion {"className":"is-style-accrdn-large"} -->
-<div role="group" class="wp-block-accordion is-style-accrdn-large"><!-- wp:accordion-item {"style":{"spacing":{"margin":{"bottom":"var:preset|spacing|10"}},"elements":{"link":{"color":{"text":"var:preset|color|page-masthead"}}}},"backgroundColor":"color-primary","textColor":"page-masthead"} -->
-<div class="wp-block-accordion-item has-page-masthead-color has-color-primary-background-color has-text-color has-background has-link-color" style="margin-bottom:var(--wp--preset--spacing--10)"><!-- wp:accordion-heading {"style":{"spacing":{"padding":{"top":"6px","bottom":"6px","left":"var:preset|spacing|10","right":"var:preset|spacing|10"}},"border":{"width":"0px","style":"none"},"typography":{"textTransform":"capitalize"}},"fontSize":"24","fontFamily":"roboto"} -->
+<div role="group" class="wp-block-accordion is-style-accrdn-large"><!-- wp:accordion-item {"style":{"spacing":{"margin":{"bottom":"var:preset|spacing|10"}},"elements":{"link":{"color":{"text":"var:preset|color|site-navigation-background"}}}},"backgroundColor":"site-navigation-link","textColor":"site-navigation-background"} -->
+<div class="wp-block-accordion-item has-site-navigation-background-color has-site-navigation-link-background-color has-text-color has-background has-link-color" style="margin-bottom:var(--wp--preset--spacing--10)"><!-- wp:accordion-heading {"style":{"spacing":{"padding":{"top":"6px","bottom":"6px","left":"var:preset|spacing|10","right":"var:preset|spacing|10"}},"border":{"width":"0px","style":"none"},"typography":{"textTransform":"capitalize"}},"fontSize":"24","fontFamily":"roboto"} -->
 <h3 class="wp-block-accordion-heading has-roboto-font-family has-24-font-size" style="border-style:none;border-width:0px;text-transform:capitalize"><button type="button" class="wp-block-accordion-heading__toggle" style="padding-top:6px;padding-right:var(--wp--preset--spacing--10);padding-bottom:6px;padding-left:var(--wp--preset--spacing--10)"><span class="wp-block-accordion-heading__toggle-title">How much will it cost?</span><span class="wp-block-accordion-heading__toggle-icon" aria-hidden="true">+</span></button></h3>
 <!-- /wp:accordion-heading -->
 
@@ -46,8 +46,8 @@
 <!-- /wp:accordion-panel --></div>
 <!-- /wp:accordion-item -->
 
-<!-- wp:accordion-item {"style":{"spacing":{"margin":{"bottom":"var:preset|spacing|10"}},"elements":{"link":{"color":{"text":"var:preset|color|page-masthead"}}}},"backgroundColor":"color-primary","textColor":"page-masthead"} -->
-<div class="wp-block-accordion-item has-page-masthead-color has-color-primary-background-color has-text-color has-background has-link-color" style="margin-bottom:var(--wp--preset--spacing--10)"><!-- wp:accordion-heading {"style":{"spacing":{"padding":{"top":"6px","bottom":"6px","left":"var:preset|spacing|10","right":"var:preset|spacing|10"}},"border":{"width":"0px","style":"none"},"typography":{"textTransform":"capitalize"}},"fontSize":"24","fontFamily":"roboto"} -->
+<!-- wp:accordion-item {"style":{"spacing":{"margin":{"bottom":"var:preset|spacing|10"}},"elements":{"link":{"color":{"text":"var:preset|color|site-navigation-background"}}}},"backgroundColor":"site-navigation-link","textColor":"site-navigation-background"} -->
+<div class="wp-block-accordion-item has-site-navigation-background-color has-site-navigation-link-background-color has-text-color has-background has-link-color" style="margin-bottom:var(--wp--preset--spacing--10)"><!-- wp:accordion-heading {"style":{"spacing":{"padding":{"top":"6px","bottom":"6px","left":"var:preset|spacing|10","right":"var:preset|spacing|10"}},"border":{"width":"0px","style":"none"},"typography":{"textTransform":"capitalize"}},"fontSize":"24","fontFamily":"roboto"} -->
 <h3 class="wp-block-accordion-heading has-roboto-font-family has-24-font-size" style="border-style:none;border-width:0px;text-transform:capitalize"><button type="button" class="wp-block-accordion-heading__toggle" style="padding-top:6px;padding-right:var(--wp--preset--spacing--10);padding-bottom:6px;padding-left:var(--wp--preset--spacing--10)"><span class="wp-block-accordion-heading__toggle-title">How much will it cost?</span><span class="wp-block-accordion-heading__toggle-icon" aria-hidden="true">+</span></button></h3>
 <!-- /wp:accordion-heading -->
 
@@ -58,8 +58,8 @@
 <!-- /wp:accordion-panel --></div>
 <!-- /wp:accordion-item -->
 
-<!-- wp:accordion-item {"style":{"spacing":{"margin":{"bottom":"var:preset|spacing|10"}},"elements":{"link":{"color":{"text":"var:preset|color|page-masthead"}}}},"backgroundColor":"color-primary","textColor":"page-masthead"} -->
-<div class="wp-block-accordion-item has-page-masthead-color has-color-primary-background-color has-text-color has-background has-link-color" style="margin-bottom:var(--wp--preset--spacing--10)"><!-- wp:accordion-heading {"style":{"spacing":{"padding":{"top":"6px","bottom":"6px","left":"var:preset|spacing|10","right":"var:preset|spacing|10"}},"border":{"width":"0px","style":"none"},"typography":{"textTransform":"capitalize"}},"fontSize":"24","fontFamily":"roboto"} -->
+<!-- wp:accordion-item {"style":{"spacing":{"margin":{"bottom":"var:preset|spacing|10"}},"elements":{"link":{"color":{"text":"var:preset|color|site-navigation-background"}}}},"backgroundColor":"site-navigation-link","textColor":"site-navigation-background"} -->
+<div class="wp-block-accordion-item has-site-navigation-background-color has-site-navigation-link-background-color has-text-color has-background has-link-color" style="margin-bottom:var(--wp--preset--spacing--10)"><!-- wp:accordion-heading {"style":{"spacing":{"padding":{"top":"6px","bottom":"6px","left":"var:preset|spacing|10","right":"var:preset|spacing|10"}},"border":{"width":"0px","style":"none"},"typography":{"textTransform":"capitalize"}},"fontSize":"24","fontFamily":"roboto"} -->
 <h3 class="wp-block-accordion-heading has-roboto-font-family has-24-font-size" style="border-style:none;border-width:0px;text-transform:capitalize"><button type="button" class="wp-block-accordion-heading__toggle" style="padding-top:6px;padding-right:var(--wp--preset--spacing--10);padding-bottom:6px;padding-left:var(--wp--preset--spacing--10)"><span class="wp-block-accordion-heading__toggle-title">How much will it cost?</span><span class="wp-block-accordion-heading__toggle-icon" aria-hidden="true">+</span></button></h3>
 <!-- /wp:accordion-heading -->
 
@@ -70,8 +70,8 @@
 <!-- /wp:accordion-panel --></div>
 <!-- /wp:accordion-item -->
 
-<!-- wp:accordion-item {"style":{"spacing":{"margin":{"bottom":"var:preset|spacing|10"}},"elements":{"link":{"color":{"text":"var:preset|color|page-masthead"}}}},"backgroundColor":"color-primary","textColor":"page-masthead"} -->
-<div class="wp-block-accordion-item has-page-masthead-color has-color-primary-background-color has-text-color has-background has-link-color" style="margin-bottom:var(--wp--preset--spacing--10)"><!-- wp:accordion-heading {"style":{"spacing":{"padding":{"top":"6px","bottom":"6px","left":"var:preset|spacing|10","right":"var:preset|spacing|10"}},"border":{"width":"0px","style":"none"},"typography":{"textTransform":"capitalize"}},"fontSize":"24","fontFamily":"roboto"} -->
+<!-- wp:accordion-item {"style":{"spacing":{"margin":{"bottom":"var:preset|spacing|10"}},"elements":{"link":{"color":{"text":"var:preset|color|site-navigation-background"}}}},"backgroundColor":"site-navigation-link","textColor":"site-navigation-background"} -->
+<div class="wp-block-accordion-item has-site-navigation-background-color has-site-navigation-link-background-color has-text-color has-background has-link-color" style="margin-bottom:var(--wp--preset--spacing--10)"><!-- wp:accordion-heading {"style":{"spacing":{"padding":{"top":"6px","bottom":"6px","left":"var:preset|spacing|10","right":"var:preset|spacing|10"}},"border":{"width":"0px","style":"none"},"typography":{"textTransform":"capitalize"}},"fontSize":"24","fontFamily":"roboto"} -->
 <h3 class="wp-block-accordion-heading has-roboto-font-family has-24-font-size" style="border-style:none;border-width:0px;text-transform:capitalize"><button type="button" class="wp-block-accordion-heading__toggle" style="padding-top:6px;padding-right:var(--wp--preset--spacing--10);padding-bottom:6px;padding-left:var(--wp--preset--spacing--10)"><span class="wp-block-accordion-heading__toggle-title">How much will it cost?</span><span class="wp-block-accordion-heading__toggle-icon" aria-hidden="true">+</span></button></h3>
 <!-- /wp:accordion-heading -->
 
