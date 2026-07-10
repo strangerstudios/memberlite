@@ -3,7 +3,7 @@
  * Title: Homepage Hero
  * Slug: memberlite/homepage-hero
  * Description: Greet website visitors with a compelling message and primary call to action.
- * Categories: memberlite-about
+ * Categories: memberlite-about, memberlite-hero
  * Keywords: hero, call to action, cta, homepage
  * @package WordPress
  * @subpackage Memberlite

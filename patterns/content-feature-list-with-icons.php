@@ -3,7 +3,7 @@
  * Title: Feature List With Icons
  * Slug: memberlite/content-feature-list-with-icons
  * Description: Gradient-framed card with a heading and a two-column list of icon feature callouts. Content is static and should be customized per site. Icon badges use the Memberlite Font Awesome shortcode rather than the WordPress 7.0 Icon block, for compatibility with sites not yet on WordPress 7.0.
- * Categories: memberlite-content
+ * Categories: memberlite-content, memberlite-features
  * Keywords: features, benefits, courses, community, icons, list
  * @package WordPress
  * @subpackage Memberlite
