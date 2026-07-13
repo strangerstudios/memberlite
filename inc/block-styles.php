@@ -45,6 +45,7 @@ function memberlite_register_block_styles(): void {
 			array( 'name' => 'loginout-button', 'label' => __( 'Button', 'memberlite' ) ),
 		),
 		'core/cover'     => array(
+			array( 'name' => 'scroll-indicator', 'label' => __( 'Scroll Indicator', 'memberlite' ) ),
 			array( 'name' => 'slant-bottom-right', 'label' => __( 'Slant: Bottom Right', 'memberlite' ) ),
 			array( 'name' => 'slant-bottom-left', 'label' => __( 'Slant: Bottom Left', 'memberlite' ) ),
 			array( 'name' => 'wavy-bottom', 'label' => __( 'Wavy Bottom', 'memberlite' ) ),

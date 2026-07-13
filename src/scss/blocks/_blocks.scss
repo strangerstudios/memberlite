@@ -756,6 +756,23 @@ hr.wp-block-separator {
 // -----------------------------------------------------------------------------
 
 .wp-block-cover {
+	&.is-style-scroll-indicator {
+		&::after {
+			font-family: $font-family-awesome;
+			content: '\f103'; // angles down
+			font-size: var(--wp--preset--font-size--24);
+			font-weight: 900;
+			position: absolute;
+			bottom: var(--wp--preset--spacing--10);
+			border: 3px solid;
+			border-radius: 100%;
+			width: 44px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+	}
+
 	&.is-style-slant-bottom-right {
 		clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
 		padding-bottom: 8rem;

@@ -459,6 +459,28 @@ hr.wp-block-separator.is-style-flourish-circle-diamond {
 /*--------------------------------------------------------------
  Cover Block Styles
 --------------------------------------------------------------*/
+
+/* Styles for the editor target a different element and are different from the
+ front-end intentionally. Wonky things happen when we target the cover block and
+ the .is-selected class gets applied when that block is focused on. */
+.wp-block-cover.is-style-scroll-indicator .wp-block-cover__inner-container::after {
+	font-family: 'Font Awesome 5 Free';
+	content: '\f103';
+	font-size: var(--wp--preset--font-size--24);
+	font-weight: 900;
+	position: absolute;
+	left: 50%;
+	margin-left: -10px;
+	bottom: 0;
+	border: 3px solid;
+	border-radius: 100%;
+	width: 44px;
+	height: 44px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
 .wp-block-cover.is-style-slant-bottom-right {
 	clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
 	padding-bottom: 8rem;
