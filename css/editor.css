@@ -539,6 +539,25 @@ hr.wp-block-separator.is-style-flourish-circle-diamond {
 .wp-block-accordion.is-style-accrdn-caret .is-open .wp-block-accordion-heading__toggle:after {
 	content: "\f077";
 }
+
 .wp-block-accordion.is-style-accrdn-caret .wp-block-accordion-heading__toggle-icon {
 	display: none;
+}
+
+/*--------------------------------------------------------------
+ Heading Block Styles
+--------------------------------------------------------------*/
+
+.wp-block-heading.is-style-heading-rule {
+	display: flex;
+	align-items: center;
+	gap: 0.75em;
+}
+
+.wp-block-heading.is-style-heading-rule::after {
+	content: '';
+	display: block;
+	flex: 1;
+	height: 2px;
+	background: currentColor;
 }

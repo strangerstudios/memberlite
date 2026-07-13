@@ -819,3 +819,23 @@ hr.wp-block-separator {
 		}
 	}
 }
+
+/*--------------------------------------------------------------
+ Heading Block Styles
+--------------------------------------------------------------*/
+
+.wp-block-heading {
+	&.is-style-heading-rule {
+		display: flex;
+		align-items: center;
+		gap: 0.75em;
+
+		&::after {
+			content: '';
+			display: block;
+			flex: 1;
+			height: 2px;
+			background: currentColor;
+		}
+	}
+}

@@ -54,6 +54,12 @@ function memberlite_register_block_styles(): void {
 			array( 'name' => 'accrdn-large', 'label' => __( 'Large Plus', 'memberlite' ) ),
 			array( 'name' => 'accrdn-caret', 'label' => __( 'Caret', 'memberlite' ) ),
 		),
+		'core/heading' => array(
+			array(
+				'name'  => 'heading-rule',
+				'label' => __( 'Rule', 'loresmith' )
+			),
+		),
 	);
 
 	foreach ( $block_styles as $block_name => $styles ) {
