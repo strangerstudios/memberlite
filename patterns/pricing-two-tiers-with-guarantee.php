@@ -10,7 +10,8 @@
  * @since Memberlite TBD
  */
 ?>
-<!-- wp:group {"align":"wide","style":{"spacing":{"padding":{"right":"var:preset|spacing|20","left":"var:preset|spacing|20","top":"var:preset|spacing|10","bottom":"var:preset|spacing|10"}}},"layout":{"type":"default"}} -->
+<!-- wp:group {"align":"full","layout":{"type":"constrained"}} -->
+<div class="wp-block-group alignfull"><!-- wp:group {"align":"wide","style":{"spacing":{"padding":{"right":"var:preset|spacing|20","left":"var:preset|spacing|20","top":"var:preset|spacing|10","bottom":"var:preset|spacing|10"}}},"layout":{"type":"default"}} -->
 <div class="wp-block-group alignwide" style="padding-top:var(--wp--preset--spacing--10);padding-right:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--10);padding-left:var(--wp--preset--spacing--20)"><!-- wp:heading {"style":{"typography":{"textAlign":"center","textTransform":"capitalize"}},"fontSize":"42","fontFamily":"gentium-book-basic"} -->
 <h2 class="wp-block-heading has-text-align-center has-gentium-book-basic-font-family has-42-font-size" style="text-transform:capitalize">Members who have already joined are making tremendous progress...</h2>
 <!-- /wp:heading -->
@@ -140,4 +141,5 @@
 <!-- /wp:paragraph --></div>
 <!-- /wp:column --></div>
 <!-- /wp:columns --></div>
+<!-- /wp:group --></div>
 <!-- /wp:group -->

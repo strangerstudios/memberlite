@@ -19,11 +19,11 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:heading {"style":{"typography":{"fontSize":"35px","textTransform":"capitalize"},"spacing":{"margin":{"top":"var:preset|spacing|10","bottom":"0"}},"elements":{"link":{"color":{"text":"var:preset|color|site-navigation-link"}}}},"textColor":"site-navigation-link","fontFamily":"libre-baskerville"} -->
-<h2 class="wp-block-heading has-site-navigation-link-color has-text-color has-link-color has-libre-baskerville-font-family" style="margin-top:var(--wp--preset--spacing--10);margin-bottom:0;font-size:35px;text-transform:capitalize"><strong>What </strong>you need to know about our joining the community</h2>
+<h2 class="wp-block-heading has-site-navigation-link-color has-text-color has-link-color has-libre-baskerville-font-family" style="margin-top:var(--wp--preset--spacing--10);margin-bottom:0;font-size:35px;text-transform:capitalize"><strong>What </strong>you need to know about joining the community</h2>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"var:preset|spacing|10"}},"elements":{"link":{"color":{"text":"var:preset|color|site-navigation-link"}}}},"textColor":"site-navigation-link"} -->
-<p class="has-site-navigation-link-color has-text-color has-link-color" style="margin-top:var(--wp--preset--spacing--10)">The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text didn’t listen.</p>
+<p class="has-site-navigation-link-color has-text-color has-link-color" style="margin-top:var(--wp--preset--spacing--10)">We've pulled together the questions new members ask us most, so you know exactly what to expect before you join.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:buttons -->
@@ -37,36 +37,36 @@
 <div class="wp-block-column"><!-- wp:accordion {"className":"is-style-accrdn-caret","style":{"border":{"radius":{"topLeft":"8px","topRight":"8px","bottomLeft":"8px","bottomRight":"8px"}},"spacing":{"padding":{"top":"var:preset|spacing|10","bottom":"var:preset|spacing|30","left":"var:preset|spacing|10","right":"var:preset|spacing|10"}},"elements":{"link":{"color":{"text":"var:preset|color|site-navigation-link"}}}},"backgroundColor":"site-navigation-background","textColor":"site-navigation-link"} -->
 <div role="group" class="wp-block-accordion is-style-accrdn-caret has-site-navigation-link-color has-site-navigation-background-background-color has-text-color has-background has-link-color" style="border-top-left-radius:8px;border-top-right-radius:8px;border-bottom-left-radius:8px;border-bottom-right-radius:8px;padding-top:var(--wp--preset--spacing--10);padding-right:var(--wp--preset--spacing--10);padding-bottom:var(--wp--preset--spacing--30);padding-left:var(--wp--preset--spacing--10)"><!-- wp:accordion-item {"style":{"spacing":{"margin":{"bottom":"0"}},"border":{"bottom":{"color":"var:preset|color|borders","width":"1px"}}}} -->
 <div class="wp-block-accordion-item" style="border-bottom-color:var(--wp--preset--color--borders);border-bottom-width:1px;margin-bottom:0"><!-- wp:accordion-heading {"style":{"border":{"width":"0px","style":"none"},"spacing":{"padding":{"right":"var:preset|spacing|10","left":"var:preset|spacing|10","top":"var:preset|spacing|10","bottom":"var:preset|spacing|10"}}},"fontSize":"24","fontFamily":"libre-baskerville"} -->
-<h3 class="wp-block-accordion-heading has-libre-baskerville-font-family has-24-font-size" style="border-style:none;border-width:0px"><button type="button" class="wp-block-accordion-heading__toggle" style="padding-top:var(--wp--preset--spacing--10);padding-right:var(--wp--preset--spacing--10);padding-bottom:var(--wp--preset--spacing--10);padding-left:var(--wp--preset--spacing--10)"><span class="wp-block-accordion-heading__toggle-title">What does it cost?</span><span class="wp-block-accordion-heading__toggle-icon" aria-hidden="true">+</span></button></h3>
+<h3 class="wp-block-accordion-heading has-libre-baskerville-font-family has-24-font-size" style="border-style:none;border-width:0px"><button type="button" class="wp-block-accordion-heading__toggle" style="padding-top:var(--wp--preset--spacing--10);padding-right:var(--wp--preset--spacing--10);padding-bottom:var(--wp--preset--spacing--10);padding-left:var(--wp--preset--spacing--10)"><span class="wp-block-accordion-heading__toggle-title">What does membership cost?</span><span class="wp-block-accordion-heading__toggle-icon" aria-hidden="true">+</span></button></h3>
 <!-- /wp:accordion-heading -->
 
 <!-- wp:accordion-panel {"style":{"spacing":{"padding":{"top":"0","bottom":"var:preset|spacing|20"}}}} -->
 <div role="region" class="wp-block-accordion-panel" style="padding-top:0;padding-bottom:var(--wp--preset--spacing--20)"><!-- wp:paragraph -->
-<p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar. The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text didn’t listen.</p>
+<p>Pricing varies by plan, and we offer a discount for annual memberships. You can compare all current options on our membership levels page.</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:accordion-panel --></div>
 <!-- /wp:accordion-item -->
 
 <!-- wp:accordion-item {"style":{"spacing":{"margin":{"bottom":"0"}},"border":{"bottom":{"color":"var:preset|color|borders","width":"1px"}}}} -->
 <div class="wp-block-accordion-item" style="border-bottom-color:var(--wp--preset--color--borders);border-bottom-width:1px;margin-bottom:0"><!-- wp:accordion-heading {"style":{"border":{"width":"0px","style":"none"},"spacing":{"padding":{"right":"var:preset|spacing|10","left":"var:preset|spacing|10","top":"var:preset|spacing|10","bottom":"var:preset|spacing|10"}}},"fontSize":"24","fontFamily":"libre-baskerville"} -->
-<h3 class="wp-block-accordion-heading has-libre-baskerville-font-family has-24-font-size" style="border-style:none;border-width:0px"><button type="button" class="wp-block-accordion-heading__toggle" style="padding-top:var(--wp--preset--spacing--10);padding-right:var(--wp--preset--spacing--10);padding-bottom:var(--wp--preset--spacing--10);padding-left:var(--wp--preset--spacing--10)"><span class="wp-block-accordion-heading__toggle-title">What does it cost?</span><span class="wp-block-accordion-heading__toggle-icon" aria-hidden="true">+</span></button></h3>
+<h3 class="wp-block-accordion-heading has-libre-baskerville-font-family has-24-font-size" style="border-style:none;border-width:0px"><button type="button" class="wp-block-accordion-heading__toggle" style="padding-top:var(--wp--preset--spacing--10);padding-right:var(--wp--preset--spacing--10);padding-bottom:var(--wp--preset--spacing--10);padding-left:var(--wp--preset--spacing--10)"><span class="wp-block-accordion-heading__toggle-title">What do I get access to as a member?</span><span class="wp-block-accordion-heading__toggle-icon" aria-hidden="true">+</span></button></h3>
 <!-- /wp:accordion-heading -->
 
 <!-- wp:accordion-panel {"style":{"spacing":{"padding":{"top":"0","bottom":"var:preset|spacing|20"}}}} -->
 <div role="region" class="wp-block-accordion-panel" style="padding-top:0;padding-bottom:var(--wp--preset--spacing--20)"><!-- wp:paragraph -->
-<p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar. The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text didn’t listen.</p>
+<p>Members get full access to our private community, exclusive resources, and monthly live events, everything you need to get the most out of belonging.</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:accordion-panel --></div>
 <!-- /wp:accordion-item -->
 
 <!-- wp:accordion-item {"style":{"spacing":{"margin":{"bottom":"0"}},"border":{"bottom":{"color":"var:preset|color|borders","width":"1px"}}}} -->
 <div class="wp-block-accordion-item" style="border-bottom-color:var(--wp--preset--color--borders);border-bottom-width:1px;margin-bottom:0"><!-- wp:accordion-heading {"style":{"border":{"width":"0px","style":"none"},"spacing":{"padding":{"right":"var:preset|spacing|10","left":"var:preset|spacing|10","top":"var:preset|spacing|10","bottom":"var:preset|spacing|10"}}},"fontSize":"24","fontFamily":"libre-baskerville"} -->
-<h3 class="wp-block-accordion-heading has-libre-baskerville-font-family has-24-font-size" style="border-style:none;border-width:0px"><button type="button" class="wp-block-accordion-heading__toggle" style="padding-top:var(--wp--preset--spacing--10);padding-right:var(--wp--preset--spacing--10);padding-bottom:var(--wp--preset--spacing--10);padding-left:var(--wp--preset--spacing--10)"><span class="wp-block-accordion-heading__toggle-title">What does it cost?</span><span class="wp-block-accordion-heading__toggle-icon" aria-hidden="true">+</span></button></h3>
+<h3 class="wp-block-accordion-heading has-libre-baskerville-font-family has-24-font-size" style="border-style:none;border-width:0px"><button type="button" class="wp-block-accordion-heading__toggle" style="padding-top:var(--wp--preset--spacing--10);padding-right:var(--wp--preset--spacing--10);padding-bottom:var(--wp--preset--spacing--10);padding-left:var(--wp--preset--spacing--10)"><span class="wp-block-accordion-heading__toggle-title">How do I cancel if it's not for me?</span><span class="wp-block-accordion-heading__toggle-icon" aria-hidden="true">+</span></button></h3>
 <!-- /wp:accordion-heading -->
 
 <!-- wp:accordion-panel {"style":{"spacing":{"padding":{"top":"0","bottom":"var:preset|spacing|20"}}}} -->
 <div role="region" class="wp-block-accordion-panel" style="padding-top:0;padding-bottom:var(--wp--preset--spacing--20)"><!-- wp:paragraph -->
-<p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar. The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text didn’t listen.</p>
+<p>You can cancel any time from your account page. There are no long-term contracts, and you'll keep access through the end of your billing period.</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:accordion-panel --></div>
 <!-- /wp:accordion-item --></div>
