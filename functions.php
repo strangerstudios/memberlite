@@ -282,6 +282,11 @@ if ( ! function_exists( 'memberlite_setup' ) ) :
 
 		// Indicate widget sidebars can use selective refresh in the Customizer.
 		add_theme_support( 'customize-selective-refresh-widgets' );
+
+		// Register editor stylesheets (loaded into the editor iframe).
+		add_theme_support( 'editor-styles' );
+		add_editor_style( 'css/editor.css' );
+		add_editor_style( 'font-awesome/css/all.min.css' );
 	}
 endif; // memberlite_setup
 add_action( 'after_setup_theme', 'memberlite_setup' );
@@ -672,23 +677,6 @@ function memberlite_frontpage_template_hierarchy( $templates ) {
 	return $templates;
 }
 add_filter( 'frontpage_template_hierarchy', 'memberlite_frontpage_template_hierarchy', 5 );
-
-/**
- * Enqueue block editor styles.
- *
- * @since 5.1.0
- *
- * @return void
- */
-function memberlite_enqueue_block_assets() {
-	wp_enqueue_style(
-		'memberlite-block-editor-style',
-		MEMBERLITE_URL . '/css/editor.css',
-		[],
-		MEMBERLITE_VERSION
-	);
-}
-add_action( 'enqueue_block_assets', 'memberlite_enqueue_block_assets' );
 
 /**
  * Filter the footer copyright text to allow dynamic variables.
