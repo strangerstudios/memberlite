@@ -59,7 +59,7 @@ function memberlite_register_block_styles(): void {
 		'core/heading' => array(
 			array(
 				'name'  => 'heading-rule',
-				'label' => __( 'Rule', 'loresmith' )
+				'label' => __( 'Rule', 'memberlite' )
 			),
 		),
 	);
