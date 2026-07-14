@@ -34,7 +34,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"8px"}}}} -->
-<p style="margin-top:8px"><em>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec illamcorper mattis.</em></p>
+<p style="margin-top:8px"><em>Join discussions, ask questions, and connect with other members between lessons.</em></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:column --></div>
 <!-- /wp:columns --></div>
@@ -58,7 +58,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"8px"}}}} -->
-<p style="margin-top:8px"><em>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec illamcorper mattis.</em></p>
+<p style="margin-top:8px"><em>Skip the password. Click the link we email you and you're signed in securely from any device.</em></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:column --></div>
 <!-- /wp:columns --></div>
@@ -80,7 +80,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"8px"}}}} -->
-<p style="margin-top:8px"><em>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec illamcorper mattis.</em></p>
+<p style="margin-top:8px"><em>Pick up right where you left off, whether you're at your desk or on the go.</em></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:column --></div>
 <!-- /wp:columns --></div>

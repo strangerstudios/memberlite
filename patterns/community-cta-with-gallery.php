@@ -18,7 +18,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:heading {"style":{"spacing":{"margin":{"top":"var:preset|spacing|10"}},"typography":{"lineHeight":"1.2"}},"fontSize":"54"} -->
-<h2 class="wp-block-heading has-54-font-size" style="margin-top:var(--wp--preset--spacing--10);line-height:1.2">Find your tribe! Interact with your peeps.</h2>
+<h2 class="wp-block-heading has-54-font-size" style="margin-top:var(--wp--preset--spacing--10);line-height:1.2">Find your people. Join the conversation.</h2>
 <!-- /wp:heading --></div>
 <!-- /wp:column -->
 

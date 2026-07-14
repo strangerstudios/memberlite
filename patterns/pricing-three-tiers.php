@@ -22,7 +22,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"style":{"typography":{"textAlign":"center"},"spacing":{"margin":{"top":"8px","bottom":"var:preset|spacing|10"}}},"fontSize":"21"} -->
-<p class="has-text-align-center has-21-font-size" style="margin-top:8px;margin-bottom:var(--wp--preset--spacing--10)">This is a description that isn't dynamic.</p>
+<p class="has-text-align-center has-21-font-size" style="margin-top:8px;margin-bottom:var(--wp--preset--spacing--10)">Full access for 7 days, no credit card required.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:group {"style":{"spacing":{"margin":{"top":"0"}}},"layout":{"type":"constrained"}} -->
@@ -74,7 +74,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"style":{"typography":{"textAlign":"center"},"spacing":{"margin":{"top":"8px","bottom":"var:preset|spacing|10"}}},"fontSize":"21"} -->
-<p class="has-text-align-center has-21-font-size" style="margin-top:8px;margin-bottom:var(--wp--preset--spacing--10)">This is a description that isn't dynamic.</p>
+<p class="has-text-align-center has-21-font-size" style="margin-top:8px;margin-bottom:var(--wp--preset--spacing--10)">Billed once a year. Save over 15% compared to paying monthly.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:group {"style":{"spacing":{"margin":{"top":"0"}}},"layout":{"type":"constrained"}} -->
@@ -126,7 +126,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"style":{"typography":{"textAlign":"center"},"spacing":{"margin":{"top":"8px","bottom":"var:preset|spacing|10"}}},"fontSize":"21"} -->
-<p class="has-text-align-center has-21-font-size" style="margin-top:8px;margin-bottom:var(--wp--preset--spacing--10)">This is a description that isn't dynamic.</p>
+<p class="has-text-align-center has-21-font-size" style="margin-top:8px;margin-bottom:var(--wp--preset--spacing--10)">Full access, billed every month. Cancel anytime.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:group {"style":{"spacing":{"margin":{"top":"0"}}},"layout":{"type":"constrained"}} -->

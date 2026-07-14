@@ -137,7 +137,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"8px","left":"0"}}}} -->
-<p style="margin-top:8px;margin-left:0"><em>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec illamcorper mattis.</em></p>
+<p style="margin-top:8px;margin-left:0"><em>Not the right fit? Let us know within 30 days of joining and we'll refund you in full, no questions asked.</em></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:column --></div>
 <!-- /wp:columns --></div>
