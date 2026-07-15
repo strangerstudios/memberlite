@@ -345,3 +345,116 @@ details {
 #main .columns .hentry.memberlite_subpagelist_item .entry-content {
 	border-bottom: none;
 }
+
+// -----------------------------------------------------------------------------
+// [fa] Shortcode — icon color, background, and shape
+//
+// Scoped to :is(.fa, .fas, .far, .fab) rather than bare class names so these
+// don't clash with unrelated classes elsewhere (e.g. plugin CSS). The base
+// class varies by icon type: default icons get .fa, while type="solid" /
+// "regular" / "brand" (or auto-detected brand icons) get .fas / .far / .fab
+// instead of .fa — see memberlite_fa_shortcode().
+// -----------------------------------------------------------------------------
+
+:is(.fa, .fas, .far, .fab) {
+
+	&.primary {
+		color: var(--memberlite-color-primary);
+	}
+
+	&.secondary {
+		color: var(--memberlite-color-secondary);
+	}
+
+	&.action {
+		color: var(--memberlite-color-action);
+	}
+
+	&.white {
+		color: var(--memberlite-color-white);
+	}
+
+	&.text {
+		color: var(--memberlite-color-text);
+	}
+
+	&.site-background {
+		color: var(--memberlite-color-site-background);
+	}
+
+	&.site-navigation {
+		color: var(--memberlite-color-site-navigation);
+	}
+
+	&.site-navigation-background {
+		color: var(--memberlite-color-site-navigation-background);
+	}
+
+	&.footer-widgets {
+		color: var(--memberlite-color-footer-widgets);
+	}
+
+	&.footer-widgets-background {
+		color: var(--memberlite-color-footer-widgets-background);
+	}
+
+	&.bg-primary {
+		background-color: var(--memberlite-color-primary);
+	}
+
+	&.bg-secondary {
+		background-color: var(--memberlite-color-secondary);
+	}
+
+	&.bg-action {
+		background-color: var(--memberlite-color-action);
+	}
+
+	&.bg-white {
+		background-color: var(--memberlite-color-white);
+	}
+
+	&.bg-text {
+		background-color: var(--memberlite-color-text);
+	}
+
+	&.bg-site-background {
+		background-color: var(--memberlite-color-site-background);
+	}
+
+	&.bg-site-navigation {
+		background-color: var(--memberlite-color-site-navigation);
+	}
+
+	&.bg-site-navigation-background {
+		background-color: var(--memberlite-color-site-navigation-background);
+	}
+
+	&.bg-footer-widgets {
+		background-color: var(--memberlite-color-footer-widgets);
+	}
+
+	&.bg-footer-widgets-background {
+		background-color: var(--memberlite-color-footer-widgets-background);
+	}
+
+	&.shape-square,
+	&.shape-circle,
+	&.shape-squircle {
+		align-items: center;
+		aspect-ratio: 1;
+		display: inline-flex;
+		justify-content: center;
+		padding: 1em;
+		min-width: 20px;
+		min-height: 20px;
+	}
+
+	&.shape-circle {
+		border-radius: 100%;
+	}
+
+	&.shape-squircle {
+		border-radius: 25%;
+	}
+}
