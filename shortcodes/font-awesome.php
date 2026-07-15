@@ -6,6 +6,8 @@ function memberlite_fa_shortcode($atts, $content = null) {
 
 	extract(shortcode_atts(array(
 		'color' => null,
+		'background' => null,
+		'shape' => null,
 		'icon' => '',
 		'size' => null,
 		'type' => null,
@@ -38,6 +40,20 @@ function memberlite_fa_shortcode($atts, $content = null) {
 
 	if ( ! empty( $color ) ) {
 		$classes[] = ' ' . $color;
+	}
+
+	if ( ! empty( $background ) ) {
+		$classes[] = 'bg-' . $background;
+	}
+
+	if ( ! empty( $shape ) ) {
+		if ( $shape === 'square' ) {
+			$classes[] = 'shape-square';
+		} elseif ( $shape === 'circle' ) {
+			$classes[] = 'shape-circle';
+		} elseif ( $shape === 'squircle' ) {
+			$classes[] = 'shape-squircle';
+		}
 	}
 
 	if ( ! empty($size ) ) {
