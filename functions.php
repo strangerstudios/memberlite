@@ -728,6 +728,8 @@ add_filter( 'theme_mod_copyright_textbox', 'memberlite_theme_mod_copyright_textb
  * @return WP_Theme_JSON Theme JSON object.
  */
 function memberlite_filter_theme_json( $theme_json ) {
+	global $memberlite_defaults;
+
 	$active_colors = memberlite_get_active_colors();
 	$preset_map = memberlite_get_color_preset_map();
 
@@ -821,6 +823,21 @@ function memberlite_filter_theme_json( $theme_json ) {
 	}
 	$theme_json_data['settings']['custom']['heading']['fontFamily'] = memberlite_get_font_name_from_json_data( memberlite_get_font( 'header_font' ), $font_families );
 	$theme_json_data['settings']['custom']['body']['fontFamily']    = memberlite_get_font_name_from_json_data( memberlite_get_font( 'body_font' ), $font_families );
+
+	// Global button style (Customizer > General). Overrides the button custom
+	// properties; a block-level border-radius/padding set in the editor renders
+	// as an inline style, which still wins over these theme.json-driven rules.
+	if ( ! isset( $theme_json_data['settings']['custom']['button'] ) ) {
+		$theme_json_data['settings']['custom']['button'] = array();
+	}
+	$button_style = get_theme_mod( 'memberlite_button_style', $memberlite_defaults['memberlite_button_style'] );
+	if ( 'sharp' === $button_style ) {
+		$theme_json_data['settings']['custom']['button']['radius'] = '0';
+	} elseif ( 'pill' === $button_style ) {
+		$theme_json_data['settings']['custom']['button']['radius']        = '999px';
+		$theme_json_data['settings']['custom']['button']['paddingBlock']  = 'calc(var(--wp--preset--spacing--10) / 2)';
+		$theme_json_data['settings']['custom']['button']['paddingInline'] = 'var(--wp--preset--spacing--30)';
+	}
 
 	// Update the theme.json object.
 	return $theme_json->update_with( $theme_json_data );
