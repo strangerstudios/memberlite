@@ -10,6 +10,11 @@
 			"border": {
 				"radius": "8px"
 			},
+			"button": {
+				"radius": "var(--wp--custom--border--radius)",
+				"paddingBlock": "calc(var(--wp--preset--spacing--10) / 1.5)",
+				"paddingInline": "var(--wp--preset--spacing--20)"
+			},
 			"lineHeight": {
 				"body": 1.7,
 				"heading": 1.4,
@@ -1794,7 +1799,7 @@
 		"elements": {
 			"button": {
 				"border": {
-					"radius": "var(--wp--custom--border--radius)"
+					"radius": "var(--wp--custom--button--radius)"
 				},
 				"color": {
 					"background": "var(--wp--preset--color--buttons)",
@@ -1814,10 +1819,10 @@
 				},
 				"spacing": {
 					"padding": {
-						"top": "calc( var(--wp--preset--spacing--10) / 1.5)",
-						"right": "var(--wp--preset--spacing--20)",
-						"bottom": "calc( var(--wp--preset--spacing--10) / 1.5)",
-						"left": "var(--wp--preset--spacing--20)"
+						"top": "var(--wp--custom--button--padding-block)",
+						"right": "var(--wp--custom--button--padding-inline)",
+						"bottom": "var(--wp--custom--button--padding-block)",
+						"left": "var(--wp--custom--button--padding-inline)"
 					}
 				},
 				"typography": {
