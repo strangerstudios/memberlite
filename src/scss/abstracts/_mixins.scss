@@ -26,7 +26,7 @@
 @mixin button-base {
 	background-color: var(--memberlite-color-button);
 	border: none;
-	border-radius: var(--wp--custom--border--radius);
+	border-radius: var(--wp--custom--button--radius);
 	box-shadow: $btn-shadow;
 	cursor: pointer;
 	font-family: var(--memberlite-header-font), ui-sans-serif;
@@ -35,7 +35,7 @@
 	font-weight: 700;
 	display: inline-block;
 	line-height: var(--wp--custom--line-height--body);
-	padding: calc(var(--wp--preset--spacing--10) / 1.5) var(--wp--preset--spacing--20);
+	padding: var(--wp--custom--button--padding-block) var(--wp--custom--button--padding-inline);
 	text-align: center;
 	text-decoration: none;
 	text-shadow: none;

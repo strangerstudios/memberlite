@@ -204,6 +204,30 @@ class Memberlite_Customize {
 				return (bool) get_theme_mod( 'memberlite_back_to_top', true );
 			},
 		) );
+
+		// GENERAL: Button Style Heading ==========
+		self::add_memberlite_heading( $wp_customize, 'memberlite_button_style_heading', __( 'Buttons', 'memberlite' ), 'memberlite_general_options' );
+
+		// GENERAL: Button Style ==================
+		self::add_memberlite_setting_control( $wp_customize, 'memberlite_button_style', __( 'Button Style', 'memberlite' ), 'memberlite_general_options', array(
+			'type'    => 'radio',
+			'default' => 'default',
+			'choices' => array(
+				'default' => __( 'Default (rounded corners)', 'memberlite' ),
+				'sharp'   => __( 'Sharp (square corners)', 'memberlite' ),
+				'pill'    => __( 'Pill (fully rounded)', 'memberlite' ),
+			),
+			'description' => __( 'Applies to buttons site-wide. Border radius or padding customized on an individual button block in the editor will override this setting for that button.', 'memberlite' ),
+		) );
+
+		// GENERAL: PMPro Button Style Override =====
+		if ( defined( 'PMPRO_VERSION' ) ) {
+			self::add_memberlite_setting_control( $wp_customize, 'memberlite_pmpro_button_style_override', __( 'Override PMPro Button Style', 'memberlite' ), 'memberlite_general_options', array(
+				'type'              => 'checkbox',
+				'sanitize_callback' => array( 'Memberlite_Customize', 'sanitize_checkbox' ),
+				'description'       => __( 'By default, PMPro buttons use their own border radius. Check this box to have PMPro buttons match the Button Style chosen above instead.', 'memberlite' ),
+			) );
+		}
 	}
 
 	/**
@@ -988,6 +1012,7 @@ class Memberlite_Customize {
 		// Get active colors based on selected scheme
 		$active_colors = memberlite_get_active_colors();
 		$override_pmpro_colors = get_theme_mod( 'memberlite_pmpro_color_override' );
+		$override_pmpro_button_style = get_theme_mod( 'memberlite_pmpro_button_style_override' );
 		?>
 		<!--Customizer CSS-->
 		<style id="memberlite-customizer-css" type="text/css">
@@ -1021,6 +1046,16 @@ class Memberlite_Customize {
 			<?php endif; ?>
 
 			}
+
+			<?php if ( $override_pmpro_button_style && defined( 'PMPRO_VERSION' ) ) : ?>
+			/*
+			* PMPro button style override — scoped to buttons only, not containers,
+			* since PMPro reuses --pmpro--base--border-radius for boxes/tags too.
+			*/
+				.pmpro .pmpro_btn {
+					border-radius: var(--wp--custom--button--radius);
+				}
+			<?php endif; ?>
 		</style>
 		<!--/Customizer CSS-->
 		<?php
