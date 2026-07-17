@@ -280,7 +280,7 @@ function memberlite_get_deep_harbor_colors(): array {
 /**
  * Midnight Violet color scheme
  *
- * Dark mode with purple accents.
+ * Dark mode with purple and sky blue accents.
  *
  * @since 7.0
  * @return array 17-color associative array.
@@ -310,7 +310,7 @@ function memberlite_get_midnight_violet_colors(): array {
 /**
  * Cocoa Ash color scheme
  *
- * Warm browns with orange accent.
+ * Warm browns with orange and olive green accents.
  *
  * @since 7.0.1
  * @return array 17-color associative array.
@@ -340,7 +340,7 @@ function memberlite_get_cocoa_ash_colors(): array {
 /**
  * Gotham color scheme
  *
- * Dark blues with peach accents.
+ * Dark blues with peach and powder blue accents.
  *
  * @since 7.0.1
  * @return array 17-color associative array.
@@ -370,7 +370,7 @@ function memberlite_get_gotham_colors(): array {
 /**
  * Soft Spruce color scheme
  *
- * Clean grays with restrained green accents.
+ * Clean grays and greens with a warm brown accent.
  *
  * @since 7.0
  * @return array 17-color associative array.
