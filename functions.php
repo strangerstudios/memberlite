@@ -930,3 +930,4 @@ function memberlite_disable_content_only_for_unsynced_patterns( $settings ) {
 	return $settings;
 }
 add_filter( 'block_editor_settings_all', 'memberlite_disable_content_only_for_unsynced_patterns', 20, 1 );
+
