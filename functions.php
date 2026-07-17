@@ -759,7 +759,7 @@ function memberlite_build_gradient_palette( array $active_colors ): array {
 		),
 		array(
 			'slug'     => 'secondary-to-accent',
-			'name'     => __( 'Secondary to Accent', 'memberlite' ),
+			'name'     => __( 'Secondary Dark to Accent Dark', 'memberlite' ),
 			'gradient' => "linear-gradient(90deg, {$sec_dark} 0%, {$acc_dark} 100%)",
 		),
 		array(
@@ -867,8 +867,8 @@ function memberlite_filter_theme_json( $theme_json ) {
 	$gradient_palette = memberlite_build_gradient_palette( $active_colors );
 	if ( ! empty( $gradient_palette ) ) {
 		$theme_json_data['settings']['color']['gradients'] = $gradient_palette;
+		$theme_json_data['settings']['color']['defaultGradients'] = false;
 	}
-	$theme_json_data['settings']['color']['defaultGradients'] = false;
 
 	// Add font family custom properties.
 	if ( ! isset( $theme_json_data['settings']['custom'] ) ) {
