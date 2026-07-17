@@ -915,3 +915,19 @@ function memberlite_dedupe_editor_color_palette( $editor_settings, $context ) {
 	return $editor_settings;
 }
 add_filter( 'block_editor_settings_all', 'memberlite_dedupe_editor_color_palette', 20, 2 );
+
+/**
+ * Disable content only mode for unsynced patterns.
+ *
+ * @since TBD
+ *
+ * @param array $settings Block editor settings.
+ * @return array
+ */
+function memberlite_disable_content_only_for_unsynced_patterns( $settings ) {
+	$settings['disableContentOnlyForUnsyncedPatterns'] = true;
+
+	return $settings;
+}
+add_filter( 'block_editor_settings_all', 'memberlite_disable_content_only_for_unsynced_patterns', 20, 1 );
+
