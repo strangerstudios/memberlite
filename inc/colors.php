@@ -220,7 +220,7 @@ function memberlite_get_evergreen_colors(): array {
 /**
  * Seaside Linen color scheme
  *
- * Warm tan background with deep blue and chartreuse accent.
+ * Warm tan background with deep teal and rust accent.
  *
  * @since 7.0
  * @return array 17-color associative array.
@@ -505,7 +505,7 @@ function memberlite_get_cobalt_current_colors(): array {
 		'color_text'              => 'e7edf5',
 		'color_link'              => '8ab4f8',
 		'color_meta_link'         => '9fb3c8',
-		'color_primary'           => '2FAFFB',
+		'color_primary'           => '2faffb',
 		'color_secondary'         => '7c94ad',
 		'color_action'            => 'f5a623',
 		'color_button'            => '7ed321',
