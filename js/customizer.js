@@ -146,6 +146,85 @@
 	} );
 
 	/**
+	 * Adjust a hex color's brightness by a percent (-100 to 100).
+	 *
+	 * Mirrors memberlite_adjust_color_brightness() in inc/colors.php so the
+	 * live preview computes the exact same dark/light variants PHP bakes
+	 * into the gradient presets on page load.
+	 */
+	function adjustColorBrightness( hexColor, percent ) {
+		var hex = hexColor.replace( /^#/, '' );
+		if ( hex.length === 3 ) {
+			hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
+		}
+
+		var r = parseInt( hex.substr( 0, 2 ), 16 );
+		var g = parseInt( hex.substr( 2, 2 ), 16 );
+		var b = parseInt( hex.substr( 4, 2 ), 16 );
+
+		r = Math.max( 0, Math.min( 255, r + ( r * percent / 100 ) ) );
+		g = Math.max( 0, Math.min( 255, g + ( g * percent / 100 ) ) );
+		b = Math.max( 0, Math.min( 255, b + ( b * percent / 100 ) ) );
+
+		function toHex( channel ) {
+			return ( '0' + Math.round( channel ).toString( 16 ) ).slice( -2 );
+		}
+
+		return '#' + toHex( r ) + toHex( g ) + toHex( b );
+	}
+
+	/**
+	 * Build the same 7 gradient definitions as memberlite_build_gradient_palette()
+	 * in functions.php, using the button/secondary/action colors.
+	 */
+	function buildGradientPalette( btn, sec, acc ) {
+		var btnDark  = adjustColorBrightness( btn, -40 );
+		var btnLight = adjustColorBrightness( btn, 40 );
+		var secDark  = adjustColorBrightness( sec, -30 );
+		var secLight = adjustColorBrightness( sec, 30 );
+		var accDark  = adjustColorBrightness( acc, -50 );
+		var accLight = adjustColorBrightness( acc, 50 );
+
+		return [
+			{ slug: 'secondary-to-dark', gradient: 'linear-gradient(90deg, ' + sec + ' 0%, ' + secDark + ' 100%)' },
+			{ slug: 'secondary-to-light', gradient: 'linear-gradient(90deg, ' + sec + ' 0%, ' + secLight + ' 100%)' },
+			{ slug: 'secondary-to-accent', gradient: 'linear-gradient(90deg, ' + secDark + ' 0%, ' + accDark + ' 100%)' },
+			{ slug: 'accent-to-dark', gradient: 'linear-gradient(90deg, ' + acc + ' 0%, ' + accDark + ' 100%)' },
+			{ slug: 'accent-to-light', gradient: 'linear-gradient(90deg, ' + acc + ' 0%, ' + accLight + ' 100%)' },
+			{ slug: 'button-to-dark', gradient: 'linear-gradient(90deg, ' + btn + ' 0%, ' + btnDark + ' 100%)' },
+			{ slug: 'button-to-light', gradient: 'linear-gradient(90deg, ' + btn + ' 0%, ' + btnLight + ' 100%)' }
+		];
+	}
+
+	/**
+	 * Recompute and rewrite all 7 gradient preset vars whenever the button,
+	 * secondary, or action color changes. These vars live in the same
+	 * global-styles-inline-css tag WordPress core writes color/gradient
+	 * presets into, so has-{slug}-gradient-background classes (which
+	 * reference var(--wp--preset--gradient--{slug})) pick up the change
+	 * immediately without a preview reload.
+	 */
+	function updateGradientPalette() {
+		var btn = normalizeColorValue( wp.customize( 'color_button' )() );
+		var sec = normalizeColorValue( wp.customize( 'color_secondary' )() );
+		var acc = normalizeColorValue( wp.customize( 'color_action' )() );
+
+		if ( ! btn || ! sec || ! acc ) {
+			return;
+		}
+
+		buildGradientPalette( btn, sec, acc ).forEach( function( entry ) {
+			updateCssVarInStyleTag( 'global-styles-inline-css', '--wp--preset--gradient--' + entry.slug, entry.gradient );
+		} );
+	}
+
+	[ 'color_button', 'color_secondary', 'color_action' ].forEach( function( settingId ) {
+		wp.customize( settingId, function( setting ) {
+			setting.bind( updateGradientPalette );
+		} );
+	} );
+
+	/**
 	 * When background_color changes, toggle is-style-dark / is-style-light
 	 * body class and update the color-scheme property on :root.
 	 */
