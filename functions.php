@@ -720,6 +720,72 @@ function memberlite_theme_mod_copyright_textbox( $copyright_text ) {
 add_filter( 'theme_mod_copyright_textbox', 'memberlite_theme_mod_copyright_textbox' );
 
 /**
+ * Build the gradient palette array from active color scheme colors.
+ *
+ * Returns an empty array if any of the three required colors (button, secondary, action)
+ * are missing from $active_colors, so the caller can skip gradient registration safely.
+ *
+ * @since TBD
+ *
+ * @param array $active_colors Sanitized active colors keyed by setting name, each prefixed with '#'.
+ * @return array Gradient definition arrays, or empty array if required colors are absent.
+ */
+function memberlite_build_gradient_palette( array $active_colors ): array {
+	if ( ! isset( $active_colors['color_button'], $active_colors['color_secondary'], $active_colors['color_action'] ) ) {
+		return array();
+	}
+
+	$btn  = $active_colors['color_button'];
+	$sec  = $active_colors['color_secondary'];
+	$acc  = $active_colors['color_action'];
+
+	$btn_dark  = memberlite_adjust_color_brightness( $btn, -40 );
+	$btn_light = memberlite_adjust_color_brightness( $btn, 40 );
+	$sec_dark  = memberlite_adjust_color_brightness( $sec, -30 );
+	$sec_light = memberlite_adjust_color_brightness( $sec, 30 );
+	$acc_dark  = memberlite_adjust_color_brightness( $acc, -50 );
+	$acc_light = memberlite_adjust_color_brightness( $acc, 50 );
+
+	return array(
+		array(
+			'slug'     => 'secondary-to-dark',
+			'name'     => __( 'Secondary to Dark', 'memberlite' ),
+			'gradient' => "linear-gradient(90deg, {$sec} 0%, {$sec_dark} 100%)",
+		),
+		array(
+			'slug'     => 'secondary-to-light',
+			'name'     => __( 'Secondary to Light', 'memberlite' ),
+			'gradient' => "linear-gradient(90deg, {$sec} 0%, {$sec_light} 100%)",
+		),
+		array(
+			'slug'     => 'secondary-to-accent',
+			'name'     => __( 'Secondary Dark to Accent Dark', 'memberlite' ),
+			'gradient' => "linear-gradient(90deg, {$sec_dark} 0%, {$acc_dark} 100%)",
+		),
+		array(
+			'slug'     => 'accent-to-dark',
+			'name'     => __( 'Accent to Dark', 'memberlite' ),
+			'gradient' => "linear-gradient(90deg, {$acc} 0%, {$acc_dark} 100%)",
+		),
+		array(
+			'slug'     => 'accent-to-light',
+			'name'     => __( 'Accent to Light', 'memberlite' ),
+			'gradient' => "linear-gradient(90deg, {$acc} 0%, {$acc_light} 100%)",
+		),
+		array(
+			'slug'     => 'button-to-dark',
+			'name'     => __( 'Button to Dark', 'memberlite' ),
+			'gradient' => "linear-gradient(90deg, {$btn} 0%, {$btn_dark} 100%)",
+		),
+		array(
+			'slug'     => 'button-to-light',
+			'name'     => __( 'Button to Light', 'memberlite' ),
+			'gradient' => "linear-gradient(90deg, {$btn} 0%, {$btn_light} 100%)",
+		),
+	);
+}
+
+/**
  * Filter theme.json data to add theme settings
  *
  * @since 7.0
@@ -796,6 +862,13 @@ function memberlite_filter_theme_json( $theme_json ) {
 	}
 
 	$theme_json_data['settings']['color']['palette'] = $color_palette;
+
+	// Build gradient palette from active customizer colors.
+	$gradient_palette = memberlite_build_gradient_palette( $active_colors );
+	if ( ! empty( $gradient_palette ) ) {
+		$theme_json_data['settings']['color']['gradients'] = $gradient_palette;
+		$theme_json_data['settings']['color']['defaultGradients'] = false;
+	}
 
 	// Add font family custom properties.
 	if ( ! isset( $theme_json_data['settings']['custom'] ) ) {
