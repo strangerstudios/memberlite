@@ -220,7 +220,7 @@ function memberlite_get_evergreen_colors(): array {
 /**
  * Seaside Linen color scheme
  *
- * Warm tan background with deep blue and chartreuse accent.
+ * Warm tan background with deep teal and rust accent.
  *
  * @since 7.0
  * @return array 17-color associative array.
@@ -228,20 +228,20 @@ function memberlite_get_evergreen_colors(): array {
 function memberlite_get_seaside_linen_colors(): array {
 	return array(
 		'header_textcolor'        => '1f3a4a',
-		'background_color'        => 'ecebe3',
-		'bgcolor_header'          => 'ecebe3',
-		'bgcolor_site_navigation' => 'ecebe3',
+		'background_color'        => 'edeae6',
+		'bgcolor_header'          => 'edeae6',
+		'bgcolor_site_navigation' => 'edeae6',
 		'color_site_navigation'   => '25292b',
 		'color_text'              => '25292b',
 		'color_link'              => '1f3a4a',
 		'color_meta_link'         => '1f3a4a',
 		'color_primary'           => '1f3a4a',
-		'color_secondary'         => '445c69',
-		'color_action'            => 'ebf9a8',
+		'color_secondary'         => '07646b',
+		'color_action'            => 'b5451f',
 		'color_button'            => '1f3a4a',
 		'bgcolor_page_masthead'   => '1f3a4a',
 		'color_page_masthead'     => 'ffffff',
-		'bgcolor_footer_widgets'  => 'ecebe3',
+		'bgcolor_footer_widgets'  => 'edeae6',
 		'color_footer_widgets'    => '25292b',
 		'color_borders'           => 'cccab8',
 	);
@@ -280,7 +280,7 @@ function memberlite_get_deep_harbor_colors(): array {
 /**
  * Midnight Violet color scheme
  *
- * Dark mode with purple accents.
+ * Dark mode with purple and sky blue accents.
  *
  * @since 7.0
  * @return array 17-color associative array.
@@ -297,7 +297,7 @@ function memberlite_get_midnight_violet_colors(): array {
 		'color_meta_link'         => '9a9aa0',
 		'color_primary'           => 'a483ff',
 		'color_secondary'         => '9a9aa0',
-		'color_action'            => 'a483ff',
+		'color_action'            => '9becff',
 		'color_button'            => 'a483ff',
 		'bgcolor_page_masthead'   => '1c1d21',
 		'color_page_masthead'     => 'f2f2f3',
@@ -310,7 +310,7 @@ function memberlite_get_midnight_violet_colors(): array {
 /**
  * Cocoa Ash color scheme
  *
- * Warm browns with orange accent.
+ * Warm browns with orange and olive green accents.
  *
  * @since 7.0.1
  * @return array 17-color associative array.
@@ -327,7 +327,7 @@ function memberlite_get_cocoa_ash_colors(): array {
 		'color_meta_link'         => 'ddd7cf',
 		'color_primary'           => '2e2623',
 		'color_secondary'         => '5a5653',
-		'color_action'            => 'ffa951',
+		'color_action'            => '9aab78',
 		'color_button'            => 'ffa951',
 		'bgcolor_page_masthead'   => 'cfc9c1',
 		'color_page_masthead'     => '1f1b18',
@@ -340,7 +340,7 @@ function memberlite_get_cocoa_ash_colors(): array {
 /**
  * Gotham color scheme
  *
- * Dark blues with peach accents.
+ * Dark blues with peach and powder blue accents.
  *
  * @since 7.0.1
  * @return array 17-color associative array.
@@ -357,7 +357,7 @@ function memberlite_get_gotham_colors(): array {
 		'color_meta_link'         => 'ffffff',
 		'color_primary'           => 'c3b2ad',
 		'color_secondary'         => '69666f',
-		'color_action'            => 'e7b39e',
+		'color_action'            => 'a8daff',
 		'color_button'            => 'e7b39e',
 		'bgcolor_page_masthead'   => 'e9d5cd',
 		'color_page_masthead'     => '191b1f',
@@ -370,7 +370,7 @@ function memberlite_get_gotham_colors(): array {
 /**
  * Soft Spruce color scheme
  *
- * Clean grays with restrained green accents.
+ * Clean grays and greens with a warm brown accent.
  *
  * @since 7.0
  * @return array 17-color associative array.
@@ -387,7 +387,7 @@ function memberlite_get_soft_spruce_colors(): array {
 		'color_meta_link'         => '555858',
 		'color_primary'           => '0b603a',
 		'color_secondary'         => '555858',
-		'color_action'            => 'd18a3a',
+		'color_action'            => 'c77212',
 		'color_button'            => '0b603a',
 		'bgcolor_page_masthead'   => 'f5f7f6',
 		'color_page_masthead'     => '2b2e2d',
@@ -447,13 +447,106 @@ function memberlite_get_slate_harbor_colors(): array {
 		'color_meta_link'         => '0f6e7a',
 		'color_primary'           => '0b1233',
 		'color_secondary'         => '0f6e7a',
-		'color_action'            => 'f26b3a',
+		'color_action'            => '5a7d6d',
 		'color_button'            => '0b1233',
 		'bgcolor_page_masthead'   => '0b1233',
 		'color_page_masthead'     => 'ffffff',
 		'bgcolor_footer_widgets'  => '0b1233',
 		'color_footer_widgets'    => 'ffffff',
 		'color_borders'           => 'e4e9f0',
+	);
+}
+
+/**
+ * Neon Indigo color scheme
+ *
+ * Deep indigo dark mode with neon cyan and magenta accents.
+ *
+ * @since TBD
+ * @return array 17-color associative array.
+ */
+function memberlite_get_neon_indigo_colors(): array {
+	return array(
+		'header_textcolor'        => 'f5f5ff',
+		'background_color'        => '0b0b2e',
+		'bgcolor_header'          => '0b0b2e',
+		'bgcolor_site_navigation' => '14143f',
+		'color_site_navigation'   => 'f5f5ff',
+		'color_text'              => 'f5f5ff',
+		'color_link'              => '3ee9e0',
+		'color_meta_link'         => 'ff3fa4',
+		'color_primary'           => '3ee9e0',
+		'color_secondary'         => '6f5fa8',
+		'color_action'            => 'ff3fa4',
+		'color_button'            => '3ee9e0',
+		'bgcolor_page_masthead'   => '14143f',
+		'color_page_masthead'     => 'f5f5ff',
+		'bgcolor_footer_widgets'  => '14143f',
+		'color_footer_widgets'    => 'f5f5ff',
+		'color_borders'           => '2e2e5c',
+	);
+}
+
+/**
+ * Cobalt Current color scheme
+ *
+ * Deep navy dark mode with cobalt blue, lime green buttons, and an amber accent.
+ *
+ * @since TBD
+ * @return array 17-color associative array.
+ */
+function memberlite_get_cobalt_current_colors(): array {
+	return array(
+		'header_textcolor'        => 'ffffff',
+		'background_color'        => '0a1628',
+		'bgcolor_header'          => '0a1628',
+		'bgcolor_site_navigation' => '101f36',
+		'color_site_navigation'   => 'ffffff',
+		'color_text'              => 'e7edf5',
+		'color_link'              => '8ab4f8',
+		'color_meta_link'         => '9fb3c8',
+		'color_primary'           => '2faffb',
+		'color_secondary'         => '7c94ad',
+		'color_action'            => 'f5a623',
+		'color_button'            => '7ed321',
+		'bgcolor_page_masthead'   => '060d18',
+		'color_page_masthead'     => 'ffffff',
+		'bgcolor_footer_widgets'  => '0a1628',
+		'color_footer_widgets'    => 'ffffff',
+		'color_borders'           => '24344a',
+	);
+}
+
+/**
+ * Rosewood color scheme
+ *
+ * Soft blush pink on a white site background, sampled from a feminine
+ * reference design. Button/masthead/action colors are deepened just
+ * enough from the reference to stay readable, since button text renders
+ * in the site background color.
+ *
+ * @since TBD
+ * @return array 17-color associative array.
+ */
+function memberlite_get_rosewood_colors(): array {
+	return array(
+		'header_textcolor'        => '4d4a47',
+		'background_color'        => 'ffffff',
+		'bgcolor_header'          => 'ffffff',
+		'bgcolor_site_navigation' => 'ffffff',
+		'color_site_navigation'   => '4d4a47',
+		'color_text'              => '4d4a47',
+		'color_link'              => '8d5d5d',
+		'color_meta_link'         => '82695f',
+		'color_primary'           => 'b77a7a',
+		'color_secondary'         => '82695f',
+		'color_action'            => 'a63f62',
+		'color_button'            => '8d5d5d',
+		'bgcolor_page_masthead'   => '8d5d5d',
+		'color_page_masthead'     => 'ffffff',
+		'bgcolor_footer_widgets'  => 'fcf2f0',
+		'color_footer_widgets'    => '534f4d',
+		'color_borders'           => 'ecd9d3',
 	);
 }
 
@@ -492,7 +585,7 @@ function memberlite_get_color_schemes(): array {
 			'label'  => __( 'Cocoa Ash', 'memberlite' ),
 			'colors' => memberlite_get_cocoa_ash_colors(),
 		),
-		'gotham'       => array(
+		'gotham'          => array(
 			'label'  => __( 'Gotham', 'memberlite' ),
 			'colors' => memberlite_get_gotham_colors(),
 		),
@@ -507,6 +600,18 @@ function memberlite_get_color_schemes(): array {
 		'slate_harbor'    => array(
 			'label'  => __( 'Slate Harbor', 'memberlite' ),
 			'colors' => memberlite_get_slate_harbor_colors(),
+		),
+		'neon_indigo'     => array(
+			'label'  => __( 'Neon Indigo', 'memberlite' ),
+			'colors' => memberlite_get_neon_indigo_colors(),
+		),
+		'cobalt_current'  => array(
+			'label'  => __( 'Cobalt Current', 'memberlite' ),
+			'colors' => memberlite_get_cobalt_current_colors(),
+		),
+		'rosewood'        => array(
+			'label'  => __( 'Rosewood', 'memberlite' ),
+			'colors' => memberlite_get_rosewood_colors(),
 		),
 	);
 
