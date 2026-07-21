@@ -39,7 +39,9 @@ label[for="memberlite-menu-location-select"] {
 .wp-block-list.is-style-horizontal-center {
 	list-style: none;
 	display: flex;
+	flex-wrap: wrap;
 	gap: 0;
+	margin-left: unset;
 }
 
 .wp-block-list.is-style-horizontal-left li,
@@ -240,6 +242,7 @@ hr.wp-block-separator.is-style-flourish-diamond,
 	border: none;
 	color: var(--wp--preset--color--base);
 	cursor: pointer;
+	height: 52px;
 }
 
 .wp-block-search:not(.wp-block-search__button-only).is-style-filled-pill .wp-block-search__button:focus,
@@ -274,6 +277,7 @@ hr.wp-block-separator.is-style-flourish-diamond,
 	border: none;
 	color: var(--wp--preset--color--base);
 	cursor: pointer;
+	height: 52px;
 }
 
 .wp-block-search:not(.wp-block-search__button-only).is-style-filled-sharp .wp-block-search__button:focus,
@@ -529,7 +533,7 @@ hr.wp-block-separator.is-style-flourish-diamond,
 	content: '';
 	display: block;
 	flex: 1;
-	height: 2px;
+	height: .09em;
 	background: currentColor;
 }
 

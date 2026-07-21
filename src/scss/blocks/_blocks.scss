@@ -27,7 +27,9 @@
 	&.is-style-horizontal-center {
 		list-style: none;
 		display: flex;
+		flex-wrap: wrap;
 		gap: 0;
+		margin-left: unset;
 
 		li {
 			margin: 0;
@@ -287,6 +289,7 @@ hr.wp-block-separator {
 			border: none;
 			color: var(--wp--preset--color--base);
 			cursor: pointer;
+			height: 52px;
 
 			&:focus, &:focus-visible {
 				outline: thin dotted var(--wp--preset--color--base);
@@ -322,6 +325,7 @@ hr.wp-block-separator {
 			border: none;
 			color: var(--wp--preset--color--base);
 			cursor: pointer;
+			height: 52px;
 
 			&:focus, &:focus-visible {
 				outline: thin dotted var(--wp--preset--color--base);
@@ -739,7 +743,7 @@ hr.wp-block-separator {
 }
 
 // -----------------------------------------------------------------------------
-// Slant and wavy styles for cover blocks
+// Cover Block Styles
 // -----------------------------------------------------------------------------
 
 .wp-block-cover {
@@ -824,9 +828,9 @@ hr.wp-block-separator {
 	}
 }
 
-/*--------------------------------------------------------------
- Heading Block Styles
---------------------------------------------------------------*/
+// -----------------------------------------------------------------------------
+// Heading Block Styles
+// -----------------------------------------------------------------------------
 
 .wp-block-heading {
 	&.is-style-heading-rule {
@@ -838,7 +842,7 @@ hr.wp-block-separator {
 			content: '';
 			display: block;
 			flex: 1;
-			height: 2px;
+			height: .09em;
 			background: currentColor;
 		}
 	}
