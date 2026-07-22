@@ -587,3 +587,18 @@ function memberlite_get_variation( $slug ) {
 	// No replacement for this function, returning 'default' will get the components/footer/variation-default.php template part
 	return 'default';
 }
+
+/**
+ * Deprecated. Editor styles are now registered via add_editor_style() in memberlite_setup().
+ *
+ * @since TBD
+ * @deprecated Use the editor_stylesheets filter to modify editor stylesheets.
+ * @return void
+ */
+function memberlite_enqueue_block_assets() {
+	_doing_it_wrong(
+		__FUNCTION__,
+		esc_html__( 'Editor styles are now registered via add_editor_style() in memberlite_setup().', 'memberlite' ),
+		'TBD'
+	);
+}

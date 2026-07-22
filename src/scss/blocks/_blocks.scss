@@ -2,12 +2,45 @@
 @use "../abstracts/mixins" as *;
 
 /*--------------------------------------------------------------
- 2.1 Blocks: WordPress Block Styles
+ 2.1 Blocks: WordPress & Memberlite Block Styles
 
- Covers: wp-block-table, wp-block-quote, wp-block-pullquote,
-         wp-block-search, wp-block-image
+ Covers: wp-block-list, wp-block-table, wp-block-separator, wp-block-quote,
+         wp-block-pullquote, wp-block-search, wp-block-image, wp-block-query,
+         wp-block-buttons, wp-block-button, wp-block-comment-template,
+         wp-block-loginout, wp-block-cover, wp-block-site-title,
+         wp-block-site-tagline, wp-block-social-links,
+         memberlite/nav-menu, memberlite/member-info
 --------------------------------------------------------------*/
 
+// -----------------------------------------------------------------------------
+// List Block
+// -----------------------------------------------------------------------------
+
+.wp-block-list {
+	&.is-style-plain {
+		list-style: none;
+		padding-left: 0;
+		margin-left: 0;
+	}
+
+	&.is-style-horizontal-left,
+	&.is-style-horizontal-center {
+		list-style: none;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0;
+		margin-left: unset;
+
+		li {
+			margin: 0;
+			padding: 0 var(--wp--preset--spacing--10);
+		}
+	}
+
+	&.is-style-horizontal-center {
+		justify-content: center;
+	}
+}
 
 // -----------------------------------------------------------------------------
 // Table Block
@@ -85,7 +118,7 @@ hr.wp-block-separator {
 	margin-left: auto;
 	margin-right: auto;
 
-	&:where(:not(.is-style-wide, .is-style-dots)) {
+	&:where(:not(.is-style-wide, .is-style-dots, .is-style-faded-edges, .is-style-double, .is-style-flourish-diamond)) {
 		max-width: 100px;
 	}
 
@@ -93,8 +126,67 @@ hr.wp-block-separator {
 		color: var(--memberlite-color-borders);
 	}
 
-	&.is-style-wide {
+	&.is-style-wide,
+	&.is-style-faded-edges,
+	&.is-style-double {
 		border: 0;
+	}
+
+	&.is-style-faded-edges,
+	&.is-style-double {
+		width: 100% !important;
+	}
+
+	&.is-style-faded-edges {
+		height: 1px;
+		background-color: transparent !important;
+		background-image: linear-gradient(
+				to right,
+				transparent,
+				color-mix(in srgb, currentColor 75%, transparent),
+				transparent
+		);
+	}
+
+	&.is-style-double {
+		background: none;
+		max-width: 100%;
+		background-color: var(--memberlite-color-borders);
+		mask-repeat: repeat-x;
+		mask-position: center;
+		height: 10px;
+		mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 10'%3E%3Crect x='0' y='2' width='4' height='2' fill='black'/%3E%3Crect x='0' y='6' width='4' height='2' fill='black'/%3E%3C/svg%3E");
+		mask-size: 4px 10px;
+	}
+
+	&.is-style-flourish-diamond {
+		border: none;
+		background: none;
+		height: 32px;
+		width: 100% !important;// override core style
+		background-color: var(--memberlite-color-borders);
+		mask-repeat: no-repeat;
+		mask-position: center;
+		mask-size: 803px 32px;
+		mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1230 32'%3E%3Cline x1='0' y1='16' x2='590' y2='16' stroke='black' stroke-width='1.5'/%3E%3Cpolygon points='615,4 627,16 615,28 603,16' fill='black'/%3E%3Cline x1='640' y1='16' x2='1230' y2='16' stroke='black' stroke-width='1.5'/%3E%3C/svg%3E");
+
+		&.alignwide {
+			mask-size: 1230px 32px;
+		}
+
+		&.alignfull,
+		&.aligncenter {
+			margin-left: auto;
+			margin-right: auto;
+		}
+
+		&.alignfull {
+			mask-size: 100% 32px;
+		}
+
+		&.aligncenter {
+			mask-size: 803px 32px;
+		}
 	}
 }
 
@@ -116,7 +208,7 @@ hr.wp-block-separator {
 		&::before {
 			color: var(--memberlite-color-secondary);
 			content: "\f10d"; // fa-quote-left
-			font-family: 'Font Awesome 5 Free';
+			font-family: $font-family-awesome;
 			font-size: var(--wp--preset--font-size--30);
 			font-weight: 900;
 			left: 0;
@@ -147,18 +239,159 @@ hr.wp-block-separator {
 	}
 }
 
-
 // -----------------------------------------------------------------------------
-// Search Block
+// Search Block - Will not apply on button only search forms
 // -----------------------------------------------------------------------------
 
-.wp-block-search {
-
+.wp-block-search:not(.wp-block-search__button-only) {
 	.wp-block-search__button {
-		padding: calc(var(--wp--preset--spacing--10) / 2) var(--wp--preset--spacing--10);
+		svg {
+			width: 26px;
+			height: 26px;
+			margin-top: 2px;
+		}
+	}
+
+	/* ── Shared resets ── */
+	&.is-style-filled-pill,
+	&.is-style-filled-sharp,
+	&.is-style-icon-round,
+	&.is-style-icon-square {
+		gap: 0;
+
+		.wp-block-search__button {
+			box-shadow: none;
+			border: none;
+			height: 52px;
+			margin-left: 0.5rem;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			cursor: pointer;
+			flex-shrink: 0;
+		}
+	}
+
+	/* ── Filled Pill & Filled Sharp (shared) ── */
+	&.is-style-filled-pill,
+	&.is-style-filled-sharp {
+		.wp-block-search__inside-wrapper {
+			background-color: var(--wp--preset--color--body-text);
+			border: none;
+			overflow: hidden;
+			padding: 0 0.5rem 0 1.25rem;
+		}
+
+		.wp-block-search__input {
+			background: var(--wp--preset--color--body-text);
+			border: none;
+			color: var(--wp--preset--color--base);
+			box-shadow: none;
+			outline: none;
+			padding: 0.75rem 0;
+		}
+
+		.wp-block-search__input::placeholder {
+			color: var(--wp--preset--color--base);
+			opacity: 0.6;
+		}
+
+		.wp-block-search__button {
+			background: var(--wp--preset--color--body-text);
+			color: var(--wp--preset--color--base);
+
+			&:focus, &:focus-visible {
+				outline: thin dotted var(--wp--preset--color--base);
+			}
+		}
+	}
+
+	/* ── Icon Round & Icon Square (shared) ── */
+	&.is-style-icon-round,
+	&.is-style-icon-square {
+		.wp-block-search__inside-wrapper {
+			border: 1px solid var(--wp--preset--color--borders);
+			overflow: hidden;
+			padding: 0 0 0 1.25rem;
+			background: var(--wp--preset--color--base);
+			flex: 1;
+		}
+
+		.wp-block-search__input {
+			background: transparent;
+			border: none;
+			color: var(--wp--preset--color--body-text);
+			padding: 0.75rem 0;
+			box-shadow: none;
+			outline: none;
+		}
+
+		.wp-block-search__input::placeholder {
+			color: var(--wp--preset--color--body-text);
+			opacity: 0.5;
+		}
+
+		.wp-block-search__button {
+			background-color: var(--wp--preset--color--buttons);
+			color: var(--wp--preset--color--base);
+
+			&:hover, &:active, &:focus {
+				background-color: var(--wp--preset--color--buttons-hover);
+			}
+		}
+	}
+
+	/* ── Icon Round & Filled Pill (shared) ── */
+	&.is-style-filled-pill,
+	&.is-style-icon-round {
+		.wp-block-search__inside-wrapper {
+			border-radius: 999px;
+		}
+	}
+
+	/* ── Icon Square & Filled Sharp (shared) ── */
+	&.is-style-filled-sharp,
+	&.is-style-icon-square {
+		.wp-block-search__inside-wrapper {
+			border-radius: 0;
+		}
+
+		.wp-block-search__button {
+			border-radius: 0;
+		}
 	}
 }
 
+//Icon Square/Round Inside Wrapper
+.wp-block-search__icon-button.is-style-icon-square:not(.wp-block-search__button-only) .wp-block-search__button,
+.wp-block-search__icon-button.is-style-icon-round:not(.wp-block-search__button-only) .wp-block-search__button {
+	padding: 0;
+}
+
+//Filled Pill/Sharp Search Button
+.wp-block-search__icon-button.is-style-filled-pill:not(.wp-block-search__button-only) .wp-block-search__button,
+.wp-block-search__icon-button.is-style-filled-sharp:not(.wp-block-search__button-only) .wp-block-search__button {
+	padding: 0.75rem 0 0.75rem 0.5rem;
+}
+
+//All Styles - Search Button
+.wp-block-search__icon-button.is-style-filled-pill:not(.wp-block-search__button-only) .wp-block-search__button,
+.wp-block-search__icon-button.is-style-icon-round:not(.wp-block-search__button-only) .wp-block-search__button,
+.wp-block-search__icon-button.is-style-filled-sharp:not(.wp-block-search__button-only) .wp-block-search__button,
+.wp-block-search__icon-button.is-style-icon-square:not(.wp-block-search__button-only) .wp-block-search__button {
+	width: 52px;
+}
+
+//Filled Pill & Icon Round w/ Icon Button
+.wp-block-search__icon-button.is-style-filled-pill:not(.wp-block-search__button-only) .wp-block-search__button,
+.wp-block-search__icon-button.is-style-icon-round:not(.wp-block-search__button-only) .wp-block-search__button {
+	border-radius: 50%;
+}
+
+// Icon Round Search Button w/ Text Button
+.wp-block-search__text-button.is-style-icon-round .wp-block-search__button {
+	border-radius: 25px;
+}
 
 // -----------------------------------------------------------------------------
 // Image Block
@@ -178,21 +411,77 @@ hr.wp-block-separator {
 }
 
 // -----------------------------------------------------------------------------
-// Query Loop Block
+// Query Loop & Title Block
 // -----------------------------------------------------------------------------
 
 .wp-block-query ul {
-	padding-left: 0;
+	padding-left: unset;
+	margin-left: unset;
+}
+
+.entry-content .wp-block-query .wp-post-image {
+	margin-bottom: 0;
+}
+
+.wp-block-post-title {
+	&.is-style-title-podcast > a:before,
+	&.is-style-title-video > a:before,
+	&.is-style-title-podcast:not(:has(> a)):before,
+	&.is-style-title-video:not(:has(> a)):before {
+		font-family: $font-family-awesome;
+		font-weight: 900;
+		color: currentColor;
+		padding-right: .5em;
+	}
+
+	&.is-style-title-podcast > a:before,
+	&.is-style-title-podcast:not(:has(> a)):before {
+		content: "\f3c9";
+	}
+
+	&.is-style-title-video > a:before,
+	&.is-style-title-video:not(:has(> a)):before {
+		content: "\f144";
+	}
 }
 
 // -----------------------------------------------------------------------------
-// Buttons Block
+// Buttons/Button Block
 // -----------------------------------------------------------------------------
 
 .wp-block-buttons .wp-block-button__link {
 	&:focus {
 		outline-color: var(--memberlite-color-text);
 		outline-offset: 2px;
+	}
+}
+
+.wp-block-button {
+	&.is-style-arrow-fill a,
+	&.is-style-arrow-plain a {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: calc( var(--wp--preset--spacing--10) / 1.5);
+		padding-top: var(--wp--preset--spacing--10);
+		padding-bottom: var(--wp--preset--spacing--10);
+		line-height: 1;
+
+		&:after {
+			font-family: $font-family-awesome;
+			font-weight: 900;
+			content: "\f061"; /*! rtl:raw:content: "\f060"; */
+		}
+	}
+
+	&.is-style-arrow-plain a {
+		padding: 0 var(--wp--preset--spacing--10);
+		background: transparent;
+		color: var(--wp--preset--color--buttons);
+
+		&:hover, &:active, &:focus {
+			color: var(--wp--preset--color--buttons-hover);
+		}
 	}
 }
 
@@ -357,5 +646,127 @@ hr.wp-block-separator {
 	&:focus,
 	&:focus-visible {
 		outline: thin dotted var(--memberlite-color-site-navigation);
+	}
+}
+
+// -----------------------------------------------------------------------------
+// Loginout Block
+// -----------------------------------------------------------------------------
+
+.wp-block-loginout {
+	&.is-style-loginout-button:not(.has-background) {
+		/* Fallbacks — overridden when editor color settings are applied */
+		background-color: var(--wp--preset--color--buttons);
+
+		a {
+			color: var(--wp--preset--color--base);
+		}
+	}
+
+	&.is-style-loginout-button {
+		width: max-content;
+		border-radius: var(--wp--custom--border--radius);
+
+		a {
+			display: inline-block;
+			padding: 0.6em 1.4em;
+			border-radius: inherit;
+			text-decoration: none;
+			line-height: 1.5;
+		}
+	}
+}
+
+// -----------------------------------------------------------------------------
+// Cover Block Styles
+// -----------------------------------------------------------------------------
+
+.wp-block-cover {
+	&.is-style-scroll-indicator {
+		&::after {
+			font-family: $font-family-awesome;
+			content: '\f103'; // angles down
+			font-size: var(--wp--preset--font-size--24);
+			font-weight: 900;
+			position: absolute;
+			bottom: var(--wp--preset--spacing--10);
+			border: 3px solid;
+			border-radius: 100%;
+			width: 44px;
+			height: 44px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+	}
+
+	&.is-style-slant-bottom-right {
+		clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+		padding-bottom: 8rem;
+	}
+
+	&.is-style-slant-bottom-left {
+		clip-path: polygon(0 0, 100% 0, 100% 100%, 0 85%);
+		padding-bottom: 8rem;
+	}
+}
+
+// -----------------------------------------------------------------------------
+// Accordion Styles
+// -----------------------------------------------------------------------------
+
+.wp-block-accordion {
+	// Default accordion style
+	.wp-block-accordion-heading {
+		border-top: 1px solid var(--memberlite-color-borders);
+		padding: var(--wp--preset--spacing--10);
+	}
+
+	//core accordion does not have padding so if we define padding ourselves, it can't be overwritten from the editor...
+	&.is-style-accrdn-medium .wp-block-accordion-heading__toggle-icon {
+		font-size: var(--wp--preset--font-size--30);
+		width: unset;
+	}
+
+	&.is-style-accrdn-large .wp-block-accordion-heading__toggle-icon {
+		font-size: var(--wp--preset--font-size--42);
+		width: unset;
+	}
+
+	&.is-style-accrdn-caret {
+		.wp-block-accordion-heading__toggle:after {
+			font-family: $font-family-awesome;
+			font-weight: 900;
+			content: "\f078"; // fa-chevron-down
+			margin-left: var(--wp--preset--spacing--10);
+		}
+
+		.wp-block-accordion-heading__toggle[aria-expanded="true"]:after {
+			content: "\f077"; // fa-chevron-up
+		}
+
+		.wp-block-accordion-heading__toggle-icon {
+			display: none;
+		}
+	}
+}
+
+// -----------------------------------------------------------------------------
+// Heading Block Styles
+// -----------------------------------------------------------------------------
+
+.wp-block-heading {
+	&.is-style-heading-rule {
+		display: flex;
+		align-items: center;
+		gap: 0.75em;
+
+		&::after {
+			content: '';
+			display: block;
+			flex: 1;
+			height: .09em;
+			background: currentColor;
+		}
 	}
 }

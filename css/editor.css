@@ -1,6 +1,10 @@
-/** Block Editor Custom Styles **/
+/*--------------------------------------------------------------
+ BLOCK EDITOR CUSTOM STYLES
+--------------------------------------------------------------*/
 
-/* Custom Settings Panel Icons */
+/*--------------------------------------------------------------
+ Custom settings panel icon
+--------------------------------------------------------------*/
 .memberlite-custom-settings .components-panel__body-title button svg {
 	order: -1;
 	margin-right: 5px;
@@ -20,4 +24,397 @@ label[for="memberlite-menu-location-select"] {
 	width: 100%;
 	min-height: 40px;
 	padding-inline: 12px 30px;
+}
+
+/*--------------------------------------------------------------
+ List Block Styles
+--------------------------------------------------------------*/
+.wp-block-list.is-style-plain {
+	list-style: none;
+	padding-left: 0;
+	margin-left: 0;
+}
+
+.wp-block-list.is-style-horizontal-left,
+.wp-block-list.is-style-horizontal-center {
+	list-style: none;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0;
+	margin-left: unset;
+}
+
+.wp-block-list.is-style-horizontal-left li,
+.wp-block-list.is-style-horizontal-center li {
+	margin: 0;
+	padding: 0 var(--wp--preset--spacing--10);
+}
+
+.wp-block-list.is-style-horizontal-center {
+	justify-content: center;
+}
+
+/*--------------------------------------------------------------
+ Loginout Block Styles - Editor styles vary slightly from front-end
+ Known core behavior: Applying a background color from the editor expands across the width of the editor.
+ The block will look fine on the front-end width-wise.
+--------------------------------------------------------------*/
+.wp-block-loginout.is-style-loginout-button {
+	border-radius: var(--wp--custom--border--radius);
+}
+
+.wp-block-loginout.is-style-loginout-button:not(.has-background) a {
+	/* Fallbacks — overridden when editor color settings are applied */
+	background-color: var(--wp--preset--color--buttons);
+	color: var(--wp--preset--color--base);
+}
+
+.wp-block-loginout.is-style-loginout-button a {
+	display: inline-block;
+	padding: 0.6em 1.4em;
+	border-radius: inherit;
+	text-decoration: none;
+	line-height: 1.5;
+}
+
+/*--------------------------------------------------------------
+ Buttons/Button Block Styles
+--------------------------------------------------------------*/
+.wp-block-button.is-style-arrow-fill .wp-element-button,
+.wp-block-button.is-style-arrow-plain .wp-element-button {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: calc(var(--wp--preset--spacing--10) / 1.5);
+	padding-top: var(--wp--preset--spacing--10);
+	padding-bottom: var(--wp--preset--spacing--10);
+	line-height: 1;
+}
+
+.wp-block-button.is-style-arrow-fill .wp-element-button:after,
+.wp-block-button.is-style-arrow-plain .wp-element-button:after {
+	font-family: 'Font Awesome 5 Free';
+	font-weight: 900;
+	content: "\f061";
+}
+
+.wp-block-button.is-style-arrow-plain .wp-element-button {
+	padding: 0 var(--wp--preset--spacing--10);
+	background: transparent;
+	color: var(--wp--preset--color--buttons);
+}
+
+.wp-block-button.is-style-arrow-plain .wp-element-button:hover {
+	color: var(--wp--preset--color--buttons-hover);
+}
+
+.wp-block-buttons .wp-element-button:focus {
+	outline-color: var(--wp--preset--color--text);
+	outline-offset: 2px;
+}
+
+/*--------------------------------------------------------------
+ Separator Block Styles
+--------------------------------------------------------------*/
+hr.wp-block-separator {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+hr.wp-block-separator:where(:not(.is-style-wide, .is-style-dots, .is-style-faded-edges, .is-style-double, .is-style-flourish-diamond)) {
+	max-width: 100px;
+}
+
+hr.wp-block-separator.is-style-dots:before {
+	color: var(--wp--preset--color--borders);
+}
+
+hr.wp-block-separator.is-style-wide {
+	background-color: var(--wp--preset--color--borders);
+}
+
+hr.wp-block-separator.is-style-wide,
+hr.wp-block-separator.is-style-faded-edges,
+hr.wp-block-separator.is-style-double {
+	border: 0;
+}
+
+hr.wp-block-separator.is-style-faded-edges,
+hr.wp-block-separator.is-style-double {
+	width: 100% !important;
+}
+
+hr.wp-block-separator.is-style-faded-edges {
+	background-color: transparent !important;
+	background-image: linear-gradient(to right, transparent, color-mix(in srgb, currentColor 75%, transparent), transparent);
+}
+
+/* Editor only overwrite on core styles that break our styles for height */
+hr.wp-block-separator.is-style-faded-edges,
+.editor-styles-wrapper hr.wp-block-separator.has-background.is-style-faded-edges {
+	height: 1px;
+}
+
+hr.wp-block-separator.is-style-double {
+	background: none;
+	background-color: var(--wp--preset--color--borders);
+	mask-repeat: repeat-x;
+	mask-position: center;
+	mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 10'%3E%3Crect x='0' y='2' width='4' height='2' fill='black'/%3E%3Crect x='0' y='6' width='4' height='2' fill='black'/%3E%3C/svg%3E");
+	mask-size: 4px 10px;
+}
+
+/* Editor only overwrite on core styles that break our styles for height */
+hr.wp-block-separator.is-style-double,
+.editor-styles-wrapper hr.wp-block-separator.has-background.is-style-double {
+	height: 10px;
+}
+
+hr.wp-block-separator.is-style-flourish-diamond {
+	border: none;
+	background: none;
+	width: 100% !important;
+	background-color: var(--wp--preset--color--borders);
+	mask-repeat: no-repeat;
+	mask-position: center;
+	mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1230 32'%3E%3Cline x1='0' y1='16' x2='590' y2='16' stroke='black' stroke-width='1.5'/%3E%3Cpolygon points='615,4 627,16 615,28 603,16' fill='black'/%3E%3Cline x1='640' y1='16' x2='1230' y2='16' stroke='black' stroke-width='1.5'/%3E%3C/svg%3E");
+}
+
+/* Editor only overwrite on core styles that break our styles for height */
+hr.wp-block-separator.is-style-flourish-diamond,
+.editor-styles-wrapper hr.wp-block-separator.has-background.is-style-flourish-diamond {
+	height: 32px;
+}
+
+/*--------------------------------------------------------------
+ Search Block - Will not apply on button only search forms
+--------------------------------------------------------------*/
+.wp-block-search:not(.wp-block-search__button-only) .wp-block-search__button svg {
+	width: 26px;
+	height: 26px;
+	margin-top: 2px;
+}
+
+.wp-block-search:not(.wp-block-search__button-only).is-style-filled-pill, .wp-block-search:not(.wp-block-search__button-only).is-style-filled-sharp, .wp-block-search:not(.wp-block-search__button-only).is-style-icon-round, .wp-block-search:not(.wp-block-search__button-only).is-style-icon-square {
+	gap: 0;
+}
+.wp-block-search:not(.wp-block-search__button-only).is-style-filled-pill .wp-block-search__button, .wp-block-search:not(.wp-block-search__button-only).is-style-filled-sharp .wp-block-search__button, .wp-block-search:not(.wp-block-search__button-only).is-style-icon-round .wp-block-search__button, .wp-block-search:not(.wp-block-search__button-only).is-style-icon-square .wp-block-search__button {
+	box-shadow: none;
+	border: none;
+	margin-left: 0.5rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	flex-shrink: 0;
+	/* Intentionally different in the editor vs the front-end */
+	height: 55px;
+	padding-top: unset;
+	padding-bottom: unset;
+}
+
+.wp-block-search:not(.wp-block-search__button-only).is-style-filled-pill .wp-block-search__inside-wrapper, .wp-block-search:not(.wp-block-search__button-only).is-style-filled-sharp .wp-block-search__inside-wrapper {
+	background-color: var(--wp--preset--color--body-text);
+	border: none;
+	overflow: hidden;
+	padding: 0 0.5rem 0 1.25rem;
+}
+.wp-block-search:not(.wp-block-search__button-only).is-style-filled-pill .wp-block-search__input, .wp-block-search:not(.wp-block-search__button-only).is-style-filled-sharp .wp-block-search__input {
+	background: var(--wp--preset--color--body-text);
+	border: none;
+	color: var(--wp--preset--color--base);
+	box-shadow: none;
+	outline: none;
+	padding: 0.75rem 0;
+}
+.wp-block-search:not(.wp-block-search__button-only).is-style-filled-pill .wp-block-search__input::placeholder, .wp-block-search:not(.wp-block-search__button-only).is-style-filled-sharp .wp-block-search__input::placeholder {
+	color: var(--wp--preset--color--base);
+	opacity: 0.6;
+}
+.wp-block-search:not(.wp-block-search__button-only).is-style-filled-pill .wp-block-search__button, .wp-block-search:not(.wp-block-search__button-only).is-style-filled-sharp .wp-block-search__button {
+	background: var(--wp--preset--color--body-text);
+	color: var(--wp--preset--color--base);
+}
+.wp-block-search:not(.wp-block-search__button-only).is-style-filled-pill .wp-block-search__button:focus, .wp-block-search:not(.wp-block-search__button-only).is-style-filled-pill .wp-block-search__button:focus-visible, .wp-block-search:not(.wp-block-search__button-only).is-style-filled-sharp .wp-block-search__button:focus, .wp-block-search:not(.wp-block-search__button-only).is-style-filled-sharp .wp-block-search__button:focus-visible {
+	outline: thin dotted var(--wp--preset--color--base);
+}
+
+.wp-block-search:not(.wp-block-search__button-only).is-style-icon-round .wp-block-search__inside-wrapper, .wp-block-search:not(.wp-block-search__button-only).is-style-icon-square .wp-block-search__inside-wrapper {
+	border: 1px solid var(--wp--preset--color--borders);
+	overflow: hidden;
+	padding: 0 0 0 1.25rem;
+	background: var(--wp--preset--color--base);
+	flex: 1;
+}
+.wp-block-search:not(.wp-block-search__button-only).is-style-icon-round .wp-block-search__input, .wp-block-search:not(.wp-block-search__button-only).is-style-icon-square .wp-block-search__input {
+	background: transparent;
+	border: none;
+	color: var(--wp--preset--color--body-text);
+	padding: 0.75rem 0;
+	box-shadow: none;
+	outline: none;
+}
+.wp-block-search:not(.wp-block-search__button-only).is-style-icon-round .wp-block-search__input::placeholder, .wp-block-search:not(.wp-block-search__button-only).is-style-icon-square .wp-block-search__input::placeholder {
+	color: var(--wp--preset--color--body-text);
+	opacity: 0.5;
+}
+.wp-block-search:not(.wp-block-search__button-only).is-style-icon-round .wp-block-search__button, .wp-block-search:not(.wp-block-search__button-only).is-style-icon-square .wp-block-search__button {
+	background-color: var(--wp--preset--color--buttons);
+	color: var(--wp--preset--color--base);
+}
+.wp-block-search:not(.wp-block-search__button-only).is-style-icon-round .wp-block-search__button:hover, .wp-block-search:not(.wp-block-search__button-only).is-style-icon-round .wp-block-search__button:active, .wp-block-search:not(.wp-block-search__button-only).is-style-icon-round .wp-block-search__button:focus, .wp-block-search:not(.wp-block-search__button-only).is-style-icon-square .wp-block-search__button:hover, .wp-block-search:not(.wp-block-search__button-only).is-style-icon-square .wp-block-search__button:active, .wp-block-search:not(.wp-block-search__button-only).is-style-icon-square .wp-block-search__button:focus {
+	background-color: var(--wp--preset--color--buttons-hover);
+}
+
+.wp-block-search:not(.wp-block-search__button-only).is-style-filled-pill .wp-block-search__inside-wrapper, .wp-block-search:not(.wp-block-search__button-only).is-style-icon-round .wp-block-search__inside-wrapper {
+	border-radius: 999px;
+}
+
+.wp-block-search:not(.wp-block-search__button-only).is-style-filled-sharp .wp-block-search__inside-wrapper, .wp-block-search:not(.wp-block-search__button-only).is-style-icon-square .wp-block-search__inside-wrapper {
+	border-radius: 0;
+}
+.wp-block-search:not(.wp-block-search__button-only).is-style-filled-sharp .wp-block-search__button, .wp-block-search:not(.wp-block-search__button-only).is-style-icon-square .wp-block-search__button {
+	border-radius: 0;
+}
+
+.wp-block-search__icon-button.is-style-icon-square:not(.wp-block-search__button-only) .wp-block-search__button,
+.wp-block-search__icon-button.is-style-icon-round:not(.wp-block-search__button-only) .wp-block-search__button {
+	padding: 0;
+}
+
+.wp-block-search__icon-button.is-style-filled-pill:not(.wp-block-search__button-only) .wp-block-search__button,
+.wp-block-search__icon-button.is-style-filled-sharp:not(.wp-block-search__button-only) .wp-block-search__button {
+	padding: 0.75rem 0 0.75rem 0.5rem;
+}
+
+.wp-block-search__icon-button.is-style-filled-pill:not(.wp-block-search__button-only) .wp-block-search__button,
+.wp-block-search__icon-button.is-style-icon-round:not(.wp-block-search__button-only) .wp-block-search__button,
+.wp-block-search__icon-button.is-style-filled-sharp:not(.wp-block-search__button-only) .wp-block-search__button,
+.wp-block-search__icon-button.is-style-icon-square:not(.wp-block-search__button-only) .wp-block-search__button {
+	width: 52px;
+}
+
+.wp-block-search__icon-button.is-style-filled-pill:not(.wp-block-search__button-only) .wp-block-search__button,
+.wp-block-search__icon-button.is-style-icon-round:not(.wp-block-search__button-only) .wp-block-search__button {
+	border-radius: 50%;
+}
+
+/* Intentionally different in the editor styles versus the front-end */
+.wp-block-search__text-button.is-style-icon-round .wp-block-search__button {
+	border-radius: 40px;
+}
+
+/*--------------------------------------------------------------
+ Cover Block Styles
+--------------------------------------------------------------*/
+
+/* Scroll indicator hides whenever the cover block is selected
+or being hovered over in the editor or from list view for better UX. */
+.wp-block-cover:not(.is-selected):not(.is-hovered).is-style-scroll-indicator::after {
+	font-family: 'Font Awesome 5 Free';
+	content: '\f103';
+	font-size: var(--wp--preset--font-size--24);
+	font-weight: 900;
+	position: absolute;
+	bottom: var(--wp--preset--spacing--10);
+	border: 3px solid;
+	border-radius: 100%;
+	width: 44px;
+	height: 44px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.wp-block-cover.is-style-slant-bottom-right {
+	clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+	padding-bottom: 8rem;
+}
+
+.wp-block-cover.is-style-slant-bottom-left {
+	clip-path: polygon(0 0, 100% 0, 100% 100%, 0 85%);
+	padding-bottom: 8rem;
+}
+
+/*--------------------------------------------------------------
+ Accordion Block Styles - Editor styles vary from the front-end
+--------------------------------------------------------------*/
+
+.wp-block-accordion .wp-block-accordion-heading {
+	border-top: 1px solid var(--wp--preset--color--borders);
+	padding: var(--wp--preset--spacing--10);
+}
+
+.wp-block-accordion .wp-block-accordion-heading__toggle {
+	padding: unset;
+}
+
+.wp-block-accordion .wp-block-accordion-item {
+	margin-block-start: unset;
+}
+
+:is(.wp-block-accordion-panel, .memberlite_accordion .memberlite_accordion-item-content) {
+	margin-block-start: unset;
+	padding: 0 var(--wp--preset--spacing--10) var(--wp--preset--spacing--10);
+}
+
+.wp-block-accordion.is-style-accrdn-medium .wp-block-accordion-heading__toggle-icon {
+	font-size: var(--wp--preset--font-size--30);
+	width: unset;
+}
+
+.wp-block-accordion.is-style-accrdn-large .wp-block-accordion-heading__toggle-icon {
+	font-size: var(--wp--preset--font-size--42);
+	width: unset;
+}
+
+.wp-block-accordion.is-style-accrdn-caret .wp-block-accordion-heading__toggle:after {
+	font-family: "Font Awesome 5 Free";
+	font-weight: 900;
+	content: "\f078";
+	margin-left: var(--wp--preset--spacing--10);
+}
+
+.wp-block-accordion.is-style-accrdn-caret .wp-block-accordion-heading__toggle[aria-expanded=true]:after {
+	content: "\f077";
+}
+
+.wp-block-accordion.is-style-accrdn-caret .wp-block-accordion-heading__toggle-icon {
+	display: none;
+}
+
+/*--------------------------------------------------------------
+ Heading Block Styles
+--------------------------------------------------------------*/
+
+.wp-block-heading.is-style-heading-rule {
+	display: flex;
+	align-items: center;
+	gap: 0.75em;
+}
+
+.wp-block-heading.is-style-heading-rule::after {
+	content: '';
+	display: block;
+	flex: 1;
+	height: .09em;
+	background: currentColor;
+}
+
+/*--------------------------------------------------------------
+ Post Title Block Styles
+--------------------------------------------------------------*/
+.wp-block-post-title.is-style-title-podcast > a:before, .wp-block-post-title.is-style-title-video > a:before, .wp-block-post-title.is-style-title-podcast:not(:has(> a)):before, .wp-block-post-title.is-style-title-video:not(:has(> a)):before {
+	font-family: "Font Awesome 5 Free";
+	font-weight: 900;
+	color: currentColor;
+	padding-right: 0.5em;
+}
+
+.wp-block-post-title.is-style-title-podcast > a:before, .wp-block-post-title.is-style-title-podcast:not(:has(> a)):before {
+	content: "\f3c9";
+}
+
+.wp-block-post-title.is-style-title-video > a:before, .wp-block-post-title.is-style-title-video:not(:has(> a)):before {
+	content: "\f144";
 }
