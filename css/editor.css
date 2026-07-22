@@ -361,10 +361,12 @@ or being hovered over in the editor or from list view for better UX. */
 
 .wp-block-accordion.is-style-accrdn-medium .wp-block-accordion-heading__toggle-icon {
 	font-size: var(--wp--preset--font-size--30);
+	width: unset;
 }
 
 .wp-block-accordion.is-style-accrdn-large .wp-block-accordion-heading__toggle-icon {
 	font-size: var(--wp--preset--font-size--42);
+	width: unset;
 }
 
 .wp-block-accordion.is-style-accrdn-caret .wp-block-accordion-heading__toggle:after {

@@ -724,10 +724,12 @@ hr.wp-block-separator {
 	//core accordion does not have padding so if we define padding ourselves, it can't be overwritten from the editor...
 	&.is-style-accrdn-medium .wp-block-accordion-heading__toggle-icon {
 		font-size: var(--wp--preset--font-size--30);
+		width: unset;
 	}
 
 	&.is-style-accrdn-large .wp-block-accordion-heading__toggle-icon {
 		font-size: var(--wp--preset--font-size--42);
+		width: unset;
 	}
 
 	&.is-style-accrdn-caret {
