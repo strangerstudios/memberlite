@@ -126,7 +126,7 @@ hr.wp-block-separator:where(:not(.is-style-wide, .is-style-dots, .is-style-faded
 }
 
 hr.wp-block-separator.is-style-dots:before {
-	color: var(--wp--preset--color-borders);
+	color: var(--wp--preset--color--borders);
 }
 
 hr.wp-block-separator.is-style-wide {

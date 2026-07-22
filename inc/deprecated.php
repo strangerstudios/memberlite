@@ -598,7 +598,7 @@ function memberlite_get_variation( $slug ) {
 function memberlite_enqueue_block_assets() {
 	_doing_it_wrong(
 		__FUNCTION__,
-		esc_html__( 'Editor styles are now registered via add_editor_style() in memberlite_setup().' , 'memberlite' ),
+		esc_html__( 'Editor styles are now registered via add_editor_style() in memberlite_setup().', 'memberlite' ),
 		'TBD'
 	);
 }
