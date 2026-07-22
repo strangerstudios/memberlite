@@ -177,7 +177,6 @@ hr.wp-block-separator.is-style-flourish-diamond {
 	background-color: var(--wp--preset--color--borders);
 	mask-repeat: no-repeat;
 	mask-position: center;
-	mask-size: 1230px 32px;
 	mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1230 32'%3E%3Cline x1='0' y1='16' x2='590' y2='16' stroke='black' stroke-width='1.5'/%3E%3Cpolygon points='615,4 627,16 615,28 603,16' fill='black'/%3E%3Cline x1='640' y1='16' x2='1230' y2='16' stroke='black' stroke-width='1.5'/%3E%3C/svg%3E");
 }
 
@@ -411,9 +410,11 @@ or being hovered over in the editor or from list view for better UX. */
 	color: currentColor;
 	padding-right: 0.5em;
 }
+
 .wp-block-post-title.is-style-title-podcast > a:before, .wp-block-post-title.is-style-title-podcast:not(:has(> a)):before {
 	content: "\f3c9";
 }
+
 .wp-block-post-title.is-style-title-video > a:before, .wp-block-post-title.is-style-title-video:not(:has(> a)):before {
 	content: "\f144";
 }
