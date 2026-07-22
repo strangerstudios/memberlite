@@ -72,7 +72,7 @@ label[for="memberlite-menu-location-select"] {
 .wp-block-loginout.is-style-loginout-button a {
 	display: inline-block;
 	padding: 0.6em 1.4em;
-	border-radius: 4px;
+	border-radius: inherit;
 	text-decoration: none;
 	line-height: 1.5;
 }
