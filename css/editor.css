@@ -55,20 +55,17 @@ label[for="memberlite-menu-location-select"] {
 }
 
 /*--------------------------------------------------------------
- Loginout Block Styles
+ Loginout Block Styles - Editor styles vary slightly from front-end
+ Known core behavior: Applying a background color from the editor expands across the width of the editor.
+ The block will look fine on the front-end width-wise.
 --------------------------------------------------------------*/
 .wp-block-loginout.is-style-loginout-button {
-	width: max-content;
 	border-radius: var(--wp--custom--border--radius);
-}
-
-.wp-block-loginout.is-style-loginout-button:not(.has-background) {
-	/* Fallbacks — overridden when editor color settings are applied */
-	background-color: var(--wp--preset--color--buttons);
 }
 
 .wp-block-loginout.is-style-loginout-button:not(.has-background) a {
 	/* Fallbacks — overridden when editor color settings are applied */
+	background-color: var(--wp--preset--color--buttons);
 	color: var(--wp--preset--color--base);
 }
 
@@ -312,18 +309,15 @@ hr.wp-block-separator.is-style-flourish-diamond,
  Cover Block Styles
 --------------------------------------------------------------*/
 
-/* Styles for the editor target a different element and are different from the
- front-end intentionally. Wonky things happen when we target the cover block and
- the .is-selected class gets applied when that block is focused on. */
-.wp-block-cover.is-style-scroll-indicator .wp-block-cover__inner-container::after {
+/* Scroll indicator hides whenever the cover block is selected
+or being hovered over in the editor or from list view for better UX. */
+.wp-block-cover:not(.is-selected):not(.is-hovered).is-style-scroll-indicator::after {
 	font-family: 'Font Awesome 5 Free';
 	content: '\f103';
 	font-size: var(--wp--preset--font-size--24);
 	font-weight: 900;
 	position: absolute;
-	left: 50%;
-	margin-left: -10px;
-	bottom: 0;
+	bottom: var(--wp--preset--spacing--10);
 	border: 3px solid;
 	border-radius: 100%;
 	width: 44px;
@@ -343,31 +337,27 @@ hr.wp-block-separator.is-style-flourish-diamond,
 	padding-bottom: 8rem;
 }
 
-.wp-block-cover.is-style-wavy-bottom {
-	position: relative;
-	padding-bottom: 8rem;
-}
-
-.wp-block-cover.is-style-wavy-bottom::after {
-	content: '';
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	z-index: 10;
-	width: 100%;
-	height: 80px;
-	background-color: var(--wp--preset--color--base);
-	-webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80' preserveAspectRatio='none'%3E%3Cpath d='M0,80 L0,40 C180,80 360,0 540,40 C720,80 900,0 1080,40 C1260,80 1380,20 1440,40 L1440,80 Z' fill='black'/%3E%3C/svg%3E");
-	mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80' preserveAspectRatio='none'%3E%3Cpath d='M0,80 L0,40 C180,80 360,0 540,40 C720,80 900,0 1080,40 C1260,80 1380,20 1440,40 L1440,80 Z' fill='black'/%3E%3C/svg%3E");
-	-webkit-mask-size: 100% 100%;
-	mask-size: 100% 100%;
-	-webkit-mask-repeat: no-repeat;
-	mask-repeat: no-repeat;
-}
-
 /*--------------------------------------------------------------
- Accordion Block Styles
+ Accordion Block Styles - Editor styles vary from the front-end
 --------------------------------------------------------------*/
+
+.wp-block-accordion .wp-block-accordion-heading {
+	border-top: 1px solid var(--wp--preset--color--borders);
+	padding: var(--wp--preset--spacing--10);
+}
+
+.wp-block-accordion .wp-block-accordion-heading__toggle {
+	padding: unset;
+}
+
+.wp-block-accordion .wp-block-accordion-item {
+	margin-block-start: unset;
+}
+
+:is(.wp-block-accordion-panel, .memberlite_accordion .memberlite_accordion-item-content) {
+	margin-block-start: unset;
+	padding: 0 var(--wp--preset--spacing--10) var(--wp--preset--spacing--10);
+}
 
 .wp-block-accordion.is-style-accrdn-medium .wp-block-accordion-heading__toggle-icon {
 	font-size: var(--wp--preset--font-size--30);
@@ -377,32 +367,6 @@ hr.wp-block-separator.is-style-flourish-diamond,
 	font-size: var(--wp--preset--font-size--42);
 }
 
-.wp-block-accordion-item {
-	margin-block-start: 0;
-}
-
-.wp-block-accordion-item .wp-block-accordion-heading__toggle {
-	background: none;
-	border: 0;
-	box-shadow: none;
-	padding: 0;
-	text-align: left;
-}
-
-.wp-block-accordion-item .wp-block-accordion-heading {
-	font-family: var(--memberlite-header-font), ui-sans-serif;
-	font-size: inherit;
-	font-weight: 700;
-	line-height: inherit;
-	margin: 0;
-	border-top: 1px solid var(--wp--preset--color--borders);
-}
-
-:is(.wp-block-accordion-panel) {
-	margin-block-start: 0;
-	padding: 0 var(--wp--preset--spacing--10) var(--wp--preset--spacing--10);
-}
-
 .wp-block-accordion.is-style-accrdn-caret .wp-block-accordion-heading__toggle:after {
 	font-family: "Font Awesome 5 Free";
 	font-weight: 900;
@@ -410,7 +374,7 @@ hr.wp-block-separator.is-style-flourish-diamond,
 	margin-left: var(--wp--preset--spacing--10);
 }
 
-.wp-block-accordion.is-style-accrdn-caret .is-open .wp-block-accordion-heading__toggle:after {
+.wp-block-accordion.is-style-accrdn-caret .wp-block-accordion-heading__toggle[aria-expanded=true]:after {
 	content: "\f077";
 }
 

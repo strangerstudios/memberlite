@@ -708,27 +708,6 @@ hr.wp-block-separator {
 		clip-path: polygon(0 0, 100% 0, 100% 100%, 0 85%);
 		padding-bottom: 8rem;
 	}
-
-	&.is-style-wavy-bottom {
-		position: relative;
-		padding-bottom: 8rem;
-
-		&::after {
-			content: '';
-			position: absolute;
-			bottom: 0;
-			left: 0;
-			width: 100%;
-			height: 80px;
-			background-color: var(--wp--preset--color--base);
-			-webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80' preserveAspectRatio='none'%3E%3Cpath d='M0,80 L0,40 C180,80 360,0 540,40 C720,80 900,0 1080,40 C1260,80 1380,20 1440,40 L1440,80 Z' fill='black'/%3E%3C/svg%3E");
-			mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80' preserveAspectRatio='none'%3E%3Cpath d='M0,80 L0,40 C180,80 360,0 540,40 C720,80 900,0 1080,40 C1260,80 1380,20 1440,40 L1440,80 Z' fill='black'/%3E%3C/svg%3E");
-			-webkit-mask-size: 100% 100%;
-			mask-size: 100% 100%;
-			-webkit-mask-repeat: no-repeat;
-			mask-repeat: no-repeat;
-		}
-	}
 }
 
 // -----------------------------------------------------------------------------
@@ -736,6 +715,12 @@ hr.wp-block-separator {
 // -----------------------------------------------------------------------------
 
 .wp-block-accordion {
+	// Default accordion style
+	.wp-block-accordion-heading {
+		border-top: 1px solid var(--memberlite-color-borders);
+		padding: var(--wp--preset--spacing--10);
+	}
+
 	//core accordion does not have padding so if we define padding ourselves, it can't be overwritten from the editor...
 	&.is-style-accrdn-medium .wp-block-accordion-heading__toggle-icon {
 		font-size: var(--wp--preset--font-size--30);
