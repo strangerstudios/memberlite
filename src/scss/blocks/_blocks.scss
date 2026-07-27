@@ -118,6 +118,7 @@ hr.wp-block-separator {
 	margin-left: auto;
 	margin-right: auto;
 
+	// For default separator, no block styles
 	&:where(:not(.is-style-wide, .is-style-dots, .is-style-faded-edges, .is-style-double, .is-style-flourish-diamond)) {
 		max-width: 100px;
 	}
@@ -130,6 +131,15 @@ hr.wp-block-separator {
 	&.is-style-faded-edges,
 	&.is-style-double {
 		border: 0;
+	}
+
+	&.is-style-wide,
+	&.is-style-faded-edges,
+	&.is-style-double,
+	&.is-style-flourish-diamond {
+		&:not(.alignwide):not(.alignfull) {
+			max-width: 805px;
+		}
 	}
 
 	&.is-style-faded-edges,
@@ -150,7 +160,6 @@ hr.wp-block-separator {
 
 	&.is-style-double {
 		background: none;
-		max-width: 100%;
 		background-color: var(--memberlite-color-borders);
 		mask-repeat: repeat-x;
 		mask-position: center;
@@ -174,18 +183,8 @@ hr.wp-block-separator {
 			mask-size: 1230px 32px;
 		}
 
-		&.alignfull,
-		&.aligncenter {
-			margin-left: auto;
-			margin-right: auto;
-		}
-
 		&.alignfull {
-			mask-size: 100% 32px;
-		}
-
-		&.aligncenter {
-			mask-size: 803px 32px;
+			mask-size: 100% auto;
 		}
 	}
 }
