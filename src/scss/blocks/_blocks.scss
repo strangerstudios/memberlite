@@ -124,7 +124,7 @@ hr.wp-block-separator {
 	}
 
 	&.is-style-dots:before {
-		color: var(--memberlite-color-borders);
+		color: currentColor;
 	}
 
 	&.is-style-wide,
