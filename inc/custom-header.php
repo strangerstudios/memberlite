@@ -17,8 +17,8 @@ function memberlite_custom_header_setup() {
 		'memberlite_custom_header_args',
 		array(
 			'default-text-color' => '011935',
-			'height'             => 110,
-			'width'              => 1440,
+			'height'             => 120,
+			'width'              => 1280,
 			'flex-height'        => true,
 			'flex-height'        => true,
 			'wp-head-callback'   => 'memberlite_header_style',
