@@ -220,7 +220,7 @@ function memberlite_get_evergreen_colors(): array {
 /**
  * Seaside Linen color scheme
  *
- * Warm tan background with deep teal and rust accent.
+ * Soft linen background with deep blue, teal, and rust accents.
  *
  * @since 7.0
  * @return array 17-color associative array.
@@ -370,7 +370,7 @@ function memberlite_get_gotham_colors(): array {
 /**
  * Soft Spruce color scheme
  *
- * Clean grays and greens with a warm brown accent.
+ * Clean grays and greens with a burnt amber accent.
  *
  * @since 7.0
  * @return array 17-color associative array.
@@ -430,7 +430,7 @@ function memberlite_get_iron_ember_colors(): array {
 /**
  * Slate Harbor color scheme
  *
- * Deep navy with teal and coral accents.
+ * Deep navy with teal and sage green accents.
  *
  * @since 7.0
  * @return array 17-color associative array.
@@ -520,10 +520,7 @@ function memberlite_get_cobalt_current_colors(): array {
 /**
  * Rosewood color scheme
  *
- * Soft blush pink on a white site background, sampled from a feminine
- * reference design. Button/masthead/action colors are deepened just
- * enough from the reference to stay readable, since button text renders
- * in the site background color.
+ * Soft blush pink and rosewood tones on a white site background.
  *
  * @since TBD
  * @return array 17-color associative array.
