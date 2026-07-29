@@ -286,10 +286,6 @@ details {
 
 #widget_memberlite_recent_posts {
 
-	.post.hentry {
-		margin-bottom: 0;
-	}
-
 	// With thumbnail — grid layout
 	.widget_has_thumbnail .post.hentry .entry-header {
 		display: grid;
@@ -336,10 +332,6 @@ details {
 
 .page .entry-content .memberlite_subpagelist_item .entry-content {
 	border-bottom: none;
-}
-
-.columns .hentry.memberlite_subpagelist_item {
-	margin: 0;
 }
 
 #main .columns .hentry.memberlite_subpagelist_item .entry-content {

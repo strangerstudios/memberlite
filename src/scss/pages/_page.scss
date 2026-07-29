@@ -42,10 +42,4 @@
 			width: auto;
 		}
 	}
-
-	// Assume that when a template is applied, we want to give edge to edge control for the entire page between the header/footer
-	// Margins can still be customized per block in the editor or child theme styles
-	.hentry {
-		margin-bottom: 0;
-	}
 }
