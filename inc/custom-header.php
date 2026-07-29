@@ -17,10 +17,12 @@ function memberlite_custom_header_setup() {
 		'memberlite_custom_header_args',
 		array(
 			'default-text-color' => '011935',
-			'height'             => 110,
-			'width'              => 1440,
+			'height'             => 240,
+			'width'              => 1920,
 			'flex-height'        => true,
-			'flex-height'        => true,
+			'flex-width'         => true,
+			// Core caps flexible-width headers at 1500px unless 'max-width' raises it.
+			'max-width'          => 2560,
 			'wp-head-callback'   => 'memberlite_header_style',
 		)
 	);
@@ -49,9 +51,10 @@ if ( ! function_exists( 'memberlite_header_style' ) ) :
 			// Has a Custom Header been added?
 			if ( ! empty( $header_image ) ) { ?>
 			.site-header {
-				background-image: url(<?php header_image(); ?>);
-				background-repeat: repeat;
+				background-image: url("<?php header_image(); ?>");
+				background-repeat: no-repeat;
 				background-position: center center;
+				background-size: cover;
 			}
 		<?php }
 			// Has the text been hidden?
