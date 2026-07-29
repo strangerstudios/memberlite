@@ -126,6 +126,13 @@ class Memberlite_Customize {
 			)
 		);
 
+		/* Header Image ---------------------------------- */
+		// Core's control text says the image is cropped "for a perfect fit"; it is scaled to cover instead.
+		$header_image_section = $wp_customize->get_section( 'header_image' );
+		if ( $header_image_section ) {
+			$header_image_section->description = __( 'Your header image is scaled to cover the header area and centered, so it does not need to match the suggested size exactly. A wide image around an 8:1 ratio works best &mdash; taller images are cropped at the top and bottom, and narrower ones are cropped at the sides.', 'memberlite' );
+		}
+
 		/* Footer ---------------------------------------- */
 		$wp_customize->add_section(
 			'memberlite_footer_options',
