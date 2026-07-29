@@ -13,7 +13,6 @@
 // -----------------------------------------------------------------------------
 
 .hentry {
-	margin: 0 0 var(--wp--preset--spacing--70);
 
 	// Entry banner (featured image as full-bleed header)
 	.entry-banner {
@@ -56,9 +55,9 @@
 	}
 }
 
-// Blank page template removes entry margin
-.page-template-blank .hentry {
-	margin: 0;
+// Space stacked entries in list-style loops. Grid layout uses the .grid-list gap.
+.site-main > .hentry + .hentry {
+	margin-top: var(--wp--preset--spacing--70);
 }
 
 
