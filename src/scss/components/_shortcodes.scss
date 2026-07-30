@@ -349,7 +349,6 @@ details {
 // -----------------------------------------------------------------------------
 
 :is(.fa, .fas, .far, .fab) {
-
 	&.primary {
 		color: var(--memberlite-color-primary);
 	}
@@ -433,9 +432,9 @@ details {
 	&.shape-square,
 	&.shape-circle,
 	&.shape-squircle {
-		align-items: center;
 		aspect-ratio: 1;
 		display: inline-flex;
+		align-items: center;
 		justify-content: center;
 		padding: 1em;
 		min-width: 20px;
