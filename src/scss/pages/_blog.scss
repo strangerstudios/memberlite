@@ -22,8 +22,8 @@
 }
 
 .single.sidebar-blog-none {
-	.alignfull,
-	.alignwide {
+	.alignfull:not(hr.wp-block-separator),
+	.alignwide:not(hr.wp-block-separator) {
 		margin-left: calc(50% - 50vw);
 		margin-right: calc(50% - 50vw);
 		max-width: 1000%;

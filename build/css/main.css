@@ -3558,8 +3558,8 @@ body.mobile-nav-open {
   order: unset;
 }
 
-.single.sidebar-blog-none .alignfull,
-.single.sidebar-blog-none .alignwide {
+.single.sidebar-blog-none .alignfull:not(hr.wp-block-separator),
+.single.sidebar-blog-none .alignwide:not(hr.wp-block-separator) {
   margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw);
   max-width: 1000%;
