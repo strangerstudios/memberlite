@@ -60,11 +60,25 @@ function memberlite_fa_shortcode( $atts, $content = null ) {
 
 	$classes[] = 'fa-' . $icon;
 
-	if ( ! empty( $color ) ) {
-		$classes[] = $color;
+	// Also applies to background colors
+	$allowlist_colors = array(
+		'primary',
+		'secondary',
+		'action',
+		'white',
+		'text',
+		'site-background',
+		'site-navigation',
+		'site-navigation-background',
+		'footer-widgets',
+		'footer-widgets-background',
+	);
+
+	if ( $color && in_array( $color, $allowlist_colors, true ) ) {
+		$classes[] = 'color-' . $color;
 	}
 
-	if ( ! empty( $background ) ) {
+	if ( $background && in_array( $background, $allowlist_colors, true ) ) {
 		$classes[] = 'bg-' . $background;
 	}
 

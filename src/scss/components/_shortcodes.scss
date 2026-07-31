@@ -349,43 +349,43 @@ details {
 // -----------------------------------------------------------------------------
 
 :is(.fa, .fas, .far, .fab) {
-	&.primary {
+	&.color-primary {
 		color: var(--memberlite-color-primary);
 	}
 
-	&.secondary {
+	&.color-secondary {
 		color: var(--memberlite-color-secondary);
 	}
 
-	&.action {
+	&.color-action {
 		color: var(--memberlite-color-action);
 	}
 
-	&.white {
+	&.color-white {
 		color: var(--memberlite-color-white);
 	}
 
-	&.text {
+	&.color-text {
 		color: var(--memberlite-color-text);
 	}
 
-	&.site-background {
+	&.color-site-background {
 		color: var(--memberlite-color-site-background);
 	}
 
-	&.site-navigation {
+	&.color-site-navigation {
 		color: var(--memberlite-color-site-navigation);
 	}
 
-	&.site-navigation-background {
+	&.color-site-navigation-background {
 		color: var(--memberlite-color-site-navigation-background);
 	}
 
-	&.footer-widgets {
+	&.color-footer-widgets {
 		color: var(--memberlite-color-footer-widgets);
 	}
 
-	&.footer-widgets-background {
+	&.color-footer-widgets-background {
 		color: var(--memberlite-color-footer-widgets-background);
 	}
 
