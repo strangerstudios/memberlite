@@ -349,14 +349,17 @@ details {
 // -----------------------------------------------------------------------------
 
 :is(.fa, .fas, .far, .fab) {
+	&.primary, // Legacy class name
 	&.color-primary {
 		color: var(--memberlite-color-primary);
 	}
 
+	&.secondary, // Legacy class name
 	&.color-secondary {
 		color: var(--memberlite-color-secondary);
 	}
 
+	&.action, // Legacy class name
 	&.color-action {
 		color: var(--memberlite-color-action);
 	}
