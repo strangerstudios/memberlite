@@ -84,8 +84,8 @@ function memberlite_register_editor_settings_post_meta(): void {
 		'show_in_rest' => true,
 		'type'         => 'boolean',
 		'single'       => true,
-		'default'      => false,
-		'label'        => __( 'Hide Banner', 'memberlite' ),
+		'default'      => true,
+		'label'        => __( 'Show Banner', 'memberlite' ),
 		'auth_callback' => function() {
 			return current_user_can( 'edit_posts' );
 		}

@@ -33,6 +33,9 @@ const MemberliteCustomSettings = () => {
 
 	const stickyValue = meta?._memberlite_header_sticky || false;
 
+	const hideBannerValue = meta?._memberlite_banner_show || false; // Banner shows by default.
+	const hideBreadcrumbsValue = meta?._memberlite_banner_hide_breadcrumbs || false;
+
 	const textDomain = 'memberlite';
 
 	return (
@@ -44,6 +47,26 @@ const MemberliteCustomSettings = () => {
 		>
 			{ isPage && (
 				<>
+					<ToggleControl
+						label={__('Hide Banner', textDomain)}
+						checked={ hideBannerValue }
+						onChange={ ( value ) => {
+							setMeta( { ...meta, _memberlite_banner_show: value } );
+						} }
+					/>
+					{ hideBannerValue && (
+						<>
+							<div style={{ marginTop: '24px' }} />
+							<ToggleControl
+								label={__('Hide Breadcrumbs', textDomain)}
+								checked={ hideBreadcrumbsValue }
+								onChange={ ( value ) => {
+									setMeta( { ...meta, _memberlite_banner_hide_breadcrumbs: value } );
+								} }
+							/>
+						</>
+					)}
+					<div style={{ marginTop: '24px' }} />
 					<ToggleControl
 						label={__('Hide Header', textDomain)}
 						checked={ hideHeaderValue }
