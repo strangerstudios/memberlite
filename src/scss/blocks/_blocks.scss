@@ -720,23 +720,35 @@ hr.wp-block-separator {
 	//core accordion does not have padding so if we define padding ourselves, it can't be overwritten from the editor...
 	&.is-style-accrdn-medium .wp-block-accordion-heading__toggle-icon {
 		font-size: var(--wp--preset--font-size--30);
-		width: unset;
 	}
 
 	&.is-style-accrdn-large .wp-block-accordion-heading__toggle-icon {
 		font-size: var(--wp--preset--font-size--42);
-		width: unset;
 	}
 
 	&.is-style-accrdn-caret {
-		.wp-block-accordion-heading__toggle:after {
+		/* Default / icon-right: icon span is the LAST child inside the button */
+		/* Icon-left: icon span is the FIRST child inside the button */
+		.wp-block-accordion-heading__toggle:has(.wp-block-accordion-heading__toggle-icon:last-child)::after,
+		.wp-block-accordion-heading__toggle:has(.wp-block-accordion-heading__toggle-icon:first-child)::before {
 			font-family: $font-family-awesome;
 			font-weight: 900;
 			content: "\f078"; // fa-chevron-down
+		}
+
+		/* Default / icon-right: icon span is the LAST child inside the button */
+		.wp-block-accordion-heading__toggle:has(.wp-block-accordion-heading__toggle-icon:last-child)::after {
 			margin-left: var(--wp--preset--spacing--10);
 		}
 
-		.wp-block-accordion-heading__toggle[aria-expanded="true"]:after {
+		/* Icon-left: icon span is the FIRST child inside the button */
+		.wp-block-accordion-heading__toggle:has(.wp-block-accordion-heading__toggle-icon:first-child)::before {
+			margin-right: var(--wp--preset--spacing--10);
+		}
+
+		/* Reverse the chevron when accordion is expanded */
+		.wp-block-accordion-heading__toggle[aria-expanded="true"]:has(.wp-block-accordion-heading__toggle-icon:last-child)::after,
+		.wp-block-accordion-heading__toggle[aria-expanded="true"]:has(.wp-block-accordion-heading__toggle-icon:first-child)::before {
 			content: "\f077"; // fa-chevron-up
 		}
 

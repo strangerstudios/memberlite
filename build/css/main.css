@@ -1645,19 +1645,37 @@ hr.wp-block-separator.is-style-flourish-diamond.alignfull {
 }
 .wp-block-accordion.is-style-accrdn-medium .wp-block-accordion-heading__toggle-icon {
   font-size: var(--wp--preset--font-size--30);
-  width: unset;
 }
 .wp-block-accordion.is-style-accrdn-large .wp-block-accordion-heading__toggle-icon {
   font-size: var(--wp--preset--font-size--42);
-  width: unset;
 }
-.wp-block-accordion.is-style-accrdn-caret .wp-block-accordion-heading__toggle:after {
+.wp-block-accordion.is-style-accrdn-caret {
+  /* Default / icon-right: icon span is the LAST child inside the button */
+  /* Icon-left: icon span is the FIRST child inside the button */
+}
+.wp-block-accordion.is-style-accrdn-caret .wp-block-accordion-heading__toggle:has(.wp-block-accordion-heading__toggle-icon:last-child)::after,
+.wp-block-accordion.is-style-accrdn-caret .wp-block-accordion-heading__toggle:has(.wp-block-accordion-heading__toggle-icon:first-child)::before {
   font-family: "Font Awesome 5 Free";
   font-weight: 900;
   content: "\f078";
+}
+.wp-block-accordion.is-style-accrdn-caret {
+  /* Default / icon-right: icon span is the LAST child inside the button */
+}
+.wp-block-accordion.is-style-accrdn-caret .wp-block-accordion-heading__toggle:has(.wp-block-accordion-heading__toggle-icon:last-child)::after {
   margin-left: var(--wp--preset--spacing--10);
 }
-.wp-block-accordion.is-style-accrdn-caret .wp-block-accordion-heading__toggle[aria-expanded=true]:after {
+.wp-block-accordion.is-style-accrdn-caret {
+  /* Icon-left: icon span is the FIRST child inside the button */
+}
+.wp-block-accordion.is-style-accrdn-caret .wp-block-accordion-heading__toggle:has(.wp-block-accordion-heading__toggle-icon:first-child)::before {
+  margin-right: var(--wp--preset--spacing--10);
+}
+.wp-block-accordion.is-style-accrdn-caret {
+  /* Reverse the chevron when accordion is expanded */
+}
+.wp-block-accordion.is-style-accrdn-caret .wp-block-accordion-heading__toggle[aria-expanded=true]:has(.wp-block-accordion-heading__toggle-icon:last-child)::after,
+.wp-block-accordion.is-style-accrdn-caret .wp-block-accordion-heading__toggle[aria-expanded=true]:has(.wp-block-accordion-heading__toggle-icon:first-child)::before {
   content: "\f077";
 }
 .wp-block-accordion.is-style-accrdn-caret .wp-block-accordion-heading__toggle-icon {

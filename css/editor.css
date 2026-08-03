@@ -379,22 +379,30 @@ or being hovered over in the editor or from list view for better UX. */
 
 .wp-block-accordion.is-style-accrdn-medium .wp-block-accordion-heading__toggle-icon {
 	font-size: var(--wp--preset--font-size--30);
-	width: unset;
 }
 
 .wp-block-accordion.is-style-accrdn-large .wp-block-accordion-heading__toggle-icon {
 	font-size: var(--wp--preset--font-size--42);
-	width: unset;
 }
 
-.wp-block-accordion.is-style-accrdn-caret .wp-block-accordion-heading__toggle:after {
+.wp-block-accordion.is-style-accrdn-caret .wp-block-accordion-heading__toggle:has(.wp-block-accordion-heading__toggle-icon:last-child)::after,
+.wp-block-accordion.is-style-accrdn-caret .wp-block-accordion-heading__toggle:has(.wp-block-accordion-heading__toggle-icon:first-child)::before {
 	font-family: "Font Awesome 5 Free";
 	font-weight: 900;
 	content: "\f078";
+}
+
+.wp-block-accordion.is-style-accrdn-caret .wp-block-accordion-heading__toggle:has(.wp-block-accordion-heading__toggle-icon:last-child)::after {
 	margin-left: var(--wp--preset--spacing--10);
 }
 
-.wp-block-accordion.is-style-accrdn-caret .wp-block-accordion-heading__toggle[aria-expanded=true]:after {
+.wp-block-accordion.is-style-accrdn-caret .wp-block-accordion-heading__toggle:has(.wp-block-accordion-heading__toggle-icon:first-child)::before {
+	margin-right: var(--wp--preset--spacing--10);
+}
+
+/* This is different from the front-end, it uses the .is-open class instead of the aria-expanded attribute when accordion item is open. */
+.wp-block-accordion.is-style-accrdn-caret .wp-block-accordion-item.is-open>.wp-block-accordion-heading .wp-block-accordion-heading__toggle:has(.wp-block-accordion-heading__toggle-icon:last-child)::after,
+.wp-block-accordion.is-style-accrdn-caret .wp-block-accordion-item.is-open>.wp-block-accordion-heading .wp-block-accordion-heading__toggle:has(.wp-block-accordion-heading__toggle-icon:first-child)::before {
 	content: "\f077";
 }
 
