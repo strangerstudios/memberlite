@@ -220,9 +220,9 @@ class Memberlite_Customize {
 			'type'    => 'radio',
 			'default' => 'default',
 			'choices' => array(
-				'default' => __( 'Default (rounded corners)', 'memberlite' ),
-				'sharp'   => __( 'Sharp (square corners)', 'memberlite' ),
-				'pill'    => __( 'Pill (fully rounded)', 'memberlite' ),
+				'default' => __( 'Default', 'memberlite' ),
+				'sharp'   => __( 'Sharp', 'memberlite' ),
+				'pill'    => __( 'Pill', 'memberlite' ),
 			),
 			'description' => __( 'Applies to buttons site-wide. Border radius or padding customized on an individual button block in the editor will override this setting for that button.', 'memberlite' ),
 		) );
