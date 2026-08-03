@@ -79,6 +79,28 @@ function memberlite_register_editor_settings_post_meta(): void {
 			return current_user_can( 'edit_posts' );
 		},
 	) );
+
+	register_post_meta( 'page', '_memberlite_banner_show', array(
+		'show_in_rest' => true,
+		'type'         => 'boolean',
+		'single'       => true,
+		'default'      => false,
+		'label'        => __( 'Hide Banner', 'memberlite' ),
+		'auth_callback' => function() {
+			return current_user_can( 'edit_posts' );
+		}
+	) );
+
+	register_post_meta( 'page', '_memberlite_banner_hide_breadcrumbs', array(
+		'show_in_rest' => true,
+		'type'         => 'boolean',
+		'single'       => true,
+		'default'      => false,
+		'label'        => __( 'Hide Breadcrumbs', 'memberlite' ),
+		'auth_callback' => function() {
+			return current_user_can( 'edit_posts' );
+		}
+	) );
 }
 add_action( 'init', 'memberlite_register_editor_settings_post_meta' );
 
@@ -181,4 +203,20 @@ function memberlite_hide_page_footer() {
 	}
 
 	return (bool) get_post_meta( get_the_ID(), '_memberlite_hide_footer', true );
+}
+
+function memberlite_hide_page_banner() {
+	if ( get_post_type() !== 'page' ) {
+		return false;
+	}
+
+	return (bool) get_post_meta( get_the_ID(), '_memberlite_banner_show', true );
+}
+
+function memberlite_hide_page_breadcrumbs() {
+	if ( get_post_type() !== 'page' ) {
+		return false;
+	}
+
+	return (bool) get_post_meta( get_the_ID(), '_memberlite_banner_hide_breadcrumbs', true );
 }
