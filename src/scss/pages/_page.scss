@@ -26,8 +26,8 @@
 .page-template-fluid-width,
 .page-template-narrow-width,
 .page-template-blank {
-	.alignfull:not(hr.wp-block-separator),
-	.alignwide:not(hr.wp-block-separator) {
+	.alignfull,
+	.alignwide {
 		margin-left: calc(50% - 50vw);
 		margin-right: calc(50% - 50vw);
 		max-width: 1000%;

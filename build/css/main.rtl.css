@@ -1221,7 +1221,8 @@ hr.wp-block-separator {
   margin-left: auto;
 }
 hr.wp-block-separator:where(:not(.is-style-wide, .is-style-dots, .is-style-faded-edges, .is-style-double, .is-style-flourish-diamond)) {
-  max-width: 100px;
+  max-width: 100px !important;
+  margin: auto !important;
 }
 hr.wp-block-separator.is-style-dots:before {
   color: currentColor;
@@ -1231,8 +1232,6 @@ hr.wp-block-separator.is-style-wide, hr.wp-block-separator.is-style-faded-edges,
 }
 hr.wp-block-separator.is-style-wide:not(.alignwide):not(.alignfull), hr.wp-block-separator.is-style-faded-edges:not(.alignwide):not(.alignfull), hr.wp-block-separator.is-style-double:not(.alignwide):not(.alignfull), hr.wp-block-separator.is-style-flourish-diamond:not(.alignwide):not(.alignfull) {
   max-width: 805px;
-}
-hr.wp-block-separator.is-style-faded-edges, hr.wp-block-separator.is-style-double {
   width: 100% !important;
 }
 hr.wp-block-separator.is-style-faded-edges {
@@ -1253,7 +1252,6 @@ hr.wp-block-separator.is-style-flourish-diamond {
   border: none;
   background: none;
   height: 32px;
-  width: 100% !important;
   background-color: var(--memberlite-color-borders);
   mask-repeat: no-repeat;
   mask-position: center;
@@ -3558,8 +3556,8 @@ body.mobile-nav-open {
   order: unset;
 }
 
-.single.sidebar-blog-none .alignfull:not(hr.wp-block-separator),
-.single.sidebar-blog-none .alignwide:not(hr.wp-block-separator) {
+.single.sidebar-blog-none .alignfull,
+.single.sidebar-blog-none .alignwide {
   margin-right: calc(50% - 50vw);
   margin-left: calc(50% - 50vw);
   max-width: 1000%;
@@ -3615,18 +3613,18 @@ body.mobile-nav-open {
   order: unset;
 }
 
-.home.page-template-default .alignfull:not(hr.wp-block-separator),
-.home.page-template-default .alignwide:not(hr.wp-block-separator),
-.page-template-default.sidebar-none .alignfull:not(hr.wp-block-separator),
-.page-template-default.sidebar-none .alignwide:not(hr.wp-block-separator),
-.page-template-full-width .alignfull:not(hr.wp-block-separator),
-.page-template-full-width .alignwide:not(hr.wp-block-separator),
-.page-template-fluid-width .alignfull:not(hr.wp-block-separator),
-.page-template-fluid-width .alignwide:not(hr.wp-block-separator),
-.page-template-narrow-width .alignfull:not(hr.wp-block-separator),
-.page-template-narrow-width .alignwide:not(hr.wp-block-separator),
-.page-template-blank .alignfull:not(hr.wp-block-separator),
-.page-template-blank .alignwide:not(hr.wp-block-separator) {
+.home.page-template-default .alignfull,
+.home.page-template-default .alignwide,
+.page-template-default.sidebar-none .alignfull,
+.page-template-default.sidebar-none .alignwide,
+.page-template-full-width .alignfull,
+.page-template-full-width .alignwide,
+.page-template-fluid-width .alignfull,
+.page-template-fluid-width .alignwide,
+.page-template-narrow-width .alignfull,
+.page-template-narrow-width .alignwide,
+.page-template-blank .alignfull,
+.page-template-blank .alignwide {
   margin-right: calc(50% - 50vw);
   margin-left: calc(50% - 50vw);
   max-width: 1000%;

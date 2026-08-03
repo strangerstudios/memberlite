@@ -120,7 +120,8 @@ hr.wp-block-separator {
 
 	// For default separator, no block styles
 	&:where(:not(.is-style-wide, .is-style-dots, .is-style-faded-edges, .is-style-double, .is-style-flourish-diamond)) {
-		max-width: 100px;
+		max-width: 100px !important;
+		margin: auto !important;
 	}
 
 	&.is-style-dots:before {
@@ -139,12 +140,8 @@ hr.wp-block-separator {
 	&.is-style-flourish-diamond {
 		&:not(.alignwide):not(.alignfull) {
 			max-width: 805px;
+			width: 100% !important; //override core styling
 		}
-	}
-
-	&.is-style-faded-edges,
-	&.is-style-double {
-		width: 100% !important;
 	}
 
 	&.is-style-faded-edges {
@@ -172,7 +169,6 @@ hr.wp-block-separator {
 		border: none;
 		background: none;
 		height: 32px;
-		width: 100% !important;// override core style
 		background-color: var(--memberlite-color-borders);
 		mask-repeat: no-repeat;
 		mask-position: center;
