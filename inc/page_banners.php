@@ -587,21 +587,19 @@ function memberlite_get_banner_post_id() {
  * @return bool
  */
 function memberlite_should_masthead_render(): bool {
-	$memberlite_banner_show = true;
+	$memberlite_banner_show    = true;
 	$memberlite_banner_post_id = memberlite_get_banner_post_id();
 
-	if ( ! empty( $memberlite_banner_post_id ) ) {
+	// The "Show Page Banner" Template Settings only exists on pages
+	if ( ! empty( $memberlite_banner_post_id ) && 'page' === get_post_type( $memberlite_banner_post_id ) ) {
 		$show_banner_meta = get_post_meta( $memberlite_banner_post_id, '_memberlite_banner_show', true );
 
-		//'0' from the legacy metabox field, false from the new field in Template Settings
-		if ( $show_banner_meta === '0' || ! $show_banner_meta ) {
+		// Falsy covers: '' (an explicit false toggle, stringified on save) and '0' (the legacy metabox radio's hidden value).
+		// A never-touched page isn't falsy here — it resolves to the registered default of true.
+		if ( ! $show_banner_meta ) {
 			$memberlite_banner_show = false;
 		}
 	}
 
-
-
-	$memberlite_banner_show = apply_filters( 'memberlite_banner_show', $memberlite_banner_show, $memberlite_banner_post_id );
-
-	return $memberlite_banner_show;
+	return apply_filters( 'memberlite_banner_show', $memberlite_banner_show, $memberlite_banner_post_id );
 }

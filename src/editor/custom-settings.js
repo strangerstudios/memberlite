@@ -33,10 +33,9 @@ const MemberliteCustomSettings = () => {
 
 	const stickyValue = meta?._memberlite_header_sticky || false;
 
-	console.log('banner show meta ', meta?._memberlite_banner_show);
-
+	const showPageBreadcrumbsGlobally = window.memberliteEditorData.showPageBreadcrumbs; // Check if breadcrumbs are enabled from customizer.
 	const showBannerValue = meta?._memberlite_banner_show; // Banner shows by default.
-	const hideBreadcrumbsValue = meta?._memberlite_banner_hide_breadcrumbs;
+	const hideBreadcrumbsValue = meta?._memberlite_banner_hide_breadcrumbs; // Setting only shows if breadcrumbs are enabled & banner is showing.
 
 	const textDomain = 'memberlite';
 
@@ -56,7 +55,7 @@ const MemberliteCustomSettings = () => {
 							setMeta( { ...meta, _memberlite_banner_show: value } );
 						} }
 					/>
-					{ showBannerValue && (
+					{ showBannerValue && showPageBreadcrumbsGlobally && (
 						<>
 							<div style={{ marginTop: '24px' }} />
 							<ToggleControl

@@ -141,11 +141,12 @@ function memberlite_enqueue_custom_editor_assets(): void {
 		'memberlite-custom-settings',
 		'memberliteEditorData',
 		array(
-			'showPrevNextSinglePages' => get_theme_mod( 'memberlite_page_nav', true ),
+			'showPrevNextSinglePages' => get_theme_mod( 'memberlite_page_nav', true ), // Global customizer setting
 			'headerVariations'        => $header_variations_editor,
 			'footerVariations'        => $footer_variations_editor,
 			'manageHeadersUrl'        => admin_url( 'edit.php?post_type=memberlite_header' ),
 			'manageFootersUrl'        => admin_url( 'edit.php?post_type=memberlite_footer' ),
+			'showPageBreadcrumbs'     => get_theme_mod( 'page_breadcrumbs', false ), // Global customizer setting
 		)
 	);
 }
