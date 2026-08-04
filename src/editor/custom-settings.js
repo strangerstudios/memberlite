@@ -35,8 +35,8 @@ const MemberliteCustomSettings = () => {
 
 	console.log('banner show meta ', meta?._memberlite_banner_show);
 
-	const showBannerValue = meta?._memberlite_banner_show || ''; // Banner shows by default.
-	const hideBreadcrumbsValue = meta?._memberlite_banner_hide_breadcrumbs || false;
+	const showBannerValue = meta?._memberlite_banner_show; // Banner shows by default.
+	const hideBreadcrumbsValue = meta?._memberlite_banner_hide_breadcrumbs;
 
 	const textDomain = 'memberlite';
 

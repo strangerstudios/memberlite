@@ -812,9 +812,8 @@ function memberlite_get_breadcrumbs() {
 	if ( empty( $memberlite_breadcrumbs_post_id ) && ( is_home() || is_post_type_archive( 'post' ) ) ) {
 		$memberlite_breadcrumbs_post_id = get_option( 'page_for_posts' );
 	}
-	$memberlite_show_breadcrumbs = true;
-	error_log( 'hide breadcrumbs ' . print_r(get_post_meta( $memberlite_breadcrumbs_post_id, '_memberlite_banner_hide_breadcrumbs', true ), true));
 
+	$memberlite_show_breadcrumbs = true;
 	if ( ! empty( $memberlite_breadcrumbs_post_id ) ) {
 		$hide_breadcrumbs_meta = get_post_meta( $memberlite_breadcrumbs_post_id, '_memberlite_banner_hide_breadcrumbs', true );
 
@@ -822,8 +821,8 @@ function memberlite_get_breadcrumbs() {
 			$memberlite_show_breadcrumbs = false;
 		}
 	}
-	$memberlite_show_breadcrumbs = apply_filters( 'memberlite_show_breadcrumbs', $memberlite_show_breadcrumbs );
 
+	$memberlite_show_breadcrumbs = apply_filters( 'memberlite_show_breadcrumbs', $memberlite_show_breadcrumbs );
 	if ( $memberlite_show_breadcrumbs ) {
 		$memberlite_delimiter = get_theme_mod( 'delimiter', $memberlite_defaults['delimiter'] );
 

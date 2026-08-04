@@ -205,18 +205,3 @@ function memberlite_hide_page_footer() {
 	return (bool) get_post_meta( get_the_ID(), '_memberlite_hide_footer', true );
 }
 
-function memberlite_hide_page_banner() {
-	if ( get_post_type() !== 'page' ) {
-		return false;
-	}
-
-	return (bool) get_post_meta( get_the_ID(), '_memberlite_banner_show', true );
-}
-
-function memberlite_hide_page_breadcrumbs() {
-	if ( get_post_type() !== 'page' ) {
-		return false;
-	}
-
-	return (bool) get_post_meta( get_the_ID(), '_memberlite_banner_hide_breadcrumbs', true );
-}

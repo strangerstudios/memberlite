@@ -37,13 +37,9 @@ function memberlite_settings_meta_box_callback( $post ) {
 
 	wp_nonce_field( 'memberlite_settings_meta_box', 'memberlite_settings_meta_box_nonce' );
 	$memberlite_page_template = get_post_meta($post->ID, '_wp_page_template', true);
-	$memberlite_banner_show = get_post_meta($post->ID, '_memberlite_banner_show', true);
-	if($memberlite_banner_show === '')
-		$memberlite_banner_show = 1;		//we want to default to showing if this has never been set
 	$memberlite_page_icon = get_post_meta($post->ID, '_memberlite_page_icon', true);
 	$memberlite_banner_desc = get_post_meta($post->ID, '_memberlite_banner_desc', true);
 	$memberlite_banner_hide_title = get_post_meta($post->ID, '_memberlite_banner_hide_title', true);
-	$memberlite_banner_hide_breadcrumbs = get_post_meta($post->ID, '_memberlite_banner_hide_breadcrumbs', true);
 	$memberlite_banner_extra_padding = get_post_meta($post->ID, '_memberlite_banner_extra_padding', true);
 	$memberlite_banner_right = get_post_meta($post->ID, '_memberlite_banner_right', true);
 	$memberlite_banner_icon = get_post_meta($post->ID, '_memberlite_banner_icon', true);
@@ -56,7 +52,11 @@ function memberlite_settings_meta_box_callback( $post ) {
 	?>
 
 	<span id="memberlite_top_banner_settings_wrapper">
-		<p style="margin: 1rem 0 0 0;"><strong><?php esc_html_e( 'Banner Description', 'memberlite' ); ?></strong> <em><?php esc_html_e( 'Shown in the masthead banner below the page title.', 'memberlite' ); ?></em><br />
+		<p class="description">
+			<?php esc_html_e( 'You can toggle whether to show or hide the masthead banner in your sidebar under Page > Template Settings.', 'memberlite' ); ?>
+		</p>
+
+		<p style="margin: 1rem 0;"><strong><?php esc_html_e( 'Masthead Banner Description', 'memberlite' ); ?>:</strong> <em><?php esc_html_e( 'Shown in the masthead banner below the page title.', 'memberlite' ); ?></em><br />
 			<?php if ( ( $memberlite_page_template == 'templates/landing.php' ) && function_exists( 'pmpro_getAllLevels' ) ) : ?>
 				<em><?php esc_html_e( 'Leave blank to show landing page level description as banner description.', 'memberlite' ); ?></em>
 			<?php endif; ?>
@@ -66,20 +66,19 @@ function memberlite_settings_meta_box_callback( $post ) {
 		</label>
 		<?php wp_editor( $memberlite_banner_desc, 'memberlite_banner_desc', ['textarea_name' => 'memberlite_banner_desc', 'editor_class' => 'large-text', 'textarea_rows' => 3] ); ?>
 		<input type="hidden" name="memberlite_banner_hide_title_present" value="1" />
-		<label for="memberlite_banner_hide_title" class="selectit">
+		<label style="margin: 1rem 0 0;" for="memberlite_banner_hide_title" class="selectit">
 			<input name="memberlite_banner_hide_title" type="checkbox" id="memberlite_banner_hide_title" value="1" <?php checked( $memberlite_banner_hide_title, 1 ); ?>> <?php esc_html_e( 'Hide Page Title on Single View', 'memberlite' ); ?>
 		</label>
-<!--		<input type="hidden" name="memberlite_banner_hide_breadcrumbs_present" value="1" />-->
 		<input type="hidden" name="memberlite_banner_extra_padding_present" value="1" />
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<label for="memberlite_banner_extra_padding" class="selectit">
+		<label style="margin: 1rem 0 0;" for="memberlite_banner_extra_padding" class="selectit">
 			<input name="memberlite_banner_extra_padding" type="checkbox" id="memberlite_banner_extra_padding" value="1" <?php checked( $memberlite_banner_extra_padding, 1 ); ?>> <?php esc_html_e( 'Add Extra Banner Padding', 'memberlite' ); ?>
 		</label>
 	</span>
 
 	<hr />
 
-	<p style="margin: 1rem 0 0 0;"><strong><?php esc_html_e( 'Page Bottom Banner', 'memberlite' ); ?></strong> <em><?php esc_html_e( 'Banner shown above footer on pages. (i.e. call to action)', 'memberlite' ); ?></em></p>
+	<p style="margin: 1rem 0;"><strong><?php esc_html_e( 'Page Bottom Banner', 'memberlite' ); ?>:</strong> <em><?php esc_html_e( 'Banner shown above footer on pages. (i.e. call to action)', 'memberlite' ); ?></em></p>
 	<label class="screen-reader-text" for="memberlite_banner_bottom">
 		<?php esc_html_e( 'Page Bottom Banner', 'memberlite' ); ?>
 	</label>
@@ -590,8 +589,6 @@ function memberlite_get_banner_post_id() {
 function memberlite_should_masthead_render(): bool {
 	$memberlite_banner_show = true;
 	$memberlite_banner_post_id = memberlite_get_banner_post_id();
-
-	error_log( 'banner post meta ' . print_r(get_post_meta( $memberlite_banner_post_id, '_memberlite_banner_show', true ), true));
 
 	if ( ! empty( $memberlite_banner_post_id ) ) {
 		$show_banner_meta = get_post_meta( $memberlite_banner_post_id, '_memberlite_banner_show', true );
