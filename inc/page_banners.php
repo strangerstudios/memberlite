@@ -352,6 +352,9 @@ function memberlite_maybe_customize_masthead_content( $content ) {
 		$memberlite_landing_page_checkout_button = get_post_meta($post_id,'_memberlite_landing_page_checkout_button',true);
 		$memberlite_landing_page_upsell = get_post_meta($post_id,'_memberlite_landing_page_upsell',true);
 
+		//Check whether we're changing content alignment from page settings under "Template Settings."
+		$masthead_text_alignment = get_post_meta( $post_id, '_memberlite_masthead_text_alignment', true );
+
 		if ( ! empty( $memberlite_banner_right ) || ( ! empty( $memberlite_banner_icon )  && ! empty( $memberlite_page_icon ) ) ) {
 
 			//Get the columns ratio for the masthead banner based on content setting in customizer.
@@ -376,6 +379,8 @@ function memberlite_maybe_customize_masthead_content( $content ) {
 					$memberlite_page_icon_size = 'fa-4x';
 				}
 
+				//@todo: Only add colum classes when $masthead_text_alignment is set to "Default"
+				// If text alignment is centered, we want to apply a justify-content:center style to the .memberlite_elements-masthead
 				//Show the icon in a 2 column span
 				$content .= '<div class="medium-1 columns text-center"><i class="' . esc_attr( $memberlite_page_icon_class . ' ' . $memberlite_page_icon_size . ' fa-' . $memberlite_page_icon ) . '"></i></div>';
 
