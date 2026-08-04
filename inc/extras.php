@@ -813,8 +813,14 @@ function memberlite_get_breadcrumbs() {
 		$memberlite_breadcrumbs_post_id = get_option( 'page_for_posts' );
 	}
 	$memberlite_show_breadcrumbs = true;
-	if ( ! empty( $memberlite_breadcrumbs_post_id ) && get_post_meta( $memberlite_breadcrumbs_post_id, '_memberlite_banner_hide_breadcrumbs', true ) === '1' ) {
-		$memberlite_show_breadcrumbs = false;
+	error_log( 'hide breadcrumbs ' . print_r(get_post_meta( $memberlite_breadcrumbs_post_id, '_memberlite_banner_hide_breadcrumbs', true ), true));
+
+	if ( ! empty( $memberlite_breadcrumbs_post_id ) ) {
+		$hide_breadcrumbs_meta = get_post_meta( $memberlite_breadcrumbs_post_id, '_memberlite_banner_hide_breadcrumbs', true );
+
+		if ( $hide_breadcrumbs_meta === '1' || $hide_breadcrumbs_meta === true ) {
+			$memberlite_show_breadcrumbs = false;
+		}
 	}
 	$memberlite_show_breadcrumbs = apply_filters( 'memberlite_show_breadcrumbs', $memberlite_show_breadcrumbs );
 

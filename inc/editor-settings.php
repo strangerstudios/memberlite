@@ -85,7 +85,7 @@ function memberlite_register_editor_settings_post_meta(): void {
 		'type'         => 'boolean',
 		'single'       => true,
 		'default'      => true,
-		'label'        => __( 'Show Banner', 'memberlite' ),
+		'label'        => __( 'Show Page Banner', 'memberlite' ),
 		'auth_callback' => function() {
 			return current_user_can( 'edit_posts' );
 		}
@@ -96,7 +96,7 @@ function memberlite_register_editor_settings_post_meta(): void {
 		'type'         => 'boolean',
 		'single'       => true,
 		'default'      => false,
-		'label'        => __( 'Hide Breadcrumbs', 'memberlite' ),
+		'label'        => __( 'Hide Page Breadcrumbs', 'memberlite' ),
 		'auth_callback' => function() {
 			return current_user_can( 'edit_posts' );
 		}

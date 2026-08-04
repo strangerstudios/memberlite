@@ -55,16 +55,6 @@ function memberlite_settings_meta_box_callback( $post ) {
 	ob_start();
 	?>
 
-	<h2><?php esc_html_e( 'Page Banner Settings', 'memberlite' ); ?></h2>
-	<p style="margin: 1rem 0 0 0;"><strong><?php esc_html_e( 'Show Page Banner', 'memberlite' ); ?></strong> <em><?php esc_html_e( 'Disable the entire page banner for this content.', 'memberlite' ); ?></em></p>
-	<label class="screen-reader-text" for="memberlite_banner_show">
-		<?php esc_html_e( 'Show Page Banner', 'memberlite' ); ?>
-	</label>
-	<input type="radio" name="memberlite_banner_show" value="1" <?php checked( $memberlite_banner_show, 1 ); ?>> <?php esc_html_e( 'Yes', 'memberlite' ); ?>
-	&nbsp;&nbsp;
-	<input type="radio" name="memberlite_banner_show" value="0" <?php checked( $memberlite_banner_show, 0 ); ?>> <?php esc_html_e( 'No', 'memberlite' ); ?>
-	</p>
-
 	<span id="memberlite_top_banner_settings_wrapper">
 		<p style="margin: 1rem 0 0 0;"><strong><?php esc_html_e( 'Banner Description', 'memberlite' ); ?></strong> <em><?php esc_html_e( 'Shown in the masthead banner below the page title.', 'memberlite' ); ?></em><br />
 			<?php if ( ( $memberlite_page_template == 'templates/landing.php' ) && function_exists( 'pmpro_getAllLevels' ) ) : ?>
@@ -79,11 +69,7 @@ function memberlite_settings_meta_box_callback( $post ) {
 		<label for="memberlite_banner_hide_title" class="selectit">
 			<input name="memberlite_banner_hide_title" type="checkbox" id="memberlite_banner_hide_title" value="1" <?php checked( $memberlite_banner_hide_title, 1 ); ?>> <?php esc_html_e( 'Hide Page Title on Single View', 'memberlite' ); ?>
 		</label>
-		<input type="hidden" name="memberlite_banner_hide_breadcrumbs_present" value="1" />
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<label for="memberlite_banner_hide_breadcrumbs" class="selectit">
-			<input name="memberlite_banner_hide_breadcrumbs" type="checkbox" id="memberlite_banner_hide_breadcrumbs" value="1" <?php checked( $memberlite_banner_hide_breadcrumbs, 1 ); ?>> <?php esc_html_e( 'Hide Breadcrumbs', 'memberlite' ); ?>
-		</label>
+<!--		<input type="hidden" name="memberlite_banner_hide_breadcrumbs_present" value="1" />-->
 		<input type="hidden" name="memberlite_banner_extra_padding_present" value="1" />
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		<label for="memberlite_banner_extra_padding" class="selectit">
@@ -211,15 +197,6 @@ function memberlite_settings_save_meta_box_data( $post_id ) {
 		}
 	}
 
-	//banner show radio
-	if(isset($_POST['memberlite_banner_show'])) {
-		if(!empty($_POST['memberlite_banner_show']))
-			$memberlite_banner_show = 1;
-		else
-			$memberlite_banner_show = 0;
-		update_post_meta($post_id, '_memberlite_banner_show', $memberlite_banner_show);
-	}
-
 	//banner description
 	if(isset($_POST['memberlite_banner_desc'])) {
 		$memberlite_banner_desc = wp_kses( wp_unslash( $_POST['memberlite_banner_desc'] ), $allowedposttags );
@@ -234,16 +211,6 @@ function memberlite_settings_save_meta_box_data( $post_id ) {
 			$memberlite_banner_hide_title = 0;
 
 		update_post_meta($post_id, '_memberlite_banner_hide_title', $memberlite_banner_hide_title);
-	}
-
-	//banner hide breadcrumbs checkbox
-	if(isset($_POST['memberlite_banner_hide_breadcrumbs_present']))	{
-		if(!empty($_POST['memberlite_banner_hide_breadcrumbs']))
-			$memberlite_banner_hide_breadcrumbs = 1;
-		else
-			$memberlite_banner_hide_breadcrumbs = 0;
-
-		update_post_meta($post_id, '_memberlite_banner_hide_breadcrumbs', $memberlite_banner_hide_breadcrumbs);
 	}
 
 	//banner extra padding checkbox
@@ -624,9 +591,18 @@ function memberlite_should_masthead_render(): bool {
 	$memberlite_banner_show = true;
 	$memberlite_banner_post_id = memberlite_get_banner_post_id();
 
-	if ( ! empty( $memberlite_banner_post_id ) && get_post_meta( $memberlite_banner_post_id, '_memberlite_banner_show', true ) === '0' ) {
-		$memberlite_banner_show = false;
+	error_log( 'banner post meta ' . print_r(get_post_meta( $memberlite_banner_post_id, '_memberlite_banner_show', true ), true));
+
+	if ( ! empty( $memberlite_banner_post_id ) ) {
+		$show_banner_meta = get_post_meta( $memberlite_banner_post_id, '_memberlite_banner_show', true );
+
+		//'0' from the legacy metabox field, false from the new field in Template Settings
+		if ( $show_banner_meta === '0' || ! $show_banner_meta ) {
+			$memberlite_banner_show = false;
+		}
 	}
+
+
 
 	$memberlite_banner_show = apply_filters( 'memberlite_banner_show', $memberlite_banner_show, $memberlite_banner_post_id );
 
