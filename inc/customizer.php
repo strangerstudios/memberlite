@@ -1052,19 +1052,16 @@ class Memberlite_Customize {
 				--pmpro--color--border--variation: <?php echo ( $pmpro_style_variation === 'variation_high_contrast' ) ? '#' . esc_attr( $active_colors['color_text'] ) : '#' . esc_attr( $active_colors['color_borders'] ); ?>;
 			<?php endif; ?>
 
-			}
-
 			<?php if ( $override_pmpro_button_style && defined( 'PMPRO_VERSION' ) ) : ?>
-			/*
-			* PMPro button style override — scoped to buttons only, not containers,
-			* since PMPro reuses --pmpro--base--border-radius for boxes/tags too.
-			* Do not apply styles when PMPro design settings are set to "Minimal."
-			*/
-			body:not( .pmpro-variation_minimal ) .pmpro .pmpro_btn {
-					border-radius: var(--wp--custom--button--radius);
-					padding: var(--wp--custom--button--padding-block) var(--wp--custom--button--padding-inline);
-			}
+				/*
+				* PMPro button style override — scoped to buttons only, not containers,
+				* Do not apply styles when PMPro design settings are set to "Minimal/High Contrast."
+				*/
+				--pmpro--btn--border-radius: var(--wp--custom--button--radius);
+				--pmpro--btn--top-bottom-padding: var(--wp--custom--button--padding-block);
+				--pmpro--btn--left-right-padding: var(--wp--custom--button--padding-inline);
 			<?php endif; ?>
+			}
 		</style>
 		<!--/Customizer CSS-->
 		<?php
