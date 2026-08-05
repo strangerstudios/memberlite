@@ -596,9 +596,5 @@ function memberlite_get_variation( $slug ) {
  * @return void
  */
 function memberlite_enqueue_block_assets() {
-	_doing_it_wrong(
-		__FUNCTION__,
-		esc_html__( 'Editor styles are now registered via add_editor_style() in memberlite_setup().', 'memberlite' ),
-		'TBD'
-	);
+	_deprecated_function( __FUNCTION__, 'TBD', 'memberlite_setup' );
 }
