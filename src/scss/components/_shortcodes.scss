@@ -180,8 +180,7 @@ body.memberlite-banner-hidden .entry-content > .banner:first-child {
 :is(
   details,
   .memberlite_accordion h2,
-  .entry-content .memberlite_accordion h2,
-  .wp-block-accordion-item .wp-block-accordion-heading
+  .entry-content .memberlite_accordion h2
 ) {
 	border-top: 1px solid var(--memberlite-color-borders);
 	padding: var(--wp--preset--spacing--10);
