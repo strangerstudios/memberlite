@@ -353,14 +353,15 @@ function memberlite_maybe_customize_masthead_content( $content ) {
 		$memberlite_landing_page_upsell = get_post_meta($post_id,'_memberlite_landing_page_upsell',true);
 
 		//Check whether we're changing content alignment from page settings under "Template Settings."
-		$masthead_text_alignment = get_post_meta( $post_id, '_memberlite_masthead_text_alignment', true );
+		$masthead_text_alignment    = get_post_meta( $post_id, '_memberlite_masthead_text_alignment', true );
+		$masthead_alignment_classes = $masthead_text_alignment === 'centered' ? 'memberlite_elements-masthead row justify-content' : 'memberlite_elements-masthead row';
 
 		if ( ! empty( $memberlite_banner_right ) || ( ! empty( $memberlite_banner_icon )  && ! empty( $memberlite_page_icon ) ) ) {
 
 			//Get the columns ratio for the masthead banner based on content setting in customizer.
 			$memberlite_columns_primary = memberlite_getColumnsRatio();
 
-			$content .= '<div class="memberlite_elements-masthead row">';
+			$content .= '<div class="' . esc_attr ( $masthead_alignment_classes ) . '">';
 
 			//Check that we should display a masthead banner icon and it is set
 			if ( ! empty( $memberlite_banner_icon ) && ! empty( $memberlite_page_icon ) ) {
