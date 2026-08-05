@@ -41,7 +41,6 @@ function memberlite_settings_meta_box_callback( $post ) {
 	$memberlite_banner_desc = get_post_meta($post->ID, '_memberlite_banner_desc', true);
 	$memberlite_banner_hide_title = get_post_meta($post->ID, '_memberlite_banner_hide_title', true);
 	$memberlite_banner_extra_padding = get_post_meta($post->ID, '_memberlite_banner_extra_padding', true);
-	$memberlite_banner_right = get_post_meta($post->ID, '_memberlite_banner_right', true);
 	$memberlite_banner_icon = get_post_meta($post->ID, '_memberlite_banner_icon', true);
 	$memberlite_banner_bottom = get_post_meta($post->ID, '_memberlite_banner_bottom', true);
 	$memberlite_landing_page_checkout_button = get_post_meta($post->ID, '_memberlite_landing_page_checkout_button', true);
@@ -222,13 +221,6 @@ function memberlite_settings_save_meta_box_data( $post_id ) {
 		update_post_meta($post_id, '_memberlite_banner_extra_padding', $memberlite_banner_extra_padding);
 	}
 
-	//banner right content
-	if(isset($_POST['memberlite_banner_right'])) {
-		$memberlite_banner_right = wp_kses( wp_unslash( $_POST['memberlite_banner_right'] ), $allowedposttags );
-
-		update_post_meta($post_id, '_memberlite_banner_right', $memberlite_banner_right);
-	}
-
 	//banner bottom content
 	if(isset($_POST['memberlite_banner_bottom'])) {
 		$memberlite_banner_bottom = wp_kses( wp_unslash( $_POST['memberlite_banner_bottom'] ), $allowedposttags );
@@ -307,6 +299,22 @@ add_action( 'memberlite_after_content', 'memberlite_display_banner_bottom' );
 
 
 
+/**
+ * Builds the Font Awesome icon markup for the masthead banner, via the [fa] shortcode.
+ *
+ * @param string $icon Font Awesome icon slug, e.g. 'star'. See memberlite_get_font_awesome_icons().
+ * @return string Icon markup, or '' if no icon slug is given.
+ */
+function memberlite_get_masthead_icon_html( $icon ) {
+	if ( empty( $icon ) ) {
+		return '';
+	}
+
+	$size = is_page_template( 'templates/narrow-width.php' ) ? '2x' : '4x';
+
+	return do_shortcode( '[fa icon="' . esc_attr( $icon ) . '" size="' . esc_attr( $size ) . '"]' );
+}
+
 /*
 	Filter to show additional content in the masthead banner
 */
@@ -338,9 +346,6 @@ function memberlite_maybe_customize_masthead_content( $content ) {
 			$content .= '<div class="masthead-padding">';
 		}
 
-		//Get setting for masthead banner right column content
-		$memberlite_banner_right = get_post_meta( $post_id, '_memberlite_banner_right', true );
-
 		//Get setting to show or hide masthead banner icon
 		$memberlite_banner_icon = get_post_meta( $post_id, '_memberlite_banner_icon', true );
 
@@ -353,47 +358,20 @@ function memberlite_maybe_customize_masthead_content( $content ) {
 		$memberlite_landing_page_upsell = get_post_meta($post_id,'_memberlite_landing_page_upsell',true);
 
 		//Check whether we're changing content alignment from page settings under "Template Settings."
-		$masthead_text_alignment    = get_post_meta( $post_id, '_memberlite_masthead_text_alignment', true );
-		$masthead_alignment_classes = $masthead_text_alignment === 'centered' ? 'memberlite_elements-masthead row justify-content' : 'memberlite_elements-masthead row';
+		$masthead_text_alignment = get_post_meta( $post_id, '_memberlite_banner_text_alignment', true );
+		$masthead_is_centered    = $masthead_text_alignment === 'centered';
 
-		if ( ! empty( $memberlite_banner_right ) || ( ! empty( $memberlite_banner_icon )  && ! empty( $memberlite_page_icon ) ) ) {
+		//Check that we should display a masthead banner icon and it is set
+		$show_masthead_icon = ! empty( $memberlite_banner_icon ) && ! empty( $memberlite_page_icon );
 
-			//Get the columns ratio for the masthead banner based on content setting in customizer.
-			$memberlite_columns_primary = memberlite_getColumnsRatio();
-
-			$content .= '<div class="' . esc_attr ( $masthead_alignment_classes ) . '">';
-
-			//Check that we should display a masthead banner icon and it is set
-			if ( ! empty( $memberlite_banner_icon ) && ! empty( $memberlite_page_icon ) ) {
-				$font_awesome_icons_brands = memberlite_get_font_awesome_icons( 'brand' );
-
-				// Check if the icon is a "brand" icon and set the appropriate icon class.
-				if ( in_array( $memberlite_page_icon, $font_awesome_icons_brands ) ) {
-					$memberlite_page_icon_class = 'fab';
-				} else {
-					$memberlite_page_icon_class = 'fa';
-				}
-
-				if ( is_page_template( 'templates/narrow-width.php' ) ) {
-					$memberlite_page_icon_size = 'fa-2x';
-				} else {
-					$memberlite_page_icon_size = 'fa-4x';
-				}
-
-				//@todo: Only add colum classes when $masthead_text_alignment is set to "Default"
-				// If text alignment is centered, we want to apply a justify-content:center style to the .memberlite_elements-masthead
-				//Show the icon in a 2 column span
-				$content .= '<div class="medium-1 columns text-center"><i class="' . esc_attr( $memberlite_page_icon_class . ' ' . $memberlite_page_icon_size . ' fa-' . $memberlite_page_icon ) . '"></i></div>';
-
-				//Add the column wrapper for page title and description
-				if ( empty( $memberlite_banner_right) ) {
-					$content .= '<div class="medium-11 columns">';
-				} else {
-					$content .= '<div class="medium-' . esc_attr( $memberlite_columns_primary-1 ) .' columns">';
-				}
-			} else {
-				$content .= '<div class="medium-' . esc_attr( $memberlite_columns_primary ) . '  columns">';
-			}
+		if ( $show_masthead_icon && ! $masthead_is_centered ) {
+			//Default (left) alignment: icon gets its own column beside the title/description column.
+			$content .= '<div class="memberlite_elements-masthead row">';
+			$content .= '<div class="medium-1 columns text-center">' . memberlite_get_masthead_icon_html( $memberlite_page_icon ) . '</div>';
+			$content .= '<div class="medium-11 columns">';
+		} elseif ( $masthead_is_centered ) {
+			//Centered alignment: icon and title share a row instead of a column grid, so they can center as one unit.
+			$content .= '<div class="memberlite_elements-masthead-centered">';
 		}
 
 		//Show the landing page featured image
@@ -404,7 +382,16 @@ function memberlite_maybe_customize_masthead_content( $content ) {
 		//Get setting to show or hide page title in masthead banner
 		$memberlite_banner_hide_title = get_post_meta( $post_id, '_memberlite_banner_hide_title', true );
 		if ( empty( $memberlite_banner_hide_title ) ) {
-			$content .= memberlite_get_page_title() . memberlite_get_page_description();
+			if ( $show_masthead_icon && $masthead_is_centered ) {
+				$content .= '<div class="masthead-icon-title">' . memberlite_get_masthead_icon_html( $memberlite_page_icon ) . memberlite_get_page_title() . '</div>';
+			} else {
+				$content .= memberlite_get_page_title();
+			}
+
+			$content .= memberlite_get_page_description();
+		} elseif ( $show_masthead_icon && $masthead_is_centered ) {
+			//Title is hidden, but the icon should still show on its own.
+			$content .= memberlite_get_masthead_icon_html( $memberlite_page_icon );
 		}
 
 		//Get content for masthead banner description
@@ -433,21 +420,15 @@ function memberlite_maybe_customize_masthead_content( $content ) {
 			}
 		}
 
-		if ( ! empty( $memberlite_banner_right ) || ( ! empty( $memberlite_banner_icon )  && ! empty( $memberlite_page_icon ) ) ) {
+		if ( $show_masthead_icon && ! $masthead_is_centered ) {
 			//Close the masthead banner columns div
 			$content .= '</div> <!--.medium-X .columns -->';
-		}
 
-		if ( ! empty( $memberlite_banner_right ) ) {
-			//Show the masthead banner right columns
-			$content .= '<div class="medium-' . memberlite_getColumnsRatio( 'sidebar' ) . ' columns">';
-			$content .= wpautop( do_shortcode( $memberlite_banner_right ) );
-			$content .= '</div> <!--.medium-X .columns -->';
-		}
-
-		if ( ! empty( $memberlite_banner_right ) || ( ! empty( $memberlite_banner_icon )  && ! empty( $memberlite_page_icon ) ) ) {
 			//Close the masthead banner row div
 			$content .= '</div> <!--.row -->';
+		} elseif ( $masthead_is_centered ) {
+			//Close the masthead centered wrapper
+			$content .= '</div> <!--.memberlite_elements-masthead-centered -->';
 		}
 
 		if ( ! empty( $memberlite_banner_extra_padding ) ) {
