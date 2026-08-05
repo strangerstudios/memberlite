@@ -355,10 +355,11 @@ function memberlite_maybe_customize_masthead_content( $content ) {
 		//Check whether we're changing content alignment from page settings under "Template Settings."
 		$masthead_text_alignment = get_post_meta( $post_id, '_memberlite_masthead_text_alignment', true );
 
-		if ( ! empty( $memberlite_banner_right ) || ( ! empty( $memberlite_banner_icon )  && ! empty( $memberlite_page_icon ) ) ) {
+		if ( ! empty( $memberlite_banner_icon )  && ! empty( $memberlite_page_icon ) ) {
 
 			//Get the columns ratio for the masthead banner based on content setting in customizer.
 			$memberlite_columns_primary = memberlite_getColumnsRatio();
+			$memberlite_elmts_masthead_classes = $masthead_text_alignment === 'centered' ? 'memberlite_elements-masthead row justify-center' : 'memberlite_elements-masthead row';
 
 			$content .= '<div class="memberlite_elements-masthead row">';
 
@@ -381,15 +382,13 @@ function memberlite_maybe_customize_masthead_content( $content ) {
 
 				//@todo: Only add colum classes when $masthead_text_alignment is set to "Default"
 				// If text alignment is centered, we want to apply a justify-content:center style to the .memberlite_elements-masthead
+				$icon_column_classes = $masthead_text_alignment === 'centered' ? 'medium-1 columns' : 'medium-1 columns text-center';
+
 				//Show the icon in a 2 column span
-				$content .= '<div class="medium-1 columns text-center"><i class="' . esc_attr( $memberlite_page_icon_class . ' ' . $memberlite_page_icon_size . ' fa-' . $memberlite_page_icon ) . '"></i></div>';
+				$content .= '<div class="' . esc_attr( $icon_column_classes ) . '"><i class="' . esc_attr( $memberlite_page_icon_class . ' ' . $memberlite_page_icon_size . ' fa-' . $memberlite_page_icon ) . '"></i></div>';
 
 				//Add the column wrapper for page title and description
-				if ( empty( $memberlite_banner_right) ) {
-					$content .= '<div class="medium-11 columns">';
-				} else {
-					$content .= '<div class="medium-' . esc_attr( $memberlite_columns_primary-1 ) .' columns">';
-				}
+				$content .= '<div class="medium-' . esc_attr( $memberlite_columns_primary-1 ) .' columns">';
 			} else {
 				$content .= '<div class="medium-' . esc_attr( $memberlite_columns_primary ) . '  columns">';
 			}
@@ -432,19 +431,9 @@ function memberlite_maybe_customize_masthead_content( $content ) {
 			}
 		}
 
-		if ( ! empty( $memberlite_banner_right ) || ( ! empty( $memberlite_banner_icon )  && ! empty( $memberlite_page_icon ) ) ) {
+		if ( ! empty( $memberlite_banner_icon )  && ! empty( $memberlite_page_icon ) ) {
 			//Close the masthead banner columns div
 			$content .= '</div> <!--.medium-X .columns -->';
-		}
-
-		if ( ! empty( $memberlite_banner_right ) ) {
-			//Show the masthead banner right columns
-			$content .= '<div class="medium-' . memberlite_getColumnsRatio( 'sidebar' ) . ' columns">';
-			$content .= wpautop( do_shortcode( $memberlite_banner_right ) );
-			$content .= '</div> <!--.medium-X .columns -->';
-		}
-
-		if ( ! empty( $memberlite_banner_right ) || ( ! empty( $memberlite_banner_icon )  && ! empty( $memberlite_page_icon ) ) ) {
 			//Close the masthead banner row div
 			$content .= '</div> <!--.row -->';
 		}
