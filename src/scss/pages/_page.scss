@@ -43,3 +43,23 @@
 		}
 	}
 }
+
+/* Masthead styles for the landing page template */
+.page-template-landing .masthead {
+	.alignleft.wp-post-image {
+		margin-top: 2rem;
+	}
+
+	p {
+		margin-top: var(--wp--preset--spacing--10);
+	}
+
+	.pmpro_level-price {
+		font-size: var(--wp--preset--font-size--36);
+	}
+
+	.pmpro_level-subprice {
+		display: block;
+		font-size: var(--wp--preset--font-size--18);
+	}
+}

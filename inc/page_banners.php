@@ -367,7 +367,7 @@ function memberlite_maybe_customize_masthead_content( $content ) {
 		if ( $show_masthead_icon && ! $masthead_is_centered ) {
 			//Default (left) alignment: icon gets its own column beside the title/description column.
 			$content .= '<div class="memberlite_elements-masthead row">';
-			$content .= '<div class="medium-1 columns text-center">' . memberlite_get_masthead_icon_html( $memberlite_page_icon ) . '</div>';
+			$content .= '<div class="medium-1 columns masthead-icon">' . memberlite_get_masthead_icon_html( $memberlite_page_icon ) . '</div>';
 			$content .= '<div class="medium-11 columns">';
 		} elseif ( $masthead_is_centered ) {
 			//Centered alignment: icon and title share a row instead of a column grid, so they can center as one unit.
