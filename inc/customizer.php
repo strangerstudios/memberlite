@@ -228,7 +228,7 @@ class Memberlite_Customize {
 		) );
 
 		// GENERAL: PMPro Button Style Override =====
-		if ( defined( 'PMPRO_VERSION' ) ) {
+		if ( defined( 'PMPRO_VERSION' ) && version_compare( PMPRO_VERSION, '3.8.3', '>' ) ) {
 			self::add_memberlite_setting_control( $wp_customize, 'memberlite_pmpro_button_style_override', __( 'Override PMPro Button Style', 'memberlite' ), 'memberlite_general_options', array(
 				'type'              => 'checkbox',
 				'sanitize_callback' => array( 'Memberlite_Customize', 'sanitize_checkbox' ),
@@ -1052,10 +1052,11 @@ class Memberlite_Customize {
 				--pmpro--color--border--variation: <?php echo ( $pmpro_style_variation === 'variation_high_contrast' ) ? '#' . esc_attr( $active_colors['color_text'] ) : '#' . esc_attr( $active_colors['color_borders'] ); ?>;
 			<?php endif; ?>
 
-			<?php if ( $override_pmpro_button_style && defined( 'PMPRO_VERSION' ) ) : ?>
+			<?php if ( $override_pmpro_button_style && defined( 'PMPRO_VERSION' ) && version_compare( PMPRO_VERSION, '3.8.3', '>' ) ) : ?>
 				/*
-				* PMPro button style override — scoped to buttons only, not containers,
-				* Do not apply styles when PMPro design settings are set to "Minimal/High Contrast."
+				* PMPro button style override — scoped to buttons only, not containers.
+				* Will not apply on PMPro 3.8.3 and older.
+				* Does not apply when PMPro design settings are set to Minimal/High Contrast.
 				*/
 				--pmpro--btn--border-radius: var(--wp--custom--button--radius);
 				--pmpro--btn--top-bottom-padding: var(--wp--custom--button--padding-block);
