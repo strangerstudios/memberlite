@@ -228,7 +228,7 @@ class Memberlite_Customize {
 		) );
 
 		// GENERAL: PMPro Button Style Override =====
-		if ( defined( 'PMPRO_VERSION' ) && version_compare( PMPRO_VERSION, '3.8.3', '>' ) ) {
+		if ( defined( 'PMPRO_VERSION' ) ) {
 			self::add_memberlite_setting_control( $wp_customize, 'memberlite_pmpro_button_style_override', __( 'Override PMPro Button Style', 'memberlite' ), 'memberlite_general_options', array(
 				'type'              => 'checkbox',
 				'sanitize_callback' => array( 'Memberlite_Customize', 'sanitize_checkbox' ),
