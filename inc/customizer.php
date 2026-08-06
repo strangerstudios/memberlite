@@ -1058,10 +1058,14 @@ class Memberlite_Customize {
 			/*
 			* PMPro button style override — scoped to buttons only, not containers,
 			* since PMPro reuses --pmpro--base--border-radius for boxes/tags too.
+			* Do not apply styles when PMPro design settings are set to "Minimal."
 			*/
+			body:not( .pmpro-variation_minimal ) {
 				.pmpro .pmpro_btn {
 					border-radius: var(--wp--custom--button--radius);
+					padding: var(--wp--custom--button--padding-block) var(--wp--custom--button--padding-inline);
 				}
+			}
 			<?php endif; ?>
 		</style>
 		<!--/Customizer CSS-->

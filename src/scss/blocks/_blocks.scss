@@ -238,6 +238,11 @@ hr.wp-block-separator {
 // Search Block - Will not apply on button only search forms
 // -----------------------------------------------------------------------------
 
+.wp-block-search .wp-block-search__button {
+	padding: calc(var(--wp--preset--spacing--10) / 2) var(--wp--preset--spacing--10);
+	min-width: 100px; // Prevents "pill" button style from looking weird with "icon only" search styles
+}
+
 .wp-block-search:not(.wp-block-search__button-only) {
 	.wp-block-search__button {
 		svg {
