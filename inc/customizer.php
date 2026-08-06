@@ -1041,7 +1041,9 @@ class Memberlite_Customize {
 				--memberlite-hover-brightness: <?php echo esc_attr( $memberlite_defaults['hover_brightness'] ); ?>;
 				--memberlite-color-white: #ffffff;
 
-			<?php if ( $override_pmpro_colors && defined( 'PMPRO_VERSION' ) ) :
+			<?php
+			//@todo: Make one conditional that checks if PMPRO_VERSION is defined, then check for overrides so both can check variation
+			if ( $override_pmpro_colors && defined( 'PMPRO_VERSION' ) ) :
 				$pmpro_style_variation = get_option( 'pmpro_style_variation', 'variation_1' );
 				?>
 				/* PMPro color vars */
@@ -1052,10 +1054,10 @@ class Memberlite_Customize {
 				--pmpro--color--border--variation: <?php echo ( $pmpro_style_variation === 'variation_high_contrast' ) ? '#' . esc_attr( $active_colors['color_text'] ) : '#' . esc_attr( $active_colors['color_borders'] ); ?>;
 			<?php endif; ?>
 
-			<?php if ( $override_pmpro_button_style && defined( 'PMPRO_VERSION' ) && version_compare( PMPRO_VERSION, '3.8.3', '>' ) ) : ?>
+			<?php if ( $override_pmpro_button_style && defined( 'PMPRO_VERSION' ) ) : ?>
 				/*
 				* PMPro button style override — scoped to buttons only, not containers.
-				* Will not apply on PMPro 3.8.3 and older.
+				* Will not apply on PMPro 3.8.3 and older. Undefined CSS variables will fail silently.
 				* Does not apply when PMPro design settings are set to Minimal/High Contrast.
 				*/
 				--pmpro--btn--border-radius: var(--wp--custom--button--radius);
