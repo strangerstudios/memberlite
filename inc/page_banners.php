@@ -362,7 +362,7 @@ function memberlite_maybe_customize_masthead_content( $content ) {
 		$masthead_is_centered    = $masthead_text_alignment === 'centered';
 
 		//Check that we should display a masthead banner icon and it is set
-		$show_masthead_icon = ! empty( $memberlite_banner_icon ) && ! empty( $memberlite_page_icon );
+		$show_masthead_icon = ! empty( $memberlite_banner_icon ) && ( ! empty( $memberlite_page_icon ) && $memberlite_page_icon !== 'blank' );
 
 		if ( $show_masthead_icon && ! $masthead_is_centered ) {
 			//Default (left) alignment: icon gets its own column beside the title/description column.
