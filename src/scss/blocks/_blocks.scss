@@ -238,10 +238,10 @@ hr.wp-block-separator {
 // Search Block - Will not apply on button only search forms
 // -----------------------------------------------------------------------------
 
-.wp-block-search .wp-block-search__button {
-	padding: calc(var(--wp--preset--spacing--10) / 2) var(--wp--preset--spacing--10);
-	min-width: 100px; // Prevents "pill" button style from looking weird with "icon only" search styles
-}
+//.wp-block-search .wp-block-search__button {
+//	padding: calc(var(--wp--preset--spacing--10) / 2) var(--wp--preset--spacing--10);
+//	min-width: 100px; // Prevents "pill" button style from looking weird with "icon only" search styles
+//}
 
 .wp-block-search:not(.wp-block-search__button-only) {
 	.wp-block-search__button {
@@ -279,7 +279,7 @@ hr.wp-block-separator {
 			background-color: var(--wp--preset--color--body-text);
 			border: none;
 			overflow: hidden;
-			padding: 0 0.5rem 0 1.25rem;
+			padding: 0 0 0 1.25rem;
 		}
 
 		.wp-block-search__input {
@@ -371,7 +371,7 @@ hr.wp-block-separator {
 //Filled Pill/Sharp Search Button
 .wp-block-search__icon-button.is-style-filled-pill:not(.wp-block-search__button-only) .wp-block-search__button,
 .wp-block-search__icon-button.is-style-filled-sharp:not(.wp-block-search__button-only) .wp-block-search__button {
-	padding: 0.75rem 0 0.75rem 0.5rem;
+	padding: 0.75rem 0;
 }
 
 //All Styles - Search Button
@@ -388,7 +388,8 @@ hr.wp-block-separator {
 	border-radius: 50%;
 }
 
-// Icon Round Search Button w/ Text Button
+//Filled Pill & Icon Round Search Button w/ Text Button
+.wp-block-search__text-button.is-style-filled-pill .wp-block-search__button,
 .wp-block-search__text-button.is-style-icon-round .wp-block-search__button {
 	border-radius: 25px;
 }
