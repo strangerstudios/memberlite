@@ -25,7 +25,7 @@ if ( $should_render_masthead ) { ?>
 
 	<?php do_action( 'memberlite_before_masthead_outer' ); ?>
 
-	<div class="<?php echo esc_attr( $masthead_classes ) ?>">
+	<div class="<?php echo esc_attr( $masthead_classes ); ?>">
 		<?php if ( $banner_image_url ) { ?>
 			<img class="banner-image" src="<?php echo esc_url( $banner_image_url ); ?>" alt="" aria-hidden="true" />
 			<div class="masthead-banner">

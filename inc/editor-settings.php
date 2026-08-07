@@ -216,4 +216,3 @@ function memberlite_hide_page_footer() {
 
 	return (bool) get_post_meta( get_the_ID(), '_memberlite_hide_footer', true );
 }
-

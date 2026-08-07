@@ -578,7 +578,7 @@ function memberlite_should_masthead_render(): bool {
 	$memberlite_banner_post_id = memberlite_get_banner_post_id();
 
 	// The "Show Page Banner" Template Settings only exists on pages
-	if ( ! empty( $memberlite_banner_post_id ) && 'page' === get_post_type( $memberlite_banner_post_id ) ) {
+	if ( ! empty( $memberlite_banner_post_id ) && get_post_type( $memberlite_banner_post_id ) === 'page' ) {
 		$show_banner_meta = get_post_meta( $memberlite_banner_post_id, '_memberlite_banner_show', true );
 
 		// Falsy covers: '' (an explicit false toggle, stringified on save) and '0' (the legacy metabox radio's hidden value).
