@@ -229,11 +229,15 @@ class Memberlite_Customize {
 
 		// GENERAL: PMPro Button Style Override =====
 		if ( defined( 'PMPRO_VERSION' ) ) {
-			self::add_memberlite_setting_control( $wp_customize, 'memberlite_pmpro_button_style_override', __( 'Override PMPro Button Style', 'memberlite' ), 'memberlite_general_options', array(
-				'type'              => 'checkbox',
-				'sanitize_callback' => array( 'Memberlite_Customize', 'sanitize_checkbox' ),
-				'description'       => __( 'By default, PMPro buttons use their own border radius. Check this box to have PMPro buttons match the Button Style chosen above instead. Does not apply to High Contrast or Minimal style variations.', 'memberlite' ),
-			) );
+			$pmpro_style_variation = get_option( 'pmpro_style_variation', 'variation_1' );
+			// Only add setting if the variation_1/default style variation is selected under Memberships > Settings > Design.
+			if ( $pmpro_style_variation === 'variation_1' ) {
+				self::add_memberlite_setting_control( $wp_customize, 'memberlite_pmpro_button_style_override', __( 'Override PMPro Button Style', 'memberlite' ), 'memberlite_general_options', array(
+					'type'              => 'checkbox',
+					'sanitize_callback' => array( 'Memberlite_Customize', 'sanitize_checkbox' ),
+					'description'       => __( 'By default, PMPro buttons use their own border radius. Check this box to have PMPro buttons match the Button Style chosen above instead. Does not apply to High Contrast or Minimal style variations.', 'memberlite' ),
+				) );
+			}
 		}
 	}
 
