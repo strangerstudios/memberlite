@@ -12,6 +12,8 @@
 ?>
 
 <?php
+do_action( 'memberlite_before_masthead' );
+
 // Check _memberlite_banner_show meta to determine if the masthead should display.
 // $args are passed from the header.php file via get_template_part()
 $should_render_masthead    = $args['should_render_masthead'];

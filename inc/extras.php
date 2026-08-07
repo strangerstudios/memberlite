@@ -257,7 +257,10 @@ function memberlite_body_classes( $classes ) {
 
 	if ( ! empty( $post ) && is_page() ) {
 		$memberlite_banner_show = get_post_meta( $post->ID, '_memberlite_banner_show', true );
-		if ( $memberlite_banner_show === '0' ) {
+
+		// Falsy covers: '' (an explicit false toggle, stringified on save) and '0' (the legacy metabox radio's hidden value).
+		// A never-touched page isn't falsy here — it resolves to the registered default of true.
+		if ( $memberlite_banner_show === '0' ||  ! $memberlite_banner_show ) {
 			$classes[] = 'memberlite-banner-hidden';
 		}
 	}
