@@ -52,7 +52,7 @@ function memberlite_settings_meta_box_callback( $post ) {
 
 	<span id="memberlite_top_banner_settings_wrapper">
 		<p class="description">
-			<?php esc_html_e( 'You can toggle whether to show or hide the masthead banner in your sidebar under Page > Template Settings.', 'memberlite' ); ?>
+			<?php esc_html_e( 'You can toggle whether to show or hide the masthead banner and breadcrumbs in your sidebar under Page > Template Settings.', 'memberlite' ); ?>
 		</p>
 
 		<p style="margin: 1rem 0;"><strong><?php esc_html_e( 'Masthead Banner Description', 'memberlite' ); ?>:</strong> <em><?php esc_html_e( 'Shown in the masthead banner below the page title.', 'memberlite' ); ?></em><br />
