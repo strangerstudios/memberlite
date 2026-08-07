@@ -11,9 +11,9 @@
  */
 ?>
 
-<?php
-do_action( 'memberlite_before_masthead' );
+<?php do_action( 'memberlite_before_masthead' ); ?>
 
+<?php
 // Check _memberlite_banner_show meta to determine if the masthead should display.
 // $args are passed from the header.php file via get_template_part()
 $should_render_masthead    = $args['should_render_masthead'];
@@ -27,11 +27,11 @@ if ( $should_render_masthead ) { ?>
 
 	<div class="<?php echo esc_attr( $masthead_classes ) ?>">
 		<?php if ( $banner_image_url ) { ?>
-	<img class="banner-image" src="<?php echo esc_url( $banner_image_url ); ?>" alt="" aria-hidden="true" />
-		<div class="masthead-banner">
-			<?php } ?>
-			<div class="row">
-				<div class="medium-<?php echo esc_attr( memberlite_getColumnsRatio( 'masthead' ) ); ?> columns">
+			<img class="banner-image" src="<?php echo esc_url( $banner_image_url ); ?>" alt="" aria-hidden="true" />
+			<div class="masthead-banner">
+		<?php } ?>
+		<div class="row">
+			<div class="medium-<?php echo esc_attr( memberlite_getColumnsRatio( 'masthead' ) ); ?> columns">
 
 				<?php do_action( 'memberlite_before_masthead_inner' ); ?>
 
