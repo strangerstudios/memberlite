@@ -816,17 +816,15 @@ function memberlite_filter_theme_json( $theme_json ) {
 add_filter( 'wp_theme_json_data_theme', 'memberlite_filter_theme_json' );
 
 /**
- * Dedupe the full color palette for the editor color picker.
+ * Clean up color palette, include specific slugs
  *
- * @since 7.0
+ * @since TBD
  *
  * @param array $editor_settings Editor settings array.
  * @param WP_Block_Editor_Context $context Editor context.
  * @return array
  */
-function memberlite_dedupe_editor_color_palette( $editor_settings, $context ) {
-	// Helper: return a deduped palette (first occurrence wins) by color value.
-	// but always keep 'body-text' and 'base' slugs.
+function memberlite_clean_editor_color_palette( $editor_settings, $context ) {
 	$dedupe = static function( $palette ) {
 		if ( empty( $palette ) || ! is_array( $palette ) ) {
 			return $palette;
@@ -834,6 +832,23 @@ function memberlite_dedupe_editor_color_palette( $editor_settings, $context ) {
 
 		$seen   = array();
 		$result = array();
+
+		$approved_color_slugs = array(
+			'color-primary',
+			'color-secondary',
+			'color-action',
+			'site-navigation-background',
+			'site-navigation-link',
+			'buttons',
+			'borders',
+			'body-text',
+			'base',
+			'page-masthead-background',
+			'page-masthead',
+			'footer-widgets-background',
+			'footer-widgets',
+			'white'
+		);
 
 		foreach ( $palette as $entry ) {
 			if ( ! is_array( $entry ) || empty( $entry['color'] ) ) {
@@ -902,4 +917,4 @@ function memberlite_dedupe_editor_color_palette( $editor_settings, $context ) {
 
 	return $editor_settings;
 }
-add_filter( 'block_editor_settings_all', 'memberlite_dedupe_editor_color_palette', 20, 2 );
+add_filter( 'block_editor_settings_all', 'memberlite_clean_editor_color_palette', 20, 2 );
