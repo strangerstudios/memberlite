@@ -825,33 +825,36 @@ add_filter( 'wp_theme_json_data_theme', 'memberlite_filter_theme_json' );
  * @return array
  */
 function memberlite_clean_editor_color_palette( $editor_settings, $context ) {
-	$dedupe = static function( $palette ) {
+	$approved_color_slugs = array(
+		'color-primary',
+		'color-secondary',
+		'color-action',
+		'site-navigation-background',
+		'site-navigation-link',
+		'buttons',
+		'borders',
+		'body-text',
+		'base',
+		'page-masthead-background',
+		'page-masthead',
+		'footer-widgets-background',
+		'footer-widgets',
+		'white'
+	);
+
+	$curate = static function( $palette ) use ( $approved_color_slugs ) {
 		if ( empty( $palette ) || ! is_array( $palette ) ) {
 			return $palette;
 		}
 
-		$seen   = array();
 		$result = array();
 
-		$approved_color_slugs = array(
-			'color-primary',
-			'color-secondary',
-			'color-action',
-			'site-navigation-background',
-			'site-navigation-link',
-			'buttons',
-			'borders',
-			'body-text',
-			'base',
-			'page-masthead-background',
-			'page-masthead',
-			'footer-widgets-background',
-			'footer-widgets',
-			'white'
-		);
-
 		foreach ( $palette as $entry ) {
-			if ( ! is_array( $entry ) || empty( $entry['color'] ) ) {
+			if ( ! is_array( $entry ) || empty( $entry['color'] ) || empty( $entry['slug'] ) ) {
+				continue;
+			}
+
+			if ( ! in_array( $entry['slug'], $approved_color_slugs, true ) ) {
 				continue;
 			}
 
@@ -859,22 +862,6 @@ function memberlite_clean_editor_color_palette( $editor_settings, $context ) {
 			if ( empty( $color ) ) {
 				continue;
 			}
-
-			$key = strtolower( $color );
-			$slug = isset( $entry['slug'] ) ? $entry['slug'] : '';
-
-			// Always keep 'body-text' and 'base' slugs, even if duplicate color.
-			if ( in_array( $slug, array( 'body-text', 'base' ), true ) ) {
-				$entry['color'] = $color;
-				$result[] = $entry;
-				continue;
-			}
-
-			if ( isset( $seen[ $key ] ) ) {
-				continue;
-			}
-
-			$seen[ $key ] = true;
 
 			// Keep the original entry shape (slug/name), but normalize color.
 			$entry['color'] = $color;
@@ -910,7 +897,7 @@ function memberlite_clean_editor_color_palette( $editor_settings, $context ) {
 		}
 
 		if ( $found && is_array( $ref ) ) {
-			$ref = $dedupe( $ref );
+			$ref = $curate( $ref );
 			// Don’t break; multiple paths can exist in some setups.
 		}
 	}
