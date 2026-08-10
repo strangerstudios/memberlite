@@ -801,6 +801,14 @@ function memberlite_get_breadcrumbs() {
 	$archive_breadcrumbs    = get_theme_mod( 'archive_breadcrumbs', false );
 	$attachment_breadcrumbs = get_theme_mod( 'attachment_breadcrumbs', false );
 	$search_breadcrumbs     = get_theme_mod( 'search_breadcrumbs', false );
+	$profile_breadcrumbs    = get_theme_mod( 'profile_breadcrumbs', false );
+	$show_breadcrumbs = ( '' != $page_breadcrumbs
+						  || '' != $post_breadcrumbs
+						  || '' != $archive_breadcrumbs
+						  || '' != $attachment_breadcrumbs
+						  || '' != $search_breadcrumbs
+						  || '' != $profile_breadcrumbs
+	) ? true : false;
 
 	// Check _memberlite_banner_hide_breadcrumbs meta to determine if breadcrumbs should display.
 	$memberlite_breadcrumbs_post_id = get_queried_object_id();
@@ -816,7 +824,6 @@ function memberlite_get_breadcrumbs() {
 			$memberlite_show_breadcrumbs = false;
 		}
 	}
-
 	$memberlite_show_breadcrumbs = apply_filters( 'memberlite_show_breadcrumbs', $memberlite_show_breadcrumbs );
 
 	if ( $memberlite_show_breadcrumbs ) {

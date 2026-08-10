@@ -37,6 +37,11 @@ function memberlite_settings_meta_box_callback( $post ) {
 
 	wp_nonce_field( 'memberlite_settings_meta_box', 'memberlite_settings_meta_box_nonce' );
 	$memberlite_page_template = get_post_meta($post->ID, '_wp_page_template', true);
+	if ( ! memberlite_is_block_editor() ) {
+		$memberlite_banner_show = get_post_meta($post->ID, '_memberlite_banner_show', true);
+		if($memberlite_banner_show === '')
+			$memberlite_banner_show = 1;		//we want to default to showing if this has never been set
+	}
 	$memberlite_page_icon = get_post_meta($post->ID, '_memberlite_page_icon', true);
 	$memberlite_banner_desc = get_post_meta($post->ID, '_memberlite_banner_desc', true);
 	$memberlite_banner_hide_title = get_post_meta($post->ID, '_memberlite_banner_hide_title', true);
@@ -48,12 +53,24 @@ function memberlite_settings_meta_box_callback( $post ) {
 	$memberlite_landing_page_upsell = get_post_meta($post->ID, '_memberlite_landing_page_upsell', true);
 
 	ob_start();
-	?>
-
-	<span id="memberlite_top_banner_settings_wrapper">
-		<p class="description">
-			<?php esc_html_e( 'You can toggle whether to show or hide the masthead banner and breadcrumbs in your sidebar under Page > Template Settings.', 'memberlite' ); ?>
+	// Only support these metabox options if the classic editor is being used
+	if ( ! memberlite_is_block_editor() ) { ?>
+		<h2><?php esc_html_e( 'Page Banner Settings', 'memberlite' ); ?></h2>
+		<p style="margin: 1rem 0 0 0;"><strong><?php esc_html_e( 'Show Page Banner', 'memberlite' ); ?></strong> <em><?php esc_html_e( 'Disable the entire page banner for this content.', 'memberlite' ); ?></em></p>
+		<label class="screen-reader-text" for="memberlite_banner_show">
+			<?php esc_html_e( 'Show Page Banner', 'memberlite' ); ?>
+		</label>
+		<input type="radio" name="memberlite_banner_show" value="1" <?php checked( $memberlite_banner_show, 1 ); ?>> <?php esc_html_e( 'Yes', 'memberlite' ); ?>
+		&nbsp;&nbsp;
+		<input type="radio" name="memberlite_banner_show" value="0" <?php checked( $memberlite_banner_show, 0 ); ?>> <?php esc_html_e( 'No', 'memberlite' ); ?>
 		</p>
+	<?php } ?>
+	<span id="memberlite_top_banner_settings_wrapper">
+		<?php if ( memberlite_is_block_editor() ) { ?>
+			<p class="description">
+				<?php esc_html_e( 'You can toggle whether to show or hide the masthead banner and breadcrumbs in your sidebar under Page > Template Settings.', 'memberlite' ); ?>
+			</p>
+		<?php } ?>
 
 		<p style="margin: 1rem 0;"><strong><?php esc_html_e( 'Masthead Banner Description', 'memberlite' ); ?>:</strong> <em><?php esc_html_e( 'Shown in the masthead banner below the page title.', 'memberlite' ); ?></em><br />
 			<?php if ( ( $memberlite_page_template == 'templates/landing.php' ) && function_exists( 'pmpro_getAllLevels' ) ) : ?>
@@ -68,6 +85,14 @@ function memberlite_settings_meta_box_callback( $post ) {
 		<label style="margin: 1rem 0 0;" for="memberlite_banner_hide_title" class="selectit">
 			<input name="memberlite_banner_hide_title" type="checkbox" id="memberlite_banner_hide_title" value="1" <?php checked( $memberlite_banner_hide_title, 1 ); ?>> <?php esc_html_e( 'Hide Page Title on Single View', 'memberlite' ); ?>
 		</label>
+		<?php // Only support these metabox options if the classic editor is being used
+		if ( ! memberlite_is_block_editor() ) { ?>
+			<input type="hidden" name="memberlite_banner_hide_breadcrumbs_present" value="1" />
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<label for="memberlite_banner_hide_breadcrumbs" class="selectit">
+				<input name="memberlite_banner_hide_breadcrumbs" type="checkbox" id="memberlite_banner_hide_breadcrumbs" value="1" <?php checked( $memberlite_banner_hide_breadcrumbs, 1 ); ?>> <?php esc_html_e( 'Hide Breadcrumbs', 'memberlite' ); ?>
+			</label>
+		<?php } ?>
 		<input type="hidden" name="memberlite_banner_extra_padding_present" value="1" />
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		<label style="margin: 1rem 0 0;" for="memberlite_banner_extra_padding" class="selectit">
@@ -195,6 +220,17 @@ function memberlite_settings_save_meta_box_data( $post_id ) {
 		}
 	}
 
+	// Only support these metabox options if the classic editor is being used
+	if ( ! memberlite_is_block_editor() ) {
+		if(isset($_POST['memberlite_banner_show'])) {
+			if(!empty($_POST['memberlite_banner_show']))
+				$memberlite_banner_show = 1;
+			else
+				$memberlite_banner_show = 0;
+			update_post_meta($post_id, '_memberlite_banner_show', $memberlite_banner_show);
+		}
+	}
+
 	//banner description
 	if(isset($_POST['memberlite_banner_desc'])) {
 		$memberlite_banner_desc = wp_kses( wp_unslash( $_POST['memberlite_banner_desc'] ), $allowedposttags );
@@ -209,6 +245,19 @@ function memberlite_settings_save_meta_box_data( $post_id ) {
 			$memberlite_banner_hide_title = 0;
 
 		update_post_meta($post_id, '_memberlite_banner_hide_title', $memberlite_banner_hide_title);
+	}
+
+	// Only support these metabox options if the classic editor is being used
+	if ( ! memberlite_is_block_editor() ) {
+		//banner hide breadcrumbs checkbox
+		if(isset($_POST['memberlite_banner_hide_breadcrumbs_present']))	{
+			if(!empty($_POST['memberlite_banner_hide_breadcrumbs']))
+				$memberlite_banner_hide_breadcrumbs = 1;
+			else
+				$memberlite_banner_hide_breadcrumbs = 0;
+
+			update_post_meta($post_id, '_memberlite_banner_hide_breadcrumbs', $memberlite_banner_hide_breadcrumbs);
+		}
 	}
 
 	//banner extra padding checkbox
