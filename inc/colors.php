@@ -447,7 +447,7 @@ function memberlite_get_slate_harbor_colors(): array {
 		'color_meta_link'         => '0f6e7a',
 		'color_primary'           => '0b1233',
 		'color_secondary'         => '0f6e7a',
-		'color_action'            => '5a7d6d',
+		'color_action'            => '455f51',
 		'color_button'            => '0b1233',
 		'bgcolor_page_masthead'   => '0b1233',
 		'color_page_masthead'     => 'ffffff',
