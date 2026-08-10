@@ -825,6 +825,7 @@ add_filter( 'wp_theme_json_data_theme', 'memberlite_filter_theme_json' );
  * @return array
  */
 function memberlite_clean_editor_color_palette( $editor_settings, $context ) {
+	// Aim for "pairs" - A background color should have it's foreground color in the palette.
 	$approved_color_slugs = array(
 		'color-primary',
 		'color-secondary',
@@ -863,7 +864,7 @@ function memberlite_clean_editor_color_palette( $editor_settings, $context ) {
 				continue;
 			}
 
-			// Keep the original entry shape (slug/name), but normalize color.
+			// Keep the original entry (slug/name), but normalize color.
 			$entry['color'] = $color;
 			$result[]       = $entry;
 		}
