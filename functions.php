@@ -816,7 +816,7 @@ function memberlite_filter_theme_json( $theme_json ) {
 add_filter( 'wp_theme_json_data_theme', 'memberlite_filter_theme_json' );
 
 /**
- * Clean up color palette, include specific slugs
+ * Clean up and build the color palette using specific slugs.
  *
  * @since TBD
  *
