@@ -476,23 +476,6 @@
 	}
 }
 
-// Cocoa Ash: primary color is too dark so we lighten toggle icons via a CSS
-// custom property — keeps color-mix() in the browser, not Sass compile time.
-.scheme_cocoa_ash {
-	--cocoa-ash-primary-lightened: color-mix(in srgb, var(--memberlite-color-primary) 30%, white);
-
-	#expand-mobile-nav,
-	.menu-toggle {
-		color: var(--cocoa-ash-primary-lightened);
-
-		&:active,
-		&:focus,
-		&:hover {
-			color: var(--cocoa-ash-primary-lightened);
-		}
-	}
-}
-
 body.mobile-nav-open {
 	overflow: hidden;
 }
