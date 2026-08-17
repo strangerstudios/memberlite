@@ -77,7 +77,7 @@ function memberlite_register_editor_settings_post_meta(): void {
 		'default'       => false,
 		'auth_callback' => function() {
 			return current_user_can( 'edit_posts' );
-		},
+		}
 	) );
 
 	register_post_meta( 'page', '_memberlite_banner_show', array(
