@@ -31,6 +31,12 @@
 		}
 	}
 
+	// To keep links readable in PMPro cards when the "Override PMPro Colors" checkbox is off
+	// Inherits var(--pmpro--color--contrast)
+	.pmpro_card a {
+		color: inherit;
+	}
+
 
 	// ---------------------------------------------------------------------------
 	// Membership Levels — Shared
