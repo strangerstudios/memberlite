@@ -45,6 +45,7 @@ function memberlite_settings_meta_box_callback( $post ) {
 	$memberlite_page_icon = get_post_meta($post->ID, '_memberlite_page_icon', true);
 	$memberlite_banner_desc = get_post_meta($post->ID, '_memberlite_banner_desc', true);
 	$memberlite_banner_hide_title = get_post_meta($post->ID, '_memberlite_banner_hide_title', true);
+	$memberlite_banner_hide_breadcrumbs = get_post_meta($post->ID, '_memberlite_banner_hide_breadcrumbs', true);
 	$memberlite_banner_extra_padding = get_post_meta($post->ID, '_memberlite_banner_extra_padding', true);
 	$memberlite_banner_icon = get_post_meta($post->ID, '_memberlite_banner_icon', true);
 	$memberlite_banner_bottom = get_post_meta($post->ID, '_memberlite_banner_bottom', true);
