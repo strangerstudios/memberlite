@@ -41,8 +41,8 @@
 				<div class="wp-block-column">
 					<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|10"}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
 					<div class="wp-block-group">
-						<!-- wp:paragraph {"style":{"elements":{"link":{"color":{"text":"var:preset|color|color-action"}}}},"textColor":"color-action"} -->
-						<p class="has-color-action-color has-text-color has-link-color">[fa icon="graduation-cap"]</p>
+						<!-- wp:paragraph -->
+						<p>[fa icon="graduation-cap" color="action"]</p>
 						<!-- /wp:paragraph -->
 						<!-- wp:paragraph {"fontSize":"14"} -->
 						<p class="has-14-font-size">Ph.D., Stanford University</p>
@@ -51,8 +51,8 @@
 					<!-- /wp:group -->
 					<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|10"}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
 					<div class="wp-block-group">
-						<!-- wp:paragraph {"style":{"elements":{"link":{"color":{"text":"var:preset|color|color-action"}}}},"textColor":"color-action"} -->
-						<p class="has-color-action-color has-text-color has-link-color">[fa icon="award"]</p>
+						<!-- wp:paragraph -->
+						<p>[fa icon="award" color="action"]</p>
 						<!-- /wp:paragraph -->
 						<!-- wp:paragraph {"fontSize":"14"} -->
 						<p class="has-14-font-size">Industry Certified Expert</p>
@@ -65,8 +65,8 @@
 				<div class="wp-block-column">
 					<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|10"}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
 					<div class="wp-block-group">
-						<!-- wp:paragraph {"style":{"elements":{"link":{"color":{"text":"var:preset|color|color-action"}}}},"textColor":"color-action"} -->
-						<p class="has-color-action-color has-text-color has-link-color">[fa icon="users"]</p>
+						<!-- wp:paragraph -->
+						<p>[fa icon="users" color="action"]</p>
 						<!-- /wp:paragraph -->
 						<!-- wp:paragraph {"fontSize":"14"} -->
 						<p class="has-14-font-size">10,000+ Students Taught</p>
@@ -75,8 +75,8 @@
 					<!-- /wp:group -->
 					<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|10"}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
 					<div class="wp-block-group">
-						<!-- wp:paragraph {"style":{"elements":{"link":{"color":{"text":"var:preset|color|color-action"}}}},"textColor":"color-action"} -->
-						<p class="has-color-action-color has-text-color has-link-color">[fa icon="star"]</p>
+						<!-- wp:paragraph -->
+						<p>[fa icon="star" color="action"]</p>
 						<!-- /wp:paragraph -->
 						<!-- wp:paragraph {"fontSize":"14"} -->
 						<p class="has-14-font-size">4.9/5 Average Rating</p>
