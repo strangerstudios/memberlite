@@ -816,27 +816,47 @@ function memberlite_filter_theme_json( $theme_json ) {
 add_filter( 'wp_theme_json_data_theme', 'memberlite_filter_theme_json' );
 
 /**
- * Dedupe the full color palette for the editor color picker.
+ * Clean up and build the color palette using specific slugs.
  *
- * @since 7.0
+ * @since TBD
  *
  * @param array $editor_settings Editor settings array.
  * @param WP_Block_Editor_Context $context Editor context.
  * @return array
  */
-function memberlite_dedupe_editor_color_palette( $editor_settings, $context ) {
-	// Helper: return a deduped palette (first occurrence wins) by color value.
-	// but always keep 'body-text' and 'base' slugs.
-	$dedupe = static function( $palette ) {
+function memberlite_clean_editor_color_palette( $editor_settings, $context ) {
+	// Aim for "pairs" - A background color should have it's foreground color in the palette.
+	$approved_color_slugs = array(
+		'color-primary',
+		'color-secondary',
+		'color-action',
+		'buttons',
+		'buttons-hover',
+		'borders',
+		'body-text',
+		'base',
+		'site-navigation-background',
+		'site-navigation-link',
+		'page-masthead-background',
+		'page-masthead',
+		'footer-widgets-background',
+		'footer-widgets',
+		'white'
+	);
+
+	$curate = static function( $palette ) use ( $approved_color_slugs ) {
 		if ( empty( $palette ) || ! is_array( $palette ) ) {
 			return $palette;
 		}
 
-		$seen   = array();
 		$result = array();
 
 		foreach ( $palette as $entry ) {
-			if ( ! is_array( $entry ) || empty( $entry['color'] ) ) {
+			if ( ! is_array( $entry ) || empty( $entry['color'] ) || empty( $entry['slug'] ) ) {
+				continue;
+			}
+
+			if ( ! in_array( $entry['slug'], $approved_color_slugs, true ) ) {
 				continue;
 			}
 
@@ -845,23 +865,7 @@ function memberlite_dedupe_editor_color_palette( $editor_settings, $context ) {
 				continue;
 			}
 
-			$key = strtolower( $color );
-			$slug = isset( $entry['slug'] ) ? $entry['slug'] : '';
-
-			// Always keep 'body-text' and 'base' slugs, even if duplicate color.
-			if ( in_array( $slug, array( 'body-text', 'base' ), true ) ) {
-				$entry['color'] = $color;
-				$result[] = $entry;
-				continue;
-			}
-
-			if ( isset( $seen[ $key ] ) ) {
-				continue;
-			}
-
-			$seen[ $key ] = true;
-
-			// Keep the original entry shape (slug/name), but normalize color.
+			// Keep the original entry (slug/name), but normalize color.
 			$entry['color'] = $color;
 			$result[]       = $entry;
 		}
@@ -895,11 +899,11 @@ function memberlite_dedupe_editor_color_palette( $editor_settings, $context ) {
 		}
 
 		if ( $found && is_array( $ref ) ) {
-			$ref = $dedupe( $ref );
+			$ref = $curate( $ref );
 			// Don’t break; multiple paths can exist in some setups.
 		}
 	}
 
 	return $editor_settings;
 }
-add_filter( 'block_editor_settings_all', 'memberlite_dedupe_editor_color_palette', 20, 2 );
+add_filter( 'block_editor_settings_all', 'memberlite_clean_editor_color_palette', 20, 2 );

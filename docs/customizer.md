@@ -148,7 +148,7 @@ This is not a full list. Explore the codebase for more.
 
 - `memberlite_filter_theme_json()` - Syncs customizer colors to `theme.json`
 
-- `memberlite_dedupe_editor_color_palette()` - Removes duplicate colors from the editor palette
+- `memberlite_clean_editor_color_palette()` - Limits the editor color palette to approved slugs
 
 ---
 
