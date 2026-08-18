@@ -34,8 +34,8 @@ const MemberliteCustomSettings = () => {
 	const stickyValue = meta?._memberlite_header_sticky || false;
 
 	const showPageBreadcrumbsGlobally = window.memberliteEditorData.showPageBreadcrumbs; // Check if breadcrumbs are enabled from customizer.
-	const showBannerValue = meta?._memberlite_banner_show; // Banner shows by default.
-	const hideBreadcrumbsValue = meta?._memberlite_banner_hide_breadcrumbs; // Setting only shows if breadcrumbs are enabled & banner is showing.
+	const showBannerValue = meta?._memberlite_banner_show ?? true; // Banner shows by default; `??` (not `||`) so an explicit `false` isn't overridden.
+	const hideBreadcrumbsValue = meta?._memberlite_banner_hide_breadcrumbs || false; // Setting only shows if breadcrumbs are enabled & banner is showing.
 	const textAlignmentValue = meta?._memberlite_banner_text_alignment ?? 'default';
 
 	const textDomain = 'memberlite';
