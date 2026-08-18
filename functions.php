@@ -918,5 +918,5 @@ add_filter( 'block_editor_settings_all', 'memberlite_clean_editor_color_palette'
 function memberlite_is_block_editor() {
 	$current_screen = get_current_screen();
 
-	return method_exists( $current_screen, 'is_block_editor' ) && $current_screen->is_block_editor();
+	return $current_screen instanceof WP_Screen && $current_screen->is_block_editor();
 }
