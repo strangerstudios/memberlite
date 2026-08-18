@@ -17,8 +17,8 @@
 		<!-- wp:heading -->
 		<h2 class="wp-block-heading">Recent Issues</h2>
 		<!-- /wp:heading -->
-		<!-- wp:paragraph {"textColor":"color-secondary","fontSize":"16"} -->
-		<p class="has-color-secondary-color has-text-color has-16-font-size">[fa icon="lock"] Members-only content</p>
+		<!-- wp:paragraph {"textColor":"color-action","fontSize":"16"} -->
+		<p class="has-color-action-color has-text-color has-16-font-size">[fa icon="lock"] Members-only content</p>
 		<!-- /wp:paragraph -->
 	</div>
 	<!-- /wp:group -->
@@ -28,7 +28,7 @@
 			<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|10","padding":{"top":"var:preset|spacing|20","bottom":"var:preset|spacing|20"}},"border":{"bottom":{"color":"var:preset|color|borders","width":"1px"}}},"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"space-between"}} -->
 			<div class="wp-block-group" style="border-bottom-color:var(--wp--preset--color--borders);border-bottom-width:1px;padding-top:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--20)">
 				<!-- wp:post-title {"isLink":true,"fontSize":"18"} /-->
-				<!-- wp:post-date {"textColor":"meta-link","fontSize":"14"} /-->
+				<!-- wp:post-date {"metadata":{"bindings":{"datetime":{"source":"core/post-data","args":{"field":"date"}}}},"textColor":"meta-link","fontSize":"14"} /-->
 			</div>
 			<!-- /wp:group -->
 		<!-- /wp:post-template -->

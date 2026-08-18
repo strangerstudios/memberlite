@@ -16,8 +16,8 @@
 	<div class="wp-block-columns alignwide">
 		<!-- wp:column {"width":"40%","style":{"spacing":{"blockGap":"var:preset|spacing|10"}}} -->
 		<div class="wp-block-column" style="flex-basis:40%">
-			<!-- wp:paragraph {"textColor":"color-secondary","fontSize":"42"} -->
-			<p class="has-color-secondary-color has-text-color has-42-font-size">[fa icon="people-group" size="2x"]</p>
+			<!-- wp:paragraph {"textColor":"color-action","fontSize":"42"} -->
+			<p class="has-color-action-color has-text-color has-42-font-size">[fa icon="people-group" size="2x"]</p>
 			<!-- /wp:paragraph -->
 			<!-- wp:heading -->
 			<h2 class="wp-block-heading">Welcome to the Community</h2>
