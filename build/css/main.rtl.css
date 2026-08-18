@@ -2971,20 +2971,6 @@ details > p:first-of-type {
   color: var(--memberlite-color-primary);
 }
 
-.scheme_cocoa_ash {
-  --cocoa-ash-primary-lightened: color-mix(in srgb, var(--memberlite-color-primary) 30%, white);
-}
-.scheme_cocoa_ash #expand-mobile-nav,
-.scheme_cocoa_ash .menu-toggle {
-  color: var(--cocoa-ash-primary-lightened);
-}
-.scheme_cocoa_ash #expand-mobile-nav:active, .scheme_cocoa_ash #expand-mobile-nav:focus, .scheme_cocoa_ash #expand-mobile-nav:hover,
-.scheme_cocoa_ash .menu-toggle:active,
-.scheme_cocoa_ash .menu-toggle:focus,
-.scheme_cocoa_ash .menu-toggle:hover {
-  color: var(--cocoa-ash-primary-lightened);
-}
-
 body.mobile-nav-open {
   overflow: hidden;
 }
