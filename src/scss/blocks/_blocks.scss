@@ -274,7 +274,7 @@ hr.wp-block-separator {
 			background-color: var(--wp--preset--color--body-text);
 			border: none;
 			overflow: hidden;
-			padding: 0 0.5rem 0 1.25rem;
+			padding: 0 0 0 1.25rem;
 		}
 
 		.wp-block-search__input {
@@ -357,19 +357,19 @@ hr.wp-block-separator {
 	}
 }
 
-//Icon Square/Round Inside Wrapper
+// Icon Square/Round Inside Wrapper
 .wp-block-search__icon-button.is-style-icon-square:not(.wp-block-search__button-only) .wp-block-search__button,
 .wp-block-search__icon-button.is-style-icon-round:not(.wp-block-search__button-only) .wp-block-search__button {
 	padding: 0;
 }
 
-//Filled Pill/Sharp Search Button
+// Filled Pill/Sharp Search Button
 .wp-block-search__icon-button.is-style-filled-pill:not(.wp-block-search__button-only) .wp-block-search__button,
 .wp-block-search__icon-button.is-style-filled-sharp:not(.wp-block-search__button-only) .wp-block-search__button {
-	padding: 0.75rem 0 0.75rem 0.5rem;
+	padding: 0.75rem 0;
 }
 
-//All Styles - Search Button
+// All Styles - Search Button
 .wp-block-search__icon-button.is-style-filled-pill:not(.wp-block-search__button-only) .wp-block-search__button,
 .wp-block-search__icon-button.is-style-icon-round:not(.wp-block-search__button-only) .wp-block-search__button,
 .wp-block-search__icon-button.is-style-filled-sharp:not(.wp-block-search__button-only) .wp-block-search__button,
@@ -377,15 +377,21 @@ hr.wp-block-separator {
 	width: 52px;
 }
 
-//Filled Pill & Icon Round w/ Icon Button
+// Filled Pill & Icon Round w/ Icon Button
 .wp-block-search__icon-button.is-style-filled-pill:not(.wp-block-search__button-only) .wp-block-search__button,
 .wp-block-search__icon-button.is-style-icon-round:not(.wp-block-search__button-only) .wp-block-search__button {
 	border-radius: 50%;
 }
 
-// Icon Round Search Button w/ Text Button
+// Filled Pill & Icon Round Search Button w/ Text Button
+.wp-block-search__text-button.is-style-filled-pill .wp-block-search__button,
 .wp-block-search__text-button.is-style-icon-round .wp-block-search__button {
 	border-radius: 25px;
+}
+
+// Button only search form - does get affected by global button style from customizer
+.wp-block-search.wp-block-search__button-only .wp-block-search__button {
+	align-items: center;
 }
 
 // -----------------------------------------------------------------------------
@@ -717,7 +723,7 @@ hr.wp-block-separator {
 		padding: var(--wp--preset--spacing--10);
 	}
 
-	//core accordion does not have padding so if we define padding ourselves, it can't be overwritten from the editor...
+	// core accordion does not have padding so if we define padding ourselves, it can't be overwritten from the editor...
 	&.is-style-accrdn-medium .wp-block-accordion-heading__toggle-icon {
 		font-size: var(--wp--preset--font-size--30);
 	}

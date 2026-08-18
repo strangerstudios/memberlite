@@ -211,6 +211,34 @@ class Memberlite_Customize {
 				return (bool) get_theme_mod( 'memberlite_back_to_top', true );
 			},
 		) );
+
+		// GENERAL: Button Style Heading ==========
+		self::add_memberlite_heading( $wp_customize, 'memberlite_button_style_heading', __( 'Buttons', 'memberlite' ), 'memberlite_general_options' );
+
+		// GENERAL: Button Style ==================
+		self::add_memberlite_setting_control( $wp_customize, 'memberlite_button_style', __( 'Button Style', 'memberlite' ), 'memberlite_general_options', array(
+			'type'    => 'radio',
+			'default' => 'default',
+			'choices' => array(
+				'default' => __( 'Default', 'memberlite' ),
+				'sharp'   => __( 'Sharp', 'memberlite' ),
+				'pill'    => __( 'Pill', 'memberlite' ),
+			),
+			'description' => __( 'Applies to buttons site-wide. Border radius or padding customized on an individual button block in the editor will override this setting for that button.', 'memberlite' ),
+		) );
+
+		// GENERAL: PMPro Button Style Override =====
+		if ( defined( 'PMPRO_VERSION' ) ) {
+			$pmpro_style_variation = get_option( 'pmpro_style_variation', 'variation_1' );
+			// Only add setting if the variation_1/default style variation is selected under Memberships > Settings > Design.
+			if ( $pmpro_style_variation === 'variation_1' ) {
+				self::add_memberlite_setting_control( $wp_customize, 'memberlite_pmpro_button_style_override', __( 'Override PMPro Button Style', 'memberlite' ), 'memberlite_general_options', array(
+					'type'              => 'checkbox',
+					'sanitize_callback' => array( 'Memberlite_Customize', 'sanitize_checkbox' ),
+					'description'       => __( 'By default, PMPro buttons use their own border radius. Check this box to have PMPro buttons match the Button Style chosen above instead. Does not apply to High Contrast or Minimal style variations.', 'memberlite' ),
+				) );
+			}
+		}
 	}
 
 	/**
@@ -995,6 +1023,7 @@ class Memberlite_Customize {
 		// Get active colors based on selected scheme
 		$active_colors = memberlite_get_active_colors();
 		$override_pmpro_colors = get_theme_mod( 'memberlite_pmpro_color_override' );
+		$override_pmpro_button_style = get_theme_mod( 'memberlite_pmpro_button_style_override' );
 		?>
 		<!--Customizer CSS-->
 		<style id="memberlite-customizer-css" type="text/css">
@@ -1016,17 +1045,29 @@ class Memberlite_Customize {
 				--memberlite-hover-brightness: <?php echo esc_attr( $memberlite_defaults['hover_brightness'] ); ?>;
 				--memberlite-color-white: #ffffff;
 
-			<?php if ( $override_pmpro_colors && defined( 'PMPRO_VERSION' ) ) :
+			<?php if ( defined( 'PMPRO_VERSION' ) ) {
 				$pmpro_style_variation = get_option( 'pmpro_style_variation', 'variation_1' );
-				?>
-				/* PMPro color vars */
-				--pmpro--color--accent: <?php echo '#' . esc_attr( $active_colors['color_primary'] ); ?>;
-				--pmpro--color--accent--variation: <?php echo '#' . esc_attr( $active_colors['color_primary'] ); ?>;
-				--pmpro--color--base: light-dark( #fff, <?php echo '#' . esc_attr( $active_colors['background_color'] ); ?> );
-				--pmpro--color--contrast: <?php echo '#' . esc_attr( $active_colors['color_text'] ); ?>;
-				--pmpro--color--border--variation: <?php echo ( $pmpro_style_variation === 'variation_high_contrast' ) ? '#' . esc_attr( $active_colors['color_text'] ) : '#' . esc_attr( $active_colors['color_borders'] ); ?>;
-			<?php endif; ?>
 
+				if ( $override_pmpro_colors ) : ?>
+					/* PMPro color vars */
+					--pmpro--color--accent: <?php echo '#' . esc_attr( $active_colors['color_primary'] ); ?>;
+					--pmpro--color--accent--variation: <?php echo '#' . esc_attr( $active_colors['color_primary'] ); ?>;
+					--pmpro--color--base: light-dark( #fff, <?php echo '#' . esc_attr( $active_colors['background_color'] ); ?> );
+					--pmpro--color--contrast: <?php echo '#' . esc_attr( $active_colors['color_text'] ); ?>;
+					--pmpro--color--border--variation: <?php echo ( $pmpro_style_variation === 'variation_high_contrast' ) ? '#' . esc_attr( $active_colors['color_text'] ) : '#' . esc_attr( $active_colors['color_borders'] ); ?>;
+				<?php endif; ?>
+
+				<?php if ( $override_pmpro_button_style && $pmpro_style_variation === 'variation_1' ) : ?>
+					/*
+					* PMPro button style override — scoped to buttons only, not containers.
+					* Will not apply on PMPro 3.8.3 and older. Undefined CSS variables will fail silently.
+					* Does not apply when PMPro design settings are set to Minimal/High Contrast.
+					*/
+					--pmpro--btn--border-radius: var(--wp--custom--button--radius);
+					--pmpro--btn--top-bottom-padding: var(--wp--custom--button--padding-block);
+					--pmpro--btn--left-right-padding: var(--wp--custom--button--padding-inline);
+				<?php endif; ?>
+			<?php } //end of PMPRO_VERSION check ?>
 			}
 		</style>
 		<!--/Customizer CSS-->
