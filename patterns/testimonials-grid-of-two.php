@@ -21,8 +21,8 @@
 		<div class="wp-block-column is-vertically-aligned-stretch has-border-color has-borders-border-color" style="border-width:1px;border-top-left-radius:8px;border-top-right-radius:8px;border-bottom-left-radius:8px;border-bottom-right-radius:8px;padding-top:var(--wp--preset--spacing--30);padding-right:var(--wp--preset--spacing--30);padding-bottom:var(--wp--preset--spacing--30);padding-left:var(--wp--preset--spacing--30)">
 			<!-- wp:quote {"className":"is-style-plain","style":{"spacing":{"blockGap":"var:preset|spacing|10"}}} -->
 			<blockquote class="wp-block-quote is-style-plain">
-				<!-- wp:paragraph {"textColor":"luminous-vivid-amber","fontSize":"30"} -->
-				<p class="has-luminous-vivid-amber-color has-text-color has-30-font-size"><strong>★ ★ ★ ★ ★</strong></p>
+				<!-- wp:paragraph {"textColor":"color-action","fontSize":"30"} -->
+				<p class="has-color-action-color has-text-color has-30-font-size"><strong>★ ★ ★ ★ ★</strong></p>
 				<!-- /wp:paragraph -->
 				<!-- wp:paragraph -->
 				<p>This membership gives me exactly what I need without the fluff. The resources are practical, the community is supportive, and I can access everything on my own schedule. Worth every penny.</p>
@@ -45,8 +45,8 @@
 		<div class="wp-block-column is-vertically-aligned-stretch has-border-color has-borders-border-color" style="border-width:1px;border-top-left-radius:8px;border-top-right-radius:8px;border-bottom-left-radius:8px;border-bottom-right-radius:8px;padding-top:var(--wp--preset--spacing--30);padding-right:var(--wp--preset--spacing--30);padding-bottom:var(--wp--preset--spacing--30);padding-left:var(--wp--preset--spacing--30)">
 			<!-- wp:quote {"className":"is-style-plain","style":{"spacing":{"blockGap":"var:preset|spacing|10"}}} -->
 			<blockquote class="wp-block-quote is-style-plain">
-				<!-- wp:paragraph {"textColor":"luminous-vivid-amber","fontSize":"30"} -->
-				<p class="has-luminous-vivid-amber-color has-text-color has-30-font-size"><strong>★ ★ ★ ★ ★</strong></p>
+				<!-- wp:paragraph {"textColor":"color-action","fontSize":"30"} -->
+				<p class="has-color-action-color has-text-color has-30-font-size"><strong>★ ★ ★ ★ ★</strong></p>
 				<!-- /wp:paragraph -->
 				<!-- wp:paragraph -->
 				<p>I was skeptical at first, but this membership delivers real value. The exclusive content helped me grow my own business, and the member community has become my go-to support network.</p>
