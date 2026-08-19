@@ -19,8 +19,8 @@
 		<!-- /wp:heading -->
 		<!-- wp:quote {"className":"is-style-plain","style":{"spacing":{"blockGap":"var:preset|spacing|10"}}} -->
 		<blockquote class="wp-block-quote is-style-plain">
-			<!-- wp:paragraph {"textColor":"luminous-vivid-amber","fontSize":"30"} -->
-			<p class="has-luminous-vivid-amber-color has-text-color has-30-font-size"><strong>★ ★ ★ ★ ★</strong></p>
+			<!-- wp:paragraph {"textColor":"color-action","fontSize":"30"} -->
+			<p class="has-color-action-color has-text-color has-30-font-size"><strong>★ ★ ★ ★ ★</strong></p>
 			<!-- /wp:paragraph -->
 			<!-- wp:paragraph -->
 			<p>This membership has been worth every penny. The exclusive resources helped me level up my skills, and the community keeps me motivated. I finally have a place where I belong with people who get it.</p>

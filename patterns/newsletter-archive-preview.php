@@ -17,8 +17,8 @@
 		<!-- wp:heading -->
 		<h2 class="wp-block-heading">Recent Issues</h2>
 		<!-- /wp:heading -->
-		<!-- wp:paragraph {"textColor":"color-secondary","fontSize":"16"} -->
-		<p class="has-color-secondary-color has-text-color has-16-font-size">[fa icon="lock"] Members-only content</p>
+		<!-- wp:paragraph {"textColor":"color-action","fontSize":"16"} -->
+		<p class="has-color-action-color has-text-color has-16-font-size">[fa icon="lock"] Members-only content</p>
 		<!-- /wp:paragraph -->
 	</div>
 	<!-- /wp:group -->

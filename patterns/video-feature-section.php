@@ -14,26 +14,26 @@
 <div class="wp-block-group alignwide" style="padding-top:var(--wp--preset--spacing--70);padding-bottom:var(--wp--preset--spacing--70)">
 	<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|10"}},"layout":{"type":"constrained"}} -->
 	<div class="wp-block-group">
-		<!-- wp:heading {"textAlign":"center"} -->
+		<!-- wp:heading {"style":{"typography":{"textAlign":"center"}}} -->
 		<h2 class="wp-block-heading has-text-align-center">This Week's Featured Video</h2>
 		<!-- /wp:heading -->
-		<!-- wp:paragraph {"align":"center","fontSize":"18"} -->
+		<!-- wp:paragraph {"style":{"typography":{"textAlign":"center"}},"fontSize":"18"} -->
 		<p class="has-text-align-center has-18-font-size">New premium video content published every week for members.</p>
 		<!-- /wp:paragraph -->
 	</div>
 	<!-- /wp:group -->
 	<!-- wp:group {"style":{"spacing":{"padding":{"top":"0","right":"0","bottom":"0","left":"0"},"blockGap":"0"},"border":{"radius":"8px"}},"layout":{"type":"constrained"}} -->
 	<div class="wp-block-group" style="border-radius:8px;padding-top:0;padding-right:0;padding-bottom:0;padding-left:0">
-		<!-- wp:cover {"url":"<?php echo esc_url( get_template_directory_uri() ); ?>/patterns/images/experts/domenico-loia-hGV2TfOh0ns-unsplash-md.jpg","dimRatio":60,"overlayColor":"color-primary","minHeight":400,"style":{"spacing":{"padding":{"top":"var:preset|spacing|60","right":"var:preset|spacing|30","bottom":"var:preset|spacing|60","left":"var:preset|spacing|30"}}}} -->
-		<div class="wp-block-cover" style="padding-top:var(--wp--preset--spacing--60);padding-right:var(--wp--preset--spacing--30);padding-bottom:var(--wp--preset--spacing--60);padding-left:var(--wp--preset--spacing--30);min-height:400px"><span aria-hidden="true" class="wp-block-cover__background has-color-primary-background-color has-background-dim-60 has-background-dim"></span><img class="wp-block-cover__image-background" alt="" src="<?php echo esc_url( get_template_directory_uri() ); ?>/patterns/images/experts/domenico-loia-hGV2TfOh0ns-unsplash-md.jpg" data-object-fit="cover"/><div class="wp-block-cover__inner-container">
-			<!-- wp:paragraph {"align":"center","fontSize":"54"} -->
+		<!-- wp:cover {"url":"<?php echo esc_url( get_template_directory_uri() ); ?>/patterns/images/experts/domenico-loia-hGV2TfOh0ns-unsplash-md.jpg","dimRatio":70,"overlayColor":"base","isUserOverlayColor":true,"minHeight":400,"isDark":false,"style":{"spacing":{"padding":{"top":"var:preset|spacing|60","right":"var:preset|spacing|30","bottom":"var:preset|spacing|60","left":"var:preset|spacing|30"}},"elements":{"link":{"color":{"text":"var:preset|color|site-navigation-link"}}}},"textColor":"site-navigation-link"} -->
+		<div class="wp-block-cover is-light has-site-navigation-link-color has-text-color has-link-color" style="padding-top:var(--wp--preset--spacing--60);padding-right:var(--wp--preset--spacing--30);padding-bottom:var(--wp--preset--spacing--60);padding-left:var(--wp--preset--spacing--30);min-height:400px"><img class="wp-block-cover__image-background" alt="" src="<?php echo esc_url( get_template_directory_uri() ); ?>/patterns/images/experts/domenico-loia-hGV2TfOh0ns-unsplash-md.jpg" data-object-fit="cover"/><span aria-hidden="true" class="wp-block-cover__background has-base-background-color has-background-dim-70 has-background-dim"></span><div class="wp-block-cover__inner-container">
+			<!-- wp:paragraph {"style":{"typography":{"textAlign":"center"}},"fontSize":"54"} -->
 			<p class="has-text-align-center has-54-font-size">[fa icon="circle-play" size="2x"]</p>
 			<!-- /wp:paragraph -->
-			<!-- wp:heading {"textAlign":"center","level":3,"style":{"elements":{"link":{"color":{"text":"var:preset|color|white"}}}},"textColor":"white","fontSize":"30"} -->
-			<h3 class="wp-block-heading has-text-align-center has-white-color has-text-color has-link-color has-30-font-size">Mastering the Fundamentals: A Complete Walkthrough</h3>
+			<!-- wp:heading {"level":3,"style":{"typography":{"textAlign":"center"},"elements":{"link":{"color":{"text":"var:preset|color|site-navigation-link"}}}},"textColor":"site-navigation-link","fontSize":"30"} -->
+			<h3 class="wp-block-heading has-text-align-center has-site-navigation-link-color has-text-color has-link-color has-30-font-size">Mastering the Fundamentals: A Complete Walkthrough</h3>
 			<!-- /wp:heading -->
-			<!-- wp:paragraph {"align":"center","style":{"elements":{"link":{"color":{"text":"var:preset|color|white"}}}},"textColor":"white"} -->
-			<p class="has-text-align-center has-white-color has-text-color has-link-color">Duration: 42 minutes</p>
+			<!-- wp:paragraph {"style":{"typography":{"textAlign":"center"},"elements":{"link":{"color":{"text":"var:preset|color|site-navigation-link"}}}},"textColor":"site-navigation-link"} -->
+			<p class="has-text-align-center has-site-navigation-link-color has-text-color has-link-color">Duration: 42 minutes</p>
 			<!-- /wp:paragraph -->
 		</div></div>
 		<!-- /wp:cover -->

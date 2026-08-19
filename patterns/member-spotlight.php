@@ -12,7 +12,7 @@
 ?>
 <!-- wp:group {"style":{"spacing":{"padding":{"top":"var:preset|spacing|70","bottom":"var:preset|spacing|70"},"blockGap":"var:preset|spacing|20"}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group" style="padding-top:var(--wp--preset--spacing--70);padding-bottom:var(--wp--preset--spacing--70)">
-	<!-- wp:heading {"textAlign":"center"} -->
+	<!-- wp:heading {"style":{"typography":{"textAlign":"center"}}} -->
 	<h2 class="wp-block-heading has-text-align-center">Member Spotlight</h2>
 	<!-- /wp:heading -->
 	<!-- wp:group {"style":{"spacing":{"padding":{"top":"var:preset|spacing|30","right":"var:preset|spacing|30","bottom":"var:preset|spacing|30","left":"var:preset|spacing|30"},"blockGap":"var:preset|spacing|20"},"border":{"width":"1px","radius":"8px"}},"borderColor":"borders","layout":{"type":"constrained"}} -->
@@ -31,8 +31,8 @@
 				<!-- wp:heading {"level":3,"fontSize":"30"} -->
 				<h3 class="wp-block-heading has-30-font-size">David Lindgren</h3>
 				<!-- /wp:heading -->
-				<!-- wp:paragraph {"textColor":"color-secondary","fontSize":"16"} -->
-				<p class="has-color-secondary-color has-text-color has-16-font-size"><strong>Premium Member Since 2021</strong></p>
+				<!-- wp:paragraph {"textColor":"color-action","fontSize":"16"} -->
+				<p class="has-color-action-color has-text-color has-16-font-size"><strong>Premium Member Since 2021</strong></p>
 				<!-- /wp:paragraph -->
 				<!-- wp:paragraph -->
 				<p>David is a longtime community contributor who has helped onboard dozens of new members. His expertise in project management has made him an invaluable resource in our forums and mentorship program.</p>
