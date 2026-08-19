@@ -197,10 +197,6 @@ li > ol {
   margin-top: var(--wp--preset--spacing--20);
 }
 
-figure {
-  margin: 0;
-}
-
 table {
   background: var(--memberlite-color-site-background);
   margin: var(--wp--preset--spacing--20) 0;
@@ -1645,19 +1641,37 @@ hr.wp-block-separator.is-style-flourish-diamond.alignfull {
 }
 .wp-block-accordion.is-style-accrdn-medium .wp-block-accordion-heading__toggle-icon {
   font-size: var(--wp--preset--font-size--30);
-  width: unset;
 }
 .wp-block-accordion.is-style-accrdn-large .wp-block-accordion-heading__toggle-icon {
   font-size: var(--wp--preset--font-size--42);
-  width: unset;
 }
-.wp-block-accordion.is-style-accrdn-caret .wp-block-accordion-heading__toggle:after {
+.wp-block-accordion.is-style-accrdn-caret {
+  /* Default / icon-right: icon span is the LAST child inside the button */
+  /* Icon-left: icon span is the FIRST child inside the button */
+}
+.wp-block-accordion.is-style-accrdn-caret .wp-block-accordion-heading__toggle:has(.wp-block-accordion-heading__toggle-icon:last-child)::after,
+.wp-block-accordion.is-style-accrdn-caret .wp-block-accordion-heading__toggle:has(.wp-block-accordion-heading__toggle-icon:first-child)::before {
   font-family: "Font Awesome 5 Free";
   font-weight: 900;
   content: "\f078";
+}
+.wp-block-accordion.is-style-accrdn-caret {
+  /* Default / icon-right: icon span is the LAST child inside the button */
+}
+.wp-block-accordion.is-style-accrdn-caret .wp-block-accordion-heading__toggle:has(.wp-block-accordion-heading__toggle-icon:last-child)::after {
   margin-right: var(--wp--preset--spacing--10);
 }
-.wp-block-accordion.is-style-accrdn-caret .wp-block-accordion-heading__toggle[aria-expanded=true]:after {
+.wp-block-accordion.is-style-accrdn-caret {
+  /* Icon-left: icon span is the FIRST child inside the button */
+}
+.wp-block-accordion.is-style-accrdn-caret .wp-block-accordion-heading__toggle:has(.wp-block-accordion-heading__toggle-icon:first-child)::before {
+  margin-left: var(--wp--preset--spacing--10);
+}
+.wp-block-accordion.is-style-accrdn-caret {
+  /* Reverse the chevron when accordion is expanded */
+}
+.wp-block-accordion.is-style-accrdn-caret .wp-block-accordion-heading__toggle[aria-expanded=true]:has(.wp-block-accordion-heading__toggle-icon:last-child)::after,
+.wp-block-accordion.is-style-accrdn-caret .wp-block-accordion-heading__toggle[aria-expanded=true]:has(.wp-block-accordion-heading__toggle-icon:first-child)::before {
   content: "\f077";
 }
 .wp-block-accordion.is-style-accrdn-caret .wp-block-accordion-heading__toggle-icon {
@@ -1860,9 +1874,6 @@ hr.wp-block-separator.is-style-flourish-diamond.alignfull {
   padding: var(--wp--preset--spacing--10);
   text-align: center;
 }
-.grid-list .hentry {
-  margin: 0;
-}
 .grid-list h1,
 .grid-list h2 {
   font-size: var(--wp--preset--font-size--24);
@@ -1977,7 +1988,7 @@ hr.wp-block-separator.is-style-flourish-diamond.alignfull {
  3.5 Components: Memberlite Shortcodes
 
  Covers: banners, tabs, accordion, recent posts widget, subpage list,
-         masthead elements, landing page overrides
+         landing page overrides
 --------------------------------------------------------------*/
 .banner_primary {
   background-color: var(--memberlite-color-primary);
@@ -2027,31 +2038,6 @@ hr.wp-block-separator.is-style-flourish-diamond.alignfull {
 .banner.banner_background-image {
   background-repeat: no-repeat;
   background-size: cover;
-}
-
-body.memberlite-banner-hidden .entry-content > .banner:first-child {
-  margin-top: 0;
-}
-
-.masthead .memberlite_elements-masthead {
-  padding-top: 2rem;
-}
-.masthead .memberlite_elements-masthead h1 {
-  margin-top: 0;
-}
-
-.page-template-landing .masthead .alignleft.wp-post-image {
-  margin-top: 2rem;
-}
-.page-template-landing .masthead p {
-  margin-top: var(--wp--preset--spacing--10);
-}
-.page-template-landing .masthead .pmpro_level-price {
-  font-size: var(--wp--preset--font-size--36);
-}
-.page-template-landing .masthead .pmpro_level-subprice {
-  display: block;
-  font-size: var(--wp--preset--font-size--18);
 }
 
 .memberlite_tabbable ul.memberlite_tabs {
@@ -2174,9 +2160,6 @@ details > p:first-of-type {
   display: block;
 }
 
-#widget_memberlite_recent_posts .post.hentry {
-  margin-bottom: 0;
-}
 #widget_memberlite_recent_posts .widget_has_thumbnail .post.hentry .entry-header {
   display: grid;
   grid-template-columns: 80px var(--wp--preset--spacing--10) auto;
@@ -2209,12 +2192,84 @@ details > p:first-of-type {
   border-bottom: none;
 }
 
-.columns .hentry.memberlite_subpagelist_item {
-  margin: 0;
-}
-
 #main .columns .hentry.memberlite_subpagelist_item .entry-content {
   border-bottom: none;
+}
+
+:is(.fa, .fas, .far, .fab).primary, :is(.fa, .fas, .far, .fab).color-primary {
+  color: var(--memberlite-color-primary);
+}
+:is(.fa, .fas, .far, .fab).secondary, :is(.fa, .fas, .far, .fab).color-secondary {
+  color: var(--memberlite-color-secondary);
+}
+:is(.fa, .fas, .far, .fab).action, :is(.fa, .fas, .far, .fab).color-action {
+  color: var(--memberlite-color-action);
+}
+:is(.fa, .fas, .far, .fab).color-white {
+  color: var(--memberlite-color-white);
+}
+:is(.fa, .fas, .far, .fab).color-text {
+  color: var(--memberlite-color-text);
+}
+:is(.fa, .fas, .far, .fab).color-site-background {
+  color: var(--memberlite-color-site-background);
+}
+:is(.fa, .fas, .far, .fab).color-site-navigation {
+  color: var(--memberlite-color-site-navigation);
+}
+:is(.fa, .fas, .far, .fab).color-site-navigation-background {
+  color: var(--memberlite-color-site-navigation-background);
+}
+:is(.fa, .fas, .far, .fab).color-footer-widgets {
+  color: var(--memberlite-color-footer-widgets);
+}
+:is(.fa, .fas, .far, .fab).color-footer-widgets-background {
+  color: var(--memberlite-color-footer-widgets-background);
+}
+:is(.fa, .fas, .far, .fab).bg-primary {
+  background-color: var(--memberlite-color-primary);
+}
+:is(.fa, .fas, .far, .fab).bg-secondary {
+  background-color: var(--memberlite-color-secondary);
+}
+:is(.fa, .fas, .far, .fab).bg-action {
+  background-color: var(--memberlite-color-action);
+}
+:is(.fa, .fas, .far, .fab).bg-white {
+  background-color: var(--memberlite-color-white);
+}
+:is(.fa, .fas, .far, .fab).bg-text {
+  background-color: var(--memberlite-color-text);
+}
+:is(.fa, .fas, .far, .fab).bg-site-background {
+  background-color: var(--memberlite-color-site-background);
+}
+:is(.fa, .fas, .far, .fab).bg-site-navigation {
+  background-color: var(--memberlite-color-site-navigation);
+}
+:is(.fa, .fas, .far, .fab).bg-site-navigation-background {
+  background-color: var(--memberlite-color-site-navigation-background);
+}
+:is(.fa, .fas, .far, .fab).bg-footer-widgets {
+  background-color: var(--memberlite-color-footer-widgets);
+}
+:is(.fa, .fas, .far, .fab).bg-footer-widgets-background {
+  background-color: var(--memberlite-color-footer-widgets-background);
+}
+:is(.fa, .fas, .far, .fab).shape-square, :is(.fa, .fas, .far, .fab).shape-circle, :is(.fa, .fas, .far, .fab).shape-squircle {
+  aspect-ratio: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1em;
+  min-width: 20px;
+  min-height: 20px;
+}
+:is(.fa, .fas, .far, .fab).shape-circle {
+  border-radius: 100%;
+}
+:is(.fa, .fas, .far, .fab).shape-squircle {
+  border-radius: 25%;
 }
 
 /*--------------------------------------------------------------
@@ -2886,20 +2941,6 @@ details > p:first-of-type {
   color: var(--memberlite-color-primary);
 }
 
-.scheme_cocoa_ash {
-  --cocoa-ash-primary-lightened: color-mix(in srgb, var(--memberlite-color-primary) 30%, white);
-}
-.scheme_cocoa_ash #expand-mobile-nav,
-.scheme_cocoa_ash .menu-toggle {
-  color: var(--cocoa-ash-primary-lightened);
-}
-.scheme_cocoa_ash #expand-mobile-nav:active, .scheme_cocoa_ash #expand-mobile-nav:focus, .scheme_cocoa_ash #expand-mobile-nav:hover,
-.scheme_cocoa_ash .menu-toggle:active,
-.scheme_cocoa_ash .menu-toggle:focus,
-.scheme_cocoa_ash .menu-toggle:hover {
-  color: var(--cocoa-ash-primary-lightened);
-}
-
 body.mobile-nav-open {
   overflow: hidden;
 }
@@ -3047,6 +3088,10 @@ body.mobile-nav-open {
 
  Covers: masthead layout, masthead banner, post byline, breadcrumbs
 --------------------------------------------------------------*/
+body.memberlite-banner-hidden .entry-content > .banner:first-child {
+  margin-top: 0;
+}
+
 .masthead {
   background-color: var(--memberlite-color-page-masthead-background);
   color: var(--memberlite-color-page-masthead);
@@ -3123,6 +3168,29 @@ body.mobile-nav-open {
 }
 .masthead + .row {
   margin-top: var(--wp--preset--spacing--50);
+}
+.masthead .memberlite_elements-masthead h1,
+.masthead .memberlite_elements-masthead-centered h1 {
+  margin-top: 0;
+}
+.masthead .memberlite_elements-masthead {
+  padding-top: 2rem;
+  align-items: center;
+}
+.masthead .memberlite_elements-masthead-centered {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin: var(--wp--preset--spacing--20) 0 0;
+}
+@media (min-width: 768px) {
+  .masthead .masthead-icon-title {
+    display: flex;
+    align-items: center;
+    gap: var(--wp--preset--spacing--10);
+    justify-content: center;
+  }
 }
 
 .masthead-banner {
@@ -3334,9 +3402,6 @@ body.mobile-nav-open {
 
  Covers: .hentry, entry header, entry content, entry footer, entry author
 --------------------------------------------------------------*/
-.hentry {
-  margin: 0 0 var(--wp--preset--spacing--70);
-}
 .hentry .entry-banner {
   margin: 0 0 var(--wp--preset--spacing--20) 0;
   overflow: hidden;
@@ -3369,8 +3434,8 @@ body.mobile-nav-open {
   margin-bottom: 0;
 }
 
-.page-template-blank .hentry {
-  margin: 0;
+.site-main > .hentry + .hentry {
+  margin-top: var(--wp--preset--spacing--70);
 }
 
 .entry-header-grid .entry-header {
@@ -3642,6 +3707,21 @@ body.mobile-nav-open {
     max-width: var(--wp--style--global--wide-size);
     width: auto;
   }
+}
+
+/* Masthead styles for the landing page template */
+.page-template-landing .masthead .alignleft.wp-post-image {
+  margin-top: 2rem;
+}
+.page-template-landing .masthead p {
+  margin-top: var(--wp--preset--spacing--10);
+}
+.page-template-landing .masthead .pmpro_level-price {
+  font-size: var(--wp--preset--font-size--36);
+}
+.page-template-landing .masthead .pmpro_level-subprice {
+  display: block;
+  font-size: var(--wp--preset--font-size--18);
 }
 
 /*--------------------------------------------------------------
