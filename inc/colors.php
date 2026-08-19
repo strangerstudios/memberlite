@@ -207,7 +207,7 @@ function memberlite_get_evergreen_colors(): array {
 		'color_meta_link'         => '174b49',
 		'color_primary'           => '174b49',
 		'color_secondary'         => '2e7061',
-		'color_action'            => 'C9265A',
+		'color_action'            => 'c9265a',
 		'color_button'            => '174b49',
 		'bgcolor_page_masthead'   => '174b49',
 		'color_page_masthead'     => 'ffffff',
