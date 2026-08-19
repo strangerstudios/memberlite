@@ -31,10 +31,10 @@
 		}
 	}
 
-	// To keep links readable in PMPro cards when the "Override PMPro Colors" checkbox is off
-	// Inherits var(--pmpro--color--contrast)
-	.pmpro_card a {
-		color: inherit;
+	// To keep links readable in PMPro cards when the "Override PMPro Colors" checkbox is off.
+	// Excludes .pmpro_btn/.pmpro_link, which set their own color against their own backgrounds.
+	.pmpro_card a:not(.pmpro_btn):not(.pmpro_link) {
+		color: var(--pmpro--color--contrast);
 	}
 
 
