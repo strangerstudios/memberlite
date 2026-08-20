@@ -3,8 +3,8 @@
  * Title: Category Feature Boxes
  * Slug: memberlite/category-feature-boxes
  * Description: Three content categories with icons, descriptions, and links to help visitors navigate your blog or news sections.
- * Categories: memberlite-content
- * Keywords: blog, categories, news, navigation, content
+ * Categories: memberlite-content, memberlite-features
+ * Keywords: blog, categories, news, navigation, content, premium_content
  * @package WordPress
  * @subpackage Memberlite
  * @since Memberlite 7.0

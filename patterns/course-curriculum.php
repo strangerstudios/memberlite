@@ -4,7 +4,7 @@
  * Slug: memberlite/course-curriculum
  * Description: An expandable course outline using details blocks to display modules and lesson descriptions.
  * Categories: memberlite-courses
- * Keywords: course, curriculum, lessons, modules, coaching, accordion
+ * Keywords: course, curriculum, lessons, modules, coaching, accordion, courses, pmpro_course, pmpro_lesson
  * @package WordPress
  * @subpackage Memberlite
  * @since Memberlite 7.0
