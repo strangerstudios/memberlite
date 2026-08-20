@@ -13,8 +13,8 @@
 <!-- wp:group {"align":"wide","style":{"spacing":{"padding":{"top":"var:preset|spacing|30","bottom":"var:preset|spacing|30"}}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group alignwide" style="padding-top:var(--wp--preset--spacing--30);padding-bottom:var(--wp--preset--spacing--30)"><!-- wp:columns {"verticalAlignment":"center","align":"wide","style":{"spacing":{"blockGap":{"top":"0"}}}} -->
 	<div class="wp-block-columns alignwide are-vertically-aligned-center"><!-- wp:column {"verticalAlignment":"center"} -->
-		<div class="wp-block-column is-vertically-aligned-center"><!-- wp:paragraph {"style":{"elements":{"link":{"color":{"text":"var:preset|color|color-action"}}}},"textColor":"color-action","fontSize":"36","fontFamily":"great-vibes"} -->
-			<p class="has-color-action-color has-text-color has-link-color has-great-vibes-font-family has-36-font-size">Sarah Mitchell</p>
+		<div class="wp-block-column is-vertically-aligned-center"><!-- wp:paragraph {"style":{"elements":{"link":{"color":{"text":"var:preset|color|color-action"}}},"typography":{"textTransform":"capitalize"}},"textColor":"color-action","fontSize":"36","fontFamily":"great-vibes"} -->
+			<p class="has-color-action-color has-text-color has-link-color has-great-vibes-font-family has-36-font-size" style="text-transform:capitalize">Sarah mitchell</p>
 			<!-- /wp:paragraph -->
 
 			<!-- wp:heading {"style":{"typography":{"letterSpacing":"2px"},"spacing":{"margin":{"top":"var:preset|spacing|10"}}},"fontSize":"36"} -->

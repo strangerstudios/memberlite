@@ -17,8 +17,8 @@
 			<p class="has-text-align-center">[fa type="regular" icon="heart" size="2x"]</p>
 			<!-- /wp:paragraph -->
 
-			<!-- wp:heading {"level":3,"style":{"typography":{"textAlign":"center"},"spacing":{"margin":{"top":"var:preset|spacing|20"}}},"fontSize":"32"} -->
-			<h3 class="wp-block-heading has-text-align-center has-32-font-size" style="margin-top:var(--wp--preset--spacing--20)">A Caring Community</h3>
+			<!-- wp:heading {"level":3,"style":{"typography":{"textAlign":"center","textTransform":"capitalize"},"spacing":{"margin":{"top":"var:preset|spacing|20"}}},"fontSize":"32"} -->
+			<h3 class="wp-block-heading has-text-align-center has-32-font-size" style="margin-top:var(--wp--preset--spacing--20);text-transform:capitalize">A caring community</h3>
 			<!-- /wp:heading -->
 
 			<!-- wp:paragraph {"style":{"typography":{"textAlign":"center"},"spacing":{"margin":{"top":"var:preset|spacing|10"}}}} -->
@@ -31,8 +31,8 @@
 			<p class="has-text-align-center">[fa type="regular" icon="comments" size="2x"]</p>
 			<!-- /wp:paragraph -->
 
-			<!-- wp:heading {"level":3,"style":{"typography":{"textAlign":"center"},"spacing":{"margin":{"top":"var:preset|spacing|20"}}},"fontSize":"32"} -->
-			<h3 class="wp-block-heading has-text-align-center has-32-font-size" style="margin-top:var(--wp--preset--spacing--20)">Ongoing Conversation</h3>
+			<!-- wp:heading {"level":3,"style":{"typography":{"textAlign":"center","textTransform":"capitalize"},"spacing":{"margin":{"top":"var:preset|spacing|20"}}},"fontSize":"32"} -->
+			<h3 class="wp-block-heading has-text-align-center has-32-font-size" style="margin-top:var(--wp--preset--spacing--20);text-transform:capitalize">Ongoing conversation</h3>
 			<!-- /wp:heading -->
 
 			<!-- wp:paragraph {"style":{"typography":{"textAlign":"center"},"spacing":{"margin":{"top":"var:preset|spacing|10"}}}} -->
@@ -45,8 +45,8 @@
 			<p class="has-text-align-center">[fa type="solid" icon="award" size="2x"]</p>
 			<!-- /wp:paragraph -->
 
-			<!-- wp:heading {"level":3,"style":{"typography":{"textAlign":"center"},"spacing":{"margin":{"top":"var:preset|spacing|20"}}},"fontSize":"32"} -->
-			<h3 class="wp-block-heading has-text-align-center has-32-font-size" style="margin-top:var(--wp--preset--spacing--20)">Proven Results</h3>
+			<!-- wp:heading {"level":3,"style":{"typography":{"textAlign":"center","textTransform":"capitalize"},"spacing":{"margin":{"top":"var:preset|spacing|20"}}},"fontSize":"32"} -->
+			<h3 class="wp-block-heading has-text-align-center has-32-font-size" style="margin-top:var(--wp--preset--spacing--20);text-transform:capitalize">Proven results</h3>
 			<!-- /wp:heading -->
 
 			<!-- wp:paragraph {"style":{"typography":{"textAlign":"center"},"spacing":{"margin":{"top":"var:preset|spacing|10"}}}} -->

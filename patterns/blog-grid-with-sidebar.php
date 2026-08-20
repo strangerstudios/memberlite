@@ -12,8 +12,8 @@
 ?>
 <!-- wp:group {"align":"wide","layout":{"type":"constrained"}} -->
 <div class="wp-block-group alignwide">
-	<!-- wp:heading {"align":"wide","className":"is-style-heading-rule","fontSize":"36"} -->
-	<h2 class="wp-block-heading alignwide is-style-heading-rule has-36-font-size">The Blog</h2>
+	<!-- wp:heading {"align":"wide","className":"is-style-heading-rule","style":{"typography":{"textTransform":"capitalize"}},"fontSize":"36"} -->
+	<h2 class="wp-block-heading alignwide is-style-heading-rule has-36-font-size" style="text-transform:capitalize">The blog</h2>
 	<!-- /wp:heading -->
 	<!-- wp:columns {"align":"wide","style":{"spacing":{"blockGap":{"left":"var:preset|spacing|30"}}}} -->
 	<div class="wp-block-columns alignwide">
@@ -40,16 +40,16 @@
 			<div class="wp-block-group" style="padding-top:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--20)">
 				<!-- wp:group {"layout":{"type":"constrained"}} -->
 				<div class="wp-block-group">
-					<!-- wp:heading {"level":3,"style":{"typography":{"textAlign":"center"}}} -->
-					<h3 class="wp-block-heading has-text-align-center">Get the Weekly Insider Newsletter</h3>
+					<!-- wp:heading {"level":3,"style":{"typography":{"textAlign":"center","textTransform":"capitalize"}}} -->
+					<h3 class="wp-block-heading has-text-align-center" style="text-transform:capitalize">Get the weekly insider newsletter</h3>
 					<!-- /wp:heading -->
 					<!-- wp:paragraph {"style":{"typography":{"textAlign":"center"},"spacing":{"margin":{"top":"var:preset|spacing|10"}}},"fontSize":"18"} -->
 					<p class="has-text-align-center has-18-font-size" style="margin-top:var(--wp--preset--spacing--10)">Every week, we deliver actionable insights, curated links, and exclusive analysis straight to your inbox. Join thousands of professionals who start their week with us.</p>
 					<!-- /wp:paragraph -->
 					<!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center"}} -->
 					<div class="wp-block-buttons">
-						<!-- wp:button {"width":75} -->
-						<div class="wp-block-button has-custom-width wp-block-button__width-75"><a class="wp-block-button__link wp-element-button" href="#">Subscribe Now</a></div>
+						<!-- wp:button {"width":75,"style":{"typography":{"textTransform":"capitalize"}}} -->
+						<div class="wp-block-button has-custom-width wp-block-button__width-75"><a class="wp-block-button__link wp-element-button" href="#" style="text-transform:capitalize">Subscribe now</a></div>
 						<!-- /wp:button -->
 					</div>
 					<!-- /wp:buttons -->

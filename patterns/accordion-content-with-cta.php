@@ -26,8 +26,8 @@
 			<!-- /wp:paragraph -->
 
 			<!-- wp:buttons -->
-			<div class="wp-block-buttons"><!-- wp:button -->
-				<div class="wp-block-button"><a class="wp-block-button__link wp-element-button">Contact Us</a></div>
+			<div class="wp-block-buttons"><!-- wp:button {"style":{"typography":{"textTransform":"capitalize"}}} -->
+				<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" style="text-transform:capitalize">Contact us</a></div>
 				<!-- /wp:button --></div>
 			<!-- /wp:buttons --></div>
 		<!-- /wp:column -->

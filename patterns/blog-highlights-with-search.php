@@ -16,8 +16,8 @@
 	<div class="wp-block-columns alignwide" style="padding-right:var(--wp--preset--spacing--10);padding-left:var(--wp--preset--spacing--10)">
 		<!-- wp:column -->
 		<div class="wp-block-column">
-			<!-- wp:heading {"className":"is-style-heading-rule","style":{"typography":{"fontStyle":"normal","fontWeight":"700"}}} -->
-			<h2 class="wp-block-heading is-style-heading-rule" style="font-style:normal;font-weight:700">The Blog</h2>
+			<!-- wp:heading {"className":"is-style-heading-rule","style":{"typography":{"fontStyle":"normal","fontWeight":"700","textTransform":"capitalize"}}} -->
+			<h2 class="wp-block-heading is-style-heading-rule" style="font-style:normal;font-weight:700;text-transform:capitalize">The blog</h2>
 			<!-- /wp:heading -->
 			<!-- wp:query {"queryId":0,"query":{"perPage":1,"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date","author":"","search":"","exclude":[],"sticky":"","inherit":false,"taxQuery":null,"parents":[],"format":[]}} -->
 			<div class="wp-block-query">

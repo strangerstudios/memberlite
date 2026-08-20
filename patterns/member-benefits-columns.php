@@ -17,8 +17,8 @@
 			<p class="has-color-secondary-color has-text-color has-link-color" style="letter-spacing:1px;text-transform:uppercase"><strong>Benefits</strong></p>
 			<!-- /wp:paragraph -->
 
-			<!-- wp:heading {"style":{"spacing":{"margin":{"top":"var:preset|spacing|10"}}},"fontSize":"32"} -->
-			<h2 class="wp-block-heading has-32-font-size" style="margin-top:var(--wp--preset--spacing--10)">Why Members Choose Us</h2>
+			<!-- wp:heading {"style":{"spacing":{"margin":{"top":"var:preset|spacing|10"}},"typography":{"textTransform":"capitalize"}},"fontSize":"32"} -->
+			<h2 class="wp-block-heading has-32-font-size" style="margin-top:var(--wp--preset--spacing--10);text-transform:capitalize">Why members choose us</h2>
 			<!-- /wp:heading -->
 
 			<!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"var:preset|spacing|10"}}}} -->
@@ -37,8 +37,8 @@
 			<p class="has-text-align-center has-21-font-size" style="font-style:normal;font-weight:700">[fa icon="users" color="site-navigation-background" background="secondary" shape="circle"]</p>
 			<!-- /wp:paragraph -->
 
-			<!-- wp:heading {"fontSize":"24"} -->
-			<h2 class="wp-block-heading has-24-font-size">Community Access</h2>
+			<!-- wp:heading {"style":{"typography":{"textTransform":"capitalize"}},"fontSize":"24"} -->
+			<h2 class="wp-block-heading has-24-font-size" style="text-transform:capitalize">Community access</h2>
 			<!-- /wp:heading -->
 
 			<!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"var:preset|spacing|10"}}}} -->
@@ -51,8 +51,8 @@
 			<p class="has-text-align-center has-21-font-size" style="font-style:normal;font-weight:700">[fa icon="book-open" color="site-navigation-background" background="secondary" shape="circle"]</p>
 			<!-- /wp:paragraph -->
 
-			<!-- wp:heading {"fontSize":"24"} -->
-			<h2 class="wp-block-heading has-24-font-size">Exclusive Content</h2>
+			<!-- wp:heading {"style":{"typography":{"textTransform":"capitalize"}},"fontSize":"24"} -->
+			<h2 class="wp-block-heading has-24-font-size" style="text-transform:capitalize">Exclusive content</h2>
 			<!-- /wp:heading -->
 
 			<!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"var:preset|spacing|10"}}}} -->
@@ -65,8 +65,8 @@
 			<p class="has-text-align-center has-21-font-size" style="font-style:normal;font-weight:700">[fa icon="headset" color="site-navigation-background" background="secondary" shape="circle"]</p>
 			<!-- /wp:paragraph -->
 
-			<!-- wp:heading {"fontSize":"24"} -->
-			<h2 class="wp-block-heading has-24-font-size">Priority Support</h2>
+			<!-- wp:heading {"style":{"typography":{"textTransform":"capitalize"}},"fontSize":"24"} -->
+			<h2 class="wp-block-heading has-24-font-size" style="text-transform:capitalize">Priority support</h2>
 			<!-- /wp:heading -->
 
 			<!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"var:preset|spacing|10"}}}} -->

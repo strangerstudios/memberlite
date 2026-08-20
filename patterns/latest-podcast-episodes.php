@@ -16,7 +16,7 @@
 	<p class="has-text-align-center has-color-action-color has-text-color has-link-color has-16-font-size" style="text-transform:capitalize"><strong>Start listening today</strong></p>
 	<!-- /wp:paragraph -->
 	<!-- wp:heading {"style":{"typography":{"textAlign":"center","textTransform":"capitalize"},"spacing":{"margin":{"top":"0"}}}} -->
-	<h2 class="wp-block-heading has-text-align-center" style="margin-top:0;text-transform:capitalize">Latest Podcast Episodes</h2>
+	<h2 class="wp-block-heading has-text-align-center" style="margin-top:0;text-transform:capitalize">Latest podcast episodes</h2>
 	<!-- /wp:heading -->
 	<!-- wp:query {"queryId":6,"query":{"perPage":3,"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date","author":"","search":"","exclude":[],"sticky":"exclude","inherit":false},"metadata":{"categories":["posts"],"name":"Grid"}} -->
 	<div class="wp-block-query">

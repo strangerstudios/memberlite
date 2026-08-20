@@ -14,8 +14,8 @@
 <div class="wp-block-group" style="margin-top:var(--wp--preset--spacing--20);margin-bottom:var(--wp--preset--spacing--20);padding-right:var(--wp--preset--spacing--10);padding-left:var(--wp--preset--spacing--10)">
 	<!-- wp:group {"align":"full","style":{"spacing":{"blockGap":"var:preset|spacing|10"}},"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"space-between"}} -->
 	<div class="wp-block-group alignfull">
-		<!-- wp:heading {"fontSize":"21"} -->
-		<h2 class="wp-block-heading has-21-font-size"><strong>Featured Courses</strong></h2>
+		<!-- wp:heading {"style":{"typography":{"textTransform":"capitalize"}},"fontSize":"21"} -->
+		<h2 class="wp-block-heading has-21-font-size" style="text-transform:capitalize"><strong>Featured courses</strong></h2>
 		<!-- /wp:heading -->
 		<!-- wp:buttons {"fontSize":"16","layout":{"type":"flex","verticalAlignment":"bottom"}} -->
 		<div class="wp-block-buttons has-custom-font-size has-16-font-size">
@@ -36,7 +36,7 @@
 				<img class="wp-block-cover__image-background" alt="" src="<?php echo esc_url( get_template_directory_uri() ); ?>/patterns/images/landscapes/sean-oulashin-KMn4VEeEPR8-unsplash-md.jpg" style="object-position:50% 0%" data-object-fit="cover" data-object-position="50% 0%"/>
 				<div class="wp-block-cover__inner-container">
 					<!-- wp:paragraph {"placeholder":"Write title…","style":{"typography":{"textAlign":"left","textTransform":"capitalize","fontStyle":"normal","fontWeight":"800"}},"fontSize":"large"} -->
-					<p class="has-text-align-left has-large-font-size" style="font-style:normal;font-weight:800;text-transform:capitalize">Beginner Surfing Fundamentals</p>
+					<p class="has-text-align-left has-large-font-size" style="font-style:normal;font-weight:800;text-transform:capitalize">Beginner surfing fundamentals</p>
 					<!-- /wp:paragraph -->
 					<!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"0"}}}} -->
 					<p style="margin-top:0"><strong>Catch your first wave with confidence</strong></p>
@@ -71,7 +71,7 @@
 				<img class="wp-block-cover__image-background" alt="" src="<?php echo esc_url( get_template_directory_uri() ); ?>/patterns/images/landscapes/joshua-earle-9idqIGrLuTE-unsplash-md.jpg" style="object-position:50% 0%" data-object-fit="cover" data-object-position="50% 0%"/>
 				<div class="wp-block-cover__inner-container">
 					<!-- wp:paragraph {"placeholder":"Write title…","style":{"typography":{"textAlign":"left","textTransform":"capitalize","fontStyle":"normal","fontWeight":"800"}},"fontSize":"large"} -->
-					<p class="has-text-align-left has-large-font-size" style="font-style:normal;font-weight:800;text-transform:capitalize">Backcountry Hiking Basics</p>
+					<p class="has-text-align-left has-large-font-size" style="font-style:normal;font-weight:800;text-transform:capitalize">Backcountry hiking basics</p>
 					<!-- /wp:paragraph -->
 					<!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"0"}}}} -->
 					<p style="margin-top:0"><strong>Explore the trail with confidence and skill</strong></p>

@@ -17,8 +17,8 @@
 			<p class="has-text-align-center has-42-font-size" style="font-style:normal;font-weight:700"><strong>Free</strong></p>
 			<!-- /wp:paragraph -->
 
-			<!-- wp:paragraph {"style":{"typography":{"textAlign":"center"},"elements":{"link":{"color":{"text":"var:preset|color|color-action"}}},"spacing":{"margin":{"top":"var:preset|spacing|10"}}},"textColor":"color-action","fontSize":"24"} -->
-			<p class="has-text-align-center has-color-action-color has-text-color has-link-color has-24-font-size" style="margin-top:var(--wp--preset--spacing--10)"><strong>Free Trial</strong></p>
+			<!-- wp:paragraph {"style":{"typography":{"textAlign":"center","textTransform":"capitalize"},"elements":{"link":{"color":{"text":"var:preset|color|color-action"}}},"spacing":{"margin":{"top":"var:preset|spacing|10"}}},"textColor":"color-action","fontSize":"24"} -->
+			<p class="has-text-align-center has-color-action-color has-text-color has-link-color has-24-font-size" style="margin-top:var(--wp--preset--spacing--10);text-transform:capitalize"><strong>Free trial</strong></p>
 			<!-- /wp:paragraph -->
 
 			<!-- wp:paragraph {"style":{"typography":{"textAlign":"center"},"spacing":{"margin":{"top":"8px","bottom":"var:preset|spacing|10"}}},"fontSize":"21"} -->

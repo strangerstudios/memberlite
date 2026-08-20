@@ -13,8 +13,8 @@
 <!-- wp:group {"align":"full","layout":{"type":"constrained"}} -->
 <div class="wp-block-group alignfull"><!-- wp:cover {"url":"<?php echo esc_url( get_template_directory_uri() ); ?>/patterns/images/landscapes/daphne-fecheyr-VCET-_hySnU-unsplash-md.jpg","dimRatio":70,"overlayColor":"base","isUserOverlayColor":true,"isDark":false,"sizeSlug":"full","align":"full","style":{"border":{"radius":{"bottomLeft":"100px","bottomRight":"100px"}},"spacing":{"padding":{"top":"var:preset|spacing|30","bottom":"var:preset|spacing|40"}}},"layout":{"type":"constrained"}} -->
 	<div class="wp-block-cover alignfull is-light" style="border-bottom-left-radius:100px;border-bottom-right-radius:100px;padding-top:var(--wp--preset--spacing--30);padding-bottom:var(--wp--preset--spacing--40)"><img class="wp-block-cover__image-background size-full" alt="" src="<?php echo esc_url( get_template_directory_uri() ); ?>/patterns/images/landscapes/daphne-fecheyr-VCET-_hySnU-unsplash-md.jpg" data-object-fit="cover"/><span aria-hidden="true" class="wp-block-cover__background has-base-background-color has-background-dim-70 has-background-dim"></span><div class="wp-block-cover__inner-container"><!-- wp:group {"align":"wide","style":{"spacing":{"padding":{"right":"var:preset|spacing|30","left":"var:preset|spacing|30"}}},"layout":{"type":"constrained"}} -->
-			<div class="wp-block-group alignwide" style="padding-right:var(--wp--preset--spacing--30);padding-left:var(--wp--preset--spacing--30)"><!-- wp:heading {"style":{"typography":{"textAlign":"center","fontStyle":"normal","fontWeight":"700"},"elements":{"link":{"color":{"text":"var:preset|color|body-text"}}}},"textColor":"body-text","fontSize":"54"} -->
-				<h2 class="wp-block-heading has-text-align-center has-body-text-color has-text-color has-link-color has-54-font-size" style="font-style:normal;font-weight:700">Everything Your Members Need, All in One Place</h2>
+			<div class="wp-block-group alignwide" style="padding-right:var(--wp--preset--spacing--30);padding-left:var(--wp--preset--spacing--30)"><!-- wp:heading {"style":{"typography":{"textAlign":"center","fontStyle":"normal","fontWeight":"700","textTransform":"capitalize"},"elements":{"link":{"color":{"text":"var:preset|color|body-text"}}}},"textColor":"body-text","fontSize":"54"} -->
+				<h2 class="wp-block-heading has-text-align-center has-body-text-color has-text-color has-link-color has-54-font-size" style="font-style:normal;font-weight:700;text-transform:capitalize">Everything your members need, all in one place</h2>
 				<!-- /wp:heading -->
 
 				<!-- wp:paragraph {"style":{"typography":{"textAlign":"center"},"elements":{"link":{"color":{"text":"var:preset|color|body-text"}}}},"textColor":"body-text","fontSize":"21"} -->
@@ -22,12 +22,12 @@
 				<!-- /wp:paragraph -->
 
 				<!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center"}} -->
-				<div class="wp-block-buttons"><!-- wp:button {"width":50,"className":"is-style-fill"} -->
-					<div class="wp-block-button has-custom-width wp-block-button__width-50 is-style-fill"><a class="wp-block-button__link wp-element-button">Join Now</a></div>
+				<div class="wp-block-buttons"><!-- wp:button {"width":50,"className":"is-style-fill","style":{"typography":{"textTransform":"capitalize"}}} -->
+					<div class="wp-block-button has-custom-width wp-block-button__width-50 is-style-fill"><a class="wp-block-button__link wp-element-button" style="text-transform:capitalize">Join now</a></div>
 					<!-- /wp:button -->
 
-					<!-- wp:button {"textColor":"body-text","width":50,"className":"is-style-outline","style":{"border":{"width":"3px"},"elements":{"link":{"color":{"text":"var:preset|color|body-text"}}}},"borderColor":"body-text"} -->
-					<div class="wp-block-button has-custom-width wp-block-button__width-50 is-style-outline"><a class="wp-block-button__link has-body-text-color has-text-color has-link-color has-border-color has-body-text-border-color wp-element-button" style="border-width:3px">View Membership Plans</a></div>
+					<!-- wp:button {"textColor":"body-text","width":50,"className":"is-style-outline","style":{"border":{"width":"3px"},"elements":{"link":{"color":{"text":"var:preset|color|body-text"}}},"typography":{"textTransform":"capitalize"}},"borderColor":"body-text"} -->
+					<div class="wp-block-button has-custom-width wp-block-button__width-50 is-style-outline"><a class="wp-block-button__link has-body-text-color has-text-color has-link-color has-border-color has-body-text-border-color wp-element-button" style="border-width:3px;text-transform:capitalize">View membership plans</a></div>
 					<!-- /wp:button --></div>
 				<!-- /wp:buttons -->
 
@@ -39,21 +39,21 @@
 								<p class="has-color-action-color has-text-color has-link-color"><strong>★ ★ ★ ★ ★</strong></p>
 								<!-- /wp:paragraph -->
 
-								<!-- wp:paragraph -->
-								<p>500+ Member Reviews</p>
+								<!-- wp:paragraph {"style":{"typography":{"textTransform":"capitalize"}}} -->
+								<p style="text-transform:capitalize">500+ member reviews</p>
 								<!-- /wp:paragraph --></div>
 							<!-- /wp:group --></div>
 						<!-- /wp:column -->
 
 						<!-- wp:column -->
-						<div class="wp-block-column"><!-- wp:paragraph {"style":{"typography":{"textAlign":"center"}}} -->
-							<p class="has-text-align-center">Cancel Anytime</p>
+						<div class="wp-block-column"><!-- wp:paragraph {"style":{"typography":{"textAlign":"center","textTransform":"capitalize"}}} -->
+							<p class="has-text-align-center" style="text-transform:capitalize">Cancel anytime</p>
 							<!-- /wp:paragraph --></div>
 						<!-- /wp:column -->
 
 						<!-- wp:column {"width":"35%"} -->
-						<div class="wp-block-column" style="flex-basis:35%"><!-- wp:paragraph {"style":{"typography":{"textAlign":"center"}}} -->
-							<p class="has-text-align-center">30-Day Money-Back Guarantee</p>
+						<div class="wp-block-column" style="flex-basis:35%"><!-- wp:paragraph {"style":{"typography":{"textAlign":"center","textTransform":"capitalize"}}} -->
+							<p class="has-text-align-center" style="text-transform:capitalize">30-day money-back guarantee</p>
 							<!-- /wp:paragraph --></div>
 						<!-- /wp:column --></div>
 					<!-- /wp:columns --></div>
