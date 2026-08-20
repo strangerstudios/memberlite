@@ -189,8 +189,7 @@ body.memberlite-banner-hidden .entry-content > .banner:first-child {
 :is(
   details > summary,
   .memberlite_accordion h2,
-  .entry-content .memberlite_accordion h2,
-  .wp-block-accordion-item .wp-block-accordion-heading
+  .entry-content .memberlite_accordion h2
 ) {
 	cursor: pointer;
 	font-family: var(--memberlite-header-font), ui-sans-serif;

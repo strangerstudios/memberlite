@@ -40,7 +40,7 @@
 								<!-- /wp:paragraph -->
 
 								<!-- wp:paragraph {"style":{"typography":{"textTransform":"capitalize"}}} -->
-								<p style="text-transform:capitalize">500+ member reviews</p>
+								<p style="text-transform:capitalize">500+ reviews</p>
 								<!-- /wp:paragraph --></div>
 							<!-- /wp:group --></div>
 						<!-- /wp:column -->

@@ -720,7 +720,7 @@ hr.wp-block-separator {
 	// Default accordion style
 	.wp-block-accordion-heading {
 		border-top: 1px solid var(--memberlite-color-borders);
-		padding: var(--wp--preset--spacing--10);
+		padding: var(--wp--preset--spacing--10) var(--wp--preset--spacing--10) 0 var(--wp--preset--spacing--10);
 	}
 
 	// core accordion does not have padding so if we define padding ourselves, it can't be overwritten from the editor...

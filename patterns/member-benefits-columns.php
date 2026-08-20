@@ -13,8 +13,8 @@
 <!-- wp:group {"align":"full","style":{"spacing":{"padding":{"top":"var:preset|spacing|20","bottom":"var:preset|spacing|20"}}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group alignfull" style="padding-top:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--20)"><!-- wp:columns {"align":"wide","style":{"spacing":{"blockGap":{"left":"var:preset|spacing|10"}}}} -->
 	<div class="wp-block-columns alignwide"><!-- wp:column -->
-		<div class="wp-block-column"><!-- wp:paragraph {"style":{"elements":{"link":{"color":{"text":"var:preset|color|color-secondary"}}},"typography":{"textTransform":"uppercase","letterSpacing":"1px"}},"textColor":"color-secondary"} -->
-			<p class="has-color-secondary-color has-text-color has-link-color" style="letter-spacing:1px;text-transform:uppercase"><strong>Benefits</strong></p>
+		<div class="wp-block-column"><!-- wp:paragraph {"style":{"elements":{"link":{"color":{"text":"var:preset|color|color-action"}}},"typography":{"textTransform":"uppercase","letterSpacing":"1px"}},"textColor":"color-action"} -->
+			<p class="has-color-action-color has-text-color has-link-color" style="letter-spacing:1px;text-transform:uppercase"><strong>Benefits</strong></p>
 			<!-- /wp:paragraph -->
 
 			<!-- wp:heading {"style":{"spacing":{"margin":{"top":"var:preset|spacing|10"}},"typography":{"textTransform":"capitalize"}},"fontSize":"32"} -->
@@ -34,7 +34,7 @@
 
 		<!-- wp:column {"style":{"border":{"width":"1px"},"spacing":{"padding":{"top":"var:preset|spacing|30","bottom":"var:preset|spacing|30","left":"var:preset|spacing|20","right":"var:preset|spacing|20"}}},"borderColor":"borders"} -->
 		<div class="wp-block-column has-border-color has-borders-border-color" style="border-width:1px;padding-top:var(--wp--preset--spacing--30);padding-right:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--30);padding-left:var(--wp--preset--spacing--20)"><!-- wp:paragraph {"style":{"typography":{"textAlign":"center","fontStyle":"normal","fontWeight":"700"}},"fontSize":"21"} -->
-			<p class="has-text-align-center has-21-font-size" style="font-style:normal;font-weight:700">[fa icon="users" color="site-navigation-background" background="secondary" shape="circle"]</p>
+			<p class="has-text-align-center has-21-font-size" style="font-style:normal;font-weight:700">[fa icon="users" color="site-background" background="secondary" shape="circle"]</p>
 			<!-- /wp:paragraph -->
 
 			<!-- wp:heading {"style":{"typography":{"textTransform":"capitalize"}},"fontSize":"24"} -->
@@ -48,7 +48,7 @@
 
 		<!-- wp:column {"style":{"border":{"width":"1px"},"spacing":{"padding":{"top":"var:preset|spacing|30","bottom":"var:preset|spacing|30","left":"var:preset|spacing|20","right":"var:preset|spacing|20"}}},"borderColor":"borders"} -->
 		<div class="wp-block-column has-border-color has-borders-border-color" style="border-width:1px;padding-top:var(--wp--preset--spacing--30);padding-right:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--30);padding-left:var(--wp--preset--spacing--20)"><!-- wp:paragraph {"style":{"typography":{"textAlign":"center","fontStyle":"normal","fontWeight":"700"}},"fontSize":"21"} -->
-			<p class="has-text-align-center has-21-font-size" style="font-style:normal;font-weight:700">[fa icon="book-open" color="site-navigation-background" background="secondary" shape="circle"]</p>
+			<p class="has-text-align-center has-21-font-size" style="font-style:normal;font-weight:700">[fa icon="book-open" color="site-background" background="secondary" shape="circle"]</p>
 			<!-- /wp:paragraph -->
 
 			<!-- wp:heading {"style":{"typography":{"textTransform":"capitalize"}},"fontSize":"24"} -->
@@ -62,7 +62,7 @@
 
 		<!-- wp:column {"style":{"border":{"width":"1px"},"spacing":{"padding":{"top":"var:preset|spacing|30","bottom":"var:preset|spacing|30","left":"var:preset|spacing|20","right":"var:preset|spacing|20"}}},"borderColor":"borders"} -->
 		<div class="wp-block-column has-border-color has-borders-border-color" style="border-width:1px;padding-top:var(--wp--preset--spacing--30);padding-right:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--30);padding-left:var(--wp--preset--spacing--20)"><!-- wp:paragraph {"style":{"typography":{"textAlign":"center","fontStyle":"normal","fontWeight":"700"}},"fontSize":"21"} -->
-			<p class="has-text-align-center has-21-font-size" style="font-style:normal;font-weight:700">[fa icon="headset" color="site-navigation-background" background="secondary" shape="circle"]</p>
+			<p class="has-text-align-center has-21-font-size" style="font-style:normal;font-weight:700">[fa icon="headset" color="site-background" background="secondary" shape="circle"]</p>
 			<!-- /wp:paragraph -->
 
 			<!-- wp:heading {"style":{"typography":{"textTransform":"capitalize"}},"fontSize":"24"} -->
