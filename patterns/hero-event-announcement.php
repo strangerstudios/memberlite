@@ -39,24 +39,16 @@
 			<h2 class="wp-block-heading has-30-font-size" style="letter-spacing:1px;text-transform:uppercase">sponsors:</h2>
 			<!-- /wp:heading -->
 
-			<!-- wp:image {"aspectRatio":"1","scale":"cover","linkDestination":"none","style":{"layout":{"selfStretch":"fixed","flexSize":"50px"},"color":{"duotone":"unset"}}} -->
-			<figure class="wp-block-image"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/patterns/images/landscapes/daphne-fecheyr-VCET-_hySnU-unsplash-sm.jpg" alt="Placeholder sponsor logo." style="aspect-ratio:1;object-fit:cover"/></figure>
+			<!-- wp:image {"aspectRatio":"1","scale":"cover","linkDestination":"none","style":{"layout":{"selfStretch":"fixed","flexSize":"80px"},"color":{"duotone":"unset"}}} -->
+			<figure class="wp-block-image"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/patterns/images/icons/logo-02.png" alt="Sponsor logo." style="aspect-ratio:1;object-fit:cover"/></figure>
 			<!-- /wp:image -->
 
-			<!-- wp:image {"aspectRatio":"1","scale":"cover","linkDestination":"none","style":{"layout":{"selfStretch":"fixed","flexSize":"50px"},"color":{"duotone":"unset"}}} -->
-			<figure class="wp-block-image"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/patterns/images/landscapes/joshua-earle-Dn3ATeXQEQ4-unsplash-sm.jpg" alt="Placeholder sponsor logo." style="aspect-ratio:1;object-fit:cover"/></figure>
+			<!-- wp:image {"aspectRatio":"1","scale":"cover","linkDestination":"none","style":{"layout":{"selfStretch":"fixed","flexSize":"80px"},"color":{"duotone":"unset"}}} -->
+			<figure class="wp-block-image"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/patterns/images/icons/logo-04.png" alt="Sponsor logo." style="aspect-ratio:1;object-fit:cover"/></figure>
 			<!-- /wp:image -->
 
-			<!-- wp:image {"aspectRatio":"1","scale":"cover","linkDestination":"none","style":{"layout":{"selfStretch":"fixed","flexSize":"50px"},"color":{"duotone":"unset"}}} -->
-			<figure class="wp-block-image"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/patterns/images/landscapes/joshua-sortino-XMcoTHgNcQA-unsplash-sm.jpg" alt="Placeholder sponsor logo." style="aspect-ratio:1;object-fit:cover"/></figure>
-			<!-- /wp:image -->
-
-			<!-- wp:image {"aspectRatio":"1","scale":"cover","linkDestination":"none","style":{"layout":{"selfStretch":"fixed","flexSize":"50px"},"color":{"duotone":"unset"}}} -->
-			<figure class="wp-block-image"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/patterns/images/landscapes/oliver-spicer-NmPNw8w_a24-unsplash-sm.jpg" alt="Placeholder sponsor logo." style="aspect-ratio:1;object-fit:cover"/></figure>
-			<!-- /wp:image -->
-
-			<!-- wp:image {"aspectRatio":"1","scale":"cover","linkDestination":"none","style":{"layout":{"selfStretch":"fixed","flexSize":"50px"},"color":{"duotone":"unset"}}} -->
-			<figure class="wp-block-image"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/patterns/images/landscapes/paul-pastourmatzis-eVQIojFZxm0-unsplash-sm.jpg" alt="Placeholder sponsor logo." style="aspect-ratio:1;object-fit:cover"/></figure>
+			<!-- wp:image {"aspectRatio":"1","scale":"cover","linkDestination":"none","style":{"layout":{"selfStretch":"fixed","flexSize":"80px"},"color":{"duotone":"unset"}}} -->
+			<figure class="wp-block-image"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/patterns/images/icons/logo-03.png" alt="Sponsor logo." style="aspect-ratio:1;object-fit:cover"/></figure>
 			<!-- /wp:image --></div>
 		<!-- /wp:group --></div>
 	<!-- /wp:group --></div>

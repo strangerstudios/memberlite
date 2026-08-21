@@ -10,16 +10,16 @@
  * @since Memberlite TBD
  */
 ?>
-<!-- wp:group {"align":"wide","style":{"spacing":{"padding":{"right":"0","left":"0"}}},"layout":{"type":"constrained"}} -->
-<div class="wp-block-group alignwide" style="padding-right:0;padding-left:0">
-	<!-- wp:heading {"align":"wide","style":{"spacing":{"margin":{"bottom":"var:preset|spacing|10","left":"0"},"padding":{"right":"var:preset|spacing|10","left":"var:preset|spacing|10"}},"typography":{"textTransform":"capitalize"}}} -->
-	<h2 class="wp-block-heading alignwide" style="margin-bottom:var(--wp--preset--spacing--10);margin-left:0;padding-right:var(--wp--preset--spacing--10);padding-left:var(--wp--preset--spacing--10);text-transform:capitalize">Featured news</h2>
+<!-- wp:group {"align":"full","style":{"spacing":{"padding":{"right":"var:preset|spacing|10","left":"var:preset|spacing|10"}}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group alignfull" style="padding-right:var(--wp--preset--spacing--10);padding-left:var(--wp--preset--spacing--10)">
+	<!-- wp:heading {"align":"wide","style":{"typography":{"textTransform":"capitalize"},"spacing":{"padding":{"top":"var:preset|spacing|10","bottom":"var:preset|spacing|10"}}}} -->
+	<h2 class="wp-block-heading alignwide" style="padding-top:var(--wp--preset--spacing--10);padding-bottom:var(--wp--preset--spacing--10);text-transform:capitalize">Featured news</h2>
 	<!-- /wp:heading -->
 	<!-- wp:columns {"align":"wide","style":{"spacing":{"blockGap":{"top":"2px","left":"2px"},"margin":{"top":"0","bottom":"0"},"padding":{"right":"0","left":"0"}}}} -->
 	<div class="wp-block-columns alignwide" style="margin-top:0;margin-bottom:0;padding-right:0;padding-left:0">
 		<!-- wp:column {"layout":{"type":"constrained"}} -->
 		<div class="wp-block-column">
-			<!-- wp:query {"queryId":7,"query":{"perPage":1,"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date","author":"","search":"","exclude":[],"sticky":"","inherit":false,"taxQuery":null,"parents":[],"format":[]}} -->
+			<!-- wp:query {"queryId":7,"query":{"perPage":1,"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date","author":"","search":"","exclude":[],"sticky":"","inherit":false,"taxQuery":null,"parents":[],"format":[],"excludeCurrent":null}} -->
 			<div class="wp-block-query">
 				<!-- wp:post-template -->
 				<!-- wp:cover {"useFeaturedImage":true,"dimRatio":80,"overlayColor":"site-navigation-link","isUserOverlayColor":true,"style":{"dimensions":{"aspectRatio":"3/2"},"spacing":{"padding":{"right":"var:preset|spacing|20","left":"var:preset|spacing|20"}}},"layout":{"type":"constrained"}} -->
@@ -29,7 +29,7 @@
 						<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|10","margin":{"top":"var:preset|spacing|10"}}},"layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"center"}} -->
 						<div class="wp-block-group" style="margin-top:var(--wp--preset--spacing--10)">
 							<!-- wp:post-author-name {"style":{"typography":{"fontStyle":"normal","fontWeight":"700"}}} /-->
-							<!-- wp:post-date /-->
+							<!-- wp:post-date {"metadata":{"bindings":{"datetime":{"source":"core/post-data","args":{"field":"date"}}}}} /-->
 						</div>
 						<!-- /wp:group -->
 					</div>
@@ -42,7 +42,7 @@
 		<!-- /wp:column -->
 		<!-- wp:column {"style":{"spacing":{"blockGap":"0"}},"layout":{"type":"constrained"}} -->
 		<div class="wp-block-column">
-			<!-- wp:query {"queryId":12,"query":{"perPage":4,"pages":0,"offset":"1","postType":"post","order":"desc","orderBy":"date","author":"","search":"","exclude":[],"sticky":"exclude","inherit":false},"align":"wide"} -->
+			<!-- wp:query {"queryId":12,"query":{"perPage":4,"pages":0,"offset":"1","postType":"post","order":"desc","orderBy":"date","author":"","search":"","exclude":[],"sticky":"exclude","inherit":false,"excludeCurrent":null},"align":"wide"} -->
 			<div class="wp-block-query alignwide">
 				<!-- wp:post-template {"style":{"spacing":{"blockGap":"2px"}},"layout":{"type":"grid","columnCount":2}} -->
 				<!-- wp:cover {"useFeaturedImage":true,"dimRatio":80,"overlayColor":"site-navigation-link","isUserOverlayColor":true,"style":{"dimensions":{"aspectRatio":"3/2"},"spacing":{"padding":{"right":"var:preset|spacing|20","left":"var:preset|spacing|20"}}},"layout":{"type":"constrained"}} -->

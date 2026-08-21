@@ -12,8 +12,8 @@
 ?>
 <!-- wp:group {"style":{"spacing":{"padding":{"right":"var:preset|spacing|10","left":"var:preset|spacing|10"},"margin":{"top":"var:preset|spacing|20","bottom":"var:preset|spacing|20"}}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group" style="margin-top:var(--wp--preset--spacing--20);margin-bottom:var(--wp--preset--spacing--20);padding-right:var(--wp--preset--spacing--10);padding-left:var(--wp--preset--spacing--10)">
-	<!-- wp:group {"align":"full","style":{"spacing":{"blockGap":"var:preset|spacing|10"}},"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"space-between"}} -->
-	<div class="wp-block-group alignfull">
+	<!-- wp:group {"align":"wide","style":{"spacing":{"blockGap":"var:preset|spacing|10"}},"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"space-between"}} -->
+	<div class="wp-block-group alignwide">
 		<!-- wp:heading {"style":{"typography":{"textTransform":"capitalize"}},"fontSize":"21"} -->
 		<h2 class="wp-block-heading has-21-font-size" style="text-transform:capitalize"><strong>Featured courses</strong></h2>
 		<!-- /wp:heading -->
@@ -26,14 +26,14 @@
 		<!-- /wp:buttons -->
 	</div>
 	<!-- /wp:group -->
-	<!-- wp:columns {"align":"full","style":{"spacing":{"blockGap":{"top":"var:preset|spacing|10","left":"var:preset|spacing|10"},"margin":{"top":"var:preset|spacing|10","bottom":"var:preset|spacing|30"}}}} -->
-	<div class="wp-block-columns alignfull" style="margin-top:var(--wp--preset--spacing--10);margin-bottom:var(--wp--preset--spacing--30)">
+	<!-- wp:columns {"align":"wide","style":{"spacing":{"blockGap":{"top":"var:preset|spacing|10","left":"var:preset|spacing|10"},"margin":{"top":"var:preset|spacing|10","bottom":"var:preset|spacing|30"}}}} -->
+	<div class="wp-block-columns alignwide" style="margin-top:var(--wp--preset--spacing--10);margin-bottom:var(--wp--preset--spacing--30)">
 		<!-- wp:column {"width":"50%"} -->
 		<div class="wp-block-column" style="flex-basis:50%">
-			<!-- wp:cover {"url":"<?php echo esc_url( get_template_directory_uri() ); ?>/patterns/images/landscapes/sean-oulashin-KMn4VEeEPR8-unsplash-md.jpg","dimRatio":80,"overlayColor":"site-navigation-link","focalPoint":{"x":0.5,"y":0},"style":{"dimensions":{"aspectRatio":"16/9"},"spacing":{"padding":{"right":"var:preset|spacing|20","left":"var:preset|spacing|20"}},"border":{"radius":{"topLeft":"8px","topRight":"8px","bottomLeft":"8px","bottomRight":"8px"}},"elements":{"link":{"color":{"text":"var:preset|color|site-navigation-background"}}}},"textColor":"site-navigation-background","layout":{"type":"constrained"}} -->
+			<!-- wp:cover {"url":"<?php echo esc_url( get_template_directory_uri() ); ?>/patterns/images/landscapes/sean-oulashin-KMn4VEeEPR8-unsplash-md.jpg","dimRatio":80,"overlayColor":"site-navigation-link","isUserOverlayColor":true,"focalPoint":{"x":0.5,"y":0},"style":{"dimensions":{"aspectRatio":"16/9"},"spacing":{"padding":{"right":"var:preset|spacing|20","left":"var:preset|spacing|20"}},"border":{"radius":{"topLeft":"8px","topRight":"8px","bottomLeft":"8px","bottomRight":"8px"}},"elements":{"link":{"color":{"text":"var:preset|color|site-navigation-background"}}}},"textColor":"site-navigation-background","layout":{"type":"constrained"}} -->
 			<div class="wp-block-cover has-site-navigation-background-color has-text-color has-link-color" style="border-top-left-radius:8px;border-top-right-radius:8px;border-bottom-left-radius:8px;border-bottom-right-radius:8px;padding-right:var(--wp--preset--spacing--20);padding-left:var(--wp--preset--spacing--20)">
-				<span aria-hidden="true" class="wp-block-cover__background has-site-navigation-link-background-color has-background-dim-80 has-background-dim"></span>
 				<img class="wp-block-cover__image-background" alt="" src="<?php echo esc_url( get_template_directory_uri() ); ?>/patterns/images/landscapes/sean-oulashin-KMn4VEeEPR8-unsplash-md.jpg" style="object-position:50% 0%" data-object-fit="cover" data-object-position="50% 0%"/>
+				<span aria-hidden="true" class="wp-block-cover__background has-site-navigation-link-background-color has-background-dim-80 has-background-dim"></span>
 				<div class="wp-block-cover__inner-container">
 					<!-- wp:paragraph {"placeholder":"Write title…","style":{"typography":{"textAlign":"left","textTransform":"capitalize","fontStyle":"normal","fontWeight":"800"}},"fontSize":"large"} -->
 					<p class="has-text-align-left has-large-font-size" style="font-style:normal;font-weight:800;text-transform:capitalize">Beginner surfing fundamentals</p>
@@ -65,10 +65,10 @@
 		<!-- /wp:column -->
 		<!-- wp:column {"width":"50%"} -->
 		<div class="wp-block-column" style="flex-basis:50%">
-			<!-- wp:cover {"url":"<?php echo esc_url( get_template_directory_uri() ); ?>/patterns/images/landscapes/joshua-earle-9idqIGrLuTE-unsplash-md.jpg","dimRatio":80,"overlayColor":"site-navigation-link","focalPoint":{"x":0.5,"y":0},"style":{"dimensions":{"aspectRatio":"16/9"},"spacing":{"padding":{"right":"var:preset|spacing|20","left":"var:preset|spacing|20"}},"border":{"radius":{"topLeft":"8px","topRight":"8px","bottomLeft":"8px","bottomRight":"8px"}},"elements":{"link":{"color":{"text":"var:preset|color|site-navigation-background"}}}},"textColor":"site-navigation-background","layout":{"type":"constrained"}} -->
+			<!-- wp:cover {"url":"<?php echo esc_url( get_template_directory_uri() ); ?>/patterns/images/landscapes/joshua-earle-9idqIGrLuTE-unsplash-md.jpg","dimRatio":80,"overlayColor":"site-navigation-link","isUserOverlayColor":true,"focalPoint":{"x":0.5,"y":0},"style":{"dimensions":{"aspectRatio":"16/9"},"spacing":{"padding":{"right":"var:preset|spacing|20","left":"var:preset|spacing|20"}},"border":{"radius":{"topLeft":"8px","topRight":"8px","bottomLeft":"8px","bottomRight":"8px"}},"elements":{"link":{"color":{"text":"var:preset|color|site-navigation-background"}}}},"textColor":"site-navigation-background","layout":{"type":"constrained"}} -->
 			<div class="wp-block-cover has-site-navigation-background-color has-text-color has-link-color" style="border-top-left-radius:8px;border-top-right-radius:8px;border-bottom-left-radius:8px;border-bottom-right-radius:8px;padding-right:var(--wp--preset--spacing--20);padding-left:var(--wp--preset--spacing--20)">
-				<span aria-hidden="true" class="wp-block-cover__background has-site-navigation-link-background-color has-background-dim-80 has-background-dim"></span>
 				<img class="wp-block-cover__image-background" alt="" src="<?php echo esc_url( get_template_directory_uri() ); ?>/patterns/images/landscapes/joshua-earle-9idqIGrLuTE-unsplash-md.jpg" style="object-position:50% 0%" data-object-fit="cover" data-object-position="50% 0%"/>
+				<span aria-hidden="true" class="wp-block-cover__background has-site-navigation-link-background-color has-background-dim-80 has-background-dim"></span>
 				<div class="wp-block-cover__inner-container">
 					<!-- wp:paragraph {"placeholder":"Write title…","style":{"typography":{"textAlign":"left","textTransform":"capitalize","fontStyle":"normal","fontWeight":"800"}},"fontSize":"large"} -->
 					<p class="has-text-align-left has-large-font-size" style="font-style:normal;font-weight:800;text-transform:capitalize">Backcountry hiking basics</p>
@@ -100,8 +100,8 @@
 		<!-- /wp:column -->
 	</div>
 	<!-- /wp:columns -->
-	<!-- wp:columns {"align":"full","style":{"spacing":{"blockGap":{"left":"var:preset|spacing|10"},"margin":{"top":"var:preset|spacing|20"}}}} -->
-	<div class="wp-block-columns alignfull" style="margin-top:var(--wp--preset--spacing--20)">
+	<!-- wp:columns {"align":"wide","style":{"spacing":{"blockGap":{"left":"var:preset|spacing|10"},"margin":{"top":"var:preset|spacing|20"}}}} -->
+	<div class="wp-block-columns alignwide" style="margin-top:var(--wp--preset--spacing--20)">
 		<!-- wp:column {"width":"50%"} -->
 		<div class="wp-block-column" style="flex-basis:50%">
 			<!-- wp:heading {"style":{"typography":{"textTransform":"capitalize"}},"fontSize":"21"} -->
