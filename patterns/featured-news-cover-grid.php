@@ -29,7 +29,7 @@
 						<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|10","margin":{"top":"var:preset|spacing|10"}}},"layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"center"}} -->
 						<div class="wp-block-group" style="margin-top:var(--wp--preset--spacing--10)">
 							<!-- wp:post-author-name {"style":{"typography":{"fontStyle":"normal","fontWeight":"700"}}} /-->
-							<!-- wp:post-date {"metadata":{"bindings":{"datetime":{"source":"core/post-data","args":{"field":"date"}}}}} /-->
+							<!-- wp:post-date /-->
 						</div>
 						<!-- /wp:group -->
 					</div>
