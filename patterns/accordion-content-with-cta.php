@@ -33,8 +33,8 @@
 		<!-- /wp:column -->
 
 		<!-- wp:column -->
-		<div class="wp-block-column"><!-- wp:accordion {"className":"is-style-accrdn-large"} -->
-			<div role="group" class="wp-block-accordion is-style-accrdn-large"><!-- wp:accordion-item {"style":{"spacing":{"margin":{"bottom":"var:preset|spacing|10"}},"elements":{"link":{"color":{"text":"var:preset|color|site-navigation-background"}}}},"backgroundColor":"site-navigation-link","textColor":"site-navigation-background"} -->
+		<div class="wp-block-column"><!-- wp:accordion {"className":"is-style-accrdn-large memberlite-pattern-accordion"} -->
+			<div role="group" class="wp-block-accordion is-style-accrdn-large memberlite-pattern-accordion"><!-- wp:accordion-item {"style":{"spacing":{"margin":{"bottom":"var:preset|spacing|10"}},"elements":{"link":{"color":{"text":"var:preset|color|site-navigation-background"}}}},"backgroundColor":"site-navigation-link","textColor":"site-navigation-background"} -->
 				<div class="wp-block-accordion-item has-site-navigation-background-color has-site-navigation-link-background-color has-text-color has-background has-link-color" style="margin-bottom:var(--wp--preset--spacing--10)"><!-- wp:accordion-heading {"style":{"border":{"width":"0px","style":"none"},"typography":{"textTransform":"capitalize"},"spacing":{"padding":{"left":"0"}}},"fontSize":"24"} -->
 					<h3 class="wp-block-accordion-heading has-icon has-icon-right has-24-font-size" style="border-style:none;border-width:0px;text-transform:capitalize"><button type="button" class="wp-block-accordion-heading__toggle" style="padding-left:0"><span class="wp-block-accordion-heading__toggle-title">How much does membership cost?</span><span class="wp-block-accordion-heading__toggle-icon" aria-hidden="true">+</span></button></h3>
 					<!-- /wp:accordion-heading -->

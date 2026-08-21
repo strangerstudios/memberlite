@@ -15,8 +15,8 @@
 <h2 class="wp-block-heading has-text-align-center has-body-text-color has-text-color has-link-color" style="text-transform:capitalize"><strong>Common questions</strong></h2>
 <!-- /wp:heading -->
 
-<!-- wp:accordion {"className":"is-style-accrdn-medium","style":{"spacing":{"margin":{"top":"var:preset|spacing|40"}}}} -->
-<div role="group" class="wp-block-accordion is-style-accrdn-medium" style="margin-top:var(--wp--preset--spacing--40)"><!-- wp:accordion-item {"style":{"spacing":{"margin":{"bottom":"var:preset|spacing|10"}}}} -->
+<!-- wp:accordion {"className":"is-style-accrdn-medium memberlite-pattern-accordion","style":{"spacing":{"margin":{"top":"var:preset|spacing|40"}}}} -->
+<div role="group" class="wp-block-accordion is-style-accrdn-medium memberlite-pattern-accordion" style="margin-top:var(--wp--preset--spacing--40)"><!-- wp:accordion-item {"style":{"spacing":{"margin":{"bottom":"var:preset|spacing|10"}}}} -->
 <div class="wp-block-accordion-item" style="margin-bottom:var(--wp--preset--spacing--10)"><!-- wp:accordion-heading {"style":{"border":{"radius":{"topLeft":"8px","topRight":"8px"},"width":"0px","style":"none"},"spacing":{"padding":{"bottom":"var:preset|spacing|10"}},"elements":{"link":{"color":{"text":"var:preset|color|base"}}}},"backgroundColor":"buttons","textColor":"base"} -->
 <h3 class="wp-block-accordion-heading has-icon has-icon-right has-base-color has-buttons-background-color has-text-color has-background has-link-color" style="border-style:none;border-width:0px;border-top-left-radius:8px;border-top-right-radius:8px"><button type="button" class="wp-block-accordion-heading__toggle" style="padding-bottom:var(--wp--preset--spacing--10)"><span class="wp-block-accordion-heading__toggle-title">How does the money back guarantee work?</span><span class="wp-block-accordion-heading__toggle-icon" aria-hidden="true">+</span></button></h3>
 <!-- /wp:accordion-heading -->
