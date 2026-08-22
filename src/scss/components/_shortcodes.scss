@@ -202,8 +202,7 @@ body.memberlite-banner-hidden .entry-content > .banner:first-child {
 :is(
   details > summary,
   .memberlite_accordion h2,
-  .entry-content .memberlite_accordion h2,
-  .wp-block-accordion-item .wp-block-accordion-heading__toggle-title
+  .entry-content .memberlite_accordion h2
 ):hover {
 	text-decoration: underline;
 }
@@ -245,20 +244,7 @@ details {
 	}
 }
 
-.wp-block-accordion-item {
-	margin-block-start: 0;
-
-	.wp-block-accordion-heading__toggle {
-		background: none;
-		border: 0;
-		box-shadow: none;
-		padding: 0;
-		text-align: left;
-	}
-}
-
 :is(
-  .wp-block-accordion-panel,
   .memberlite_accordion .memberlite_accordion-item-content
 ) {
 	margin-block-start: 0;

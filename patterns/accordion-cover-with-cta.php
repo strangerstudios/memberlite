@@ -34,39 +34,39 @@
 <!-- /wp:column -->
 
 <!-- wp:column -->
-<div class="wp-block-column"><!-- wp:accordion {"className":"is-style-accrdn-caret memberlite-pattern-accordion","style":{"border":{"radius":{"topLeft":"8px","topRight":"8px","bottomLeft":"8px","bottomRight":"8px"}},"spacing":{"padding":{"top":"var:preset|spacing|10","bottom":"var:preset|spacing|30","left":"var:preset|spacing|10","right":"var:preset|spacing|10"}},"elements":{"link":{"color":{"text":"var:preset|color|body-text"}}}},"backgroundColor":"base","textColor":"body-text"} -->
-<div role="group" class="wp-block-accordion is-style-accrdn-caret memberlite-pattern-accordion has-body-text-color has-base-background-color has-text-color has-background has-link-color" style="border-top-left-radius:8px;border-top-right-radius:8px;border-bottom-left-radius:8px;border-bottom-right-radius:8px;padding-top:var(--wp--preset--spacing--10);padding-right:var(--wp--preset--spacing--10);padding-bottom:var(--wp--preset--spacing--30);padding-left:var(--wp--preset--spacing--10)"><!-- wp:accordion-item {"style":{"spacing":{"margin":{"bottom":"0"}},"border":{"bottom":{"color":"var:preset|color|borders","width":"1px"}}}} -->
-<div class="wp-block-accordion-item" style="border-bottom-color:var(--wp--preset--color--borders);border-bottom-width:1px;margin-bottom:0"><!-- wp:accordion-heading {"style":{"border":{"width":"0px","style":"none"}},"fontSize":"24"} -->
-<h3 class="wp-block-accordion-heading has-24-font-size" style="border-style:none;border-width:0px"><button type="button" class="wp-block-accordion-heading__toggle"><span class="wp-block-accordion-heading__toggle-title">What does membership cost?</span><span class="wp-block-accordion-heading__toggle-icon" aria-hidden="true">+</span></button></h3>
+<div class="wp-block-column"><!-- wp:accordion {"className":"is-style-accrdn-caret memberlite-pattern-accordion","style":{"border":{"radius":{"topLeft":"8px","topRight":"8px","bottomLeft":"8px","bottomRight":"8px"}},"spacing":{"padding":{"top":"var:preset|spacing|10","bottom":"var:preset|spacing|10","left":"var:preset|spacing|10","right":"var:preset|spacing|10"}},"elements":{"link":{"color":{"text":"var:preset|color|body-text"}}}},"backgroundColor":"base","textColor":"body-text"} -->
+<div role="group" class="wp-block-accordion is-style-accrdn-caret memberlite-pattern-accordion has-body-text-color has-base-background-color has-text-color has-background has-link-color" style="border-top-left-radius:8px;border-top-right-radius:8px;border-bottom-left-radius:8px;border-bottom-right-radius:8px;padding-top:var(--wp--preset--spacing--10);padding-right:var(--wp--preset--spacing--10);padding-bottom:var(--wp--preset--spacing--10);padding-left:var(--wp--preset--spacing--10)"><!-- wp:accordion-item {"style":{"spacing":{"margin":{"bottom":"0"}}}} -->
+<div class="wp-block-accordion-item" style="margin-bottom:0"><!-- wp:accordion-heading {"style":{"border":{"width":"0px","style":"none"},"spacing":{"padding":{"bottom":"10px"}}},"fontSize":"24"} -->
+<h3 class="wp-block-accordion-heading has-icon has-icon-right has-24-font-size" style="border-style:none;border-width:0px"><button type="button" class="wp-block-accordion-heading__toggle" style="padding-bottom:10px"><span class="wp-block-accordion-heading__toggle-title">What does membership cost?</span><span class="wp-block-accordion-heading__toggle-icon" aria-hidden="true">+</span></button></h3>
 <!-- /wp:accordion-heading -->
 
 <!-- wp:accordion-panel {"style":{"spacing":{"padding":{"top":"0","bottom":"var:preset|spacing|10"}}}} -->
-<div role="region" class="wp-block-accordion-panel" style="padding-top:0;padding-bottom:var(--wp--preset--spacing--10)"><!-- wp:paragraph {"style":{"spacing":{"padding":{"top":"var:preset|spacing|10"}}}} -->
-<p style="padding-top:var(--wp--preset--spacing--10)">Pricing varies by plan, and we offer a discount for annual memberships. You can compare all current options on our membership levels page.</p>
+<div role="region" class="wp-block-accordion-panel" style="padding-top:0;padding-bottom:var(--wp--preset--spacing--10)"><!-- wp:paragraph {"style":{"spacing":{"padding":{"top":"0"}}}} -->
+<p style="padding-top:0">Pricing varies by plan, and we offer a discount for annual memberships. You can compare all current options on our membership levels page.</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:accordion-panel --></div>
 <!-- /wp:accordion-item -->
 
-<!-- wp:accordion-item {"style":{"spacing":{"margin":{"bottom":"0"}},"border":{"bottom":{"color":"var:preset|color|borders","width":"1px"}}}} -->
-<div class="wp-block-accordion-item" style="border-bottom-color:var(--wp--preset--color--borders);border-bottom-width:1px;margin-bottom:0"><!-- wp:accordion-heading {"style":{"border":{"width":"0px","style":"none"}},"fontSize":"24"} -->
-<h3 class="wp-block-accordion-heading has-24-font-size" style="border-style:none;border-width:0px"><button type="button" class="wp-block-accordion-heading__toggle"><span class="wp-block-accordion-heading__toggle-title">What do I get access to as a member?</span><span class="wp-block-accordion-heading__toggle-icon" aria-hidden="true">+</span></button></h3>
+<!-- wp:accordion-item {"style":{"spacing":{"margin":{"bottom":"0"}},"border":{"top":{"color":"var:preset|color|borders","width":"1px"},"right":{},"bottom":{},"left":{}}}} -->
+<div class="wp-block-accordion-item" style="border-top-color:var(--wp--preset--color--borders);border-top-width:1px;margin-bottom:0"><!-- wp:accordion-heading {"style":{"border":{"width":"0px","style":"none"},"spacing":{"padding":{"bottom":"10px"}}},"fontSize":"24"} -->
+<h3 class="wp-block-accordion-heading has-icon has-icon-right has-24-font-size" style="border-style:none;border-width:0px"><button type="button" class="wp-block-accordion-heading__toggle" style="padding-bottom:10px"><span class="wp-block-accordion-heading__toggle-title">What do I get access to as a member?</span><span class="wp-block-accordion-heading__toggle-icon" aria-hidden="true">+</span></button></h3>
 <!-- /wp:accordion-heading -->
 
 <!-- wp:accordion-panel {"style":{"spacing":{"padding":{"top":"0","bottom":"var:preset|spacing|10"}}}} -->
-<div role="region" class="wp-block-accordion-panel" style="padding-top:0;padding-bottom:var(--wp--preset--spacing--10)"><!-- wp:paragraph {"style":{"spacing":{"padding":{"top":"var:preset|spacing|10"}}}} -->
-<p style="padding-top:var(--wp--preset--spacing--10)">Members get full access to our private community, exclusive resources, and monthly live events, everything you need to get the most out of belonging.</p>
+<div role="region" class="wp-block-accordion-panel" style="padding-top:0;padding-bottom:var(--wp--preset--spacing--10)"><!-- wp:paragraph {"style":{"spacing":{"padding":{"top":"0"}}}} -->
+<p style="padding-top:0">Members get full access to our private community, exclusive resources, and monthly live events, everything you need to get the most out of belonging.</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:accordion-panel --></div>
 <!-- /wp:accordion-item -->
 
-<!-- wp:accordion-item {"style":{"spacing":{"margin":{"bottom":"0"}},"border":{"bottom":{"color":"var:preset|color|borders","width":"1px"}}}} -->
-<div class="wp-block-accordion-item" style="border-bottom-color:var(--wp--preset--color--borders);border-bottom-width:1px;margin-bottom:0"><!-- wp:accordion-heading {"style":{"border":{"width":"0px","style":"none"}},"fontSize":"24"} -->
-<h3 class="wp-block-accordion-heading has-24-font-size" style="border-style:none;border-width:0px"><button type="button" class="wp-block-accordion-heading__toggle"><span class="wp-block-accordion-heading__toggle-title">How do I cancel if it's not for me?</span><span class="wp-block-accordion-heading__toggle-icon" aria-hidden="true">+</span></button></h3>
+<!-- wp:accordion-item {"style":{"spacing":{"margin":{"bottom":"0"}},"border":{"top":{"color":"var:preset|color|borders","width":"1px"},"right":{},"bottom":{},"left":{}}}} -->
+<div class="wp-block-accordion-item" style="border-top-color:var(--wp--preset--color--borders);border-top-width:1px;margin-bottom:0"><!-- wp:accordion-heading {"style":{"border":{"width":"0px","style":"none"},"spacing":{"padding":{"bottom":"10px"}}},"fontSize":"24"} -->
+<h3 class="wp-block-accordion-heading has-icon has-icon-right has-24-font-size" style="border-style:none;border-width:0px"><button type="button" class="wp-block-accordion-heading__toggle" style="padding-bottom:10px"><span class="wp-block-accordion-heading__toggle-title">How do I cancel if it's not for me?</span><span class="wp-block-accordion-heading__toggle-icon" aria-hidden="true">+</span></button></h3>
 <!-- /wp:accordion-heading -->
 
 <!-- wp:accordion-panel {"style":{"spacing":{"padding":{"top":"0","bottom":"var:preset|spacing|10"}}}} -->
-<div role="region" class="wp-block-accordion-panel" style="padding-top:0;padding-bottom:var(--wp--preset--spacing--10)"><!-- wp:paragraph {"style":{"spacing":{"padding":{"top":"var:preset|spacing|10"}}}} -->
-<p style="padding-top:var(--wp--preset--spacing--10)">You can cancel any time from your account page. There are no long-term contracts, and you'll keep access through the end of your billing period.</p>
+<div role="region" class="wp-block-accordion-panel" style="padding-top:0;padding-bottom:var(--wp--preset--spacing--10)"><!-- wp:paragraph {"style":{"spacing":{"padding":{"top":"0"}}}} -->
+<p style="padding-top:0">You can cancel any time from your account page. There are no long-term contracts, and you'll keep access through the end of your billing period.</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:accordion-panel --></div>
 <!-- /wp:accordion-item --></div>
