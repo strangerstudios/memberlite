@@ -4,7 +4,7 @@
  * Slug: memberlite/member-spotlight
  * Description: A featured member profile card with photo, bio, and membership details for directories and community pages.
  * Categories: memberlite-community
- * Keywords: member, spotlight, profile, directory, featured
+ * Keywords: member, spotlight, profile, directory, featured, community
  * @package WordPress
  * @subpackage Memberlite
  * @since Memberlite 7.0

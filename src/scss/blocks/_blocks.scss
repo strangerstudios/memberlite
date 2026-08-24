@@ -717,10 +717,53 @@ hr.wp-block-separator {
 // -----------------------------------------------------------------------------
 
 .wp-block-accordion {
+	.wp-block-accordion-item {
+		margin-block-start: 0;
+	}
+
+	.wp-block-accordion-heading__toggle {
+		background: none;
+		border: 0;
+		box-shadow: none;
+		padding: 0;
+		text-align: left;
+	}
+
+	// Default accordion style
+	.wp-block-accordion-panel {
+		margin-block-start: 0;
+		padding: 0 var(--wp--preset--spacing--10) var(--wp--preset--spacing--10);
+
+		// Closed panels get hidden="until-found", which triggers content-visibility:
+		// hidden rather than display: none — the panel's own box (and its padding)
+		// still occupies layout space even though its contents aren't rendered.
+		// Zero the padding here so a closed panel doesn't leave a phantom gap.
+		&[hidden] {
+			padding: 0;
+		}
+	}
+
 	// Default accordion style
 	.wp-block-accordion-heading {
 		border-top: 1px solid var(--memberlite-color-borders);
+		cursor: pointer;
+		font-family: var(--memberlite-header-font), ui-sans-serif;
+		font-size: inherit;
+		font-weight: 700;
+		line-height: inherit;
+		margin: 0;
 		padding: var(--wp--preset--spacing--10);
+
+		&__toggle-title:hover {
+			text-decoration: underline;
+		}
+	}
+
+	// target accordions used in our theme patterns
+	&.memberlite-pattern-accordion {
+		.wp-block-accordion-heading {
+			padding-bottom: 0;
+		}
 	}
 
 	// core accordion does not have padding so if we define padding ourselves, it can't be overwritten from the editor...

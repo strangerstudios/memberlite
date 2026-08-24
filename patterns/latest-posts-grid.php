@@ -4,7 +4,7 @@
  * Slug: memberlite/latest-posts-grid
  * Description: Display your latest blog posts in a three-column grid with featured images, titles, dates, and excerpts.
  * Categories: memberlite-content
- * Keywords: blog, posts, news, articles, query loop, grid
+ * Keywords: blog, posts, news, articles, query loop, grid, premium_content
  * @package WordPress
  * @subpackage Memberlite
  * @since Memberlite 7.0

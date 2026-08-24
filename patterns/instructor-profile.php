@@ -4,7 +4,7 @@
  * Slug: memberlite/instructor-profile
  * Description: A two-column instructor or coach profile with photo, bio, and credentials.
  * Categories: memberlite-courses
- * Keywords: instructor, coach, teacher, profile, bio, course
+ * Keywords: instructor, coach, teacher, profile, bio, course, courses, pmpro_course
  * @package WordPress
  * @subpackage Memberlite
  * @since Memberlite 7.0
