@@ -75,8 +75,8 @@
 <!-- /wp:group -->
 
 <!-- wp:buttons {"layout":{"type":"flex","verticalAlignment":"top"}} -->
-<div class="wp-block-buttons"><!-- wp:button {"textColor":"base","className":"is-style-fill","style":{"dimensions":{"width":"100%"},"elements":{"link":{"color":{"text":"var:preset|color|base"}}},"typography":{"textTransform":"capitalize"}}} -->
-<div class="wp-block-button is-style-fill"><a class="wp-block-button__link has-base-color has-text-color has-link-color wp-element-button" style="text-transform:capitalize">Buy now</a></div>
+<div class="wp-block-buttons"><!-- wp:button {"width":100,"textColor":"base","className":"is-style-fill","style":{"elements":{"link":{"color":{"text":"var:preset|color|base"}}},"typography":{"textTransform":"capitalize"}}} -->
+<div class="wp-block-button has-custom-width wp-block-button__width-100 is-style-fill"><a class="wp-block-button__link has-base-color has-text-color has-link-color wp-element-button" style="text-transform:capitalize">Buy now</a></div>
 <!-- /wp:button --></div>
 <!-- /wp:buttons --></div>
 <!-- /wp:group --></div>

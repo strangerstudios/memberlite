@@ -58,8 +58,8 @@
 <!-- /wp:group -->
 
 <!-- wp:buttons {"style":{"spacing":{"margin":{"top":"0","bottom":"var:preset|spacing|10"},"padding":{"right":"var:preset|spacing|20","left":"var:preset|spacing|20"}}},"layout":{"type":"flex","justifyContent":"center"}} -->
-<div class="wp-block-buttons" style="margin-top:0;margin-bottom:var(--wp--preset--spacing--10);padding-right:var(--wp--preset--spacing--20);padding-left:var(--wp--preset--spacing--20)"><!-- wp:button {"style":{"typography":{"textTransform":"capitalize"},"dimensions":{"width":"100%"}},"fontSize":"21"} -->
-<div class="wp-block-button"><a class="wp-block-button__link has-21-font-size has-custom-font-size wp-element-button" style="text-transform:capitalize">Sign up</a></div>
+<div class="wp-block-buttons" style="margin-top:0;margin-bottom:var(--wp--preset--spacing--10);padding-right:var(--wp--preset--spacing--20);padding-left:var(--wp--preset--spacing--20)"><!-- wp:button {"width":100,"style":{"typography":{"textTransform":"capitalize"}},"fontSize":"21"} -->
+<div class="wp-block-button has-custom-width wp-block-button__width-100"><a class="wp-block-button__link has-21-font-size has-custom-font-size wp-element-button" style="text-transform:capitalize">Sign up</a></div>
 <!-- /wp:button --></div>
 <!-- /wp:buttons --></div>
 <!-- /wp:column -->
@@ -110,8 +110,8 @@
 <!-- /wp:group -->
 
 <!-- wp:buttons {"style":{"spacing":{"margin":{"top":"0","bottom":"var:preset|spacing|10"},"padding":{"right":"var:preset|spacing|20","left":"var:preset|spacing|20"}}},"layout":{"type":"flex","justifyContent":"center"}} -->
-<div class="wp-block-buttons" style="margin-top:0;margin-bottom:var(--wp--preset--spacing--10);padding-right:var(--wp--preset--spacing--20);padding-left:var(--wp--preset--spacing--20)"><!-- wp:button {"style":{"typography":{"textTransform":"capitalize"},"dimensions":{"width":"100%"}},"fontSize":"21"} -->
-<div class="wp-block-button"><a class="wp-block-button__link has-21-font-size has-custom-font-size wp-element-button" style="text-transform:capitalize">Sign up</a></div>
+<div class="wp-block-buttons" style="margin-top:0;margin-bottom:var(--wp--preset--spacing--10);padding-right:var(--wp--preset--spacing--20);padding-left:var(--wp--preset--spacing--20)"><!-- wp:button {"width":100,"style":{"typography":{"textTransform":"capitalize"}},"fontSize":"21"} -->
+<div class="wp-block-button has-custom-width wp-block-button__width-100"><a class="wp-block-button__link has-21-font-size has-custom-font-size wp-element-button" style="text-transform:capitalize">Sign up</a></div>
 <!-- /wp:button --></div>
 <!-- /wp:buttons --></div>
 <!-- /wp:column -->
@@ -162,8 +162,8 @@
 <!-- /wp:group -->
 
 <!-- wp:buttons {"style":{"spacing":{"margin":{"top":"0","bottom":"var:preset|spacing|10"},"padding":{"right":"var:preset|spacing|20","left":"var:preset|spacing|20"}}},"layout":{"type":"flex","justifyContent":"center"}} -->
-<div class="wp-block-buttons" style="margin-top:0;margin-bottom:var(--wp--preset--spacing--10);padding-right:var(--wp--preset--spacing--20);padding-left:var(--wp--preset--spacing--20)"><!-- wp:button {"style":{"typography":{"textTransform":"capitalize"},"dimensions":{"width":"100%"}},"fontSize":"21"} -->
-<div class="wp-block-button"><a class="wp-block-button__link has-21-font-size has-custom-font-size wp-element-button" style="text-transform:capitalize">Sign up</a></div>
+<div class="wp-block-buttons" style="margin-top:0;margin-bottom:var(--wp--preset--spacing--10);padding-right:var(--wp--preset--spacing--20);padding-left:var(--wp--preset--spacing--20)"><!-- wp:button {"width":100,"style":{"typography":{"textTransform":"capitalize"}},"fontSize":"21"} -->
+<div class="wp-block-button has-custom-width wp-block-button__width-100"><a class="wp-block-button__link has-21-font-size has-custom-font-size wp-element-button" style="text-transform:capitalize">Sign up</a></div>
 <!-- /wp:button --></div>
 <!-- /wp:buttons --></div>
 <!-- /wp:column --></div>
