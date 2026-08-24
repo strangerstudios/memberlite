@@ -22,12 +22,12 @@
 				<!-- /wp:paragraph -->
 
 				<!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center"}} -->
-				<div class="wp-block-buttons"><!-- wp:button {"width":50,"className":"is-style-fill","style":{"typography":{"textTransform":"capitalize"}}} -->
-					<div class="wp-block-button has-custom-width wp-block-button__width-50 is-style-fill"><a class="wp-block-button__link wp-element-button" style="text-transform:capitalize">Join now</a></div>
+				<div class="wp-block-buttons"><!-- wp:button {"className":"is-style-fill","style":{"typography":{"textTransform":"capitalize"}}} -->
+					<div class="wp-block-button is-style-fill"><a class="wp-block-button__link wp-element-button" style="text-transform:capitalize">Join now</a></div>
 					<!-- /wp:button -->
 
-					<!-- wp:button {"textColor":"body-text","width":50,"className":"is-style-outline","style":{"border":{"width":"3px"},"elements":{"link":{"color":{"text":"var:preset|color|body-text"}}},"typography":{"textTransform":"capitalize"}},"borderColor":"body-text"} -->
-					<div class="wp-block-button has-custom-width wp-block-button__width-50 is-style-outline"><a class="wp-block-button__link has-body-text-color has-text-color has-link-color has-border-color has-body-text-border-color wp-element-button" style="border-width:3px;text-transform:capitalize">View membership plans</a></div>
+					<!-- wp:button {"textColor":"body-text","className":"is-style-outline","style":{"border":{"width":"3px"},"elements":{"link":{"color":{"text":"var:preset|color|body-text"}}},"typography":{"textTransform":"capitalize"}},"borderColor":"body-text"} -->
+					<div class="wp-block-button is-style-outline"><a class="wp-block-button__link has-body-text-color has-text-color has-link-color has-border-color has-body-text-border-color wp-element-button" style="border-width:3px;text-transform:capitalize">View membership plans</a></div>
 					<!-- /wp:button --></div>
 				<!-- /wp:buttons -->
 

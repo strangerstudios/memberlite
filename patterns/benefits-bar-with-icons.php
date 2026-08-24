@@ -15,8 +15,8 @@
 	<div class="wp-block-columns alignwide"><!-- wp:column -->
 		<div class="wp-block-column"><!-- wp:columns {"style":{"spacing":{"blockGap":{"left":"var:preset|spacing|10"}}}} -->
 			<div class="wp-block-columns"><!-- wp:column {"verticalAlignment":"top","width":"10%"} -->
-				<div class="wp-block-column is-vertically-aligned-top" style="flex-basis:10%"><!-- wp:paragraph {"style":{"typography":{"textAlign":"center","fontStyle":"normal","fontWeight":"700"}},"fontSize":"16"} -->
-					<p class="has-text-align-center has-16-font-size" style="font-style:normal;font-weight:700">[fa icon="store" color="site-background" background="secondary" shape="squircle"]</p>
+				<div class="wp-block-column is-vertically-aligned-top" style="flex-basis:10%"><!-- wp:paragraph {"style":{"typography":{"textAlign":"left","fontStyle":"normal","fontWeight":"700"}},"fontSize":"16"} -->
+					<p class="has-text-align-left has-16-font-size" style="font-style:normal;font-weight:700">[fa icon="store" color="site-background" background="secondary" shape="squircle" size="lg"]</p>
 					<!-- /wp:paragraph --></div>
 				<!-- /wp:column -->
 
@@ -35,8 +35,8 @@
 		<!-- wp:column -->
 		<div class="wp-block-column"><!-- wp:columns {"style":{"spacing":{"blockGap":{"left":"var:preset|spacing|10"}}}} -->
 			<div class="wp-block-columns"><!-- wp:column {"verticalAlignment":"top","width":"10%"} -->
-				<div class="wp-block-column is-vertically-aligned-top" style="flex-basis:10%"><!-- wp:paragraph {"style":{"typography":{"textAlign":"center","fontStyle":"normal","fontWeight":"700"}},"fontSize":"16"} -->
-					<p class="has-text-align-center has-16-font-size" style="font-style:normal;font-weight:700">[fa icon="credit-card" color="site-background" background="secondary" shape="squircle"]</p>
+				<div class="wp-block-column is-vertically-aligned-top" style="flex-basis:10%"><!-- wp:paragraph {"style":{"typography":{"textAlign":"left","fontStyle":"normal","fontWeight":"700"}},"fontSize":"16"} -->
+					<p class="has-text-align-left has-16-font-size" style="font-style:normal;font-weight:700">[fa icon="credit-card" color="site-background" background="secondary" shape="squircle" size="lg"]</p>
 					<!-- /wp:paragraph --></div>
 				<!-- /wp:column -->
 
@@ -55,8 +55,8 @@
 		<!-- wp:column -->
 		<div class="wp-block-column"><!-- wp:columns {"style":{"spacing":{"blockGap":{"left":"var:preset|spacing|10"}}}} -->
 			<div class="wp-block-columns"><!-- wp:column {"verticalAlignment":"top","width":"10%"} -->
-				<div class="wp-block-column is-vertically-aligned-top" style="flex-basis:10%"><!-- wp:paragraph {"style":{"typography":{"textAlign":"center","fontStyle":"normal","fontWeight":"700"}},"fontSize":"16"} -->
-					<p class="has-text-align-center has-16-font-size" style="font-style:normal;font-weight:700">[fa icon="users" color="site-background" background="secondary" shape="squircle"]</p>
+				<div class="wp-block-column is-vertically-aligned-top" style="flex-basis:10%"><!-- wp:paragraph {"style":{"typography":{"textAlign":"left","fontStyle":"normal","fontWeight":"700"}},"fontSize":"16"} -->
+					<p class="has-text-align-left has-16-font-size" style="font-style:normal;font-weight:700">[fa icon="users" color="site-background" background="secondary" shape="squircle" size="lg"]</p>
 					<!-- /wp:paragraph --></div>
 				<!-- /wp:column -->
 
@@ -75,8 +75,8 @@
 		<!-- wp:column -->
 		<div class="wp-block-column"><!-- wp:columns {"style":{"spacing":{"blockGap":{"left":"var:preset|spacing|10"}}}} -->
 			<div class="wp-block-columns"><!-- wp:column {"verticalAlignment":"top","width":"10%"} -->
-				<div class="wp-block-column is-vertically-aligned-top" style="flex-basis:10%"><!-- wp:paragraph {"style":{"typography":{"textAlign":"center","fontStyle":"normal","fontWeight":"700"}},"fontSize":"16"} -->
-					<p class="has-text-align-center has-16-font-size" style="font-style:normal;font-weight:700">[fa icon="shield" color="site-background" background="secondary" shape="squircle"]</p>
+				<div class="wp-block-column is-vertically-aligned-top" style="flex-basis:10%"><!-- wp:paragraph {"style":{"typography":{"textAlign":"left","fontStyle":"normal","fontWeight":"700"}},"fontSize":"16"} -->
+					<p class="has-text-align-left has-16-font-size" style="font-style:normal;font-weight:700">[fa icon="shield" color="site-background" background="secondary" shape="squircle" size="lg"]</p>
 					<!-- /wp:paragraph --></div>
 				<!-- /wp:column -->
 

@@ -30,8 +30,8 @@
 				<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" style="letter-spacing:1px;text-transform:uppercase">Contact</a></div>
 				<!-- /wp:button -->
 
-				<!-- wp:button {"className":"is-style-arrow-plain","style":{"typography":{"letterSpacing":"1px","textTransform":"uppercase"}}} -->
-				<div class="wp-block-button is-style-arrow-plain"><a class="wp-block-button__link wp-element-button" style="letter-spacing:1px;text-transform:uppercase">View Plans</a></div>
+				<!-- wp:button {"className":"is-style-arrow-plain","style":{"typography":{"letterSpacing":"1px","textTransform":"uppercase"},"spacing":{"padding":{"top":"var:preset|spacing|10","bottom":"var:preset|spacing|10"}}}} -->
+				<div class="wp-block-button is-style-arrow-plain"><a class="wp-block-button__link wp-element-button" style="padding-top:var(--wp--preset--spacing--10);padding-bottom:var(--wp--preset--spacing--10);letter-spacing:1px;text-transform:uppercase">View Plans</a></div>
 				<!-- /wp:button --></div>
 			<!-- /wp:buttons --></div>
 		<!-- /wp:column -->

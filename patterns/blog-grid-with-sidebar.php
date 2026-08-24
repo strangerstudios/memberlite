@@ -10,8 +10,8 @@
  * @since Memberlite TBD
  */
 ?>
-<!-- wp:group {"align":"wide","layout":{"type":"constrained"}} -->
-<div class="wp-block-group alignwide">
+<!-- wp:group {"align":"wide","style":{"spacing":{"margin":{"top":"var:preset|spacing|20","bottom":"var:preset|spacing|20"}}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group alignwide" style="margin-top:var(--wp--preset--spacing--20);margin-bottom:var(--wp--preset--spacing--20)">
 	<!-- wp:heading {"align":"wide","className":"is-style-heading-rule","style":{"typography":{"textTransform":"capitalize"}},"fontSize":"36"} -->
 	<h2 class="wp-block-heading alignwide is-style-heading-rule has-36-font-size" style="text-transform:capitalize">The blog</h2>
 	<!-- /wp:heading -->

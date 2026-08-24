@@ -23,8 +23,8 @@
 					<!-- /wp:paragraph -->
 
 					<!-- wp:buttons {"style":{"spacing":{"margin":{"top":"var:preset|spacing|20"}}},"layout":{"type":"flex","justifyContent":"center"}} -->
-					<div class="wp-block-buttons" style="margin-top:var(--wp--preset--spacing--20)"><!-- wp:button {"width":50,"style":{"typography":{"textTransform":"capitalize"}}} -->
-						<div class="wp-block-button has-custom-width wp-block-button__width-50"><a class="wp-block-button__link wp-element-button" style="text-transform:capitalize">Browse the library</a></div>
+					<div class="wp-block-buttons" style="margin-top:var(--wp--preset--spacing--20)"><!-- wp:button {"style":{"typography":{"textTransform":"capitalize"}}} -->
+						<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" style="text-transform:capitalize">Browse the library</a></div>
 						<!-- /wp:button --></div>
 					<!-- /wp:buttons --></div></div>
 			<!-- /wp:cover --></div>
@@ -41,8 +41,8 @@
 					<!-- /wp:paragraph -->
 
 					<!-- wp:buttons {"style":{"spacing":{"margin":{"top":"var:preset|spacing|20"}}},"layout":{"type":"flex","justifyContent":"center"}} -->
-					<div class="wp-block-buttons" style="margin-top:var(--wp--preset--spacing--20)"><!-- wp:button {"width":50,"style":{"typography":{"textTransform":"capitalize"}}} -->
-						<div class="wp-block-button has-custom-width wp-block-button__width-50"><a class="wp-block-button__link wp-element-button" style="text-transform:capitalize">See offer details</a></div>
+					<div class="wp-block-buttons" style="margin-top:var(--wp--preset--spacing--20)"><!-- wp:button {"style":{"typography":{"textTransform":"capitalize"}}} -->
+						<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" style="text-transform:capitalize">See offer details</a></div>
 						<!-- /wp:button --></div>
 					<!-- /wp:buttons --></div></div>
 			<!-- /wp:cover --></div>
