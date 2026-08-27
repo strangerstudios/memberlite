@@ -3,12 +3,12 @@
  */
 //function to toggle settings
 function memberlite_togglePageBannerMeta() {
-	var memberlite_banner_show = parseInt(jQuery('input[name=memberlite_banner_show]:checked').val());
-	if(memberlite_banner_show) {
-		jQuery('#memberlite_top_banner_settings_wrapper').show();
-	} else {
-		jQuery('#memberlite_top_banner_settings_wrapper').hide();
+	var $radios = jQuery('input[name=memberlite_banner_show]');
+	if ( ! $radios.length ) {
+		return; // Block editor: this metabox section isn't gated by the (removed) radio.
 	}
+	var memberlite_banner_show = parseInt($radios.filter(':checked').val());
+	jQuery('#memberlite_top_banner_settings_wrapper').toggle( !! memberlite_banner_show );
 }
 
 //toggle on page load

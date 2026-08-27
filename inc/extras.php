@@ -257,7 +257,10 @@ function memberlite_body_classes( $classes ) {
 
 	if ( ! empty( $post ) && is_page() ) {
 		$memberlite_banner_show = get_post_meta( $post->ID, '_memberlite_banner_show', true );
-		if ( $memberlite_banner_show === '0' ) {
+
+		// Falsy covers: '' (an explicit false toggle, stringified on save) and '0' (the legacy metabox radio's hidden value).
+		// A never-touched page isn't falsy here — it resolves to the registered default of true.
+		if ( $memberlite_banner_show === '0' ||  ! $memberlite_banner_show ) {
 			$classes[] = 'memberlite-banner-hidden';
 		}
 	}
@@ -813,8 +816,12 @@ function memberlite_get_breadcrumbs() {
 		$memberlite_breadcrumbs_post_id = get_option( 'page_for_posts' );
 	}
 	$memberlite_show_breadcrumbs = true;
-	if ( ! empty( $memberlite_breadcrumbs_post_id ) && get_post_meta( $memberlite_breadcrumbs_post_id, '_memberlite_banner_hide_breadcrumbs', true ) === '1' ) {
-		$memberlite_show_breadcrumbs = false;
+	if ( ! empty( $memberlite_breadcrumbs_post_id ) ) {
+		$hide_breadcrumbs_meta = get_post_meta( $memberlite_breadcrumbs_post_id, '_memberlite_banner_hide_breadcrumbs', true );
+
+		if ( $hide_breadcrumbs_meta === '1' || $hide_breadcrumbs_meta === true ) {
+			$memberlite_show_breadcrumbs = false;
+		}
 	}
 	$memberlite_show_breadcrumbs = apply_filters( 'memberlite_show_breadcrumbs', $memberlite_show_breadcrumbs );
 

@@ -924,3 +924,16 @@ function memberlite_clean_editor_color_palette( $editor_settings, $context ) {
 	return $editor_settings;
 }
 add_filter( 'block_editor_settings_all', 'memberlite_clean_editor_color_palette', 20, 2 );
+
+
+/**
+ * Detect whether the block editor is active on the current screen
+ *
+ * @since TBD
+ * @return bool
+ */
+function memberlite_is_block_editor() {
+	$current_screen = get_current_screen();
+
+	return $current_screen instanceof WP_Screen && $current_screen->is_block_editor();
+}

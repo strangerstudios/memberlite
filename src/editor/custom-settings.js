@@ -1,7 +1,7 @@
 import {__} from '@wordpress/i18n';
 import { registerPlugin } from '@wordpress/plugins';
 import { PluginDocumentSettingPanel } from '@wordpress/editor';
-import { ToggleControl, SelectControl, ExternalLink } from '@wordpress/components';
+import { ToggleControl, SelectControl, ExternalLink, RadioControl } from '@wordpress/components';
 import { useSelect } from '@wordpress/data';
 import { useEntityProp } from '@wordpress/core-data';
 import PMProIcon from './pmpro-icon';
@@ -33,6 +33,11 @@ const MemberliteCustomSettings = () => {
 
 	const stickyValue = meta?._memberlite_header_sticky || false;
 
+	const showPageBreadcrumbsGlobally = window.memberliteEditorData.showPageBreadcrumbs; // Check if breadcrumbs are enabled from customizer.
+	const showBannerValue = meta?._memberlite_banner_show ?? true; // Banner shows by default; `??` (not `||`) so an explicit `false` isn't overridden.
+	const hideBreadcrumbsValue = meta?._memberlite_banner_hide_breadcrumbs || false; // Setting only shows if breadcrumbs are enabled & banner is showing.
+	const textAlignmentValue = meta?._memberlite_banner_text_alignment ?? 'default';
+
 	const textDomain = 'memberlite';
 
 	return (
@@ -44,6 +49,43 @@ const MemberliteCustomSettings = () => {
 		>
 			{ isPage && (
 				<>
+					<ToggleControl
+						label={__('Show Masthead Banner', textDomain)}
+						checked={ showBannerValue }
+						onChange={ ( value ) => {
+							setMeta( { ...meta, _memberlite_banner_show: value } );
+						} }
+					/>
+					{ showBannerValue && showPageBreadcrumbsGlobally && (
+						<>
+							<div style={{ marginTop: '24px' }} />
+							<ToggleControl
+								label={__('Hide Page Breadcrumbs', textDomain)}
+								checked={ hideBreadcrumbsValue }
+								onChange={ ( value ) => {
+									setMeta( { ...meta, _memberlite_banner_hide_breadcrumbs: value } );
+								} }
+							/>
+						</>
+					)}
+					{ showBannerValue && (
+						<>
+							<div style={{ marginTop: '24px' }} />
+							<RadioControl
+								label={__('Masthead Text Alignment', textDomain)}
+								help={__('Choose the text alignment for the content inside the masthead banner.', textDomain)}
+								selected={ textAlignmentValue }
+								options={ [
+									{ label: __('Left', textDomain), value: 'default' },
+									{ label: __('Center', textDomain), value: 'centered' },
+								] }
+								onChange={ ( value ) => {
+									setMeta( { ...meta, _memberlite_banner_text_alignment: value } );
+								} }
+							/>
+						</>
+					)}
+					<div style={{ marginTop: '24px' }} />
 					<ToggleControl
 						label={__('Hide Header', textDomain)}
 						checked={ hideHeaderValue }

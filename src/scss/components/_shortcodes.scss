@@ -5,7 +5,7 @@
  3.5 Components: Memberlite Shortcodes
 
  Covers: banners, tabs, accordion, recent posts widget, subpage list,
-         masthead elements, landing page overrides
+         landing page overrides
 --------------------------------------------------------------*/
 
 // -----------------------------------------------------------------------------
@@ -66,47 +66,6 @@
 		background-size: cover;
 	}
 }
-
-
-// -----------------------------------------------------------------------------
-// Memberlite Elements — Masthead
-// -----------------------------------------------------------------------------
-
-body.memberlite-banner-hidden .entry-content > .banner:first-child {
-	margin-top: 0;
-}
-
-.masthead {
-
-	.memberlite_elements-masthead {
-		padding-top: 2rem;
-
-		h1 {
-			margin-top: 0;
-		}
-	}
-}
-
-.page-template-landing .masthead {
-
-	.alignleft.wp-post-image {
-		margin-top: 2rem;
-	}
-
-	p {
-		margin-top: var(--wp--preset--spacing--10);
-	}
-
-	.pmpro_level-price {
-		font-size: var(--wp--preset--font-size--36);
-	}
-
-	.pmpro_level-subprice {
-		display: block;
-		font-size: var(--wp--preset--font-size--18);
-	}
-}
-
 
 // -----------------------------------------------------------------------------
 // Tabs (.memberlite_tabbable)

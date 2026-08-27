@@ -77,7 +77,40 @@ function memberlite_register_editor_settings_post_meta(): void {
 		'default'       => false,
 		'auth_callback' => function() {
 			return current_user_can( 'edit_posts' );
-		},
+		}
+	) );
+
+	register_post_meta( 'page', '_memberlite_banner_show', array(
+		'show_in_rest' => true,
+		'type'         => 'boolean',
+		'single'       => true,
+		'default'      => true,
+		'label'        => __( 'Show Page Banner', 'memberlite' ),
+		'auth_callback' => function() {
+			return current_user_can( 'edit_posts' );
+		}
+	) );
+
+	register_post_meta( 'page', '_memberlite_banner_hide_breadcrumbs', array(
+		'show_in_rest' => true,
+		'type'         => 'boolean',
+		'single'       => true,
+		'default'      => false,
+		'label'        => __( 'Hide Page Breadcrumbs', 'memberlite' ),
+		'auth_callback' => function() {
+			return current_user_can( 'edit_posts' );
+		}
+	) );
+
+	register_post_meta( 'page', '_memberlite_banner_text_alignment', array(
+		'show_in_rest' => true,
+		'type'         => 'string',
+		'single'       => true,
+		'default'      => 'default',
+		'label'        => __( 'Masthead Text Alignment', 'memberlite' ),
+		'auth_callback' => function() {
+			return current_user_can( 'edit_posts' );
+		}
 	) );
 }
 add_action( 'init', 'memberlite_register_editor_settings_post_meta' );
@@ -119,11 +152,12 @@ function memberlite_enqueue_custom_editor_assets(): void {
 		'memberlite-custom-settings',
 		'memberliteEditorData',
 		array(
-			'showPrevNextSinglePages' => get_theme_mod( 'memberlite_page_nav', true ),
+			'showPrevNextSinglePages' => get_theme_mod( 'memberlite_page_nav', true ), // Global customizer setting
 			'headerVariations'        => $header_variations_editor,
 			'footerVariations'        => $footer_variations_editor,
 			'manageHeadersUrl'        => admin_url( 'edit.php?post_type=memberlite_header' ),
 			'manageFootersUrl'        => admin_url( 'edit.php?post_type=memberlite_footer' ),
+			'showPageBreadcrumbs'     => get_theme_mod( 'page_breadcrumbs', false ), // Global customizer setting
 		)
 	);
 }

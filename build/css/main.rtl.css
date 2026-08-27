@@ -1993,7 +1993,7 @@ hr.wp-block-separator.is-style-flourish-diamond.alignfull {
  3.5 Components: Memberlite Shortcodes
 
  Covers: banners, tabs, accordion, recent posts widget, subpage list,
-         masthead elements, landing page overrides
+         landing page overrides
 --------------------------------------------------------------*/
 .banner_primary {
   background-color: var(--memberlite-color-primary);
@@ -2043,31 +2043,6 @@ hr.wp-block-separator.is-style-flourish-diamond.alignfull {
 .banner.banner_background-image {
   background-repeat: no-repeat;
   background-size: cover;
-}
-
-body.memberlite-banner-hidden .entry-content > .banner:first-child {
-  margin-top: 0;
-}
-
-.masthead .memberlite_elements-masthead {
-  padding-top: 2rem;
-}
-.masthead .memberlite_elements-masthead h1 {
-  margin-top: 0;
-}
-
-.page-template-landing .masthead .alignleft.wp-post-image {
-  margin-top: 2rem;
-}
-.page-template-landing .masthead p {
-  margin-top: var(--wp--preset--spacing--10);
-}
-.page-template-landing .masthead .pmpro_level-price {
-  font-size: var(--wp--preset--font-size--36);
-}
-.page-template-landing .masthead .pmpro_level-subprice {
-  display: block;
-  font-size: var(--wp--preset--font-size--18);
 }
 
 .memberlite_tabbable ul.memberlite_tabs {
@@ -3118,6 +3093,10 @@ body.mobile-nav-open {
 
  Covers: masthead layout, masthead banner, post byline, breadcrumbs
 --------------------------------------------------------------*/
+body.memberlite-banner-hidden .entry-content > .banner:first-child {
+  margin-top: 0;
+}
+
 .masthead {
   background-color: var(--memberlite-color-page-masthead-background);
   color: var(--memberlite-color-page-masthead);
@@ -3194,6 +3173,29 @@ body.mobile-nav-open {
 }
 .masthead + .row {
   margin-top: var(--wp--preset--spacing--50);
+}
+.masthead .memberlite_elements-masthead h1,
+.masthead .memberlite_elements-masthead-centered h1 {
+  margin-top: 0;
+}
+.masthead .memberlite_elements-masthead {
+  padding-top: 2rem;
+  align-items: center;
+}
+.masthead .memberlite_elements-masthead-centered {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin: var(--wp--preset--spacing--20) 0 0;
+}
+@media (min-width: 768px) {
+  .masthead .masthead-icon-title {
+    display: flex;
+    align-items: center;
+    gap: var(--wp--preset--spacing--10);
+    justify-content: center;
+  }
 }
 
 .masthead-banner {
@@ -3710,6 +3712,21 @@ body.mobile-nav-open {
     max-width: var(--wp--style--global--wide-size);
     width: auto;
   }
+}
+
+/* Masthead styles for the landing page template */
+.page-template-landing .masthead .alignleft.wp-post-image {
+  margin-top: 2rem;
+}
+.page-template-landing .masthead p {
+  margin-top: var(--wp--preset--spacing--10);
+}
+.page-template-landing .masthead .pmpro_level-price {
+  font-size: var(--wp--preset--font-size--36);
+}
+.page-template-landing .masthead .pmpro_level-subprice {
+  display: block;
+  font-size: var(--wp--preset--font-size--18);
 }
 
 /*--------------------------------------------------------------
