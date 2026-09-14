@@ -2,14 +2,6 @@
  BLOCK EDITOR CUSTOM STYLES
 --------------------------------------------------------------*/
 
-/*--------------------------------------------------------------
- Custom settings panel icon
---------------------------------------------------------------*/
-.memberlite-custom-settings .components-panel__body-title button svg {
-	order: -1;
-	margin-right: 5px;
-}
-
 label[for="memberlite-menu-location-select"] {
 	font-size: 11px;
 	font-weight: 500;

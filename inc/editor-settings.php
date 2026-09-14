@@ -91,6 +91,17 @@ function memberlite_register_editor_settings_post_meta(): void {
 		}
 	) );
 
+	register_post_meta( 'page', '_memberlite_banner_hide_title', array(
+		'show_in_rest' => true,
+		'type'         => 'boolean',
+		'single'       => true,
+		'default'      => false,
+		'label'        => __( 'Hide Page Title', 'memberlite' ),
+		'auth_callback' => function() {
+			return current_user_can( 'edit_posts' );
+		}
+	) );
+
 	register_post_meta( 'page', '_memberlite_banner_hide_breadcrumbs', array(
 		'show_in_rest' => true,
 		'type'         => 'boolean',
