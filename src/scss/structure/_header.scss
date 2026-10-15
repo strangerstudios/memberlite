@@ -417,10 +417,11 @@
 			}
 
 
-			// Third-level sub-menus need explicit width due to absolute positioning
+			// Third-level sub-menus need explicit width due to absolute positioning,
+			// and should be at least as tall as their parent item
 			ul.sub-menu {
 				width: 100%;
-				height: 100%;
+				min-height: 100%;
 			}
 		}
 
