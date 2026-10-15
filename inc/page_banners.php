@@ -493,11 +493,12 @@ add_filter( 'memberlite_masthead_content', 'memberlite_maybe_customize_masthead_
  *
  * Returns the dedicated banner image from MemberliteMultiPostThumbnails
  * if available, or an empty string if no dedicated banner image is set.
+ * The result passes through the memberlite_get_banner_image filter.
  *
- * @param int    $post_id The post ID.
- * @param string $size    The image size. Default 'banner'.
- * @param bool   $icon    Whether to use an icon. Default false.
- * @param array  $attr    Image attributes. Default empty array.
+ * @param int          $post_id The post ID.
+ * @param string       $size    The image size. Default 'banner'.
+ * @param bool         $icon    Whether to use an icon. Default false.
+ * @param array|string $attr    Image attributes. Default empty array.
  * @return string The image HTML, or empty string.
  */
 function memberlite_get_banner_image( $post_id = 0, $size = 'banner', $icon = false, $attr = array() ) {
@@ -525,7 +526,10 @@ function memberlite_get_banner_image( $post_id = 0, $size = 'banner', $icon = fa
 	/**
 	 * Filter the banner image HTML for a post.
 	 *
-	 * Runs even when no banner image is set, so a default banner can be returned.
+	 * Receives only the dedicated banner image, not the featured image as in
+	 * Memberlite 6.x, and runs even when no banner image is set. Grid views fall
+	 * back to the featured image only when this returns empty, so a non-empty
+	 * value returned here replaces the featured image there.
 	 *
 	 * @param string       $banner_image    The image HTML, or empty string.
 	 * @param int          $banner_image_id The banner image attachment ID, or 0.
@@ -542,6 +546,7 @@ function memberlite_get_banner_image( $post_id = 0, $size = 'banner', $icon = fa
  *
  * Returns the dedicated banner image from MemberliteMultiPostThumbnails
  * if available, or false if no dedicated banner image is set.
+ * The result passes through the memberlite_banner_image_src filter.
  *
  * @param int|null $post_id The post ID. Defaults to the global post.
  * @param string   $size    The image size. Default 'banner'.
@@ -571,7 +576,9 @@ function memberlite_get_banner_image_src( $post_id = null, $size = 'banner' ) {
 	/**
 	 * Filter the banner image src for a post.
 	 *
-	 * Runs even when no banner image is set, so a default banner can be returned.
+	 * Receives only the dedicated banner image, not the featured image as in
+	 * Memberlite 6.x, and runs even when no banner image is set. A non-empty
+	 * value returned here takes priority over any featured image fallback.
 	 *
 	 * @param array|false $banner_image_src The image src array from wp_get_attachment_image_src, or false.
 	 * @param string      $size             The image size.
