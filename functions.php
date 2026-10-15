@@ -785,7 +785,16 @@ function memberlite_filter_theme_json( $theme_json ) {
 		$theme_json_data['settings']['color'] = array();
 	}
 
-	$theme_json_data['settings']['color']['palette'] = $color_palette;
+	// Keep palette colors added by a child theme or other filters, unless Memberlite defines the same slug.
+	$memberlite_slugs = wp_list_pluck( $color_palette, 'slug' );
+	$other_colors     = array_filter(
+		$theme_json_data['settings']['color']['palette']['theme'] ?? array(),
+		static function( $entry ) use ( $memberlite_slugs ) {
+			return is_array( $entry ) && ! empty( $entry['slug'] ) && ! in_array( $entry['slug'], $memberlite_slugs, true );
+		}
+	);
+
+	$theme_json_data['settings']['color']['palette'] = array_merge( $color_palette, array_values( $other_colors ) );
 
 	// Add font family custom properties.
 	if ( ! isset( $theme_json_data['settings']['custom'] ) ) {
@@ -833,7 +842,9 @@ function memberlite_filter_theme_json( $theme_json ) {
 add_filter( 'wp_theme_json_data_theme', 'memberlite_filter_theme_json' );
 
 /**
- * Clean up and build the color palette using specific slugs.
+ * Limit Memberlite's colors in the editor color picker to an approved list.
+ *
+ * Colors added by a child theme, plugin, or snippet are left in the picker.
  *
  * @since TBD
  *
@@ -861,7 +872,13 @@ function memberlite_clean_editor_color_palette( $editor_settings, $context ) {
 		'white'
 	);
 
-	$curate = static function( $palette ) use ( $approved_color_slugs ) {
+	// Only Memberlite's own colors are curated; colors added by a child theme, plugin, or snippet are kept.
+	$memberlite_slugs = array_merge(
+		array_column( memberlite_get_color_preset_map(), 'slug' ),
+		array( 'buttons-hover', 'white' )
+	);
+
+	$curate = static function( $palette ) use ( $approved_color_slugs, $memberlite_slugs ) {
 		if ( empty( $palette ) || ! is_array( $palette ) ) {
 			return $palette;
 		}
@@ -870,6 +887,11 @@ function memberlite_clean_editor_color_palette( $editor_settings, $context ) {
 
 		foreach ( $palette as $entry ) {
 			if ( ! is_array( $entry ) || empty( $entry['color'] ) || empty( $entry['slug'] ) ) {
+				continue;
+			}
+
+			if ( ! in_array( $entry['slug'], $memberlite_slugs, true ) ) {
+				$result[] = $entry;
 				continue;
 			}
 
