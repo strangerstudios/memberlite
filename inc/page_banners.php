@@ -544,26 +544,31 @@ function memberlite_get_banner_image_src( $post_id = null, $size = 'banner' ) {
 		$post_id = ! empty( $post->ID ) ? $post->ID : 0;
 	}
 
-	if ( empty( $post_id ) || ! class_exists( 'MemberliteMultiPostThumbnails' ) ) {
-		return false;
+	$banner_image_src = false;
+	$post_type        = ! empty( $post_id ) ? get_post_type( $post_id ) : false;
+
+	if ( ! empty( $post_type ) && class_exists( 'MemberliteMultiPostThumbnails' ) ) {
+		$banner_image_id = MemberliteMultiPostThumbnails::get_post_thumbnail_id(
+			$post_type,
+			'memberlite_banner_image' . $post_type,
+			$post_id
+		);
+
+		if ( ! empty( $banner_image_id ) ) {
+			$banner_image_src = wp_get_attachment_image_src( $banner_image_id, $size );
+		}
 	}
 
-	$post_type = get_post_type( $post_id );
-	if ( empty( $post_type ) ) {
-		return false;
-	}
-
-	$banner_image_id = MemberliteMultiPostThumbnails::get_post_thumbnail_id(
-		$post_type,
-		'memberlite_banner_image' . $post_type,
-		$post_id
-	);
-
-	if ( empty( $banner_image_id ) ) {
-		return false;
-	}
-
-	return wp_get_attachment_image_src( $banner_image_id, $size );
+	/**
+	 * Filter the banner image src for a post.
+	 *
+	 * Runs even when no banner image is set, so a default banner can be returned.
+	 *
+	 * @param array|false $banner_image_src The image src array from wp_get_attachment_image_src, or false.
+	 * @param string      $size             The image size.
+	 * @param int         $post_id          The post ID.
+	 */
+	return apply_filters( 'memberlite_banner_image_src', $banner_image_src, $size, $post_id );
 }
 
 /**
