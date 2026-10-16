@@ -98,16 +98,24 @@ function memberlite_get_customizer_cpts(): array {
  * Returns the current CPT slug if we are on a CPT archive that has
  * per-archive Customizer settings, otherwise null.
  *
+ * Taxonomy archives use the settings of their CPT when the taxonomy
+ * belongs to exactly one CPT with Customizer settings.
+ *
  * @since 7.1.2
  * @return string|null
  */
 function memberlite_get_current_cpt_archive_type(): ?string {
-	if ( ! is_post_type_archive() ) {
+	if ( is_post_type_archive() ) {
+		// The queried object is the term, not the post type, when is_tax() is also true.
+		$post_type = get_query_var( 'post_type' );
+		$post_type = is_array( $post_type ) ? reset( $post_type ) : $post_type;
+	} elseif ( is_tax() ) {
+		$taxonomy   = get_taxonomy( get_queried_object()->taxonomy ?? '' );
+		$post_types = $taxonomy ? array_intersect( $taxonomy->object_type, memberlite_get_customizer_cpts() ) : array();
+		$post_type  = count( $post_types ) === 1 ? reset( $post_types ) : null;
+	} else {
 		return null;
 	}
-
-	$queried   = get_queried_object();
-	$post_type = $queried->name ?? null;
 
 	if ( ! $post_type ) {
 		return null;
@@ -116,6 +124,17 @@ function memberlite_get_current_cpt_archive_type(): ?string {
 	$cpts = memberlite_get_customizer_cpts();
 
 	return in_array( $post_type, $cpts, true ) ? $post_type : null;
+}
+
+/**
+ * Returns true if we are on a post type archive, or on a taxonomy archive
+ * that uses a CPT's Customizer settings.
+ *
+ * @since TBD
+ * @return bool
+ */
+function memberlite_is_cpt_archive(): bool {
+	return is_post_type_archive() || ( is_tax() && memberlite_get_current_cpt_archive_type() );
 }
 
 /**
@@ -134,16 +153,15 @@ function memberlite_cpt_inherits_posts_archives( string $cpt_type ): bool {
 }
 
 /**
- * Returns the current CPT slug if we are on a CPT archive or single post
- * that has Customizer settings, otherwise null.
+ * Returns the current CPT slug if we are on a CPT archive (including its
+ * taxonomy archives) or single post that has Customizer settings, otherwise null.
  *
  * @since 7.1.2
  * @return string|null
  */
 function memberlite_get_current_cpt_type(): ?string {
-	if ( is_post_type_archive() ) {
-		$queried   = get_queried_object();
-		$post_type = $queried->name ?? null;
+	if ( is_post_type_archive() || is_tax() ) {
+		return memberlite_get_current_cpt_archive_type();
 	} elseif ( is_singular() ) {
 		$post_type = get_post_type() ?: null;
 	} else {
@@ -193,7 +211,7 @@ function memberlite_body_classes( $classes ) {
 	global $memberlite_defaults, $post;
 
 	// sidebar classes
-	if ( ! is_page_template( 'templates/fluid-width.php' ) && ! memberlite_is_blog() && ! is_post_type_archive() ) {
+	if ( ! is_page_template( 'templates/fluid-width.php' ) && ! memberlite_is_blog() && ! memberlite_is_cpt_archive() ) {
 		$cpt_type = is_singular() ? memberlite_get_current_cpt_type() : null;
 		if ( $cpt_type ) {
 			if ( memberlite_cpt_inherits_posts_archives( $cpt_type ) ) {
@@ -211,7 +229,7 @@ function memberlite_body_classes( $classes ) {
 		$classes[] = 'content-archives-' . get_theme_mod( 'content_archives', $memberlite_defaults['content_archives'] );
 	}
 
-	if ( is_post_type_archive() ) {
+	if ( memberlite_is_cpt_archive() ) {
 		$cpt_type = memberlite_get_current_cpt_archive_type();
 		if ( $cpt_type ) {
 			if ( memberlite_cpt_inherits_posts_archives( $cpt_type ) ) {
@@ -329,7 +347,7 @@ function memberlite_sidebar_location_none_columns_ratio( $r, $location ) {
 		if ( $sidebar_location === 'sidebar-none' && empty( is_page_template() ) ) {
 			$r = '8 medium-offset-2';
 		}
-	} elseif ( memberlite_is_blog() || is_post_type_archive() || is_search() ) {
+	} elseif ( memberlite_is_blog() || memberlite_is_cpt_archive() || is_search() ) {
 		$cpt_type         = memberlite_get_current_cpt_archive_type();
 		$content_archives = memberlite_get_content_archives_theme_mod();
 
@@ -376,7 +394,7 @@ function memberlite_sidebar_none_get_sidebar( $name ) {
 		if ( $sidebar_location === 'sidebar-none' && empty( is_page_template() ) ) {
 			$name = false;
 		}
-	} elseif ( memberlite_is_blog() || is_post_type_archive() || is_search() ) {
+	} elseif ( memberlite_is_blog() || memberlite_is_cpt_archive() || is_search() ) {
 		$cpt_type         = memberlite_get_current_cpt_archive_type();
 		$content_archives = memberlite_get_content_archives_theme_mod();
 
