@@ -22,8 +22,8 @@
 			<!-- wp:paragraph {"align":"center","fontSize":"24"} -->
 			<p class="has-text-align-center has-24-font-size">[fa icon="users" size="2x"]</p>
 			<!-- /wp:paragraph -->
-			<!-- wp:paragraph {"align":"center","style":{"typography":{"fontFamily":"var:custom|heading|font-family"}},"fontSize":"42"} -->
-			<p class="has-text-align-center has-42-font-size" style="font-family:var(--wp--custom--heading--font-family)"><strong>12,500+</strong></p>
+			<!-- wp:paragraph {"align":"center","fontSize":"42","fontFamily":"heading"} -->
+			<p class="has-text-align-center has-heading-font-family has-42-font-size"><strong>12,500+</strong></p>
 			<!-- /wp:paragraph -->
 			<!-- wp:paragraph {"align":"center"} -->
 			<p class="has-text-align-center">Active Members</p>
@@ -35,8 +35,8 @@
 			<!-- wp:paragraph {"align":"center","fontSize":"24"} -->
 			<p class="has-text-align-center has-24-font-size">[fa icon="map-marker-alt" size="2x"]</p>
 			<!-- /wp:paragraph -->
-			<!-- wp:paragraph {"align":"center","style":{"typography":{"fontFamily":"var:custom|heading|font-family"}},"fontSize":"42"} -->
-			<p class="has-text-align-center has-42-font-size" style="font-family:var(--wp--custom--heading--font-family)"><strong>48</strong></p>
+			<!-- wp:paragraph {"align":"center","fontSize":"42","fontFamily":"heading"} -->
+			<p class="has-text-align-center has-heading-font-family has-42-font-size"><strong>48</strong></p>
 			<!-- /wp:paragraph -->
 			<!-- wp:paragraph {"align":"center"} -->
 			<p class="has-text-align-center">Regional Chapters</p>
@@ -48,8 +48,8 @@
 			<!-- wp:paragraph {"align":"center","fontSize":"24"} -->
 			<p class="has-text-align-center has-24-font-size">[fa icon="calendar-check" size="2x"]</p>
 			<!-- /wp:paragraph -->
-			<!-- wp:paragraph {"align":"center","style":{"typography":{"fontFamily":"var:custom|heading|font-family"}},"fontSize":"42"} -->
-			<p class="has-text-align-center has-42-font-size" style="font-family:var(--wp--custom--heading--font-family)"><strong>200+</strong></p>
+			<!-- wp:paragraph {"align":"center","fontSize":"42","fontFamily":"heading"} -->
+			<p class="has-text-align-center has-heading-font-family has-42-font-size"><strong>200+</strong></p>
 			<!-- /wp:paragraph -->
 			<!-- wp:paragraph {"align":"center"} -->
 			<p class="has-text-align-center">Annual Events</p>
@@ -61,8 +61,8 @@
 			<!-- wp:paragraph {"align":"center","fontSize":"24"} -->
 			<p class="has-text-align-center has-24-font-size">[fa icon="handshake" size="2x"]</p>
 			<!-- /wp:paragraph -->
-			<!-- wp:paragraph {"align":"center","style":{"typography":{"fontFamily":"var:custom|heading|font-family"}},"fontSize":"42"} -->
-			<p class="has-text-align-center has-42-font-size" style="font-family:var(--wp--custom--heading--font-family)"><strong>25</strong></p>
+			<!-- wp:paragraph {"align":"center","fontSize":"42","fontFamily":"heading"} -->
+			<p class="has-text-align-center has-heading-font-family has-42-font-size"><strong>25</strong></p>
 			<!-- /wp:paragraph -->
 			<!-- wp:paragraph {"align":"center"} -->
 			<p class="has-text-align-center">Years of Service</p>

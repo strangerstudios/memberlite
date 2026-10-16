@@ -10,8 +10,8 @@
  * @since Memberlite TBD
  */
 ?>
-<!-- wp:group {"align":"full","style":{"spacing":{"padding":{"right":"var:preset|spacing|20","left":"var:preset|spacing|20","top":"var:preset|spacing|40","bottom":"var:preset|spacing|40"}}},"backgroundColor":"borders","layout":{"type":"constrained"}} -->
-<div class="wp-block-group alignfull has-borders-background-color has-background" style="padding-top:var(--wp--preset--spacing--40);padding-right:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--40);padding-left:var(--wp--preset--spacing--20)"><!-- wp:columns {"align":"wide","style":{"spacing":{"blockGap":{"left":"0"}}}} -->
+<!-- wp:group {"align":"full","style":{"spacing":{"blockGap":"var:preset|spacing|30","padding":{"right":"var:preset|spacing|30","left":"var:preset|spacing|30","top":"var:preset|spacing|60","bottom":"var:preset|spacing|60"}}},"backgroundColor":"borders","layout":{"type":"constrained"}} -->
+<div class="wp-block-group alignfull has-borders-background-color has-background" style="padding-top:var(--wp--preset--spacing--60);padding-right:var(--wp--preset--spacing--30);padding-bottom:var(--wp--preset--spacing--60);padding-left:var(--wp--preset--spacing--30)"><!-- wp:columns {"align":"wide"} -->
 	<div class="wp-block-columns alignwide"><!-- wp:column -->
 		<div class="wp-block-column"><!-- wp:columns {"style":{"spacing":{"blockGap":{"left":"var:preset|spacing|10"}}}} -->
 			<div class="wp-block-columns"><!-- wp:column {"verticalAlignment":"top","width":"10%"} -->
@@ -20,13 +20,13 @@
 					<!-- /wp:paragraph --></div>
 				<!-- /wp:column -->
 
-				<!-- wp:column -->
-				<div class="wp-block-column"><!-- wp:paragraph {"style":{"typography":{"textTransform":"uppercase","letterSpacing":"1px"}},"fontSize":"16"} -->
-					<p class="has-16-font-size" style="letter-spacing:1px;text-transform:uppercase"><strong>exclusive member deals</strong></p>
+				<!-- wp:column {"style":{"spacing":{"blockGap":"0"}}} -->
+				<div class="wp-block-column"><!-- wp:paragraph {"style":{"typography":{"textTransform":"uppercase","letterSpacing":"1px"}},"fontSize":"16","fontFamily":"heading"} -->
+					<p class="has-heading-font-family has-16-font-size" style="letter-spacing:1px;text-transform:uppercase"><strong>member deals</strong></p>
 					<!-- /wp:paragraph -->
 
-					<!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"0px"}}}} -->
-					<p style="margin-top:0px">Enjoy discounts and perks available only to members.</p>
+					<!-- wp:paragraph -->
+					<p>Enjoy discounts and perks available only to members.</p>
 					<!-- /wp:paragraph --></div>
 				<!-- /wp:column --></div>
 			<!-- /wp:columns --></div>
@@ -40,13 +40,13 @@
 					<!-- /wp:paragraph --></div>
 				<!-- /wp:column -->
 
-				<!-- wp:column -->
-				<div class="wp-block-column"><!-- wp:paragraph {"style":{"typography":{"textTransform":"uppercase","letterSpacing":"1px"}},"fontSize":"16"} -->
-					<p class="has-16-font-size" style="letter-spacing:1px;text-transform:uppercase"><strong>secure payments</strong></p>
+				<!-- wp:column {"style":{"spacing":{"blockGap":"0"}}} -->
+				<div class="wp-block-column"><!-- wp:paragraph {"style":{"typography":{"textTransform":"uppercase","letterSpacing":"1px"}},"fontSize":"16","fontFamily":"heading"} -->
+					<p class="has-heading-font-family has-16-font-size" style="letter-spacing:1px;text-transform:uppercase"><strong>secure payments</strong></p>
 					<!-- /wp:paragraph -->
 
-					<!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"0px"}}}} -->
-					<p style="margin-top:0px">Your billing information is encrypted and always secure.</p>
+					<!-- wp:paragraph -->
+					<p>Your billing information is encrypted and always secure.</p>
 					<!-- /wp:paragraph --></div>
 				<!-- /wp:column --></div>
 			<!-- /wp:columns --></div>
@@ -60,13 +60,13 @@
 					<!-- /wp:paragraph --></div>
 				<!-- /wp:column -->
 
-				<!-- wp:column -->
-				<div class="wp-block-column"><!-- wp:paragraph {"style":{"typography":{"textTransform":"uppercase","letterSpacing":"1px"}},"fontSize":"16"} -->
-					<p class="has-16-font-size" style="letter-spacing:1px;text-transform:uppercase"><strong>active community</strong></p>
+				<!-- wp:column {"style":{"spacing":{"blockGap":"0"}}} -->
+				<div class="wp-block-column"><!-- wp:paragraph {"style":{"typography":{"textTransform":"uppercase","letterSpacing":"1px"}},"fontSize":"16","fontFamily":"heading"} -->
+					<p class="has-heading-font-family has-16-font-size" style="letter-spacing:1px;text-transform:uppercase"><strong>active community</strong></p>
 					<!-- /wp:paragraph -->
 
-					<!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"0px"}}}} -->
-					<p style="margin-top:0px">Connect with thousands of members who share your interests.</p>
+					<!-- wp:paragraph -->
+					<p>Connect with thousands of members who share your interests.</p>
 					<!-- /wp:paragraph --></div>
 				<!-- /wp:column --></div>
 			<!-- /wp:columns --></div>
@@ -80,13 +80,13 @@
 					<!-- /wp:paragraph --></div>
 				<!-- /wp:column -->
 
-				<!-- wp:column -->
-				<div class="wp-block-column"><!-- wp:paragraph {"style":{"typography":{"textTransform":"uppercase","letterSpacing":"1px"}},"fontSize":"16"} -->
-					<p class="has-16-font-size" style="letter-spacing:1px;text-transform:uppercase"><strong>cancel anytime</strong></p>
+				<!-- wp:column {"style":{"spacing":{"blockGap":"0"}}} -->
+				<div class="wp-block-column"><!-- wp:paragraph {"style":{"typography":{"textTransform":"uppercase","letterSpacing":"1px"}},"fontSize":"16","fontFamily":"heading"} -->
+					<p class="has-heading-font-family has-16-font-size" style="letter-spacing:1px;text-transform:uppercase"><strong>cancel anytime</strong></p>
 					<!-- /wp:paragraph -->
 
-					<!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"0px"}}}} -->
-					<p style="margin-top:0px">No contracts, no hassle. Manage your membership whenever you like.</p>
+					<!-- wp:paragraph -->
+					<p>No contracts, no hassle. Manage your membership whenever you like.</p>
 					<!-- /wp:paragraph --></div>
 				<!-- /wp:column --></div>
 			<!-- /wp:columns --></div>

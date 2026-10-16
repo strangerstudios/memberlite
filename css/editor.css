@@ -376,14 +376,6 @@ or being hovered over in the editor or from list view for better UX. */
 	padding: 0 var(--wp--preset--spacing--10) var(--wp--preset--spacing--10);
 }
 
-.wp-block-accordion.is-style-accrdn-medium .wp-block-accordion-heading__toggle-icon {
-	font-size: var(--wp--preset--font-size--30);
-}
-
-.wp-block-accordion.is-style-accrdn-large .wp-block-accordion-heading__toggle-icon {
-	font-size: var(--wp--preset--font-size--42);
-}
-
 .wp-block-accordion.is-style-accrdn-caret .wp-block-accordion-heading__toggle:has(.wp-block-accordion-heading__toggle-icon:last-child)::after,
 .wp-block-accordion.is-style-accrdn-caret .wp-block-accordion-heading__toggle:has(.wp-block-accordion-heading__toggle-icon:first-child)::before {
 	font-family: "Font Awesome 5 Free";

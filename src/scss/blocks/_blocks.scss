@@ -747,10 +747,6 @@ hr.wp-block-separator {
 	.wp-block-accordion-heading {
 		border-top: 1px solid var(--memberlite-color-borders);
 		cursor: pointer;
-		font-family: var(--memberlite-header-font), ui-sans-serif;
-		font-size: inherit;
-		font-weight: 700;
-		line-height: inherit;
 		margin: 0;
 		padding: var(--wp--preset--spacing--10);
 
@@ -764,15 +760,6 @@ hr.wp-block-separator {
 		.wp-block-accordion-heading {
 			padding-bottom: 0;
 		}
-	}
-
-	// core accordion does not have padding so if we define padding ourselves, it can't be overwritten from the editor...
-	&.is-style-accrdn-medium .wp-block-accordion-heading__toggle-icon {
-		font-size: var(--wp--preset--font-size--30);
-	}
-
-	&.is-style-accrdn-large .wp-block-accordion-heading__toggle-icon {
-		font-size: var(--wp--preset--font-size--42);
 	}
 
 	&.is-style-accrdn-caret {

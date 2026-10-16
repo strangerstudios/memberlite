@@ -1640,15 +1640,34 @@ hr.wp-block-separator.is-style-flourish-diamond.alignfull {
   padding-bottom: 8rem;
 }
 
+.wp-block-accordion .wp-block-accordion-item {
+  margin-block-start: 0;
+}
+.wp-block-accordion .wp-block-accordion-heading__toggle {
+  background: none;
+  border: 0;
+  box-shadow: none;
+  padding: 0;
+  text-align: right;
+}
+.wp-block-accordion .wp-block-accordion-panel {
+  margin-block-start: 0;
+  padding: 0 var(--wp--preset--spacing--10) var(--wp--preset--spacing--10);
+}
+.wp-block-accordion .wp-block-accordion-panel[hidden] {
+  padding: 0;
+}
 .wp-block-accordion .wp-block-accordion-heading {
   border-top: 1px solid var(--memberlite-color-borders);
+  cursor: pointer;
+  margin: 0;
   padding: var(--wp--preset--spacing--10);
 }
-.wp-block-accordion.is-style-accrdn-medium .wp-block-accordion-heading__toggle-icon {
-  font-size: var(--wp--preset--font-size--30);
+.wp-block-accordion .wp-block-accordion-heading__toggle-title:hover {
+  text-decoration: underline;
 }
-.wp-block-accordion.is-style-accrdn-large .wp-block-accordion-heading__toggle-icon {
-  font-size: var(--wp--preset--font-size--42);
+.wp-block-accordion.memberlite-pattern-accordion .wp-block-accordion-heading {
+  padding-bottom: 0;
 }
 .wp-block-accordion.is-style-accrdn-caret {
   /* Default / icon-right: icon span is the LAST child inside the button */
@@ -2098,8 +2117,7 @@ hr.wp-block-separator.is-style-flourish-diamond.alignfull {
 
 :is(details > summary,
 .memberlite_accordion h2,
-.entry-content .memberlite_accordion h2,
-.wp-block-accordion-item .wp-block-accordion-heading) {
+.entry-content .memberlite_accordion h2) {
   cursor: pointer;
   font-family: var(--memberlite-header-font), ui-sans-serif;
   font-size: inherit;
@@ -2110,8 +2128,7 @@ hr.wp-block-separator.is-style-flourish-diamond.alignfull {
 
 :is(details > summary,
 .memberlite_accordion h2,
-.entry-content .memberlite_accordion h2,
-.wp-block-accordion-item .wp-block-accordion-heading__toggle-title):hover {
+.entry-content .memberlite_accordion h2):hover {
   text-decoration: underline;
 }
 
@@ -2140,19 +2157,7 @@ details > p:first-of-type {
   margin-block-start: var(--wp--preset--spacing--10);
 }
 
-.wp-block-accordion-item {
-  margin-block-start: 0;
-}
-.wp-block-accordion-item .wp-block-accordion-heading__toggle {
-  background: none;
-  border: 0;
-  box-shadow: none;
-  padding: 0;
-  text-align: right;
-}
-
-:is(.wp-block-accordion-panel,
-.memberlite_accordion .memberlite_accordion-item-content) {
+:is(.memberlite_accordion .memberlite_accordion-item-content) {
   margin-block-start: 0;
   padding: 0 var(--wp--preset--spacing--10) var(--wp--preset--spacing--10);
 }
@@ -3744,6 +3749,9 @@ body.memberlite-banner-hidden .entry-content > .banner:first-child {
 .pmpro button[type=button]#other_discount_code_toggle, .pmpro button[type=button]#other_discount_code_toggle:hover, .pmpro button[type=button]#other_discount_code_toggle:focus {
   box-shadow: none;
   font-weight: 400;
+}
+.pmpro .pmpro_card a:not(.pmpro_btn):not(.pmpro_link) {
+  color: var(--pmpro--color--contrast);
 }
 .pmpro .pmpro_level-description {
   font-family: var(--memberlite-body-font), ui-sans-serif;
