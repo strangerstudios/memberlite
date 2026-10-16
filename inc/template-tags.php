@@ -74,20 +74,20 @@ if ( ! function_exists( 'memberlite_paging_nav' ) ) :
 			return;
 		}
 		?>
-		<nav class="navigation paging-navigation" role="navigation">
-		<span class="screen-reader-text"><?php esc_html_e( 'Posts navigation', 'memberlite' ); ?></span>
-		<div class="nav-links">
+		<nav class="navigation paging-navigation" aria-label="<?php esc_attr_e( 'Posts', 'memberlite' ); ?>">
+			<h2 class="screen-reader-text"><?php esc_html_e( 'Posts navigation', 'memberlite' ); ?></h2>
+			<div class="nav-links">
 
-			<?php if ( get_next_posts_link() ) : ?>
-			<div class="nav-previous"><?php next_posts_link( '<span class="meta-nav">&larr;</span> ' . esc_html__( 'Older posts', 'memberlite' ) ); ?></div>
-			<?php endif; ?>
+				<?php if ( get_next_posts_link() ) : ?>
+				<div class="nav-previous"><?php next_posts_link( esc_html__( 'Older posts', 'memberlite' ) ); ?></div>
+				<?php endif; ?>
 
-			<?php if ( get_previous_posts_link() ) : ?>
-			<div class="nav-next"><?php previous_posts_link( esc_html__( 'Newer posts', 'memberlite' ) . ' <span class="meta-nav">&rarr;</span>' ); ?></div>
-			<?php endif; ?>
+				<?php if ( get_previous_posts_link() ) : ?>
+				<div class="nav-next"><?php previous_posts_link( esc_html__( 'Newer posts', 'memberlite' ) ); ?></div>
+				<?php endif; ?>
 
-		</div><!-- .nav-links -->
-	</nav><!-- .navigation -->
+			</div><!-- .nav-links -->
+		</nav><!-- .navigation -->
 	<?php
 	}
 endif;
@@ -103,17 +103,14 @@ if ( ! function_exists( 'memberlite_post_nav' ) ) :
 		if ( ! $next && ! $previous ) {
 			return;
 		} ?>
-		<nav class="navigation post-navigation" role="navigation">
-			<span class="screen-reader-text"><?php esc_html_e( 'Post navigation', 'memberlite' ); ?></span>
+		<nav class="navigation post-navigation" aria-label="<?php esc_attr_e( 'Posts', 'memberlite' ); ?>">
+			<h2 class="screen-reader-text"><?php esc_html_e( 'Post navigation', 'memberlite' ); ?></h2>
 			<div class="nav-links">
 				<?php
-				if ( is_rtl() ) {
-					next_post_link( '<div class="nav-next">%link</div>', '%title <span class="meta-nav">&larr;</span>' );
-					previous_post_link( '<div class="nav-previous">%link</div>', '<span class="meta-nav">&rarr;</span> %title' );
-				} else {
-					previous_post_link( '<div class="nav-previous">%link</div>', '<span class="meta-nav">&larr;</span> %title' );
-					next_post_link( '<div class="nav-next">%link</div>', '%title <span class="meta-nav">&rarr;</span>' );
-				}
+				/* translators: Hidden accessibility text. */
+				previous_post_link( '<div class="nav-previous">%link</div>', '<span class="screen-reader-text">' . esc_html__( 'Previous post:', 'memberlite' ) . ' </span>%title' );
+				/* translators: Hidden accessibility text. */
+				next_post_link( '<div class="nav-next">%link</div>', '<span class="screen-reader-text">' . esc_html__( 'Next post:', 'memberlite' ) . ' </span>%title' );
 				?>
 			</div><!-- .nav-links -->
 		</nav><!-- .navigation -->
@@ -174,30 +171,19 @@ if ( ! function_exists( 'memberlite_page_nav' ) ) :
 			return;
 		}
 
-		$rtl = is_rtl();
-
-		$previous_arrow = $rtl ? '&rarr;' : '&larr;';
-		$next_arrow     = $rtl ? '&larr;' : '&rarr;';
 		?>
-		<nav class="navigation page-navigation" role="navigation">
-			<span class="screen-reader-text"><?php esc_html_e( 'Page navigation', 'memberlite' ); ?></span>
+		<nav class="navigation page-navigation" aria-label="<?php esc_attr_e( 'Pages', 'memberlite' ); ?>">
+			<h2 class="screen-reader-text"><?php esc_html_e( 'Page navigation', 'memberlite' ); ?></h2>
 			<div class="nav-links">
 				<?php
-				$previous_html = '';
-				$next_html     = '';
-
 				if ( ! empty( $previousID ) && ( $previousID != $post->ID ) ) {
-					$previous_html = '<div class="nav-previous"><a href="' . esc_url( get_permalink( $previousID ) ) . '" rel="prev"><span class="meta-nav">' . $previous_arrow . '</span> ' . esc_html( get_the_title( $previousID ) ) . '</a></div>';
+					/* translators: Hidden accessibility text. */
+					echo '<div class="nav-previous"><a href="' . esc_url( get_permalink( $previousID ) ) . '" rel="prev"><span class="screen-reader-text">' . esc_html__( 'Previous page:', 'memberlite' ) . ' </span>' . esc_html( get_the_title( $previousID ) ) . '</a></div>';
 				}
 
 				if ( ! empty( $nextID ) && ( $nextID != $post->ID ) ) {
-					$next_html = '<div class="nav-next"><a href="' . esc_url( get_permalink( $nextID ) ) . '" rel="next">' . esc_html( get_the_title( $nextID ) ) . ' <span class="meta-nav">' . $next_arrow . '</span></a></div>';
-				}
-
-				if ( $rtl ) {
-					echo $next_html . $previous_html;
-				} else {
-					echo $previous_html . $next_html;
+					/* translators: Hidden accessibility text. */
+					echo '<div class="nav-next"><a href="' . esc_url( get_permalink( $nextID ) ) . '" rel="next"><span class="screen-reader-text">' . esc_html__( 'Next page:', 'memberlite' ) . ' </span>' . esc_html( get_the_title( $nextID ) ) . '</a></div>';
 				}
 				?>
 			</div><!-- .nav-links -->
