@@ -106,8 +106,9 @@ function memberlite_get_customizer_cpts(): array {
  */
 function memberlite_get_current_cpt_archive_type(): ?string {
 	if ( is_post_type_archive() ) {
-		$queried   = get_queried_object();
-		$post_type = $queried->name ?? null;
+		// The queried object is the term, not the post type, when is_tax() is also true.
+		$post_type = get_query_var( 'post_type' );
+		$post_type = is_array( $post_type ) ? reset( $post_type ) : $post_type;
 	} elseif ( is_tax() ) {
 		$taxonomy   = get_taxonomy( get_queried_object()->taxonomy ?? '' );
 		$post_types = $taxonomy ? array_intersect( $taxonomy->object_type, memberlite_get_customizer_cpts() ) : array();
