@@ -36,3 +36,27 @@
 		width: 49%;
 	}
 }
+
+:where(.paging-navigation, .post-navigation, .page-navigation) {
+	.nav-previous a::before,
+	.nav-next a::after {
+		display: inline-block;
+	}
+
+	// Hide inline arrows from overridden pluggable functions that predate the CSS arrows.
+	.meta-nav {
+		display: none;
+	}
+
+	.nav-previous a::before {
+		content: "\2190";
+		content: "\2190" / ""; /*! rtl:raw:content: "\2192"; content: "\2192" / ""; */
+		margin-right: 0.25em;
+	}
+
+	.nav-next a::after {
+		content: "\2192";
+		content: "\2192" / ""; /*! rtl:raw:content: "\2190"; content: "\2190" / ""; */
+		margin-left: 0.25em;
+	}
+}
