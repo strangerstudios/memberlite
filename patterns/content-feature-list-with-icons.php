@@ -12,67 +12,67 @@
 ?>
 <!-- wp:group {"align":"full","style":{"spacing":{"blockGap":"var:preset|spacing|30","padding":{"top":"var:preset|spacing|70","bottom":"var:preset|spacing|70","left":"var:preset|spacing|30","right":"var:preset|spacing|30"}}},"backgroundColor":"color-secondary","layout":{"type":"constrained"}} -->
 <div class="wp-block-group alignfull has-color-secondary-background-color has-background" style="padding-top:var(--wp--preset--spacing--70);padding-right:var(--wp--preset--spacing--30);padding-bottom:var(--wp--preset--spacing--70);padding-left:var(--wp--preset--spacing--30)"><!-- wp:group {"align":"wide","style":{"border":{"radius":"8px"},"spacing":{"padding":{"right":"var:preset|spacing|30","left":"var:preset|spacing|30","top":"var:preset|spacing|30","bottom":"var:preset|spacing|30"}},"elements":{"link":{"color":{"text":"var:preset|color|body-text"}}}},"backgroundColor":"base","textColor":"body-text","layout":{"type":"constrained"}} -->
-<div class="wp-block-group alignwide has-body-text-color has-base-background-color has-text-color has-background has-link-color" style="border-radius:8px;padding-top:var(--wp--preset--spacing--30);padding-right:var(--wp--preset--spacing--30);padding-bottom:var(--wp--preset--spacing--30);padding-left:var(--wp--preset--spacing--30)"><!-- wp:columns {"verticalAlignment":"top","align":"wide","style":{"spacing":{"blockGap":{"left":"var:preset|spacing|30"}}}} -->
-<div class="wp-block-columns alignwide are-vertically-aligned-top"><!-- wp:column {"verticalAlignment":"top"} -->
-<div class="wp-block-column is-vertically-aligned-top"><!-- wp:heading {"fontSize":"30"} -->
-<h2 class="wp-block-heading has-30-font-size">View our courses on the go! Learn wherever and whenever it's convenient.</h2>
-<!-- /wp:heading --></div>
+<div class="wp-block-group alignwide has-body-text-color has-base-background-color has-text-color has-background has-link-color" style="border-radius:8px;padding-top:var(--wp--preset--spacing--30);padding-right:var(--wp--preset--spacing--30);padding-bottom:var(--wp--preset--spacing--30);padding-left:var(--wp--preset--spacing--30)"><!-- wp:columns {"verticalAlignment":null,"align":"wide","style":{"spacing":{"blockGap":{"left":"var:preset|spacing|60"}}}} -->
+<div class="wp-block-columns alignwide"><!-- wp:column {"verticalAlignment":"center","width":"30%","style":{"spacing":{"blockGap":"var:preset|spacing|10"}}} -->
+<div class="wp-block-column is-vertically-aligned-center" style="flex-basis:30%"><!-- wp:paragraph {"style":{"typography":{"fontStyle":"normal","fontWeight":"700","textAlign":"center"}},"fontSize":"24","fontFamily":"heading"} -->
+<p class="has-text-align-center has-heading-font-family has-24-font-size" style="font-style:normal;font-weight:700">Take our courses on the go. Learn wherever and whenever it's convenient.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center"}} -->
+<div class="wp-block-buttons"><!-- wp:button {"className":"is-style-fill"} -->
+<div class="wp-block-button is-style-fill"><a class="wp-block-button__link wp-element-button" href="#">Browse Courses</a></div>
+<!-- /wp:button --></div>
+<!-- /wp:buttons --></div>
 <!-- /wp:column -->
 
-<!-- wp:column {"verticalAlignment":"top","style":{"spacing":{"blockGap":"var:preset|spacing|20"}}} -->
-<div class="wp-block-column is-vertically-aligned-top"><!-- wp:columns {"verticalAlignment":"top","style":{"spacing":{"blockGap":{"left":"var:preset|spacing|10"}}}} -->
-<div class="wp-block-columns are-vertically-aligned-top"><!-- wp:column {"verticalAlignment":"top","width":"10%"} -->
-<div class="wp-block-column is-vertically-aligned-top" style="flex-basis:10%"><!-- wp:paragraph {"style":{"typography":{"textAlign":"center","fontStyle":"normal","fontWeight":"700"}},"fontSize":"21"} -->
-<p class="has-text-align-center has-21-font-size" style="font-style:normal;font-weight:700">[fa icon="users" color="site-navigation-background" background="action" shape="circle"]</p>
-<!-- /wp:paragraph --></div>
-<!-- /wp:column -->
+<!-- wp:column {"verticalAlignment":"top","width":"%","style":{"spacing":{"blockGap":"var:preset|spacing|20","padding":{"left":"var:preset|spacing|40"}},"border":{"left":{"color":"var:preset|color|borders","width":"3px"}}}} -->
+<div class="wp-block-column is-vertically-aligned-top" style="border-left-color:var(--wp--preset--color--borders);border-left-width:3px;padding-left:var(--wp--preset--spacing--40)"><!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|10"}},"layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"top"}} -->
+<div class="wp-block-group"><!-- wp:paragraph -->
+<p>[fa icon="users" color="site-navigation-background" background="action" shape="circle" size="2x"]</p>
+<!-- /wp:paragraph -->
 
-<!-- wp:column {"verticalAlignment":"top","style":{"spacing":{"blockGap":"8px"}}} -->
-<div class="wp-block-column is-vertically-aligned-top"><!-- wp:paragraph {"style":{"typography":{"textTransform":"uppercase","letterSpacing":"1px"}},"fontSize":"16","fontFamily":"heading"} -->
-<p class="has-heading-font-family has-16-font-size" style="letter-spacing:1px;text-transform:uppercase"><strong>Connect with the community</strong></p>
+<!-- wp:group {"style":{"spacing":{"blockGap":"0.25em"}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group"><!-- wp:paragraph -->
+<p><strong>Connect with the Community</strong></p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p><em>Join discussions, ask questions, and connect with other members between lessons.</em></p>
+<p>Join discussions, ask questions, and connect with other members between lessons.</p>
 <!-- /wp:paragraph --></div>
-<!-- /wp:column --></div>
-<!-- /wp:columns -->
+<!-- /wp:group --></div>
+<!-- /wp:group -->
 
-<!-- wp:columns {"verticalAlignment":"top","style":{"spacing":{"blockGap":{"left":"var:preset|spacing|10"}}}} -->
-<div class="wp-block-columns are-vertically-aligned-top"><!-- wp:column {"verticalAlignment":"top","width":"10%"} -->
-<div class="wp-block-column is-vertically-aligned-top" style="flex-basis:10%"><!-- wp:paragraph {"style":{"typography":{"textAlign":"center","fontStyle":"normal","fontWeight":"700"}},"fontSize":"21"} -->
-<p class="has-text-align-center has-21-font-size" style="font-style:normal;font-weight:700">[fa icon="key" color="site-navigation-background" background="action" shape="circle"]</p>
-<!-- /wp:paragraph --></div>
-<!-- /wp:column -->
+<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|10"}},"layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"top"}} -->
+<div class="wp-block-group"><!-- wp:paragraph -->
+<p>[fa icon="key" color="site-navigation-background" background="action" shape="circle" size="2x"]</p>
+<!-- /wp:paragraph -->
 
-<!-- wp:column {"verticalAlignment":"top","style":{"spacing":{"blockGap":"8px"}}} -->
-<div class="wp-block-column is-vertically-aligned-top"><!-- wp:paragraph {"style":{"typography":{"textTransform":"uppercase","letterSpacing":"1px"}},"fontSize":"16","fontFamily":"heading"} -->
-<p class="has-heading-font-family has-16-font-size" style="letter-spacing:1px;text-transform:uppercase"><strong>login anywhere with magic links</strong></p>
+<!-- wp:group {"style":{"spacing":{"blockGap":"0.25em"}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group"><!-- wp:paragraph -->
+<p><strong>Login Anywhere with Magic Links</strong></p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p><em>Skip the password. Click the link we email you and you're signed in securely from any device.</em></p>
+<p>Skip the password. Click the link we email you and you're signed in securely from any device.</p>
 <!-- /wp:paragraph --></div>
-<!-- /wp:column --></div>
-<!-- /wp:columns -->
+<!-- /wp:group --></div>
+<!-- /wp:group -->
 
-<!-- wp:columns {"verticalAlignment":"top","style":{"spacing":{"blockGap":{"left":"var:preset|spacing|10"}}}} -->
-<div class="wp-block-columns are-vertically-aligned-top"><!-- wp:column {"verticalAlignment":"top","width":"10%"} -->
-<div class="wp-block-column is-vertically-aligned-top" style="flex-basis:10%"><!-- wp:paragraph {"style":{"typography":{"textAlign":"center","fontStyle":"normal","fontWeight":"700"}},"fontSize":"21"} -->
-<p class="has-text-align-center has-21-font-size" style="font-style:normal;font-weight:700">[fa icon="mobile-screen" color="site-navigation-background" background="action" shape="circle"]</p>
-<!-- /wp:paragraph --></div>
-<!-- /wp:column -->
+<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|10"}},"layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"top"}} -->
+<div class="wp-block-group"><!-- wp:paragraph -->
+<p>[fa icon="mobile-screen" color="site-navigation-background" background="action" shape="circle" size="2x"]</p>
+<!-- /wp:paragraph -->
 
-<!-- wp:column {"verticalAlignment":"top","style":{"spacing":{"blockGap":"8px"}}} -->
-<div class="wp-block-column is-vertically-aligned-top"><!-- wp:paragraph {"style":{"typography":{"textTransform":"uppercase","letterSpacing":"1px"}},"fontSize":"16","fontFamily":"heading"} -->
-<p class="has-heading-font-family has-16-font-size" style="letter-spacing:1px;text-transform:uppercase"><strong>Learn on desktop or mobile</strong></p>
+<!-- wp:group {"style":{"spacing":{"blockGap":"0.25em"}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group"><!-- wp:paragraph -->
+<p><strong>Learn on Desktop or Mobile</strong></p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p><em>Pick up right where you left off, whether you're at your desk or on the go.</em></p>
+<p>Pick up right where you left off, whether you're at your desk or on the go.</p>
 <!-- /wp:paragraph --></div>
-<!-- /wp:column --></div>
-<!-- /wp:columns --></div>
+<!-- /wp:group --></div>
+<!-- /wp:group --></div>
 <!-- /wp:column --></div>
 <!-- /wp:columns --></div>
 <!-- /wp:group --></div>
