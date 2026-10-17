@@ -32,24 +32,5 @@
 				<!-- /wp:buttons --></div>
 			<!-- /wp:group --></div></div>
 	<!-- /wp:cover -->
-
-	<!-- wp:group {"align":"full","style":{"elements":{"link":{"color":{"text":"var:preset|color|color-primary"}}},"spacing":{"padding":{"top":"var:preset|spacing|20","bottom":"var:preset|spacing|20"}},"border":{"top":{"color":"var:preset|color|borders","width":"1px"},"right":[],"bottom":{"color":"var:preset|color|borders","width":"1px"},"left":[]}},"backgroundColor":"base","textColor":"color-primary","layout":{"type":"constrained"}} -->
-	<div class="wp-block-group alignfull has-color-primary-color has-base-background-color has-text-color has-background has-link-color" style="border-top-color:var(--wp--preset--color--borders);border-top-width:1px;border-bottom-color:var(--wp--preset--color--borders);border-bottom-width:1px;padding-top:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--20)"><!-- wp:group {"layout":{"type":"flex","flexWrap":"wrap"}} -->
-		<div class="wp-block-group"><!-- wp:paragraph {"style":{"typography":{"letterSpacing":"1px","textTransform":"uppercase"}},"fontSize":"30","fontFamily":"heading"} -->
-			<p class="has-heading-font-family has-30-font-size" style="letter-spacing:1px;text-transform:uppercase">sponsors:</p>
-			<!-- /wp:paragraph -->
-
-			<!-- wp:image {"aspectRatio":"1","scale":"cover","linkDestination":"none","style":{"layout":{"selfStretch":"fixed","flexSize":"80px"},"color":{"duotone":"unset"}}} -->
-			<figure class="wp-block-image"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/patterns/images/icons/logo-02.png" alt="Sponsor logo." style="aspect-ratio:1;object-fit:cover"/></figure>
-			<!-- /wp:image -->
-
-			<!-- wp:image {"aspectRatio":"1","scale":"cover","linkDestination":"none","style":{"layout":{"selfStretch":"fixed","flexSize":"80px"},"color":{"duotone":"unset"}}} -->
-			<figure class="wp-block-image"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/patterns/images/icons/logo-04.png" alt="Sponsor logo." style="aspect-ratio:1;object-fit:cover"/></figure>
-			<!-- /wp:image -->
-
-			<!-- wp:image {"aspectRatio":"1","scale":"cover","linkDestination":"none","style":{"layout":{"selfStretch":"fixed","flexSize":"80px"},"color":{"duotone":"unset"}}} -->
-			<figure class="wp-block-image"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/patterns/images/icons/logo-03.png" alt="Sponsor logo." style="aspect-ratio:1;object-fit:cover"/></figure>
-			<!-- /wp:image --></div>
-		<!-- /wp:group --></div>
-	<!-- /wp:group --></div>
+</div>
 <!-- /wp:group -->
