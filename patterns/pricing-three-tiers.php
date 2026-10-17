@@ -2,7 +2,7 @@
 /**
  * Title: Three Tier Pricing
  * Slug: memberlite/pricing-three-tiers
- * Description: Three-column pricing table with perks and a call-to-action button per tier. Content is static and does not pull from PMPro membership levels, so it should be customized per site. Perk checkmarks use the Memberlite Font Awesome shortcode.
+ * Description: Three Paid Memberships Pro level cards of equal weight. Uses levels 1, 2, and 3; each card shows the level name, price, checkout button, and level description.
  * Categories: memberlite-pricing
  * Keywords: pricing, plans, membership, tiers, table, comparison
  * @package WordPress
