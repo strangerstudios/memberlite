@@ -14,20 +14,20 @@
 <div class="wp-block-group alignfull" style="padding-top:var(--wp--preset--spacing--70);padding-bottom:var(--wp--preset--spacing--70)"><!-- wp:columns {"align":"wide","style":{"spacing":{"blockGap":{"left":"var:preset|spacing|10"}}}} -->
 	<div class="wp-block-columns alignwide"><!-- wp:column {"style":{"spacing":{"blockGap":"var:preset|spacing|10"}},"width":"25%"} -->
 		<div class="wp-block-column" style="flex-basis:25%"><!-- wp:paragraph {"style":{"elements":{"link":{"color":{"text":"var:preset|color|color-action"}}},"typography":{"textTransform":"uppercase","letterSpacing":"1px"}},"textColor":"color-action"} -->
-			<p class="has-color-action-color has-text-color has-link-color" style="letter-spacing:1px;text-transform:uppercase"><strong>Benefits</strong></p>
+			<p class="has-color-action-color has-text-color has-link-color" style="letter-spacing:1px;text-transform:uppercase"><strong><?php esc_html_e( 'Benefits', 'memberlite' ); ?></strong></p>
 			<!-- /wp:paragraph -->
 
 			<!-- wp:heading {"fontSize":"32"} -->
-			<h2 class="wp-block-heading has-32-font-size">Why Members Choose Us</h2>
+			<h2 class="wp-block-heading has-32-font-size"><?php esc_html_e( 'Why Members Choose Us', 'memberlite' ); ?></h2>
 			<!-- /wp:heading -->
 
 			<!-- wp:paragraph -->
-			<p>Your membership unlocks more than content — it's a community, a resource library, and support whenever you need it.</p>
+			<p><?php esc_html_e( 'Your membership unlocks more than content — it\'s a community, a resource library, and support whenever you need it.', 'memberlite' ); ?></p>
 			<!-- /wp:paragraph -->
 
 			<!-- wp:buttons -->
 			<div class="wp-block-buttons"><!-- wp:button {"width":75,"className":"is-style-outline"} -->
-				<div class="wp-block-button has-custom-width wp-block-button__width-75 is-style-outline"><a class="wp-block-button__link wp-element-button" href="#">Learn more</a></div>
+				<div class="wp-block-button has-custom-width wp-block-button__width-75 is-style-outline"><a class="wp-block-button__link wp-element-button" href="#"><?php esc_html_e( 'Learn more', 'memberlite' ); ?></a></div>
 				<!-- /wp:button --></div>
 			<!-- /wp:buttons --></div>
 		<!-- /wp:column -->
@@ -38,11 +38,11 @@
 			<!-- /wp:paragraph -->
 
 			<!-- wp:heading {"fontSize":"24","level":3} -->
-			<h3 class="wp-block-heading has-24-font-size">Community Access</h3>
+			<h3 class="wp-block-heading has-24-font-size"><?php esc_html_e( 'Community Access', 'memberlite' ); ?></h3>
 			<!-- /wp:heading -->
 
 			<!-- wp:paragraph -->
-			<p>Connect with other members in our private discussion forums and events.</p>
+			<p><?php esc_html_e( 'Connect with other members in our private discussion forums and events.', 'memberlite' ); ?></p>
 			<!-- /wp:paragraph --></div>
 		<!-- /wp:column -->
 
@@ -52,11 +52,11 @@
 			<!-- /wp:paragraph -->
 
 			<!-- wp:heading {"fontSize":"24","level":3} -->
-			<h3 class="wp-block-heading has-24-font-size">Exclusive Content</h3>
+			<h3 class="wp-block-heading has-24-font-size"><?php esc_html_e( 'Exclusive Content', 'memberlite' ); ?></h3>
 			<!-- /wp:heading -->
 
 			<!-- wp:paragraph -->
-			<p>Get instant access to premium articles, videos, and downloadable resources.</p>
+			<p><?php esc_html_e( 'Get instant access to premium articles, videos, and downloadable resources.', 'memberlite' ); ?></p>
 			<!-- /wp:paragraph --></div>
 		<!-- /wp:column -->
 
@@ -66,11 +66,11 @@
 			<!-- /wp:paragraph -->
 
 			<!-- wp:heading {"fontSize":"24","level":3} -->
-			<h3 class="wp-block-heading has-24-font-size">Priority Support</h3>
+			<h3 class="wp-block-heading has-24-font-size"><?php esc_html_e( 'Priority Support', 'memberlite' ); ?></h3>
 			<!-- /wp:heading -->
 
 			<!-- wp:paragraph -->
-			<p>Get faster responses and dedicated help whenever you need it.</p>
+			<p><?php esc_html_e( 'Get faster responses and dedicated help whenever you need it.', 'memberlite' ); ?></p>
 			<!-- /wp:paragraph --></div>
 		<!-- /wp:column --></div>
 	<!-- /wp:columns --></div>

@@ -36,23 +36,23 @@
 <!-- wp:group {"align":"wide","layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"center"}} -->
 <div class="wp-block-group alignwide"><!-- wp:group {"layout":{"type":"flex","flexWrap":"nowrap"}} -->
 <div class="wp-block-group"><!-- wp:paragraph -->
-<p><a href="#">Home</a></p>
+<p><a href="#"><?php esc_html_e( 'Home', 'memberlite' ); ?></a></p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p><a href="#">About</a></p>
+<p><a href="#"><?php esc_html_e( 'About', 'memberlite' ); ?></a></p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p><a href="#">Membership</a></p>
+<p><a href="#"><?php esc_html_e( 'Membership', 'memberlite' ); ?></a></p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p><a href="#">Blog</a></p>
+<p><a href="#"><?php esc_html_e( 'Blog', 'memberlite' ); ?></a></p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p><a href="#">Contact</a></p>
+<p><a href="#"><?php esc_html_e( 'Contact', 'memberlite' ); ?></a></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></div>

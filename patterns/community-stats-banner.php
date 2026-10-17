@@ -22,7 +22,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"style":{"typography":{"textAlign":"center"}},"textColor":"meta-link"} -->
-<p class="has-text-align-center has-meta-link-color has-text-color">Community Members</p>
+<p class="has-text-align-center has-meta-link-color has-text-color"><?php esc_html_e( 'Community Members', 'memberlite' ); ?></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:column -->
 
@@ -36,7 +36,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"style":{"typography":{"textAlign":"center"}},"textColor":"meta-link"} -->
-<p class="has-text-align-center has-meta-link-color has-text-color">Discussions</p>
+<p class="has-text-align-center has-meta-link-color has-text-color"><?php esc_html_e( 'Discussions', 'memberlite' ); ?></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:column -->
 
@@ -50,7 +50,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"style":{"typography":{"textAlign":"center"}},"textColor":"meta-link"} -->
-<p class="has-text-align-center has-meta-link-color has-text-color">Live Events Hosted</p>
+<p class="has-text-align-center has-meta-link-color has-text-color"><?php esc_html_e( 'Live Events Hosted', 'memberlite' ); ?></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:column -->
 
@@ -64,7 +64,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"style":{"typography":{"textAlign":"center"}},"textColor":"meta-link"} -->
-<p class="has-text-align-center has-meta-link-color has-text-color">Shared Resources</p>
+<p class="has-text-align-center has-meta-link-color has-text-color"><?php esc_html_e( 'Shared Resources', 'memberlite' ); ?></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:column --></div>
 <!-- /wp:columns --></div>

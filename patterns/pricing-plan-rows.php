@@ -15,15 +15,15 @@
 <div class="wp-block-group alignwide has-site-navigation-background-color has-site-navigation-link-background-color has-text-color has-background has-link-color" style="border-top-left-radius:12px;border-top-right-radius:12px;border-bottom-left-radius:12px;border-bottom-right-radius:12px;padding-top:var(--wp--preset--spacing--50);padding-right:var(--wp--preset--spacing--50);padding-bottom:var(--wp--preset--spacing--50);padding-left:var(--wp--preset--spacing--50)"><!-- wp:columns {"verticalAlignment":"center","style":{"spacing":{"blockGap":{"left":"var:preset|spacing|60"}}}} -->
 <div class="wp-block-columns are-vertically-aligned-center"><!-- wp:column {"verticalAlignment":"center","width":"40%"} -->
 <div class="wp-block-column is-vertically-aligned-center" style="flex-basis:40%"><!-- wp:paragraph {"style":{"typography":{"textTransform":"uppercase","letterSpacing":"1px"}}} -->
-<p style="letter-spacing:1px;text-transform:uppercase"><strong>Membership Plans</strong></p>
+<p style="letter-spacing:1px;text-transform:uppercase"><strong><?php esc_html_e( 'Membership Plans', 'memberlite' ); ?></strong></p>
 <!-- /wp:paragraph -->
 
 <!-- wp:heading -->
-<h2 class="wp-block-heading">Learn Something New Every Week</h2>
+<h2 class="wp-block-heading"><?php esc_html_e( 'Learn Something New Every Week', 'memberlite' ); ?></h2>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p>Start with a free week of every course. Stay monthly, or save with a yearly pass when you know it fits.</p>
+<p><?php esc_html_e( 'Start with a free week of every course. Stay monthly, or save with a yearly pass when you know it fits.', 'memberlite' ); ?></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:column -->
 
@@ -36,15 +36,15 @@ Explorer
 <!-- /wp:pmpro/single-level-name -->
 
 <!-- wp:paragraph -->
-<p>Try every course free for 7 days.</p>
+<p><?php esc_html_e( 'Try every course free for 7 days.', 'memberlite' ); ?></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
 <!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|10"}},"layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"center"}} -->
 <div class="wp-block-group"><!-- wp:pmpro/single-level-price {"selected_membership_level":"1","style":{"typography":{"fontStyle":"normal","fontWeight":"700"}}} /-->
 
-<!-- wp:pmpro/checkout-button {"selected_membership_level":"1","text":"Join","textAlign":"center","className":""} -->
-<div class="wp-block-buttons has-text-align-center"><div class="wp-block-button"><a class="wp-block-button__link wp-block-pmpro-checkout-button has-text-align-center wp-element-button" href="<?php echo esc_url( memberlite_get_pattern_checkout_url( 1 ) ); ?>">Join</a></div></div>
+<!-- wp:pmpro/checkout-button {"selected_membership_level":"1","text":<?php echo wp_json_encode( __( 'Join', 'memberlite' ) ); ?>,"textAlign":"center","className":""} -->
+<div class="wp-block-buttons has-text-align-center"><div class="wp-block-button"><a class="wp-block-button__link wp-block-pmpro-checkout-button has-text-align-center wp-element-button" href="<?php echo esc_url( memberlite_get_pattern_checkout_url( 1 ) ); ?>"><?php esc_html_e( 'Join', 'memberlite' ); ?></a></div></div>
 <!-- /wp:pmpro/checkout-button --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></div>
@@ -58,15 +58,15 @@ Mastery Pass
 <!-- /wp:pmpro/single-level-name -->
 
 <!-- wp:paragraph -->
-<p>Our best value for serious learners.</p>
+<p><?php esc_html_e( 'Our best value for serious learners.', 'memberlite' ); ?></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
 <!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|10"}},"layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"center"}} -->
 <div class="wp-block-group"><!-- wp:pmpro/single-level-price {"selected_membership_level":"2","style":{"typography":{"fontStyle":"normal","fontWeight":"700"}}} /-->
 
-<!-- wp:pmpro/checkout-button {"selected_membership_level":"2","text":"Join","textAlign":"center","backgroundColor":"color-action","className":""} -->
-<div class="wp-block-buttons has-text-align-center"><div class="wp-block-button"><a class="wp-block-button__link wp-block-pmpro-checkout-button has-color-action-background-color has-background has-text-align-center wp-element-button" href="<?php echo esc_url( memberlite_get_pattern_checkout_url( 2 ) ); ?>">Join</a></div></div>
+<!-- wp:pmpro/checkout-button {"selected_membership_level":"2","text":<?php echo wp_json_encode( __( 'Join', 'memberlite' ) ); ?>,"textAlign":"center","backgroundColor":"color-action","className":""} -->
+<div class="wp-block-buttons has-text-align-center"><div class="wp-block-button"><a class="wp-block-button__link wp-block-pmpro-checkout-button has-color-action-background-color has-background has-text-align-center wp-element-button" href="<?php echo esc_url( memberlite_get_pattern_checkout_url( 2 ) ); ?>"><?php esc_html_e( 'Join', 'memberlite' ); ?></a></div></div>
 <!-- /wp:pmpro/checkout-button --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></div>
@@ -80,22 +80,22 @@ Flex Pass
 <!-- /wp:pmpro/single-level-name -->
 
 <!-- wp:paragraph -->
-<p>Full access, billed monthly.</p>
+<p><?php esc_html_e( 'Full access, billed monthly.', 'memberlite' ); ?></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
 <!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|10"}},"layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"center"}} -->
 <div class="wp-block-group"><!-- wp:pmpro/single-level-price {"selected_membership_level":"3","style":{"typography":{"fontStyle":"normal","fontWeight":"700"}}} /-->
 
-<!-- wp:pmpro/checkout-button {"selected_membership_level":"3","text":"Join","textAlign":"center","className":""} -->
-<div class="wp-block-buttons has-text-align-center"><div class="wp-block-button"><a class="wp-block-button__link wp-block-pmpro-checkout-button has-text-align-center wp-element-button" href="<?php echo esc_url( memberlite_get_pattern_checkout_url( 3 ) ); ?>">Join</a></div></div>
+<!-- wp:pmpro/checkout-button {"selected_membership_level":"3","text":<?php echo wp_json_encode( __( 'Join', 'memberlite' ) ); ?>,"textAlign":"center","className":""} -->
+<div class="wp-block-buttons has-text-align-center"><div class="wp-block-button"><a class="wp-block-button__link wp-block-pmpro-checkout-button has-text-align-center wp-element-button" href="<?php echo esc_url( memberlite_get_pattern_checkout_url( 3 ) ); ?>"><?php esc_html_e( 'Join', 'memberlite' ); ?></a></div></div>
 <!-- /wp:pmpro/checkout-button --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></div>
 <!-- /wp:pmpro/single-level -->
 
 <!-- wp:paragraph {"style":{"typography":{"textAlign":"center"}}} -->
-<p class="has-text-align-center">Already a member? <a href="<?php echo esc_url( wp_login_url() ); ?>">Log in</a></p>
+<p class="has-text-align-center"><?php esc_html_e( 'Already a member?', 'memberlite' ); ?> <a href="<?php echo esc_url( wp_login_url() ); ?>"><?php esc_html_e( 'Log in', 'memberlite' ); ?></a></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:column --></div>
 <!-- /wp:columns --></div>

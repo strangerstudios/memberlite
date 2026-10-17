@@ -14,23 +14,23 @@
 <div class="wp-block-group" style="padding-top:var(--wp--preset--spacing--70);padding-bottom:var(--wp--preset--spacing--70)"><!-- wp:columns -->
 <div class="wp-block-columns"><!-- wp:column {"verticalAlignment":"center","width":"35%"} -->
 <div class="wp-block-column is-vertically-aligned-center" style="flex-basis:35%"><!-- wp:image {"aspectRatio":"3/4","scale":"cover","className":"is-style-default","style":{"border":{"radius":"8px"}}} -->
-<figure class="wp-block-image has-custom-border is-style-default"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/patterns/images/experts/christina-wocintechchat-com-3sY92eKV6-Y-unsplash-md.jpg" alt="Photo of an instructor in a professional setting." style="border-radius:8px;aspect-ratio:3/4;object-fit:cover"/></figure>
+<figure class="wp-block-image has-custom-border is-style-default"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/patterns/images/experts/christina-wocintechchat-com-3sY92eKV6-Y-unsplash-md.jpg" alt="<?php esc_attr_e( 'Photo of an instructor in a professional setting.', 'memberlite' ); ?>" style="border-radius:8px;aspect-ratio:3/4;object-fit:cover"/></figure>
 <!-- /wp:image --></div>
 <!-- /wp:column -->
 
 <!-- wp:column {"verticalAlignment":"center","width":"65%","style":{"spacing":{"blockGap":"var:preset|spacing|10"}}} -->
 <div class="wp-block-column is-vertically-aligned-center" style="flex-basis:65%"><!-- wp:group {"style":{"spacing":{"blockGap":"0"}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group"><!-- wp:heading {"fontSize":"42"} -->
-<h2 class="wp-block-heading has-42-font-size">Dr. Sarah Mitchell</h2>
+<h2 class="wp-block-heading has-42-font-size"><?php esc_html_e( 'Dr. Sarah Mitchell', 'memberlite' ); ?></h2>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"textColor":"color-action"} -->
-<p class="has-color-action-color has-text-color"><strong>Lead Instructor &amp; Course Creator</strong></p>
+<p class="has-color-action-color has-text-color"><strong><?php esc_html_e( 'Lead Instructor & Course Creator', 'memberlite' ); ?></strong></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
 <!-- wp:paragraph -->
-<p>With over 15 years of industry experience, Sarah has helped thousands of students transform their careers. She brings a practical, hands-on approach to teaching that focuses on real-world applications.</p>
+<p><?php esc_html_e( 'With over 15 years of industry experience, Sarah has helped thousands of students transform their careers. She brings a practical, hands-on approach to teaching that focuses on real-world applications.', 'memberlite' ); ?></p>
 <!-- /wp:paragraph -->
 
 <!-- wp:columns {"style":{"spacing":{"blockGap":"var:preset|spacing|10"}}} -->
@@ -41,7 +41,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"fontSize":"14"} -->
-<p class="has-14-font-size">Ph.D., Stanford University</p>
+<p class="has-14-font-size"><?php esc_html_e( 'Ph.D., Stanford University', 'memberlite' ); ?></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
@@ -51,7 +51,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"fontSize":"14"} -->
-<p class="has-14-font-size">Industry Certified Expert</p>
+<p class="has-14-font-size"><?php esc_html_e( 'Industry Certified Expert', 'memberlite' ); ?></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:column -->
@@ -63,7 +63,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"fontSize":"14"} -->
-<p class="has-14-font-size">10,000+ Students Taught</p>
+<p class="has-14-font-size"><?php esc_html_e( '10,000+ Students Taught', 'memberlite' ); ?></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
@@ -73,7 +73,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"fontSize":"14"} -->
-<p class="has-14-font-size">4.9/5 Average Rating</p>
+<p class="has-14-font-size"><?php esc_html_e( '4.9/5 Average Rating', 'memberlite' ); ?></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:column --></div>

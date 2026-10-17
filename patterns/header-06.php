@@ -25,25 +25,25 @@
 <!-- wp:group {"layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"right","verticalAlignment":"center"}} -->
 <div class="wp-block-group"><!-- wp:group {"style":{"elements":{"link":{"color":{"text":"var:preset|color|site-navigation-link"}}}},"textColor":"site-navigation-link","layout":{"type":"flex","flexWrap":"nowrap"}} -->
 <div class="wp-block-group has-site-navigation-link-color has-text-color has-link-color"><!-- wp:paragraph -->
-<p><a href="#">Speakers</a></p>
+<p><a href="#"><?php esc_html_e( 'Speakers', 'memberlite' ); ?></a></p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p><a href="#">Program</a></p>
+<p><a href="#"><?php esc_html_e( 'Program', 'memberlite' ); ?></a></p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p><a href="#">About</a></p>
+<p><a href="#"><?php esc_html_e( 'About', 'memberlite' ); ?></a></p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p><a href="#">News</a></p>
+<p><a href="#"><?php esc_html_e( 'News', 'memberlite' ); ?></a></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
 <!-- wp:buttons {"layout":{"type":"flex","verticalAlignment":"center","justifyContent":"right"}} -->
 <div class="wp-block-buttons"><!-- wp:button {"style":{"spacing":{"padding":{"top":"5px","bottom":"5px"}}}} -->
-<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" style="padding-top:5px;padding-bottom:5px">Register Now</a></div>
+<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" style="padding-top:5px;padding-bottom:5px"><?php esc_html_e( 'Register Now', 'memberlite' ); ?></a></div>
 <!-- /wp:button --></div>
 <!-- /wp:buttons --></div>
 <!-- /wp:group --></div>
@@ -52,24 +52,24 @@
 <!-- wp:columns {"align":"wide","style":{"spacing":{"padding":{"right":"0","left":"0"}}}} -->
 <div class="wp-block-columns alignwide" style="padding-right:0;padding-left:0"><!-- wp:column {"width":"70%"} -->
 <div class="wp-block-column" style="flex-basis:70%"><!-- wp:paragraph {"style":{"elements":{"link":{"color":{"text":"var:preset|color|site-navigation-link"}}}},"textColor":"site-navigation-link"} -->
-<p class="has-site-navigation-link-color has-text-color has-link-color">The Annual Membership Summit</p>
+<p class="has-site-navigation-link-color has-text-color has-link-color"><?php esc_html_e( 'The Annual Membership Summit', 'memberlite' ); ?></p>
 <!-- /wp:paragraph -->
 
 <!-- wp:heading {"style":{"spacing":{"margin":{"top":"5px"}},"elements":{"link":{"color":{"text":"var:preset|color|site-navigation-link"}}}},"textColor":"site-navigation-link","fontSize":"42"} -->
-<h2 class="wp-block-heading has-site-navigation-link-color has-text-color has-link-color has-42-font-size" style="margin-top:5px">Everything You Need to Launch, Grow, and Scale Your Membership</h2>
+<h2 class="wp-block-heading has-site-navigation-link-color has-text-color has-link-color has-42-font-size" style="margin-top:5px"><?php esc_html_e( 'Everything You Need to Launch, Grow, and Scale Your Membership', 'memberlite' ); ?></h2>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"var:preset|spacing|10"}},"elements":{"link":{"color":{"text":"var:preset|color|site-navigation-link"}}}},"textColor":"site-navigation-link"} -->
-<p class="has-site-navigation-link-color has-text-color has-link-color" style="margin-top:var(--wp--preset--spacing--10)">November 10–14, 2026</p>
+<p class="has-site-navigation-link-color has-text-color has-link-color" style="margin-top:var(--wp--preset--spacing--10)"><?php esc_html_e( 'November 10–14, 2026', 'memberlite' ); ?></p>
 <!-- /wp:paragraph -->
 
 <!-- wp:buttons {"layout":{"type":"flex","verticalAlignment":"center","justifyContent":"left"}} -->
 <div class="wp-block-buttons"><!-- wp:button {"className":"is-style-fill"} -->
-<div class="wp-block-button is-style-fill"><a class="wp-block-button__link wp-element-button">Register Now [fa icon="chevron-right"]</a></div>
+<div class="wp-block-button is-style-fill"><a class="wp-block-button__link wp-element-button"><?php esc_html_e( 'Register Now', 'memberlite' ); ?> [fa icon="chevron-right"]</a></div>
 <!-- /wp:button -->
 
 <!-- wp:button {"className":"is-style-fill"} -->
-<div class="wp-block-button is-style-fill"><a class="wp-block-button__link wp-element-button">Learn More</a></div>
+<div class="wp-block-button is-style-fill"><a class="wp-block-button__link wp-element-button"><?php esc_html_e( 'Learn More', 'memberlite' ); ?></a></div>
 <!-- /wp:button --></div>
 <!-- /wp:buttons --></div>
 <!-- /wp:column -->

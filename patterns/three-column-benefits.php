@@ -18,11 +18,11 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:heading {"level":3,"style":{"typography":{"textAlign":"center"}},"fontSize":"32"} -->
-<h3 class="wp-block-heading has-text-align-center has-32-font-size">A Caring Community</h3>
+<h3 class="wp-block-heading has-text-align-center has-32-font-size"><?php esc_html_e( 'A Caring Community', 'memberlite' ); ?></h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"style":{"typography":{"textAlign":"center"}}} -->
-<p class="has-text-align-center">Connect with members who share your goals and celebrate your progress every step of the way.</p>
+<p class="has-text-align-center"><?php esc_html_e( 'Connect with members who share your goals and celebrate your progress every step of the way.', 'memberlite' ); ?></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:column -->
 
@@ -32,11 +32,11 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:heading {"level":3,"style":{"typography":{"textAlign":"center"}},"fontSize":"32"} -->
-<h3 class="wp-block-heading has-text-align-center has-32-font-size">Ongoing Conversation</h3>
+<h3 class="wp-block-heading has-text-align-center has-32-font-size"><?php esc_html_e( 'Ongoing Conversation', 'memberlite' ); ?></h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"style":{"typography":{"textAlign":"center"}}} -->
-<p class="has-text-align-center">Ask questions, share feedback, and get real answers from the community and our team.</p>
+<p class="has-text-align-center"><?php esc_html_e( 'Ask questions, share feedback, and get real answers from the community and our team.', 'memberlite' ); ?></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:column -->
 
@@ -46,11 +46,11 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:heading {"level":3,"style":{"typography":{"textAlign":"center"}},"fontSize":"32"} -->
-<h3 class="wp-block-heading has-text-align-center has-32-font-size">Proven Results</h3>
+<h3 class="wp-block-heading has-text-align-center has-32-font-size"><?php esc_html_e( 'Proven Results', 'memberlite' ); ?></h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"style":{"typography":{"textAlign":"center"}}} -->
-<p class="has-text-align-center">Join hundreds of members who've used our resources to reach their goals and grow with confidence.</p>
+<p class="has-text-align-center"><?php esc_html_e( 'Join hundreds of members who\'ve used our resources to reach their goals and grow with confidence.', 'memberlite' ); ?></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:column --></div>
 <!-- /wp:columns --></div>

@@ -20,11 +20,11 @@
 
 <!-- wp:group {"style":{"spacing":{"blockGap":"0.25em"}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group"><!-- wp:paragraph -->
-<p><strong>Member Deals</strong></p>
+<p><strong><?php esc_html_e( 'Member Deals', 'memberlite' ); ?></strong></p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"fontSize":"16"} -->
-<p class="has-16-font-size">Enjoy discounts and perks available only to members.</p>
+<p class="has-16-font-size"><?php esc_html_e( 'Enjoy discounts and perks available only to members.', 'memberlite' ); ?></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></div>
@@ -38,11 +38,11 @@
 
 <!-- wp:group {"style":{"spacing":{"blockGap":"0.25em"}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group"><!-- wp:paragraph -->
-<p><strong>Secure Payments</strong></p>
+<p><strong><?php esc_html_e( 'Secure Payments', 'memberlite' ); ?></strong></p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"fontSize":"16"} -->
-<p class="has-16-font-size">Your billing information is encrypted and always secure.</p>
+<p class="has-16-font-size"><?php esc_html_e( 'Your billing information is encrypted and always secure.', 'memberlite' ); ?></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></div>
@@ -56,11 +56,11 @@
 
 <!-- wp:group {"style":{"spacing":{"blockGap":"0.25em"}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group"><!-- wp:paragraph -->
-<p><strong>Active Community</strong></p>
+<p><strong><?php esc_html_e( 'Active Community', 'memberlite' ); ?></strong></p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"fontSize":"16"} -->
-<p class="has-16-font-size">Connect with thousands of members who share your interests.</p>
+<p class="has-16-font-size"><?php esc_html_e( 'Connect with thousands of members who share your interests.', 'memberlite' ); ?></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></div>
@@ -74,11 +74,11 @@
 
 <!-- wp:group {"style":{"spacing":{"blockGap":"0.25em"}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group"><!-- wp:paragraph -->
-<p><strong>Cancel Anytime</strong></p>
+<p><strong><?php esc_html_e( 'Cancel Anytime', 'memberlite' ); ?></strong></p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"fontSize":"16"} -->
-<p class="has-16-font-size">No contracts, no hassle. Manage your account whenever you like.</p>
+<p class="has-16-font-size"><?php esc_html_e( 'No contracts, no hassle. Manage your account whenever you like.', 'memberlite' ); ?></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></div>

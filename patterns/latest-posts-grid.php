@@ -13,11 +13,11 @@
 <!-- wp:group {"align":"wide","style":{"spacing":{"blockGap":"var:preset|spacing|30","padding":{"top":"var:preset|spacing|70","bottom":"var:preset|spacing|70"}}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group alignwide" style="padding-top:var(--wp--preset--spacing--70);padding-bottom:var(--wp--preset--spacing--70)"><!-- wp:group {"style":{"spacing":{"blockGap":"0"}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group"><!-- wp:heading {"style":{"typography":{"textAlign":"center"}}} -->
-<h2 class="wp-block-heading has-text-align-center">Latest Articles</h2>
+<h2 class="wp-block-heading has-text-align-center"><?php esc_html_e( 'Latest Articles', 'memberlite' ); ?></h2>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"style":{"typography":{"textAlign":"center"}},"fontSize":"18"} -->
-<p class="has-text-align-center has-18-font-size">Stay up to date with the latest news, insights, and stories from our community.</p>
+<p class="has-text-align-center has-18-font-size"><?php esc_html_e( 'Stay up to date with the latest news, insights, and stories from our community.', 'memberlite' ); ?></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
@@ -37,7 +37,7 @@
 
 <!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center"}} -->
 <div class="wp-block-buttons"><!-- wp:button {"backgroundColor":"color-primary"} -->
-<div class="wp-block-button"><a class="wp-block-button__link has-color-primary-background-color has-background wp-element-button" href="#">View All Articles</a></div>
+<div class="wp-block-button"><a class="wp-block-button__link has-color-primary-background-color has-background wp-element-button" href="#"><?php esc_html_e( 'View All Articles', 'memberlite' ); ?></a></div>
 <!-- /wp:button --></div>
 <!-- /wp:buttons --></div>
 <!-- /wp:group -->

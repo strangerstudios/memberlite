@@ -17,7 +17,7 @@
 <div class="header-variation-05 wp-block-group alignfull"><!-- wp:group {"align":"full","style":{"elements":{"link":{"color":{"text":"var:preset|color|page-masthead"}}},"spacing":{"padding":{"top":"var:preset|spacing|10","bottom":"var:preset|spacing|10"}},"border":{"bottom":{"color":"var:preset|color|borders","width":"1px"}}},"backgroundColor":"page-masthead-background","textColor":"page-masthead","layout":{"type":"constrained"}} -->
 <div class="wp-block-group alignfull has-page-masthead-color has-page-masthead-background-background-color has-text-color has-background has-link-color" style="border-bottom-color:var(--wp--preset--color--borders);border-bottom-width:1px;padding-top:var(--wp--preset--spacing--10);padding-bottom:var(--wp--preset--spacing--10)"><!-- wp:group {"align":"wide","layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"space-between","verticalAlignment":"center"}} -->
 <div class="wp-block-group alignwide"><!-- wp:paragraph {"fontSize":"14"} -->
-<p class="has-14-font-size"><strong>Free trial available</strong> — No credit card required. Cancel anytime.</p>
+<p class="has-14-font-size"><strong><?php esc_html_e( 'Free trial available', 'memberlite' ); ?></strong> <?php esc_html_e( '— No credit card required. Cancel anytime.', 'memberlite' ); ?></p>
 <!-- /wp:paragraph -->
 
 <!-- wp:group {"layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"center","justifyContent":"right"}} -->
@@ -39,15 +39,15 @@
 <div class="wp-block-columns alignwide are-vertically-aligned-center is-not-stacked-on-mobile" style="margin-top:0;margin-bottom:0"><!-- wp:column {"verticalAlignment":"center"} -->
 <div class="wp-block-column is-vertically-aligned-center"><!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|20"}},"layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"right"}} -->
 <div class="wp-block-group"><!-- wp:paragraph {"style":{"typography":{"textTransform":"uppercase"}}} -->
-<p style="text-transform:uppercase"><a href="#">Home</a></p>
+<p style="text-transform:uppercase"><a href="#"><?php esc_html_e( 'Home', 'memberlite' ); ?></a></p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"style":{"typography":{"textTransform":"uppercase"}}} -->
-<p style="text-transform:uppercase"><a href="#">Shop</a></p>
+<p style="text-transform:uppercase"><a href="#"><?php esc_html_e( 'Shop', 'memberlite' ); ?></a></p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"style":{"typography":{"textTransform":"uppercase"}}} -->
-<p style="text-transform:uppercase"><a href="#">About</a></p>
+<p style="text-transform:uppercase"><a href="#"><?php esc_html_e( 'About', 'memberlite' ); ?></a></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:column -->
@@ -63,15 +63,15 @@
 <!-- wp:column {"verticalAlignment":"center"} -->
 <div class="wp-block-column is-vertically-aligned-center"><!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|20"}},"layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"left"}} -->
 <div class="wp-block-group"><!-- wp:paragraph {"style":{"typography":{"textTransform":"uppercase"}}} -->
-<p style="text-transform:uppercase"><a href="#">Work</a></p>
+<p style="text-transform:uppercase"><a href="#"><?php esc_html_e( 'Work', 'memberlite' ); ?></a></p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"style":{"typography":{"textTransform":"uppercase"}}} -->
-<p style="text-transform:uppercase"><a href="#">Blog</a></p>
+<p style="text-transform:uppercase"><a href="#"><?php esc_html_e( 'Blog', 'memberlite' ); ?></a></p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"style":{"typography":{"textTransform":"uppercase"}}} -->
-<p style="text-transform:uppercase"><a href="#">Contact</a></p>
+<p style="text-transform:uppercase"><a href="#"><?php esc_html_e( 'Contact', 'memberlite' ); ?></a></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:column --></div>

@@ -13,7 +13,7 @@
 <!-- wp:group {"align":"full","style":{"spacing":{"padding":{"top":"var:preset|spacing|70","bottom":"var:preset|spacing|70","right":"var:preset|spacing|30","left":"var:preset|spacing|30"},"blockGap":"var:preset|spacing|30"}},"backgroundColor":"borders","textColor":"site-navigation-link","layout":{"type":"constrained"}} -->
 <div class="wp-block-group alignfull has-site-navigation-link-color has-borders-background-color has-text-color has-background" style="padding-top:var(--wp--preset--spacing--70);padding-right:var(--wp--preset--spacing--30);padding-bottom:var(--wp--preset--spacing--70);padding-left:var(--wp--preset--spacing--30)">
 	<!-- wp:heading {"textAlign":"center"} -->
-	<h2 class="wp-block-heading has-text-align-center">Our Impact by the Numbers</h2>
+	<h2 class="wp-block-heading has-text-align-center"><?php esc_html_e( 'Our Impact by the Numbers', 'memberlite' ); ?></h2>
 	<!-- /wp:heading -->
 	<!-- wp:columns {"align":"wide"} -->
 	<div class="wp-block-columns alignwide">
@@ -26,7 +26,7 @@
 			<p class="has-text-align-center has-heading-font-family has-42-font-size"><strong>12,500+</strong></p>
 			<!-- /wp:paragraph -->
 			<!-- wp:paragraph {"align":"center"} -->
-			<p class="has-text-align-center">Active Members</p>
+			<p class="has-text-align-center"><?php esc_html_e( 'Active Members', 'memberlite' ); ?></p>
 			<!-- /wp:paragraph -->
 		</div>
 		<!-- /wp:column -->
@@ -39,7 +39,7 @@
 			<p class="has-text-align-center has-heading-font-family has-42-font-size"><strong>48</strong></p>
 			<!-- /wp:paragraph -->
 			<!-- wp:paragraph {"align":"center"} -->
-			<p class="has-text-align-center">Regional Chapters</p>
+			<p class="has-text-align-center"><?php esc_html_e( 'Regional Chapters', 'memberlite' ); ?></p>
 			<!-- /wp:paragraph -->
 		</div>
 		<!-- /wp:column -->
@@ -52,7 +52,7 @@
 			<p class="has-text-align-center has-heading-font-family has-42-font-size"><strong>200+</strong></p>
 			<!-- /wp:paragraph -->
 			<!-- wp:paragraph {"align":"center"} -->
-			<p class="has-text-align-center">Annual Events</p>
+			<p class="has-text-align-center"><?php esc_html_e( 'Annual Events', 'memberlite' ); ?></p>
 			<!-- /wp:paragraph -->
 		</div>
 		<!-- /wp:column -->
@@ -65,7 +65,7 @@
 			<p class="has-text-align-center has-heading-font-family has-42-font-size"><strong>25</strong></p>
 			<!-- /wp:paragraph -->
 			<!-- wp:paragraph {"align":"center"} -->
-			<p class="has-text-align-center">Years of Service</p>
+			<p class="has-text-align-center"><?php esc_html_e( 'Years of Service', 'memberlite' ); ?></p>
 			<!-- /wp:paragraph -->
 		</div>
 		<!-- /wp:column -->

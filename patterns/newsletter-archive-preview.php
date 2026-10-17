@@ -13,11 +13,11 @@
 <!-- wp:group {"style":{"spacing":{"padding":{"top":"var:preset|spacing|70","bottom":"var:preset|spacing|70"},"blockGap":"var:preset|spacing|30"}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group" style="padding-top:var(--wp--preset--spacing--70);padding-bottom:var(--wp--preset--spacing--70)"><!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|10"}},"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"space-between"}} -->
 <div class="wp-block-group"><!-- wp:heading -->
-<h2 class="wp-block-heading">Recent Issues</h2>
+<h2 class="wp-block-heading"><?php esc_html_e( 'Recent Issues', 'memberlite' ); ?></h2>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"textColor":"color-action"} -->
-<p class="has-color-action-color has-text-color">[fa icon="lock"] Members-only content</p>
+<p class="has-color-action-color has-text-color">[fa icon="lock"] <?php esc_html_e( 'Members-only content', 'memberlite' ); ?></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
@@ -33,7 +33,7 @@
 
 <!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center"}} -->
 <div class="wp-block-buttons"><!-- wp:button {"backgroundColor":"color-primary"} -->
-<div class="wp-block-button"><a class="wp-block-button__link has-color-primary-background-color has-background wp-element-button" href="#">Subscribe to Unlock All Issues</a></div>
+<div class="wp-block-button"><a class="wp-block-button__link has-color-primary-background-color has-background wp-element-button" href="#"><?php esc_html_e( 'Subscribe to Unlock All Issues', 'memberlite' ); ?></a></div>
 <!-- /wp:button --></div>
 <!-- /wp:buttons --></div>
 <!-- /wp:group -->

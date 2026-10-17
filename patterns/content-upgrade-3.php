@@ -18,17 +18,17 @@
 		<p class="has-36-font-size">[fa icon="group-arrows-rotate"]</p>
 		<!-- /wp:paragraph -->
 		<!-- wp:heading {"level":3} -->
-		<h3 class="wp-block-heading">Ready to Join Our Community?</h3>
+		<h3 class="wp-block-heading"><?php esc_html_e( 'Ready to Join Our Community?', 'memberlite' ); ?></h3>
 		<!-- /wp:heading -->
 	</div>
 	<!-- /wp:group -->
 	<!-- wp:paragraph -->
-	<p>Take the next step and become a member today. Get instant access to exclusive content, resources, and a community of people just like you who are building something meaningful.</p>
+	<p><?php esc_html_e( 'Take the next step and become a member today. Get instant access to exclusive content, resources, and a community of people just like you who are building something meaningful.', 'memberlite' ); ?></p>
 	<!-- /wp:paragraph -->
 	<!-- wp:buttons {"layout":{"type":"flex","justifyContent":"left","flexWrap":"wrap"}} -->
 	<div class="wp-block-buttons">
 		<!-- wp:button {"width":100,"className":"is-style-outline"} -->
-		<div class="wp-block-button has-custom-width wp-block-button__width-100 is-style-outline"><a class="wp-block-button__link wp-element-button" href="#">Become a Member</a></div>
+		<div class="wp-block-button has-custom-width wp-block-button__width-100 is-style-outline"><a class="wp-block-button__link wp-element-button" href="#"><?php esc_html_e( 'Become a Member', 'memberlite' ); ?></a></div>
 		<!-- /wp:button -->
 	</div>
 	<!-- /wp:buttons -->
