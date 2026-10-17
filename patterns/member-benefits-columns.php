@@ -17,8 +17,8 @@
 			<p class="has-color-action-color has-text-color has-link-color" style="letter-spacing:1px;text-transform:uppercase"><strong>Benefits</strong></p>
 			<!-- /wp:paragraph -->
 
-			<!-- wp:heading {"style":{"typography":{"textTransform":"capitalize"}},"fontSize":"32"} -->
-			<h2 class="wp-block-heading has-32-font-size" style="text-transform:capitalize">Why members choose us</h2>
+			<!-- wp:heading {"fontSize":"32"} -->
+			<h2 class="wp-block-heading has-32-font-size">Why Members Choose Us</h2>
 			<!-- /wp:heading -->
 
 			<!-- wp:paragraph -->
@@ -37,8 +37,8 @@
 			<p class="has-21-font-size" style="font-style:normal;font-weight:700">[fa icon="users" color="site-background" background="secondary" shape="circle"]</p>
 			<!-- /wp:paragraph -->
 
-			<!-- wp:heading {"style":{"typography":{"textTransform":"capitalize"}},"fontSize":"24","level":3} -->
-			<h3 class="wp-block-heading has-24-font-size" style="text-transform:capitalize">Community access</h3>
+			<!-- wp:heading {"fontSize":"24","level":3} -->
+			<h3 class="wp-block-heading has-24-font-size">Community Access</h3>
 			<!-- /wp:heading -->
 
 			<!-- wp:paragraph -->
@@ -51,8 +51,8 @@
 			<p class="has-21-font-size" style="font-style:normal;font-weight:700">[fa icon="book-open" color="site-background" background="secondary" shape="circle"]</p>
 			<!-- /wp:paragraph -->
 
-			<!-- wp:heading {"style":{"typography":{"textTransform":"capitalize"}},"fontSize":"24","level":3} -->
-			<h3 class="wp-block-heading has-24-font-size" style="text-transform:capitalize">Exclusive content</h3>
+			<!-- wp:heading {"fontSize":"24","level":3} -->
+			<h3 class="wp-block-heading has-24-font-size">Exclusive Content</h3>
 			<!-- /wp:heading -->
 
 			<!-- wp:paragraph -->
@@ -65,8 +65,8 @@
 			<p class="has-21-font-size" style="font-style:normal;font-weight:700">[fa icon="headset" color="site-background" background="secondary" shape="circle"]</p>
 			<!-- /wp:paragraph -->
 
-			<!-- wp:heading {"style":{"typography":{"textTransform":"capitalize"}},"fontSize":"24","level":3} -->
-			<h3 class="wp-block-heading has-24-font-size" style="text-transform:capitalize">Priority support</h3>
+			<!-- wp:heading {"fontSize":"24","level":3} -->
+			<h3 class="wp-block-heading has-24-font-size">Priority Support</h3>
 			<!-- /wp:heading -->
 
 			<!-- wp:paragraph -->

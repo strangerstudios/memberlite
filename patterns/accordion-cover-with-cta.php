@@ -18,8 +18,8 @@
 <p class="has-color-action-color has-text-color has-link-color has-21-font-size" style="letter-spacing:1px;text-transform:uppercase"><strong>Community Benefits</strong></p>
 <!-- /wp:paragraph -->
 
-<!-- wp:heading {"style":{"typography":{"textTransform":"capitalize"},"elements":{"link":{"color":{"text":"var:preset|color|site-navigation-link"}}}},"textColor":"site-navigation-link","fontSize":"36"} -->
-<h2 class="wp-block-heading has-site-navigation-link-color has-text-color has-link-color has-36-font-size" style="text-transform:capitalize">What you need to know about joining the community</h2>
+<!-- wp:heading {"style":{"elements":{"link":{"color":{"text":"var:preset|color|site-navigation-link"}}}},"textColor":"site-navigation-link","fontSize":"36"} -->
+<h2 class="wp-block-heading has-site-navigation-link-color has-text-color has-link-color has-36-font-size">What You Need to Know About Joining the Community</h2>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"fontSize":"21"} -->
@@ -27,8 +27,8 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:buttons -->
-<div class="wp-block-buttons"><!-- wp:button {"style":{"typography":{"textTransform":"capitalize"}}} -->
-<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="#" style="text-transform:capitalize">Join Now</a></div>
+<div class="wp-block-buttons"><!-- wp:button -->
+<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="#">Join Now</a></div>
 <!-- /wp:button --></div>
 <!-- /wp:buttons --></div>
 <!-- /wp:column -->

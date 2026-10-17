@@ -11,8 +11,8 @@
  */
 ?>
 <!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|30","padding":{"right":"var:preset|spacing|30","left":"var:preset|spacing|30","top":"var:preset|spacing|70","bottom":"var:preset|spacing|70"}}},"backgroundColor":"borders","layout":{"type":"constrained"}} -->
-<div class="wp-block-group has-borders-background-color has-background" style="padding-top:var(--wp--preset--spacing--70);padding-right:var(--wp--preset--spacing--30);padding-bottom:var(--wp--preset--spacing--70);padding-left:var(--wp--preset--spacing--30)"><!-- wp:heading {"style":{"typography":{"textAlign":"center","textTransform":"capitalize"},"elements":{"link":{"color":{"text":"var:preset|color|body-text"}}}},"textColor":"body-text"} -->
-<h2 class="wp-block-heading has-text-align-center has-body-text-color has-text-color has-link-color" style="text-transform:capitalize">Common questions</h2>
+<div class="wp-block-group has-borders-background-color has-background" style="padding-top:var(--wp--preset--spacing--70);padding-right:var(--wp--preset--spacing--30);padding-bottom:var(--wp--preset--spacing--70);padding-left:var(--wp--preset--spacing--30)"><!-- wp:heading {"style":{"typography":{"textAlign":"center"},"elements":{"link":{"color":{"text":"var:preset|color|body-text"}}}},"textColor":"body-text"} -->
+<h2 class="wp-block-heading has-text-align-center has-body-text-color has-text-color has-link-color">Common Questions</h2>
 <!-- /wp:heading -->
 
 <!-- wp:accordion {"autoclose":true,"className":"memberlite-pattern-accordion"} -->

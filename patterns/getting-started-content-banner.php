@@ -40,8 +40,8 @@
 			<!-- /wp:paragraph -->
 
 			<!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center"}} -->
-			<div class="wp-block-buttons"><!-- wp:button {"textColor":"site-navigation-background","style":{"typography":{"textTransform":"capitalize"},"elements":{"link":{"color":{"text":"var:preset|color|site-navigation-background"}}}},"fontSize":"21"} -->
-				<div class="wp-block-button"><a class="wp-block-button__link has-site-navigation-background-color has-text-color has-link-color has-21-font-size has-custom-font-size wp-element-button" href="#" style="text-transform:capitalize">Start exploring</a></div>
+			<div class="wp-block-buttons"><!-- wp:button {"textColor":"site-navigation-background","style":{"elements":{"link":{"color":{"text":"var:preset|color|site-navigation-background"}}}},"fontSize":"21"} -->
+				<div class="wp-block-button"><a class="wp-block-button__link has-site-navigation-background-color has-text-color has-link-color has-21-font-size has-custom-font-size wp-element-button" href="#">Start Exploring</a></div>
 				<!-- /wp:button --></div>
 			<!-- /wp:buttons --></div>
 		<!-- /wp:column --></div>

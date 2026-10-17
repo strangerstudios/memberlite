@@ -58,8 +58,8 @@
 <!-- /wp:group -->
 
 <!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center"}} -->
-<div class="wp-block-buttons"><!-- wp:button {"width":100,"style":{"typography":{"textTransform":"capitalize"}},"fontSize":"21"} -->
-<div class="wp-block-button has-custom-width wp-block-button__width-100"><a class="wp-block-button__link has-21-font-size has-custom-font-size wp-element-button" href="#" style="text-transform:capitalize">Sign up</a></div>
+<div class="wp-block-buttons"><!-- wp:button {"width":100,"fontSize":"21"} -->
+<div class="wp-block-button has-custom-width wp-block-button__width-100"><a class="wp-block-button__link has-21-font-size has-custom-font-size wp-element-button" href="#">Sign Up</a></div>
 <!-- /wp:button --></div>
 <!-- /wp:buttons --></div>
 <!-- /wp:column -->
@@ -110,8 +110,8 @@
 <!-- /wp:group -->
 
 <!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center"}} -->
-<div class="wp-block-buttons"><!-- wp:button {"width":100,"style":{"typography":{"textTransform":"capitalize"}},"fontSize":"21"} -->
-<div class="wp-block-button has-custom-width wp-block-button__width-100"><a class="wp-block-button__link has-21-font-size has-custom-font-size wp-element-button" href="#" style="text-transform:capitalize">Sign up</a></div>
+<div class="wp-block-buttons"><!-- wp:button {"width":100,"fontSize":"21"} -->
+<div class="wp-block-button has-custom-width wp-block-button__width-100"><a class="wp-block-button__link has-21-font-size has-custom-font-size wp-element-button" href="#">Sign Up</a></div>
 <!-- /wp:button --></div>
 <!-- /wp:buttons --></div>
 <!-- /wp:column -->
@@ -162,8 +162,8 @@
 <!-- /wp:group -->
 
 <!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center"}} -->
-<div class="wp-block-buttons"><!-- wp:button {"width":100,"style":{"typography":{"textTransform":"capitalize"}},"fontSize":"21"} -->
-<div class="wp-block-button has-custom-width wp-block-button__width-100"><a class="wp-block-button__link has-21-font-size has-custom-font-size wp-element-button" href="#" style="text-transform:capitalize">Sign up</a></div>
+<div class="wp-block-buttons"><!-- wp:button {"width":100,"fontSize":"21"} -->
+<div class="wp-block-button has-custom-width wp-block-button__width-100"><a class="wp-block-button__link has-21-font-size has-custom-font-size wp-element-button" href="#">Sign Up</a></div>
 <!-- /wp:button --></div>
 <!-- /wp:buttons --></div>
 <!-- /wp:column --></div>

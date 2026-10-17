@@ -17,8 +17,8 @@
 <p class="has-color-action-color has-text-color has-link-color has-21-font-size" style="letter-spacing:1px"><strong>FAQ</strong></p>
 <!-- /wp:paragraph -->
 
-<!-- wp:heading {"style":{"typography":{"textTransform":"capitalize"}},"fontSize":"36"} -->
-<h2 class="wp-block-heading has-36-font-size" style="text-transform:capitalize">Still have questions?</h2>
+<!-- wp:heading {"fontSize":"36"} -->
+<h2 class="wp-block-heading has-36-font-size">Still Have Questions?</h2>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"fontSize":"21"} -->
@@ -26,8 +26,8 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:buttons -->
-<div class="wp-block-buttons"><!-- wp:button {"style":{"typography":{"textTransform":"capitalize"}}} -->
-<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="#" style="text-transform:capitalize">Contact us</a></div>
+<div class="wp-block-buttons"><!-- wp:button -->
+<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="#">Contact Us</a></div>
 <!-- /wp:button --></div>
 <!-- /wp:buttons --></div>
 <!-- /wp:column -->

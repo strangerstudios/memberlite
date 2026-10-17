@@ -14,13 +14,13 @@
 <div class="wp-block-group" style="padding-top:var(--wp--preset--spacing--70);padding-right:var(--wp--preset--spacing--30);padding-bottom:var(--wp--preset--spacing--70);padding-left:var(--wp--preset--spacing--30)">
 	<!-- wp:group {"align":"wide","style":{"spacing":{"blockGap":"var:preset|spacing|10"}},"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"space-between"}} -->
 	<div class="wp-block-group alignwide">
-		<!-- wp:heading {"style":{"typography":{"textTransform":"capitalize"}},"fontSize":"21"} -->
-		<h2 class="wp-block-heading has-21-font-size" style="text-transform:capitalize">Featured courses</h2>
+		<!-- wp:heading {"fontSize":"21"} -->
+		<h2 class="wp-block-heading has-21-font-size">Featured Courses</h2>
 		<!-- /wp:heading -->
 		<!-- wp:buttons {"fontSize":"16","layout":{"type":"flex","verticalAlignment":"bottom"}} -->
 		<div class="wp-block-buttons has-custom-font-size has-16-font-size">
-			<!-- wp:button {"className":"is-style-arrow-plain","style":{"typography":{"textTransform":"capitalize"},"spacing":{"padding":{"left":"0","right":"0"}}}} -->
-			<div class="wp-block-button is-style-arrow-plain"><a class="wp-block-button__link wp-element-button" href="#" style="padding-right:0;padding-left:0;text-transform:capitalize">View all courses</a></div>
+			<!-- wp:button {"className":"is-style-arrow-plain","style":{"spacing":{"padding":{"left":"0","right":"0"}}}} -->
+			<div class="wp-block-button is-style-arrow-plain"><a class="wp-block-button__link wp-element-button" href="#" style="padding-right:0;padding-left:0">View All Courses</a></div>
 			<!-- /wp:button -->
 		</div>
 		<!-- /wp:buttons -->
@@ -35,8 +35,8 @@
 				<img class="wp-block-cover__image-background" alt="" src="<?php echo esc_url( get_template_directory_uri() ); ?>/patterns/images/landscapes/sean-oulashin-KMn4VEeEPR8-unsplash-md.jpg" style="object-position:50% 0%" data-object-fit="cover" data-object-position="50% 0%"/>
 				<span aria-hidden="true" class="wp-block-cover__background has-site-navigation-link-background-color has-background-dim-80 has-background-dim"></span>
 				<div class="wp-block-cover__inner-container">
-					<!-- wp:paragraph {"placeholder":"Write title…","style":{"typography":{"textAlign":"left","textTransform":"capitalize","fontStyle":"normal","fontWeight":"800"}},"fontSize":"large","fontFamily":"heading"} -->
-					<p class="has-text-align-left has-heading-font-family has-large-font-size" style="font-style:normal;font-weight:800;text-transform:capitalize">Beginner surfing fundamentals</p>
+					<!-- wp:paragraph {"placeholder":"Write title…","style":{"typography":{"textAlign":"left","fontStyle":"normal","fontWeight":"800"}},"fontSize":"large","fontFamily":"heading"} -->
+					<p class="has-text-align-left has-heading-font-family has-large-font-size" style="font-style:normal;font-weight:800">Beginner Surfing Fundamentals</p>
 					<!-- /wp:paragraph -->
 					<!-- wp:paragraph -->
 					<p><strong>Catch your first wave with confidence</strong></p>
@@ -53,8 +53,8 @@
 					<!-- /wp:group -->
 					<!-- wp:buttons -->
 					<div class="wp-block-buttons">
-						<!-- wp:button {"backgroundColor":"color-action","className":"is-style-fill","style":{"typography":{"textTransform":"capitalize"}}} -->
-						<div class="wp-block-button is-style-fill"><a class="wp-block-button__link has-color-action-background-color has-background wp-element-button" href="#" style="text-transform:capitalize">[fa icon="circle-play"] Watch now</a></div>
+						<!-- wp:button {"backgroundColor":"color-action","className":"is-style-fill"} -->
+						<div class="wp-block-button is-style-fill"><a class="wp-block-button__link has-color-action-background-color has-background wp-element-button" href="#">[fa icon="circle-play"] Watch Now</a></div>
 						<!-- /wp:button -->
 					</div>
 					<!-- /wp:buttons -->
@@ -70,8 +70,8 @@
 				<img class="wp-block-cover__image-background" alt="" src="<?php echo esc_url( get_template_directory_uri() ); ?>/patterns/images/landscapes/joshua-earle-9idqIGrLuTE-unsplash-md.jpg" style="object-position:50% 0%" data-object-fit="cover" data-object-position="50% 0%"/>
 				<span aria-hidden="true" class="wp-block-cover__background has-site-navigation-link-background-color has-background-dim-80 has-background-dim"></span>
 				<div class="wp-block-cover__inner-container">
-					<!-- wp:paragraph {"placeholder":"Write title…","style":{"typography":{"textAlign":"left","textTransform":"capitalize","fontStyle":"normal","fontWeight":"800"}},"fontSize":"large","fontFamily":"heading"} -->
-					<p class="has-text-align-left has-heading-font-family has-large-font-size" style="font-style:normal;font-weight:800;text-transform:capitalize">Backcountry hiking basics</p>
+					<!-- wp:paragraph {"placeholder":"Write title…","style":{"typography":{"textAlign":"left","fontStyle":"normal","fontWeight":"800"}},"fontSize":"large","fontFamily":"heading"} -->
+					<p class="has-text-align-left has-heading-font-family has-large-font-size" style="font-style:normal;font-weight:800">Backcountry Hiking Basics</p>
 					<!-- /wp:paragraph -->
 					<!-- wp:paragraph -->
 					<p><strong>Explore the trail with confidence and skill</strong></p>
@@ -88,8 +88,8 @@
 					<!-- /wp:group -->
 					<!-- wp:buttons -->
 					<div class="wp-block-buttons">
-						<!-- wp:button {"backgroundColor":"color-action","className":"is-style-fill","style":{"typography":{"textTransform":"capitalize"}}} -->
-						<div class="wp-block-button is-style-fill"><a class="wp-block-button__link has-color-action-background-color has-background wp-element-button" href="#" style="text-transform:capitalize">[fa icon="circle-play"] Watch now</a></div>
+						<!-- wp:button {"backgroundColor":"color-action","className":"is-style-fill"} -->
+						<div class="wp-block-button is-style-fill"><a class="wp-block-button__link has-color-action-background-color has-background wp-element-button" href="#">[fa icon="circle-play"] Watch Now</a></div>
 						<!-- /wp:button -->
 					</div>
 					<!-- /wp:buttons -->
@@ -104,8 +104,8 @@
 	<div class="wp-block-columns alignwide">
 		<!-- wp:column {"style":{"spacing":{"blockGap":"var:preset|spacing|10"}},"width":"50%"} -->
 		<div class="wp-block-column" style="flex-basis:50%">
-			<!-- wp:heading {"style":{"typography":{"textTransform":"capitalize"}},"fontSize":"21"} -->
-			<h2 class="wp-block-heading has-21-font-size" style="text-transform:capitalize">Free lessons</h2>
+			<!-- wp:heading {"fontSize":"21"} -->
+			<h2 class="wp-block-heading has-21-font-size">Free Lessons</h2>
 			<!-- /wp:heading -->
 			<!-- wp:gallery {"columns":2,"linkTo":"none","aspectRatio":"1","style":{"spacing":{"blockGap":{"top":"var:preset|spacing|10","left":"var:preset|spacing|10"},"margin":{"bottom":"0"}}}} -->
 			<figure class="wp-block-gallery has-nested-images columns-2 is-cropped" style="margin-bottom:0">
@@ -127,8 +127,8 @@
 		<!-- /wp:column -->
 		<!-- wp:column {"style":{"spacing":{"blockGap":"var:preset|spacing|10"}},"width":"50%"} -->
 		<div class="wp-block-column" style="flex-basis:50%">
-			<!-- wp:heading {"style":{"typography":{"textTransform":"capitalize"}},"fontSize":"21"} -->
-			<h2 class="wp-block-heading has-21-font-size" style="text-transform:capitalize">Your progress</h2>
+			<!-- wp:heading {"fontSize":"21"} -->
+			<h2 class="wp-block-heading has-21-font-size">Your Progress</h2>
 			<!-- /wp:heading -->
 			<!-- wp:group {"layout":{"type":"constrained"}} -->
 			<div class="wp-block-group">

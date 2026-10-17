@@ -14,8 +14,8 @@
 <div class="wp-block-group alignwide has-footer-widgets-color has-footer-widgets-background-background-color has-text-color has-background has-link-color" style="padding-top:var(--wp--preset--spacing--70);padding-right:0;padding-bottom:var(--wp--preset--spacing--70);padding-left:0">
 	<!-- wp:group {"align":"wide","style":{"spacing":{"padding":{"right":"var:preset|spacing|30","left":"var:preset|spacing|30","top":"var:preset|spacing|10","bottom":"var:preset|spacing|10"}},"elements":{"link":{"color":{"text":"var:preset|color|site-navigation-background"}}}},"backgroundColor":"site-navigation-link","textColor":"site-navigation-background","layout":{"type":"constrained"}} -->
 	<div class="wp-block-group alignwide has-site-navigation-background-color has-site-navigation-link-background-color has-text-color has-background has-link-color" style="padding-top:var(--wp--preset--spacing--10);padding-right:var(--wp--preset--spacing--30);padding-bottom:var(--wp--preset--spacing--10);padding-left:var(--wp--preset--spacing--30)">
-		<!-- wp:heading {"align":"wide","style":{"typography":{"textTransform":"capitalize"}}} -->
-		<h2 class="wp-block-heading alignwide" style="text-transform:capitalize">The blog</h2>
+		<!-- wp:heading {"align":"wide"} -->
+		<h2 class="wp-block-heading alignwide">The Blog</h2>
 		<!-- /wp:heading -->
 	</div>
 	<!-- /wp:group -->

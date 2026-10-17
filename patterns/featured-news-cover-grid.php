@@ -12,8 +12,8 @@
 ?>
 <!-- wp:group {"align":"full","style":{"spacing":{"blockGap":"var:preset|spacing|30","padding":{"top":"var:preset|spacing|70","right":"var:preset|spacing|30","bottom":"var:preset|spacing|70","left":"var:preset|spacing|30"}}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group alignfull" style="padding-top:var(--wp--preset--spacing--70);padding-right:var(--wp--preset--spacing--30);padding-bottom:var(--wp--preset--spacing--70);padding-left:var(--wp--preset--spacing--30)">
-	<!-- wp:heading {"align":"wide","style":{"typography":{"textTransform":"capitalize"}}} -->
-	<h2 class="wp-block-heading alignwide" style="text-transform:capitalize">Featured news</h2>
+	<!-- wp:heading {"align":"wide"} -->
+	<h2 class="wp-block-heading alignwide">Featured News</h2>
 	<!-- /wp:heading -->
 	<!-- wp:columns {"align":"wide","style":{"spacing":{"blockGap":{"top":"2px","left":"2px"}}}} -->
 	<div class="wp-block-columns alignwide">

@@ -17,8 +17,8 @@
 			<p class="has-text-align-center">[fa type="regular" icon="heart" size="2x"]</p>
 			<!-- /wp:paragraph -->
 
-			<!-- wp:heading {"level":3,"style":{"typography":{"textAlign":"center","textTransform":"capitalize"}},"fontSize":"32"} -->
-			<h3 class="wp-block-heading has-text-align-center has-32-font-size" style="text-transform:capitalize">A caring community</h3>
+			<!-- wp:heading {"level":3,"style":{"typography":{"textAlign":"center"}},"fontSize":"32"} -->
+			<h3 class="wp-block-heading has-text-align-center has-32-font-size">A Caring Community</h3>
 			<!-- /wp:heading -->
 
 			<!-- wp:paragraph {"style":{"typography":{"textAlign":"center"}}} -->
@@ -31,8 +31,8 @@
 			<p class="has-text-align-center">[fa type="regular" icon="comments" size="2x"]</p>
 			<!-- /wp:paragraph -->
 
-			<!-- wp:heading {"level":3,"style":{"typography":{"textAlign":"center","textTransform":"capitalize"}},"fontSize":"32"} -->
-			<h3 class="wp-block-heading has-text-align-center has-32-font-size" style="text-transform:capitalize">Ongoing conversation</h3>
+			<!-- wp:heading {"level":3,"style":{"typography":{"textAlign":"center"}},"fontSize":"32"} -->
+			<h3 class="wp-block-heading has-text-align-center has-32-font-size">Ongoing Conversation</h3>
 			<!-- /wp:heading -->
 
 			<!-- wp:paragraph {"style":{"typography":{"textAlign":"center"}}} -->
@@ -45,8 +45,8 @@
 			<p class="has-text-align-center">[fa type="solid" icon="award" size="2x"]</p>
 			<!-- /wp:paragraph -->
 
-			<!-- wp:heading {"level":3,"style":{"typography":{"textAlign":"center","textTransform":"capitalize"}},"fontSize":"32"} -->
-			<h3 class="wp-block-heading has-text-align-center has-32-font-size" style="text-transform:capitalize">Proven results</h3>
+			<!-- wp:heading {"level":3,"style":{"typography":{"textAlign":"center"}},"fontSize":"32"} -->
+			<h3 class="wp-block-heading has-text-align-center has-32-font-size">Proven Results</h3>
 			<!-- /wp:heading -->
 
 			<!-- wp:paragraph {"style":{"typography":{"textAlign":"center"}}} -->

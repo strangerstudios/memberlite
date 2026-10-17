@@ -28,8 +28,8 @@
 
 <!-- wp:column {"style":{"spacing":{"padding":{"top":"0","bottom":"0"}},"border":{"radius":{"topLeft":"8px","topRight":"8px","bottomLeft":"8px","bottomRight":"8px"},"width":"1px"}},"backgroundColor":"site-navigation-background","borderColor":"borders"} -->
 <div class="wp-block-column has-border-color has-borders-border-color has-site-navigation-background-background-color has-background" style="border-width:1px;border-top-left-radius:8px;border-top-right-radius:8px;border-bottom-left-radius:8px;border-bottom-right-radius:8px;padding-top:0;padding-bottom:0"><!-- wp:group {"style":{"elements":{"link":{"color":{"text":"var:preset|color|page-masthead"}}},"border":{"radius":{"topLeft":"8px","topRight":"8px"}},"spacing":{"blockGap":"var:preset|spacing|10","padding":{"top":"var:preset|spacing|20","bottom":"var:preset|spacing|20","left":"var:preset|spacing|20","right":"var:preset|spacing|20"}}},"backgroundColor":"page-masthead-background","textColor":"page-masthead","layout":{"type":"constrained"}} -->
-<div class="wp-block-group has-page-masthead-color has-page-masthead-background-background-color has-text-color has-background has-link-color" style="border-top-left-radius:8px;border-top-right-radius:8px;padding-top:var(--wp--preset--spacing--20);padding-right:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--20);padding-left:var(--wp--preset--spacing--20)"><!-- wp:heading {"level":3,"style":{"typography":{"textTransform":"capitalize"}},"fontSize":"32"} -->
-<h3 class="wp-block-heading has-32-font-size" style="text-transform:capitalize">Video editing course</h3>
+<div class="wp-block-group has-page-masthead-color has-page-masthead-background-background-color has-text-color has-background has-link-color" style="border-top-left-radius:8px;border-top-right-radius:8px;padding-top:var(--wp--preset--spacing--20);padding-right:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--20);padding-left:var(--wp--preset--spacing--20)"><!-- wp:heading {"level":3,"fontSize":"32"} -->
+<h3 class="wp-block-heading has-32-font-size">Video Editing Course</h3>
 <!-- /wp:heading -->
 
 <!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|10"}},"layout":{"type":"flex","flexWrap":"wrap","verticalAlignment":"center"}} -->
@@ -49,8 +49,8 @@
 <p class="has-21-font-size" style="font-style:normal;font-weight:700">[fa icon="circle-check" color="secondary"]</p>
 <!-- /wp:paragraph -->
 
-<!-- wp:paragraph {"style":{"typography":{"textAlign":"center","textTransform":"capitalize"}},"fontSize":"21"} -->
-<p class="has-text-align-center has-21-font-size" style="text-transform:capitalize"><strong>Benefit highlight 1</strong></p>
+<!-- wp:paragraph {"style":{"typography":{"textAlign":"center"}},"fontSize":"21"} -->
+<p class="has-text-align-center has-21-font-size"><strong>Benefit Highlight 1</strong></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
@@ -59,8 +59,8 @@
 <p class="has-21-font-size" style="font-style:normal;font-weight:700">[fa icon="circle-check" color="secondary"]</p>
 <!-- /wp:paragraph -->
 
-<!-- wp:paragraph {"style":{"typography":{"textAlign":"center","textTransform":"capitalize"}},"fontSize":"21"} -->
-<p class="has-text-align-center has-21-font-size" style="text-transform:capitalize"><strong>Benefit highlight 2</strong></p>
+<!-- wp:paragraph {"style":{"typography":{"textAlign":"center"}},"fontSize":"21"} -->
+<p class="has-text-align-center has-21-font-size"><strong>Benefit Highlight 2</strong></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
@@ -69,14 +69,14 @@
 <p class="has-21-font-size" style="font-style:normal;font-weight:700">[fa icon="circle-check" color="secondary"]</p>
 <!-- /wp:paragraph -->
 
-<!-- wp:paragraph {"style":{"typography":{"textAlign":"center","textTransform":"capitalize"}},"fontSize":"21"} -->
-<p class="has-text-align-center has-21-font-size" style="text-transform:capitalize"><strong>Benefit highlight 3</strong></p>
+<!-- wp:paragraph {"style":{"typography":{"textAlign":"center"}},"fontSize":"21"} -->
+<p class="has-text-align-center has-21-font-size"><strong>Benefit Highlight 3</strong></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
 <!-- wp:buttons {"layout":{"type":"flex","verticalAlignment":"top"}} -->
-<div class="wp-block-buttons"><!-- wp:button {"width":100,"textColor":"base","className":"is-style-fill","style":{"elements":{"link":{"color":{"text":"var:preset|color|base"}}},"typography":{"textTransform":"capitalize"}}} -->
-<div class="wp-block-button has-custom-width wp-block-button__width-100 is-style-fill"><a class="wp-block-button__link has-base-color has-text-color has-link-color wp-element-button" href="#" style="text-transform:capitalize">Buy now</a></div>
+<div class="wp-block-buttons"><!-- wp:button {"width":100,"textColor":"base","className":"is-style-fill","style":{"elements":{"link":{"color":{"text":"var:preset|color|base"}}}}} -->
+<div class="wp-block-button has-custom-width wp-block-button__width-100 is-style-fill"><a class="wp-block-button__link has-base-color has-text-color has-link-color wp-element-button" href="#">Buy Now</a></div>
 <!-- /wp:button --></div>
 <!-- /wp:buttons --></div>
 <!-- /wp:group --></div>

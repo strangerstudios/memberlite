@@ -12,8 +12,8 @@
 ?>
 <!-- wp:group {"align":"full","style":{"spacing":{"padding":{"top":"var:preset|spacing|70","bottom":"var:preset|spacing|70","left":"var:preset|spacing|30","right":"var:preset|spacing|30"},"blockGap":"var:preset|spacing|30"}},"backgroundColor":"borders","layout":{"type":"constrained"}} -->
 <div class="wp-block-group alignfull has-borders-background-color has-background" style="padding-top:var(--wp--preset--spacing--70);padding-right:var(--wp--preset--spacing--30);padding-bottom:var(--wp--preset--spacing--70);padding-left:var(--wp--preset--spacing--30)">
-	<!-- wp:heading {"style":{"typography":{"textAlign":"center","textTransform":"capitalize"}}} -->
-	<h2 class="wp-block-heading has-text-align-center" style="text-transform:capitalize">Featured episodes</h2>
+	<!-- wp:heading {"style":{"typography":{"textAlign":"center"}}} -->
+	<h2 class="wp-block-heading has-text-align-center">Featured Episodes</h2>
 	<!-- /wp:heading -->
 	<!-- wp:group {"style":{"spacing":{"blockGap":"2px"}},"layout":{"type":"constrained"}} -->
 	<div class="wp-block-group">
@@ -24,8 +24,8 @@
 			<!-- wp:image {"aspectRatio":"1","scale":"cover","linkDestination":"none","style":{"layout":{"selfStretch":"fixed","flexSize":"50px"}}} -->
 			<figure class="wp-block-image"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/patterns/images/experts/domenico-loia-hGV2TfOh0ns-unsplash-sm.jpg" alt="Podcast guest smiling in a portrait photo." style="aspect-ratio:1;object-fit:cover"/></figure>
 			<!-- /wp:image -->
-			<!-- wp:heading {"level":3,"style":{"typography":{"textTransform":"capitalize"}},"fontSize":"21"} -->
-			<h3 class="wp-block-heading has-21-font-size" style="text-transform:capitalize">Episode 50: Turning members into advocates</h3>
+			<!-- wp:heading {"level":3,"fontSize":"21"} -->
+			<h3 class="wp-block-heading has-21-font-size">Episode 50: Turning Members Into Advocates</h3>
 			<!-- /wp:heading -->
 		</div>
 		<!-- /wp:group -->
@@ -45,8 +45,8 @@
 			<!-- wp:image {"aspectRatio":"1","scale":"cover","linkDestination":"none","style":{"layout":{"selfStretch":"fixed","flexSize":"50px"}}} -->
 			<figure class="wp-block-image"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/patterns/images/experts/christina-wocintechchat-com-3sY92eKV6-Y-unsplash-sm.jpg" alt="Podcast guest working on a laptop at a desk." style="aspect-ratio:1;object-fit:cover"/></figure>
 			<!-- /wp:image -->
-			<!-- wp:heading {"level":3,"style":{"typography":{"textTransform":"capitalize"}},"fontSize":"21"} -->
-			<h3 class="wp-block-heading has-21-font-size" style="text-transform:capitalize">Episode 49: Pricing strategies that actually work</h3>
+			<!-- wp:heading {"level":3,"fontSize":"21"} -->
+			<h3 class="wp-block-heading has-21-font-size">Episode 49: Pricing Strategies That Actually Work</h3>
 			<!-- /wp:heading -->
 		</div>
 		<!-- /wp:group -->
@@ -66,8 +66,8 @@
 			<!-- wp:image {"aspectRatio":"1","scale":"cover","linkDestination":"none","style":{"layout":{"selfStretch":"fixed","flexSize":"50px"}}} -->
 			<figure class="wp-block-image"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/patterns/images/experts/dylan-ferreira-HJmxky8Fvmo-unsplash-sm.jpg" alt="Podcast guest smiling in a casual indoor setting." style="aspect-ratio:1;object-fit:cover"/></figure>
 			<!-- /wp:image -->
-			<!-- wp:heading {"level":3,"style":{"typography":{"textTransform":"capitalize"}},"fontSize":"21"} -->
-			<h3 class="wp-block-heading has-21-font-size" style="text-transform:capitalize">Episode 48: Building content members can't wait for</h3>
+			<!-- wp:heading {"level":3,"fontSize":"21"} -->
+			<h3 class="wp-block-heading has-21-font-size">Episode 48: Building Content Members Can't Wait For</h3>
 			<!-- /wp:heading -->
 		</div>
 		<!-- /wp:group -->
@@ -87,8 +87,8 @@
 			<!-- wp:image {"aspectRatio":"1","scale":"cover","linkDestination":"none","style":{"layout":{"selfStretch":"fixed","flexSize":"50px"}}} -->
 			<figure class="wp-block-image"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/patterns/images/experts/austin-distel-PkS3hCZmYts-unsplash-sm.jpg" alt="Podcast guest reviewing notes at a table." style="aspect-ratio:1;object-fit:cover"/></figure>
 			<!-- /wp:image -->
-			<!-- wp:heading {"level":3,"style":{"typography":{"textTransform":"capitalize"}},"fontSize":"21"} -->
-			<h3 class="wp-block-heading has-21-font-size" style="text-transform:capitalize">Episode 47: From solo creator to thriving community</h3>
+			<!-- wp:heading {"level":3,"fontSize":"21"} -->
+			<h3 class="wp-block-heading has-21-font-size">Episode 47: From Solo Creator to Thriving Community</h3>
 			<!-- /wp:heading -->
 		</div>
 		<!-- /wp:group -->
@@ -105,8 +105,8 @@
 	<!-- /wp:group -->
 	<!-- wp:buttons {"layout":{"type":"flex","justifyContent":"right"}} -->
 	<div class="wp-block-buttons">
-		<!-- wp:button {"textColor":"site-navigation-link","className":"is-style-arrow-plain","style":{"spacing":{"padding":{"left":"0","right":"0","top":"var:preset|spacing|10","bottom":"var:preset|spacing|10"}},"typography":{"textTransform":"capitalize"},"elements":{"link":{"color":{"text":"var:preset|color|site-navigation-link"}}}}} -->
-		<div class="wp-block-button is-style-arrow-plain"><a class="wp-block-button__link has-site-navigation-link-color has-text-color has-link-color wp-element-button" href="#" style="padding-top:var(--wp--preset--spacing--10);padding-right:0;padding-bottom:var(--wp--preset--spacing--10);padding-left:0;text-transform:capitalize">View all episodes</a></div>
+		<!-- wp:button {"textColor":"site-navigation-link","className":"is-style-arrow-plain","style":{"spacing":{"padding":{"left":"0","right":"0","top":"var:preset|spacing|10","bottom":"var:preset|spacing|10"}},"elements":{"link":{"color":{"text":"var:preset|color|site-navigation-link"}}}}} -->
+		<div class="wp-block-button is-style-arrow-plain"><a class="wp-block-button__link has-site-navigation-link-color has-text-color has-link-color wp-element-button" href="#" style="padding-top:var(--wp--preset--spacing--10);padding-right:0;padding-bottom:var(--wp--preset--spacing--10);padding-left:0">View All Episodes</a></div>
 		<!-- /wp:button -->
 	</div>
 	<!-- /wp:buttons -->
