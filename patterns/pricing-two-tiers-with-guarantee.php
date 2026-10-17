@@ -13,11 +13,11 @@
 <!-- wp:group {"align":"full","style":{"spacing":{"padding":{"right":"var:preset|spacing|30","left":"var:preset|spacing|30","top":"var:preset|spacing|70","bottom":"var:preset|spacing|70"}}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group alignfull" style="padding-top:var(--wp--preset--spacing--70);padding-right:var(--wp--preset--spacing--30);padding-bottom:var(--wp--preset--spacing--70);padding-left:var(--wp--preset--spacing--30)"><!-- wp:group {"style":{"spacing":{"blockGap":"0"}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group"><!-- wp:heading {"style":{"typography":{"textAlign":"center"}}} -->
-<h2 class="wp-block-heading has-text-align-center">Your Next Skill Starts Here</h2>
+<h2 class="wp-block-heading has-text-align-center"><?php esc_html_e( 'Your Next Skill Starts Here', 'memberlite' ); ?></h2>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"style":{"typography":{"textAlign":"center"}}} -->
-<p class="has-text-align-center">Try it free for 7 days, then keep learning monthly or save with a yearly plan.</p>
+<p class="has-text-align-center"><?php esc_html_e( 'Try it free for 7 days, then keep learning monthly or save with a yearly plan.', 'memberlite' ); ?></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
@@ -29,8 +29,8 @@ Explorer
 
 <!-- wp:pmpro/single-level-price {"textAlign":"center","selected_membership_level":"1","style":{"typography":{"fontStyle":"normal","fontWeight":"400"}},"fontSize":"32","fontFamily":"heading"} /-->
 
-<!-- wp:pmpro/checkout-button {"selected_membership_level":"1","textAlign":"center","className":""} -->
-<div class="wp-block-buttons has-text-align-center"><div class="wp-block-button"><a class="wp-block-button__link wp-block-pmpro-checkout-button has-text-align-center wp-element-button" href="<?php echo esc_url( memberlite_get_pattern_checkout_url( 1 ) ); ?>">Buy Now</a></div></div>
+<!-- wp:pmpro/checkout-button {"selected_membership_level":"1","textAlign":"center","className":"","text":<?php echo memberlite_get_pattern_attr_json( __( 'Buy Now', 'memberlite' ) ); ?>} -->
+<div class="wp-block-buttons has-text-align-center"><div class="wp-block-button"><a class="wp-block-button__link wp-block-pmpro-checkout-button has-text-align-center wp-element-button" href="<?php echo esc_url( memberlite_get_pattern_checkout_url( 1 ) ); ?>"><?php esc_html_e( 'Buy Now', 'memberlite' ); ?></a></div></div>
 <!-- /wp:pmpro/checkout-button -->
 
 <!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|10"}},"layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"left"}} -->
@@ -39,7 +39,7 @@ Explorer
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p><strong><strong>Sample the full catalog</strong></strong></p>
+<p><strong><strong><?php esc_html_e( 'Sample the full catalog', 'memberlite' ); ?></strong></strong></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
@@ -49,7 +49,7 @@ Explorer
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p><strong><strong>Start your first project</strong></strong></p>
+<p><strong><strong><?php esc_html_e( 'Start your first project', 'memberlite' ); ?></strong></strong></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
@@ -59,7 +59,7 @@ Explorer
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p><strong><strong>Join the community</strong></strong></p>
+<p><strong><strong><?php esc_html_e( 'Join the community', 'memberlite' ); ?></strong></strong></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:pmpro/single-level -->
@@ -71,8 +71,8 @@ Mastery Pass
 
 <!-- wp:pmpro/single-level-price {"textAlign":"center","selected_membership_level":"2","style":{"typography":{"fontStyle":"normal","fontWeight":"400"},"elements":{"link":{"color":{"text":"var:preset|color|page-masthead"}}}},"textColor":"page-masthead","fontSize":"32","fontFamily":"heading"} /-->
 
-<!-- wp:pmpro/checkout-button {"selected_membership_level":"2","textAlign":"center","backgroundColor":"color-action","className":""} -->
-<div class="wp-block-buttons has-text-align-center"><div class="wp-block-button"><a class="wp-block-button__link wp-block-pmpro-checkout-button has-color-action-background-color has-background has-text-align-center wp-element-button" href="<?php echo esc_url( memberlite_get_pattern_checkout_url( 2 ) ); ?>">Buy Now</a></div></div>
+<!-- wp:pmpro/checkout-button {"selected_membership_level":"2","textAlign":"center","backgroundColor":"color-action","className":"","text":<?php echo memberlite_get_pattern_attr_json( __( 'Buy Now', 'memberlite' ) ); ?>} -->
+<div class="wp-block-buttons has-text-align-center"><div class="wp-block-button"><a class="wp-block-button__link wp-block-pmpro-checkout-button has-color-action-background-color has-background has-text-align-center wp-element-button" href="<?php echo esc_url( memberlite_get_pattern_checkout_url( 2 ) ); ?>"><?php esc_html_e( 'Buy Now', 'memberlite' ); ?></a></div></div>
 <!-- /wp:pmpro/checkout-button -->
 
 <!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|10"}},"layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"left"}} -->
@@ -81,7 +81,7 @@ Mastery Pass
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"style":{"elements":{"link":{"color":{"text":"var:preset|color|page-masthead"}}}},"textColor":"page-masthead"} -->
-<p class="has-page-masthead-color has-text-color has-link-color"><strong>Learn at your own pace</strong></p>
+<p class="has-page-masthead-color has-text-color has-link-color"><strong><?php esc_html_e( 'Learn at your own pace', 'memberlite' ); ?></strong></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
@@ -91,7 +91,7 @@ Mastery Pass
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"style":{"elements":{"link":{"color":{"text":"var:preset|color|page-masthead"}}}},"textColor":"page-masthead"} -->
-<p class="has-page-masthead-color has-text-color has-link-color"><strong>Real project files included</strong></p>
+<p class="has-page-masthead-color has-text-color has-link-color"><strong><?php esc_html_e( 'Real project files included', 'memberlite' ); ?></strong></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
@@ -101,7 +101,7 @@ Mastery Pass
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"style":{"elements":{"link":{"color":{"text":"var:preset|color|page-masthead"}}}},"textColor":"page-masthead"} -->
-<p class="has-page-masthead-color has-text-color has-link-color"><strong>Beginner friendly</strong></p>
+<p class="has-page-masthead-color has-text-color has-link-color"><strong><?php esc_html_e( 'Beginner friendly', 'memberlite' ); ?></strong></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:pmpro/single-level --></div>
@@ -114,12 +114,12 @@ Mastery Pass
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"style":{"typography":{"textTransform":"uppercase","letterSpacing":"1px"}},"fontFamily":"heading"} -->
-<p class="has-heading-font-family" style="letter-spacing:1px;text-transform:uppercase"><strong>100% Money back guarantee</strong></p>
+<p class="has-heading-font-family" style="letter-spacing:1px;text-transform:uppercase"><strong><?php esc_html_e( '100% Money back guarantee', 'memberlite' ); ?></strong></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
 <!-- wp:paragraph -->
-<p>Not the right fit? Let us know within 30 days of joining and we'll refund you in full, no questions asked.</p>
+<p><?php esc_html_e( 'Not the right fit? Let us know within 30 days of joining and we\'ll refund you in full, no questions asked.', 'memberlite' ); ?></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group -->

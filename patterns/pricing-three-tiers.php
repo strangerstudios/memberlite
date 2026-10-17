@@ -19,8 +19,8 @@ Explorer
 
 <!-- wp:pmpro/single-level-price {"textAlign":"center","selected_membership_level":"1","style":{"typography":{"fontStyle":"normal","fontWeight":"700"},"elements":{"link":{"color":{"text":"var:preset|color|color-action"}}}},"textColor":"color-action","fontSize":"42","fontFamily":"heading"} /-->
 
-<!-- wp:pmpro/checkout-button {"selected_membership_level":"1","textAlign":"center","className":""} -->
-<div class="wp-block-buttons has-text-align-center"><div class="wp-block-button"><a class="wp-block-button__link wp-block-pmpro-checkout-button has-text-align-center wp-element-button" href="<?php echo esc_url( memberlite_get_pattern_checkout_url( 1 ) ); ?>">Buy Now</a></div></div>
+<!-- wp:pmpro/checkout-button {"selected_membership_level":"1","textAlign":"center","className":"","text":<?php echo memberlite_get_pattern_attr_json( __( 'Buy Now', 'memberlite' ) ); ?>} -->
+<div class="wp-block-buttons has-text-align-center"><div class="wp-block-button"><a class="wp-block-button__link wp-block-pmpro-checkout-button has-text-align-center wp-element-button" href="<?php echo esc_url( memberlite_get_pattern_checkout_url( 1 ) ); ?>"><?php esc_html_e( 'Buy Now', 'memberlite' ); ?></a></div></div>
 <!-- /wp:pmpro/checkout-button -->
 
 <!-- wp:pmpro/single-level-description {"selected_membership_level":"1"} /--></div>
@@ -33,8 +33,8 @@ Mastery Pass
 
 <!-- wp:pmpro/single-level-price {"textAlign":"center","selected_membership_level":"2","style":{"typography":{"fontStyle":"normal","fontWeight":"700"},"elements":{"link":{"color":{"text":"var:preset|color|color-action"}}}},"textColor":"color-action","fontSize":"42","fontFamily":"heading"} /-->
 
-<!-- wp:pmpro/checkout-button {"selected_membership_level":"2","textAlign":"center","className":""} -->
-<div class="wp-block-buttons has-text-align-center"><div class="wp-block-button"><a class="wp-block-button__link wp-block-pmpro-checkout-button has-text-align-center wp-element-button" href="<?php echo esc_url( memberlite_get_pattern_checkout_url( 2 ) ); ?>">Buy Now</a></div></div>
+<!-- wp:pmpro/checkout-button {"selected_membership_level":"2","textAlign":"center","className":"","text":<?php echo memberlite_get_pattern_attr_json( __( 'Buy Now', 'memberlite' ) ); ?>} -->
+<div class="wp-block-buttons has-text-align-center"><div class="wp-block-button"><a class="wp-block-button__link wp-block-pmpro-checkout-button has-text-align-center wp-element-button" href="<?php echo esc_url( memberlite_get_pattern_checkout_url( 2 ) ); ?>"><?php esc_html_e( 'Buy Now', 'memberlite' ); ?></a></div></div>
 <!-- /wp:pmpro/checkout-button -->
 
 <!-- wp:pmpro/single-level-description {"selected_membership_level":"2"} /--></div>
@@ -47,8 +47,8 @@ Flex Pass
 
 <!-- wp:pmpro/single-level-price {"textAlign":"center","selected_membership_level":"3","style":{"typography":{"fontStyle":"normal","fontWeight":"700"},"elements":{"link":{"color":{"text":"var:preset|color|color-action"}}}},"textColor":"color-action","fontSize":"42","fontFamily":"heading"} /-->
 
-<!-- wp:pmpro/checkout-button {"selected_membership_level":"3","textAlign":"center","className":""} -->
-<div class="wp-block-buttons has-text-align-center"><div class="wp-block-button"><a class="wp-block-button__link wp-block-pmpro-checkout-button has-text-align-center wp-element-button" href="<?php echo esc_url( memberlite_get_pattern_checkout_url( 3 ) ); ?>">Buy Now</a></div></div>
+<!-- wp:pmpro/checkout-button {"selected_membership_level":"3","textAlign":"center","className":"","text":<?php echo memberlite_get_pattern_attr_json( __( 'Buy Now', 'memberlite' ) ); ?>} -->
+<div class="wp-block-buttons has-text-align-center"><div class="wp-block-button"><a class="wp-block-button__link wp-block-pmpro-checkout-button has-text-align-center wp-element-button" href="<?php echo esc_url( memberlite_get_pattern_checkout_url( 3 ) ); ?>"><?php esc_html_e( 'Buy Now', 'memberlite' ); ?></a></div></div>
 <!-- /wp:pmpro/checkout-button -->
 
 <!-- wp:pmpro/single-level-description {"selected_membership_level":"3"} /--></div>

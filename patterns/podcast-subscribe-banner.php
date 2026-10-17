@@ -18,24 +18,24 @@
 
 <!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|10"}},"layout":{"type":"flex","orientation":"vertical"}} -->
 <div class="wp-block-group"><!-- wp:heading {"fontSize":"30"} -->
-<h2 class="wp-block-heading has-30-font-size">The Membership Insider Podcast</h2>
+<h2 class="wp-block-heading has-30-font-size"><?php esc_html_e( 'The Membership Insider Podcast', 'memberlite' ); ?></h2>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p>Weekly conversations with membership site founders, community builders, and industry experts. New episodes every Tuesday.</p>
+<p><?php esc_html_e( 'Weekly conversations with membership site founders, community builders, and industry experts. New episodes every Tuesday.', 'memberlite' ); ?></p>
 <!-- /wp:paragraph -->
 
 <!-- wp:buttons {"style":{"spacing":{"blockGap":{"left":"var:preset|spacing|10"}}},"layout":{"type":"flex","flexWrap":"wrap"}} -->
 <div class="wp-block-buttons"><!-- wp:button {"className":"is-style-outline"} -->
-<div class="wp-block-button is-style-outline"><a class="wp-block-button__link wp-element-button" href="#">[fa icon="apple" type="brand"] Apple Podcasts</a></div>
+<div class="wp-block-button is-style-outline"><a class="wp-block-button__link wp-element-button" href="#">[fa icon="apple" type="brand"] <?php esc_html_e( 'Apple Podcasts', 'memberlite' ); ?></a></div>
 <!-- /wp:button -->
 
 <!-- wp:button {"className":"is-style-outline"} -->
-<div class="wp-block-button is-style-outline"><a class="wp-block-button__link wp-element-button" href="#">[fa icon="spotify" type="brand"] Spotify</a></div>
+<div class="wp-block-button is-style-outline"><a class="wp-block-button__link wp-element-button" href="#">[fa icon="spotify" type="brand"] <?php esc_html_e( 'Spotify', 'memberlite' ); ?></a></div>
 <!-- /wp:button -->
 
 <!-- wp:button {"className":"is-style-outline"} -->
-<div class="wp-block-button is-style-outline"><a class="wp-block-button__link wp-element-button" href="#">[fa icon="rss"] RSS Feed</a></div>
+<div class="wp-block-button is-style-outline"><a class="wp-block-button__link wp-element-button" href="#">[fa icon="rss"] <?php esc_html_e( 'RSS Feed', 'memberlite' ); ?></a></div>
 <!-- /wp:button --></div>
 <!-- /wp:buttons --></div>
 <!-- /wp:group --></div>

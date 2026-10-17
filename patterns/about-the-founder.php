@@ -17,20 +17,20 @@
 		<!-- wp:column {"verticalAlignment":"center","width":"65%"} -->
 		<div class="wp-block-column is-vertically-aligned-center" style="flex-basis:65%">
 			<!-- wp:paragraph {"fontSize":"24"} -->
-			<p class="has-24-font-size">Members join communities led by people they know, like, and trust. Your unique expertise can create real impact.<br><strong>There is a membership inside all of us.</strong></p>
+			<p class="has-24-font-size"><?php esc_html_e( 'Members join communities led by people they know, like, and trust. Your unique expertise can create real impact.', 'memberlite' ); ?><br><strong><?php esc_html_e( 'There is a membership inside all of us.', 'memberlite' ); ?></strong></p>
 			<!-- /wp:paragraph -->
 			<!-- wp:paragraph -->
-			<p>Sarah Mitchell is a community builder, consultant, and membership site creator with over 10 years of experience helping others succeed. She built this platform to share her knowledge and connect with members like you.</p>
+			<p><?php esc_html_e( 'Sarah Mitchell is a community builder, consultant, and membership site creator with over 10 years of experience helping others succeed. She built this platform to share her knowledge and connect with members like you.', 'memberlite' ); ?></p>
 			<!-- /wp:paragraph -->
 			<!-- wp:paragraph -->
-			<p>She has helped hundreds of members achieve their goals through exclusive resources, a supportive community, and hands-on guidance that makes a real difference.</p>
+			<p><?php esc_html_e( 'She has helped hundreds of members achieve their goals through exclusive resources, a supportive community, and hands-on guidance that makes a real difference.', 'memberlite' ); ?></p>
 			<!-- /wp:paragraph -->
 		</div>
 		<!-- /wp:column -->
 		<!-- wp:column {"verticalAlignment":"center","width":"35%"} -->
 		<div class="wp-block-column is-vertically-aligned-center" style="flex-basis:35%">
 			<!-- wp:image {"aspectRatio":"3/4","scale":"cover"} -->
-			<figure class="wp-block-image"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/patterns/images/people/christina-wocintechchat-com-SJvDxw0azqw-unsplash-sm.jpg" alt="Photo of the a female executive side profile of a woman with a white and black striped vest in a corporate setting." style="aspect-ratio:3/4;object-fit:cover"/></figure>
+			<figure class="wp-block-image"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/patterns/images/people/christina-wocintechchat-com-SJvDxw0azqw-unsplash-sm.jpg" alt="<?php esc_attr_e( 'Photo of the a female executive side profile of a woman with a white and black striped vest in a corporate setting.', 'memberlite' ); ?>" style="aspect-ratio:3/4;object-fit:cover"/></figure>
 			<!-- /wp:image -->
 		</div>
 		<!-- /wp:column -->

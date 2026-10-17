@@ -15,12 +15,12 @@
 <div class="wp-block-group alignwide has-body-text-color has-base-background-color has-text-color has-background has-link-color" style="border-radius:8px;padding-top:var(--wp--preset--spacing--30);padding-right:var(--wp--preset--spacing--30);padding-bottom:var(--wp--preset--spacing--30);padding-left:var(--wp--preset--spacing--30)"><!-- wp:columns {"verticalAlignment":null,"align":"wide","style":{"spacing":{"blockGap":{"left":"var:preset|spacing|60"}}}} -->
 <div class="wp-block-columns alignwide"><!-- wp:column {"verticalAlignment":"center","width":"30%","style":{"spacing":{"blockGap":"var:preset|spacing|10"}}} -->
 <div class="wp-block-column is-vertically-aligned-center" style="flex-basis:30%"><!-- wp:paragraph {"style":{"typography":{"fontStyle":"normal","fontWeight":"700","textAlign":"center"}},"fontSize":"24","fontFamily":"heading"} -->
-<p class="has-text-align-center has-heading-font-family has-24-font-size" style="font-style:normal;font-weight:700">Take our courses on the go. Learn wherever and whenever it's convenient.</p>
+<p class="has-text-align-center has-heading-font-family has-24-font-size" style="font-style:normal;font-weight:700"><?php esc_html_e( 'Take our courses on the go. Learn wherever and whenever it\'s convenient.', 'memberlite' ); ?></p>
 <!-- /wp:paragraph -->
 
 <!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center"}} -->
 <div class="wp-block-buttons"><!-- wp:button {"className":"is-style-fill"} -->
-<div class="wp-block-button is-style-fill"><a class="wp-block-button__link wp-element-button" href="#">Browse Courses</a></div>
+<div class="wp-block-button is-style-fill"><a class="wp-block-button__link wp-element-button" href="#"><?php esc_html_e( 'Browse Courses', 'memberlite' ); ?></a></div>
 <!-- /wp:button --></div>
 <!-- /wp:buttons --></div>
 <!-- /wp:column -->
@@ -33,11 +33,11 @@
 
 <!-- wp:group {"style":{"spacing":{"blockGap":"0.25em"}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group"><!-- wp:paragraph -->
-<p><strong>Connect with the Community</strong></p>
+<p><strong><?php esc_html_e( 'Connect with the Community', 'memberlite' ); ?></strong></p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Join discussions, ask questions, and connect with other members between lessons.</p>
+<p><?php esc_html_e( 'Join discussions, ask questions, and connect with other members between lessons.', 'memberlite' ); ?></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group -->
@@ -49,11 +49,11 @@
 
 <!-- wp:group {"style":{"spacing":{"blockGap":"0.25em"}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group"><!-- wp:paragraph -->
-<p><strong>Login Anywhere with Magic Links</strong></p>
+<p><strong><?php esc_html_e( 'Login Anywhere with Magic Links', 'memberlite' ); ?></strong></p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Skip the password. Click the link we email you and you're signed in securely from any device.</p>
+<p><?php esc_html_e( 'Skip the password. Click the link we email you and you\'re signed in securely from any device.', 'memberlite' ); ?></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group -->
@@ -65,11 +65,11 @@
 
 <!-- wp:group {"style":{"spacing":{"blockGap":"0.25em"}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group"><!-- wp:paragraph -->
-<p><strong>Learn on Desktop or Mobile</strong></p>
+<p><strong><?php esc_html_e( 'Learn on Desktop or Mobile', 'memberlite' ); ?></strong></p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Pick up right where you left off, whether you're at your desk or on the go.</p>
+<p><?php esc_html_e( 'Pick up right where you left off, whether you\'re at your desk or on the go.', 'memberlite' ); ?></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></div>

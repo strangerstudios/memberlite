@@ -14,20 +14,20 @@
 <div class="wp-block-group alignfull"><!-- wp:cover {"url":"<?php echo esc_url( get_template_directory_uri() ); ?>/patterns/images/landscapes/liz-joseph-3BpbVUE2O0w-unsplash-md.jpg","dimRatio":50,"overlayColor":"base","isUserOverlayColor":true,"sizeSlug":"full","align":"full","className":"is-style-default","style":{"spacing":{"padding":{"top":"var:preset|spacing|70","bottom":"var:preset|spacing|70"}}},"layout":{"type":"constrained"},"textColor":"body-text"} -->
 	<div class="wp-block-cover alignfull is-style-default has-body-text-color has-text-color" style="padding-top:var(--wp--preset--spacing--70);padding-bottom:var(--wp--preset--spacing--70)"><img class="wp-block-cover__image-background size-full" alt="" src="<?php echo esc_url( get_template_directory_uri() ); ?>/patterns/images/landscapes/liz-joseph-3BpbVUE2O0w-unsplash-md.jpg" data-object-fit="cover"/><span aria-hidden="true" class="wp-block-cover__background has-base-background-color has-background-dim"></span><div class="wp-block-cover__inner-container"><!-- wp:group {"align":"wide","layout":{"type":"constrained"}} -->
 			<div class="wp-block-group alignwide"><!-- wp:paragraph {"placeholder":"Write title…","style":{"typography":{"textAlign":"center","fontStyle":"normal","fontWeight":"700","textTransform":"uppercase","letterSpacing":"1px"},"elements":{"link":{"color":{"text":"var:preset|color|site-navigation-link"}}}},"textColor":"site-navigation-link","fontSize":"21","fontFamily":"heading"} -->
-				<p class="has-text-align-center has-site-navigation-link-color has-text-color has-link-color has-heading-font-family has-21-font-size" style="font-style:normal;font-weight:700;letter-spacing:1px;text-transform:uppercase">Downtown Conference Center | March 14&#8211;15</p>
+				<p class="has-text-align-center has-site-navigation-link-color has-text-color has-link-color has-heading-font-family has-21-font-size" style="font-style:normal;font-weight:700;letter-spacing:1px;text-transform:uppercase"><?php esc_html_e( 'Downtown Conference Center | March 14–15', 'memberlite' ); ?></p>
 				<!-- /wp:paragraph -->
 
 				<!-- wp:heading {"style":{"typography":{"textAlign":"center","fontSize":"clamp(38px, 7vw, 83px)","textTransform":"uppercase","lineHeight":"1"},"spacing":{"margin":{"top":"var:preset|spacing|10"}},"elements":{"link":{"color":{"text":"var:preset|color|site-navigation-link"}}}},"textColor":"site-navigation-link"} -->
-				<h2 class="wp-block-heading has-text-align-center has-site-navigation-link-color has-text-color has-link-color" style="margin-top:var(--wp--preset--spacing--10);font-size:clamp(38px, 7vw, 83px);line-height:1;text-transform:uppercase">The Annual Member Summit</h2>
+				<h2 class="wp-block-heading has-text-align-center has-site-navigation-link-color has-text-color has-link-color" style="margin-top:var(--wp--preset--spacing--10);font-size:clamp(38px, 7vw, 83px);line-height:1;text-transform:uppercase"><?php esc_html_e( 'The Annual Member Summit', 'memberlite' ); ?></h2>
 				<!-- /wp:heading -->
 
 				<!-- wp:paragraph {"style":{"typography":{"textAlign":"center"},"elements":{"link":{"color":{"text":"var:preset|color|site-navigation-link"}}}},"textColor":"site-navigation-link"} -->
-				<p class="has-text-align-center has-site-navigation-link-color has-text-color has-link-color">Join fellow members for two days of workshops, networking, and expert talks designed to help you get more out of your membership.</p>
+				<p class="has-text-align-center has-site-navigation-link-color has-text-color has-link-color"><?php esc_html_e( 'Join fellow members for two days of workshops, networking, and expert talks designed to help you get more out of your membership.', 'memberlite' ); ?></p>
 				<!-- /wp:paragraph -->
 
 				<!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center"}} -->
 				<div class="wp-block-buttons"><!-- wp:button {"backgroundColor":"color-action","textColor":"site-navigation-background","style":{"elements":{"link":{"color":{"text":"var:preset|color|site-navigation-background"}}}}} -->
-					<div class="wp-block-button"><a class="wp-block-button__link has-site-navigation-background-color has-color-action-background-color has-text-color has-background has-link-color wp-element-button" href="#">Register Now</a></div>
+					<div class="wp-block-button"><a class="wp-block-button__link has-site-navigation-background-color has-color-action-background-color has-text-color has-background has-link-color wp-element-button" href="#"><?php esc_html_e( 'Register Now', 'memberlite' ); ?></a></div>
 					<!-- /wp:button --></div>
 				<!-- /wp:buttons --></div>
 			<!-- /wp:group --></div></div>

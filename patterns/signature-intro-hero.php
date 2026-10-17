@@ -18,27 +18,27 @@
 			<!-- /wp:paragraph -->
 
 			<!-- wp:heading {"fontSize":"36"} -->
-			<h2 class="wp-block-heading has-36-font-size">Grow with guidance you can trust</h2>
+			<h2 class="wp-block-heading has-36-font-size"><?php esc_html_e( 'Grow with guidance you can trust', 'memberlite' ); ?></h2>
 			<!-- /wp:heading -->
 
 			<!-- wp:paragraph -->
-			<p>I've spent the last decade helping members build better habits, gain clarity, and stay accountable through personalized guidance, exclusive resources, and a community that cheers you on.</p>
+			<p><?php esc_html_e( 'I\'ve spent the last decade helping members build better habits, gain clarity, and stay accountable through personalized guidance, exclusive resources, and a community that cheers you on.', 'memberlite' ); ?></p>
 			<!-- /wp:paragraph -->
 
 			<!-- wp:buttons -->
 			<div class="wp-block-buttons"><!-- wp:button -->
-				<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="#">Contact</a></div>
+				<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="#"><?php esc_html_e( 'Contact', 'memberlite' ); ?></a></div>
 				<!-- /wp:button -->
 
 				<!-- wp:button {"className":"is-style-arrow-plain","style":{"spacing":{"padding":{"top":"var:preset|spacing|10","bottom":"var:preset|spacing|10"}}}} -->
-				<div class="wp-block-button is-style-arrow-plain"><a class="wp-block-button__link wp-element-button" href="#" style="padding-top:var(--wp--preset--spacing--10);padding-bottom:var(--wp--preset--spacing--10)">View Plans</a></div>
+				<div class="wp-block-button is-style-arrow-plain"><a class="wp-block-button__link wp-element-button" href="#" style="padding-top:var(--wp--preset--spacing--10);padding-bottom:var(--wp--preset--spacing--10)"><?php esc_html_e( 'View Plans', 'memberlite' ); ?></a></div>
 				<!-- /wp:button --></div>
 			<!-- /wp:buttons --></div>
 		<!-- /wp:column -->
 
 		<!-- wp:column {"verticalAlignment":"center"} -->
 		<div class="wp-block-column is-vertically-aligned-center"><!-- wp:image {"aspectRatio":"1","scale":"cover","sizeSlug":"full","linkDestination":"none","style":{"border":{"radius":{"topLeft":"50px","bottomRight":"50px"}},"color":{"duotone":"var:preset|duotone|grayscale"}}} -->
-			<figure class="wp-block-image size-full has-custom-border"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/patterns/images/people/meg-wagener-M7fbJyBuAag-unsplash-sm.jpg" alt="Portrait of the site founder." style="border-top-left-radius:50px;border-bottom-right-radius:50px;aspect-ratio:1;object-fit:cover"/></figure>
+			<figure class="wp-block-image size-full has-custom-border"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/patterns/images/people/meg-wagener-M7fbJyBuAag-unsplash-sm.jpg" alt="<?php esc_attr_e( 'Portrait of the site founder.', 'memberlite' ); ?>" style="border-top-left-radius:50px;border-bottom-right-radius:50px;aspect-ratio:1;object-fit:cover"/></figure>
 			<!-- /wp:image --></div>
 		<!-- /wp:column --></div>
 	<!-- /wp:columns --></div>

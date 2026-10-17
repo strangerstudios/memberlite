@@ -13,14 +13,14 @@
 <!-- wp:group {"align":"full","style":{"spacing":{"padding":{"top":"var:preset|spacing|70","bottom":"var:preset|spacing|70"}}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group alignfull" style="padding-top:var(--wp--preset--spacing--70);padding-bottom:var(--wp--preset--spacing--70)">
 	<!-- wp:heading {"style":{"typography":{"textAlign":"center"}},"fontSize":"42"} -->
-	<h2 class="wp-block-heading has-text-align-center has-42-font-size">Everything You Need to Succeed</h2>
+	<h2 class="wp-block-heading has-text-align-center has-42-font-size"><?php esc_html_e( 'Everything You Need to Succeed', 'memberlite' ); ?></h2>
 	<!-- /wp:heading -->
 	<!-- wp:columns {"align":"wide"} -->
 	<div class="wp-block-columns alignwide">
 		<!-- wp:column {"verticalAlignment":"center","width":"50%"} -->
 		<div class="wp-block-column is-vertically-aligned-center" style="flex-basis:50%">
 			<!-- wp:image {"sizeSlug":"full","linkDestination":"none"} -->
-			<figure class="wp-block-image size-full"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/patterns/images/experts/thought-catalog-505eectW54k-unsplash-md.jpg" alt="Overhead shot of a desk with books, a laptop, glasses, coffee, photos, and someone writing in a notebook."/></figure>
+			<figure class="wp-block-image size-full"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/patterns/images/experts/thought-catalog-505eectW54k-unsplash-md.jpg" alt="<?php esc_attr_e( 'Overhead shot of a desk with books, a laptop, glasses, coffee, photos, and someone writing in a notebook.', 'memberlite' ); ?>"/></figure>
 			<!-- /wp:image -->
 		</div>
 		<!-- /wp:column -->
@@ -29,30 +29,30 @@
 			<!-- wp:group {"style":{"spacing":{"blockGap":"0","padding":{"top":"var:preset|spacing|10","bottom":"var:preset|spacing|10","left":"var:preset|spacing|20","right":"var:preset|spacing|20"}},"border":{"width":"1px","radius":{"topLeft":"8px","topRight":"8px","bottomLeft":"8px","bottomRight":"8px"}}},"borderColor":"borders","layout":{"type":"flex","orientation":"vertical"}} -->
 			<div class="wp-block-group has-border-color has-borders-border-color" style="border-width:1px;border-top-left-radius:8px;border-top-right-radius:8px;border-bottom-left-radius:8px;border-bottom-right-radius:8px;padding-top:var(--wp--preset--spacing--10);padding-right:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--10);padding-left:var(--wp--preset--spacing--20)">
 				<!-- wp:heading {"level":3,"style":{"elements":{"link":{"color":{"text":"var:preset|color|color-action"}}}},"textColor":"color-action"} -->
-				<h3 class="wp-block-heading has-color-action-color has-text-color has-link-color">Exclusive Content</h3>
+				<h3 class="wp-block-heading has-color-action-color has-text-color has-link-color"><?php esc_html_e( 'Exclusive Content', 'memberlite' ); ?></h3>
 				<!-- /wp:heading -->
 				<!-- wp:paragraph -->
-				<p>Access resources, guides, and tools available only to members.</p>
+				<p><?php esc_html_e( 'Access resources, guides, and tools available only to members.', 'memberlite' ); ?></p>
 				<!-- /wp:paragraph -->
 			</div>
 			<!-- /wp:group -->
 			<!-- wp:group {"style":{"spacing":{"blockGap":"0","padding":{"top":"var:preset|spacing|10","bottom":"var:preset|spacing|10","left":"var:preset|spacing|20","right":"var:preset|spacing|20"}},"border":{"width":"1px","radius":{"topLeft":"8px","topRight":"8px","bottomLeft":"8px","bottomRight":"8px"}}},"borderColor":"borders","layout":{"type":"flex","orientation":"vertical"}} -->
 			<div class="wp-block-group has-border-color has-borders-border-color" style="border-width:1px;border-top-left-radius:8px;border-top-right-radius:8px;border-bottom-left-radius:8px;border-bottom-right-radius:8px;padding-top:var(--wp--preset--spacing--10);padding-right:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--10);padding-left:var(--wp--preset--spacing--20)">
 				<!-- wp:heading {"level":3,"style":{"elements":{"link":{"color":{"text":"var:preset|color|color-action"}}}},"textColor":"color-action"} -->
-				<h3 class="wp-block-heading has-color-action-color has-text-color has-link-color">Ongoing Support</h3>
+				<h3 class="wp-block-heading has-color-action-color has-text-color has-link-color"><?php esc_html_e( 'Ongoing Support', 'memberlite' ); ?></h3>
 				<!-- /wp:heading -->
 				<!-- wp:paragraph -->
-				<p>Get help from people who understand your journey.</p>
+				<p><?php esc_html_e( 'Get help from people who understand your journey.', 'memberlite' ); ?></p>
 				<!-- /wp:paragraph -->
 			</div>
 			<!-- /wp:group -->
 			<!-- wp:group {"style":{"spacing":{"blockGap":"0","padding":{"top":"var:preset|spacing|10","bottom":"var:preset|spacing|10","left":"var:preset|spacing|20","right":"var:preset|spacing|20"}},"border":{"width":"1px","radius":{"topLeft":"8px","topRight":"8px","bottomLeft":"8px","bottomRight":"8px"}}},"borderColor":"borders","layout":{"type":"flex","orientation":"vertical"}} -->
 			<div class="wp-block-group has-border-color has-borders-border-color" style="border-width:1px;border-top-left-radius:8px;border-top-right-radius:8px;border-bottom-left-radius:8px;border-bottom-right-radius:8px;padding-top:var(--wp--preset--spacing--10);padding-right:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--10);padding-left:var(--wp--preset--spacing--20)">
 				<!-- wp:heading {"level":3,"style":{"elements":{"link":{"color":{"text":"var:preset|color|color-action"}}}},"textColor":"color-action"} -->
-				<h3 class="wp-block-heading has-color-action-color has-text-color has-link-color">Member Community</h3>
+				<h3 class="wp-block-heading has-color-action-color has-text-color has-link-color"><?php esc_html_e( 'Member Community', 'memberlite' ); ?></h3>
 				<!-- /wp:heading -->
 				<!-- wp:paragraph -->
-				<p>Connect with like-minded people who share your goals.</p>
+				<p><?php esc_html_e( 'Connect with like-minded people who share your goals.', 'memberlite' ); ?></p>
 				<!-- /wp:paragraph -->
 			</div>
 			<!-- /wp:group -->
@@ -63,10 +63,10 @@
 	<!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center","flexWrap":"wrap"}} -->
 	<div class="wp-block-buttons">
 		<!-- wp:button {"backgroundColor":"color-primary"} -->
-		<div class="wp-block-button"><a class="wp-block-button__link has-color-primary-background-color has-background wp-element-button" href="#">Join Now</a></div>
+		<div class="wp-block-button"><a class="wp-block-button__link has-color-primary-background-color has-background wp-element-button" href="#"><?php esc_html_e( 'Join Now', 'memberlite' ); ?></a></div>
 		<!-- /wp:button -->
 		<!-- wp:button {"textColor":"color-primary","className":"is-style-outline","style":{"elements":{"link":{"color":{"text":"var:preset|color|color-primary"}}}}} -->
-		<div class="wp-block-button is-style-outline"><a class="wp-block-button__link has-color-primary-color has-text-color has-link-color wp-element-button" href="#">View Membership Levels</a></div>
+		<div class="wp-block-button is-style-outline"><a class="wp-block-button__link has-color-primary-color has-text-color has-link-color wp-element-button" href="#"><?php esc_html_e( 'View Membership Levels', 'memberlite' ); ?></a></div>
 		<!-- /wp:button -->
 	</div>
 	<!-- /wp:buttons -->
