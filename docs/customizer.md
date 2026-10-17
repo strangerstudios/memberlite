@@ -110,6 +110,8 @@ The inherit state is stored as the `inherit_posts_archives_{cpt}` theme_mod (e.g
 | Sidebar Location | Archive pages + single post views | Inherit is unchecked |
 | Columns Ratio | Archive pages + single post views | Inherit is unchecked, sidebar is not "No Sidebar" |
 
+"Archive pages" includes the CPT's taxonomy archives (e.g. `/recipe-type/gel/` for a `recipe` CPT), as long as the taxonomy is registered to only that one CPT from the list above. Taxonomies shared by more than one of these CPTs keep the default archive layout. The built-in `category` and `post_tag` archives always use the Posts & Archives settings, even when a CPT registers them, because posts share those terms.
+
 Section labels are derived from the CPT's registered plural name (e.g. a CPT registered as "Courses" produces a "Courses Layout" section).
 
 ---
@@ -201,9 +203,11 @@ This is not a full list. Explore the codebase for more.
 
 - `memberlite_cpt_inherits_posts_archives( $cpt_type )` - Returns `true` if the given CPT should inherit layout settings from Posts & Archives. Reads the `inherit_posts_archives_{cpt}` theme_mod; defaults to `true` so CPTs inherit unless explicitly opted out.
 
-- `memberlite_get_current_cpt_type()` - Returns the current CPT slug when on a CPT archive or single post that has Customizer settings, otherwise `null`. Used to resolve sidebar and columns ratio settings for both archive and single views.
+- `memberlite_get_current_cpt_type()` - Returns the current CPT slug when on a CPT archive, one of its taxonomy archives, or a single post that has Customizer settings, otherwise `null`. Archive and taxonomy pages are resolved by `memberlite_get_current_cpt_archive_type()`. Used to resolve sidebar and columns ratio settings for both archive and single views.
 
-- `memberlite_get_current_cpt_archive_type()` - Returns the current CPT slug when on a CPT archive only, otherwise `null`. Used by `memberlite_get_content_archives_theme_mod()` since the Archive Layout setting only applies to archives.
+- `memberlite_get_current_cpt_archive_type()` - Returns the current CPT slug when on a CPT archive or one of its taxonomy archives, otherwise `null`. A taxonomy archive resolves to a CPT only when the taxonomy is registered to exactly one CPT from `memberlite_get_customizer_cpts()`. Used by `memberlite_get_content_archives_theme_mod()` since the Archive Layout setting only applies to archives.
+
+- `memberlite_is_cpt_archive()` - Returns `true` on any post type archive, or on a taxonomy archive that resolves to a CPT via `memberlite_get_current_cpt_archive_type()`. Used in place of `is_post_type_archive()` by the body class, columns ratio, and sidebar layout checks.
 
 - `memberlite_get_content_archives_theme_mod()` - Returns the resolved archive layout value (`content`, `excerpt`, or `grid`) for the current context. Returns the CPT-specific setting on CPT archives, otherwise falls back to the global `content_archives` setting.
 

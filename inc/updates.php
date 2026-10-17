@@ -139,8 +139,8 @@ function memberlite_update_themes_filter( $value ) {
 
 	// Get the update JSON for Stranger Studios themes
 	$update_info = memberlite_get_update_info();
-	// No info found, let's bail.
-	if ( empty( $update_info ) ) {
+	// No info found or the license server couldn't be reached, let's bail.
+	if ( empty( $update_info ) || is_wp_error( $update_info ) || ! is_array( $update_info ) ) {
 		return $value;
 	}
 

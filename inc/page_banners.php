@@ -427,11 +427,12 @@ add_filter( 'memberlite_masthead_content', 'memberlite_maybe_customize_masthead_
  *
  * Returns the dedicated banner image from MemberliteMultiPostThumbnails
  * if available, or an empty string if no dedicated banner image is set.
+ * The result passes through the memberlite_get_banner_image filter.
  *
- * @param int    $post_id The post ID.
- * @param string $size    The image size. Default 'banner'.
- * @param bool   $icon    Whether to use an icon. Default false.
- * @param array  $attr    Image attributes. Default empty array.
+ * @param int          $post_id The post ID.
+ * @param string       $size    The image size. Default 'banner'.
+ * @param bool         $icon    Whether to use an icon. Default false.
+ * @param array|string $attr    Image attributes. Default empty array.
  * @return string The image HTML, or empty string.
  */
 function memberlite_get_banner_image( $post_id = 0, $size = 'banner', $icon = false, $attr = array() ) {
@@ -440,26 +441,38 @@ function memberlite_get_banner_image( $post_id = 0, $size = 'banner', $icon = fa
 		$post_id = ! empty( $post->ID ) ? $post->ID : 0;
 	}
 
-	if ( empty( $post_id ) || ! class_exists( 'MemberliteMultiPostThumbnails' ) ) {
-		return '';
+	$banner_image    = '';
+	$banner_image_id = 0;
+	$post_type       = ! empty( $post_id ) ? get_post_type( $post_id ) : false;
+
+	if ( ! empty( $post_type ) && class_exists( 'MemberliteMultiPostThumbnails' ) ) {
+		$banner_image_id = (int) MemberliteMultiPostThumbnails::get_post_thumbnail_id(
+			$post_type,
+			'memberlite_banner_image' . $post_type,
+			$post_id
+		);
+
+		if ( ! empty( $banner_image_id ) ) {
+			$banner_image = wp_get_attachment_image( $banner_image_id, $size, $icon, $attr );
+		}
 	}
 
-	$post_type = get_post_type( $post_id );
-	if ( empty( $post_type ) ) {
-		return '';
-	}
-
-	$banner_image_id = MemberliteMultiPostThumbnails::get_post_thumbnail_id(
-		$post_type,
-		'memberlite_banner_image' . $post_type,
-		$post_id
-	);
-
-	if ( empty( $banner_image_id ) ) {
-		return '';
-	}
-
-	return wp_get_attachment_image( $banner_image_id, $size, $icon, $attr );
+	/**
+	 * Filter the banner image HTML for a post.
+	 *
+	 * Receives only the dedicated banner image, not the featured image as in
+	 * Memberlite 6.x, and runs even when no banner image is set. Grid views fall
+	 * back to the featured image only when this returns empty, so a non-empty
+	 * value returned here replaces the featured image there.
+	 *
+	 * @param string       $banner_image    The image HTML, or empty string.
+	 * @param int          $banner_image_id The banner image attachment ID, or 0.
+	 * @param string       $size            The image size.
+	 * @param bool         $icon            Whether to use an icon.
+	 * @param array|string $attr            Image attributes.
+	 * @param int          $post_id         The post ID.
+	 */
+	return apply_filters( 'memberlite_get_banner_image', $banner_image, $banner_image_id, $size, $icon, $attr, $post_id );
 }
 
 /**
@@ -467,6 +480,7 @@ function memberlite_get_banner_image( $post_id = 0, $size = 'banner', $icon = fa
  *
  * Returns the dedicated banner image from MemberliteMultiPostThumbnails
  * if available, or false if no dedicated banner image is set.
+ * The result passes through the memberlite_banner_image_src filter.
  *
  * @param int|null $post_id The post ID. Defaults to the global post.
  * @param string   $size    The image size. Default 'banner'.
@@ -478,26 +492,33 @@ function memberlite_get_banner_image_src( $post_id = null, $size = 'banner' ) {
 		$post_id = ! empty( $post->ID ) ? $post->ID : 0;
 	}
 
-	if ( empty( $post_id ) || ! class_exists( 'MemberliteMultiPostThumbnails' ) ) {
-		return false;
+	$banner_image_src = false;
+	$post_type        = ! empty( $post_id ) ? get_post_type( $post_id ) : false;
+
+	if ( ! empty( $post_type ) && class_exists( 'MemberliteMultiPostThumbnails' ) ) {
+		$banner_image_id = MemberliteMultiPostThumbnails::get_post_thumbnail_id(
+			$post_type,
+			'memberlite_banner_image' . $post_type,
+			$post_id
+		);
+
+		if ( ! empty( $banner_image_id ) ) {
+			$banner_image_src = wp_get_attachment_image_src( $banner_image_id, $size );
+		}
 	}
 
-	$post_type = get_post_type( $post_id );
-	if ( empty( $post_type ) ) {
-		return false;
-	}
-
-	$banner_image_id = MemberliteMultiPostThumbnails::get_post_thumbnail_id(
-		$post_type,
-		'memberlite_banner_image' . $post_type,
-		$post_id
-	);
-
-	if ( empty( $banner_image_id ) ) {
-		return false;
-	}
-
-	return wp_get_attachment_image_src( $banner_image_id, $size );
+	/**
+	 * Filter the banner image src for a post.
+	 *
+	 * Receives only the dedicated banner image, not the featured image as in
+	 * Memberlite 6.x, and runs even when no banner image is set. A non-empty
+	 * value returned here takes priority over any featured image fallback.
+	 *
+	 * @param array|false $banner_image_src The image src array from wp_get_attachment_image_src, or false.
+	 * @param string      $size             The image size.
+	 * @param int         $post_id          The post ID.
+	 */
+	return apply_filters( 'memberlite_banner_image_src', $banner_image_src, $size, $post_id );
 }
 
 /**
