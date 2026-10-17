@@ -45,7 +45,7 @@ Explorer
 <!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|10"}},"layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"center"}} -->
 <div class="wp-block-group"><!-- wp:pmpro/single-level-price {"selected_membership_level":"1","style":{"typography":{"fontStyle":"normal","fontWeight":"700"}}} /-->
 
-<!-- wp:pmpro/checkout-button {"selected_membership_level":"1","textAlign":"center","className":""} -->
+<!-- wp:pmpro/checkout-button {"selected_membership_level":"1","text":"Join","textAlign":"center","className":""} -->
 <div class="wp-block-buttons has-text-align-center"><div class="wp-block-button"><a class="wp-block-button__link wp-block-pmpro-checkout-button has-text-align-center wp-element-button" href="<?php echo esc_url( memberlite_get_pattern_checkout_url( 1 ) ); ?>">Join</a></div></div>
 <!-- /wp:pmpro/checkout-button --></div>
 <!-- /wp:group --></div>
@@ -67,7 +67,7 @@ Mastery Pass
 <!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|10"}},"layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"center"}} -->
 <div class="wp-block-group"><!-- wp:pmpro/single-level-price {"selected_membership_level":"2","style":{"typography":{"fontStyle":"normal","fontWeight":"700"}}} /-->
 
-<!-- wp:pmpro/checkout-button {"selected_membership_level":"2","textAlign":"center","backgroundColor":"color-action","className":""} -->
+<!-- wp:pmpro/checkout-button {"selected_membership_level":"2","text":"Join","textAlign":"center","backgroundColor":"color-action","className":""} -->
 <div class="wp-block-buttons has-text-align-center"><div class="wp-block-button"><a class="wp-block-button__link wp-block-pmpro-checkout-button has-color-action-background-color has-background has-text-align-center wp-element-button" href="<?php echo esc_url( memberlite_get_pattern_checkout_url( 2 ) ); ?>">Join</a></div></div>
 <!-- /wp:pmpro/checkout-button --></div>
 <!-- /wp:group --></div>
@@ -89,7 +89,7 @@ Flex Pass
 <!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|10"}},"layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"center"}} -->
 <div class="wp-block-group"><!-- wp:pmpro/single-level-price {"selected_membership_level":"3","style":{"typography":{"fontStyle":"normal","fontWeight":"700"}}} /-->
 
-<!-- wp:pmpro/checkout-button {"selected_membership_level":"3","textAlign":"center","className":""} -->
+<!-- wp:pmpro/checkout-button {"selected_membership_level":"3","text":"Join","textAlign":"center","className":""} -->
 <div class="wp-block-buttons has-text-align-center"><div class="wp-block-button"><a class="wp-block-button__link wp-block-pmpro-checkout-button has-text-align-center wp-element-button" href="<?php echo esc_url( memberlite_get_pattern_checkout_url( 3 ) ); ?>">Join</a></div></div>
 <!-- /wp:pmpro/checkout-button --></div>
 <!-- /wp:group --></div>
