@@ -29,7 +29,7 @@ Explorer
 
 <!-- wp:pmpro/single-level-price {"textAlign":"center","selected_membership_level":"1","style":{"typography":{"fontStyle":"normal","fontWeight":"400"}},"fontSize":"32","fontFamily":"heading"} /-->
 
-<!-- wp:pmpro/checkout-button {"selected_membership_level":"1","textAlign":"center","className":"","text":<?php echo wp_json_encode( __( 'Buy Now', 'memberlite' ) ); ?>} -->
+<!-- wp:pmpro/checkout-button {"selected_membership_level":"1","textAlign":"center","className":"","text":<?php echo memberlite_get_pattern_attr_json( __( 'Buy Now', 'memberlite' ) ); ?>} -->
 <div class="wp-block-buttons has-text-align-center"><div class="wp-block-button"><a class="wp-block-button__link wp-block-pmpro-checkout-button has-text-align-center wp-element-button" href="<?php echo esc_url( memberlite_get_pattern_checkout_url( 1 ) ); ?>"><?php esc_html_e( 'Buy Now', 'memberlite' ); ?></a></div></div>
 <!-- /wp:pmpro/checkout-button -->
 
@@ -71,7 +71,7 @@ Mastery Pass
 
 <!-- wp:pmpro/single-level-price {"textAlign":"center","selected_membership_level":"2","style":{"typography":{"fontStyle":"normal","fontWeight":"400"},"elements":{"link":{"color":{"text":"var:preset|color|page-masthead"}}}},"textColor":"page-masthead","fontSize":"32","fontFamily":"heading"} /-->
 
-<!-- wp:pmpro/checkout-button {"selected_membership_level":"2","textAlign":"center","backgroundColor":"color-action","className":"","text":<?php echo wp_json_encode( __( 'Buy Now', 'memberlite' ) ); ?>} -->
+<!-- wp:pmpro/checkout-button {"selected_membership_level":"2","textAlign":"center","backgroundColor":"color-action","className":"","text":<?php echo memberlite_get_pattern_attr_json( __( 'Buy Now', 'memberlite' ) ); ?>} -->
 <div class="wp-block-buttons has-text-align-center"><div class="wp-block-button"><a class="wp-block-button__link wp-block-pmpro-checkout-button has-color-action-background-color has-background has-text-align-center wp-element-button" href="<?php echo esc_url( memberlite_get_pattern_checkout_url( 2 ) ); ?>"><?php esc_html_e( 'Buy Now', 'memberlite' ); ?></a></div></div>
 <!-- /wp:pmpro/checkout-button -->
 

@@ -14,7 +14,7 @@
 <div class="wp-block-group alignwide" style="padding-top:var(--wp--preset--spacing--70);padding-bottom:var(--wp--preset--spacing--70)"><!-- wp:columns {"verticalAlignment":"center","align":"wide","style":{"spacing":{"blockGap":{"top":"0"}}}} -->
 	<div class="wp-block-columns alignwide are-vertically-aligned-center"><!-- wp:column {"verticalAlignment":"center","style":{"spacing":{"blockGap":"var:preset|spacing|10"}}} -->
 		<div class="wp-block-column is-vertically-aligned-center"><!-- wp:paragraph {"style":{"elements":{"link":{"color":{"text":"var:preset|color|color-action"}}}},"textColor":"color-action","fontSize":"36","fontFamily":"great-vibes"} -->
-			<p class="has-color-action-color has-text-color has-link-color has-great-vibes-font-family has-36-font-size"><?php esc_html_e( 'Sarah Mitchell', 'memberlite' ); ?></p>
+			<p class="has-color-action-color has-text-color has-link-color has-great-vibes-font-family has-36-font-size">Sarah Mitchell</p>
 			<!-- /wp:paragraph -->
 
 			<!-- wp:heading {"fontSize":"36"} -->

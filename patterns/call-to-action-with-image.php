@@ -29,7 +29,7 @@
 
 <!-- wp:buttons -->
 <div class="wp-block-buttons"><!-- wp:button {"backgroundColor":"color-primary","className":"is-style-fill"} -->
-<div class="wp-block-button is-style-fill"><a class="wp-block-button__link has-color-primary-background-color has-background wp-element-button" href="#"><strong><?php esc_html_e( 'New Members Welcome', 'memberlite' ); ?></strong><?php esc_html_e( ': Apply Here', 'memberlite' ); ?></a></div>
+<div class="wp-block-button is-style-fill"><a class="wp-block-button__link has-color-primary-background-color has-background wp-element-button" href="#"><?php /* translators: %1$s: opening bold tag, %2$s: closing bold tag */ printf( esc_html__( '%1$sNew Members Welcome%2$s: Apply Here', 'memberlite' ), '<strong>', '</strong>' ); ?></a></div>
 <!-- /wp:button --></div>
 <!-- /wp:buttons --></div>
 <!-- /wp:column --></div>

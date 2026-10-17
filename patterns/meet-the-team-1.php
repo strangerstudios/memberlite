@@ -34,7 +34,7 @@
 					<figure class="wp-block-image aligncenter has-custom-border is-style-rounded"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/patterns/images/people/christina-wocintechchat-com-lFntEHwQvi4-unsplash-sm.jpg" alt="<?php esc_attr_e( 'Photo of a smiling woman with long braided hair and arms crossed in front of her.', 'memberlite' ); ?>" style="border-radius:100%;aspect-ratio:1;object-fit:cover"/></figure>
 					<!-- /wp:image -->
 					<!-- wp:paragraph {"align":"center"} -->
-					<p class="has-text-align-center"><?php esc_html_e( 'Emily Thompson', 'memberlite' ); ?></p>
+					<p class="has-text-align-center">Emily Thompson</p>
 					<!-- /wp:paragraph -->
 				</div>
 				<!-- /wp:column -->
@@ -44,7 +44,7 @@
 					<figure class="wp-block-image aligncenter has-custom-border is-style-rounded"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/patterns/images/people/dylan-ferreira-jIM8kVsFKlM-unsplash-sm.jpg" alt="<?php esc_attr_e( 'Close up photo of a smiling man with dark hair on a blue backdrop.', 'memberlite' ); ?>" style="border-radius:100%;aspect-ratio:1;object-fit:cover"/></figure>
 					<!-- /wp:image -->
 					<!-- wp:paragraph {"align":"center"} -->
-					<p class="has-text-align-center"><?php esc_html_e( 'Damien Delong', 'memberlite' ); ?></p>
+					<p class="has-text-align-center">Damien Delong</p>
 					<!-- /wp:paragraph -->
 				</div>
 				<!-- /wp:column -->
@@ -54,7 +54,7 @@
 					<figure class="wp-block-image aligncenter has-custom-border is-style-rounded"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/patterns/images/people/edward-cisneros-_H6wpor9mjs-unsplash-sm.jpg" alt="<?php esc_attr_e( 'Photo of a blond woman with glowing sunlight behind her head wearing a black v-neck top.', 'memberlite' ); ?>" style="border-radius:100%;aspect-ratio:1;object-fit:cover"/></figure>
 					<!-- /wp:image -->
 					<!-- wp:paragraph {"align":"center"} -->
-					<p class="has-text-align-center"><?php esc_html_e( 'Cathryn Michaels', 'memberlite' ); ?></p>
+					<p class="has-text-align-center">Cathryn Michaels</p>
 					<!-- /wp:paragraph -->
 				</div>
 				<!-- /wp:column -->
@@ -64,7 +64,7 @@
 					<figure class="wp-block-image aligncenter has-custom-border is-style-rounded"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/patterns/images/people/foto-sushi-ExVlW9b648Q-unsplash-sm.jpg" alt="<?php esc_attr_e( 'Photo of a smiling man with arms crossed in front of him wearing a red top in front of a blank grey backdrop.', 'memberlite' ); ?>" style="border-radius:100%;aspect-ratio:1;object-fit:cover"/></figure>
 					<!-- /wp:image -->
 					<!-- wp:paragraph {"align":"center"} -->
-					<p class="has-text-align-center"><?php esc_html_e( 'Edwin Johnny', 'memberlite' ); ?></p>
+					<p class="has-text-align-center">Edwin Johnny</p>
 					<!-- /wp:paragraph -->
 				</div>
 				<!-- /wp:column -->

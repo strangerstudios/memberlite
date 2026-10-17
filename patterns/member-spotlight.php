@@ -22,7 +22,7 @@
 <!-- wp:column {"verticalAlignment":"center","width":"70%","style":{"spacing":{"blockGap":"var:preset|spacing|10"}}} -->
 <div class="wp-block-column is-vertically-aligned-center" style="flex-basis:70%"><!-- wp:group {"style":{"spacing":{"blockGap":"0"}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group"><!-- wp:heading {"level":3,"fontSize":"30"} -->
-<h3 class="wp-block-heading has-30-font-size"><?php esc_html_e( 'Member Spotlight: David Lindy', 'memberlite' ); ?></h3>
+<h3 class="wp-block-heading has-30-font-size"><?php /* translators: %s: member name */ printf( esc_html__( 'Member Spotlight: %s', 'memberlite' ), 'David Lindy' ); ?></h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"textColor":"color-action","fontSize":"16"} -->

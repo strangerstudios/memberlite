@@ -31,7 +31,7 @@
 		<!-- /wp:group -->
 
 		<!-- wp:paragraph -->
-		<p><a href="#"><?php esc_html_e( 'Privacy Policy', 'memberlite' ); ?></a> <?php esc_html_e( ' · ', 'memberlite' ); ?> <a href="#"><?php esc_html_e( 'Terms of Service', 'memberlite' ); ?></a></p>
+		<p><a href="#"><?php esc_html_e( 'Privacy Policy', 'memberlite' ); ?></a> &nbsp;·&nbsp; <a href="#"><?php esc_html_e( 'Terms of Service', 'memberlite' ); ?></a></p>
 		<!-- /wp:paragraph -->
 
 	</div>

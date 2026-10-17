@@ -88,3 +88,18 @@ function memberlite_get_pattern_checkout_url( int $level_id ): string {
 
 	return home_url( '/membership-checkout/?pmpro_level=' . $level_id );
 }
+
+/**
+ * Encode a value as JSON for use inside a block comment in pattern markup.
+ *
+ * Uses core's block attribute serialization so a translated string containing "--", "<" or ">"
+ * can't end the block comment early.
+ *
+ * @since TBD
+ *
+ * @param string $value The attribute value, usually a translated string.
+ * @return string The JSON-encoded string, including the surrounding quotes.
+ */
+function memberlite_get_pattern_attr_json( string $value ): string {
+	return substr( serialize_block_attributes( array( $value ) ), 1, -1 );
+}

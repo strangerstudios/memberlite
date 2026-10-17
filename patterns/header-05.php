@@ -17,7 +17,7 @@
 <div class="header-variation-05 wp-block-group alignfull"><!-- wp:group {"align":"full","style":{"elements":{"link":{"color":{"text":"var:preset|color|page-masthead"}}},"spacing":{"padding":{"top":"var:preset|spacing|10","bottom":"var:preset|spacing|10"}},"border":{"bottom":{"color":"var:preset|color|borders","width":"1px"}}},"backgroundColor":"page-masthead-background","textColor":"page-masthead","layout":{"type":"constrained"}} -->
 <div class="wp-block-group alignfull has-page-masthead-color has-page-masthead-background-background-color has-text-color has-background has-link-color" style="border-bottom-color:var(--wp--preset--color--borders);border-bottom-width:1px;padding-top:var(--wp--preset--spacing--10);padding-bottom:var(--wp--preset--spacing--10)"><!-- wp:group {"align":"wide","layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"space-between","verticalAlignment":"center"}} -->
 <div class="wp-block-group alignwide"><!-- wp:paragraph {"fontSize":"14"} -->
-<p class="has-14-font-size"><strong><?php esc_html_e( 'Free trial available', 'memberlite' ); ?></strong> <?php esc_html_e( '— No credit card required. Cancel anytime.', 'memberlite' ); ?></p>
+<p class="has-14-font-size"><?php /* translators: %1$s: opening bold tag, %2$s: closing bold tag */ printf( esc_html__( '%1$sFree trial available%2$s — No credit card required. Cancel anytime.', 'memberlite' ), '<strong>', '</strong>' ); ?></p>
 <!-- /wp:paragraph -->
 
 <!-- wp:group {"layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"center","justifyContent":"right"}} -->

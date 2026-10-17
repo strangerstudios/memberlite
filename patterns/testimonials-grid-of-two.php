@@ -33,7 +33,7 @@
 					<figure class="wp-block-image is-resized has-custom-border is-style-rounded"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/patterns/images/people/alex-starnes-WYE2UhXsU1Y-unsplash-sm.jpg" alt="<?php esc_attr_e( 'Photo of a smiling woman with short black curly hair and a white peasant style top standing in a clothing store.', 'memberlite' ); ?>" style="border-radius:100%;aspect-ratio:1;object-fit:cover;width:100px"/></figure>
 					<!-- /wp:image -->
 					<!-- wp:paragraph -->
-					<p><strong><?php esc_html_e( 'Aria DeVaugn', 'memberlite' ); ?></strong><br><?php esc_html_e( 'Premium Member', 'memberlite' ); ?></p>
+					<p><strong>Aria DeVaugn</strong><br><?php esc_html_e( 'Premium Member', 'memberlite' ); ?></p>
 					<!-- /wp:paragraph -->
 				</div>
 				<!-- /wp:group -->
@@ -57,7 +57,7 @@
 					<figure class="wp-block-image is-resized has-custom-border is-style-rounded"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/patterns/images/people/dylan-ferreira-jIM8kVsFKlM-unsplash-sm.jpg" alt="<?php esc_attr_e( 'Close up photo of a smiling man with dark hair on a blue backdrop.', 'memberlite' ); ?>" style="border-radius:100%;aspect-ratio:1;object-fit:cover;width:100px"/></figure>
 					<!-- /wp:image -->
 					<!-- wp:paragraph -->
-					<p><strong><?php esc_html_e( 'Ricardo Owens', 'memberlite' ); ?></strong><br><?php esc_html_e( 'Member Since 2022', 'memberlite' ); ?></p>
+					<p><strong>Ricardo Owens</strong><br><?php esc_html_e( 'Member Since 2022', 'memberlite' ); ?></p>
 					<!-- /wp:paragraph -->
 				</div>
 				<!-- /wp:group -->

@@ -35,7 +35,7 @@
 				<!-- /wp:image -->
 
 				<!-- wp:heading {"textAlign":"center","level":3} -->
-				<h3 class="wp-block-heading has-text-align-center"><?php esc_html_e( 'Marcus Thompson', 'memberlite' ); ?></h3>
+				<h3 class="wp-block-heading has-text-align-center">Marcus Thompson</h3>
 				<!-- /wp:heading -->
 
 				<!-- wp:paragraph {"align":"center","textColor":"color-secondary"} -->
@@ -51,7 +51,7 @@
 				<!-- /wp:image -->
 
 				<!-- wp:heading {"textAlign":"center","level":3} -->
-				<h3 class="wp-block-heading has-text-align-center"><?php esc_html_e( 'Aisha Patel', 'memberlite' ); ?></h3>
+				<h3 class="wp-block-heading has-text-align-center">Aisha Patel</h3>
 				<!-- /wp:heading -->
 
 				<!-- wp:paragraph {"align":"center","textColor":"color-secondary"} -->
@@ -67,7 +67,7 @@
 				<!-- /wp:image -->
 
 				<!-- wp:heading {"textAlign":"center","level":3} -->
-				<h3 class="wp-block-heading has-text-align-center"><?php esc_html_e( 'James Whitfield', 'memberlite' ); ?></h3>
+				<h3 class="wp-block-heading has-text-align-center">James Whitfield</h3>
 				<!-- /wp:heading -->
 
 				<!-- wp:paragraph {"align":"center","textColor":"color-secondary"} -->
@@ -83,7 +83,7 @@
 				<!-- /wp:image -->
 
 				<!-- wp:heading {"textAlign":"center","level":3} -->
-				<h3 class="wp-block-heading has-text-align-center"><?php esc_html_e( 'Elena Rodriguez', 'memberlite' ); ?></h3>
+				<h3 class="wp-block-heading has-text-align-center">Elena Rodriguez</h3>
 				<!-- /wp:heading -->
 
 				<!-- wp:paragraph {"align":"center","textColor":"color-secondary"} -->
