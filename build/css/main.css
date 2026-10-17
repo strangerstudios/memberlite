@@ -324,15 +324,15 @@ cite {
   font-style: italic;
 }
 
-blockquote {
+blockquote:where(:not(.wp-block-quote, .wp-block-pullquote blockquote)) {
   margin: var(--wp--preset--spacing--20) 0;
   background-color: light-dark(color-mix(in srgb, var(--memberlite-color-site-background), black 3%), color-mix(in srgb, var(--memberlite-color-site-background), white 3%));
   padding: var(--wp--preset--spacing--20);
 }
-blockquote > :first-child {
+blockquote:where(:not(.wp-block-quote, .wp-block-pullquote blockquote)) > :first-child {
   margin-top: 0;
 }
-blockquote > :last-child {
+blockquote:where(:not(.wp-block-quote, .wp-block-pullquote blockquote)) > :last-child {
   margin-bottom: 0;
 }
 
@@ -1261,37 +1261,10 @@ hr.wp-block-separator.is-style-flourish-diamond.alignfull {
   mask-size: 100% auto;
 }
 
-.wp-block-pullquote blockquote,
-.wp-block-quote {
-  all: unset;
-}
-
-.wp-block-quote:not(.is-style-plain) {
-  background: none;
-  position: relative;
-}
-.wp-block-quote:not(.is-style-plain)::before {
-  color: var(--memberlite-color-secondary);
-  content: "\f10d";
-  font-family: "Font Awesome 5 Free";
-  font-size: var(--wp--preset--font-size--30);
-  font-weight: 900;
-  left: 0;
-  position: absolute;
-  top: -1rem;
-}
-.wp-block-quote:not(.is-style-plain) p {
-  padding-left: 2.5rem;
-}
-.wp-block-quote.is-style-plain {
-  padding-left: 0;
-}
-.wp-block-quote p:last-of-type {
-  margin-bottom: 0;
-}
 .wp-block-quote cite {
   display: block;
   font-size: inherit;
+  font-style: italic;
   margin-top: var(--wp--preset--spacing--10);
   text-align: right;
 }

@@ -377,6 +377,22 @@ or being hovered over in the editor or from list view for better UX. */
 }
 
 /*--------------------------------------------------------------
+ Quote Block Styles - base styles live in theme.json
+--------------------------------------------------------------*/
+
+.wp-block-quote cite {
+	display: block;
+	font-size: inherit;
+	font-style: italic;
+	margin-top: var(--wp--preset--spacing--10);
+	text-align: right;
+}
+
+.wp-block-quote cite a {
+	text-decoration: none;
+}
+
+/*--------------------------------------------------------------
  Heading Block Styles
 --------------------------------------------------------------*/
 

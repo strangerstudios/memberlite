@@ -1545,6 +1545,26 @@
 					}
 				}
 			},
+			"core/quote": {
+				"border": {
+					"width": "0"
+				},
+				"css": "&:not(.is-style-plain) {position: relative}&:not(.is-style-plain)::before {color: var(--wp--preset--color--color-secondary); content: \"\\f10d\"; font-family: \"Font Awesome 5 Free\"; font-size: var(--wp--preset--font-size--30); font-weight: 900; left: 0; position: absolute; top: -1rem}&:not(.is-style-plain) p {padding-left: 2.5rem}",
+				"spacing": {
+					"margin": {
+						"top": "0",
+						"right": "0",
+						"bottom": "0",
+						"left": "0"
+					},
+					"padding": {
+						"top": "0",
+						"right": "0",
+						"bottom": "0",
+						"left": "0"
+					}
+				}
+			},
 			"core/avatar": {
 				"css": "& img {border-radius: 999px}",
 				"typography": {

@@ -186,52 +186,20 @@ hr.wp-block-separator {
 }
 
 // -----------------------------------------------------------------------------
-// Quote & Pullquote Blocks
+// Quote Block
+//
+// Base quote styles (no border or padding, quote icon) live in theme.json.
+// The citation stays here: it has to outrank core's wp-block-styles cite rule.
 // -----------------------------------------------------------------------------
 
-.wp-block-pullquote blockquote,
-.wp-block-quote {
-	all: unset;
-}
+.wp-block-quote cite {
+	display: block;
+	font-size: inherit;
+	font-style: italic;
+	margin-top: var(--wp--preset--spacing--10);
+	text-align: right;
 
-.wp-block-quote {
-
-	&:not(.is-style-plain) {
-		background: none;
-		position: relative;
-
-		&::before {
-			color: var(--memberlite-color-secondary);
-			content: "\f10d"; // fa-quote-left
-			font-family: $font-family-awesome;
-			font-size: var(--wp--preset--font-size--30);
-			font-weight: 900;
-			left: 0;
-			position: absolute;
-			top: -1rem;
-		}
-
-		p {
-			padding-left: 2.5rem;
-		}
-	}
-
-	&.is-style-plain {
-		padding-left: 0;
-	}
-
-	p:last-of-type {
-		margin-bottom: 0;
-	}
-
-	cite {
-		display: block;
-		font-size: inherit;
-		margin-top: var(--wp--preset--spacing--10);
-		text-align: right;
-
-		a { text-decoration: none; }
-	}
+	a { text-decoration: none; }
 }
 
 // -----------------------------------------------------------------------------
