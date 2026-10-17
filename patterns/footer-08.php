@@ -28,8 +28,8 @@
 		<!-- wp:column {"width":"25%","style":{"spacing":{"blockGap":"var:preset|spacing|10"}}} -->
 		<div class="wp-block-column" style="flex-basis:25%">
 
-			<!-- wp:paragraph {"style":{"typography":{"textTransform":"uppercase","letterSpacing":"-0.03em"}},"textColor":"site-navigation-background"} -->
-			<p class="has-site-navigation-background-color has-text-color" style="letter-spacing:-0.03em;text-transform:uppercase"><strong><?php esc_html_e( 'Membership', 'memberlite' ); ?></strong></p>
+			<!-- wp:paragraph {"style":{"typography":{"textTransform":"uppercase","letterSpacing":"-0.03em"}},"textColor":"site-navigation-background","fontFamily":"heading"} -->
+			<p class="has-site-navigation-background-color has-text-color has-heading-font-family" style="letter-spacing:-0.03em;text-transform:uppercase"><strong><?php esc_html_e( 'Membership', 'memberlite' ); ?></strong></p>
 			<!-- /wp:paragraph -->
 
 			<!-- wp:list {"className":"is-style-plain","style":{"spacing":{"blockGap":"var:preset|spacing|10"}}} -->
@@ -48,8 +48,8 @@
 		<!-- wp:column {"width":"25%","style":{"spacing":{"blockGap":"var:preset|spacing|10"}}} -->
 		<div class="wp-block-column" style="flex-basis:25%">
 
-			<!-- wp:paragraph {"style":{"typography":{"textTransform":"uppercase","letterSpacing":"-0.03em"}},"textColor":"site-navigation-background"} -->
-			<p class="has-site-navigation-background-color has-text-color" style="letter-spacing:-0.03em;text-transform:uppercase"><strong><?php esc_html_e( 'Resources', 'memberlite' ); ?></strong></p>
+			<!-- wp:paragraph {"style":{"typography":{"textTransform":"uppercase","letterSpacing":"-0.03em"}},"textColor":"site-navigation-background","fontFamily":"heading"} -->
+			<p class="has-site-navigation-background-color has-text-color has-heading-font-family" style="letter-spacing:-0.03em;text-transform:uppercase"><strong><?php esc_html_e( 'Resources', 'memberlite' ); ?></strong></p>
 			<!-- /wp:paragraph -->
 
 			<!-- wp:list {"className":"is-style-plain","style":{"spacing":{"blockGap":"var:preset|spacing|10"}}} -->
@@ -67,8 +67,8 @@
 		<!-- wp:column {"width":"25%","style":{"spacing":{"blockGap":"var:preset|spacing|10"}}} -->
 		<div class="wp-block-column" style="flex-basis:25%">
 
-			<!-- wp:paragraph {"style":{"typography":{"textTransform":"uppercase","letterSpacing":"-0.03em"}},"textColor":"site-navigation-background"} -->
-			<p class="has-site-navigation-background-color has-text-color" style="letter-spacing:-0.03em;text-transform:uppercase"><strong><?php esc_html_e( 'Support', 'memberlite' ); ?></strong></p>
+			<!-- wp:paragraph {"style":{"typography":{"textTransform":"uppercase","letterSpacing":"-0.03em"}},"textColor":"site-navigation-background","fontFamily":"heading"} -->
+			<p class="has-site-navigation-background-color has-text-color has-heading-font-family" style="letter-spacing:-0.03em;text-transform:uppercase"><strong><?php esc_html_e( 'Support', 'memberlite' ); ?></strong></p>
 			<!-- /wp:paragraph -->
 
 			<!-- wp:list {"className":"is-style-plain","style":{"spacing":{"blockGap":"var:preset|spacing|10"}}} -->

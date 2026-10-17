@@ -17,10 +17,10 @@
 		<!-- wp:column {"verticalAlignment":"center","width":"30%","style":{"spacing":{"blockGap":"0"}}} -->
 		<div class="wp-block-column is-vertically-aligned-center" style="flex-basis:30%">
 			<!-- wp:heading {"textAlign":"right"} -->
-			<h2 class="wp-block-heading has-text-align-right">Meet the Team</h2>
+			<h2 class="wp-block-heading has-text-align-right"><?php esc_html_e( 'Meet the Team', 'memberlite' ); ?></h2>
 			<!-- /wp:heading -->
 			<!-- wp:paragraph {"align":"right"} -->
-			<p class="has-text-align-right">The people behind the scenes who are here to support your membership journey.</p>
+			<p class="has-text-align-right"><?php esc_html_e( 'The people behind the scenes who are here to support your membership journey.', 'memberlite' ); ?></p>
 			<!-- /wp:paragraph -->
 		</div>
 		<!-- /wp:column -->
@@ -31,7 +31,7 @@
 				<!-- wp:column {"style":{"spacing":{"blockGap":"var:preset|spacing|10"}}} -->
 				<div class="wp-block-column">
 					<!-- wp:image {"aspectRatio":"1","scale":"cover","align":"center","className":"is-style-rounded","style":{"border":{"radius":"100%"}}} -->
-					<figure class="wp-block-image aligncenter has-custom-border is-style-rounded"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/patterns/images/people/christina-wocintechchat-com-lFntEHwQvi4-unsplash-sm.jpg" alt="Photo of a smiling woman with long braided hair and arms crossed in front of her." style="border-radius:100%;aspect-ratio:1;object-fit:cover"/></figure>
+					<figure class="wp-block-image aligncenter has-custom-border is-style-rounded"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/patterns/images/people/christina-wocintechchat-com-lFntEHwQvi4-unsplash-sm.jpg" alt="<?php esc_attr_e( 'Photo of a smiling woman with long braided hair and arms crossed in front of her.', 'memberlite' ); ?>" style="border-radius:100%;aspect-ratio:1;object-fit:cover"/></figure>
 					<!-- /wp:image -->
 					<!-- wp:paragraph {"align":"center"} -->
 					<p class="has-text-align-center">Emily Thompson</p>
@@ -41,7 +41,7 @@
 				<!-- wp:column {"style":{"spacing":{"blockGap":"var:preset|spacing|10"}}} -->
 				<div class="wp-block-column">
 					<!-- wp:image {"aspectRatio":"1","scale":"cover","align":"center","className":"is-style-rounded","style":{"border":{"radius":"100%"}}} -->
-					<figure class="wp-block-image aligncenter has-custom-border is-style-rounded"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/patterns/images/people/dylan-ferreira-jIM8kVsFKlM-unsplash-sm.jpg" alt="Close up photo of a smiling man with dark hair on a blue backdrop." style="border-radius:100%;aspect-ratio:1;object-fit:cover"/></figure>
+					<figure class="wp-block-image aligncenter has-custom-border is-style-rounded"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/patterns/images/people/dylan-ferreira-jIM8kVsFKlM-unsplash-sm.jpg" alt="<?php esc_attr_e( 'Close up photo of a smiling man with dark hair on a blue backdrop.', 'memberlite' ); ?>" style="border-radius:100%;aspect-ratio:1;object-fit:cover"/></figure>
 					<!-- /wp:image -->
 					<!-- wp:paragraph {"align":"center"} -->
 					<p class="has-text-align-center">Damien Delong</p>
@@ -51,7 +51,7 @@
 				<!-- wp:column {"style":{"spacing":{"blockGap":"var:preset|spacing|10"}}} -->
 				<div class="wp-block-column">
 					<!-- wp:image {"aspectRatio":"1","scale":"cover","align":"center","className":"is-style-rounded","style":{"border":{"radius":"100%"}}} -->
-					<figure class="wp-block-image aligncenter has-custom-border is-style-rounded"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/patterns/images/people/edward-cisneros-_H6wpor9mjs-unsplash-sm.jpg" alt="Photo of a blond woman with glowing sunlight behind her head wearing a black v-neck top." style="border-radius:100%;aspect-ratio:1;object-fit:cover"/></figure>
+					<figure class="wp-block-image aligncenter has-custom-border is-style-rounded"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/patterns/images/people/edward-cisneros-_H6wpor9mjs-unsplash-sm.jpg" alt="<?php esc_attr_e( 'Photo of a blond woman with glowing sunlight behind her head wearing a black v-neck top.', 'memberlite' ); ?>" style="border-radius:100%;aspect-ratio:1;object-fit:cover"/></figure>
 					<!-- /wp:image -->
 					<!-- wp:paragraph {"align":"center"} -->
 					<p class="has-text-align-center">Cathryn Michaels</p>
@@ -61,7 +61,7 @@
 				<!-- wp:column {"style":{"spacing":{"blockGap":"var:preset|spacing|10"}}} -->
 				<div class="wp-block-column">
 					<!-- wp:image {"aspectRatio":"1","scale":"cover","align":"center","className":"is-style-rounded","style":{"border":{"radius":"100%"}}} -->
-					<figure class="wp-block-image aligncenter has-custom-border is-style-rounded"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/patterns/images/people/foto-sushi-ExVlW9b648Q-unsplash-sm.jpg" alt="Photo of a smiling man with arms crossed in front of him wearing a red top in front of a blank grey backdrop." style="border-radius:100%;aspect-ratio:1;object-fit:cover"/></figure>
+					<figure class="wp-block-image aligncenter has-custom-border is-style-rounded"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/patterns/images/people/foto-sushi-ExVlW9b648Q-unsplash-sm.jpg" alt="<?php esc_attr_e( 'Photo of a smiling man with arms crossed in front of him wearing a red top in front of a blank grey backdrop.', 'memberlite' ); ?>" style="border-radius:100%;aspect-ratio:1;object-fit:cover"/></figure>
 					<!-- /wp:image -->
 					<!-- wp:paragraph {"align":"center"} -->
 					<p class="has-text-align-center">Edwin Johnny</p>

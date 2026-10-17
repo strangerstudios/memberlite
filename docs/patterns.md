@@ -223,7 +223,7 @@ All images used in patterns **must** be stored in the `patterns/images/` directo
 
 | Subdirectory | Use For | Examples |
 |--------------|---------|----------|
-| `experts/` | Instructor photos, podcast hosts, expert headshots, individual professional portraits | about-the-founder, instructor-profile, video-feature-section |
+| `experts/` | Instructor photos, podcast hosts, expert headshots, individual professional portraits | about-the-founder, instructor-profile |
 | `people/` | Team members, board members, testimonials, directory photos, general people | meet-the-team, board-of-directors, testimonials-grid |
 | `landscapes/` | Background images, scenery, hero images, abstract backgrounds | call-to-action-with-image, hero sections |
 

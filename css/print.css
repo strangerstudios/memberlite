@@ -91,6 +91,11 @@
 		margin: 0;
 	}
 
+	/* Separate stacked entries when printing an archive; the screen gap is a vw clamp that wastes paper. */
+	.site-main > .hentry + .hentry {
+		margin-top: 24pt;
+	}
+
 	.masthead + .row,
 	.masthead-post-byline {
 		margin-top: 0;

@@ -19,10 +19,10 @@
 			<!-- wp:column {"width":"70%","style":{"spacing":{"blockGap":"0"}}} -->
 			<div class="wp-block-column" style="flex-basis:70%">
 				<!-- wp:paragraph {"fontSize":"large"} -->
-				<p class="has-large-font-size"><strong>Get started for free.</strong></p>
+				<p class="has-large-font-size"><strong><?php esc_html_e( 'Get started for free.', 'memberlite' ); ?></strong></p>
 				<!-- /wp:paragraph -->
 				<!-- wp:paragraph -->
-				<p>Start with our free resources to see if this community is right for you. No commitment required.</p>
+				<p><?php esc_html_e( 'Start with our free resources to see if this community is right for you. No commitment required.', 'memberlite' ); ?></p>
 				<!-- /wp:paragraph -->
 			</div>
 			<!-- /wp:column -->
@@ -31,7 +31,7 @@
 				<!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center"}} -->
 				<div class="wp-block-buttons">
 					<!-- wp:button {"backgroundColor":"color-primary","width":100,"className":"is-style-fill"} -->
-					<div class="wp-block-button has-custom-width wp-block-button__width-100 is-style-fill"><a class="wp-block-button__link has-color-primary-background-color has-background wp-element-button" href="#">Get Free Access</a></div>
+					<div class="wp-block-button has-custom-width wp-block-button__width-100 is-style-fill"><a class="wp-block-button__link has-color-primary-background-color has-background wp-element-button" href="#"><?php esc_html_e( 'Get Free Access', 'memberlite' ); ?></a></div>
 					<!-- /wp:button -->
 				</div>
 				<!-- /wp:buttons -->

@@ -13,7 +13,7 @@
 <!-- wp:group {"align":"full","style":{"spacing":{"blockGap":"var:preset|spacing|30","padding":{"top":"var:preset|spacing|70","bottom":"var:preset|spacing|70"}}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group alignfull" style="padding-top:var(--wp--preset--spacing--70);padding-bottom:var(--wp--preset--spacing--70)">
 	<!-- wp:heading {"textAlign":"center","align":"wide","fontSize":"42"} -->
-	<h2 class="wp-block-heading alignwide has-text-align-center has-42-font-size">What Our Members Are Saying</h2>
+	<h2 class="wp-block-heading alignwide has-text-align-center has-42-font-size"><?php esc_html_e( 'What Our Members Are Saying', 'memberlite' ); ?></h2>
 	<!-- /wp:heading -->
 	<!-- wp:columns {"align":"wide"} -->
 	<div class="wp-block-columns alignwide">
@@ -21,19 +21,19 @@
 		<div class="wp-block-column has-border-color has-borders-border-color" style="border-width:1px;border-top-left-radius:8px;border-top-right-radius:8px;border-bottom-left-radius:8px;border-bottom-right-radius:8px;padding-top:var(--wp--preset--spacing--30);padding-right:var(--wp--preset--spacing--30);padding-bottom:var(--wp--preset--spacing--30);padding-left:var(--wp--preset--spacing--30)">
 			<!-- wp:quote {"className":"is-style-plain","style":{"spacing":{"blockGap":"var:preset|spacing|10"}}} -->
 			<blockquote class="wp-block-quote is-style-plain">
-				<!-- wp:paragraph {"textColor":"luminous-vivid-amber","fontSize":"30"} -->
-				<p class="has-luminous-vivid-amber-color has-text-color has-30-font-size"><strong>★ ★ ★ ★ ★</strong></p>
+				<!-- wp:paragraph {"textColor":"color-action","fontSize":"30"} -->
+				<p class="has-color-action-color has-text-color has-30-font-size"><strong>★ ★ ★ ★ ★</strong></p>
 				<!-- /wp:paragraph -->
 				<!-- wp:paragraph -->
-				<p>This membership gives me exactly what I need without the fluff. The resources are practical, the community is supportive, and I can access everything on my own schedule. Worth every penny.</p>
+				<p><?php esc_html_e( 'This membership gives me exactly what I need without the fluff. The resources are practical, the community is supportive, and I can access everything on my own schedule. Worth every penny.', 'memberlite' ); ?></p>
 				<!-- /wp:paragraph -->
 				<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|10"}},"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"left"}} -->
 				<div class="wp-block-group">
 					<!-- wp:image {"width":"100px","aspectRatio":"1","scale":"cover","className":"is-style-rounded","style":{"border":{"radius":"100%"}}} -->
-					<figure class="wp-block-image is-resized has-custom-border is-style-rounded"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/patterns/images/people/alex-starnes-WYE2UhXsU1Y-unsplash-sm.jpg" alt="Photo of a smiling woman with short black curly hair and a white peasant style top standing in a clothing store." style="border-radius:100%;aspect-ratio:1;object-fit:cover;width:100px"/></figure>
+					<figure class="wp-block-image is-resized has-custom-border is-style-rounded"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/patterns/images/people/alex-starnes-WYE2UhXsU1Y-unsplash-sm.jpg" alt="<?php esc_attr_e( 'Photo of a smiling woman with short black curly hair and a white peasant style top standing in a clothing store.', 'memberlite' ); ?>" style="border-radius:100%;aspect-ratio:1;object-fit:cover;width:100px"/></figure>
 					<!-- /wp:image -->
 					<!-- wp:paragraph -->
-					<p><strong>Aria DeVaugn</strong><br>Premium Member</p>
+					<p><strong>Aria DeVaugn</strong><br><?php esc_html_e( 'Premium Member', 'memberlite' ); ?></p>
 					<!-- /wp:paragraph -->
 				</div>
 				<!-- /wp:group -->
@@ -45,19 +45,19 @@
 		<div class="wp-block-column has-border-color has-borders-border-color" style="border-width:1px;border-top-left-radius:8px;border-top-right-radius:8px;border-bottom-left-radius:8px;border-bottom-right-radius:8px;padding-top:var(--wp--preset--spacing--30);padding-right:var(--wp--preset--spacing--30);padding-bottom:var(--wp--preset--spacing--30);padding-left:var(--wp--preset--spacing--30)">
 			<!-- wp:quote {"className":"is-style-plain","style":{"spacing":{"blockGap":"var:preset|spacing|10"}}} -->
 			<blockquote class="wp-block-quote is-style-plain">
-				<!-- wp:paragraph {"textColor":"luminous-vivid-amber","fontSize":"30"} -->
-				<p class="has-luminous-vivid-amber-color has-text-color has-30-font-size"><strong>★ ★ ★ ★ ★</strong></p>
+				<!-- wp:paragraph {"textColor":"color-action","fontSize":"30"} -->
+				<p class="has-color-action-color has-text-color has-30-font-size"><strong>★ ★ ★ ★ ★</strong></p>
 				<!-- /wp:paragraph -->
 				<!-- wp:paragraph -->
-				<p>I was skeptical at first, but this membership delivers real value. The exclusive content helped me grow my own business, and the member community has become my go-to support network.</p>
+				<p><?php esc_html_e( 'I was skeptical at first, but this membership delivers real value. The exclusive content helped me grow my own business, and the member community has become my go-to support network.', 'memberlite' ); ?></p>
 				<!-- /wp:paragraph -->
 				<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|10"}},"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"left"}} -->
 				<div class="wp-block-group">
 					<!-- wp:image {"width":"100px","aspectRatio":"1","scale":"cover","className":"is-style-rounded","style":{"border":{"radius":"100%"}}} -->
-					<figure class="wp-block-image is-resized has-custom-border is-style-rounded"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/patterns/images/people/dylan-ferreira-jIM8kVsFKlM-unsplash-sm.jpg" alt="Close up photo of a smiling man with dark hair on a blue backdrop." style="border-radius:100%;aspect-ratio:1;object-fit:cover;width:100px"/></figure>
+					<figure class="wp-block-image is-resized has-custom-border is-style-rounded"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/patterns/images/people/dylan-ferreira-jIM8kVsFKlM-unsplash-sm.jpg" alt="<?php esc_attr_e( 'Close up photo of a smiling man with dark hair on a blue backdrop.', 'memberlite' ); ?>" style="border-radius:100%;aspect-ratio:1;object-fit:cover;width:100px"/></figure>
 					<!-- /wp:image -->
 					<!-- wp:paragraph -->
-					<p><strong>Ricardo Owens</strong><br>Member Since 2022</p>
+					<p><strong>Ricardo Owens</strong><br><?php esc_html_e( 'Member Since 2022', 'memberlite' ); ?></p>
 					<!-- /wp:paragraph -->
 				</div>
 				<!-- /wp:group -->
@@ -73,19 +73,19 @@
 		<div class="wp-block-column has-border-color has-borders-border-color" style="border-width:1px;border-top-left-radius:8px;border-top-right-radius:8px;border-bottom-left-radius:8px;border-bottom-right-radius:8px;padding-top:var(--wp--preset--spacing--30);padding-right:var(--wp--preset--spacing--30);padding-bottom:var(--wp--preset--spacing--30);padding-left:var(--wp--preset--spacing--30)">
 			<!-- wp:quote {"className":"is-style-plain","style":{"spacing":{"blockGap":"var:preset|spacing|10"}}} -->
 			<blockquote class="wp-block-quote is-style-plain">
-				<!-- wp:paragraph {"textColor":"luminous-vivid-amber","fontSize":"30"} -->
-				<p class="has-luminous-vivid-amber-color has-text-color has-30-font-size"><strong>★ ★ ★ ★ ★</strong></p>
+				<!-- wp:paragraph {"textColor":"color-action","fontSize":"30"} -->
+				<p class="has-color-action-color has-text-color has-30-font-size"><strong>★ ★ ★ ★ ★</strong></p>
 				<!-- /wp:paragraph -->
 				<!-- wp:paragraph -->
-				<p>The member community alone is worth the price. I have connected with people who truly understand what I am building. We support each other, share wins, and help solve problems together.</p>
+				<p><?php esc_html_e( 'The member community alone is worth the price. I have connected with people who truly understand what I am building. We support each other, share wins, and help solve problems together.', 'memberlite' ); ?></p>
 				<!-- /wp:paragraph -->
 				<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|10"}},"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"left"}} -->
 				<div class="wp-block-group">
 					<!-- wp:image {"width":"100px","aspectRatio":"1","scale":"cover","className":"is-style-rounded","style":{"border":{"radius":"100%"}}} -->
-					<figure class="wp-block-image is-resized has-custom-border is-style-rounded"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/patterns/images/people/foto-sushi-ExVlW9b648Q-unsplash-sm.jpg" alt="Photo of a smiling man with arms crossed in front of him wearing a red top in front of a blank grey backdrop." style="border-radius:100%;aspect-ratio:1;object-fit:cover;width:100px"/></figure>
+					<figure class="wp-block-image is-resized has-custom-border is-style-rounded"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/patterns/images/people/foto-sushi-ExVlW9b648Q-unsplash-sm.jpg" alt="<?php esc_attr_e( 'Photo of a smiling man with arms crossed in front of him wearing a red top in front of a blank grey backdrop.', 'memberlite' ); ?>" style="border-radius:100%;aspect-ratio:1;object-fit:cover;width:100px"/></figure>
 					<!-- /wp:image -->
 					<!-- wp:paragraph -->
-					<p><strong>Edwin Johnny</strong><br>Founding Member</p>
+					<p><strong>Edwin Johnny</strong><br><?php esc_html_e( 'Founding Member', 'memberlite' ); ?></p>
 					<!-- /wp:paragraph -->
 				</div>
 				<!-- /wp:group -->
@@ -97,19 +97,19 @@
 		<div class="wp-block-column has-border-color has-borders-border-color" style="border-width:1px;border-top-left-radius:8px;border-top-right-radius:8px;border-bottom-left-radius:8px;border-bottom-right-radius:8px;padding-top:var(--wp--preset--spacing--30);padding-right:var(--wp--preset--spacing--30);padding-bottom:var(--wp--preset--spacing--30);padding-left:var(--wp--preset--spacing--30)">
 			<!-- wp:quote {"className":"is-style-plain","style":{"spacing":{"blockGap":"var:preset|spacing|10"}}} -->
 			<blockquote class="wp-block-quote is-style-plain">
-				<!-- wp:paragraph {"textColor":"luminous-vivid-amber","fontSize":"30"} -->
-				<p class="has-luminous-vivid-amber-color has-text-color has-30-font-size"><strong>★ ★ ★ ★ ★</strong></p>
+				<!-- wp:paragraph {"textColor":"color-action","fontSize":"30"} -->
+				<p class="has-color-action-color has-text-color has-30-font-size"><strong>★ ★ ★ ★ ★</strong></p>
 				<!-- /wp:paragraph -->
 				<!-- wp:paragraph -->
-				<p>As a nonprofit volunteer, I needed affordable resources I could trust. This membership gave me exactly that. Reliable tools, clear guidance, and a community that understands working with limited budgets.</p>
+				<p><?php esc_html_e( 'As a nonprofit volunteer, I needed affordable resources I could trust. This membership gave me exactly that. Reliable tools, clear guidance, and a community that understands working with limited budgets.', 'memberlite' ); ?></p>
 				<!-- /wp:paragraph -->
 				<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|10"}},"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"left"}} -->
 				<div class="wp-block-group">
 					<!-- wp:image {"width":"100px","aspectRatio":"1","scale":"cover","className":"is-style-rounded","style":{"border":{"radius":"100%"}}} -->
-					<figure class="wp-block-image is-resized has-custom-border is-style-rounded"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/patterns/images/people/constantin-panagopoulos-9lf_erPHYG0-unsplash-md.jpg" alt="Close up photo of smiling woman wearing a straw hat and black top." style="border-radius:100%;aspect-ratio:1;object-fit:cover;width:100px"/></figure>
+					<figure class="wp-block-image is-resized has-custom-border is-style-rounded"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/patterns/images/people/constantin-panagopoulos-9lf_erPHYG0-unsplash-md.jpg" alt="<?php esc_attr_e( 'Close up photo of smiling woman wearing a straw hat and black top.', 'memberlite' ); ?>" style="border-radius:100%;aspect-ratio:1;object-fit:cover;width:100px"/></figure>
 					<!-- /wp:image -->
 					<!-- wp:paragraph -->
-					<p><strong>Ashley Hoyt</strong><br>Nonprofit Volunteer</p>
+					<p><strong>Ashley Hoyt</strong><br><?php esc_html_e( 'Nonprofit Volunteer', 'memberlite' ); ?></p>
 					<!-- /wp:paragraph -->
 				</div>
 				<!-- /wp:group -->

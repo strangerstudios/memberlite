@@ -1,0 +1,55 @@
+<?php
+/**
+ * Title: Common Questions Accordion
+ * Slug: memberlite/accordion-common-questions
+ * Description: FAQ-style accordion inside a section with its own background color, distinct from the accordion heading and open-panel colors. Content is static and should be customized per site.
+ * Categories: memberlite-accordion
+ * Keywords: faq, accordion, questions, help, support
+ * @package WordPress
+ * @subpackage Memberlite
+ * @since Memberlite TBD
+ */
+?>
+<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|30","padding":{"right":"var:preset|spacing|30","left":"var:preset|spacing|30","top":"var:preset|spacing|70","bottom":"var:preset|spacing|70"}}},"backgroundColor":"borders","layout":{"type":"constrained"}} -->
+<div class="wp-block-group has-borders-background-color has-background" style="padding-top:var(--wp--preset--spacing--70);padding-right:var(--wp--preset--spacing--30);padding-bottom:var(--wp--preset--spacing--70);padding-left:var(--wp--preset--spacing--30)"><!-- wp:heading {"style":{"typography":{"textAlign":"center"},"elements":{"link":{"color":{"text":"var:preset|color|body-text"}}}},"textColor":"body-text"} -->
+<h2 class="wp-block-heading has-text-align-center has-body-text-color has-text-color has-link-color"><?php esc_html_e( 'Common Questions', 'memberlite' ); ?></h2>
+<!-- /wp:heading -->
+
+<!-- wp:accordion {"iconPosition":"left","autoclose":true,"className":"is-style-accrdn-caret"} -->
+<div role="group" class="wp-block-accordion is-style-accrdn-caret"><!-- wp:accordion-item {"openByDefault":true,"style":{"spacing":{"margin":{"bottom":"var:preset|spacing|10"}}}} -->
+<div class="wp-block-accordion-item is-open" style="margin-bottom:var(--wp--preset--spacing--10)"><!-- wp:accordion-heading {"iconPosition":"left","style":{"border":{"radius":{"topLeft":"8px","topRight":"8px"},"width":"0px","style":"none"},"spacing":{"padding":{"bottom":"var:preset|spacing|10"}},"elements":{"link":{"color":{"text":"var:preset|color|base"}}}},"backgroundColor":"buttons","textColor":"base"} -->
+<h3 class="wp-block-accordion-heading has-icon has-icon-left has-base-color has-buttons-background-color has-text-color has-background has-link-color" style="border-style:none;border-width:0px;border-top-left-radius:8px;border-top-right-radius:8px"><button type="button" class="wp-block-accordion-heading__toggle" style="padding-bottom:var(--wp--preset--spacing--10)"><span class="wp-block-accordion-heading__toggle-icon" aria-hidden="true">+</span><span class="wp-block-accordion-heading__toggle-title"><?php esc_html_e( 'How does the money back guarantee work?', 'memberlite' ); ?></span></button></h3>
+<!-- /wp:accordion-heading -->
+
+<!-- wp:accordion-panel {"style":{"spacing":{"padding":{"top":"0","bottom":"0"}},"elements":{"link":{"color":{"text":"var:preset|color|body-text"}}},"border":{"radius":{"bottomLeft":"8px","bottomRight":"8px"}}},"backgroundColor":"base","textColor":"body-text"} -->
+<div role="region" class="wp-block-accordion-panel has-body-text-color has-base-background-color has-text-color has-background has-link-color" style="border-bottom-left-radius:8px;border-bottom-right-radius:8px;padding-top:0;padding-bottom:0"><!-- wp:paragraph {"style":{"spacing":{"padding":{"top":"var:preset|spacing|10","bottom":"var:preset|spacing|10"}}}} -->
+<p style="padding-top:var(--wp--preset--spacing--10);padding-bottom:var(--wp--preset--spacing--10)"><?php esc_html_e( 'If you\'re not satisfied with your membership, let us know within the first 30 days and we\'ll issue a full refund, no questions asked.', 'memberlite' ); ?></p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:accordion-panel --></div>
+<!-- /wp:accordion-item -->
+
+<!-- wp:accordion-item {"style":{"spacing":{"margin":{"bottom":"var:preset|spacing|10"}}}} -->
+<div class="wp-block-accordion-item" style="margin-bottom:var(--wp--preset--spacing--10)"><!-- wp:accordion-heading {"iconPosition":"left","style":{"border":{"radius":{"topLeft":"8px","topRight":"8px"},"width":"0px","style":"none"},"elements":{"link":{"color":{"text":"var:preset|color|base"}}},"spacing":{"padding":{"bottom":"var:preset|spacing|10"}}},"backgroundColor":"buttons","textColor":"base"} -->
+<h3 class="wp-block-accordion-heading has-icon has-icon-left has-base-color has-buttons-background-color has-text-color has-background has-link-color" style="border-style:none;border-width:0px;border-top-left-radius:8px;border-top-right-radius:8px"><button type="button" class="wp-block-accordion-heading__toggle" style="padding-bottom:var(--wp--preset--spacing--10)"><span class="wp-block-accordion-heading__toggle-icon" aria-hidden="true">+</span><span class="wp-block-accordion-heading__toggle-title"><?php esc_html_e( 'Can I cancel my membership at any time?', 'memberlite' ); ?></span></button></h3>
+<!-- /wp:accordion-heading -->
+
+<!-- wp:accordion-panel {"style":{"spacing":{"padding":{"top":"0","bottom":"0"}},"elements":{"link":{"color":{"text":"var:preset|color|body-text"}}},"border":{"radius":{"bottomLeft":"8px","bottomRight":"8px"}}},"backgroundColor":"base","textColor":"body-text"} -->
+<div role="region" class="wp-block-accordion-panel has-body-text-color has-base-background-color has-text-color has-background has-link-color" style="border-bottom-left-radius:8px;border-bottom-right-radius:8px;padding-top:0;padding-bottom:0"><!-- wp:paragraph {"style":{"spacing":{"padding":{"top":"var:preset|spacing|10","bottom":"var:preset|spacing|10"}}}} -->
+<p style="padding-top:var(--wp--preset--spacing--10);padding-bottom:var(--wp--preset--spacing--10)"><?php esc_html_e( 'Yes. You can cancel any time from your account page, and you\'ll keep full access through the end of your current billing period.', 'memberlite' ); ?></p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:accordion-panel --></div>
+<!-- /wp:accordion-item -->
+
+<!-- wp:accordion-item {"style":{"spacing":{"margin":{"bottom":"var:preset|spacing|10"}}}} -->
+<div class="wp-block-accordion-item" style="margin-bottom:var(--wp--preset--spacing--10)"><!-- wp:accordion-heading {"iconPosition":"left","style":{"border":{"radius":{"topLeft":"8px","topRight":"8px"},"width":"0px","style":"none"},"elements":{"link":{"color":{"text":"var:preset|color|base"}}},"spacing":{"padding":{"bottom":"var:preset|spacing|10"}}},"backgroundColor":"buttons","textColor":"base"} -->
+<h3 class="wp-block-accordion-heading has-icon has-icon-left has-base-color has-buttons-background-color has-text-color has-background has-link-color" style="border-style:none;border-width:0px;border-top-left-radius:8px;border-top-right-radius:8px"><button type="button" class="wp-block-accordion-heading__toggle" style="padding-bottom:var(--wp--preset--spacing--10)"><span class="wp-block-accordion-heading__toggle-icon" aria-hidden="true">+</span><span class="wp-block-accordion-heading__toggle-title"><?php esc_html_e( 'What payment methods do you accept?', 'memberlite' ); ?></span></button></h3>
+<!-- /wp:accordion-heading -->
+
+<!-- wp:accordion-panel {"style":{"spacing":{"padding":{"top":"0","bottom":"0"}},"elements":{"link":{"color":{"text":"var:preset|color|body-text"}}},"border":{"radius":{"bottomLeft":"8px","bottomRight":"8px"}}},"backgroundColor":"base","textColor":"body-text"} -->
+<div role="region" class="wp-block-accordion-panel has-body-text-color has-base-background-color has-text-color has-background has-link-color" style="border-bottom-left-radius:8px;border-bottom-right-radius:8px;padding-top:0;padding-bottom:0"><!-- wp:paragraph {"style":{"spacing":{"padding":{"top":"var:preset|spacing|10","bottom":"var:preset|spacing|10"}}}} -->
+<p style="padding-top:var(--wp--preset--spacing--10);padding-bottom:var(--wp--preset--spacing--10)"><?php esc_html_e( 'We accept all major credit cards as well as PayPal. Your payment details are processed securely and are never stored on our servers.', 'memberlite' ); ?></p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:accordion-panel --></div>
+<!-- /wp:accordion-item --></div>
+<!-- /wp:accordion --></div>
+<!-- /wp:group -->

@@ -15,13 +15,18 @@
 function memberlite_register_pattern_categories(): void {
 	$categories = array(
 		'memberlite-about'        => __( 'Memberlite - About', 'memberlite' ),
+		'memberlite-accordion'    => __( 'Memberlite - Accordion', 'memberlite' ),
+		'memberlite-cta'          => __( 'Memberlite - Call to Action', 'memberlite' ),
 		'memberlite-community'    => __( 'Memberlite - Community', 'memberlite' ),
 		'memberlite-content'      => __( 'Memberlite - Content', 'memberlite' ),
 		'memberlite-courses'      => __( 'Memberlite - Courses', 'memberlite' ),
-		'memberlite-cta'          => __( 'Memberlite - Call to Action', 'memberlite' ),
+		'memberlite-features'     => __( 'Memberlite - Features', 'memberlite' ),
 		'memberlite-footer'       => __( 'Memberlite - Footer Variations', 'memberlite' ),
 		'memberlite-header'       => __( 'Memberlite - Header Variations', 'memberlite' ),
+		'memberlite-hero'         => __( 'Memberlite - Hero', 'memberlite' ),
 		'memberlite-media'        => __( 'Memberlite - Media', 'memberlite' ),
+		'memberlite-pricing'      => __( 'Memberlite - Pricing', 'memberlite' ),
+		'memberlite-query-loops'  => __( 'Memberlite - Query Loops', 'memberlite' ),
 		'memberlite-team'         => __( 'Memberlite - Team', 'memberlite' ),
 		'memberlite-testimonials' => __( 'Memberlite - Testimonials', 'memberlite' ),
 	);
@@ -64,3 +69,37 @@ function memberlite_add_patterns_menu_item(): void {
 	);
 }
 add_action( 'admin_menu', 'memberlite_add_patterns_menu_item' );
+
+/**
+ * Get the checkout URL for a membership level, for use in pattern markup.
+ *
+ * Pattern files are loaded even when Paid Memberships Pro is inactive, so fall back
+ * to the default checkout page path instead of calling pmpro_url() directly.
+ *
+ * @since TBD
+ *
+ * @param int $level_id Membership level ID.
+ * @return string
+ */
+function memberlite_get_pattern_checkout_url( int $level_id ): string {
+	if ( function_exists( 'pmpro_url' ) ) {
+		return pmpro_url( 'checkout', '?pmpro_level=' . $level_id );
+	}
+
+	return home_url( '/membership-checkout/?pmpro_level=' . $level_id );
+}
+
+/**
+ * Encode a value as JSON for use inside a block comment in pattern markup.
+ *
+ * Uses core's block attribute serialization so a translated string containing "--", "<" or ">"
+ * can't end the block comment early.
+ *
+ * @since TBD
+ *
+ * @param string $value The attribute value, usually a translated string.
+ * @return string The JSON-encoded string, including the surrounding quotes.
+ */
+function memberlite_get_pattern_attr_json( string $value ): string {
+	return substr( serialize_block_attributes( array( $value ) ), 1, -1 );
+}

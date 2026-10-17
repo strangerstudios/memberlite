@@ -78,67 +78,6 @@ function memberlite_admin_enqueue_scripts() {
 add_action( 'admin_enqueue_scripts', 'memberlite_admin_enqueue_scripts' );
 
 /**
- * Get the selected font slug for a given font type.
- *
- * Returns the theme.json-compatible slug (lowercase). If $nicename is true,
- * returns the display name by looking it up in the registered font families.
- * Safe to call anywhere except from within the wp_theme_json_data_theme filter
- * with $nicename = true (use memberlite_get_font_name_from_json_data() there instead).
- *
- * @since 7.0.1
- * @param string    $font_type 'header_font' or 'body_font'.
- * @param bool|null $nicename  Optional. If true, return the display name.
- * @return string Font slug or display name.
- */
-function memberlite_get_font( $font_type, $nicename = false ) {
-	global $memberlite_defaults;
-
-	$slug = strtolower( get_theme_mod( 'memberlite_' . $font_type, $memberlite_defaults[ 'memberlite_' . $font_type ] ) );
-
-	if ( ! $nicename ) {
-		return $slug;
-	}
-
-	// Look up the display name from theme.json font families.
-	$settings      = wp_get_global_settings();
-	$font_families = $settings['typography']['fontFamilies']['theme'] ?? array();
-	foreach ( $font_families as $font ) {
-		if ( ! is_array( $font ) || empty( $font['slug'] ) || empty( $font['name'] ) ) {
-			continue;
-		}
-		if ( $font['slug'] === $slug ) {
-			return $font['name'];
-		}
-	}
-
-	// Fallback: convert slug to title case.
-	return ucwords( str_replace( '-', ' ', $slug ) );
-}
-
-/**
- * Look up a font display name from a fontFamilies array.
- *
- * Used inside the wp_theme_json_data_theme filter to avoid circular calls
- * to wp_get_global_settings().
- *
- * @since 7.0.1
- * @param string $slug         The font slug to look up.
- * @param array  $font_families Array of fontFamily objects from theme.json data.
- * @return string Display name, or title-cased slug as fallback.
- */
-function memberlite_get_font_name_from_json_data( $slug, $font_families ) {
-	foreach ( $font_families as $font ) {
-		if ( ! is_array( $font ) || empty( $font['slug'] ) || empty( $font['name'] ) ) {
-			continue;
-		}
-		if ( $font['slug'] === $slug ) {
-			return $font['name'];
-		}
-	}
-	return ucwords( str_replace( '-', ' ', $slug ) );
-}
-
-/**
  * Set the content width in pixels, based on the theme's design and stylesheet.
  *
  * Priority 0 to make it available to lower priority callbacks.
@@ -282,6 +221,11 @@ if ( ! function_exists( 'memberlite_setup' ) ) :
 
 		// Indicate widget sidebars can use selective refresh in the Customizer.
 		add_theme_support( 'customize-selective-refresh-widgets' );
+
+		// Register editor stylesheets (loaded into the editor iframe).
+		add_theme_support( 'editor-styles' );
+		add_editor_style( 'css/editor.css' );
+		add_editor_style( 'font-awesome/css/all.min.css' );
 	}
 endif; // memberlite_setup
 add_action( 'after_setup_theme', 'memberlite_setup' );
@@ -559,6 +503,9 @@ require_once get_template_directory() . '/inc/custom-walkers.php';
 /* Pattern categories. */
 require_once get_template_directory() . '/inc/patterns.php';
 
+/* Font helpers and theme.json font family settings. */
+require_once get_template_directory() . '/inc/fonts.php';
+
 /* Customizer additions. */
 require_once get_template_directory() . '/inc/customizer.php';
 
@@ -674,23 +621,6 @@ function memberlite_frontpage_template_hierarchy( $templates ) {
 add_filter( 'frontpage_template_hierarchy', 'memberlite_frontpage_template_hierarchy', 5 );
 
 /**
- * Enqueue block editor styles.
- *
- * @since 5.1.0
- *
- * @return void
- */
-function memberlite_enqueue_block_assets() {
-	wp_enqueue_style(
-		'memberlite-block-editor-style',
-		MEMBERLITE_URL . '/css/editor.css',
-		[],
-		MEMBERLITE_VERSION
-	);
-}
-add_action( 'enqueue_block_assets', 'memberlite_enqueue_block_assets' );
-
-/**
  * Filter the footer copyright text to allow dynamic variables.
  */
 function memberlite_theme_mod_copyright_textbox( $copyright_text ) {
@@ -728,6 +658,8 @@ add_filter( 'theme_mod_copyright_textbox', 'memberlite_theme_mod_copyright_textb
  * @return WP_Theme_JSON Theme JSON object.
  */
 function memberlite_filter_theme_json( $theme_json ) {
+	global $memberlite_defaults;
+
 	$active_colors = memberlite_get_active_colors();
 	$preset_map = memberlite_get_color_preset_map();
 
@@ -795,32 +727,36 @@ function memberlite_filter_theme_json( $theme_json ) {
 		$theme_json_data['settings']['color'] = array();
 	}
 
-	$theme_json_data['settings']['color']['palette'] = $color_palette;
+	// Keep palette colors added by a child theme or other filters, unless Memberlite defines the same slug.
+	$memberlite_slugs = wp_list_pluck( $color_palette, 'slug' );
+	$other_colors     = array_filter(
+		$theme_json_data['settings']['color']['palette']['theme'] ?? array(),
+		static function( $entry ) use ( $memberlite_slugs ) {
+			return is_array( $entry ) && ! empty( $entry['slug'] ) && ! in_array( $entry['slug'], $memberlite_slugs, true );
+		}
+	);
 
-	// Add font family custom properties.
+	$theme_json_data['settings']['color']['palette'] = array_merge( $color_palette, array_values( $other_colors ) );
+
+	// Make sure the custom settings key exists before adding to it.
 	if ( ! isset( $theme_json_data['settings']['custom'] ) ) {
 		$theme_json_data['settings']['custom'] = array();
 	}
-	if ( ! isset( $theme_json_data['settings']['custom']['heading'] ) ) {
-		$theme_json_data['settings']['custom']['heading'] = array();
-	}
-	if ( ! isset( $theme_json_data['settings']['custom']['body'] ) ) {
-		$theme_json_data['settings']['custom']['body'] = array();
-	}
 
-	// Look up font display names directly from the theme.json data to avoid
-	// circular calls to wp_get_global_settings() inside this filter.
-	// fontFamilies in raw theme.json data may be grouped (e.g. 'theme', 'default'),
-	// so flatten all groups into a single list before passing to the lookup function.
-	$font_families_grouped = $theme_json_data['settings']['typography']['fontFamilies'] ?? array();
-	$font_families         = array();
-	foreach ( $font_families_grouped as $group ) {
-		if ( is_array( $group ) ) {
-			$font_families = array_merge( $font_families, $group );
-		}
+	// Global button style (Customizer > General). Overrides the button custom
+	// properties; a block-level border-radius/padding set in the editor renders
+	// as an inline style, which still wins over these theme.json-driven rules.
+	if ( ! isset( $theme_json_data['settings']['custom']['button'] ) ) {
+		$theme_json_data['settings']['custom']['button'] = array();
 	}
-	$theme_json_data['settings']['custom']['heading']['fontFamily'] = memberlite_get_font_name_from_json_data( memberlite_get_font( 'header_font' ), $font_families );
-	$theme_json_data['settings']['custom']['body']['fontFamily']    = memberlite_get_font_name_from_json_data( memberlite_get_font( 'body_font' ), $font_families );
+	$button_style = get_theme_mod( 'memberlite_button_style', $memberlite_defaults['memberlite_button_style'] );
+	if ( 'sharp' === $button_style ) {
+		$theme_json_data['settings']['custom']['button']['radius'] = '0';
+	} elseif ( 'pill' === $button_style ) {
+		$theme_json_data['settings']['custom']['button']['radius']        = '999px';
+		$theme_json_data['settings']['custom']['button']['paddingBlock']  = 'calc(var(--wp--preset--spacing--10) / 2)';
+		$theme_json_data['settings']['custom']['button']['paddingInline'] = 'var(--wp--preset--spacing--30)';
+	}
 
 	// Update the theme.json object.
 	return $theme_json->update_with( $theme_json_data );
@@ -828,27 +764,60 @@ function memberlite_filter_theme_json( $theme_json ) {
 add_filter( 'wp_theme_json_data_theme', 'memberlite_filter_theme_json' );
 
 /**
- * Dedupe the full color palette for the editor color picker.
+ * Limit Memberlite's colors in the editor color picker to an approved list.
  *
- * @since 7.0
+ * Colors added by a child theme, plugin, or snippet are left in the picker.
+ *
+ * @since TBD
  *
  * @param array $editor_settings Editor settings array.
  * @param WP_Block_Editor_Context $context Editor context.
  * @return array
  */
-function memberlite_dedupe_editor_color_palette( $editor_settings, $context ) {
-	// Helper: return a deduped palette (first occurrence wins) by color value.
-	// but always keep 'body-text' and 'base' slugs.
-	$dedupe = static function( $palette ) {
+function memberlite_clean_editor_color_palette( $editor_settings, $context ) {
+	// Aim for "pairs" - A background color should have it's foreground color in the palette.
+	$approved_color_slugs = array(
+		'color-primary',
+		'color-secondary',
+		'color-action',
+		'buttons',
+		'buttons-hover',
+		'borders',
+		'body-text',
+		'base',
+		'site-navigation-background',
+		'site-navigation-link',
+		'page-masthead-background',
+		'page-masthead',
+		'footer-widgets-background',
+		'footer-widgets',
+		'white'
+	);
+
+	// Only Memberlite's own colors are curated; colors added by a child theme, plugin, or snippet are kept.
+	$memberlite_slugs = array_merge(
+		array_column( memberlite_get_color_preset_map(), 'slug' ),
+		array( 'buttons-hover', 'white' )
+	);
+
+	$curate = static function( $palette ) use ( $approved_color_slugs, $memberlite_slugs ) {
 		if ( empty( $palette ) || ! is_array( $palette ) ) {
 			return $palette;
 		}
 
-		$seen   = array();
 		$result = array();
 
 		foreach ( $palette as $entry ) {
-			if ( ! is_array( $entry ) || empty( $entry['color'] ) ) {
+			if ( ! is_array( $entry ) || empty( $entry['color'] ) || empty( $entry['slug'] ) ) {
+				continue;
+			}
+
+			if ( ! in_array( $entry['slug'], $memberlite_slugs, true ) ) {
+				$result[] = $entry;
+				continue;
+			}
+
+			if ( ! in_array( $entry['slug'], $approved_color_slugs, true ) ) {
 				continue;
 			}
 
@@ -857,23 +826,7 @@ function memberlite_dedupe_editor_color_palette( $editor_settings, $context ) {
 				continue;
 			}
 
-			$key = strtolower( $color );
-			$slug = isset( $entry['slug'] ) ? $entry['slug'] : '';
-
-			// Always keep 'body-text' and 'base' slugs, even if duplicate color.
-			if ( in_array( $slug, array( 'body-text', 'base' ), true ) ) {
-				$entry['color'] = $color;
-				$result[] = $entry;
-				continue;
-			}
-
-			if ( isset( $seen[ $key ] ) ) {
-				continue;
-			}
-
-			$seen[ $key ] = true;
-
-			// Keep the original entry shape (slug/name), but normalize color.
+			// Keep the original entry (slug/name), but normalize color.
 			$entry['color'] = $color;
 			$result[]       = $entry;
 		}
@@ -907,11 +860,11 @@ function memberlite_dedupe_editor_color_palette( $editor_settings, $context ) {
 		}
 
 		if ( $found && is_array( $ref ) ) {
-			$ref = $dedupe( $ref );
+			$ref = $curate( $ref );
 			// Don’t break; multiple paths can exist in some setups.
 		}
 	}
 
 	return $editor_settings;
 }
-add_filter( 'block_editor_settings_all', 'memberlite_dedupe_editor_color_palette', 20, 2 );
+add_filter( 'block_editor_settings_all', 'memberlite_clean_editor_color_palette', 20, 2 );
