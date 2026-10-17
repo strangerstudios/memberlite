@@ -20,8 +20,8 @@
 
 <!-- wp:column {"verticalAlignment":"center","width":"65%","style":{"spacing":{"blockGap":"var:preset|spacing|10"}}} -->
 <div class="wp-block-column is-vertically-aligned-center" style="flex-basis:65%"><!-- wp:group {"style":{"spacing":{"blockGap":"0"}},"layout":{"type":"constrained"}} -->
-<div class="wp-block-group"><!-- wp:heading {"level":1} -->
-<h1 class="wp-block-heading">Dr. Sarah Mitchell</h1>
+<div class="wp-block-group"><!-- wp:heading {"fontSize":"42"} -->
+<h2 class="wp-block-heading has-42-font-size">Dr. Sarah Mitchell</h2>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"textColor":"color-action"} -->
