@@ -357,7 +357,7 @@ function memberlite_maybe_customize_masthead_content( $content ) {
 
 		//Show the landing page featured image
 		if ( is_page_template( 'templates/landing.php' ) && has_post_thumbnail( $post_id ) ) {
-			$content .= get_the_post_thumbnail( 'medium', array( 'class' => 'alignleft' ) );
+			$content .= get_the_post_thumbnail( $post_id, 'medium', array( 'class' => 'alignleft' ) );
 		}
 
 		//Get setting to show or hide page title in masthead banner
