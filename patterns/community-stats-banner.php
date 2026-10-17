@@ -10,8 +10,8 @@
  * @since Memberlite 7.0
  */
 ?>
-<!-- wp:group {"align":"full","style":{"spacing":{"padding":{"top":"var:preset|spacing|40","bottom":"var:preset|spacing|40","right":"var:preset|spacing|30","left":"var:preset|spacing|30"}},"border":{"top":{"color":"var:preset|color|borders","width":"1px"},"bottom":{"color":"var:preset|color|borders","width":"1px"}}},"layout":{"type":"constrained"}} -->
-<div class="wp-block-group alignfull" style="border-top-color:var(--wp--preset--color--borders);border-top-width:1px;border-bottom-color:var(--wp--preset--color--borders);border-bottom-width:1px;padding-top:var(--wp--preset--spacing--40);padding-right:var(--wp--preset--spacing--30);padding-bottom:var(--wp--preset--spacing--40);padding-left:var(--wp--preset--spacing--30)"><!-- wp:columns {"verticalAlignment":"center","align":"wide"} -->
+<!-- wp:group {"align":"full","style":{"spacing":{"padding":{"top":"var:preset|spacing|70","bottom":"var:preset|spacing|70","right":"var:preset|spacing|30","left":"var:preset|spacing|30"}},"border":{"top":{"color":"var:preset|color|borders","width":"1px"},"bottom":{"color":"var:preset|color|borders","width":"1px"}}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group alignfull" style="border-top-color:var(--wp--preset--color--borders);border-top-width:1px;border-bottom-color:var(--wp--preset--color--borders);border-bottom-width:1px;padding-top:var(--wp--preset--spacing--70);padding-right:var(--wp--preset--spacing--30);padding-bottom:var(--wp--preset--spacing--70);padding-left:var(--wp--preset--spacing--30)"><!-- wp:columns {"verticalAlignment":"center","align":"wide"} -->
 <div class="wp-block-columns alignwide are-vertically-aligned-center"><!-- wp:column {"verticalAlignment":"center","style":{"spacing":{"blockGap":"0"}}} -->
 <div class="wp-block-column is-vertically-aligned-center"><!-- wp:paragraph {"style":{"typography":{"textAlign":"center"}},"textColor":"color-primary","fontSize":"36"} -->
 <p class="has-text-align-center has-color-primary-color has-text-color has-36-font-size">[fa icon="user-group"]</p>

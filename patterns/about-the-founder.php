@@ -10,8 +10,8 @@
  * @since Memberlite 7.0
  */
 ?>
-<!-- wp:group {"align":"full","style":{"spacing":{"margin":{"top":"var:preset|spacing|70","bottom":"var:preset|spacing|70"}}},"layout":{"type":"constrained"}} -->
-<div class="wp-block-group alignfull" style="margin-top:var(--wp--preset--spacing--70);margin-bottom:var(--wp--preset--spacing--70)">
+<!-- wp:group {"align":"full","style":{"spacing":{"padding":{"top":"var:preset|spacing|70","bottom":"var:preset|spacing|70"}}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group alignfull" style="padding-top:var(--wp--preset--spacing--70);padding-bottom:var(--wp--preset--spacing--70)">
 	<!-- wp:columns {"verticalAlignment":"center","align":"wide"} -->
 	<div class="wp-block-columns alignwide are-vertically-aligned-center">
 		<!-- wp:column {"verticalAlignment":"center","width":"65%"} -->
