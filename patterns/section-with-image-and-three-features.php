@@ -24,7 +24,7 @@
 			<!-- /wp:image -->
 		</div>
 		<!-- /wp:column -->
-		<!-- wp:column {"verticalAlignment":"stretch","width":"50%"} -->
+		<!-- wp:column {"verticalAlignment":"stretch","width":"50%","style":{"spacing":{"blockGap":"var:preset|spacing|10"}}} -->
 		<div class="wp-block-column is-vertically-aligned-stretch" style="flex-basis:50%">
 			<!-- wp:group {"style":{"spacing":{"blockGap":"0","padding":{"top":"var:preset|spacing|10","bottom":"var:preset|spacing|10","left":"var:preset|spacing|20","right":"var:preset|spacing|20"}},"border":{"width":"1px","radius":{"topLeft":"8px","topRight":"8px","bottomLeft":"8px","bottomRight":"8px"}}},"borderColor":"borders","layout":{"type":"flex","orientation":"vertical"}} -->
 			<div class="wp-block-group has-border-color has-borders-border-color" style="border-width:1px;border-top-left-radius:8px;border-top-right-radius:8px;border-bottom-left-radius:8px;border-bottom-right-radius:8px;padding-top:var(--wp--preset--spacing--10);padding-right:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--10);padding-left:var(--wp--preset--spacing--20)">
