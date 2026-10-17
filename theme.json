@@ -1496,6 +1496,55 @@
 	},
 	"styles": {
 		"blocks": {
+			"core/accordion": {
+				"spacing": {
+					"blockGap": "0"
+				}
+			},
+			"core/accordion-item": {
+				"spacing": {
+					"blockGap": "0"
+				}
+			},
+			"core/accordion-heading": {
+				"border": {
+					"top": {
+						"color": "var(--wp--preset--color--borders)",
+						"style": "solid",
+						"width": "1px"
+					}
+				},
+				"css": "margin: 0;& .wp-block-accordion-heading__toggle {padding: var(--wp--preset--spacing--10)}"
+			},
+			"core/accordion-panel": {
+				"spacing": {
+					"padding": {
+						"top": "0",
+						"right": "var(--wp--preset--spacing--10)",
+						"bottom": "var(--wp--preset--spacing--10)",
+						"left": "var(--wp--preset--spacing--10)"
+					}
+				}
+			},
+			"core/details": {
+				"border": {
+					"top": {
+						"color": "var(--wp--preset--color--borders)",
+						"style": "solid",
+						"width": "1px"
+					}
+				},
+				"css": "& > summary {cursor: pointer; font-family: var(--wp--preset--font-family--heading); font-weight: 700; list-style: none}& > summary:hover {text-decoration: underline}& > summary::-webkit-details-marker {display: none}& > summary::before {content: \"\\f078\"; float: right; font-family: \"Font Awesome 5 Free\"; font-weight: 900; margin-left: var(--wp--preset--spacing--10)}&[open] > summary::before {content: \"\\f077\"}",
+				"spacing": {
+					"blockGap": "var(--wp--preset--spacing--10)",
+					"padding": {
+						"top": "var(--wp--preset--spacing--10)",
+						"right": "var(--wp--preset--spacing--10)",
+						"bottom": "var(--wp--preset--spacing--10)",
+						"left": "var(--wp--preset--spacing--10)"
+					}
+				}
+			},
 			"core/avatar": {
 				"css": "& img {border-radius: 999px}",
 				"typography": {

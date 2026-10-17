@@ -714,83 +714,38 @@ hr.wp-block-separator {
 
 // -----------------------------------------------------------------------------
 // Accordion Styles
+//
+// Base accordion styles (borders, padding, spacing) live in theme.json.
 // -----------------------------------------------------------------------------
 
-.wp-block-accordion {
-	.wp-block-accordion-item {
-		margin-block-start: 0;
+.wp-block-accordion.is-style-accrdn-caret {
+	/* Default / icon-right: icon span is the LAST child inside the button */
+	/* Icon-left: icon span is the FIRST child inside the button */
+	.wp-block-accordion-heading__toggle:has(.wp-block-accordion-heading__toggle-icon:last-child)::after,
+	.wp-block-accordion-heading__toggle:has(.wp-block-accordion-heading__toggle-icon:first-child)::before {
+		font-family: $font-family-awesome;
+		font-weight: 900;
+		content: "\f078"; // fa-chevron-down
 	}
 
-	.wp-block-accordion-heading__toggle {
-		background: none;
-		border: 0;
-		box-shadow: none;
-		padding: 0;
-		text-align: left;
+	/* Default / icon-right: icon span is the LAST child inside the button */
+	.wp-block-accordion-heading__toggle:has(.wp-block-accordion-heading__toggle-icon:last-child)::after {
+		margin-left: var(--wp--preset--spacing--10);
 	}
 
-	// Default accordion style
-	.wp-block-accordion-panel {
-		margin-block-start: 0;
-		padding: 0 var(--wp--preset--spacing--10) var(--wp--preset--spacing--10);
-
-		// Closed panels get hidden="until-found", which triggers content-visibility:
-		// hidden rather than display: none — the panel's own box (and its padding)
-		// still occupies layout space even though its contents aren't rendered.
-		// Zero the padding here so a closed panel doesn't leave a phantom gap.
-		&[hidden] {
-			padding: 0;
-		}
+	/* Icon-left: icon span is the FIRST child inside the button */
+	.wp-block-accordion-heading__toggle:has(.wp-block-accordion-heading__toggle-icon:first-child)::before {
+		margin-right: var(--wp--preset--spacing--10);
 	}
 
-	// Default accordion style
-	.wp-block-accordion-heading {
-		border-top: 1px solid var(--memberlite-color-borders);
-		cursor: pointer;
-		margin: 0;
-		padding: var(--wp--preset--spacing--10);
-
-		&__toggle-title:hover {
-			text-decoration: underline;
-		}
+	/* Reverse the chevron when the item is open (is-open is set in the editor and on the front end) */
+	.wp-block-accordion-item.is-open > .wp-block-accordion-heading .wp-block-accordion-heading__toggle:has(.wp-block-accordion-heading__toggle-icon:last-child)::after,
+	.wp-block-accordion-item.is-open > .wp-block-accordion-heading .wp-block-accordion-heading__toggle:has(.wp-block-accordion-heading__toggle-icon:first-child)::before {
+		content: "\f077"; // fa-chevron-up
 	}
 
-	// target accordions used in our theme patterns
-	&.memberlite-pattern-accordion {
-		.wp-block-accordion-heading {
-			padding-bottom: 0;
-		}
-	}
-
-	&.is-style-accrdn-caret {
-		/* Default / icon-right: icon span is the LAST child inside the button */
-		/* Icon-left: icon span is the FIRST child inside the button */
-		.wp-block-accordion-heading__toggle:has(.wp-block-accordion-heading__toggle-icon:last-child)::after,
-		.wp-block-accordion-heading__toggle:has(.wp-block-accordion-heading__toggle-icon:first-child)::before {
-			font-family: $font-family-awesome;
-			font-weight: 900;
-			content: "\f078"; // fa-chevron-down
-		}
-
-		/* Default / icon-right: icon span is the LAST child inside the button */
-		.wp-block-accordion-heading__toggle:has(.wp-block-accordion-heading__toggle-icon:last-child)::after {
-			margin-left: var(--wp--preset--spacing--10);
-		}
-
-		/* Icon-left: icon span is the FIRST child inside the button */
-		.wp-block-accordion-heading__toggle:has(.wp-block-accordion-heading__toggle-icon:first-child)::before {
-			margin-right: var(--wp--preset--spacing--10);
-		}
-
-		/* Reverse the chevron when accordion is expanded */
-		.wp-block-accordion-heading__toggle[aria-expanded="true"]:has(.wp-block-accordion-heading__toggle-icon:last-child)::after,
-		.wp-block-accordion-heading__toggle[aria-expanded="true"]:has(.wp-block-accordion-heading__toggle-icon:first-child)::before {
-			content: "\f077"; // fa-chevron-up
-		}
-
-		.wp-block-accordion-heading__toggle-icon {
-			display: none;
-		}
+	.wp-block-accordion-heading__toggle-icon {
+		display: none;
 	}
 }
 

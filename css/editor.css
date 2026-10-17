@@ -349,32 +349,8 @@ or being hovered over in the editor or from list view for better UX. */
 }
 
 /*--------------------------------------------------------------
- Accordion Block Styles - Editor styles vary from the front-end
+ Accordion Block Styles - base styles live in theme.json
 --------------------------------------------------------------*/
-
-.wp-block-accordion .wp-block-accordion-heading {
-	border-top: 1px solid var(--wp--preset--color--borders);
-	padding: var(--wp--preset--spacing--10);
-}
-
-/* Patterns that set their own bottom padding on the toggle button would otherwise
-   stack it with the heading's own bottom padding here, doubling up the spacing. */
-.wp-block-accordion.memberlite-pattern-accordion .wp-block-accordion-heading {
-	padding-bottom: 0;
-}
-
-.wp-block-accordion .wp-block-accordion-heading__toggle {
-	padding: unset;
-}
-
-.wp-block-accordion .wp-block-accordion-item {
-	margin-block-start: unset;
-}
-
-:is(.wp-block-accordion-panel, .memberlite_accordion .memberlite_accordion-item-content) {
-	margin-block-start: unset;
-	padding: 0 var(--wp--preset--spacing--10) var(--wp--preset--spacing--10);
-}
 
 .wp-block-accordion.is-style-accrdn-caret .wp-block-accordion-heading__toggle:has(.wp-block-accordion-heading__toggle-icon:last-child)::after,
 .wp-block-accordion.is-style-accrdn-caret .wp-block-accordion-heading__toggle:has(.wp-block-accordion-heading__toggle-icon:first-child)::before {
@@ -391,9 +367,8 @@ or being hovered over in the editor or from list view for better UX. */
 	margin-right: var(--wp--preset--spacing--10);
 }
 
-/* This is different from the front-end, it uses the .is-open class instead of the aria-expanded attribute when accordion item is open. */
-.wp-block-accordion.is-style-accrdn-caret .wp-block-accordion-item.is-open>.wp-block-accordion-heading .wp-block-accordion-heading__toggle:has(.wp-block-accordion-heading__toggle-icon:last-child)::after,
-.wp-block-accordion.is-style-accrdn-caret .wp-block-accordion-item.is-open>.wp-block-accordion-heading .wp-block-accordion-heading__toggle:has(.wp-block-accordion-heading__toggle-icon:first-child)::before {
+.wp-block-accordion.is-style-accrdn-caret .wp-block-accordion-item.is-open > .wp-block-accordion-heading .wp-block-accordion-heading__toggle:has(.wp-block-accordion-heading__toggle-icon:last-child)::after,
+.wp-block-accordion.is-style-accrdn-caret .wp-block-accordion-item.is-open > .wp-block-accordion-heading .wp-block-accordion-heading__toggle:has(.wp-block-accordion-heading__toggle-icon:first-child)::before {
 	content: "\f077";
 }
 
