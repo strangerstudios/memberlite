@@ -221,7 +221,8 @@ function memberlite_the_header_edit_link( string $post_name ): void {
  * Priority order (highest to lowest):
  *   1. Per-page post meta override (_memberlite_footer_override) — pages only
  *   2. Location-specific theme_mod (post, page, archives)
- *   3. Global footer theme_mod (memberlite_global_footer_slug)
+ *   3. Global footer theme_mod (memberlite_global_footer_slug), also used for
+ *      views without a location setting such as search results and 404s
  *   4. Default footer ('0')
  *
  * Location-specific controls use 'memberlite-global-footer' as the sentinel
@@ -248,6 +249,9 @@ function memberlite_get_current_footer_post_name(): string {
 		if ( '' !== $override && isset( $footer_variations[ $override ] ) ) {
 			$post_name = $override;
 		} else {
+			// Views without a location setting (search, 404) inherit the global footer.
+			$post_name = 'memberlite-global-footer';
+
 			if ( is_single() ) {
 				$post_name = get_theme_mod( 'memberlite_post_footer_slug', 'memberlite-global-footer' );
 			} elseif ( is_page() ) {
