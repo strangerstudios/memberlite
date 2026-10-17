@@ -129,37 +129,27 @@
 
 
 // -----------------------------------------------------------------------------
-// [memberlite_accordion] Shortcode, <details> block, accordion block
+// [memberlite_accordion] Shortcode
 //
-// Note: :is() selectors are preserved as-is — Sass nesting can't cleanly
-// express these cross-component groupings without either duplicating rules
-// or producing unintended specificity.
+// The details and accordion blocks are styled in theme.json.
+// Note: :is() selectors are preserved as-is to keep the .entry-content specificity.
 // -----------------------------------------------------------------------------
 
 :is(
-  details,
   .memberlite_accordion h2,
   .entry-content .memberlite_accordion h2
 ) {
 	border-top: 1px solid var(--memberlite-color-borders);
-	padding: var(--wp--preset--spacing--10);
-}
-
-:is(
-  details > summary,
-  .memberlite_accordion h2,
-  .entry-content .memberlite_accordion h2
-) {
 	cursor: pointer;
 	font-family: var(--memberlite-header-font), ui-sans-serif;
 	font-size: inherit;
 	font-weight: 700;
 	line-height: inherit;
 	margin: 0;
+	padding: var(--wp--preset--spacing--10);
 }
 
 :is(
-  details > summary,
   .memberlite_accordion h2,
   .entry-content .memberlite_accordion h2
 ):hover {
@@ -167,10 +157,7 @@
 }
 
 // Chevron icon — collapsed state
-:is(
-  details > summary,
-  .memberlite_accordion h2
-)::before {
+.memberlite_accordion h2::before {
 	content: "\f078"; // fa-chevron-down
 	float: right;
 	font-family: "Font Awesome 5 Free";
@@ -179,42 +166,14 @@
 }
 
 // Chevron icon — expanded state
-:is(
-  details[open] > summary,
-  .memberlite_accordion-item.memberlite_accordion-active h2
-)::before {
+.memberlite_accordion-item.memberlite_accordion-active h2::before {
 	content: "\f077"; // fa-chevron-up
 }
 
-details {
-
-	> summary {
-		list-style: none;
-		outline: none;
-
-		// Hide default WebKit disclosure triangle
-		&::-webkit-details-marker {
-			display: none;
-		}
-	}
-
-	> p:first-of-type {
-		margin-block-start: var(--wp--preset--spacing--10);
-	}
-}
-
-:is(
-  .memberlite_accordion .memberlite_accordion-item-content
-) {
+.memberlite_accordion .memberlite_accordion-item-content {
+	display: none;
 	margin-block-start: 0;
 	padding: 0 var(--wp--preset--spacing--10) var(--wp--preset--spacing--10);
-}
-
-.memberlite_accordion {
-
-	.memberlite_accordion-item-content {
-		display: none;
-	}
 }
 
 // First item is open by default

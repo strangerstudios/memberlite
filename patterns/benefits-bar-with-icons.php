@@ -10,86 +10,78 @@
  * @since Memberlite TBD
  */
 ?>
-<!-- wp:group {"align":"full","style":{"spacing":{"padding":{"right":"var:preset|spacing|20","left":"var:preset|spacing|20","top":"var:preset|spacing|40","bottom":"var:preset|spacing|40"}}},"backgroundColor":"borders","layout":{"type":"constrained"}} -->
-<div class="wp-block-group alignfull has-borders-background-color has-background" style="padding-top:var(--wp--preset--spacing--40);padding-right:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--40);padding-left:var(--wp--preset--spacing--20)"><!-- wp:columns {"align":"wide","style":{"spacing":{"blockGap":{"left":"0"}}}} -->
-	<div class="wp-block-columns alignwide"><!-- wp:column -->
-		<div class="wp-block-column"><!-- wp:columns {"style":{"spacing":{"blockGap":{"left":"var:preset|spacing|10"}}}} -->
-			<div class="wp-block-columns"><!-- wp:column {"verticalAlignment":"top","width":"10%"} -->
-				<div class="wp-block-column is-vertically-aligned-top" style="flex-basis:10%"><!-- wp:paragraph {"style":{"typography":{"textAlign":"left","fontStyle":"normal","fontWeight":"700"}},"fontSize":"16"} -->
-					<p class="has-text-align-left has-16-font-size" style="font-style:normal;font-weight:700">[fa icon="store" color="site-background" background="secondary" shape="squircle" size="lg"]</p>
-					<!-- /wp:paragraph --></div>
-				<!-- /wp:column -->
+<!-- wp:group {"align":"full","style":{"spacing":{"blockGap":"var:preset|spacing|30","padding":{"right":"var:preset|spacing|30","left":"var:preset|spacing|30","top":"var:preset|spacing|70","bottom":"var:preset|spacing|70"}}},"backgroundColor":"borders","layout":{"type":"constrained"}} -->
+<div class="wp-block-group alignfull has-borders-background-color has-background" style="padding-top:var(--wp--preset--spacing--70);padding-right:var(--wp--preset--spacing--30);padding-bottom:var(--wp--preset--spacing--70);padding-left:var(--wp--preset--spacing--30)"><!-- wp:columns {"align":"wide","style":{"spacing":{"blockGap":{"left":"var:preset|spacing|40"}}}} -->
+<div class="wp-block-columns alignwide"><!-- wp:column -->
+<div class="wp-block-column"><!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|10"}},"layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"top"}} -->
+<div class="wp-block-group"><!-- wp:paragraph -->
+<p>[fa icon="store" color="site-background" background="secondary" shape="squircle"]</p>
+<!-- /wp:paragraph -->
 
-				<!-- wp:column -->
-				<div class="wp-block-column"><!-- wp:paragraph {"style":{"typography":{"textTransform":"uppercase","letterSpacing":"1px"}},"fontSize":"16"} -->
-					<p class="has-16-font-size" style="letter-spacing:1px;text-transform:uppercase"><strong>exclusive member deals</strong></p>
-					<!-- /wp:paragraph -->
+<!-- wp:group {"style":{"spacing":{"blockGap":"0.25em"}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group"><!-- wp:paragraph -->
+<p><strong>Member Deals</strong></p>
+<!-- /wp:paragraph -->
 
-					<!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"0px"}}}} -->
-					<p style="margin-top:0px">Enjoy discounts and perks available only to members.</p>
-					<!-- /wp:paragraph --></div>
-				<!-- /wp:column --></div>
-			<!-- /wp:columns --></div>
-		<!-- /wp:column -->
+<!-- wp:paragraph {"fontSize":"16"} -->
+<p class="has-16-font-size">Enjoy discounts and perks available only to members.</p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group --></div>
+<!-- /wp:group --></div>
+<!-- /wp:column -->
 
-		<!-- wp:column -->
-		<div class="wp-block-column"><!-- wp:columns {"style":{"spacing":{"blockGap":{"left":"var:preset|spacing|10"}}}} -->
-			<div class="wp-block-columns"><!-- wp:column {"verticalAlignment":"top","width":"10%"} -->
-				<div class="wp-block-column is-vertically-aligned-top" style="flex-basis:10%"><!-- wp:paragraph {"style":{"typography":{"textAlign":"left","fontStyle":"normal","fontWeight":"700"}},"fontSize":"16"} -->
-					<p class="has-text-align-left has-16-font-size" style="font-style:normal;font-weight:700">[fa icon="credit-card" color="site-background" background="secondary" shape="squircle" size="lg"]</p>
-					<!-- /wp:paragraph --></div>
-				<!-- /wp:column -->
+<!-- wp:column -->
+<div class="wp-block-column"><!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|10"}},"layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"top"}} -->
+<div class="wp-block-group"><!-- wp:paragraph -->
+<p>[fa icon="credit-card" color="site-background" background="secondary" shape="squircle"]</p>
+<!-- /wp:paragraph -->
 
-				<!-- wp:column -->
-				<div class="wp-block-column"><!-- wp:paragraph {"style":{"typography":{"textTransform":"uppercase","letterSpacing":"1px"}},"fontSize":"16"} -->
-					<p class="has-16-font-size" style="letter-spacing:1px;text-transform:uppercase"><strong>secure payments</strong></p>
-					<!-- /wp:paragraph -->
+<!-- wp:group {"style":{"spacing":{"blockGap":"0.25em"}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group"><!-- wp:paragraph -->
+<p><strong>Secure Payments</strong></p>
+<!-- /wp:paragraph -->
 
-					<!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"0px"}}}} -->
-					<p style="margin-top:0px">Your billing information is encrypted and always secure.</p>
-					<!-- /wp:paragraph --></div>
-				<!-- /wp:column --></div>
-			<!-- /wp:columns --></div>
-		<!-- /wp:column -->
+<!-- wp:paragraph {"fontSize":"16"} -->
+<p class="has-16-font-size">Your billing information is encrypted and always secure.</p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group --></div>
+<!-- /wp:group --></div>
+<!-- /wp:column -->
 
-		<!-- wp:column -->
-		<div class="wp-block-column"><!-- wp:columns {"style":{"spacing":{"blockGap":{"left":"var:preset|spacing|10"}}}} -->
-			<div class="wp-block-columns"><!-- wp:column {"verticalAlignment":"top","width":"10%"} -->
-				<div class="wp-block-column is-vertically-aligned-top" style="flex-basis:10%"><!-- wp:paragraph {"style":{"typography":{"textAlign":"left","fontStyle":"normal","fontWeight":"700"}},"fontSize":"16"} -->
-					<p class="has-text-align-left has-16-font-size" style="font-style:normal;font-weight:700">[fa icon="users" color="site-background" background="secondary" shape="squircle" size="lg"]</p>
-					<!-- /wp:paragraph --></div>
-				<!-- /wp:column -->
+<!-- wp:column -->
+<div class="wp-block-column"><!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|10"}},"layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"top"}} -->
+<div class="wp-block-group"><!-- wp:paragraph -->
+<p>[fa icon="users" color="site-background" background="secondary" shape="squircle"]</p>
+<!-- /wp:paragraph -->
 
-				<!-- wp:column -->
-				<div class="wp-block-column"><!-- wp:paragraph {"style":{"typography":{"textTransform":"uppercase","letterSpacing":"1px"}},"fontSize":"16"} -->
-					<p class="has-16-font-size" style="letter-spacing:1px;text-transform:uppercase"><strong>active community</strong></p>
-					<!-- /wp:paragraph -->
+<!-- wp:group {"style":{"spacing":{"blockGap":"0.25em"}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group"><!-- wp:paragraph -->
+<p><strong>Active Community</strong></p>
+<!-- /wp:paragraph -->
 
-					<!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"0px"}}}} -->
-					<p style="margin-top:0px">Connect with thousands of members who share your interests.</p>
-					<!-- /wp:paragraph --></div>
-				<!-- /wp:column --></div>
-			<!-- /wp:columns --></div>
-		<!-- /wp:column -->
+<!-- wp:paragraph {"fontSize":"16"} -->
+<p class="has-16-font-size">Connect with thousands of members who share your interests.</p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group --></div>
+<!-- /wp:group --></div>
+<!-- /wp:column -->
 
-		<!-- wp:column -->
-		<div class="wp-block-column"><!-- wp:columns {"style":{"spacing":{"blockGap":{"left":"var:preset|spacing|10"}}}} -->
-			<div class="wp-block-columns"><!-- wp:column {"verticalAlignment":"top","width":"10%"} -->
-				<div class="wp-block-column is-vertically-aligned-top" style="flex-basis:10%"><!-- wp:paragraph {"style":{"typography":{"textAlign":"left","fontStyle":"normal","fontWeight":"700"}},"fontSize":"16"} -->
-					<p class="has-text-align-left has-16-font-size" style="font-style:normal;font-weight:700">[fa icon="shield" color="site-background" background="secondary" shape="squircle" size="lg"]</p>
-					<!-- /wp:paragraph --></div>
-				<!-- /wp:column -->
+<!-- wp:column -->
+<div class="wp-block-column"><!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|10"}},"layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"top"}} -->
+<div class="wp-block-group"><!-- wp:paragraph -->
+<p>[fa icon="shield" color="site-background" background="secondary" shape="squircle"]</p>
+<!-- /wp:paragraph -->
 
-				<!-- wp:column -->
-				<div class="wp-block-column"><!-- wp:paragraph {"style":{"typography":{"textTransform":"uppercase","letterSpacing":"1px"}},"fontSize":"16"} -->
-					<p class="has-16-font-size" style="letter-spacing:1px;text-transform:uppercase"><strong>cancel anytime</strong></p>
-					<!-- /wp:paragraph -->
+<!-- wp:group {"style":{"spacing":{"blockGap":"0.25em"}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group"><!-- wp:paragraph -->
+<p><strong>Cancel Anytime</strong></p>
+<!-- /wp:paragraph -->
 
-					<!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"0px"}}}} -->
-					<p style="margin-top:0px">No contracts, no hassle. Manage your membership whenever you like.</p>
-					<!-- /wp:paragraph --></div>
-				<!-- /wp:column --></div>
-			<!-- /wp:columns --></div>
-		<!-- /wp:column --></div>
-	<!-- /wp:columns --></div>
+<!-- wp:paragraph {"fontSize":"16"} -->
+<p class="has-16-font-size">No contracts, no hassle. Manage your account whenever you like.</p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group --></div>
+<!-- /wp:group --></div>
+<!-- /wp:column --></div>
+<!-- /wp:columns --></div>
 <!-- /wp:group -->

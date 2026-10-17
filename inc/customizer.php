@@ -1105,27 +1105,13 @@ class Memberlite_Customize {
 	/**
 	 * Get all available fonts from theme.json font families.
 	 *
-	 * theme.json is the single source of truth for available fonts. Developers
-	 * can add fonts by filtering wp_theme_json_data_theme.
+	 * Wrapper for memberlite_get_fonts() kept for backwards compatibility.
 	 *
 	 * @since 7.0.1
 	 * @return array Associative array of slug => display name.
 	 */
 	public static function get_all_fonts() {
-		$settings      = wp_get_global_settings();
-		$font_families = $settings['typography']['fontFamilies']['theme'] ?? array();
-		$fonts         = array();
-		foreach ( $font_families as $font ) {
-			if ( ! is_array( $font ) || empty( $font['slug'] ) || empty( $font['name'] ) ) {
-				continue;
-			}
-			$slug = sanitize_key( $font['slug'] );
-			if ( '' === $slug ) {
-				continue;
-			}
-			$fonts[ $slug ] = $font['name'];
-		}
-		return $fonts;
+		return memberlite_get_fonts();
 	}
 
 

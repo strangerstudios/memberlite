@@ -87,7 +87,7 @@ p.alert a {
 	color: var(--memberlite-color-action);
 }
 
-.has-text-color a {
+.has-text-color a:where(:not(.wp-element-button)) {
 	color: inherit;
 }
 

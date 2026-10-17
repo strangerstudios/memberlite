@@ -69,3 +69,22 @@ function memberlite_add_patterns_menu_item(): void {
 	);
 }
 add_action( 'admin_menu', 'memberlite_add_patterns_menu_item' );
+
+/**
+ * Get the checkout URL for a membership level, for use in pattern markup.
+ *
+ * Pattern files are loaded even when Paid Memberships Pro is inactive, so fall back
+ * to the default checkout page path instead of calling pmpro_url() directly.
+ *
+ * @since TBD
+ *
+ * @param int $level_id Membership level ID.
+ * @return string
+ */
+function memberlite_get_pattern_checkout_url( int $level_id ): string {
+	if ( function_exists( 'pmpro_url' ) ) {
+		return pmpro_url( 'checkout', '?pmpro_level=' . $level_id );
+	}
+
+	return home_url( '/membership-checkout/?pmpro_level=' . $level_id );
+}

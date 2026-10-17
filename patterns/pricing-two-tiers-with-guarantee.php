@@ -10,134 +10,116 @@
  * @since Memberlite TBD
  */
 ?>
-<!-- wp:group {"align":"full","layout":{"type":"constrained"}} -->
-<div class="wp-block-group alignfull"><!-- wp:group {"align":"wide","style":{"spacing":{"padding":{"right":"var:preset|spacing|20","left":"var:preset|spacing|20","top":"var:preset|spacing|10","bottom":"var:preset|spacing|10"}}},"layout":{"type":"default"}} -->
-	<div class="wp-block-group alignwide" style="padding-top:var(--wp--preset--spacing--10);padding-right:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--10);padding-left:var(--wp--preset--spacing--20)"><!-- wp:heading {"style":{"typography":{"textAlign":"center","textTransform":"capitalize"}},"fontSize":"42"} -->
-		<h2 class="wp-block-heading has-text-align-center has-42-font-size" style="text-transform:capitalize">Members who have already joined are making tremendous progress...</h2>
-		<!-- /wp:heading -->
+<!-- wp:group {"align":"full","style":{"spacing":{"padding":{"right":"var:preset|spacing|30","left":"var:preset|spacing|30","top":"var:preset|spacing|70","bottom":"var:preset|spacing|70"}}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group alignfull" style="padding-top:var(--wp--preset--spacing--70);padding-right:var(--wp--preset--spacing--30);padding-bottom:var(--wp--preset--spacing--70);padding-left:var(--wp--preset--spacing--30)"><!-- wp:group {"style":{"spacing":{"blockGap":"0"}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group"><!-- wp:heading {"style":{"typography":{"textAlign":"center"}}} -->
+<h2 class="wp-block-heading has-text-align-center">Your Next Skill Starts Here</h2>
+<!-- /wp:heading -->
 
-		<!-- wp:paragraph {"style":{"typography":{"textAlign":"center","textTransform":"uppercase","letterSpacing":"1px"},"elements":{"link":{"color":{"text":"var:preset|color|color-action"}}},"spacing":{"margin":{"top":"var:preset|spacing|10"}}},"textColor":"color-action","fontSize":"16"} -->
-		<p class="has-text-align-center has-color-action-color has-text-color has-link-color has-16-font-size" style="margin-top:var(--wp--preset--spacing--10);letter-spacing:1px;text-transform:uppercase"><strong>Free forever. Optional power ups!</strong></p>
-		<!-- /wp:paragraph --></div>
-	<!-- /wp:group -->
+<!-- wp:paragraph {"style":{"typography":{"textAlign":"center"}}} -->
+<p class="has-text-align-center">Try it free for 7 days, then keep learning monthly or save with a yearly plan.</p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->
 
-	<!-- wp:group {"layout":{"type":"constrained"}} -->
-	<div class="wp-block-group"><!-- wp:columns {"style":{"spacing":{"padding":{"right":"0","left":"0"},"margin":{"top":"var:preset|spacing|30"}}}} -->
-		<div class="wp-block-columns" style="margin-top:var(--wp--preset--spacing--30);padding-right:0;padding-left:0"><!-- wp:column {"style":{"border":{"radius":{"topLeft":"8px","topRight":"8px","bottomLeft":"8px","bottomRight":"8px"}},"spacing":{"padding":{"top":"var:preset|spacing|30","bottom":"var:preset|spacing|30","left":"var:preset|spacing|10","right":"var:preset|spacing|10"}}},"borderColor":"color-primary"} -->
-			<div class="wp-block-column has-border-color has-color-primary-border-color" style="border-top-left-radius:8px;border-top-right-radius:8px;border-bottom-left-radius:8px;border-bottom-right-radius:8px;padding-top:var(--wp--preset--spacing--30);padding-right:var(--wp--preset--spacing--10);padding-bottom:var(--wp--preset--spacing--30);padding-left:var(--wp--preset--spacing--10)"><!-- wp:paragraph {"style":{"typography":{"textAlign":"center","textTransform":"capitalize"}},"fontSize":"30"} -->
-				<p class="has-text-align-center has-30-font-size" style="text-transform:capitalize"><strong>The basics</strong></p>
-				<!-- /wp:paragraph -->
+<!-- wp:group {"layout":{"type":"grid","minimumColumnWidth":"16rem"}} -->
+<div class="wp-block-group"><!-- wp:pmpro/single-level {"selected_membership_level":"1","style":{"spacing":{"blockGap":"var:preset|spacing|10","padding":{"top":"var:preset|spacing|20","bottom":"var:preset|spacing|20","left":"var:preset|spacing|20","right":"var:preset|spacing|20"}},"border":{"width":"3px","radius":{"topLeft":"12px","topRight":"12px","bottomLeft":"12px","bottomRight":"12px"}}},"borderColor":"color-primary","layout":{"type":"constrained"}} -->
+<div class="wp-block-pmpro-single-level has-border-color has-color-primary-border-color" style="border-width:3px;border-top-left-radius:12px;border-top-right-radius:12px;border-bottom-left-radius:12px;border-bottom-right-radius:12px;padding-top:var(--wp--preset--spacing--20);padding-right:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--20);padding-left:var(--wp--preset--spacing--20)"><!-- wp:pmpro/single-level-name {"textAlign":"center","selected_membership_level":"1"} -->
+Explorer
+<!-- /wp:pmpro/single-level-name -->
 
-				<!-- wp:paragraph {"style":{"typography":{"textAlign":"center","fontStyle":"normal","fontWeight":"700"},"spacing":{"margin":{"top":"0"}}},"fontSize":"42"} -->
-				<p class="has-text-align-center has-42-font-size" style="margin-top:0;font-style:normal;font-weight:700"><strong>$50</strong></p>
-				<!-- /wp:paragraph -->
+<!-- wp:pmpro/single-level-price {"textAlign":"center","selected_membership_level":"1","style":{"typography":{"fontStyle":"normal","fontWeight":"400"}},"fontSize":"32","fontFamily":"heading"} /-->
 
-				<!-- wp:group {"style":{"spacing":{"margin":{"top":"0"},"padding":{"right":"var:preset|spacing|30","left":"var:preset|spacing|30"}}},"layout":{"type":"constrained","justifyContent":"center"}} -->
-				<div class="wp-block-group" style="margin-top:0;padding-right:var(--wp--preset--spacing--30);padding-left:var(--wp--preset--spacing--30)"><!-- wp:group {"style":{"spacing":{"blockGap":"5px"}},"layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"left"}} -->
-					<div class="wp-block-group"><!-- wp:paragraph {"style":{"typography":{"fontStyle":"normal","fontWeight":"700"}},"fontSize":"21"} -->
-						<p class="has-21-font-size" style="font-style:normal;font-weight:700">[fa icon="circle-check" color="secondary"]</p>
-						<!-- /wp:paragraph -->
+<!-- wp:pmpro/checkout-button {"selected_membership_level":"1","textAlign":"center","className":""} -->
+<div class="wp-block-buttons has-text-align-center"><div class="wp-block-button"><a class="wp-block-button__link wp-block-pmpro-checkout-button has-text-align-center wp-element-button" href="<?php echo esc_url( memberlite_get_pattern_checkout_url( 1 ) ); ?>">Buy Now</a></div></div>
+<!-- /wp:pmpro/checkout-button -->
 
-						<!-- wp:paragraph {"style":{"typography":{"textAlign":"center"},"spacing":{"margin":{"top":"0"}}},"fontSize":"21"} -->
-						<p class="has-text-align-center has-21-font-size" style="margin-top:0"><strong>Perk 1</strong></p>
-						<!-- /wp:paragraph --></div>
-					<!-- /wp:group -->
+<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|10"}},"layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"left"}} -->
+<div class="wp-block-group"><!-- wp:paragraph {"style":{"typography":{"fontStyle":"normal","fontWeight":"700"}},"fontSize":"21"} -->
+<p class="has-21-font-size" style="font-style:normal;font-weight:700">[fa icon="circle-check" color="secondary" size="2x"]</p>
+<!-- /wp:paragraph -->
 
-					<!-- wp:group {"style":{"spacing":{"blockGap":"5px","margin":{"top":"0"}}},"layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"left"}} -->
-					<div class="wp-block-group" style="margin-top:0"><!-- wp:paragraph {"style":{"typography":{"fontStyle":"normal","fontWeight":"700"}},"fontSize":"21"} -->
-						<p class="has-21-font-size" style="font-style:normal;font-weight:700">[fa icon="circle-check" color="secondary"]</p>
-						<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p><strong><strong>Sample the full catalog</strong></strong></p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->
 
-						<!-- wp:paragraph {"style":{"typography":{"textAlign":"center"},"spacing":{"margin":{"top":"0"}}},"fontSize":"21"} -->
-						<p class="has-text-align-center has-21-font-size" style="margin-top:0"><strong>Perk 2</strong></p>
-						<!-- /wp:paragraph --></div>
-					<!-- /wp:group -->
+<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|10"}},"layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"left"}} -->
+<div class="wp-block-group"><!-- wp:paragraph {"style":{"typography":{"fontStyle":"normal","fontWeight":"700"}},"fontSize":"21"} -->
+<p class="has-21-font-size" style="font-style:normal;font-weight:700">[fa icon="circle-check" color="secondary" size="2x"]</p>
+<!-- /wp:paragraph -->
 
-					<!-- wp:group {"style":{"spacing":{"blockGap":"5px","margin":{"top":"0","bottom":"0"},"padding":{"bottom":"var:preset|spacing|20"}}},"layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"left"}} -->
-					<div class="wp-block-group" style="margin-top:0;margin-bottom:0;padding-bottom:var(--wp--preset--spacing--20)"><!-- wp:paragraph {"style":{"typography":{"fontStyle":"normal","fontWeight":"700"}},"fontSize":"21"} -->
-						<p class="has-21-font-size" style="font-style:normal;font-weight:700">[fa icon="circle-check" color="secondary"]</p>
-						<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p><strong><strong>Start your first project</strong></strong></p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->
 
-						<!-- wp:paragraph {"style":{"typography":{"textAlign":"center"},"spacing":{"margin":{"top":"0"}}},"fontSize":"21"} -->
-						<p class="has-text-align-center has-21-font-size" style="margin-top:0"><strong>Perk 3</strong></p>
-						<!-- /wp:paragraph --></div>
-					<!-- /wp:group --></div>
-				<!-- /wp:group -->
+<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|10"}},"layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"left"}} -->
+<div class="wp-block-group"><!-- wp:paragraph {"style":{"typography":{"fontStyle":"normal","fontWeight":"700"}},"fontSize":"21"} -->
+<p class="has-21-font-size" style="font-style:normal;font-weight:700">[fa icon="circle-check" color="secondary" size="2x"]</p>
+<!-- /wp:paragraph -->
 
-				<!-- wp:buttons {"style":{"spacing":{"margin":{"top":"0","bottom":"var:preset|spacing|10"},"padding":{"right":"var:preset|spacing|20","left":"var:preset|spacing|20"}}},"layout":{"type":"flex","justifyContent":"center"}} -->
-				<div class="wp-block-buttons" style="margin-top:0;margin-bottom:var(--wp--preset--spacing--10);padding-right:var(--wp--preset--spacing--20);padding-left:var(--wp--preset--spacing--20)"><!-- wp:button {"width":100,"className":"is-style-outline","style":{"border":{"width":"3px"},"typography":{"textTransform":"uppercase","letterSpacing":"1px"},"spacing":{"padding":{"top":"4px","bottom":"4px"}}},"fontSize":"18"} -->
-					<div class="wp-block-button has-custom-width wp-block-button__width-100 is-style-outline"><a class="wp-block-button__link has-18-font-size has-custom-font-size wp-element-button" style="border-width:3px;padding-top:4px;padding-bottom:4px;letter-spacing:1px;text-transform:uppercase">Buy now</a></div>
-					<!-- /wp:button --></div>
-				<!-- /wp:buttons --></div>
-			<!-- /wp:column -->
+<!-- wp:paragraph -->
+<p><strong><strong>Join the community</strong></strong></p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group --></div>
+<!-- /wp:pmpro/single-level -->
 
-			<!-- wp:column {"style":{"border":{"radius":{"topLeft":"8px","topRight":"8px","bottomLeft":"8px","bottomRight":"8px"}},"spacing":{"padding":{"top":"var:preset|spacing|30","bottom":"var:preset|spacing|30","left":"var:preset|spacing|10","right":"var:preset|spacing|10"}}},"backgroundColor":"color-primary","borderColor":"color-primary"} -->
-			<div class="wp-block-column has-border-color has-color-primary-border-color has-color-primary-background-color has-background" style="border-top-left-radius:8px;border-top-right-radius:8px;border-bottom-left-radius:8px;border-bottom-right-radius:8px;padding-top:var(--wp--preset--spacing--30);padding-right:var(--wp--preset--spacing--10);padding-bottom:var(--wp--preset--spacing--30);padding-left:var(--wp--preset--spacing--10)"><!-- wp:paragraph {"style":{"typography":{"textAlign":"center","textTransform":"capitalize"},"elements":{"link":{"color":{"text":"var:preset|color|site-navigation-background"}}}},"textColor":"site-navigation-background","fontSize":"30"} -->
-				<p class="has-text-align-center has-site-navigation-background-color has-text-color has-link-color has-30-font-size" style="text-transform:capitalize"><strong>Expert</strong></p>
-				<!-- /wp:paragraph -->
+<!-- wp:pmpro/single-level {"selected_membership_level":"2","style":{"spacing":{"blockGap":"var:preset|spacing|10","padding":{"top":"var:preset|spacing|20","bottom":"var:preset|spacing|20","left":"var:preset|spacing|20","right":"var:preset|spacing|20"}},"border":{"radius":{"topLeft":"12px","topRight":"12px","bottomLeft":"12px","bottomRight":"12px"}}},"backgroundColor":"page-masthead-background","layout":{"type":"constrained"}} -->
+<div class="wp-block-pmpro-single-level has-page-masthead-background-background-color has-background" style="border-top-left-radius:12px;border-top-right-radius:12px;border-bottom-left-radius:12px;border-bottom-right-radius:12px;padding-top:var(--wp--preset--spacing--20);padding-right:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--20);padding-left:var(--wp--preset--spacing--20)"><!-- wp:pmpro/single-level-name {"textAlign":"center","selected_membership_level":"2","style":{"elements":{"link":{"color":{"text":"var:preset|color|page-masthead"}}}},"textColor":"page-masthead"} -->
+Mastery Pass
+<!-- /wp:pmpro/single-level-name -->
 
-				<!-- wp:paragraph {"style":{"typography":{"textAlign":"center","fontStyle":"normal","fontWeight":"700"},"spacing":{"margin":{"top":"0"}},"elements":{"link":{"color":{"text":"var:preset|color|site-navigation-background"}}}},"textColor":"site-navigation-background","fontSize":"42"} -->
-				<p class="has-text-align-center has-site-navigation-background-color has-text-color has-link-color has-42-font-size" style="margin-top:0;font-style:normal;font-weight:700"><strong>$100</strong></p>
-				<!-- /wp:paragraph -->
+<!-- wp:pmpro/single-level-price {"textAlign":"center","selected_membership_level":"2","style":{"typography":{"fontStyle":"normal","fontWeight":"400"},"elements":{"link":{"color":{"text":"var:preset|color|page-masthead"}}}},"textColor":"page-masthead","fontSize":"32","fontFamily":"heading"} /-->
 
-				<!-- wp:group {"style":{"spacing":{"margin":{"top":"0"},"padding":{"right":"var:preset|spacing|30","left":"var:preset|spacing|30"}}},"layout":{"type":"constrained","justifyContent":"center"}} -->
-				<div class="wp-block-group" style="margin-top:0;padding-right:var(--wp--preset--spacing--30);padding-left:var(--wp--preset--spacing--30)"><!-- wp:group {"style":{"spacing":{"blockGap":"5px"}},"layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"left"}} -->
-					<div class="wp-block-group"><!-- wp:paragraph {"style":{"elements":{"link":{"color":{"text":"var:preset|color|borders"}}},"typography":{"fontStyle":"normal","fontWeight":"700"}},"textColor":"borders","fontSize":"21"} -->
-						<p class="has-borders-color has-text-color has-link-color has-21-font-size" style="font-style:normal;font-weight:700">[fa icon="circle-check"]</p>
-						<!-- /wp:paragraph -->
+<!-- wp:pmpro/checkout-button {"selected_membership_level":"2","textAlign":"center","backgroundColor":"color-action","className":""} -->
+<div class="wp-block-buttons has-text-align-center"><div class="wp-block-button"><a class="wp-block-button__link wp-block-pmpro-checkout-button has-color-action-background-color has-background has-text-align-center wp-element-button" href="<?php echo esc_url( memberlite_get_pattern_checkout_url( 2 ) ); ?>">Buy Now</a></div></div>
+<!-- /wp:pmpro/checkout-button -->
 
-						<!-- wp:paragraph {"style":{"typography":{"textAlign":"center"},"spacing":{"margin":{"top":"0"}},"elements":{"link":{"color":{"text":"var:preset|color|site-navigation-background"}}}},"textColor":"site-navigation-background","fontSize":"21"} -->
-						<p class="has-text-align-center has-site-navigation-background-color has-text-color has-link-color has-21-font-size" style="margin-top:0"><strong>Perk 1</strong></p>
-						<!-- /wp:paragraph --></div>
-					<!-- /wp:group -->
+<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|10"}},"layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"left"}} -->
+<div class="wp-block-group"><!-- wp:paragraph {"style":{"typography":{"fontStyle":"normal","fontWeight":"700"},"elements":{"link":{"color":{"text":"var:preset|color|page-masthead"}}}},"textColor":"page-masthead","fontSize":"21"} -->
+<p class="has-page-masthead-color has-text-color has-link-color has-21-font-size" style="font-style:normal;font-weight:700">[fa icon="circle-check" size="2x"]</p>
+<!-- /wp:paragraph -->
 
-					<!-- wp:group {"style":{"spacing":{"blockGap":"5px","margin":{"top":"0"}}},"layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"left"}} -->
-					<div class="wp-block-group" style="margin-top:0"><!-- wp:paragraph {"style":{"elements":{"link":{"color":{"text":"var:preset|color|borders"}}},"typography":{"fontStyle":"normal","fontWeight":"700"}},"textColor":"borders","fontSize":"21"} -->
-						<p class="has-borders-color has-text-color has-link-color has-21-font-size" style="font-style:normal;font-weight:700">[fa icon="circle-check"]</p>
-						<!-- /wp:paragraph -->
+<!-- wp:paragraph {"style":{"elements":{"link":{"color":{"text":"var:preset|color|page-masthead"}}}},"textColor":"page-masthead"} -->
+<p class="has-page-masthead-color has-text-color has-link-color"><strong>Learn at your own pace</strong></p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->
 
-						<!-- wp:paragraph {"style":{"typography":{"textAlign":"center"},"spacing":{"margin":{"top":"0"}},"elements":{"link":{"color":{"text":"var:preset|color|site-navigation-background"}}}},"textColor":"site-navigation-background","fontSize":"21"} -->
-						<p class="has-text-align-center has-site-navigation-background-color has-text-color has-link-color has-21-font-size" style="margin-top:0"><strong>Perk 2</strong></p>
-						<!-- /wp:paragraph --></div>
-					<!-- /wp:group -->
+<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|10"}},"layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"left"}} -->
+<div class="wp-block-group"><!-- wp:paragraph {"style":{"typography":{"fontStyle":"normal","fontWeight":"700"},"elements":{"link":{"color":{"text":"var:preset|color|page-masthead"}}}},"textColor":"page-masthead","fontSize":"21"} -->
+<p class="has-page-masthead-color has-text-color has-link-color has-21-font-size" style="font-style:normal;font-weight:700">[fa icon="circle-check" size="2x"]</p>
+<!-- /wp:paragraph -->
 
-					<!-- wp:group {"style":{"spacing":{"blockGap":"5px","margin":{"top":"0","bottom":"0"},"padding":{"bottom":"var:preset|spacing|20"}}},"layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"left"}} -->
-					<div class="wp-block-group" style="margin-top:0;margin-bottom:0;padding-bottom:var(--wp--preset--spacing--20)"><!-- wp:paragraph {"style":{"elements":{"link":{"color":{"text":"var:preset|color|borders"}}},"typography":{"fontStyle":"normal","fontWeight":"700"}},"textColor":"borders","fontSize":"21"} -->
-						<p class="has-borders-color has-text-color has-link-color has-21-font-size" style="font-style:normal;font-weight:700">[fa icon="circle-check"]</p>
-						<!-- /wp:paragraph -->
+<!-- wp:paragraph {"style":{"elements":{"link":{"color":{"text":"var:preset|color|page-masthead"}}}},"textColor":"page-masthead"} -->
+<p class="has-page-masthead-color has-text-color has-link-color"><strong>Real project files included</strong></p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->
 
-						<!-- wp:paragraph {"style":{"typography":{"textAlign":"center"},"spacing":{"margin":{"top":"0"}},"elements":{"link":{"color":{"text":"var:preset|color|site-navigation-background"}}}},"textColor":"site-navigation-background","fontSize":"21"} -->
-						<p class="has-text-align-center has-site-navigation-background-color has-text-color has-link-color has-21-font-size" style="margin-top:0"><strong>Perk 3</strong></p>
-						<!-- /wp:paragraph --></div>
-					<!-- /wp:group --></div>
-				<!-- /wp:group -->
+<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|10"}},"layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"left"}} -->
+<div class="wp-block-group"><!-- wp:paragraph {"style":{"typography":{"fontStyle":"normal","fontWeight":"700"},"elements":{"link":{"color":{"text":"var:preset|color|page-masthead"}}}},"textColor":"page-masthead","fontSize":"21"} -->
+<p class="has-page-masthead-color has-text-color has-link-color has-21-font-size" style="font-style:normal;font-weight:700">[fa icon="circle-check" size="2x"]</p>
+<!-- /wp:paragraph -->
 
-				<!-- wp:buttons {"style":{"spacing":{"margin":{"top":"0","bottom":"var:preset|spacing|10"},"padding":{"right":"var:preset|spacing|20","left":"var:preset|spacing|20"}}},"layout":{"type":"flex","justifyContent":"center"}} -->
-				<div class="wp-block-buttons" style="margin-top:0;margin-bottom:var(--wp--preset--spacing--10);padding-right:var(--wp--preset--spacing--20);padding-left:var(--wp--preset--spacing--20)"><!-- wp:button {"textColor":"site-navigation-background","width":100,"className":"is-style-outline","style":{"border":{"width":"3px"},"typography":{"textTransform":"uppercase","letterSpacing":"1px"},"spacing":{"padding":{"top":"4px","bottom":"4px"}},"elements":{"link":{"color":{"text":"var:preset|color|site-navigation-background"}}}},"fontSize":"18","borderColor":"site-navigation-background"} -->
-					<div class="wp-block-button has-custom-width wp-block-button__width-100 is-style-outline"><a class="wp-block-button__link has-site-navigation-background-color has-text-color has-link-color has-border-color has-site-navigation-background-border-color has-18-font-size has-custom-font-size wp-element-button" style="border-width:3px;padding-top:4px;padding-bottom:4px;letter-spacing:1px;text-transform:uppercase">Buy now</a></div>
-					<!-- /wp:button --></div>
-				<!-- /wp:buttons --></div>
-			<!-- /wp:column --></div>
-		<!-- /wp:columns --></div>
-	<!-- /wp:group -->
+<!-- wp:paragraph {"style":{"elements":{"link":{"color":{"text":"var:preset|color|page-masthead"}}}},"textColor":"page-masthead"} -->
+<p class="has-page-masthead-color has-text-color has-link-color"><strong>Beginner friendly</strong></p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group --></div>
+<!-- /wp:pmpro/single-level --></div>
+<!-- /wp:group -->
 
-	<!-- wp:group {"style":{"spacing":{"padding":{"top":"var:preset|spacing|20","bottom":"var:preset|spacing|20"},"margin":{"top":"var:preset|spacing|10","bottom":"var:preset|spacing|10"}}},"layout":{"type":"constrained"}} -->
-	<div class="wp-block-group" style="margin-top:var(--wp--preset--spacing--10);margin-bottom:var(--wp--preset--spacing--10);padding-top:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--20)"><!-- wp:columns -->
-		<div class="wp-block-columns"><!-- wp:column {"verticalAlignment":"top","width":"10%"} -->
-			<div class="wp-block-column is-vertically-aligned-top" style="flex-basis:10%"><!-- wp:paragraph {"style":{"typography":{"fontStyle":"normal","fontWeight":"700","textAlign":"center"}},"fontSize":"24"} -->
-				<p class="has-text-align-center has-24-font-size" style="font-style:normal;font-weight:700">[fa icon="handshake" color="site-navigation-background" background="primary" shape="circle"]</p>
-				<!-- /wp:paragraph --></div>
-			<!-- /wp:column -->
+<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|10","padding":{"top":"var:preset|spacing|30","bottom":"var:preset|spacing|30","left":"var:preset|spacing|30","right":"var:preset|spacing|30"}}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group" style="padding-top:var(--wp--preset--spacing--30);padding-right:var(--wp--preset--spacing--30);padding-bottom:var(--wp--preset--spacing--30);padding-left:var(--wp--preset--spacing--30)"><!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|10"}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
+<div class="wp-block-group"><!-- wp:paragraph {"style":{"typography":{"fontStyle":"normal","fontWeight":"700","textAlign":"left"}},"fontSize":"24"} -->
+<p class="has-text-align-left has-24-font-size" style="font-style:normal;font-weight:700">[fa icon="handshake" color="site-navigation-background" background="primary" shape="circle"]</p>
+<!-- /wp:paragraph -->
 
-			<!-- wp:column -->
-			<div class="wp-block-column"><!-- wp:paragraph {"style":{"typography":{"textTransform":"uppercase","letterSpacing":"1px"}},"fontSize":"16"} -->
-				<p class="has-16-font-size" style="letter-spacing:1px;text-transform:uppercase"><strong>100% Money back guarantee</strong></p>
-				<!-- /wp:paragraph -->
+<!-- wp:paragraph {"style":{"typography":{"textTransform":"uppercase","letterSpacing":"1px"}},"fontFamily":"heading"} -->
+<p class="has-heading-font-family" style="letter-spacing:1px;text-transform:uppercase"><strong>100% Money back guarantee</strong></p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->
 
-				<!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"8px","left":"0"}}}} -->
-				<p style="margin-top:8px;margin-left:0"><em>Not the right fit? Let us know within 30 days of joining and we'll refund you in full, no questions asked.</em></p>
-				<!-- /wp:paragraph --></div>
-			<!-- /wp:column --></div>
-		<!-- /wp:columns --></div>
-	<!-- /wp:group --></div>
+<!-- wp:paragraph -->
+<p>Not the right fit? Let us know within 30 days of joining and we'll refund you in full, no questions asked.</p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group --></div>
 <!-- /wp:group -->

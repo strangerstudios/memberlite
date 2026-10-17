@@ -44,8 +44,6 @@ function memberlite_register_block_styles(): void {
 			array( 'name' => 'slant-bottom-left', 'label' => __( 'Slant: Bottom Left', 'memberlite' ) ),
 		),
 		'core/accordion'  => array(
-			array( 'name' => 'accrdn-medium', 'label' => __( 'Medium Plus', 'memberlite' ) ),
-			array( 'name' => 'accrdn-large', 'label' => __( 'Large Plus', 'memberlite' ) ),
 			array( 'name' => 'accrdn-caret', 'label' => __( 'Caret', 'memberlite' ) ),
 		),
 		'core/heading' => array(

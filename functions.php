@@ -78,67 +78,6 @@ function memberlite_admin_enqueue_scripts() {
 add_action( 'admin_enqueue_scripts', 'memberlite_admin_enqueue_scripts' );
 
 /**
- * Get the selected font slug for a given font type.
- *
- * Returns the theme.json-compatible slug (lowercase). If $nicename is true,
- * returns the display name by looking it up in the registered font families.
- * Safe to call anywhere except from within the wp_theme_json_data_theme filter
- * with $nicename = true (use memberlite_get_font_name_from_json_data() there instead).
- *
- * @since 7.0.1
- * @param string    $font_type 'header_font' or 'body_font'.
- * @param bool|null $nicename  Optional. If true, return the display name.
- * @return string Font slug or display name.
- */
-function memberlite_get_font( $font_type, $nicename = false ) {
-	global $memberlite_defaults;
-
-	$slug = strtolower( get_theme_mod( 'memberlite_' . $font_type, $memberlite_defaults[ 'memberlite_' . $font_type ] ) );
-
-	if ( ! $nicename ) {
-		return $slug;
-	}
-
-	// Look up the display name from theme.json font families.
-	$settings      = wp_get_global_settings();
-	$font_families = $settings['typography']['fontFamilies']['theme'] ?? array();
-	foreach ( $font_families as $font ) {
-		if ( ! is_array( $font ) || empty( $font['slug'] ) || empty( $font['name'] ) ) {
-			continue;
-		}
-		if ( $font['slug'] === $slug ) {
-			return $font['name'];
-		}
-	}
-
-	// Fallback: convert slug to title case.
-	return ucwords( str_replace( '-', ' ', $slug ) );
-}
-
-/**
- * Look up a font display name from a fontFamilies array.
- *
- * Used inside the wp_theme_json_data_theme filter to avoid circular calls
- * to wp_get_global_settings().
- *
- * @since 7.0.1
- * @param string $slug         The font slug to look up.
- * @param array  $font_families Array of fontFamily objects from theme.json data.
- * @return string Display name, or title-cased slug as fallback.
- */
-function memberlite_get_font_name_from_json_data( $slug, $font_families ) {
-	foreach ( $font_families as $font ) {
-		if ( ! is_array( $font ) || empty( $font['slug'] ) || empty( $font['name'] ) ) {
-			continue;
-		}
-		if ( $font['slug'] === $slug ) {
-			return $font['name'];
-		}
-	}
-	return ucwords( str_replace( '-', ' ', $slug ) );
-}
-
-/**
  * Set the content width in pixels, based on the theme's design and stylesheet.
  *
  * Priority 0 to make it available to lower priority callbacks.
@@ -564,6 +503,9 @@ require_once get_template_directory() . '/inc/custom-walkers.php';
 /* Pattern categories. */
 require_once get_template_directory() . '/inc/patterns.php';
 
+/* Font helpers and theme.json font family settings. */
+require_once get_template_directory() . '/inc/fonts.php';
+
 /* Customizer additions. */
 require_once get_template_directory() . '/inc/customizer.php';
 
@@ -796,30 +738,10 @@ function memberlite_filter_theme_json( $theme_json ) {
 
 	$theme_json_data['settings']['color']['palette'] = array_merge( $color_palette, array_values( $other_colors ) );
 
-	// Add font family custom properties.
+	// Make sure the custom settings key exists before adding to it.
 	if ( ! isset( $theme_json_data['settings']['custom'] ) ) {
 		$theme_json_data['settings']['custom'] = array();
 	}
-	if ( ! isset( $theme_json_data['settings']['custom']['heading'] ) ) {
-		$theme_json_data['settings']['custom']['heading'] = array();
-	}
-	if ( ! isset( $theme_json_data['settings']['custom']['body'] ) ) {
-		$theme_json_data['settings']['custom']['body'] = array();
-	}
-
-	// Look up font display names directly from the theme.json data to avoid
-	// circular calls to wp_get_global_settings() inside this filter.
-	// fontFamilies in raw theme.json data may be grouped (e.g. 'theme', 'default'),
-	// so flatten all groups into a single list before passing to the lookup function.
-	$font_families_grouped = $theme_json_data['settings']['typography']['fontFamilies'] ?? array();
-	$font_families         = array();
-	foreach ( $font_families_grouped as $group ) {
-		if ( is_array( $group ) ) {
-			$font_families = array_merge( $font_families, $group );
-		}
-	}
-	$theme_json_data['settings']['custom']['heading']['fontFamily'] = memberlite_get_font_name_from_json_data( memberlite_get_font( 'header_font' ), $font_families );
-	$theme_json_data['settings']['custom']['body']['fontFamily']    = memberlite_get_font_name_from_json_data( memberlite_get_font( 'body_font' ), $font_families );
 
 	// Global button style (Customizer > General). Overrides the button custom
 	// properties; a block-level border-radius/padding set in the editor renders
@@ -946,16 +868,3 @@ function memberlite_clean_editor_color_palette( $editor_settings, $context ) {
 	return $editor_settings;
 }
 add_filter( 'block_editor_settings_all', 'memberlite_clean_editor_color_palette', 20, 2 );
-
-
-/**
- * Detect whether the block editor is active on the current screen
- *
- * @since TBD
- * @return bool
- */
-function memberlite_is_block_editor() {
-	$current_screen = get_current_screen();
-
-	return $current_screen instanceof WP_Screen && $current_screen->is_block_editor();
-}

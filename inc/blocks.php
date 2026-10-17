@@ -25,6 +25,38 @@ function memberlite_register_blocks(): void {
 add_action( 'init', 'memberlite_register_blocks' );
 
 /**
+ * Default featured image blocks to the large image size.
+ *
+ * When a Post Featured Image block, or a Cover block using the featured image, has no size set,
+ * core falls back to the 'post-thumbnail' size. Memberlite defines that as a 150px square crop,
+ * which turns blurry when stretched to fill these blocks. Fixed and repeated background covers
+ * already default to 'full' and are left alone.
+ *
+ * @since TBD
+ *
+ * @param array $parsed_block The block being rendered.
+ * @return array
+ */
+function memberlite_default_featured_image_block_size( array $parsed_block ): array {
+	$attrs = $parsed_block['attrs'] ?? array();
+	if ( ! empty( $attrs['sizeSlug'] ) ) {
+		return $parsed_block;
+	}
+
+	$is_featured_cover = 'core/cover' === $parsed_block['blockName']
+		&& ! empty( $attrs['useFeaturedImage'] )
+		&& empty( $attrs['hasParallax'] )
+		&& empty( $attrs['isRepeated'] );
+
+	if ( 'core/post-featured-image' === $parsed_block['blockName'] || $is_featured_cover ) {
+		$parsed_block['attrs']['sizeSlug'] = 'large';
+	}
+
+	return $parsed_block;
+}
+add_filter( 'render_block_data', 'memberlite_default_featured_image_block_size' );
+
+/**
  * Localize editor-only data for the Nav Menu block.
  *
  * Runs on enqueue_block_editor_assets so the data is only attached in the block editor,

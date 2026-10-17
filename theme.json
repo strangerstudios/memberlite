@@ -80,6 +80,16 @@
 			"fluid": true,
 			"fontFamilies": [
 				{
+					"fontFamily": "var(--wp--custom--heading--font-family)",
+					"name": "Default Heading Font",
+					"slug": "heading"
+				},
+				{
+					"fontFamily": "var(--wp--custom--body--font-family)",
+					"name": "Default Body Font",
+					"slug": "body"
+				},
+				{
 					"fontFace": [
 						{
 							"fontDisplay": "swap",
@@ -1486,6 +1496,75 @@
 	},
 	"styles": {
 		"blocks": {
+			"core/accordion": {
+				"spacing": {
+					"blockGap": "0"
+				}
+			},
+			"core/accordion-item": {
+				"spacing": {
+					"blockGap": "0"
+				}
+			},
+			"core/accordion-heading": {
+				"border": {
+					"top": {
+						"color": "var(--wp--preset--color--borders)",
+						"style": "solid",
+						"width": "1px"
+					}
+				},
+				"css": "margin: 0;& .wp-block-accordion-heading__toggle {padding: var(--wp--preset--spacing--10)}"
+			},
+			"core/accordion-panel": {
+				"spacing": {
+					"padding": {
+						"top": "0",
+						"right": "var(--wp--preset--spacing--10)",
+						"bottom": "var(--wp--preset--spacing--10)",
+						"left": "var(--wp--preset--spacing--10)"
+					}
+				}
+			},
+			"core/details": {
+				"border": {
+					"top": {
+						"color": "var(--wp--preset--color--borders)",
+						"style": "solid",
+						"width": "1px"
+					}
+				},
+				"css": "& > summary {cursor: pointer; font-family: var(--wp--preset--font-family--heading); font-weight: 700; list-style: none}& > summary:hover {text-decoration: underline}& > summary::-webkit-details-marker {display: none}& > summary::before {content: \"\\f078\"; float: right; font-family: \"Font Awesome 5 Free\"; font-weight: 900; margin-left: var(--wp--preset--spacing--10)}&[open] > summary::before {content: \"\\f077\"}",
+				"spacing": {
+					"blockGap": "var(--wp--preset--spacing--10)",
+					"padding": {
+						"top": "var(--wp--preset--spacing--10)",
+						"right": "var(--wp--preset--spacing--10)",
+						"bottom": "var(--wp--preset--spacing--10)",
+						"left": "var(--wp--preset--spacing--10)"
+					}
+				}
+			},
+			"core/quote": {
+				"border": {
+					"width": "0"
+				},
+				"css": "&:not(.is-style-plain) {position: relative}&:not(.is-style-plain)::before {color: var(--wp--preset--color--color-secondary); content: \"\\f10d\"; font-family: \"Font Awesome 5 Free\"; font-size: var(--wp--preset--font-size--30); font-weight: 900; left: 0; position: absolute; top: -1rem}&:not(.is-style-plain) p {padding-left: 2.5rem}",
+				"spacing": {
+					"margin": {
+						"top": "0",
+						"right": "0",
+						"bottom": "0",
+						"left": "0"
+					},
+					"padding": {
+						"top": "0",
+						"right": "0",
+						"bottom": "0",
+						"left": "0"
+					}
+				}
+			},
 			"core/avatar": {
 				"css": "& img {border-radius: 999px}",
 				"typography": {
