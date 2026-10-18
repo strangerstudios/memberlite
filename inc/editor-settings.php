@@ -133,6 +133,12 @@ add_action( 'init', 'memberlite_register_editor_settings_post_meta' );
  * @return void
  */
 function memberlite_enqueue_custom_editor_assets(): void {
+	// The document settings panel only exists in the post editor, not the widgets or Customizer block editors.
+	$screen = get_current_screen();
+	if ( empty( $screen ) || 'post' !== $screen->base ) {
+		return;
+	}
+
 	$asset_path = get_template_directory() . '/build/editor/custom-settings.asset.php';
 
 	if ( ! file_exists( $asset_path ) ) {
