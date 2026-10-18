@@ -278,7 +278,7 @@ function memberlite_body_classes( $classes ) {
 
 		// Falsy covers: '' (an explicit false toggle, stringified on save) and '0' (the legacy metabox radio's hidden value).
 		// A never-touched page isn't falsy here — it resolves to the registered default of true.
-		if ( $memberlite_banner_show === '0' ||  ! $memberlite_banner_show ) {
+		if ( ! $memberlite_banner_show ) {
 			$classes[] = 'memberlite-banner-hidden';
 		}
 	}
