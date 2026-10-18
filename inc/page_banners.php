@@ -251,8 +251,6 @@ add_action('save_post', 'memberlite_settings_save_meta_box_data');
 
 
 function memberlite_display_banner_bottom( ) {
-	global $post;
-
 	$post_id = memberlite_get_banner_post_id();
 
 	if ( ! empty( $post_id ) ) {
