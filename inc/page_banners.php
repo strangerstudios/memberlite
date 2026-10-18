@@ -561,7 +561,9 @@ function memberlite_get_masthead_banner_image_url() {
  * @return mixed
  */
 function memberlite_get_banner_post_id() {
-	$memberlite_banner_post_id = get_queried_object_id();
+	// On term and author archives the queried object is a term or user, not a post.
+	$queried_object            = get_queried_object();
+	$memberlite_banner_post_id = $queried_object instanceof WP_Post ? $queried_object->ID : 0;
 
 	if ( empty( $memberlite_banner_post_id ) && ( is_home() || is_post_type_archive( 'post' ) ) ) {
 		$memberlite_banner_post_id = get_option( 'page_for_posts' );
