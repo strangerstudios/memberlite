@@ -208,7 +208,7 @@ function memberlite_get_content_archives_theme_mod(): string {
  * @return array
  */
 function memberlite_body_classes( $classes ) {
-	global $memberlite_defaults, $post;
+	global $memberlite_defaults;
 
 	// sidebar classes
 	if ( ! is_page_template( 'templates/fluid-width.php' ) && ! memberlite_is_blog() && ! memberlite_is_cpt_archive() ) {
@@ -273,8 +273,8 @@ function memberlite_body_classes( $classes ) {
 		$classes[] = 'landing';
 	}
 
-	if ( ! empty( $post ) && is_page() ) {
-		$memberlite_banner_show = get_post_meta( $post->ID, '_memberlite_banner_show', true );
+	if ( is_page() ) {
+		$memberlite_banner_show = get_post_meta( memberlite_get_banner_post_id(), '_memberlite_banner_show', true );
 
 		// Falsy covers: '' (an explicit false toggle, stringified on save) and '0' (the legacy metabox radio's hidden value).
 		// A never-touched page isn't falsy here — it resolves to the registered default of true.
@@ -829,10 +829,7 @@ function memberlite_get_breadcrumbs() {
 	) ? true : false;
 
 	// Check _memberlite_banner_hide_breadcrumbs meta to determine if breadcrumbs should display.
-	$memberlite_breadcrumbs_post_id = get_queried_object_id();
-	if ( empty( $memberlite_breadcrumbs_post_id ) && ( is_home() || is_post_type_archive( 'post' ) ) ) {
-		$memberlite_breadcrumbs_post_id = get_option( 'page_for_posts' );
-	}
+	$memberlite_breadcrumbs_post_id = memberlite_get_banner_post_id();
 	$memberlite_show_breadcrumbs = true;
 	if ( ! empty( $memberlite_breadcrumbs_post_id ) ) {
 		$hide_breadcrumbs_meta = get_post_meta( $memberlite_breadcrumbs_post_id, '_memberlite_banner_hide_breadcrumbs', true );
