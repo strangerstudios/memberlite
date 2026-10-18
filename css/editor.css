@@ -27,12 +27,21 @@ label[for="memberlite-menu-location-select"] {
 	margin-left: 0;
 }
 
+/* Classic and HTML lists get the same hanging indent as List blocks (see theme.json) */
+:where(ul, ol):where(:not([class])) {
+	padding-left: var(--wp--custom--list--indent);
+}
+
+ol:where(:not([class])) {
+	padding-left: var(--wp--custom--list--indent-ordered);
+}
+
 .wp-block-list.is-style-horizontal-left,
 .wp-block-list.is-style-horizontal-center {
 	list-style: none;
 	display: flex;
 	flex-wrap: wrap;
-	gap: 0 calc(var(--wp--preset--spacing--10) * 2);
+	gap: var(--wp--preset--spacing--10) calc(var(--wp--preset--spacing--10) * 2);
 	margin-left: unset;
 	padding-left: 0;
 }

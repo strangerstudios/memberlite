@@ -76,10 +76,14 @@ ol {
 	}
 }
 
-// Classic and HTML lists in post content indent like List blocks.
+// Classic and HTML lists in post content get the same hanging indent as List blocks (see theme.json).
 .entry-content :where(ul, ol):where(:not([class])) {
 	margin-left: 0;
-	padding-left: 40px;
+	padding-left: var(--wp--custom--list--indent);
+}
+
+.entry-content ol:where(:not([class])) {
+	padding-left: var(--wp--custom--list--indent-ordered);
 }
 
 ul:where(:not(.wp-block-navigation):not(.wp-block-navigation__container)) li,

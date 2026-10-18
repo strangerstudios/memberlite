@@ -15,6 +15,10 @@
 				"paddingBlock": "calc(var(--wp--preset--spacing--10) / 1.5)",
 				"paddingInline": "var(--wp--preset--spacing--20)"
 			},
+			"list": {
+				"indent": "1.4em",
+				"indentOrdered": "1.6em"
+			},
 			"lineHeight": {
 				"body": 1.7,
 				"heading": 1.4,
@@ -1619,7 +1623,7 @@
 				}
 			},
 			"core/list": {
-				"css": "& li{margin-bottom:var(--wp--preset--spacing--10)}& li:last-child{margin-bottom:0}"
+				"css": "padding-inline-start:var(--wp--custom--list--indent);&:is(ol){padding-inline-start:var(--wp--custom--list--indent-ordered)}& li{margin-bottom:var(--wp--preset--spacing--10)}& li:last-child{margin-bottom:0}"
 			},
 			"core/navigation": {
 				"elements": {

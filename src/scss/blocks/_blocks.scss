@@ -28,7 +28,7 @@
 		list-style: none;
 		display: flex;
 		flex-wrap: wrap;
-		gap: 0 calc(var(--wp--preset--spacing--10) * 2);
+		gap: var(--wp--preset--spacing--10) calc(var(--wp--preset--spacing--10) * 2);
 		margin-left: unset;
 		padding-left: 0;
 

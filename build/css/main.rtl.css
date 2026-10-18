@@ -189,7 +189,11 @@ ol:where(:not(.wp-block-list)) {
 
 .entry-content :where(ul, ol):where(:not([class])) {
   margin-right: 0;
-  padding-right: 40px;
+  padding-right: var(--wp--custom--list--indent);
+}
+
+.entry-content ol:where(:not([class])) {
+  padding-right: var(--wp--custom--list--indent-ordered);
 }
 
 ul:where(:not(.wp-block-navigation):not(.wp-block-navigation__container)) li,
@@ -1169,7 +1173,7 @@ textarea {
   list-style: none;
   display: flex;
   flex-wrap: wrap;
-  gap: 0 calc(var(--wp--preset--spacing--10) * 2);
+  gap: var(--wp--preset--spacing--10) calc(var(--wp--preset--spacing--10) * 2);
   margin-right: unset;
   padding-right: 0;
 }
