@@ -108,36 +108,41 @@ label[for="memberlite-menu-location-select"] {
 /*--------------------------------------------------------------
  Separator Block Styles
 --------------------------------------------------------------*/
-hr.wp-block-separator,
-hr.wp-block-separator.alignfull {
+.wp-block-separator,
+.wp-block-separator.alignfull {
 	margin-left: auto;
 	margin-right: auto;
 }
 
-hr.wp-block-separator:where(:not(.is-style-wide, .is-style-dots, .is-style-faded-edges, .is-style-double, .is-style-flourish-diamond)) {
+.wp-block-separator:where(:not(.is-style-wide, .is-style-dots, .is-style-faded-edges, .is-style-double, .is-style-flourish-diamond)) {
 	max-width: 100px;
 }
 
-hr.wp-block-separator.is-style-dots:before {
+.wp-block-separator.is-style-dots:before {
 	color: currentColor;
 }
 
-hr.wp-block-separator.is-style-wide, hr.wp-block-separator.is-style-faded-edges, hr.wp-block-separator.is-style-double {
+.wp-block-separator.is-style-wide {
+	background-color: var(--wp--preset--color--borders);
+	height: 1px;
+}
+
+.wp-block-separator.is-style-wide, .wp-block-separator.is-style-faded-edges, .wp-block-separator.is-style-double {
 	border: 0;
 }
 
-hr.wp-block-separator.is-style-wide:not(.alignwide):not(.alignfull), hr.wp-block-separator.is-style-faded-edges:not(.alignwide):not(.alignfull), hr.wp-block-separator.is-style-double:not(.alignwide):not(.alignfull), hr.wp-block-separator.is-style-flourish-diamond:not(.alignwide):not(.alignfull) {
+.wp-block-separator.is-style-wide:not(.alignwide):not(.alignfull), .wp-block-separator.is-style-faded-edges:not(.alignwide):not(.alignfull), .wp-block-separator.is-style-double:not(.alignwide):not(.alignfull), .wp-block-separator.is-style-flourish-diamond:not(.alignwide):not(.alignfull) {
 	max-width: 805px;
 	width: 100% !important;
 }
 
-hr.wp-block-separator.is-style-faded-edges {
+.wp-block-separator.is-style-faded-edges {
 	height: 1px;
 	background-color: transparent !important;
 	background-image: linear-gradient(to right, transparent, color-mix(in srgb, currentColor 75%, transparent), transparent);
 }
 
-hr.wp-block-separator.is-style-double {
+.wp-block-separator.is-style-double {
 	background: none;
 	background-color: var(--wp--preset--color--borders);
 	mask-repeat: repeat-x;
@@ -147,7 +152,7 @@ hr.wp-block-separator.is-style-double {
 	mask-size: 4px 10px;
 }
 
-hr.wp-block-separator.is-style-flourish-diamond {
+.wp-block-separator.is-style-flourish-diamond {
 	border: none;
 	background: none;
 	height: 32px;
@@ -158,31 +163,31 @@ hr.wp-block-separator.is-style-flourish-diamond {
 	mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1230 32'%3E%3Cline x1='0' y1='16' x2='590' y2='16' stroke='black' stroke-width='1.5'/%3E%3Cpolygon points='615,4 627,16 615,28 603,16' fill='black'/%3E%3Cline x1='640' y1='16' x2='1230' y2='16' stroke='black' stroke-width='1.5'/%3E%3C/svg%3E");
 }
 
-hr.wp-block-separator.is-style-flourish-diamond.alignwide {
+.wp-block-separator.is-style-flourish-diamond.alignwide {
 	mask-size: 1230px 32px;
 }
 
-hr.wp-block-separator.is-style-flourish-diamond.alignfull {
+.wp-block-separator.is-style-flourish-diamond.alignfull {
 	mask-size: 100% auto;
 }
 
 /* Editor only overwrite on core styles that break our styles for height */
-hr.wp-block-separator.is-style-faded-edges,
-.editor-styles-wrapper hr.wp-block-separator.has-background.is-style-faded-edges {
+.wp-block-separator.is-style-faded-edges,
+.editor-styles-wrapper .wp-block-separator.has-background.is-style-faded-edges {
 	height: 1px;
 	width: 100% !important;
 }
 
 /* Editor only overwrite on core styles that break our styles for height */
-hr.wp-block-separator.is-style-double,
-.editor-styles-wrapper hr.wp-block-separator.has-background.is-style-double {
+.wp-block-separator.is-style-double,
+.editor-styles-wrapper .wp-block-separator.has-background.is-style-double {
 	height: 10px;
 	width: 100% !important;
 }
 
 /* Editor only overwrite on core styles that break our styles for height */
-hr.wp-block-separator.is-style-flourish-diamond,
-.editor-styles-wrapper hr.wp-block-separator.has-background.is-style-flourish-diamond {
+.wp-block-separator.is-style-flourish-diamond,
+.editor-styles-wrapper .wp-block-separator.has-background.is-style-flourish-diamond {
 	height: 32px;
 	width: 100% !important;
 }
