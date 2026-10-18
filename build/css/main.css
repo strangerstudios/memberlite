@@ -2660,6 +2660,12 @@ textarea {
   margin: 0;
   padding: calc(var(--wp--preset--spacing--10) / 2);
 }
+.site-header .header-right #meta-member .member-navigation li.menu-item-has-children > a {
+  padding-right: 0;
+}
+.site-header .header-right #meta-member .member-navigation li.menu-item-has-children > button {
+  margin-right: calc(var(--wp--preset--spacing--10) / 4);
+}
 .site-header .header-right #meta-member .member-navigation .sub-menu {
   background-color: var(--memberlite-color-secondary);
 }

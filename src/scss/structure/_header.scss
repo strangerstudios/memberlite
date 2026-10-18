@@ -225,6 +225,17 @@
 					padding: calc(var(--wp--preset--spacing--10) / 2);
 				}
 
+				// Chevron sits next to the link text, sized to this menu's smaller link padding.
+				li.menu-item-has-children {
+					> a {
+						padding-right: 0;
+					}
+
+					> button {
+						margin-right: calc(var(--wp--preset--spacing--10) / 4);
+					}
+				}
+
 				.sub-menu {
 					background-color: var(--memberlite-color-secondary);
 
