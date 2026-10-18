@@ -634,11 +634,11 @@ hr.wp-block-separator {
 
 	&.is-style-loginout-button {
 		width: max-content;
-		border-radius: var(--wp--custom--border--radius);
+		border-radius: var(--wp--custom--button--radius);
 
 		a {
 			display: inline-block;
-			padding: 0.6em 1.4em;
+			padding: var(--wp--custom--button--padding-block) var(--wp--custom--button--padding-inline);
 			border-radius: inherit;
 			text-decoration: none;
 			line-height: 1.5;

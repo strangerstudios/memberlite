@@ -10,7 +10,7 @@
  *     @type string $icon       Font Awesome icon slug, e.g. 'comment', 'star'. See memberlite_get_font_awesome_icons() for the full supported set. Default ''.
  *     @type string $type       Icon style. One of 'solid', 'regular', 'brand'. Auto-detected as 'brand' when $icon is a brand icon; otherwise falls back to the base 'fa' class if omitted. Default null.
  *     @type string $size       Font Awesome size keyword (e.g. 'sm', 'lg', '2x'), applied as the fa-{size} class — see the Font Awesome docs for supported values. Default null.
- *     @type string $color      Icon color. One of 'primary', 'secondary', 'action', 'white', 'text', 'site-background', 'site-navigation', 'site-navigation-background', 'footer-widgets', 'footer-widgets-background'. Default null.
+ *     @type string $color      Icon color. One of 'primary', 'secondary', 'action', 'white', 'text', 'site-background', 'site-navigation', 'site-navigation-background', 'footer-widgets', 'footer-widgets-background'. Any other value is added as a CSS class. Default null.
  *     @type string $background Icon background color. Same options as $color. Default null.
  *     @type string $shape      Icon background shape. One of 'square', 'circle', 'squircle'. Default null.
  *     @type string $rotate     Rotation angle, per Font Awesome's fa-rotate-{value} classes. Default null.
@@ -76,6 +76,9 @@ function memberlite_fa_shortcode( $atts, $content = null ) {
 
 	if ( $color && in_array( $color, $allowlist_colors, true ) ) {
 		$classes[] = 'color-' . $color;
+	} elseif ( $color ) {
+		// Pass any other value through as a class, as in 7.1.2 and earlier.
+		$classes[] = sanitize_html_class( $color );
 	}
 
 	if ( $background && in_array( $background, $allowlist_colors, true ) ) {
