@@ -114,18 +114,24 @@
 // Separator Block
 // -----------------------------------------------------------------------------
 
-hr.wp-block-separator {
+.wp-block-separator {
 	margin-left: auto;
 	margin-right: auto;
 
 	// For default separator, no block styles
 	&:where(:not(.is-style-wide, .is-style-dots, .is-style-faded-edges, .is-style-double, .is-style-flourish-diamond)) {
 		max-width: 100px !important;
-		margin: auto !important;
+		margin-inline: auto !important;
 	}
 
 	&.is-style-dots:before {
 		color: currentColor;
+	}
+
+	// Matches the base hr rule, which doesn't reach the editor or div separators
+	&.is-style-wide {
+		background-color: var(--memberlite-color-borders);
+		height: 1px;
 	}
 
 	&.is-style-wide,
@@ -139,7 +145,6 @@ hr.wp-block-separator {
 	&.is-style-double,
 	&.is-style-flourish-diamond {
 		&:not(.alignwide):not(.alignfull) {
-			max-width: 805px;
 			width: 100% !important; //override core styling
 		}
 	}
@@ -170,18 +175,11 @@ hr.wp-block-separator {
 		background: none;
 		height: 32px;
 		background-color: var(--memberlite-color-borders);
+		// Centered diamond, plus a line on each side that stops 25px from the center.
+		mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpolygon points='12,0 24,12 12,24 0,12' fill='black'/%3E%3C/svg%3E"), linear-gradient(#000 0 0), linear-gradient(#000 0 0);
+		mask-size: 24px 24px, calc(50% - 25px) 1.5px, calc(50% - 25px) 1.5px;
+		mask-position: center, left center, right center;
 		mask-repeat: no-repeat;
-		mask-position: center;
-		mask-size: 803px 32px;
-		mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1230 32'%3E%3Cline x1='0' y1='16' x2='590' y2='16' stroke='black' stroke-width='1.5'/%3E%3Cpolygon points='615,4 627,16 615,28 603,16' fill='black'/%3E%3Cline x1='640' y1='16' x2='1230' y2='16' stroke='black' stroke-width='1.5'/%3E%3C/svg%3E");
-
-		&.alignwide {
-			mask-size: 1230px 32px;
-		}
-
-		&.alignfull {
-			mask-size: 100% auto;
-		}
 	}
 }
 
