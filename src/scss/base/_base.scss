@@ -76,6 +76,12 @@ ol {
 	}
 }
 
+// Classic and HTML lists in post content indent like List blocks.
+.entry-content :where(ul, ol):where(:not([class])) {
+	margin-left: 0;
+	padding-left: 40px;
+}
+
 ul:where(:not(.wp-block-navigation):not(.wp-block-navigation__container)) li,
 ol li {
 	margin: 0 0 var(--wp--preset--spacing--10) 0;

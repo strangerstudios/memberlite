@@ -187,6 +187,11 @@ ol:where(:not(.wp-block-list)) {
   margin-right: var(--wp--preset--spacing--10);
 }
 
+.entry-content :where(ul, ol):where(:not([class])) {
+  margin-right: 0;
+  padding-right: 40px;
+}
+
 ul:where(:not(.wp-block-navigation):not(.wp-block-navigation__container)) li,
 ol li {
   margin: 0 0 var(--wp--preset--spacing--10) 0;
