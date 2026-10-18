@@ -51,7 +51,7 @@ if ( ! function_exists( 'memberlite_header_style' ) ) :
 			// Has a Custom Header been added?
 			if ( ! empty( $header_image ) ) { ?>
 			.site-header {
-				background-image: url("<?php header_image(); ?>");
+				background-image: url("<?php echo esc_url( $header_image ); ?>");
 				background-repeat: no-repeat;
 				background-position: center center;
 				background-size: cover;
