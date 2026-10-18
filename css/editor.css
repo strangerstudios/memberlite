@@ -32,7 +32,7 @@ label[for="memberlite-menu-location-select"] {
 	list-style: none;
 	display: flex;
 	flex-wrap: wrap;
-	gap: 0;
+	gap: 0 calc(var(--wp--preset--spacing--10) * 2);
 	margin-left: unset;
 	padding-left: 0;
 }
@@ -40,7 +40,6 @@ label[for="memberlite-menu-location-select"] {
 .wp-block-list.is-style-horizontal-left li,
 .wp-block-list.is-style-horizontal-center li {
 	margin: 0;
-	padding: 0 var(--wp--preset--spacing--10);
 }
 
 .wp-block-list.is-style-horizontal-center {
