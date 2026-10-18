@@ -253,15 +253,7 @@ add_action('save_post', 'memberlite_settings_save_meta_box_data');
 function memberlite_display_banner_bottom( ) {
 	global $post;
 
-	$queried_object = get_queried_object();
-	if ( ! empty( $queried_object->ID ) ) {
-		$post_id = $queried_object->ID;
-	}
-
-	// If we don't have a post_id and we're on the "blog", set post_id to the page_for_posts.
-	if ( empty( $post_id ) && ( is_home() || is_post_type_archive( 'post' ) ) ) {
-		$post_id = get_option('page_for_posts');
-	}
+	$post_id = memberlite_get_banner_post_id();
 
 	if ( ! empty( $post_id ) ) {
 		$memberlite_banner_bottom = get_post_meta( $post_id, '_memberlite_banner_bottom', true );
@@ -305,16 +297,7 @@ function memberlite_maybe_customize_masthead_content( $content ) {
 		return $content;
 	}
 
-	// Set the post_id to the queried object ID.
-	$queried_object = get_queried_object();
-	if ( ! empty( $queried_object->ID ) ) {
-		$post_id = $queried_object->ID;
-	}
-
-	// If we don't have a post_id and we're on the "blog", set post_id to the page_for_posts.
-	if ( empty( $post_id ) && ( is_home() || is_post_type_archive( 'post' ) ) ) {
-		$post_id = get_option('page_for_posts');
-	}
+	$post_id = memberlite_get_banner_post_id();
 
 	if ( ! empty( $post_id ) ) {
 		//add a space to the front, to make sure the default masthead isn't shown
@@ -534,12 +517,7 @@ function memberlite_get_masthead_banner_image_url() {
 		return false;
 	}
 
-	if ( is_home() || is_post_type_archive( 'post' ) ) {
-		$post_id = get_option( 'page_for_posts' );
-	} else {
-		$queried_object = get_queried_object();
-		$post_id = ! empty( $queried_object->ID ) ? $queried_object->ID : 0;
-	}
+	$post_id = memberlite_get_banner_post_id();
 
 	if ( empty( $post_id ) ) {
 		return false;
@@ -558,7 +536,7 @@ function memberlite_get_masthead_banner_image_url() {
  * Get banner's post ID
  *
  * @since 7.1.2
- * @return mixed
+ * @return int Post ID, or 0 if the current view has no post.
  */
 function memberlite_get_banner_post_id() {
 	// On term and author archives the queried object is a term or user, not a post.
@@ -566,7 +544,7 @@ function memberlite_get_banner_post_id() {
 	$memberlite_banner_post_id = $queried_object instanceof WP_Post ? $queried_object->ID : 0;
 
 	if ( empty( $memberlite_banner_post_id ) && ( is_home() || is_post_type_archive( 'post' ) ) ) {
-		$memberlite_banner_post_id = get_option( 'page_for_posts' );
+		$memberlite_banner_post_id = (int) get_option( 'page_for_posts' );
 	}
 
 	return $memberlite_banner_post_id;

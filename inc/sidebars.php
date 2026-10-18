@@ -369,7 +369,7 @@ function memberlite_get_widget_areas() {
 		}
 
 		// Figure out custom sidebar for this specific post.
-		if ( ! empty( $queried_object->ID ) ) {
+		if ( $queried_object instanceof WP_Post ) {
 			$memberlite_custom_sidebar = get_post_meta( $queried_object->ID, '_memberlite_custom_sidebar', true );
 		}
 	}
@@ -386,7 +386,7 @@ function memberlite_get_widget_areas() {
 	}
 
 	if ( ! empty( $memberlite_custom_sidebar ) ) {
-		if ( ! empty( $queried_object->ID ) ) {
+		if ( $queried_object instanceof WP_Post ) {
 			$memberlite_default_sidebar_position = get_post_meta( $queried_object->ID, '_memberlite_default_sidebar', true );
 		} else {
 			$memberlite_default_sidebar_position = false;

@@ -829,10 +829,7 @@ function memberlite_get_breadcrumbs() {
 	) ? true : false;
 
 	// Check _memberlite_banner_hide_breadcrumbs meta to determine if breadcrumbs should display.
-	$memberlite_breadcrumbs_post_id = get_queried_object_id();
-	if ( empty( $memberlite_breadcrumbs_post_id ) && ( is_home() || is_post_type_archive( 'post' ) ) ) {
-		$memberlite_breadcrumbs_post_id = get_option( 'page_for_posts' );
-	}
+	$memberlite_breadcrumbs_post_id = memberlite_get_banner_post_id();
 	$memberlite_show_breadcrumbs = true;
 	if ( ! empty( $memberlite_breadcrumbs_post_id ) ) {
 		$hide_breadcrumbs_meta = get_post_meta( $memberlite_breadcrumbs_post_id, '_memberlite_banner_hide_breadcrumbs', true );
