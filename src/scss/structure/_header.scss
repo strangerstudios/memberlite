@@ -381,15 +381,16 @@
 				display: flex;
 				flex: 1;
 				flex-wrap: nowrap;
-				padding-right: calc(var(--wp--preset--spacing--10) / 2);
+				padding-right: 0;
 			}
 
+			// Chevron sits next to the link text; the margin keeps the usual gap before the next item.
 			> button {
 				@include remove-btn-defaults;
-				border-left: 1px solid;
-				border-color: inherit;
 				color: inherit;
-				padding: 0 calc(var(--wp--preset--spacing--10) / 2);
+				margin-right: calc(var(--wp--preset--spacing--10) * 0.75);
+				min-width: 24px;
+				padding: 0 calc(var(--wp--preset--spacing--10) / 4);
 			}
 		}
 

@@ -2795,7 +2795,7 @@ textarea {
   display: flex;
   flex: 1;
   flex-wrap: nowrap;
-  padding-right: calc(var(--wp--preset--spacing--10) / 2);
+  padding-right: 0;
 }
 .site-header #site-navigation ul > li.menu-item-has-children > button,
 .site-header .memberlite-nav-menu ul > li.menu-item-has-children > button,
@@ -2806,10 +2806,10 @@ textarea {
   border: none;
   border-radius: 0;
   box-shadow: none;
-  border-left: 1px solid;
-  border-color: inherit;
   color: inherit;
-  padding: 0 calc(var(--wp--preset--spacing--10) / 2);
+  margin-right: calc(var(--wp--preset--spacing--10) * 0.75);
+  min-width: 24px;
+  padding: 0 calc(var(--wp--preset--spacing--10) / 4);
 }
 @media (min-width: 768px) {
   .site-header #site-navigation ul.sub-menu,
