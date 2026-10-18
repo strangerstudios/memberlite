@@ -12,8 +12,8 @@
  * @since 7.1
  */
 ?>
-<!-- wp:group {"className":"header-variation-03","align":"full","style":{"border":{"bottom":{"color":"var:preset|color|borders","width":"1px"}},"elements":{"link":{"color":{"text":"var:preset|color|footer-widgets"}}}},"backgroundColor":"footer-widgets-background","textColor":"footer-widgets","layout":{"type":"constrained"}} -->
-<div class="wp-block-group alignfull header-variation-03 has-footer-widgets-color has-footer-widgets-background-background-color has-text-color has-background has-link-color" style="border-bottom-color:var(--wp--preset--color--borders);border-bottom-width:1px"><!-- wp:group {"style":{"spacing":{"blockGap":"0"}},"layout":{"type":"constrained"}} -->
+<!-- wp:group {"className":"header-variation-03","align":"full","style":{"border":{"bottom":{"color":"var:preset|color|borders","width":"1px"}},"elements":{"link":{"color":{"text":"var:preset|color|footer-widgets"}}},"spacing":{"padding":{"top":"var:preset|spacing|20","bottom":"var:preset|spacing|20"}}},"backgroundColor":"footer-widgets-background","textColor":"footer-widgets","layout":{"type":"constrained"}} -->
+<div class="wp-block-group alignfull header-variation-03 has-footer-widgets-color has-footer-widgets-background-background-color has-text-color has-background has-link-color" style="border-bottom-color:var(--wp--preset--color--borders);border-bottom-width:1px;padding-top:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--20)"><!-- wp:group {"style":{"spacing":{"blockGap":"0"}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group"><!-- wp:site-logo {"width":140,"align":"center","className":"is-style-default","style":{"spacing":{"margin":{"top":"0","right":"0","bottom":"var:preset|spacing|10"}}}} /-->
 
 <!-- wp:site-title {"level":0,"textAlign":"center"} /-->
@@ -36,23 +36,23 @@
 <!-- wp:group {"align":"wide","layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"center"}} -->
 <div class="wp-block-group alignwide"><!-- wp:group {"layout":{"type":"flex","flexWrap":"nowrap"}} -->
 <div class="wp-block-group"><!-- wp:paragraph -->
-<p><a href="#">Home</a></p>
+<p><a href="#"><?php esc_html_e( 'Home', 'memberlite' ); ?></a></p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p><a href="#">About</a></p>
+<p><a href="#"><?php esc_html_e( 'About', 'memberlite' ); ?></a></p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p><a href="#">Membership</a></p>
+<p><a href="#"><?php esc_html_e( 'Membership', 'memberlite' ); ?></a></p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p><a href="#">Blog</a></p>
+<p><a href="#"><?php esc_html_e( 'Blog', 'memberlite' ); ?></a></p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p><a href="#">Contact</a></p>
+<p><a href="#"><?php esc_html_e( 'Contact', 'memberlite' ); ?></a></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></div>

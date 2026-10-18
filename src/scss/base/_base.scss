@@ -85,10 +85,6 @@ li > ol {
 	margin-top: var(--wp--preset--spacing--20);
 }
 
-figure {
-	margin: 0;
-}
-
 table {
 	background: var(--memberlite-color-site-background);
 	margin: var(--wp--preset--spacing--20) 0;
@@ -220,7 +216,8 @@ cite {
 	font-style: italic;
 }
 
-blockquote {
+// Classic editor blockquotes; the Quote and Pullquote blocks are styled in theme.json.
+blockquote:where(:not(.wp-block-quote, .wp-block-pullquote blockquote)) {
 	margin: var(--wp--preset--spacing--20) 0;
 	background-color: light-dark(
 		color-mix(in srgb, var(--memberlite-color-site-background), black 3%),

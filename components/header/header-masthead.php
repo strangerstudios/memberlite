@@ -16,14 +16,16 @@
 <?php
 // Check _memberlite_banner_show meta to determine if the masthead should display.
 // $args are passed from the header.php file via get_template_part()
-$should_render_masthead = $args['should_render_masthead'];
-$banner_image_url       = memberlite_get_masthead_banner_image_url();
+$should_render_masthead    = $args['should_render_masthead'];
+$banner_image_url          = memberlite_get_masthead_banner_image_url();
+$is_page_masthead_centered = is_page() && get_post_meta( $post->ID, '_memberlite_banner_text_alignment', true ) === 'centered';
+$masthead_classes          = $is_page_masthead_centered ? 'masthead text-center': 'masthead';
 
 if ( $should_render_masthead ) { ?>
 
 	<?php do_action( 'memberlite_before_masthead_outer' ); ?>
 
-	<div class="masthead">
+	<div class="<?php echo esc_attr( $masthead_classes ); ?>">
 		<?php if ( $banner_image_url ) { ?>
 			<img class="banner-image" src="<?php echo esc_url( $banner_image_url ); ?>" alt="" aria-hidden="true" />
 			<div class="masthead-banner">

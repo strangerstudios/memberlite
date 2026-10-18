@@ -1,0 +1,101 @@
+<?php
+/**
+ * Title: FAQ Accordion With Cover Image And CTA
+ * Slug: memberlite/accordion-cover-with-cta
+ * Description: Full-width cover image section with intro content and a CTA button on the left, and a caret-style accordion on the right. Content is static and should be customized per site.
+ * Categories: memberlite-accordion
+ * Keywords: faq, accordion, questions, cta, cover, community
+ * @package WordPress
+ * @subpackage Memberlite
+ * @since Memberlite TBD
+ */
+?>
+<!-- wp:group {"align":"full","style":{"spacing":{"blockGap":"var:preset|spacing|30","padding":{"top":"var:preset|spacing|70","bottom":"var:preset|spacing|70"}}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group alignfull" style="padding-top:var(--wp--preset--spacing--70);padding-bottom:var(--wp--preset--spacing--70)"><!-- wp:cover {"url":"<?php echo esc_url( get_template_directory_uri() ); ?>/patterns/images/landscapes/daphne-fecheyr-VCET-_hySnU-unsplash-md.jpg","dimRatio":90,"overlayColor":"site-navigation-background","isUserOverlayColor":true,"isDark":false,"align":"wide","style":{"spacing":{"padding":{"right":"var:preset|spacing|50","left":"var:preset|spacing|50","top":"var:preset|spacing|50","bottom":"var:preset|spacing|50"}}},"layout":{"type":"constrained"},"textColor":"site-navigation-link"} -->
+<div class="wp-block-cover alignwide is-light has-site-navigation-link-color has-text-color" style="padding-top:var(--wp--preset--spacing--50);padding-right:var(--wp--preset--spacing--50);padding-bottom:var(--wp--preset--spacing--50);padding-left:var(--wp--preset--spacing--50)"><img class="wp-block-cover__image-background" alt="" src="<?php echo esc_url( get_template_directory_uri() ); ?>/patterns/images/landscapes/daphne-fecheyr-VCET-_hySnU-unsplash-md.jpg" data-object-fit="cover"/><span aria-hidden="true" class="wp-block-cover__background has-site-navigation-background-background-color has-background-dim-90 has-background-dim"></span><div class="wp-block-cover__inner-container"><!-- wp:columns {"align":"wide","style":{"spacing":{"blockGap":{"left":"var:preset|spacing|10"}}}} -->
+<div class="wp-block-columns alignwide"><!-- wp:column {"style":{"spacing":{"padding":{"right":"var:preset|spacing|20"},"blockGap":"var:preset|spacing|10"}}} -->
+<div class="wp-block-column" style="padding-right:var(--wp--preset--spacing--20)"><!-- wp:paragraph {"style":{"elements":{"link":{"color":{"text":"var:preset|color|color-action"}}},"typography":{"letterSpacing":"1px","textTransform":"uppercase"}},"textColor":"color-action","fontSize":"21"} -->
+<p class="has-color-action-color has-text-color has-link-color has-21-font-size" style="letter-spacing:1px;text-transform:uppercase"><strong><?php esc_html_e( 'Community Benefits', 'memberlite' ); ?></strong></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"style":{"elements":{"link":{"color":{"text":"var:preset|color|site-navigation-link"}}}},"textColor":"site-navigation-link","fontSize":"36"} -->
+<h2 class="wp-block-heading has-site-navigation-link-color has-text-color has-link-color has-36-font-size"><?php esc_html_e( 'What You Need to Know About the Community', 'memberlite' ); ?></h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p><?php esc_html_e( 'We\'ve pulled together the questions new members ask us most, so you know exactly what to expect before you join.', 'memberlite' ); ?></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:buttons -->
+<div class="wp-block-buttons"><!-- wp:button -->
+<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="#"><?php esc_html_e( 'Join Now', 'memberlite' ); ?></a></div>
+<!-- /wp:button --></div>
+<!-- /wp:buttons --></div>
+<!-- /wp:column -->
+
+<!-- wp:column -->
+<div class="wp-block-column"><!-- wp:accordion {"autoclose":true,"className":"is-style-accrdn-caret","style":{"border":{"radius":{"topLeft":"8px","topRight":"8px","bottomLeft":"8px","bottomRight":"8px"}},"spacing":{"padding":{"top":"var:preset|spacing|10","bottom":"var:preset|spacing|10","left":"var:preset|spacing|10","right":"var:preset|spacing|10"}},"elements":{"link":{"color":{"text":"var:preset|color|body-text"}}}},"backgroundColor":"base","textColor":"body-text"} -->
+<div role="group" class="wp-block-accordion is-style-accrdn-caret has-body-text-color has-base-background-color has-text-color has-background has-link-color" style="border-top-left-radius:8px;border-top-right-radius:8px;border-bottom-left-radius:8px;border-bottom-right-radius:8px;padding-top:var(--wp--preset--spacing--10);padding-right:var(--wp--preset--spacing--10);padding-bottom:var(--wp--preset--spacing--10);padding-left:var(--wp--preset--spacing--10)"><!-- wp:accordion-item {"style":{"spacing":{"margin":{"bottom":"0"}}}} -->
+<div class="wp-block-accordion-item" style="margin-bottom:0"><!-- wp:accordion-heading {"style":{"border":{"width":"0px","style":"none"},"spacing":{"padding":{"bottom":"10px"}}},"fontSize":"18"} -->
+<h3 class="wp-block-accordion-heading has-icon has-icon-right has-18-font-size" style="border-style:none;border-width:0px"><button type="button" class="wp-block-accordion-heading__toggle" style="padding-bottom:10px"><span class="wp-block-accordion-heading__toggle-title"><?php esc_html_e( 'How active is the community forum area?', 'memberlite' ); ?></span><span class="wp-block-accordion-heading__toggle-icon" aria-hidden="true">+</span></button></h3>
+<!-- /wp:accordion-heading -->
+
+<!-- wp:accordion-panel {"style":{"spacing":{"padding":{"top":"0","bottom":"var:preset|spacing|10"}}}} -->
+<div role="region" class="wp-block-accordion-panel" style="padding-top:0;padding-bottom:var(--wp--preset--spacing--10)"><!-- wp:paragraph -->
+<p><?php esc_html_e( 'Our community is extremely vibrant and engaging. You will always feel like this is a safe and active place to engage.', 'memberlite' ); ?></p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:accordion-panel --></div>
+<!-- /wp:accordion-item -->
+
+<!-- wp:accordion-item {"style":{"spacing":{"margin":{"bottom":"0"}},"border":{"top":{"color":"var:preset|color|borders","width":"1px"},"right":[],"bottom":[],"left":[]}}} -->
+<div class="wp-block-accordion-item" style="border-top-color:var(--wp--preset--color--borders);border-top-width:1px;margin-bottom:0"><!-- wp:accordion-heading {"style":{"border":{"width":"0px","style":"none"},"spacing":{"padding":{"bottom":"10px"}}},"fontSize":"18"} -->
+<h3 class="wp-block-accordion-heading has-icon has-icon-right has-18-font-size" style="border-style:none;border-width:0px"><button type="button" class="wp-block-accordion-heading__toggle" style="padding-bottom:10px"><span class="wp-block-accordion-heading__toggle-title"><?php esc_html_e( 'What do I get access to as a member?', 'memberlite' ); ?></span><span class="wp-block-accordion-heading__toggle-icon" aria-hidden="true">+</span></button></h3>
+<!-- /wp:accordion-heading -->
+
+<!-- wp:accordion-panel {"style":{"spacing":{"padding":{"top":"0","bottom":"var:preset|spacing|10"}}}} -->
+<div role="region" class="wp-block-accordion-panel" style="padding-top:0;padding-bottom:var(--wp--preset--spacing--10)"><!-- wp:paragraph {"style":{"spacing":{"padding":{"top":"0"}}}} -->
+<p style="padding-top:0"><?php esc_html_e( 'Members get full access to our private community, exclusive resources, and monthly live events, everything you need to get the most out of belonging.', 'memberlite' ); ?></p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:accordion-panel --></div>
+<!-- /wp:accordion-item -->
+
+<!-- wp:accordion-item {"style":{"spacing":{"margin":{"bottom":"0"}},"border":{"top":{"color":"var:preset|color|borders","width":"1px"},"right":[],"bottom":[],"left":[]}}} -->
+<div class="wp-block-accordion-item" style="border-top-color:var(--wp--preset--color--borders);border-top-width:1px;margin-bottom:0"><!-- wp:accordion-heading {"style":{"border":{"width":"0px","style":"none"},"spacing":{"padding":{"bottom":"10px"}}},"fontSize":"18"} -->
+<h3 class="wp-block-accordion-heading has-icon has-icon-right has-18-font-size" style="border-style:none;border-width:0px"><button type="button" class="wp-block-accordion-heading__toggle" style="padding-bottom:10px"><span class="wp-block-accordion-heading__toggle-title"><?php esc_html_e( 'Can I upgrade or downgrade my plan?', 'memberlite' ); ?></span><span class="wp-block-accordion-heading__toggle-icon" aria-hidden="true">+</span></button></h3>
+<!-- /wp:accordion-heading -->
+
+<!-- wp:accordion-panel {"style":{"spacing":{"padding":{"top":"0","bottom":"var:preset|spacing|10"}}}} -->
+<div role="region" class="wp-block-accordion-panel" style="padding-top:0;padding-bottom:var(--wp--preset--spacing--10)"><!-- wp:paragraph -->
+<p><?php esc_html_e( 'Absolutely. You can change your membership level any time from your account dashboard, and your billing will adjust automatically.', 'memberlite' ); ?></p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:accordion-panel --></div>
+<!-- /wp:accordion-item -->
+
+<!-- wp:accordion-item {"style":{"spacing":{"margin":{"bottom":"0"}},"border":{"top":{"color":"var:preset|color|borders","width":"1px"},"right":[],"bottom":[],"left":[]}}} -->
+<div class="wp-block-accordion-item" style="border-top-color:var(--wp--preset--color--borders);border-top-width:1px;margin-bottom:0"><!-- wp:accordion-heading {"style":{"border":{"width":"0px","style":"none"},"spacing":{"padding":{"bottom":"10px"}}},"fontSize":"18"} -->
+<h3 class="wp-block-accordion-heading has-icon has-icon-right has-18-font-size" style="border-style:none;border-width:0px"><button type="button" class="wp-block-accordion-heading__toggle" style="padding-bottom:10px"><span class="wp-block-accordion-heading__toggle-title"><?php esc_html_e( 'Do you offer a free trial?', 'memberlite' ); ?></span><span class="wp-block-accordion-heading__toggle-icon" aria-hidden="true">+</span></button></h3>
+<!-- /wp:accordion-heading -->
+
+<!-- wp:accordion-panel {"style":{"spacing":{"padding":{"top":"0","bottom":"var:preset|spacing|10"}}}} -->
+<div role="region" class="wp-block-accordion-panel" style="padding-top:0;padding-bottom:var(--wp--preset--spacing--10)"><!-- wp:paragraph -->
+<p><?php esc_html_e( 'Yes, new members get a 7-day free trial with full access to member-only content before your card is ever charged.', 'memberlite' ); ?></p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:accordion-panel --></div>
+<!-- /wp:accordion-item -->
+
+<!-- wp:accordion-item {"style":{"spacing":{"margin":{"bottom":"0"}},"border":{"top":{"color":"var:preset|color|borders","width":"1px"},"right":[],"bottom":[],"left":[]}}} -->
+<div class="wp-block-accordion-item" style="border-top-color:var(--wp--preset--color--borders);border-top-width:1px;margin-bottom:0"><!-- wp:accordion-heading {"style":{"border":{"width":"0px","style":"none"},"spacing":{"padding":{"bottom":"10px"}}},"fontSize":"18"} -->
+<h3 class="wp-block-accordion-heading has-icon has-icon-right has-18-font-size" style="border-style:none;border-width:0px"><button type="button" class="wp-block-accordion-heading__toggle" style="padding-bottom:10px"><span class="wp-block-accordion-heading__toggle-title"><?php esc_html_e( 'How do I cancel if it\'s not for me?', 'memberlite' ); ?></span><span class="wp-block-accordion-heading__toggle-icon" aria-hidden="true">+</span></button></h3>
+<!-- /wp:accordion-heading -->
+
+<!-- wp:accordion-panel {"style":{"spacing":{"padding":{"top":"0","bottom":"var:preset|spacing|10"}}}} -->
+<div role="region" class="wp-block-accordion-panel" style="padding-top:0;padding-bottom:var(--wp--preset--spacing--10)"><!-- wp:paragraph {"style":{"spacing":{"padding":{"top":"0"}}}} -->
+<p style="padding-top:0"><?php esc_html_e( 'You can cancel any time from your account page. There are no long-term contracts, and you\'ll keep access through the end of your billing period.', 'memberlite' ); ?></p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:accordion-panel --></div>
+<!-- /wp:accordion-item --></div>
+<!-- /wp:accordion --></div>
+<!-- /wp:column --></div>
+<!-- /wp:columns --></div></div>
+<!-- /wp:cover --></div>
+<!-- /wp:group -->
