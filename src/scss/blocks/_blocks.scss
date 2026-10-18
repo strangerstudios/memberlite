@@ -121,7 +121,7 @@ hr.wp-block-separator {
 	// For default separator, no block styles
 	&:where(:not(.is-style-wide, .is-style-dots, .is-style-faded-edges, .is-style-double, .is-style-flourish-diamond)) {
 		max-width: 100px !important;
-		margin: auto !important;
+		margin-inline: auto !important;
 	}
 
 	&.is-style-dots:before {

@@ -170,21 +170,21 @@ hr.wp-block-separator.is-style-flourish-diamond.alignfull {
 hr.wp-block-separator.is-style-faded-edges,
 .editor-styles-wrapper hr.wp-block-separator.has-background.is-style-faded-edges {
 	height: 1px;
-	width: unset;
+	width: 100% !important;
 }
 
 /* Editor only overwrite on core styles that break our styles for height */
 hr.wp-block-separator.is-style-double,
 .editor-styles-wrapper hr.wp-block-separator.has-background.is-style-double {
 	height: 10px;
-	width: unset;
+	width: 100% !important;
 }
 
 /* Editor only overwrite on core styles that break our styles for height */
 hr.wp-block-separator.is-style-flourish-diamond,
 .editor-styles-wrapper hr.wp-block-separator.has-background.is-style-flourish-diamond {
 	height: 32px;
-	width: unset;
+	width: 100% !important;
 }
 
 /*--------------------------------------------------------------

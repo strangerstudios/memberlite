@@ -1218,7 +1218,7 @@ hr.wp-block-separator {
 }
 hr.wp-block-separator:where(:not(.is-style-wide, .is-style-dots, .is-style-faded-edges, .is-style-double, .is-style-flourish-diamond)) {
   max-width: 100px !important;
-  margin: auto !important;
+  margin-inline: auto !important;
 }
 hr.wp-block-separator.is-style-dots:before {
   color: currentColor;
