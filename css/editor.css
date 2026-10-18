@@ -34,6 +34,7 @@ label[for="memberlite-menu-location-select"] {
 	flex-wrap: wrap;
 	gap: 0;
 	margin-left: unset;
+	padding-left: 0;
 }
 
 .wp-block-list.is-style-horizontal-left li,

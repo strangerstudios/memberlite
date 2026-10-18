@@ -57,7 +57,10 @@ hr {
 ul {
 	list-style: disc;
 	margin-top: var(--wp--preset--spacing--10);
-	margin-left: var(--wp--preset--spacing--10);
+
+	&:where(:not(.wp-block-list)) {
+		margin-left: var(--wp--preset--spacing--10);
+	}
 }
 
 ul ul {
@@ -67,7 +70,10 @@ ul ul {
 ol {
 	list-style: decimal;
 	margin-top: var(--wp--preset--spacing--10);
-	margin-left: var(--wp--preset--spacing--10);
+
+	&:where(:not(.wp-block-list)) {
+		margin-left: var(--wp--preset--spacing--10);
+	}
 }
 
 ul:where(:not(.wp-block-navigation):not(.wp-block-navigation__container)) li,

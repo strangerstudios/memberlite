@@ -82,7 +82,8 @@ h1, h2, h3, h4, h5, h6 {
   text-wrap: balance;
 }
 
-ol, ul {
+ol:where(:not(.wp-block-list)),
+ul:where(:not(.wp-block-list)) {
   list-style: none;
   padding-right: 0;
 }
@@ -169,6 +170,8 @@ hr {
 ul {
   list-style: disc;
   margin-top: var(--wp--preset--spacing--10);
+}
+ul:where(:not(.wp-block-list)) {
   margin-right: var(--wp--preset--spacing--10);
 }
 
@@ -179,6 +182,8 @@ ul ul {
 ol {
   list-style: decimal;
   margin-top: var(--wp--preset--spacing--10);
+}
+ol:where(:not(.wp-block-list)) {
   margin-right: var(--wp--preset--spacing--10);
 }
 
@@ -1161,6 +1166,7 @@ textarea {
   flex-wrap: wrap;
   gap: 0;
   margin-right: unset;
+  padding-right: 0;
 }
 .wp-block-list.is-style-horizontal-left li, .wp-block-list.is-style-horizontal-center li {
   margin: 0;
@@ -2919,6 +2925,7 @@ body.mobile-nav-open {
 }
 #mobile-navigation ul {
   margin-right: 0;
+  padding-right: 0;
 }
 #mobile-navigation ul li {
   list-style: none;
@@ -2949,6 +2956,7 @@ body.mobile-nav-open {
 #mobile-navigation .widget ol {
   list-style: none;
   margin: 0;
+  padding-right: 0;
 }
 @media (max-width: 767px) {
   #mobile-navigation .member-navigation {
@@ -3275,6 +3283,7 @@ body.memberlite-banner-hidden .entry-content > .banner:first-child {
 .footer-widgets ul {
   list-style: none;
   margin: 0.7rem 0 0 0;
+  padding-right: 0;
 }
 .footer-widgets .post_author_avatar {
   border-radius: 50%;

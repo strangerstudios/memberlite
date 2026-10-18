@@ -42,7 +42,9 @@ h1, h2, h3, h4, h5, h6 {
 	text-wrap: balance;
 }
 
-ol, ul {
+// List blocks keep the browser's padding indent, which layout margin resets can't remove.
+ol:where(:not(.wp-block-list)),
+ul:where(:not(.wp-block-list)) {
 	list-style: none;
 	padding-left: 0;
 }

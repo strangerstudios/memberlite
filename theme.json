@@ -1618,6 +1618,9 @@
 					}
 				}
 			},
+			"core/list": {
+				"css": "& li{margin-bottom:var(--wp--preset--spacing--10)}& li:last-child{margin-bottom:0}"
+			},
 			"core/navigation": {
 				"elements": {
 					"link": {
