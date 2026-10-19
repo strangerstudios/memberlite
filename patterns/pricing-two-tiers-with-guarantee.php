@@ -22,8 +22,8 @@
 <!-- /wp:group -->
 
 <!-- wp:group {"layout":{"type":"grid","minimumColumnWidth":"16rem"}} -->
-<div class="wp-block-group"><!-- wp:pmpro/single-level {"selected_membership_level":"1","style":{"spacing":{"blockGap":"var:preset|spacing|10","padding":{"top":"var:preset|spacing|20","bottom":"var:preset|spacing|20","left":"var:preset|spacing|20","right":"var:preset|spacing|20"}},"border":{"width":"3px","radius":{"topLeft":"12px","topRight":"12px","bottomLeft":"12px","bottomRight":"12px"}}},"borderColor":"color-primary","layout":{"type":"constrained"}} -->
-<div class="wp-block-pmpro-single-level has-border-color has-color-primary-border-color" style="border-width:3px;border-top-left-radius:12px;border-top-right-radius:12px;border-bottom-left-radius:12px;border-bottom-right-radius:12px;padding-top:var(--wp--preset--spacing--20);padding-right:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--20);padding-left:var(--wp--preset--spacing--20)"><!-- wp:pmpro/single-level-name {"textAlign":"center","selected_membership_level":"1"} -->
+<div class="wp-block-group"><!-- wp:pmpro/single-level {"selected_membership_level":"1","className":"is-style-card","style":{"spacing":{"blockGap":"var:preset|spacing|10","padding":{"top":"var:preset|spacing|20","bottom":"var:preset|spacing|20","left":"var:preset|spacing|20","right":"var:preset|spacing|20"}},"border":{"width":"3px"}},"borderColor":"color-primary","layout":{"type":"constrained"}} -->
+<div class="wp-block-pmpro-single-level is-style-card has-border-color has-color-primary-border-color" style="border-width:3px;padding-top:var(--wp--preset--spacing--20);padding-right:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--20);padding-left:var(--wp--preset--spacing--20)"><!-- wp:pmpro/single-level-name {"textAlign":"center","selected_membership_level":"1"} -->
 Explorer
 <!-- /wp:pmpro/single-level-name -->
 
@@ -64,8 +64,8 @@ Explorer
 <!-- /wp:group --></div>
 <!-- /wp:pmpro/single-level -->
 
-<!-- wp:pmpro/single-level {"selected_membership_level":"2","style":{"spacing":{"blockGap":"var:preset|spacing|10","padding":{"top":"var:preset|spacing|20","bottom":"var:preset|spacing|20","left":"var:preset|spacing|20","right":"var:preset|spacing|20"}},"border":{"radius":{"topLeft":"12px","topRight":"12px","bottomLeft":"12px","bottomRight":"12px"}}},"backgroundColor":"page-masthead-background","layout":{"type":"constrained"}} -->
-<div class="wp-block-pmpro-single-level has-page-masthead-background-background-color has-background" style="border-top-left-radius:12px;border-top-right-radius:12px;border-bottom-left-radius:12px;border-bottom-right-radius:12px;padding-top:var(--wp--preset--spacing--20);padding-right:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--20);padding-left:var(--wp--preset--spacing--20)"><!-- wp:pmpro/single-level-name {"textAlign":"center","selected_membership_level":"2","style":{"elements":{"link":{"color":{"text":"var:preset|color|page-masthead"}}}},"textColor":"page-masthead"} -->
+<!-- wp:pmpro/single-level {"selected_membership_level":"2","className":"is-style-card","style":{"spacing":{"blockGap":"var:preset|spacing|10","padding":{"top":"var:preset|spacing|20","bottom":"var:preset|spacing|20","left":"var:preset|spacing|20","right":"var:preset|spacing|20"}}},"backgroundColor":"page-masthead-background","layout":{"type":"constrained"}} -->
+<div class="wp-block-pmpro-single-level is-style-card has-page-masthead-background-background-color has-background" style="padding-top:var(--wp--preset--spacing--20);padding-right:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--20);padding-left:var(--wp--preset--spacing--20)"><!-- wp:pmpro/single-level-name {"textAlign":"center","selected_membership_level":"2","style":{"elements":{"link":{"color":{"text":"var:preset|color|page-masthead"}}}},"textColor":"page-masthead"} -->
 Mastery Pass
 <!-- /wp:pmpro/single-level-name -->
 

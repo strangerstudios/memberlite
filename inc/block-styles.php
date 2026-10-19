@@ -56,6 +56,21 @@ function memberlite_register_block_styles(): void {
 			array( 'name'  => 'title-podcast', 'label' => __( 'Podcast', 'memberlite' ) ),
 			array( 'name'  => 'title-video', 'label' => __( 'Video', 'memberlite' ) ),
 		),
+		'core/group'      => array(
+			array( 'name' => 'card', 'label' => __( 'Card', 'memberlite' ) ),
+		),
+		'core/columns'    => array(
+			array( 'name' => 'card', 'label' => __( 'Card', 'memberlite' ) ),
+		),
+		'core/column'     => array(
+			array( 'name' => 'card', 'label' => __( 'Card', 'memberlite' ) ),
+		),
+		'core/post-template' => array(
+			array( 'name' => 'card', 'label' => __( 'Card', 'memberlite' ) ),
+		),
+		'pmpro/single-level' => array(
+			array( 'name' => 'card', 'label' => __( 'Card', 'memberlite' ) ),
+		),
 	);
 
 	foreach ( $block_styles as $block_name => $styles ) {

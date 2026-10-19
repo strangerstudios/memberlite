@@ -1050,11 +1050,11 @@ class Memberlite_Customize {
 
 				if ( $override_pmpro_colors ) : ?>
 					/* PMPro color vars */
-					--pmpro--color--accent: <?php echo '#' . esc_attr( $active_colors['color_primary'] ); ?>;
-					--pmpro--color--accent--variation: <?php echo '#' . esc_attr( $active_colors['color_primary'] ); ?>;
-					--pmpro--color--base: light-dark( #fff, <?php echo '#' . esc_attr( $active_colors['background_color'] ); ?> );
-					--pmpro--color--contrast: <?php echo '#' . esc_attr( $active_colors['color_text'] ); ?>;
-					--pmpro--color--border--variation: <?php echo ( $pmpro_style_variation === 'variation_high_contrast' ) ? '#' . esc_attr( $active_colors['color_text'] ) : '#' . esc_attr( $active_colors['color_borders'] ); ?>;
+					<?php
+					foreach ( memberlite_pmpro_get_color_override_vars() as $pmpro_var => $pmpro_value ) {
+						echo esc_attr( $pmpro_var ) . ': ' . esc_attr( $pmpro_value ) . ";\n\t\t\t\t\t";
+					}
+					?>
 				<?php endif; ?>
 
 				<?php if ( $override_pmpro_button_style && $pmpro_style_variation === 'variation_1' ) : ?>

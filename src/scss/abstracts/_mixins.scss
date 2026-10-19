@@ -118,3 +118,13 @@
 	margin-right: auto;
 	text-align: center;
 }
+
+// Card surface from the theme.json card tokens (follows the PMPro style variation when PMPro is active)
+@mixin card {
+	background-color: var(--wp--custom--card--background);
+	border: 1px solid var(--wp--custom--card--border-color);
+	border-radius: var(--wp--custom--card--radius);
+	box-shadow: var(--wp--custom--card--shadow);
+	color: var(--wp--custom--card--color);
+	overflow: hidden;
+}

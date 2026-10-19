@@ -10,6 +10,14 @@
 			"border": {
 				"radius": "8px"
 			},
+			"card": {
+				"background": "color-mix(in srgb, Canvas 10%, transparent)",
+				"borderColor": "var(--wp--preset--color--borders)",
+				"color": "currentcolor",
+				"padding": "var(--wp--preset--spacing--20)",
+				"radius": "var(--wp--custom--border--radius)",
+				"shadow": "none"
+			},
 			"button": {
 				"radius": "var(--wp--custom--border--radius)",
 				"paddingBlock": "calc(var(--wp--preset--spacing--10) / 1.5)",

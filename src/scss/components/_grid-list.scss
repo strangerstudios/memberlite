@@ -17,15 +17,12 @@
 
 	// Each direct child is a card
 	> * {
-		background-color: color-mix(in srgb, Canvas 10%, transparent);
-		border: 1px solid var(--memberlite-color-borders);
-		border-radius: var(--wp--custom--border--radius);
+		@include card;
 		display: flex;
 		flex-direction: column;
 		flex-wrap: wrap;
 		justify-content: start;
 		margin: 0;
-		overflow: hidden;
 		padding: var(--wp--preset--spacing--10);
 		text-align: center;
 	}
