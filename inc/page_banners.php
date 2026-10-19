@@ -281,7 +281,7 @@ function memberlite_get_masthead_icon_html( $icon ) {
 		return '';
 	}
 
-	$size = is_page_template( 'templates/narrow-width.php' ) ? '2x' : '4x';
+	$size = 'narrow' === memberlite_get_layout() ? '2x' : '4x';
 
 	return do_shortcode( '[fa icon="' . esc_attr( $icon ) . '" size="' . esc_attr( $size ) . '"]' );
 }

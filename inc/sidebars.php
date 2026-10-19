@@ -115,11 +115,66 @@ function memberlite_sidebar_add_meta_box() {
 			'memberlite_sidebar_meta_box_callback',
 			$screen,
 			'side',
-			'core'
+			'core',
+			// The block editor's Layout panel has these settings for these post types.
+			array( '__back_compat_meta_box' => in_array( $screen, memberlite_get_layout_post_types(), true ) )
 		);
 	}
 }
 add_action( 'add_meta_boxes', 'memberlite_sidebar_add_meta_box' );
+
+/**
+ * Get the ID of the sidebar a post type shows before any custom sidebar is added.
+ *
+ * @since TBD
+ *
+ * @param string $post_type Post type slug.
+ * @return string Sidebar ID, or 'memberlite_sidebar_blank' when the CPT's default sidebar is hidden.
+ */
+function memberlite_get_default_sidebar_id_for_post_type( string $post_type ): string {
+	if ( 'post' === $post_type ) {
+		return 'sidebar-2';
+	}
+
+	if ( 'page' === $post_type ) {
+		return 'sidebar-1';
+	}
+
+	$memberlite_cpt_sidebars = get_option( 'memberlite_cpt_sidebars', array() );
+
+	if ( empty( $memberlite_cpt_sidebars[ $post_type ] ) || 'memberlite_sidebar_default' === $memberlite_cpt_sidebars[ $post_type ] ) {
+		return 'sidebar-1';
+	}
+
+	return $memberlite_cpt_sidebars[ $post_type ];
+}
+
+/**
+ * Whether a page is the PMPro Membership Account page or one of its children.
+ *
+ * These pages never show the page children menu, so the setting is locked.
+ *
+ * @since TBD
+ *
+ * @param WP_Post $post The page.
+ * @return bool
+ */
+function memberlite_is_pmpro_account_page_tree( WP_Post $post ): bool {
+	global $pmpro_pages;
+
+	if ( ! defined( 'PMPRO_VERSION' ) || 'page' !== $post->post_type || empty( $pmpro_pages['account'] ) ) {
+		return false;
+	}
+
+	if ( ! empty( $post->post_parent ) ) {
+		$post_ancestors = get_post_ancestors( $post );
+		$toplevelpost   = end( $post_ancestors );
+	} else {
+		$toplevelpost = $post->ID;
+	}
+
+	return (int) $pmpro_pages['account'] === (int) $toplevelpost;
+}
 
 /**
  * Meta box for custom sidebar selection.
@@ -134,22 +189,8 @@ function memberlite_sidebar_meta_box_callback( $post ) {
 	$memberlite_hide_children = get_post_meta( $post->ID, '_memberlite_hide_children', true );
 	$memberlite_custom_sidebar = get_post_meta( $post->ID, '_memberlite_custom_sidebar', true );
 
-	$post_type = get_post_type( $post );
-
-	// Determine base default sidebar by post type.
-	if ( ! in_array( $post_type, array( 'post', 'page' ), true ) ) {
-		$memberlite_cpt_sidebars = get_option( 'memberlite_cpt_sidebars', array() );
-
-		if ( empty( $memberlite_cpt_sidebars[ $post_type ] ) || 'memberlite_sidebar_default' === $memberlite_cpt_sidebars[ $post_type ] ) {
-			$memberlite_cpt_sidebar_id = 'sidebar-1';
-		} else {
-			$memberlite_cpt_sidebar_id = $memberlite_cpt_sidebars[ $post_type ];
-		}
-	} elseif ( 'post' === $post_type ) {
-		$memberlite_cpt_sidebar_id = 'sidebar-2';
-	} else {
-		$memberlite_cpt_sidebar_id = 'sidebar-1';
-	}
+	$post_type                 = get_post_type( $post );
+	$memberlite_cpt_sidebar_id = memberlite_get_default_sidebar_id_for_post_type( $post_type );
 
 	// Get the name of the default sidebar (if it exists).
 	if ( ! empty( $wp_registered_sidebars[ $memberlite_cpt_sidebar_id ] ) ) {
@@ -162,19 +203,7 @@ function memberlite_sidebar_meta_box_callback( $post ) {
 	if ( 'page' === $post_type ) {
 		echo '<input type="hidden" name="memberlite_hide_children_present" value="1" />';
 
-		if ( defined( 'PMPRO_VERSION' ) ) {
-			global $pmpro_pages;
-
-			// Check if this is the Membership Account page or a child of it.
-			if ( ! empty( $post->post_parent ) ) {
-				$post_ancestors = get_post_ancestors( $post );
-				$toplevelpost   = end( $post_ancestors );
-			} else {
-				$toplevelpost = $post->ID;
-			}
-
-			$disable_hide_children_setting = ! empty( $pmpro_pages['account'] ) && (int) $pmpro_pages['account'] === (int) $toplevelpost;
-		}
+		$disable_hide_children_setting = memberlite_is_pmpro_account_page_tree( $post );
 
 		if ( ! empty( $disable_hide_children_setting ) ) {
 			echo '<label for="memberlite_hide_children" class="selectit"><input name="memberlite_hide_children" type="checkbox" id="memberlite_hide_children" value="1" checked="checked" disabled="disabled">' . esc_html__( 'Hide Page Children Menu in Sidebar', 'memberlite' ) . '</label>';

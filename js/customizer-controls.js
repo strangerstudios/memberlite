@@ -192,50 +192,44 @@
 		});
 	});
 
-	// Toggle CPT controls based on inherit checkbox and sidebar_location value.
-	if ( typeof memberlite_cpt_archive_slugs !== 'undefined' ) {
-		memberlite_cpt_archive_slugs.forEach( function( postType ) {
-			const inheritKey = 'inherit_posts_archives_' + postType;
-			const archiveKey = 'content_archives_' + postType;
-			const sidebarKey = 'sidebar_location_' + postType;
-			const ratioKey   = 'columns_ratio_' + postType;
+	// Show each Columns Ratio only for sidebar layouts, and hide CPT layout controls while inheriting from Posts & Archives.
+	if ( typeof memberliteLayoutControls !== 'undefined' ) {
+		memberliteLayoutControls.forEach( function( item ) {
+			function update() {
+				const inherited = item.inherit && wp.customize( item.inherit ) ? !! wp.customize( item.inherit )() : false;
+				const layout    = wp.customize( item.layout ) ? wp.customize( item.layout )() : '';
 
-			function updateRatioVisibility( inherited, sidebarVal ) {
-				wp.customize.control( ratioKey, function( control ) {
-					control.active.set( ! inherited && sidebarVal !== 'sidebar-blog-none' );
+				wp.customize.control( item.layout, function( control ) {
+					control.active.set( ! inherited );
+				} );
+				wp.customize.control( item.ratio, function( control ) {
+					control.active.set( ! inherited && ( layout === 'sidebar-right' || layout === 'sidebar-left' ) );
 				} );
 			}
 
-			wp.customize( inheritKey, function( setting ) {
-				setting.bind( function( inherited ) {
-					wp.customize.control( archiveKey, function( control ) {
-						control.active.set( ! inherited );
-					} );
-					wp.customize.control( sidebarKey, function( control ) {
-						control.active.set( ! inherited );
-					} );
-					const sidebarVal = wp.customize( sidebarKey ) ? wp.customize( sidebarKey )() : 'sidebar-blog-right';
-					updateRatioVisibility( inherited, sidebarVal );
-				} );
+			wp.customize( item.layout, function( setting ) {
+				setting.bind( update );
 			} );
+			if ( item.inherit ) {
+				wp.customize( item.inherit, function( setting ) {
+					setting.bind( update );
+				} );
+			}
+		} );
+	}
 
-			wp.customize( sidebarKey, function( value ) {
-				value.bind( function( newval ) {
-					const inherited = wp.customize( inheritKey ) ? wp.customize( inheritKey )() : true;
-					updateRatioVisibility( inherited, newval );
+	// Hide CPT Archive Display while inheriting from Posts & Archives.
+	if ( typeof memberlite_cpt_archive_slugs !== 'undefined' ) {
+		memberlite_cpt_archive_slugs.forEach( function( postType ) {
+			wp.customize( 'inherit_posts_archives_' + postType, function( setting ) {
+				setting.bind( function( inherited ) {
+					wp.customize.control( 'content_archives_' + postType, function( control ) {
+						control.active.set( ! inherited );
+					} );
 				} );
 			} );
 		} );
 	}
-
-	// Toggle columns_ratio_blog visibility based on sidebar_location_blog value.
-	wp.customize( 'sidebar_location_blog', function( value ) {
-		value.bind( function( newval ) {
-			wp.customize.control( 'columns_ratio_blog', function( control ) {
-				control.active.set( newval !== 'sidebar-blog-none' );
-			} );
-		} );
-	} );
 
 	// If a header/footer variation slug setting points to a post that no longer
 	// appears in the dropdown (e.g. the post was trashed), the <select> has no

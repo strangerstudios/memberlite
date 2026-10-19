@@ -22,6 +22,9 @@ function memberlite_checkForUpdates() {
 	if ( empty( $memberlite_db_version ) ) {
 		$memberlite_db_version = '2018080101';
 		update_option( 'memberlite_db_version', $memberlite_db_version, 'no' );
+
+		// New sites start on the current layout defaults, see memberlite_maybe_migrate_layout_settings().
+		set_theme_mod( 'layout_version', 1 );
 	}
 
 	// Memberlite 5.2.1 Update - Migrate the theme_mod for webfonts to single properties.

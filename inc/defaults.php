@@ -14,7 +14,11 @@ function memberlite_get_defaults(): array {
 		'memberlite_body_font'              => 'lato',
 
 		// Layout
+		'layout_page'                       => 'narrow',
+		'layout_post'                       => 'narrow',
+		'layout_archive'                    => 'sidebar-right',
 		'columns_ratio'                     => '8-4',
+		'columns_ratio_post'                => '8-4',
 		'columns_ratio_blog'                => '8-4',
 		'columns_ratio_header'              => '4-8',
 		'sidebar_location'                  => 'sidebar-right',

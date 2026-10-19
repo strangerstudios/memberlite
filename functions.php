@@ -90,8 +90,8 @@ function memberlite_content_width() {
 add_action( 'after_setup_theme', 'memberlite_content_width', 0 );
 
 /*
- * Adjust $content_width for full-width and fluid-width templates.
- * We run on the wp action so is_page_template will work.
+ * Adjust $content_width for the Contained and Full Width layouts and the columns ratio.
+ * We run on the wp action so the queried object is set.
  * We override the $content_width global.
  */
 function memberlite_adjusted_content_width() {
@@ -100,7 +100,7 @@ function memberlite_adjusted_content_width() {
 	// Get the primary column width value on a 12 column scale.
 	$memberlite_columns_ratio_primary = memberlite_getColumnsRatio();
 
-	if ( is_page_template( 'templates/full-width.php' ) || is_page_template( 'templates/fluid-width.php' ) ) {
+	if ( in_array( memberlite_get_layout(), array( 'contained', 'full-width' ), true ) ) {
 		$content_width = 1230; /* pixels */
 	} else {
 		switch ( $memberlite_columns_ratio_primary ) {
@@ -511,6 +511,9 @@ require_once get_template_directory() . '/inc/customizer.php';
 
 /* Custom functions that act independently of the theme templates. */
 require_once get_template_directory() . '/inc/extras.php';
+
+/* Layout settings: sidebar and content width per context. */
+require_once get_template_directory() . '/inc/layout.php';
 
 /* One-time clone of parent settings on child theme activation. */
 require_once get_template_directory() . '/inc/child-theme-activation.php';

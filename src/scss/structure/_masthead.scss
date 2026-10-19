@@ -22,7 +22,7 @@ body.memberlite-banner-hidden .entry-content > .banner:first-child {
 		padding: 0;
 	}
 
-	.page-template-fluid-width & {
+	.memberlite-layout-full-width & {
 		margin: 0;
 	}
 
@@ -168,7 +168,7 @@ body.memberlite-banner-hidden .entry-content > .banner:first-child {
 	margin-top: 0;
 }
 
-.sidebar-blog-none #content .masthead {
+body:not(.page).memberlite-layout-narrow #content .masthead {
 	align-items: center;
 	display: flex;
 	flex-direction: column;

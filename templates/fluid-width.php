@@ -7,6 +7,12 @@
  * @package Memberlite
  */
 
+// The Full Width layout markup. Other layouts use page.php.
+if ( 'full-width' !== memberlite_get_layout() ) {
+	get_template_part( 'page' );
+	return;
+}
+
 get_header(); ?>
 
 	<div id="primary" class="content-area">

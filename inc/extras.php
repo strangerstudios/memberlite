@@ -210,39 +210,16 @@ function memberlite_get_content_archives_theme_mod(): string {
 function memberlite_body_classes( $classes ) {
 	global $memberlite_defaults;
 
-	// sidebar classes
-	if ( ! is_page_template( 'templates/fluid-width.php' ) && ! memberlite_is_blog() && ! memberlite_is_cpt_archive() ) {
-		$cpt_type = is_singular() ? memberlite_get_current_cpt_type() : null;
-		if ( $cpt_type ) {
-			if ( memberlite_cpt_inherits_posts_archives( $cpt_type ) ) {
-				$classes[] = get_theme_mod( 'sidebar_location_blog', $memberlite_defaults['sidebar_location_blog'] );
-			} else {
-				$classes[] = get_theme_mod( 'sidebar_location_' . $cpt_type, 'sidebar-blog-right' );
-			}
-		} else {
-			$classes[] = get_theme_mod( 'sidebar_location', $memberlite_defaults['sidebar_location'] );
-		}
-	}
+	// layout classes
+	$layout    = memberlite_get_layout();
+	$classes[] = 'memberlite-layout-' . $layout;
 
-	if ( memberlite_is_blog() ) {
-		$classes[] = get_theme_mod( 'sidebar_location_blog', $memberlite_defaults['sidebar_location_blog'] );
-		$classes[] = 'content-archives-' . get_theme_mod( 'content_archives', $memberlite_defaults['content_archives'] );
-	}
+	// legacy sidebar classes: 'sidebar-{right|left|none}' on pages, 'sidebar-blog-{right|left|none}' elsewhere
+	$sidebar_prefix = 'page' === memberlite_get_layout_context() ? 'sidebar-' : 'sidebar-blog-';
+	$classes[]      = memberlite_layout_has_sidebar( $layout ) ? $sidebar_prefix . substr( $layout, 8 ) : $sidebar_prefix . 'none';
 
-	if ( memberlite_is_cpt_archive() ) {
-		$cpt_type = memberlite_get_current_cpt_archive_type();
-		if ( $cpt_type ) {
-			if ( memberlite_cpt_inherits_posts_archives( $cpt_type ) ) {
-				$classes[] = get_theme_mod( 'sidebar_location_blog', $memberlite_defaults['sidebar_location_blog'] );
-				$classes[] = 'content-archives-' . get_theme_mod( 'content_archives', $memberlite_defaults['content_archives'] );
-			} else {
-				$classes[] = get_theme_mod( 'sidebar_location_' . $cpt_type, 'sidebar-blog-right' );
-				$classes[] = 'content-archives-' . get_theme_mod( 'content_archives_' . $cpt_type, 'content' );
-			}
-		} else {
-			$classes[] = get_theme_mod( 'sidebar_location_blog', $memberlite_defaults['sidebar_location_blog'] );
-			$classes[] = 'content-archives-' . get_theme_mod( 'content_archives', $memberlite_defaults['content_archives'] );
-		}
+	if ( memberlite_is_blog() || memberlite_is_cpt_archive() ) {
+		$classes[] = 'content-archives-' . memberlite_get_content_archives_theme_mod();
 	}
 
 	if ( is_page_template( 'templates/sidebar-content.php' ) ) {
@@ -287,32 +264,19 @@ function memberlite_body_classes( $classes ) {
 }
 add_filter( 'body_class', 'memberlite_body_classes' );
 
-/* Get main and sidebar columns width from theme mod or defaults. */
+/**
+ * Get main and sidebar columns width for the current layout.
+ *
+ * @param string|null $location 'sidebar', 'masthead', 'header-left', 'header-right', or null for the main content column.
+ * @return string Grid class suffix, e.g. '8' or '8 medium-offset-2'.
+ */
 function memberlite_getColumnsRatio( $location = null ) {
 	global $memberlite_defaults;
 
-	// Get the values as set in customizer.
-	$columns_ratio        = get_theme_mod( 'columns_ratio', $memberlite_defaults['columns_ratio'] );
-	if ( ! is_page() ) {
-		$cpt_type = memberlite_get_current_cpt_type();
-
-		if ( $cpt_type ) {
-			if ( memberlite_cpt_inherits_posts_archives( $cpt_type ) ) {
-				$columns_ratio = get_theme_mod( 'columns_ratio_blog', $columns_ratio );
-			} else {
-				$columns_ratio = get_theme_mod( 'columns_ratio_' . $cpt_type, '8-4' );
-			}
-		} else {
-			$columns_ratio = get_theme_mod( 'columns_ratio_blog', $columns_ratio );
-		}
-	}
-
+	$layout                     = memberlite_get_layout();
+	$columns_ratio_array        = explode( '-', memberlite_get_layout_columns_ratio( memberlite_get_layout_context() ) );
 	$columns_ratio_header       = get_theme_mod( 'columns_ratio_header', $memberlite_defaults['columns_ratio_header'] );
-	$columns_ratio_array        = explode( '-', $columns_ratio );
 	$columns_ratio_header_array = explode( '-', $columns_ratio_header );
-
-	// Get the page template slug to use in checking which ratio below.
-	$page_template_slug = get_page_template_slug();
 
 	if ( $location == 'sidebar' ) {
 		$r = $columns_ratio_array[1];
@@ -320,13 +284,9 @@ function memberlite_getColumnsRatio( $location = null ) {
 		$r = $columns_ratio_header_array[1];
 	} elseif ( $location == 'header-left' ) {
 		$r = $columns_ratio_header_array[0];
-	} elseif ( is_front_page() && empty( $page_template_slug ) && 'posts' != get_option( 'show_on_front' ) || is_page_template( 'templates/full-width.php' ) ) {
-		$r = '12';
-	} elseif ( is_page_template( 'templates/narrow-width.php' ) ) {
+	} elseif ( $layout === 'narrow' ) {
 		$r = '8 medium-offset-2';
-	} elseif ( ( $location == 'masthead' ) && is_page_template( 'templates/narrow-width.php' ) ) {
-		$r = '8 medium-offset-2';
-	} elseif ( $location == 'masthead' ) {
+	} elseif ( $location == 'masthead' || ! memberlite_layout_has_sidebar( $layout ) ) {
 		$r = '12';
 	} else {
 		$r = $columns_ratio_array[0];
@@ -337,102 +297,6 @@ function memberlite_getColumnsRatio( $location = null ) {
 
 	return $r;
 }
-
-function memberlite_sidebar_location_none_columns_ratio( $r, $location ) {
-	global $memberlite_defaults;
-
-	if ( ! empty( $location ) ) {
-		return $r;
-	}
-
-	if ( is_page() ) {
-		$sidebar_location = get_theme_mod( 'sidebar_location', $memberlite_defaults['sidebar_location'] );
-		if ( $sidebar_location === 'sidebar-none' && empty( is_page_template() ) ) {
-			$r = '8 medium-offset-2';
-		}
-	} elseif ( memberlite_is_blog() || memberlite_is_cpt_archive() || is_search() ) {
-		$cpt_type         = memberlite_get_current_cpt_archive_type();
-		$content_archives = memberlite_get_content_archives_theme_mod();
-
-		if ( $cpt_type ) {
-			$sidebar_location = memberlite_cpt_inherits_posts_archives( $cpt_type )
-				? get_theme_mod( 'sidebar_location_blog', $memberlite_defaults['sidebar_location_blog'] )
-				: get_theme_mod( 'sidebar_location_' . $cpt_type, 'sidebar-blog-right' );
-		} else {
-			$sidebar_location = get_theme_mod( 'sidebar_location_blog', $memberlite_defaults['sidebar_location_blog'] );
-		}
-
-		if ( $content_archives === 'grid' && ! is_singular() && ! is_search() ) {
-			$r = '12';
-		} elseif ( $sidebar_location === 'sidebar-blog-none' ) {
-			$r = '8 medium-offset-2';
-		}
-	} elseif ( is_singular() ) {
-		$cpt_type = memberlite_get_current_cpt_type();
-
-		if ( $cpt_type ) {
-			$sidebar_location = memberlite_cpt_inherits_posts_archives( $cpt_type )
-				? get_theme_mod( 'sidebar_location_blog', $memberlite_defaults['sidebar_location_blog'] )
-				: get_theme_mod( 'sidebar_location_' . $cpt_type, 'sidebar-blog-right' );
-			if ( $sidebar_location === 'sidebar-blog-none' ) {
-				$r = '8 medium-offset-2';
-			}
-		}
-	}
-
-	return $r;
-}
-add_filter( 'memberlite_columns_ratio', 'memberlite_sidebar_location_none_columns_ratio', 10, 2 );
-
-/**
- * Hide the sidebar if the theme option is set to none.
- * Hide the sidebar for grid archives.
- *
- */
-function memberlite_sidebar_none_get_sidebar( $name ) {
-	global $memberlite_defaults;
-
-	if ( is_page() ) {
-		$sidebar_location = get_theme_mod( 'sidebar_location', $memberlite_defaults['sidebar_location'] );
-		if ( $sidebar_location === 'sidebar-none' && empty( is_page_template() ) ) {
-			$name = false;
-		}
-	} elseif ( memberlite_is_blog() || memberlite_is_cpt_archive() || is_search() ) {
-		$cpt_type         = memberlite_get_current_cpt_archive_type();
-		$content_archives = memberlite_get_content_archives_theme_mod();
-
-		if ( $cpt_type ) {
-			$sidebar_location = memberlite_cpt_inherits_posts_archives( $cpt_type )
-				? get_theme_mod( 'sidebar_location_blog', $memberlite_defaults['sidebar_location_blog'] )
-				: get_theme_mod( 'sidebar_location_' . $cpt_type, 'sidebar-blog-right' );
-		} else {
-			$sidebar_location = get_theme_mod( 'sidebar_location_blog', $memberlite_defaults['sidebar_location_blog'] );
-		}
-
-		if ( $sidebar_location === 'sidebar-blog-none' ) {
-			$name = false;
-		}
-
-		// Hide the sidebar for grid archives.
-		if ( $content_archives === 'grid' && ! is_singular() && ! is_search() ) {
-			$name = false;
-		}
-	} elseif ( is_singular() ) {
-		$cpt_type = memberlite_get_current_cpt_type();
-
-		if ( $cpt_type ) {
-			$sidebar_location = memberlite_cpt_inherits_posts_archives( $cpt_type )
-				? get_theme_mod( 'sidebar_location_blog', $memberlite_defaults['sidebar_location_blog'] )
-				: get_theme_mod( 'sidebar_location_' . $cpt_type, 'sidebar-blog-right' );
-			if ( $sidebar_location === 'sidebar-blog-none' ) {
-				$name = false;
-			}
-		}
-	}
-
-	return $name;
-}
-add_filter( 'memberlite_get_sidebar', 'memberlite_sidebar_none_get_sidebar' );
 
 /**
  * Get the width of a thumbnail.
