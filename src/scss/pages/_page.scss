@@ -23,12 +23,13 @@
 
 // Fluid Width has no .row wrapper, so contain theme output to the row width and gutter.
 .page-template-fluid-width {
+	.page-links,
 	.page-navigation,
 	.entry-footer,
 	#comments {
 		margin-left: auto;
 		margin-right: auto;
-		width: min(71em - 3rem, 100% - 3rem);
+		width: min($grid-max-width - $grid-gutter * 2, 100% - $grid-gutter * 2);
 	}
 }
 
