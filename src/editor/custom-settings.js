@@ -3,6 +3,7 @@ import { registerPlugin } from '@wordpress/plugins';
 import { PluginDocumentSettingPanel } from '@wordpress/editor';
 import {
 	Button,
+	Notice,
 	ToggleControl,
 	SelectControl,
 	ExternalLink,
@@ -79,6 +80,7 @@ const MemberliteLayoutSettings = () => {
 	const selected       = savedLayout || templateLayout || 'default';
 	const resolved       = selected === 'default' ? defaultLayout : selected;
 	const hasSidebar     = resolved === 'sidebar-right' || resolved === 'sidebar-left';
+	const ownTemplate    = hasTemplate && ! data.themeTemplates.includes( template );
 	const defaultLabel   = data.layoutLabels[ defaultLayout ];
 
 	const customSidebar    = meta._memberlite_custom_sidebar || '';
@@ -155,6 +157,15 @@ const MemberliteLayoutSettings = () => {
 					} ) }
 				</div>
 				<p style={ { margin: 0, fontSize: 12, color: '#757575' } }>{ help }</p>
+				{ ownTemplate && (
+					<Notice status="warning" isDismissible={ false }>
+						{ sprintf(
+							/* translators: %s: page template name, e.g. "Blog Landing Page". */
+							__( "The %s template controls this page's layout, so these settings may have no effect.", textDomain ),
+							data.templateNames[ template ] || template
+						) }
+					</Notice>
+				) }
 				<ExternalLink href={ data.customizerUrl }>
 					{ __( 'Change the default in the Customizer', textDomain ) }
 				</ExternalLink>

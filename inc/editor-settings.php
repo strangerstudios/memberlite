@@ -254,6 +254,7 @@ function memberlite_get_editor_layout_data( WP_Post $post ): array {
 		'default'            => $default,
 		'isFrontPage'        => $is_front,
 		'legacyTemplates'    => memberlite_get_legacy_template_layouts(),
+		'themeTemplates'     => array_merge( array_keys( memberlite_get_legacy_template_layouts() ), array( 'templates/landing.php' ) ),
 		'isPostsPage'        => (int) get_option( 'page_for_posts' ) === $post->ID,
 		'templateNames'      => wp_get_theme()->get_page_templates( null, 'page' ),
 		'sidebars'           => $sidebar_options,
