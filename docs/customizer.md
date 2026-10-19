@@ -142,10 +142,13 @@ Each context has a layout picker (thumbnail radio control, `Memberlite_Customize
 
 | Context | Customizer section | Layout theme_mod | Columns Ratio theme_mod | Default |
 |---|---|---|---|---|
-| `page` | Pages | `layout_page` | `columns_ratio` | Narrow |
+| `page` | Pages | `layout_page` | `columns_ratio` | Right Sidebar |
 | `post` | Posts & Archives | `layout_post` | `columns_ratio_post` | Narrow |
-| `archive` (blog, category, tag, date, author, search) | Posts & Archives | `layout_archive` | `columns_ratio_blog` | Right Sidebar |
+| `archive` (blog, category, tag, date, author) | Posts & Archives | `layout_archive` | `columns_ratio_blog` | Contained |
+| `search` | Posts & Archives | `layout_search` | `columns_ratio_search` | Right Sidebar |
 | `cpt_{cpt}` / `cpt_{cpt}_archive` | Other Post Types › {Type} | see above | see above | Same as `post` / `archive` |
+
+New sites also default Archive Display (`content_archives`) to Grid. The masthead always spans the container, whatever the layout.
 
 Use the `memberlite_layout_choices` filter to change which layouts a context offers.
 
@@ -176,7 +179,7 @@ Filter the result with `memberlite_layout`. `memberlite_getColumnsRatio()`, the 
 
 The layout-only page templates stay registered so existing pages keep their layout, and so the classic editor, Quick Edit and imports can still use them. They are hidden from the block editor's template list unless the page already uses one. Picking a layout in the Layout panel clears a legacy template.
 
-`memberlite_maybe_migrate_layout_settings()` runs once per theme (flag: `layout_version` theme_mod) and copies the old `sidebar_location*` settings into the new ones. "No Sidebar" becomes Narrow, and a Grid archive becomes Contained (Grid used to hide the sidebar; it no longer does). Every context is saved explicitly, so existing sites keep their layout. New sites set `layout_version` in `memberlite_checkForUpdates()` and start on the new defaults.
+`memberlite_maybe_migrate_layout_settings()` runs once per theme (flag: `layout_version` theme_mod) and copies the old `sidebar_location*` settings into the new ones. "No Sidebar" becomes Narrow, a Grid archive becomes Contained (Grid used to hide the sidebar; it no longer does), and search results keep the blog sidebar setting (Grid never affected them). Every context and Archive Display are saved explicitly, so existing sites keep their look. New sites (no `memberlite_db_version` yet) and Tools › Reset Theme Settings skip the copy and start on the new defaults.
 
 ---
 

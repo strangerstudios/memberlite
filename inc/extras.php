@@ -195,7 +195,7 @@ function memberlite_get_content_archives_theme_mod(): string {
 		if ( memberlite_cpt_inherits_posts_archives( $cpt_type ) ) {
 			return get_theme_mod( 'content_archives', $memberlite_defaults['content_archives'] );
 		}
-		return get_theme_mod( 'content_archives_' . $cpt_type, 'content' );
+		return get_theme_mod( 'content_archives_' . $cpt_type, $memberlite_defaults['content_archives'] );
 	}
 
 	return get_theme_mod( 'content_archives', $memberlite_defaults['content_archives'] );
@@ -284,9 +284,11 @@ function memberlite_getColumnsRatio( $location = null ) {
 		$r = $columns_ratio_header_array[1];
 	} elseif ( $location == 'header-left' ) {
 		$r = $columns_ratio_header_array[0];
+	} elseif ( $location == 'masthead' ) {
+		$r = '12';
 	} elseif ( $layout === 'narrow' ) {
 		$r = '8 medium-offset-2';
-	} elseif ( $location == 'masthead' || ! memberlite_layout_has_sidebar( $layout ) ) {
+	} elseif ( ! memberlite_layout_has_sidebar( $layout ) ) {
 		$r = '12';
 	} else {
 		$r = $columns_ratio_array[0];

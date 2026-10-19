@@ -592,6 +592,8 @@ class Memberlite_Customize {
 	 * @return void
 	 */
 	public static function set_customizer_post_settings( WP_Customize_Manager $wp_customize ) {
+		global $memberlite_defaults;
+
 		// POST: Layout Heading ===============
 		self::add_memberlite_heading( $wp_customize, 'memberlite_layout_post_archive_heading', __( 'Layout', 'memberlite' ), 'memberlite_post_archive_options' );
 
@@ -603,8 +605,13 @@ class Memberlite_Customize {
 
 		// POST: Blog & Archive Layout + Columns Ratio
 		self::add_memberlite_layout_controls( $wp_customize, 'archive', __( 'Default Blog & Archive Layout', 'memberlite' ), 'memberlite_post_archive_options', array(
-			'description' => __( 'Used on the blog, category, tag, date, author and search results pages.', 'memberlite' ),
+			'description' => __( 'Used on the blog, category, tag, date and author pages.', 'memberlite' ),
 			'ratio_label' => __( 'Blog & Archive Columns Ratio', 'memberlite' ),
+		) );
+
+		// POST: Search Results Layout + Columns Ratio
+		self::add_memberlite_layout_controls( $wp_customize, 'search', __( 'Search Results Layout', 'memberlite' ), 'memberlite_post_archive_options', array(
+			'ratio_label' => __( 'Search Results Columns Ratio', 'memberlite' ),
 		) );
 
 		// POST: Content Heading ================
@@ -707,7 +714,7 @@ class Memberlite_Customize {
 				if ( $post_type_obj->has_archive ) {
 					self::add_memberlite_setting_control( $wp_customize, 'content_archives_' . $post_type, __( 'Archive Display', 'memberlite' ), $section, array(
 						'type'        => 'radio',
-						'default'     => 'content',
+						'default'     => $memberlite_defaults['content_archives'],
 						'description' => __( 'Choose how posts are displayed on archive pages.', 'memberlite' ),
 						'choices'     => self::get_archive_display_choices(),
 						'active_callback' => function() use ( $inherit_id ) {

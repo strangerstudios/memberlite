@@ -59,7 +59,7 @@ function memberlite_get_layout_choices( string $context ): array {
 	 * @since TBD
 	 *
 	 * @param array  $layouts Layout labels keyed by slug.
-	 * @param string $context Layout context: 'page', 'post', 'archive', 'cpt_{post_type}' or 'cpt_{post_type}_archive'.
+	 * @param string $context Layout context: 'page', 'post', 'archive', 'search', 'cpt_{post_type}' or 'cpt_{post_type}_archive'.
 	 */
 	$layouts = apply_filters( 'memberlite_layout_choices', $layouts, $context );
 
@@ -105,6 +105,11 @@ function memberlite_get_layout_contexts(): array {
 			'setting'       => 'layout_archive',
 			'columns_ratio' => 'columns_ratio_blog',
 			'default'       => $memberlite_defaults['layout_archive'],
+		),
+		'search'  => array(
+			'setting'       => 'layout_search',
+			'columns_ratio' => 'columns_ratio_search',
+			'default'       => $memberlite_defaults['layout_search'],
 		),
 	);
 
@@ -175,11 +180,15 @@ function memberlite_get_layout_context_for_post( WP_Post $post ): string {
  * Get the layout context for the current request.
  *
  * @since TBD
- * @return string Layout context: 'page', 'post', 'archive', 'cpt_{post_type}' or 'cpt_{post_type}_archive'.
+ * @return string Layout context: 'page', 'post', 'archive', 'search', 'cpt_{post_type}' or 'cpt_{post_type}_archive'.
  */
 function memberlite_get_layout_context(): string {
 	if ( is_404() ) {
 		return 'page';
+	}
+
+	if ( is_search() ) {
+		return 'search';
 	}
 
 	if ( is_singular() ) {
@@ -411,7 +420,8 @@ add_filter( 'block_editor_settings_all', 'memberlite_hide_legacy_layout_template
  * Copy the pre-TBD sidebar settings into the layout settings, once per theme.
  *
  * "No Sidebar" becomes Narrow (what it rendered) and a Grid archive becomes Contained
- * (Grid used to hide the sidebar). Every context is saved explicitly so existing sites keep
+ * (Grid used to hide the sidebar). Search results keep the blog sidebar setting, which Grid
+ * never affected, and Archive Display keeps its old Full Content default. Every context is saved explicitly so existing sites keep
  * their layout even though the defaults for new sites changed. New sites and theme setting
  * resets skip this.
  *
@@ -440,35 +450,39 @@ function memberlite_maybe_migrate_layout_settings(): void {
 		'sidebar-blog-none'  => 'narrow',
 	);
 
+	// Find CPTs with saved settings before anything is written, so concurrent runs agree.
+	$cpt_types = array();
+	foreach ( array_keys( (array) get_theme_mods() ) as $key ) {
+		if ( is_string( $key ) && preg_match( '/^(?:sidebar_location|content_archives|inherit_posts_archives)_(.+)$/', $key, $matches ) && 'blog' !== $matches[1] ) {
+			$cpt_types[ $matches[1] ] = true;
+		}
+	}
+
 	$page_sidebar = get_theme_mod( 'sidebar_location', 'sidebar-right' );
 	$blog_sidebar = get_theme_mod( 'sidebar_location_blog', 'sidebar-blog-right' );
 	$page_ratio   = get_theme_mod( 'columns_ratio', '8-4' );
 	$blog_ratio   = get_theme_mod( 'columns_ratio_blog', $page_ratio );
 	$blog_layout  = isset( $map[ $blog_sidebar ] ) ? $map[ $blog_sidebar ] : 'sidebar-right';
-	$archive_grid = 'grid' === get_theme_mod( 'content_archives', 'content' );
+	$archives     = get_theme_mod( 'content_archives', 'content' );
 
 	set_theme_mod( 'layout_page', isset( $map[ $page_sidebar ] ) ? $map[ $page_sidebar ] : 'sidebar-right' );
 	set_theme_mod( 'layout_post', $blog_layout );
-	set_theme_mod( 'layout_archive', $archive_grid ? 'contained' : $blog_layout );
+	set_theme_mod( 'layout_archive', 'grid' === $archives ? 'contained' : $blog_layout );
+	set_theme_mod( 'layout_search', $blog_layout );
+	set_theme_mod( 'content_archives', $archives );
 	set_theme_mod( 'columns_ratio_blog', $blog_ratio );
 	set_theme_mod( 'columns_ratio_post', $blog_ratio );
-
-	// Find CPTs with saved layout settings.
-	$cpt_types = array();
-	foreach ( array_keys( (array) get_theme_mods() ) as $key ) {
-		if ( is_string( $key ) && preg_match( '/^(?:sidebar_location|content_archives|columns_ratio|inherit_posts_archives)_(.+)$/', $key, $matches ) && ! in_array( $matches[1], array( 'blog', 'header', 'post' ), true ) ) {
-			$cpt_types[ $matches[1] ] = true;
-		}
-	}
+	set_theme_mod( 'columns_ratio_search', $blog_ratio );
 
 	foreach ( array_keys( $cpt_types ) as $post_type ) {
-		$cpt_sidebar = get_theme_mod( 'sidebar_location_' . $post_type, 'sidebar-blog-right' );
-		$cpt_layout  = isset( $map[ $cpt_sidebar ] ) ? $map[ $cpt_sidebar ] : 'sidebar-right';
-		$cpt_ratio   = get_theme_mod( 'columns_ratio_' . $post_type, '8-4' );
-		$cpt_grid    = 'grid' === get_theme_mod( 'content_archives_' . $post_type, 'content' );
+		$cpt_sidebar  = get_theme_mod( 'sidebar_location_' . $post_type, 'sidebar-blog-right' );
+		$cpt_layout   = isset( $map[ $cpt_sidebar ] ) ? $map[ $cpt_sidebar ] : 'sidebar-right';
+		$cpt_ratio    = get_theme_mod( 'columns_ratio_' . $post_type, '8-4' );
+		$cpt_archives = get_theme_mod( 'content_archives_' . $post_type, 'content' );
 
 		set_theme_mod( 'layout_cpt_' . $post_type, $cpt_layout );
-		set_theme_mod( 'layout_cpt_' . $post_type . '_archive', $cpt_grid ? 'contained' : $cpt_layout );
+		set_theme_mod( 'layout_cpt_' . $post_type . '_archive', 'grid' === $cpt_archives ? 'contained' : $cpt_layout );
+		set_theme_mod( 'content_archives_' . $post_type, $cpt_archives );
 		set_theme_mod( 'columns_ratio_' . $post_type, $cpt_ratio );
 		set_theme_mod( 'columns_ratio_' . $post_type . '_archive', $cpt_ratio );
 	}

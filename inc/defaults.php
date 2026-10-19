@@ -14,18 +14,20 @@ function memberlite_get_defaults(): array {
 		'memberlite_body_font'              => 'lato',
 
 		// Layout
-		'layout_page'                       => 'narrow',
+		'layout_page'                       => 'sidebar-right',
 		'layout_post'                       => 'narrow',
-		'layout_archive'                    => 'sidebar-right',
+		'layout_archive'                    => 'contained',
+		'layout_search'                     => 'sidebar-right',
 		'columns_ratio'                     => '8-4',
 		'columns_ratio_post'                => '8-4',
 		'columns_ratio_blog'                => '8-4',
+		'columns_ratio_search'              => '8-4',
 		'columns_ratio_header'              => '4-8',
 		'sidebar_location'                  => 'sidebar-right',
 		'sidebar_location_blog'             => 'sidebar-blog-right',
 
 		// Archives
-		'content_archives'                  => 'content',
+		'content_archives'                  => 'grid',
 		'memberlite_loop_images'            => 'show_none',
 
 		// Post Meta
