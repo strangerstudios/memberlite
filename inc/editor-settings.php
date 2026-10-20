@@ -20,9 +20,7 @@ function memberlite_register_editor_settings_post_meta(): void {
 		'single'       => true,
 		'default'      => false,
 		'label'        => __( 'Hide Header', 'memberlite' ),
-		'auth_callback' => function() {
-			return current_user_can( 'edit_posts' );
-		}
+		'auth_callback' => 'memberlite_auth_edit_post_meta'
 	) );
 
 	register_post_meta( 'page', '_memberlite_header_override', array(
@@ -32,9 +30,7 @@ function memberlite_register_editor_settings_post_meta(): void {
 		'default'           => '',
 		'label'             => __( 'Select Header', 'memberlite' ),
 		'sanitize_callback' => 'sanitize_key',
-		'auth_callback' => function() {
-			return current_user_can( 'edit_posts' );
-		}
+		'auth_callback' => 'memberlite_auth_edit_post_meta'
 	) );
 
 	register_post_meta( 'page', '_memberlite_hide_footer', array(
@@ -43,9 +39,7 @@ function memberlite_register_editor_settings_post_meta(): void {
 		'single'       => true,
 		'default'      => false,
 		'label'        => __( 'Hide Footer', 'memberlite' ),
-		'auth_callback' => function() {
-			return current_user_can( 'edit_posts' );
-		}
+		'auth_callback' => 'memberlite_auth_edit_post_meta'
 	) );
 
 	register_post_meta( 'page', '_memberlite_footer_override', array(
@@ -55,9 +49,7 @@ function memberlite_register_editor_settings_post_meta(): void {
 		'default'           => '',
 		'label'             => __( 'Select Footer', 'memberlite' ),
 		'sanitize_callback' => 'sanitize_key',
-		'auth_callback' => function() {
-			return current_user_can( 'edit_posts' );
-		}
+		'auth_callback' => 'memberlite_auth_edit_post_meta'
 	) );
 
 	register_post_meta( 'page', '_memberlite_hide_page_nav', array(
@@ -65,9 +57,7 @@ function memberlite_register_editor_settings_post_meta(): void {
 		'single'       => true,
 		'type'         => 'boolean',
 		'default'      => false,
-		'auth_callback' => function() {
-			return current_user_can( 'edit_posts' );
-		}
+		'auth_callback' => 'memberlite_auth_edit_post_meta'
 	) );
 
 	register_post_meta( 'memberlite_header', '_memberlite_header_sticky', array(
@@ -75,9 +65,7 @@ function memberlite_register_editor_settings_post_meta(): void {
 		'single'        => true,
 		'type'          => 'boolean',
 		'default'       => false,
-		'auth_callback' => function() {
-			return current_user_can( 'edit_posts' );
-		}
+		'auth_callback' => 'memberlite_auth_edit_post_meta'
 	) );
 
 	register_post_meta( 'page', '_memberlite_banner_show', array(
@@ -86,9 +74,7 @@ function memberlite_register_editor_settings_post_meta(): void {
 		'single'       => true,
 		'default'      => true,
 		'label'        => __( 'Show Page Banner', 'memberlite' ),
-		'auth_callback' => function() {
-			return current_user_can( 'edit_posts' );
-		}
+		'auth_callback' => 'memberlite_auth_edit_post_meta'
 	) );
 
 	register_post_meta( 'page', '_memberlite_banner_hide_title', array(
@@ -97,9 +83,7 @@ function memberlite_register_editor_settings_post_meta(): void {
 		'single'       => true,
 		'default'      => false,
 		'label'        => __( 'Hide Page Title', 'memberlite' ),
-		'auth_callback' => function() {
-			return current_user_can( 'edit_posts' );
-		}
+		'auth_callback' => 'memberlite_auth_edit_post_meta'
 	) );
 
 	register_post_meta( 'page', '_memberlite_banner_hide_breadcrumbs', array(
@@ -108,9 +92,7 @@ function memberlite_register_editor_settings_post_meta(): void {
 		'single'       => true,
 		'default'      => false,
 		'label'        => __( 'Hide Page Breadcrumbs', 'memberlite' ),
-		'auth_callback' => function() {
-			return current_user_can( 'edit_posts' );
-		}
+		'auth_callback' => 'memberlite_auth_edit_post_meta'
 	) );
 
 	register_post_meta( 'page', '_memberlite_banner_text_alignment', array(
@@ -119,30 +101,44 @@ function memberlite_register_editor_settings_post_meta(): void {
 		'single'       => true,
 		'default'      => 'default',
 		'label'        => __( 'Masthead Text Alignment', 'memberlite' ),
-		'auth_callback' => function() {
-			return current_user_can( 'edit_posts' );
-		}
+		'auth_callback' => 'memberlite_auth_edit_post_meta'
 	) );
 }
 add_action( 'init', 'memberlite_register_editor_settings_post_meta' );
 
 /**
+ * Check that the current user can edit the post a meta value belongs to.
+ *
+ * Used as the `auth_callback` for Memberlite's registered post meta.
+ *
+ * @since TBD
+ *
+ * @param bool   $allowed   Whether the user can add the meta. Default false.
+ * @param string $meta_key  Meta key.
+ * @param int    $object_id Post ID.
+ * @return bool
+ */
+function memberlite_auth_edit_post_meta( $allowed, $meta_key, $object_id ): bool {
+	return current_user_can( 'edit_post', $object_id );
+}
+
+/**
  * Register the Layout panel post meta: the layout and the sidebar widget area settings.
  *
  * Runs on wp_loaded so every CPT is registered before memberlite_get_customizer_cpts() caches its list. CPTs without `custom-fields` support get it,
- * since the block editor only saves registered meta for post types that support it.
+ * since the block editor only saves registered meta for post types that support it. Their Custom Fields meta box
+ * is removed so the classic editor looks the same as before.
  *
  * @since TBD
  * @return void
  */
 function memberlite_register_layout_post_meta(): void {
-	$auth_callback = function() {
-		return current_user_can( 'edit_posts' );
-	};
+	$auth_callback = 'memberlite_auth_edit_post_meta';
 
 	foreach ( memberlite_get_layout_post_types() as $post_type ) {
 		if ( ! post_type_supports( $post_type, 'custom-fields' ) ) {
 			add_post_type_support( $post_type, 'custom-fields' );
+			add_action( 'add_meta_boxes_' . $post_type, 'memberlite_remove_custom_fields_meta_box' );
 		}
 
 		register_post_meta( $post_type, '_memberlite_layout', array(
@@ -161,7 +157,7 @@ function memberlite_register_layout_post_meta(): void {
 			'single'            => true,
 			'default'           => '',
 			'label'             => __( 'Custom Sidebar', 'memberlite' ),
-			'sanitize_callback' => 'sanitize_text_field',
+			'sanitize_callback' => 'memberlite_sanitize_custom_sidebar_meta',
 			'auth_callback'     => $auth_callback,
 		) );
 
@@ -186,6 +182,38 @@ function memberlite_register_layout_post_meta(): void {
 	) );
 }
 add_action( 'wp_loaded', 'memberlite_register_layout_post_meta' );
+
+/**
+ * Remove the Custom Fields meta box from post types that only support custom fields for the Layout panel.
+ *
+ * @since TBD
+ *
+ * @param WP_Post $post The post being edited.
+ * @return void
+ */
+function memberlite_remove_custom_fields_meta_box( $post ): void {
+	remove_meta_box( 'postcustom', $post->post_type, 'normal' );
+}
+
+/**
+ * Sanitize the `_memberlite_custom_sidebar` meta value.
+ *
+ * @since TBD
+ *
+ * @param mixed $value Registered sidebar ID, 'memberlite_sidebar_blank' for none, or '' for unset.
+ * @return string
+ */
+function memberlite_sanitize_custom_sidebar_meta( $value ): string {
+	global $wp_registered_sidebars;
+
+	$value = (string) $value;
+
+	if ( '' === $value || 'memberlite_sidebar_blank' === $value || isset( $wp_registered_sidebars[ $value ] ) ) {
+		return $value;
+	}
+
+	return '';
+}
 
 /**
  * Get the data the block editor Layout panel needs for a post.
@@ -254,7 +282,7 @@ function memberlite_get_editor_layout_data( WP_Post $post ): array {
 		'default'            => $default,
 		'isFrontPage'        => $is_front,
 		'legacyTemplates'    => memberlite_get_legacy_template_layouts(),
-		'themeTemplates'     => array_merge( array_keys( memberlite_get_legacy_template_layouts() ), array( 'templates/landing.php' ) ),
+		'themeTemplates'     => array_keys( wp_get_theme( get_template() )->get_post_templates()['page'] ?? array() ),
 		'isPostsPage'        => (int) get_option( 'page_for_posts' ) === $post->ID,
 		'templateNames'      => wp_get_theme()->get_page_templates( null, 'page' ),
 		'sidebars'           => $sidebar_options,

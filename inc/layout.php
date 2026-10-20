@@ -317,7 +317,10 @@ function memberlite_get_layout(): string {
 	$choices = memberlite_get_layout_choices( $context );
 	$layout  = '';
 
-	if ( is_singular( memberlite_get_layout_post_types() ) ) {
+	if ( is_404() ) {
+		// 404.php has no sidebar and spans the full row.
+		$layout = 'contained';
+	} elseif ( is_singular( memberlite_get_layout_post_types() ) ) {
 		$layout = memberlite_get_item_layout( get_queried_object_id() );
 	} elseif ( is_singular() ) {
 		// Other post types (attachments, products, forums) have always shown the sidebar.
@@ -415,6 +418,34 @@ function memberlite_hide_legacy_layout_templates( $settings, $context ) {
 	return $settings;
 }
 add_filter( 'block_editor_settings_all', 'memberlite_hide_legacy_layout_templates', 10, 2 );
+
+/**
+ * Clear an item's layout when its page template changes to a legacy layout template.
+ *
+ * The classic editor and Quick Edit can still set legacy templates but can't show or clear
+ * `_memberlite_layout`, which would otherwise win over the template. Runs only when the
+ * template value changes. In the block editor the template saves before the meta, so a
+ * layout picked in the same save still applies. Imports are skipped.
+ *
+ * @since TBD
+ *
+ * @param int    $meta_id    Meta ID.
+ * @param int    $post_id    Post ID.
+ * @param string $meta_key   Meta key.
+ * @param mixed  $meta_value Meta value.
+ * @return void
+ */
+function memberlite_clear_layout_on_legacy_template( $meta_id, $post_id, $meta_key, $meta_value ): void {
+	if ( '_wp_page_template' !== $meta_key || ( defined( 'WP_IMPORTING' ) && WP_IMPORTING ) ) {
+		return;
+	}
+
+	if ( isset( memberlite_get_legacy_template_layouts()[ (string) $meta_value ] ) ) {
+		delete_post_meta( $post_id, '_memberlite_layout' );
+	}
+}
+add_action( 'added_post_meta', 'memberlite_clear_layout_on_legacy_template', 10, 4 );
+add_action( 'updated_post_meta', 'memberlite_clear_layout_on_legacy_template', 10, 4 );
 
 /**
  * Copy the pre-TBD sidebar settings into the layout settings, once per theme.
