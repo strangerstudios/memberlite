@@ -417,6 +417,24 @@ or being hovered over in the editor or from list view for better UX. */
 }
 
 /*--------------------------------------------------------------
+ Card Block Style
+--------------------------------------------------------------*/
+
+.wp-block-group.is-style-card,
+.wp-block-columns.is-style-card,
+.wp-block-column.is-style-card,
+.wp-block-pmpro-single-level.is-style-card,
+.wp-block-post-template.is-style-card > li {
+	background-color: var(--wp--custom--card--background);
+	border: 1px solid var(--wp--custom--card--border-color);
+	border-radius: var(--wp--custom--card--radius);
+	box-shadow: var(--wp--custom--card--shadow);
+	color: var(--wp--custom--card--color);
+	overflow: hidden;
+	padding: var(--wp--custom--card--padding);
+}
+
+/*--------------------------------------------------------------
  Post Title Block Styles
 --------------------------------------------------------------*/
 .wp-block-post-title.is-style-title-podcast > a:before, .wp-block-post-title.is-style-title-video > a:before, .wp-block-post-title.is-style-title-podcast:not(:has(> a)):before, .wp-block-post-title.is-style-title-video:not(:has(> a)):before {

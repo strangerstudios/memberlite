@@ -734,3 +734,23 @@
 		}
 	}
 }
+
+// -----------------------------------------------------------------------------
+// Card Block Style
+// -----------------------------------------------------------------------------
+
+.wp-block-group,
+.wp-block-columns,
+.wp-block-column,
+.wp-block-pmpro-single-level {
+	&.is-style-card {
+		@include card;
+		padding: var(--wp--custom--card--padding);
+	}
+}
+
+// Query Loop: each post is a card
+.wp-block-post-template.is-style-card > li {
+	@include card;
+	padding: var(--wp--custom--card--padding);
+}

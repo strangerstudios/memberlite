@@ -26,8 +26,8 @@
 <!-- /wp:group -->
 
 <!-- wp:group {"align":"wide","style":{"spacing":{"blockGap":"var:preset|spacing|40"}},"layout":{"type":"grid","minimumColumnWidth":"18rem"}} -->
-<div class="wp-block-group alignwide"><!-- wp:pmpro/single-level {"selected_membership_level":"1","style":{"spacing":{"blockGap":"var:preset|spacing|10","padding":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|40","left":"var:preset|spacing|40","right":"var:preset|spacing|40"}},"border":{"width":"1px","radius":{"topLeft":"12px","topRight":"12px","bottomLeft":"12px","bottomRight":"12px"}}},"borderColor":"borders","layout":{"type":"constrained"}} -->
-<div class="wp-block-pmpro-single-level has-border-color has-borders-border-color" style="border-width:1px;border-top-left-radius:12px;border-top-right-radius:12px;border-bottom-left-radius:12px;border-bottom-right-radius:12px;padding-top:var(--wp--preset--spacing--50);padding-right:var(--wp--preset--spacing--40);padding-bottom:var(--wp--preset--spacing--40);padding-left:var(--wp--preset--spacing--40)"><!-- wp:pmpro/single-level-name {"textAlign":"center","selected_membership_level":"1","fontSize":"24"} -->
+<div class="wp-block-group alignwide"><!-- wp:pmpro/single-level {"selected_membership_level":"1","className":"is-style-card","style":{"spacing":{"blockGap":"var:preset|spacing|10","padding":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|40","left":"var:preset|spacing|40","right":"var:preset|spacing|40"}}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-pmpro-single-level is-style-card" style="padding-top:var(--wp--preset--spacing--50);padding-right:var(--wp--preset--spacing--40);padding-bottom:var(--wp--preset--spacing--40);padding-left:var(--wp--preset--spacing--40)"><!-- wp:pmpro/single-level-name {"textAlign":"center","selected_membership_level":"1","fontSize":"24"} -->
 Explorer
 <!-- /wp:pmpro/single-level-name -->
 
@@ -40,8 +40,8 @@ Explorer
 <!-- wp:pmpro/single-level-description {"selected_membership_level":"1"} /--></div>
 <!-- /wp:pmpro/single-level -->
 
-<!-- wp:pmpro/single-level {"selected_membership_level":"2","style":{"spacing":{"blockGap":"var:preset|spacing|10","padding":{"top":"var:preset|spacing|10","bottom":"var:preset|spacing|40","left":"var:preset|spacing|40","right":"var:preset|spacing|40"}},"border":{"radius":{"topLeft":"12px","topRight":"12px","bottomLeft":"12px","bottomRight":"12px"}},"elements":{"link":{"color":{"text":"var:preset|color|page-masthead"}}}},"backgroundColor":"page-masthead-background","textColor":"page-masthead","layout":{"type":"constrained"}} -->
-<div class="wp-block-pmpro-single-level has-page-masthead-color has-page-masthead-background-background-color has-text-color has-background has-link-color" style="border-top-left-radius:12px;border-top-right-radius:12px;border-bottom-left-radius:12px;border-bottom-right-radius:12px;padding-top:var(--wp--preset--spacing--10);padding-right:var(--wp--preset--spacing--40);padding-bottom:var(--wp--preset--spacing--40);padding-left:var(--wp--preset--spacing--40)"><!-- wp:paragraph {"style":{"typography":{"textAlign":"center","textTransform":"uppercase","letterSpacing":"1px"}}} -->
+<!-- wp:pmpro/single-level {"selected_membership_level":"2","className":"is-style-card","style":{"spacing":{"blockGap":"var:preset|spacing|10","padding":{"top":"var:preset|spacing|10","bottom":"var:preset|spacing|40","left":"var:preset|spacing|40","right":"var:preset|spacing|40"}},"elements":{"link":{"color":{"text":"var:preset|color|page-masthead"}}}},"backgroundColor":"page-masthead-background","textColor":"page-masthead","layout":{"type":"constrained"}} -->
+<div class="wp-block-pmpro-single-level is-style-card has-page-masthead-color has-page-masthead-background-background-color has-text-color has-background has-link-color" style="padding-top:var(--wp--preset--spacing--10);padding-right:var(--wp--preset--spacing--40);padding-bottom:var(--wp--preset--spacing--40);padding-left:var(--wp--preset--spacing--40)"><!-- wp:paragraph {"style":{"typography":{"textAlign":"center","textTransform":"uppercase","letterSpacing":"1px"}}} -->
 <p class="has-text-align-center" style="letter-spacing:1px;text-transform:uppercase"><strong><?php esc_html_e( 'Best Value', 'memberlite' ); ?></strong></p>
 <!-- /wp:paragraph -->
 
@@ -58,8 +58,8 @@ Mastery Pass
 <!-- wp:pmpro/single-level-description {"selected_membership_level":"2"} /--></div>
 <!-- /wp:pmpro/single-level -->
 
-<!-- wp:pmpro/single-level {"selected_membership_level":"3","style":{"spacing":{"blockGap":"var:preset|spacing|10","padding":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|40","left":"var:preset|spacing|40","right":"var:preset|spacing|40"}},"border":{"width":"1px","radius":{"topLeft":"12px","topRight":"12px","bottomLeft":"12px","bottomRight":"12px"}}},"borderColor":"borders","layout":{"type":"constrained"}} -->
-<div class="wp-block-pmpro-single-level has-border-color has-borders-border-color" style="border-width:1px;border-top-left-radius:12px;border-top-right-radius:12px;border-bottom-left-radius:12px;border-bottom-right-radius:12px;padding-top:var(--wp--preset--spacing--50);padding-right:var(--wp--preset--spacing--40);padding-bottom:var(--wp--preset--spacing--40);padding-left:var(--wp--preset--spacing--40)"><!-- wp:pmpro/single-level-name {"textAlign":"center","selected_membership_level":"3","fontSize":"24"} -->
+<!-- wp:pmpro/single-level {"selected_membership_level":"3","className":"is-style-card","style":{"spacing":{"blockGap":"var:preset|spacing|10","padding":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|40","left":"var:preset|spacing|40","right":"var:preset|spacing|40"}}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-pmpro-single-level is-style-card" style="padding-top:var(--wp--preset--spacing--50);padding-right:var(--wp--preset--spacing--40);padding-bottom:var(--wp--preset--spacing--40);padding-left:var(--wp--preset--spacing--40)"><!-- wp:pmpro/single-level-name {"textAlign":"center","selected_membership_level":"3","fontSize":"24"} -->
 Flex Pass
 <!-- /wp:pmpro/single-level-name -->
 
