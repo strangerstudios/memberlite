@@ -178,7 +178,6 @@ const MemberlitePageSettings = () => {
 							/>
 						)}
 						<RadioControl
-							__nextHasNoMarginBottom
 							label={__('Masthead Text Alignment', textDomain)}
 							help={__('Choose the text alignment for the content inside the masthead banner.', textDomain)}
 							selected={ textAlignmentValue }
