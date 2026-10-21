@@ -4,58 +4,8 @@
 /*--------------------------------------------------------------
  5.3 Pages: Pages and Templates
 
- Covers: Page layout, template ordering, wide/full alignments
+ Covers: Landing page template
 --------------------------------------------------------------*/
-
-.page.sidebar-content #primary,
-.page.sidebar-left #primary {
-	order: 2;
-}
-
-.page.content-sidebar #primary {
-	order: unset;
-}
-
-.page.page-template-full-width #primary,
-.page.page-template-narrow-width #primary {
-	order: unset;
-}
-
-// Fluid Width has no .row wrapper, so contain theme output to the row width and gutter.
-.page-template-fluid-width {
-	.page-links,
-	.page-navigation,
-	.entry-footer,
-	#comments {
-		margin-left: auto;
-		margin-right: auto;
-		width: min($grid-max-width - $grid-gutter * 2, 100% - $grid-gutter * 2);
-	}
-}
-
-.home.page-template-default,
-.page-template-default.sidebar-none,
-.page-template-full-width,
-.page-template-fluid-width,
-.page-template-narrow-width,
-.page-template-blank {
-	.alignfull,
-	.alignwide {
-		margin-left: calc(50% - 50vw);
-		margin-right: calc(50% - 50vw);
-		max-width: 1000%;
-		width: auto;
-	}
-
-	.alignwide {
-		@include breakpoint(wide) {
-			margin-left: calc(50% - var(--wp--style--global--wide-size) / 2);
-			margin-right: calc(50% - var(--wp--style--global--wide-size) / 2);
-			max-width: var(--wp--style--global--wide-size);
-			width: auto;
-		}
-	}
-}
 
 /* Masthead styles for the landing page template */
 .page-template-landing .masthead {

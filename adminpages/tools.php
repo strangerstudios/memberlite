@@ -711,6 +711,9 @@ function memberlite_reset_theme_settings() {
 	// Reset all theme mods.
 	remove_theme_mods();
 
+	// A reset starts on the current layout defaults, see memberlite_maybe_migrate_layout_settings().
+	set_theme_mod( 'layout_version', 1 );
+
 	// Reset the site_logo.
 	delete_option( 'site_logo' );
 

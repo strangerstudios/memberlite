@@ -592,58 +592,37 @@ class Memberlite_Customize {
 	 * @return void
 	 */
 	public static function set_customizer_post_settings( WP_Customize_Manager $wp_customize ) {
+		global $memberlite_defaults;
+
+		// POST: Layout Heading ===============
+		self::add_memberlite_heading( $wp_customize, 'memberlite_layout_post_archive_heading', __( 'Layout', 'memberlite' ), 'memberlite_post_archive_options' );
+
+		// POST: Single Post Layout + Columns Ratio
+		self::add_memberlite_layout_controls( $wp_customize, 'post', __( 'Default Single Post Layout', 'memberlite' ), 'memberlite_post_archive_options', array(
+			'description' => __( 'Used on single posts unless a post picks its own layout in the editor.', 'memberlite' ),
+			'ratio_label' => __( 'Single Post Columns Ratio', 'memberlite' ),
+		) );
+
+		// POST: Blog & Archive Layout + Columns Ratio
+		self::add_memberlite_layout_controls( $wp_customize, 'archive', __( 'Default Blog & Archive Layout', 'memberlite' ), 'memberlite_post_archive_options', array(
+			'description' => __( 'Used on the blog, category, tag, date and author pages.', 'memberlite' ),
+			'ratio_label' => __( 'Blog & Archive Columns Ratio', 'memberlite' ),
+		) );
+
+		// POST: Search Results Layout + Columns Ratio
+		self::add_memberlite_layout_controls( $wp_customize, 'search', __( 'Search Results Layout', 'memberlite' ), 'memberlite_post_archive_options', array(
+			'ratio_label' => __( 'Search Results Columns Ratio', 'memberlite' ),
+		) );
+
+		// POST: Content Heading ================
+		self::add_memberlite_heading( $wp_customize, 'memberlite_content_post_archive_heading', __( 'Content', 'memberlite' ), 'memberlite_post_archive_options' );
+
 		// POST: Content Archives ===============
-		self::add_memberlite_setting_control( $wp_customize, 'content_archives', __( 'Archive Layout', 'memberlite' ), 'memberlite_post_archive_options', array(
+		self::add_memberlite_setting_control( $wp_customize, 'content_archives', __( 'Archive Display', 'memberlite' ), 'memberlite_post_archive_options', array(
 			'type'        => 'radio',
 			'description' => __( 'Choose how posts are displayed on your blog and archive pages.', 'memberlite' ),
-			'choices'     => array(
-				'content' => __( 'Show Full Post Content', 'memberlite' ),
-				'excerpt' => __( 'Show Post Excerpts', 'memberlite' ),
-				'grid'    => __( 'Show Posts in a Grid (sidebar hidden)', 'memberlite' ),
-			),
+			'choices'     => self::get_archive_display_choices(),
 		) );
-
-		// POST: Sidebar Location ===============
-		self::add_memberlite_setting_control( $wp_customize, 'sidebar_location_blog', __( 'Sidebar Location', 'memberlite' ), 'memberlite_post_archive_options', array(
-			'type'    => 'radio',
-			'description' => __( 'Choose sidebar placement for your blog, archive pages, and single posts.', 'memberlite' ),
-			'choices' => array(
-				'sidebar-blog-right' => __( 'Right Sidebar', 'memberlite' ),
-				'sidebar-blog-left'  => __( 'Left Sidebar', 'memberlite' ),
-				'sidebar-blog-none'  => __( 'No Sidebar', 'memberlite' ),
-			),
-		) );
-
-		// POST: Columns Ratio ==================
-		self::add_memberlite_setting_control( $wp_customize, 'columns_ratio_blog', __( 'Columns Ratio', 'memberlite' ), 'memberlite_post_archive_options', array(
-			'type'        => 'select',
-			'transport'   => 'refresh',
-			'description' => __( 'Sets the content-to-sidebar width ratio. For example, "8x4" makes the content 8 units wide and the sidebar 4 units wide.', 'memberlite' ),
-			'choices'     => array(
-				'6-6'  => '6x6',
-				'7-5'  => '7x5',
-				'8-4'  => '8x4',
-				'9-3'  => '9x3',
-				'10-2' => '10x2',
-				'11-1' => '11x1',
-			),
-			'active_callback' => function() {
-				return get_theme_mod( 'sidebar_location_blog', 'sidebar-blog-right' ) !== 'sidebar-blog-none';
-			},
-		) );
-
-		// POST: Navigation Settings Heading ====
-		self::add_memberlite_heading( $wp_customize, 'memberlite_navigation_post_archive_heading', __( 'Navigation Settings', 'memberlite' ), 'memberlite_post_archive_options' );
-
-		// POST: (prev/next links) Post Nav =====
-		self::add_memberlite_setting_control( $wp_customize, 'memberlite_post_nav', __( 'Show Prev/Next on Single Posts', 'memberlite' ), 'memberlite_post_archive_options', array(
-			'type'              => 'checkbox',
-			'default'           => true,
-			'sanitize_callback' => array( 'Memberlite_Customize', 'sanitize_checkbox' ),
-		) );
-
-		// POST: Other Settings Heading =========
-		self::add_memberlite_heading( $wp_customize, 'memberlite_post_heading', __( 'Other Settings', 'memberlite' ), 'memberlite_post_archive_options' );
 
 		// POST: Author Block ===================
 		self::add_memberlite_setting_control( $wp_customize, 'author_block', __( 'Show Author Block on Posts', 'memberlite' ), 'memberlite_post_archive_options', array(
@@ -681,73 +660,68 @@ class Memberlite_Customize {
 			'sanitize_callback' => 'sanitize_text_field',
 		) );
 
-		// CPT: Layout/sidebar/columns settings ==
+		// POST: Navigation Settings Heading ====
+		self::add_memberlite_heading( $wp_customize, 'memberlite_navigation_post_archive_heading', __( 'Navigation Settings', 'memberlite' ), 'memberlite_post_archive_options' );
+
+		// POST: (prev/next links) Post Nav =====
+		self::add_memberlite_setting_control( $wp_customize, 'memberlite_post_nav', __( 'Show Prev/Next on Single Posts', 'memberlite' ), 'memberlite_post_archive_options', array(
+			'type'              => 'checkbox',
+			'default'           => true,
+			'sanitize_callback' => array( 'Memberlite_Customize', 'sanitize_checkbox' ),
+		) );
+
+		// CPT: Layout and archive display settings
 		$cpt_archive_settings = memberlite_get_customizer_cpts();
 		if ( ! empty( $cpt_archive_settings ) ) {
 			foreach ( $cpt_archive_settings as $post_type ) {
-				$section  = 'memberlite_' . $post_type . '_archive_options';
+				$section       = 'memberlite_' . $post_type . '_archive_options';
 				$post_type_obj = get_post_type_object( $post_type );
+				$singular      = $post_type_obj->labels->singular_name;
+				$inherit_id    = 'inherit_posts_archives_' . $post_type;
 
 				// Inherit from Posts & Archives ==
-				self::add_memberlite_setting_control( $wp_customize, 'inherit_posts_archives_' . $post_type, __( 'Inherit from Posts & Archives', 'memberlite' ), $section, array(
+				self::add_memberlite_setting_control( $wp_customize, $inherit_id, __( 'Inherit from Posts & Archives', 'memberlite' ), $section, array(
 					'type'              => 'checkbox',
 					'default'           => true,
 					'description'       => __( 'When checked, this post type uses the layout settings from Posts & Archives. Uncheck to control it separately.', 'memberlite' ),
 					'sanitize_callback' => array( 'Memberlite_Customize', 'sanitize_checkbox' ),
 				) );
 
-				if ( $post_type_obj && $post_type_obj->has_archive ) {
-					self::add_memberlite_setting_control( $wp_customize, 'content_archives_' . $post_type, __( 'Archive Layout', 'memberlite' ), $section, array(
-						'type'        => 'radio',
-						'default'     => 'content',
-						'description' => __( 'Choose how posts are displayed on archive pages.', 'memberlite' ),
-						'choices'     => array(
-							'content' => __( 'Show Full Post Content', 'memberlite' ),
-							'excerpt' => __( 'Show Post Excerpts', 'memberlite' ),
-							'grid'    => __( 'Show Posts in a Grid (sidebar hidden)', 'memberlite' ),
-						),
-						'active_callback' => function() use ( $post_type ) {
-							return ! (bool) get_theme_mod( 'inherit_posts_archives_' . $post_type, true );
-						},
+				self::add_memberlite_layout_controls( $wp_customize, 'cpt_' . $post_type, sprintf(
+					/* translators: %s: singular label for the post type, e.g. "Course" */
+					__( 'Default Single %s Layout', 'memberlite' ),
+					$singular
+				), $section, array(
+					'description' => __( 'Used on single items unless an item picks its own layout in the editor.', 'memberlite' ),
+					/* translators: %s: singular label for the post type, e.g. "Course" */
+					'ratio_label' => sprintf( __( 'Single %s Columns Ratio', 'memberlite' ), $singular ),
+					'inherit'     => $inherit_id,
+				) );
+
+				if ( memberlite_cpt_has_archive_views( $post_type ) ) {
+					self::add_memberlite_layout_controls( $wp_customize, 'cpt_' . $post_type . '_archive', sprintf(
+						/* translators: %s: singular label for the post type, e.g. "Course" */
+						__( 'Default %s Archive Layout', 'memberlite' ),
+						$singular
+					), $section, array(
+						'description' => __( 'Used on the archive page and its category and tag pages.', 'memberlite' ),
+						/* translators: %s: singular label for the post type, e.g. "Course" */
+						'ratio_label' => sprintf( __( '%s Archive Columns Ratio', 'memberlite' ), $singular ),
+						'inherit'     => $inherit_id,
 					) );
 				}
 
-				$sidebar_setting_desc = $post_type_obj && $post_type_obj->has_archive
-					? __( 'Choose sidebar placement for archive pages and single posts.', 'memberlite' )
-					: __( 'Choose sidebar placement for single posts.', 'memberlite' );
-
-				self::add_memberlite_setting_control( $wp_customize, 'sidebar_location_' . $post_type, __( 'Sidebar Location', 'memberlite' ), $section, array(
-					'type'            => 'radio',
-					'default'         => 'sidebar-blog-right',
-					'description'     => $sidebar_setting_desc,
-					'choices'         => array(
-						'sidebar-blog-right' => __( 'Right Sidebar', 'memberlite' ),
-						'sidebar-blog-left'  => __( 'Left Sidebar', 'memberlite' ),
-						'sidebar-blog-none'  => __( 'No Sidebar', 'memberlite' ),
-					),
-					'active_callback' => function() use ( $post_type ) {
-						return ! (bool) get_theme_mod( 'inherit_posts_archives_' . $post_type, true );
-					},
-				) );
-
-				self::add_memberlite_setting_control( $wp_customize, 'columns_ratio_' . $post_type, __( 'Columns Ratio', 'memberlite' ), $section, array(
-					'type'        => 'select',
-					'default'     => '8-4',
-					'transport'   => 'refresh',
-					'description' => __( 'Sets the content-to-sidebar width ratio. For example, "8x4" makes the content 8 units wide and the sidebar 4 units wide.', 'memberlite' ),
-					'choices'     => array(
-						'6-6'  => '6x6',
-						'7-5'  => '7x5',
-						'8-4'  => '8x4',
-						'9-3'  => '9x3',
-						'10-2' => '10x2',
-						'11-1' => '11x1',
-					),
-					'active_callback' => function() use ( $post_type ) {
-						return ! (bool) get_theme_mod( 'inherit_posts_archives_' . $post_type, true )
-							&& get_theme_mod( 'sidebar_location_' . $post_type, 'sidebar-blog-right' ) !== 'sidebar-blog-none';
-					},
-				) );
+				if ( $post_type_obj->has_archive ) {
+					self::add_memberlite_setting_control( $wp_customize, 'content_archives_' . $post_type, __( 'Archive Display', 'memberlite' ), $section, array(
+						'type'        => 'radio',
+						'default'     => $memberlite_defaults['content_archives'],
+						'description' => __( 'Choose how posts are displayed on archive pages.', 'memberlite' ),
+						'choices'     => self::get_archive_display_choices(),
+						'active_callback' => function() use ( $inherit_id ) {
+							return ! (bool) get_theme_mod( $inherit_id, true );
+						},
+					) );
+				}
 			}
 		}
 	}
@@ -761,29 +735,12 @@ class Memberlite_Customize {
 	 * @return void
 	 */
 	public static function set_customizer_page_settings( WP_Customize_Manager $wp_customize ) {
-		// PAGE: Sidebar Location ===============
-		self::add_memberlite_setting_control($wp_customize, 'sidebar_location', __( 'Sidebar Location', 'memberlite' ), 'memberlite_page_options', array(
-			'type' => 'radio',
-			'choices' => array(
-				'sidebar-right' => __( 'Right Sidebar', 'memberlite' ),
-				'sidebar-left' => __( 'Left Sidebar', 'memberlite' ),
-				'sidebar-none' => __( 'No Sidebar', 'memberlite' ),
-			),
-		));
+		// PAGE: Layout Heading ===============
+		self::add_memberlite_heading( $wp_customize, 'memberlite_layout_pages_heading', __( 'Layout', 'memberlite' ), 'memberlite_page_options' );
 
-		// PAGE: Columns Ratio ==================
-		self::add_memberlite_setting_control( $wp_customize, 'columns_ratio', __( 'Columns Ratio', 'memberlite' ), 'memberlite_page_options', array(
-			'type'        => 'select',
-			'transport'   => 'refresh',
-			'description' => __( 'Sets the content-to-sidebar width ratio. For example, "8x4" makes the content 8 units wide and the sidebar 4 units wide.', 'memberlite' ),
-			'choices'     => array(
-				'6-6'  => '6x6',
-				'7-5'  => '7x5',
-				'8-4'  => '8x4',
-				'9-3'  => '9x3',
-				'10-2' => '10x2',
-				'11-1' => '11x1',
-			),
+		// PAGE: Page Layout + Columns Ratio ====
+		self::add_memberlite_layout_controls( $wp_customize, 'page', __( 'Default Page Layout', 'memberlite' ), 'memberlite_page_options', array(
+			'description' => __( 'Used on every page unless it picks its own layout in the editor. Your homepage uses Contained unless you pick one for it.', 'memberlite' ),
 		) );
 
 		// PAGE: Navigation Settings Heading ====
@@ -796,6 +753,121 @@ class Memberlite_Customize {
 			'sanitize_callback' => array( 'Memberlite_Customize', 'sanitize_checkbox' ),
 		) );
 
+	}
+
+	/**
+	 * Layout picker and Columns Ratio control IDs, passed to customizer-controls.js.
+	 *
+	 * @since TBD
+	 * @var array[]
+	 */
+	public static $layout_controls = array();
+
+	/**
+	 * Choices for the Archive Display settings.
+	 *
+	 * @since TBD
+	 * @return array
+	 */
+	public static function get_archive_display_choices(): array {
+		return array(
+			'content' => __( 'Show Full Post Content', 'memberlite' ),
+			'excerpt' => __( 'Show Post Excerpts', 'memberlite' ),
+			'grid'    => __( 'Show Posts in a Grid', 'memberlite' ),
+		);
+	}
+
+	/**
+	 * Helper to add a layout picker and its Columns Ratio select for a layout context.
+	 *
+	 * The Columns Ratio only shows when the layout has a sidebar. With 'inherit', both controls
+	 * hide while that checkbox setting is checked.
+	 *
+	 * @since TBD
+	 *
+	 * @param WP_Customize_Manager $wp_customize
+	 * @param string $context Layout context, see memberlite_get_layout_contexts().
+	 * @param string $label
+	 * @param string $section
+	 * @param array  $args {
+	 *     @type string $description Picker description.
+	 *     @type string $ratio_label Columns Ratio label. Default 'Columns Ratio'.
+	 *     @type string $inherit     Checkbox setting ID that hides both controls when checked.
+	 * }
+	 *
+	 * @return void
+	 */
+	public static function add_memberlite_layout_controls( WP_Customize_Manager $wp_customize, string $context, string $label, string $section, $args = array() ): void {
+		global $memberlite_defaults;
+
+		$contexts = memberlite_get_layout_contexts();
+		if ( empty( $contexts[ $context ] ) ) {
+			return;
+		}
+
+		$args = wp_parse_args( $args, array(
+			'description' => '',
+			'ratio_label' => __( 'Columns Ratio', 'memberlite' ),
+			'inherit'     => '',
+		) );
+
+		$layout_id  = $contexts[ $context ]['setting'];
+		$ratio_id   = $contexts[ $context ]['columns_ratio'];
+		$default    = $contexts[ $context ]['default'];
+		$inherit_id = $args['inherit'];
+
+		$is_inherited = function() use ( $inherit_id ) {
+			return $inherit_id && (bool) get_theme_mod( $inherit_id, true );
+		};
+
+		$wp_customize->add_setting(
+			$layout_id,
+			array(
+				'default'              => $default,
+				'sanitize_callback'    => array( 'Memberlite_Customize', 'sanitize_select' ),
+				'sanitize_js_callback' => array( 'Memberlite_Customize', 'sanitize_js_callback' ),
+				'transport'            => 'refresh',
+			)
+		);
+
+		$wp_customize->add_control(
+			new Memberlite_Customize_Layout_Control(
+				$wp_customize,
+				$layout_id,
+				array(
+					'label'           => $label,
+					'description'     => $args['description'],
+					'section'         => $section,
+					'choices'         => memberlite_get_layout_choices( $context ),
+					'active_callback' => function() use ( $is_inherited ) {
+						return ! $is_inherited();
+					},
+				)
+			)
+		);
+
+		self::add_memberlite_setting_control( $wp_customize, $ratio_id, $args['ratio_label'], $section, array(
+			'type'            => 'select',
+			'default'         => isset( $memberlite_defaults[ $ratio_id ] ) ? $memberlite_defaults[ $ratio_id ] : '8-4',
+			'description'     => __( 'Sets the content-to-sidebar width ratio. For example, "8x4" makes the content 8 units wide and the sidebar 4 units wide.', 'memberlite' ),
+			'choices'         => array(
+				'6-6'  => '6x6',
+				'7-5'  => '7x5',
+				'8-4'  => '8x4',
+				'9-3'  => '9x3',
+				'10-2' => '10x2',
+				'11-1' => '11x1',
+			),
+			'active_callback' => function() use ( $is_inherited, $layout_id, $default ) {
+				return ! $is_inherited() && memberlite_layout_has_sidebar( get_theme_mod( $layout_id, $default ) );
+			},
+		) );
+
+		self::$layout_controls[] = array(
+			'layout'  => $layout_id,
+			'ratio'   => $ratio_id,
+			'inherit' => $inherit_id,
+		);
 	}
 
 	/**
@@ -1278,6 +1350,7 @@ class Memberlite_Customize {
 		wp_localize_script( 'Memberlite_Customizer-controls', 'colorSettingKeys', memberlite_get_color_setting_keys() );
 		wp_localize_script( 'Memberlite_Customizer-controls', 'memberlite_preset_slugs', memberlite_get_color_preset_slugs() );
 		wp_localize_script( 'Memberlite_Customizer-controls', 'memberlite_cpt_archive_slugs', memberlite_get_customizer_cpts() );
+		wp_localize_script( 'Memberlite_Customizer-controls', 'memberliteLayoutControls', self::$layout_controls );
 
 		wp_enqueue_style(
 			'memberlite-customizer-css',
@@ -1306,6 +1379,46 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 
 		public function render_content() {
 			echo '<a href="' . esc_url( $this->url ) . '" target="_blank" class="button button-secondary">' . esc_html( $this->label ) . '</a>';
+		}
+	}
+
+	/**
+	 * Layout picker: a radio group with a thumbnail for each layout.
+	 *
+	 * @since TBD
+	 */
+	class Memberlite_Customize_Layout_Control extends WP_Customize_Control {
+		public $type = 'memberlite_layout';
+
+		public function render_content() {
+			if ( empty( $this->choices ) ) {
+				return;
+			}
+
+			$name     = '_customize-radio-' . $this->id;
+			$label_id = $name . '-label';
+			?>
+			<span class="customize-control-title" id="<?php echo esc_attr( $label_id ); ?>"><?php echo esc_html( $this->label ); ?></span>
+			<?php if ( ! empty( $this->description ) ) { ?>
+				<span class="description customize-control-description"><?php echo esc_html( $this->description ); ?></span>
+			<?php } ?>
+			<div class="memberlite-layout-picker" role="radiogroup" aria-labelledby="<?php echo esc_attr( $label_id ); ?>">
+				<?php foreach ( $this->choices as $value => $label ) { ?>
+					<label class="memberlite-layout-option">
+						<input type="radio" value="<?php echo esc_attr( $value ); ?>" name="<?php echo esc_attr( $name ); ?>" <?php $this->link(); ?> <?php checked( $this->value(), $value ); ?> />
+						<span class="memberlite-layout-thumb memberlite-layout-thumb-<?php echo esc_attr( $value ); ?>" aria-hidden="true">
+							<span class="memberlite-layout-thumb-header"></span>
+							<span class="memberlite-layout-thumb-body">
+								<span class="memberlite-layout-thumb-content"></span>
+								<span class="memberlite-layout-thumb-sidebar"></span>
+							</span>
+							<span class="memberlite-layout-thumb-footer"></span>
+						</span>
+						<span class="memberlite-layout-option-label"><?php echo esc_html( $label ); ?></span>
+					</label>
+				<?php } ?>
+			</div>
+			<?php
 		}
 	}
 

@@ -38,3 +38,114 @@ label + .customize-control-description {
 #customize-theme-controls .customize-pane-child {
 	background: #fff;
 }
+
+/* Layout picker */
+.memberlite-layout-picker {
+	display: grid;
+	gap: 8px;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	margin-top: 8px;
+}
+
+.memberlite-layout-option {
+	align-items: center;
+	background: #fff;
+	border: 2px solid transparent;
+	border-radius: 4px;
+	cursor: pointer;
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+	padding: 8px 4px;
+	position: relative;
+	text-align: center;
+}
+
+.memberlite-layout-option:hover {
+	border-color: #c3c4c7;
+}
+
+.memberlite-layout-option:has(input:checked) {
+	border-color: var(--wp-admin-theme-color, #2271b1);
+}
+
+.memberlite-layout-option:has(input:focus-visible) {
+	box-shadow: 0 0 0 2px #fff, 0 0 0 4px var(--wp-admin-theme-color, #2271b1);
+}
+
+.memberlite-layout-option input[type="radio"] {
+	height: 1px;
+	margin: 0;
+	opacity: 0;
+	position: absolute;
+	width: 1px;
+}
+
+.memberlite-layout-option-label {
+	font-size: 12px;
+	line-height: 1.3;
+}
+
+.memberlite-layout-option:has(input:checked) .memberlite-layout-option-label {
+	font-weight: 600;
+}
+
+/* Layout thumbnails: header, content (+ sidebar) and footer bars */
+.memberlite-layout-thumb {
+	background: #fff;
+	border: 1px solid #c3c4c7;
+	border-radius: 2px;
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+	height: 52px;
+	overflow: hidden;
+	width: 72px;
+}
+
+.memberlite-layout-thumb-header {
+	background: #a7aaad;
+	height: 7px;
+}
+
+.memberlite-layout-thumb-footer {
+	background: #dcdcde;
+	height: 5px;
+}
+
+.memberlite-layout-thumb-body {
+	display: flex;
+	flex: 1;
+	gap: 4px;
+	padding: 5px 6px;
+}
+
+.memberlite-layout-thumb-content {
+	background: #b9d3ee;
+	flex: 1;
+}
+
+.memberlite-layout-thumb-sidebar {
+	background: #dcdcde;
+	display: none;
+	width: 18px;
+}
+
+.memberlite-layout-thumb-sidebar-right .memberlite-layout-thumb-sidebar,
+.memberlite-layout-thumb-sidebar-left .memberlite-layout-thumb-sidebar {
+	display: block;
+}
+
+.memberlite-layout-thumb-sidebar-left .memberlite-layout-thumb-sidebar {
+	order: -1;
+}
+
+.memberlite-layout-thumb-narrow .memberlite-layout-thumb-body {
+	padding-left: 18px;
+	padding-right: 18px;
+}
+
+.memberlite-layout-thumb-full-width .memberlite-layout-thumb-body {
+	padding-left: 0;
+	padding-right: 0;
+}

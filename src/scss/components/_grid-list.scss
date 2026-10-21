@@ -4,15 +4,14 @@
 /*--------------------------------------------------------------
  3.3 Components: Grid List
 
- Responsive card grid — 1 column mobile, 2 column tablet, 3 column wide
+ Responsive card grid — as many columns as fit, up to 3
 --------------------------------------------------------------*/
 
 .grid-list {
-	display: flex;
-	flex-direction: column;
-	flex-wrap: wrap;
+	display: grid;
 	gap: var(--wp--preset--spacing--20);
-	justify-content: flex-start;
+	// Cards are at least 16rem wide, so a column with a sidebar fits fewer of them.
+	grid-template-columns: repeat(auto-fill, minmax(min(100%, max(16rem, (100% - var(--wp--preset--spacing--20) * 2) / 3)), 1fr));
 	margin-bottom: var(--wp--preset--spacing--50);
 
 	// Each direct child is a card
@@ -104,27 +103,5 @@
 
 	.entry-content {
 		border-bottom: none;
-	}
-
-	// 2-column layout — tablet range only
-	// Note: this is a range query (min AND max) that the breakpoint() mixin
-	// can't express. If you add a 'tablet-only' range to the mixin, replace this.
-	@media only screen and (min-width: 768px) and (max-width: 1160px) {
-		flex-direction: row;
-
-		> * {
-			flex: 0 0 calc((100% - var(--wp--preset--spacing--20)) / 2);
-			max-width: calc((100% - var(--wp--preset--spacing--20)) / 2);
-		}
-	}
-
-	// 3-column layout — wide screens
-	@include breakpoint(wide) {
-		flex-direction: row;
-
-		> * {
-			flex: 0 0 calc((100% - var(--wp--preset--spacing--20) * 2) / 3);
-			max-width: calc((100% - var(--wp--preset--spacing--20) * 2) / 3);
-		}
 	}
 }

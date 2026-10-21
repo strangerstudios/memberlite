@@ -29,8 +29,8 @@
 	4.2 Masthead (_masthead.scss)
 	4.3 Footer (_footer.scss)
 	4.4 Content (_content.scss)
+	4.5 Layout (_layout.scss)
 5.0 Pages
-	5.1 Blog (_blog.scss)
 	5.2 404 (_no-results-404.scss)
 	5.3 Page (_page.scss)
 6.0 Plugins
@@ -1830,14 +1830,12 @@ textarea {
 /*--------------------------------------------------------------
  3.3 Components: Grid List
 
- Responsive card grid — 1 column mobile, 2 column tablet, 3 column wide
+ Responsive card grid — as many columns as fit, up to 3
 --------------------------------------------------------------*/
 .grid-list {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
+  display: grid;
   gap: var(--wp--preset--spacing--20);
-  justify-content: flex-start;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, max(16rem, (100% - var(--wp--preset--spacing--20) * 2) / 3)), 1fr));
   margin-bottom: var(--wp--preset--spacing--50);
 }
 .grid-list > * {
@@ -1915,24 +1913,6 @@ textarea {
 }
 .grid-list .entry-content {
   border-bottom: none;
-}
-@media only screen and (min-width: 768px) and (max-width: 1160px) {
-  .grid-list {
-    flex-direction: row;
-  }
-  .grid-list > * {
-    flex: 0 0 calc((100% - var(--wp--preset--spacing--20)) / 2);
-    max-width: calc((100% - var(--wp--preset--spacing--20)) / 2);
-  }
-}
-@media (min-width: 1160px) {
-  .grid-list {
-    flex-direction: row;
-  }
-  .grid-list > * {
-    flex: 0 0 calc((100% - var(--wp--preset--spacing--20) * 2) / 3);
-    max-width: calc((100% - var(--wp--preset--spacing--20) * 2) / 3);
-  }
 }
 
 /*--------------------------------------------------------------
@@ -3070,7 +3050,7 @@ body.memberlite-banner-hidden .entry-content > .banner:first-child {
 .masthead:has(.masthead-banner) {
   padding: 0;
 }
-.page-template-fluid-width .masthead {
+.memberlite-layout-full-width .masthead {
   margin: 0;
 }
 .masthead .row {
@@ -3200,17 +3180,17 @@ body.memberlite-banner-hidden .entry-content > .banner:first-child {
   margin-top: 0;
 }
 
-.sidebar-blog-none #content .masthead {
+body:not(.page).memberlite-layout-narrow #content .masthead {
   align-items: center;
   display: flex;
   flex-direction: column;
   text-align: center;
 }
-.sidebar-blog-none #content .masthead .memberlite-breadcrumb {
+body:not(.page).memberlite-layout-narrow #content .masthead .memberlite-breadcrumb {
   align-self: flex-start;
   text-align: left;
 }
-.sidebar-blog-none #content .masthead .columns > *:not(.memberlite-breadcrumb) {
+body:not(.page).memberlite-layout-narrow #content .masthead .columns > *:not(.memberlite-breadcrumb) {
   margin-left: auto;
   margin-right: auto;
   max-width: var(--wp--style--global--content-size);
@@ -3569,36 +3549,27 @@ body.memberlite-banner-hidden .entry-content > .banner:first-child {
 }
 
 /*--------------------------------------------------------------
- PAGES
---------------------------------------------------------------*/
-/*--------------------------------------------------------------
- 5.1 Pages: Blog and Single Post
+ 4.5 Structure: Layout
 
- Covers: Blog layout, single post layout, sidebar ordering, wide/full alignments
+ Covers: Layout body classes (memberlite-layout-*), sidebar order, wide/full alignments,
+ Full Width containment
 --------------------------------------------------------------*/
-.blog.sidebar-blog-left #primary,
-.archive.sidebar-blog-left #primary,
-.search.sidebar-blog-left #primary,
-.single.sidebar-blog-left #primary {
+.memberlite-layout-sidebar-left #primary {
   order: 2;
 }
 
-.blog.sidebar-blog-right #primary,
-.archive.sidebar-blog-right #primary,
-.search.sidebar-blog-right #primary,
-.single.sidebar-blog-right #primary {
-  order: unset;
-}
-
-.single.sidebar-blog-none .alignfull,
-.single.sidebar-blog-none .alignwide {
+:is(.page, .single):is(.memberlite-layout-narrow, .memberlite-layout-contained, .memberlite-layout-full-width) .alignfull,
+:is(.page, .single):is(.memberlite-layout-narrow, .memberlite-layout-contained, .memberlite-layout-full-width) .alignwide,
+.page-template-blank .alignfull,
+.page-template-blank .alignwide {
   margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw);
   max-width: 1000%;
   width: auto;
 }
 @media (min-width: 1160px) {
-  .single.sidebar-blog-none .alignwide {
+  :is(.page, .single):is(.memberlite-layout-narrow, .memberlite-layout-contained, .memberlite-layout-full-width) .alignwide,
+  .page-template-blank .alignwide {
     margin-left: calc(50% - var(--wp--style--global--wide-size) / 2);
     margin-right: calc(50% - var(--wp--style--global--wide-size) / 2);
     max-width: var(--wp--style--global--wide-size);
@@ -3606,6 +3577,18 @@ body.memberlite-banner-hidden .entry-content > .banner:first-child {
   }
 }
 
+.memberlite-layout-full-width .page-links,
+.memberlite-layout-full-width .page-navigation,
+.memberlite-layout-full-width .entry-footer,
+.memberlite-layout-full-width #comments {
+  margin-left: auto;
+  margin-right: auto;
+  width: min(71em - 3rem, 100% - 3rem);
+}
+
+/*--------------------------------------------------------------
+ PAGES
+--------------------------------------------------------------*/
 /*--------------------------------------------------------------
  5.2 Pages: 404 and No Search Results
 
@@ -3632,52 +3615,8 @@ body.memberlite-banner-hidden .entry-content > .banner:first-child {
 /*--------------------------------------------------------------
  5.3 Pages: Pages and Templates
 
- Covers: Page layout, template ordering, wide/full alignments
+ Covers: Landing page template
 --------------------------------------------------------------*/
-.page.sidebar-content #primary {
-  order: 2;
-}
-
-.page.content-sidebar #primary {
-  order: unset;
-}
-
-.page.page-template-full-width #primary,
-.page.page-template-narrow-width #primary {
-  order: unset;
-}
-
-.home.page-template-default .alignfull,
-.home.page-template-default .alignwide,
-.page-template-default.sidebar-none .alignfull,
-.page-template-default.sidebar-none .alignwide,
-.page-template-full-width .alignfull,
-.page-template-full-width .alignwide,
-.page-template-fluid-width .alignfull,
-.page-template-fluid-width .alignwide,
-.page-template-narrow-width .alignfull,
-.page-template-narrow-width .alignwide,
-.page-template-blank .alignfull,
-.page-template-blank .alignwide {
-  margin-left: calc(50% - 50vw);
-  margin-right: calc(50% - 50vw);
-  max-width: 1000%;
-  width: auto;
-}
-@media (min-width: 1160px) {
-  .home.page-template-default .alignwide,
-  .page-template-default.sidebar-none .alignwide,
-  .page-template-full-width .alignwide,
-  .page-template-fluid-width .alignwide,
-  .page-template-narrow-width .alignwide,
-  .page-template-blank .alignwide {
-    margin-left: calc(50% - var(--wp--style--global--wide-size) / 2);
-    margin-right: calc(50% - var(--wp--style--global--wide-size) / 2);
-    max-width: var(--wp--style--global--wide-size);
-    width: auto;
-  }
-}
-
 /* Masthead styles for the landing page template */
 .page-template-landing .masthead .alignleft.wp-post-image {
   margin-top: 2rem;

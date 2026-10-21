@@ -5,6 +5,11 @@
  * @package Memberlite
  */
 
+if ( 'full-width' === memberlite_get_layout() ) {
+	get_template_part( 'templates/fluid-width' );
+	return;
+}
+
 get_header(); ?>
 
 <div class="row">
