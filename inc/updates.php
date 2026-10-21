@@ -102,7 +102,7 @@ function memberlite_get_update_info() {
 		 * @param int $timeout The number of seconds before the request times out
 		 */
 		$timeout = apply_filters( 'memberlite_get_update_info_timeout', 5 );
-		$remote_info = wp_remote_get( PMPRO_LICENSE_SERVER . 'themes/', $timeout );
+		$remote_info = wp_remote_get( PMPRO_LICENSE_SERVER . 'themes/', array( 'timeout' => $timeout ) );
 
 		// Test response.
 		if ( is_wp_error( $remote_info ) || empty( $remote_info['response'] ) || $remote_info['response']['code'] != '200' ) {
