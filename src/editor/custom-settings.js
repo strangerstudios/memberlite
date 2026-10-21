@@ -3,14 +3,13 @@ import { registerPlugin } from '@wordpress/plugins';
 import { PluginDocumentSettingPanel } from '@wordpress/editor';
 import {
 	Button,
-	Notice,
 	ToggleControl,
 	SelectControl,
 	ExternalLink,
 	RadioControl,
 	__experimentalVStack as VStack,
 } from '@wordpress/components';
-import { useSelect, useDispatch } from '@wordpress/data';
+import { useSelect } from '@wordpress/data';
 import { useEntityProp } from '@wordpress/core-data';
 
 const textDomain = 'memberlite';
@@ -62,7 +61,6 @@ const MemberliteLayoutSettings = () => {
 		} ),
 		[]
 	);
-	const { editPost } = useDispatch( 'core/editor' );
 
 	// Always call hooks before any conditional return (Rules of Hooks).
 	const [ meta, setMeta ] = useEntityProp( 'postType', postType, 'meta' );
@@ -72,43 +70,30 @@ const MemberliteLayoutSettings = () => {
 		return null;
 	}
 
-	// Legacy layout templates set the layout, and other page templates (e.g. Landing Page) default to Right Sidebar.
-	const hasTemplate    = postType === 'page' && ! data.isPostsPage && template && template !== 'default';
-	const templateLayout = hasTemplate ? data.legacyTemplates[ template ] || '' : '';
-	const defaultLayout  = hasTemplate && ! templateLayout ? 'sidebar-right' : data.default;
-	const savedLayout    = meta._memberlite_layout || '';
-	const selected       = savedLayout || templateLayout || 'default';
-	const resolved       = selected === 'default' ? defaultLayout : selected;
-	const hasSidebar     = resolved === 'sidebar-right' || resolved === 'sidebar-left';
-	const ownTemplate    = hasTemplate && ! data.themeTemplates.includes( template );
-	const defaultLabel   = data.layoutLabels[ defaultLayout ];
+	// A page template controls the layout, so the picker only shows on the default template.
+	const hasTemplate  = ! data.isPostsPage && template && template !== 'default';
+	const templateName = hasTemplate ? data.templateNames[ template ] || template : '';
+	const savedLayout  = meta._memberlite_layout || '';
+	const selected     = savedLayout || 'default';
+	let resolved       = selected === 'default' ? data.default : selected;
+	if ( hasTemplate ) {
+		// Mirrors memberlite_get_template_layout().
+		resolved = postType === 'page' ? data.legacyTemplates[ template ] || 'sidebar-right' : data.default;
+	}
+	const hasSidebar   = resolved === 'sidebar-right' || resolved === 'sidebar-left';
+	const defaultLabel = data.layoutLabels[ data.default ];
 
 	const customSidebar    = meta._memberlite_custom_sidebar || '';
 	const hasCustomSidebar = customSidebar && customSidebar !== 'memberlite_sidebar_blank';
 
-	const pickLayout = ( value ) => {
-		setMeta( { ...meta, _memberlite_layout: value === 'default' ? '' : value } );
-
-		// A layout picked here replaces a legacy layout template.
-		if ( templateLayout ) {
-			editPost( { template: '' } );
-		}
-	};
-
 	const options = [ { value: 'default', label: __( 'Default', textDomain ) }, ...data.choices ];
 
 	let help;
-	if ( selected === 'default' && defaultLayout !== data.default ) {
-		/* translators: 1: page template name, e.g. "Landing Page". 2: layout name, e.g. "Right Sidebar". */
-		help = sprintf( __( 'Pages using the %1$s template default to %2$s.', textDomain ), data.templateNames[ template ] || template, data.layoutLabels[ defaultLayout ] );
-	} else if ( selected === 'default' && data.isFrontPage ) {
+	if ( selected === 'default' && data.isFrontPage ) {
 		help = __( 'Your homepage uses Contained unless you pick a layout for it.', textDomain );
 	} else if ( selected === 'default' ) {
 		/* translators: 1: where the default applies, e.g. "Pages". 2: layout name, e.g. "Narrow". */
 		help = sprintf( __( 'Uses the Customizer default for %1$s: %2$s.', textDomain ), data.contextLabel, defaultLabel );
-	} else if ( ! savedLayout && templateLayout ) {
-		/* translators: %s: page template name, e.g. "Fluid Width". */
-		help = sprintf( __( 'Set by the %s page template. Picking a layout here replaces the template.', textDomain ), data.templateNames[ template ] || template );
 	} else {
 		/* translators: 1: where the default applies, e.g. "Pages". 2: layout name, e.g. "Narrow". */
 		help = sprintf( __( 'Overrides the Customizer default for %1$s (%2$s).', textDomain ), data.contextLabel, defaultLabel );
@@ -121,54 +106,57 @@ const MemberliteLayoutSettings = () => {
 			className="memberlite-layout-settings"
 		>
 			<VStack spacing={ 4 }>
-				<div
-					role="radiogroup"
-					aria-label={ __( 'Layout', textDomain ) }
-					style={ { display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0, 1fr))', gap: 8 } }
-				>
-					{ options.map( ( option ) => {
-						const isSelected = option.value === selected;
-						return (
-							<Button
-								key={ option.value }
-								role="radio"
-								aria-checked={ isSelected }
-								onClick={ () => pickLayout( option.value ) }
-								style={ {
-									display: 'flex',
-									flexDirection: 'column',
-									alignItems: 'center',
-									gap: 6,
-									height: 'auto',
-									padding: '8px 2px',
-									border: `2px solid ${ isSelected ? 'var(--wp-admin-theme-color, #3858e9)' : '#e0e0e0' }`,
-									borderRadius: 4,
-									fontSize: 12,
-									fontWeight: isSelected ? 600 : 400,
-									lineHeight: 1.3,
-									whiteSpace: 'normal',
-									textAlign: 'center',
-								} }
-							>
-								<LayoutThumb layout={ option.value === 'default' ? defaultLayout : option.value } isDefault={ option.value === 'default' } />
-								{ option.label }
-							</Button>
-						);
-					} ) }
-				</div>
-				<p style={ { margin: 0, fontSize: 12, color: '#757575' } }>{ help }</p>
-				{ ownTemplate && (
-					<Notice status="warning" isDismissible={ false }>
+				{ hasTemplate ? (
+					<p style={ { margin: 0, fontSize: 12, color: '#757575' } }>
 						{ sprintf(
-							/* translators: %s: page template name, e.g. "Blog Landing Page". */
-							__( "The %s template controls this page's layout, so these settings may have no effect.", textDomain ),
-							data.templateNames[ template ] || template
+							/* translators: %s: page template name, e.g. "Landing Page". */
+							__( 'The %s template controls the layout. Switch to the default template to choose one.', textDomain ),
+							templateName
 						) }
-					</Notice>
+					</p>
+				) : (
+					<>
+						<div
+							role="radiogroup"
+							aria-label={ __( 'Layout', textDomain ) }
+							style={ { display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0, 1fr))', gap: 8 } }
+						>
+							{ options.map( ( option ) => {
+								const isSelected = option.value === selected;
+								return (
+									<Button
+										key={ option.value }
+										role="radio"
+										aria-checked={ isSelected }
+										onClick={ () => setMeta( { ...meta, _memberlite_layout: option.value === 'default' ? '' : option.value } ) }
+										style={ {
+											display: 'flex',
+											flexDirection: 'column',
+											alignItems: 'center',
+											gap: 6,
+											height: 'auto',
+											padding: '8px 2px',
+											border: `2px solid ${ isSelected ? 'var(--wp-admin-theme-color, #3858e9)' : '#e0e0e0' }`,
+											borderRadius: 4,
+											fontSize: 12,
+											fontWeight: isSelected ? 600 : 400,
+											lineHeight: 1.3,
+											whiteSpace: 'normal',
+											textAlign: 'center',
+										} }
+									>
+										<LayoutThumb layout={ option.value === 'default' ? data.default : option.value } isDefault={ option.value === 'default' } />
+										{ option.label }
+									</Button>
+								);
+							} ) }
+						</div>
+						<p style={ { margin: 0, fontSize: 12, color: '#757575' } }>{ help }</p>
+						<ExternalLink href={ data.customizerUrl }>
+							{ __( 'Change the default in the Customizer', textDomain ) }
+						</ExternalLink>
+					</>
 				) }
-				<ExternalLink href={ data.customizerUrl }>
-					{ __( 'Change the default in the Customizer', textDomain ) }
-				</ExternalLink>
 				{ hasSidebar && (
 					<VStack spacing={ 2 }>
 						<SelectControl

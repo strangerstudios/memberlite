@@ -3,15 +3,15 @@
  * Layout: the page structure (sidebar and content width) for every context.
  *
  * Each context (Pages, Single Posts, Blog & Archives, and each CPT's single and archive
- * views) has a default layout in the Customizer. Pages, posts and CPT items can override
- * it in the block editor's Layout panel. The page set as the Posts page overrides the
- * blog index.
+ * views) has a default layout in the Customizer. Pages, posts and CPT items on the default
+ * template can override it in the block editor's Layout panel. The page set as the Posts
+ * page overrides the blog index.
  *
  * memberlite_get_layout() resolves the layout for the current request in this order:
- * 1. The item's `_memberlite_layout` meta.
- * 2. A legacy layout page template (Full Width, Narrow Width, etc.).
- * 3. The static front page falls back to Contained.
- * 4. The Customizer default for the context.
+ * 1. An item with a page template (e.g. Landing Page, or a child theme's) gets that
+ *    template's layout. Otherwise, the item's `_memberlite_layout` meta.
+ * 2. The static front page falls back to Contained.
+ * 3. The Customizer default for the context.
  *
  * @package Memberlite
  * @since TBD
@@ -249,9 +249,10 @@ function memberlite_get_layout_columns_ratio( string $context ): string {
 }
 
 /**
- * Map legacy layout page templates to layouts.
+ * Map the removed layout page templates to layouts.
  *
- * Pages saved with these templates keep their layout until a layout is picked in the editor.
+ * memberlite_migrate_legacy_layout_templates() moves pages off these templates. A child
+ * theme that still has its own copy of one keeps the template and its layout.
  *
  * @since TBD
  * @return array Layout slugs keyed by template file.
@@ -267,11 +268,11 @@ function memberlite_get_legacy_template_layouts(): array {
 }
 
 /**
- * Get the layout saved on an item, from its meta or its page template.
+ * Get the layout saved on an item, from its page template or its meta.
  *
- * Legacy layout templates map to their layout. Other page templates (e.g. Landing Page)
- * have always shown the sidebar, so they default to Right Sidebar. The Posts page ignores
- * templates because WordPress never used them for the blog index.
+ * A page template controls the layout, so `_memberlite_layout` only applies on the default
+ * template. The Posts page ignores its template because WordPress never used it for the
+ * blog index.
  *
  * @since TBD
  *
@@ -279,25 +280,30 @@ function memberlite_get_legacy_template_layouts(): array {
  * @return string Layout slug, or '' to use the default.
  */
 function memberlite_get_item_layout( int $post_id ): string {
-	$layout = (string) get_post_meta( $post_id, '_memberlite_layout', true );
+	$template = (string) get_page_template_slug( $post_id );
 
-	if ( '' === $layout && 'page' === get_post_type( $post_id ) && (int) get_option( 'page_for_posts' ) !== $post_id ) {
-		$layout = memberlite_get_template_layout( (string) get_page_template_slug( $post_id ) );
+	if ( '' === $template || (int) get_option( 'page_for_posts' ) === $post_id ) {
+		return (string) get_post_meta( $post_id, '_memberlite_layout', true );
 	}
 
-	return $layout;
+	return memberlite_get_template_layout( $template, (string) get_post_type( $post_id ) );
 }
 
 /**
  * Get the layout a page template sets.
  *
+ * A child theme's copy of a removed layout template keeps that template's layout. Other
+ * page templates (e.g. Landing Page) have always shown the sidebar, so they get Right
+ * Sidebar. Templates on posts and CPTs use the context default.
+ *
  * @since TBD
  *
- * @param string $template Template file, or '' for the default template.
- * @return string Layout slug, or '' when the template doesn't set one.
+ * @param string $template  Template file, or '' for the default template.
+ * @param string $post_type Post type the template is on.
+ * @return string Layout slug, or '' to use the default.
  */
-function memberlite_get_template_layout( string $template ): string {
-	if ( '' === $template || 'default' === $template ) {
+function memberlite_get_template_layout( string $template, string $post_type = 'page' ): string {
+	if ( '' === $template || 'default' === $template || 'page' !== $post_type ) {
 		return '';
 	}
 
@@ -390,62 +396,53 @@ function memberlite_layout_get_sidebar( $name ) {
 add_filter( 'memberlite_get_sidebar', 'memberlite_layout_get_sidebar' );
 
 /**
- * Hide legacy layout templates from the block editor's template list.
+ * Move pages off the removed layout page templates.
  *
- * The Layout panel replaces them. A page already using one keeps it in the list so the
- * editor shows its current template. The templates stay registered, so the classic editor,
- * Quick Edit and imports can still use them.
+ * Each page gets its template's layout as `_memberlite_layout`, unless it already has one,
+ * and goes back to the default template. The Posts page only loses the template, since
+ * WordPress never used it for the blog index. Pages on a template the active theme still
+ * registers (a child theme's copy) keep it.
  *
- * @since TBD
- *
- * @param array                   $settings Block editor settings.
- * @param WP_Block_Editor_Context $context  The editor context.
- * @return array
- */
-function memberlite_hide_legacy_layout_templates( $settings, $context ) {
-	if ( empty( $settings['availableTemplates'] ) || empty( $context->post ) ) {
-		return $settings;
-	}
-
-	$current = get_page_template_slug( $context->post );
-
-	foreach ( array_keys( memberlite_get_legacy_template_layouts() ) as $template ) {
-		if ( $template !== $current ) {
-			unset( $settings['availableTemplates'][ $template ] );
-		}
-	}
-
-	return $settings;
-}
-add_filter( 'block_editor_settings_all', 'memberlite_hide_legacy_layout_templates', 10, 2 );
-
-/**
- * Clear an item's layout when its page template changes to a legacy layout template.
- *
- * The classic editor and Quick Edit can still set legacy templates but can't show or clear
- * `_memberlite_layout`, which would otherwise win over the template. Runs only when the
- * template value changes. In the block editor the template saves before the meta, so a
- * layout picked in the same save still applies. Imports are skipped.
+ * Runs from inc/updates/update_7_2.php and when switching to Memberlite or a child theme.
  *
  * @since TBD
- *
- * @param int    $meta_id    Meta ID.
- * @param int    $post_id    Post ID.
- * @param string $meta_key   Meta key.
- * @param mixed  $meta_value Meta value.
  * @return void
  */
-function memberlite_clear_layout_on_legacy_template( $meta_id, $post_id, $meta_key, $meta_value ): void {
-	if ( '_wp_page_template' !== $meta_key || ( defined( 'WP_IMPORTING' ) && WP_IMPORTING ) ) {
+function memberlite_migrate_legacy_layout_templates(): void {
+	global $wpdb;
+
+	$templates = array_diff_key( memberlite_get_legacy_template_layouts(), wp_get_theme()->get_page_templates( null, 'page' ) );
+
+	if ( empty( $templates ) ) {
 		return;
 	}
 
-	if ( isset( memberlite_get_legacy_template_layouts()[ (string) $meta_value ] ) ) {
-		delete_post_meta( $post_id, '_memberlite_layout' );
+	$placeholders = implode( ', ', array_fill( 0, count( $templates ), '%s' ) );
+	$pages        = $wpdb->get_results(
+		$wpdb->prepare(
+			"SELECT p.ID, pm.meta_value AS template
+			FROM {$wpdb->posts} p
+			INNER JOIN {$wpdb->postmeta} pm ON p.ID = pm.post_id
+			WHERE p.post_type = 'page'
+			AND pm.meta_key = '_wp_page_template'
+			AND pm.meta_value IN ( $placeholders )",
+			array_keys( $templates )
+		)
+	);
+
+	$posts_page = (int) get_option( 'page_for_posts' );
+
+	foreach ( $pages as $page ) {
+		$page_id = (int) $page->ID;
+
+		if ( $posts_page !== $page_id && '' === (string) get_post_meta( $page_id, '_memberlite_layout', true ) ) {
+			update_post_meta( $page_id, '_memberlite_layout', $templates[ $page->template ] );
+		}
+
+		update_post_meta( $page_id, '_wp_page_template', 'default' );
 	}
 }
-add_action( 'added_post_meta', 'memberlite_clear_layout_on_legacy_template', 10, 4 );
-add_action( 'updated_post_meta', 'memberlite_clear_layout_on_legacy_template', 10, 4 );
+add_action( 'after_switch_theme', 'memberlite_migrate_legacy_layout_templates' );
 
 /**
  * Copy the pre-TBD sidebar settings into the layout settings, once per theme.
