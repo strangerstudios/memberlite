@@ -448,8 +448,9 @@ add_action( 'after_switch_theme', 'memberlite_migrate_legacy_layout_templates' )
  * Copy the pre-TBD sidebar settings into the layout settings, once per theme.
  *
  * "No Sidebar" becomes Narrow (what it rendered) and a Grid archive becomes Contained
- * (Grid used to hide the sidebar). Search results keep the blog sidebar setting, which Grid
- * never affected, and Archive Display keeps its old Full Content default. Every context is saved explicitly so existing sites keep
+ * (Grid used to hide the sidebar). Search results follow the blog sidebar setting's
+ * visibility but always showed the sidebar on the right, so they get Right Sidebar or
+ * Narrow. Archive Display keeps its old Full Content default. Every context is saved explicitly so existing sites keep
  * their layout even though the defaults for new sites changed. New sites and theme setting
  * resets skip this.
  *
@@ -496,7 +497,7 @@ function memberlite_maybe_migrate_layout_settings(): void {
 	set_theme_mod( 'layout_page', isset( $map[ $page_sidebar ] ) ? $map[ $page_sidebar ] : 'sidebar-right' );
 	set_theme_mod( 'layout_post', $blog_layout );
 	set_theme_mod( 'layout_archive', 'grid' === $archives ? 'contained' : $blog_layout );
-	set_theme_mod( 'layout_search', $blog_layout );
+	set_theme_mod( 'layout_search', 'narrow' === $blog_layout ? 'narrow' : 'sidebar-right' );
 	set_theme_mod( 'content_archives', $archives );
 	set_theme_mod( 'columns_ratio_blog', $blog_ratio );
 	set_theme_mod( 'columns_ratio_post', $blog_ratio );
