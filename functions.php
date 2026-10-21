@@ -145,7 +145,6 @@ add_action( 'wp', 'memberlite_adjusted_content_width' );
 if ( ! function_exists( 'memberlite_setup' ) ) :
 	/* Sets up theme defaults and registers support for various WordPress features. */
 	function memberlite_setup() {
-		require_once get_template_directory() . '/inc/colors.php';
 		require_once get_template_directory() . '/inc/defaults.php';
 
 		global $memberlite_defaults;
@@ -502,6 +501,9 @@ require_once get_template_directory() . '/inc/custom-walkers.php';
 
 /* Pattern categories. */
 require_once get_template_directory() . '/inc/patterns.php';
+
+/* Color schemes, color helpers, and theme.json color palette settings. */
+require_once get_template_directory() . '/inc/colors.php';
 
 /* Font helpers and theme.json font family settings. */
 require_once get_template_directory() . '/inc/fonts.php';
