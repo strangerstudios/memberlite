@@ -99,7 +99,7 @@ function memberlite_get_update_info() {
 		 * Filter to change the timeout for this wp_remote_get() request for updates.
 		 * @since 6.0
 		 *
-		 * @param int $timeout The number of seconds before the request times out
+		 * @param int|float $timeout The number of seconds before the request times out
 		 */
 		$timeout = apply_filters( 'memberlite_get_update_info_timeout', 5 );
 		$remote_info = wp_remote_get( PMPRO_LICENSE_SERVER . 'themes/', array( 'timeout' => $timeout ) );
