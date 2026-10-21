@@ -120,7 +120,7 @@ function memberlite_get_update_info() {
 
 		// Test response.
 		$remote_update_info = null;
-		if ( ! is_wp_error( $remote_info ) && ! empty( $remote_info['response'] ) && $remote_info['response']['code'] == '200' ) {
+		if ( 200 === (int) wp_remote_retrieve_response_code( $remote_info ) ) {
 			$remote_update_info = json_decode( wp_remote_retrieve_body( $remote_info ), true );
 		}
 
