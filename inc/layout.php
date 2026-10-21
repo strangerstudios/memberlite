@@ -403,7 +403,7 @@ add_filter( 'memberlite_get_sidebar', 'memberlite_layout_get_sidebar' );
  * WordPress never used it for the blog index. Pages on a template the active theme still
  * registers (a child theme's copy) keep it.
  *
- * Runs from inc/updates/update_7_2.php and when switching to Memberlite or a child theme.
+ * Runs from inc/updates/update_8_0.php and when switching to Memberlite or a child theme.
  *
  * @since TBD
  * @return void

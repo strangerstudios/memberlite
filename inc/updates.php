@@ -63,9 +63,9 @@ function memberlite_checkForUpdates() {
 		update_option( 'memberlite_db_version', '2026040201', 'no' );
 	}
 
-	// Memberlite 7.2 Update - Move pages off the removed layout page templates.
+	// Memberlite 8.0 Update - Move pages off the removed layout page templates.
 	if ( $memberlite_db_version < '2026102101' ) {
-		require_once get_template_directory() . '/inc/updates/update_7_2.php';
+		require_once get_template_directory() . '/inc/updates/update_8_0.php';
 		update_option( 'memberlite_db_version', '2026102101', 'no' );
 	}
 
