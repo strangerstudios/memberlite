@@ -451,8 +451,8 @@ add_action( 'after_switch_theme', 'memberlite_migrate_legacy_layout_templates' )
  * (Grid used to hide the sidebar). Search results follow the blog sidebar setting's
  * visibility but always showed the sidebar on the right, so they get Right Sidebar or
  * Narrow. Archive Display keeps its old Full Content default. Every context is saved explicitly so existing sites keep
- * their layout even though the defaults for new sites changed. New sites and theme setting
- * resets skip this.
+ * their layout even though the defaults for new sites changed. The old `sidebar_location*`
+ * settings are then removed. New sites and theme setting resets skip this.
  *
  * Runs after a child theme clones its parent's settings on activation (init, priority 99).
  *
@@ -517,5 +517,12 @@ function memberlite_maybe_migrate_layout_settings(): void {
 	}
 
 	set_theme_mod( 'layout_version', 1 );
+
+	// Remove the old settings only after layout_version is set, so a concurrent run either skips or still reads them.
+	remove_theme_mod( 'sidebar_location' );
+	remove_theme_mod( 'sidebar_location_blog' );
+	foreach ( array_keys( $cpt_types ) as $post_type ) {
+		remove_theme_mod( 'sidebar_location_' . $post_type );
+	}
 }
 add_action( 'init', 'memberlite_maybe_migrate_layout_settings', 100 );
