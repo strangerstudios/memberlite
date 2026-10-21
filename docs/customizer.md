@@ -148,7 +148,7 @@ This is not a full list. Explore the codebase for more.
 
 ### `functions.php`
 
-- `memberlite_filter_theme_json()` - Syncs customizer colors to `theme.json`
+- `memberlite_filter_theme_json()` - Syncs the customizer button style to `theme.json`
 
 - `memberlite_clean_editor_color_palette()` - Limits the editor color palette to approved slugs
 
@@ -170,6 +170,8 @@ This is not a full list. Explore the codebase for more.
 - `memberlite_get_default_colors()` - Returns default colors
 
 - `memberlite_get_active_colors()` - Returns all 17 saved color values
+
+- `memberlite_filter_theme_json_colors()` - Syncs customizer colors to the `theme.json` color palette
 
 - `memberlite_is_dark_color()` - Returns true if a hex color is "dark" based on WCAG relative luminance
     - This is key in setting up hover colors for button and links styled like buttons across the site. 

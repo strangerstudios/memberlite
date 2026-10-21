@@ -650,7 +650,11 @@ function memberlite_theme_mod_copyright_textbox( $copyright_text ) {
 add_filter( 'theme_mod_copyright_textbox', 'memberlite_theme_mod_copyright_textbox' );
 
 /**
- * Filter theme.json data to add theme settings
+ * Filter theme.json data to set the global button style custom properties
+ * from the button style selected in the Customizer.
+ *
+ * Colors are added by memberlite_filter_theme_json_colors() in inc/colors.php
+ * and fonts by memberlite_filter_theme_json_fonts() in inc/fonts.php.
  *
  * @since 7.0
  *
@@ -660,85 +664,12 @@ add_filter( 'theme_mod_copyright_textbox', 'memberlite_theme_mod_copyright_textb
 function memberlite_filter_theme_json( $theme_json ) {
 	global $memberlite_defaults;
 
-	$active_colors = memberlite_get_active_colors();
-	$preset_map = memberlite_get_color_preset_map();
-
-	// Make sure every color is a color and prepend a # in front of it.
-	foreach ( $active_colors as $key => $color ) {
-		if ( sanitize_hex_color_no_hash( $color ) === NULL ) {
-			unset( $active_colors[ $key ] );
-			continue;
-		}
-		$active_colors[ $key ] = '#' . $color;
-	}
-
-	// Build the color palette from the canonical preset map.
-	$color_scheme = array();
-	foreach ( $preset_map as $setting_key => $preset ) {
-		if ( ! isset( $active_colors[ $setting_key ] ) ) {
-			continue;
-		}
-
-		$color_scheme[] = array(
-			'slug'  => $preset['slug'],
-			'color' => $active_colors[ $setting_key ],
-			'name'  => $preset['label'],
-		);
-	}
-
-	// Generate button hover color based on whether the color scheme is light or dark.
-	if ( isset( $active_colors['color_button'] ) && isset( $active_colors['background_color'] ) ) {
-		$button_color = $active_colors['color_button'];
-		$site_bg_color = $active_colors['background_color'];
-
-		// Check if the site background is dark (dark scheme) or light (light scheme)
-		$is_dark_scheme = memberlite_is_dark_color( $site_bg_color );
-
-		// Dark schemes: lighten buttons on hover
-		// Light schemes: darken buttons on hover
-		$hover_adjustment = $is_dark_scheme ? 20 : -50;
-		$button_hover = memberlite_adjust_color_brightness( '#' . $button_color, $hover_adjustment );
-
-		$color_scheme[] = array(
-			'slug'  => 'buttons-hover',
-			'color' => $button_hover,
-			'name'  => __( 'Buttons Hover', 'memberlite' ),
-		);
-	}
-
-	// Static palette entry.
-	$color_scheme[] = array(
-		'slug' => 'white',
-		'color' => '#ffffff',
-		'name' => __( 'White', 'memberlite' )
-	);
-
-	// Reindex the array to ensure sequential keys.
-	$color_palette = array_values( $color_scheme );
-
-	// Merge with existing theme.json data.
 	$theme_json_data = $theme_json->get_data();
 
-	// Update the color palette.
+	// Make sure the custom settings key exists before adding to it.
 	if ( ! isset( $theme_json_data['settings'] ) ) {
 		$theme_json_data['settings'] = array();
 	}
-	if ( ! isset( $theme_json_data['settings']['color'] ) ) {
-		$theme_json_data['settings']['color'] = array();
-	}
-
-	// Keep palette colors added by a child theme or other filters, unless Memberlite defines the same slug.
-	$memberlite_slugs = wp_list_pluck( $color_palette, 'slug' );
-	$other_colors     = array_filter(
-		$theme_json_data['settings']['color']['palette']['theme'] ?? array(),
-		static function( $entry ) use ( $memberlite_slugs ) {
-			return is_array( $entry ) && ! empty( $entry['slug'] ) && ! in_array( $entry['slug'], $memberlite_slugs, true );
-		}
-	);
-
-	$theme_json_data['settings']['color']['palette'] = array_merge( $color_palette, array_values( $other_colors ) );
-
-	// Make sure the custom settings key exists before adding to it.
 	if ( ! isset( $theme_json_data['settings']['custom'] ) ) {
 		$theme_json_data['settings']['custom'] = array();
 	}
