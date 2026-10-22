@@ -99,14 +99,8 @@ body.memberlite-banner-hidden .entry-content > .banner:first-child {
 		margin-top: var(--wp--preset--spacing--50);
 	}
 
-	.memberlite_elements-masthead h1,
 	.memberlite_elements-masthead-centered h1 {
 		margin-top: 0;
-	}
-
-	.memberlite_elements-masthead {
-		padding-top: 2rem;
-		align-items: center;
 	}
 
 	.memberlite_elements-masthead-centered {
@@ -117,15 +111,6 @@ body.memberlite-banner-hidden .entry-content > .banner:first-child {
 		margin: var(--wp--preset--spacing--20) 0 0;
 	}
 
-	// Kicks in only when content is centered and there's an icon
-	.masthead-icon-title {
-		@include breakpoint(tablet) {
-			display: flex;
-			align-items: center;
-			gap: var(--wp--preset--spacing--10);
-			justify-content: center;
-		}
-	}
 }
 
 .masthead-banner {
@@ -134,10 +119,6 @@ body.memberlite-banner-hidden .entry-content > .banner:first-child {
 	padding: var(--wp--preset--spacing--20) 0 var(--wp--preset--spacing--50) 0;
 	position: relative;
 	width: 100%;
-}
-
-.masthead-padding {
-	padding: var(--wp--preset--spacing--50) 0;
 }
 
 .masthead-post-byline {

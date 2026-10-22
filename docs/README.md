@@ -14,3 +14,4 @@ Whenever possible, we try to keep this documentation up-to-date with the latest 
 5. [Patterns](patterns.md)
 6. [Project Structure](project-structure.md)
 7. [Alerts](alerts.md)
+8. [Legacy Page Settings](legacy-page-settings.md)

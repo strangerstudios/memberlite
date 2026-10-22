@@ -71,6 +71,7 @@ owner:
   directly. Internal-only functions (hooked but never called by name) may be removed outright
   with a changelog mention.
 - Deprecated hooks get `_deprecated_hook()` notices.
-- Classic-editor metabox settings are being progressively migrated to the block-editor
-  Template Settings sidebar. A metabox losing controls is an accepted direction, not a
-  regression.
+- The classic Memberlite Settings meta box was removed in TBD. Settings that are still
+  supported live in the block editor sidebar panels; the rest moved to visible custom
+  fields (see `docs/legacy-page-settings.md`). Removing a classic meta box or its controls
+  is an accepted direction, not a regression.

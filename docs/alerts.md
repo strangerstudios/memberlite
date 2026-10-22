@@ -56,4 +56,6 @@ Keep checks to a query or two: they run on the Alerts page and whenever the menu
 
 | ID | Added in | Reports | Action |
 | --- | --- | --- | --- |
-| `legacy_layout_templates` | 8.0 | Pages still on a removed layout page template (Content/Sidebar, Sidebar/Content, Narrow Width, Full Width, Fluid Width) that the active theme doesn't register | Reruns `memberlite_migrate_legacy_layout_templates()` |
+| `legacy_layout_templates` | 8.0 | Pages still on a removed page template (Content/Sidebar, Sidebar/Content, Narrow Width, Full Width, Fluid Width, Landing Page) that the active theme doesn't register | Reruns `memberlite_migrate_legacy_layout_templates()` |
+| `legacy_page_fields` | 8.0 | Posts with fields from the removed Memberlite Settings meta box (`_memberlite_banner_desc` and the others in `memberlite_get_legacy_page_fields()`) | Reruns `memberlite_migrate_legacy_page_fields()` |
+| `page_custom_fields` | 8.0 | Posts with the custom fields those fields moved to (`memberlite_banner_desc` and so on), which Memberlite no longer shows | None. Resolves when the custom fields are deleted |
