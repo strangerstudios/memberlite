@@ -86,15 +86,29 @@ add_action( 'admin_init', 'memberlite_setup_update_info' );
 /**
  * Get theme update information from the PMPro server.
  *
+ * When the server can't be reached, returns the cached update information if there is any.
+ * After a failed request, the server isn't queried again for an hour unless forcing a check.
+ * The server is queried at most once per page load.
+ *
  * @since  6.0
+ *
+ * @return array|WP_Error Update information, or a WP_Error if the server couldn't be reached and nothing is cached.
  */
 function memberlite_get_update_info() {
+	static $queried = false;
+
 	// Check if forcing a pull from the server.
+	$force_check = ! empty( $_REQUEST['force-check'] );
 	$update_info = get_option( 'memberlite_update_info', false );
 	$update_info_timestamp = get_option( 'memberlite_update_info_timestamp', 0 );
 
 	// Query the server if we do not have the local $update_info or we force checking for an update.
-	if ( empty( $update_info ) || ! empty( $_REQUEST['force-check'] ) || current_time('timestamp') > $update_info_timestamp + 86400 ) {
+	$needs_query = empty( $update_info ) || $force_check || current_time('timestamp') > $update_info_timestamp + 86400;
+
+	// Skip the query if it already ran this page load or recently failed.
+	if ( $needs_query && ! $queried && ( $force_check || ! get_transient( 'memberlite_update_info_failed' ) ) ) {
+		$queried = true;
+
 		/**
 		 * Filter to change the timeout for this wp_remote_get() request for updates.
 		 * @since 6.0
@@ -105,19 +119,42 @@ function memberlite_get_update_info() {
 		$remote_info = wp_remote_get( PMPRO_LICENSE_SERVER . 'themes/', array( 'timeout' => $timeout ) );
 
 		// Test response.
-		if ( is_wp_error( $remote_info ) || empty( $remote_info['response'] ) || $remote_info['response']['code'] != '200' ) {
-			// Error.
-			return new WP_Error( 'connection_error', 'Could not connect to the PMPro License Server to get update information. Try again later.' );
-		} else {
-			// Update update_infos in cache.
-			$update_info = json_decode( wp_remote_retrieve_body($remote_info), true );
-			delete_option( 'memberlite_update_info' );
-			add_option( 'memberlite_update_info', $update_info, NULL, 'no' );
+		$remote_update_info = null;
+		$response_code = wp_remote_retrieve_response_code( $remote_info );
+		if ( 200 === (int) $response_code ) {
+			$remote_update_info = json_decode( wp_remote_retrieve_body( $remote_info ), true );
 		}
 
-		// Save timestamp of last update
-		delete_option( 'memberlite_update_info_timestamp' );
-		add_option( 'memberlite_update_info_timestamp', current_time('timestamp'), NULL, 'no' );
+		// A valid response is a list of themes with slugs.
+		if ( ! is_array( $remote_update_info ) || empty( array_column( $remote_update_info, 'Slug' ) ) ) {
+			if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
+				if ( is_wp_error( $remote_info ) ) {
+					$error_response = $remote_info->get_error_message();
+				} elseif ( 200 !== (int) $response_code ) {
+					$error_response = 'HTTP ' . $response_code;
+				} else {
+					$error_response = 'Invalid response body';
+				}
+				error_log( 'Memberlite: Error retrieving theme update information from the PMPro license server. Response: ' . $error_response );
+			}
+
+			// Error. Keep the cached update info and wait an hour before trying again.
+			set_transient( 'memberlite_update_info_failed', time(), HOUR_IN_SECONDS );
+		} else {
+			// Update update_infos in cache.
+			$update_info = $remote_update_info;
+			delete_option( 'memberlite_update_info' );
+			add_option( 'memberlite_update_info', $update_info, NULL, 'no' );
+			delete_transient( 'memberlite_update_info_failed' );
+
+			// Save timestamp of last update
+			delete_option( 'memberlite_update_info_timestamp' );
+			add_option( 'memberlite_update_info_timestamp', current_time('timestamp'), NULL, 'no' );
+		}
+	}
+
+	if ( empty( $update_info ) || ! is_array( $update_info ) ) {
+		return new WP_Error( 'connection_error', 'Could not connect to the PMPro License Server to get update information. Try again later.' );
 	}
 
 	return $update_info;
@@ -200,5 +237,6 @@ function memberlite_http_request_args_for_update_info($args, $url)  {
  */
 function memberlite_update_option_pmpro_license_key( $old_value, $value ) {
 	delete_option( 'memberlite_update_info_timestamp' );
+	delete_transient( 'memberlite_update_info_failed' );
 	delete_site_transient( 'update_themes' );
 }
