@@ -120,13 +120,26 @@ function memberlite_get_update_info() {
 
 		// Test response.
 		$remote_update_info = null;
-		if ( 200 === (int) wp_remote_retrieve_response_code( $remote_info ) ) {
+		$response_code = wp_remote_retrieve_response_code( $remote_info );
+		if ( 200 === (int) $response_code ) {
 			$remote_update_info = json_decode( wp_remote_retrieve_body( $remote_info ), true );
 		}
 
-		if ( empty( $remote_update_info ) || ! is_array( $remote_update_info ) ) {
+		// A valid response is a list of themes with slugs.
+		if ( ! is_array( $remote_update_info ) || empty( array_column( $remote_update_info, 'Slug' ) ) ) {
+			if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
+				if ( is_wp_error( $remote_info ) ) {
+					$error_response = $remote_info->get_error_message();
+				} elseif ( 200 !== (int) $response_code ) {
+					$error_response = 'HTTP ' . $response_code;
+				} else {
+					$error_response = 'Invalid response body';
+				}
+				error_log( 'Memberlite: Error retrieving theme update information from the PMPro license server. Response: ' . $error_response );
+			}
+
 			// Error. Keep the cached update info and wait an hour before trying again.
-			set_transient( 'memberlite_update_info_failed', current_time( 'timestamp' ), HOUR_IN_SECONDS );
+			set_transient( 'memberlite_update_info_failed', time(), HOUR_IN_SECONDS );
 		} else {
 			// Update update_infos in cache.
 			$update_info = $remote_update_info;
