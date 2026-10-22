@@ -154,7 +154,7 @@ Use the `memberlite_layout_choices` filter to change which layouts a context off
 
 ### Per-item override (block editor)
 
-Posts, pages and the CPTs from `memberlite_customizer_cpts` get a **Layout** panel in the block editor. The layout picker only shows on the default template; on any other page template the panel says the template controls the layout. It saves `_memberlite_layout` post meta (`''` = Default). When the layout has a sidebar, the panel also has the custom sidebar settings (`_memberlite_custom_sidebar`, `_memberlite_default_sidebar`, `_memberlite_hide_children`) that used to live in the classic Custom Sidebar metabox. The metabox still shows in the classic editor.
+Posts, pages and the CPTs from `memberlite_customizer_cpts` get a **Layout** panel in the block editor. The layout picker only shows on the default template; on any other page template the theme registers, the panel says the template controls the layout. It saves `_memberlite_layout` post meta (`''` = Default). When the layout has a sidebar, the panel also has the custom sidebar settings (`_memberlite_custom_sidebar`, `_memberlite_default_sidebar`, `_memberlite_hide_children`) that used to live in the classic Custom Sidebar metabox. The metabox still shows in the classic editor.
 
 The page set as the Posts page uses the `archive` context, and its Layout overrides the blog index.
 
@@ -162,7 +162,7 @@ The page set as the Posts page uses the `archive` context, and its Layout overri
 
 `memberlite_get_layout()` checks, in order:
 
-1. The item's page template, if it has one. A page template (e.g. Landing Page, or a child theme's) → Right Sidebar, except a child theme's copy of a removed layout template, which keeps that template's layout. A template on a post or CPT uses the Customizer default. The Posts page ignores its template.
+1. The item's page template, if it has one. A page template (e.g. Landing Page, or a child theme's) → Right Sidebar, except a child theme's copy of a removed layout template, which keeps that template's layout. A template on a post or CPT uses the Customizer default. The Posts page ignores its template, and so does any page with a template nothing registers (e.g. one left behind by an old theme or plugin).
 2. Otherwise, the item's `_memberlite_layout` meta.
 3. The static front page falls back to Contained.
 4. The Customizer default for the context.
@@ -177,7 +177,7 @@ Filter the result with `memberlite_layout`. `memberlite_getColumnsRatio()`, the 
 
 ### Legacy templates and migration
 
-The layout-only page templates (Content/Sidebar, Sidebar/Content, Narrow Width, Full Width, Fluid Width) were removed in TBD. Full Width markup now lives in `page.php`. `memberlite_migrate_legacy_layout_templates()` runs on the TBD update and on `after_switch_theme`. It saves each page's template layout as `_memberlite_layout` (unless the page already has one) and sets the template back to Default. The Posts page only loses the template. Pages on a template the active theme still registers, such as a child theme's own `templates/narrow-width.php`, are left alone and keep that template's layout.
+The layout-only page templates (Content/Sidebar, Sidebar/Content, Narrow Width, Full Width, Fluid Width) were removed in TBD. Full Width markup now lives in `page.php`. `memberlite_migrate_legacy_layout_templates()` runs on the TBD update and on `after_switch_theme` when switching from Memberlite or one of its child themes. It saves each page's template layout as `_memberlite_layout` (unless the page already has one) and sets the template back to Default. If the layout can't be saved, the page keeps its template. The Posts page only loses the template. Pages on a template the active theme still registers, such as a child theme's own `templates/narrow-width.php`, are left alone and keep that template's layout.
 
 `memberlite_maybe_migrate_layout_settings()` runs once per theme (flag: `layout_version` theme_mod) and copies the old `sidebar_location*` settings into the new ones. "No Sidebar" becomes Narrow, a Grid archive becomes Contained (Grid used to hide the sidebar; it no longer does), and search results get Right Sidebar, or Narrow when the blog had no sidebar (search always showed its sidebar on the right, and Grid never affected it). Every context and Archive Display are saved explicitly, so existing sites keep their look, and then the old `sidebar_location`, `sidebar_location_blog` and `sidebar_location_{cpt}` theme_mods are removed. The removed `memberlite_sidebar_location_none_columns_ratio()` and `memberlite_sidebar_none_get_sidebar()` are deprecated no-op stubs in `inc/deprecated.php`. New sites (no `memberlite_db_version` yet) and Tools › Reset Theme Settings skip the copy and start on the new defaults.
 

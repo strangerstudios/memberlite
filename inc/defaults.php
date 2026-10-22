@@ -23,8 +23,6 @@ function memberlite_get_defaults(): array {
 		'columns_ratio_blog'                => '8-4',
 		'columns_ratio_search'              => '8-4',
 		'columns_ratio_header'              => '4-8',
-		'sidebar_location'                  => 'sidebar-right',
-		'sidebar_location_blog'             => 'sidebar-blog-right',
 
 		// Archives
 		'content_archives'                  => 'grid',

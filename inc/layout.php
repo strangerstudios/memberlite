@@ -268,6 +268,31 @@ function memberlite_get_legacy_template_layouts(): array {
 }
 
 /**
+ * Check whether a page template controls the layout.
+ *
+ * Only templates the active theme registers, and the removed layout templates on pages,
+ * count. A template nothing registers (e.g. one left behind by an old theme or plugin)
+ * renders as the default template.
+ *
+ * @since TBD
+ *
+ * @param string $template  Template file, or '' for the default template.
+ * @param string $post_type Post type the template is on.
+ * @return bool
+ */
+function memberlite_is_layout_template( string $template, string $post_type = 'page' ): bool {
+	if ( '' === $template || 'default' === $template ) {
+		return false;
+	}
+
+	if ( 'page' === $post_type && isset( memberlite_get_legacy_template_layouts()[ $template ] ) ) {
+		return true;
+	}
+
+	return isset( wp_get_theme()->get_page_templates( null, $post_type )[ $template ] );
+}
+
+/**
  * Get the layout saved on an item, from its page template or its meta.
  *
  * A page template controls the layout, so `_memberlite_layout` only applies on the default
@@ -280,13 +305,14 @@ function memberlite_get_legacy_template_layouts(): array {
  * @return string Layout slug, or '' to use the default.
  */
 function memberlite_get_item_layout( int $post_id ): string {
-	$template = (string) get_page_template_slug( $post_id );
+	$template  = (string) get_page_template_slug( $post_id );
+	$post_type = (string) get_post_type( $post_id );
 
-	if ( '' === $template || (int) get_option( 'page_for_posts' ) === $post_id ) {
+	if ( ! memberlite_is_layout_template( $template, $post_type ) || (int) get_option( 'page_for_posts' ) === $post_id ) {
 		return (string) get_post_meta( $post_id, '_memberlite_layout', true );
 	}
 
-	return memberlite_get_template_layout( $template, (string) get_post_type( $post_id ) );
+	return memberlite_get_template_layout( $template, $post_type );
 }
 
 /**
@@ -403,13 +429,22 @@ add_filter( 'memberlite_get_sidebar', 'memberlite_layout_get_sidebar' );
  * WordPress never used it for the blog index. Pages on a template the active theme still
  * registers (a child theme's copy) keep it.
  *
- * Runs from inc/updates/update_8_0.php and when switching to Memberlite or a child theme.
+ * Runs from inc/updates/update_8_0.php and when switching between Memberlite and its child
+ * themes.
  *
  * @since TBD
+ *
+ * @param string         $old_name  Unused. Name of the previous theme, from after_switch_theme.
+ * @param WP_Theme|false $old_theme The previous theme, from after_switch_theme. Omit to always run.
  * @return void
  */
-function memberlite_migrate_legacy_layout_templates(): void {
+function memberlite_migrate_legacy_layout_templates( $old_name = '', $old_theme = null ): void {
 	global $wpdb;
+
+	// Another theme's pages may use the same template paths.
+	if ( null !== $old_theme && ( ! $old_theme instanceof WP_Theme || get_template() !== $old_theme->get_template() ) ) {
+		return;
+	}
 
 	$templates = array_diff_key( memberlite_get_legacy_template_layouts(), wp_get_theme()->get_page_templates( null, 'page' ) );
 
@@ -436,13 +471,16 @@ function memberlite_migrate_legacy_layout_templates(): void {
 		$page_id = (int) $page->ID;
 
 		if ( $posts_page !== $page_id && '' === (string) get_post_meta( $page_id, '_memberlite_layout', true ) ) {
-			update_post_meta( $page_id, '_memberlite_layout', $templates[ $page->template ] );
+			// Keep the template if the layout couldn't be saved, so the page doesn't lose it.
+			if ( ! update_post_meta( $page_id, '_memberlite_layout', $templates[ $page->template ] ) ) {
+				continue;
+			}
 		}
 
 		update_post_meta( $page_id, '_wp_page_template', 'default' );
 	}
 }
-add_action( 'after_switch_theme', 'memberlite_migrate_legacy_layout_templates' );
+add_action( 'after_switch_theme', 'memberlite_migrate_legacy_layout_templates', 10, 2 );
 
 /**
  * Copy the pre-TBD sidebar settings into the layout settings, once per theme.

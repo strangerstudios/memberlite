@@ -71,7 +71,8 @@ const MemberliteLayoutSettings = () => {
 	}
 
 	// A page template controls the layout, so the picker only shows on the default template.
-	const hasTemplate  = ! data.isPostsPage && template && template !== 'default';
+	// Mirrors memberlite_is_layout_template().
+	const hasTemplate  = ! data.isPostsPage && !! template && ( template in data.templateNames || ( postType === 'page' && template in data.legacyTemplates ) );
 	const templateName = hasTemplate ? data.templateNames[ template ] || template : '';
 	const savedLayout  = meta._memberlite_layout || '';
 	const selected     = savedLayout || 'default';
