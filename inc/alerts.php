@@ -4,8 +4,8 @@
  *
  * Each alert checks the site live and lists what needs attention, so it resolves itself
  * once the items are fixed. An alert can offer an action (e.g. rerun a migration) and
- * can be dismissed. A dismissed alert comes back if it finds more items than when it was
- * dismissed. The page is in adminpages/alerts.php.
+ * can be dismissed. A dismissed alert comes back if it finds an item it didn't list when
+ * it was dismissed. The page is in adminpages/alerts.php.
  *
  * @package Memberlite
  */
@@ -31,11 +31,15 @@ function memberlite_get_alerts(): array {
 	 * - since       (string)   Memberlite version that added the alert.
 	 * - check       (callable) Required. Returns the items that need attention, or an empty
 	 *                          array when there is nothing to do. Each item is an array with
-	 *                          `label`, and optional `url` (e.g. an edit link) and `details`.
+	 *                          `label`, and optional `id` (e.g. a post ID), `url` (e.g. an
+	 *                          edit link) and `details`. Dismissals remember items by `id`,
+	 *                          or by `url` or `label` when there is no `id`.
 	 * - action      (array)    Optional fix the admin can run from the page: `label`,
 	 *                          `callback` (called with no arguments) and `description`.
 	 *                          It should be safe to run more than once.
 	 * - docs_url    (string)   Optional link to documentation or a code recipe.
+	 *
+	 * Internal for now: the item format and how dismissals are stored may still change.
 	 *
 	 * @since TBD
 	 *
@@ -76,15 +80,47 @@ function memberlite_get_alerts(): array {
 /**
  * Get the items an alert reports.
  *
+ * Each alert is checked once per request unless `$refresh` is set.
+ *
  * @since TBD
  *
- * @param array $alert Alert from memberlite_get_alerts().
+ * @param array $alert   Alert from memberlite_get_alerts().
+ * @param bool  $refresh Check again even if this request already did.
  * @return array Items that need attention.
  */
-function memberlite_get_alert_items( array $alert ): array {
-	$items = call_user_func( $alert['check'] );
+function memberlite_get_alert_items( array $alert, bool $refresh = false ): array {
+	static $checked = array();
 
-	return is_array( $items ) ? array_values( $items ) : array();
+	if ( $refresh || ! isset( $checked[ $alert['id'] ] ) ) {
+		$items                   = call_user_func( $alert['check'] );
+		$checked[ $alert['id'] ] = is_array( $items ) ? array_values( $items ) : array();
+	}
+
+	return $checked[ $alert['id'] ];
+}
+
+/**
+ * Get the keys a dismissal remembers an alert's items by.
+ *
+ * @since TBD
+ *
+ * @param array $items Items from memberlite_get_alert_items().
+ * @return array Item keys.
+ */
+function memberlite_get_alert_item_keys( array $items ): array {
+	$keys = array();
+
+	foreach ( $items as $item ) {
+		if ( isset( $item['id'] ) && '' !== (string) $item['id'] ) {
+			$keys[] = 'id:' . $item['id'];
+		} elseif ( ! empty( $item['url'] ) ) {
+			$keys[] = 'url:' . md5( $item['url'] );
+		} else {
+			$keys[] = 'label:' . md5( isset( $item['label'] ) ? (string) $item['label'] : '' );
+		}
+	}
+
+	return array_values( array_unique( $keys ) );
 }
 
 /**
@@ -106,46 +142,35 @@ function memberlite_is_alert_post( int $post_id ): bool {
  * Get the dismissed alerts.
  *
  * @since TBD
- * @return array Item count at dismissal, keyed by alert ID.
+ * @return array Keys of the items each alert listed when dismissed, keyed by alert ID.
  */
 function memberlite_get_dismissed_alerts(): array {
 	$dismissed = get_option( 'memberlite_dismissed_alerts', array() );
 
-	return is_array( $dismissed ) ? $dismissed : array();
+	return is_array( $dismissed ) ? array_filter( $dismissed, 'is_array' ) : array();
 }
 
 /**
  * Check an alert and get its status.
  *
- * A dismissed alert stays dismissed until it finds more items than the lowest count seen
- * since it was dismissed. Fixing items lowers that count, and resolving the alert clears
- * the dismissal, so items that come back later show again.
+ * An alert is dismissed while every item it lists was listed when it was dismissed.
  *
  * @since TBD
  *
- * @param array $alert Alert from memberlite_get_alerts().
+ * @param array $alert   Alert from memberlite_get_alerts().
+ * @param bool  $refresh Check again even if this request already did.
  * @return array The alert's `items`, and its `status`: 'active', 'dismissed' or 'resolved'.
  */
-function memberlite_get_alert_status( array $alert ): array {
-	$items      = memberlite_get_alert_items( $alert );
-	$item_count = count( $items );
-	$dismissed  = memberlite_get_dismissed_alerts();
-	$status     = $item_count ? 'active' : 'resolved';
+function memberlite_get_alert_status( array $alert, bool $refresh = false ): array {
+	$items     = memberlite_get_alert_items( $alert, $refresh );
+	$dismissed = memberlite_get_dismissed_alerts();
 
-	if ( isset( $dismissed[ $alert['id'] ] ) ) {
-		$dismissed_count = (int) $dismissed[ $alert['id'] ];
-
-		if ( ! $item_count ) {
-			unset( $dismissed[ $alert['id'] ] );
-			update_option( 'memberlite_dismissed_alerts', $dismissed, false );
-		} elseif ( $item_count <= $dismissed_count ) {
-			$status = 'dismissed';
-
-			if ( $item_count < $dismissed_count ) {
-				$dismissed[ $alert['id'] ] = $item_count;
-				update_option( 'memberlite_dismissed_alerts', $dismissed, false );
-			}
-		}
+	if ( empty( $items ) ) {
+		$status = 'resolved';
+	} elseif ( isset( $dismissed[ $alert['id'] ] ) && ! array_diff( memberlite_get_alert_item_keys( $items ), $dismissed[ $alert['id'] ] ) ) {
+		$status = 'dismissed';
+	} else {
+		$status = 'active';
 	}
 
 	return array(
@@ -155,10 +180,47 @@ function memberlite_get_alert_status( array $alert ): array {
 }
 
 /**
+ * Forget dismissed items an alert no longer lists.
+ *
+ * Fixed items drop out of the dismissal, so they show again if they come back. Once an
+ * alert resolves, its dismissal is cleared. Writes the memberlite_dismissed_alerts option
+ * when something changed.
+ *
+ * @since TBD
+ *
+ * @param string $alert_id Alert ID.
+ * @param array  $items    The alert's current items, from memberlite_get_alert_items().
+ * @return void
+ */
+function memberlite_sync_alert_dismissal( string $alert_id, array $items ): void {
+	$dismissed = memberlite_get_dismissed_alerts();
+
+	if ( ! isset( $dismissed[ $alert_id ] ) ) {
+		return;
+	}
+
+	$kept = array_values( array_intersect( $dismissed[ $alert_id ], memberlite_get_alert_item_keys( $items ) ) );
+
+	if ( $kept === $dismissed[ $alert_id ] ) {
+		return;
+	}
+
+	if ( empty( $kept ) ) {
+		unset( $dismissed[ $alert_id ] );
+	} else {
+		$dismissed[ $alert_id ] = $kept;
+	}
+
+	update_option( 'memberlite_dismissed_alerts', $dismissed, false );
+}
+
+/**
  * Count the alerts that need attention: alerts with items that aren't dismissed.
  *
- * Cached for an hour, and cleared when an alert is run, dismissed or restored, when the
- * Alerts page loads, and on theme switch.
+ * Cached for an hour. The cache is cleared when an alert is run, dismissed or restored,
+ * when the Alerts page loads, when a post is saved or deleted, when meta an alert reports
+ * on changes (see the memberlite_alert_meta_keys filter), after a Memberlite update and on
+ * theme switch. Rebuilding it also syncs dismissals, see memberlite_sync_alert_dismissal().
  *
  * @since TBD
  * @return int
@@ -169,7 +231,9 @@ function memberlite_get_alert_count(): int {
 	if ( false === $count ) {
 		$count = 0;
 		foreach ( memberlite_get_alerts() as $alert ) {
-			if ( 'active' === memberlite_get_alert_status( $alert )['status'] ) {
+			$status = memberlite_get_alert_status( $alert );
+			memberlite_sync_alert_dismissal( $alert['id'], $status['items'] );
+			if ( 'active' === $status['status'] ) {
 				$count++;
 			}
 		}
@@ -189,6 +253,41 @@ function memberlite_clear_alert_count(): void {
 	delete_transient( 'memberlite_alert_count' );
 }
 add_action( 'after_switch_theme', 'memberlite_clear_alert_count' );
+add_action( 'save_post', 'memberlite_clear_alert_count' );
+add_action( 'deleted_post', 'memberlite_clear_alert_count' );
+
+/**
+ * Clear the cached alert count when post meta an alert reports on changes.
+ *
+ * Covers meta written directly, e.g. by WP-CLI or a plugin, without saving the post.
+ *
+ * @since TBD
+ *
+ * @param int|array $meta_ids  Meta ID or IDs.
+ * @param int       $object_id Post ID.
+ * @param string    $meta_key  Meta key.
+ * @return void
+ */
+function memberlite_maybe_clear_alert_count_for_meta( $meta_ids, $object_id, $meta_key ) {
+	/**
+	 * Filter the post meta keys that alerts report on.
+	 *
+	 * Changing one of these clears the cached alert count. Kept separate from
+	 * memberlite_alerts so meta writes don't build every alert.
+	 *
+	 * @since TBD
+	 *
+	 * @param array $meta_keys Meta keys.
+	 */
+	$meta_keys = apply_filters( 'memberlite_alert_meta_keys', array() );
+
+	if ( in_array( $meta_key, (array) $meta_keys, true ) ) {
+		memberlite_clear_alert_count();
+	}
+}
+add_action( 'added_post_meta', 'memberlite_maybe_clear_alert_count_for_meta', 10, 3 );
+add_action( 'updated_post_meta', 'memberlite_maybe_clear_alert_count_for_meta', 10, 3 );
+add_action( 'deleted_post_meta', 'memberlite_maybe_clear_alert_count_for_meta', 10, 3 );
 
 /**
  * Get the count bubble shown next to a menu label.
@@ -287,16 +386,16 @@ function memberlite_handle_alert_action() {
 				wp_die( esc_html__( 'Invalid alert request.', 'memberlite' ) );
 			}
 
-			$before = count( memberlite_get_alert_items( $alert ) );
+			$before = count( memberlite_get_alert_items( $alert, true ) );
 			call_user_func( $alert['action']['callback'] );
-			$after  = count( memberlite_get_alert_items( $alert ) );
+			$after  = count( memberlite_get_alert_items( $alert, true ) );
 
 			$args['memberlite_alert_fixed']     = max( 0, $before - $after );
 			$args['memberlite_alert_remaining'] = $after;
 			break;
 
 		case 'dismiss':
-			$dismissed[ $alert_id ] = count( memberlite_get_alert_items( $alert ) );
+			$dismissed[ $alert_id ] = memberlite_get_alert_item_keys( memberlite_get_alert_items( $alert ) );
 			update_option( 'memberlite_dismissed_alerts', $dismissed, false );
 			break;
 

@@ -28,6 +28,7 @@ function memberlite_alerts_page() {
 	foreach ( $alerts as $alert ) {
 		$status         = memberlite_get_alert_status( $alert );
 		$alert['items'] = $status['items'];
+		memberlite_sync_alert_dismissal( $alert['id'], $status['items'] );
 
 		if ( 'resolved' === $status['status'] ) {
 			$resolved[] = $alert;
@@ -61,7 +62,7 @@ function memberlite_alerts_page() {
 				break;
 			case 'dismiss':
 				/* translators: %s: Alert title. */
-				$message = sprintf( __( 'Dismissed "%s". It will come back if Memberlite finds more items for it.', 'memberlite' ), $title );
+				$message = sprintf( __( 'Dismissed "%s". It will come back if Memberlite finds something it didn\'t list.', 'memberlite' ), $title );
 				break;
 			case 'restore':
 				/* translators: %s: Alert title. */
