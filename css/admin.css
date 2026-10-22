@@ -655,7 +655,7 @@ body[class*="toplevel_page_memberlite-"] #footer-left a {
 /**
  * Alerts
  */
-.memberlite_admin .memberlite-nav-primary .awaiting-mod {
+.memberlite_admin .memberlite-nav-primary .update-plugins {
 	background-color: #d63638;
 	border-radius: 9px;
 	color: #fff;
