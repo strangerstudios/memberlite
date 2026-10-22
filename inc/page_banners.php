@@ -197,6 +197,8 @@ function memberlite_get_page_field_alert_items( array $labels ): array {
 		$fields_by_post[ (int) $row->post_id ][ $labels[ $row->meta_key ] ] = true;
 	}
 
+	_prime_post_caches( array_keys( $fields_by_post ), false, false );
+
 	$items = array();
 	foreach ( $fields_by_post as $post_id => $fields ) {
 		if ( ! memberlite_is_alert_post( $post_id ) ) {
@@ -205,6 +207,7 @@ function memberlite_get_page_field_alert_items( array $labels ): array {
 
 		$title   = get_the_title( $post_id );
 		$items[] = array(
+			'id'      => $post_id,
 			'label'   => '' !== $title ? $title : sprintf( '#%d', $post_id ),
 			'url'     => get_edit_post_link( $post_id, 'raw' ),
 			'details' => implode( ', ', array_keys( $fields ) ),
@@ -275,6 +278,25 @@ function memberlite_add_page_field_alerts( $alerts ) {
 	return $alerts;
 }
 add_filter( 'memberlite_alerts', 'memberlite_add_page_field_alerts' );
+
+/**
+ * Clear the alert count when an old or moved page field changes, see memberlite_maybe_clear_alert_count_for_meta().
+ *
+ * @since TBD
+ *
+ * @param array $meta_keys Meta keys alerts report on.
+ * @return array
+ */
+function memberlite_add_page_field_alert_meta_keys( $meta_keys ) {
+	$meta_keys = (array) $meta_keys;
+	foreach ( memberlite_get_legacy_page_fields() as $old_key => $field ) {
+		$meta_keys[] = $old_key;
+		$meta_keys[] = $field['key'];
+	}
+
+	return $meta_keys;
+}
+add_filter( 'memberlite_alert_meta_keys', 'memberlite_add_page_field_alert_meta_keys' );
 
 /**
  * Get the banner image HTML for a post.
