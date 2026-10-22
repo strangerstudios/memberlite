@@ -516,9 +516,12 @@ function memberlite_alert_check_legacy_layout_templates(): array {
 	$templates  = memberlite_get_legacy_layout_templates_to_migrate();
 	$layouts    = memberlite_get_layouts();
 	$posts_page = (int) get_option( 'page_for_posts' );
+	$pages      = memberlite_get_legacy_layout_template_pages();
 	$items      = array();
 
-	foreach ( memberlite_get_legacy_layout_template_pages() as $page ) {
+	_prime_post_caches( array_map( 'intval', wp_list_pluck( $pages, 'ID' ) ), false, true );
+
+	foreach ( $pages as $page ) {
 		$page_id = (int) $page->ID;
 
 		if ( ! memberlite_is_alert_post( $page_id ) ) {
@@ -538,8 +541,10 @@ function memberlite_alert_check_legacy_layout_templates(): array {
 			$details = sprintf( __( '%1$s, will use the %2$s layout', 'memberlite' ), $page->template, $layouts[ $templates[ $page->template ] ] );
 		}
 
+		$title   = get_the_title( $page_id );
 		$items[] = array(
-			'label'   => get_the_title( $page_id ) ? get_the_title( $page_id ) : sprintf( '#%d', $page_id ),
+			'id'      => $page_id,
+			'label'   => '' !== $title ? $title : sprintf( '#%d', $page_id ),
 			'url'     => get_edit_post_link( $page_id, 'raw' ),
 			'details' => $details,
 		);
@@ -574,6 +579,22 @@ function memberlite_add_legacy_layout_templates_alert( $alerts ) {
 	return $alerts;
 }
 add_filter( 'memberlite_alerts', 'memberlite_add_legacy_layout_templates_alert' );
+
+/**
+ * Clear the alert count when a page template changes, see memberlite_maybe_clear_alert_count_for_meta().
+ *
+ * @since TBD
+ *
+ * @param array $meta_keys Meta keys alerts report on.
+ * @return array
+ */
+function memberlite_add_legacy_layout_templates_alert_meta_keys( $meta_keys ) {
+	$meta_keys   = (array) $meta_keys;
+	$meta_keys[] = '_wp_page_template';
+
+	return $meta_keys;
+}
+add_filter( 'memberlite_alert_meta_keys', 'memberlite_add_legacy_layout_templates_alert_meta_keys' );
 
 /**
  * Copy the pre-TBD sidebar settings into the layout settings, once per theme.
