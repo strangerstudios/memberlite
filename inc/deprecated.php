@@ -598,3 +598,38 @@ function memberlite_get_variation( $slug ) {
 function memberlite_enqueue_block_assets() {
 	_deprecated_function( __FUNCTION__, 'TBD', 'memberlite_setup' );
 }
+
+/**
+ * Deprecated. memberlite_get_layout() sets the columns ratio for layouts without a sidebar.
+ *
+ * No longer hooked to memberlite_columns_ratio.
+ *
+ * @since 4.4
+ * @deprecated TBD Use memberlite_get_layout().
+ *
+ * @param string $r        Columns ratio.
+ * @param string $location Sidebar location.
+ * @return string The columns ratio, unchanged.
+ */
+function memberlite_sidebar_location_none_columns_ratio( $r, $location ) {
+	_deprecated_function( __FUNCTION__, 'TBD', 'memberlite_get_layout()' );
+
+	return $r;
+}
+
+/**
+ * Deprecated. memberlite_layout_get_sidebar() hides the sidebar for layouts without one.
+ *
+ * No longer hooked to memberlite_get_sidebar.
+ *
+ * @since 4.5
+ * @deprecated TBD Use memberlite_layout_get_sidebar().
+ *
+ * @param string|null|false $name Sidebar name.
+ * @return string|null|false The sidebar name, unchanged.
+ */
+function memberlite_sidebar_none_get_sidebar( $name ) {
+	_deprecated_function( __FUNCTION__, 'TBD', 'memberlite_layout_get_sidebar()' );
+
+	return $name;
+}

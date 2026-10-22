@@ -5,15 +5,15 @@
  * @package Memberlite
  */
 
-if ( 'full-width' === memberlite_get_layout() ) {
-	get_template_part( 'templates/fluid-width' );
-	return;
-}
+// Full Width runs edge to edge, outside the grid row.
+$memberlite_full_width = 'full-width' === memberlite_get_layout();
 
-get_header(); ?>
+get_header();
 
+if ( ! $memberlite_full_width ) { ?>
 <div class="row">
-	<div id="primary" class="medium-<?php echo esc_attr( memberlite_getColumnsRatio() ); ?> columns content-area">
+<?php } ?>
+	<div id="primary" class="<?php echo $memberlite_full_width ? '' : 'medium-' . esc_attr( memberlite_getColumnsRatio() ) . ' columns '; ?>content-area">
 		<?php do_action( 'memberlite_before_main' ); ?>
 		<main id="main" class="site-main" role="main">
 			<?php do_action( 'memberlite_before_loop' );
@@ -32,7 +32,9 @@ get_header(); ?>
 		</main><!-- #main -->
 		<?php do_action( 'memberlite_after_main' ); ?>
 	</div><!-- #primary -->
+<?php if ( ! $memberlite_full_width ) { ?>
 
 	<?php memberlite_get_sidebar(); ?>
 </div>
+<?php } ?>
 <?php get_footer(); ?>

@@ -3,15 +3,15 @@
  * Layout: the page structure (sidebar and content width) for every context.
  *
  * Each context (Pages, Single Posts, Blog & Archives, and each CPT's single and archive
- * views) has a default layout in the Customizer. Pages, posts and CPT items can override
- * it in the block editor's Layout panel. The page set as the Posts page overrides the
- * blog index.
+ * views) has a default layout in the Customizer. Pages, posts and CPT items on the default
+ * template can override it in the block editor's Layout panel. The page set as the Posts
+ * page overrides the blog index.
  *
  * memberlite_get_layout() resolves the layout for the current request in this order:
- * 1. The item's `_memberlite_layout` meta.
- * 2. A legacy layout page template (Full Width, Narrow Width, etc.).
- * 3. The static front page falls back to Contained.
- * 4. The Customizer default for the context.
+ * 1. An item with a page template (e.g. Landing Page, or a child theme's) gets that
+ *    template's layout. Otherwise, the item's `_memberlite_layout` meta.
+ * 2. The static front page falls back to Contained.
+ * 3. The Customizer default for the context.
  *
  * @package Memberlite
  * @since TBD
@@ -249,9 +249,10 @@ function memberlite_get_layout_columns_ratio( string $context ): string {
 }
 
 /**
- * Map legacy layout page templates to layouts.
+ * Map the removed layout page templates to layouts.
  *
- * Pages saved with these templates keep their layout until a layout is picked in the editor.
+ * memberlite_migrate_legacy_layout_templates() moves pages off these templates. A child
+ * theme that still has its own copy of one keeps the template and its layout.
  *
  * @since TBD
  * @return array Layout slugs keyed by template file.
@@ -267,11 +268,36 @@ function memberlite_get_legacy_template_layouts(): array {
 }
 
 /**
- * Get the layout saved on an item, from its meta or its page template.
+ * Check whether a page template controls the layout.
  *
- * Legacy layout templates map to their layout. Other page templates (e.g. Landing Page)
- * have always shown the sidebar, so they default to Right Sidebar. The Posts page ignores
- * templates because WordPress never used them for the blog index.
+ * Only templates the active theme registers, and the removed layout templates on pages,
+ * count. A template nothing registers (e.g. one left behind by an old theme or plugin)
+ * renders as the default template.
+ *
+ * @since TBD
+ *
+ * @param string $template  Template file, or '' for the default template.
+ * @param string $post_type Post type the template is on.
+ * @return bool
+ */
+function memberlite_is_layout_template( string $template, string $post_type = 'page' ): bool {
+	if ( '' === $template || 'default' === $template ) {
+		return false;
+	}
+
+	if ( 'page' === $post_type && isset( memberlite_get_legacy_template_layouts()[ $template ] ) ) {
+		return true;
+	}
+
+	return isset( wp_get_theme()->get_page_templates( null, $post_type )[ $template ] );
+}
+
+/**
+ * Get the layout saved on an item, from its page template or its meta.
+ *
+ * A page template controls the layout, so `_memberlite_layout` only applies on the default
+ * template. The Posts page ignores its template because WordPress never used it for the
+ * blog index.
  *
  * @since TBD
  *
@@ -279,25 +305,31 @@ function memberlite_get_legacy_template_layouts(): array {
  * @return string Layout slug, or '' to use the default.
  */
 function memberlite_get_item_layout( int $post_id ): string {
-	$layout = (string) get_post_meta( $post_id, '_memberlite_layout', true );
+	$template  = (string) get_page_template_slug( $post_id );
+	$post_type = (string) get_post_type( $post_id );
 
-	if ( '' === $layout && 'page' === get_post_type( $post_id ) && (int) get_option( 'page_for_posts' ) !== $post_id ) {
-		$layout = memberlite_get_template_layout( (string) get_page_template_slug( $post_id ) );
+	if ( ! memberlite_is_layout_template( $template, $post_type ) || (int) get_option( 'page_for_posts' ) === $post_id ) {
+		return (string) get_post_meta( $post_id, '_memberlite_layout', true );
 	}
 
-	return $layout;
+	return memberlite_get_template_layout( $template, $post_type );
 }
 
 /**
  * Get the layout a page template sets.
  *
+ * A child theme's copy of a removed layout template keeps that template's layout. Other
+ * page templates (e.g. Landing Page) have always shown the sidebar, so they get Right
+ * Sidebar. Templates on posts and CPTs use the context default.
+ *
  * @since TBD
  *
- * @param string $template Template file, or '' for the default template.
- * @return string Layout slug, or '' when the template doesn't set one.
+ * @param string $template  Template file, or '' for the default template.
+ * @param string $post_type Post type the template is on.
+ * @return string Layout slug, or '' to use the default.
  */
-function memberlite_get_template_layout( string $template ): string {
-	if ( '' === $template || 'default' === $template ) {
+function memberlite_get_template_layout( string $template, string $post_type = 'page' ): string {
+	if ( '' === $template || 'default' === $template || 'page' !== $post_type ) {
 		return '';
 	}
 
@@ -390,71 +422,75 @@ function memberlite_layout_get_sidebar( $name ) {
 add_filter( 'memberlite_get_sidebar', 'memberlite_layout_get_sidebar' );
 
 /**
- * Hide legacy layout templates from the block editor's template list.
+ * Move pages off the removed layout page templates.
  *
- * The Layout panel replaces them. A page already using one keeps it in the list so the
- * editor shows its current template. The templates stay registered, so the classic editor,
- * Quick Edit and imports can still use them.
+ * Each page gets its template's layout as `_memberlite_layout`, unless it already has one,
+ * and goes back to the default template. The Posts page only loses the template, since
+ * WordPress never used it for the blog index. Pages on a template the active theme still
+ * registers (a child theme's copy) keep it.
  *
- * @since TBD
- *
- * @param array                   $settings Block editor settings.
- * @param WP_Block_Editor_Context $context  The editor context.
- * @return array
- */
-function memberlite_hide_legacy_layout_templates( $settings, $context ) {
-	if ( empty( $settings['availableTemplates'] ) || empty( $context->post ) ) {
-		return $settings;
-	}
-
-	$current = get_page_template_slug( $context->post );
-
-	foreach ( array_keys( memberlite_get_legacy_template_layouts() ) as $template ) {
-		if ( $template !== $current ) {
-			unset( $settings['availableTemplates'][ $template ] );
-		}
-	}
-
-	return $settings;
-}
-add_filter( 'block_editor_settings_all', 'memberlite_hide_legacy_layout_templates', 10, 2 );
-
-/**
- * Clear an item's layout when its page template changes to a legacy layout template.
- *
- * The classic editor and Quick Edit can still set legacy templates but can't show or clear
- * `_memberlite_layout`, which would otherwise win over the template. Runs only when the
- * template value changes. In the block editor the template saves before the meta, so a
- * layout picked in the same save still applies. Imports are skipped.
+ * Runs from inc/updates/update_8_0.php and when switching between Memberlite and its child
+ * themes.
  *
  * @since TBD
  *
- * @param int    $meta_id    Meta ID.
- * @param int    $post_id    Post ID.
- * @param string $meta_key   Meta key.
- * @param mixed  $meta_value Meta value.
+ * @param string         $old_name  Unused. Name of the previous theme, from after_switch_theme.
+ * @param WP_Theme|false $old_theme The previous theme, from after_switch_theme. Omit to always run.
  * @return void
  */
-function memberlite_clear_layout_on_legacy_template( $meta_id, $post_id, $meta_key, $meta_value ): void {
-	if ( '_wp_page_template' !== $meta_key || ( defined( 'WP_IMPORTING' ) && WP_IMPORTING ) ) {
+function memberlite_migrate_legacy_layout_templates( $old_name = '', $old_theme = null ): void {
+	global $wpdb;
+
+	// Another theme's pages may use the same template paths.
+	if ( null !== $old_theme && ( ! $old_theme instanceof WP_Theme || get_template() !== $old_theme->get_template() ) ) {
 		return;
 	}
 
-	if ( isset( memberlite_get_legacy_template_layouts()[ (string) $meta_value ] ) ) {
-		delete_post_meta( $post_id, '_memberlite_layout' );
+	$templates = array_diff_key( memberlite_get_legacy_template_layouts(), wp_get_theme()->get_page_templates( null, 'page' ) );
+
+	if ( empty( $templates ) ) {
+		return;
+	}
+
+	$placeholders = implode( ', ', array_fill( 0, count( $templates ), '%s' ) );
+	$pages        = $wpdb->get_results(
+		$wpdb->prepare(
+			"SELECT p.ID, pm.meta_value AS template
+			FROM {$wpdb->posts} p
+			INNER JOIN {$wpdb->postmeta} pm ON p.ID = pm.post_id
+			WHERE p.post_type = 'page'
+			AND pm.meta_key = '_wp_page_template'
+			AND pm.meta_value IN ( $placeholders )",
+			array_keys( $templates )
+		)
+	);
+
+	$posts_page = (int) get_option( 'page_for_posts' );
+
+	foreach ( $pages as $page ) {
+		$page_id = (int) $page->ID;
+
+		if ( $posts_page !== $page_id && '' === (string) get_post_meta( $page_id, '_memberlite_layout', true ) ) {
+			// Keep the template if the layout couldn't be saved, so the page doesn't lose it.
+			if ( ! update_post_meta( $page_id, '_memberlite_layout', $templates[ $page->template ] ) ) {
+				continue;
+			}
+		}
+
+		update_post_meta( $page_id, '_wp_page_template', 'default' );
 	}
 }
-add_action( 'added_post_meta', 'memberlite_clear_layout_on_legacy_template', 10, 4 );
-add_action( 'updated_post_meta', 'memberlite_clear_layout_on_legacy_template', 10, 4 );
+add_action( 'after_switch_theme', 'memberlite_migrate_legacy_layout_templates', 10, 2 );
 
 /**
  * Copy the pre-TBD sidebar settings into the layout settings, once per theme.
  *
  * "No Sidebar" becomes Narrow (what it rendered) and a Grid archive becomes Contained
- * (Grid used to hide the sidebar). Search results keep the blog sidebar setting, which Grid
- * never affected, and Archive Display keeps its old Full Content default. Every context is saved explicitly so existing sites keep
- * their layout even though the defaults for new sites changed. New sites and theme setting
- * resets skip this.
+ * (Grid used to hide the sidebar). Search results follow the blog sidebar setting's
+ * visibility but always showed the sidebar on the right, so they get Right Sidebar or
+ * Narrow. Archive Display keeps its old Full Content default. Every context is saved explicitly so existing sites keep
+ * their layout even though the defaults for new sites changed. The old `sidebar_location*`
+ * settings are then removed. New sites and theme setting resets skip this.
  *
  * Runs after a child theme clones its parent's settings on activation (init, priority 99).
  *
@@ -499,7 +535,7 @@ function memberlite_maybe_migrate_layout_settings(): void {
 	set_theme_mod( 'layout_page', isset( $map[ $page_sidebar ] ) ? $map[ $page_sidebar ] : 'sidebar-right' );
 	set_theme_mod( 'layout_post', $blog_layout );
 	set_theme_mod( 'layout_archive', 'grid' === $archives ? 'contained' : $blog_layout );
-	set_theme_mod( 'layout_search', $blog_layout );
+	set_theme_mod( 'layout_search', 'narrow' === $blog_layout ? 'narrow' : 'sidebar-right' );
 	set_theme_mod( 'content_archives', $archives );
 	set_theme_mod( 'columns_ratio_blog', $blog_ratio );
 	set_theme_mod( 'columns_ratio_post', $blog_ratio );
@@ -519,5 +555,12 @@ function memberlite_maybe_migrate_layout_settings(): void {
 	}
 
 	set_theme_mod( 'layout_version', 1 );
+
+	// Remove the old settings only after layout_version is set, so a concurrent run either skips or still reads them.
+	remove_theme_mod( 'sidebar_location' );
+	remove_theme_mod( 'sidebar_location_blog' );
+	foreach ( array_keys( $cpt_types ) as $post_type ) {
+		remove_theme_mod( 'sidebar_location_' . $post_type );
+	}
 }
 add_action( 'init', 'memberlite_maybe_migrate_layout_settings', 100 );

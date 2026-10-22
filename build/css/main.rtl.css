@@ -1670,6 +1670,29 @@ textarea {
   background: currentColor;
 }
 
+.wp-block-group.is-style-card,
+.wp-block-columns.is-style-card,
+.wp-block-column.is-style-card,
+.wp-block-pmpro-single-level.is-style-card {
+  background-color: var(--wp--custom--card--background);
+  border: 1px solid var(--wp--custom--card--border-color);
+  border-radius: var(--wp--custom--card--radius);
+  box-shadow: var(--wp--custom--card--shadow);
+  color: var(--wp--custom--card--color);
+  overflow: hidden;
+  padding: var(--wp--custom--card--padding);
+}
+
+.wp-block-post-template.is-style-card > li {
+  background-color: var(--wp--custom--card--background);
+  border: 1px solid var(--wp--custom--card--border-color);
+  border-radius: var(--wp--custom--card--radius);
+  box-shadow: var(--wp--custom--card--shadow);
+  color: var(--wp--custom--card--color);
+  overflow: hidden;
+  padding: var(--wp--custom--card--padding);
+}
+
 /*--------------------------------------------------------------
  COMPONENTS
 --------------------------------------------------------------*/
@@ -1839,15 +1862,17 @@ textarea {
   margin-bottom: var(--wp--preset--spacing--50);
 }
 .grid-list > * {
-  background-color: color-mix(in srgb, Canvas 10%, transparent);
-  border: 1px solid var(--memberlite-color-borders);
-  border-radius: var(--wp--custom--border--radius);
+  background-color: var(--wp--custom--card--background);
+  border: 1px solid var(--wp--custom--card--border-color);
+  border-radius: var(--wp--custom--card--radius);
+  box-shadow: var(--wp--custom--card--shadow);
+  color: var(--wp--custom--card--color);
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
   justify-content: start;
   margin: 0;
-  overflow: hidden;
   padding: var(--wp--preset--spacing--10);
   text-align: center;
 }
