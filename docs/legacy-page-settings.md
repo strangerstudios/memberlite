@@ -93,7 +93,7 @@ add_action( 'memberlite_after_masthead_inner', 'my_memberlite_show_banner_right'
 
 ### Page bottom banner
 
-Shows above the footer, as before. Memberlite still styles `#banner_bottom`.
+Shows above the footer, as before. Memberlite no longer has any `#banner_bottom` styles, so the recipe adds its own (also hidden when printing).
 
 ```php
 /**
@@ -118,6 +118,17 @@ function my_memberlite_show_banner_bottom() {
 	<?php
 }
 add_action( 'memberlite_after_content', 'my_memberlite_show_banner_bottom' );
+
+function my_memberlite_banner_bottom_css() {
+	wp_add_inline_style( 'memberlite_style', '
+		#banner_bottom { background-color: var(--memberlite-color-secondary); color: var(--memberlite-color-white); padding: 4rem 0; }
+		#banner_bottom p { font-size: var(--wp--preset--font-size--21); }
+		#banner_bottom :is(h1, h2, h3, h4, h5) { color: var(--memberlite-color-white); margin: 0 0 1.6rem 0; }
+		#banner_bottom :is(h1, h2, h3, h4, h5) a { color: var(--memberlite-color-white); text-decoration: none; border-bottom: 1px dotted var(--memberlite-color-white); }
+		@media print { #banner_bottom { display: none; } }
+	' );
+}
+add_action( 'wp_enqueue_scripts', 'my_memberlite_banner_bottom_css', 20 );
 ```
 
 ### Extra banner padding
