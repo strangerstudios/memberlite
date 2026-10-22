@@ -292,6 +292,9 @@ add_action( 'deleted_post_meta', 'memberlite_maybe_clear_alert_count_for_meta', 
 /**
  * Get the count bubble shown next to a menu label.
  *
+ * Uses core's update-plugins bubble, which takes the admin color scheme's notification
+ * color and darkens on the open menu, like the Plugins menu.
+ *
  * @since TBD
  *
  * @param int $count Number of alerts that need attention.
@@ -303,7 +306,7 @@ function memberlite_get_alert_count_bubble( int $count ): string {
 	}
 
 	return sprintf(
-		' <span class="awaiting-mod count-%1$d"><span aria-hidden="true">%2$s</span><span class="screen-reader-text">%3$s</span></span>',
+		' <span class="update-plugins count-%1$d"><span class="update-count" aria-hidden="true">%2$s</span><span class="screen-reader-text">%3$s</span></span>',
 		$count,
 		esc_html( number_format_i18n( $count ) ),
 		/* translators: %s: Number of alerts. */
