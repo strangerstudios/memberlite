@@ -489,6 +489,7 @@ if ( is_admin() ) {
 /* Custom admin theme pages. */
 if ( is_admin() ) {
 	require_once get_template_directory() . '/inc/admin.php';
+	require_once get_template_directory() . '/inc/alerts.php';
 }
 
 /* Register custom post types. */
@@ -566,6 +567,9 @@ require_once get_template_directory() . '/adminpages/sidebars.php';
 
 /* Tools */
 require_once get_template_directory() . '/adminpages/tools.php';
+
+/* Alerts */
+require_once get_template_directory() . '/adminpages/alerts.php';
 
 /* Manage Menus */
 require_once get_template_directory() . '/adminpages/menus.php';

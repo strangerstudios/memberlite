@@ -29,6 +29,8 @@ function memberlite_add_pages() {
 	add_submenu_page( 'memberlite-dashboard', __( 'Custom Sidebars', 'memberlite' ), __( 'Custom Sidebars', 'memberlite' ), 'edit_theme_options', 'memberlite-custom-sidebars', 'memberlite_custom_sidebars' );
 
 	add_submenu_page( 'memberlite-dashboard', __( 'Tools', 'memberlite' ), __( 'Tools', 'memberlite' ), 'edit_theme_options', 'memberlite-tools', 'memberlite_tools' );
+
+	add_submenu_page( 'memberlite-dashboard', __( 'Alerts', 'memberlite' ), __( 'Alerts', 'memberlite' ), 'edit_theme_options', 'memberlite-alerts', 'memberlite_alerts_page' );
 }
 add_action( 'admin_menu', 'memberlite_add_pages' );
 

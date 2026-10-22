@@ -13,3 +13,4 @@ Whenever possible, we try to keep this documentation up-to-date with the latest 
 4. [Variations](variations.md)
 5. [Patterns](patterns.md)
 6. [Project Structure](project-structure.md)
+7. [Alerts](alerts.md)

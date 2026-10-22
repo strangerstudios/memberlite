@@ -18,7 +18,8 @@ if ( isset( $_REQUEST['page'] ) ) {
 		'memberlite-dashboard',
 		'memberlite-custom-menus',
 		'memberlite-custom-sidebars',
-		'memberlite-tools'
+		'memberlite-tools',
+		'memberlite-alerts'
 	);
 	if ( in_array( $view, $settings_tabs ) ) { ?>
 		<nav class="memberlite-nav-primary" aria-labelledby="memberlite-admin-menu">
@@ -28,6 +29,7 @@ if ( isset( $_REQUEST['page'] ) ) {
 				<li><a href="<?php echo esc_url( add_query_arg( array( 'page' => 'memberlite-custom-menus' ), admin_url( 'admin.php' ) ) );?>"<?php echo ( $view == 'memberlite-custom-menus' ) ? ' class="current"' : ''; ?>><?php esc_html_e( 'Custom Menus', 'memberlite' );?></a></li>
 				<li><a href="<?php echo esc_url( add_query_arg( array( 'page' => 'memberlite-custom-sidebars' ), admin_url( 'admin.php' ) ) );?>"<?php echo ( $view == 'memberlite-custom-sidebars' ) ? ' class="current"' : ''; ?>><?php esc_html_e( 'Custom Sidebars', 'memberlite' );?></a></li>
 				<li><a href="<?php echo esc_url( add_query_arg( array( 'page' => 'memberlite-tools' ), admin_url( 'admin.php' ) ) );?>"<?php echo ( $view == 'memberlite-tools' ) ? ' class="current"' : ''; ?>><?php esc_html_e( 'Tools', 'memberlite' );?></a></li>
+				<li><a href="<?php echo esc_url( add_query_arg( array( 'page' => 'memberlite-alerts' ), admin_url( 'admin.php' ) ) );?>"<?php echo ( $view == 'memberlite-alerts' ) ? ' class="current"' : ''; ?>><?php esc_html_e( 'Alerts', 'memberlite' );?><?php echo memberlite_get_alert_count_bubble( memberlite_get_alert_count() ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></a></li>
 			</ul>
 		</nav>
 		<?php
