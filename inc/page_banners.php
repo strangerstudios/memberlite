@@ -90,8 +90,8 @@ function memberlite_get_legacy_page_field_labels(): array {
  * Move the removed Memberlite Settings meta box fields to visible custom fields.
  *
  * Deletes the values that mean "not set" and renames the rest, see
- * memberlite_get_legacy_page_fields(). If a post already has the new custom field, its
- * old field is deleted instead, so the custom field keeps its current value. Safe to run
+ * memberlite_get_legacy_page_fields(). If a post already has the new custom field with a
+ * value, its old field is deleted instead, so the custom field keeps its current value. Safe to run
  * again, e.g. after importing content from an older site.
  *
  * Runs from inc/updates/update_8_0.php and from Memberlite > Alerts.
@@ -128,20 +128,31 @@ function memberlite_migrate_legacy_page_fields(): void {
 		if ( ! empty( $field['requires'] ) ) {
 			$wpdb->query(
 				$wpdb->prepare(
-					"DELETE old FROM {$wpdb->postmeta} old
-					LEFT JOIN {$wpdb->postmeta} required ON required.post_id = old.post_id AND required.meta_key = %s
-					WHERE old.meta_key = %s AND required.meta_id IS NULL",
+					"DELETE pm_old FROM {$wpdb->postmeta} pm_old
+					LEFT JOIN {$wpdb->postmeta} pm_required ON pm_required.post_id = pm_old.post_id AND pm_required.meta_key = %s
+					WHERE pm_old.meta_key = %s AND pm_required.meta_id IS NULL",
 					$field['requires'],
 					$old_key
 				)
 			);
 		}
 
+		// An empty custom field shouldn't win over a value that was set.
 		$wpdb->query(
 			$wpdb->prepare(
-				"DELETE old FROM {$wpdb->postmeta} old
-				INNER JOIN {$wpdb->postmeta} new ON new.post_id = old.post_id AND new.meta_key = %s
-				WHERE old.meta_key = %s",
+				"DELETE pm_new FROM {$wpdb->postmeta} pm_new
+				INNER JOIN {$wpdb->postmeta} pm_old ON pm_old.post_id = pm_new.post_id AND pm_old.meta_key = %s
+				WHERE pm_new.meta_key = %s AND ( pm_new.meta_value IS NULL OR pm_new.meta_value REGEXP '^[[:space:]]*$' )",
+				$old_key,
+				$field['key']
+			)
+		);
+
+		$wpdb->query(
+			$wpdb->prepare(
+				"DELETE pm_old FROM {$wpdb->postmeta} pm_old
+				INNER JOIN {$wpdb->postmeta} pm_new ON pm_new.post_id = pm_old.post_id AND pm_new.meta_key = %s
+				WHERE pm_old.meta_key = %s",
 				$field['key'],
 				$old_key
 			)
@@ -159,6 +170,7 @@ function memberlite_migrate_legacy_page_fields(): void {
 	foreach ( $post_ids as $post_id ) {
 		wp_cache_delete( (int) $post_id, 'post_meta' );
 	}
+	wp_cache_set_posts_last_changed();
 }
 
 /**

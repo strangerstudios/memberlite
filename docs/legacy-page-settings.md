@@ -41,7 +41,7 @@ Paid Memberships Pro's blocks cover what the template did. Put them in the page 
 
 ## Code recipes
 
-Each recipe below shows one setting again, from its custom field. Add the ones you need to a child theme's `functions.php` or a code snippets plugin. They use Memberlite's masthead hooks (`memberlite_after_masthead_inner`, `memberlite_after_content`, `memberlite_after_content_page`) and the `memberlite_get_page_title` filter.
+Each recipe below shows one setting again, from its custom field, on pages only (the meta box was only on pages). Add the ones you need to a child theme's `functions.php` or a code snippets plugin. Anyone who can edit a post can add custom fields to it, so the recipes run each value through `wp_kses_post()` before showing it. They use Memberlite's masthead hooks (`memberlite_after_masthead_inner`, `memberlite_after_content`, `memberlite_after_content_page`) and the `memberlite_get_page_title` filter.
 
 ### Banner description
 
@@ -53,7 +53,7 @@ Shows below the page title, as before.
  */
 function my_memberlite_show_banner_description() {
 	$post_id = memberlite_get_banner_post_id();
-	if ( empty( $post_id ) || is_404() ) {
+	if ( empty( $post_id ) || 'page' !== get_post_type( $post_id ) ) {
 		return;
 	}
 
@@ -77,7 +77,7 @@ Memberlite 7.2 already stopped showing this column. This shows it below the bann
  */
 function my_memberlite_show_banner_right() {
 	$post_id = memberlite_get_banner_post_id();
-	if ( empty( $post_id ) || is_404() ) {
+	if ( empty( $post_id ) || 'page' !== get_post_type( $post_id ) ) {
 		return;
 	}
 
@@ -101,7 +101,7 @@ Shows above the footer, as before. Memberlite still styles `#banner_bottom`.
  */
 function my_memberlite_show_banner_bottom() {
 	$post_id = memberlite_get_banner_post_id();
-	if ( empty( $post_id ) ) {
+	if ( empty( $post_id ) || 'page' !== get_post_type( $post_id ) ) {
 		return;
 	}
 
@@ -112,7 +112,7 @@ function my_memberlite_show_banner_bottom() {
 	?>
 	<div id="banner_bottom">
 		<div class="row"><div class="large-12 columns">
-			<?php echo apply_filters( 'the_content', $content ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+			<?php echo apply_filters( 'the_content', wp_kses_post( $content ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 		</div></div>
 	</div>
 	<?php
@@ -128,7 +128,7 @@ add_action( 'memberlite_after_content', 'my_memberlite_show_banner_bottom' );
  */
 function my_memberlite_banner_extra_padding_class( $classes ) {
 	$post_id = memberlite_get_banner_post_id();
-	if ( ! empty( $post_id ) && get_post_meta( $post_id, 'memberlite_banner_extra_padding', true ) ) {
+	if ( ! empty( $post_id ) && 'page' === get_post_type( $post_id ) && get_post_meta( $post_id, 'memberlite_banner_extra_padding', true ) ) {
 		$classes[] = 'memberlite-banner-extra-padding';
 	}
 
@@ -152,7 +152,7 @@ Shows the icon inside the page title. Needs both `memberlite_page_icon` and `mem
  */
 function my_memberlite_show_page_icon( $title_html ) {
 	$post_id = memberlite_get_banner_post_id();
-	if ( empty( $post_id ) || ! get_post_meta( $post_id, 'memberlite_banner_icon', true ) ) {
+	if ( empty( $post_id ) || 'page' !== get_post_type( $post_id ) || ! get_post_meta( $post_id, 'memberlite_banner_icon', true ) ) {
 		return $title_html;
 	}
 
@@ -170,7 +170,7 @@ add_filter( 'memberlite_get_page_title', 'my_memberlite_show_page_icon' );
 
 ### Landing page level, price and checkout button
 
-Shows the level price and checkout button in the masthead (and the level description when the page has no banner description), and the checkout button and level upsell after the page content.
+Shows the level price and checkout button in the masthead (and the level description when the page has no banner description), and the checkout button and level upsell after the page content. The template also showed the featured image in the masthead; this recipe leaves that out.
 
 ```php
 /**
