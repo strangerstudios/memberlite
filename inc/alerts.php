@@ -88,6 +88,21 @@ function memberlite_get_alert_items( array $alert ): array {
 }
 
 /**
+ * Check whether a post should be listed in an alert.
+ *
+ * Trashed posts, auto-drafts and meta left behind by deleted posts are skipped, since
+ * there is nothing to edit.
+ *
+ * @since TBD
+ *
+ * @param int $post_id Post ID.
+ * @return bool
+ */
+function memberlite_is_alert_post( int $post_id ): bool {
+	return ! in_array( get_post_status( $post_id ), array( false, 'trash', 'auto-draft' ), true );
+}
+
+/**
  * Get the dismissed alerts.
  *
  * @since TBD
@@ -100,25 +115,50 @@ function memberlite_get_dismissed_alerts(): array {
 }
 
 /**
- * Check whether an alert is dismissed.
+ * Check an alert and get its status.
+ *
+ * A dismissed alert stays dismissed until it finds more items than the lowest count seen
+ * since it was dismissed. Fixing items lowers that count, and resolving the alert clears
+ * the dismissal, so items that come back later show again.
  *
  * @since TBD
  *
- * @param string $alert_id   Alert ID.
- * @param int    $item_count Number of items the alert reports now.
- * @return bool True if dismissed and no new items have shown up since.
+ * @param array $alert Alert from memberlite_get_alerts().
+ * @return array The alert's `items`, and its `status`: 'active', 'dismissed' or 'resolved'.
  */
-function memberlite_is_alert_dismissed( string $alert_id, int $item_count ): bool {
-	$dismissed = memberlite_get_dismissed_alerts();
+function memberlite_get_alert_status( array $alert ): array {
+	$items      = memberlite_get_alert_items( $alert );
+	$item_count = count( $items );
+	$dismissed  = memberlite_get_dismissed_alerts();
+	$status     = $item_count ? 'active' : 'resolved';
 
-	return isset( $dismissed[ $alert_id ] ) && $item_count <= (int) $dismissed[ $alert_id ];
+	if ( isset( $dismissed[ $alert['id'] ] ) ) {
+		$dismissed_count = (int) $dismissed[ $alert['id'] ];
+
+		if ( ! $item_count ) {
+			unset( $dismissed[ $alert['id'] ] );
+			update_option( 'memberlite_dismissed_alerts', $dismissed, false );
+		} elseif ( $item_count <= $dismissed_count ) {
+			$status = 'dismissed';
+
+			if ( $item_count < $dismissed_count ) {
+				$dismissed[ $alert['id'] ] = $item_count;
+				update_option( 'memberlite_dismissed_alerts', $dismissed, false );
+			}
+		}
+	}
+
+	return array(
+		'items'  => $items,
+		'status' => $status,
+	);
 }
 
 /**
  * Count the alerts that need attention: alerts with items that aren't dismissed.
  *
- * Cached for an hour, and cleared when an alert is run, dismissed or restored, or the
- * Alerts page is viewed.
+ * Cached for an hour, and cleared when an alert is run, dismissed or restored, when the
+ * Alerts page loads, and on theme switch.
  *
  * @since TBD
  * @return int
@@ -129,8 +169,7 @@ function memberlite_get_alert_count(): int {
 	if ( false === $count ) {
 		$count = 0;
 		foreach ( memberlite_get_alerts() as $alert ) {
-			$item_count = count( memberlite_get_alert_items( $alert ) );
-			if ( $item_count && ! memberlite_is_alert_dismissed( $alert['id'], $item_count ) ) {
+			if ( 'active' === memberlite_get_alert_status( $alert )['status'] ) {
 				$count++;
 			}
 		}
@@ -183,10 +222,15 @@ function memberlite_get_alert_count_bubble( int $count ): string {
  * @return void
  */
 function memberlite_add_alert_count_to_menu() {
-	global $menu, $submenu;
+	global $menu, $submenu, $plugin_page;
 
 	if ( ! current_user_can( 'edit_theme_options' ) ) {
 		return;
+	}
+
+	// The Alerts page checks every alert anyway, so its bubbles should match what it shows.
+	if ( 'memberlite-alerts' === $plugin_page ) {
+		memberlite_clear_alert_count();
 	}
 
 	$bubble = memberlite_get_alert_count_bubble( memberlite_get_alert_count() );

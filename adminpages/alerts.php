@@ -20,20 +20,18 @@ function memberlite_alerts_page() {
 	 */
 	require_once __DIR__ . '/admin_header.php';
 
-	// The page shows live results, so the menu count should match them.
-	memberlite_clear_alert_count();
-
 	$alerts    = memberlite_get_alerts();
 	$active    = array();
 	$dismissed = array();
 	$resolved  = array();
 
 	foreach ( $alerts as $alert ) {
-		$alert['items'] = memberlite_get_alert_items( $alert );
+		$status         = memberlite_get_alert_status( $alert );
+		$alert['items'] = $status['items'];
 
-		if ( empty( $alert['items'] ) ) {
+		if ( 'resolved' === $status['status'] ) {
 			$resolved[] = $alert;
-		} elseif ( memberlite_is_alert_dismissed( $alert['id'], count( $alert['items'] ) ) ) {
+		} elseif ( 'dismissed' === $status['status'] ) {
 			$dismissed[] = $alert;
 		} else {
 			$active[] = $alert;

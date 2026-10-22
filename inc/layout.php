@@ -513,16 +513,35 @@ add_action( 'after_switch_theme', 'memberlite_migrate_legacy_layout_templates', 
  * @return array Alert items.
  */
 function memberlite_alert_check_legacy_layout_templates(): array {
-	$templates = memberlite_get_legacy_layout_templates_to_migrate();
-	$layouts   = memberlite_get_layouts();
-	$items     = array();
+	$templates  = memberlite_get_legacy_layout_templates_to_migrate();
+	$layouts    = memberlite_get_layouts();
+	$posts_page = (int) get_option( 'page_for_posts' );
+	$items      = array();
 
 	foreach ( memberlite_get_legacy_layout_template_pages() as $page ) {
-		$items[] = array(
-			'label'   => get_the_title( $page->ID ) ? get_the_title( $page->ID ) : sprintf( '#%d', $page->ID ),
-			'url'     => get_edit_post_link( $page->ID, 'raw' ),
+		$page_id = (int) $page->ID;
+
+		if ( ! memberlite_is_alert_post( $page_id ) ) {
+			continue;
+		}
+
+		// Mirrors memberlite_migrate_legacy_layout_templates().
+		$saved_layout = (string) get_post_meta( $page_id, '_memberlite_layout', true );
+		if ( $posts_page === $page_id ) {
+			/* translators: %s: Page template file. */
+			$details = sprintf( __( '%s, will go back to the default template', 'memberlite' ), $page->template );
+		} elseif ( '' !== $saved_layout && isset( $layouts[ $saved_layout ] ) ) {
 			/* translators: 1: Page template file, 2: Layout name. */
-			'details' => sprintf( __( '%1$s, will use the %2$s layout', 'memberlite' ), $page->template, $layouts[ $templates[ $page->template ] ] ),
+			$details = sprintf( __( '%1$s, will keep its %2$s layout', 'memberlite' ), $page->template, $layouts[ $saved_layout ] );
+		} else {
+			/* translators: 1: Page template file, 2: Layout name. */
+			$details = sprintf( __( '%1$s, will use the %2$s layout', 'memberlite' ), $page->template, $layouts[ $templates[ $page->template ] ] );
+		}
+
+		$items[] = array(
+			'label'   => get_the_title( $page_id ) ? get_the_title( $page_id ) : sprintf( '#%d', $page_id ),
+			'url'     => get_edit_post_link( $page_id, 'raw' ),
+			'details' => $details,
 		);
 	}
 
@@ -537,7 +556,9 @@ function memberlite_alert_check_legacy_layout_templates(): array {
  * @param array $alerts Alerts keyed by ID.
  * @return array
  */
-function memberlite_add_legacy_layout_templates_alert( array $alerts ): array {
+function memberlite_add_legacy_layout_templates_alert( $alerts ) {
+	$alerts = (array) $alerts;
+
 	$alerts['legacy_layout_templates'] = array(
 		'title'       => __( 'Pages using removed layout templates', 'memberlite' ),
 		'description' => __( 'Memberlite 8.0 removed the Content/Sidebar, Sidebar/Content, Narrow Width, Full Width and Fluid Width page templates. Layout is now set in the block editor\'s Layout panel. These pages still use one of the removed templates, which usually means they were imported or restored from an older site. Until they move, saving one of them from the classic editor or Quick Edit resets it to the default template.', 'memberlite' ),
