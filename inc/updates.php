@@ -69,6 +69,10 @@ function memberlite_checkForUpdates() {
 		update_option( 'memberlite_db_version', '2026102101', 'no' );
 	}
 
+	// Show alerts an update adds or resolves on the next admin page load.
+	if ( get_option( 'memberlite_db_version' ) !== $memberlite_db_version ) {
+		delete_transient( 'memberlite_alert_count' );
+	}
 }
 
 /**

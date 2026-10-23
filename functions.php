@@ -567,6 +567,10 @@ require_once get_template_directory() . '/adminpages/sidebars.php';
 /* Tools */
 require_once get_template_directory() . '/adminpages/tools.php';
 
+/* Alerts */
+require_once get_template_directory() . '/inc/alerts.php';
+require_once get_template_directory() . '/adminpages/alerts.php';
+
 /* Manage Menus */
 require_once get_template_directory() . '/adminpages/menus.php';
 

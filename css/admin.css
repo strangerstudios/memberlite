@@ -651,3 +651,79 @@ body[class*="toplevel_page_memberlite-"] #footer-left a {
 .memberlite_checkbox_box .memberlite_clickable input[type=checkbox] {
 	margin-top: 0;
 }
+
+/**
+ * Alerts
+ */
+.memberlite_admin .memberlite-nav-primary .update-plugins {
+	background-color: #d63638;
+	border-radius: 9px;
+	color: #fff;
+	display: inline-block;
+	font-size: 11px;
+	line-height: 1.6;
+	margin-left: 4px;
+	min-width: 18px;
+	padding: 0 5px;
+	box-sizing: border-box;
+	text-align: center;
+}
+
+.memberlite_admin .memberlite_section.memberlite_alert .memberlite_section_toggle button.memberlite_section-toggle-button {
+	gap: var(--memberlite--spacing--small);
+	justify-content: flex-start;
+}
+
+.memberlite_admin .memberlite_alert .memberlite_alert-status {
+	align-items: center;
+	border-radius: 999px;
+	display: inline-flex;
+	flex-shrink: 0;
+	font-size: 12px;
+	font-weight: 600;
+	gap: 4px;
+	padding: 2px 10px 2px 6px;
+}
+
+.memberlite_admin .memberlite_section.memberlite_alert .memberlite_section_toggle button.memberlite_section-toggle-button .memberlite_alert-status .dashicons {
+	color: inherit;
+	font-size: 16px;
+	height: 16px;
+	position: static;
+	transform: none;
+	width: 16px;
+}
+
+.memberlite_admin .memberlite_alert-active .memberlite_alert-status {
+	background-color: #fcf9e8;
+	color: #8a6d00;
+}
+
+.memberlite_admin .memberlite_alert-dismissed .memberlite_alert-status {
+	background-color: var(--memberlite--color--blue-medium);
+	color: var(--memberlite--color--almost-black);
+}
+
+.memberlite_admin .memberlite_alert-resolved .memberlite_alert-status {
+	background-color: #edfaef;
+	color: #00631c;
+}
+
+.memberlite_admin .memberlite_alert .memberlite_alert-count {
+	color: #646970;
+	font-weight: 400;
+}
+
+.memberlite_admin .memberlite_alert .memberlite_alert-items {
+	list-style: disc;
+	margin-left: 20px;
+}
+
+.memberlite_admin .memberlite_alert .memberlite_alert-item-details {
+	color: #646970;
+	margin-left: 6px;
+}
+
+.memberlite_admin .memberlite_alert .memberlite_section_actions form {
+	margin: 0;
+}

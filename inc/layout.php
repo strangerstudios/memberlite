@@ -422,6 +422,48 @@ function memberlite_layout_get_sidebar( $name ) {
 add_filter( 'memberlite_get_sidebar', 'memberlite_layout_get_sidebar' );
 
 /**
+ * Get the removed layout templates that pages should move off.
+ *
+ * Templates the active theme still registers (a child theme's copy) are left out.
+ *
+ * @since TBD
+ * @return array Layout slugs keyed by template file.
+ */
+function memberlite_get_legacy_layout_templates_to_migrate(): array {
+	return array_diff_key( memberlite_get_legacy_template_layouts(), wp_get_theme()->get_page_templates( null, 'page' ) );
+}
+
+/**
+ * Get the pages still on a removed layout template.
+ *
+ * @since TBD
+ * @return array Rows with the page `ID` and its `template`.
+ */
+function memberlite_get_legacy_layout_template_pages(): array {
+	global $wpdb;
+
+	$templates = memberlite_get_legacy_layout_templates_to_migrate();
+
+	if ( empty( $templates ) ) {
+		return array();
+	}
+
+	$placeholders = implode( ', ', array_fill( 0, count( $templates ), '%s' ) );
+
+	return $wpdb->get_results(
+		$wpdb->prepare(
+			"SELECT p.ID, pm.meta_value AS template
+			FROM {$wpdb->posts} p
+			INNER JOIN {$wpdb->postmeta} pm ON p.ID = pm.post_id
+			WHERE p.post_type = 'page'
+			AND pm.meta_key = '_wp_page_template'
+			AND pm.meta_value IN ( $placeholders )",
+			array_keys( $templates )
+		)
+	);
+}
+
+/**
  * Move pages off the removed layout page templates.
  *
  * Each page gets its template's layout as `_memberlite_layout`, unless it already has one,
@@ -439,35 +481,15 @@ add_filter( 'memberlite_get_sidebar', 'memberlite_layout_get_sidebar' );
  * @return void
  */
 function memberlite_migrate_legacy_layout_templates( $old_name = '', $old_theme = null ): void {
-	global $wpdb;
-
 	// Another theme's pages may use the same template paths.
 	if ( null !== $old_theme && ( ! $old_theme instanceof WP_Theme || get_template() !== $old_theme->get_template() ) ) {
 		return;
 	}
 
-	$templates = array_diff_key( memberlite_get_legacy_template_layouts(), wp_get_theme()->get_page_templates( null, 'page' ) );
-
-	if ( empty( $templates ) ) {
-		return;
-	}
-
-	$placeholders = implode( ', ', array_fill( 0, count( $templates ), '%s' ) );
-	$pages        = $wpdb->get_results(
-		$wpdb->prepare(
-			"SELECT p.ID, pm.meta_value AS template
-			FROM {$wpdb->posts} p
-			INNER JOIN {$wpdb->postmeta} pm ON p.ID = pm.post_id
-			WHERE p.post_type = 'page'
-			AND pm.meta_key = '_wp_page_template'
-			AND pm.meta_value IN ( $placeholders )",
-			array_keys( $templates )
-		)
-	);
-
+	$templates  = memberlite_get_legacy_layout_templates_to_migrate();
 	$posts_page = (int) get_option( 'page_for_posts' );
 
-	foreach ( $pages as $page ) {
+	foreach ( memberlite_get_legacy_layout_template_pages() as $page ) {
 		$page_id = (int) $page->ID;
 
 		if ( $posts_page !== $page_id && '' === (string) get_post_meta( $page_id, '_memberlite_layout', true ) ) {
@@ -481,6 +503,98 @@ function memberlite_migrate_legacy_layout_templates( $old_name = '', $old_theme 
 	}
 }
 add_action( 'after_switch_theme', 'memberlite_migrate_legacy_layout_templates', 10, 2 );
+
+/**
+ * List pages still on a removed layout template for Memberlite > Alerts.
+ *
+ * The 8.0 update moves them, but importing or restoring older content can bring them back.
+ *
+ * @since TBD
+ * @return array Alert items.
+ */
+function memberlite_alert_check_legacy_layout_templates(): array {
+	$templates  = memberlite_get_legacy_layout_templates_to_migrate();
+	$layouts    = memberlite_get_layouts();
+	$posts_page = (int) get_option( 'page_for_posts' );
+	$pages      = memberlite_get_legacy_layout_template_pages();
+	$items      = array();
+
+	_prime_post_caches( array_map( 'intval', wp_list_pluck( $pages, 'ID' ) ), false, true );
+
+	foreach ( $pages as $page ) {
+		$page_id = (int) $page->ID;
+
+		if ( ! memberlite_is_alert_post( $page_id ) ) {
+			continue;
+		}
+
+		// Mirrors memberlite_migrate_legacy_layout_templates().
+		$saved_layout = (string) get_post_meta( $page_id, '_memberlite_layout', true );
+		if ( $posts_page === $page_id ) {
+			/* translators: %s: Page template file. */
+			$details = sprintf( __( '%s, will go back to the default template', 'memberlite' ), $page->template );
+		} elseif ( '' !== $saved_layout && isset( $layouts[ $saved_layout ] ) ) {
+			/* translators: 1: Page template file, 2: Layout name. */
+			$details = sprintf( __( '%1$s, will keep its %2$s layout', 'memberlite' ), $page->template, $layouts[ $saved_layout ] );
+		} else {
+			/* translators: 1: Page template file, 2: Layout name. */
+			$details = sprintf( __( '%1$s, will use the %2$s layout', 'memberlite' ), $page->template, $layouts[ $templates[ $page->template ] ] );
+		}
+
+		$title   = get_the_title( $page_id );
+		$items[] = array(
+			'id'      => $page_id,
+			'label'   => '' !== $title ? $title : sprintf( '#%d', $page_id ),
+			'url'     => get_edit_post_link( $page_id, 'raw' ),
+			'details' => $details,
+		);
+	}
+
+	return $items;
+}
+
+/**
+ * Add the removed layout templates alert to Memberlite > Alerts.
+ *
+ * @since TBD
+ *
+ * @param array $alerts Alerts keyed by ID.
+ * @return array
+ */
+function memberlite_add_legacy_layout_templates_alert( $alerts ) {
+	$alerts = (array) $alerts;
+
+	$alerts['legacy_layout_templates'] = array(
+		'title'       => __( 'Pages using removed layout templates', 'memberlite' ),
+		'description' => __( 'Memberlite 8.0 removed the Content/Sidebar, Sidebar/Content, Narrow Width, Full Width and Fluid Width page templates. Layout is now set in the block editor\'s Layout panel. These pages still use one of the removed templates, which usually means they were imported or restored from an older site. Until they move, saving one of them from the classic editor or Quick Edit resets it to the default template.', 'memberlite' ),
+		'since'       => '8.0',
+		'check'       => 'memberlite_alert_check_legacy_layout_templates',
+		'action'      => array(
+			'label'       => __( 'Move pages to the Layout panel', 'memberlite' ),
+			'callback'    => 'memberlite_migrate_legacy_layout_templates',
+			'description' => __( 'Each page gets its template\'s layout, unless it already has one, and goes back to the default template.', 'memberlite' ),
+		),
+	);
+
+	return $alerts;
+}
+add_filter( 'memberlite_alerts', 'memberlite_add_legacy_layout_templates_alert' );
+
+/**
+ * Clear the alert count when a page template changes, see memberlite_maybe_clear_alert_count_for_meta().
+ *
+ * @since TBD
+ *
+ * @param array $meta_keys Meta keys alerts report on.
+ * @return array
+ */
+function memberlite_add_legacy_layout_templates_alert_meta_keys( $meta_keys ) {
+	$meta_keys   = (array) $meta_keys;
+	$meta_keys[] = '_wp_page_template';
+
+	return $meta_keys;
+}
+add_filter( 'memberlite_alert_meta_keys', 'memberlite_add_legacy_layout_templates_alert_meta_keys' );
 
 /**
  * Copy the pre-TBD sidebar settings into the layout settings, once per theme.
