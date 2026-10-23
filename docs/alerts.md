@@ -8,7 +8,7 @@ Code: `inc/alerts.php` (registry, count, actions; loaded on every request so the
 
 * **Checked live.** Each alert has a `check` callback that queries the site and returns the items that need attention. Nothing is stored, so an alert resolves itself once its items are fixed, and comes back if an import or restore brings the problem back.
 * **Optional action.** An alert can offer one fix the admin runs from the page, e.g. rerunning a migration. The action must be safe to run more than once. After it runs, the page reports how many items it fixed and how many are still listed.
-* **Dismissible.** Dismissing stores which items the alert listed (by item `id`, else `url`, else `label`) in the `memberlite_dismissed_alerts` option (site-wide). The alert returns as soon as it lists an item that wasn't in that set. Fixed items drop out of the set (`memberlite_sync_alert_dismissal()`), so they show again if they come back, and the dismissal is cleared once the alert resolves. Dismissed and resolved alerts stay on the page, collapsed.
+* **Dismissible.** Dismissing stores which items the alert listed (by item `id`, else `url`, else `label`) in the `memberlite_dismissed_alerts` option (site-wide). Give items an `id`: it's the stable key. A `url` key includes the site domain, so dismissals keyed by `url` come back if the site moves. The alert returns as soon as it lists an item that wasn't in that set. Fixed items drop out of the set (`memberlite_sync_alert_dismissal()`), so they show again if they come back, and the dismissal is cleared once the alert resolves. Dismissed and resolved alerts stay on the page, collapsed.
 * **Menu count.** Alerts with items that aren't dismissed are counted in a bubble on the Memberlite menu, its Alerts item and the Alerts tab. The count is cached in the `memberlite_alert_count` transient for an hour. It's cleared when an alert is run, dismissed or restored, when the Alerts page loads, when any post is saved or deleted, when post meta listed by the `memberlite_alert_meta_keys` filter changes, after a Memberlite update, and on theme switch. Checks only run when that cache is empty or on the Alerts page, and each alert is checked once per request.
 * **Skipped posts.** Use `memberlite_is_alert_post()` to leave trashed posts, auto-drafts and meta of deleted posts out of an alert's items.
 
@@ -41,7 +41,7 @@ function my_alert_check(): array {
 	$items = array();
 	foreach ( get_posts( array( 'post_type' => 'page', 'meta_key' => 'my_old_key', 'post_status' => 'any', 'numberposts' => -1 ) ) as $post ) { // 'any' already skips trash and auto-drafts.
 		$items[] = array(
-			'id'      => $post->ID,                          // Optional. Dismissals remember items by it.
+			'id'      => $post->ID,                          // Optional, but recommended. Dismissals remember items by it.
 			'label'   => get_the_title( $post ),
 			'url'     => get_edit_post_link( $post, 'raw' ), // Optional.
 			'details' => __( 'Uses my_old_key', 'memberlite' ), // Optional.
