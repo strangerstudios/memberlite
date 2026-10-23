@@ -63,10 +63,10 @@ function memberlite_checkForUpdates() {
 		update_option( 'memberlite_db_version', '2026040201', 'no' );
 	}
 
-	// Memberlite 8.0 Update - Move pages off the removed layout page templates.
-	if ( $memberlite_db_version < '2026102101' ) {
+	// Memberlite 8.0 Update - Move pages off the removed page templates and the Memberlite Settings meta box fields to custom fields.
+	if ( $memberlite_db_version < '2026102201' ) {
 		require_once get_template_directory() . '/inc/updates/update_8_0.php';
-		update_option( 'memberlite_db_version', '2026102101', 'no' );
+		update_option( 'memberlite_db_version', '2026102201', 'no' );
 	}
 
 	// Show alerts an update adds or resolves on the next admin page load.

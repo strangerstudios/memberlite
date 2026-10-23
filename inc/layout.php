@@ -8,7 +8,7 @@
  * page overrides the blog index.
  *
  * memberlite_get_layout() resolves the layout for the current request in this order:
- * 1. An item with a page template (e.g. Landing Page, or a child theme's) gets that
+ * 1. An item with a page template (e.g. a child theme's) gets that
  *    template's layout. Otherwise, the item's `_memberlite_layout` meta.
  * 2. The static front page falls back to Contained.
  * 3. The Customizer default for the context.
@@ -249,10 +249,11 @@ function memberlite_get_layout_columns_ratio( string $context ): string {
 }
 
 /**
- * Map the removed layout page templates to layouts.
+ * Map the removed page templates to layouts.
  *
  * memberlite_migrate_legacy_layout_templates() moves pages off these templates. A child
- * theme that still has its own copy of one keeps the template and its layout.
+ * theme that still has its own copy of one keeps the template and its layout. Landing Page
+ * always showed the sidebar, so it maps to Right Sidebar.
  *
  * @since TBD
  * @return array Layout slugs keyed by template file.
@@ -264,6 +265,7 @@ function memberlite_get_legacy_template_layouts(): array {
 		'templates/narrow-width.php'    => 'narrow',
 		'templates/full-width.php'      => 'contained',
 		'templates/fluid-width.php'     => 'full-width',
+		'templates/landing.php'         => 'sidebar-right',
 	);
 }
 
@@ -318,8 +320,8 @@ function memberlite_get_item_layout( int $post_id ): string {
 /**
  * Get the layout a page template sets.
  *
- * A child theme's copy of a removed layout template keeps that template's layout. Other
- * page templates (e.g. Landing Page) have always shown the sidebar, so they get Right
+ * A child theme's copy of a removed template keeps that template's layout. Other page
+ * templates (e.g. a child theme's own) have always shown the sidebar, so they get Right
  * Sidebar. Templates on posts and CPTs use the context default.
  *
  * @since TBD
@@ -565,8 +567,8 @@ function memberlite_add_legacy_layout_templates_alert( $alerts ) {
 	$alerts = (array) $alerts;
 
 	$alerts['legacy_layout_templates'] = array(
-		'title'       => __( 'Pages using removed layout templates', 'memberlite' ),
-		'description' => __( 'Memberlite 8.0 removed the Content/Sidebar, Sidebar/Content, Narrow Width, Full Width and Fluid Width page templates. Layout is now set in the block editor\'s Layout panel. These pages still use one of the removed templates, which usually means they were imported or restored from an older site. Until they move, saving one of them from the classic editor or Quick Edit resets it to the default template.', 'memberlite' ),
+		'title'       => __( 'Pages using removed page templates', 'memberlite' ),
+		'description' => __( 'Memberlite 8.0 removed the Content/Sidebar, Sidebar/Content, Narrow Width, Full Width, Fluid Width and Landing Page templates. Layout is now set in the block editor\'s Layout panel. These pages still use one of the removed templates, which usually means they were imported or restored from an older site. Until they move, saving one of them from the classic editor or Quick Edit resets it to the default template.', 'memberlite' ),
 		'since'       => '8.0',
 		'check'       => 'memberlite_alert_check_legacy_layout_templates',
 		'action'      => array(

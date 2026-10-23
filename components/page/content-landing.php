@@ -1,35 +1,13 @@
 <?php
 /**
- * The template used for displaying page content in page.php
- * Version: 7.0
+ * Deprecated. The Landing Page template was removed; its pages use components/page/content-page.php.
  *
- * @version 7.0
+ * Kept so a child theme's copy of templates/landing.php still shows the page content.
  *
  * @package Memberlite
+ * @deprecated TBD
  */
-?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-	<div class="entry-content">
-		<?php do_action( 'memberlite_before_content_page' ); ?>
-		<?php the_content(); ?>
-		<?php
-			wp_link_pages(
-				array(
-					'before' => '<div class="page-links">' . __( 'Pages:', 'memberlite' ),
-					'after'  => '</div>',
-				)
-			);
-		?>
+_deprecated_file( basename( __FILE__ ), 'TBD', 'components/page/content-page.php' );
 
-		<?php memberlite_page_nav(); ?>
-
-		<?php do_action( 'memberlite_after_content_page' ); ?>
-
-	</div><!-- .entry-content -->
-	<?php if ( current_user_can( 'edit_post', get_the_ID() ) ) { ?>
-		<footer class="entry-footer">
-			<?php memberlite_output_edit_link(); ?>
-		</footer><!-- .entry-footer -->
-	<?php } ?>
-</article><!-- #post-## -->
+get_template_part( 'components/page/content', 'page' );

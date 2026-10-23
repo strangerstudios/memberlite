@@ -53,6 +53,12 @@ function memberlite_subpagelist_shortcode_handler( $atts, $content = null, $code
 		$thumbnail = false;
 	}
 
+	// Page icons were removed, so thumbnail="icon" shows no thumbnail.
+	if ( 'icon' === $thumbnail ) {
+		_deprecated_argument( 'memberlite_subpagelist', 'TBD', esc_html__( 'The thumbnail="icon" option no longer shows page icons.', 'memberlite' ) );
+		$thumbnail = false;
+	}
+
 	// Prep exclude array.
 	if ( ! empty( $exclude ) ) {
 		$exclude = str_replace( ' ' , '', $exclude );
@@ -140,7 +146,7 @@ function memberlite_subpagelist_shortcode_handler( $atts, $content = null, $code
 			}
 			$r .= ' columns">';
 			$r .= '<article id="post-' . get_the_ID() . '" class="' . implode( ' ', get_post_class() ) . ' memberlite_subpagelist_item">';
-			if ( has_post_thumbnail() && empty( $layout ) && ! empty( $thumbnail ) && $thumbnail !== 'icon' ) {
+			if ( has_post_thumbnail() && empty( $layout ) && ! empty( $thumbnail ) ) {
 				if ( $layout == '3col' || $layout == '4col' ) {
 					$thumbnail_class = 'aligncenter';
 				} else {
@@ -150,37 +156,6 @@ function memberlite_subpagelist_shortcode_handler( $atts, $content = null, $code
 					$r .= '<a href="' . get_permalink() . '">' . get_the_post_thumbnail( $post->ID, $thumbnail, array( 'class' => $thumbnail_class ) ) . '</a>';
 				} else {
 					$r .= get_the_post_thumbnail( $post->ID, $thumbnail, array( 'class' => $thumbnail_class ) );
-				}
-			}
-
-			if ( $thumbnail == 'icon' ) {
-				$memberlite_page_icon = get_post_meta( $post->ID, '_memberlite_page_icon', true );
-				$font_awesome_icons_brands = memberlite_get_font_awesome_icons( 'brand' );
-
-				// Check if the icon is a "brand" icon and set the appropriate icon class.
-				if ( in_array( $memberlite_page_icon, $font_awesome_icons_brands ) ) {
-					$memberlite_page_icon_class = 'fab';
-				} else {
-					$memberlite_page_icon_class = 'fa';
-				}
-
-				if ( ! empty( $memberlite_page_icon ) ) {
-					$r .= '<div class="row">';
-					if ( $layout == '3col' || $layout == '4col' ) {
-						$r .= '<div class="large-12 text-center columns">';
-					} else {
-						$r .= '<div class="large-2 text-center columns">';
-					}
-					if ( $link ) {
-						$r .= '<a href="' . get_permalink() . '"><i class="' . esc_attr( $memberlite_page_icon_class ) . ' fa-5x fa-' . esc_attr( $memberlite_page_icon ) . '"></i></a>';
-					} else {
-						$r .= '<i class="' . esc_attr( $memberlite_page_icon_class ) . ' fa-5x fa-' . esc_attr( $memberlite_page_icon ) . '"></i>';
-					}
-					if ( $layout == '3col' || $layout == '4col' ) {
-						$r .= '</div><div class="row"><div class="large-12 columns">';
-					} else {
-						$r .= '</div><div class="large-10 columns">';
-					}
 				}
 			}
 
@@ -199,7 +174,7 @@ function memberlite_subpagelist_shortcode_handler( $atts, $content = null, $code
 			$r .= '</header>';
 			$r .= '<div class="entry-content">';
 
-			if ( has_post_thumbnail() && ! empty( $layout ) && ! empty( $thumbnail ) && $thumbnail !== 'icon') {
+			if ( has_post_thumbnail() && ! empty( $layout ) && ! empty( $thumbnail ) ) {
 				if ( $layout == '3col' || $layout == '4col' ) {
 					$thumbnail_class = 'aligncenter';
 				} else {
@@ -234,10 +209,6 @@ function memberlite_subpagelist_shortcode_handler( $atts, $content = null, $code
 			}
 
 			$r .= '</div>'; // end entry-content.
-
-			if( ! empty( $memberlite_page_icon ) ) {
-				$r .= '</div></div>'; // end inner columns and row.
-			}
 
 			$r .= '</article>';
 			$r .= '</div>'; // end columns.

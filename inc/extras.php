@@ -246,10 +246,6 @@ function memberlite_body_classes( $classes ) {
 		$classes[] = 'group-blog';
 	}
 
-	if ( is_page_template( 'templates/landing.php' ) ) {
-		$classes[] = 'landing';
-	}
-
 	if ( is_page() ) {
 		$memberlite_banner_show = get_post_meta( memberlite_get_banner_post_id(), '_memberlite_banner_show', true );
 

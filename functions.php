@@ -527,9 +527,6 @@ require_once get_template_directory() . '/inc/font-awesome.php';
 /* Load Jetpack compatibility file. */
 require_once get_template_directory() . '/inc/jetpack.php';
 
-/* Custom landing page element code. */
-require_once get_template_directory() . '/inc/landing_page.php';
-
 /* Custom translation server logic. */
 require_once get_template_directory() . '/inc/localization.php';
 
