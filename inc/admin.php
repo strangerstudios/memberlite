@@ -335,6 +335,10 @@ function memberlite_plugin_action_button( $slug, $plugin_file, $download_link = 
 function memberlite_admin_init_notifications() {
 	global $wpdb;
 
+	if ( ! current_user_can( 'edit_theme_options' ) ) {
+		return;
+	}
+
 	// Avoid notices on some screens.
 	$script_name = isset( $_SERVER['SCRIPT_NAME'] ) ? sanitize_text_field( wp_unslash( $_SERVER['SCRIPT_NAME'] ) ) : '';
 	$script = esc_html( wp_basename( $script_name ) );
@@ -356,6 +360,12 @@ add_action( 'admin_init', 'memberlite_admin_init_notifications' );
 
 // AJAX to handle notice dismissal
 function memberlite_wp_ajax_dismiss_notice() {
+	check_ajax_referer( 'memberlite_dismiss_notice', 'nonce' );
+
+	if ( ! current_user_can( 'edit_theme_options' ) ) {
+		wp_die( esc_html__( 'You do not have permission to dismiss this notice.', 'memberlite' ), 403 );
+	}
+
 	// whitelist of notices
 	$notices = array( 'welcome_link' );
 
@@ -370,14 +380,13 @@ function memberlite_wp_ajax_dismiss_notice() {
 
 	exit;
 }
-add_action( 'wp_ajax_nopriv_memberlite_dismiss_notice', 'memberlite_wp_ajax_dismiss_notice' );
 add_action( 'wp_ajax_memberlite_dismiss_notice', 'memberlite_wp_ajax_dismiss_notice' );
 
 // Welcome Link Notice
 function memberlite_admin_notice_welcome_link() {
 	// notice HTML
 	?>
-	<div id="memberlite-admin-notice-welcome_link" class="notice notice-info is-dismissible memberlite-notice">
+	<div id="memberlite-admin-notice-welcome_link" class="notice notice-info is-dismissible memberlite-notice" data-nonce="<?php echo esc_attr( wp_create_nonce( 'memberlite_dismiss_notice' ) ); ?>">
 		<p><strong><?php esc_html_e( 'Memberlite', 'memberlite' ); ?>:</strong>
 		<?php
 			echo esc_html__( 'We have documentation and recommendations to help you get started with the Memberlite Theme.', 'memberlite' );
