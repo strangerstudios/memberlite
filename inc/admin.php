@@ -335,7 +335,7 @@ function memberlite_plugin_action_button( $slug, $plugin_file, $download_link = 
 function memberlite_admin_init_notifications() {
 	global $wpdb;
 
-	if ( ! current_user_can( 'edit_theme_options' ) ) {
+	if ( wp_doing_ajax() || ! current_user_can( 'edit_theme_options' ) ) {
 		return;
 	}
 

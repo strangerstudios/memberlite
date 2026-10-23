@@ -17,12 +17,6 @@ jQuery( document ).ready(
 								action: 'memberlite_dismiss_notice',
 								notice: notice,
 								nonce: $notice.data( 'nonce' )
-							},
-							error: function(xml){
-								alert( 'There was an error dismissing the Memberlite notice.' );
-							},
-							success: function(responseHTML){
-								// quiet success
 							}
 						}
 					);
