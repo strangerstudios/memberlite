@@ -231,7 +231,61 @@ function memberlite_get_default_layout( string $context ): string {
 }
 
 /**
+ * Get the content-to-sidebar columns ratio choices.
+ *
+ * @since TBD
+ * @return string[] Labels keyed by ratio (e.g. '8-4').
+ */
+function memberlite_get_columns_ratio_choices(): array {
+	return array(
+		'6-6'  => '6x6',
+		'7-5'  => '7x5',
+		'8-4'  => '8x4',
+		'9-3'  => '9x3',
+		'10-2' => '10x2',
+		'11-1' => '11x1',
+	);
+}
+
+/**
+ * Get the header columns ratio choices.
+ *
+ * @since TBD
+ * @return string[] Labels keyed by ratio (e.g. '4-8').
+ */
+function memberlite_get_header_columns_ratio_choices(): array {
+	return array(
+		'1-11' => '1x11',
+		'2-10' => '2x10',
+		'3-9'  => '3x9',
+		'4-8'  => '4x8',
+		'5-7'  => '5x7',
+		'6-6'  => '6x6',
+		'7-5'  => '7x5',
+		'8-4'  => '8x4',
+		'9-3'  => '9x3',
+		'10-2' => '10x2',
+		'11-1' => '11x1',
+	);
+}
+
+/**
+ * Return a content-to-sidebar columns ratio if it's one of the choices, or the fallback.
+ *
+ * @since TBD
+ *
+ * @param mixed  $ratio    Saved ratio.
+ * @param string $fallback Ratio to use when $ratio isn't valid.
+ * @return string
+ */
+function memberlite_sanitize_columns_ratio( $ratio, string $fallback ): string {
+	return is_string( $ratio ) && isset( memberlite_get_columns_ratio_choices()[ $ratio ] ) ? $ratio : $fallback;
+}
+
+/**
  * Get the columns ratio (e.g. '8-4') for a context.
+ *
+ * A saved value that isn't one of the choices (e.g. an empty string saved by an older version) uses the default.
  *
  * @since TBD
  *
@@ -245,7 +299,7 @@ function memberlite_get_layout_columns_ratio( string $context ): string {
 	$setting  = isset( $contexts[ $context ] ) ? $contexts[ $context ]['columns_ratio'] : 'columns_ratio';
 	$default  = isset( $memberlite_defaults[ $setting ] ) ? $memberlite_defaults[ $setting ] : '8-4';
 
-	return (string) get_theme_mod( $setting, $default );
+	return memberlite_sanitize_columns_ratio( get_theme_mod( $setting, $default ), $default );
 }
 
 /**
@@ -643,8 +697,8 @@ function memberlite_maybe_migrate_layout_settings(): void {
 
 	$page_sidebar = get_theme_mod( 'sidebar_location', 'sidebar-right' );
 	$blog_sidebar = get_theme_mod( 'sidebar_location_blog', 'sidebar-blog-right' );
-	$page_ratio   = get_theme_mod( 'columns_ratio', '8-4' );
-	$blog_ratio   = get_theme_mod( 'columns_ratio_blog', $page_ratio );
+	$page_ratio   = memberlite_sanitize_columns_ratio( get_theme_mod( 'columns_ratio', '8-4' ), '8-4' );
+	$blog_ratio   = memberlite_sanitize_columns_ratio( get_theme_mod( 'columns_ratio_blog', $page_ratio ), $page_ratio );
 	$blog_layout  = isset( $map[ $blog_sidebar ] ) ? $map[ $blog_sidebar ] : 'sidebar-right';
 	$archives     = get_theme_mod( 'content_archives', 'content' );
 
@@ -660,7 +714,7 @@ function memberlite_maybe_migrate_layout_settings(): void {
 	foreach ( array_keys( $cpt_types ) as $post_type ) {
 		$cpt_sidebar  = get_theme_mod( 'sidebar_location_' . $post_type, 'sidebar-blog-right' );
 		$cpt_layout   = isset( $map[ $cpt_sidebar ] ) ? $map[ $cpt_sidebar ] : 'sidebar-right';
-		$cpt_ratio    = get_theme_mod( 'columns_ratio_' . $post_type, '8-4' );
+		$cpt_ratio    = memberlite_sanitize_columns_ratio( get_theme_mod( 'columns_ratio_' . $post_type, '8-4' ), '8-4' );
 		$cpt_archives = get_theme_mod( 'content_archives_' . $post_type, 'content' );
 
 		set_theme_mod( 'layout_cpt_' . $post_type, $cpt_layout );
