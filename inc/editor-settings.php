@@ -184,7 +184,41 @@ function memberlite_register_layout_post_meta(): void {
 add_action( 'wp_loaded', 'memberlite_register_layout_post_meta' );
 
 /**
- * Remove the Custom Fields meta box from post types that only support custom fields for the Layout panel.
+ * Register the Banner Image post meta so the block editor can read and save it.
+ *
+ * Uses the meta key MemberliteMultiPostThumbnails already stores, so existing banner images carry over.
+ * Post types that aren't in the REST API can't use the block editor and keep the classic meta box only.
+ *
+ * @since TBD
+ * @return void
+ */
+function memberlite_register_banner_image_post_meta(): void {
+	foreach ( memberlite_get_banner_image_post_types() as $post_type ) {
+		$post_type_object = get_post_type_object( $post_type );
+		if ( 'attachment' === $post_type || empty( $post_type_object->show_in_rest ) ) {
+			continue;
+		}
+
+		if ( ! post_type_supports( $post_type, 'custom-fields' ) ) {
+			add_post_type_support( $post_type, 'custom-fields' );
+			add_action( 'add_meta_boxes_' . $post_type, 'memberlite_remove_custom_fields_meta_box' );
+		}
+
+		register_post_meta( $post_type, memberlite_get_banner_image_meta_key( $post_type ), array(
+			'show_in_rest'      => true,
+			'type'              => 'integer',
+			'single'            => true,
+			'default'           => 0,
+			'label'             => __( 'Banner Image', 'memberlite' ),
+			'sanitize_callback' => 'absint',
+			'auth_callback'     => 'memberlite_auth_edit_post_meta',
+		) );
+	}
+}
+add_action( 'wp_loaded', 'memberlite_register_banner_image_post_meta' );
+
+/**
+ * Remove the Custom Fields meta box from post types that only support custom fields for the Layout or Banner Image panel.
  *
  * @since TBD
  *
@@ -315,8 +349,9 @@ function memberlite_enqueue_custom_editor_assets(): void {
 		return;
 	}
 
-	$asset_file = include $asset_path;
-	$post       = get_post();
+	$asset_file      = include $asset_path;
+	$post            = get_post();
+	$banner_meta_key = $post ? memberlite_get_banner_image_meta_key( $post->post_type ) : '';
 
 	wp_enqueue_script(
 		'memberlite-custom-settings',
@@ -342,6 +377,7 @@ function memberlite_enqueue_custom_editor_assets(): void {
 			'manageFootersUrl'        => admin_url( 'edit.php?post_type=memberlite_footer' ),
 			'showPageBreadcrumbs'     => get_theme_mod( 'page_breadcrumbs', false ), // Global customizer setting
 			'layout'                  => $post && in_array( $post->post_type, memberlite_get_layout_post_types(), true ) ? memberlite_get_editor_layout_data( $post ) : null,
+			'bannerImageMetaKey'      => $banner_meta_key && registered_meta_key_exists( 'post', $banner_meta_key, $post->post_type ) ? $banner_meta_key : null,
 		)
 	);
 }

@@ -1,12 +1,16 @@
 import { __, sprintf } from '@wordpress/i18n';
 import { registerPlugin } from '@wordpress/plugins';
 import { PluginDocumentSettingPanel } from '@wordpress/editor';
+import { MediaUpload, MediaUploadCheck } from '@wordpress/block-editor';
 import {
 	Button,
 	ToggleControl,
 	SelectControl,
 	ExternalLink,
+	Notice,
 	RadioControl,
+	Spinner,
+	__experimentalHStack as HStack,
 	__experimentalVStack as VStack,
 } from '@wordpress/components';
 import { useSelect } from '@wordpress/data';
@@ -213,6 +217,123 @@ const MemberliteLayoutSettings = () => {
 };
 
 /**
+ * Banner Image picker. Reads and writes the same meta as the classic Banner Image meta box.
+ */
+const BannerImageControl = ( { imageId, onChange } ) => {
+	// Same lookup as core's Featured Image panel, so a deleted or missing attachment stops loading.
+	const { media, isRequesting } = useSelect(
+		( select ) => {
+			if ( ! imageId ) {
+				return { media: null, isRequesting: false };
+			}
+
+			const args = [ 'postType', 'attachment', imageId, { context: 'view' } ];
+			return {
+				media: select( 'core' ).getEntityRecord( ...args ),
+				isRequesting: ! select( 'core' ).hasFinishedResolution( 'getEntityRecord', args ),
+			};
+		},
+		[ imageId ]
+	);
+
+	const label          = __( 'Banner Image', textDomain );
+	const preview        = media?.media_details?.sizes?.medium?.source_url || media?.source_url;
+	const isMissingMedia = !! imageId && ! isRequesting && ! preview;
+
+	return (
+		<MediaUploadCheck
+			fallback={
+				<p style={ { margin: 0, fontSize: 12, color: '#757575' } }>
+					{ __( 'To edit the Banner Image, you need permission to upload media.', textDomain ) }
+				</p>
+			}
+		>
+			<MediaUpload
+				title={ label }
+				allowedTypes={ [ 'image' ] }
+				value={ imageId || undefined }
+				onSelect={ ( image ) => onChange( image.id ) }
+				render={ ( { open } ) => (
+					<VStack spacing={ 2 }>
+						{ isMissingMedia && (
+							<Notice status="warning" isDismissible={ false }>
+								{ __( 'Could not load the Banner Image. It may have been deleted. Replace or remove it.', textDomain ) }
+							</Notice>
+						) }
+						{ !! imageId && ! isMissingMedia && (
+							<Button
+								onClick={ open }
+								aria-label={ __( 'Replace Banner Image', textDomain ) }
+								style={ { display: 'block', width: '100%', height: 'auto', padding: 0 } }
+							>
+								{ preview ? (
+									<img src={ preview } alt="" style={ { display: 'block', width: '100%', height: 'auto' } } />
+								) : (
+									<Spinner />
+								) }
+							</Button>
+						) }
+						{ ! imageId && (
+							<Button
+								__next40pxDefaultSize
+								variant="secondary"
+								onClick={ open }
+								style={ { justifyContent: 'center', width: '100%' } }
+							>
+								{ __( 'Set Banner Image', textDomain ) }
+							</Button>
+						) }
+						{ !! imageId && (
+							<HStack justify="flex-start">
+								<Button __next40pxDefaultSize variant="secondary" onClick={ open }>
+									{ __( 'Replace', textDomain ) }
+								</Button>
+								<Button __next40pxDefaultSize variant="tertiary" isDestructive onClick={ () => onChange( null ) }>
+									{ __( 'Remove', textDomain ) }
+								</Button>
+							</HStack>
+						) }
+					</VStack>
+				) }
+			/>
+		</MediaUploadCheck>
+	);
+};
+
+/**
+ * Banner Image panel. Shown on every post type with a Banner Image.
+ */
+const MemberliteBannerImageSettings = () => {
+	const postType = useSelect(
+		( select ) => select( 'core/editor' ).getCurrentPostType(),
+		[]
+	);
+
+	// Always call hooks before any conditional return (Rules of Hooks).
+	const [ meta, setMeta ] = useEntityProp( 'postType', postType, 'meta' );
+
+	const metaKey = window.memberliteEditorData?.bannerImageMetaKey;
+	if ( ! metaKey || ! meta ) {
+		return null;
+	}
+
+	return (
+		<PluginDocumentSettingPanel
+			name="memberlite-banner-image"
+			title={ __( 'Banner Image', textDomain ) }
+			className="memberlite-banner-image"
+		>
+			<BannerImageControl
+				imageId={ meta[ metaKey ] }
+				onChange={ ( value ) => {
+					setMeta( { ...meta, [ metaKey ]: value } );
+				} }
+			/>
+		</PluginDocumentSettingPanel>
+	);
+};
+
+/**
  * Template Settings panel: header and footer visibility and variation overrides.
  * Shown on pages, and on header variation posts for the sticky toggle.
  */
@@ -411,6 +532,10 @@ registerPlugin( 'memberlite-layout-settings', {
 
 registerPlugin( 'memberlite-template-settings', {
 	render: MemberliteTemplateSettings,
+} );
+
+registerPlugin( 'memberlite-banner-image', {
+	render: MemberliteBannerImageSettings,
 } );
 
 registerPlugin( 'memberlite-page-settings', {

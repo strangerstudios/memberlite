@@ -101,7 +101,8 @@ if (!class_exists('MemberliteMultiPostThumbnails')) {
 		 * @return void
 		 */
 		public function add_metabox() {
-			add_meta_box("{$this->post_type}-{$this->id}", __($this->label, 'memberlite'), array($this, 'thumbnail_meta_box'), $this->post_type, $this->context, $this->priority);
+			// The block editor uses the Banner Image control in src/editor/custom-settings.js instead.
+			add_meta_box("{$this->post_type}-{$this->id}", __($this->label, 'memberlite'), array($this, 'thumbnail_meta_box'), $this->post_type, $this->context, $this->priority, array( '__back_compat_meta_box' => true ));
 		}
 
 		/**
@@ -170,6 +171,10 @@ if (!class_exists('MemberliteMultiPostThumbnails')) {
 			if ( ! in_array( $hook, array( 'post-new.php', 'post.php', 'media-upload-popup' ) ) )
 				return;
 
+			if ( self::is_block_editor_screen() ) {
+				return;
+			}
+
 			wp_enqueue_media( array( 'post' => ( $post_ID ? $post_ID : null ) ) );
 			wp_enqueue_script( "memberlite-featured-image", MEMBERLITE_URL . '/js/multi-post-thumbnails-admin.js', array( 'jquery', 'set-post-thumbnail' ) );
 			wp_enqueue_script( "memberlite-featured-image-modal", MEMBERLITE_URL . '/js/media-modal.js', array( 'jquery', 'media-models' ) );
@@ -178,8 +183,25 @@ if (!class_exists('MemberliteMultiPostThumbnails')) {
 		}
 		
 		public function admin_header_scripts() {
+			if ( self::is_block_editor_screen() ) {
+				return;
+			}
+
 			$post_id = get_the_ID();
 			echo "<script>var post_id = $post_id;</script>";
+		}
+
+		/**
+		 * Check if the current admin screen is the block editor, which doesn't show the meta box.
+		 *
+		 * @since TBD
+		 *
+		 * @return bool
+		 */
+		protected static function is_block_editor_screen() {
+			$screen = function_exists( 'get_current_screen' ) ? get_current_screen() : null;
+
+			return $screen && $screen->is_block_editor();
 		}
 
 		/**
