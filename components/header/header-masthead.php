@@ -77,12 +77,23 @@ if ( $should_render_masthead ) { ?>
 				<?php else : ?>
 
 					<?php
-					$memberlite_masthead_content = apply_filters( 'memberlite_masthead_content', '' );
-					if ( $memberlite_masthead_content === '' ) {
-						echo wp_kses_post( memberlite_get_page_title() . memberlite_get_page_description() );
-					} else {
-						echo wp_kses_post( $memberlite_masthead_content );
+					$memberlite_banner_post_id = memberlite_get_banner_post_id();
+					$memberlite_masthead_title = '';
+					if ( empty( $memberlite_banner_post_id ) || ! get_post_meta( $memberlite_banner_post_id, '_memberlite_banner_hide_title', true ) ) {
+						$memberlite_masthead_title = memberlite_get_page_title() . memberlite_get_page_description();
+						if ( ! empty( $memberlite_banner_post_id ) && 'centered' === get_post_meta( $memberlite_banner_post_id, '_memberlite_banner_text_alignment', true ) ) {
+							$memberlite_masthead_title = '<div class="memberlite_elements-masthead-centered">' . $memberlite_masthead_title . '</div>';
+						}
 					}
+
+					/**
+					 * Filters the masthead title area.
+					 *
+					 * @since TBD Receives the default title and description markup instead of an empty string.
+					 *
+					 * @param string $memberlite_masthead_title Page title and description HTML, or '' when the page hides its title.
+					 */
+					echo wp_kses_post( apply_filters( 'memberlite_masthead_content', $memberlite_masthead_title ) );
 					?>
 
 				<?php endif; ?>

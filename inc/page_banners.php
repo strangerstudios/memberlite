@@ -1,407 +1,317 @@
 <?php
 /**
- * Page banner settings for the edit posts page in the admin.
+ * Masthead banner helpers.
+ *
+ * Also moves the fields of the removed Memberlite Settings meta box to visible custom fields.
  *
  * @package Memberlite
  */
 
-/* Load JS on the edit post page in the admin. */
-function memberlite_admin_enqueue_scripts_for_page_banners() {
-	$screen = get_current_screen();
-	if ( $screen->base == 'post' && $screen->post_type == 'page' ) {
-		wp_enqueue_script( 'memberlite-admin-page_banners', MEMBERLITE_URL . '/js/admin-page_banners.js', array( 'jquery' ), MEMBERLITE_VERSION, true );
-	}
+/**
+ * Get the fields from the removed Memberlite Settings meta box.
+ *
+ * Memberlite no longer shows any of them. Values that were set move to a custom field
+ * without the leading underscore, so they show in the editor's Custom Fields panel and
+ * code can still read them. Values that mean "not set" (the meta box saved every field on
+ * every save) are deleted.
+ *
+ * Ordered so the page icon moves before the banner icon setting that depends on it.
+ *
+ * @since TBD
+ * @return array Keyed by old meta key: the new `key`, the `empty` values to delete, and
+ *               optionally a custom field the post must have (`requires`).
+ */
+function memberlite_get_legacy_page_fields(): array {
+	return array(
+		'_memberlite_banner_desc'                  => array(
+			'key'   => 'memberlite_banner_desc',
+			'empty' => array( '' ),
+		),
+		'_memberlite_banner_right'                 => array(
+			'key'   => 'memberlite_banner_right',
+			'empty' => array( '' ),
+		),
+		'_memberlite_banner_bottom'                => array(
+			'key'   => 'memberlite_banner_bottom',
+			'empty' => array( '' ),
+		),
+		'_memberlite_banner_extra_padding'         => array(
+			'key'   => 'memberlite_banner_extra_padding',
+			'empty' => array( '', '0' ),
+		),
+		'_memberlite_page_icon'                    => array(
+			'key'   => 'memberlite_page_icon',
+			'empty' => array( '', 'blank' ),
+		),
+		'_memberlite_banner_icon'                  => array(
+			'key'      => 'memberlite_banner_icon',
+			'empty'    => array( '', '0' ),
+			'requires' => 'memberlite_page_icon',
+		),
+		'_pmproal_landing_page_level'              => array(
+			'key'   => 'memberlite_landing_page_level',
+			'empty' => array( '', '0' ),
+		),
+		'_memberlite_landing_page_checkout_button' => array(
+			'key'   => 'memberlite_landing_page_checkout_button',
+			'empty' => array( '' ),
+		),
+		'_memberlite_landing_page_upsell'          => array(
+			'key'   => 'memberlite_landing_page_upsell',
+			'empty' => array( '', '0' ),
+		),
+	);
 }
-add_action( 'admin_enqueue_scripts', 'memberlite_admin_enqueue_scripts_for_page_banners' );
-
-/* Adds a Memberlite settings meta box to the side column on the Page edit screens.  */
-function memberlite_settings_add_meta_box() {
-	$screens = array( 'page' );
-	foreach ( $screens as $screen ) {
-		add_meta_box(
-			'memberlite_settings_section',
-			__( 'Memberlite Settings', 'memberlite' ),
-			'memberlite_settings_meta_box_callback',
-			$screen,
-			'normal',
-			'high'
-		);
-	}
-}
-add_action('add_meta_boxes', 'memberlite_settings_add_meta_box');
-
-/* Meta box for Memberlite settings */
-function memberlite_settings_meta_box_callback( $post ) {
-	// Get the array of all possible Font Awesome icons.
-	$font_awesome_icons = memberlite_get_font_awesome_icons( );
-
-	wp_nonce_field( 'memberlite_settings_meta_box', 'memberlite_settings_meta_box_nonce' );
-	$memberlite_page_template = get_post_meta($post->ID, '_wp_page_template', true);
-	$memberlite_page_icon = get_post_meta($post->ID, '_memberlite_page_icon', true);
-	$memberlite_banner_desc = get_post_meta($post->ID, '_memberlite_banner_desc', true);
-	$memberlite_banner_extra_padding = get_post_meta($post->ID, '_memberlite_banner_extra_padding', true);
-	$memberlite_banner_icon = get_post_meta($post->ID, '_memberlite_banner_icon', true);
-	$memberlite_banner_bottom = get_post_meta($post->ID, '_memberlite_banner_bottom', true);
-	$memberlite_landing_page_checkout_button = get_post_meta($post->ID, '_memberlite_landing_page_checkout_button', true);
-	$pmproal_landing_page_level = get_post_meta($post->ID, '_pmproal_landing_page_level', true);
-	$memberlite_landing_page_upsell = get_post_meta($post->ID, '_memberlite_landing_page_upsell', true);
-
-	ob_start(); ?>
-	<h2><?php esc_html_e( 'Page Banner Settings', 'memberlite' ); ?></h2>
-	<p class="description">
-		<?php esc_html_e( 'You can toggle whether to show or hide the masthead banner and breadcrumbs in your sidebar under Page > Template Settings.', 'memberlite' ); ?>
-	</p>
-
-	<p style="margin: 1rem 0;"><strong><?php esc_html_e( 'Masthead Banner Description', 'memberlite' ); ?>:</strong> <em><?php esc_html_e( 'Shown in the masthead banner below the page title.', 'memberlite' ); ?></em><br />
-		<?php if ( ( $memberlite_page_template == 'templates/landing.php' ) && function_exists( 'pmpro_getAllLevels' ) ) : ?>
-			<em><?php esc_html_e( 'Leave blank to show landing page level description as banner description.', 'memberlite' ); ?></em>
-		<?php endif; ?>
-	</p>
-	<label class="screen-reader-text" for="memberlite_banner_desc">
-		<?php esc_html_e( 'Banner Description', 'memberlite' ); ?>
-	</label>
-	<?php wp_editor( $memberlite_banner_desc, 'memberlite_banner_desc', ['textarea_name' => 'memberlite_banner_desc', 'editor_class' => 'large-text', 'textarea_rows' => 3] ); ?>
-	<input type="hidden" name="memberlite_banner_extra_padding_present" value="1" />
-	<label style="margin: 1rem 0 0;" for="memberlite_banner_extra_padding" class="selectit">
-		<input name="memberlite_banner_extra_padding" type="checkbox" id="memberlite_banner_extra_padding" value="1" <?php checked( $memberlite_banner_extra_padding, 1 ); ?>> <?php esc_html_e( 'Add Extra Banner Padding', 'memberlite' ); ?>
-	</label>
-
-	<hr />
-
-	<p style="margin: 1rem 0;"><strong><?php esc_html_e( 'Page Bottom Banner', 'memberlite' ); ?>:</strong> <em><?php esc_html_e( 'Banner shown above footer on pages. (i.e. call to action)', 'memberlite' ); ?></em></p>
-	<label class="screen-reader-text" for="memberlite_banner_bottom">
-		<?php esc_html_e( 'Page Bottom Banner', 'memberlite' ); ?>
-	</label>
-	<?php wp_editor( $memberlite_banner_bottom, 'memberlite_banner_bottom', ['textarea_name' => 'memberlite_banner_bottom', 'editor_class' => 'large-text', 'textarea_rows' => 3] ); ?>
-
-	<hr />
-
-	<p style="margin: 1rem 0 0 0;"><strong><?php esc_html_e( 'Page Icon', 'memberlite' ); ?></strong></p>
-	<label class="screen-reader-text" for="memberlite_page_icon">
-		<?php esc_html_e( 'Select Icon', 'memberlite' ); ?>
-	</label>
-	<select id="memberlite_page_icon" name="memberlite_page_icon">
-		<option value="blank" <?php selected( $memberlite_page_icon, 'blank' ); ?>><?php esc_html_e( '- Select -', 'memberlite' ); ?></option>
-		<?php foreach ( $font_awesome_icons as $font_awesome_icon ) : ?>
-			<option value="<?php echo esc_attr( $font_awesome_icon ); ?>" <?php selected( $memberlite_page_icon, $font_awesome_icon ); ?>><?php echo esc_html( $font_awesome_icon ); ?></option>
-		<?php endforeach; ?>
-	</select>
-	<input type="hidden" name="memberlite_banner_icon_present" value="1" />
-	<p style="margin: 1rem 0 0 0;"><label for="memberlite_banner_icon" class="selectit"><input name="memberlite_banner_icon" type="checkbox" id="memberlite_banner_icon" value="1" <?php checked( $memberlite_banner_icon, 1 ); ?>> <?php esc_html_e( 'Show Icon in Banner Title', 'memberlite' ); ?></label></p>
-
-	<?php if ( ( $memberlite_page_template == 'templates/landing.php' ) && function_exists( 'pmpro_getAllLevels' ) ) { ?>
-		<hr />
-		<h2><?php esc_html_e( 'Landing Page Settings', 'memberlite' ); ?></h2>
-		<?php
-			$membership_levels = pmpro_getAllLevels();
-			if ( empty( $membership_levels ) ) {
-				?>
-				<div class="inline notice error">
-					<p>
-						<a href="<?php echo esc_url( add_query_arg( 'page', 'pmpro-membershiplevels', admin_url( 'admin.php' ) ) ); ?>">
-							<?php esc_html_e( 'Add a Membership Level to Use These Landing Page Features »', 'memberlite' ); ?>
-						</a>
-					</p>
-				</div>
-				<?php
-			} else {
-				?>
-				<table class="form-table">
-					<tbody>
-						<tr><th scope="row"><?php esc_html_e( 'Membership Level', 'memberlite' ); ?></th>
-						<td>
-							<label class="screen-reader-text" for="pmproal_landing_page_level"><?php esc_html_e( 'Landing Page Membership Level', 'memberlite' ); ?></label>
-							<select id="pmproal_landing_page_level" name="pmproal_landing_page_level">
-								<option value=""<?php selected( $pmproal_landing_page_level, "" ); ?>><?php esc_html_e( '- Select -', 'memberlite' ); ?></option>
-								<?php foreach( $membership_levels as $level ) { ?>
-									<option value="<?php echo esc_html( intval( $level->id ) ); ?>" <?php selected( $pmproal_landing_page_level, $level->id ); ?>><?php esc_html_e( $level->name ); ?></option>
-								<?php } ?>
-							</select>
-						</td>
-					</tr>
-					<tr>
-						<th scope="row"><?php esc_html_e( 'Checkout Button Text', 'memberlite'); ?></th>
-						<td>
-							<label class="screen-reader-text" for="memberlite_landing_page_checkout_button"><?php esc_html_e('Checkout Button Text', 'memberlite'); ?></label>
-							<input type="text" id="memberlite_landing_page_checkout_button" name="memberlite_landing_page_checkout_button" value="<?php echo esc_attr( $memberlite_landing_page_checkout_button ); ?>"> <em><?php esc_html_e( '(default: "Select")', 'memberlite' ); ?></em>
-						</td>
-					</tr>
-					<tr>
-						<th scope="row"><?php esc_html_e( 'Membership Level Upsell', 'memberlite'); ?></th>
-						<td>
-							<?php if ( ! function_exists( 'pmpro_advanced_levels_shortcode' ) ) : ?>
-								<?php
-								$allowed_advanced_levels_html = array (
-									'a' => array (
-										'href' => array(),
-										'target' => array(),
-										'title' => array(),
-									),
-								);
-								?>
-								<p class="description"><?php echo sprintf( wp_kses( __( 'Optional: You must install and activate the <a href="%s" title="Paid Memberships Pro - Advanced Levels Page Add On" target="_blank">Advanced Levels Page Add On</a> to use this landing page feature.', 'memberlite' ), $allowed_advanced_levels_html ), 'https://www.paidmembershipspro.com/add-ons/pmpro-advanced-levels-shortcode/' ); ?></p>
-							<?php else : ?>
-								<label class="screen-reader-text" for="memberlite_landing_page_upsell"><?php esc_html_e('Landing Page Membership Level Upsell', 'memberlite'); ?></label>
-								<select id="memberlite_landing_page_upsell" name="memberlite_landing_page_upsell">
-									<option value="" <?php selected( $memberlite_landing_page_upsell, "" ); ?>>- Select -</option>
-									<?php foreach($membership_levels as $level) : ?>
-										<option value="<?php echo intval( $level->id ); ?>" <?php selected( $memberlite_landing_page_upsell, $level->id ); ?>><?php echo esc_html( $level->name ); ?></option>
-									<?php endforeach; ?>
-								</select>
-							<?php endif; ?>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-			<?php
-		}
-	}
-
-	$output = ob_get_clean();
-	echo $output;
-}
-
-/* Save custom sidebar selection */
-function memberlite_settings_save_meta_box_data( $post_id ) {
-	global $allowedposttags;
-
-	if(!isset($_POST['memberlite_settings_meta_box_nonce'])) {
-		return;
-	}
-	if(!wp_verify_nonce($_POST['memberlite_settings_meta_box_nonce'], 'memberlite_settings_meta_box')) {
-		return;
-	}
-	if ( defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
-		return;
-	}
-	if ( isset($_POST['post_type']) && 'page' == $_POST['post_type']) {
-		if(!current_user_can('edit_page', $post_id)) {
-			return;
-		}
-	}
-	else
-	{
-		if(!current_user_can('edit_post', $post_id)) {
-			return;
-		}
-	}
-
-	//banner description
-	if(isset($_POST['memberlite_banner_desc'])) {
-		$memberlite_banner_desc = wp_kses( wp_unslash( $_POST['memberlite_banner_desc'] ), $allowedposttags );
-		update_post_meta($post_id, '_memberlite_banner_desc', $memberlite_banner_desc);
-	}
-
-	//banner extra padding checkbox
-	if(isset($_POST['memberlite_banner_extra_padding_present']))	{
-		if(!empty($_POST['memberlite_banner_extra_padding']))
-			$memberlite_banner_extra_padding = 1;
-		else
-			$memberlite_banner_extra_padding = 0;
-
-		update_post_meta($post_id, '_memberlite_banner_extra_padding', $memberlite_banner_extra_padding);
-	}
-
-	//banner bottom content
-	if(isset($_POST['memberlite_banner_bottom'])) {
-		$memberlite_banner_bottom = wp_kses( wp_unslash( $_POST['memberlite_banner_bottom'] ), $allowedposttags );
-
-		update_post_meta($post_id, '_memberlite_banner_bottom', $memberlite_banner_bottom);
-	}
-
-	//page icon
-	if(isset($_POST['memberlite_page_icon'])) {
-		$memberlite_page_icon = sanitize_text_field($_POST['memberlite_page_icon']);
-
-		update_post_meta($post_id, '_memberlite_page_icon', $memberlite_page_icon);
-	}
-
-	//page icon in banner right checkbox
-	if(isset($_POST['memberlite_banner_icon_present']))	{
-		if(!empty($_POST['memberlite_banner_icon']))
-			$memberlite_banner_icon = 1;
-		else
-			$memberlite_banner_icon = 0;
-
-		update_post_meta($post_id, '_memberlite_banner_icon', $memberlite_banner_icon);
-	}
-
-	//landing page level
-	if(isset($_POST['pmproal_landing_page_level'])) {
-		$pmproal_landing_page_level = intval($_POST['pmproal_landing_page_level']);
-
-		update_post_meta($post_id, '_pmproal_landing_page_level', $pmproal_landing_page_level);
-	}
-
-	//landing page checkout button
-	if(isset($_POST['memberlite_landing_page_checkout_button'])) {
-		$memberlite_landing_page_checkout_button = sanitize_text_field($_POST['memberlite_landing_page_checkout_button']);
-
-		update_post_meta($post_id, '_memberlite_landing_page_checkout_button', $memberlite_landing_page_checkout_button);
-	}
-
-	//landing page upsell content
-	if(isset($_POST['memberlite_landing_page_upsell'])) {
-		$memberlite_landing_page_upsell = intval($_POST['memberlite_landing_page_upsell']);
-
-		update_post_meta($post_id, '_memberlite_landing_page_upsell', $memberlite_landing_page_upsell);
-	}
-}
-add_action('save_post', 'memberlite_settings_save_meta_box_data');
-
-
-function memberlite_display_banner_bottom( ) {
-	$post_id = memberlite_get_banner_post_id();
-
-	if ( ! empty( $post_id ) ) {
-		$memberlite_banner_bottom = get_post_meta( $post_id, '_memberlite_banner_bottom', true );
-	} else {
-		$memberlite_banner_bottom = false;
-	}
-	if ( ! empty( $memberlite_banner_bottom ) ) { ?>
-		<div id="banner_bottom">
-			<div class="row"><div class="large-12 columns">
-				<?php echo apply_filters( 'the_content', $memberlite_banner_bottom ); ?>
-			</div></div><!-- .row .columns -->
-		</div><!-- #banner_bottom -->
-	<?php }
-}
-add_action( 'memberlite_after_content', 'memberlite_display_banner_bottom' );
-
-
 
 /**
- * Builds the Font Awesome icon markup for the masthead banner, via the [fa] shortcode.
+ * Get the labels of the removed Memberlite Settings meta box fields.
  *
- * @param string $icon Font Awesome icon slug, e.g. 'star'. See memberlite_get_font_awesome_icons().
- * @return string Icon markup, or '' if no icon slug is given.
+ * Separate from memberlite_get_legacy_page_fields(), since the migration runs before
+ * translations load.
+ *
+ * @since TBD
+ * @return array Labels keyed by the new custom field key.
  */
-function memberlite_get_masthead_icon_html( $icon ) {
-	if ( empty( $icon ) ) {
-		return '';
-	}
-
-	$size = 'narrow' === memberlite_get_layout() ? '2x' : '4x';
-
-	return do_shortcode( '[fa icon="' . esc_attr( $icon ) . '" size="' . $size . '"]' );
+function memberlite_get_legacy_page_field_labels(): array {
+	return array(
+		'memberlite_banner_desc'                  => __( 'Banner Description', 'memberlite' ),
+		'memberlite_banner_right'                 => __( 'Banner Right Column', 'memberlite' ),
+		'memberlite_banner_bottom'                => __( 'Page Bottom Banner', 'memberlite' ),
+		'memberlite_banner_extra_padding'         => __( 'Extra Banner Padding', 'memberlite' ),
+		'memberlite_page_icon'                    => __( 'Page Icon', 'memberlite' ),
+		'memberlite_banner_icon'                  => __( 'Show Icon in Banner Title', 'memberlite' ),
+		'memberlite_landing_page_level'           => __( 'Landing Page Membership Level', 'memberlite' ),
+		'memberlite_landing_page_checkout_button' => __( 'Landing Page Checkout Button Text', 'memberlite' ),
+		'memberlite_landing_page_upsell'          => __( 'Landing Page Membership Level Upsell', 'memberlite' ),
+	);
 }
 
-/*
-	Filter to show additional content in the masthead banner
-*/
-function memberlite_maybe_customize_masthead_content( $content ) {
-	// Return early if this is the 404 page.
-	if ( is_404() ) {
-		return $content;
+/**
+ * Move the removed Memberlite Settings meta box fields to visible custom fields.
+ *
+ * Deletes the values that mean "not set" and renames the rest, see
+ * memberlite_get_legacy_page_fields(). If a post already has the new custom field with a
+ * value, its old field is deleted instead, so the custom field keeps its current value. Safe to run
+ * again, e.g. after importing content from an older site.
+ *
+ * Runs from inc/updates/update_8_0.php and from Memberlite > Alerts.
+ *
+ * @since TBD
+ * @return void
+ */
+function memberlite_migrate_legacy_page_fields(): void {
+	global $wpdb;
+
+	$fields       = memberlite_get_legacy_page_fields();
+	$placeholders = implode( ', ', array_fill( 0, count( $fields ), '%s' ) );
+	$post_ids     = $wpdb->get_col(
+		$wpdb->prepare(
+			"SELECT DISTINCT post_id FROM {$wpdb->postmeta} WHERE meta_key IN ( $placeholders )",
+			array_keys( $fields )
+		)
+	);
+
+	if ( empty( $post_ids ) ) {
+		return;
 	}
 
-	$post_id = memberlite_get_banner_post_id();
+	foreach ( $fields as $old_key => $field ) {
+		$empty_placeholders = implode( ', ', array_fill( 0, count( $field['empty'] ), '%s' ) );
 
-	if ( ! empty( $post_id ) ) {
-		//add a space to the front, to make sure the default masthead isn't shown
-		$content .= ' ';
+		$wpdb->query(
+			$wpdb->prepare(
+				"DELETE FROM {$wpdb->postmeta} WHERE meta_key = %s AND ( meta_value IS NULL OR meta_value REGEXP '^[[:space:]]*$' OR TRIM( meta_value ) IN ( $empty_placeholders ) )",
+				array_merge( array( $old_key ), $field['empty'] )
+			)
+		);
 
-		//Get setting for masthead banner extra padding
-		$memberlite_banner_extra_padding = get_post_meta( $post_id, '_memberlite_banner_extra_padding', true );
-		if ( ! empty( $memberlite_banner_extra_padding ) ) {
-			//Add the masthead banner padding wrapper
-			$content .= '<div class="masthead-padding">';
+		// Keep one row per post: the lowest meta_id, which is what get_post_meta( ..., true ) returned.
+		$wpdb->query(
+			$wpdb->prepare(
+				"DELETE pm_dup FROM {$wpdb->postmeta} pm_dup
+				INNER JOIN {$wpdb->postmeta} pm_keep ON pm_keep.post_id = pm_dup.post_id AND pm_keep.meta_key = pm_dup.meta_key AND pm_keep.meta_id < pm_dup.meta_id
+				WHERE pm_dup.meta_key = %s",
+				$old_key
+			)
+		);
+
+		if ( ! empty( $field['requires'] ) ) {
+			$required_empty              = wp_list_filter( $fields, array( 'key' => $field['requires'] ) );
+			$required_empty              = ! empty( $required_empty ) ? reset( $required_empty )['empty'] : array( '' );
+			$required_empty_placeholders = implode( ', ', array_fill( 0, count( $required_empty ), '%s' ) );
+
+			$wpdb->query(
+				$wpdb->prepare(
+					"DELETE pm_old FROM {$wpdb->postmeta} pm_old
+					LEFT JOIN {$wpdb->postmeta} pm_required ON pm_required.post_id = pm_old.post_id AND pm_required.meta_key = %s
+						AND pm_required.meta_value IS NOT NULL AND pm_required.meta_value NOT REGEXP '^[[:space:]]*$'
+						AND TRIM( pm_required.meta_value ) NOT IN ( $required_empty_placeholders )
+					WHERE pm_old.meta_key = %s AND pm_required.meta_id IS NULL",
+					array_merge( array( $field['requires'] ), $required_empty, array( $old_key ) )
+				)
+			);
 		}
 
-		//Get setting to show or hide masthead banner icon
-		$memberlite_banner_icon = get_post_meta( $post_id, '_memberlite_banner_icon', true );
+		// An empty custom field shouldn't win over a value that was set.
+		$wpdb->query(
+			$wpdb->prepare(
+				"DELETE pm_new FROM {$wpdb->postmeta} pm_new
+				INNER JOIN {$wpdb->postmeta} pm_old ON pm_old.post_id = pm_new.post_id AND pm_old.meta_key = %s
+				WHERE pm_new.meta_key = %s AND ( pm_new.meta_value IS NULL OR pm_new.meta_value REGEXP '^[[:space:]]*$' )",
+				$old_key,
+				$field['key']
+			)
+		);
 
-		//Get setting for masthead banner icon content
-		$memberlite_page_icon = get_post_meta( $post_id, '_memberlite_page_icon', true );
+		$wpdb->query(
+			$wpdb->prepare(
+				"DELETE pm_old FROM {$wpdb->postmeta} pm_old
+				INNER JOIN {$wpdb->postmeta} pm_new ON pm_new.post_id = pm_old.post_id AND pm_new.meta_key = %s
+				WHERE pm_old.meta_key = %s",
+				$field['key'],
+				$old_key
+			)
+		);
 
-		//Get settings for landing page
-		$pmproal_landing_page_level = get_post_meta($post_id,'_pmproal_landing_page_level',true);
-		$memberlite_landing_page_checkout_button = get_post_meta($post_id,'_memberlite_landing_page_checkout_button',true);
-		$memberlite_landing_page_upsell = get_post_meta($post_id,'_memberlite_landing_page_upsell',true);
-
-		//Check whether we're changing content alignment from page settings under "Template Settings."
-		$masthead_text_alignment = get_post_meta( $post_id, '_memberlite_banner_text_alignment', true );
-		$masthead_is_centered    = $masthead_text_alignment === 'centered';
-
-		//Check that we should display a masthead banner icon and it is set
-		$show_masthead_icon = ! empty( $memberlite_banner_icon ) && ( ! empty( $memberlite_page_icon ) && $memberlite_page_icon !== 'blank' );
-
-		if ( $show_masthead_icon && ! $masthead_is_centered ) {
-			//Default (left) alignment: icon gets its own column beside the title/description column.
-			$content .= '<div class="memberlite_elements-masthead row">';
-			$content .= '<div class="medium-1 columns masthead-icon">' . memberlite_get_masthead_icon_html( $memberlite_page_icon ) . '</div>';
-			$content .= '<div class="medium-11 columns">';
-		} elseif ( $masthead_is_centered ) {
-			//Centered alignment: icon and title share a row instead of a column grid, so they can center as one unit.
-			$content .= '<div class="memberlite_elements-masthead-centered">';
-		}
-
-		//Show the landing page featured image
-		if ( is_page_template( 'templates/landing.php' ) && has_post_thumbnail( $post_id ) ) {
-			$content .= get_the_post_thumbnail( $post_id, 'medium', array( 'class' => 'alignleft' ) );
-		}
-
-		//Get setting to show or hide page title in masthead banner
-		$memberlite_banner_hide_title = get_post_meta( $post_id, '_memberlite_banner_hide_title', true );
-		if ( empty( $memberlite_banner_hide_title ) ) {
-			if ( $show_masthead_icon && $masthead_is_centered ) {
-				$content .= '<div class="masthead-icon-title">' . memberlite_get_masthead_icon_html( $memberlite_page_icon ) . memberlite_get_page_title() . '</div>';
-			} else {
-				$content .= memberlite_get_page_title();
-			}
-
-			$content .= memberlite_get_page_description();
-		} elseif ( $show_masthead_icon && $masthead_is_centered ) {
-			//Title is hidden, but the icon should still show on its own.
-			$content .= memberlite_get_masthead_icon_html( $memberlite_page_icon );
-		}
-
-		//Get content for masthead banner description
-		$memberlite_banner_desc = get_post_meta( $post_id, '_memberlite_banner_desc', true );
-		if ( ! empty( $memberlite_banner_desc ) ) {
-			//Show the masthead banner description
-			$content .= wpautop( do_shortcode( $memberlite_banner_desc ) );
-		}
-
-		//Show the landing page level price and checkout button
-		if ( is_page_template( 'templates/landing.php' ) && ! empty( $pmproal_landing_page_level ) && defined( 'PMPRO_VERSION' ) ) {
-			$level = pmpro_getLevel( $pmproal_landing_page_level );
-
-			//Set default checkout button text
-			if ( empty( $memberlite_landing_page_checkout_button ) ) {
-				$memberlite_landing_page_checkout_button = 'Select';
-			}
-
-			if ( ! empty( $level ) ) {
-				if ( empty( $memberlite_banner_desc ) ) {
-					//Show the level descrpition of banner description is empty
-					$content .= wpautop( do_shortcode( $level->description ) );
-				}
-				$content .= '<p class="pmpro_level-price">' . pmpro_getLevelCost($level, true, true) . '</p>';
-				$content .= '<p><a class="btn btn_action" href="' . esc_url( add_query_arg( 'level', $pmproal_landing_page_level, pmpro_url( 'checkout' ) ) ) . '">' . esc_attr( $memberlite_landing_page_checkout_button ) . '</a></p>';
-			}
-		}
-
-		if ( $show_masthead_icon && ! $masthead_is_centered ) {
-			//Close the masthead banner columns div
-			$content .= '</div> <!--.medium-X .columns -->';
-
-			//Close the masthead banner row div
-			$content .= '</div> <!--.row -->';
-		} elseif ( $masthead_is_centered ) {
-			//Close the masthead centered wrapper
-			$content .= '</div> <!--.memberlite_elements-masthead-centered -->';
-		}
-
-		if ( ! empty( $memberlite_banner_extra_padding ) ) {
-			//Cloise the masthead banner padding wrapper
-			$content .= '</div><!--.masthead-padding-->';
-		}
+		$wpdb->query(
+			$wpdb->prepare(
+				"UPDATE {$wpdb->postmeta} SET meta_key = %s WHERE meta_key = %s",
+				$field['key'],
+				$old_key
+			)
+		);
 	}
 
-	return $content;
+	foreach ( $post_ids as $post_id ) {
+		wp_cache_delete( (int) $post_id, 'post_meta' );
+	}
+	wp_cache_set_posts_last_changed();
 }
-add_filter( 'memberlite_masthead_content', 'memberlite_maybe_customize_masthead_content' );
+
+/**
+ * Get the posts that have any of the given meta keys, for an alert.
+ *
+ * @since TBD
+ *
+ * @param array $labels Field labels keyed by meta key.
+ * @return array Alert items, one per post, listing the fields it has.
+ */
+function memberlite_get_page_field_alert_items( array $labels ): array {
+	global $wpdb;
+
+	$placeholders = implode( ', ', array_fill( 0, count( $labels ), '%s' ) );
+	$rows         = $wpdb->get_results(
+		$wpdb->prepare(
+			"SELECT post_id, meta_key FROM {$wpdb->postmeta} WHERE meta_key IN ( $placeholders ) ORDER BY post_id",
+			array_keys( $labels )
+		)
+	);
+
+	$fields_by_post = array();
+	foreach ( $rows as $row ) {
+		$fields_by_post[ (int) $row->post_id ][ $labels[ $row->meta_key ] ] = true;
+	}
+
+	_prime_post_caches( array_keys( $fields_by_post ), false, false );
+
+	$items = array();
+	foreach ( $fields_by_post as $post_id => $fields ) {
+		if ( ! memberlite_is_alert_post( $post_id ) ) {
+			continue;
+		}
+
+		$title   = get_the_title( $post_id );
+		$items[] = array(
+			'id'      => $post_id,
+			'label'   => '' !== $title ? $title : sprintf( '#%d', $post_id ),
+			'url'     => get_edit_post_link( $post_id, 'raw' ),
+			'details' => implode( ', ', array_keys( $fields ) ),
+		);
+	}
+
+	return $items;
+}
+
+/**
+ * List posts that still have fields from the removed Memberlite Settings meta box.
+ *
+ * The 8.0 update moves them, but importing or restoring older content can bring them back.
+ *
+ * @since TBD
+ * @return array Alert items.
+ */
+function memberlite_alert_check_legacy_page_fields(): array {
+	$field_labels = memberlite_get_legacy_page_field_labels();
+	$labels       = array();
+	foreach ( memberlite_get_legacy_page_fields() as $old_key => $field ) {
+		$labels[ $old_key ] = $field_labels[ $field['key'] ];
+	}
+
+	return memberlite_get_page_field_alert_items( $labels );
+}
+
+/**
+ * List posts with custom fields moved from the removed Memberlite Settings meta box.
+ *
+ * @since TBD
+ * @return array Alert items.
+ */
+function memberlite_alert_check_page_custom_fields(): array {
+	return memberlite_get_page_field_alert_items( memberlite_get_legacy_page_field_labels() );
+}
+
+/**
+ * Add the removed Memberlite Settings meta box alerts to Memberlite > Alerts.
+ *
+ * @since TBD
+ *
+ * @param array $alerts Alerts keyed by ID.
+ * @return array
+ */
+function memberlite_add_page_field_alerts( $alerts ) {
+	$alerts = (array) $alerts;
+
+	$alerts['legacy_page_fields'] = array(
+		'title'       => __( 'Old page settings to move', 'memberlite' ),
+		'description' => __( 'These pages have fields from the Memberlite Settings box that Memberlite 8.0 removed, which usually means they were imported or restored from an older site. Memberlite no longer shows these fields, and you can\'t see or edit them while they are hidden.', 'memberlite' ),
+		'since'       => '8.0',
+		'check'       => 'memberlite_alert_check_legacy_page_fields',
+		'action'      => array(
+			'label'       => __( 'Move to custom fields', 'memberlite' ),
+			'callback'    => 'memberlite_migrate_legacy_page_fields',
+			'description' => __( 'Fields that were set become custom fields you can see and edit. Empty fields are deleted.', 'memberlite' ),
+		),
+	);
+
+	$alerts['page_custom_fields'] = array(
+		'title'       => __( 'Page settings Memberlite no longer shows', 'memberlite' ),
+		'description' => __( 'Memberlite 8.0 removed the Memberlite Settings box from the page editor, along with the Landing Page template, the banner description, right column, bottom banner, extra padding and page icon settings. Memberlite no longer shows them on your site. Anything these pages had set was kept as a custom field (memberlite_banner_desc, memberlite_banner_bottom, memberlite_landing_page_level and so on). To see or edit them, turn on Custom fields in the block editor\'s Preferences. To show them on your site again, use a code recipe. Delete the custom fields to clear this alert, or dismiss it.', 'memberlite' ),
+		'since'       => '8.0',
+		'check'       => 'memberlite_alert_check_page_custom_fields',
+	);
+
+	return $alerts;
+}
+add_filter( 'memberlite_alerts', 'memberlite_add_page_field_alerts' );
+
+/**
+ * Clear the alert count when an old or moved page field changes, see memberlite_maybe_clear_alert_count_for_meta().
+ *
+ * @since TBD
+ *
+ * @param array $meta_keys Meta keys alerts report on.
+ * @return array
+ */
+function memberlite_add_page_field_alert_meta_keys( $meta_keys ) {
+	$meta_keys = (array) $meta_keys;
+	foreach ( memberlite_get_legacy_page_fields() as $old_key => $field ) {
+		$meta_keys[] = $old_key;
+		$meta_keys[] = $field['key'];
+	}
+
+	return $meta_keys;
+}
+add_filter( 'memberlite_alert_meta_keys', 'memberlite_add_page_field_alert_meta_keys' );
 
 /**
  * Get the banner image HTML for a post.
