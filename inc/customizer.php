@@ -850,14 +850,7 @@ class Memberlite_Customize {
 			'type'            => 'select',
 			'default'         => isset( $memberlite_defaults[ $ratio_id ] ) ? $memberlite_defaults[ $ratio_id ] : '8-4',
 			'description'     => __( 'Sets the content-to-sidebar width ratio. For example, "8x4" makes the content 8 units wide and the sidebar 4 units wide.', 'memberlite' ),
-			'choices'         => array(
-				'6-6'  => '6x6',
-				'7-5'  => '7x5',
-				'8-4'  => '8x4',
-				'9-3'  => '9x3',
-				'10-2' => '10x2',
-				'11-1' => '11x1',
-			),
+			'choices'         => memberlite_get_columns_ratio_choices(),
 			'active_callback' => function() use ( $is_inherited, $layout_id, $default ) {
 				return ! $is_inherited() && memberlite_layout_has_sidebar( get_theme_mod( $layout_id, $default ) );
 			},
