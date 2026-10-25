@@ -288,6 +288,7 @@ function memberlite_add_page_field_alerts( $alerts ) {
 		'description' => __( 'Memberlite 8.0 removed the Memberlite Settings box from the page editor, along with the Landing Page template, the banner description, right column, bottom banner, extra padding and page icon settings. Memberlite no longer shows them on your site. Anything these pages had set was kept as a custom field (memberlite_banner_desc, memberlite_banner_bottom, memberlite_landing_page_level and so on). To see or edit them, turn on Custom fields in the block editor\'s Preferences. To show them on your site again, use a code recipe. Delete the custom fields to clear this alert, or dismiss it.', 'memberlite' ),
 		'since'       => '8.0',
 		'check'       => 'memberlite_alert_check_page_custom_fields',
+		'docs_url'    => 'https://www.paidmembershipspro.com/memberlite-legacy-page-settings/',
 	);
 
 	return $alerts;
