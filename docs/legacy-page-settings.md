@@ -183,6 +183,8 @@ add_filter( 'memberlite_get_page_title', 'my_memberlite_show_page_icon' );
 
 Shows the level price and checkout button in the masthead (and the level description when the page has no banner description), and the checkout button and level upsell after the page content. The template also showed the featured image in the masthead; this recipe leaves that out.
 
+The recipe applies to every page with a `memberlite_landing_page_level` custom field, not only former Landing Page pages. The meta box kept the landing page fields when a page was switched back to the default template, and the migration moved those too. Before adding the recipe, check the pages listed under **Memberlite > Alerts** > "Page settings Memberlite no longer shows" and delete the landing page fields from pages that weren't landing pages anymore.
+
 ```php
 /**
  * Show a landing page's membership level price and checkout button in the masthead,

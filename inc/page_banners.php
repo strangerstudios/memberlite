@@ -125,14 +125,29 @@ function memberlite_migrate_legacy_page_fields(): void {
 			)
 		);
 
+		// Keep one row per post: the lowest meta_id, which is what get_post_meta( ..., true ) returned.
+		$wpdb->query(
+			$wpdb->prepare(
+				"DELETE pm_dup FROM {$wpdb->postmeta} pm_dup
+				INNER JOIN {$wpdb->postmeta} pm_keep ON pm_keep.post_id = pm_dup.post_id AND pm_keep.meta_key = pm_dup.meta_key AND pm_keep.meta_id < pm_dup.meta_id
+				WHERE pm_dup.meta_key = %s",
+				$old_key
+			)
+		);
+
 		if ( ! empty( $field['requires'] ) ) {
+			$required_empty              = wp_list_filter( $fields, array( 'key' => $field['requires'] ) );
+			$required_empty              = ! empty( $required_empty ) ? reset( $required_empty )['empty'] : array( '' );
+			$required_empty_placeholders = implode( ', ', array_fill( 0, count( $required_empty ), '%s' ) );
+
 			$wpdb->query(
 				$wpdb->prepare(
 					"DELETE pm_old FROM {$wpdb->postmeta} pm_old
 					LEFT JOIN {$wpdb->postmeta} pm_required ON pm_required.post_id = pm_old.post_id AND pm_required.meta_key = %s
+						AND pm_required.meta_value IS NOT NULL AND pm_required.meta_value NOT REGEXP '^[[:space:]]*$'
+						AND TRIM( pm_required.meta_value ) NOT IN ( $required_empty_placeholders )
 					WHERE pm_old.meta_key = %s AND pm_required.meta_id IS NULL",
-					$field['requires'],
-					$old_key
+					array_merge( array( $field['requires'] ), $required_empty, array( $old_key ) )
 				)
 			);
 		}
