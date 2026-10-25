@@ -1065,6 +1065,28 @@ function memberlite_parse_tags( $meta, $post = null ) {
 add_filter( 'widget_text', 'do_shortcode' );
 
 /**
+ * Get the post types that have a Banner Image.
+ *
+ * @since TBD
+ * @return string[]
+ */
+function memberlite_get_banner_image_post_types(): array {
+	return array_values( array_diff( get_post_types( array( 'public' => true ), 'names' ), array( 'reply', 'topic' ) ) );
+}
+
+/**
+ * Get the post meta key that stores a post type's Banner Image attachment ID.
+ *
+ * @since TBD
+ *
+ * @param string $post_type Post type slug.
+ * @return string
+ */
+function memberlite_get_banner_image_meta_key( string $post_type ): string {
+	return "{$post_type}_memberlite_banner_image{$post_type}_thumbnail_id";
+}
+
+/**
  * Add a Banner Image as a secondary thumbnail
  */
 function memberlite_banner_image_setup() {
@@ -1072,19 +1094,14 @@ function memberlite_banner_image_setup() {
 		return;
 	}
 
-	$screens = get_post_types( array('public' => true), 'names' );
-	foreach ( $screens as $screen ) {
-		if( in_array( $screen, array('reply','topic' ) ) ) {
-			continue;
-		} else {
-			new MemberliteMultiPostThumbnails(
-				array(
-					'label' => __( 'Banner Image', 'memberlite' ),
-					'id' => 'memberlite_banner_image' . $screen,
-					'post_type' => $screen,
-				)
-			);
-		}
+	foreach ( memberlite_get_banner_image_post_types() as $screen ) {
+		new MemberliteMultiPostThumbnails(
+			array(
+				'label' => __( 'Banner Image', 'memberlite' ),
+				'id' => 'memberlite_banner_image' . $screen,
+				'post_type' => $screen,
+			)
+		);
 	}
 }
 add_action( 'wp_loaded', 'memberlite_banner_image_setup' );

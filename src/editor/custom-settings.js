@@ -1,12 +1,16 @@
 import { __, sprintf } from '@wordpress/i18n';
 import { registerPlugin } from '@wordpress/plugins';
 import { PluginDocumentSettingPanel } from '@wordpress/editor';
+import { MediaUpload, MediaUploadCheck } from '@wordpress/block-editor';
 import {
+	BaseControl,
 	Button,
 	ToggleControl,
 	SelectControl,
 	ExternalLink,
 	RadioControl,
+	Spinner,
+	__experimentalHStack as HStack,
 	__experimentalVStack as VStack,
 } from '@wordpress/components';
 import { useSelect } from '@wordpress/data';
@@ -213,6 +217,108 @@ const MemberliteLayoutSettings = () => {
 };
 
 /**
+ * Banner Image picker. Reads and writes the same meta as the classic Banner Image meta box.
+ */
+const BannerImageControl = ( { imageId, onChange, hideLabel = false } ) => {
+	const media = useSelect(
+		( select ) => ( imageId ? select( 'core' ).getMedia( imageId, { context: 'view' } ) : null ),
+		[ imageId ]
+	);
+
+	const label   = __( 'Banner Image', textDomain );
+	const preview = media?.media_details?.sizes?.medium?.source_url || media?.source_url;
+
+	return (
+		<BaseControl __nextHasNoMarginBottom label={ label } hideLabelFromVision={ hideLabel }>
+			<MediaUploadCheck
+				fallback={
+					<p style={ { margin: 0, fontSize: 12, color: '#757575' } }>
+						{ __( 'You do not have permission to upload media.', textDomain ) }
+					</p>
+				}
+			>
+				<MediaUpload
+					title={ label }
+					allowedTypes={ [ 'image' ] }
+					value={ imageId || undefined }
+					onSelect={ ( image ) => onChange( image.id ) }
+					render={ ( { open } ) => (
+						<VStack spacing={ 2 }>
+							{ imageId ? (
+								<Button
+									onClick={ open }
+									aria-label={ __( 'Replace Banner Image', textDomain ) }
+									style={ { display: 'block', width: '100%', height: 'auto', padding: 0 } }
+								>
+									{ preview ? (
+										<img src={ preview } alt="" style={ { display: 'block', width: '100%', height: 'auto' } } />
+									) : (
+										<Spinner />
+									) }
+								</Button>
+							) : (
+								<Button
+									__next40pxDefaultSize
+									variant="secondary"
+									onClick={ open }
+									style={ { justifyContent: 'center', width: '100%' } }
+								>
+									{ __( 'Set Banner Image', textDomain ) }
+								</Button>
+							) }
+							{ !! imageId && (
+								<HStack justify="flex-start">
+									<Button __next40pxDefaultSize variant="secondary" onClick={ open }>
+										{ __( 'Replace', textDomain ) }
+									</Button>
+									<Button __next40pxDefaultSize variant="tertiary" isDestructive onClick={ () => onChange( null ) }>
+										{ __( 'Remove', textDomain ) }
+									</Button>
+								</HStack>
+							) }
+						</VStack>
+					) }
+				/>
+			</MediaUploadCheck>
+		</BaseControl>
+	);
+};
+
+/**
+ * Banner Image panel for posts and CPTs. Pages show the Banner Image in the Page Settings panel.
+ */
+const MemberliteBannerImageSettings = () => {
+	const postType = useSelect(
+		( select ) => select( 'core/editor' ).getCurrentPostType(),
+		[]
+	);
+
+	// Always call hooks before any conditional return (Rules of Hooks).
+	const [ meta, setMeta ] = useEntityProp( 'postType', postType, 'meta' );
+
+	const metaKey = window.memberliteEditorData?.bannerImageMetaKey;
+	if ( postType === 'page' || ! metaKey || ! meta ) {
+		return null;
+	}
+
+	return (
+		<PluginDocumentSettingPanel
+			name="memberlite-banner-image"
+			title={ __( 'Banner Image', textDomain ) }
+			className="memberlite-banner-image"
+		>
+			<BannerImageControl
+				hideLabel
+				imageId={ meta[ metaKey ] }
+				onChange={ ( value ) => {
+					setMeta( { ...meta, [ metaKey ]: value } );
+				} }
+			/>
+		</PluginDocumentSettingPanel>
+	);
+};
+
+/**
  * Template Settings panel: header and footer visibility and variation overrides.
  * Shown on pages, and on header variation posts for the sticky toggle.
  */
@@ -340,6 +446,7 @@ const MemberlitePageSettings = () => {
 	const hideBreadcrumbsValue = meta?._memberlite_banner_hide_breadcrumbs || false; // Setting only shows if breadcrumbs are enabled & banner is showing.
 	const textAlignmentValue   = meta?._memberlite_banner_text_alignment ?? 'default';
 	const hidePageNavValue     = meta?._memberlite_hide_page_nav || false;
+	const bannerImageMetaKey   = window.memberliteEditorData.bannerImageMetaKey;
 
 	return (
 		<PluginDocumentSettingPanel
@@ -348,6 +455,14 @@ const MemberlitePageSettings = () => {
 			className="memberlite-page-settings"
 		>
 			<VStack spacing={ 4 }>
+				{ bannerImageMetaKey && meta && (
+					<BannerImageControl
+						imageId={ meta[ bannerImageMetaKey ] }
+						onChange={ ( value ) => {
+							setMeta( { ...meta, [ bannerImageMetaKey ]: value } );
+						} }
+					/>
+				)}
 				<ToggleControl
 					__nextHasNoMarginBottom
 					label={__('Show Masthead Banner', textDomain)}
@@ -415,4 +530,8 @@ registerPlugin( 'memberlite-template-settings', {
 
 registerPlugin( 'memberlite-page-settings', {
 	render: MemberlitePageSettings,
+} );
+
+registerPlugin( 'memberlite-banner-image', {
+	render: MemberliteBannerImageSettings,
 } );
