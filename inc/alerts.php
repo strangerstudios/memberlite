@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Get the registered alerts.
  *
- * @since TBD
+ * @since 8.0
  * @return array Alerts keyed by ID, see the memberlite_alerts filter for the keys.
  */
 function memberlite_get_alerts(): array {
@@ -41,7 +41,7 @@ function memberlite_get_alerts(): array {
 	 *
 	 * Internal for now: the item format and how dismissals are stored may still change.
 	 *
-	 * @since TBD
+	 * @since 8.0
 	 *
 	 * @param array $alerts Alerts keyed by ID.
 	 */
@@ -82,7 +82,7 @@ function memberlite_get_alerts(): array {
  *
  * Each alert is checked once per request unless `$refresh` is set.
  *
- * @since TBD
+ * @since 8.0
  *
  * @param array $alert   Alert from memberlite_get_alerts().
  * @param bool  $refresh Check again even if this request already did.
@@ -102,7 +102,7 @@ function memberlite_get_alert_items( array $alert, bool $refresh = false ): arra
 /**
  * Get the keys a dismissal remembers an alert's items by.
  *
- * @since TBD
+ * @since 8.0
  *
  * @param array $items Items from memberlite_get_alert_items().
  * @return array Item keys.
@@ -129,7 +129,7 @@ function memberlite_get_alert_item_keys( array $items ): array {
  * Trashed posts, auto-drafts and meta left behind by deleted posts are skipped, since
  * there is nothing to edit.
  *
- * @since TBD
+ * @since 8.0
  *
  * @param int $post_id Post ID.
  * @return bool
@@ -141,7 +141,7 @@ function memberlite_is_alert_post( int $post_id ): bool {
 /**
  * Get the dismissed alerts.
  *
- * @since TBD
+ * @since 8.0
  * @return array Keys of the items each alert listed when dismissed, keyed by alert ID.
  */
 function memberlite_get_dismissed_alerts(): array {
@@ -155,7 +155,7 @@ function memberlite_get_dismissed_alerts(): array {
  *
  * An alert is dismissed while every item it lists was listed when it was dismissed.
  *
- * @since TBD
+ * @since 8.0
  *
  * @param array $alert   Alert from memberlite_get_alerts().
  * @param bool  $refresh Check again even if this request already did.
@@ -186,7 +186,7 @@ function memberlite_get_alert_status( array $alert, bool $refresh = false ): arr
  * alert resolves, its dismissal is cleared. Writes the memberlite_dismissed_alerts option
  * when something changed.
  *
- * @since TBD
+ * @since 8.0
  *
  * @param string $alert_id Alert ID.
  * @param array  $items    The alert's current items, from memberlite_get_alert_items().
@@ -222,7 +222,7 @@ function memberlite_sync_alert_dismissal( string $alert_id, array $items ): void
  * on changes (see the memberlite_alert_meta_keys filter), after a Memberlite update and on
  * theme switch. Rebuilding it also syncs dismissals, see memberlite_sync_alert_dismissal().
  *
- * @since TBD
+ * @since 8.0
  * @return int
  */
 function memberlite_get_alert_count(): int {
@@ -246,7 +246,7 @@ function memberlite_get_alert_count(): int {
 /**
  * Clear the cached alert count.
  *
- * @since TBD
+ * @since 8.0
  * @return void
  */
 function memberlite_clear_alert_count(): void {
@@ -261,7 +261,7 @@ add_action( 'deleted_post', 'memberlite_clear_alert_count' );
  *
  * Covers meta written directly, e.g. by WP-CLI or a plugin, without saving the post.
  *
- * @since TBD
+ * @since 8.0
  *
  * @param int|array $meta_ids  Meta ID or IDs.
  * @param int       $object_id Post ID.
@@ -275,7 +275,7 @@ function memberlite_maybe_clear_alert_count_for_meta( $meta_ids, $object_id, $me
 	 * Changing one of these clears the cached alert count. Kept separate from
 	 * memberlite_alerts so meta writes don't build every alert.
 	 *
-	 * @since TBD
+	 * @since 8.0
 	 *
 	 * @param array $meta_keys Meta keys.
 	 */
@@ -295,7 +295,7 @@ add_action( 'deleted_post_meta', 'memberlite_maybe_clear_alert_count_for_meta', 
  * Uses core's update-plugins bubble, which takes the admin color scheme's notification
  * color and darkens on the open menu, like the Plugins menu.
  *
- * @since TBD
+ * @since 8.0
  *
  * @param int $count Number of alerts that need attention.
  * @return string Bubble HTML, or '' when the count is 0.
@@ -320,7 +320,7 @@ function memberlite_get_alert_count_bubble( int $count ): string {
  * Added after the pages are registered, since WordPress builds the admin page hook names
  * from the top-level menu title.
  *
- * @since TBD
+ * @since 8.0
  * @return void
  */
 function memberlite_add_alert_count_to_menu() {
@@ -357,7 +357,7 @@ add_action( 'admin_menu', 'memberlite_add_alert_count_to_menu', 999 );
 /**
  * Run, dismiss or restore an alert from Memberlite > Alerts.
  *
- * @since TBD
+ * @since 8.0
  * @return void
  */
 function memberlite_handle_alert_action() {

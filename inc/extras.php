@@ -130,7 +130,7 @@ function memberlite_get_current_cpt_archive_type(): ?string {
  * Returns true if we are on a post type archive, or on a taxonomy archive
  * that uses a CPT's Customizer settings.
  *
- * @since TBD
+ * @since 8.0
  * @return bool
  */
 function memberlite_is_cpt_archive(): bool {
@@ -1066,7 +1066,7 @@ add_filter( 'widget_text', 'do_shortcode' );
 /**
  * Get the post types that have a Banner Image.
  *
- * @since TBD
+ * @since 8.0
  * @return string[]
  */
 function memberlite_get_banner_image_post_types(): array {
@@ -1076,7 +1076,7 @@ function memberlite_get_banner_image_post_types(): array {
 /**
  * Get the post meta key that stores a post type's Banner Image attachment ID.
  *
- * @since TBD
+ * @since 8.0
  *
  * @param string $post_type Post type slug.
  * @return string

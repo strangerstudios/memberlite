@@ -7,7 +7,7 @@
  * Keywords: pricing, plans, membership, course, product, perks, courses, pmpro_course
  * @package WordPress
  * @subpackage Memberlite
- * @since Memberlite TBD
+ * @since Memberlite 8.0
  */
 ?>
 <!-- wp:group {"align":"wide","style":{"spacing":{"blockGap":"var:preset|spacing|30","padding":{"top":"var:preset|spacing|70","bottom":"var:preset|spacing|70","left":"var:preset|spacing|30","right":"var:preset|spacing|30"}}},"backgroundColor":"footer-widgets-background","layout":{"type":"constrained"}} -->

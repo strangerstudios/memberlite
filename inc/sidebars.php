@@ -126,7 +126,7 @@ add_action( 'add_meta_boxes', 'memberlite_sidebar_add_meta_box' );
 /**
  * Get the ID of the sidebar a post type shows before any custom sidebar is added.
  *
- * @since TBD
+ * @since 8.0
  *
  * @param string $post_type Post type slug.
  * @return string Sidebar ID, or 'memberlite_sidebar_blank' when the CPT's default sidebar is hidden.
@@ -154,7 +154,7 @@ function memberlite_get_default_sidebar_id_for_post_type( string $post_type ): s
  *
  * These pages never show the page children menu, so the setting is locked.
  *
- * @since TBD
+ * @since 8.0
  *
  * @param WP_Post $post The page.
  * @return bool

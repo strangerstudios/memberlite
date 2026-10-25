@@ -32,7 +32,7 @@ add_action( 'init', 'memberlite_register_blocks' );
  * which turns blurry when stretched to fill these blocks. Fixed and repeated background covers
  * already default to 'full' and are left alone.
  *
- * @since TBD
+ * @since 8.0
  *
  * @param array $parsed_block The block being rendered.
  * @return array

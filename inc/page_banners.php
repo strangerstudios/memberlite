@@ -17,7 +17,7 @@
  *
  * Ordered so the page icon moves before the banner icon setting that depends on it.
  *
- * @since TBD
+ * @since 8.0
  * @return array Keyed by old meta key: the new `key`, the `empty` values to delete, and
  *               optionally a custom field the post must have (`requires`).
  */
@@ -69,7 +69,7 @@ function memberlite_get_legacy_page_fields(): array {
  * Separate from memberlite_get_legacy_page_fields(), since the migration runs before
  * translations load.
  *
- * @since TBD
+ * @since 8.0
  * @return array Labels keyed by the new custom field key.
  */
 function memberlite_get_legacy_page_field_labels(): array {
@@ -96,7 +96,7 @@ function memberlite_get_legacy_page_field_labels(): array {
  *
  * Runs from inc/updates/update_8_0.php and from Memberlite > Alerts.
  *
- * @since TBD
+ * @since 8.0
  * @return void
  */
 function memberlite_migrate_legacy_page_fields(): void {
@@ -191,7 +191,7 @@ function memberlite_migrate_legacy_page_fields(): void {
 /**
  * Get the posts that have any of the given meta keys, for an alert.
  *
- * @since TBD
+ * @since 8.0
  *
  * @param array $labels Field labels keyed by meta key.
  * @return array Alert items, one per post, listing the fields it has.
@@ -237,7 +237,7 @@ function memberlite_get_page_field_alert_items( array $labels ): array {
  *
  * The 8.0 update moves them, but importing or restoring older content can bring them back.
  *
- * @since TBD
+ * @since 8.0
  * @return array Alert items.
  */
 function memberlite_alert_check_legacy_page_fields(): array {
@@ -253,7 +253,7 @@ function memberlite_alert_check_legacy_page_fields(): array {
 /**
  * List posts with custom fields moved from the removed Memberlite Settings meta box.
  *
- * @since TBD
+ * @since 8.0
  * @return array Alert items.
  */
 function memberlite_alert_check_page_custom_fields(): array {
@@ -263,7 +263,7 @@ function memberlite_alert_check_page_custom_fields(): array {
 /**
  * Add the removed Memberlite Settings meta box alerts to Memberlite > Alerts.
  *
- * @since TBD
+ * @since 8.0
  *
  * @param array $alerts Alerts keyed by ID.
  * @return array
@@ -298,7 +298,7 @@ add_filter( 'memberlite_alerts', 'memberlite_add_page_field_alerts' );
 /**
  * Clear the alert count when an old or moved page field changes, see memberlite_maybe_clear_alert_count_for_meta().
  *
- * @since TBD
+ * @since 8.0
  *
  * @param array $meta_keys Meta keys alerts report on.
  * @return array

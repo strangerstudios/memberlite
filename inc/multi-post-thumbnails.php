@@ -194,7 +194,7 @@ if (!class_exists('MemberliteMultiPostThumbnails')) {
 		/**
 		 * Check if the current admin screen is the block editor, which doesn't show the meta box.
 		 *
-		 * @since TBD
+		 * @since 8.0
 		 *
 		 * @return bool
 		 */

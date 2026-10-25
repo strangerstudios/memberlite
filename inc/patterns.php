@@ -76,7 +76,7 @@ add_action( 'admin_menu', 'memberlite_add_patterns_menu_item' );
  * Pattern files are loaded even when Paid Memberships Pro is inactive, so fall back
  * to the default checkout page path instead of calling pmpro_url() directly.
  *
- * @since TBD
+ * @since 8.0
  *
  * @param int $level_id Membership level ID.
  * @return string
@@ -95,7 +95,7 @@ function memberlite_get_pattern_checkout_url( int $level_id ): string {
  * Uses core's block attribute serialization so a translated string containing "--", "<" or ">"
  * can't end the block comment early.
  *
- * @since TBD
+ * @since 8.0
  *
  * @param string $value The attribute value, usually a translated string.
  * @return string The JSON-encoded string, including the surrounding quotes.

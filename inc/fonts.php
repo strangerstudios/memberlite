@@ -7,14 +7,14 @@
  *
  * @package Memberlite
  *
- * @since TBD
+ * @since 8.0
  */
 
 /**
  * Get the slugs of the theme.json font family entries that alias the
  * Customizer heading and body fonts rather than naming a real font.
  *
- * @since TBD
+ * @since 8.0
  * @return string[] Font family slugs.
  */
 function memberlite_get_font_alias_slugs() {
@@ -89,7 +89,7 @@ function memberlite_get_font_name_from_json_data( $slug, $font_families ) {
  * can add fonts by filtering wp_theme_json_data_theme. Alias entries that
  * point back at the Customizer fonts are excluded.
  *
- * @since TBD
+ * @since 8.0
  * @return array Associative array of slug => display name.
  */
 function memberlite_get_fonts() {
@@ -114,7 +114,7 @@ function memberlite_get_fonts() {
  * Filter theme.json data to set the heading and body font family custom properties
  * from the fonts selected in the Customizer.
  *
- * @since TBD
+ * @since 8.0
  *
  * @param WP_Theme_JSON $theme_json Theme JSON object.
  * @return WP_Theme_JSON Theme JSON object.
