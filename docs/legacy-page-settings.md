@@ -7,6 +7,8 @@ Memberlite 8.0 removed the **Memberlite Settings** meta box from the page editor
 * Page icon and "Show Icon in Banner Title"
 * Landing Page membership level, checkout button text and level upsell
 
+The code recipes below are published at https://www.paidmembershipspro.com/memberlite-legacy-page-settings/, which the `page_custom_fields` alert links to from Memberlite > Alerts.
+
 The banner settings that are still supported (show or hide the banner, title and breadcrumbs, text alignment) are in the block editor's Page Settings panel.
 
 ## What happens to the saved values
