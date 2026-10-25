@@ -10,3 +10,4 @@ docs export-ignore
 package.json export-ignore
 src export-ignore
 webpack.config.js export-ignore
+AGENTS.md export-ignore
