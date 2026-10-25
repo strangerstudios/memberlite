@@ -91,7 +91,6 @@ function memberlite_setup_update_info() {
 	}
 
 	add_filter( 'pre_set_site_transient_update_themes', 'memberlite_update_themes_filter' );
-	add_filter( 'http_request_args', 'memberlite_http_request_args_for_update_info', 10, 2 );
 	add_action( 'update_option_pmpro_license_key', 'memberlite_update_option_pmpro_license_key', 10, 2 );
 }
 add_action( 'admin_init', 'memberlite_setup_update_info' );
@@ -219,24 +218,6 @@ function memberlite_update_themes_filter( $value ) {
 
 	// Return the update object.
 	return $value;
-}
-
-/**
- * Disables SSL verification to prevent download package failures.
- *
- * @since 6.0
- *
- * @param array $args  Array of request args.
- * @param string $url  The URL to be pinged.
- * @return array $args Amended array of request args.
- */
-function memberlite_http_request_args_for_update_info($args, $url)  {
-	// If this is an SSL request and we are performing an upgrade routine, disable SSL verification.
-	if ( strpos( $url, 'https://' ) !== false && strpos( $url, PMPRO_LICENSE_SERVER ) !== false && strpos( $url, "download") !== false ) {
-		$args['sslverify'] = false;
-	}
-
-	return $args;
 }
 
 /**
