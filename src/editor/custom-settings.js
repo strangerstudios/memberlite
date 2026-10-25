@@ -7,6 +7,7 @@ import {
 	ToggleControl,
 	SelectControl,
 	ExternalLink,
+	Notice,
 	RadioControl,
 	Spinner,
 	__experimentalHStack as HStack,
@@ -219,19 +220,31 @@ const MemberliteLayoutSettings = () => {
  * Banner Image picker. Reads and writes the same meta as the classic Banner Image meta box.
  */
 const BannerImageControl = ( { imageId, onChange } ) => {
-	const media = useSelect(
-		( select ) => ( imageId ? select( 'core' ).getMedia( imageId, { context: 'view' } ) : null ),
+	// Same lookup as core's Featured Image panel, so a deleted or missing attachment stops loading.
+	const { media, isRequesting } = useSelect(
+		( select ) => {
+			if ( ! imageId ) {
+				return { media: null, isRequesting: false };
+			}
+
+			const args = [ 'postType', 'attachment', imageId, { context: 'view' } ];
+			return {
+				media: select( 'core' ).getEntityRecord( ...args ),
+				isRequesting: ! select( 'core' ).hasFinishedResolution( 'getEntityRecord', args ),
+			};
+		},
 		[ imageId ]
 	);
 
-	const label   = __( 'Banner Image', textDomain );
-	const preview = media?.media_details?.sizes?.medium?.source_url || media?.source_url;
+	const label          = __( 'Banner Image', textDomain );
+	const preview        = media?.media_details?.sizes?.medium?.source_url || media?.source_url;
+	const isMissingMedia = !! imageId && ! isRequesting && ! preview;
 
 	return (
 		<MediaUploadCheck
 			fallback={
 				<p style={ { margin: 0, fontSize: 12, color: '#757575' } }>
-					{ __( 'You do not have permission to upload media.', textDomain ) }
+					{ __( 'To edit the Banner Image, you need permission to upload media.', textDomain ) }
 				</p>
 			}
 		>
@@ -242,7 +255,12 @@ const BannerImageControl = ( { imageId, onChange } ) => {
 				onSelect={ ( image ) => onChange( image.id ) }
 				render={ ( { open } ) => (
 					<VStack spacing={ 2 }>
-						{ imageId ? (
+						{ isMissingMedia && (
+							<Notice status="warning" isDismissible={ false }>
+								{ __( 'Could not load the Banner Image. It may have been deleted. Replace or remove it.', textDomain ) }
+							</Notice>
+						) }
+						{ !! imageId && ! isMissingMedia && (
 							<Button
 								onClick={ open }
 								aria-label={ __( 'Replace Banner Image', textDomain ) }
@@ -254,7 +272,8 @@ const BannerImageControl = ( { imageId, onChange } ) => {
 									<Spinner />
 								) }
 							</Button>
-						) : (
+						) }
+						{ ! imageId && (
 							<Button
 								__next40pxDefaultSize
 								variant="secondary"

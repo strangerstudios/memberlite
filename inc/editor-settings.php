@@ -349,8 +349,9 @@ function memberlite_enqueue_custom_editor_assets(): void {
 		return;
 	}
 
-	$asset_file = include $asset_path;
-	$post       = get_post();
+	$asset_file      = include $asset_path;
+	$post            = get_post();
+	$banner_meta_key = $post ? memberlite_get_banner_image_meta_key( $post->post_type ) : '';
 
 	wp_enqueue_script(
 		'memberlite-custom-settings',
@@ -376,7 +377,7 @@ function memberlite_enqueue_custom_editor_assets(): void {
 			'manageFootersUrl'        => admin_url( 'edit.php?post_type=memberlite_footer' ),
 			'showPageBreadcrumbs'     => get_theme_mod( 'page_breadcrumbs', false ), // Global customizer setting
 			'layout'                  => $post && in_array( $post->post_type, memberlite_get_layout_post_types(), true ) ? memberlite_get_editor_layout_data( $post ) : null,
-			'bannerImageMetaKey'      => $post && registered_meta_key_exists( 'post', memberlite_get_banner_image_meta_key( $post->post_type ), $post->post_type ) ? memberlite_get_banner_image_meta_key( $post->post_type ) : null,
+			'bannerImageMetaKey'      => $banner_meta_key && registered_meta_key_exists( 'post', $banner_meta_key, $post->post_type ) ? $banner_meta_key : null,
 		)
 	);
 }
