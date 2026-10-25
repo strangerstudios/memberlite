@@ -633,21 +633,3 @@ function memberlite_sidebar_none_get_sidebar( $name ) {
 
 	return $name;
 }
-
-/**
- * Deprecated. Theme package downloads now use SSL verification.
- *
- * No longer hooked to http_request_args.
- *
- * @since 6.0
- * @deprecated TBD
- *
- * @param array  $args Array of request args.
- * @param string $url  The request URL.
- * @return array The request args, unchanged.
- */
-function memberlite_http_request_args_for_update_info( $args, $url ) {
-	_deprecated_function( __FUNCTION__, 'TBD' );
-
-	return $args;
-}
