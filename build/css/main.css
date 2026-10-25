@@ -3634,7 +3634,7 @@ body:not(.page).memberlite-layout-narrow #content .masthead .columns > *:not(.me
   box-shadow: none;
   font-weight: 400;
 }
-.pmpro .pmpro_card a:not(.pmpro_btn):not(.pmpro_link) {
+.pmpro .pmpro_card a:not(.pmpro_btn):not(.pmpro_link):not(.btn):not(.wp-element-button) {
   color: var(--pmpro--color--contrast);
 }
 .pmpro .pmpro_level-description {
