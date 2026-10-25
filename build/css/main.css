@@ -32,7 +32,6 @@
 	4.5 Layout (_layout.scss)
 5.0 Pages
 	5.2 404 (_no-results-404.scss)
-	5.3 Page (_page.scss)
 6.0 Plugins
 	6.1 Paid Memberships Pro (_pmpro.scss)
 	6.2 bbPress (_bbpress.scss)
@@ -1989,8 +1988,7 @@ textarea {
 /*--------------------------------------------------------------
  3.5 Components: Memberlite Shortcodes
 
- Covers: banners, tabs, accordion, recent posts widget, subpage list,
-         landing page overrides
+ Covers: banners, tabs, accordion, recent posts widget, subpage list
 --------------------------------------------------------------*/
 .banner_primary {
   background-color: var(--memberlite-color-primary);
@@ -3142,13 +3140,8 @@ body.memberlite-banner-hidden .entry-content > .banner:first-child {
 .masthead + .row {
   margin-top: var(--wp--preset--spacing--50);
 }
-.masthead .memberlite_elements-masthead h1,
 .masthead .memberlite_elements-masthead-centered h1 {
   margin-top: 0;
-}
-.masthead .memberlite_elements-masthead {
-  padding-top: 2rem;
-  align-items: center;
 }
 .masthead .memberlite_elements-masthead-centered {
   align-items: center;
@@ -3157,14 +3150,6 @@ body.memberlite-banner-hidden .entry-content > .banner:first-child {
   text-align: center;
   margin: var(--wp--preset--spacing--20) 0 0;
 }
-@media (min-width: 768px) {
-  .masthead .masthead-icon-title {
-    display: flex;
-    align-items: center;
-    gap: var(--wp--preset--spacing--10);
-    justify-content: center;
-  }
-}
 
 .masthead-banner {
   background-color: rgba(0, 0, 0, 0.6);
@@ -3172,10 +3157,6 @@ body.memberlite-banner-hidden .entry-content > .banner:first-child {
   padding: var(--wp--preset--spacing--20) 0 var(--wp--preset--spacing--50) 0;
   position: relative;
   width: 100%;
-}
-
-.masthead-padding {
-  padding: var(--wp--preset--spacing--50) 0;
 }
 
 .masthead-post-byline {
@@ -3635,26 +3616,6 @@ body:not(.page).memberlite-layout-narrow #content .masthead .columns > *:not(.me
 
 .search-no-results #secondary .widget_search {
   display: none;
-}
-
-/*--------------------------------------------------------------
- 5.3 Pages: Pages and Templates
-
- Covers: Landing page template
---------------------------------------------------------------*/
-/* Masthead styles for the landing page template */
-.page-template-landing .masthead .alignleft.wp-post-image {
-  margin-top: 2rem;
-}
-.page-template-landing .masthead p {
-  margin-top: var(--wp--preset--spacing--10);
-}
-.page-template-landing .masthead .pmpro_level-price {
-  font-size: var(--wp--preset--font-size--36);
-}
-.page-template-landing .masthead .pmpro_level-subprice {
-  display: block;
-  font-size: var(--wp--preset--font-size--18);
 }
 
 /*--------------------------------------------------------------
