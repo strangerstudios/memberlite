@@ -272,6 +272,9 @@ function memberlite_getColumnsRatio( $location = null ) {
 	$layout                     = memberlite_get_layout();
 	$columns_ratio_array        = explode( '-', memberlite_get_layout_columns_ratio( memberlite_get_layout_context() ) );
 	$columns_ratio_header       = get_theme_mod( 'columns_ratio_header', $memberlite_defaults['columns_ratio_header'] );
+	if ( ! is_string( $columns_ratio_header ) || ! isset( memberlite_get_header_columns_ratio_choices()[ $columns_ratio_header ] ) ) {
+		$columns_ratio_header = $memberlite_defaults['columns_ratio_header'];
+	}
 	$columns_ratio_header_array = explode( '-', $columns_ratio_header );
 
 	if ( $location == 'sidebar' ) {

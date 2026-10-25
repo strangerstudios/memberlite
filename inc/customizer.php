@@ -459,19 +459,7 @@ class Memberlite_Customize {
 			'type'            => 'select',
 			'transport'       => 'refresh',
 			'description'     => __( 'Controls how the left and right sections of your header are sized. For example, "4-8" makes the left side narrower and the right side wider.', 'memberlite' ),
-			'choices'         => array(
-				'1-11' => '1x11',
-				'2-10' => '2x10',
-				'3-9'  => '3x9',
-				'4-8'  => '4x8',
-				'5-7'  => '5x7',
-				'6-6'  => '6x6',
-				'7-5'  => '7x5',
-				'8-4'  => '8x4',
-				'9-3'  => '9x3',
-				'10-2' => '10x2',
-				'11-1' => '11x1',
-			),
+			'choices'         => memberlite_get_header_columns_ratio_choices(),
 			'active_callback' => 'memberlite_is_default_header_active',
 		) );
 
