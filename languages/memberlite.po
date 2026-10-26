@@ -2,14 +2,14 @@
 # This file is distributed under the GNU General Public License v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Memberlite 7.1.2\n"
+"Project-Id-Version: Memberlite 8.0\n"
 "Report-Msgid-Bugs-To: info@paidmembershipspro.com\n"
 "Last-Translator: Paid Memberships Pro <info@paidmembershipspro.com>\n"
 "Language-Team: Paid Memberships Pro <info@paidmembershipspro.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-07-02T18:26:29+00:00\n"
+"POT-Creation-Date: 2026-10-26T13:29:30+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: memberlite\n"
@@ -29,6 +29,8 @@ msgstr ""
 #: src/editor/block-inserter.js:12
 #: inc/admin.php:381
 #: inc/admin.php:414
+#: inc/admin.php:392
+#: inc/admin.php:425
 msgid "Memberlite"
 msgstr ""
 
@@ -93,6 +95,8 @@ msgstr ""
 #: inc/customizer.php:1261
 #: inc/customizer.php:185
 #: inc/customizer.php:1361
+#: inc/customizer.php:192
+#: inc/customizer.php:1489
 msgid "Back to Top"
 msgstr ""
 
@@ -142,6 +146,7 @@ msgstr ""
 #: components/post/entry-footer.php:21
 #: inc/extras.php:1001
 #: inc/extras.php:1241
+#: inc/extras.php:1145
 msgid "Edit"
 msgstr ""
 
@@ -179,6 +184,7 @@ msgstr ""
 #: components/post/post-author-block.php:30
 #: inc/extras.php:693
 #: inc/extras.php:933
+#: inc/extras.php:820
 #, php-format
 msgid "Author: %s"
 msgstr ""
@@ -193,6 +199,7 @@ msgstr ""
 #: functions.php:252
 #: build/blocks/nav-menu/index.js:1
 #: src/blocks/nav-menu/edit.js:10
+#: functions.php:190
 msgid "Primary"
 msgstr ""
 
@@ -200,6 +207,7 @@ msgstr ""
 #: functions.php:275
 #: functions.php:292
 #: functions.php:253
+#: functions.php:191
 msgid "Member"
 msgstr ""
 
@@ -207,6 +215,7 @@ msgstr ""
 #: functions.php:276
 #: functions.php:293
 #: functions.php:254
+#: functions.php:192
 msgid "Member - Logged Out"
 msgstr ""
 
@@ -226,6 +235,8 @@ msgstr ""
 #: inc/customizer.php:133
 #: build/blocks/nav-menu/index.js:1
 #: src/blocks/nav-menu/edit.js:13
+#: functions.php:193
+#: inc/customizer.php:140
 msgid "Footer"
 msgstr ""
 
@@ -257,6 +268,7 @@ msgstr ""
 #: inc/colors.php:75
 #: inc/extras.php:723
 #: inc/extras.php:963
+#: inc/extras.php:850
 msgid "Links"
 msgstr ""
 
@@ -276,6 +288,7 @@ msgstr ""
 #: functions.php:367
 #: functions.php:384
 #: inc/colors.php:55
+#: inc/customizer.php:216
 msgid "Buttons"
 msgstr ""
 
@@ -287,6 +300,7 @@ msgstr ""
 #: functions.php:779
 #: functions.php:778
 #: functions.php:781
+#: inc/colors.php:817
 msgid "White"
 msgstr ""
 
@@ -304,6 +318,7 @@ msgstr ""
 #: inc/customizer.php:222
 #: inc/customizer.php:269
 #: inc/customizer.php:294
+#: inc/customizer.php:329
 msgid "Page Masthead Background Color"
 msgstr ""
 
@@ -320,6 +335,7 @@ msgstr ""
 #: inc/customizer.php:215
 #: inc/customizer.php:262
 #: inc/customizer.php:287
+#: inc/customizer.php:322
 msgid "Footer Widgets Background Color"
 msgstr ""
 
@@ -347,6 +363,7 @@ msgstr ""
 #: functions.php:540
 #: functions.php:366
 #: functions.php:344
+#: functions.php:287
 msgid "Posts and Archives"
 msgstr ""
 
@@ -360,6 +377,11 @@ msgstr ""
 #: inc/admin.php:127
 #: inc/customizer.php:151
 #: inc/admin.php:165
+#: functions.php:299
+#: inc/admin.php:167
+#: inc/customizer.php:158
+#: inc/editor-settings.php:270
+#: inc/template-tags.php:175
 msgid "Pages"
 msgstr ""
 
@@ -377,6 +399,7 @@ msgstr ""
 #: inc/colors.php:110
 #: functions.php:390
 #: functions.php:380
+#: functions.php:323
 msgid "Footer Widgets"
 msgstr ""
 
@@ -386,6 +409,7 @@ msgstr ""
 #: functions.php:423
 #: functions.php:401
 #: functions.php:391
+#: functions.php:334
 msgid "Mobile Menu Widgets"
 msgstr ""
 
@@ -407,6 +431,9 @@ msgstr ""
 #: functions.php:459
 #: functions.php:462
 #: functions.php:494
+#: functions.php:402
+#: functions.php:405
+#: functions.php:437
 msgid "Log Out"
 msgstr ""
 
@@ -423,6 +450,8 @@ msgstr ""
 #: functions.php:465
 #: functions.php:497
 #: patterns/footer-05.php:33
+#: functions.php:408
+#: functions.php:440
 msgid "Log In"
 msgstr ""
 
@@ -438,6 +467,8 @@ msgstr ""
 #: functions.php:482
 #: functions.php:470
 #: functions.php:502
+#: functions.php:413
+#: functions.php:445
 msgid "Register"
 msgstr ""
 
@@ -693,6 +724,7 @@ msgstr ""
 #: inc/admin.php:48
 #: inc/admin.php:232
 #: inc/admin.php:310
+#: inc/admin.php:312
 msgid "Active"
 msgstr ""
 
@@ -701,6 +733,7 @@ msgstr ""
 #: inc/admin.php:50
 #: inc/admin.php:234
 #: inc/admin.php:312
+#: inc/admin.php:314
 msgid "Activate"
 msgstr ""
 
@@ -709,6 +742,7 @@ msgstr ""
 #: inc/admin.php:61
 #: inc/admin.php:245
 #: inc/admin.php:323
+#: inc/admin.php:325
 msgid "Install"
 msgstr ""
 
@@ -742,6 +776,7 @@ msgstr ""
 #: inc/customizer.php:345
 #: inc/customizer.php:424
 #: inc/customizer.php:449
+#: inc/customizer.php:472
 msgid "Show Login/Member Info in Header"
 msgstr ""
 
@@ -749,6 +784,7 @@ msgstr ""
 #: inc/customizer.php:351
 #: inc/customizer.php:431
 #: inc/customizer.php:456
+#: inc/customizer.php:479
 msgid "Show Search Form After Main Nav"
 msgstr ""
 
@@ -801,6 +837,7 @@ msgstr ""
 #: inc/customizer.php:576
 #: inc/customizer.php:689
 #: inc/customizer.php:733
+#: inc/layout.php:28
 msgid "Right Sidebar"
 msgstr ""
 
@@ -813,6 +850,7 @@ msgstr ""
 #: inc/customizer.php:577
 #: inc/customizer.php:690
 #: inc/customizer.php:734
+#: inc/layout.php:29
 msgid "Left Sidebar"
 msgstr ""
 
@@ -845,6 +883,7 @@ msgstr ""
 #: inc/customizer.php:541
 #: inc/customizer.php:566
 #: inc/customizer.php:671
+#: inc/customizer.php:763
 msgid "Show Post Excerpts"
 msgstr ""
 
@@ -856,6 +895,7 @@ msgstr ""
 #: inc/customizer.php:272
 #: inc/customizer.php:319
 #: inc/customizer.php:344
+#: inc/customizer.php:379
 msgid "Breadcrumbs on Pages"
 msgstr ""
 
@@ -863,6 +903,7 @@ msgstr ""
 #: inc/customizer.php:275
 #: inc/customizer.php:322
 #: inc/customizer.php:347
+#: inc/customizer.php:382
 msgid "Breadcrumbs on Posts"
 msgstr ""
 
@@ -870,6 +911,7 @@ msgstr ""
 #: inc/customizer.php:278
 #: inc/customizer.php:325
 #: inc/customizer.php:350
+#: inc/customizer.php:385
 msgid "Breadcrumbs on Archives"
 msgstr ""
 
@@ -877,6 +919,7 @@ msgstr ""
 #: inc/customizer.php:281
 #: inc/customizer.php:328
 #: inc/customizer.php:353
+#: inc/customizer.php:388
 msgid "Breadcrumbs on Attachments"
 msgstr ""
 
@@ -884,6 +927,7 @@ msgstr ""
 #: inc/customizer.php:284
 #: inc/customizer.php:331
 #: inc/customizer.php:356
+#: inc/customizer.php:391
 msgid "Breadcrumbs on Search Results"
 msgstr ""
 
@@ -891,6 +935,7 @@ msgstr ""
 #: inc/customizer.php:287
 #: inc/customizer.php:334
 #: inc/customizer.php:359
+#: inc/customizer.php:394
 msgid "Breadcrumbs on Profiles"
 msgstr ""
 
@@ -898,6 +943,7 @@ msgstr ""
 #: inc/customizer.php:531
 #: inc/customizer.php:659
 #: inc/customizer.php:758
+#: inc/customizer.php:738
 msgid "Show Prev/Next on Single Pages"
 msgstr ""
 
@@ -905,6 +951,7 @@ msgstr ""
 #: inc/customizer.php:464
 #: inc/customizer.php:592
 #: inc/customizer.php:621
+#: inc/customizer.php:623
 msgid "Do Not Show Featured Images"
 msgstr ""
 
@@ -912,6 +959,7 @@ msgstr ""
 #: inc/customizer.php:465
 #: inc/customizer.php:593
 #: inc/customizer.php:622
+#: inc/customizer.php:624
 msgid "Show Banner Only"
 msgstr ""
 
@@ -919,6 +967,7 @@ msgstr ""
 #: inc/customizer.php:466
 #: inc/customizer.php:594
 #: inc/customizer.php:623
+#: inc/customizer.php:625
 msgid "Show Thumbnail Only"
 msgstr ""
 
@@ -926,6 +975,7 @@ msgstr ""
 #: inc/customizer.php:467
 #: inc/customizer.php:595
 #: inc/customizer.php:624
+#: inc/customizer.php:626
 msgid "Show Block Image In Excerpt"
 msgstr ""
 
@@ -933,6 +983,7 @@ msgstr ""
 #: inc/customizer.php:471
 #: inc/customizer.php:599
 #: inc/customizer.php:628
+#: inc/customizer.php:630
 msgid "Show Banner and Thumbnail"
 msgstr ""
 
@@ -944,6 +995,7 @@ msgstr ""
 #: inc/customizer.php:481
 #: inc/customizer.php:609
 #: inc/customizer.php:638
+#: inc/customizer.php:640
 msgid "Post Entry Meta (before)"
 msgstr ""
 
@@ -951,6 +1003,7 @@ msgstr ""
 #: inc/customizer.php:487
 #: inc/customizer.php:615
 #: inc/customizer.php:644
+#: inc/customizer.php:646
 msgid "Post Entry Meta (after)"
 msgstr ""
 
@@ -978,6 +1031,7 @@ msgstr ""
 #: inc/customizer.php:306
 #: inc/customizer.php:353
 #: inc/customizer.php:378
+#: inc/customizer.php:413
 msgid "Breadcrumb Delimiter"
 msgstr ""
 
@@ -985,6 +1039,7 @@ msgstr ""
 #: inc/customizer.php:381
 #: inc/customizer.php:518
 #: inc/customizer.php:543
+#: inc/customizer.php:566
 msgid "Copyright Text"
 msgstr ""
 
@@ -992,6 +1047,7 @@ msgstr ""
 #: inc/customizer.php:391
 #: inc/customizer.php:163
 #: inc/customizer.php:188
+#: inc/customizer.php:195
 msgid "Show Back to Top Link"
 msgstr ""
 
@@ -999,6 +1055,7 @@ msgstr ""
 #: inc/customizer.php:181
 #: inc/customizer.php:220
 #: inc/customizer.php:245
+#: inc/customizer.php:280
 msgid "Color Scheme"
 msgstr ""
 
@@ -1010,6 +1067,7 @@ msgstr ""
 #: inc/customizer.php:206
 #: inc/customizer.php:249
 #: inc/customizer.php:274
+#: inc/customizer.php:309
 msgid "Header Background Color"
 msgstr ""
 
@@ -1017,6 +1075,7 @@ msgstr ""
 #: inc/customizer.php:208
 #: inc/customizer.php:251
 #: inc/customizer.php:276
+#: inc/customizer.php:311
 msgid "Primary Navigation Background Color"
 msgstr ""
 
@@ -1040,6 +1099,7 @@ msgstr ""
 #: inc/customizer.php:246
 #: inc/customizer.php:293
 #: inc/customizer.php:318
+#: inc/customizer.php:353
 msgid "Primary Color"
 msgstr ""
 
@@ -1047,6 +1107,7 @@ msgstr ""
 #: inc/customizer.php:248
 #: inc/customizer.php:295
 #: inc/customizer.php:320
+#: inc/customizer.php:355
 msgid "Secondary Color"
 msgstr ""
 
@@ -1054,6 +1115,7 @@ msgstr ""
 #: inc/customizer.php:250
 #: inc/customizer.php:297
 #: inc/customizer.php:322
+#: inc/customizer.php:357
 msgid "Action Color"
 msgstr ""
 
@@ -1065,6 +1127,7 @@ msgstr ""
 #: inc/customizer.php:254
 #: inc/customizer.php:301
 #: inc/customizer.php:326
+#: inc/customizer.php:361
 msgid "Default Button Color"
 msgstr ""
 
@@ -1072,6 +1135,7 @@ msgstr ""
 #: inc/customizer.php:224
 #: inc/customizer.php:271
 #: inc/customizer.php:296
+#: inc/customizer.php:331
 msgid "Page Masthead Text Color"
 msgstr ""
 
@@ -1079,6 +1143,7 @@ msgstr ""
 #: inc/customizer.php:217
 #: inc/customizer.php:264
 #: inc/customizer.php:289
+#: inc/customizer.php:324
 msgid "Footer Widgets Text Color"
 msgstr ""
 
@@ -1333,6 +1398,8 @@ msgstr ""
 #: inc/customizer.php:963
 #: inc/colors.php:442
 #: inc/colors.php:472
+#: inc/colors.php:562
+#: inc/customizer.php:223
 msgid "Default"
 msgstr ""
 
@@ -1412,12 +1479,14 @@ msgstr ""
 #: inc/defaults.php:13
 #: inc/defaults.php:14
 #: inc/defaults.php:28
+#: inc/defaults.php:32
 msgid "Posted on {post_date} by {post_author_posts_link}"
 msgstr ""
 
 #: inc/defaults.php:14
 #: inc/defaults.php:15
 #: inc/defaults.php:29
+#: inc/defaults.php:33
 msgid "This entry was posted in {post_categories} and tagged {post_tags}. Bookmark the {post_permalink}."
 msgstr ""
 
@@ -1457,6 +1526,7 @@ msgstr ""
 #: inc/extras.php:211
 #: inc/extras.php:209
 #: inc/extras.php:449
+#: inc/extras.php:335
 msgid "(more...)"
 msgstr ""
 
@@ -1493,6 +1563,7 @@ msgstr ""
 #: inc/extras.php:485
 #: inc/extras.php:442
 #: inc/extras.php:682
+#: inc/extras.php:568
 #, php-format
 msgid "Search Results for: %s"
 msgstr ""
@@ -1501,6 +1572,7 @@ msgstr ""
 #: inc/extras.php:536
 #: inc/extras.php:457
 #: inc/extras.php:697
+#: inc/extras.php:583
 msgid "404: Page Not Found"
 msgstr ""
 
@@ -1534,6 +1606,15 @@ msgstr ""
 #: inc/extras.php:986
 #: inc/extras.php:1000
 #: inc/extras.php:1012
+#: inc/extras.php:727
+#: inc/extras.php:749
+#: inc/extras.php:777
+#: inc/extras.php:788
+#: inc/extras.php:873
+#: inc/extras.php:887
+#: inc/extras.php:899
+#: patterns/header-03.php:39
+#: patterns/header-05.php:42
 msgid "Home"
 msgstr ""
 
@@ -1542,6 +1623,7 @@ msgstr ""
 #: inc/extras.php:758
 #: inc/extras.php:689
 #: inc/extras.php:929
+#: inc/extras.php:816
 #, php-format
 msgid "Posts Tagged: %s"
 msgstr ""
@@ -1551,6 +1633,7 @@ msgstr ""
 #: inc/extras.php:766
 #: inc/extras.php:697
 #: inc/extras.php:937
+#: inc/extras.php:824
 #, php-format
 msgid "Day: %s"
 msgstr ""
@@ -1560,6 +1643,7 @@ msgstr ""
 #: inc/extras.php:770
 #: inc/extras.php:701
 #: inc/extras.php:941
+#: inc/extras.php:828
 #, php-format
 msgid "Month: %s"
 msgstr ""
@@ -1569,6 +1653,7 @@ msgstr ""
 #: inc/extras.php:770
 #: inc/extras.php:701
 #: inc/extras.php:941
+#: inc/extras.php:828
 msgctxt "monthly archives date format"
 msgid "F Y"
 msgstr ""
@@ -1578,6 +1663,7 @@ msgstr ""
 #: inc/extras.php:774
 #: inc/extras.php:705
 #: inc/extras.php:945
+#: inc/extras.php:832
 #, php-format
 msgid "Year: %s"
 msgstr ""
@@ -1587,6 +1673,7 @@ msgstr ""
 #: inc/extras.php:774
 #: inc/extras.php:705
 #: inc/extras.php:945
+#: inc/extras.php:832
 msgctxt "yearly archives date format"
 msgid "Y"
 msgstr ""
@@ -1595,6 +1682,7 @@ msgstr ""
 #: inc/extras.php:777
 #: inc/extras.php:708
 #: inc/extras.php:948
+#: inc/extras.php:835
 msgid "Asides"
 msgstr ""
 
@@ -1602,6 +1690,7 @@ msgstr ""
 #: inc/extras.php:780
 #: inc/extras.php:711
 #: inc/extras.php:951
+#: inc/extras.php:838
 msgid "Galleries"
 msgstr ""
 
@@ -1609,6 +1698,7 @@ msgstr ""
 #: inc/extras.php:783
 #: inc/extras.php:714
 #: inc/extras.php:954
+#: inc/extras.php:841
 msgid "Images"
 msgstr ""
 
@@ -1616,6 +1706,7 @@ msgstr ""
 #: inc/extras.php:786
 #: inc/extras.php:717
 #: inc/extras.php:957
+#: inc/extras.php:844
 msgid "Videos"
 msgstr ""
 
@@ -1623,6 +1714,7 @@ msgstr ""
 #: inc/extras.php:789
 #: inc/extras.php:720
 #: inc/extras.php:960
+#: inc/extras.php:847
 msgid "Quotes"
 msgstr ""
 
@@ -1630,6 +1722,7 @@ msgstr ""
 #: inc/extras.php:795
 #: inc/extras.php:726
 #: inc/extras.php:966
+#: inc/extras.php:853
 msgid "Statuses"
 msgstr ""
 
@@ -1637,6 +1730,7 @@ msgstr ""
 #: inc/extras.php:798
 #: inc/extras.php:729
 #: inc/extras.php:969
+#: inc/extras.php:856
 msgid "Audios"
 msgstr ""
 
@@ -1644,6 +1738,7 @@ msgstr ""
 #: inc/extras.php:801
 #: inc/extras.php:732
 #: inc/extras.php:972
+#: inc/extras.php:859
 msgid "Chats"
 msgstr ""
 
@@ -1651,6 +1746,7 @@ msgstr ""
 #: inc/extras.php:807
 #: inc/extras.php:738
 #: inc/extras.php:978
+#: inc/extras.php:865
 msgid "Archives"
 msgstr ""
 
@@ -1658,6 +1754,7 @@ msgstr ""
 #: inc/extras.php:852
 #: inc/extras.php:783
 #: inc/extras.php:1023
+#: inc/extras.php:910
 msgid "Search Results For"
 msgstr ""
 
@@ -1669,6 +1766,8 @@ msgstr ""
 #: inc/extras.php:914
 #: inc/extras.php:1096
 #: inc/extras.php:1154
+#: inc/extras.php:983
+#: inc/extras.php:1041
 msgid ", "
 msgstr ""
 
@@ -1676,6 +1775,7 @@ msgstr ""
 #: inc/extras.php:964
 #: inc/extras.php:860
 #: inc/extras.php:1100
+#: inc/extras.php:987
 msgid "No Category"
 msgstr ""
 
@@ -1683,6 +1783,7 @@ msgstr ""
 #: inc/extras.php:982
 #: inc/extras.php:878
 #: inc/extras.php:1118
+#: inc/extras.php:1005
 msgid "No Comments"
 msgstr ""
 
@@ -1691,6 +1792,7 @@ msgstr ""
 #: inc/extras.php:985
 #: inc/extras.php:881
 #: inc/extras.php:1121
+#: inc/extras.php:1008
 #, php-format
 msgid "%s Comments"
 msgstr ""
@@ -1699,6 +1801,7 @@ msgstr ""
 #: inc/extras.php:987
 #: inc/extras.php:883
 #: inc/extras.php:1123
+#: inc/extras.php:1010
 msgid "1 Comment"
 msgstr ""
 
@@ -1706,6 +1809,7 @@ msgstr ""
 #: inc/extras.php:998
 #: inc/extras.php:894
 #: inc/extras.php:1134
+#: inc/extras.php:1021
 msgid "Comments Off"
 msgstr ""
 
@@ -1713,6 +1817,7 @@ msgstr ""
 #: inc/extras.php:1009
 #: inc/extras.php:905
 #: inc/extras.php:1145
+#: inc/extras.php:1032
 msgid "permalink"
 msgstr ""
 
@@ -1720,6 +1825,8 @@ msgstr ""
 #: inc/extras.php:1058
 #: inc/extras.php:954
 #: inc/extras.php:1194
+#: inc/editor-settings.php:212
+#: inc/extras.php:1099
 msgid "Banner Image"
 msgstr ""
 
@@ -1736,6 +1843,7 @@ msgid "Reset Password"
 msgstr ""
 
 #: inc/multi-post-thumbnails.php:149
+#: inc/multi-post-thumbnails.php:150
 #, php-format
 msgid "Set as %3$s"
 msgstr ""
@@ -1743,12 +1851,15 @@ msgstr ""
 #. translators: %s is the Banner Image label.
 #: inc/multi-post-thumbnails.php:382
 #: inc/multi-post-thumbnails.php:384
+#: inc/multi-post-thumbnails.php:404
+#: inc/multi-post-thumbnails.php:406
 #, php-format
 msgid "Set %s"
 msgstr ""
 
 #. translators: %s is the Banner Image label.
 #: inc/multi-post-thumbnails.php:401
+#: inc/multi-post-thumbnails.php:423
 #, php-format
 msgid "Remove %s"
 msgstr ""
@@ -1769,6 +1880,7 @@ msgstr ""
 #: inc/page_banners.php:60
 #: inc/page_banners.php:62
 #: inc/page_banners.php:59
+#: inc/editor-settings.php:76
 msgid "Show Page Banner"
 msgstr ""
 
@@ -1834,6 +1946,7 @@ msgstr ""
 #: inc/page_banners.php:97
 #: inc/page_banners.php:99
 #: inc/page_banners.php:96
+#: inc/page_banners.php:79
 msgid "Page Bottom Banner"
 msgstr ""
 
@@ -1846,6 +1959,7 @@ msgstr ""
 #: inc/page_banners.php:106
 #: inc/page_banners.php:105
 #: inc/page_banners.php:104
+#: inc/page_banners.php:81
 msgid "Page Icon"
 msgstr ""
 
@@ -1867,6 +1981,7 @@ msgstr ""
 #: inc/page_banners.php:117
 #: inc/page_banners.php:116
 #: inc/page_banners.php:115
+#: inc/page_banners.php:82
 msgid "Show Icon in Banner Title"
 msgstr ""
 
@@ -1901,6 +2016,7 @@ msgstr ""
 #: inc/page_banners.php:152
 #: inc/page_banners.php:151
 #: inc/page_banners.php:138
+#: inc/page_banners.php:83
 msgid "Landing Page Membership Level"
 msgstr ""
 
@@ -1935,6 +2051,7 @@ msgstr ""
 #: inc/page_banners.php:183
 #: inc/page_banners.php:182
 #: inc/page_banners.php:169
+#: inc/page_banners.php:85
 msgid "Landing Page Membership Level Upsell"
 msgstr ""
 
@@ -2039,6 +2156,7 @@ msgstr ""
 #: inc/sidebars.php:407
 #: adminpages/sidebars.php:269
 #: inc/sidebars.php:203
+#: inc/sidebars.php:232
 msgid "Select Sidebar"
 msgstr ""
 
@@ -2049,6 +2167,7 @@ msgstr ""
 
 #: inc/sidebars.php:334
 #: inc/sidebars.php:114
+#: inc/editor-settings.php:159
 msgid "Custom Sidebar"
 msgstr ""
 
@@ -2056,58 +2175,72 @@ msgstr ""
 #: inc/sidebars.php:392
 #: inc/sidebars.php:180
 #: inc/sidebars.php:183
+#: inc/editor-settings.php:180
+#: inc/sidebars.php:209
+#: inc/sidebars.php:212
 msgid "Hide Page Children Menu in Sidebar"
 msgstr ""
 
 #: inc/sidebars.php:390
 #: inc/sidebars.php:181
+#: inc/sidebars.php:210
 msgid "The Membership Account page and its children do not display this menu."
 msgstr ""
 
 #: inc/sidebars.php:398
 #: inc/sidebars.php:191
+#: inc/sidebars.php:220
 #, php-format
 msgid "The current default sidebar is %s."
 msgstr ""
 
 #: inc/sidebars.php:402
 #: inc/sidebars.php:195
+#: inc/sidebars.php:224
 msgid "The current default sidebar is <strong>hidden</strong>."
 msgstr ""
 
 #: inc/sidebars.php:404
 #: inc/sidebars.php:198
+#: inc/sidebars.php:227
 msgid "Manage Custom Sidebars"
 msgstr ""
 
 #: inc/sidebars.php:405
 #: inc/sidebars.php:201
+#: inc/sidebars.php:230
 msgid "Select Custom Sidebar"
 msgstr ""
 
 #: inc/sidebars.php:422
 #: inc/sidebars.php:222
+#: inc/editor-settings.php:169
+#: inc/sidebars.php:251
 msgid "Default Sidebar Behavior"
 msgstr ""
 
 #: inc/sidebars.php:424
 #: adminpages/sidebars.php:288
 #: inc/sidebars.php:224
+#: inc/sidebars.php:253
 msgid "Default Sidebar"
 msgstr ""
 
 #: inc/sidebars.php:427
 #: inc/sidebars.php:227
+#: inc/sidebars.php:256
 msgid "Show Default Sidebar Above"
 msgstr ""
 
 #: inc/sidebars.php:428
 #: inc/sidebars.php:228
+#: inc/sidebars.php:257
 msgid "Show Default Sidebar Below"
 msgstr ""
 
 #: inc/sidebars.php:429
 #: inc/sidebars.php:229
+#: inc/sidebars.php:258
 msgid "Hide Default Sidebar"
 msgstr ""
 
@@ -2143,6 +2276,7 @@ msgstr ""
 
 #: inc/template-tags.php:139
 #: inc/template-tags.php:183
+#: inc/template-tags.php:176
 msgid "Page navigation"
 msgstr ""
 
@@ -2200,6 +2334,7 @@ msgid "Fluid Width"
 msgstr ""
 
 #. Template Name of the theme
+#: inc/layout.php:32
 msgid "Full Width"
 msgstr ""
 
@@ -2426,6 +2561,7 @@ msgstr ""
 
 #: adminpages/admin_header.php:24
 #: adminpages/admin_header.php:25
+#: adminpages/admin_header.php:26
 msgid "Memberlite Area Menu"
 msgstr ""
 
@@ -2433,6 +2569,7 @@ msgstr ""
 #: inc/admin.php:16
 #: adminpages/admin_header.php:27
 #: inc/admin.php:21
+#: adminpages/admin_header.php:28
 msgid "Dashboard"
 msgstr ""
 
@@ -2441,6 +2578,7 @@ msgstr ""
 #: adminpages/admin_header.php:29
 #: inc/admin.php:25
 #: inc/admin.php:29
+#: adminpages/admin_header.php:30
 msgid "Custom Sidebars"
 msgstr ""
 
@@ -2449,6 +2587,7 @@ msgstr ""
 #: adminpages/admin_header.php:30
 #: inc/admin.php:27
 #: inc/admin.php:31
+#: adminpages/admin_header.php:31
 msgid "Tools"
 msgstr ""
 
@@ -2654,6 +2793,7 @@ msgstr ""
 #: inc/admin.php:158
 #: inc/admin.php:342
 #: inc/admin.php:420
+#: inc/admin.php:431
 msgid "Documentation"
 msgstr ""
 
@@ -2661,6 +2801,7 @@ msgstr ""
 #: inc/admin.php:159
 #: inc/admin.php:343
 #: inc/admin.php:421
+#: inc/admin.php:432
 msgid "Get Support"
 msgstr ""
 
@@ -2669,6 +2810,7 @@ msgstr ""
 #: inc/admin.php:182
 #: inc/admin.php:366
 #: inc/admin.php:444
+#: inc/admin.php:455
 #, php-format
 msgid "Please <a href=\"%1$s\" target=\"_blank\" rel=\"noopener noreferrer\">submit a testimonial</a> to help others find %2$s. Thank you from the %3$s team!"
 msgstr ""
@@ -2679,6 +2821,7 @@ msgid "Customize settings for Memberlite. Visit the <a href=\"%s\" target=\"_bla
 msgstr ""
 
 #: inc/sidebars.php:206
+#: inc/sidebars.php:235
 msgid "Select"
 msgstr ""
 
@@ -2709,12 +2852,14 @@ msgstr ""
 #: functions.php:390
 #: functions.php:368
 #: inc/customizer.php:124
+#: functions.php:311
 msgid "Header"
 msgstr ""
 
 #: inc/customizer.php:127
 #: inc/customizer.php:129
 #: inc/customizer.php:142
+#: inc/customizer.php:149
 msgid "Posts & Archives"
 msgstr ""
 
@@ -2726,6 +2871,7 @@ msgstr ""
 #: adminpages/admin_header.php:28
 #: inc/admin.php:23
 #: inc/admin.php:27
+#: adminpages/admin_header.php:29
 msgid "Custom Menus"
 msgstr ""
 
@@ -2956,24 +3102,28 @@ msgstr ""
 #: functions.php:771
 #: functions.php:770
 #: functions.php:773
+#: inc/colors.php:809
 msgid "Buttons Hover"
 msgstr ""
 
 #: inc/admin.php:121
 #: inc/admin.php:305
 #: inc/admin.php:383
+#: inc/admin.php:394
 msgid "We have documentation and recommendations to help you get started with the Memberlite Theme."
 msgstr ""
 
 #: inc/admin.php:123
 #: inc/admin.php:307
 #: inc/admin.php:385
+#: inc/admin.php:396
 msgid "Click here to view the Memberlite dashboard."
 msgstr ""
 
 #: inc/admin.php:277
 #: inc/admin.php:461
 #: inc/admin.php:539
+#: inc/admin.php:550
 msgid "Manage with Memberlite"
 msgstr ""
 
@@ -3015,41 +3165,49 @@ msgstr ""
 
 #: inc/colors.php:446
 #: inc/colors.php:476
+#: inc/colors.php:566
 msgid "Evergreen"
 msgstr ""
 
 #: inc/colors.php:450
 #: inc/colors.php:480
+#: inc/colors.php:570
 msgid "Seaside Linen"
 msgstr ""
 
 #: inc/colors.php:454
 #: inc/colors.php:484
+#: inc/colors.php:574
 msgid "Deep Harbor"
 msgstr ""
 
 #: inc/colors.php:458
 #: inc/colors.php:488
+#: inc/colors.php:578
 msgid "Midnight Violet"
 msgstr ""
 
 #: inc/colors.php:466
 #: inc/colors.php:500
+#: inc/colors.php:590
 msgid "Soft Spruce"
 msgstr ""
 
 #: inc/colors.php:470
 #: inc/colors.php:504
+#: inc/colors.php:594
 msgid "Iron Ember"
 msgstr ""
 
 #: inc/colors.php:474
 #: inc/colors.php:508
+#: inc/colors.php:598
 msgid "Slate Harbor"
 msgstr ""
 
 #: inc/colors.php:507
 #: inc/colors.php:541
+#: inc/colors.php:643
 msgid "Custom"
 msgstr ""
 
@@ -3061,42 +3219,49 @@ msgstr ""
 #: inc/customizer.php:155
 #: inc/customizer.php:194
 #: inc/customizer.php:219
+#: inc/customizer.php:254
 msgid "Heading Font"
 msgstr ""
 
 #: inc/customizer.php:158
 #: inc/customizer.php:197
 #: inc/customizer.php:222
+#: inc/customizer.php:257
 msgid "Default font used for headings across the site (h1, h2, h3, etc.)."
 msgstr ""
 
 #: inc/customizer.php:162
 #: inc/customizer.php:201
 #: inc/customizer.php:226
+#: inc/customizer.php:261
 msgid "Content Font"
 msgstr ""
 
 #: inc/customizer.php:165
 #: inc/customizer.php:204
 #: inc/customizer.php:229
+#: inc/customizer.php:264
 msgid "Default font used for body text across the site (paragraphs, lists, etc.)."
 msgstr ""
 
 #: inc/customizer.php:186
 #: inc/customizer.php:225
 #: inc/customizer.php:250
+#: inc/customizer.php:285
 msgid "Choose a color scheme preset. Individual colors below will update to match. Customize any color to switch to \"Custom\" scheme."
 msgstr ""
 
 #: inc/customizer.php:195
 #: inc/customizer.php:234
 #: inc/customizer.php:259
+#: inc/customizer.php:294
 msgid "Override PMPro Colors"
 msgstr ""
 
 #: inc/customizer.php:198
 #: inc/customizer.php:237
 #: inc/customizer.php:262
+#: inc/customizer.php:297
 msgid "By default, PMPro will use colors from its own settings. Check this box to have PMPro use the colors you have chosen here instead."
 msgstr ""
 
@@ -3107,6 +3272,7 @@ msgstr ""
 #: inc/customizer.php:210
 #: inc/customizer.php:253
 #: inc/customizer.php:278
+#: inc/customizer.php:313
 msgid "Primary Navigation Link Color"
 msgstr ""
 
@@ -3117,42 +3283,49 @@ msgstr ""
 #: inc/customizer.php:220
 #: inc/customizer.php:267
 #: inc/customizer.php:292
+#: inc/customizer.php:327
 msgid "Masthead Colors"
 msgstr ""
 
 #: inc/customizer.php:227
 #: inc/customizer.php:274
 #: inc/customizer.php:299
+#: inc/customizer.php:334
 msgid "Site Colors"
 msgstr ""
 
 #: inc/customizer.php:240
 #: inc/customizer.php:287
 #: inc/customizer.php:312
+#: inc/customizer.php:347
 msgid "Default Text Color"
 msgstr ""
 
 #: inc/customizer.php:242
 #: inc/customizer.php:289
 #: inc/customizer.php:314
+#: inc/customizer.php:349
 msgid "Default Link Color"
 msgstr ""
 
 #: inc/customizer.php:244
 #: inc/customizer.php:291
 #: inc/customizer.php:316
+#: inc/customizer.php:351
 msgid "Post Meta Link Color"
 msgstr ""
 
 #: inc/customizer.php:251
 #: inc/customizer.php:298
 #: inc/customizer.php:323
+#: inc/customizer.php:358
 msgid "Used as an accent color for CTAs and decorations."
 msgstr ""
 
 #: inc/customizer.php:256
 #: inc/customizer.php:303
 #: inc/customizer.php:328
+#: inc/customizer.php:363
 msgid "Border Color"
 msgstr ""
 
@@ -3166,12 +3339,15 @@ msgstr ""
 #: inc/customizer.php:583
 #: inc/customizer.php:698
 #: inc/customizer.php:740
+#: inc/customizer.php:458
+#: inc/customizer.php:798
 msgid "Columns Ratio"
 msgstr ""
 
 #: inc/customizer.php:325
 #: inc/customizer.php:401
 #: inc/customizer.php:426
+#: inc/customizer.php:461
 msgid "Controls how the left and right sections of your header are sized. For example, \"4-8\" makes the left side narrower and the right side wider."
 msgstr ""
 
@@ -3181,18 +3357,21 @@ msgstr ""
 #: inc/customizer.php:582
 #: inc/customizer.php:444
 #: inc/customizer.php:611
+#: inc/customizer.php:467
 msgid "Other Settings"
 msgstr ""
 
 #: inc/customizer.php:357
 #: inc/customizer.php:438
 #: inc/customizer.php:463
+#: inc/customizer.php:486
 msgid "Enable Sticky Header"
 msgstr ""
 
 #: inc/customizer.php:359
 #: inc/customizer.php:440
 #: inc/customizer.php:465
+#: inc/customizer.php:488
 msgid "On scroll, the header menu will stick to the top of the screen."
 msgstr ""
 
@@ -3216,6 +3395,7 @@ msgstr ""
 #: inc/customizer.php:540
 #: inc/customizer.php:565
 #: inc/customizer.php:670
+#: inc/customizer.php:762
 msgid "Show Full Post Content"
 msgstr ""
 
@@ -3243,6 +3423,7 @@ msgstr ""
 #: inc/customizer.php:586
 #: inc/customizer.php:702
 #: inc/customizer.php:743
+#: inc/customizer.php:840
 msgid "Sets the content-to-sidebar width ratio. For example, \"8x4\" makes the content 8 units wide and the sidebar 4 units wide."
 msgstr ""
 
@@ -3252,24 +3433,29 @@ msgstr ""
 #: inc/customizer.php:656
 #: inc/customizer.php:601
 #: inc/customizer.php:755
+#: inc/customizer.php:652
+#: inc/customizer.php:735
 msgid "Navigation Settings"
 msgstr ""
 
 #: inc/customizer.php:447
 #: inc/customizer.php:575
 #: inc/customizer.php:604
+#: inc/customizer.php:655
 msgid "Show Prev/Next on Single Posts"
 msgstr ""
 
 #: inc/customizer.php:457
 #: inc/customizer.php:585
 #: inc/customizer.php:614
+#: inc/customizer.php:616
 msgid "Show Author Block on Posts"
 msgstr ""
 
 #: inc/customizer.php:474
 #: inc/customizer.php:602
 #: inc/customizer.php:631
+#: inc/customizer.php:633
 msgid "Featured Images"
 msgstr ""
 
@@ -3327,6 +3513,7 @@ msgstr ""
 
 #: inc/editor-settings.php:33
 #: inc/editor-settings.php:45
+#: inc/editor-settings.php:41
 msgid "Hide Footer"
 msgstr ""
 
@@ -3335,33 +3522,40 @@ msgid "Memberlite - About"
 msgstr ""
 
 #: inc/patterns.php:18
+#: inc/patterns.php:20
 msgid "Memberlite - Community"
 msgstr ""
 
 #: inc/patterns.php:19
+#: inc/patterns.php:21
 msgid "Memberlite - Content"
 msgstr ""
 
 #: inc/patterns.php:20
+#: inc/patterns.php:22
 msgid "Memberlite - Courses"
 msgstr ""
 
 #: inc/patterns.php:21
+#: inc/patterns.php:19
 msgid "Memberlite - Call to Action"
 msgstr ""
 
 #: inc/patterns.php:22
 #: inc/patterns.php:24
+#: inc/patterns.php:27
 msgid "Memberlite - Media"
 msgstr ""
 
 #: inc/patterns.php:23
 #: inc/patterns.php:25
+#: inc/patterns.php:30
 msgid "Memberlite - Team"
 msgstr ""
 
 #: inc/patterns.php:24
 #: inc/patterns.php:26
+#: inc/patterns.php:31
 msgid "Memberlite - Testimonials"
 msgstr ""
 
@@ -3371,6 +3565,8 @@ msgstr ""
 #: inc/patterns.php:56
 #: inc/patterns.php:57
 #: inc/patterns.php:58
+#: inc/patterns.php:62
+#: inc/patterns.php:63
 msgid "Patterns"
 msgstr ""
 
@@ -3676,10 +3872,12 @@ msgid "32px"
 msgstr ""
 
 #: inc/colors.php:492
+#: inc/colors.php:582
 msgid "Cocoa Ash"
 msgstr ""
 
 #: inc/colors.php:496
+#: inc/colors.php:586
 msgid "Gotham"
 msgstr ""
 
@@ -3859,10 +4057,12 @@ msgid "Navigation"
 msgstr ""
 
 #: functions.php:370
+#: functions.php:313
 msgid "Depending on your header variation, this is a spot you can put extra things."
 msgstr ""
 
 #: functions.php:382
+#: functions.php:325
 msgid "This is a legacy method to customize the site footer. For more control, create a new Footer Variation and assign it in Customizer settings."
 msgstr ""
 
@@ -3871,6 +4071,9 @@ msgstr ""
 #: inc/customizer.php:459
 #: inc/customizer.php:285
 #: inc/customizer.php:484
+#: functions.php:325
+#: inc/customizer.php:320
+#: inc/customizer.php:507
 msgid "Edit Footer Variations"
 msgstr ""
 
@@ -3886,21 +4089,28 @@ msgstr ""
 #: inc/customizer.php:477
 #: inc/admin.php:162
 #: inc/customizer.php:502
+#: inc/admin.php:164
+#: inc/customizer.php:525
 msgid "Global Footer"
 msgstr ""
 
 #: inc/admin.php:125
 #: inc/admin.php:163
+#: inc/admin.php:165
+#: inc/editor-settings.php:273
 msgid "Blog & Archives"
 msgstr ""
 
 #: inc/admin.php:126
 #: inc/admin.php:164
+#: inc/admin.php:166
+#: inc/editor-settings.php:276
 msgid "Single Posts"
 msgstr ""
 
 #: inc/admin.php:149
 #: inc/admin.php:130
+#: inc/admin.php:132
 msgid "1 page override"
 msgstr ""
 
@@ -3908,21 +4118,25 @@ msgstr ""
 #. translators: %d: number of pages with this variation assigned via post meta override
 #: inc/admin.php:156
 #: inc/admin.php:137
+#: inc/admin.php:139
 #, php-format
 msgid "%d page overrides"
 msgstr ""
 
 #: inc/admin.php:174
 #: inc/admin.php:214
+#: inc/admin.php:216
 msgid "Used By"
 msgstr ""
 
 #: inc/admin.php:199
 #: inc/admin.php:278
+#: inc/admin.php:280
 msgid "Not assigned"
 msgstr ""
 
 #: inc/block-styles.php:21
+#: inc/block-styles.php:19
 msgid "Plain"
 msgstr ""
 
@@ -4052,31 +4266,37 @@ msgstr ""
 
 #: inc/customizer.php:170
 #: inc/customizer.php:195
+#: inc/customizer.php:202
 msgid "Back to Top Style"
 msgstr ""
 
 #: inc/customizer.php:174
 #: inc/customizer.php:199
+#: inc/customizer.php:206
 msgid "Default (inline link in footer)"
 msgstr ""
 
 #: inc/customizer.php:175
 #: inc/customizer.php:200
+#: inc/customizer.php:207
 msgid "Floating button (fixed position)"
 msgstr ""
 
 #: inc/customizer.php:177
 #: inc/customizer.php:202
+#: inc/customizer.php:209
 msgid "The inline link is only available if your site is using the default footer. Footer variations can be set in the \"Footer\" panel."
 msgstr ""
 
 #: inc/customizer.php:243
 #: inc/customizer.php:268
+#: inc/customizer.php:303
 msgid "Default Header Colors"
 msgstr ""
 
 #: inc/customizer.php:245
 #: inc/customizer.php:270
+#: inc/customizer.php:305
 msgid "These colors apply to the default header. Some header variations may not use every color. Colors changed directly in the block editor override these settings."
 msgstr ""
 
@@ -4084,16 +4304,20 @@ msgstr ""
 #: inc/customizer.php:372
 #: inc/customizer.php:272
 #: inc/customizer.php:397
+#: inc/customizer.php:307
+#: inc/customizer.php:432
 msgid "Edit Header Variations"
 msgstr ""
 
 #: inc/customizer.php:256
 #: inc/customizer.php:281
+#: inc/customizer.php:316
 msgid "Default Footer Colors"
 msgstr ""
 
 #: inc/customizer.php:258
 #: inc/customizer.php:283
+#: inc/customizer.php:318
 msgid "These colors apply to the default footer. Some footer variations may not use every color. Colors changed directly in the block editor override these settings."
 msgstr ""
 
@@ -4101,6 +4325,8 @@ msgstr ""
 #: inc/customizer.php:456
 #: inc/customizer.php:394
 #: inc/customizer.php:481
+#: inc/customizer.php:429
+#: inc/customizer.php:504
 msgid "Variation Settings"
 msgstr ""
 
@@ -4108,37 +4334,46 @@ msgstr ""
 #: inc/customizer.php:466
 #: inc/customizer.php:404
 #: inc/customizer.php:491
+#: inc/customizer.php:439
+#: inc/customizer.php:514
 msgid "— Default —"
 msgstr ""
 
 #: inc/customizer.php:384
 #: inc/admin.php:198
 #: inc/customizer.php:409
+#: inc/admin.php:200
+#: inc/customizer.php:444
 msgid "Global Header"
 msgstr ""
 
 #: inc/customizer.php:389
 #: inc/customizer.php:414
+#: inc/customizer.php:449
 msgid "Choose which header variation to display across the site."
 msgstr ""
 
 #: inc/customizer.php:393
 #: inc/customizer.php:418
+#: inc/customizer.php:453
 msgid "Default Header Settings"
 msgstr ""
 
 #: inc/customizer.php:472
 #: inc/customizer.php:497
+#: inc/customizer.php:520
 msgid "— Use Global Footer —"
 msgstr ""
 
 #: inc/customizer.php:482
 #: inc/customizer.php:507
+#: inc/customizer.php:530
 msgid "Choose which footer variation to display across the site."
 msgstr ""
 
 #: inc/customizer.php:486
 #: inc/customizer.php:511
+#: inc/customizer.php:534
 msgid "Blog & Archives Footer"
 msgstr ""
 
@@ -4148,6 +4383,7 @@ msgstr ""
 
 #: inc/customizer.php:495
 #: inc/customizer.php:520
+#: inc/customizer.php:543
 msgid "Single Post Footer"
 msgstr ""
 
@@ -4157,43 +4393,52 @@ msgstr ""
 
 #: inc/customizer.php:504
 #: inc/customizer.php:529
+#: inc/customizer.php:552
 msgid "Pages Footer"
 msgstr ""
 
 #: inc/customizer.php:509
 #: inc/customizer.php:534
+#: inc/customizer.php:557
 msgid "Choose which footer variation to display on your pages."
 msgstr ""
 
 #: inc/customizer.php:513
 #: inc/customizer.php:538
+#: inc/customizer.php:561
 msgid "Default Footer Settings"
 msgstr ""
 
 #: inc/editor-settings.php:33
+#: inc/editor-settings.php:31
 msgid "Select Header"
 msgstr ""
 
 #: inc/editor-settings.php:56
+#: inc/editor-settings.php:50
 msgid "Select Footer"
 msgstr ""
 
 #: inc/editor-settings.php:144
+#: inc/editor-settings.php:398
 msgid "— No Override —"
 msgstr ""
 
 #. translators: %s: Post type singular name, e.g. "Post", "Page".
 #: inc/extras.php:1000
 #: inc/extras.php:1240
+#: inc/extras.php:1144
 #, php-format
 msgid "%s"
 msgstr ""
 
 #: inc/patterns.php:22
+#: inc/patterns.php:24
 msgid "Memberlite - Footer Variations"
 msgstr ""
 
 #: inc/patterns.php:23
+#: inc/patterns.php:25
 msgid "Memberlite - Header Variations"
 msgstr ""
 
@@ -4202,6 +4447,7 @@ msgid "Edit Header"
 msgstr ""
 
 #: inc/variations.php:410
+#: inc/variations.php:414
 msgid "Edit Footer"
 msgstr ""
 
@@ -4281,11 +4527,16 @@ msgstr ""
 #: patterns/footer-07.php:30
 #: patterns/footer-08.php:59
 #: patterns/footer-04.php:81
+#: patterns/header-03.php:51
+#: patterns/header-05.php:70
 msgid "Blog"
 msgstr ""
 
 #: patterns/footer-02.php:36
 #: patterns/footer-07.php:31
+#: patterns/header-03.php:55
+#: patterns/header-05.php:74
+#: patterns/signature-intro-hero.php:30
 msgid "Contact"
 msgstr ""
 
@@ -4310,6 +4561,11 @@ msgstr ""
 #: patterns/footer-06.php:105
 #: patterns/footer-08.php:38
 #: patterns/footer-04.php:37
+#: patterns/accordion-cover-with-cta.php:31
+#: patterns/features-grid-with-icons.php:109
+#: patterns/hero-with-trust-bar.php:30
+#: patterns/membership-call-to-action.php:24
+#: patterns/section-with-image-and-three-features.php:66
 msgid "Join Now"
 msgstr ""
 
@@ -4340,6 +4596,7 @@ msgstr ""
 #: patterns/footer-04.php:51
 #: patterns/footer-08.php:76
 #: patterns/footer-04.php:57
+#: patterns/accordion-content-with-cta.php:30
 msgid "Contact Us"
 msgstr ""
 
@@ -4377,6 +4634,7 @@ msgstr ""
 #: patterns/footer-06.php:124
 #: patterns/footer-08.php:58
 #: patterns/footer-04.php:80
+#: patterns/community-cta-with-gallery.php:17
 msgid "Community"
 msgstr ""
 
@@ -4471,6 +4729,7 @@ msgid "2,500+"
 msgstr ""
 
 #: patterns/footer-06.php:30
+#: patterns/organization-stats.php:29
 msgid "Active Members"
 msgstr ""
 
@@ -4500,6 +4759,7 @@ msgstr ""
 
 #: patterns/footer-06.php:99
 #: patterns/footer-08.php:32
+#: patterns/header-03.php:47
 msgid "Membership"
 msgstr ""
 
@@ -4715,6 +4975,7 @@ msgid "It will not delete any posts, pages, navigation menus, header variations,
 msgstr ""
 
 #: inc/admin.php:365
+#: inc/admin.php:377
 msgid "Invalid notice."
 msgstr ""
 
@@ -4723,24 +4984,29 @@ msgid "Memberlite automatically copied your parent theme settings (colors, fonts
 msgstr ""
 
 #: inc/customizer.php:162
+#: inc/customizer.php:169
 msgid "Other Post Types"
 msgstr ""
 
 #. translators: %s: plural label for the post type, e.g. "Courses"
 #: inc/customizer.php:173
+#: inc/customizer.php:180
 #, php-format
 msgid "%s Layout"
 msgstr ""
 
 #: inc/customizer.php:516
+#: inc/customizer.php:539
 msgid "Choose which footer variation to display on your blog and post archives. Includes custom post types."
 msgstr ""
 
 #: inc/customizer.php:525
+#: inc/customizer.php:548
 msgid "Choose which footer variation to display on the single post view. Includes custom post types."
 msgstr ""
 
 #: inc/customizer.php:563
+#: inc/customizer.php:611
 msgid "Choose how posts are displayed on your blog and archive pages."
 msgstr ""
 
@@ -4749,14 +5015,17 @@ msgid "Choose sidebar placement for your blog, archive pages, and single posts."
 msgstr ""
 
 #: inc/customizer.php:657
+#: inc/customizer.php:671
 msgid "Inherit from Posts & Archives"
 msgstr ""
 
 #: inc/customizer.php:660
+#: inc/customizer.php:674
 msgid "When checked, this post type uses the layout settings from Posts & Archives. Uncheck to control it separately."
 msgstr ""
 
 #: inc/customizer.php:668
+#: inc/customizer.php:706
 msgid "Choose how posts are displayed on archive pages."
 msgstr ""
 
@@ -4766,4 +5035,1806 @@ msgstr ""
 
 #: inc/customizer.php:682
 msgid "Choose sidebar placement for single posts."
+msgstr ""
+
+#: adminpages/admin_header.php:32
+#: inc/admin.php:33
+msgid "Alerts"
+msgstr ""
+
+#: adminpages/alerts.php:45
+msgid "Memberlite Alerts"
+msgstr ""
+
+#: adminpages/alerts.php:46
+msgid "Memberlite checks your site for things to review, such as content an update changed or settings that are no longer used. Each alert updates as you fix what it lists."
+msgstr ""
+
+#. translators: 1: Alert title, 2: Number of items fixed, 3: Number of items still listed.
+#: adminpages/alerts.php:61
+#, php-format
+msgid "Ran the fix for \"%1$s\". Fixed: %2$s. Still listed: %3$s."
+msgstr ""
+
+#. translators: %s: Alert title.
+#: adminpages/alerts.php:65
+#, php-format
+msgid "Dismissed \"%s\". It will come back if Memberlite finds something it didn't list."
+msgstr ""
+
+#. translators: %s: Alert title.
+#: adminpages/alerts.php:69
+#, php-format
+msgid "Restored \"%s\"."
+msgstr ""
+
+#: adminpages/alerts.php:82
+msgid "There are no alerts for this site."
+msgstr ""
+
+#: adminpages/alerts.php:120
+msgid "Needs attention"
+msgstr ""
+
+#: adminpages/alerts.php:121
+msgid "Dismissed"
+msgstr ""
+
+#: adminpages/alerts.php:122
+msgid "Resolved"
+msgstr ""
+
+#. translators: %s: Memberlite version.
+#: adminpages/alerts.php:146
+#, php-format
+msgid "Since Memberlite %s"
+msgstr ""
+
+#. translators: %s: Number of items not listed.
+#: adminpages/alerts.php:174
+#, php-format
+msgid "And %s more."
+msgid_plural "And %s more."
+msgstr[0] ""
+msgstr[1] ""
+
+#: adminpages/alerts.php:179
+msgid "Nothing needs attention."
+msgstr ""
+
+#: adminpages/alerts.php:192
+#: patterns/member-benefits-columns.php:30
+msgid "Learn more"
+msgstr ""
+
+#: adminpages/alerts.php:195
+msgid "Dismiss"
+msgstr ""
+
+#: adminpages/alerts.php:197
+msgid "Show again"
+msgstr ""
+
+#: inc/admin.php:368
+msgid "You do not have permission to dismiss this notice."
+msgstr ""
+
+#. translators: %s: Number of alerts.
+#: inc/alerts.php:313
+#, php-format
+msgid "%s alert"
+msgid_plural "%s alerts"
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/alerts.php:365
+msgid "You are not allowed to manage Memberlite alerts."
+msgstr ""
+
+#: inc/alerts.php:375
+#: inc/alerts.php:389
+msgid "Invalid alert request."
+msgstr ""
+
+#: inc/block-styles.php:20
+msgid "Horizontal Left"
+msgstr ""
+
+#: inc/block-styles.php:21
+msgid "Horizontal Center"
+msgstr ""
+
+#: inc/block-styles.php:24
+msgid "Arrow Fill"
+msgstr ""
+
+#: inc/block-styles.php:25
+msgid "Arrow Plain"
+msgstr ""
+
+#: inc/block-styles.php:28
+msgid "Faded Edges"
+msgstr ""
+
+#: inc/block-styles.php:29
+msgid "Double"
+msgstr ""
+
+#: inc/block-styles.php:30
+msgid "Diamond"
+msgstr ""
+
+#: inc/block-styles.php:33
+msgid "Filled Pill"
+msgstr ""
+
+#: inc/block-styles.php:34
+msgid "Filled Sharp"
+msgstr ""
+
+#: inc/block-styles.php:35
+msgid "Icon Round"
+msgstr ""
+
+#: inc/block-styles.php:36
+msgid "Icon Square"
+msgstr ""
+
+#: inc/block-styles.php:39
+msgid "Button"
+msgstr ""
+
+#: inc/block-styles.php:42
+msgid "Scroll Indicator"
+msgstr ""
+
+#: inc/block-styles.php:43
+msgid "Slant: Bottom Right"
+msgstr ""
+
+#: inc/block-styles.php:44
+msgid "Slant: Bottom Left"
+msgstr ""
+
+#: inc/block-styles.php:47
+msgid "Caret"
+msgstr ""
+
+#: inc/block-styles.php:52
+msgid "Rule"
+msgstr ""
+
+#: inc/block-styles.php:56
+msgid "Podcast"
+msgstr ""
+
+#: inc/block-styles.php:57
+msgid "Video"
+msgstr ""
+
+#: inc/block-styles.php:60
+#: inc/block-styles.php:63
+#: inc/block-styles.php:66
+#: inc/block-styles.php:69
+#: inc/block-styles.php:72
+msgid "Card"
+msgstr ""
+
+#: inc/colors.php:602
+msgid "Neon Indigo"
+msgstr ""
+
+#: inc/colors.php:606
+msgid "Cobalt Current"
+msgstr ""
+
+#: inc/colors.php:610
+msgid "Rosewood"
+msgstr ""
+
+#: inc/customizer.php:133
+msgid "Your header image is scaled to cover the header area and centered, so it does not need to match the suggested size exactly. A wide image around an 8:1 ratio works best &mdash; taller images are cropped at the top and bottom, and narrower ones are cropped at the sides."
+msgstr ""
+
+#: inc/customizer.php:219
+msgid "Button Style"
+msgstr ""
+
+#: inc/customizer.php:224
+msgid "Sharp"
+msgstr ""
+
+#: inc/customizer.php:225
+msgid "Pill"
+msgstr ""
+
+#: inc/customizer.php:227
+msgid "Applies to buttons site-wide. Border radius or padding customized on an individual button block in the editor will override this setting for that button."
+msgstr ""
+
+#: inc/customizer.php:235
+msgid "Override PMPro Button Style"
+msgstr ""
+
+#: inc/customizer.php:238
+msgid "By default, PMPro buttons use their own border radius. Check this box to have PMPro buttons match the Button Style chosen above instead. Does not apply to High Contrast or Minimal style variations."
+msgstr ""
+
+#: inc/customizer.php:586
+#: inc/customizer.php:727
+#: inc/editor-settings.php:149
+msgid "Layout"
+msgstr ""
+
+#: inc/customizer.php:589
+msgid "Default Single Post Layout"
+msgstr ""
+
+#: inc/customizer.php:590
+msgid "Used on single posts unless a post picks its own layout in the editor."
+msgstr ""
+
+#: inc/customizer.php:591
+msgid "Single Post Columns Ratio"
+msgstr ""
+
+#: inc/customizer.php:595
+msgid "Default Blog & Archive Layout"
+msgstr ""
+
+#: inc/customizer.php:596
+msgid "Used on the blog, category, tag, date and author pages."
+msgstr ""
+
+#: inc/customizer.php:597
+msgid "Blog & Archive Columns Ratio"
+msgstr ""
+
+#: inc/customizer.php:601
+msgid "Search Results Layout"
+msgstr ""
+
+#: inc/customizer.php:602
+msgid "Search Results Columns Ratio"
+msgstr ""
+
+#: inc/customizer.php:606
+msgid "Content"
+msgstr ""
+
+#: inc/customizer.php:609
+#: inc/customizer.php:703
+msgid "Archive Display"
+msgstr ""
+
+#. translators: %s: singular label for the post type, e.g. "Course"
+#: inc/customizer.php:680
+#, php-format
+msgid "Default Single %s Layout"
+msgstr ""
+
+#: inc/customizer.php:683
+msgid "Used on single items unless an item picks its own layout in the editor."
+msgstr ""
+
+#. translators: %s: singular label for the post type, e.g. "Course"
+#: inc/customizer.php:685
+#, php-format
+msgid "Single %s Columns Ratio"
+msgstr ""
+
+#. translators: %s: singular label for the post type, e.g. "Course"
+#: inc/customizer.php:692
+#, php-format
+msgid "Default %s Archive Layout"
+msgstr ""
+
+#: inc/customizer.php:695
+msgid "Used on the archive page and its category and tag pages."
+msgstr ""
+
+#. translators: %s: singular label for the post type, e.g. "Course"
+#: inc/customizer.php:697
+#, php-format
+msgid "%s Archive Columns Ratio"
+msgstr ""
+
+#: inc/customizer.php:730
+msgid "Default Page Layout"
+msgstr ""
+
+#: inc/customizer.php:731
+msgid "Used on every page unless it picks its own layout in the editor. Your homepage uses Contained unless you pick one for it."
+msgstr ""
+
+#: inc/customizer.php:764
+msgid "Show Posts in a Grid"
+msgstr ""
+
+#: inc/editor-settings.php:85
+msgid "Hide Page Title"
+msgstr ""
+
+#: inc/editor-settings.php:94
+msgid "Hide Page Breadcrumbs"
+msgstr ""
+
+#: inc/editor-settings.php:103
+msgid "Masthead Text Alignment"
+msgstr ""
+
+#. translators: %s: plural label for the post type, e.g. "Courses"
+#: inc/editor-settings.php:280
+#, php-format
+msgid "Single %s"
+msgstr ""
+
+#: inc/editor-settings.php:296
+msgid "— None —"
+msgstr ""
+
+#: inc/layout.php:30
+msgid "Narrow"
+msgstr ""
+
+#: inc/layout.php:31
+msgid "Contained"
+msgstr ""
+
+#. translators: %s: Page template file.
+#: inc/layout.php:591
+#, php-format
+msgid "%s, will go back to the default template"
+msgstr ""
+
+#. translators: 1: Page template file, 2: Layout name.
+#: inc/layout.php:594
+#, php-format
+msgid "%1$s, will keep its %2$s layout"
+msgstr ""
+
+#. translators: 1: Page template file, 2: Layout name.
+#: inc/layout.php:597
+#, php-format
+msgid "%1$s, will use the %2$s layout"
+msgstr ""
+
+#: inc/layout.php:624
+msgid "Pages using removed page templates"
+msgstr ""
+
+#: inc/layout.php:625
+msgid "Memberlite 8.0 removed the Content/Sidebar, Sidebar/Content, Narrow Width, Full Width, Fluid Width and Landing Page templates. Layout is now set in the block editor's Layout panel. These pages still use one of the removed templates, which usually means they were imported or restored from an older site. Until they move, saving one of them from the classic editor or Quick Edit resets it to the default template."
+msgstr ""
+
+#: inc/layout.php:629
+msgid "Move pages to the Layout panel"
+msgstr ""
+
+#: inc/layout.php:631
+msgid "Each page gets its template's layout, unless it already has one, and goes back to the default template."
+msgstr ""
+
+#: inc/page_banners.php:78
+msgid "Banner Right Column"
+msgstr ""
+
+#: inc/page_banners.php:80
+msgid "Extra Banner Padding"
+msgstr ""
+
+#: inc/page_banners.php:84
+msgid "Landing Page Checkout Button Text"
+msgstr ""
+
+#: inc/page_banners.php:275
+msgid "Old page settings to move"
+msgstr ""
+
+#: inc/page_banners.php:276
+msgid "These pages have fields from the Memberlite Settings box that Memberlite 8.0 removed, which usually means they were imported or restored from an older site. Memberlite no longer shows these fields, and you can't see or edit them while they are hidden."
+msgstr ""
+
+#: inc/page_banners.php:280
+msgid "Move to custom fields"
+msgstr ""
+
+#: inc/page_banners.php:282
+msgid "Fields that were set become custom fields you can see and edit. Empty fields are deleted."
+msgstr ""
+
+#: inc/page_banners.php:287
+msgid "Page settings Memberlite no longer shows"
+msgstr ""
+
+#: inc/page_banners.php:288
+msgid "Memberlite 8.0 removed the Memberlite Settings box from the page editor, along with the Landing Page template, the banner description, right column, bottom banner, extra padding and page icon settings. Memberlite no longer shows them on your site. Anything these pages had set was kept as a custom field (memberlite_banner_desc, memberlite_banner_bottom, memberlite_landing_page_level and so on). To see or edit them, turn on Custom fields in the block editor's Preferences. To show them on your site again, use a code recipe. Delete the custom fields to clear this alert, or dismiss it."
+msgstr ""
+
+#: inc/patterns.php:18
+msgid "Memberlite - Accordion"
+msgstr ""
+
+#: inc/patterns.php:23
+msgid "Memberlite - Features"
+msgstr ""
+
+#: inc/patterns.php:26
+msgid "Memberlite - Hero"
+msgstr ""
+
+#: inc/patterns.php:28
+msgid "Memberlite - Pricing"
+msgstr ""
+
+#: inc/patterns.php:29
+msgid "Memberlite - Query Loops"
+msgstr ""
+
+#: inc/template-tags.php:77
+#: inc/template-tags.php:106
+msgid "Posts"
+msgstr ""
+
+#. translators: Hidden accessibility text.
+#: inc/template-tags.php:111
+msgid "Previous post:"
+msgstr ""
+
+#. translators: Hidden accessibility text.
+#: inc/template-tags.php:113
+msgid "Next post:"
+msgstr ""
+
+#. translators: Hidden accessibility text.
+#: inc/template-tags.php:181
+msgid "Previous page:"
+msgstr ""
+
+#. translators: Hidden accessibility text.
+#: inc/template-tags.php:186
+msgid "Next page:"
+msgstr ""
+
+#: patterns/about-the-founder.php:20
+msgid "Members join communities led by people they know, like, and trust. Your unique expertise can create real impact."
+msgstr ""
+
+#: patterns/about-the-founder.php:20
+msgid "There is a membership inside all of us."
+msgstr ""
+
+#: patterns/about-the-founder.php:23
+msgid "Sarah Mitchell is a community builder, consultant, and membership site creator with over 10 years of experience helping others succeed. She built this platform to share her knowledge and connect with members like you."
+msgstr ""
+
+#: patterns/about-the-founder.php:26
+msgid "She has helped hundreds of members achieve their goals through exclusive resources, a supportive community, and hands-on guidance that makes a real difference."
+msgstr ""
+
+#: patterns/about-the-founder.php:33
+msgid "Photo of the a female executive side profile of a woman with a white and black striped vest in a corporate setting."
+msgstr ""
+
+#: patterns/accordion-common-questions.php
+msgctxt "Pattern title"
+msgid "Common Questions Accordion"
+msgstr ""
+
+#: patterns/accordion-common-questions.php
+msgctxt "Pattern description"
+msgid "FAQ-style accordion inside a section with its own background color, distinct from the accordion heading and open-panel colors. Content is static and should be customized per site."
+msgstr ""
+
+#: patterns/accordion-common-questions.php:15
+msgid "Common Questions"
+msgstr ""
+
+#: patterns/accordion-common-questions.php:21
+msgid "How does the money back guarantee work?"
+msgstr ""
+
+#: patterns/accordion-common-questions.php:26
+msgid "If you're not satisfied with your membership, let us know within the first 30 days and we'll issue a full refund, no questions asked."
+msgstr ""
+
+#: patterns/accordion-common-questions.php:33
+msgid "Can I cancel my membership at any time?"
+msgstr ""
+
+#: patterns/accordion-common-questions.php:38
+msgid "Yes. You can cancel any time from your account page, and you'll keep full access through the end of your current billing period."
+msgstr ""
+
+#: patterns/accordion-common-questions.php:45
+msgid "What payment methods do you accept?"
+msgstr ""
+
+#: patterns/accordion-common-questions.php:50
+msgid "We accept all major credit cards as well as PayPal. Your payment details are processed securely and are never stored on our servers."
+msgstr ""
+
+#: patterns/accordion-content-with-cta.php
+msgctxt "Pattern title"
+msgid "FAQ Accordion With Content And CTA"
+msgstr ""
+
+#: patterns/accordion-content-with-cta.php
+msgctxt "Pattern description"
+msgid "Two-column FAQ layout with intro content and a CTA button on the left, and an accordion on the right. Content is static and should be customized per site."
+msgstr ""
+
+#: patterns/accordion-content-with-cta.php:17
+msgid "FAQ"
+msgstr ""
+
+#: patterns/accordion-content-with-cta.php:21
+msgid "Still Have Questions?"
+msgstr ""
+
+#: patterns/accordion-content-with-cta.php:25
+msgid "We've answered the questions new members ask most often here. Don't see yours? Reach out and we'll get back to you within one business day."
+msgstr ""
+
+#: patterns/accordion-content-with-cta.php:39
+msgid "How much does membership cost?"
+msgstr ""
+
+#: patterns/accordion-content-with-cta.php:44
+msgid "We offer monthly and annual plans to fit your budget, with a discount for paying yearly. You can view full pricing on our membership levels page."
+msgstr ""
+
+#: patterns/accordion-content-with-cta.php:51
+#: patterns/accordion-cover-with-cta.php:76
+msgid "Do you offer a free trial?"
+msgstr ""
+
+#: patterns/accordion-content-with-cta.php:56
+#: patterns/accordion-cover-with-cta.php:81
+msgid "Yes, new members get a 7-day free trial with full access to member-only content before your card is ever charged."
+msgstr ""
+
+#: patterns/accordion-content-with-cta.php:63
+#: patterns/accordion-cover-with-cta.php:64
+msgid "Can I upgrade or downgrade my plan?"
+msgstr ""
+
+#: patterns/accordion-content-with-cta.php:68
+#: patterns/accordion-cover-with-cta.php:69
+msgid "Absolutely. You can change your membership level any time from your account dashboard, and your billing will adjust automatically."
+msgstr ""
+
+#: patterns/accordion-content-with-cta.php:75
+msgid "What if I'm not happy with my membership?"
+msgstr ""
+
+#: patterns/accordion-content-with-cta.php:80
+msgid "We offer a 30-day money-back guarantee. If membership isn't the right fit, just reach out and we'll take care of a refund."
+msgstr ""
+
+#: patterns/accordion-cover-with-cta.php
+msgctxt "Pattern title"
+msgid "FAQ Accordion With Cover Image And CTA"
+msgstr ""
+
+#: patterns/accordion-cover-with-cta.php
+msgctxt "Pattern description"
+msgid "Full-width cover image section with intro content and a CTA button on the left, and a caret-style accordion on the right. Content is static and should be customized per site."
+msgstr ""
+
+#: patterns/accordion-cover-with-cta.php:18
+msgid "Community Benefits"
+msgstr ""
+
+#: patterns/accordion-cover-with-cta.php:22
+msgid "What You Need to Know About the Community"
+msgstr ""
+
+#: patterns/accordion-cover-with-cta.php:26
+msgid "We've pulled together the questions new members ask us most, so you know exactly what to expect before you join."
+msgstr ""
+
+#: patterns/accordion-cover-with-cta.php:40
+msgid "How active is the community forum area?"
+msgstr ""
+
+#: patterns/accordion-cover-with-cta.php:45
+msgid "Our community is extremely vibrant and engaging. You will always feel like this is a safe and active place to engage."
+msgstr ""
+
+#: patterns/accordion-cover-with-cta.php:52
+msgid "What do I get access to as a member?"
+msgstr ""
+
+#: patterns/accordion-cover-with-cta.php:57
+msgid "Members get full access to our private community, exclusive resources, and monthly live events, everything you need to get the most out of belonging."
+msgstr ""
+
+#: patterns/accordion-cover-with-cta.php:88
+msgid "How do I cancel if it's not for me?"
+msgstr ""
+
+#: patterns/accordion-cover-with-cta.php:93
+msgid "You can cancel any time from your account page. There are no long-term contracts, and you'll keep access through the end of your billing period."
+msgstr ""
+
+#: patterns/benefits-bar-with-icons.php
+msgctxt "Pattern title"
+msgid "Benefits Bar With Icons"
+msgstr ""
+
+#: patterns/benefits-bar-with-icons.php
+msgctxt "Pattern description"
+msgid "A full-width, four-column benefits bar highlighting key membership perks with icon badges. Icon badges use the Memberlite Font Awesome shortcode rather than the WordPress 7.0 Icon block, for compatibility with sites not yet on WordPress 7.0."
+msgstr ""
+
+#: patterns/benefits-bar-with-icons.php:23
+msgid "Member Deals"
+msgstr ""
+
+#: patterns/benefits-bar-with-icons.php:27
+msgid "Enjoy discounts and perks available only to members."
+msgstr ""
+
+#: patterns/benefits-bar-with-icons.php:41
+msgid "Secure Payments"
+msgstr ""
+
+#: patterns/benefits-bar-with-icons.php:45
+msgid "Your billing information is encrypted and always secure."
+msgstr ""
+
+#: patterns/benefits-bar-with-icons.php:59
+msgid "Active Community"
+msgstr ""
+
+#: patterns/benefits-bar-with-icons.php:63
+msgid "Connect with thousands of members who share your interests."
+msgstr ""
+
+#: patterns/benefits-bar-with-icons.php:77
+#: patterns/hero-with-trust-bar.php:52
+msgid "Cancel Anytime"
+msgstr ""
+
+#: patterns/benefits-bar-with-icons.php:81
+msgid "No contracts, no hassle. Manage your account whenever you like."
+msgstr ""
+
+#: patterns/board-of-directors.php:20
+msgid "Board of Directors"
+msgstr ""
+
+#: patterns/board-of-directors.php:24
+msgid "Meet the dedicated leaders guiding our organization's mission and strategic vision."
+msgstr ""
+
+#: patterns/board-of-directors.php:34
+msgid "Photo of a man in a red top with arms crossed."
+msgstr ""
+
+#: patterns/board-of-directors.php:42
+msgid "Board Chair"
+msgstr ""
+
+#: patterns/board-of-directors.php:50
+msgid "Photo of a professional woman."
+msgstr ""
+
+#: patterns/board-of-directors.php:58
+msgid "Vice Chair"
+msgstr ""
+
+#: patterns/board-of-directors.php:66
+msgid "Photo of a man with light eyes in a cap."
+msgstr ""
+
+#: patterns/board-of-directors.php:74
+msgid "Secretary"
+msgstr ""
+
+#: patterns/board-of-directors.php:82
+msgid "Photo of a woman with red lipstick and a red crop neck top."
+msgstr ""
+
+#: patterns/board-of-directors.php:90
+msgid "Treasurer"
+msgstr ""
+
+#: patterns/call-to-action-with-image.php:17
+msgid "Looking out from a wooden dock to water with trees and setting sun in the distance."
+msgstr ""
+
+#: patterns/call-to-action-with-image.php:23
+msgid "Join a Community Built for Your Success"
+msgstr ""
+
+#: patterns/call-to-action-with-image.php:27
+msgid "Get access to exclusive resources, connect with members who share your goals, and grow at your own pace. Our membership is designed for people like you who want to build something real without breaking the bank."
+msgstr ""
+
+#. translators: %1$s: opening bold tag, %2$s: closing bold tag
+#: patterns/call-to-action-with-image.php:32
+#, php-format
+msgid "%1$sNew Members Welcome%2$s: Apply Here"
+msgstr ""
+
+#: patterns/category-feature-boxes.php:16
+msgid "Explore Our Content"
+msgstr ""
+
+#: patterns/category-feature-boxes.php:26
+msgid "Industry News"
+msgstr ""
+
+#: patterns/category-feature-boxes.php:29
+msgid "The latest developments, trends, and analysis affecting our industry and members."
+msgstr ""
+
+#: patterns/category-feature-boxes.php:32
+msgid "Read Industry News →"
+msgstr ""
+
+#: patterns/category-feature-boxes.php:42
+msgid "Tips & Guides"
+msgstr ""
+
+#: patterns/category-feature-boxes.php:45
+msgid "Practical advice, how-to guides, and best practices to help you succeed in your work."
+msgstr ""
+
+#: patterns/category-feature-boxes.php:48
+msgid "Browse Guides →"
+msgstr ""
+
+#: patterns/category-feature-boxes.php:58
+msgid "Member Stories"
+msgstr ""
+
+#: patterns/category-feature-boxes.php:61
+msgid "Real stories from real members sharing their experiences, wins, and lessons learned."
+msgstr ""
+
+#: patterns/category-feature-boxes.php:64
+msgid "Read Stories →"
+msgstr ""
+
+#: patterns/community-cta-with-gallery.php
+msgctxt "Pattern title"
+msgid "Community CTA With Photo Gallery"
+msgstr ""
+
+#: patterns/community-cta-with-gallery.php
+msgctxt "Pattern description"
+msgid "Full-width banner with a heading, join button, and photo gallery grid. Uses the page masthead background/text pair rather than Primary/Secondary, since only the masthead colors are guaranteed to stay readable together across every color scheme. Content is static and should be customized per site."
+msgstr ""
+
+#: patterns/community-cta-with-gallery.php:21
+msgid "Find your people. Join the conversation."
+msgstr ""
+
+#: patterns/community-cta-with-gallery.php:28
+msgid "Join Us"
+msgstr ""
+
+#: patterns/community-cta-with-gallery.php:36
+msgid "Person smiling while talking with a group."
+msgstr ""
+
+#: patterns/community-cta-with-gallery.php:40
+#: patterns/community-cta-with-gallery.php:48
+msgid "Person working on a laptop at a desk."
+msgstr ""
+
+#: patterns/community-cta-with-gallery.php:44
+msgid "Two people reviewing notes together at a table."
+msgstr ""
+
+#: patterns/community-cta-with-gallery.php:52
+msgid "Person smiling in a casual indoor setting."
+msgstr ""
+
+#: patterns/community-cta-with-gallery.php:56
+msgid "Person smiling outdoors."
+msgstr ""
+
+#: patterns/community-stats-banner.php:25
+msgid "Community Members"
+msgstr ""
+
+#: patterns/community-stats-banner.php:39
+msgid "Discussions"
+msgstr ""
+
+#: patterns/community-stats-banner.php:53
+msgid "Live Events Hosted"
+msgstr ""
+
+#: patterns/community-stats-banner.php:67
+msgid "Shared Resources"
+msgstr ""
+
+#: patterns/content-feature-list-with-icons.php
+msgctxt "Pattern title"
+msgid "Feature List With Icons"
+msgstr ""
+
+#: patterns/content-feature-list-with-icons.php
+msgctxt "Pattern description"
+msgid "Gradient-framed card with a heading and a two-column list of icon feature callouts. Content is static and should be customized per site. Icon badges use the Memberlite Font Awesome shortcode rather than the WordPress 7.0 Icon block, for compatibility with sites not yet on WordPress 7.0."
+msgstr ""
+
+#: patterns/content-feature-list-with-icons.php:18
+msgid "Take our courses on the go. Learn wherever and whenever it's convenient."
+msgstr ""
+
+#: patterns/content-feature-list-with-icons.php:23
+msgid "Browse Courses"
+msgstr ""
+
+#: patterns/content-feature-list-with-icons.php:36
+msgid "Connect with the Community"
+msgstr ""
+
+#: patterns/content-feature-list-with-icons.php:40
+msgid "Join discussions, ask questions, and connect with other members between lessons."
+msgstr ""
+
+#: patterns/content-feature-list-with-icons.php:52
+msgid "Login Anywhere with Magic Links"
+msgstr ""
+
+#: patterns/content-feature-list-with-icons.php:56
+msgid "Skip the password. Click the link we email you and you're signed in securely from any device."
+msgstr ""
+
+#: patterns/content-feature-list-with-icons.php:68
+msgid "Learn on Desktop or Mobile"
+msgstr ""
+
+#: patterns/content-feature-list-with-icons.php:72
+msgid "Pick up right where you left off, whether you're at your desk or on the go."
+msgstr ""
+
+#: patterns/content-upgrade-1.php:22
+msgid "Get started for free."
+msgstr ""
+
+#: patterns/content-upgrade-1.php:25
+msgid "Start with our free resources to see if this community is right for you. No commitment required."
+msgstr ""
+
+#: patterns/content-upgrade-1.php:34
+msgid "Get Free Access"
+msgstr ""
+
+#: patterns/content-upgrade-2.php:16
+msgid "Member Resources"
+msgstr ""
+
+#: patterns/content-upgrade-2.php:19
+msgid "Notebook on a wooden desk with hands holding a pen writing."
+msgstr ""
+
+#: patterns/content-upgrade-2.php:22
+msgid "Download our free starter guide to see what membership is all about. Practical tips you can use right away, with no strings attached."
+msgstr ""
+
+#: patterns/content-upgrade-2.php:27
+msgid "Download Free Guide"
+msgstr ""
+
+#: patterns/content-upgrade-3.php:21
+msgid "Ready to Join Our Community?"
+msgstr ""
+
+#: patterns/content-upgrade-3.php:26
+msgid "Take the next step and become a member today. Get instant access to exclusive content, resources, and a community of people just like you who are building something meaningful."
+msgstr ""
+
+#: patterns/content-upgrade-3.php:31
+msgid "Become a Member"
+msgstr ""
+
+#: patterns/directory-browse-hero.php:20
+msgid "Connect With Members Like You"
+msgstr ""
+
+#: patterns/directory-browse-hero.php:23
+msgid "Our member directory makes it easy to find and connect with professionals in your field. Search by expertise, location, or interest to find your next collaborator, mentor, or friend."
+msgstr ""
+
+#: patterns/directory-browse-hero.php:28
+msgid "Browse the Directory"
+msgstr ""
+
+#: patterns/directory-browse-hero.php:31
+msgid "Update Your Profile"
+msgstr ""
+
+#: patterns/directory-browse-hero.php:44
+#: patterns/directory-browse-hero.php:47
+#: patterns/directory-browse-hero.php:54
+#: patterns/directory-browse-hero.php:57
+#: patterns/directory-browse-hero.php:64
+#: patterns/directory-browse-hero.php:67
+msgid "Member photo."
+msgstr ""
+
+#: patterns/featured-box-with-photo-grid.php:22
+msgid "Join Our Member Community"
+msgstr ""
+
+#: patterns/featured-box-with-photo-grid.php:25
+msgid "Connect with members who share your goals. Get support, share wins, and grow together at your own pace."
+msgstr ""
+
+#: patterns/featured-box-with-photo-grid.php:30
+msgid "Learn More About Membership"
+msgstr ""
+
+#: patterns/featured-box-with-photo-grid.php:43
+#: patterns/meet-the-team-1.php:34
+#: patterns/meet-the-team-2.php:32
+msgid "Photo of a smiling woman with long braided hair and arms crossed in front of her."
+msgstr ""
+
+#: patterns/featured-box-with-photo-grid.php:50
+#: patterns/meet-the-team-2.php:42
+msgid "Close up photo of a smiling man with dark hair on a blue."
+msgstr ""
+
+#: patterns/featured-box-with-photo-grid.php:57
+#: patterns/meet-the-team-1.php:54
+#: patterns/meet-the-team-2.php:52
+msgid "Photo of a blond woman with glowing sunlight behind her head wearing a black v-neck top."
+msgstr ""
+
+#: patterns/featured-box-with-photo-grid.php:64
+#: patterns/meet-the-team-1.php:64
+#: patterns/meet-the-team-2.php:62
+#: patterns/testimonials-grid-of-four.php:85
+msgid "Photo of a smiling man with arms crossed in front of him wearing a red top in front of a blank grey backdrop."
+msgstr ""
+
+#: patterns/featured-box-with-photo-grid.php:75
+msgid "Side profile photo of a man with light blue eyes and wearing a white cap."
+msgstr ""
+
+#: patterns/featured-box-with-photo-grid.php:82
+#: patterns/featured-testimonial.php:31
+msgid "Photo of a woman with red lipstick and a red crop neck top with long brown hair and a large smile."
+msgstr ""
+
+#: patterns/featured-box-with-photo-grid.php:89
+#: patterns/meet-the-team-2.php:72
+msgid "Photo of a man with thick black glasses and blond hair smiling and looking to the right."
+msgstr ""
+
+#: patterns/featured-box-with-photo-grid.php:96
+#: patterns/meet-the-team-2.php:82
+#: patterns/testimonials-grid-of-four.php:33
+#: patterns/testimonials-grid-of-two.php:33
+msgid "Photo of a smiling woman with short black curly hair and a white peasant style top standing in a clothing store."
+msgstr ""
+
+#: patterns/featured-testimonial.php:18
+msgid "Hear From Our Members"
+msgstr ""
+
+#: patterns/featured-testimonial.php:26
+msgid "This membership has been worth every penny. The exclusive resources helped me level up my skills, and the community keeps me motivated. I finally have a place where I belong with people who get it."
+msgstr ""
+
+#: patterns/featured-testimonial.php:34
+#: patterns/testimonials-grid-of-four.php:36
+#: patterns/testimonials-grid-of-two.php:36
+msgid "Premium Member"
+msgstr ""
+
+#: patterns/features-grid-with-icons.php:16
+msgid "What You Get as a Member"
+msgstr ""
+
+#: patterns/features-grid-with-icons.php:28
+msgid "Practical Resources"
+msgstr ""
+
+#: patterns/features-grid-with-icons.php:36
+msgid "Downloadable guides, templates, and step-by-step lessons you can use right away—updated regularly."
+msgstr ""
+
+#: patterns/features-grid-with-icons.php:48
+msgid "Real Support"
+msgstr ""
+
+#: patterns/features-grid-with-icons.php:56
+msgid "Get answers when you need them—through member Q&A, feedback, and guidance from people who understand your goals."
+msgstr ""
+
+#: patterns/features-grid-with-icons.php:72
+msgid "Member-Only Experiences"
+msgstr ""
+
+#: patterns/features-grid-with-icons.php:80
+msgid "Workshops, live sessions, and behind-the-scenes updates that help you stay consistent and make progress."
+msgstr ""
+
+#: patterns/features-grid-with-icons.php:92
+msgid "Flexible Access"
+msgstr ""
+
+#: patterns/features-grid-with-icons.php:100
+msgid "Choose the membership level that fits your needs. Upgrade, downgrade, or cancel anytime—no long-term commitment required."
+msgstr ""
+
+#: patterns/features-grid-with-icons.php:112
+#: patterns/section-with-image-and-three-features.php:69
+msgid "View Membership Levels"
+msgstr ""
+
+#: patterns/getting-started-content-banner.php
+msgctxt "Pattern title"
+msgid "Getting Started Content Banner"
+msgstr ""
+
+#: patterns/getting-started-content-banner.php
+msgctxt "Pattern description"
+msgid "A full-width banner inviting new or beginner members to a curated starting point, with a photo card and call to action."
+msgstr ""
+
+#: patterns/getting-started-content-banner.php:16
+msgid "New here? Let's get you started."
+msgstr ""
+
+#: patterns/getting-started-content-banner.php:20
+msgid "We've curated the perfect starting point just for you!"
+msgstr ""
+
+#: patterns/getting-started-content-banner.php:27
+msgid "Person opening a laptop at a desk, ready to get started."
+msgstr ""
+
+#: patterns/getting-started-content-banner.php:33
+msgid "Our most popular member content — quick-start guides, foundational reads, and can't-miss resources — is hand-picked to help new members find their footing fast."
+msgstr ""
+
+#: patterns/getting-started-content-banner.php:41
+msgid "No overwhelm, just the essentials to get you moving in the right direction."
+msgstr ""
+
+#: patterns/getting-started-content-banner.php:46
+msgid "Start Exploring"
+msgstr ""
+
+#: patterns/header-01.php:44
+msgid "Search"
+msgstr ""
+
+#: patterns/header-03.php:43
+#: patterns/header-05.php:50
+#: patterns/header-06.php:36
+msgid "About"
+msgstr ""
+
+#. translators: %1$s: opening bold tag, %2$s: closing bold tag
+#: patterns/header-05.php:20
+#, php-format
+msgid "%1$sFree trial available%2$s — No credit card required. Cancel anytime."
+msgstr ""
+
+#: patterns/header-05.php:46
+msgid "Shop"
+msgstr ""
+
+#: patterns/header-05.php:66
+msgid "Work"
+msgstr ""
+
+#: patterns/header-06.php:28
+msgid "Speakers"
+msgstr ""
+
+#: patterns/header-06.php:32
+msgid "Program"
+msgstr ""
+
+#: patterns/header-06.php:40
+msgid "News"
+msgstr ""
+
+#: patterns/header-06.php:46
+#: patterns/header-06.php:68
+#: patterns/hero-event-announcement.php:30
+msgid "Register Now"
+msgstr ""
+
+#: patterns/header-06.php:55
+msgid "The Annual Membership Summit"
+msgstr ""
+
+#: patterns/header-06.php:59
+msgid "Everything You Need to Launch, Grow, and Scale Your Membership"
+msgstr ""
+
+#: patterns/header-06.php:63
+msgid "November 10–14, 2026"
+msgstr ""
+
+#: patterns/header-06.php:72
+msgid "Learn More"
+msgstr ""
+
+#: patterns/hero-event-announcement.php
+msgctxt "Pattern title"
+msgid "Event Announcement Hero"
+msgstr ""
+
+#: patterns/hero-event-announcement.php
+msgctxt "Pattern description"
+msgid "A full-width cover image hero announcing an upcoming event, conference, or gathering, with a register CTA and a sponsor logo bar."
+msgstr ""
+
+#: patterns/hero-event-announcement.php:17
+msgid "Downtown Conference Center | March 14–15"
+msgstr ""
+
+#: patterns/hero-event-announcement.php:21
+msgid "The Annual Member Summit"
+msgstr ""
+
+#: patterns/hero-event-announcement.php:25
+msgid "Join fellow members for two days of workshops, networking, and expert talks designed to help you get more out of your membership."
+msgstr ""
+
+#: patterns/hero-with-trust-bar.php
+msgctxt "Pattern title"
+msgid "Hero With Trust Bar"
+msgstr ""
+
+#: patterns/hero-with-trust-bar.php
+msgctxt "Pattern description"
+msgid "A full-width cover image hero with a rounded bottom edge, centered headline and CTAs, and a trust bar highlighting reviews and guarantees."
+msgstr ""
+
+#: patterns/hero-with-trust-bar.php:20
+msgid "Everything Your Members Need. All in One Place."
+msgstr ""
+
+#: patterns/hero-with-trust-bar.php:24
+msgid "Join a growing community of members getting exclusive content, tools, and support to help them succeed."
+msgstr ""
+
+#: patterns/hero-with-trust-bar.php:34
+msgid "View Membership Plans"
+msgstr ""
+
+#: patterns/hero-with-trust-bar.php:44
+msgid "500+ Reviews"
+msgstr ""
+
+#: patterns/hero-with-trust-bar.php:60
+msgid "30-Day Guarantee"
+msgstr ""
+
+#: patterns/homepage-hero.php:20
+msgid "Your Expertise Deserves a Membership Site"
+msgstr ""
+
+#: patterns/homepage-hero.php:23
+msgid "Build recurring revenue by turning your knowledge into a thriving membership community. Get access to exclusive content, connect with like-minded members, and grow at your own pace."
+msgstr ""
+
+#: patterns/homepage-hero.php:28
+msgid "Get Started Now"
+msgstr ""
+
+#: patterns/homepage-hero.php:37
+msgid "A group of professionals collaborating together at a table."
+msgstr ""
+
+#: patterns/instructor-profile.php:17
+msgid "Photo of an instructor in a professional setting."
+msgstr ""
+
+#: patterns/instructor-profile.php:28
+msgid "Lead Instructor & Course Creator"
+msgstr ""
+
+#: patterns/instructor-profile.php:33
+msgid "With over 15 years of industry experience, Sarah has helped thousands of students transform their careers. She brings a practical, hands-on approach to teaching that focuses on real-world applications."
+msgstr ""
+
+#: patterns/instructor-profile.php:44
+msgid "Ph.D., Stanford University"
+msgstr ""
+
+#: patterns/instructor-profile.php:54
+msgid "Industry Certified Expert"
+msgstr ""
+
+#: patterns/instructor-profile.php:66
+msgid "10,000+ Students Taught"
+msgstr ""
+
+#: patterns/instructor-profile.php:76
+msgid "4.9/5 Average Rating"
+msgstr ""
+
+#: patterns/latest-posts-grid.php:16
+msgid "Latest Articles"
+msgstr ""
+
+#: patterns/latest-posts-grid.php:20
+msgid "Stay up to date with the latest news, insights, and stories from our community."
+msgstr ""
+
+#: patterns/latest-posts-grid.php:40
+msgid "View All Articles"
+msgstr ""
+
+#: patterns/meet-the-team-1.php:20
+#: patterns/meet-the-team-2.php:20
+msgid "Meet the Team"
+msgstr ""
+
+#: patterns/meet-the-team-1.php:23
+#: patterns/meet-the-team-2.php:23
+msgid "The people behind the scenes who are here to support your membership journey."
+msgstr ""
+
+#: patterns/meet-the-team-1.php:44
+#: patterns/testimonials-grid-of-four.php:57
+#: patterns/testimonials-grid-of-two.php:57
+msgid "Close up photo of a smiling man with dark hair on a blue backdrop."
+msgstr ""
+
+#: patterns/member-benefits-columns.php
+msgctxt "Pattern title"
+msgid "Member Benefits Columns"
+msgstr ""
+
+#: patterns/member-benefits-columns.php
+msgctxt "Pattern description"
+msgid "An intro column with a heading, description, and CTA alongside three bordered benefit columns with icon badges. Icon badges use the Memberlite Font Awesome shortcode rather than the WordPress 7.0 Icon block, for compatibility with sites not yet on WordPress 7.0."
+msgstr ""
+
+#: patterns/member-benefits-columns.php:17
+msgid "Benefits"
+msgstr ""
+
+#: patterns/member-benefits-columns.php:21
+msgid "Why Members Choose Us"
+msgstr ""
+
+#: patterns/member-benefits-columns.php:25
+msgid "Your membership unlocks more than content — it's a community, a resource library, and support whenever you need it."
+msgstr ""
+
+#: patterns/member-benefits-columns.php:41
+msgid "Community Access"
+msgstr ""
+
+#: patterns/member-benefits-columns.php:45
+msgid "Connect with other members in our private discussion forums and events."
+msgstr ""
+
+#: patterns/member-benefits-columns.php:55
+#: patterns/section-with-image-and-three-features.php:32
+msgid "Exclusive Content"
+msgstr ""
+
+#: patterns/member-benefits-columns.php:59
+msgid "Get instant access to premium articles, videos, and downloadable resources."
+msgstr ""
+
+#: patterns/member-benefits-columns.php:69
+msgid "Priority Support"
+msgstr ""
+
+#: patterns/member-benefits-columns.php:73
+msgid "Get faster responses and dedicated help whenever you need it."
+msgstr ""
+
+#: patterns/member-spotlight.php:18
+msgid "Photo of a man with glasses and blonde hair."
+msgstr ""
+
+#. translators: %s: member name
+#: patterns/member-spotlight.php:25
+#, php-format
+msgid "Member Spotlight: %s"
+msgstr ""
+
+#: patterns/member-spotlight.php:29
+msgid "Premium Member Since 2021"
+msgstr ""
+
+#: patterns/member-spotlight.php:34
+msgid "David is a longtime community contributor who has helped onboard dozens of new members. His expertise in project management has made him an invaluable resource in our forums and mentorship program."
+msgstr ""
+
+#: patterns/member-spotlight.php:45
+msgid "\"Being part of this community has completely changed how I approach my work. The connections I've made here are priceless.\""
+msgstr ""
+
+#: patterns/member-spotlight.php:52
+msgid "Browse the Member Directory"
+msgstr ""
+
+#: patterns/membership-call-to-action.php:16
+msgid "Start Your Membership Today"
+msgstr ""
+
+#. translators: %1$s: opening link tag, %2$s: closing link tag
+#: patterns/membership-call-to-action.php:19
+#, php-format
+msgid "Get instant access to exclusive content, resources, and a community of members who share your goals. %1$sCompare membership levels%2$s to find the right fit."
+msgstr ""
+
+#: patterns/membership-call-to-action.php:27
+msgid "Compare Plans"
+msgstr ""
+
+#: patterns/newsletter-archive-preview.php:16
+msgid "Recent Issues"
+msgstr ""
+
+#: patterns/newsletter-archive-preview.php:20
+msgid "Members-only content"
+msgstr ""
+
+#: patterns/newsletter-archive-preview.php:36
+msgid "Subscribe to Unlock All Issues"
+msgstr ""
+
+#: patterns/organization-stats.php:16
+msgid "Our Impact by the Numbers"
+msgstr ""
+
+#: patterns/organization-stats.php:42
+msgid "Regional Chapters"
+msgstr ""
+
+#: patterns/organization-stats.php:55
+msgid "Annual Events"
+msgstr ""
+
+#: patterns/organization-stats.php:68
+msgid "Years of Service"
+msgstr ""
+
+#: patterns/podcast-episode-feature.php:18
+msgid "Podcast episode artwork."
+msgstr ""
+
+#: patterns/podcast-episode-feature.php:25
+msgid "Latest Episode: #47"
+msgstr ""
+
+#: patterns/podcast-episode-feature.php:29
+msgid "45 min"
+msgstr ""
+
+#: patterns/podcast-episode-feature.php:34
+msgid "Building a Sustainable Membership Business"
+msgstr ""
+
+#: patterns/podcast-episode-feature.php:38
+msgid "In this episode, we sit down with a membership site founder who grew from zero to 10,000 paying members in just two years. Learn the strategies and pivots that shaped their journey."
+msgstr ""
+
+#: patterns/podcast-episode-feature.php:43
+msgid "Listen Now"
+msgstr ""
+
+#: patterns/podcast-episode-feature.php:47
+msgid "All Episodes"
+msgstr ""
+
+#: patterns/podcast-subscribe-banner.php:21
+msgid "The Membership Insider Podcast"
+msgstr ""
+
+#: patterns/podcast-subscribe-banner.php:25
+msgid "Weekly conversations with membership site founders, community builders, and industry experts. New episodes every Tuesday."
+msgstr ""
+
+#: patterns/podcast-subscribe-banner.php:30
+msgid "Apple Podcasts"
+msgstr ""
+
+#: patterns/podcast-subscribe-banner.php:34
+msgid "Spotify"
+msgstr ""
+
+#: patterns/podcast-subscribe-banner.php:38
+msgid "RSS Feed"
+msgstr ""
+
+#: patterns/pricing-plan-rows.php
+msgctxt "Pattern title"
+msgid "Pricing Plan Rows"
+msgstr ""
+
+#: patterns/pricing-plan-rows.php
+msgctxt "Pattern description"
+msgid "A compact pricing band with a heading beside three stacked Paid Memberships Pro plan rows, the middle plan highlighted. Uses levels 1, 2, and 3; a lighter-weight pricing teaser for a homepage."
+msgstr ""
+
+#: patterns/pricing-plan-rows.php:18
+#: patterns/pricing-three-tiers-featured.php:16
+msgid "Membership Plans"
+msgstr ""
+
+#: patterns/pricing-plan-rows.php:22
+msgid "Learn Something New Every Week"
+msgstr ""
+
+#: patterns/pricing-plan-rows.php:26
+msgid "Start with a free week of every course. Stay monthly, or save with a yearly pass when you know it fits."
+msgstr ""
+
+#: patterns/pricing-plan-rows.php:39
+msgid "Try every course free for 7 days."
+msgstr ""
+
+#: patterns/pricing-plan-rows.php:46
+#: patterns/pricing-plan-rows.php:47
+#: patterns/pricing-plan-rows.php:68
+#: patterns/pricing-plan-rows.php:69
+#: patterns/pricing-plan-rows.php:90
+#: patterns/pricing-plan-rows.php:91
+msgid "Join"
+msgstr ""
+
+#: patterns/pricing-plan-rows.php:61
+msgid "Our best value for serious learners."
+msgstr ""
+
+#: patterns/pricing-plan-rows.php:83
+msgid "Full access, billed monthly."
+msgstr ""
+
+#: patterns/pricing-plan-rows.php:98
+#: patterns/pricing-three-tiers-featured.php:77
+msgid "Already a member?"
+msgstr ""
+
+#: patterns/pricing-plan-rows.php:98
+#: patterns/pricing-three-tiers-featured.php:77
+msgid "Log in"
+msgstr ""
+
+#: patterns/pricing-single-course-with-image.php
+msgctxt "Pattern title"
+msgid "Single Course Pricing With Image"
+msgstr ""
+
+#: patterns/pricing-single-course-with-image.php
+msgctxt "Pattern description"
+msgid "Single price callout on the right paired with a headline, image, and colored background on the left. Content is static and does not pull from PMPro membership levels, so it should be customized per site. Perk checkmarks use the Memberlite Font Awesome shortcode."
+msgstr ""
+
+#: patterns/pricing-single-course-with-image.php:17
+msgid "Invest in knowledge"
+msgstr ""
+
+#: patterns/pricing-single-course-with-image.php:21
+msgid "Everything you need in one package"
+msgstr ""
+
+#: patterns/pricing-single-course-with-image.php:25
+msgid "Person editing video footage on a laptop."
+msgstr ""
+
+#: patterns/pricing-single-course-with-image.php:32
+msgid "Video Editing Course"
+msgstr ""
+
+#: patterns/pricing-single-course-with-image.php:47
+msgid "Learn at your own pace."
+msgstr ""
+
+#: patterns/pricing-single-course-with-image.php:47
+msgid "Lifetime access revisit when you need a refresh."
+msgstr ""
+
+#: patterns/pricing-single-course-with-image.php:57
+msgid "Real project files included."
+msgstr ""
+
+#: patterns/pricing-single-course-with-image.php:57
+msgid "Practice with the same footage & assets used in the lessons."
+msgstr ""
+
+#: patterns/pricing-single-course-with-image.php:67
+msgid "Pro workflows, beginner friendly."
+msgstr ""
+
+#: patterns/pricing-single-course-with-image.php:67
+msgid "From first cut to published without getting lost."
+msgstr ""
+
+#: patterns/pricing-single-course-with-image.php:73
+#: patterns/pricing-three-tiers.php:22
+#: patterns/pricing-three-tiers.php:23
+#: patterns/pricing-three-tiers.php:36
+#: patterns/pricing-three-tiers.php:37
+#: patterns/pricing-three-tiers.php:50
+#: patterns/pricing-three-tiers.php:51
+#: patterns/pricing-two-tiers-with-guarantee.php:32
+#: patterns/pricing-two-tiers-with-guarantee.php:33
+#: patterns/pricing-two-tiers-with-guarantee.php:74
+#: patterns/pricing-two-tiers-with-guarantee.php:75
+msgid "Buy Now"
+msgstr ""
+
+#: patterns/pricing-three-tiers-featured.php
+msgctxt "Pattern title"
+msgid "Three Tier Pricing With Featured Plan"
+msgstr ""
+
+#: patterns/pricing-three-tiers-featured.php
+msgctxt "Pattern description"
+msgid "Three Paid Memberships Pro level cards with the middle plan highlighted as the best value. Uses levels 1, 2, and 3; each card shows the level name, price, checkout button, and level description."
+msgstr ""
+
+#: patterns/pricing-three-tiers-featured.php:20
+msgid "Pick the Plan That Fits How You Learn"
+msgstr ""
+
+#: patterns/pricing-three-tiers-featured.php:24
+msgid "Start with a free week, then keep learning monthly or save with a yearly pass."
+msgstr ""
+
+#: patterns/pricing-three-tiers-featured.php:36
+#: patterns/pricing-three-tiers-featured.php:37
+#: patterns/pricing-three-tiers-featured.php:54
+#: patterns/pricing-three-tiers-featured.php:55
+#: patterns/pricing-three-tiers-featured.php:68
+#: patterns/pricing-three-tiers-featured.php:69
+msgid "Choose Plan"
+msgstr ""
+
+#: patterns/pricing-three-tiers-featured.php:45
+msgid "Best Value"
+msgstr ""
+
+#: patterns/pricing-three-tiers.php
+msgctxt "Pattern title"
+msgid "Three Tier Pricing"
+msgstr ""
+
+#: patterns/pricing-three-tiers.php
+msgctxt "Pattern description"
+msgid "Three Paid Memberships Pro level cards of equal weight. Uses levels 1, 2, and 3; each card shows the level name, price, checkout button, and level description."
+msgstr ""
+
+#: patterns/pricing-two-tiers-with-guarantee.php
+msgctxt "Pattern title"
+msgid "Two Tier Pricing With Guarantee"
+msgstr ""
+
+#: patterns/pricing-two-tiers-with-guarantee.php
+msgctxt "Pattern description"
+msgid "Heading and subtitle above a two-column pricing table with a perks checklist, plus a money-back guarantee callout below. Content is static and does not pull from PMPro membership levels, so it should be customized per site. Perk checkmarks and the guarantee icon use the Memberlite Font Awesome shortcode rather than the WordPress Icon block, for compatibility with sites not yet on WordPress 7; the guarantee icon's circle badge uses the shortcode's own color/background/shape attributes."
+msgstr ""
+
+#: patterns/pricing-two-tiers-with-guarantee.php:16
+msgid "Your Next Skill Starts Here"
+msgstr ""
+
+#: patterns/pricing-two-tiers-with-guarantee.php:20
+msgid "Try it free for 7 days, then keep learning monthly or save with a yearly plan."
+msgstr ""
+
+#: patterns/pricing-two-tiers-with-guarantee.php:42
+msgid "Sample the full catalog"
+msgstr ""
+
+#: patterns/pricing-two-tiers-with-guarantee.php:52
+msgid "Start your first project"
+msgstr ""
+
+#: patterns/pricing-two-tiers-with-guarantee.php:62
+msgid "Join the community"
+msgstr ""
+
+#: patterns/pricing-two-tiers-with-guarantee.php:84
+msgid "Learn at your own pace"
+msgstr ""
+
+#: patterns/pricing-two-tiers-with-guarantee.php:94
+msgid "Real project files included"
+msgstr ""
+
+#: patterns/pricing-two-tiers-with-guarantee.php:104
+msgid "Beginner friendly"
+msgstr ""
+
+#: patterns/pricing-two-tiers-with-guarantee.php:117
+msgid "100% Money back guarantee"
+msgstr ""
+
+#: patterns/pricing-two-tiers-with-guarantee.php:122
+msgid "Not the right fit? Let us know within 30 days of joining and we'll refund you in full, no questions asked."
+msgstr ""
+
+#: patterns/section-with-image-and-three-features.php:16
+msgid "Everything You Need to Succeed"
+msgstr ""
+
+#: patterns/section-with-image-and-three-features.php:23
+msgid "Overhead shot of a desk with books, a laptop, glasses, coffee, photos, and someone writing in a notebook."
+msgstr ""
+
+#: patterns/section-with-image-and-three-features.php:35
+msgid "Access resources, guides, and tools available only to members."
+msgstr ""
+
+#: patterns/section-with-image-and-three-features.php:42
+msgid "Ongoing Support"
+msgstr ""
+
+#: patterns/section-with-image-and-three-features.php:45
+msgid "Get help from people who understand your journey."
+msgstr ""
+
+#: patterns/section-with-image-and-three-features.php:52
+msgid "Member Community"
+msgstr ""
+
+#: patterns/section-with-image-and-three-features.php:55
+msgid "Connect with like-minded people who share your goals."
+msgstr ""
+
+#: patterns/signature-intro-hero.php
+msgctxt "Pattern title"
+msgid "Signature Introduction Hero"
+msgstr ""
+
+#: patterns/signature-intro-hero.php
+msgctxt "Pattern description"
+msgid "A personal introduction hero with a script-style signature, headline, short bio, portrait, and CTAs. Good for one-person expert or coaching sites."
+msgstr ""
+
+#: patterns/signature-intro-hero.php:21
+msgid "Grow with guidance you can trust"
+msgstr ""
+
+#: patterns/signature-intro-hero.php:25
+msgid "I've spent the last decade helping members build better habits, gain clarity, and stay accountable through personalized guidance, exclusive resources, and a community that cheers you on."
+msgstr ""
+
+#: patterns/signature-intro-hero.php:34
+msgid "View Plans"
+msgstr ""
+
+#: patterns/signature-intro-hero.php:41
+msgid "Portrait of the site founder."
+msgstr ""
+
+#: patterns/sponsors-partners-grid.php
+msgctxt "Pattern title"
+msgid "Sponsors & Partners Logo Grid"
+msgstr ""
+
+#: patterns/sponsors-partners-grid.php
+msgctxt "Pattern description"
+msgid "A full-width section showcasing sponsor and partner organization logos in a grid, ideal for associations, nonprofits, and community sites."
+msgstr ""
+
+#: patterns/sponsors-partners-grid.php:16
+msgid "Sponsors & Partners"
+msgstr ""
+
+#: patterns/sponsors-partners-grid.php:20
+msgid "We're grateful to the organizations that support our mission and help make membership possible."
+msgstr ""
+
+#: patterns/sponsors-partners-grid.php:26
+#: patterns/sponsors-partners-grid.php:30
+#: patterns/sponsors-partners-grid.php:34
+#: patterns/sponsors-partners-grid.php:38
+#: patterns/sponsors-partners-grid.php:42
+#: patterns/sponsors-partners-grid.php:46
+#: patterns/sponsors-partners-grid.php:50
+#: patterns/sponsors-partners-grid.php:54
+#: patterns/sponsors-partners-grid.php:58
+#: patterns/sponsors-partners-grid.php:62
+#: patterns/sponsors-partners-grid.php:66
+#: patterns/sponsors-partners-grid.php:70
+msgid "Sponsor logo."
+msgstr ""
+
+#: patterns/testimonials-grid-of-four.php:16
+msgid "What Our Members Are Saying"
+msgstr ""
+
+#: patterns/testimonials-grid-of-four.php:28
+#: patterns/testimonials-grid-of-two.php:28
+msgid "This membership gives me exactly what I need without the fluff. The resources are practical, the community is supportive, and I can access everything on my own schedule. Worth every penny."
+msgstr ""
+
+#: patterns/testimonials-grid-of-four.php:52
+#: patterns/testimonials-grid-of-two.php:52
+msgid "I was skeptical at first, but this membership delivers real value. The exclusive content helped me grow my own business, and the member community has become my go-to support network."
+msgstr ""
+
+#: patterns/testimonials-grid-of-four.php:60
+#: patterns/testimonials-grid-of-two.php:60
+msgid "Member Since 2022"
+msgstr ""
+
+#: patterns/testimonials-grid-of-four.php:80
+msgid "The member community alone is worth the price. I have connected with people who truly understand what I am building. We support each other, share wins, and help solve problems together."
+msgstr ""
+
+#: patterns/testimonials-grid-of-four.php:88
+msgid "Founding Member"
+msgstr ""
+
+#: patterns/testimonials-grid-of-four.php:104
+msgid "As a nonprofit volunteer, I needed affordable resources I could trust. This membership gave me exactly that. Reliable tools, clear guidance, and a community that understands working with limited budgets."
+msgstr ""
+
+#: patterns/testimonials-grid-of-four.php:109
+msgid "Close up photo of smiling woman wearing a straw hat and black top."
+msgstr ""
+
+#: patterns/testimonials-grid-of-four.php:112
+msgid "Nonprofit Volunteer"
+msgstr ""
+
+#: patterns/testimonials-grid-of-two.php:16
+msgid "Praise From Our Members"
+msgstr ""
+
+#: patterns/three-column-benefits.php
+msgctxt "Pattern title"
+msgid "Three Column Benefits"
+msgstr ""
+
+#: patterns/three-column-benefits.php
+msgctxt "Pattern description"
+msgid "A dark full-width band with three centered icon, heading, and text columns highlighting membership benefits."
+msgstr ""
+
+#: patterns/three-column-benefits.php:21
+msgid "A Caring Community"
+msgstr ""
+
+#: patterns/three-column-benefits.php:25
+msgid "Connect with members who share your goals and celebrate your progress every step of the way."
+msgstr ""
+
+#: patterns/three-column-benefits.php:35
+msgid "Ongoing Conversation"
+msgstr ""
+
+#: patterns/three-column-benefits.php:39
+msgid "Ask questions, share feedback, and get real answers from the community and our team."
+msgstr ""
+
+#: patterns/three-column-benefits.php:49
+msgid "Proven Results"
+msgstr ""
+
+#: patterns/three-column-benefits.php:53
+msgid "Join hundreds of members who've used our resources to reach their goals and grow with confidence."
+msgstr ""
+
+#: shortcodes/subpagelist.php:58
+msgid "The thumbnail=\"icon\" option no longer shows page icons."
+msgstr ""
+
+#: theme.json
+msgctxt "Font family name"
+msgid "Default Heading Font"
+msgstr ""
+
+#: theme.json
+msgctxt "Font family name"
+msgid "Default Body Font"
 msgstr ""
