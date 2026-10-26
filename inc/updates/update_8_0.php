@@ -3,7 +3,7 @@
  * Memberlite 8.0 Update
  *
  * @package Memberlite
- * @since TBD
+ * @since 8.0
  */
 
 // Updates run before functions.php loads inc/layout.php and inc/page_banners.php.

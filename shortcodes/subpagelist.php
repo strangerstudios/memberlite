@@ -55,7 +55,7 @@ function memberlite_subpagelist_shortcode_handler( $atts, $content = null, $code
 
 	// Page icons were removed, so thumbnail="icon" shows no thumbnail.
 	if ( 'icon' === $thumbnail ) {
-		_deprecated_argument( 'memberlite_subpagelist', 'TBD', esc_html__( 'The thumbnail="icon" option no longer shows page icons.', 'memberlite' ) );
+		_deprecated_argument( 'memberlite_subpagelist', '8.0', esc_html__( 'The thumbnail="icon" option no longer shows page icons.', 'memberlite' ) );
 		$thumbnail = false;
 	}
 

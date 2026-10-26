@@ -89,7 +89,7 @@ if ( $should_render_masthead ) { ?>
 					/**
 					 * Filters the masthead title area.
 					 *
-					 * @since TBD Receives the default title and description markup instead of an empty string.
+					 * @since 8.0 Receives the default title and description markup instead of an empty string.
 					 *
 					 * @param string $memberlite_masthead_title Page title and description HTML, or '' when the page hides its title.
 					 */

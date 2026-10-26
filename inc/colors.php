@@ -462,7 +462,7 @@ function memberlite_get_slate_harbor_colors(): array {
  *
  * Deep indigo dark mode with neon cyan and magenta accents.
  *
- * @since TBD
+ * @since 8.0
  * @return array 17-color associative array.
  */
 function memberlite_get_neon_indigo_colors(): array {
@@ -492,7 +492,7 @@ function memberlite_get_neon_indigo_colors(): array {
  *
  * Deep navy dark mode with cobalt blue, lime green buttons, and an amber accent.
  *
- * @since TBD
+ * @since 8.0
  * @return array 17-color associative array.
  */
 function memberlite_get_cobalt_current_colors(): array {
@@ -522,7 +522,7 @@ function memberlite_get_cobalt_current_colors(): array {
  *
  * Soft blush pink and rosewood tones on a white site background.
  *
- * @since TBD
+ * @since 8.0
  * @return array 17-color associative array.
  */
 function memberlite_get_rosewood_colors(): array {
@@ -758,7 +758,7 @@ function memberlite_is_dark_color( string $hex_color ): bool {
  * palette colors added by a child theme or other filters unless Memberlite
  * defines the same slug.
  *
- * @since TBD
+ * @since 8.0
  *
  * @param WP_Theme_JSON $theme_json Theme JSON object.
  * @return WP_Theme_JSON Theme JSON object.

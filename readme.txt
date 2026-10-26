@@ -1,12 +1,12 @@
 === Memberlite ===
 Contributors: kimannwall, strangerstudios
 Requires at least: 6.4
-Tested up to: 6.9
+Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 7.1.2
+Stable tag: 8.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
-Tags: one-column, two-columns, left-sidebar, right-sidebar, flexible-header, custom-background, custom-colors, custom-header, custom-menu, custom-logo, editor-style, featured-images, footer-widgets, full-width-template, theme-options, threaded-comments, translation-ready, e-commerce
+Tags: one-column, two-columns, left-sidebar, right-sidebar, flexible-header, custom-background, custom-colors, custom-header, custom-menu, custom-logo, editor-style, featured-images, footer-widgets, theme-options, threaded-comments, translation-ready, e-commerce
 
 == Description ==
 =Build a Professional WordPress Membership Site=
@@ -91,6 +91,54 @@ Memberlite includes formatting for use with:
 [Install Events Manager »](https://wordpress.org/plugins/events-manager/)
 
 == Changelog ==
+
+= 8.0 - 2026-10-26 =
+
+Memberlite 8.0 replaces the layout page templates and the classic Memberlite Settings meta box with layout settings in the Customizer and block editor panels. Existing sites are migrated on update and keep their look, with the exceptions listed under NOTE below. Review Memberlite > Alerts after updating.
+
+* FEATURE: Layout settings: one layout model (Right Sidebar, Left Sidebar, Narrow, Contained, Full Width) for pages, posts, archives, search results and custom post types, set in the Customizer and per item in a new Layout panel in the block editor sidebar. #368 @kimcoleman
+* FEATURE: Removed the Content/Sidebar, Sidebar/Content, Narrow Width, Full Width, Fluid Width and Landing Page templates. Pages using them are moved to the matching layout on update. A child theme that ships its own copy of a template keeps it. #370 #376 @kimcoleman
+* FEATURE: Removed the classic Memberlite Settings meta box. Show/hide banner, title and breadcrumbs and masthead text alignment are in the block editor's Page Settings panel. The banner description, right column, bottom banner, extra padding, page icon and landing page fields are no longer shown; saved values are kept as custom fields, and code recipes to show them again are in the docs. #338 #376 @RachelRVasquez @kimcoleman
+* FEATURE: Added Memberlite > Alerts, which lists content an update changed or settings that are no longer used, with a "Learn more" link and a one-click fix where there is one. #375 #382 @kimcoleman
+* FEATURE: Moved the Banner Image setting from a meta box to a Banner Image panel in the block editor sidebar on every post type. #378 @kimcoleman
+* FEATURE: Starter site patterns: 20+ new block patterns with new pattern categories and site-type tags, and a design review of every pattern. #343 #355 @RachelRVasquez @kimcoleman
+* FEATURE: New color schemes and a distinct, readable action color for every scheme. #327 @RachelRVasquez
+* FEATURE: New block styles for several core blocks, and a Card block style for groups, columns, query loop items and the PMPro Single Level block that follows the PMPro card design. #329 #367 @RachelRVasquez @kimcoleman
+* FEATURE: New Customizer setting for global button styles. #333 @RachelRVasquez
+* FEATURE: New `background` and `shape` attributes for the `[fa]` shortcode, so icons can sit in a colored circle or rounded square. #331 @RachelRVasquez
+* ENHANCEMENT: Block pattern text is now translatable. #356 @kimcoleman
+* ENHANCEMENT: Improved accessibility of post, paging and page navigation: landmark labels and headings that match core, and hidden "Previous post:" / "Next post:" text on links. #352 @kimcoleman
+* ENHANCEMENT: The block editor color palette no longer hides Memberlite colors that match another color in the current scheme, and colors added by child themes, plugins and snippets now appear in it. #339 #346 #371 @RachelRVasquez @kimcoleman
+* ENHANCEMENT: The default block gap is now 30px (spacing 20) instead of 40px, so spacing in the editor matches the front end. #380 @kimcoleman
+* ENHANCEMENT: Removed the divider between parent menu links and their submenu toggle. #364 @kimcoleman
+* ENHANCEMENT: List markers line up with the text above them, and lists keep their indent inside groups. #362 @kimcoleman
+* ENHANCEMENT: Theme update checks fall back to cached update info and back off when the license server can't be reached, and the `memberlite_get_update_info_timeout` filter now takes effect. #372 #373 @kimcoleman
+* ENHANCEMENT: Per-CPT layout settings now apply to that post type's taxonomy archives. #349 @kimcoleman
+* SECURITY: Theme package downloads from the license server now use SSL verification. Removed `memberlite_http_request_args_for_update_info()`. #381 @kimcoleman
+* SECURITY: Added a nonce and capability check to dismissing the welcome notice. #377 @kimcoleman
+* BUG FIX: Fixed a fatal error when theme update info couldn't be fetched. #345 @flintfromthebasement
+* BUG FIX: Search results and 404 pages now use the global footer. #344 @flintfromthebasement
+* BUG FIX: Restored the `memberlite_get_banner_image` and `memberlite_banner_image_src` filters dropped in 7.0. #347 @kimcoleman
+* BUG FIX: Third-level sub-menus now grow to fit their items. #348 @kimcoleman
+* BUG FIX: Banner, breadcrumb and sidebar settings are no longer read from an unrelated post on category, tag and author archives. #359 @kimcoleman
+* BUG FIX: Restored the left sidebar layout on pages. #365 @kimcoleman
+* BUG FIX: Page navigation, the edit link and comments are contained on full-width pages. #366 @kimcoleman
+* BUG FIX: Fixed header background image cropping, its CSS sizing and the recommended size in the Customizer. #337 @kimcoleman
+* BUG FIX: Fixed "invisible" primary color against the site background in some schemes, and text and icon contrast in patterns across color schemes. #340 #342 @RachelRVasquez
+* BUG FIX: Default separators keep their spacing, and custom separator styles have the right width in the editor. #361 @kimcoleman
+* BUG FIX: Image blocks keep core's figure margin. #335 @RachelRVasquez
+* BUG FIX: An empty or invalid saved columns ratio falls back to the default instead of breaking the content and sidebar columns. #384 @kimcoleman
+* BUG FIX: Memberlite buttons and block buttons inside PMPro cards keep their text color. #385 @kimcoleman
+* BUG FIX: The document settings panel script only loads in the post editor, fixing a notice on Appearance > Widgets. #363 @kimcoleman
+* BUG FIX: Removed an unsupported prop from the masthead alignment control. #369 @kimcoleman
+* REFACTOR: Moved the theme.json color palette filter into `inc/colors.php`. #371 @kimcoleman
+* REFACTOR: Editor styles load with `add_editor_style()`; `memberlite_enqueue_block_assets()` is deprecated. #329 @RachelRVasquez
+* REFACTOR: `package-lock.json` is no longer tracked, and `AGENTS.md` is left out of release zips. #379 #383 @kimcoleman
+* NOTE: Homepage layout on sites with Pages set to No Sidebar. If your homepage is a static page on the default template, it now uses the Contained layout (up to 1230px wide) instead of the narrow centered column (about 800px). To get the old look back, edit the homepage and choose Narrow in the Layout panel.
+* NOTE: The Grid archive display now fits columns to the content area. On archives without a sidebar, grids show 2 columns from about 580px wide (was 768px) and 3 columns from about 860px (was 1160px). Phones and screens 1160px and wider look the same.
+* NOTE: Groups, rows, stacks, grids and column contents that don't set their own block spacing now have 30px gaps instead of 40px.
+* NOTE: Removed the bottom margin on single pages and posts (`.hentry`), so they're about 50px shorter. #336 @RachelRVasquez @kimcoleman
+* NOTE: Memberlite > Alerts lists pages that used the removed page settings. Code recipes to show those settings again: https://www.paidmembershipspro.com/memberlite-legacy-page-settings/
 
 = 7.1.2 - 2026-07-02 =
 

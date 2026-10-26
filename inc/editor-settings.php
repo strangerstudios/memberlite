@@ -111,7 +111,7 @@ add_action( 'init', 'memberlite_register_editor_settings_post_meta' );
  *
  * Used as the `auth_callback` for Memberlite's registered post meta.
  *
- * @since TBD
+ * @since 8.0
  *
  * @param bool   $allowed   Whether the user can add the meta. Default false.
  * @param string $meta_key  Meta key.
@@ -129,7 +129,7 @@ function memberlite_auth_edit_post_meta( $allowed, $meta_key, $object_id ): bool
  * since the block editor only saves registered meta for post types that support it. Their Custom Fields meta box
  * is removed so the classic editor looks the same as before.
  *
- * @since TBD
+ * @since 8.0
  * @return void
  */
 function memberlite_register_layout_post_meta(): void {
@@ -189,7 +189,7 @@ add_action( 'wp_loaded', 'memberlite_register_layout_post_meta' );
  * Uses the meta key MemberliteMultiPostThumbnails already stores, so existing banner images carry over.
  * Post types that aren't in the REST API can't use the block editor and keep the classic meta box only.
  *
- * @since TBD
+ * @since 8.0
  * @return void
  */
 function memberlite_register_banner_image_post_meta(): void {
@@ -220,7 +220,7 @@ add_action( 'wp_loaded', 'memberlite_register_banner_image_post_meta' );
 /**
  * Remove the Custom Fields meta box from post types that only support custom fields for the Layout or Banner Image panel.
  *
- * @since TBD
+ * @since 8.0
  *
  * @param WP_Post $post The post being edited.
  * @return void
@@ -232,7 +232,7 @@ function memberlite_remove_custom_fields_meta_box( $post ): void {
 /**
  * Sanitize the `_memberlite_custom_sidebar` meta value.
  *
- * @since TBD
+ * @since 8.0
  *
  * @param mixed $value Registered sidebar ID, 'memberlite_sidebar_blank' for none, or '' for unset.
  * @return string
@@ -252,7 +252,7 @@ function memberlite_sanitize_custom_sidebar_meta( $value ): string {
 /**
  * Get the data the block editor Layout panel needs for a post.
  *
- * @since TBD
+ * @since 8.0
  *
  * @param WP_Post $post The post being edited.
  * @return array

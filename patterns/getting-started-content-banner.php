@@ -7,7 +7,7 @@
  * Keywords: onboarding, getting started, beginner, new member, orientation, cta
  * @package WordPress
  * @subpackage Memberlite
- * @since Memberlite TBD
+ * @since Memberlite 8.0
  */
 ?>
 <!-- wp:group {"align":"full","style":{"elements":{"link":{"color":{"text":"var:preset|color|site-navigation-background"}}},"spacing":{"padding":{"top":"var:preset|spacing|70","bottom":"var:preset|spacing|70","left":"var:preset|spacing|30","right":"var:preset|spacing|30"},"blockGap":"var:preset|spacing|30"}},"backgroundColor":"site-navigation-link","textColor":"site-navigation-background","layout":{"type":"constrained"}} -->

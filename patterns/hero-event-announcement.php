@@ -7,7 +7,7 @@
  * Keywords: hero, event, conference, gathering, register, sponsors
  * @package WordPress
  * @subpackage Memberlite
- * @since Memberlite TBD
+ * @since Memberlite 8.0
  */
 ?>
 <!-- wp:group {"align":"full","layout":{"type":"constrained"},"style":{"spacing":{"blockGap":"0"}}} -->

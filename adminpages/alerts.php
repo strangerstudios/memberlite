@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Settings page for Memberlite > Alerts
  *
- * @since TBD
+ * @since 8.0
  */
 function memberlite_alerts_page() {
 	/**
@@ -108,7 +108,7 @@ function memberlite_alerts_page() {
  *
  * Active alerts start open. Dismissed and resolved alerts start collapsed.
  *
- * @since TBD
+ * @since 8.0
  *
  * @param array  $alert  Alert from memberlite_get_alerts(), with its `items`.
  * @param string $status 'active', 'dismissed' or 'resolved'.
@@ -206,7 +206,7 @@ function memberlite_alerts_page_section( array $alert, string $status ) {
 /**
  * Show a form button that runs, dismisses or restores an alert.
  *
- * @since TBD
+ * @since 8.0
  *
  * @param string $alert_id     Alert ID.
  * @param string $alert_action 'run', 'dismiss' or 'restore'.

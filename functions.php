@@ -4,7 +4,7 @@
  *
  * @package Memberlite
  */
-define( 'MEMBERLITE_VERSION', '7.9.99' );
+define( 'MEMBERLITE_VERSION', '8.0' );
 define( 'MEMBERLITE_URL', get_template_directory_uri() );
 define( 'MEMBERLITE_DIR', get_template_directory() );
 
@@ -705,7 +705,7 @@ add_filter( 'wp_theme_json_data_theme', 'memberlite_filter_theme_json' );
  *
  * Colors added by a child theme, plugin, or snippet are left in the picker.
  *
- * @since TBD
+ * @since 8.0
  *
  * @param array $editor_settings Editor settings array.
  * @param WP_Block_Editor_Context $context Editor context.

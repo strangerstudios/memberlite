@@ -746,7 +746,7 @@ class Memberlite_Customize {
 	/**
 	 * Layout picker and Columns Ratio control IDs, passed to customizer-controls.js.
 	 *
-	 * @since TBD
+	 * @since 8.0
 	 * @var array[]
 	 */
 	public static $layout_controls = array();
@@ -754,7 +754,7 @@ class Memberlite_Customize {
 	/**
 	 * Choices for the Archive Display settings.
 	 *
-	 * @since TBD
+	 * @since 8.0
 	 * @return array
 	 */
 	public static function get_archive_display_choices(): array {
@@ -771,7 +771,7 @@ class Memberlite_Customize {
 	 * The Columns Ratio only shows when the layout has a sidebar. With 'inherit', both controls
 	 * hide while that checkbox setting is checked.
 	 *
-	 * @since TBD
+	 * @since 8.0
 	 *
 	 * @param WP_Customize_Manager $wp_customize
 	 * @param string $context Layout context, see memberlite_get_layout_contexts().
@@ -1366,7 +1366,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 	/**
 	 * Layout picker: a radio group with a thumbnail for each layout.
 	 *
-	 * @since TBD
+	 * @since 8.0
 	 */
 	class Memberlite_Customize_Layout_Control extends WP_Customize_Control {
 		public $type = 'memberlite_layout';

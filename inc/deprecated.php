@@ -591,12 +591,12 @@ function memberlite_get_variation( $slug ) {
 /**
  * Deprecated. Editor styles are now registered via add_editor_style() in memberlite_setup().
  *
- * @since TBD
+ * @since 8.0
  * @deprecated Use the editor_stylesheets filter to modify editor stylesheets.
  * @return void
  */
 function memberlite_enqueue_block_assets() {
-	_deprecated_function( __FUNCTION__, 'TBD', 'memberlite_setup' );
+	_deprecated_function( __FUNCTION__, '8.0', 'memberlite_setup' );
 }
 
 /**
@@ -605,14 +605,14 @@ function memberlite_enqueue_block_assets() {
  * No longer hooked to memberlite_columns_ratio.
  *
  * @since 4.4
- * @deprecated TBD Use memberlite_get_layout().
+ * @deprecated 8.0 Use memberlite_get_layout().
  *
  * @param string $r        Columns ratio.
  * @param string $location Sidebar location.
  * @return string The columns ratio, unchanged.
  */
 function memberlite_sidebar_location_none_columns_ratio( $r, $location ) {
-	_deprecated_function( __FUNCTION__, 'TBD', 'memberlite_get_layout()' );
+	_deprecated_function( __FUNCTION__, '8.0', 'memberlite_get_layout()' );
 
 	return $r;
 }
@@ -623,13 +623,13 @@ function memberlite_sidebar_location_none_columns_ratio( $r, $location ) {
  * No longer hooked to memberlite_get_sidebar.
  *
  * @since 4.5
- * @deprecated TBD Use memberlite_layout_get_sidebar().
+ * @deprecated 8.0 Use memberlite_layout_get_sidebar().
  *
  * @param string|null|false $name Sidebar name.
  * @return string|null|false The sidebar name, unchanged.
  */
 function memberlite_sidebar_none_get_sidebar( $name ) {
-	_deprecated_function( __FUNCTION__, 'TBD', 'memberlite_layout_get_sidebar()' );
+	_deprecated_function( __FUNCTION__, '8.0', 'memberlite_layout_get_sidebar()' );
 
 	return $name;
 }

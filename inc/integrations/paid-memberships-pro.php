@@ -111,7 +111,7 @@ add_filter( 'memberlite_get_widget_areas', 'memberlite_pmpro_sidebar_hide_childr
  *
  * Matches --pmpro--box-shadow in PMPro's frontend variation CSS.
  *
- * @since TBD
+ * @since 8.0
  * @return string CSS box-shadow value.
  */
 function memberlite_pmpro_get_card_shadow(): string {
@@ -123,7 +123,7 @@ function memberlite_pmpro_get_card_shadow(): string {
  *
  * Colors that aren't valid hex values are left out, so PMPro's own value applies.
  *
- * @since TBD
+ * @since 8.0
  * @return array CSS variable names mapped to values.
  */
 function memberlite_pmpro_get_color_override_vars(): array {
@@ -152,7 +152,7 @@ function memberlite_pmpro_get_color_override_vars(): array {
  * PMPro and the Customizer print these on the frontend only. Editor styles are
  * scoped to the editor canvas, so they don't change the rest of the admin screen.
  *
- * @since TBD
+ * @since 8.0
  * @param array $settings Block editor settings.
  * @return array Block editor settings.
  */

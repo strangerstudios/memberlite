@@ -120,7 +120,7 @@ Section labels are derived from the CPT's registered plural name (e.g. a CPT reg
 
 ## Layout
 
-Added in Memberlite TBD. Code lives in `inc/layout.php`.
+Added in Memberlite 8.0. Code lives in `inc/layout.php`.
 
 "Layout" is the page structure: where the sidebar goes and how wide the content is. How content is arranged inside that area (Archive Display, post meta, featured images) is a separate "Content" setting.
 
@@ -177,7 +177,7 @@ Filter the result with `memberlite_layout`. `memberlite_getColumnsRatio()`, the 
 
 ### Legacy templates and migration
 
-The layout-only page templates (Content/Sidebar, Sidebar/Content, Narrow Width, Full Width, Fluid Width) and the Landing Page template were removed in TBD. Landing Page pages move to Right Sidebar, the layout that template always showed. Full Width markup now lives in `page.php`. `memberlite_migrate_legacy_layout_templates()` runs on the TBD update and on `after_switch_theme` when switching from Memberlite or one of its child themes. It saves each page's template layout as `_memberlite_layout` (unless the page already has one) and sets the template back to Default. If the layout can't be saved, the page keeps its template. The Posts page only loses the template. Pages on a template the active theme still registers, such as a child theme's own `templates/narrow-width.php`, are left alone and keep that template's layout.
+The layout-only page templates (Content/Sidebar, Sidebar/Content, Narrow Width, Full Width, Fluid Width) and the Landing Page template were removed in 8.0. Landing Page pages move to Right Sidebar, the layout that template always showed. Full Width markup now lives in `page.php`. `memberlite_migrate_legacy_layout_templates()` runs on the 8.0 update and on `after_switch_theme` when switching from Memberlite or one of its child themes. It saves each page's template layout as `_memberlite_layout` (unless the page already has one) and sets the template back to Default. If the layout can't be saved, the page keeps its template. The Posts page only loses the template. Pages on a template the active theme still registers, such as a child theme's own `templates/narrow-width.php`, are left alone and keep that template's layout.
 
 `memberlite_maybe_migrate_layout_settings()` runs once per theme (flag: `layout_version` theme_mod) and copies the old `sidebar_location*` settings into the new ones. "No Sidebar" becomes Narrow, a Grid archive becomes Contained (Grid used to hide the sidebar; it no longer does), and search results get Right Sidebar, or Narrow when the blog had no sidebar (search always showed its sidebar on the right, and Grid never affected it). Every context and Archive Display are saved explicitly, so existing sites keep their look, and then the old `sidebar_location`, `sidebar_location_blog` and `sidebar_location_{cpt}` theme_mods are removed. The removed `memberlite_sidebar_location_none_columns_ratio()` and `memberlite_sidebar_none_get_sidebar()` are deprecated no-op stubs in `inc/deprecated.php`. New sites (no `memberlite_db_version` yet) and Tools › Reset Theme Settings skip the copy and start on the new defaults.
 

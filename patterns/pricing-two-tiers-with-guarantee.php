@@ -7,7 +7,7 @@
  * Keywords: pricing, plans, membership, guarantee, money back, perks, comparison
  * @package WordPress
  * @subpackage Memberlite
- * @since Memberlite TBD
+ * @since Memberlite 8.0
  */
 ?>
 <!-- wp:group {"align":"full","style":{"spacing":{"padding":{"right":"var:preset|spacing|30","left":"var:preset|spacing|30","top":"var:preset|spacing|70","bottom":"var:preset|spacing|70"}}},"layout":{"type":"constrained"}} -->

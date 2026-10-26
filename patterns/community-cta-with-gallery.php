@@ -7,7 +7,7 @@
  * Keywords: community, cta, gallery, photos, join
  * @package WordPress
  * @subpackage Memberlite
- * @since Memberlite TBD
+ * @since Memberlite 8.0
  */
 ?>
 <!-- wp:group {"align":"full","style":{"elements":{"link":{"color":{"text":"var:preset|color|page-masthead"}}},"spacing":{"blockGap":"var:preset|spacing|30","padding":{"top":"var:preset|spacing|70","bottom":"var:preset|spacing|70"}}},"backgroundColor":"page-masthead-background","textColor":"page-masthead","layout":{"type":"constrained"}} -->

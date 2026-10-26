@@ -14,13 +14,13 @@
  * 3. The Customizer default for the context.
  *
  * @package Memberlite
- * @since TBD
+ * @since 8.0
  */
 
 /**
  * Get all layouts, keyed by slug.
  *
- * @since TBD
+ * @since 8.0
  * @return array Layout labels keyed by slug.
  */
 function memberlite_get_layouts(): array {
@@ -39,7 +39,7 @@ function memberlite_get_layouts(): array {
  * Full Width runs content edge to edge with no container. Only pages have markup for it,
  * so it is offered for the page context only.
  *
- * @since TBD
+ * @since 8.0
  *
  * @param string $context Layout context, see memberlite_get_layout_contexts().
  * @return array Layout labels keyed by slug.
@@ -56,7 +56,7 @@ function memberlite_get_layout_choices( string $context ): array {
 	 *
 	 * Remove a slug to hide that layout. Only slugs from memberlite_get_layouts() are kept.
 	 *
-	 * @since TBD
+	 * @since 8.0
 	 *
 	 * @param array  $layouts Layout labels keyed by slug.
 	 * @param string $context Layout context: 'page', 'post', 'archive', 'search', 'cpt_{post_type}' or 'cpt_{post_type}_archive'.
@@ -69,7 +69,7 @@ function memberlite_get_layout_choices( string $context ): array {
 /**
  * Whether a layout shows the sidebar.
  *
- * @since TBD
+ * @since 8.0
  *
  * @param string $layout Layout slug.
  * @return bool
@@ -84,7 +84,7 @@ function memberlite_layout_has_sidebar( string $layout ): bool {
  * CPT contexts exist for each CPT from memberlite_get_customizer_cpts(). A CPT that
  * inherits from Posts & Archives uses the 'post' and 'archive' contexts instead.
  *
- * @since TBD
+ * @since 8.0
  * @return array[] Keyed by context: 'setting' (layout theme_mod), 'columns_ratio' (theme_mod) and 'default' (layout slug).
  */
 function memberlite_get_layout_contexts(): array {
@@ -134,7 +134,7 @@ function memberlite_get_layout_contexts(): array {
  *
  * Matches the archives memberlite_get_current_cpt_archive_type() resolves to the CPT.
  *
- * @since TBD
+ * @since 8.0
  *
  * @param string $post_type CPT slug.
  * @return bool
@@ -159,7 +159,7 @@ function memberlite_cpt_has_archive_views( string $post_type ): bool {
  *
  * The page set as the Posts page uses the 'archive' context because it controls the blog index.
  *
- * @since TBD
+ * @since 8.0
  *
  * @param WP_Post $post The post.
  * @return string Layout context.
@@ -179,7 +179,7 @@ function memberlite_get_layout_context_for_post( WP_Post $post ): string {
 /**
  * Get the layout context for the current request.
  *
- * @since TBD
+ * @since 8.0
  * @return string Layout context: 'page', 'post', 'archive', 'search', 'cpt_{post_type}' or 'cpt_{post_type}_archive'.
  */
 function memberlite_get_layout_context(): string {
@@ -207,7 +207,7 @@ function memberlite_get_layout_context(): string {
 /**
  * Get the Customizer default layout for a context.
  *
- * @since TBD
+ * @since 8.0
  *
  * @param string $context Layout context.
  * @return string Layout slug.
@@ -233,7 +233,7 @@ function memberlite_get_default_layout( string $context ): string {
 /**
  * Get the content-to-sidebar columns ratio choices.
  *
- * @since TBD
+ * @since 8.0
  * @return string[] Labels keyed by ratio (e.g. '8-4').
  */
 function memberlite_get_columns_ratio_choices(): array {
@@ -250,7 +250,7 @@ function memberlite_get_columns_ratio_choices(): array {
 /**
  * Get the header columns ratio choices.
  *
- * @since TBD
+ * @since 8.0
  * @return string[] Labels keyed by ratio (e.g. '4-8').
  */
 function memberlite_get_header_columns_ratio_choices(): array {
@@ -272,7 +272,7 @@ function memberlite_get_header_columns_ratio_choices(): array {
 /**
  * Return a content-to-sidebar columns ratio if it's one of the choices, or the fallback.
  *
- * @since TBD
+ * @since 8.0
  *
  * @param mixed  $ratio    Saved ratio.
  * @param string $fallback Ratio to use when $ratio isn't valid.
@@ -287,7 +287,7 @@ function memberlite_sanitize_columns_ratio( $ratio, string $fallback ): string {
  *
  * A saved value that isn't one of the choices (e.g. an empty string saved by an older version) uses the default.
  *
- * @since TBD
+ * @since 8.0
  *
  * @param string $context Layout context.
  * @return string
@@ -309,7 +309,7 @@ function memberlite_get_layout_columns_ratio( string $context ): string {
  * theme that still has its own copy of one keeps the template and its layout. Landing Page
  * always showed the sidebar, so it maps to Right Sidebar.
  *
- * @since TBD
+ * @since 8.0
  * @return array Layout slugs keyed by template file.
  */
 function memberlite_get_legacy_template_layouts(): array {
@@ -330,7 +330,7 @@ function memberlite_get_legacy_template_layouts(): array {
  * count. A template nothing registers (e.g. one left behind by an old theme or plugin)
  * renders as the default template.
  *
- * @since TBD
+ * @since 8.0
  *
  * @param string $template  Template file, or '' for the default template.
  * @param string $post_type Post type the template is on.
@@ -355,7 +355,7 @@ function memberlite_is_layout_template( string $template, string $post_type = 'p
  * template. The Posts page ignores its template because WordPress never used it for the
  * blog index.
  *
- * @since TBD
+ * @since 8.0
  *
  * @param int $post_id Post ID.
  * @return string Layout slug, or '' to use the default.
@@ -378,7 +378,7 @@ function memberlite_get_item_layout( int $post_id ): string {
  * templates (e.g. a child theme's own) have always shown the sidebar, so they get Right
  * Sidebar. Templates on posts and CPTs use the context default.
  *
- * @since TBD
+ * @since 8.0
  *
  * @param string $template  Template file, or '' for the default template.
  * @param string $post_type Post type the template is on.
@@ -397,7 +397,7 @@ function memberlite_get_template_layout( string $template, string $post_type = '
 /**
  * Get the layout for the current request.
  *
- * @since TBD
+ * @since 8.0
  * @return string Layout slug, see memberlite_get_layouts().
  */
 function memberlite_get_layout(): string {
@@ -428,7 +428,7 @@ function memberlite_get_layout(): string {
 	/**
 	 * Filters the layout for the current request.
 	 *
-	 * @since TBD
+	 * @since 8.0
 	 *
 	 * @param string $layout  Layout slug, see memberlite_get_layouts().
 	 * @param string $context Layout context.
@@ -439,7 +439,7 @@ function memberlite_get_layout(): string {
 /**
  * Get the post types with the block editor Layout panel.
  *
- * @since TBD
+ * @since 8.0
  * @return string[] Posts, pages and the CPTs from memberlite_get_customizer_cpts().
  */
 function memberlite_get_layout_post_types(): array {
@@ -449,7 +449,7 @@ function memberlite_get_layout_post_types(): array {
 /**
  * Sanitize the `_memberlite_layout` meta value.
  *
- * @since TBD
+ * @since 8.0
  *
  * @param mixed $value Layout slug, or '' for the default.
  * @return string
@@ -463,7 +463,7 @@ function memberlite_sanitize_layout_meta( $value ): string {
 /**
  * Hide the sidebar when the layout has none.
  *
- * @since TBD
+ * @since 8.0
  *
  * @param string|null|false $name Sidebar name passed to get_sidebar(), or false to hide it.
  * @return string|null|false
@@ -482,7 +482,7 @@ add_filter( 'memberlite_get_sidebar', 'memberlite_layout_get_sidebar' );
  *
  * Templates the active theme still registers (a child theme's copy) are left out.
  *
- * @since TBD
+ * @since 8.0
  * @return array Layout slugs keyed by template file.
  */
 function memberlite_get_legacy_layout_templates_to_migrate(): array {
@@ -492,7 +492,7 @@ function memberlite_get_legacy_layout_templates_to_migrate(): array {
 /**
  * Get the pages still on a removed layout template.
  *
- * @since TBD
+ * @since 8.0
  * @return array Rows with the page `ID` and its `template`.
  */
 function memberlite_get_legacy_layout_template_pages(): array {
@@ -530,7 +530,7 @@ function memberlite_get_legacy_layout_template_pages(): array {
  * Runs from inc/updates/update_8_0.php and when switching between Memberlite and its child
  * themes.
  *
- * @since TBD
+ * @since 8.0
  *
  * @param string         $old_name  Unused. Name of the previous theme, from after_switch_theme.
  * @param WP_Theme|false $old_theme The previous theme, from after_switch_theme. Omit to always run.
@@ -565,7 +565,7 @@ add_action( 'after_switch_theme', 'memberlite_migrate_legacy_layout_templates', 
  *
  * The 8.0 update moves them, but importing or restoring older content can bring them back.
  *
- * @since TBD
+ * @since 8.0
  * @return array Alert items.
  */
 function memberlite_alert_check_legacy_layout_templates(): array {
@@ -612,7 +612,7 @@ function memberlite_alert_check_legacy_layout_templates(): array {
 /**
  * Add the removed layout templates alert to Memberlite > Alerts.
  *
- * @since TBD
+ * @since 8.0
  *
  * @param array $alerts Alerts keyed by ID.
  * @return array
@@ -639,7 +639,7 @@ add_filter( 'memberlite_alerts', 'memberlite_add_legacy_layout_templates_alert' 
 /**
  * Clear the alert count when a page template changes, see memberlite_maybe_clear_alert_count_for_meta().
  *
- * @since TBD
+ * @since 8.0
  *
  * @param array $meta_keys Meta keys alerts report on.
  * @return array
@@ -653,7 +653,7 @@ function memberlite_add_legacy_layout_templates_alert_meta_keys( $meta_keys ) {
 add_filter( 'memberlite_alert_meta_keys', 'memberlite_add_legacy_layout_templates_alert_meta_keys' );
 
 /**
- * Copy the pre-TBD sidebar settings into the layout settings, once per theme.
+ * Copy the pre-8.0 sidebar settings into the layout settings, once per theme.
  *
  * "No Sidebar" becomes Narrow (what it rendered) and a Grid archive becomes Contained
  * (Grid used to hide the sidebar). Search results follow the blog sidebar setting's
@@ -664,7 +664,7 @@ add_filter( 'memberlite_alert_meta_keys', 'memberlite_add_legacy_layout_template
  *
  * Runs after a child theme clones its parent's settings on activation (init, priority 99).
  *
- * @since TBD
+ * @since 8.0
  * @return void
  */
 function memberlite_maybe_migrate_layout_settings(): void {
