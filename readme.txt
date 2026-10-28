@@ -1,7 +1,7 @@
 === Memberlite ===
 Contributors: kimannwall, strangerstudios
 Requires at least: 6.4
-Tested up to: 7.1
+Tested up to: 7.1.3
 Requires PHP: 7.4
 Stable tag: 8.0
 License: GPLv2 or later
@@ -92,7 +92,7 @@ Memberlite includes formatting for use with:
 
 == Changelog ==
 
-= 8.0 - 2026-10-26 =
+= 8.0 - 2026-10-28 =
 
 Memberlite 8.0 replaces the layout page templates and the classic Memberlite Settings meta box with layout settings in the Customizer and block editor panels. Existing sites are migrated on update and keep their look, with the exceptions listed under NOTE below. Review Memberlite > Alerts after updating.
 
@@ -114,6 +114,7 @@ Memberlite 8.0 replaces the layout page templates and the classic Memberlite Set
 * ENHANCEMENT: List markers line up with the text above them, and lists keep their indent inside groups. #362 @kimcoleman
 * ENHANCEMENT: Theme update checks fall back to cached update info and back off when the license server can't be reached, and the `memberlite_get_update_info_timeout` filter now takes effect. #372 #373 @kimcoleman
 * ENHANCEMENT: Per-CPT layout settings now apply to that post type's taxonomy archives. #349 @kimcoleman
+* ENHANCEMENT: Updated Font Awesome from 7.2.0 to 7.3.1, adding 22 brand icons. @kimcoleman
 * SECURITY: Theme package downloads from the license server now use SSL verification. Removed `memberlite_http_request_args_for_update_info()`. #381 @kimcoleman
 * SECURITY: Added a nonce and capability check to dismissing the welcome notice. #377 @kimcoleman
 * BUG FIX: Fixed a fatal error when theme update info couldn't be fetched. #345 @flintfromthebasement
