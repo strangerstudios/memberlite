@@ -92,7 +92,7 @@ Memberlite includes formatting for use with:
 
 == Changelog ==
 
-= 8.0 - 2026-10-26 =
+= 8.0 - 2026-10-28 =
 
 Memberlite 8.0 replaces the layout page templates and the classic Memberlite Settings meta box with layout settings in the Customizer and block editor panels. Existing sites are migrated on update and keep their look, with the exceptions listed under NOTE below. Review Memberlite > Alerts after updating.
 
