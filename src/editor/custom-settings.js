@@ -534,10 +534,10 @@ registerPlugin( 'memberlite-template-settings', {
 	render: MemberliteTemplateSettings,
 } );
 
-registerPlugin( 'memberlite-banner-image', {
-	render: MemberliteBannerImageSettings,
-} );
-
 registerPlugin( 'memberlite-page-settings', {
 	render: MemberlitePageSettings,
+} );
+
+registerPlugin( 'memberlite-banner-image', {
+	render: MemberliteBannerImageSettings,
 } );
