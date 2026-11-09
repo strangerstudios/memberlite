@@ -102,11 +102,17 @@ ol:where(:not([class])) {
 .wp-block-button.is-style-arrow-plain .wp-element-button {
 	padding: 0 var(--wp--preset--spacing--10);
 	background: transparent;
+	box-shadow: none;
 	color: var(--wp--preset--color--buttons);
 }
 
-.wp-block-button.is-style-arrow-plain .wp-element-button:hover {
-	color: var(--wp--preset--color--buttons-hover);
+.wp-block-button.is-style-arrow-plain .wp-element-button:hover,
+.wp-block-button.is-style-arrow-plain .wp-element-button:focus-visible {
+	color: var(--wp--custom--button--hover-background);
+}
+
+.wp-block-button.is-style-arrow-plain .wp-element-button:active {
+	color: var(--wp--custom--button--active-background);
 }
 
 .wp-block-buttons .wp-element-button:focus {
@@ -278,8 +284,12 @@ ol:where(:not([class])) {
 	color: var(--wp--preset--color--base);
 }
 
-.wp-block-search:not(.wp-block-search__button-only).is-style-icon-round .wp-block-search__button:hover, .wp-block-search:not(.wp-block-search__button-only).is-style-icon-round .wp-block-search__button:active, .wp-block-search:not(.wp-block-search__button-only).is-style-icon-round .wp-block-search__button:focus, .wp-block-search:not(.wp-block-search__button-only).is-style-icon-square .wp-block-search__button:hover, .wp-block-search:not(.wp-block-search__button-only).is-style-icon-square .wp-block-search__button:active, .wp-block-search:not(.wp-block-search__button-only).is-style-icon-square .wp-block-search__button:focus {
-	background-color: var(--wp--preset--color--buttons-hover);
+.wp-block-search:not(.wp-block-search__button-only).is-style-icon-round .wp-block-search__button:hover, .wp-block-search:not(.wp-block-search__button-only).is-style-icon-round .wp-block-search__button:focus-visible, .wp-block-search:not(.wp-block-search__button-only).is-style-icon-square .wp-block-search__button:hover, .wp-block-search:not(.wp-block-search__button-only).is-style-icon-square .wp-block-search__button:focus-visible {
+	background-color: var(--wp--custom--button--hover-background);
+}
+
+.wp-block-search:not(.wp-block-search__button-only).is-style-icon-round .wp-block-search__button:active, .wp-block-search:not(.wp-block-search__button-only).is-style-icon-square .wp-block-search__button:active {
+	background-color: var(--wp--custom--button--active-background);
 }
 
 .wp-block-search:not(.wp-block-search__button-only).is-style-filled-pill .wp-block-search__inside-wrapper, .wp-block-search:not(.wp-block-search__button-only).is-style-icon-round .wp-block-search__inside-wrapper {

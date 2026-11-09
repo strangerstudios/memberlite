@@ -846,3 +846,89 @@ function memberlite_filter_theme_json_colors( $theme_json ) {
 	return $theme_json->update_with( $theme_json_data );
 }
 add_filter( 'wp_theme_json_data_theme', 'memberlite_filter_theme_json_colors' );
+
+/**
+ * Build hover and active styles for Button blocks that use a palette background color.
+ *
+ * Core prints palette background classes with !important, so the theme.json button
+ * :hover and :active styles never reach them. Each palette color gets its own rule
+ * that mixes the shade from the button's own color.
+ *
+ * Only the theme and custom palettes are included. The default palette is disabled,
+ * so its color variables aren't printed and a rule for them would resolve to nothing.
+ *
+ * @since TBD
+ *
+ * @return string CSS rules, or an empty string if there are no palette colors.
+ */
+function memberlite_get_button_palette_state_css(): string {
+	$palettes = wp_get_global_settings( array( 'color', 'palette' ) );
+	if ( empty( $palettes ) || ! is_array( $palettes ) ) {
+		return '';
+	}
+
+	$slugs = array();
+	foreach ( array( 'theme', 'custom' ) as $origin ) {
+		if ( empty( $palettes[ $origin ] ) || ! is_array( $palettes[ $origin ] ) ) {
+			continue;
+		}
+		foreach ( $palettes[ $origin ] as $entry ) {
+			if ( is_array( $entry ) && ! empty( $entry['slug'] ) ) {
+				$slugs[] = _wp_to_kebab_case( $entry['slug'] );
+			}
+		}
+	}
+
+	$css = '';
+	foreach ( array_unique( $slugs ) as $slug ) {
+		$selector = '.wp-block-button__link.has-' . $slug . '-background-color';
+		$color    = 'var(--wp--preset--color--' . $slug . ')';
+
+		$css .= $selector . ':hover,' . $selector . ':focus-visible{background-color:color-mix(in oklab, ' . $color . ', var(--wp--custom--button--shade) var(--wp--custom--button--hover-mix)) !important;}';
+		$css .= $selector . ':active{background-color:color-mix(in oklab, ' . $color . ', var(--wp--custom--button--shade) var(--wp--custom--button--active-mix)) !important;}';
+	}
+
+	return $css;
+}
+
+/**
+ * Add the palette Button block hover styles to the frontend.
+ *
+ * @since TBD
+ */
+function memberlite_enqueue_button_palette_state_css() {
+	$css = memberlite_get_button_palette_state_css();
+	if ( ! empty( $css ) ) {
+		wp_add_inline_style( 'memberlite_style', $css );
+	}
+}
+add_action( 'wp_enqueue_scripts', 'memberlite_enqueue_button_palette_state_css', 20 );
+
+/**
+ * Add the palette Button block hover styles and the site color scheme to the block editor.
+ *
+ * The color scheme lets light-dark() in the button tokens lighten on dark schemes
+ * in the editor the same way it does on the frontend.
+ *
+ * @since TBD
+ *
+ * @param array $settings Block editor settings.
+ * @return array Block editor settings.
+ */
+function memberlite_editor_button_state_css( $settings ) {
+	$active_colors = memberlite_get_active_colors();
+	$css           = '';
+
+	if ( ! empty( $active_colors['background_color'] ) && null !== sanitize_hex_color_no_hash( $active_colors['background_color'] ) ) {
+		$css .= ':root{color-scheme:' . ( memberlite_is_dark_color( $active_colors['background_color'] ) ? 'dark' : 'light' ) . ';}';
+	}
+
+	$css .= memberlite_get_button_palette_state_css();
+
+	if ( ! empty( $css ) ) {
+		$settings['styles'][] = array( 'css' => $css );
+	}
+
+	return $settings;
+}
+add_filter( 'block_editor_settings_all', 'memberlite_editor_button_state_css' );

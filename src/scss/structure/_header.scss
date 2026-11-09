@@ -661,7 +661,17 @@ body.mobile-nav-open {
 	}
 
 	#loginform .login-submit .button {
-		background-color: var(--memberlite-color-action);
+		--memberlite-btn-bg: var(--memberlite-color-action);
+		background-color: var(--memberlite-btn-bg);
+
+		&:hover,
+		&:focus-visible {
+			background-color: var(--memberlite-btn-bg-hover);
+		}
+
+		&:active {
+			background-color: var(--memberlite-btn-bg-active);
+		}
 	}
 
 	.pmpro-member-navigation li {
