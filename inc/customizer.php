@@ -1067,8 +1067,6 @@ class Memberlite_Customize {
 	 * @return void
 	 */
 	public static function header_output() {
-		global $memberlite_defaults;
-
 		$content_width    = $GLOBALS['content_width'] . 'px';
 		$header_font      = memberlite_get_font( 'header_font', true );
 		$body_font        = memberlite_get_font( 'body_font', true );
@@ -1095,7 +1093,6 @@ class Memberlite_Customize {
 				echo "\t\t\t\t--memberlite-color-" . esc_attr( $preset['css_var'] ) . ': #' . esc_attr( $value ) . ";\n";
 			}
 			?>
-				--memberlite-hover-brightness: <?php echo esc_attr( $memberlite_defaults['hover_brightness'] ); ?>;
 				--memberlite-color-white: #ffffff;
 
 			<?php if ( defined( 'PMPRO_VERSION' ) ) {
