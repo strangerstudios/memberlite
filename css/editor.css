@@ -115,6 +115,23 @@ ol:where(:not([class])) {
 	color: var(--wp--custom--button--active-background);
 }
 
+.wp-block-button.is-style-outline > .wp-block-button__link,
+.wp-block-button .wp-block-button__link.is-style-outline {
+	box-shadow: none;
+}
+
+.wp-block-button.is-style-outline > .wp-block-button__link:hover,
+.wp-block-button.is-style-outline > .wp-block-button__link:focus-visible,
+.wp-block-button .wp-block-button__link.is-style-outline:hover,
+.wp-block-button .wp-block-button__link.is-style-outline:focus-visible {
+	box-shadow: var(--wp--custom--button--shadow-hover);
+}
+
+.wp-block-button.is-style-outline > .wp-block-button__link:active,
+.wp-block-button .wp-block-button__link.is-style-outline:active {
+	box-shadow: var(--wp--custom--button--shadow);
+}
+
 .wp-block-buttons .wp-element-button:focus {
 	outline-color: var(--wp--preset--color--text);
 	outline-offset: 2px;

@@ -428,6 +428,21 @@
 	}
 }
 
+// Outline buttons sit flat and only lift on hover
+.wp-block-button.is-style-outline > .wp-block-button__link,
+.wp-block-button .wp-block-button__link.is-style-outline {
+	box-shadow: none;
+
+	&:hover,
+	&:focus-visible {
+		box-shadow: var(--wp--custom--button--shadow-hover);
+	}
+
+	&:active {
+		box-shadow: var(--wp--custom--button--shadow);
+	}
+}
+
 .wp-block-button {
 	&.is-style-arrow-fill a,
 	&.is-style-arrow-plain a {
