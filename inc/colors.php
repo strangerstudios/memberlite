@@ -848,7 +848,7 @@ function memberlite_filter_theme_json_colors( $theme_json ) {
 add_filter( 'wp_theme_json_data_theme', 'memberlite_filter_theme_json_colors' );
 
 /**
- * Build hover and active styles for Button blocks that use a palette background color.
+ * Build hover and active styles for Button and Search block buttons that use a palette background color.
  *
  * Core prints palette background classes with !important, so the theme.json button
  * :hover and :active styles never reach them. Each palette color gets its own rule
@@ -881,11 +881,22 @@ function memberlite_get_button_palette_state_css(): string {
 
 	$css = '';
 	foreach ( array_unique( $slugs ) as $slug ) {
-		$selector = '.wp-block-button__link.has-' . $slug . '-background-color';
-		$color    = 'var(--wp--preset--color--' . $slug . ')';
+		$selectors = array(
+			'.wp-block-button__link.has-' . $slug . '-background-color',
+			'.wp-block-search__button.has-' . $slug . '-background-color',
+		);
+		$color     = 'var(--wp--preset--color--' . $slug . ')';
 
-		$css .= $selector . ':hover,' . $selector . ':focus-visible{background-color:color-mix(in oklab, ' . $color . ', var(--wp--custom--button--shade) var(--wp--custom--button--hover-mix)) !important;}';
-		$css .= $selector . ':active{background-color:color-mix(in oklab, ' . $color . ', var(--wp--custom--button--shade) var(--wp--custom--button--active-mix)) !important;}';
+		$hover  = array();
+		$active = array();
+		foreach ( $selectors as $selector ) {
+			$hover[]  = $selector . ':hover';
+			$hover[]  = $selector . ':focus-visible';
+			$active[] = $selector . ':active';
+		}
+
+		$css .= implode( ',', $hover ) . '{background-color:color-mix(in oklab, ' . $color . ', var(--wp--custom--button--shade) var(--wp--custom--button--hover-mix)) !important;}';
+		$css .= implode( ',', $active ) . '{background-color:color-mix(in oklab, ' . $color . ', var(--wp--custom--button--shade) var(--wp--custom--button--active-mix)) !important;}';
 	}
 
 	return $css;

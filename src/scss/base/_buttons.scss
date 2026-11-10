@@ -49,7 +49,7 @@ a.btn.skip-link {
 	font-size: var(--wp--preset--font-size--14);
 }
 
-button:where(:not(.pmpro_btn, .pmpro_btn-plain, .menu-toggle, .wp-block-accordion-heading__toggle)),
+button:where(:not(.pmpro_btn, .pmpro_btn-plain, .menu-toggle, .wp-block-accordion-heading__toggle, .customize-partial-edit-shortcut-button)),
 input[type=button],
 input[type=reset],
 input[type=submit],
