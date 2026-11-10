@@ -57,6 +57,7 @@ Memberlite automatically checks for these PMPro add-on CPTs at runtime and inclu
 - `pmpro_course` (PMPro Courses)
 - `pmpro_lesson` (PMPro Courses — Lessons)
 - `pmpro_series` (PMPro Series)
+- `pmpro_event` (PMPro Events — built-in events module)
 
 ### Adding CPTs via Filter
 
