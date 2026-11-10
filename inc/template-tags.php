@@ -19,21 +19,39 @@ if ( ! function_exists( 'memberlite_the_custom_logo' ) ) :
 endif;
 
 /**
- * Returns the site title based on whether we're on the front page
+ * Returns the site title based on whether we're on the front page.
  *
  * @since 7.0
+ * @since TBD Use an h1 on the front page and a span elsewhere, filterable via memberlite_site_title_tag.
  * @return string The HTML for the site title
  */
 if ( ! function_exists( 'memberlite_output_site_title' ) ) {
 	function memberlite_output_site_title(): string {
-		$site_url = esc_url( home_url( '/' ) );
-		$site_name = esc_html( get_bloginfo( 'name' ) );
+		$site_url      = esc_url( home_url( '/' ) );
+		$site_name     = esc_html( get_bloginfo( 'name' ) );
+		$is_front_page = is_front_page();
+		$default_tag   = $is_front_page ? 'h1' : 'span';
 
-		if ( is_front_page() ) {
-			return '<h1 class="site-title">' . $site_name . '</h1>';
+		/**
+		 * Filters the HTML tag used to wrap the site title in the theme header.
+		 *
+		 * Return 'span' to keep the site title out of the heading outline, for example
+		 * on a front page whose content opens with its own h1.
+		 *
+		 * @since TBD
+		 *
+		 * @param string $tag The HTML tag: h1-h6, p, span, or div. Default 'h1' on the front page, 'span' elsewhere.
+		 */
+		$tag = apply_filters( 'memberlite_site_title_tag', $default_tag );
+		if ( ! in_array( $tag, array( 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'span', 'div' ), true ) ) {
+			$tag = $default_tag;
 		}
 
-		return '<h1 class="site-title"><a href="' . $site_url . '">' . $site_name . '</a></h1>';
+		if ( $is_front_page ) {
+			return '<' . $tag . ' class="site-title">' . $site_name . '</' . $tag . '>';
+		}
+
+		return '<' . $tag . ' class="site-title"><a href="' . $site_url . '">' . $site_name . '</a></' . $tag . '>';
 	}
 }
 
