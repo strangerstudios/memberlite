@@ -224,6 +224,7 @@ if ( ! function_exists( 'memberlite_setup' ) ) :
 		// Register editor stylesheets (loaded into the editor iframe).
 		add_theme_support( 'editor-styles' );
 		add_editor_style( 'css/editor.css' );
+		add_editor_style( 'build/css/textures.css' );
 		add_editor_style( 'font-awesome/css/all.min.css' );
 	}
 endif; // memberlite_setup

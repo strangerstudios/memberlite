@@ -74,7 +74,7 @@ If you're unsure of a block's saved markup, build the block in the editor and co
 
 ## Textures
 
-Textures are subtle patterns drawn over a block's background. Add one class to a **Group, Columns, Column, or Cover** block. In the editor, use Advanced > Additional CSS class(es). In markup, use the `className` attribute.
+Textures are subtle patterns drawn over a block's background. They work on **Group, Columns, Column, and Cover** blocks. In the editor, select the block and open the Styles tab: the **Texture** panel has a swatch for each texture and an Intensity setting. In markup, add the class to the block's `className` attribute. The panel reads and writes the same classes, so both methods produce identical markup.
 
 | Class | Look | Good for |
 | --- | --- | --- |
