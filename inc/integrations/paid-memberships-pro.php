@@ -138,7 +138,7 @@ function memberlite_pmpro_get_color_override_vars(): array {
 	$vars = array(
 		'--pmpro--color--accent'            => $colors['color_primary'],
 		'--pmpro--color--accent--variation' => $colors['color_primary'] ? 'color-mix(in oklab, ' . $colors['color_primary'] . ', var(--wp--custom--button--shade) var(--wp--custom--button--hover-mix))' : null,
-		'--pmpro--color--base'              => $colors['background_color'] ? 'light-dark( #fff, ' . $colors['background_color'] . ' )' : null,
+		'--pmpro--color--base'              => $colors['background_color'],
 		'--pmpro--color--contrast'          => $colors['color_text'],
 		'--pmpro--color--border--variation' => $pmpro_style_variation === 'variation_high_contrast' ? $colors['color_text'] : $colors['color_borders'],
 	);
@@ -160,7 +160,7 @@ function memberlite_pmpro_editor_color_vars( $settings ) {
 	$css = '';
 
 	if ( get_theme_mod( 'memberlite_pmpro_color_override' ) ) {
-		// light-dark() in the base color needs the same color-scheme as the frontend.
+		// PMPro's message colors use light-dark(), so match the frontend color-scheme.
 		$css .= ':root { color-scheme: ' . ( memberlite_is_dark_color( memberlite_get_active_colors()['background_color'] ) ? 'dark' : 'light' ) . ';';
 		foreach ( memberlite_pmpro_get_color_override_vars() as $pmpro_var => $pmpro_value ) {
 			$css .= ' ' . $pmpro_var . ': ' . $pmpro_value . ';';
