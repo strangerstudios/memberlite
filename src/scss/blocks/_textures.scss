@@ -23,7 +23,6 @@ $textures: ".has-texture-dots, .has-texture-grid, .has-texture-lines, .has-textu
 	content: "";
 	position: absolute;
 	inset: 0;
-	z-index: 0;
 	border-radius: inherit;
 	pointer-events: none;
 	color: color-mix(in srgb, currentColor calc(var(--_texture-alpha) * 100%), transparent);
@@ -31,10 +30,10 @@ $textures: ".has-texture-dots, .has-texture-grid, .has-texture-lines, .has-textu
 	color: oklch(from currentColor l c h / calc(var(--_texture-alpha) * (1.1 - 0.4 * l)));
 }
 
-// Lift children above the texture. Zero specificity keeps sticky and absolute children intact.
+// Positioned children paint after the texture in document order. No z-index, so dropdowns
+// can still overlap later rows. Zero specificity keeps sticky and absolute children intact.
 :where(:is(#{$textures}):not(.wp-block-cover) > *) {
 	position: relative;
-	z-index: 1;
 }
 
 // Cover: texture sits above the image and overlay, below the content.
