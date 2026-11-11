@@ -117,7 +117,8 @@ Choose these in the block's Styles panel. In markup, the style is the class `is-
 
 | Block | Styles |
 | --- | --- |
-| Group, Columns, Column, Query Loop post template, PMPro Single Level | `card` |
+| Group | `card`, `slant-bottom-right`, `slant-bottom-left` |
+| Columns, Column, Query Loop post template, PMPro Single Level | `card` |
 | Cover | `scroll-indicator`, `slant-bottom-right`, `slant-bottom-left` |
 | Button | `arrow-fill`, `arrow-plain` |
 | Heading | `heading-rule` |

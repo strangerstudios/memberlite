@@ -58,6 +58,8 @@ function memberlite_register_block_styles(): void {
 		),
 		'core/group'      => array(
 			array( 'name' => 'card', 'label' => __( 'Card', 'memberlite' ) ),
+			array( 'name' => 'slant-bottom-right', 'label' => __( 'Slant: Bottom Right', 'memberlite' ) ),
+			array( 'name' => 'slant-bottom-left', 'label' => __( 'Slant: Bottom Left', 'memberlite' ) ),
 		),
 		'core/columns'    => array(
 			array( 'name' => 'card', 'label' => __( 'Card', 'memberlite' ) ),

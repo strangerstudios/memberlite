@@ -382,6 +382,24 @@ or being hovered over in the editor or from list view for better UX. */
 }
 
 /*--------------------------------------------------------------
+ Group Slant Styles
+--------------------------------------------------------------*/
+.wp-block-group.is-style-slant-bottom-right,
+.wp-block-group.is-style-slant-bottom-left {
+	--memberlite-slant-depth: clamp(2.5rem, 6vw, 5rem);
+	border-bottom: var(--memberlite-slant-depth) solid transparent;
+	background-origin: border-box;
+}
+
+.wp-block-group.is-style-slant-bottom-right {
+	clip-path: polygon(0 0, 100% 0, 100% calc(100% - var(--memberlite-slant-depth)), 0 100%);
+}
+
+.wp-block-group.is-style-slant-bottom-left {
+	clip-path: polygon(0 0, 100% 0, 100% 100%, 0 calc(100% - var(--memberlite-slant-depth)));
+}
+
+/*--------------------------------------------------------------
  Accordion Block Styles - base styles live in theme.json
 --------------------------------------------------------------*/
 

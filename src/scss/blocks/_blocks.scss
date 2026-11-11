@@ -703,6 +703,30 @@
 }
 
 // -----------------------------------------------------------------------------
+// Group Slant Styles
+//
+// A fixed-depth cut, so short and tall Groups slant the same amount. The
+// transparent bottom border reserves that depth below any padding the user sets.
+// -----------------------------------------------------------------------------
+
+.wp-block-group {
+	&.is-style-slant-bottom-right,
+	&.is-style-slant-bottom-left {
+		--memberlite-slant-depth: clamp(2.5rem, 6vw, 5rem);
+		border-bottom: var(--memberlite-slant-depth) solid transparent;
+		background-origin: border-box;
+	}
+
+	&.is-style-slant-bottom-right {
+		clip-path: polygon(0 0, 100% 0, 100% calc(100% - var(--memberlite-slant-depth)), 0 100%);
+	}
+
+	&.is-style-slant-bottom-left {
+		clip-path: polygon(0 0, 100% 0, 100% 100%, 0 calc(100% - var(--memberlite-slant-depth)));
+	}
+}
+
+// -----------------------------------------------------------------------------
 // Accordion Styles
 //
 // Base accordion styles (borders, padding, spacing) live in theme.json.
