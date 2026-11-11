@@ -2,7 +2,7 @@
  * Texture control for Group, Columns, Column, and Cover blocks.
  *
  * Adds a Texture panel to the block's Styles tab. The panel reads and writes
- * has-texture-* classes in the block's className, the same classes documented
+ * memberlite-texture-* classes in the block's className, the same classes documented
  * in DESIGN.md, so markup written by hand and markup made with this control
  * are identical. Texture styles live in build/css/textures.css.
  */
@@ -43,6 +43,12 @@ const INTENSITIES = [
 
 const TEXTURE_SLUGS = TEXTURES.map( ( texture ) => texture.slug );
 
+const TEXTURE_CLASSES = [
+	...TEXTURE_SLUGS.map( ( slug ) => `memberlite-texture-${ slug }` ),
+	'memberlite-texture-subtle',
+	'memberlite-texture-bold',
+];
+
 /**
  * Read the texture and intensity from a className string.
  *
@@ -51,11 +57,11 @@ const TEXTURE_SLUGS = TEXTURES.map( ( texture ) => texture.slug );
  */
 function parseTextureClasses( className = '' ) {
 	const tokens = className.split( /\s+/ );
-	const texture = TEXTURE_SLUGS.find( ( slug ) => tokens.includes( `has-texture-${ slug }` ) ) || '';
+	const texture = TEXTURE_SLUGS.find( ( slug ) => tokens.includes( `memberlite-texture-${ slug }` ) ) || '';
 	let intensity = 'default';
-	if ( tokens.includes( 'has-texture-intensity-subtle' ) ) {
+	if ( tokens.includes( 'memberlite-texture-subtle' ) ) {
 		intensity = 'subtle';
-	} else if ( tokens.includes( 'has-texture-intensity-bold' ) ) {
+	} else if ( tokens.includes( 'memberlite-texture-bold' ) ) {
 		intensity = 'bold';
 	}
 	return { texture, intensity };
@@ -70,11 +76,11 @@ function parseTextureClasses( className = '' ) {
  * @return {string|undefined} New className, or undefined when empty.
  */
 function applyTextureClasses( className = '', texture, intensity ) {
-	const tokens = className.split( /\s+/ ).filter( ( token ) => token && ! token.startsWith( 'has-texture-' ) );
+	const tokens = className.split( /\s+/ ).filter( ( token ) => token && ! TEXTURE_CLASSES.includes( token ) );
 	if ( texture ) {
-		tokens.push( `has-texture-${ texture }` );
+		tokens.push( `memberlite-texture-${ texture }` );
 		if ( 'default' !== intensity ) {
-			tokens.push( `has-texture-intensity-${ intensity }` );
+			tokens.push( `memberlite-texture-${ intensity }` );
 		}
 	}
 	return tokens.length ? tokens.join( ' ' ) : undefined;
@@ -113,7 +119,7 @@ const TextureSwatch = ( { slug, label, isSelected, onClick } ) => (
 	>
 		<span
 			aria-hidden="true"
-			className={ slug ? `memberlite-texture-swatch has-texture-${ slug }` : 'memberlite-texture-swatch' }
+			className={ slug ? `memberlite-texture-swatch memberlite-texture-${ slug }` : 'memberlite-texture-swatch' }
 			style={ {
 				'--memberlite-texture-intensity': 2.5,
 				display: 'block',

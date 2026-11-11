@@ -78,12 +78,12 @@ Textures are subtle patterns drawn over a block's background. They work on **Gro
 
 | Class | Look | Good for |
 | --- | --- | --- |
-| `has-texture-grain` | Fine film grain | Adding depth to flat color and gradients. Works almost anywhere. |
-| `has-texture-paper` | Soft, organic paper surface | Editorial, nonprofit, education, and personal brands. Best on light backgrounds. |
-| `has-texture-dots` | Dot grid | Versatile. Feature and CTA sections. |
-| `has-texture-grid` | Fine square grid | Organized, professional, or technical sections. |
-| `has-texture-lines` | Diagonal lines | Accent bands and dark sections. |
-| `has-texture-waves` | Rows of soft waves | The most decorative option. Playful brands only. |
+| `memberlite-texture-grain` | Fine film grain | Adding depth to flat color and gradients. Works almost anywhere. |
+| `memberlite-texture-paper` | Soft, organic paper surface | Editorial, nonprofit, education, and personal brands. Best on light backgrounds. |
+| `memberlite-texture-dots` | Dot grid | Versatile. Feature and CTA sections. |
+| `memberlite-texture-grid` | Fine square grid | Organized, professional, or technical sections. |
+| `memberlite-texture-lines` | Diagonal lines | Accent bands and dark sections. |
+| `memberlite-texture-waves` | Rows of soft waves | The most decorative option. Playful brands only. |
 
 - Textures are drawn in the block's text color, so they work on light and dark backgrounds. Set the text color, and the texture follows.
 - Each texture has its own default strength. Strength drops automatically on dark sections, and textures are quieter on Cards and Covers so content stays readable.
@@ -97,15 +97,15 @@ One intensity control works the same way for every texture. Add one of these cla
 
 | Class | Strength |
 | --- | --- |
-| `has-texture-intensity-subtle` | About half the default |
+| `memberlite-texture-subtle` | About half the default |
 | (none) | Default |
-| `has-texture-intensity-bold` | About 1.75× the default |
+| `memberlite-texture-bold` | About 1.75× the default |
 
 Use subtle over photos and busy layouts, and bold only on large, plain sections. A child theme or custom CSS can set any strength with the `--memberlite-texture-intensity` custom property (`1` is the default).
 
 ```html
-<!-- wp:group {"className":"has-texture-dots","style":{"background":{"gradient":"var:preset|gradient|primary-glow"}},"backgroundColor":"base","textColor":"body-text","layout":{"type":"constrained"}} -->
-<div class="wp-block-group has-texture-dots has-body-text-color has-base-background-color has-text-color has-background">
+<!-- wp:group {"className":"memberlite-texture-dots","style":{"background":{"gradient":"var:preset|gradient|primary-glow"}},"backgroundColor":"base","textColor":"body-text","layout":{"type":"constrained"}} -->
+<div class="wp-block-group memberlite-texture-dots has-body-text-color has-base-background-color has-text-color has-background">
 	<!-- inner blocks -->
 </div>
 <!-- /wp:group -->
