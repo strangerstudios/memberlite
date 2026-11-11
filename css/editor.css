@@ -478,3 +478,63 @@ or being hovered over in the editor or from list view for better UX. */
 .wp-block-post-title.is-style-title-video > a:before, .wp-block-post-title.is-style-title-video:not(:has(> a)):before {
 	content: "\f144";
 }
+
+/*--------------------------------------------------------------
+ Background Textures
+--------------------------------------------------------------*/
+:where(.has-texture-dots, .has-texture-grid, .has-texture-lines, .has-texture-waves, .has-texture-grain) {
+	position: relative;
+}
+
+:is(.has-texture-dots, .has-texture-grid, .has-texture-lines, .has-texture-waves, .has-texture-grain)::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	z-index: 0;
+	border-radius: inherit;
+	pointer-events: none;
+}
+
+:where(:is(.has-texture-dots, .has-texture-grid, .has-texture-lines, .has-texture-waves, .has-texture-grain):not(.wp-block-cover) > *) {
+	position: relative;
+	z-index: 1;
+}
+
+.wp-block-cover:is(.has-texture-dots, .has-texture-grid, .has-texture-lines, .has-texture-waves, .has-texture-grain)::before {
+	z-index: 1;
+}
+.wp-block-cover:is(.has-texture-dots, .has-texture-grid, .has-texture-lines, .has-texture-waves, .has-texture-grain) > .wp-block-cover__inner-container,
+.wp-block-cover:is(.has-texture-dots, .has-texture-grid, .has-texture-lines, .has-texture-waves, .has-texture-grain)::after {
+	z-index: 2;
+}
+
+.has-texture-dots::before {
+	background-image: radial-gradient(currentColor 1px, transparent 1.5px);
+	background-size: 1.25rem 1.25rem;
+	opacity: var(--memberlite-texture-opacity, 0.2);
+}
+
+.has-texture-grid::before {
+	background-image: linear-gradient(currentColor 1px, transparent 1px), linear-gradient(90deg, currentColor 1px, transparent 1px);
+	background-size: 2.5rem 2.5rem;
+	opacity: var(--memberlite-texture-opacity, 0.08);
+}
+
+.has-texture-lines::before {
+	background-image: repeating-linear-gradient(45deg, currentColor 0 1px, transparent 1px 0.75rem);
+	opacity: var(--memberlite-texture-opacity, 0.1);
+}
+
+.has-texture-waves::before {
+	background-color: currentColor;
+	mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='20' viewBox='0 0 40 20'%3E%3Cpath d='M0 10 Q10 0 20 10 T40 10' fill='none' stroke='black' stroke-width='1.5'/%3E%3C/svg%3E");
+	mask-size: 40px 20px;
+	opacity: var(--memberlite-texture-opacity, 0.15);
+}
+
+.has-texture-grain::before {
+	background-color: currentColor;
+	mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 -1'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+	mask-size: 200px 200px;
+	opacity: var(--memberlite-texture-opacity, 0.15);
+}

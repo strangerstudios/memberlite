@@ -1,0 +1,80 @@
+/*--------------------------------------------------------------
+ 2.2 Blocks: Background Textures
+--------------------------------------------------------------*/
+
+// -----------------------------------------------------------------------------
+// Add a has-texture-{name} class to a Group, Columns, Column, or Cover block.
+// Textures draw in currentColor at low opacity, so they follow the block's text
+// color and work on light and dark backgrounds. Override the strength with the
+// --memberlite-texture-opacity custom property.
+// -----------------------------------------------------------------------------
+
+$textures: ".has-texture-dots, .has-texture-grid, .has-texture-lines, .has-texture-waves, .has-texture-grain";
+
+:where(#{$textures}) {
+	position: relative;
+}
+
+:is(#{$textures})::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	z-index: 0;
+	border-radius: inherit;
+	pointer-events: none;
+}
+
+// Lift children above the texture. Zero specificity keeps sticky and absolute children intact.
+:where(:is(#{$textures}):not(.wp-block-cover) > *) {
+	position: relative;
+	z-index: 1;
+}
+
+// Cover: texture sits above the image and overlay, below the content.
+.wp-block-cover:is(#{$textures}) {
+	&::before {
+		z-index: 1;
+	}
+
+	> .wp-block-cover__inner-container,
+	&::after {
+		z-index: 2;
+	}
+}
+
+// -----------------------------------------------------------------------------
+// Textures
+// -----------------------------------------------------------------------------
+
+.has-texture-dots::before {
+	background-image: radial-gradient(currentColor 1px, transparent 1.5px);
+	background-size: 1.25rem 1.25rem;
+	opacity: var(--memberlite-texture-opacity, 0.2);
+}
+
+.has-texture-grid::before {
+	background-image:
+		linear-gradient(currentColor 1px, transparent 1px),
+		linear-gradient(90deg, currentColor 1px, transparent 1px);
+	background-size: 2.5rem 2.5rem;
+	opacity: var(--memberlite-texture-opacity, 0.08);
+}
+
+.has-texture-lines::before {
+	background-image: repeating-linear-gradient(45deg, currentColor 0 1px, transparent 1px 0.75rem);
+	opacity: var(--memberlite-texture-opacity, 0.1);
+}
+
+.has-texture-waves::before {
+	background-color: currentColor;
+	mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='20' viewBox='0 0 40 20'%3E%3Cpath d='M0 10 Q10 0 20 10 T40 10' fill='none' stroke='black' stroke-width='1.5'/%3E%3C/svg%3E");
+	mask-size: 40px 20px;
+	opacity: var(--memberlite-texture-opacity, 0.15);
+}
+
+.has-texture-grain::before {
+	background-color: currentColor;
+	mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 -1'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+	mask-size: 200px 200px;
+	opacity: var(--memberlite-texture-opacity, 0.15);
+}
