@@ -87,8 +87,8 @@ Textures are subtle patterns drawn over a block's background. They work on **Gro
 
 - Textures are drawn in the block's text color, so they work on light and dark backgrounds. Set the text color, and the texture follows.
 - Each texture has its own default strength. Strength drops automatically on dark sections, and textures are quieter on Cards and Covers so content stays readable.
-- Textures combine with block styles (Card, slanted Covers), background colors, gradients, and background images.
-- On a Cover, the texture sits above the image and overlay and below the content.
+- Textures combine with block styles (Card, slanted Groups and Covers), background colors, gradients, and background images.
+- On a Cover, the texture sits above the image and overlay and below the content. A Cover saved in older markup (`has-background-dim` on the outer `div`) draws its overlay in the same layer the texture uses, so open and save it in the editor before adding a texture class by hand.
 - Use one texture per block, and texture only a few sections on a page. Repeating Lines or Waves across many sections makes a site look like a template.
 
 ### Intensity
@@ -128,6 +128,8 @@ Choose these in the block's Styles panel. In markup, the style is the class `is-
 | Accordion | `accrdn-caret` |
 | Login/out | `loginout-button` |
 | Post Title | `title-podcast`, `title-video` |
+
+The Group slant styles reserve the slant with a bottom border, so don't give a slanted Group a bottom border of its own. Its width replaces the slant depth, and the slant then cuts into the content.
 
 ## Typography
 
