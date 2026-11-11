@@ -56,6 +56,7 @@ function memberlite_get_customizer_cpts(): array {
 			'pmpro_course',
 			'pmpro_lesson',
 			'pmpro_series',
+			'pmpro_event',
 		) );
 
 		// Coerce any unexpected return type (null, false, int, etc.) to an empty array.

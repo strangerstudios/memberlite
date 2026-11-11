@@ -293,11 +293,16 @@
 		}
 
 		.wp-block-search__button {
-			background-color: var(--wp--preset--color--buttons);
+			--memberlite-btn-bg: var(--wp--preset--color--buttons);
+			background-color: var(--memberlite-btn-bg);
 			color: var(--wp--preset--color--base);
 
-			&:hover, &:active, &:focus {
-				background-color: var(--wp--preset--color--buttons-hover);
+			&:hover, &:focus-visible {
+				background-color: var(--memberlite-btn-bg-hover);
+			}
+
+			&:active {
+				background-color: var(--memberlite-btn-bg-active);
 			}
 		}
 	}
@@ -423,6 +428,21 @@
 	}
 }
 
+// Outline buttons sit flat and only lift on hover
+.wp-block-button.is-style-outline > .wp-block-button__link,
+.wp-block-button .wp-block-button__link.is-style-outline {
+	box-shadow: none;
+
+	&:hover,
+	&:focus-visible {
+		box-shadow: var(--wp--custom--button--shadow-hover);
+	}
+
+	&:active {
+		box-shadow: var(--wp--custom--button--shadow);
+	}
+}
+
 .wp-block-button {
 	&.is-style-arrow-fill a,
 	&.is-style-arrow-plain a {
@@ -444,10 +464,15 @@
 	&.is-style-arrow-plain a {
 		padding: 0 var(--wp--preset--spacing--10);
 		background: transparent;
+		box-shadow: none;
 		color: var(--wp--preset--color--buttons);
 
-		&:hover, &:active, &:focus {
-			color: var(--wp--preset--color--buttons-hover);
+		&:hover, &:focus-visible {
+			color: var(--wp--custom--button--hover-background);
+		}
+
+		&:active {
+			color: var(--wp--custom--button--active-background);
 		}
 	}
 }
@@ -600,7 +625,6 @@
 .wp-block-site-title,
 .wp-block-site-tagline {
 	overflow-wrap: normal;
-	word-break: normal;
 	overflow: visible;
 	min-width: 0;
 }

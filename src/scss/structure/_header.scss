@@ -371,7 +371,6 @@
 			display: block;
 			padding: calc(var(--wp--preset--spacing--10) / 2) var(--wp--preset--spacing--10);
 			overflow-wrap: normal;
-			word-break: normal;
 			text-decoration: none;
 
 			&:hover {
@@ -661,7 +660,17 @@ body.mobile-nav-open {
 	}
 
 	#loginform .login-submit .button {
-		background-color: var(--memberlite-color-action);
+		--memberlite-btn-bg: var(--memberlite-color-action);
+		background-color: var(--memberlite-btn-bg);
+
+		&:hover,
+		&:focus-visible {
+			background-color: var(--memberlite-btn-bg-hover);
+		}
+
+		&:active {
+			background-color: var(--memberlite-btn-bg-active);
+		}
 	}
 
 	.pmpro-member-navigation li {

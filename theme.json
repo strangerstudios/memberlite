@@ -21,7 +21,14 @@
 			"button": {
 				"radius": "var(--wp--custom--border--radius)",
 				"paddingBlock": "calc(var(--wp--preset--spacing--10) / 1.5)",
-				"paddingInline": "var(--wp--preset--spacing--20)"
+				"paddingInline": "var(--wp--preset--spacing--20)",
+				"shade": "light-dark(#000, #fff)",
+				"hoverMix": "15%",
+				"activeMix": "25%",
+				"hoverBackground": "color-mix(in oklab, var(--wp--preset--color--buttons), var(--wp--custom--button--shade) var(--wp--custom--button--hover-mix))",
+				"activeBackground": "color-mix(in oklab, var(--wp--preset--color--buttons), var(--wp--custom--button--shade) var(--wp--custom--button--active-mix))",
+				"shadow": "0 2px 6px light-dark(rgba(0, 0, 0, 0.22), rgba(255, 255, 255, 0.14))",
+				"shadowHover": "0 3px 10px light-dark(rgba(0, 0, 0, 0.32), rgba(255, 255, 255, 0.22))"
 			},
 			"list": {
 				"indent": "1.4em",
@@ -1899,11 +1906,19 @@
 					"background": "var(--wp--preset--color--buttons)",
 					"text": "var(--wp--preset--color--base)"
 				},
+				"shadow": "var(--wp--custom--button--shadow)",
 				":hover": {
 					"color": {
-						"background": "var(--wp--preset--color--buttons-hover)",
+						"background": "var(--wp--custom--button--hover-background)",
 						"text": "var(--wp--preset--color--base)"
-					}
+					},
+					"shadow": "var(--wp--custom--button--shadow-hover)"
+				},
+				":active": {
+					"color": {
+						"background": "var(--wp--custom--button--active-background)"
+					},
+					"shadow": "var(--wp--custom--button--shadow)"
 				},
 				":focus": {
 					"outline": {
