@@ -1514,6 +1514,34 @@ function memberlite_save_scheme_colors( WP_Customize_Manager $wp_customize ) {
 }
 
 /**
+ * When a CPT stops inheriting from Posts & Archives, save its display settings.
+ *
+ * The Customizer only saves settings that changed, so any CPT display setting
+ * left untouched gets the current Posts & Archives value. After that, changing
+ * a Posts & Archives setting no longer affects the CPT.
+ *
+ * @since TBD
+ */
+add_action( 'customize_save_after', 'memberlite_save_cpt_display_settings' );
+
+function memberlite_save_cpt_display_settings() {
+	$mods             = get_theme_mods();
+	$display_settings = memberlite_get_cpt_display_settings();
+
+	foreach ( memberlite_get_customizer_cpts() as $post_type ) {
+		if ( memberlite_cpt_inherits_posts_archives( $post_type ) ) {
+			continue;
+		}
+
+		foreach ( $display_settings as $setting => $default ) {
+			if ( ! array_key_exists( $setting . '_' . $post_type, $mods ) ) {
+				set_theme_mod( $setting . '_' . $post_type, (bool) get_theme_mod( $setting, $default ) );
+			}
+		}
+	}
+}
+
+/**
  * Output the floating back-to-top button in wp_footer.
  * Visibility is controlled by JS (scroll position + IntersectionObserver on the footer).
  * (Turned on in Customizer > General Settings)

@@ -804,7 +804,7 @@ function memberlite_get_breadcrumbs() {
 				?>
 				<span class="current_page_item"><?php the_title(); ?></span>
 			</nav>
-		<?php } elseif ( is_post_type_archive() && '' != $archive_breadcrumbs ) { ?>
+		<?php } elseif ( is_post_type_archive() && $archive_breadcrumbs ) { ?>
 			<nav class="memberlite-breadcrumb" itemprop="breadcrumb">
 				<?php if ( empty( $memberlite_hide_home_breadcrumb ) ) { ?>
 					<a href="<?php echo esc_url( home_url() ); ?>"><?php esc_html_e( 'Home', 'memberlite' ); ?></a>
@@ -815,7 +815,7 @@ function memberlite_get_breadcrumbs() {
 				echo '<span class="current_page_item">' . esc_html( $post_type->labels->name ) . '</span>';
 			?>
 			</nav>
-		<?php } elseif ( ( ( is_author() || is_tag() || is_archive() ) ) && '' != $archive_breadcrumbs ) { ?>
+		<?php } elseif ( ( ( is_author() || is_tag() || is_archive() ) ) && $archive_breadcrumbs ) { ?>
 			<nav class="memberlite-breadcrumb" itemprop="breadcrumb">
 				<?php if ( empty( $memberlite_hide_home_breadcrumb ) ) { ?>
 					<a href="<?php echo esc_url( home_url() ); ?>"><?php esc_html_e( 'Home', 'memberlite' ); ?></a>
@@ -900,7 +900,7 @@ function memberlite_get_breadcrumbs() {
 					endif;
 				?></span>
 			</nav>
-		<?php } elseif ( is_singular( array( 'post' ) ) && '' != $post_breadcrumbs ) { ?>
+		<?php } elseif ( is_singular( array( 'post' ) ) && $post_breadcrumbs ) { ?>
 			<nav class="memberlite-breadcrumb" itemprop="breadcrumb">
 				<?php if ( empty( $memberlite_hide_home_breadcrumb ) ) { ?>
 					<a href="<?php echo esc_url( home_url() ); ?>"><?php esc_html_e( 'Home', 'memberlite' ); ?></a>
@@ -912,7 +912,7 @@ function memberlite_get_breadcrumbs() {
 				<?php } ?>
 				<span class="current_page_item"><?php the_title(); ?></span>
 			</nav>
-		<?php } elseif ( is_single() && '' != $post_breadcrumbs ) {
+		<?php } elseif ( is_single() && $post_breadcrumbs ) {
 			$post_type_object = get_post_type_object( get_post_type( $post ) );
 			?>
 			<nav class="memberlite-breadcrumb" itemprop="breadcrumb">
