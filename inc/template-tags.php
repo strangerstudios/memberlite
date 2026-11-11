@@ -40,9 +40,10 @@ if ( ! function_exists( 'memberlite_output_site_title' ) ) {
 		 *
 		 * @since TBD
 		 *
-		 * @param string $tag The HTML tag: h1-h6, p, span, or div. Default 'h1' on the front page, 'span' elsewhere.
+		 * @param string $tag           The HTML tag: h1-h6, p, span, or div. Default 'h1' on the front page, 'span' elsewhere.
+		 * @param bool   $is_front_page Whether the current page is the front page.
 		 */
-		$tag = apply_filters( 'memberlite_site_title_tag', $default_tag );
+		$tag = apply_filters( 'memberlite_site_title_tag', $default_tag, $is_front_page );
 		if ( ! in_array( $tag, array( 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'span', 'div' ), true ) ) {
 			$tag = $default_tag;
 		}
@@ -51,7 +52,7 @@ if ( ! function_exists( 'memberlite_output_site_title' ) ) {
 			return '<' . $tag . ' class="site-title">' . $site_name . '</' . $tag . '>';
 		}
 
-		return '<' . $tag . ' class="site-title"><a href="' . $site_url . '">' . $site_name . '</a></' . $tag . '>';
+		return '<' . $tag . ' class="site-title"><a href="' . $site_url . '" rel="home">' . $site_name . '</a></' . $tag . '>';
 	}
 }
 
