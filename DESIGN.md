@@ -9,7 +9,7 @@ This file ships with the theme. Developer docs (build process, architecture) liv
 1. **Use presets, not raw values.** Colors, gradients, font sizes, and spacing all have presets. A hex color or a pixel value in block markup will not follow a color scheme change.
 2. **Start from a pattern.** Memberlite ships patterns for heroes, CTAs, pricing, features, testimonials, teams, and more (see [Patterns](#patterns)). Adapt one before building from scratch.
 3. **Pair background and text colors.** When you set a background, set the matching text color from the same pair (see [Colors](#colors)).
-4. **Layer, don't stack effects.** A section can have one background (color, image, or gradient), one gradient over an image, and one texture. Don't add more.
+4. **Layer, don't stack effects.** A section can have one background (color, image, or gradient), one gradient over an image, and one texture. Don't add more. Effects should support the content and be noticed after it, not before.
 5. **Keep text readable.** Text over a photo needs an overlay or a scrim gradient. Check contrast in both light and dark color schemes.
 
 ## Colors
@@ -40,9 +40,9 @@ Gradient presets are built from the scheme colors, so they change with the color
 | --- | --- |
 | `primary-to-secondary` | Bold brand sections and CTA bands. Pair with `white` text. |
 | `primary-to-action` | High-energy CTAs and promo banners. Pair with `white` text. |
-| `primary-glow` | A soft brand glow at the top of a section. Layer it over a `base` background color. |
+| `primary-glow` | A focused spotlight of brand color at the top of a section that fades out below. Layer it over a `base` background color. |
 | `mesh` | Soft multi-color hero and feature backgrounds. Opaque; pair with `body-text`. |
-| `soft-wash` | A subtle tint that sets a section apart from the page. |
+| `soft-wash` | An even, barely-there tint across the whole section that sets it apart from the page. Use it for neutral sections; use Primary Glow when you want a focal point. |
 | `fade-to-background` | Over a background image, blends the bottom of a section into the page. |
 | `bottom-scrim` | Over a photo, darkens the bottom so light text stays readable. |
 
@@ -76,19 +76,32 @@ If you're unsure of a block's saved markup, build the block in the editor and co
 
 Textures are subtle patterns drawn over a block's background. Add one class to a **Group, Columns, Column, or Cover** block. In the editor, use Advanced > Additional CSS class(es). In markup, use the `className` attribute.
 
-| Class | Look |
-| --- | --- |
-| `has-texture-dots` | Dot grid |
-| `has-texture-grid` | Fine square grid |
-| `has-texture-lines` | Diagonal lines |
-| `has-texture-waves` | Rows of soft waves |
-| `has-texture-grain` | Paper or film grain |
+| Class | Look | Good for |
+| --- | --- | --- |
+| `has-texture-grain` | Fine film grain | Adding depth to flat color and gradients. Works almost anywhere. |
+| `has-texture-paper` | Soft, organic paper surface | Editorial, nonprofit, education, and personal brands. Best on light backgrounds. |
+| `has-texture-dots` | Dot grid | Versatile. Feature and CTA sections. |
+| `has-texture-grid` | Fine square grid | Organized, professional, or technical sections. |
+| `has-texture-lines` | Diagonal lines | Accent bands and dark sections. |
+| `has-texture-waves` | Rows of soft waves | The most decorative option. Playful brands only. |
 
-- Textures are drawn in the block's text color at low opacity, so they work on light and dark backgrounds. Set the text color, and the texture follows.
+- Textures are drawn in the block's text color, so they work on light and dark backgrounds. Set the text color, and the texture follows.
+- Each texture has its own default strength. Strength drops automatically on dark sections, and textures are quieter on Cards and Covers so content stays readable.
 - Textures combine with block styles (Card, slanted Covers), background colors, gradients, and background images.
 - On a Cover, the texture sits above the image and overlay and below the content.
-- Use one texture per block, and texture only a few sections on a page.
-- To change the strength, set the `--memberlite-texture-opacity` custom property in a child theme or custom CSS (for example, `0.3`).
+- Use one texture per block, and texture only a few sections on a page. Repeating Lines or Waves across many sections makes a site look like a template.
+
+### Intensity
+
+One intensity control works the same way for every texture. Add one of these classes next to the texture class:
+
+| Class | Strength |
+| --- | --- |
+| `has-texture-intensity-subtle` | About half the default |
+| (none) | Default |
+| `has-texture-intensity-bold` | About 1.75× the default |
+
+Use subtle over photos and busy layouts, and bold only on large, plain sections. A child theme or custom CSS can set any strength with the `--memberlite-texture-intensity` custom property (`1` is the default).
 
 ```html
 <!-- wp:group {"className":"has-texture-dots","style":{"background":{"gradient":"var:preset|gradient|primary-glow"}},"backgroundColor":"base","textColor":"body-text","layout":{"type":"constrained"}} -->

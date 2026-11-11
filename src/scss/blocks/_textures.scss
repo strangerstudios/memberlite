@@ -4,24 +4,31 @@
 
 // -----------------------------------------------------------------------------
 // Add a has-texture-{name} class to a Group, Columns, Column, or Cover block.
-// Textures draw in currentColor at low opacity, so they follow the block's text
-// color and work on light and dark backgrounds. Override the strength with the
-// --memberlite-texture-opacity custom property.
+// Textures draw in the block's text color. Strength is the texture's own
+// default x intensity x context (Cards and Covers are quieter), and drops on
+// dark sections, where light marks read stronger.
+//
+// Intensity: add has-texture-intensity-subtle or has-texture-intensity-bold,
+// or set --memberlite-texture-intensity (1 = default).
 // -----------------------------------------------------------------------------
 
-$textures: ".has-texture-dots, .has-texture-grid, .has-texture-lines, .has-texture-waves, .has-texture-grain";
+$textures: ".has-texture-dots, .has-texture-grid, .has-texture-lines, .has-texture-waves, .has-texture-grain, .has-texture-paper";
 
 :where(#{$textures}) {
 	position: relative;
 }
 
 :is(#{$textures})::before {
+	--_texture-alpha: calc(var(--_texture-strength, 0.1) * var(--memberlite-texture-intensity, 1) * var(--_texture-context, 1));
 	content: "";
 	position: absolute;
 	inset: 0;
 	z-index: 0;
 	border-radius: inherit;
 	pointer-events: none;
+	color: color-mix(in srgb, currentColor calc(var(--_texture-alpha) * 100%), transparent);
+	// Light text means a dark section: scale alpha down by the text color's lightness.
+	color: oklch(from currentColor l c h / calc(var(--_texture-alpha) * (1.1 - 0.4 * l)));
 }
 
 // Lift children above the texture. Zero specificity keeps sticky and absolute children intact.
@@ -33,6 +40,7 @@ $textures: ".has-texture-dots, .has-texture-grid, .has-texture-lines, .has-textu
 // Cover: texture sits above the image and overlay, below the content.
 .wp-block-cover:is(#{$textures}) {
 	&::before {
+		--_texture-context: 0.75;
 		z-index: 1;
 	}
 
@@ -42,39 +50,58 @@ $textures: ".has-texture-dots, .has-texture-grid, .has-texture-lines, .has-textu
 	}
 }
 
+.is-style-card:is(#{$textures})::before {
+	--_texture-context: 0.6;
+}
+
+.has-texture-intensity-subtle::before {
+	--memberlite-texture-intensity: 0.55;
+}
+
+.has-texture-intensity-bold::before {
+	--memberlite-texture-intensity: 1.75;
+}
+
 // -----------------------------------------------------------------------------
 // Textures
 // -----------------------------------------------------------------------------
 
 .has-texture-dots::before {
+	--_texture-strength: 0.22;
 	background-image: radial-gradient(currentColor 1px, transparent 1.5px);
 	background-size: 1.25rem 1.25rem;
-	opacity: var(--memberlite-texture-opacity, 0.2);
 }
 
+// Single SVG path, so line crossings aren't drawn twice.
 .has-texture-grid::before {
-	background-image:
-		linear-gradient(currentColor 1px, transparent 1px),
-		linear-gradient(90deg, currentColor 1px, transparent 1px);
-	background-size: 2.5rem 2.5rem;
-	opacity: var(--memberlite-texture-opacity, 0.08);
+	--_texture-strength: 0.09;
+	background-color: currentColor;
+	mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Cpath d='M0 .5H40M.5 0V40' fill='none' stroke='black'/%3E%3C/svg%3E");
+	mask-size: 2.5rem 2.5rem;
 }
 
 .has-texture-lines::before {
-	background-image: repeating-linear-gradient(45deg, currentColor 0 1px, transparent 1px 0.75rem);
-	opacity: var(--memberlite-texture-opacity, 0.1);
+	--_texture-strength: 0.06;
+	background-image: repeating-linear-gradient(45deg, currentColor 0 1px, transparent 1px 0.875rem);
 }
 
 .has-texture-waves::before {
+	--_texture-strength: 0.09;
 	background-color: currentColor;
-	mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='20' viewBox='0 0 40 20'%3E%3Cpath d='M0 10 Q10 0 20 10 T40 10' fill='none' stroke='black' stroke-width='1.5'/%3E%3C/svg%3E");
-	mask-size: 40px 20px;
-	opacity: var(--memberlite-texture-opacity, 0.15);
+	mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='28' viewBox='0 0 48 28'%3E%3Cpath d='M0 14 Q12 6 24 14 T48 14' fill='none' stroke='black' stroke-width='1.25'/%3E%3C/svg%3E");
+	mask-size: 48px 28px;
 }
 
 .has-texture-grain::before {
+	--_texture-strength: 0.28;
 	background-color: currentColor;
-	mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 -1'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-	mask-size: 200px 200px;
-	opacity: var(--memberlite-texture-opacity, 0.15);
+	mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.95' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2.6 -1.2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+	mask-size: 240px 240px;
+}
+
+.has-texture-paper::before {
+	--_texture-strength: 0.5;
+	background-color: currentColor;
+	mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='320'%3E%3Cfilter id='p' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.08' numOctaves='6' stitchTiles='stitch'/%3E%3CfeDiffuseLighting lighting-color='white' surfaceScale='0.5'%3E%3CfeDistantLight azimuth='45' elevation='55'/%3E%3C/feDiffuseLighting%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -2 0 0 0 1.638'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)'/%3E%3C/svg%3E");
+	mask-size: 320px 320px;
 }

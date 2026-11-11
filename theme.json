@@ -10,27 +10,27 @@
 				{
 					"slug": "primary-to-secondary",
 					"name": "Primary to Secondary",
-					"gradient": "linear-gradient(135deg, var(--wp--preset--color--color-primary) 0%, var(--wp--preset--color--color-secondary) 100%)"
+					"gradient": "linear-gradient(135deg in oklab, var(--wp--preset--color--color-primary) 0%, var(--wp--preset--color--color-secondary) 100%)"
 				},
 				{
 					"slug": "primary-to-action",
 					"name": "Primary to Action",
-					"gradient": "linear-gradient(135deg, var(--wp--preset--color--color-primary) 0%, var(--wp--preset--color--color-action) 100%)"
+					"gradient": "linear-gradient(135deg in oklab, var(--wp--preset--color--color-primary) 0%, var(--wp--preset--color--color-action) 100%)"
 				},
 				{
 					"slug": "primary-glow",
 					"name": "Primary Glow",
-					"gradient": "radial-gradient(ellipse at 50% 0%, color-mix(in srgb, var(--wp--preset--color--color-primary) 35%, transparent) 0%, transparent 70%)"
+					"gradient": "radial-gradient(70% 90% at 50% 0%, color-mix(in srgb, var(--wp--preset--color--color-primary) 30%, transparent) 0%, transparent 100%)"
 				},
 				{
 					"slug": "mesh",
 					"name": "Mesh",
-					"gradient": "radial-gradient(at 0% 0%, color-mix(in srgb, var(--wp--preset--color--color-primary) 55%, transparent) 0%, transparent 55%), radial-gradient(at 100% 0%, color-mix(in srgb, var(--wp--preset--color--color-secondary) 45%, transparent) 0%, transparent 55%), radial-gradient(at 100% 100%, color-mix(in srgb, var(--wp--preset--color--color-action) 35%, transparent) 0%, transparent 55%), linear-gradient(var(--wp--preset--color--base), var(--wp--preset--color--base))"
+					"gradient": "radial-gradient(at 0% 0%, color-mix(in oklab, var(--wp--preset--color--color-primary) 70%, transparent) 0%, transparent 60%), radial-gradient(at 100% 0%, color-mix(in oklab, var(--wp--preset--color--color-secondary) 60%, transparent) 0%, transparent 60%), radial-gradient(at 100% 100%, color-mix(in oklab, var(--wp--preset--color--color-action) 50%, transparent) 0%, transparent 60%), radial-gradient(at 0% 100%, color-mix(in oklab, var(--wp--preset--color--color-secondary) 30%, transparent) 0%, transparent 50%), linear-gradient(var(--wp--preset--color--base), var(--wp--preset--color--base))"
 				},
 				{
 					"slug": "soft-wash",
 					"name": "Soft Wash",
-					"gradient": "linear-gradient(180deg, var(--wp--preset--color--base) 0%, color-mix(in srgb, var(--wp--preset--color--color-primary) 10%, var(--wp--preset--color--base)) 100%)"
+					"gradient": "linear-gradient(160deg, color-mix(in srgb, var(--wp--preset--color--color-primary) 4%, var(--wp--preset--color--base)) 0%, color-mix(in srgb, var(--wp--preset--color--color-secondary) 9%, var(--wp--preset--color--base)) 100%)"
 				},
 				{
 					"slug": "fade-to-background",
