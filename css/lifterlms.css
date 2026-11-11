@@ -52,24 +52,40 @@ a.llms-button-secondary {
 	line-height: 1.5;
 }
 
-/* primary buttons */
-.llms-button-primary,
-.llms-button-primary:hover {
-	background: var(--memberlite-color-primary);
-	color: var(--memberlite-color-white);
+/* button colors; hover and active shades are mixed from --memberlite-btn-bg */
+.llms-button-primary {
+	--memberlite-btn-bg: var(--memberlite-color-primary);
 }
 
-/* secondary buttons */
-.llms-button-secondary,
-.llms-button-secondary:hover {
-	background: var(--memberlite-color-secondary);
-	color: var(--memberlite-color-white);
+.llms-button-secondary {
+	--memberlite-btn-bg: var(--memberlite-color-secondary);
 }
 
-/* action buttons */
 .llms-button-action {
-	background: var(--memberlite-color-action);
+	--memberlite-btn-bg: var(--memberlite-color-action);
+}
+
+.llms-button-action,
+.llms-button-primary,
+.llms-button-secondary {
+	background: var(--memberlite-btn-bg);
 	color: var(--memberlite-color-white);
+}
+
+.llms-button-action:hover,
+.llms-button-action:focus-visible,
+.llms-button-primary:hover,
+.llms-button-primary:focus-visible,
+.llms-button-secondary:hover,
+.llms-button-secondary:focus-visible {
+	background: color-mix(in oklab, var(--memberlite-btn-bg), var(--wp--custom--button--shade) var(--wp--custom--button--hover-mix));
+	color: var(--memberlite-color-white);
+}
+
+.llms-button-action:active,
+.llms-button-primary:active,
+.llms-button-secondary:active {
+	background: color-mix(in oklab, var(--memberlite-btn-bg), var(--wp--custom--button--shade) var(--wp--custom--button--active-mix));
 }
 
 .llms-form-field.type-reset button:not(.auto),

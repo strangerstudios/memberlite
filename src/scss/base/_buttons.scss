@@ -5,6 +5,22 @@
  1.5 Base | Global: Buttons
 --------------------------------------------------------------*/
 
+// Button tokens. Variants set --memberlite-btn-bg; hover and active shades are mixed from it.
+:where(
+	button:not(.wp-block-accordion-heading__toggle, .menu-toggle, .customize-partial-edit-shortcut-button),
+	input[type=button],
+	input[type=reset],
+	input[type=submit],
+	.btn,
+	a.comment-reply-link
+) {
+	--memberlite-btn-bg: var(--memberlite-color-button);
+	--memberlite-btn-fg: var(--wp--preset--color--base);
+	--memberlite-btn-bg-hover: color-mix(in oklab, var(--memberlite-btn-bg), var(--wp--custom--button--shade) var(--wp--custom--button--hover-mix));
+	--memberlite-btn-bg-active: color-mix(in oklab, var(--memberlite-btn-bg), var(--wp--custom--button--shade) var(--wp--custom--button--active-mix));
+	--memberlite-btn-shadow: #{$btn-shadow};
+	--memberlite-btn-shadow-hover: #{$btn-shadow-hover};
+}
 
 button:where(:not(.wp-block-accordion-heading__toggle, .menu-toggle, .customize-partial-edit-shortcut-button)),
 input[type=button],
@@ -14,7 +30,7 @@ input[type=submit],
 a.comment-reply-link,
 .wp-block-search .wp-block-search__button {
 	@include button-base;
-	color: var(--wp--preset--color--base);
+	color: var(--memberlite-btn-fg, var(--wp--preset--color--base));
 }
 
 button.inline-form-button,
@@ -33,76 +49,62 @@ a.btn.skip-link {
 	font-size: var(--wp--preset--font-size--14);
 }
 
-button:where(:not(.pmpro_btn, .pmpro_btn-plain, .menu-toggle, .wp-block-accordion-heading__toggle)):hover,
-button:where(:not(.pmpro_btn, .pmpro_btn-plain, .menu-toggle, .wp-block-accordion-heading__toggle)):focus,
-button:where(:not(.pmpro_btn, .pmpro_btn-plain, .menu-toggle, .wp-block-accordion-heading__toggle)):active,
-input[type=button]:hover,
-input[type=button]:focus,
-input[type=button]:active,
-input[type=reset]:hover,
-input[type=reset]:focus,
-input[type=reset]:active,
-input[type=submit]:hover,
-input[type=submit]:focus,
-input[type=submit]:active,
-.btn:hover,
-.btn:focus,
-.btn:active {
-	background-color: var(--wp--preset--color--buttons-hover);
-	box-shadow: $btn-shadow-hover;
+button:where(:not(.pmpro_btn, .pmpro_btn-plain, .menu-toggle, .wp-block-accordion-heading__toggle, .customize-partial-edit-shortcut-button)),
+input[type=button],
+input[type=reset],
+input[type=submit],
+.btn,
+a.comment-reply-link {
+
+	&:hover,
+	&:focus-visible {
+		background-color: var(--memberlite-btn-bg-hover);
+		box-shadow: var(--memberlite-btn-shadow-hover);
+	}
+
+	&:active {
+		background-color: var(--memberlite-btn-bg-active);
+		box-shadow: var(--memberlite-btn-shadow);
+	}
+
+	&:focus-visible {
+		outline: 2px solid var(--wp--preset--color--body-text);
+		outline-offset: 2px;
+	}
 }
 
 a.comment-reply-link:focus,
 a.comment-reply-link:hover {
 	border: none;
-	box-shadow: $btn-shadow-hover;
 	text-shadow: none;
 }
 
-.btn_info {
-	background-color: $color-info-text;
-}
-
-.btn_success {
-	background-color: $color-success-text;
-}
-
-.btn_error {
-	background-color: $color-error-text;
-}
-
-.btn_alert {
-	background-color: $color-alert-text;
-}
-
-.btn_info:hover {
-	background-color: $color-info-link;
-}
-
-.btn_success:hover {
-	background-color: $color-success-text;
-}
-
-.btn_error:hover {
-	background-color: $color-error-link;
-}
-
-.btn_alert:hover {
-	background-color: $color-alert-link;
-}
-
 .btn_primary {
-	background-color: var(--memberlite-color-primary);
+	--memberlite-btn-bg: var(--memberlite-color-primary);
 }
 
 .btn_secondary {
-	background-color: var(--memberlite-color-secondary);
-	color: var(--wp--preset--color--base);
+	--memberlite-btn-bg: var(--memberlite-color-secondary);
 }
 
 .btn_action {
-	background-color: var(--memberlite-color-action);
-	color: var(--wp--preset--color--base);
+	--memberlite-btn-bg: var(--memberlite-color-action);
+}
+
+.btn_info {
+	--memberlite-btn-bg: #{$color-info-text};
+}
+
+.btn_success {
+	--memberlite-btn-bg: #{$color-success-text};
+}
+
+.btn_error {
+	--memberlite-btn-bg: #{$color-error-text};
+}
+
+.btn_alert {
+	--memberlite-btn-bg: #{$color-alert-text};
 }
 
 .btn_block {
@@ -124,11 +126,11 @@ a.comment-reply-link:hover {
 }
 
 .btn_link {
+	--memberlite-btn-bg: transparent;
+	--memberlite-btn-bg-hover: transparent;
+	--memberlite-btn-bg-active: transparent;
+	--memberlite-btn-fg: var(--memberlite-color-link);
+	--memberlite-btn-shadow: none;
+	--memberlite-btn-shadow-hover: none;
 	@include button-link;
-
-	&:hover {
-		background-color: transparent;
-		box-shadow: none;
-		text-decoration: underline;
-	}
 }

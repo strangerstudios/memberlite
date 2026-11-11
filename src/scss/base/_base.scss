@@ -32,7 +32,6 @@ a:where(:not(.wp-block-button__link)) {
 }
 
 button {
-	&:focus,
 	&:focus-visible {
 		outline: thin dotted var(--memberlite-color-button);
 	}

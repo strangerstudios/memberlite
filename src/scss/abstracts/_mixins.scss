@@ -24,10 +24,10 @@
 }
 
 @mixin button-base {
-	background-color: var(--memberlite-color-button);
+	background-color: var(--memberlite-btn-bg, var(--memberlite-color-button));
 	border: none;
 	border-radius: var(--wp--custom--button--radius);
-	box-shadow: $btn-shadow;
+	box-shadow: var(--memberlite-btn-shadow, #{$btn-shadow});
 	cursor: pointer;
 	font-family: var(--memberlite-header-font), ui-sans-serif;
 	font-size: var(--wp--preset--font-size--16);
