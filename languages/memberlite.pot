@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-11-12T10:49:23+00:00\n"
+"POT-Creation-Date: 2026-11-12T12:03:20+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: memberlite\n"
@@ -17,8 +17,8 @@ msgstr ""
 #. Theme Name of the theme
 #: style.css
 #: inc/admin.php:18
-#: inc/admin.php:392
-#: inc/admin.php:425
+#: inc/admin.php:356
+#: inc/admin.php:389
 #: build/editor/block-inserter.js:1
 #: src/editor/block-inserter.js:12
 msgid "Memberlite"
@@ -36,7 +36,6 @@ msgstr ""
 
 #. Author of the theme
 #: style.css
-#: adminpages/dashboard.php:231
 msgid "Stranger Studios"
 msgstr ""
 
@@ -155,176 +154,150 @@ msgstr ""
 msgid "Show again"
 msgstr ""
 
-#: adminpages/dashboard.php:62
+#: adminpages/dashboard.php:56
 msgid "Welcome to the Memberlite Theme"
 msgstr ""
 
-#: adminpages/dashboard.php:66
-msgid "Memberlite is the ideal theme for your membership site - packed with integration for top membership site plugins including Paid Memberships Pro. It's fully customizable with your logo, colors, fonts, custom sidebars and more global layout settings."
+#: adminpages/dashboard.php:60
+msgid "Start here to set up your site's look: add your logo and choose colors and layouts in the Customizer, design your header and footer, then build pages from Memberlite's block patterns."
 msgstr ""
 
-#: adminpages/dashboard.php:72
+#: adminpages/dashboard.php:66
 msgid "Adding Your Logo"
 msgstr ""
 
-#: adminpages/dashboard.php:75
+#: adminpages/dashboard.php:69
 msgid "Use the Customize > Site Identity screen to add a custom logo and update or toggle the display of your Site Title and Tagline."
 msgstr ""
 
-#: adminpages/dashboard.php:76
+#: adminpages/dashboard.php:70
 msgid "Add Your Logo"
 msgstr ""
 
-#: adminpages/dashboard.php:77
+#: adminpages/dashboard.php:71
 msgid "Docs: Site Branding in Memberlite"
 msgstr ""
 
-#: adminpages/dashboard.php:83
+#: adminpages/dashboard.php:77
 msgid "Customize the Theme"
 msgstr ""
 
-#: adminpages/dashboard.php:86
-msgid "Use the Customize > Memberlite Options screen to modify theme layout, logo, fonts, colors, copyright message and more."
+#: adminpages/dashboard.php:80
+msgid "Use Appearance > Customize to change layouts, fonts, colors, the copyright message and more."
 msgstr ""
 
-#: adminpages/dashboard.php:87
+#: adminpages/dashboard.php:81
 msgid "Customize Your Theme"
 msgstr ""
 
-#: adminpages/dashboard.php:88
+#: adminpages/dashboard.php:82
 msgid "Docs: Customizing Memberlite"
 msgstr ""
 
-#: adminpages/dashboard.php:94
-msgid "Theme Demo, Docs and Support"
+#: adminpages/dashboard.php:88
+msgid "Header and Footer Variations"
 msgstr ""
 
-#: adminpages/dashboard.php:97
-msgid "Register for a free account to browse documentation and get additional help with your Memberlite-powered WordPress site."
+#: adminpages/dashboard.php:91
+msgid "Design your header and footer in the block editor. Start from a Header or Footer Variations pattern, then choose it in Appearance > Customize > Header or Footer."
 msgstr ""
 
-#: adminpages/dashboard.php:98
-msgid "View Theme Demo"
+#: adminpages/dashboard.php:92
+msgid "Manage Headers"
+msgstr ""
+
+#: adminpages/dashboard.php:92
+msgid "Manage Footers"
+msgstr ""
+
+#: adminpages/dashboard.php:93
+msgid "Docs: Header and Footer Variations"
 msgstr ""
 
 #: adminpages/dashboard.php:99
-msgid "View All Docs"
+msgid "Block Patterns"
 msgstr ""
 
-#: adminpages/dashboard.php:117
-msgid "Using Child Themes"
+#: adminpages/dashboard.php:102
+msgid "Build pages from more than 40 block patterns for membership sites: heroes, pricing tables, testimonials, calls to action and more. Find them in the block inserter under the Memberlite categories."
+msgstr ""
+
+#: adminpages/dashboard.php:103
+msgid "Docs: Block Patterns"
+msgstr ""
+
+#: adminpages/dashboard.php:109
+msgid "Import, Export and Reset"
+msgstr ""
+
+#: adminpages/dashboard.php:112
+msgid "Back up your Memberlite settings, copy your design to another site, or reset the theme to its defaults from Memberlite > Tools."
+msgstr ""
+
+#: adminpages/dashboard.php:113
+msgid "Go to Tools"
+msgstr ""
+
+#: adminpages/dashboard.php:114
+msgid "Docs: Memberlite Tools"
+msgstr ""
+
+#: adminpages/dashboard.php:120
+msgid "Theme Demo, Docs and Support"
+msgstr ""
+
+#: adminpages/dashboard.php:123
+msgid "Register for a free account to browse documentation and get additional help with your membership site."
+msgstr ""
+
+#: adminpages/dashboard.php:124
+msgid "View Theme Demo"
 msgstr ""
 
 #: adminpages/dashboard.php:125
-msgid "If you need to customize the theme beyond the settings in Appearance > Customize, use a child theme. Child themes allow you to change the appearance of your site, while preseving the ability to update the primary \"parent\" theme."
+msgid "View All Docs"
 msgstr ""
 
-#: adminpages/dashboard.php:127
-msgid "Learn more about child themes in the WordPress Theme Handbook"
+#: adminpages/dashboard.php:141
+msgid "Using Child Themes"
 msgstr ""
 
-#: adminpages/dashboard.php:128
+#: adminpages/dashboard.php:148
+msgid "If you need to customize the theme beyond the settings in Appearance > Customize, use a child theme. Child themes allow you to change the appearance of your site, while preserving the ability to update the primary \"parent\" theme."
+msgstr ""
+
+#: adminpages/dashboard.php:150
 msgid "Download a Blank Child Theme"
 msgstr ""
 
-#: adminpages/dashboard.php:156
-msgid "Recommended Plugins"
-msgstr ""
-
-#: adminpages/dashboard.php:162
-msgid "No recommended plugins found."
-msgstr ""
-
-#. translators: Active theme name
-#: adminpages/dashboard.php:167
-#, php-format
-msgid "We highly recommend using these plugins for every site running %s:"
+#: adminpages/dashboard.php:168
+msgid "Using an AI Agent"
 msgstr ""
 
 #: adminpages/dashboard.php:171
-#: adminpages/dashboard.php:254
-msgid "Plugins list"
+msgid "If you manage your site with an AI coding agent, point it to the notes that ship with Memberlite. They explain how to customize the theme safely and link to DESIGN.md, the design and customization reference."
 msgstr ""
 
-#: adminpages/dashboard.php:177
-#: adminpages/dashboard.php:199
-#: adminpages/dashboard.php:345
-#: adminpages/dashboard.php:367
-msgid "Paid Memberships Pro"
+#: adminpages/dashboard.php:173
+msgid "An agent that starts in your site's root folder may not find them on its own. Add this line to the instructions file there (AGENTS.md or CLAUDE.md):"
 msgstr ""
 
-#: adminpages/dashboard.php:194
-#: adminpages/dashboard.php:226
-#: adminpages/dashboard.php:273
-#: adminpages/dashboard.php:302
-#: adminpages/dashboard.php:330
-#: adminpages/dashboard.php:362
-msgid "More Details"
-msgstr ""
-
-#: adminpages/dashboard.php:198
-#: adminpages/dashboard.php:366
-msgid "Paid Memberships Pro allows anyone to build a membership site—for free. Restrict content, accept payment, & manage subscriptions right from your WordPress admin."
-msgstr ""
-
-#: adminpages/dashboard.php:199
-#: adminpages/dashboard.php:231
-#: adminpages/dashboard.php:279
-#: adminpages/dashboard.php:307
-#: adminpages/dashboard.php:335
-#: adminpages/dashboard.php:367
-msgid "By"
-msgstr ""
-
-#: adminpages/dashboard.php:209
-msgid "Sitewide Sales"
-msgstr ""
-
-#: adminpages/dashboard.php:230
-msgid "All-in-one flash sales plugin for WordPress. Set up a sale from a single settings page: select the start and end date, choose a template, pick your banner, and assign the discount."
-msgstr ""
-
-#. translators: Active theme name
-#: adminpages/dashboard.php:250
+#. translators: %s: path to the theme's AGENTS.md file.
+#: adminpages/dashboard.php:176
 #, php-format
-msgid "%s offers integration for these plugins:"
+msgid "Before changing the Memberlite theme or its settings, read %s."
 msgstr ""
 
-#: adminpages/dashboard.php:260
-msgid "bbPress"
+#: adminpages/dashboard.php:192
+msgid "Need Help With Your Site?"
 msgstr ""
 
-#: adminpages/dashboard.php:277
-msgid "bbPress is forum software, made the WordPress way."
+#: adminpages/dashboard.php:195
+msgid "With PMPro Max, the team that builds Memberlite and Paid Memberships Pro hosts your site and helps customize it. Max includes monthly Max Credits for Do It For Me requests, like design changes, setup, and custom code."
 msgstr ""
 
-#: adminpages/dashboard.php:278
-msgid "Install Paid Memberships Pro - bbPress Add On"
-msgstr ""
-
-#: adminpages/dashboard.php:279
-msgid "The bbPress Contributors"
-msgstr ""
-
-#: adminpages/dashboard.php:289
-msgid "Events Manager"
-msgstr ""
-
-#: adminpages/dashboard.php:306
-msgid "Fully featured event registration management including recurring events, locations management, calendar, Google map integration, booking management"
-msgstr ""
-
-#: adminpages/dashboard.php:307
-msgid "Pixelite"
-msgstr ""
-
-#: adminpages/dashboard.php:317
-#: adminpages/dashboard.php:335
-msgid "LifterLMS"
-msgstr ""
-
-#: adminpages/dashboard.php:334
-msgid "LifterLMS is a secure easy-to-use WordPress LMS plugin packed with features to easily create & sell courses online."
+#: adminpages/dashboard.php:196
+msgid "Learn About PMPro Max"
 msgstr ""
 
 #: adminpages/menus.php:32
@@ -1015,49 +988,37 @@ msgstr ""
 msgid "Not assigned"
 msgstr ""
 
-#: inc/admin.php:312
-msgid "Active"
-msgstr ""
-
-#: inc/admin.php:314
-msgid "Activate"
-msgstr ""
-
-#: inc/admin.php:325
-msgid "Install"
-msgstr ""
-
-#: inc/admin.php:368
+#: inc/admin.php:332
 msgid "You do not have permission to dismiss this notice."
 msgstr ""
 
-#: inc/admin.php:377
+#: inc/admin.php:341
 msgid "Invalid notice."
 msgstr ""
 
-#: inc/admin.php:394
+#: inc/admin.php:358
 msgid "We have documentation and recommendations to help you get started with the Memberlite Theme."
 msgstr ""
 
-#: inc/admin.php:396
+#: inc/admin.php:360
 msgid "Click here to view the Memberlite dashboard."
 msgstr ""
 
-#: inc/admin.php:431
+#: inc/admin.php:395
 msgid "Documentation"
 msgstr ""
 
-#: inc/admin.php:432
+#: inc/admin.php:396
 msgid "Get Support"
 msgstr ""
 
 #. translators: $1$s - Memberlite theme name; $2$s - testimonial link; $3$s - Paid Memberships Pro
-#: inc/admin.php:455
+#: inc/admin.php:419
 #, php-format
 msgid "Please <a href=\"%1$s\" target=\"_blank\" rel=\"noopener noreferrer\">submit a testimonial</a> to help others find %2$s. Thank you from the %3$s team!"
 msgstr ""
 
-#: inc/admin.php:550
+#: inc/admin.php:514
 msgid "Manage with Memberlite"
 msgstr ""
 
@@ -2006,6 +1967,22 @@ msgstr ""
 
 #: inc/deprecated.php:549
 msgid "Watermelon Seed (Legacy)"
+msgstr ""
+
+#: inc/deprecated.php:661
+msgid "Active"
+msgstr ""
+
+#: inc/deprecated.php:663
+msgid "Activate"
+msgstr ""
+
+#: inc/deprecated.php:674
+msgid "Install"
+msgstr ""
+
+#: inc/deprecated.php:695
+msgid "The Recommended Plugins section was removed from Memberlite > Dashboard."
 msgstr ""
 
 #: inc/editor-settings.php:22

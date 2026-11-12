@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-11-12T10:49:24+00:00\n"
+"POT-Creation-Date: 2026-11-12T12:03:22+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: memberlite\n"
@@ -31,6 +31,8 @@ msgstr ""
 #: inc/admin.php:414
 #: inc/admin.php:392
 #: inc/admin.php:425
+#: inc/admin.php:356
+#: inc/admin.php:389
 msgid "Memberlite"
 msgstr ""
 
@@ -517,6 +519,7 @@ msgstr ""
 
 #: inc/admin.php:43
 #: adminpages/dashboard.php:62
+#: adminpages/dashboard.php:56
 msgid "Welcome to the Memberlite Theme"
 msgstr ""
 
@@ -533,26 +536,31 @@ msgstr ""
 
 #: inc/admin.php:53
 #: adminpages/dashboard.php:72
+#: adminpages/dashboard.php:66
 msgid "Adding Your Logo"
 msgstr ""
 
 #: inc/admin.php:54
 #: adminpages/dashboard.php:75
+#: adminpages/dashboard.php:69
 msgid "Use the Customize > Site Identity screen to add a custom logo and update or toggle the display of your Site Title and Tagline."
 msgstr ""
 
 #: inc/admin.php:56
 #: adminpages/dashboard.php:76
+#: adminpages/dashboard.php:70
 msgid "Add Your Logo"
 msgstr ""
 
 #: inc/admin.php:57
 #: adminpages/dashboard.php:77
+#: adminpages/dashboard.php:71
 msgid "Docs: Site Branding in Memberlite"
 msgstr ""
 
 #: inc/admin.php:61
 #: adminpages/dashboard.php:83
+#: adminpages/dashboard.php:77
 msgid "Customize the Theme"
 msgstr ""
 
@@ -563,16 +571,19 @@ msgstr ""
 
 #: inc/admin.php:64
 #: adminpages/dashboard.php:87
+#: adminpages/dashboard.php:81
 msgid "Customize Your Theme"
 msgstr ""
 
 #: inc/admin.php:65
 #: adminpages/dashboard.php:88
+#: adminpages/dashboard.php:82
 msgid "Docs: Customizing Memberlite"
 msgstr ""
 
 #: inc/admin.php:69
 #: adminpages/dashboard.php:94
+#: adminpages/dashboard.php:120
 msgid "Theme Demo, Docs and Support"
 msgstr ""
 
@@ -583,16 +594,19 @@ msgstr ""
 
 #: inc/admin.php:72
 #: adminpages/dashboard.php:98
+#: adminpages/dashboard.php:124
 msgid "View Theme Demo"
 msgstr ""
 
 #: inc/admin.php:73
 #: adminpages/dashboard.php:99
+#: adminpages/dashboard.php:125
 msgid "View All Docs"
 msgstr ""
 
 #: inc/admin.php:86
 #: adminpages/dashboard.php:117
+#: adminpages/dashboard.php:141
 msgid "Using Child Themes"
 msgstr ""
 
@@ -608,6 +622,7 @@ msgstr ""
 
 #: inc/admin.php:88
 #: adminpages/dashboard.php:128
+#: adminpages/dashboard.php:150
 msgid "Download a Blank Child Theme"
 msgstr ""
 
@@ -742,6 +757,7 @@ msgstr ""
 #: inc/admin.php:232
 #: inc/admin.php:310
 #: inc/admin.php:312
+#: inc/deprecated.php:661
 msgid "Active"
 msgstr ""
 
@@ -751,6 +767,7 @@ msgstr ""
 #: inc/admin.php:234
 #: inc/admin.php:312
 #: inc/admin.php:314
+#: inc/deprecated.php:663
 msgid "Activate"
 msgstr ""
 
@@ -760,6 +777,7 @@ msgstr ""
 #: inc/admin.php:245
 #: inc/admin.php:323
 #: inc/admin.php:325
+#: inc/deprecated.php:674
 msgid "Install"
 msgstr ""
 
@@ -2868,6 +2886,7 @@ msgstr ""
 #: inc/admin.php:342
 #: inc/admin.php:420
 #: inc/admin.php:431
+#: inc/admin.php:395
 msgid "Documentation"
 msgstr ""
 
@@ -2876,6 +2895,7 @@ msgstr ""
 #: inc/admin.php:343
 #: inc/admin.php:421
 #: inc/admin.php:432
+#: inc/admin.php:396
 msgid "Get Support"
 msgstr ""
 
@@ -2885,6 +2905,7 @@ msgstr ""
 #: inc/admin.php:366
 #: inc/admin.php:444
 #: inc/admin.php:455
+#: inc/admin.php:419
 #, php-format
 msgid "Please <a href=\"%1$s\" target=\"_blank\" rel=\"noopener noreferrer\">submit a testimonial</a> to help others find %2$s. Thank you from the %3$s team!"
 msgstr ""
@@ -3185,6 +3206,7 @@ msgstr ""
 #: inc/admin.php:305
 #: inc/admin.php:383
 #: inc/admin.php:394
+#: inc/admin.php:358
 msgid "We have documentation and recommendations to help you get started with the Memberlite Theme."
 msgstr ""
 
@@ -3192,6 +3214,7 @@ msgstr ""
 #: inc/admin.php:307
 #: inc/admin.php:385
 #: inc/admin.php:396
+#: inc/admin.php:360
 msgid "Click here to view the Memberlite dashboard."
 msgstr ""
 
@@ -3199,6 +3222,7 @@ msgstr ""
 #: inc/admin.php:461
 #: inc/admin.php:539
 #: inc/admin.php:550
+#: inc/admin.php:514
 msgid "Manage with Memberlite"
 msgstr ""
 
@@ -5084,6 +5108,7 @@ msgstr ""
 
 #: inc/admin.php:365
 #: inc/admin.php:377
+#: inc/admin.php:341
 msgid "Invalid notice."
 msgstr ""
 
@@ -5229,6 +5254,7 @@ msgid "Show again"
 msgstr ""
 
 #: inc/admin.php:368
+#: inc/admin.php:332
 msgid "You do not have permission to dismiss this notice."
 msgstr ""
 
@@ -7060,4 +7086,102 @@ msgstr ""
 #: theme.json
 msgctxt "Gradient name"
 msgid "Bottom Scrim"
+msgstr ""
+
+#: adminpages/dashboard.php:60
+msgid "Start here to set up your site's look: add your logo and choose colors and layouts in the Customizer, design your header and footer, then build pages from Memberlite's block patterns."
+msgstr ""
+
+#: adminpages/dashboard.php:80
+msgid "Use Appearance > Customize to change layouts, fonts, colors, the copyright message and more."
+msgstr ""
+
+#: adminpages/dashboard.php:88
+msgid "Header and Footer Variations"
+msgstr ""
+
+#: adminpages/dashboard.php:91
+msgid "Design your header and footer in the block editor. Start from a Header or Footer Variations pattern, then choose it in Appearance > Customize > Header or Footer."
+msgstr ""
+
+#: adminpages/dashboard.php:92
+msgid "Manage Headers"
+msgstr ""
+
+#: adminpages/dashboard.php:92
+msgid "Manage Footers"
+msgstr ""
+
+#: adminpages/dashboard.php:93
+msgid "Docs: Header and Footer Variations"
+msgstr ""
+
+#: adminpages/dashboard.php:99
+msgid "Block Patterns"
+msgstr ""
+
+#: adminpages/dashboard.php:102
+msgid "Build pages from more than 40 block patterns for membership sites: heroes, pricing tables, testimonials, calls to action and more. Find them in the block inserter under the Memberlite categories."
+msgstr ""
+
+#: adminpages/dashboard.php:103
+msgid "Docs: Block Patterns"
+msgstr ""
+
+#: adminpages/dashboard.php:109
+msgid "Import, Export and Reset"
+msgstr ""
+
+#: adminpages/dashboard.php:112
+msgid "Back up your Memberlite settings, copy your design to another site, or reset the theme to its defaults from Memberlite > Tools."
+msgstr ""
+
+#: adminpages/dashboard.php:113
+msgid "Go to Tools"
+msgstr ""
+
+#: adminpages/dashboard.php:114
+msgid "Docs: Memberlite Tools"
+msgstr ""
+
+#: adminpages/dashboard.php:123
+msgid "Register for a free account to browse documentation and get additional help with your membership site."
+msgstr ""
+
+#: adminpages/dashboard.php:148
+msgid "If you need to customize the theme beyond the settings in Appearance > Customize, use a child theme. Child themes allow you to change the appearance of your site, while preserving the ability to update the primary \"parent\" theme."
+msgstr ""
+
+#: adminpages/dashboard.php:168
+msgid "Using an AI Agent"
+msgstr ""
+
+#: adminpages/dashboard.php:171
+msgid "If you manage your site with an AI coding agent, point it to the notes that ship with Memberlite. They explain how to customize the theme safely and link to DESIGN.md, the design and customization reference."
+msgstr ""
+
+#: adminpages/dashboard.php:173
+msgid "An agent that starts in your site's root folder may not find them on its own. Add this line to the instructions file there (AGENTS.md or CLAUDE.md):"
+msgstr ""
+
+#. translators: %s: path to the theme's AGENTS.md file.
+#: adminpages/dashboard.php:176
+#, php-format
+msgid "Before changing the Memberlite theme or its settings, read %s."
+msgstr ""
+
+#: adminpages/dashboard.php:192
+msgid "Need Help With Your Site?"
+msgstr ""
+
+#: adminpages/dashboard.php:195
+msgid "With PMPro Max, the team that builds Memberlite and Paid Memberships Pro hosts your site and helps customize it. Max includes monthly Max Credits for Do It For Me requests, like design changes, setup, and custom code."
+msgstr ""
+
+#: adminpages/dashboard.php:196
+msgid "Learn About PMPro Max"
+msgstr ""
+
+#: inc/deprecated.php:695
+msgid "The Recommended Plugins section was removed from Memberlite > Dashboard."
 msgstr ""
