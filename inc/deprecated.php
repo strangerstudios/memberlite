@@ -633,3 +633,67 @@ function memberlite_sidebar_none_get_sidebar( $name ) {
 
 	return $name;
 }
+
+/**
+ * Deprecated. Show an action button for the specified plugin.
+ *
+ * Only the Recommended Plugins section of Memberlite > Dashboard used it, and that section was removed.
+ *
+ * @deprecated 8.0.1
+ *
+ * @param string $slug The plugin slug
+ * @param string $plugin_file The plugin file (includes slug/plugin.php)
+ * @param string $download_link Get the download link for the plugin. If 'org' is set assume it's on WordPress.org and search in the WP dashboard for the plugin.
+ */
+function memberlite_plugin_action_button( $slug, $plugin_file, $download_link = 'org' ) {
+	_deprecated_function( __FUNCTION__, '8.0.1' );
+
+	$plugin_file_abs = ABSPATH . 'wp-content/plugins/' . $plugin_file;
+	if ( is_plugin_active( $plugin_file ) ) {
+		$status = 'active';
+	} elseif ( file_exists( $plugin_file_abs ) ) {
+		$status = 'inactive';
+	} else {
+		$status = 'uninstalled';
+	}
+
+	if ( $status === 'active' ) {
+		$r = '<a class="button button-disabled">' . __( 'Active', 'memberlite' ) . '</a>';
+	} elseif ( $status === 'inactive' ) {
+		$r = '<a class="install-now button" href="' . esc_url( add_query_arg( array( 's' => $slug ), admin_url( 'plugins.php' ) ) ) . '">' . __( 'Activate', 'memberlite' ) . '</a>';
+	} else {
+		// Adjust the download link based on the download_link that is passed in.
+		if ( $download_link === 'org' ) {
+			$plugin_url = is_multisite() ? add_query_arg( array( 's' => $slug, 'tab' => 'search' ), network_admin_url( 'plugin-install.php' ) ) : add_query_arg( array( 's' => $slug, 'tab' => 'search' ), admin_url( 'plugin-install.php' ) );
+			$target = '';
+		} else {
+			$plugin_url = $download_link;
+			$target = ' target=_blank'; // esc_attr is wrapping the values in between quotes when outputting so we can ommit them here.
+		}
+
+		$r = '<a href="' . esc_url( $plugin_url ) . '" class="install-now button" aria-label="' . esc_attr__( 'Install', 'memberlite' ) . '"' . esc_attr( $target ) . '>' . __( 'Install', 'memberlite' ) . '</a>';
+
+	}
+	return $r;
+}
+
+/**
+ * Show a deprecation notice when code hooks into the Recommended Plugins hooks removed from Memberlite > Dashboard.
+ *
+ * @since 8.0.1
+ */
+function memberlite_deprecated_dashboard_plugin_hooks() {
+	$hooks = array(
+		'memberlite_plugins_recommended',
+		'memberlite_plugins_integrated',
+		'memberlite_plugins_recommended_additional',
+		'memberlite_plugins_integrated_additional',
+	);
+
+	foreach ( $hooks as $hook ) {
+		if ( has_filter( $hook ) ) {
+			_deprecated_hook( $hook, '8.0.1', '', __( 'The Recommended Plugins section was removed from Memberlite > Dashboard.', 'memberlite' ) );
+		}
+	}
+}
+add_action( 'admin_init', 'memberlite_deprecated_dashboard_plugin_hooks' );

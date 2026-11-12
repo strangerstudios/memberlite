@@ -401,8 +401,8 @@ body[class*="toplevel_page_memberlite-"] #footer-left a {
 .memberlite_admin .memberlite_two_col-right {
 	grid-template-areas: "main sidebar";
 	grid-template-columns:
-		minmax( 0, 5fr )
-		minmax( 220px, 2fr );
+		minmax( 0, 3fr )
+		minmax( 220px, 1fr );
 }
 
 .memberlite_admin .memberlite_columns {
