@@ -152,7 +152,7 @@ Pattern slugs start with `memberlite/`. Find them in the inserter under these ca
 ### Where settings live
 
 - **Appearance > Customize:** colors, fonts, the default layout for each kind of page, header and footer variations, breadcrumbs, and post display settings. Sections: General, Header, Footer, Pages, Posts & Archives, Other Post Types, Breadcrumbs, Typography, Colors.
-- **Block editor sidebar** (per item): **Layout** (pages, posts, and custom post types), **Page Settings** (pages: masthead banner, title, breadcrumbs, page navigation), **Template Settings** (pages: hide header or footer, header and footer override), and **Banner Image**.
+- **Block editor sidebar** (per item): **Layout** (pages, posts, and custom post types), **Page Settings** (pages: masthead banner, title, breadcrumbs, page navigation), **Template Settings** (pages: hide header or footer, header and footer override; header variations: sticky header), and **Banner Image**.
 - **Memberlite admin menu:** Headers, Footers, Custom Menus, Custom Sidebars, Tools (import, export, or reset theme settings), and Alerts (content or settings that an update changed, with fixes).
 
 ### Layouts
@@ -168,6 +168,7 @@ Every page, post, archive, search results page, and custom post type uses one of
 | `full-width` | Edge to edge, no container. Pages only. |
 
 - The Customizer sets the default for pages, single posts, the blog and archives, search results, and each custom post type and its archive. The Layout panel in the block editor overrides it per item (meta key `_memberlite_layout`).
+- `full-width` is valid only for pages. Don't set it for any other context, including through `wp theme mod set`, which skips the Customizer's checks.
 - Use `full-width` for pages built from full-width block sections, such as landing pages.
 - Filters: `memberlite_layout` changes the resolved layout on the front end; `memberlite_layout_choices` removes layouts from the Customizer and editor choices. `memberlite_customizer_cpts` adds a custom post type to the Customizer's Other Post Types panel.
 
@@ -185,7 +186,7 @@ Headers and footers can be built in the block editor. Each variation is a post o
 - **Use a child theme or a plugin.** Don't edit the parent theme; updates replace it. When a Memberlite child theme is first activated, Memberlite copies the parent's Customizer settings and Additional CSS into it.
 - **Hooks:** template action hooks are named `memberlite_before_*` and `memberlite_after_*` (for example `memberlite_before_content`, `memberlite_after_masthead`, `memberlite_before_footer`). Filters all start with `memberlite_`; search `apply_filters( 'memberlite_` in `inc/` and `components/` for the current list and their docblocks. Hooks without the `memberlite_` prefix (such as `before_content`) are deprecated.
 - **Templates:** theme parts are in `components/` (header, footer, page, post). A child theme can override them with a file at the same path.
-- **Theme mods:** color settings are stored as hex without `#` (for example `2c3e50`). Setting IDs have no `memberlite_` prefix (for example `color_primary`).
+- **Theme mods:** color settings are stored as hex without `#` (for example `2c3e50`). Color setting IDs have no prefix (`color_primary`). Other settings are mixed (`memberlite_body_font`, `memberlite_pmpro_color_override`, `sticky_nav`). Run `wp theme mod list` for the real IDs.
 - **Shortcodes** (for existing content; prefer blocks and patterns for new pages): `[fa]` (Font Awesome icon), `[memberlite_btn]`, `[memberlite_msg]`, `[memberlite_banner]`, `[memberlite_accordion]` / `[memberlite_accordion_item]`, `[memberlite_tabs]` / `[memberlite_tab]`, `[memberlite_recent_posts]`, `[memberlite_subpagelist]`, and the `[row]` / `[col]` grid.
 
 ### Plugin integrations
@@ -196,7 +197,7 @@ Memberlite loads extra styles and settings for Paid Memberships Pro, LifterLMS, 
 
 If you learned Memberlite before version 8.0, these no longer work the way you remember:
 
-- **Page templates are gone.** The Content/Sidebar, Sidebar/Content, Narrow Width, Full Width, Fluid Width, and Landing Page templates were replaced by [layouts](#layouts). Pages that used them were moved to the matching layout on update.
+- **Page templates are gone.** The Content/Sidebar, Sidebar/Content, Narrow Width, Full Width, Fluid Width, and Landing Page templates were replaced by [layouts](#layouts). Pages that used them were moved to a layout on update. Not every template maps to the layout with the same name: Full Width became `contained`, Fluid Width became `full-width`, and Landing Page became `sidebar-right`. Content/Sidebar, Sidebar/Content, and Narrow Width became `sidebar-right`, `sidebar-left`, and `narrow`.
 - **The Memberlite Settings meta box is gone.** Banner, title, breadcrumb, and alignment settings are in the Page Settings panel. Values from removed fields (banner description, right column, bottom banner, extra padding, page icon, landing page fields) are kept as custom fields, and Memberlite > Alerts lists pages that use them.
 - **Banner Image** is a block editor panel instead of a meta box.
 - **Deprecated functions:** `memberlite_page_title()` (use `memberlite_get_page_title()` and `memberlite_get_page_description()`), `memberlite_getBreadcrumbs()` (use `memberlite_get_breadcrumbs()`), `memberlite_sidebar_none_get_sidebar()` (use `memberlite_layout_get_sidebar()`), and `memberlite_sidebar_location_none_columns_ratio()` (use `memberlite_get_layout()`). See `inc/deprecated.php`.
