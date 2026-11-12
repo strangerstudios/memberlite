@@ -3,7 +3,7 @@ Contributors: kimannwall, strangerstudios
 Requires at least: 6.4
 Tested up to: 7.1.3
 Requires PHP: 7.4
-Stable tag: 8.0
+Stable tag: 8.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: one-column, two-columns, left-sidebar, right-sidebar, flexible-header, custom-background, custom-colors, custom-header, custom-menu, custom-logo, editor-style, featured-images, footer-widgets, theme-options, threaded-comments, translation-ready, e-commerce
@@ -91,6 +91,20 @@ Memberlite includes formatting for use with:
 [Install Events Manager »](https://wordpress.org/plugins/events-manager/)
 
 == Changelog ==
+
+= 8.0.1 - 2026-11-12 =
+* FEATURE: Added seven gradient presets built from the color scheme, so they follow scheme changes. They replace core's gradients in the block editor picker; content that already uses core gradients is unaffected. #397 @kimcoleman
+* FEATURE: Added background textures (Grain, Paper, Dots, Grid, Lines, Waves) with Subtle and Bold intensity, set from a new Texture panel in the Styles tab of Group, Columns, Column and Cover blocks or with `memberlite-texture-*` classes. #397 @kimcoleman
+* FEATURE: Added Slant: Bottom Right and Slant: Bottom Left block styles to the Group block. #397 @kimcoleman
+* FEATURE: Custom post types can set their own Breadcrumbs, Author Block and Prev/Next settings in the Customizer when "Inherit from Posts & Archives" is unchecked. #395 @kimcoleman
+* ENHANCEMENT: Added `DESIGN.md`, a guide to the theme's colors, gradients, textures, block styles, typography and spacing presets for people and AI agents building with Memberlite. #397 @kimcoleman
+* ENHANCEMENT: Button hover, focus and active colors now come from each button's own color instead of one shared hover color, for Memberlite buttons and block buttons with a palette color. Keyboard focus shows a 2px ring, and a clicked button no longer stays dark. Removed the unused `--memberlite-hover-brightness` CSS variable. #391 @kimcoleman
+* ENHANCEMENT: Recognize the PMPro Events `pmpro_event` post type, with its own Customizer section and the block editor Layout panel. #394 @kimcoleman
+* ENHANCEMENT: With Override PMPro Colors on, PMPro cards use the site background color, so they match pages with an off-white background. #396 @kimcoleman
+* ENHANCEMENT: Breadcrumbs on single items of a hierarchical custom post type show the item's parents. #395 @kimcoleman
+* ENHANCEMENT: Moved the Banner Image panel below Page Settings in the block editor sidebar. #389 @kimcoleman
+* BUG FIX: Interior pages no longer print the site title as a second `<h1>`. The site title is an `<h1>` on the front page and a `<span>` elsewhere, filterable with the new `memberlite_site_title_tag` filter. The header-04 and header-06 patterns no longer use an `<h1>` for the site title. #392 @kimcoleman
+* BUG FIX: Removed `word-break: break-word` from text elements so short words, like the site title in the header, no longer break mid-word at narrow widths. Long URLs and words still wrap. #393 @kimcoleman
 
 = 8.0 - 2026-10-28 =
 

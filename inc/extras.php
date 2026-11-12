@@ -207,7 +207,7 @@ function memberlite_get_content_archives_theme_mod(): string {
  *
  * Each CPT stores its own value in a theme_mod named `{setting}_{post_type}`.
  *
- * @since TBD
+ * @since 8.0.1
  * @return array Setting ID => default value.
  */
 function memberlite_get_cpt_display_settings(): array {
@@ -227,7 +227,7 @@ function memberlite_get_cpt_display_settings(): array {
  * Uses the CPT's own value when the current CPT doesn't inherit from Posts & Archives.
  * A CPT with no saved value falls back to the Posts & Archives value.
  *
- * @since TBD
+ * @since 8.0.1
  * @param string $setting A setting ID from memberlite_get_cpt_display_settings().
  * @return bool
  */
