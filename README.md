@@ -23,19 +23,11 @@ adding functions, or making layout changes, using a child theme is a great way t
 
 
 ### Integrated Plugins
-Memberlite includes formatting for use with:
+Memberlite is built for Paid Memberships Pro, with styles and color settings that match PMPro's frontend pages to your site. It also recognizes the PMPro Courses, Lessons, Series, and Events post types.
 
-**Paid Memberships Pro**
-[Install Paid Memberships Pro »](http://www.paidmembershipspro.com/documentation/download/)
+Memberlite includes formatting for LifterLMS, WooCommerce, bbPress, and BuddyPress when they're active.
 
-**LifterLMS**
-[Install LifterLMS »](https://wordpress.org/plugins/lifterlms/)
-
-**bbPress**
-[Install bbPress »](https://wordpress.org/plugins/bbpress/) | [Install Paid Memberships Pro - bbPress Add On »](https://www.paidmembershipspro.com/add-ons/pmpro-bbpress/)
-
-**Events Manager**
-[Install Events Manager »](https://wordpress.org/plugins/events-manager/)
+[Install Paid Memberships Pro »](https://www.paidmembershipspro.com/documentation/download/)
 
 ## Installation ##
 For detailed installation steps, visit the [documentation on installing the theme](https://www.paidmembershipspro.com/documentation/memberlite/).

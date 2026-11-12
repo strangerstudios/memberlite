@@ -25,25 +25,15 @@ function memberlite_dashboard() {
 
 	<hr class="wp-header-end">
 
-	<div class="memberlite_two_col memberlite_two_col-right">
+	<?php memberlite_dashboard_welcome_callback(); ?>
 
-		<div class="memberlite_main">
+	<div class="memberlite_two_col memberlite_two_col-even">
 
-			<?php memberlite_dashboard_welcome_callback(); ?>
+		<?php memberlite_dashboard_child_theme_callback(); ?>
 
-		</div>
-
-		<div class="memberlite_sidebar">
-
-			<?php memberlite_dashboard_child_theme_callback(); ?>
-
-			<?php memberlite_dashboard_ai_agents_callback(); ?>
-
-		</div>
+		<?php memberlite_dashboard_ai_agents_callback(); ?>
 
 	</div>
-
-	<?php memberlite_dashboard_recommended_plugins_callback(); ?>
 
 	<?php
 	/**
@@ -88,6 +78,38 @@ function memberlite_dashboard_welcome_callback() {
 						<p><?php esc_html_e( 'Use Appearance > Customize to change layouts, fonts, colors, the copyright message and more.', 'memberlite' ); ?></p>
 						<p><a href="<?php echo esc_url( wp_customize_url() ); ?>"><?php esc_html_e( 'Customize Your Theme', 'memberlite' ); ?></a></p>
 						<p><a href="https://www.paidmembershipspro.com/documentation/memberlite/memberlite-theme-customization/?utm_source=memberlite-theme&utm_medium=memberlite-guide&utm_campaign=theme-customization" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Docs: Customizing Memberlite', 'memberlite' ); ?></a></p>
+					</div>
+				</div>
+				<div class="memberlite_box memberlite_box-has-icon">
+					<div class="memberlite_box-title memberlite_box-title-has-icon">
+						<span class="dashicons dashicons-align-wide"></span>
+						<?php esc_html_e( 'Header and Footer Variations', 'memberlite' ); ?>
+					</div>
+					<div class="memberlite_box-description">
+						<p><?php esc_html_e( 'Design your header and footer in the block editor. Start from a Header or Footer Variations pattern, then choose it in Appearance > Customize > Header or Footer.', 'memberlite' ); ?></p>
+						<p><a href="<?php echo esc_url( admin_url( 'edit.php?post_type=memberlite_header' ) ); ?>"><?php esc_html_e( 'Manage Headers', 'memberlite' ); ?></a> | <a href="<?php echo esc_url( admin_url( 'edit.php?post_type=memberlite_footer' ) ); ?>"><?php esc_html_e( 'Manage Footers', 'memberlite' ); ?></a></p>
+						<p><a href="https://www.paidmembershipspro.com/documentation/memberlite/header-footer-variations/?utm_source=memberlite-theme&utm_medium=memberlite-guide&utm_campaign=header-footer-variations" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Docs: Header and Footer Variations', 'memberlite' ); ?></a></p>
+					</div>
+				</div>
+				<div class="memberlite_box memberlite_box-has-icon">
+					<div class="memberlite_box-title memberlite_box-title-has-icon">
+						<span class="dashicons dashicons-layout"></span>
+						<?php esc_html_e( 'Block Patterns', 'memberlite' ); ?>
+					</div>
+					<div class="memberlite_box-description">
+						<p><?php esc_html_e( 'Build pages from more than 40 block patterns for membership sites: heroes, pricing tables, testimonials, calls to action and more. Find them in the block inserter under the Memberlite categories.', 'memberlite' ); ?></p>
+						<p><a href="https://www.paidmembershipspro.com/documentation/memberlite/block-patterns/?utm_source=memberlite-theme&utm_medium=memberlite-guide&utm_campaign=block-patterns" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Docs: Block Patterns', 'memberlite' ); ?></a></p>
+					</div>
+				</div>
+				<div class="memberlite_box memberlite_box-has-icon">
+					<div class="memberlite_box-title memberlite_box-title-has-icon">
+						<span class="dashicons dashicons-admin-tools"></span>
+						<?php esc_html_e( 'Import, Export and Reset', 'memberlite' ); ?>
+					</div>
+					<div class="memberlite_box-description">
+						<p><?php esc_html_e( 'Back up your Memberlite settings, copy your design to another site, or reset the theme to its defaults from Memberlite > Tools.', 'memberlite' ); ?></p>
+						<p><a href="<?php echo esc_url( admin_url( 'admin.php?page=memberlite-tools' ) ); ?>"><?php esc_html_e( 'Go to Tools', 'memberlite' ); ?></a></p>
+						<p><a href="https://www.paidmembershipspro.com/documentation/memberlite/tools/?utm_source=memberlite-theme&utm_medium=memberlite-guide&utm_campaign=tools" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Docs: Memberlite Tools', 'memberlite' ); ?></a></p>
 					</div>
 				</div>
 				<div class="memberlite_box memberlite_box-has-icon">
@@ -161,256 +183,4 @@ function memberlite_dashboard_ai_agents_callback() {
 		</div> <!-- end memberlite_section_inside -->
 	</div> <!-- end memberlite_dashboard_ai_agents -->
 	<?php
-}
-
-/**
- * Callback: Recommended plugins.
- */
-function memberlite_dashboard_recommended_plugins_callback() {
-	$memberlite_theme = wp_get_theme();
-
-	$memberlite_plugin_action_button_allowed_html = array(
-		'a' => array(
-			'class'  => array(),
-			'href'   => array(),
-			'target' => array(),
-		),
-	);
-
-	$memberlite_plugins_recommended = apply_filters( 'memberlite_plugins_recommended', array( 'paid-memberships-pro', 'sitewide-sales' ) );
-
-	?>
-	<div id="memberlite_dashboard_recommended_plugins" class="memberlite_section" data-visibility="shown" data-activated="true">
-		<div class="memberlite_section_toggle">
-			<button class="memberlite_section-toggle-button" type="button" aria-expanded="true">
-				<span class="dashicons dashicons-arrow-up-alt2"></span>
-				<?php esc_html_e( 'Recommended Plugins', 'memberlite' ); ?>
-			</button>
-		</div>
-		<div class="memberlite_section_inside">
-			<?php
-				if ( empty( $memberlite_plugins_recommended ) ) {
-					echo '<p>' . esc_html__( 'No recommended plugins found.', 'memberlite' ) . '</p>';
-				} else { ?>
-					<p>
-						<?php
-							/* translators: Active theme name */
-							echo esc_html( sprintf( __( 'We highly recommend using these plugins for every site running %s:', 'memberlite' ), $memberlite_theme ) );
-						?>
-					</p>
-					<div class="wp-list-table widefat plugin-install">
-						<h2 class="screen-reader-text"><?php esc_html_e( 'Plugins list', 'memberlite' );?></h2>
-						<div id="the-list">
-							<?php if ( in_array( 'paid-memberships-pro', $memberlite_plugins_recommended, true ) ) { ?>
-								<div class="plugin-card plugin-card-paid-memberships-pro">
-									<div class="plugin-card-top">
-										<div class="name column-name">
-											<h3><a href="https://www.paidmembershipspro.com/?utm_source=memberlite-theme&utm_medium=memberlite-guide&utm_campaign=homepage" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Paid Memberships Pro', 'memberlite' ); ?></a></h3>
-											<img src="<?php echo esc_url( MEMBERLITE_URL ); ?>/assets/images/paid-memberships-pro-icon-256x256.png" class="plugin-icon" alt="<?php echo esc_attr( 'Paid Memberships Pro', 'memberlite' ); ?>">
-										</div>
-										<div class="action-links">
-											<ul class="plugin-action-buttons">
-												<li>
-													<?php
-													echo wp_kses(
-														memberlite_plugin_action_button(
-															'paid-memberships-pro',
-															'paid-memberships-pro/paid-memberships-pro.php',
-															'https://www.paidmembershipspro.com/documentation/download/?utm_source=memberlite-theme&utm_medium=memberlite-guide&utm_campaign=homepage'
-														),
-														$memberlite_plugin_action_button_allowed_html
-													);
-													?>
-												</li>
-												<li><a href="https://www.paidmembershipspro.com/?utm_source=memberlite-theme&utm_medium=memberlite-guide&utm_campaign=homepage" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'More Details', 'memberlite' ); ?></a></li>
-											</ul>
-										</div>
-										<div class="desc column-description">
-											<p><?php esc_html_e( 'Paid Memberships Pro allows anyone to build a membership site—for free. Restrict content, accept payment, & manage subscriptions right from your WordPress admin.', 'memberlite' ); ?></p>
-											<p class="authors"><cite><?php esc_html_e( 'By', 'memberlite' ); ?> <a href="https://www.paidmembershipspro.com/?utm_source=memberlite-theme&utm_medium=memberlite-guide&utm_campaign=homepage" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Paid Memberships Pro', 'memberlite' ); ?></a></cite></p>
-										</div>
-									</div>
-								</div> <!-- end plugin-card-paid-memberships-pro -->
-							<?php } ?>
-
-							<?php if ( in_array( 'sitewide-sales', $memberlite_plugins_recommended, true ) ) { ?>
-								<div class="plugin-card plugin-card-sitewide-sales">
-									<div class="plugin-card-top">
-										<div class="name column-name">
-											<h3><a href="https://sitewidesales.com/?utm_source=memberlite-theme&utm_medium=memberlite-guide&utm_campaign=homepage" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Sitewide Sales', 'memberlite' ); ?></a></h3>
-											<img src="<?php echo esc_url( MEMBERLITE_URL ); ?>/assets/images/sitewide-sales-icon-256x256.png" class="plugin-icon" alt="<?php echo esc_attr( 'Sitewide Sales', 'memberlite' ); ?>">
-										</div>
-										<div class="action-links">
-											<ul class="plugin-action-buttons">
-												<li>
-													<?php
-													echo wp_kses(
-														memberlite_plugin_action_button(
-															'sitewide-sales',
-															'sitewide-sales/sitewide-sales.php',
-															'https://sitewidesales.com/?utm_source=memberlite-theme&utm_medium=memberlite-guide&utm_campaign=homepage'
-														),
-														$memberlite_plugin_action_button_allowed_html
-													);
-													?>
-												</li>
-												<li><a href="https://sitewidesales.com/?utm_source=memberlite-theme&utm_medium=memberlite-guide&utm_campaign=homepage" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'More Details', 'memberlite' ); ?></a></li>
-											</ul>
-										</div>
-										<div class="desc column-description">
-											<p><?php esc_html_e( 'All-in-one flash sales plugin for WordPress. Set up a sale from a single settings page: select the start and end date, choose a template, pick your banner, and assign the discount.', 'memberlite' ); ?></p>
-											<p class="authors"><cite><?php esc_html_e( 'By', 'memberlite' ); ?> <a href="https://www.strangerstudios.com/?utm_source=memberlite-theme&utm_medium=memberlite-guide&utm_campaign=homepage" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Stranger Studios', 'memberlite' ); ?></a></cite></p>
-										</div>
-									</div>
-								</div> <!-- end plugin-card-sitewide-sales -->
-							<?php } ?>
-
-							<?php do_action( 'memberlite_plugins_recommended_additional' ); ?>
-						</div> <!-- end the-list -->
-					</div> <!-- end plugin-install -->
-				<?php }
-			?>
-
-			<?php
-				$memberlite_plugins_integrated = apply_filters( 'memberlite_plugins_integrated', array( 'bbpress', 'events-manager', 'lifterlms', 'paid-memberships-pro' ) );
-
-				if ( ! empty( $memberlite_plugins_integrated ) ) { ?>
-					<p>
-						<?php
-						/* translators: Active theme name */
-						echo esc_html( sprintf( __( '%s offers integration for these plugins:', 'memberlite' ), $memberlite_theme ) );
-						?>
-					</p>
-					<div class="wp-list-table widefat plugin-install">
-						<h2 class="screen-reader-text"><?php esc_html_e( 'Plugins list', 'memberlite' );?></h2>
-						<div id="the-list">
-							<?php if ( in_array( 'bbpress', $memberlite_plugins_integrated, true ) ) { ?>
-								<div class="plugin-card plugin-card-bbpress">
-									<div class="plugin-card-top">
-										<div class="name column-name">
-											<h3><a href="https://wordpress.org/plugins/bbpress/" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'bbPress', 'memberlite' ); ?></a></h3>
-											<img src="<?php echo esc_url( MEMBERLITE_URL ); ?>/assets/images/bbpress-icon.svg" class="plugin-icon" alt="<?php echo esc_attr( 'bbPress', 'memberlite' ); ?>" />
-										</div>
-										<div class="action-links">
-											<ul class="plugin-action-buttons">
-												<li>
-													<?php
-													echo wp_kses(
-														memberlite_plugin_action_button( 'bbpress', 'bbpress/bbpress.php' ),
-														$memberlite_plugin_action_button_allowed_html
-													);
-													?>
-												</li>
-												<li><a href="https://wordpress.org/plugins/bbpress/" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'More Details', 'memberlite' ); ?></a></li>
-											</ul>
-										</div>
-										<div class="desc column-description">
-											<p><?php esc_html_e( 'bbPress is forum software, made the WordPress way.', 'memberlite' ); ?></p>
-											<p><a href="<?php echo esc_url( admin_url( 'plugin-install.php?tab=search&type=term&s=Paid+Memberships+Pro+-+bbPress+Add+On' ) ); ?>"><?php esc_html_e( 'Install Paid Memberships Pro - bbPress Add On', 'memberlite' ); ?></a></p>
-											<p class="authors"><cite><?php esc_html_e( 'By', 'memberlite' ); ?> <a href="https://www.bbpress.org" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'The bbPress Contributors', 'memberlite' ); ?></a></cite></p>
-										</div>
-									</div>
-								</div> <!-- end plugin-card-bbpress -->
-							<?php } ?>
-
-							<?php if ( in_array( 'events-manager', $memberlite_plugins_integrated, true ) ) { ?>
-								<div class="plugin-card plugin-card-events-manager">
-									<div class="plugin-card-top">
-										<div class="name column-name">
-											<h3><a href="https://wordpress.org/plugins/events-manager/" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Events Manager', 'memberlite' ); ?></a></h3>
-											<img src="<?php echo esc_url( MEMBERLITE_URL ); ?>/assets/images/events-manager-icon-256x256.png" class="plugin-icon" alt="<?php echo esc_attr( 'Events Manager', 'memberlite' ); ?>" />
-										</div>
-										<div class="action-links">
-											<ul class="plugin-action-buttons">
-												<li>
-													<?php
-													echo wp_kses(
-														memberlite_plugin_action_button( 'events-manager', 'events-manager/events-manager.php' ),
-														$memberlite_plugin_action_button_allowed_html
-													);
-													?>
-												</li>
-												<li><a href="https://wordpress.org/plugins/events-manager/" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'More Details', 'memberlite' ); ?></a></li>
-											</ul>
-										</div>
-										<div class="desc column-description">
-											<p><?php esc_html_e( 'Fully featured event registration management including recurring events, locations management, calendar, Google map integration, booking management', 'memberlite' ); ?></p>
-											<p class="authors"><cite><?php esc_html_e( 'By', 'memberlite' ); ?> <a href="http://wp-events-plugin.com" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Pixelite', 'memberlite' ); ?></a></cite></p>
-										</div>
-									</div>
-								</div> <!-- end plugin-card-events-manager -->
-							<?php } ?>
-
-							<?php if ( in_array( 'lifterlms', $memberlite_plugins_integrated, true ) ) { ?>
-								<div class="plugin-card plugin-card-lifterlms">
-									<div class="plugin-card-top">
-										<div class="name column-name">
-											<h3><a href="https://wordpress.org/plugins/lifterlms/" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'LifterLMS', 'memberlite' ); ?></a></h3>
-											<img src="<?php echo esc_url( MEMBERLITE_URL ); ?>/assets/images/lifterlms-icon-256x256.png" class="plugin-icon" alt="<?php echo esc_attr( 'LifterLMS', 'memberlite' ); ?>">
-										</div>
-										<div class="action-links">
-											<ul class="plugin-action-buttons">
-												<li>
-													<?php
-													echo wp_kses(
-														memberlite_plugin_action_button( 'lifterlms/', 'lifterlms/lifterlms.php' ),
-														$memberlite_plugin_action_button_allowed_html
-													);
-													?>
-												</li>
-												<li><a href="https://wordpress.org/plugins/lifterlms/" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'More Details', 'memberlite' ); ?></a></li>
-											</ul>
-										</div>
-										<div class="desc column-description">
-											<p><?php esc_html_e( 'LifterLMS is a secure easy-to-use WordPress LMS plugin packed with features to easily create & sell courses online.', 'memberlite' ); ?></p>
-											<p class="authors"><cite><?php esc_html_e( 'By', 'memberlite' ); ?> <a href="https://lifterlms.com/?utm_source=memberlite-theme&utm_medium=memberlite-guide&utm_campaign=homepage" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'LifterLMS', 'memberlite' ); ?></a></cite></p>
-										</div>
-									</div>
-								</div> <!-- end plugin-card-lifterlms -->
-							<?php } ?>
-
-							<?php if ( in_array( 'paid-memberships-pro', $memberlite_plugins_integrated, true ) ) { ?>
-								<div class="plugin-card plugin-card-paid-memberships-pro">
-									<div class="plugin-card-top">
-										<div class="name column-name">
-											<h3><a href="https://www.paidmembershipspro.com/?utm_source=memberlite-theme&utm_medium=memberlite-guide&utm_campaign=homepage" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Paid Memberships Pro', 'memberlite' ); ?></a></h3>
-											<img src="<?php echo esc_url( MEMBERLITE_URL ); ?>/assets/images/paid-memberships-pro-icon-256x256.png" class="plugin-icon" alt="<?php echo esc_attr( 'Paid Memberships Pro', 'memberlite' ); ?>" />
-										</div>
-										<div class="action-links">
-											<ul class="plugin-action-buttons">
-												<li>
-													<?php
-													echo wp_kses(
-														memberlite_plugin_action_button(
-															'paid-memberships-pro',
-															'paid-memberships-pro/paid-memberships-pro.php',
-															'https://www.paidmembershipspro.com/documentation/download/?utm_source=memberlite-theme&utm_medium=memberlite-guide&utm_campaign=homepage'
-														),
-														$memberlite_plugin_action_button_allowed_html
-													);
-													?>
-												</li>
-												<li><a href="https://www.paidmembershipspro.com/?utm_source=memberlite-theme&utm_medium=memberlite-guide&utm_campaign=homepage" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'More Details', 'memberlite' ); ?></a></li>
-											</ul>
-										</div>
-										<div class="desc column-description">
-											<p><?php esc_html_e( 'Paid Memberships Pro allows anyone to build a membership site—for free. Restrict content, accept payment, & manage subscriptions right from your WordPress admin.', 'memberlite' ); ?></p>
-											<p class="authors"><cite><?php esc_html_e( 'By', 'memberlite' ); ?> <a href="https://www.paidmembershipspro.com/?utm_source=memberlite-theme&utm_medium=memberlite-guide&utm_campaign=homepage" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Paid Memberships Pro', 'memberlite' ); ?></a></cite></p>
-										</div>
-									</div>
-								</div> <!-- end plugin-card-paid-memberships-pro -->
-							<?php } ?>
-
-							<?php do_action( 'memberlite_plugins_integrated_additional' ); ?>
-						</div> <!-- end the-list -->
-					</div> <!-- end plugin-install -->
-				<?php }
-			?>
-		</div> <!-- end memberlite_section_inside -->
-	</div> <!-- end memberlite_dashboard_recommended_plugins -->
-	<?php
-	/**
-	 * Load the Memberlite dashboard-area footer
-	 */
-	require_once __DIR__ . '/admin_footer.php';
 }

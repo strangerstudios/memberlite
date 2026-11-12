@@ -76,19 +76,11 @@ If you need to customize the theme beyond theme settings, use a child theme.
 [Memberlite Child Theme Downloads »](https://www.paidmembershipspro.com/documentation/download/) | [Create a Child Theme for Memberlite »](https://www.paidmembershipspro.com/memberlite-child-theme/)
 
 == Integrated Plugins ==
-Memberlite includes formatting for use with:
+Memberlite is built for Paid Memberships Pro, with styles and color settings that match PMPro's frontend pages to your site. It also recognizes the PMPro Courses, Lessons, Series, and Events post types.
 
-= Paid Memberships Pro =
-[Install Paid Memberships Pro »](http://www.paidmembershipspro.com/documentation/download/)
+Memberlite includes formatting for LifterLMS, WooCommerce, bbPress, and BuddyPress when they're active.
 
-= bbPress =
-[Install bbPress »](https://wordpress.org/plugins/bbpress/) | [Install Paid Memberships Pro - bbPress Add On »](https://www.paidmembershipspro.com/add-ons/pmpro-bbpress/)
-
-= LifterLMS =
-[Install LifterLMS »](https://wordpress.org/plugins/lifterlms/)
-
-= Events Manager =
-[Install Events Manager »](https://wordpress.org/plugins/events-manager/)
+[Install Paid Memberships Pro »](https://www.paidmembershipspro.com/documentation/download/)
 
 == Changelog ==
 
@@ -104,6 +96,9 @@ Memberlite includes formatting for use with:
 * ENHANCEMENT: With Override PMPro Colors on, PMPro cards use the site background color, so they match pages with an off-white background. #396 @kimcoleman
 * ENHANCEMENT: Breadcrumbs on single items of a hierarchical custom post type show the item's parents. #395 @kimcoleman
 * ENHANCEMENT: Moved the Banner Image panel below Page Settings in the block editor sidebar. #389 @kimcoleman
+* ENHANCEMENT: Memberlite > Dashboard has new boxes for Header and Footer Variations, Block Patterns, and Import, Export and Reset, with links to the docs. @kimcoleman
+* ENHANCEMENT: The readme's Integrated Plugins section now lists the plugins Memberlite styles, without install links for third-party plugins. Removed Events Manager, which Memberlite has no styles for. @kimcoleman
+* ENHANCEMENT: Removed the Recommended Plugins section from Memberlite > Dashboard, along with the `memberlite_plugins_recommended` and `memberlite_plugins_integrated` filters and the `memberlite_plugins_recommended_additional` and `memberlite_plugins_integrated_additional` actions. @kimcoleman
 * ENHANCEMENT: Updated "Tested up to" to WordPress 7.1.4. @kimcoleman
 * BUG FIX: Memberlite > Dashboard no longer refers to the removed Customize > Memberlite Options screen. @kimcoleman
 * BUG FIX: Interior pages no longer print the site title as a second `<h1>`. The site title is an `<h1>` on the front page and a `<span>` elsewhere, filterable with the new `memberlite_site_title_tag` filter. The header-04 and header-06 patterns no longer use an `<h1>` for the site title. #392 @kimcoleman
