@@ -2,14 +2,14 @@
 # This file is distributed under the GNU General Public License v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Memberlite 8.0\n"
+"Project-Id-Version: Memberlite 8.0.1\n"
 "Report-Msgid-Bugs-To: info@paidmembershipspro.com\n"
 "Last-Translator: Paid Memberships Pro <info@paidmembershipspro.com>\n"
 "Language-Team: Paid Memberships Pro <info@paidmembershipspro.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-10-26T13:29:29+00:00\n"
+"POT-Creation-Date: 2026-11-12T10:49:23+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: memberlite\n"
@@ -468,7 +468,7 @@ msgstr ""
 
 #. translators: %s: menu name
 #: adminpages/menus.php:351
-#: inc/extras.php:1145
+#: inc/extras.php:1189
 msgid "Edit"
 msgstr ""
 
@@ -834,7 +834,7 @@ msgstr ""
 
 #: components/footer/footer-back-to-top.php:20
 #: inc/customizer.php:192
-#: inc/customizer.php:1489
+#: inc/customizer.php:1562
 msgid "Back to Top"
 msgstr ""
 
@@ -880,8 +880,8 @@ msgstr ""
 
 #. translators: a generated string with the Author's display_name
 #. translators: %s: current author archive's name
-#: components/post/post-author-block.php:30
-#: inc/extras.php:820
+#: components/post/post-author-block.php:27
+#: inc/extras.php:854
 #, php-format
 msgid "Author: %s"
 msgstr ""
@@ -908,60 +908,60 @@ msgstr ""
 msgid "Footer"
 msgstr ""
 
-#: functions.php:287
+#: functions.php:288
 msgid "Posts and Archives"
 msgstr ""
 
-#: functions.php:299
+#: functions.php:300
 #: inc/admin.php:167
 #: inc/customizer.php:158
 #: inc/editor-settings.php:270
-#: inc/template-tags.php:175
+#: inc/template-tags.php:194
 msgid "Pages"
 msgstr ""
 
-#: functions.php:311
+#: functions.php:312
 #: inc/customizer.php:124
 msgid "Header"
 msgstr ""
 
-#: functions.php:313
+#: functions.php:314
 msgid "Depending on your header variation, this is a spot you can put extra things."
 msgstr ""
 
-#: functions.php:323
+#: functions.php:324
 #: inc/colors.php:110
 msgid "Footer Widgets"
 msgstr ""
 
-#: functions.php:325
+#: functions.php:326
 msgid "This is a legacy method to customize the site footer. For more control, create a new Footer Variation and assign it in Customizer settings."
 msgstr ""
 
-#: functions.php:325
+#: functions.php:326
 #: inc/customizer.php:320
-#: inc/customizer.php:507
+#: inc/customizer.php:510
 msgid "Edit Footer Variations"
 msgstr ""
 
-#: functions.php:334
+#: functions.php:335
 msgid "Mobile Menu Widgets"
 msgstr ""
 
-#: functions.php:402
-#: functions.php:405
-#: functions.php:437
+#: functions.php:403
+#: functions.php:406
+#: functions.php:438
 msgid "Log Out"
 msgstr ""
 
-#: functions.php:408
-#: functions.php:440
+#: functions.php:409
+#: functions.php:441
 #: patterns/footer-05.php:33
 msgid "Log In"
 msgstr ""
 
-#: functions.php:413
-#: functions.php:445
+#: functions.php:414
+#: functions.php:446
 msgid "Register"
 msgstr ""
 
@@ -988,7 +988,7 @@ msgid "%d page overrides"
 msgstr ""
 
 #: inc/admin.php:164
-#: inc/customizer.php:525
+#: inc/customizer.php:528
 msgid "Global Footer"
 msgstr ""
 
@@ -1003,7 +1003,7 @@ msgid "Single Posts"
 msgstr ""
 
 #: inc/admin.php:200
-#: inc/customizer.php:444
+#: inc/customizer.php:447
 msgid "Global Header"
 msgstr ""
 
@@ -1135,10 +1135,12 @@ msgid "Scroll Indicator"
 msgstr ""
 
 #: inc/block-styles.php:43
+#: inc/block-styles.php:61
 msgid "Slant: Bottom Right"
 msgstr ""
 
 #: inc/block-styles.php:44
+#: inc/block-styles.php:62
 msgid "Slant: Bottom Left"
 msgstr ""
 
@@ -1159,10 +1161,10 @@ msgid "Video"
 msgstr ""
 
 #: inc/block-styles.php:60
-#: inc/block-styles.php:63
-#: inc/block-styles.php:66
-#: inc/block-styles.php:69
-#: inc/block-styles.php:72
+#: inc/block-styles.php:65
+#: inc/block-styles.php:68
+#: inc/block-styles.php:71
+#: inc/block-styles.php:74
 msgid "Card"
 msgstr ""
 
@@ -1204,7 +1206,7 @@ msgid "Site Background"
 msgstr ""
 
 #: inc/colors.php:75
-#: inc/extras.php:850
+#: inc/extras.php:884
 msgid "Links"
 msgstr ""
 
@@ -1519,7 +1521,7 @@ msgid "These colors apply to the default header. Some header variations may not 
 msgstr ""
 
 #: inc/customizer.php:307
-#: inc/customizer.php:432
+#: inc/customizer.php:435
 msgid "Edit Header Variations"
 msgstr ""
 
@@ -1611,278 +1613,315 @@ msgstr ""
 msgid "Breadcrumbs on Posts"
 msgstr ""
 
-#: inc/customizer.php:385
+#: inc/customizer.php:383
+msgid "Also used for single custom post type items, unless the post type has its own settings in its Customizer section."
+msgstr ""
+
+#: inc/customizer.php:386
 msgid "Breadcrumbs on Archives"
 msgstr ""
 
-#: inc/customizer.php:388
+#: inc/customizer.php:387
+msgid "Also used for custom post type archives, unless the post type has its own settings in its Customizer section."
+msgstr ""
+
+#: inc/customizer.php:390
 msgid "Breadcrumbs on Attachments"
 msgstr ""
 
-#: inc/customizer.php:391
+#: inc/customizer.php:393
 msgid "Breadcrumbs on Search Results"
 msgstr ""
 
-#: inc/customizer.php:394
+#: inc/customizer.php:396
 msgid "Breadcrumbs on Profiles"
 msgstr ""
 
-#: inc/customizer.php:413
+#: inc/customizer.php:416
 msgid "Breadcrumb Delimiter"
 msgstr ""
 
-#: inc/customizer.php:429
-#: inc/customizer.php:504
+#: inc/customizer.php:432
+#: inc/customizer.php:507
 msgid "Variation Settings"
 msgstr ""
 
-#: inc/customizer.php:439
-#: inc/customizer.php:514
+#: inc/customizer.php:442
+#: inc/customizer.php:517
 msgid "— Default —"
 msgstr ""
 
-#: inc/customizer.php:449
+#: inc/customizer.php:452
 msgid "Choose which header variation to display across the site."
 msgstr ""
 
-#: inc/customizer.php:453
+#: inc/customizer.php:456
 msgid "Default Header Settings"
 msgstr ""
 
-#: inc/customizer.php:458
-#: inc/customizer.php:798
+#: inc/customizer.php:461
+#: inc/customizer.php:846
 msgid "Columns Ratio"
 msgstr ""
 
-#: inc/customizer.php:461
+#: inc/customizer.php:464
 msgid "Controls how the left and right sections of your header are sized. For example, \"4-8\" makes the left side narrower and the right side wider."
 msgstr ""
 
-#: inc/customizer.php:467
+#: inc/customizer.php:470
 msgid "Other Settings"
 msgstr ""
 
-#: inc/customizer.php:472
+#: inc/customizer.php:475
 msgid "Show Login/Member Info in Header"
 msgstr ""
 
-#: inc/customizer.php:479
+#: inc/customizer.php:482
 msgid "Show Search Form After Main Nav"
 msgstr ""
 
-#: inc/customizer.php:486
+#: inc/customizer.php:489
 msgid "Enable Sticky Header"
 msgstr ""
 
-#: inc/customizer.php:488
+#: inc/customizer.php:491
 msgid "On scroll, the header menu will stick to the top of the screen."
 msgstr ""
 
-#: inc/customizer.php:520
+#: inc/customizer.php:523
 msgid "— Use Global Footer —"
 msgstr ""
 
-#: inc/customizer.php:530
+#: inc/customizer.php:533
 msgid "Choose which footer variation to display across the site."
 msgstr ""
 
-#: inc/customizer.php:534
+#: inc/customizer.php:537
 msgid "Blog & Archives Footer"
 msgstr ""
 
-#: inc/customizer.php:539
+#: inc/customizer.php:542
 msgid "Choose which footer variation to display on your blog and post archives. Includes custom post types."
 msgstr ""
 
-#: inc/customizer.php:543
+#: inc/customizer.php:546
 msgid "Single Post Footer"
 msgstr ""
 
-#: inc/customizer.php:548
+#: inc/customizer.php:551
 msgid "Choose which footer variation to display on the single post view. Includes custom post types."
 msgstr ""
 
-#: inc/customizer.php:552
+#: inc/customizer.php:555
 msgid "Pages Footer"
 msgstr ""
 
-#: inc/customizer.php:557
+#: inc/customizer.php:560
 msgid "Choose which footer variation to display on your pages."
 msgstr ""
 
-#: inc/customizer.php:561
+#: inc/customizer.php:564
 msgid "Default Footer Settings"
 msgstr ""
 
-#: inc/customizer.php:566
+#: inc/customizer.php:569
 msgid "Copyright Text"
 msgstr ""
 
-#: inc/customizer.php:586
-#: inc/customizer.php:727
+#: inc/customizer.php:589
+#: inc/customizer.php:775
 #: inc/editor-settings.php:149
 msgid "Layout"
 msgstr ""
 
-#: inc/customizer.php:589
+#: inc/customizer.php:592
 msgid "Default Single Post Layout"
 msgstr ""
 
-#: inc/customizer.php:590
+#: inc/customizer.php:593
 msgid "Used on single posts unless a post picks its own layout in the editor."
 msgstr ""
 
-#: inc/customizer.php:591
+#: inc/customizer.php:594
 msgid "Single Post Columns Ratio"
 msgstr ""
 
-#: inc/customizer.php:595
+#: inc/customizer.php:598
 msgid "Default Blog & Archive Layout"
 msgstr ""
 
-#: inc/customizer.php:596
+#: inc/customizer.php:599
 msgid "Used on the blog, category, tag, date and author pages."
 msgstr ""
 
-#: inc/customizer.php:597
+#: inc/customizer.php:600
 msgid "Blog & Archive Columns Ratio"
 msgstr ""
 
-#: inc/customizer.php:601
+#: inc/customizer.php:604
 msgid "Search Results Layout"
 msgstr ""
 
-#: inc/customizer.php:602
+#: inc/customizer.php:605
 msgid "Search Results Columns Ratio"
 msgstr ""
 
-#: inc/customizer.php:606
+#: inc/customizer.php:609
 msgid "Content"
 msgstr ""
 
-#: inc/customizer.php:609
-#: inc/customizer.php:703
+#: inc/customizer.php:612
+#: inc/customizer.php:712
 msgid "Archive Display"
 msgstr ""
 
-#: inc/customizer.php:611
+#: inc/customizer.php:614
 msgid "Choose how posts are displayed on your blog and archive pages."
 msgstr ""
 
-#: inc/customizer.php:616
+#: inc/customizer.php:619
 msgid "Show Author Block on Posts"
 msgstr ""
 
-#: inc/customizer.php:623
+#: inc/customizer.php:621
+#: inc/customizer.php:662
+msgid "Also used for custom post types, unless the post type has its own settings in its Customizer section."
+msgstr ""
+
+#: inc/customizer.php:627
 msgid "Do Not Show Featured Images"
 msgstr ""
 
-#: inc/customizer.php:624
+#: inc/customizer.php:628
 msgid "Show Banner Only"
 msgstr ""
 
-#: inc/customizer.php:625
+#: inc/customizer.php:629
 msgid "Show Thumbnail Only"
 msgstr ""
 
-#: inc/customizer.php:626
+#: inc/customizer.php:630
 msgid "Show Block Image In Excerpt"
 msgstr ""
 
-#: inc/customizer.php:630
+#: inc/customizer.php:634
 msgid "Show Banner and Thumbnail"
 msgstr ""
 
-#: inc/customizer.php:633
+#: inc/customizer.php:637
 msgid "Featured Images"
 msgstr ""
 
-#: inc/customizer.php:640
+#: inc/customizer.php:644
 msgid "Post Entry Meta (before)"
 msgstr ""
 
-#: inc/customizer.php:646
+#: inc/customizer.php:650
 msgid "Post Entry Meta (after)"
 msgstr ""
 
-#: inc/customizer.php:652
-#: inc/customizer.php:735
+#: inc/customizer.php:656
+#: inc/customizer.php:783
 msgid "Navigation Settings"
 msgstr ""
 
-#: inc/customizer.php:655
+#: inc/customizer.php:659
 msgid "Show Prev/Next on Single Posts"
 msgstr ""
 
-#: inc/customizer.php:671
+#: inc/customizer.php:680
 msgid "Inherit from Posts & Archives"
 msgstr ""
 
-#: inc/customizer.php:674
-msgid "When checked, this post type uses the layout settings from Posts & Archives. Uncheck to control it separately."
+#: inc/customizer.php:683
+msgid "When checked, this post type uses the layout, breadcrumb, author block and prev/next settings from Posts & Archives and Breadcrumbs. Uncheck to control it separately."
 msgstr ""
 
 #. translators: %s: singular label for the post type, e.g. "Course"
-#: inc/customizer.php:680
+#: inc/customizer.php:689
 #, php-format
 msgid "Default Single %s Layout"
 msgstr ""
 
-#: inc/customizer.php:683
+#: inc/customizer.php:692
 msgid "Used on single items unless an item picks its own layout in the editor."
 msgstr ""
 
 #. translators: %s: singular label for the post type, e.g. "Course"
-#: inc/customizer.php:685
+#: inc/customizer.php:694
 #, php-format
 msgid "Single %s Columns Ratio"
 msgstr ""
 
 #. translators: %s: singular label for the post type, e.g. "Course"
-#: inc/customizer.php:692
+#: inc/customizer.php:701
 #, php-format
 msgid "Default %s Archive Layout"
 msgstr ""
 
-#: inc/customizer.php:695
+#: inc/customizer.php:704
 msgid "Used on the archive page and its category and tag pages."
 msgstr ""
 
 #. translators: %s: singular label for the post type, e.g. "Course"
-#: inc/customizer.php:697
+#: inc/customizer.php:706
 #, php-format
 msgid "%s Archive Columns Ratio"
 msgstr ""
 
-#: inc/customizer.php:706
+#: inc/customizer.php:715
 msgid "Choose how posts are displayed on archive pages."
 msgstr ""
 
-#: inc/customizer.php:730
+#. translators: %s: plural label for the post type, e.g. "Courses"
+#: inc/customizer.php:727
+#, php-format
+msgid "Breadcrumbs on Single %s"
+msgstr ""
+
+#. translators: %s: singular label for the post type, e.g. "Course"
+#: inc/customizer.php:732
+#, php-format
+msgid "Breadcrumbs on %s Archives"
+msgstr ""
+
+#. translators: %s: plural label for the post type, e.g. "Courses"
+#: inc/customizer.php:737
+#, php-format
+msgid "Show Author Block on %s"
+msgstr ""
+
+#. translators: %s: plural label for the post type, e.g. "Courses"
+#: inc/customizer.php:742
+#, php-format
+msgid "Show Prev/Next on Single %s"
+msgstr ""
+
+#: inc/customizer.php:778
 msgid "Default Page Layout"
 msgstr ""
 
-#: inc/customizer.php:731
+#: inc/customizer.php:779
 msgid "Used on every page unless it picks its own layout in the editor. Your homepage uses Contained unless you pick one for it."
 msgstr ""
 
-#: inc/customizer.php:738
+#: inc/customizer.php:786
 msgid "Show Prev/Next on Single Pages"
 msgstr ""
 
-#: inc/customizer.php:762
+#: inc/customizer.php:810
 msgid "Show Full Post Content"
 msgstr ""
 
-#: inc/customizer.php:763
+#: inc/customizer.php:811
 msgid "Show Post Excerpts"
 msgstr ""
 
-#: inc/customizer.php:764
+#: inc/customizer.php:812
 msgid "Show Posts in a Grid"
 msgstr ""
 
-#: inc/customizer.php:840
+#: inc/customizer.php:888
 msgid "Sets the content-to-sidebar width ratio. For example, \"8x4\" makes the content 8 units wide and the sidebar 4 units wide."
 msgstr ""
 
@@ -2018,7 +2057,7 @@ msgid "Hide Page Children Menu in Sidebar"
 msgstr ""
 
 #: inc/editor-settings.php:212
-#: inc/extras.php:1099
+#: inc/extras.php:1143
 msgid "Banner Image"
 msgstr ""
 
@@ -2036,27 +2075,27 @@ msgstr ""
 msgid "— No Override —"
 msgstr ""
 
-#: inc/extras.php:335
+#: inc/extras.php:377
 msgid "(more...)"
 msgstr ""
 
 #. translators: %s: search keywords
-#: inc/extras.php:568
+#: inc/extras.php:610
 #, php-format
 msgid "Search Results for: %s"
 msgstr ""
 
-#: inc/extras.php:583
+#: inc/extras.php:625
 msgid "404: Page Not Found"
 msgstr ""
 
-#: inc/extras.php:727
-#: inc/extras.php:749
-#: inc/extras.php:777
-#: inc/extras.php:788
-#: inc/extras.php:873
-#: inc/extras.php:887
-#: inc/extras.php:899
+#: inc/extras.php:761
+#: inc/extras.php:783
+#: inc/extras.php:811
+#: inc/extras.php:822
+#: inc/extras.php:907
+#: inc/extras.php:921
+#: inc/extras.php:943
 #: inc/integrations/bbpress.php:49
 #: patterns/header-03.php:39
 #: patterns/header-05.php:42
@@ -2064,114 +2103,114 @@ msgid "Home"
 msgstr ""
 
 #. translators: %s: current tag archive's single title
-#: inc/extras.php:816
+#: inc/extras.php:850
 #, php-format
 msgid "Posts Tagged: %s"
 msgstr ""
 
 #. translators: %s: day for the viewed archive
-#: inc/extras.php:824
+#: inc/extras.php:858
 #, php-format
 msgid "Day: %s"
 msgstr ""
 
 #. translators: %s: month for the viewed archive
-#: inc/extras.php:828
+#: inc/extras.php:862
 #, php-format
 msgid "Month: %s"
 msgstr ""
 
 #. translators: %s: month for the viewed archive
-#: inc/extras.php:828
+#: inc/extras.php:862
 msgctxt "monthly archives date format"
 msgid "F Y"
 msgstr ""
 
 #. translators: %s: year for the viewed archive
-#: inc/extras.php:832
+#: inc/extras.php:866
 #, php-format
 msgid "Year: %s"
 msgstr ""
 
 #. translators: %s: year for the viewed archive
-#: inc/extras.php:832
+#: inc/extras.php:866
 msgctxt "yearly archives date format"
 msgid "Y"
 msgstr ""
 
-#: inc/extras.php:835
+#: inc/extras.php:869
 msgid "Asides"
 msgstr ""
 
-#: inc/extras.php:838
+#: inc/extras.php:872
 msgid "Galleries"
 msgstr ""
 
-#: inc/extras.php:841
+#: inc/extras.php:875
 msgid "Images"
 msgstr ""
 
-#: inc/extras.php:844
+#: inc/extras.php:878
 msgid "Videos"
 msgstr ""
 
-#: inc/extras.php:847
+#: inc/extras.php:881
 msgid "Quotes"
 msgstr ""
 
-#: inc/extras.php:853
+#: inc/extras.php:887
 msgid "Statuses"
 msgstr ""
 
-#: inc/extras.php:856
+#: inc/extras.php:890
 msgid "Audios"
 msgstr ""
 
-#: inc/extras.php:859
+#: inc/extras.php:893
 msgid "Chats"
 msgstr ""
 
-#: inc/extras.php:865
+#: inc/extras.php:899
 msgid "Archives"
 msgstr ""
 
-#: inc/extras.php:910
+#: inc/extras.php:954
 msgid "Search Results For"
 msgstr ""
 
-#: inc/extras.php:983
-#: inc/extras.php:1041
+#: inc/extras.php:1027
+#: inc/extras.php:1085
 msgid ", "
 msgstr ""
 
-#: inc/extras.php:987
+#: inc/extras.php:1031
 msgid "No Category"
 msgstr ""
 
-#: inc/extras.php:1005
+#: inc/extras.php:1049
 msgid "No Comments"
 msgstr ""
 
 #. translators: %s: number of comments
-#: inc/extras.php:1008
+#: inc/extras.php:1052
 #, php-format
 msgid "%s Comments"
 msgstr ""
 
-#: inc/extras.php:1010
+#: inc/extras.php:1054
 msgid "1 Comment"
 msgstr ""
 
-#: inc/extras.php:1021
+#: inc/extras.php:1065
 msgid "Comments Off"
 msgstr ""
 
-#: inc/extras.php:1032
+#: inc/extras.php:1076
 msgid "permalink"
 msgstr ""
 
 #. translators: %s: Post type singular name, e.g. "Post", "Page".
-#: inc/extras.php:1144
+#: inc/extras.php:1188
 #, php-format
 msgid "%s"
 msgstr ""
@@ -2430,48 +2469,48 @@ msgstr ""
 msgid "Hide Default Sidebar"
 msgstr ""
 
-#: inc/template-tags.php:77
-#: inc/template-tags.php:106
+#: inc/template-tags.php:96
+#: inc/template-tags.php:125
 msgid "Posts"
 msgstr ""
 
-#: inc/template-tags.php:78
+#: inc/template-tags.php:97
 msgid "Posts navigation"
 msgstr ""
 
-#: inc/template-tags.php:82
+#: inc/template-tags.php:101
 msgid "Older posts"
 msgstr ""
 
-#: inc/template-tags.php:86
+#: inc/template-tags.php:105
 msgid "Newer posts"
 msgstr ""
 
-#: inc/template-tags.php:107
+#: inc/template-tags.php:126
 msgid "Post navigation"
 msgstr ""
 
 #. translators: Hidden accessibility text.
-#: inc/template-tags.php:111
+#: inc/template-tags.php:130
 msgid "Previous post:"
 msgstr ""
 
 #. translators: Hidden accessibility text.
-#: inc/template-tags.php:113
+#: inc/template-tags.php:132
 msgid "Next post:"
 msgstr ""
 
-#: inc/template-tags.php:176
+#: inc/template-tags.php:195
 msgid "Page navigation"
 msgstr ""
 
 #. translators: Hidden accessibility text.
-#: inc/template-tags.php:181
+#: inc/template-tags.php:200
 msgid "Previous page:"
 msgstr ""
 
 #. translators: Hidden accessibility text.
-#: inc/template-tags.php:186
+#: inc/template-tags.php:205
 msgid "Next page:"
 msgstr ""
 
@@ -4587,6 +4626,41 @@ msgstr ""
 #: src/blocks/nav-menu/block.json
 msgctxt "block description"
 msgid "Renders a WordPress classic navigation menu."
+msgstr ""
+
+#: theme.json
+msgctxt "Gradient name"
+msgid "Primary to Secondary"
+msgstr ""
+
+#: theme.json
+msgctxt "Gradient name"
+msgid "Primary to Action"
+msgstr ""
+
+#: theme.json
+msgctxt "Gradient name"
+msgid "Primary Glow"
+msgstr ""
+
+#: theme.json
+msgctxt "Gradient name"
+msgid "Mesh"
+msgstr ""
+
+#: theme.json
+msgctxt "Gradient name"
+msgid "Soft Wash"
+msgstr ""
+
+#: theme.json
+msgctxt "Gradient name"
+msgid "Fade to Background"
+msgstr ""
+
+#: theme.json
+msgctxt "Gradient name"
+msgid "Bottom Scrim"
 msgstr ""
 
 #: theme.json
