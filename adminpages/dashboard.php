@@ -68,7 +68,7 @@ function memberlite_dashboard_welcome_callback() {
 					<div class="memberlite_box-description">
 						<p><?php esc_html_e( 'Use the Customize > Site Identity screen to add a custom logo and update or toggle the display of your Site Title and Tagline.', 'memberlite' ); ?></p>
 						<p><a href="<?php echo esc_url( wp_customize_url() ); ?>"><?php esc_html_e( 'Add Your Logo', 'memberlite' ); ?></a></p>
-						<p><a href="https://www.paidmembershipspro.com/documentation/memberlite/site-branding/?utm_source=memberlite-theme&utm_medium=memberlite-guide&utm_campaign=site-logo" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Docs: Site Branding in Memberlite', 'memberlite' ); ?></a></p>
+						<p><a href="https://www.paidmembershipspro.com/documentation/memberlite/customize/?utm_source=memberlite-theme&utm_medium=memberlite-guide&utm_campaign=site-logo#site-identity" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Docs: Site Branding in Memberlite', 'memberlite' ); ?></a></p>
 					</div>
 				</div>
 				<div class="memberlite_box memberlite_box-has-icon">
@@ -79,7 +79,7 @@ function memberlite_dashboard_welcome_callback() {
 					<div class="memberlite_box-description">
 						<p><?php esc_html_e( 'Use Appearance > Customize to change layouts, fonts, colors, the copyright message and more.', 'memberlite' ); ?></p>
 						<p><a href="<?php echo esc_url( wp_customize_url() ); ?>"><?php esc_html_e( 'Customize Your Theme', 'memberlite' ); ?></a></p>
-						<p><a href="https://www.paidmembershipspro.com/documentation/memberlite/memberlite-theme-customization/?utm_source=memberlite-theme&utm_medium=memberlite-guide&utm_campaign=theme-customization" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Docs: Customizing Memberlite', 'memberlite' ); ?></a></p>
+						<p><a href="https://www.paidmembershipspro.com/documentation/memberlite/customize/?utm_source=memberlite-theme&utm_medium=memberlite-guide&utm_campaign=theme-customization" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Docs: Customizing Memberlite', 'memberlite' ); ?></a></p>
 					</div>
 				</div>
 				<div class="memberlite_box memberlite_box-has-icon">
