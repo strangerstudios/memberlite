@@ -79,19 +79,11 @@ If you need to customize the theme beyond theme settings, use a child theme.
 If you manage your site with an AI coding agent, such as Claude Code, Codex or Cursor, point it to `wp-content/themes/memberlite/AGENTS.md`. It explains how to customize Memberlite safely and links to `DESIGN.md`, the theme's design and customization reference. Agents that start in your site's root folder may not find it on their own, so add this line to the instructions file there (`AGENTS.md` or `CLAUDE.md`): "Before changing the Memberlite theme or its settings, read wp-content/themes/memberlite/AGENTS.md."
 
 == Integrated Plugins ==
-Memberlite includes formatting for use with:
+Memberlite is built for Paid Memberships Pro, with styles and color settings that match PMPro's frontend pages to your site. It also recognizes the PMPro Courses, Lessons, Series, and Events post types.
 
-= Paid Memberships Pro =
-[Install Paid Memberships Pro »](http://www.paidmembershipspro.com/documentation/download/)
+Memberlite includes formatting for LifterLMS, WooCommerce, bbPress, and BuddyPress when they're active.
 
-= bbPress =
-[Install bbPress »](https://wordpress.org/plugins/bbpress/) | [Install Paid Memberships Pro - bbPress Add On »](https://www.paidmembershipspro.com/add-ons/pmpro-bbpress/)
-
-= LifterLMS =
-[Install LifterLMS »](https://wordpress.org/plugins/lifterlms/)
-
-= Events Manager =
-[Install Events Manager »](https://wordpress.org/plugins/events-manager/)
+[Install Paid Memberships Pro »](https://www.paidmembershipspro.com/documentation/download/)
 
 == Changelog ==
 
@@ -101,12 +93,17 @@ Memberlite includes formatting for use with:
 * FEATURE: Added Slant: Bottom Right and Slant: Bottom Left block styles to the Group block. #397 @kimcoleman
 * FEATURE: Custom post types can set their own Breadcrumbs, Author Block and Prev/Next settings in the Customizer when "Inherit from Posts & Archives" is unchecked. #395 @kimcoleman
 * ENHANCEMENT: Added `DESIGN.md`, a guide to the theme's colors, gradients, textures, block styles, typography and spacing presets for people and AI agents building with Memberlite. #397 @kimcoleman
+* ENHANCEMENT: Added notes for AI coding agents (`AGENTS.md`, with a `CLAUDE.md` that imports it) and a "Customizing a Memberlite site" section in `DESIGN.md` covering layouts, header and footer variations, hooks and what changed in 8.0. A new Using an AI Agent box on Memberlite > Dashboard shows where to find them. #399 @kimcoleman
 * ENHANCEMENT: Button hover, focus and active colors now come from each button's own color instead of one shared hover color, for Memberlite buttons and block buttons with a palette color. Keyboard focus shows a 2px ring, and a clicked button no longer stays dark. Removed the unused `--memberlite-hover-brightness` CSS variable. #391 @kimcoleman
 * ENHANCEMENT: Recognize the PMPro Events `pmpro_event` post type, with its own Customizer section and the block editor Layout panel. #394 @kimcoleman
 * ENHANCEMENT: With Override PMPro Colors on, PMPro cards use the site background color, so they match pages with an off-white background. #396 @kimcoleman
 * ENHANCEMENT: Breadcrumbs on single items of a hierarchical custom post type show the item's parents. #395 @kimcoleman
 * ENHANCEMENT: Moved the Banner Image panel below Page Settings in the block editor sidebar. #389 @kimcoleman
+* ENHANCEMENT: Memberlite > Dashboard has new boxes for Header and Footer Variations, Block Patterns, and Import, Export and Reset, with links to the docs, and a Need Help With Your Site? box about PMPro Max. The welcome text now helps you get started instead of describing the theme. @kimcoleman
+* ENHANCEMENT: The readme's Integrated Plugins section now lists the plugins Memberlite styles, without install links for third-party plugins. Removed Events Manager, which Memberlite has no styles for. @kimcoleman
+* ENHANCEMENT: Removed the Recommended Plugins section from Memberlite > Dashboard. The `memberlite_plugins_recommended` and `memberlite_plugins_integrated` filters and the `memberlite_plugins_recommended_additional` and `memberlite_plugins_integrated_additional` actions no longer run and show a deprecation notice when used, and `memberlite_plugin_action_button()` is deprecated. @kimcoleman
 * ENHANCEMENT: Updated "Tested up to" to WordPress 7.1.4. @kimcoleman
+* BUG FIX: Memberlite > Dashboard no longer refers to the removed Customize > Memberlite Options screen. @kimcoleman
 * BUG FIX: Interior pages no longer print the site title as a second `<h1>`. The site title is an `<h1>` on the front page and a `<span>` elsewhere, filterable with the new `memberlite_site_title_tag` filter. The header-04 and header-06 patterns no longer use an `<h1>` for the site title. #392 @kimcoleman
 * BUG FIX: Removed `word-break: break-word` from text elements so short words, like the site title in the header, no longer break mid-word at narrow widths. Long URLs and words still wrap. #393 @kimcoleman
 

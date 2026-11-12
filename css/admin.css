@@ -405,6 +405,49 @@ body[class*="toplevel_page_memberlite-"] #footer-left a {
 		minmax( 220px, 1fr );
 }
 
+.memberlite_admin .memberlite_columns {
+	align-items: stretch;
+	display: grid;
+	gap: var(--memberlite--spacing--medium);
+	grid-template-columns: repeat( 3, minmax( 0, 1fr ) );
+}
+
+.memberlite_admin .memberlite_columns .memberlite_section {
+	display: flex;
+	flex-direction: column;
+	margin: 0;
+}
+
+.memberlite_admin .memberlite_columns .memberlite_section_inside {
+	display: flex;
+	flex-direction: column;
+	flex-grow: 1;
+	gap: 1em;
+}
+
+.memberlite_admin .memberlite_columns .memberlite_section_inside > * {
+	margin: 0;
+}
+
+.memberlite_admin .memberlite_section_header {
+	border-bottom: 1px solid var(--memberlite--border--color);
+	padding: calc( var(--memberlite--spacing--medium) / 2 );
+}
+
+.memberlite_admin .memberlite_section_header h2 {
+	color: var(--memberlite--color--almost-black);
+	font-size: 18px;
+	font-weight: 500;
+	line-height: 1.4;
+	margin: 0;
+}
+
+@media (max-width: 960px) {
+	.memberlite_admin .memberlite_columns {
+		grid-template-columns: minmax( 0, 1fr );
+	}
+}
+
 .memberlite_admin .memberlite_main {
 	grid-area: main;
 	min-width: 0;
@@ -572,21 +615,15 @@ body[class*="toplevel_page_memberlite-"] #footer-left a {
 
 @media screen and (max-width: 782px) {
 	.memberlite_admin .memberlite-feature-section {
-		display: block;
+		grid-template-columns: minmax(0, 1fr);
 	}
 }
 
-/**
- * Recommended Add Ons Box
- */
-.memberlite_admin #the-list {
-	display: flex;
-	flex-wrap: wrap;
-}
-
-.memberlite_admin .plugin-card {
-	display: flex;
-	flex-direction: column;
+#memberlite_dashboard_ai_agents code {
+	display: block;
+	padding: calc( var(--memberlite--spacing--small) / 2 );
+	overflow-wrap: anywhere;
+	white-space: normal;
 }
 
 /**
