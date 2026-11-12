@@ -17,6 +17,9 @@ New to Memberlite or setting up a site with the latest features? Start with our 
 - [Customizer Settings](https://www.paidmembershipspro.com/documentation/memberlite/customize/)
 - [Header and Footer Customization](https://www.paidmembershipspro.com/documentation/memberlite/header-footer-variations/)
 
+### Using an AI Agent
+The theme ships with `AGENTS.md` (and a `CLAUDE.md` that imports it) for AI coding agents working on a Memberlite site, plus `DESIGN.md`, the design and customization reference. Agents that start in a site's root folder may not find them on their own, so add a line like this to the instructions file there: "Before changing the Memberlite theme or its settings, read wp-content/themes/memberlite/AGENTS.md."
+
 ### Using Child Themes
 If you need to customize the theme beyond theme settings, you can [use a child theme](https://www.paidmembershipspro.com/memberlite-child-theme/). Whether you're tweaking styles,
 adding functions, or making layout changes, using a child theme is a great way to future-proof your site.
