@@ -1,7 +1,7 @@
 === Memberlite ===
 Contributors: kimannwall, strangerstudios
 Requires at least: 6.4
-Tested up to: 7.1.3
+Tested up to: 7.1.4
 Requires PHP: 7.4
 Stable tag: 8.0.1
 License: GPLv2 or later
@@ -93,6 +93,7 @@ Memberlite includes formatting for use with:
 == Changelog ==
 
 = 8.0.1 - 2026-11-12 =
+* ENHANCEMENT: Updated "Tested up to" to WordPress 7.1.4. @kimcoleman
 * FEATURE: Added seven gradient presets built from the color scheme, so they follow scheme changes. They replace core's gradients in the block editor picker; content that already uses core gradients is unaffected. #397 @kimcoleman
 * FEATURE: Added background textures (Grain, Paper, Dots, Grid, Lines, Waves) with Subtle and Bold intensity, set from a new Texture panel in the Styles tab of Group, Columns, Column and Cover blocks or with `memberlite-texture-*` classes. #397 @kimcoleman
 * FEATURE: Added Slant: Bottom Right and Slant: Bottom Left block styles to the Group block. #397 @kimcoleman
