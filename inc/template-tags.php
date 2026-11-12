@@ -22,7 +22,7 @@ endif;
  * Returns the site title based on whether we're on the front page.
  *
  * @since 7.0
- * @since TBD Use an h1 on the front page and a span elsewhere, filterable via memberlite_site_title_tag.
+ * @since 8.0.1 Use an h1 on the front page and a span elsewhere, filterable via memberlite_site_title_tag.
  * @return string The HTML for the site title
  */
 if ( ! function_exists( 'memberlite_output_site_title' ) ) {
@@ -38,7 +38,7 @@ if ( ! function_exists( 'memberlite_output_site_title' ) ) {
 		 * Return 'span' to keep the site title out of the heading outline, for example
 		 * on a front page whose content opens with its own h1.
 		 *
-		 * @since TBD
+		 * @since 8.0.1
 		 *
 		 * @param string $tag           The HTML tag: h1-h6, p, span, or div. Default 'h1' on the front page, 'span' elsewhere.
 		 * @param bool   $is_front_page Whether the current page is the front page.

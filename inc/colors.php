@@ -857,7 +857,7 @@ add_filter( 'wp_theme_json_data_theme', 'memberlite_filter_theme_json_colors' );
  * Only the theme and custom palettes are included. The default palette is disabled,
  * so its color variables aren't printed and a rule for them would resolve to nothing.
  *
- * @since TBD
+ * @since 8.0.1
  *
  * @return string CSS rules, or an empty string if there are no palette colors.
  */
@@ -905,7 +905,7 @@ function memberlite_get_button_palette_state_css(): string {
 /**
  * Add the palette Button block hover styles to the frontend.
  *
- * @since TBD
+ * @since 8.0.1
  */
 function memberlite_enqueue_button_palette_state_css() {
 	$css = memberlite_get_button_palette_state_css();
@@ -921,7 +921,7 @@ add_action( 'wp_enqueue_scripts', 'memberlite_enqueue_button_palette_state_css',
  * The color scheme lets light-dark() in the button tokens lighten on dark schemes
  * in the editor the same way it does on the frontend.
  *
- * @since TBD
+ * @since 8.0.1
  *
  * @param array $settings Block editor settings.
  * @return array Block editor settings.

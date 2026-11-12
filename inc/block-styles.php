@@ -89,7 +89,7 @@ add_action( 'init', 'memberlite_register_block_styles' );
  * Texture classes are documented in DESIGN.md. The editor canvas gets the
  * same styles through add_editor_style() in memberlite_setup().
  *
- * @since TBD
+ * @since 8.0.1
  * @return void
  */
 function memberlite_enqueue_texture_control(): void {

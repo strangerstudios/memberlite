@@ -1517,7 +1517,7 @@ function memberlite_save_scheme_colors( WP_Customize_Manager $wp_customize ) {
  * left untouched gets the current Posts & Archives value. After that, changing
  * a Posts & Archives setting no longer affects the CPT.
  *
- * @since TBD
+ * @since 8.0.1
  */
 add_action( 'customize_save_after', 'memberlite_save_cpt_display_settings' );
 
