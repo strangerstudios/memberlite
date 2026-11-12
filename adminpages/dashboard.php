@@ -120,7 +120,7 @@ function memberlite_dashboard_welcome_callback() {
 						<?php esc_html_e( 'Theme Demo, Docs and Support', 'memberlite' ); ?>
 					</div>
 					<div class="memberlite_box-description">
-						<p><?php esc_html_e( 'Register for a free account to browse documentation and get additional help with your Memberlite-powered WordPress site.', 'memberlite' ); ?></p>
+						<p><?php esc_html_e( 'Register for a free account to browse documentation and get additional help with your membership site.', 'memberlite' ); ?></p>
 						<p><a href="https://try.pmproplugin.com" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'View Theme Demo', 'memberlite' ); ?></a></p>
 						<p><a href="https://www.paidmembershipspro.com/documentation/memberlite/?utm_source=memberlite-theme&utm_medium=memberlite-guide&utm_campaign=all-docs" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'View All Docs', 'memberlite' ); ?></a></p>
 					</div>
@@ -147,8 +147,7 @@ function memberlite_dashboard_child_theme_callback() {
 				<p>
 					<?php esc_html_e( 'If you need to customize the theme beyond the settings in Appearance > Customize, use a child theme. Child themes allow you to change the appearance of your site, while preserving the ability to update the primary "parent" theme.', 'memberlite' ); ?>
 				</p>
-				<p><a href="https://developer.wordpress.org/themes/advanced-topics/child-themes/" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Learn more about child themes in the WordPress Theme Handbook', 'memberlite' ); ?></a></p>
-				<p><a class="button button-primary" href="https://www.paidmembershipspro.com/documentation/download/?utm_source=memberlite-theme&utm_medium=memberlite-guide&utm_campaign=child-theme" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Download a Blank Child Theme', 'memberlite' ); ?></a></p>
+				<p><a href="https://www.paidmembershipspro.com/documentation/download/?utm_source=memberlite-theme&utm_medium=memberlite-guide&utm_campaign=child-theme" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Download a Blank Child Theme', 'memberlite' ); ?></a></p>
 			<?php } ?>
 		</div> <!-- end memberlite_section_inside -->
 	</div> <!-- end memberlite_dashboard_child_theme -->
@@ -169,7 +168,7 @@ function memberlite_dashboard_ai_agents_callback() {
 			<h2><?php esc_html_e( 'Using an AI Agent', 'memberlite' ); ?></h2>
 		</div>
 		<div class="memberlite_section_inside">
-			<p><?php esc_html_e( 'If you manage your site with an AI coding agent, such as Claude Code, Codex or Cursor, point it to the notes that ship with Memberlite. They explain how to customize the theme safely and link to DESIGN.md, the design and customization reference.', 'memberlite' ); ?></p>
+			<p><?php esc_html_e( 'If you manage your site with an AI coding agent, point it to the notes that ship with Memberlite. They explain how to customize the theme safely and link to DESIGN.md, the design and customization reference.', 'memberlite' ); ?></p>
 			<p><code><?php echo esc_html( $agents_path ); ?></code></p>
 			<p><?php esc_html_e( 'An agent that starts in your site\'s root folder may not find them on its own. Add this line to the instructions file there (AGENTS.md or CLAUDE.md):', 'memberlite' ); ?></p>
 			<p><code><?php
@@ -194,8 +193,7 @@ function memberlite_dashboard_design_help_callback() {
 		</div>
 		<div class="memberlite_section_inside">
 			<p><?php esc_html_e( 'With PMPro Max, the team that builds Memberlite and Paid Memberships Pro hosts your site and helps customize it. Max includes monthly Max Credits for Do It For Me requests, like design changes, setup, and custom code.', 'memberlite' ); ?></p>
-			<p><a href="https://www.paidmembershipspro.com/documentation/hosting-docs/max-credits/?utm_source=memberlite-theme&utm_medium=memberlite-guide&utm_campaign=max-credits" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'How Max Credits work', 'memberlite' ); ?></a></p>
-			<p><a class="button button-primary" href="https://www.paidmembershipspro.com/pricing/?utm_source=memberlite-theme&utm_medium=memberlite-guide&utm_campaign=pmpro-max" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Learn About PMPro Max', 'memberlite' ); ?></a></p>
+			<p><a href="https://www.paidmembershipspro.com/pricing/?utm_source=memberlite-theme&utm_medium=memberlite-guide&utm_campaign=pmpro-max" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Learn About PMPro Max', 'memberlite' ); ?></a></p>
 		</div> <!-- end memberlite_section_inside -->
 	</div> <!-- end memberlite_dashboard_design_help -->
 	<?php

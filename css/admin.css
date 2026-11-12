@@ -429,10 +429,6 @@ body[class*="toplevel_page_memberlite-"] #footer-left a {
 	margin: 0;
 }
 
-.memberlite_admin .memberlite_columns .memberlite_section_inside > p:last-child {
-	margin-top: auto;
-}
-
 .memberlite_admin .memberlite_section_header {
 	border-bottom: 1px solid var(--memberlite--border--color);
 	padding: calc( var(--memberlite--spacing--medium) / 2 );
