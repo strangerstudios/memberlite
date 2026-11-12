@@ -1,11 +1,9 @@
-# Agent Notes
+# Memberlite: Notes for AI Agents
 
-AI agents working in this repo:
+Memberlite is a classic WordPress theme for membership sites, with block editor and `theme.json` support, from the makers of Paid Memberships Pro. These notes are for agents helping someone build or customize a site that uses it.
 
-- **Reviewing a PR?** Read `docs/ai-review.md` first — it documents team conventions
-  (build/generated files, `@since TBD` placeholders, release pipeline, design ownership) so
-  intentional process doesn't get flagged as defects.
-- **Designing pages or patterns?** Read `DESIGN.md` — color, gradient, texture, block style, and
-  spacing presets. It ships with the theme, so keep it current when you add design presets.
-- Build layout and commands: `docs/build-process.md`, `docs/project-structure.md`.
-- Coding standards: WordPress coding standards, tabs. See `.github/CONTRIBUTING.md`.
+- **Read `DESIGN.md` before designing or customizing.** It covers colors, gradients, textures, block styles, typography, spacing, patterns, layouts, header and footer variations, hooks, and what changed in 8.0.
+- **Don't edit files in this theme folder.** Theme updates replace it. Put PHP and CSS in a child theme or a plugin, and use block markup and Customizer settings for design. Never edit `build/`; it's compiled from source in the theme's GitHub repository.
+- **Check the code here before relying on memory.** Memberlite 8.0 replaced page templates and the Memberlite Settings meta box, and older function names and hooks are deprecated. Search this folder to confirm a function, hook, or setting exists. The installed version is in `style.css`.
+
+Working on Memberlite itself? Contributor docs are in the `docs/` folder of https://github.com/strangerstudios/memberlite. They aren't included in the theme download.
