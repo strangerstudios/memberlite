@@ -66,7 +66,7 @@ Use the Customize > Site Identity screen to add a custom logo (formatted for ret
 [Explore Documentation on Custom Headers in Memberlite](https://www.paidmembershipspro.com/documentation/memberlite/site-branding/)
 
 == Customize the Theme ==
-Use the Customize > Memberlite Options screen to modify theme layout, logo, fonts, colors, copyright message and more.
+Use Appearance > Customize to change layouts, fonts, colors, header and footer variations, the copyright message and more. Set layout and banner options for a single page or post in the block editor sidebar.
 
 [Explore Documentation on Customizing Memberlite »](https://www.paidmembershipspro.com/documentation/memberlite/customize/)
 
@@ -74,6 +74,9 @@ Use the Customize > Memberlite Options screen to modify theme layout, logo, font
 If you need to customize the theme beyond theme settings, use a child theme.
 
 [Memberlite Child Theme Downloads »](https://www.paidmembershipspro.com/documentation/download/) | [Create a Child Theme for Memberlite »](https://www.paidmembershipspro.com/memberlite-child-theme/)
+
+== Using an AI Agent ==
+If you manage your site with an AI coding agent, such as Claude Code, Codex or Cursor, point it to `wp-content/themes/memberlite/AGENTS.md`. It explains how to customize Memberlite safely and links to `DESIGN.md`, the theme's design and customization reference. Agents that start in your site's root folder may not find it on their own, so add this line to the instructions file there (`AGENTS.md` or `CLAUDE.md`): "Before changing the Memberlite theme or its settings, read wp-content/themes/memberlite/AGENTS.md."
 
 == Integrated Plugins ==
 Memberlite includes formatting for use with:

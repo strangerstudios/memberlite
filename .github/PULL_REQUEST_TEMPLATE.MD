@@ -24,6 +24,7 @@ Resolves XXX.
 
 * [ ] Have you added an explanation of what your changes do and why you'd like us to include them?
 * [ ] Have you successfully run tests with your changes locally?
+* [ ] If this adds or changes design presets, block styles, layouts, hooks, or settings, have you updated `DESIGN.md`? It ships with the theme, and AI agents rely on it.
 
 <!-- Mark completed items with an [x] -->
 
