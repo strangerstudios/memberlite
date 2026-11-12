@@ -37,6 +37,8 @@ function memberlite_dashboard() {
 
 			<?php memberlite_dashboard_child_theme_callback(); ?>
 
+			<?php memberlite_dashboard_ai_agents_callback(); ?>
+
 		</div>
 
 	</div>
@@ -83,7 +85,7 @@ function memberlite_dashboard_welcome_callback() {
 						<?php esc_html_e( 'Customize the Theme', 'memberlite' ); ?>
 					</div>
 					<div class="memberlite_box-description">
-						<p><?php esc_html_e( 'Use the Customize > Memberlite Options screen to modify theme layout, logo, fonts, colors, copyright message and more.', 'memberlite' ); ?></p>
+						<p><?php esc_html_e( 'Use Appearance > Customize to change layouts, fonts, colors, the copyright message and more.', 'memberlite' ); ?></p>
 						<p><a href="<?php echo esc_url( wp_customize_url() ); ?>"><?php esc_html_e( 'Customize Your Theme', 'memberlite' ); ?></a></p>
 						<p><a href="https://www.paidmembershipspro.com/documentation/memberlite/memberlite-theme-customization/?utm_source=memberlite-theme&utm_medium=memberlite-guide&utm_campaign=theme-customization" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Docs: Customizing Memberlite', 'memberlite' ); ?></a></p>
 					</div>
@@ -122,13 +124,42 @@ function memberlite_dashboard_child_theme_callback() {
 				<?php do_action( 'memberlite_guide_additional' ); ?>
 			<?php } else { ?>
 				<p>
-					<?php esc_html_e( 'If you need to customize the theme beyond the settings in Appearance > Customize, use a child theme. Child themes allow you to change the appearance of your site, while preseving the ability to update the primary "parent" theme.', 'memberlite' ); ?>
+					<?php esc_html_e( 'If you need to customize the theme beyond the settings in Appearance > Customize, use a child theme. Child themes allow you to change the appearance of your site, while preserving the ability to update the primary "parent" theme.', 'memberlite' ); ?>
 				</p>
 				<p><a href="https://developer.wordpress.org/themes/advanced-topics/child-themes/" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Learn more about child themes in the WordPress Theme Handbook', 'memberlite' ); ?></a></p>
 				<p><a class="button button-primary" href="https://www.paidmembershipspro.com/documentation/download/?utm_source=memberlite-theme&utm_medium=memberlite-guide&utm_campaign=child-theme" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Download a Blank Child Theme', 'memberlite' ); ?></a></p>
 			<?php } ?>
 		</div> <!-- end memberlite_section_inside -->
 	</div> <!-- end memberlite_dashboard_child_theme -->
+	<?php
+}
+
+/**
+ * Callback: Using an AI agent.
+ *
+ * @since 8.0.1
+ */
+function memberlite_dashboard_ai_agents_callback() {
+	$agents_file = get_template_directory() . '/AGENTS.md';
+	$agents_path = 0 === strpos( $agents_file, ABSPATH ) ? substr( $agents_file, strlen( ABSPATH ) ) : $agents_file;
+	?>
+	<div id="memberlite_dashboard_ai_agents" class="memberlite_section" data-visibility="shown" data-activated="true">
+		<div class="memberlite_section_toggle">
+			<button class="memberlite_section-toggle-button" type="button" aria-expanded="true">
+				<span class="dashicons dashicons-arrow-up-alt2"></span>
+				<?php esc_html_e( 'Using an AI Agent', 'memberlite' ); ?>
+			</button>
+		</div>
+		<div class="memberlite_section_inside">
+			<p><?php esc_html_e( 'If you manage your site with an AI coding agent, such as Claude Code, Codex or Cursor, point it to the notes that ship with Memberlite. They explain how to customize the theme safely and link to DESIGN.md, the design and customization reference.', 'memberlite' ); ?></p>
+			<p><code><?php echo esc_html( $agents_path ); ?></code></p>
+			<p><?php esc_html_e( 'An agent that starts in your site\'s root folder may not find them on its own. Add this line to the instructions file there (AGENTS.md or CLAUDE.md):', 'memberlite' ); ?></p>
+			<p><code><?php
+				/* translators: %s: path to the theme's AGENTS.md file. */
+				echo esc_html( sprintf( __( 'Before changing the Memberlite theme or its settings, read %s.', 'memberlite' ), $agents_path ) );
+			?></code></p>
+		</div> <!-- end memberlite_section_inside -->
+	</div> <!-- end memberlite_dashboard_ai_agents -->
 	<?php
 }
 

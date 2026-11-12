@@ -576,6 +576,13 @@ body[class*="toplevel_page_memberlite-"] #footer-left a {
 	}
 }
 
+#memberlite_dashboard_ai_agents code {
+	display: block;
+	padding: calc( var(--memberlite--spacing--small) / 2 );
+	overflow-wrap: anywhere;
+	white-space: normal;
+}
+
 /**
  * Recommended Add Ons Box
  */
