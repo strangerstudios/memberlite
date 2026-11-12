@@ -379,10 +379,12 @@ class Memberlite_Customize {
 				'label' => __( 'Breadcrumbs on Pages', 'memberlite' ),
 			),
 			'post_breadcrumbs'       => array(
-				'label' => __( 'Breadcrumbs on Posts', 'memberlite' ),
+				'label'       => __( 'Breadcrumbs on Posts', 'memberlite' ),
+				'description' => __( 'Also used for single custom post type items, unless the post type has its own settings in its Customizer section.', 'memberlite' ),
 			),
 			'archive_breadcrumbs'    => array(
-				'label' => __( 'Breadcrumbs on Archives', 'memberlite' ),
+				'label'       => __( 'Breadcrumbs on Archives', 'memberlite' ),
+				'description' => __( 'Also used for custom post type archives, unless the post type has its own settings in its Customizer section.', 'memberlite' ),
 			),
 			'attachment_breadcrumbs' => array(
 				'label' => __( 'Breadcrumbs on Attachments', 'memberlite' ),
@@ -404,6 +406,7 @@ class Memberlite_Customize {
 				array(
 					'type'              => 'checkbox',
 					'default'           => false,
+					'description'       => $memberlite_breadcrumb['description'] ?? '',
 					'sanitize_callback' => array( 'Memberlite_Customize', 'sanitize_checkbox' ),
 				)
 			);
@@ -615,6 +618,7 @@ class Memberlite_Customize {
 		// POST: Author Block ===================
 		self::add_memberlite_setting_control( $wp_customize, 'author_block', __( 'Show Author Block on Posts', 'memberlite' ), 'memberlite_post_archive_options', array(
 			'type'              => 'checkbox',
+			'description'       => __( 'Also used for custom post types, unless the post type has its own settings in its Customizer section.', 'memberlite' ),
 			'sanitize_callback' => array( 'Memberlite_Customize', 'sanitize_checkbox' ),
 		) );
 
@@ -655,6 +659,7 @@ class Memberlite_Customize {
 		self::add_memberlite_setting_control( $wp_customize, 'memberlite_post_nav', __( 'Show Prev/Next on Single Posts', 'memberlite' ), 'memberlite_post_archive_options', array(
 			'type'              => 'checkbox',
 			'default'           => true,
+			'description'       => __( 'Also used for custom post types, unless the post type has its own settings in its Customizer section.', 'memberlite' ),
 			'sanitize_callback' => array( 'Memberlite_Customize', 'sanitize_checkbox' ),
 		) );
 
@@ -665,13 +670,17 @@ class Memberlite_Customize {
 				$section       = 'memberlite_' . $post_type . '_archive_options';
 				$post_type_obj = get_post_type_object( $post_type );
 				$singular      = $post_type_obj->labels->singular_name;
+				$plural        = $post_type_obj->labels->name;
 				$inherit_id    = 'inherit_posts_archives_' . $post_type;
+				$is_inherited  = function() use ( $inherit_id ) {
+					return (bool) get_theme_mod( $inherit_id, true );
+				};
 
 				// Inherit from Posts & Archives ==
 				self::add_memberlite_setting_control( $wp_customize, $inherit_id, __( 'Inherit from Posts & Archives', 'memberlite' ), $section, array(
 					'type'              => 'checkbox',
 					'default'           => true,
-					'description'       => __( 'When checked, this post type uses the layout settings from Posts & Archives. Uncheck to control it separately.', 'memberlite' ),
+					'description'       => __( 'When checked, this post type uses the layout, breadcrumb, author block and prev/next settings from Posts & Archives and Breadcrumbs. Uncheck to control it separately.', 'memberlite' ),
 					'sanitize_callback' => array( 'Memberlite_Customize', 'sanitize_checkbox' ),
 				) );
 
@@ -705,8 +714,47 @@ class Memberlite_Customize {
 						'default'     => $memberlite_defaults['content_archives'],
 						'description' => __( 'Choose how posts are displayed on archive pages.', 'memberlite' ),
 						'choices'     => self::get_archive_display_choices(),
-						'active_callback' => function() use ( $inherit_id ) {
-							return ! (bool) get_theme_mod( $inherit_id, true );
+						'active_callback' => function() use ( $is_inherited ) {
+							return ! $is_inherited();
+						},
+					) );
+				}
+
+				// Breadcrumbs, author block and prev/next start from the Posts & Archives values.
+				$display_controls = array(
+					'post_breadcrumbs'    => sprintf(
+						/* translators: %s: plural label for the post type, e.g. "Courses" */
+						__( 'Breadcrumbs on Single %s', 'memberlite' ),
+						$plural
+					),
+					'archive_breadcrumbs' => memberlite_cpt_has_archive_views( $post_type ) ? sprintf(
+						/* translators: %s: singular label for the post type, e.g. "Course" */
+						__( 'Breadcrumbs on %s Archives', 'memberlite' ),
+						$singular
+					) : '',
+					'author_block'        => sprintf(
+						/* translators: %s: plural label for the post type, e.g. "Courses" */
+						__( 'Show Author Block on %s', 'memberlite' ),
+						$plural
+					),
+					'memberlite_post_nav' => sprintf(
+						/* translators: %s: plural label for the post type, e.g. "Courses" */
+						__( 'Show Prev/Next on Single %s', 'memberlite' ),
+						$plural
+					),
+				);
+				$display_settings = memberlite_get_cpt_display_settings();
+
+				foreach ( $display_controls as $setting => $label ) {
+					if ( '' === $label ) {
+						continue;
+					}
+					self::add_memberlite_setting_control( $wp_customize, $setting . '_' . $post_type, $label, $section, array(
+						'type'              => 'checkbox',
+						'default'           => (bool) get_theme_mod( $setting, $display_settings[ $setting ] ),
+						'sanitize_callback' => array( 'Memberlite_Customize', 'sanitize_checkbox' ),
+						'active_callback'   => function() use ( $is_inherited ) {
+							return ! $is_inherited();
 						},
 					) );
 				}
@@ -1459,6 +1507,34 @@ function memberlite_save_scheme_colors( WP_Customize_Manager $wp_customize ) {
 		$value = strtolower( ltrim( $value, '#' ) );
 
 		set_theme_mod( $key, $value );
+	}
+}
+
+/**
+ * When a CPT stops inheriting from Posts & Archives, save its display settings.
+ *
+ * The Customizer only saves settings that changed, so any CPT display setting
+ * left untouched gets the current Posts & Archives value. After that, changing
+ * a Posts & Archives setting no longer affects the CPT.
+ *
+ * @since TBD
+ */
+add_action( 'customize_save_after', 'memberlite_save_cpt_display_settings' );
+
+function memberlite_save_cpt_display_settings() {
+	$mods             = get_theme_mods();
+	$display_settings = memberlite_get_cpt_display_settings();
+
+	foreach ( memberlite_get_customizer_cpts() as $post_type ) {
+		if ( memberlite_cpt_inherits_posts_archives( $post_type ) ) {
+			continue;
+		}
+
+		foreach ( $display_settings as $setting => $default ) {
+			if ( ! array_key_exists( $setting . '_' . $post_type, $mods ) ) {
+				set_theme_mod( $setting . '_' . $post_type, (bool) get_theme_mod( $setting, $default ) );
+			}
+		}
 	}
 }
 

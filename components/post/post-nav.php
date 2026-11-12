@@ -8,7 +8,6 @@
  * @package Memberlite
  */
 
-$theme_mod = get_theme_mod( 'memberlite_post_nav', 1 );
-if ( ! empty( $theme_mod ) ) {
+if ( memberlite_get_display_theme_mod( 'memberlite_post_nav' ) ) {
 	memberlite_post_nav();
 }

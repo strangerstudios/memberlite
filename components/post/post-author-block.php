@@ -8,10 +8,7 @@
  * @package Memberlite
  */
 
-global $memberlite_defaults;
-$author_block = get_theme_mod( 'author_block', $memberlite_defaults['author_block'] );
-
-if ( empty( $author_block ) ) {
+if ( ! memberlite_get_display_theme_mod( 'author_block' ) ) {
 	return;
 } ?>
 

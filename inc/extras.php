@@ -203,6 +203,47 @@ function memberlite_get_content_archives_theme_mod(): string {
 }
 
 /**
+ * Returns the display settings a CPT can set for itself instead of inheriting from Posts & Archives.
+ *
+ * Each CPT stores its own value in a theme_mod named `{setting}_{post_type}`.
+ *
+ * @since TBD
+ * @return array Setting ID => default value.
+ */
+function memberlite_get_cpt_display_settings(): array {
+	global $memberlite_defaults;
+
+	return array(
+		'post_breadcrumbs'    => false,
+		'archive_breadcrumbs' => false,
+		'author_block'        => $memberlite_defaults['author_block'] ?? false,
+		'memberlite_post_nav' => true,
+	);
+}
+
+/**
+ * Returns a display setting for the current view.
+ *
+ * Uses the CPT's own value when the current CPT doesn't inherit from Posts & Archives.
+ * A CPT with no saved value falls back to the Posts & Archives value.
+ *
+ * @since TBD
+ * @param string $setting A setting ID from memberlite_get_cpt_display_settings().
+ * @return bool
+ */
+function memberlite_get_display_theme_mod( string $setting ): bool {
+	$settings = memberlite_get_cpt_display_settings();
+	$value    = get_theme_mod( $setting, $settings[ $setting ] ?? false );
+
+	$cpt_type = memberlite_get_current_cpt_type();
+	if ( $cpt_type && ! memberlite_cpt_inherits_posts_archives( $cpt_type ) ) {
+		$value = get_theme_mod( $setting . '_' . $cpt_type, $value );
+	}
+
+	return (bool) $value;
+}
+
+/**
  * Adds custom classes to the array of body classes.
  *
  * @param array $classes Classes for the body element.
@@ -681,18 +722,10 @@ function memberlite_nav_menu_submenu() {
 function memberlite_get_breadcrumbs() {
 	global $posts, $post, $memberlite_defaults;
 	$page_breadcrumbs       = get_theme_mod( 'page_breadcrumbs', false );
-	$post_breadcrumbs       = get_theme_mod( 'post_breadcrumbs', false );
-	$archive_breadcrumbs    = get_theme_mod( 'archive_breadcrumbs', false );
+	$post_breadcrumbs       = memberlite_get_display_theme_mod( 'post_breadcrumbs' );
+	$archive_breadcrumbs    = memberlite_get_display_theme_mod( 'archive_breadcrumbs' );
 	$attachment_breadcrumbs = get_theme_mod( 'attachment_breadcrumbs', false );
 	$search_breadcrumbs     = get_theme_mod( 'search_breadcrumbs', false );
-	$profile_breadcrumbs    = get_theme_mod( 'profile_breadcrumbs', false );
-	$show_breadcrumbs       = ( '' != $page_breadcrumbs
-		|| '' != $post_breadcrumbs
-		|| '' != $archive_breadcrumbs
-		|| '' != $attachment_breadcrumbs
-		|| '' != $search_breadcrumbs
-		|| '' != $profile_breadcrumbs
-	) ? true : false;
 
 	// Check _memberlite_banner_hide_breadcrumbs meta to determine if breadcrumbs should display.
 	$memberlite_breadcrumbs_post_id = memberlite_get_banner_post_id();
@@ -772,7 +805,7 @@ function memberlite_get_breadcrumbs() {
 				?>
 				<span class="current_page_item"><?php the_title(); ?></span>
 			</nav>
-		<?php } elseif ( is_post_type_archive() && '' != $archive_breadcrumbs ) { ?>
+		<?php } elseif ( is_post_type_archive() && $archive_breadcrumbs ) { ?>
 			<nav class="memberlite-breadcrumb" itemprop="breadcrumb">
 				<?php if ( empty( $memberlite_hide_home_breadcrumb ) ) { ?>
 					<a href="<?php echo esc_url( home_url() ); ?>"><?php esc_html_e( 'Home', 'memberlite' ); ?></a>
@@ -783,7 +816,7 @@ function memberlite_get_breadcrumbs() {
 				echo '<span class="current_page_item">' . esc_html( $post_type->labels->name ) . '</span>';
 			?>
 			</nav>
-		<?php } elseif ( ( ( is_author() || is_tag() || is_archive() ) ) && '' != $archive_breadcrumbs ) { ?>
+		<?php } elseif ( ( ( is_author() || is_tag() || is_archive() ) ) && $archive_breadcrumbs ) { ?>
 			<nav class="memberlite-breadcrumb" itemprop="breadcrumb">
 				<?php if ( empty( $memberlite_hide_home_breadcrumb ) ) { ?>
 					<a href="<?php echo esc_url( home_url() ); ?>"><?php esc_html_e( 'Home', 'memberlite' ); ?></a>
@@ -868,7 +901,7 @@ function memberlite_get_breadcrumbs() {
 					endif;
 				?></span>
 			</nav>
-		<?php } elseif ( is_singular( array( 'post' ) ) && '' != $post_breadcrumbs ) { ?>
+		<?php } elseif ( is_singular( array( 'post' ) ) && $post_breadcrumbs ) { ?>
 			<nav class="memberlite-breadcrumb" itemprop="breadcrumb">
 				<?php if ( empty( $memberlite_hide_home_breadcrumb ) ) { ?>
 					<a href="<?php echo esc_url( home_url() ); ?>"><?php esc_html_e( 'Home', 'memberlite' ); ?></a>
@@ -880,7 +913,7 @@ function memberlite_get_breadcrumbs() {
 				<?php } ?>
 				<span class="current_page_item"><?php the_title(); ?></span>
 			</nav>
-		<?php } elseif ( is_single() && '' != $post_breadcrumbs ) {
+		<?php } elseif ( is_single() && $post_breadcrumbs ) {
 			$post_type_object = get_post_type_object( get_post_type( $post ) );
 			?>
 			<nav class="memberlite-breadcrumb" itemprop="breadcrumb">
@@ -891,6 +924,16 @@ function memberlite_get_breadcrumbs() {
 					<span class="sep"><?php echo esc_html( $memberlite_delimiter ); ?></span>
 					<a href="<?php echo esc_url( get_post_type_archive_link( get_post_type( $post ) ) ); ?>"><?php echo esc_html( $post_type_object->labels->name ); ?></a>
 				<?php } ?>
+				<?php
+				if ( $post_type_object->hierarchical ) {
+					foreach ( array_reverse( get_post_ancestors( $post ) ) as $crumb ) {
+						?>
+						<span class="sep"><?php echo esc_html( $memberlite_delimiter ); ?></span>
+						<a href="<?php echo esc_url( get_permalink( $crumb ) ); ?>"><?php echo esc_html( get_the_title( $crumb ) ); ?></a>
+						<?php
+					}
+				}
+				?>
 				<span class="sep"><?php echo esc_html( $memberlite_delimiter ); ?></span>
 				<span class="current_page_item"><?php the_title(); ?></span>
 			</nav>

@@ -218,13 +218,17 @@
 		} );
 	}
 
-	// Hide CPT Archive Display while inheriting from Posts & Archives.
+	// Hide CPT Archive Display, breadcrumb, author block and prev/next controls while inheriting from Posts & Archives.
 	if ( typeof memberlite_cpt_archive_slugs !== 'undefined' ) {
+		const cptControlPrefixes = [ 'content_archives_', 'post_breadcrumbs_', 'archive_breadcrumbs_', 'author_block_', 'memberlite_post_nav_' ];
+
 		memberlite_cpt_archive_slugs.forEach( function( postType ) {
 			wp.customize( 'inherit_posts_archives_' + postType, function( setting ) {
 				setting.bind( function( inherited ) {
-					wp.customize.control( 'content_archives_' + postType, function( control ) {
-						control.active.set( ! inherited );
+					cptControlPrefixes.forEach( function( prefix ) {
+						wp.customize.control( prefix + postType, function( control ) {
+							control.active.set( ! inherited );
+						} );
 					} );
 				} );
 			} );
