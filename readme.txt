@@ -96,7 +96,7 @@ Memberlite includes formatting for LifterLMS, WooCommerce, bbPress, and BuddyPre
 * ENHANCEMENT: With Override PMPro Colors on, PMPro cards use the site background color, so they match pages with an off-white background. #396 @kimcoleman
 * ENHANCEMENT: Breadcrumbs on single items of a hierarchical custom post type show the item's parents. #395 @kimcoleman
 * ENHANCEMENT: Moved the Banner Image panel below Page Settings in the block editor sidebar. #389 @kimcoleman
-* ENHANCEMENT: Memberlite > Dashboard has new boxes for Header and Footer Variations, Block Patterns, and Import, Export and Reset, with links to the docs. @kimcoleman
+* ENHANCEMENT: Memberlite > Dashboard has new boxes for Header and Footer Variations, Block Patterns, and Import, Export and Reset, with links to the docs, and a Need Help With Your Site? box about PMPro Max. The welcome text now helps you get started instead of describing the theme. @kimcoleman
 * ENHANCEMENT: The readme's Integrated Plugins section now lists the plugins Memberlite styles, without install links for third-party plugins. Removed Events Manager, which Memberlite has no styles for. @kimcoleman
 * ENHANCEMENT: Removed the Recommended Plugins section from Memberlite > Dashboard, along with the `memberlite_plugins_recommended` and `memberlite_plugins_integrated` filters and the `memberlite_plugins_recommended_additional` and `memberlite_plugins_integrated_additional` actions. @kimcoleman
 * ENHANCEMENT: Updated "Tested up to" to WordPress 7.1.4. @kimcoleman

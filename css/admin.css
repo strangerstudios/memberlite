@@ -405,8 +405,21 @@ body[class*="toplevel_page_memberlite-"] #footer-left a {
 		minmax( 220px, 2fr );
 }
 
-.memberlite_admin .memberlite_two_col-even {
-	grid-template-columns: repeat( 2, minmax( 0, 1fr ) );
+.memberlite_admin .memberlite_columns {
+	align-items: start;
+	display: grid;
+	gap: var(--memberlite--spacing--medium);
+	grid-template-columns: repeat( 3, minmax( 0, 1fr ) );
+}
+
+.memberlite_admin .memberlite_columns .memberlite_section {
+	margin: 0;
+}
+
+@media (max-width: 960px) {
+	.memberlite_admin .memberlite_columns {
+		grid-template-columns: minmax( 0, 1fr );
+	}
 }
 
 .memberlite_admin .memberlite_main {
@@ -426,10 +439,6 @@ body[class*="toplevel_page_memberlite-"] #footer-left a {
 		grid-template-areas:
 			"main"
 			"sidebar";
-	}
-
-	.memberlite_admin .memberlite_two_col-even {
-		grid-template-columns: 1fr;
 	}
 }
 

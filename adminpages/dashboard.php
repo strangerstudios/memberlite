@@ -27,11 +27,13 @@ function memberlite_dashboard() {
 
 	<?php memberlite_dashboard_welcome_callback(); ?>
 
-	<div class="memberlite_two_col memberlite_two_col-even">
+	<div class="memberlite_columns">
 
 		<?php memberlite_dashboard_child_theme_callback(); ?>
 
 		<?php memberlite_dashboard_ai_agents_callback(); ?>
+
+		<?php memberlite_dashboard_design_help_callback(); ?>
 
 	</div>
 
@@ -55,7 +57,7 @@ function memberlite_dashboard_welcome_callback() {
 			</button>
 		</div>
 		<div class="memberlite_section_inside">
-			<p><?php esc_html_e( "Memberlite is the ideal theme for your membership site - packed with integration for top membership site plugins including Paid Memberships Pro. It's fully customizable with your logo, colors, fonts, custom sidebars and more global layout settings.", 'memberlite' ); ?></p>
+			<p><?php esc_html_e( "Start here to set up your site's look: add your logo and choose colors and layouts in the Customizer, design your header and footer, then build pages from Memberlite's block patterns.", 'memberlite' ); ?></p>
 
 			<div class="memberlite-feature-section">
 				<div class="memberlite_box memberlite_box-has-icon">
@@ -182,5 +184,28 @@ function memberlite_dashboard_ai_agents_callback() {
 			?></code></p>
 		</div> <!-- end memberlite_section_inside -->
 	</div> <!-- end memberlite_dashboard_ai_agents -->
+	<?php
+}
+
+/**
+ * Callback: Design and development help from PMPro Max.
+ *
+ * @since 8.0.1
+ */
+function memberlite_dashboard_design_help_callback() {
+	?>
+	<div id="memberlite_dashboard_design_help" class="memberlite_section" data-visibility="shown" data-activated="true">
+		<div class="memberlite_section_toggle">
+			<button class="memberlite_section-toggle-button" type="button" aria-expanded="true">
+				<span class="dashicons dashicons-arrow-up-alt2"></span>
+				<?php esc_html_e( 'Need Help With Your Site?', 'memberlite' ); ?>
+			</button>
+		</div>
+		<div class="memberlite_section_inside">
+			<p><?php esc_html_e( 'With PMPro Max, the team that builds Memberlite and Paid Memberships Pro hosts your site and helps customize it. Max includes monthly Max Credits for Do It For Me requests, like design changes, setup, and custom code.', 'memberlite' ); ?></p>
+			<p><a href="https://www.paidmembershipspro.com/documentation/hosting-docs/max-credits/?utm_source=memberlite-theme&utm_medium=memberlite-guide&utm_campaign=max-credits" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'How Max Credits work', 'memberlite' ); ?></a></p>
+			<p><a class="button button-primary" href="https://www.paidmembershipspro.com/pricing/?utm_source=memberlite-theme&utm_medium=memberlite-guide&utm_campaign=pmpro-max" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Learn About PMPro Max', 'memberlite' ); ?></a></p>
+		</div> <!-- end memberlite_section_inside -->
+	</div> <!-- end memberlite_dashboard_design_help -->
 	<?php
 }
