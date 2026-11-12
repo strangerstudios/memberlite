@@ -1,0 +1,118 @@
+/*--------------------------------------------------------------
+ 2.2 Blocks: Background Textures
+--------------------------------------------------------------*/
+
+// -----------------------------------------------------------------------------
+// Add a memberlite-texture-{name} class to a Group, Columns, Column, or Cover block.
+// Textures draw in the block's text color. Strength is the texture's own
+// default x intensity x context (Cards and Covers are quieter), and drops on
+// dark sections, where light marks read stronger.
+//
+// Intensity: add memberlite-texture-subtle or memberlite-texture-bold,
+// or set --memberlite-texture-intensity (1 = default).
+// -----------------------------------------------------------------------------
+
+@use "sass:list";
+
+$texture-names: grain, paper, dots, grid, lines, waves;
+$textures: ();
+
+@each $name in $texture-names {
+	$textures: list.append($textures, ".memberlite-texture-#{$name}", comma);
+}
+
+:where(#{$textures}) {
+	position: relative;
+}
+
+:is(#{$textures})::before {
+	--_texture-alpha: calc(var(--_texture-strength, 0.1) * var(--memberlite-texture-intensity, 1) * var(--_texture-context, 1));
+	content: "";
+	position: absolute;
+	inset: 0;
+	border-radius: inherit;
+	pointer-events: none;
+	color: color-mix(in srgb, currentColor calc(var(--_texture-alpha) * 100%), transparent);
+	// Light text means a dark section: scale alpha down by the text color's lightness.
+	color: oklch(from currentColor l c h / calc(var(--_texture-alpha) * (1.1 - 0.4 * l)));
+}
+
+// Positioned children paint after the texture in document order. No z-index, so dropdowns
+// can still overlap later rows. Zero specificity keeps sticky and absolute children intact.
+:where(:is(#{$textures}):not(.wp-block-cover) > *) {
+	position: relative;
+}
+
+// Cover: texture sits above the image and overlay, below the content.
+.wp-block-cover:is(#{$textures}) {
+	&::before {
+		--_texture-context: 0.75;
+		z-index: 1;
+	}
+
+	> .wp-block-cover__inner-container,
+	&::after {
+		z-index: 2;
+	}
+}
+
+.is-style-card:is(#{$textures})::before {
+	--_texture-context: 0.6;
+}
+
+// Slanted Groups paint the slant into a transparent bottom border; extend the texture over it.
+.wp-block-group:is(.is-style-slant-bottom-right, .is-style-slant-bottom-left):is(#{$textures})::before {
+	bottom: calc(-1 * var(--memberlite-slant-depth));
+}
+
+.memberlite-texture-subtle::before {
+	--memberlite-texture-intensity: 0.55;
+}
+
+.memberlite-texture-bold::before {
+	--memberlite-texture-intensity: 1.75;
+}
+
+// -----------------------------------------------------------------------------
+// Textures
+// -----------------------------------------------------------------------------
+
+.memberlite-texture-dots::before {
+	--_texture-strength: 0.22;
+	background-image: radial-gradient(currentColor 1px, transparent 1.5px);
+	background-size: 1.25rem 1.25rem;
+}
+
+// Single SVG path, so line crossings aren't drawn twice.
+.memberlite-texture-grid::before {
+	--_texture-strength: 0.09;
+	background-color: currentColor;
+	mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Cpath d='M0 .5H40M.5 0V40' fill='none' stroke='black'/%3E%3C/svg%3E");
+	mask-size: 2.5rem 2.5rem;
+}
+
+.memberlite-texture-lines::before {
+	--_texture-strength: 0.06;
+	background-image: repeating-linear-gradient(45deg, currentColor 0 1px, transparent 1px 0.875rem);
+}
+
+.memberlite-texture-waves::before {
+	--_texture-strength: 0.09;
+	background-color: currentColor;
+	mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='28' viewBox='0 0 48 28'%3E%3Cpath d='M0 14 Q12 6 24 14 T48 14' fill='none' stroke='black' stroke-width='1.25'/%3E%3C/svg%3E");
+	mask-size: 48px 28px;
+}
+
+.memberlite-texture-grain::before {
+	--_texture-strength: 0.28;
+	background-color: currentColor;
+	mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.95' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2.6 -1.2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+	mask-size: 240px 240px;
+}
+
+.memberlite-texture-paper::before {
+	--_texture-strength: 0.5;
+	background-color: currentColor;
+	mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='320'%3E%3Cfilter id='p' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.08' numOctaves='6' stitchTiles='stitch'/%3E%3CfeDiffuseLighting lighting-color='white' surfaceScale='0.5'%3E%3CfeDistantLight azimuth='45' elevation='55'/%3E%3C/feDiffuseLighting%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -2 0 0 0 1.638'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)'/%3E%3C/svg%3E");
+	mask-size: 320px 320px;
+}

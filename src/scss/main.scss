@@ -16,6 +16,7 @@
 	1.7 Grid (_grid.scss)
 2.0 Blocks
 	2.1 Blocks (_blocks.scss)
+	2.2 Textures (_textures.scss)
 3.0 Components
 	3.1 Breadcrumbs (_breadcrumbs.scss)
 	3.2 Comments (_comments.scss)
@@ -52,6 +53,7 @@
  BLOCKS
 --------------------------------------------------------------*/
 @use "blocks/blocks";
+@use "blocks/textures";
 
 /*--------------------------------------------------------------
  COMPONENTS

@@ -4,7 +4,45 @@
 	"settings": {
 		"appearanceTools": true,
 		"color": {
-			"defaultPalette": false
+			"defaultGradients": false,
+			"defaultPalette": false,
+			"gradients": [
+				{
+					"slug": "primary-to-secondary",
+					"name": "Primary to Secondary",
+					"gradient": "linear-gradient(135deg in oklab, var(--wp--preset--color--color-primary) 0%, var(--wp--preset--color--color-secondary) 100%)"
+				},
+				{
+					"slug": "primary-to-action",
+					"name": "Primary to Action",
+					"gradient": "linear-gradient(135deg in oklab, var(--wp--preset--color--color-primary) 0%, var(--wp--preset--color--color-action) 100%)"
+				},
+				{
+					"slug": "primary-glow",
+					"name": "Primary Glow",
+					"gradient": "radial-gradient(70% 90% at 50% 0%, color-mix(in srgb, var(--wp--preset--color--color-primary) 30%, transparent) 0%, transparent 100%)"
+				},
+				{
+					"slug": "mesh",
+					"name": "Mesh",
+					"gradient": "radial-gradient(at 0% 0%, color-mix(in oklab, var(--wp--preset--color--color-primary) 70%, transparent) 0%, transparent 60%), radial-gradient(at 100% 0%, color-mix(in oklab, var(--wp--preset--color--color-secondary) 60%, transparent) 0%, transparent 60%), radial-gradient(at 100% 100%, color-mix(in oklab, var(--wp--preset--color--color-action) 50%, transparent) 0%, transparent 60%), radial-gradient(at 0% 100%, color-mix(in oklab, var(--wp--preset--color--color-secondary) 30%, transparent) 0%, transparent 50%), linear-gradient(var(--wp--preset--color--base), var(--wp--preset--color--base))"
+				},
+				{
+					"slug": "soft-wash",
+					"name": "Soft Wash",
+					"gradient": "linear-gradient(160deg, color-mix(in srgb, var(--wp--preset--color--color-primary) 4%, var(--wp--preset--color--base)) 0%, color-mix(in srgb, var(--wp--preset--color--color-secondary) 9%, var(--wp--preset--color--base)) 100%)"
+				},
+				{
+					"slug": "fade-to-background",
+					"name": "Fade to Background",
+					"gradient": "linear-gradient(180deg, transparent 40%, var(--wp--preset--color--base) 100%)"
+				},
+				{
+					"slug": "bottom-scrim",
+					"name": "Bottom Scrim",
+					"gradient": "linear-gradient(0deg, rgb(0 0 0 / 0.7) 0%, rgb(0 0 0 / 0) 60%)"
+				}
+			]
 		},
 		"custom": {
 			"border": {
