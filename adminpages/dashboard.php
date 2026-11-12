@@ -136,12 +136,9 @@ function memberlite_dashboard_welcome_callback() {
  */
 function memberlite_dashboard_child_theme_callback() {
 	?>
-	<div id="memberlite_dashboard_child_theme" class="memberlite_section" data-visibility="shown" data-activated="true">
-		<div class="memberlite_section_toggle">
-			<button class="memberlite_section-toggle-button" type="button" aria-expanded="true">
-				<span class="dashicons dashicons-arrow-up-alt2"></span>
-				<?php esc_html_e( 'Using Child Themes', 'memberlite' ); ?>
-			</button>
+	<div id="memberlite_dashboard_child_theme" class="memberlite_section memberlite_section-static">
+		<div class="memberlite_section_header">
+			<h2><?php esc_html_e( 'Using Child Themes', 'memberlite' ); ?></h2>
 		</div>
 		<div class="memberlite_section_inside">
 			<?php if ( has_action( 'memberlite_guide_additional' ) ) { ?>
@@ -167,12 +164,9 @@ function memberlite_dashboard_ai_agents_callback() {
 	$agents_file = get_template_directory() . '/AGENTS.md';
 	$agents_path = 0 === strpos( $agents_file, ABSPATH ) ? substr( $agents_file, strlen( ABSPATH ) ) : $agents_file;
 	?>
-	<div id="memberlite_dashboard_ai_agents" class="memberlite_section" data-visibility="shown" data-activated="true">
-		<div class="memberlite_section_toggle">
-			<button class="memberlite_section-toggle-button" type="button" aria-expanded="true">
-				<span class="dashicons dashicons-arrow-up-alt2"></span>
-				<?php esc_html_e( 'Using an AI Agent', 'memberlite' ); ?>
-			</button>
+	<div id="memberlite_dashboard_ai_agents" class="memberlite_section memberlite_section-static">
+		<div class="memberlite_section_header">
+			<h2><?php esc_html_e( 'Using an AI Agent', 'memberlite' ); ?></h2>
 		</div>
 		<div class="memberlite_section_inside">
 			<p><?php esc_html_e( 'If you manage your site with an AI coding agent, such as Claude Code, Codex or Cursor, point it to the notes that ship with Memberlite. They explain how to customize the theme safely and link to DESIGN.md, the design and customization reference.', 'memberlite' ); ?></p>
@@ -194,12 +188,9 @@ function memberlite_dashboard_ai_agents_callback() {
  */
 function memberlite_dashboard_design_help_callback() {
 	?>
-	<div id="memberlite_dashboard_design_help" class="memberlite_section" data-visibility="shown" data-activated="true">
-		<div class="memberlite_section_toggle">
-			<button class="memberlite_section-toggle-button" type="button" aria-expanded="true">
-				<span class="dashicons dashicons-arrow-up-alt2"></span>
-				<?php esc_html_e( 'Need Help With Your Site?', 'memberlite' ); ?>
-			</button>
+	<div id="memberlite_dashboard_design_help" class="memberlite_section memberlite_section-static">
+		<div class="memberlite_section_header">
+			<h2><?php esc_html_e( 'Need Help With Your Site?', 'memberlite' ); ?></h2>
 		</div>
 		<div class="memberlite_section_inside">
 			<p><?php esc_html_e( 'With PMPro Max, the team that builds Memberlite and Paid Memberships Pro hosts your site and helps customize it. Max includes monthly Max Credits for Do It For Me requests, like design changes, setup, and custom code.', 'memberlite' ); ?></p>
