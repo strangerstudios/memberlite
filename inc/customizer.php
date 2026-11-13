@@ -1168,16 +1168,7 @@ class Memberlite_Customize {
 			<?php } //end of PMPRO_VERSION check ?>
 			}
 			<?php if ( defined( 'PMPRO_VERSION' ) && $override_pmpro_colors ) : ?>
-			/*
-			 * PMPro solid buttons use the Button color, like the theme's own buttons.
-			 * PMPro's accent comes from the Primary color above, and PMPro also uses the accent for its
-			 * text links, so only the solid buttons are re-pointed. Outline, cancel, and plain buttons
-			 * keep the accent.
-			 */
-			.pmpro .pmpro_btn:not(.pmpro_btn-outline):not(.pmpro_btn-cancel):not(.pmpro_btn-plain) {
-				--pmpro--color--accent: var(--wp--preset--color--buttons);
-				--pmpro--color--accent--variation: var(--wp--custom--button--hover-background);
-			}
+			<?php echo esc_html( memberlite_pmpro_get_button_color_override_css() ) . "\n"; ?>
 			<?php endif; ?>
 		</style>
 		<!--/Customizer CSS-->
