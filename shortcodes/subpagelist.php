@@ -75,6 +75,12 @@ function memberlite_subpagelist_shortcode_handler( $atts, $content = null, $code
 	if ( ! empty( $post_type ) ) {
 		$post_type = str_replace( ' ' , '', $post_type );
 		$post_type_array = explode( ',', $post_type );
+
+		// Only list post types that are publicly viewable.
+		$post_type_array = array_values( array_filter( $post_type_array, 'is_post_type_viewable' ) );
+		if ( empty( $post_type_array ) ) {
+			return '';
+		}
 	}
 
 	// Our return string.
