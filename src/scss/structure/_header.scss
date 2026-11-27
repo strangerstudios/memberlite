@@ -504,22 +504,26 @@ body.mobile-nav-open {
 	background-color: var(--memberlite-color-site-navigation-background);
 	color: var(--memberlite-color-text);
 	height: 100vh;
-	left: -100vw;
+	left: 0;
 	overflow: auto;
 	padding: var(--wp--preset--spacing--30);
 	position: fixed;
 	text-align: left;
 	top: 0;
-	transition: left 0.5s;
+	transform: translateX(-100%);
 	width: 100vw;
 	z-index: 100;
+
+	@include motion {
+		transition: transform $motion-ui $ease-out;
+	}
 
 	@include breakpoint(tablet) {
 		display: none;
 	}
 
 	&.open {
-		left: 0;
+		transform: none;
 	}
 
 	ul {

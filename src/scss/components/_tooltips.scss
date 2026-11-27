@@ -23,7 +23,6 @@
 
 .memberlite-variation-part-edit-link {
 	opacity: 0;
-	transition: opacity 0.2s ease-in-out;
 	position: absolute;
 	left: 50%;
 	transform: translateX(-50%);
@@ -32,6 +31,10 @@
 	padding: 0;
 	border-radius: var(--wp--custom--border--radius);
 	box-shadow: $btn-shadow;
+
+	@include motion {
+		transition: opacity $motion-hover $ease-out;
+	}
 
 	svg {
 		fill: currentColor;

@@ -76,6 +76,18 @@
 				"body": 1.7,
 				"heading": 1.4,
 				"field": 1.5
+			},
+			"motion": {
+				"duration": {
+					"press": "120ms",
+					"hover": "180ms",
+					"ui": "240ms",
+					"enter": "300ms"
+				},
+				"ease": {
+					"out": "cubic-bezier(0.23, 1, 0.32, 1)",
+					"inOut": "cubic-bezier(0.77, 0, 0.175, 1)"
+				}
 			}
 		},
 		"layout": {
@@ -1591,7 +1603,7 @@
 						"width": "1px"
 					}
 				},
-				"css": "& > summary {cursor: pointer; font-family: var(--wp--preset--font-family--heading); font-weight: 700; list-style: none}& > summary:hover {text-decoration: underline}& > summary::-webkit-details-marker {display: none}& > summary::before {content: \"\\f078\"; float: right; font-family: \"Font Awesome 5 Free\"; font-weight: 900; margin-left: var(--wp--preset--spacing--10)}&[open] > summary::before {content: \"\\f077\"}",
+				"css": "& > summary {cursor: pointer; font-family: var(--wp--preset--font-family--heading); font-weight: 700; list-style: none}& > summary:hover {text-decoration: underline}& > summary::-webkit-details-marker {display: none}& > summary::before {content: \"\\f078\"; float: right; font-family: \"Font Awesome 5 Free\"; font-weight: 900; margin-left: var(--wp--preset--spacing--10)}&[open] > summary::before {transform: rotate(180deg)}",
 				"spacing": {
 					"blockGap": "var(--wp--preset--spacing--10)",
 					"padding": {

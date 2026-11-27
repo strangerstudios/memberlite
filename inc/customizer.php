@@ -239,6 +239,16 @@ class Memberlite_Customize {
 				) );
 			}
 		}
+
+		// GENERAL: Motion Heading ================
+		self::add_memberlite_heading( $wp_customize, 'memberlite_motion_heading', __( 'Motion', 'memberlite' ), 'memberlite_general_options' );
+
+		// GENERAL: Motion ========================
+		self::add_memberlite_setting_control( $wp_customize, 'memberlite_motion', __( 'Add Subtle Motion', 'memberlite' ), 'memberlite_general_options', array(
+			'type'              => 'checkbox',
+			'sanitize_callback' => array( 'Memberlite_Customize', 'sanitize_checkbox' ),
+			'description'       => __( 'Buttons, menus and accordions respond with short animations, and pages fade from one to the next. Uncheck to turn off all theme motion. Visitors who turn off motion on their device won\'t see it either way.', 'memberlite' ),
+		) );
 	}
 
 	/**

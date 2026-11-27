@@ -420,7 +420,7 @@ or being hovered over in the editor or from list view for better UX. */
 
 .wp-block-accordion.is-style-accrdn-caret .wp-block-accordion-item.is-open > .wp-block-accordion-heading .wp-block-accordion-heading__toggle:has(.wp-block-accordion-heading__toggle-icon:last-child)::after,
 .wp-block-accordion.is-style-accrdn-caret .wp-block-accordion-item.is-open > .wp-block-accordion-heading .wp-block-accordion-heading__toggle:has(.wp-block-accordion-heading__toggle-icon:first-child)::before {
-	content: "\f077";
+	transform: rotate(180deg);
 }
 
 .wp-block-accordion.is-style-accrdn-caret .wp-block-accordion-heading__toggle-icon {

@@ -362,6 +362,18 @@ function initBackToTop() {
 
 	btn.addEventListener('click', function (e) {
 		e.preventDefault();
-		window.scrollTo({ top: 0, behavior: 'smooth' });
+		window.scrollTo({ top: 0, behavior: memberliteMotionAllowed(btn) ? 'smooth' : 'instant' });
 	});
+}
+
+// ─── Motion ──────────────────────────────────────────────────────────────────
+
+/**
+ * Whether theme motion should run for an element: the "Add Subtle Motion" setting is on,
+ * the visitor allows motion, and the element isn't inside .memberlite-no-motion.
+ */
+function memberliteMotionAllowed(el) {
+	return document.body.classList.contains('memberlite-has-motion') &&
+		!window.matchMedia('(prefers-reduced-motion: reduce)').matches &&
+		!(el && el.closest('.memberlite-no-motion'));
 }

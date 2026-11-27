@@ -1,0 +1,128 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+
+/*--------------------------------------------------------------
+ 7.0 Motion
+--------------------------------------------------------------*/
+
+// Every rule here runs only when "Add subtle motion" is on (see the motion() mixin).
+// Transitions on existing components live in their own partials, behind the same mixin.
+
+// -----------------------------------------------------------------------------
+// Buttons: press feedback (PMPro buttons are left alone)
+// -----------------------------------------------------------------------------
+
+button:where(:not(.pmpro_btn, .pmpro_btn-plain, .menu-toggle, .wp-block-accordion-heading__toggle, .customize-partial-edit-shortcut-button)),
+input:is([type=button], [type=reset], [type=submit]):where(:not(.pmpro_btn, .pmpro_btn-plain)),
+.btn:where(:not(.pmpro_btn, .pmpro_btn-plain)),
+a.comment-reply-link,
+.wp-block-button__link:where(:not(.pmpro_btn, .pmpro_btn-plain)) {
+	@include motion {
+		transition: color $motion-hover $ease-out, background-color $motion-hover $ease-out, border-color $motion-hover $ease-out, box-shadow $motion-hover $ease-out, transform $motion-press $ease-out;
+
+		&:active {
+			transform: scale(0.97);
+		}
+	}
+}
+
+// Arrow buttons: the arrow nudges toward where the link goes
+.wp-block-button:is(.is-style-arrow-fill, .is-style-arrow-plain) a {
+	@include motion {
+		&::after {
+			transition: transform $motion-hover $ease-out;
+		}
+
+		&:focus-visible::after {
+			transform: translateX(3px);
+		}
+	}
+
+	@include motion-hover {
+		&:hover::after {
+			transform: translateX(3px);
+		}
+	}
+}
+
+// -----------------------------------------------------------------------------
+// Accordions and details
+// -----------------------------------------------------------------------------
+
+// Core closes panels with hidden="until-found" (content-visibility: hidden), so the height can animate.
+.wp-block-accordion-panel {
+	@include motion {
+		overflow: clip;
+		transition: height $motion-ui $ease-out, padding-block $motion-ui $ease-out, margin-block-start $motion-ui $ease-out, content-visibility $motion-ui allow-discrete;
+
+		&[hidden] {
+			height: 0;
+		}
+	}
+}
+
+.wp-block-accordion.is-style-accrdn-caret .wp-block-accordion-heading__toggle {
+	@include motion {
+		&::before,
+		&::after {
+			transition: transform $motion-ui $ease-out;
+		}
+	}
+}
+
+.wp-block-details {
+	@include motion {
+		&::details-content {
+			block-size: 0;
+			overflow: clip;
+			transition: block-size $motion-ui $ease-out, content-visibility $motion-ui allow-discrete;
+		}
+
+		&[open]::details-content {
+			block-size: auto;
+		}
+
+		> summary::before {
+			transition: transform $motion-ui $ease-out;
+		}
+	}
+}
+
+// Core animates its own accordion icon: retime it, and turn it off when motion is off.
+@media (prefers-reduced-motion: no-preference) {
+	body.memberlite-has-motion .wp-block-accordion-item > .wp-block-accordion-heading .wp-block-accordion-heading__toggle-icon {
+		transition: transform $motion-ui $ease-out;
+	}
+}
+
+body:not(.memberlite-has-motion),
+body .memberlite-no-motion {
+	.wp-block-accordion-item,
+	.wp-block-accordion-item > .wp-block-accordion-heading .wp-block-accordion-heading__toggle-icon {
+		transition: none;
+	}
+}
+
+body .wp-block-accordion-item.memberlite-no-motion {
+	transition: none;
+
+	> .wp-block-accordion-heading .wp-block-accordion-heading__toggle-icon {
+		transition: none;
+	}
+}
+
+// -----------------------------------------------------------------------------
+// Header: submenus fade in
+// -----------------------------------------------------------------------------
+
+.site-header :is(#site-navigation, .memberlite-nav-menu, .member-navigation, .header-right .widget_nav_menu) li > button[aria-expanded="true"] ~ .sub-menu {
+	@include breakpoint(tablet) {
+		@include motion {
+			transition: opacity $motion-ui $ease-out;
+
+			@starting-style {
+				opacity: 0;
+			}
+		}
+	}
+}
