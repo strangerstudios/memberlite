@@ -288,14 +288,8 @@ function memberlite_body_classes( $classes ) {
 		$classes[] = 'group-blog';
 	}
 
-	if ( is_page() ) {
-		$memberlite_banner_show = get_post_meta( memberlite_get_banner_post_id(), '_memberlite_banner_show', true );
-
-		// Falsy covers: '' (an explicit false toggle, stringified on save) and '0' (the legacy metabox radio's hidden value).
-		// A never-touched page isn't falsy here — it resolves to the registered default of true.
-		if ( ! $memberlite_banner_show ) {
-			$classes[] = 'memberlite-banner-hidden';
-		}
+	if ( ! memberlite_should_masthead_render() ) {
+		$classes[] = 'memberlite-banner-hidden';
 	}
 
 	return $classes;

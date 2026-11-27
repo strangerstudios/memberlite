@@ -468,8 +468,8 @@ function memberlite_should_masthead_render(): bool {
 	$memberlite_banner_show    = true;
 	$memberlite_banner_post_id = memberlite_get_banner_post_id();
 
-	// The "Show Page Banner" Template Settings only exists on pages
-	if ( ! empty( $memberlite_banner_post_id ) && get_post_type( $memberlite_banner_post_id ) === 'page' ) {
+	// Pages and post types with a Banner Image have the "Show Masthead Banner" toggle.
+	if ( ! empty( $memberlite_banner_post_id ) && registered_meta_key_exists( 'post', '_memberlite_banner_show', get_post_type( $memberlite_banner_post_id ) ) ) {
 		$show_banner_meta = get_post_meta( $memberlite_banner_post_id, '_memberlite_banner_show', true );
 
 		// Falsy covers: '' (an explicit false toggle, stringified on save) and '0' (the legacy metabox radio's hidden value).
