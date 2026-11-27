@@ -136,8 +136,8 @@ function memberlite_pmpro_get_color_override_vars(): array {
 	$pmpro_style_variation = get_option( 'pmpro_style_variation', 'variation_1' );
 
 	$vars = array(
-		'--pmpro--color--accent'            => $colors['color_primary'],
-		'--pmpro--color--accent--variation' => $colors['color_primary'] ? 'color-mix(in oklab, ' . $colors['color_primary'] . ', var(--wp--custom--button--shade) var(--wp--custom--button--hover-mix))' : null,
+		'--pmpro--color--accent'            => $colors['color_button'],
+		'--pmpro--color--accent--variation' => $colors['color_button'] ? 'color-mix(in oklab, ' . $colors['color_button'] . ', var(--wp--custom--button--shade) var(--wp--custom--button--hover-mix))' : null,
 		'--pmpro--color--base'              => $colors['background_color'],
 		'--pmpro--color--contrast'          => $colors['color_text'],
 		'--pmpro--color--border--variation' => $pmpro_style_variation === 'variation_high_contrast' ? $colors['color_text'] : $colors['color_borders'],
