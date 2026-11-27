@@ -55,10 +55,11 @@
 	font-size: var(--wp--preset--font-size--36);
 }
 
-.alignfull {
+// On phones, full-width blocks in a content column bleed through the column's gutter.
+.columns .alignfull {
 	@include breakpoint(mobile) {
-		margin-right: -2.35rem;
-		margin-left: -2.35rem;
+		margin-right: -$grid-gutter;
+		margin-left: -$grid-gutter;
 	}
 }
 
