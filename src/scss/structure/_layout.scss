@@ -17,8 +17,9 @@
 .page-template-blank {
 	.alignfull,
 	.alignwide {
-		margin-left: calc(50% - 50vw);
-		margin-right: calc(50% - 50vw);
+		// 100vw includes a classic scrollbar; memberlite.js sets its width.
+		margin-left: calc(50% - 50vw + var(--memberlite-scrollbar-width, 0px) / 2);
+		margin-right: calc(50% - 50vw + var(--memberlite-scrollbar-width, 0px) / 2);
 		max-width: 1000%;
 		width: auto;
 	}

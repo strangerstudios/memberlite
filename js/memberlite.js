@@ -8,7 +8,29 @@ document.addEventListener('DOMContentLoaded', function () {
 	initStickyNav();
 	initStickyVariation();
 	initBackToTop();
+	initScrollbarWidth();
 });
+
+// ─── Scrollbar Width ─────────────────────────────────────────────────────────
+
+/**
+ * Set --memberlite-scrollbar-width on <html> so wide and full blocks can subtract it
+ * from 100vw, which includes the scrollbar when the browser shows a classic one.
+ */
+function initScrollbarWidth() {
+	const root = document.documentElement;
+
+	function updateScrollbarWidth() {
+		root.style.setProperty('--memberlite-scrollbar-width', (window.innerWidth - root.clientWidth) + 'px');
+	}
+
+	updateScrollbarWidth();
+
+	// The scrollbar can appear or disappear when the window resizes or the page grows.
+	if ('ResizeObserver' in window) {
+		new ResizeObserver(updateScrollbarWidth).observe(root);
+	}
+}
 
 // ─── Tabs ────────────────────────────────────────────────────────────────────
 
