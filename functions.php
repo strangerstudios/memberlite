@@ -518,6 +518,9 @@ require_once get_template_directory() . '/inc/extras.php';
 /* Layout settings: sidebar and content width per context. */
 require_once get_template_directory() . '/inc/layout.php';
 
+/* Motion setting and in-view script. */
+require_once get_template_directory() . '/inc/motion.php';
+
 /* One-time clone of parent settings on child theme activation. */
 require_once get_template_directory() . '/inc/child-theme-activation.php';
 

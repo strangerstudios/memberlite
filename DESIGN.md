@@ -132,6 +132,53 @@ Choose these in the block's Styles panel. In markup, the style is the class `is-
 
 The Group slant styles reserve the slant with a bottom border, so don't give a slanted Group a bottom border of its own. Its width replaces the slant depth, and the slant then cuts into the content.
 
+## Motion
+
+Memberlite's motion is feedback, not decoration: things move only to answer a click, hover, or focus, or to show that something opened, closed, or changed. One setting controls all of it.
+
+- **Appearance > Customize > General > Add Subtle Motion** (theme mod `memberlite_motion`, on by default). When it's on, links and buttons fade between colors, buttons press in slightly, arrow buttons nudge their arrow, accordions and Details blocks open and close smoothly, header submenus fade in, the mobile menu slides in, and pages crossfade from one to the next. When it's off, nothing in the theme animates. The `memberlite_has_motion` filter overrides the setting.
+- **Visitors' settings come first.** A visitor whose device is set to reduce motion sees no theme motion, whatever the setting.
+- **Turn it off for one section** with the class `memberlite-no-motion` (for example in a block's Additional CSS class(es) field). Nothing inside that element animates.
+- **Tokens** for custom CSS, so custom motion matches the theme's. A child theme can change them in its own `theme.json` under `settings.custom.motion`.
+
+| Custom property | Default | Use for |
+| --- | --- | --- |
+| `--wp--custom--motion--duration--press` | 120ms | Press feedback |
+| `--wp--custom--motion--duration--hover` | 180ms | Hover and focus changes |
+| `--wp--custom--motion--duration--ui` | 240ms | Opening and closing menus, accordions, panels |
+| `--wp--custom--motion--duration--enter` | 300ms | An element appearing |
+| `--wp--custom--motion--ease--out` | `cubic-bezier(0.23, 1, 0.32, 1)` | Most motion |
+| `--wp--custom--motion--ease--in-out` | `cubic-bezier(0.77, 0, 0.175, 1)` | Something moving from one place to another |
+
+When adding motion in a child theme:
+
+1. Scope it to `body.memberlite-has-motion` and put it inside `@media (prefers-reduced-motion: no-preference)`. Then it follows the setting and the visitor's preference.
+2. Animate `transform` and `opacity`. Keep each effect at 300ms or less.
+3. Don't hide content in the base CSS while waiting for it to animate in, and don't add hover lifts to cards or fade-ups to every section.
+
+### In-view hook
+
+For one signature moment on a page (not every section), a child theme can run an effect when an element scrolls into view. Enqueue the theme's script and mark the element with `data-memberlite-inview`:
+
+```php
+add_action( 'wp_enqueue_scripts', function () {
+	wp_enqueue_script( 'memberlite-motion' );
+} );
+```
+
+The script adds `is-inview` to the element when 30% of it is visible. It adds the class `memberlite-motion` to `<html>` only while motion is allowed, so scope any "before" state to that class. Without JavaScript, in print, with the setting off, with reduced motion, or inside `.memberlite-no-motion`, the element is simply shown. Elements already on screen when the page loads are shown right away, with no effect.
+
+```css
+.memberlite-motion [data-memberlite-inview]:not(.is-inview) {
+	opacity: 0;
+	transform: translateY(12px);
+}
+
+.memberlite-motion [data-memberlite-inview] {
+	transition: opacity var(--wp--custom--motion--duration--enter) var(--wp--custom--motion--ease--out), transform var(--wp--custom--motion--duration--enter) var(--wp--custom--motion--ease--out);
+}
+```
+
 ## Typography
 
 - **Font families:** use `heading` and `body`. They follow the fonts chosen in the Customizer. Other bundled families are available, but only pick one on purpose for display text.
@@ -151,7 +198,7 @@ Pattern slugs start with `memberlite/`. Find them in the inserter under these ca
 
 ### Where settings live
 
-- **Appearance > Customize:** colors, fonts, the default layout for each kind of page, header and footer variations, breadcrumbs, and post display settings. Sections: General, Header, Footer, Pages, Posts & Archives, Other Post Types, Breadcrumbs, Typography, Colors.
+- **Appearance > Customize:** colors, fonts, motion, the default layout for each kind of page, header and footer variations, breadcrumbs, and post display settings. Sections: General, Header, Footer, Pages, Posts & Archives, Other Post Types, Breadcrumbs, Typography, Colors.
 - **Block editor sidebar** (per item): **Layout** (pages, posts, and custom post types), **Page Settings** (pages: masthead banner, title, breadcrumbs, page navigation), **Template Settings** (pages: hide header or footer, header and footer override; header variations: sticky header), and **Banner Image**.
 - **Memberlite admin menu:** Headers, Footers, Custom Menus, Custom Sidebars, Tools (import, export, or reset theme settings), and Alerts (content or settings that an update changed, with fixes).
 

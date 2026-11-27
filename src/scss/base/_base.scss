@@ -39,10 +39,8 @@ button {
 
 a,
 button {
-	transition: all 0.3s ease-in-out;
-
-	&:hover, &:active, &:focus {
-		transition: all 0.3s ease-in-out;
+	@include motion {
+		transition: color $motion-hover $ease-out, background-color $motion-hover $ease-out, border-color $motion-hover $ease-out, box-shadow $motion-hover $ease-out;
 	}
 }
 

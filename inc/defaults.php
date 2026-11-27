@@ -38,6 +38,7 @@ function memberlite_get_defaults(): array {
 		'memberlite_back_to_top'            => true,
 		'memberlite_back_to_top_style'      => 'default',
 		'memberlite_button_style'           => 'default',
+		'memberlite_motion'                 => true,
 
 		// Color Scheme
 		'memberlite_color_scheme'           => 'default',

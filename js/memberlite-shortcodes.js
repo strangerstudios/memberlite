@@ -6,17 +6,20 @@ jQuery( document ).ready( function() {
 	//show accordion content when clicked
 	jQuery('.memberlite_accordion-item h2').click(function(e) {
 		
-		var accordion_trigger, accordion, accordion_wrapper;
+		var accordion_trigger, accordion, accordion_wrapper, slide_speed;
 
 		accordion_trigger = jQuery(this);
 		accordion = accordion_trigger.closest('.memberlite_accordion-item');
 		accordion_wrapper = accordion.closest('.memberlite_accordion');
 
+		// Slide only when theme motion is on, the visitor allows motion, and it isn't inside .memberlite-no-motion.
+		slide_speed = ( document.body.classList.contains('memberlite-has-motion') && ! window.matchMedia('(prefers-reduced-motion: reduce)').matches && ! accordion_wrapper.closest('.memberlite-no-motion').length ) ? 240 : 0;
+
 		if(accordion_wrapper.hasClass('memberlite_accordion-show')) {
 			//hide all items
 			jQuery.each(accordion_wrapper.find('.memberlite_accordion-item'), function(key, item) {
 				if(jQuery(item).is(accordion)) {
-					jQuery(item).find('.memberlite_accordion-item-content').slideToggle(350);
+					jQuery(item).find('.memberlite_accordion-item-content').slideToggle(slide_speed);
 					if(jQuery(item).hasClass('memberlite_accordion-active')) {
 						jQuery(item).removeClass('memberlite_accordion-active');
 					} else {
@@ -28,14 +31,14 @@ jQuery( document ).ready( function() {
 			//hide all items
 			jQuery.each(accordion_wrapper.find('.memberlite_accordion-item'), function(key, item) {
 				if(jQuery(item).is(accordion)) {
-					jQuery(item).find('.memberlite_accordion-item-content').slideToggle(350);
+					jQuery(item).find('.memberlite_accordion-item-content').slideToggle(slide_speed);
 					if(jQuery(item).hasClass('memberlite_accordion-active')) {
 						jQuery(item).removeClass('memberlite_accordion-active');
 					} else {
 						jQuery(item).addClass('memberlite_accordion-active');
 					}
 				} else {
-					jQuery(item).find('.memberlite_accordion-item-content').slideUp(350);
+					jQuery(item).find('.memberlite_accordion-item-content').slideUp(slide_speed);
 					jQuery(item).removeClass('memberlite_accordion-active');
 				}
 			});

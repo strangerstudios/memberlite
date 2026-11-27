@@ -752,10 +752,10 @@
 		margin-right: var(--wp--preset--spacing--10);
 	}
 
-	/* Reverse the chevron when the item is open (is-open is set in the editor and on the front end) */
+	/* Flip the chevron when the item is open (is-open is set in the editor and on the front end) */
 	.wp-block-accordion-item.is-open > .wp-block-accordion-heading .wp-block-accordion-heading__toggle:has(.wp-block-accordion-heading__toggle-icon:last-child)::after,
 	.wp-block-accordion-item.is-open > .wp-block-accordion-heading .wp-block-accordion-heading__toggle:has(.wp-block-accordion-heading__toggle-icon:first-child)::before {
-		content: "\f077"; // fa-chevron-up
+		transform: rotate(180deg);
 	}
 
 	.wp-block-accordion-heading__toggle-icon {

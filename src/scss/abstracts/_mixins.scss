@@ -7,6 +7,25 @@
 	@if $size == wide      { @media (min-width: 1160px) { @content; } }
 }
 
+// Motion: applies only when the "Add subtle motion" setting is on, the visitor allows motion,
+// and the element isn't inside .memberlite-no-motion. Adds no specificity.
+@mixin motion {
+	@media (prefers-reduced-motion: no-preference) {
+		:where(body.memberlite-has-motion) &:where(:not(.memberlite-no-motion, .memberlite-no-motion *)) {
+			@content;
+		}
+	}
+}
+
+// Motion with a hover effect: same as motion(), on devices with a real hover.
+@mixin motion-hover {
+	@media (prefers-reduced-motion: no-preference) and (hover: hover) and (pointer: fine) {
+		:where(body.memberlite-has-motion) &:where(:not(.memberlite-no-motion, .memberlite-no-motion *)) {
+			@content;
+		}
+	}
+}
+
 @mixin screen-reader-only {
 	clip: rect(1px, 1px, 1px, 1px);
 	position: absolute !important;

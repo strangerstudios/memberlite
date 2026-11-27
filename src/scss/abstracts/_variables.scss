@@ -20,6 +20,13 @@ $btn-shadow: var(--wp--custom--button--shadow);
 $btn-shadow-hover: var(--wp--custom--button--shadow-hover);
 $header-shadow: 0 20px 50px 0 rgba(0, 0, 0, .12);
 
+$motion-press: var(--wp--custom--motion--duration--press, 120ms);
+$motion-hover: var(--wp--custom--motion--duration--hover, 180ms);
+$motion-ui: var(--wp--custom--motion--duration--ui, 240ms);
+$motion-enter: var(--wp--custom--motion--duration--enter, 300ms);
+$ease-out: var(--wp--custom--motion--ease--out, cubic-bezier(0.23, 1, 0.32, 1));
+$ease-in-out: var(--wp--custom--motion--ease--in-out, cubic-bezier(0.77, 0, 0.175, 1));
+
 $grid-gutter: 1.5rem;
 $grid-max-width: 71em;
 

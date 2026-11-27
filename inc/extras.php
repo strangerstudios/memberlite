@@ -283,6 +283,10 @@ function memberlite_body_classes( $classes ) {
 		$classes[] = 'is-style-light';
 	}
 
+	if ( memberlite_has_motion() ) {
+		$classes[] = 'memberlite-has-motion';
+	}
+
 	// other classes
 	if ( is_multi_author() ) {
 		$classes[] = 'group-blog';
