@@ -302,6 +302,7 @@ const BannerImageControl = ( { imageId, onChange } ) => {
 
 /**
  * Banner Image panel. Shown on every post type with a Banner Image.
+ * Pages set "Show Masthead Banner" in Page Settings; other post types set it here.
  */
 const MemberliteBannerImageSettings = () => {
 	const postType = useSelect(
@@ -317,18 +318,35 @@ const MemberliteBannerImageSettings = () => {
 		return null;
 	}
 
+	const hasShowToggle   = postType !== 'page' && '_memberlite_banner_show' in meta;
+	const showBannerValue = meta._memberlite_banner_show ?? true; // `??` (not `||`) so an explicit `false` isn't overridden.
+
 	return (
 		<PluginDocumentSettingPanel
 			name="memberlite-banner-image"
 			title={ __( 'Banner Image', textDomain ) }
 			className="memberlite-banner-image"
 		>
-			<BannerImageControl
-				imageId={ meta[ metaKey ] }
-				onChange={ ( value ) => {
-					setMeta( { ...meta, [ metaKey ]: value } );
-				} }
-			/>
+			<VStack spacing={ 4 }>
+				{ hasShowToggle && (
+					<ToggleControl
+						__nextHasNoMarginBottom
+						label={ __( 'Show Masthead Banner', textDomain ) }
+						checked={ showBannerValue }
+						onChange={ ( value ) => {
+							setMeta( { ...meta, _memberlite_banner_show: value } );
+						} }
+					/>
+				) }
+				{ ( ! hasShowToggle || showBannerValue ) && (
+					<BannerImageControl
+						imageId={ meta[ metaKey ] }
+						onChange={ ( value ) => {
+							setMeta( { ...meta, [ metaKey ]: value } );
+						} }
+					/>
+				) }
+			</VStack>
 		</PluginDocumentSettingPanel>
 	);
 };

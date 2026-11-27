@@ -213,6 +213,18 @@ function memberlite_register_banner_image_post_meta(): void {
 			'sanitize_callback' => 'absint',
 			'auth_callback'     => 'memberlite_auth_edit_post_meta',
 		) );
+
+		// Pages register this with their other masthead settings.
+		if ( 'page' !== $post_type ) {
+			register_post_meta( $post_type, '_memberlite_banner_show', array(
+				'show_in_rest'  => true,
+				'type'          => 'boolean',
+				'single'        => true,
+				'default'       => true,
+				'label'         => __( 'Show Masthead Banner', 'memberlite' ),
+				'auth_callback' => 'memberlite_auth_edit_post_meta',
+			) );
+		}
 	}
 }
 add_action( 'wp_loaded', 'memberlite_register_banner_image_post_meta' );
