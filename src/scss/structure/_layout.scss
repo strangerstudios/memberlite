@@ -12,6 +12,11 @@
 	order: 2;
 }
 
+// Without a masthead, sidebar layouts keep the space the masthead leaves above the columns.
+:is(.memberlite-layout-sidebar-right, .memberlite-layout-sidebar-left).memberlite-banner-hidden #content > .row {
+	margin-top: var(--wp--preset--spacing--50);
+}
+
 // Single pages and posts without a sidebar let wide and full blocks break out of the column.
 :is(.page, .single):is(.memberlite-layout-narrow, .memberlite-layout-contained, .memberlite-layout-full-width),
 .page-template-blank {
