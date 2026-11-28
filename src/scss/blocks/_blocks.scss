@@ -714,7 +714,8 @@
 	&.is-style-slant-bottom-left {
 		--memberlite-slant-depth: clamp(2.5rem, 6vw, 5rem);
 		border-bottom: var(--memberlite-slant-depth) solid transparent;
-		background-origin: border-box;
+		// Gradient preset classes set `background: … !important`, which would reset this to padding-box.
+		background-origin: border-box !important;
 	}
 
 	&.is-style-slant-bottom-right {
