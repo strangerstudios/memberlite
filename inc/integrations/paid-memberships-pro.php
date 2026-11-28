@@ -151,13 +151,15 @@ function memberlite_pmpro_get_color_override_vars(): array {
  *
  * PMPro's accent comes from the Primary color, and PMPro also uses it for text links, outline
  * buttons, and pagination. This re-points the accent on solid buttons only, including the Log In
- * button, which is WordPress's login form submit rather than a .pmpro_btn.
+ * button, which is WordPress's login form submit rather than a .pmpro_btn. PMPro's Log In hover
+ * doesn't use the accent variation, so only the accent is set there.
  *
  * @since TBD
- * @return string CSS rule.
+ * @return string CSS rules.
  */
 function memberlite_pmpro_get_button_color_override_css(): string {
-	return '.pmpro .pmpro_btn:not(.pmpro_btn-outline):not(.pmpro_btn-cancel):not(.pmpro_btn-plain), .pmpro .pmpro_section #loginform .login-submit .button { --pmpro--color--accent: var(--wp--preset--color--buttons); --pmpro--color--accent--variation: var(--wp--custom--button--hover-background); }';
+	return '.pmpro .pmpro_btn:not(.pmpro_btn-outline):not(.pmpro_btn-cancel):not(.pmpro_btn-plain) { --pmpro--color--accent: var(--wp--preset--color--buttons); --pmpro--color--accent--variation: var(--wp--custom--button--hover-background); }'
+		. ' .pmpro .pmpro_section #loginform .login-submit .button { --pmpro--color--accent: var(--wp--preset--color--buttons); }';
 }
 
 /**
@@ -179,7 +181,7 @@ function memberlite_pmpro_editor_color_vars( $settings ) {
 		foreach ( memberlite_pmpro_get_color_override_vars() as $pmpro_var => $pmpro_value ) {
 			$css .= ' ' . $pmpro_var . ': ' . $pmpro_value . ';';
 		}
-		$css .= ' } ' . memberlite_pmpro_get_button_color_override_css();
+		$css .= ' }';
 	} elseif ( function_exists( 'pmpro_print_root_color_values' ) ) {
 		ob_start();
 		pmpro_print_root_color_values();
