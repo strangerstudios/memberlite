@@ -31,13 +31,13 @@ function memberlite_recent_posts_shortcode_handler($atts, $content=null, $code="
 		'author' => $author_id,
 	);
 
-	// check to see if post type is not empty and the post type exists.
-	if ( ! empty( $post_type ) && post_type_exists( $post_type ) ) {
+	// check to see if post type is not empty and the post type is publicly viewable.
+	if ( ! empty( $post_type ) && is_post_type_viewable( $post_type ) ) {
 		$query_args['post_type'] = $post_type;
 	} else {
 		return sprintf(
 			/* translators: %s: post type */
-			__( "There was a problem fetching content for the post type '%s'. Please ensure this exists.", "memberlite" ),
+			__( "There was a problem fetching content for the post type '%s'. Please ensure this post type exists and is publicly viewable.", "memberlite" ),
 			esc_html( $post_type )
 		);
 	}
