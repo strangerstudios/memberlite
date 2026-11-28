@@ -121,7 +121,7 @@ function memberlite_dashboard_welcome_callback() {
 					</div>
 					<div class="memberlite_box-description">
 						<p><?php esc_html_e( 'Register for a free account to browse documentation and get additional help with your membership site.', 'memberlite' ); ?></p>
-						<p><a href="https://try.pmproplugin.com" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'View Theme Demo', 'memberlite' ); ?></a></p>
+						<p><a href="https://templates.pmpro.site/" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'View Theme Demo', 'memberlite' ); ?></a></p>
 						<p><a href="https://www.paidmembershipspro.com/documentation/memberlite/?utm_source=memberlite-theme&utm_medium=memberlite-guide&utm_campaign=all-docs" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'View All Docs', 'memberlite' ); ?></a></p>
 					</div>
 				</div>
