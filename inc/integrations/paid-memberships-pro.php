@@ -147,6 +147,22 @@ function memberlite_pmpro_get_color_override_vars(): array {
 }
 
 /**
+ * Get the CSS that gives PMPro's solid buttons the Button color when "Override PMPro Colors" is checked.
+ *
+ * PMPro's accent comes from the Primary color, and PMPro also uses it for text links, outline
+ * buttons, and pagination. This re-points the accent on solid buttons only, including the Log In
+ * button, which is WordPress's login form submit rather than a .pmpro_btn. PMPro's Log In hover
+ * doesn't use the accent variation, so only the accent is set there.
+ *
+ * @since TBD
+ * @return string CSS rules.
+ */
+function memberlite_pmpro_get_button_color_override_css(): string {
+	return '.pmpro .pmpro_btn:not(.pmpro_btn-outline):not(.pmpro_btn-cancel):not(.pmpro_btn-plain) { --pmpro--color--accent: var(--wp--preset--color--buttons); --pmpro--color--accent--variation: var(--wp--custom--button--hover-background); }'
+		. ' .pmpro .pmpro_section #loginform .login-submit .button { --pmpro--color--accent: var(--wp--preset--color--buttons); }';
+}
+
+/**
  * Add the PMPro card variables to the block editor styles for the card tokens.
  *
  * PMPro and the Customizer print these on the frontend only. Editor styles are

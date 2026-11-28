@@ -1167,6 +1167,9 @@ class Memberlite_Customize {
 				<?php endif; ?>
 			<?php } //end of PMPRO_VERSION check ?>
 			}
+			<?php if ( defined( 'PMPRO_VERSION' ) && $override_pmpro_colors ) : ?>
+			<?php echo memberlite_pmpro_get_button_color_override_css() . "\n"; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Hardcoded CSS. ?>
+			<?php endif; ?>
 		</style>
 		<!--/Customizer CSS-->
 		<?php
