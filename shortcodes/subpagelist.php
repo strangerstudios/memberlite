@@ -72,9 +72,15 @@ function memberlite_subpagelist_shortcode_handler( $atts, $content = null, $code
 	}
 
 	// Prep post_type array.
+	$post_type_array = array();
 	if ( ! empty( $post_type ) ) {
 		$post_type = str_replace( ' ' , '', $post_type );
 		$post_type_array = explode( ',', $post_type );
+
+		// Expand "any" to the searchable post types, as WP_Query does.
+		if ( in_array( 'any', $post_type_array, true ) ) {
+			$post_type_array = array_keys( get_post_types( array( 'exclude_from_search' => false ) ) );
+		}
 
 		// Only list post types that are publicly viewable.
 		$post_type_array = array_values( array_filter( $post_type_array, 'is_post_type_viewable' ) );

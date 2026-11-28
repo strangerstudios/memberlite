@@ -37,7 +37,7 @@ function memberlite_recent_posts_shortcode_handler($atts, $content=null, $code="
 	} else {
 		return sprintf(
 			/* translators: %s: post type */
-			__( "There was a problem fetching content for the post type '%s'. Please ensure this exists.", "memberlite" ),
+			__( "There was a problem fetching content for the post type '%s'. Please ensure this post type exists and is publicly viewable.", "memberlite" ),
 			esc_html( $post_type )
 		);
 	}
